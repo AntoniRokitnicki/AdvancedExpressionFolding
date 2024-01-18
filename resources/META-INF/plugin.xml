@@ -1,7 +1,7 @@
 <idea-plugin>
   <id>com.intellij.bigdecimal-folding2</id>
   <name>Advanced Java Folding2</name>
-  <version>1.0.2</version>
+  <version>1.0.3</version>
   <vendor email="android.rokitnicki@gmail.com" url="https://github.com/AntoniRokitnicki/AdvancedExpressionFolding">Antoni</vendor>
   <description><![CDATA[
 
