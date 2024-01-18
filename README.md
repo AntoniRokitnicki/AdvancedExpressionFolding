@@ -5,6 +5,7 @@ This plugin is a fixed version of the [Advanced Java Folding](https://plugins.je
 
 <!-- Plugin description end -->
 
+
 ## Installation
 
 - Using the Custom plugin repository:
