@@ -44,9 +44,7 @@
             <change-notes>
                 <![CDATA[ ]]>
             </change-notes>
-            <download-url>
-                https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/releases/download/1.0.1/advanced-expression-folding-1.0.1.jar
-            </download-url>
+            <download-url>https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/releases/download/1.0.1/advanced-expression-folding-1.0.1.jar</download-url>
             <idea-version min="n/a" max="n/a" since-build="212.4638"/>
         </idea-plugin>
 
@@ -89,9 +87,7 @@
             <change-notes>
                 <![CDATA[ ]]>
             </change-notes>
-            <download-url>
-                https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/releases/download/1.0.0/advanced-expression-folding-0.0.1.jar
-            </download-url>
+            <download-url>https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/releases/download/1.0.0/advanced-expression-folding-0.0.1.jar</download-url>
             <idea-version min="n/a" max="n/a" since-build="212.4638"/>
         </idea-plugin>
     </category>
