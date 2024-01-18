@@ -4,14 +4,13 @@
   <version>1.0.1</version>
   <vendor email="android.rokitnicki@gmail.com" url="https://github.com/AntoniRokitnicki/AdvancedExpressionFolding">Antoni</vendor>
   <description><![CDATA[
-      <font color="blue">
-          <h4>Project migrated to IntelliJ template plugin to support new version of IntelliJ.</h4>
-          <h4>Merged Pull Requests:</h4>
-          <ul>
-              <li><a href="https://github.com/cheptsov/AdvancedExpressionFolding/pull/132">java.time.* isBefore/isAfter folding and LocalDate literals</a></li>
-              <li><a href="https://github.com/cheptsov/AdvancedExpressionFolding/pull/128">Optimizations</a></li>
-          </ul>
-      </font>
+
+      <h2><font color="blue">Project migrated to IntelliJ template plugin to support new version of IntelliJ.</font></h2>
+      <h4>Merged Pull Requests:</h4>
+      <ul>
+          <li><a href="https://github.com/cheptsov/AdvancedExpressionFolding/pull/132">java.time.* isBefore/isAfter folding and LocalDate literals</a></li>
+          <li><a href="https://github.com/cheptsov/AdvancedExpressionFolding/pull/128">Optimizations</a></li>
+      </ul>
 
       <p>Modern JVM languages such as Kotlin, Groovy, Scala and some others offer many language features that let you
         write code in a more concise and expressive manner. These features include type inference, properties,
