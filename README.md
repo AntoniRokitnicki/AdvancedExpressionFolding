@@ -1,7 +1,7 @@
 # advanced-expression-folding2
 
 <!-- Plugin description -->
-<h2><font color="blue">Project migrated to IntelliJ template plugin to support new version of IntelliJ.</font></h2>
+<h2><font color="brown">Project migrated to IntelliJ template plugin to support new version of IntelliJ.</font></h2>
 <h4>Merged Pull Requests:</h4>
 <ul>
     <li><a href="https://github.com/cheptsov/AdvancedExpressionFolding/pull/132">java.time.* isBefore/isAfter folding and LocalDate literals</a></li>
