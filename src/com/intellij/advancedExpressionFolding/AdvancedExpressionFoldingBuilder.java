@@ -112,6 +112,9 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
             add("isAfter");
             // LocalDate literal
             add("of");
+            //Optional
+            add("map");
+            add("orElse");
         }
     };
 
@@ -1316,6 +1319,12 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
             } else {
                 Expression variable = getVariableExpression(element, copy);
                 if (variable != null) return variable;
+
+                var methodReference = getMethodReference(element);
+                if (methodReference.isPresent()) {
+                    return methodReference.get();
+                }
+
             }
         }
         return null;
@@ -1324,6 +1333,116 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
     @Nullable
     private static Variable getVariableExpression(PsiElement element) {
         return getVariableExpression(element, false);
+    }
+
+
+    private static Optional<OptionalMapSafeCallParam> getMethodReference(PsiElement element) {
+        if (AdvancedExpressionFoldingSettings.getInstance().getState().isOptional()) {
+            PsiReference reference = element.getReference();
+            if (reference != null) {
+                PsiElement e = reference.resolve();
+                if (e instanceof PsiMethod psiMethod && psiMethod.getParameters().length == 0) {
+                    if (hasParents(element, PsiExpressionList.class, PsiMethodCallExpression.class)) {
+                        return descendIntoHierarchyByClasses(e, PsiIdentifier.class, PsiIdentifier.class)
+                                .map(it -> new OptionalMapSafeCallParam(element, element.getTextRange(),
+                                        guessPropertyName(it.getText())));
+                    }
+
+                }
+            }
+        }
+        return Optional.empty();
+    }
+
+    public static List<PsiElement> getAllParents(PsiElement psiElement) {
+        List<PsiElement> parents = new ArrayList<>();
+
+        PsiElement parent = psiElement.getParent();
+        while (parent != null) {
+            parents.add(parent);
+            parent = parent.getParent();
+        }
+
+        return parents;
+    }
+
+    @SafeVarargs
+    public static boolean hasParents(PsiElement element, Class<? extends PsiElement> ... parents) {
+        PsiElement parent = element.getParent();
+        for (Class<?> parentClass : parents) {
+            if (parentClass.isInstance(parent)) {
+                parent = parent.getParent();
+            } else {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+    @SafeVarargs
+    public static boolean hasChildren(PsiElement element, Class<? extends PsiElement>... children) {
+        var classQueue = new LinkedList<>(List.of(children));
+        PsiElement[] kids = element.getChildren();
+
+        Class<? extends PsiElement> next = classQueue.poll();
+        for (PsiElement kid : kids) {
+            if (next.isInstance(kid)) {
+                if (classQueue.isEmpty()) {
+                    return true; // All specified children classes found
+                } else {
+                    return hasChildren(kid, classQueue.toArray(new Class[0]));
+                }
+            }
+        }
+        return false;
+    }
+
+
+    @SafeVarargs
+    private static <T extends PsiElement> Optional<T> ascendIntoHierarchyByClasses(PsiElement element, Class<T> parentClass, Class<? extends PsiElement>... parents) {
+        LinkedList<Class<? extends PsiElement>> classQueue = new LinkedList<>(List.of(parents));
+        PsiElement parent = element.getParent();
+
+        Class<? extends PsiElement> next = classQueue.poll();
+        PsiElement lastMatchingParent = null;
+
+        while (parent != null) {
+            if (next.isInstance(parent)) {
+                lastMatchingParent = parent;
+
+                if (classQueue.isEmpty()) {
+                    return Optional.of((T) lastMatchingParent);
+                } else {
+                    return ascendIntoHierarchyByClasses(parent, parentClass, classQueue.toArray(new Class[0]));
+                }
+            }
+
+            parent = parent.getParent();
+        }
+
+        return Optional.empty();
+    }
+    @SafeVarargs
+    private static <T extends PsiElement> Optional<T> descendIntoHierarchyByClasses(PsiElement element, Class<T> childClass, Class<? extends PsiElement>... children) {
+        LinkedList<Class<? extends PsiElement>> classQueue = new LinkedList<>(List.of(children));
+        PsiElement[] kids = element.getChildren();
+
+        Class<? extends PsiElement> next = classQueue.poll();
+        PsiElement lastMatchingChild;
+
+        for (PsiElement kid : kids) {
+            if (next.isInstance(kid)) {
+                lastMatchingChild = kid;
+
+                if (classQueue.isEmpty()) {
+                    return Optional.of((T) lastMatchingChild);
+                } else {
+                    return descendIntoHierarchyByClasses(kid, childClass, classQueue.toArray(new Class[0]));
+                }
+            }
+        }
+        return Optional.empty();
     }
 
     @Nullable
@@ -1406,6 +1525,31 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
                             @NotNull PsiExpression argument = element.getArgumentList().getExpressions()[0];
                             @NotNull Expression argumentExpression = getAnyExpression(argument, document);
                             switch (methodName) {
+                                case "map":
+                                    switch (className) {
+                                        case "java.util.Optional":
+                                            if (settings.getState().isOptional() &&
+                                            descendIntoHierarchyByClasses(element, PsiMethodReferenceExpression.class, PsiExpressionList.class, PsiMethodReferenceExpression.class)
+                                                    .map(PsiReference::resolve)
+                                                    .filter(PsiMethod.class::isInstance)
+                                                    .map(PsiMethod.class::cast)
+                                                    .filter(it -> it.getParameters().length == 0)
+                                                    .flatMap(it -> descendIntoHierarchyByClasses(it, PsiIdentifier.class, PsiIdentifier.class))
+                                                    .isPresent()) {
+                                                return new OptionalMapSafeCall(element, element.getTextRange(), Arrays.asList(qualifierExpression, argumentExpression));
+                                            }
+                                    }
+                                    return null;
+                                case "orElse":
+                                    switch (className) {
+                                        case "java.util.Optional":
+                                            if (settings.getState().isOptional() &&
+                                                descendIntoHierarchyByClasses(element, PsiExpressionList.class, PsiExpressionList.class)
+                                                    .isPresent()) {
+                                                return new OptionalOrElseElvis(element, element.getTextRange(), Arrays.asList(qualifierExpression, argumentExpression));
+                                            }
+                                    }
+                                    return null;
                                 case "add":
                                     switch (className) {
                                         case "java.util.List":
@@ -1575,7 +1719,8 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
                                         }
                                     }
                                 case "stream":
-                                    if (element.getParent() instanceof PsiReferenceExpression &&
+                                    if (!className.equals("java.util.Optional") &&
+                                            element.getParent() instanceof PsiReferenceExpression &&
                                             ((PsiReferenceExpression) element.getParent()).getQualifierExpression() == element) {
                                         if (settings.getState().isConcatenationExpressionsCollapse()) {
                                             return new ArrayStream(element, TextRange.create(
@@ -1601,6 +1746,14 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
                             }
                         } else if (element.getArgumentList().getExpressions().length == 0) {
                             switch (methodName) {
+                                case "get":
+                                    switch (className) {
+                                        case "java.util.Optional":
+                                            if (settings.getState().isOptional()) {
+                                                return new OptionalNotNullAssertionGet(element, identifier.get().getTextRange(), qualifierExpression);
+                                            }
+                                    }
+                                    return null;
                                 case "plus":
                                     return qualifierExpression;
                                 case "negate":
@@ -1612,7 +1765,8 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
                                 case "signum":
                                     return new Signum(element, element.getTextRange(), Collections.singletonList(qualifierExpression));
                                 case "stream":
-                                    if (element.getParent() instanceof PsiReferenceExpression
+                                    if (!className.equals("java.util.Optional") &&
+                                            element.getParent() instanceof PsiReferenceExpression
                                             && ((PsiReferenceExpression) element.getParent()).getQualifierExpression() == element
                                             && settings.getState().isConcatenationExpressionsCollapse()) {
                                         return new StreamExpression(element, TextRange.create(identifier.get().getTextRange().getStartOffset(),
@@ -1868,7 +2022,11 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
 
     private static boolean isGetter(@NotNull PsiElement element, @NotNull PsiMethodCallExpression expression) {
         return expression.getArgumentList().getExpressions().length == 0
-                && (isGetterAux(element.getText(), "get") || isGetterAux(element.getText(), "is"));
+                && isGetter(element);
+    }
+
+    private static boolean isGetter(@NotNull PsiElement element) {
+        return isGetterAux(element.getText(), "get") || isGetterAux(element.getText(), "is");
     }
 
     private static boolean isGetterAux(@Nullable String name, @NotNull String prefix) {
