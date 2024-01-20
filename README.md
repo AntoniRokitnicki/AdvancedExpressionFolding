@@ -17,11 +17,6 @@
 
 <p>For more information, read the <a href="https://medium.com/@andrey_cheptsov/making-java-code-easier-to-read-without-changing-it-adeebd5c36de" target="_blank">blog post</a>.</p>
 
-<p>To get access to experimental features, go to <strong>Settings</strong> |
-<strong>Plugins</strong> | <strong>Browse Repositories</strong> | <strong>Manage Repositories</strong> and
-add <a href="https://plugins.jetbrains.com/plugins/EAP/com.intellij.bigdecimal-folding">https://plugins.jetbrains.com/plugins/EAP/com.intellij.bigdecimal-folding</a>
-as a custom plugin repository URL.</p>
-
 <p>For more clarity, you may try to adjust your color scheme: go to <strong>Settings</strong> | <strong>Editor</strong> |
 <strong>Colors &amp; Fonts</strong> | <strong>General</strong>, select <strong>Folded text</strong>,
 uncheck the <strong>Background</strong> color, and change the
