@@ -1,4 +1,4 @@
-# advanced-expression-folding2
+# AdvancedExpressionFolding2
 
 <!-- Plugin description -->
 <h2><font color="brown">Project migrated to IntelliJ template plugin to support new version of IntelliJ.</font></h2>
@@ -34,7 +34,7 @@ To disable certain types of folding, go to <strong>Settings</strong> | <strong>E
   <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>⚙️</kbd> > <kbd>Manager Plugin Repositories</kbd>
 
   - add
-  https://raw.githubusercontent.com/AntoniRokitnicki/AdvancedExpressionFolding/master/plugin_repository.xml
+  - https://antonirokitnicki.github.io/AdvancedExpressionFolding/plugin_repository.xml
   - goto <kbd>Marketplace</kbd>
   - search for <kbd>Advanced Java Folding2</kbd>
 
