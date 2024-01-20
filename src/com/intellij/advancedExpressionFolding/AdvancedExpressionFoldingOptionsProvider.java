@@ -24,5 +24,7 @@ public class AdvancedExpressionFoldingOptionsProvider extends com.intellij.opena
         checkBox("compactControlFlowSyntaxCollapse", "Compact control flow condition syntax");
         checkBox("semicolonsCollapse", "Semicolons (read-only files)");
         checkBox("assertsCollapse", "Asserts");
+        checkBox("Display Optional as Kotlin Null-Safe (experimental)" , state::isOptional, state::setOptional);
+
     }
 }
