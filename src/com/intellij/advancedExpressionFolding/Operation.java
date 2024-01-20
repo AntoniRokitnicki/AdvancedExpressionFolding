@@ -80,7 +80,7 @@ public abstract class Operation extends Expression {
         offset = operands.get(0).getTextRange().getEndOffset();
         for (int i = 1; i < operands.size(); i++) {
             TextRange r = TextRange.create(offset, operands.get(i).getTextRange().getStartOffset());
-            String p = " " + character + " ";
+            String p = buildFolding(character);
             if (!document.getText(r).equals(p)) {
                 descriptors.add(new FoldingDescriptor(element.getNode(),
                         r, group, p));
@@ -97,6 +97,11 @@ public abstract class Operation extends Expression {
             }
         }
         return descriptors.toArray(FoldingDescriptor.EMPTY);
+    }
+
+    @NotNull
+    protected String buildFolding(@NotNull String character) {
+        return " " + character + " ";
     }
 
     @Override
