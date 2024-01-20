@@ -60,6 +60,7 @@ public class AdvancedExpressionFoldingSettings implements PersistentStateCompone
         private boolean CONTROL_FLOW_MULTI_STATEMENT_CODE_BLOCK = false;
         private boolean SEMICOLONS = true;
         private boolean ASSERTS = true;
+        private boolean OPTIONAL = true;
 
         public boolean isArithmeticExpressionsCollapse() {
             return ARITHMETIC_EXPRESSIONS;
@@ -91,6 +92,14 @@ public class AdvancedExpressionFoldingSettings implements PersistentStateCompone
 
         public boolean isLocalDateLiteralPostfix() {
             return LOCAL_DATE_LITERAL_POSTFIX;
+        }
+
+        public boolean isOptional() {
+            return OPTIONAL;
+        }
+
+        public void setOptional(boolean OPTIONAL) {
+            this.OPTIONAL = OPTIONAL;
         }
 
         public boolean isRangeExpressionsCollapse() {
