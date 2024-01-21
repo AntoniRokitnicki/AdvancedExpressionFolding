@@ -94,7 +94,7 @@ public class IfExpression extends Expression {
                                         this.element.getCondition().getTextRange().getStartOffset()), group, "assert "));
                     }
                     PsiBinaryExpression binaryExpression = ((PsiBinaryExpression) this.element.getCondition());
-                    String p = null;
+                    String p;
                     String text = binaryExpression.getOperationSign().getText();
                     if ("==".equals(text)) {
                         p = "!=";

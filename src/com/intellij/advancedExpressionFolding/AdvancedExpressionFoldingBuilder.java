@@ -1389,8 +1389,7 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
                 .map(Class::getName)
                 .map(it -> it + ".class").toList();
 
-        System.out.println("ascendIntoHierarchyByClasses(element, " +
-                parentsVars.stream().reduce((first, second) -> second).orElseThrow() + ", " +
+        System.out.println("ascendIntoHierarchyByClasses(element, PsiElement.class, " +
                 String.join(", ", parentsVars) +
                 ")");
         return parents;
@@ -1438,7 +1437,7 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
         PsiElement lastMatchingParent;
 
         while (parent != null) {
-            if (next.isInstance(parent)) {
+            if (next != null && next.isInstance(parent)) {
                 lastMatchingParent = parent;
 
                 if (classQueue.isEmpty()) {
