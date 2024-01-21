@@ -10,6 +10,7 @@
 
 - Display Optional as Kotlin Null-Safe
 - Display Optional as Kotlin Null-Safe - orElseGet
+- Fix memory leak in AdvancedExpressionFoldingHighlightingComponent.highlighters
 
 ## [1.0.4]
 
