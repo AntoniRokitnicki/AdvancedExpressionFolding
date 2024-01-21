@@ -32,14 +32,14 @@ import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.WeakHashMap;
 
 // TODO: Support multi-line range highlighters
 public class AdvancedExpressionFoldingHighlightingComponent extends AbstractProjectComponent implements EditorMouseListener, EditorMouseMotionListener, FileEditorManagerListener {
 
     private static final TooltipGroup FOLDING_TOOLTIP_GROUP = new TooltipGroup("FOLDING_TOOLTIP_GROUP", 10);
-    private Map<Editor, Map<Expression, RangeHighlighterEx>> highlighters = new HashMap<>();
+    private Map<Editor, Map<Expression, RangeHighlighterEx>> highlighters = new WeakHashMap<>();
     private TooltipController controller;
 
     protected AdvancedExpressionFoldingHighlightingComponent(Project project, EditorFactory editorFactory) {
@@ -69,7 +69,7 @@ public class AdvancedExpressionFoldingHighlightingComponent extends AbstractProj
             for (FileEditor editor : editors) {
                 EditorEx editorEx = getEditorEx(editor);
                 if (editorEx != null) {
-                    highlighters.putIfAbsent(editorEx, new HashMap<>());
+                    highlighters.putIfAbsent(editorEx, new WeakHashMap<>());
                     for (FoldRegion region : editorEx.getFoldingModel().getAllFoldRegions()) {
                         processRegion(region, documentManager, editorEx);
                     }
@@ -304,18 +304,18 @@ public class AdvancedExpressionFoldingHighlightingComponent extends AbstractProj
 
     @Override
     public void fileClosed(@NotNull FileEditorManager fileEditorManager, @NotNull VirtualFile virtualFile) {
-        FileEditor[] editors = fileEditorManager.getEditors(virtualFile);
-        for (FileEditor editor : editors) {
-            EditorEx editorEx = getEditorEx(editor);
-            if (editorEx != null) {
-                Map<Expression, RangeHighlighterEx> m = highlighters.remove(editorEx);
-                if (m != null) {
-                    m.forEach((expression, highlighter) ->
-                            editorEx.getMarkupModel().removeHighlighter(highlighter)
-                    );
-                }
-            }
-        }
+        highlighters.keySet().stream()
+                .filter(EditorEx.class::isInstance)
+                .map(EditorEx.class::cast)
+                .filter(it -> virtualFile.equals(it.getVirtualFile()))
+                .toList().forEach(editorEx -> {
+                    Map<Expression, RangeHighlighterEx> m = highlighters.remove(editorEx);
+                    if (m != null) {
+                        m.forEach((expression, highlighter) ->
+                                editorEx.getMarkupModel().removeHighlighter(highlighter)
+                        );
+                    }
+                });
     }
 
     @Override
