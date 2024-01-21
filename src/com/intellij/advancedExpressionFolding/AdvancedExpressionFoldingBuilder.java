@@ -1281,7 +1281,7 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
                                 break;
                             }
                         }
-                        if (flag && !arguments.isEmpty()) {
+                        if (flag) {
                             if (settings.getState().isGetExpressionsCollapse())
                                 return new SetLiteral(element, element.getTextRange(),
                                         TextRange.create(anonymousClass.getLBrace().getTextRange().getStartOffset(),
@@ -1344,7 +1344,7 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
             PsiReference reference = element.getReference();
             if (reference != null) {
                 PsiElement e = reference.resolve();
-                if (e instanceof PsiMethod psiMethod && psiMethod.getParameters().length == 0) {
+                if (e instanceof PsiMethod psiMethod && psiMethod.getParameterList().isEmpty()) {
                     var optionalCall = ascendIntoHierarchyByClasses(element, PsiMethodCallExpression.class, PsiExpressionList.class, PsiMethodCallExpression.class);
                     var method = optionalCall
                             .map(PsiMethodCallExpression::getMethodExpression)
@@ -1370,7 +1370,6 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
         return Optional.empty();
     }
 
-    @SafeVarargs
     public static boolean and(Optional<?> ... optionals) {
         return Stream.of(optionals).allMatch(Optional::isPresent);
     }
@@ -1416,7 +1415,7 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
 
         Class<? extends PsiElement> next = classQueue.poll();
         for (PsiElement kid : kids) {
-            if (next.isInstance(kid)) {
+            if (next != null && next.isInstance(kid)) {
                 if (classQueue.isEmpty()) {
                     return true; // All specified children classes found
                 } else {
