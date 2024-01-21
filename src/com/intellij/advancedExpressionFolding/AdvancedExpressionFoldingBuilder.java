@@ -115,6 +115,7 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
             //Optional
             add("map");
             add("orElse");
+            add("orElseGet");
         }
     };
 
@@ -1337,15 +1338,28 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
 
 
     private static Optional<OptionalMapSafeCallParam> getMethodReference(PsiElement element) {
-        if (AdvancedExpressionFoldingSettings.getInstance().getState().isOptional()) {
+        if (AdvancedExpressionFoldingSettings.getInstance().getState().isOptional() && element instanceof PsiMethodReferenceExpression) {
             PsiReference reference = element.getReference();
             if (reference != null) {
                 PsiElement e = reference.resolve();
                 if (e instanceof PsiMethod psiMethod && psiMethod.getParameters().length == 0) {
-                    if (hasParents(element, PsiExpressionList.class, PsiMethodCallExpression.class)) {
+                    var optionalCall = ascendIntoHierarchyByClasses(element, PsiMethodCallExpression.class, PsiExpressionList.class, PsiMethodCallExpression.class);
+                    var method = optionalCall
+                            .map(PsiMethodCallExpression::getMethodExpression)
+                            .map(PsiReference::resolve)
+                            .filter(PsiMethod.class::isInstance)
+                            .map(PsiMethod.class::cast);
+                    var className = method
+                            .map(PsiMember::getContainingClass)
+                            .map(PsiClass::getQualifiedName);
+                    if (and(
+                            method.map(PsiMethod::getName).filter("map"::equals),
+                            className.filter("java.util.Optional"::equals)
+                    )) {
                         return descendIntoHierarchyByClasses(e, PsiIdentifier.class, PsiIdentifier.class)
+                                .map(PsiElement::getText)
                                 .map(it -> new OptionalMapSafeCallParam(element, element.getTextRange(),
-                                        guessPropertyName(it.getText())));
+                                        guessPropertyName(it)));
                     }
 
                 }
@@ -1354,7 +1368,12 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
         return Optional.empty();
     }
 
-    public static List<PsiElement> getAllParents(PsiElement psiElement) {
+    @SafeVarargs
+    public static boolean and(Optional<?> ... optionals) {
+        return Stream.of(optionals).allMatch(Optional::isPresent);
+    }
+
+    private static List<PsiElement> getAllParents(PsiElement psiElement) {
         List<PsiElement> parents = new ArrayList<>();
 
         PsiElement parent = psiElement.getParent();
@@ -1363,6 +1382,15 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
             parent = parent.getParent();
         }
 
+        var parentsVars = parents.stream()
+                .map(Object::getClass)
+                .map(Class::getName)
+                .map(it -> it + ".class").toList();
+
+        System.out.println("ascendIntoHierarchyByClasses(element, " +
+                parentsVars.stream().reduce((first, second) -> second).orElseThrow() + ", " +
+                String.join(", ", parentsVars) +
+                ")");
         return parents;
     }
 
@@ -1405,7 +1433,7 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
         PsiElement parent = element.getParent();
 
         Class<? extends PsiElement> next = classQueue.poll();
-        PsiElement lastMatchingParent = null;
+        PsiElement lastMatchingParent;
 
         while (parent != null) {
             if (next.isInstance(parent)) {
@@ -1423,16 +1451,23 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
 
         return Optional.empty();
     }
+    private static <T extends PsiElement> Stream<PsiElement> findAncestorsUntilClass(PsiElement element, Class<T> ancestorClass) {
+        return findAncestorsUntil(element, (parent -> !ancestorClass.isInstance(parent)));
+    }
+
+    private static <T extends PsiElement> Stream<PsiElement> findAncestorsUntil(PsiElement element, Predicate<PsiElement> untilPredicate) {
+        return Stream.iterate(element.getParent(), Objects::nonNull, PsiElement::getParent)
+                .takeWhile(untilPredicate);
+    }
+
     @SafeVarargs
     private static <T extends PsiElement> Optional<T> descendIntoHierarchyByClasses(PsiElement element, Class<T> childClass, Class<? extends PsiElement>... children) {
         LinkedList<Class<? extends PsiElement>> classQueue = new LinkedList<>(List.of(children));
-        PsiElement[] kids = element.getChildren();
-
         Class<? extends PsiElement> next = classQueue.poll();
         PsiElement lastMatchingChild;
 
-        for (PsiElement kid : kids) {
-            if (next.isInstance(kid)) {
+        for (PsiElement kid : element.getChildren()) {
+            if (next != null && next.isInstance(kid)) {
                 lastMatchingChild = kid;
 
                 if (classQueue.isEmpty()) {
@@ -1529,23 +1564,18 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
                                     switch (className) {
                                         case "java.util.Optional":
                                             if (settings.getState().isOptional() &&
-                                            descendIntoHierarchyByClasses(element, PsiMethodReferenceExpression.class, PsiExpressionList.class, PsiMethodReferenceExpression.class)
-                                                    .map(PsiReference::resolve)
-                                                    .filter(PsiMethod.class::isInstance)
-                                                    .map(PsiMethod.class::cast)
-                                                    .filter(it -> it.getParameters().length == 0)
-                                                    .flatMap(it -> descendIntoHierarchyByClasses(it, PsiIdentifier.class, PsiIdentifier.class))
-                                                    .isPresent()) {
+                                                argumentExpression instanceof OptionalMapSafeCallParam) {
                                                 return new OptionalMapSafeCall(element, element.getTextRange(), Arrays.asList(qualifierExpression, argumentExpression));
                                             }
                                     }
                                     return null;
+                                case "orElseGet":
                                 case "orElse":
                                     switch (className) {
                                         case "java.util.Optional":
                                             if (settings.getState().isOptional() &&
-                                                descendIntoHierarchyByClasses(element, PsiExpressionList.class, PsiExpressionList.class)
-                                                    .isPresent()) {
+                                                    descendIntoHierarchyByClasses(element, PsiExpressionList.class, PsiExpressionList.class)
+                                                            .isPresent()) {
                                                 return new OptionalOrElseElvis(element, element.getTextRange(), Arrays.asList(qualifierExpression, argumentExpression));
                                             }
                                     }
