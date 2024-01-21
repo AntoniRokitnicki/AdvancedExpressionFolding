@@ -6,9 +6,11 @@ import com.intellij.lang.folding.FoldingBuilderEx;
 import com.intellij.lang.folding.FoldingDescriptor;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.project.IndexNotReadyException;
+import com.intellij.openapi.util.Key;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.*;
 import com.intellij.psi.impl.source.tree.java.PsiAssignmentExpressionImpl;
+import com.intellij.psi.util.CachedValue;
 import com.intellij.psi.util.CachedValueProvider;
 import com.intellij.psi.util.CachedValuesManager;
 import com.intellij.psi.util.PsiModificationTracker;
@@ -353,13 +355,13 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
 
     @Contract("_, _, true -> !null")
     private static Expression getExpression(@NotNull PsiElement element, @NotNull Document document, boolean synthetic) {
-        Supplier<Expression> supplier = () -> buildExpression(element, document, synthetic);
-        try {
-            return CachedValuesManager.getCachedValue(element, () -> CachedValueProvider.Result.create(supplier.get(),
-                    PsiModificationTracker.MODIFICATION_COUNT));
-        } catch (PluginException e) {
-            return supplier.get();
-        }
+        return CachedValuesManager.getCachedValue(element, generateKey(element, document, synthetic), () ->
+                CachedValueProvider.Result.create(buildExpression(element, document, synthetic), PsiModificationTracker.MODIFICATION_COUNT)
+        );
+    }
+
+    private static Key<CachedValue<Expression>> generateKey(PsiElement element, Document document, boolean synthetic) {
+        return Key.create(document.toString() + element.getText() + synthetic);
     }
 
     @SuppressWarnings("WeakerAccess")
