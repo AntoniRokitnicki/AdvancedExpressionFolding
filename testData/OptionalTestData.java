@@ -7,6 +7,9 @@ import java.util.function.Function;</fold>
 public class OptionalTestData {
 
     public void main(Data data, Optional<Data> opt) <fold text='{...}' expand='true'>{
+        Optional.ofNullable(data)<fold text=' ?: ' expand='false'>.orElseGet(</fold>this::orElseGetReturn<fold text='' expand='false'>)</fold>;
+        Optional.ofNullable(data)<fold text=' ?: ' expand='false'>.orElseGet(</fold>() -> data.getData()<fold text='' expand='false'>)</fold>;
+
         var p = Optional.ofNullable(data)<fold text='?.' expand='false'>.map(</fold><fold text='data' expand='false'>Data::getData</fold><fold text='' expand='false'>)</fold><fold text=' ?: ' expand='false'>.orElse(</fold>null<fold text='' expand='false'>)</fold>;
         var p2 = Optional.ofNullable(data).map(OptionalTestData::getOutsideData)<fold text='!!' expand='false'>.get()</fold>;
 
@@ -22,11 +25,15 @@ public class OptionalTestData {
 
         var string = Optional.of(data.getData()).map(OptionalTestData::getOutsideData)<fold text='?.' expand='false'>.map(</fold><fold text='string' expand='false'>Data::getString</fold><fold text='' expand='false'>)</fold><fold text=' ?: ' expand='false'>.orElse(</fold>data.getString()<fold text='' expand='false'>)</fold>;
 
-        Optional.of(data).flatMap(this::ofNullable).map(data::getDataMethod).orElseGet(() -> getOutsideData(data));
+        Optional.of(data).flatMap(this::ofNullable).map(data::getDataMethod)<fold text=' ?: ' expand='false'>.orElseGet(</fold>() -> getOutsideData(data)<fold text='' expand='false'>)</fold>;
 
-        Optional.<fold text='<~>' expand='false'><Data></fold>empty()<fold text='?.' expand='false'>.map(</fold><fold text='data' expand='false'>Data::getData</fold><fold text='' expand='false'>)</fold>.stream().map(<fold text='data' expand='false'>Data::getData</fold>).filter(Objects::nonNull).findAny()<fold text='?.' expand='false'>.map(</fold><fold text='string' expand='false'>Data::getString</fold><fold text='' expand='false'>)</fold><fold text='!!' expand='false'>.get()</fold>;
+        Optional.<fold text='<~>' expand='false'><Data></fold>empty()<fold text='?.' expand='false'>.map(</fold><fold text='data' expand='false'>Data::getData</fold><fold text='' expand='false'>)</fold>.stream().map(Data::getData).filter(Objects::nonNull).findAny()<fold text='?.' expand='false'>.map(</fold><fold text='string' expand='false'>Data::getString</fold><fold text='' expand='false'>)</fold><fold text='!!' expand='false'>.get()</fold>;
 
         opt<fold text='?.' expand='false'>.map(</fold><fold text='data' expand='false'>Data::getData</fold><fold text='' expand='false'>)</fold><fold text=' ?: ' expand='false'>.orElse(</fold>null<fold text='' expand='false'>)</fold>;
+    }</fold>
+
+    private Data orElseGetReturn()<fold text=' { ' expand='false'> {
+        </fold>return null;<fold text=' }' expand='false'>
     }</fold>
 
     private Optional<Data> ofNullable(Data data)<fold text=' { ' expand='false'> {
