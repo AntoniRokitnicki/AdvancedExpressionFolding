@@ -357,7 +357,7 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
     @Contract("_, _, true -> !null")
     private static Expression getExpression(@NotNull PsiElement element, @NotNull Document document, boolean synthetic) {
         return CachedValuesManager.getCachedValue(element, generateKey(element, document, synthetic), () ->
-                CachedValueProvider.Result.create(buildExpression(element, document, synthetic), PsiModificationTracker.MODIFICATION_COUNT)
+                CachedValueProvider.Result.create(buildExpression(element, document, synthetic), PsiModificationTracker.NEVER_CHANGED)
         );
     }
 
@@ -1340,7 +1340,7 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
     }
 
 
-    private static Optional<OptionalMapSafeCallParam> getMethodReference(PsiElement element) {
+    private static Optional<? extends Expression> getMethodReference(PsiElement element) {
         if (AdvancedExpressionFoldingSettings.getInstance().getState().isOptional() && element instanceof PsiMethodReferenceExpression) {
             PsiReference reference = element.getReference();
             if (reference != null) {
@@ -1355,17 +1355,20 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
                     var className = method
                             .map(PsiMember::getContainingClass)
                             .map(PsiClass::getQualifiedName);
-                    Predicate<String> isMap = "map"::equals;
-                    if (and(
-                            method.map(PsiMethod::getName).filter(isMap.or("flatMap"::equals)),
-                            className.filter("java.util.Optional"::equals)
-                    )) {
-                        return descendIntoHierarchyByClasses(e, PsiIdentifier.class, PsiIdentifier.class)
-                                .map(PsiElement::getText)
-                                .map(it -> new OptionalMapSafeCallParam(element, element.getTextRange(),
-                                        guessPropertyName(it)));
+                    var isMapMethod = method.map(PsiMethod::getName).filter(((Predicate<String>) "map"::equals).or("flatMap"::equals));
+                    if (isMapMethod.isPresent()) {
+                        if (className.filter("java.util.Optional"::equals).isPresent()) {
+                            return descendIntoHierarchyByClasses(e, PsiIdentifier.class, PsiIdentifier.class)
+                                    .map(PsiElement::getText)
+                                    .map(it -> new OptionalMapSafeCallParam(element, element.getTextRange(),
+                                            guessPropertyName(it)));
+                        } else if (className.filter("java.util.stream.Stream"::equals).isPresent()) {
+                            return descendIntoHierarchyByClasses(e, PsiIdentifier.class, PsiIdentifier.class)
+                                    .map(PsiElement::getText)
+                                    .map(it -> new StreamMapCallParam(element, element.getTextRange(),
+                                            guessPropertyName(it)));
+                        }
                     }
-
                 }
             }
         }
@@ -1583,11 +1586,16 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
                                     switch (className) {
                                         case "java.util.Optional":
                                             if (settings.getState().isOptional() &&
-                                                    (argumentExpression instanceof OptionalMapSafeCallParam || isOptionalMapMethodReference(element))) {
+                                                    (argumentExpression instanceof OptionalMapSafeCallParam || isPureMethodReference(element))) {
                                                 if (qualifierExpression instanceof OptionalOf) {
                                                     return new OptionalMapCall(element, element.getTextRange(), Arrays.asList(qualifierExpression, argumentExpression));
                                                 }
                                                 return new OptionalMapSafeCall(element, element.getTextRange(), Arrays.asList(qualifierExpression, argumentExpression));
+                                            }
+                                        case "java.util.stream.Stream":
+                                            if (settings.getState().isOptional() &&
+                                                    (argumentExpression instanceof StreamMapCallParam || isPureMethodReference(element))) {
+                                                return new StreamMapCall(element, element.getTextRange(), Arrays.asList(qualifierExpression, argumentExpression));
                                             }
                                     }
                                     return null;
@@ -2073,7 +2081,7 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
         return null;
     }
 
-    private static boolean isOptionalMapMethodReference(PsiMethodCallExpression element) {
+    private static boolean isPureMethodReference(PsiMethodCallExpression element) {
         return descendIntoHierarchyByClasses(element, PsiMethodReferenceExpression.class, PsiExpressionList.class, PsiMethodReferenceExpression.class)
                 .isPresent();
     }

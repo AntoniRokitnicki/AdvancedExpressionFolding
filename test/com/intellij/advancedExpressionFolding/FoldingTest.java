@@ -250,6 +250,11 @@ public class FoldingTest extends LightJavaCodeInsightFixtureTestCase {
         doFoldingTest();
     }
 
+    public void testSpreadTestData() {
+        AdvancedExpressionFoldingSettings.getInstance().getState().setOptional(true);
+        doFoldingTest();
+    }
+
     private void disableAllFoldings() {
         // TODO: Find a way to test all folding both together and separately
         AdvancedExpressionFoldingSettings.getInstance().getState().disableAll();
