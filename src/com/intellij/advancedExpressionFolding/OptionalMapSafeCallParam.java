@@ -24,6 +24,13 @@ public class OptionalMapSafeCallParam extends Expression {
         return string;
     }
 
+    @Override
+    public FoldingDescriptor[] buildFoldRegions(@NotNull PsiElement element, @NotNull Document document, @Nullable Expression parent) {
+        FoldingGroup group = FoldingGroup.newGroup(StringLiteral.class.getName());
+        ArrayList<FoldingDescriptor> descriptors = new ArrayList<>();
+        descriptors.add(new FoldingDescriptor(element.getNode(), element.getTextRange(), group, string));
+        return descriptors.toArray(FoldingDescriptor.EMPTY);
+    }
 
     @Override
     public boolean isCollapsedByDefault() {
@@ -34,13 +41,5 @@ public class OptionalMapSafeCallParam extends Expression {
     public boolean supportsFoldRegions(@NotNull Document document,
                                        @Nullable Expression parent) {
         return true;
-    }
-
-    @Override
-    public FoldingDescriptor[] buildFoldRegions(@NotNull PsiElement element, @NotNull Document document, @Nullable Expression parent) {
-        FoldingGroup group = FoldingGroup.newGroup(StringLiteral.class.getName());
-        ArrayList<FoldingDescriptor> descriptors = new ArrayList<>();
-        descriptors.add(new FoldingDescriptor(element.getNode(), element.getTextRange(), group, string));
-        return descriptors.toArray(FoldingDescriptor.EMPTY);
     }
 }
