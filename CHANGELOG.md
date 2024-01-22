@@ -4,6 +4,12 @@
 
 ## [Unreleased]
 
+## [1.0.6]
+
+### Added
+
+- Fold Optional.ofNullable, Optional.of, Optional.orElseThrow & Optional.flatMap
+
 ## [1.0.5]
 
 ### Added
