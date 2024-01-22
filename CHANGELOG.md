@@ -9,6 +9,7 @@
 ### Added
 
 - Fold Optional.ofNullable, Optional.of, Optional.orElseThrow & Optional.flatMap
+- Spread operator implementation for stream
 
 ## [1.0.5]
 
