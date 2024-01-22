@@ -1,5 +1,5 @@
 <idea-plugin>
-  <id>com.intellij.bigdecimal-folding2</id>
+  <id>com.github.bigdecimal-folding2</id>
   <name>Advanced Java Folding2</name>
   <version>1.0.4</version>
   <vendor email="android.rokitnicki@gmail.com" url="https://github.com/AntoniRokitnicki/AdvancedExpressionFolding">Antoni</vendor>
@@ -7,10 +7,12 @@
       <h5>New Version of <a href="https://plugins.jetbrains.com/plugin/9320-advanced-java-folding">Advanced Java Folding</a></h5>
       <h4><font color="brown">Project migrated to IntelliJ template plugin to support new version of IntelliJ.</font></h4>
       <h4>Merged Pull Requests:</h4>
-      <ul>
-          <li><a href="https://github.com/cheptsov/AdvancedExpressionFolding/pull/132">java.time.* isBefore/isAfter folding and LocalDate literals</a></li>
-          <li><a href="https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/22">Display Optional as Kotlin Null-Safe</a></li>
-      </ul>
+<ul>
+<li><a href="https://github.com/cheptsov/AdvancedExpressionFolding/pull/132">java.time.* isBefore/isAfter folding and LocalDate literals</a></li>
+<li><a href="https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/22">Display Optional as Kotlin Null-Safe</a></li>
+<li><a href="https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/23">Groovy spread operator in streams</a></li>
+<li><a href="https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pulls?q=is%3Apr+is%3Aclosed">Optimizations and bugfixes</a></li>
+</ul>
 
       <p>Modern JVM languages such as Kotlin, Groovy, Scala and some others offer many language features that let you
         write code in a more concise and expressive manner. These features include type inference, properties,

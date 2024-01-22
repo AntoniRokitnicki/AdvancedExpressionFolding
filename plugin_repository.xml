@@ -1,9 +1,9 @@
 <plugin-repository>
     <ff>"Formatting"</ff>
     <category name="Formatting">
-        <idea-plugin downloads="999999999201783" size="194112" date="1625903057006" updatedDate="1625903057006" url="">
+        <idea-plugin downloads="201783" size="194112" date="1625903057006" updatedDate="1625903057006" url="">
             <name>Advanced Java Folding2</name>
-            <id>com.intellij.bigdecimal-folding2</id>
+            <id>com.github.bigdecimal-folding2</id>
             <description>
                 <![CDATA[
                 <h2><font color="#C0C0C0">Project migrated to IntelliJ template plugin to support new version of IntelliJ.</font></h2>
@@ -27,7 +27,7 @@
 
         <idea-plugin downloads="201783" size="194112" date="1625903057005" updatedDate="1625903057005" url="">
             <name>Advanced Java Folding2</name>
-            <id>com.intellij.bigdecimal-folding2</id>
+            <id>com.github.bigdecimal-folding2</id>
             <description>
                 <![CDATA[
                 <h2><font color="#C0C0C0">Project migrated to IntelliJ template plugin to support new version of IntelliJ.</font></h2>
@@ -52,7 +52,7 @@
         </idea-plugin>
         <idea-plugin downloads="201783" size="194112" date="1625903057004" updatedDate="1625903057004" url="">
             <name>Advanced Java Folding2</name>
-            <id>com.intellij.bigdecimal-folding2</id>
+            <id>com.github.bigdecimal-folding2</id>
             <description>
                 <![CDATA[
                 <h2><font color="#C0C0C0">Project migrated to IntelliJ template plugin to support new version of IntelliJ.</font></h2>
@@ -74,7 +74,7 @@
         </idea-plugin>
         <idea-plugin downloads="201783" size="194112" date="1625903057003" updatedDate="1625903057003" url="">
             <name>Advanced Java Folding2</name>
-            <id>com.intellij.bigdecimal-folding2</id>
+            <id>com.github.bigdecimal-folding2</id>
             <description>
                 <![CDATA[
                 <h2><font color="#C0C0C0">Project migrated to IntelliJ template plugin to support new version of IntelliJ.</font></h2>
@@ -96,7 +96,7 @@
         </idea-plugin>
         <idea-plugin downloads="201783" size="194112" date="1625903057002" updatedDate="1625903057002" url="">
             <name>Advanced Java Folding2</name>
-            <id>com.intellij.bigdecimal-folding2</id>
+            <id>com.github.bigdecimal-folding2</id>
             <description>
                 <![CDATA[
                 <h2><font color="brown">Project migrated to IntelliJ template plugin to support new version of IntelliJ.</font></h2>
