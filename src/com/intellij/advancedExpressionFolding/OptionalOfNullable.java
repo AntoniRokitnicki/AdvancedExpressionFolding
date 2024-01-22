@@ -8,14 +8,19 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class OptionalMapSafeCall extends Operation {
-    public OptionalMapSafeCall(@NotNull PsiElement element, @NotNull TextRange textRange, @NotNull List<Expression> operands) {
-        super(element, textRange, "?.", 300, operands);
+public class OptionalOfNullable extends Operation {
+    public OptionalOfNullable(@NotNull PsiElement element, @NotNull TextRange textRange, @NotNull List<Expression> operands) {
+        super(element, textRange, "", 300, operands);
     }
 
     @Override
     protected @NotNull String buildFolding(@NotNull String character) {
         return character;
+    }
+
+    @Override
+    protected int changeOperandsOffset(int offset) {
+        return offset - "Optional".length();
     }
 
     @Override
@@ -28,4 +33,5 @@ public class OptionalMapSafeCall extends Operation {
                                        @Nullable Expression parent) {
         return true;
     }
+
 }
