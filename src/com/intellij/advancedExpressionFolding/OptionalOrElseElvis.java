@@ -14,6 +14,11 @@ public class OptionalOrElseElvis extends Operation {
     }
 
     @Override
+    protected @NotNull String buildFolding(@NotNull String character) {
+        return character;
+    }
+
+    @Override
     public boolean isCollapsedByDefault() {
         return true;
     }
@@ -22,10 +27,5 @@ public class OptionalOrElseElvis extends Operation {
     public boolean supportsFoldRegions(@NotNull Document document,
                                        @Nullable Expression parent) {
         return true;
-    }
-
-    @Override
-    protected @NotNull String buildFolding(@NotNull String character) {
-        return character;
     }
 }

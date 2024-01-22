@@ -1,6 +1,5 @@
 package com.intellij.advancedExpressionFolding;
 
-import com.intellij.diagnostic.PluginException;
 import com.intellij.lang.ASTNode;
 import com.intellij.lang.folding.FoldingBuilderEx;
 import com.intellij.lang.folding.FoldingDescriptor;
@@ -23,7 +22,6 @@ import java.math.BigInteger;
 import java.util.*;
 import java.util.function.BiPredicate;
 import java.util.function.Predicate;
-import java.util.function.Supplier;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -116,8 +114,11 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
             add("of");
             //Optional
             add("map");
+            add("flatMap");
             add("orElse");
             add("orElseGet");
+            add("ofNullable");
+            add("orElseThrow");
         }
     };
 
@@ -361,7 +362,7 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
     }
 
     private static Key<CachedValue<Expression>> generateKey(PsiElement element, Document document, boolean synthetic) {
-        return Key.create(document.toString() + element.getText() + synthetic);
+        return Key.create(document.hashCode() + "-" + element.hashCode() + (synthetic ? 1 : 0));
     }
 
     @SuppressWarnings("WeakerAccess")
@@ -1354,8 +1355,9 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
                     var className = method
                             .map(PsiMember::getContainingClass)
                             .map(PsiClass::getQualifiedName);
+                    Predicate<String> isMap = "map"::equals;
                     if (and(
-                            method.map(PsiMethod::getName).filter("map"::equals),
+                            method.map(PsiMethod::getName).filter(isMap.or("flatMap"::equals)),
                             className.filter("java.util.Optional"::equals)
                     )) {
                         return descendIntoHierarchyByClasses(e, PsiIdentifier.class, PsiIdentifier.class)
@@ -1560,11 +1562,31 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
                             @NotNull PsiExpression argument = element.getArgumentList().getExpressions()[0];
                             @NotNull Expression argumentExpression = getAnyExpression(argument, document);
                             switch (methodName) {
+                                case "ofNullable":
+                                    switch (className) {
+                                        case "java.util.Optional":
+                                            if (settings.getState().isOptional() && hasOptionalChainOperations(element)) {
+                                                return new OptionalOfNullable(element, element.getTextRange(), Arrays.asList(qualifierExpression, argumentExpression));
+                                            }
+                                    }
+                                    return null;
+                                case "of":
+                                    switch (className) {
+                                        case "java.util.Optional":
+                                            if (settings.getState().isOptional()) {
+                                                return new OptionalOf(element, element.getTextRange(), Arrays.asList(qualifierExpression, argumentExpression));
+                                            }
+                                    }
+                                    return null;
                                 case "map":
+                                case "flatMap":
                                     switch (className) {
                                         case "java.util.Optional":
                                             if (settings.getState().isOptional() &&
-                                                argumentExpression instanceof OptionalMapSafeCallParam) {
+                                                    (argumentExpression instanceof OptionalMapSafeCallParam || isOptionalMapMethodReference(element))) {
+                                                if (qualifierExpression instanceof OptionalOf) {
+                                                    return new OptionalMapCall(element, element.getTextRange(), Arrays.asList(qualifierExpression, argumentExpression));
+                                                }
                                                 return new OptionalMapSafeCall(element, element.getTextRange(), Arrays.asList(qualifierExpression, argumentExpression));
                                             }
                                     }
@@ -1777,6 +1799,7 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
                         } else if (element.getArgumentList().getExpressions().length == 0) {
                             switch (methodName) {
                                 case "get":
+                                case "orElseThrow":
                                     switch (className) {
                                         case "java.util.Optional":
                                             if (settings.getState().isOptional()) {
@@ -2048,6 +2071,15 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
             }
         }
         return null;
+    }
+
+    private static boolean isOptionalMapMethodReference(PsiMethodCallExpression element) {
+        return descendIntoHierarchyByClasses(element, PsiMethodReferenceExpression.class, PsiExpressionList.class, PsiMethodReferenceExpression.class)
+                .isPresent();
+    }
+
+    private static boolean hasOptionalChainOperations(PsiMethodCallExpression element) {
+        return findAncestorsUntilClass(element, PsiExpressionStatement.class).findAny().isPresent();
     }
 
     private static boolean isGetter(@NotNull PsiElement element, @NotNull PsiMethodCallExpression expression) {
