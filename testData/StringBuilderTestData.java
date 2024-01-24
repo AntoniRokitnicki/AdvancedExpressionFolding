@@ -1,4 +1,4 @@
-public class StringBuilderAppend {
+public class StringBuilderTestData {
     public static void main(String[] args) <fold text='{...}' expand='true'>{
         StringBuilder sb1 = <fold text='"["' expand='false'>new StringBuilder("[")</fold>;
         for (int i = 0; i < args.length; i++) <fold text='{...}' expand='true'>{

@@ -119,6 +119,8 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
             add("orElseGet");
             add("ofNullable");
             add("orElseThrow");
+            //Stream
+            add("filter");
         }
     };
 
@@ -1565,6 +1567,16 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
                             @NotNull PsiExpression argument = element.getArgumentList().getExpressions()[0];
                             @NotNull Expression argumentExpression = getAnyExpression(argument, document);
                             switch (methodName) {
+                                case "filter":
+                                    switch (className) {
+                                        case "java.util.stream.Stream":
+                                            if (settings.getState().isOptional()) {
+                                                if (argumentExpression instanceof SyntheticExpressionImpl syn && syn.getText().equals("Objects::nonNull")) {
+                                                    return new StreamFilterNotNull(element, element.getTextRange(), Arrays.asList(qualifierExpression, argumentExpression));
+                                                }
+                                            }
+                                    }
+                                    return null;
                                 case "ofNullable":
                                     switch (className) {
                                         case "java.util.Optional":
@@ -1658,8 +1670,14 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
                                 case "pow":
                                     return new Pow(element, element.getTextRange(), Arrays.asList(qualifierExpression, argumentExpression));
                                 case "min":
+                                    if ("java.util.stream.Stream".equals(className)) {
+                                       return null;
+                                    }
                                     return new Min(element, element.getTextRange(), Arrays.asList(qualifierExpression, argumentExpression));
                                 case "max":
+                                    if ("java.util.stream.Stream".equals(className)) {
+                                        return null;
+                                    }
                                     return new Max(element, element.getTextRange(), Arrays.asList(qualifierExpression, argumentExpression));
                                 case "gcd":
                                     return new Gcd(element, element.getTextRange(), Arrays.asList(qualifierExpression, argumentExpression));

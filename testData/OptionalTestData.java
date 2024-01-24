@@ -1,5 +1,3 @@
-package com.intellij.advancedExpressionFolding;
-
 import <fold text='...' expand='false'>java.util.Objects;
 import java.util.Optional;
 import static java.util.Optional.ofNullable;
@@ -9,14 +7,14 @@ import java.util.function.Function;</fold>
 public class OptionalTestData {
 
     public void main(Data data, Optional<Data> opt) <fold text='{...}' expand='true'>{
-        optional.get();
-        optional.orElseThrow();
+        opt<fold text='!!' expand='false'>.get()</fold>;
+        opt<fold text='!!' expand='false'>.orElseThrow()</fold>;
 
         Optional.ofNullable(data);
         <fold text='' expand='false'>Optional.of(</fold>data<fold text='!!' expand='false'>)</fold>;
 
         <fold text='' expand='false'>Optional.ofNullable(</fold>data<fold text='' expand='false'>)</fold><fold text=' ?: ' expand='false'>.orElseGet(</fold>this::orElseGetReturn<fold text='' expand='false'>)</fold>;
-        <fold text='' expand='false'>Optional.ofNullable(</fold>data<fold text='' expand='false'>)</fold><fold text=' ?: ' expand='false'>.orElseGet(</fold>() -> data.getData()<fold text='' expand='false'>)</fold>;
+        <fold text='' expand='false'>Optional.ofNullable(</fold>data<fold text='' expand='false'>)<fold text=' ?: ' expand='false'></fold>.orElseGet(</fold>() -> data.getData()<fold text='' expand='false'>)</fold>;
 
         var p = <fold text='' expand='false'>Optional.of(</fold>data<fold text='!!' expand='false'>)</fold><fold text='.' expand='false'>.map(</fold><fold text='data' expand='false'>Data::getData</fold><fold text='' expand='false'>)</fold><fold text=' ?: ' expand='false'>.orElse(</fold>null<fold text='' expand='false'>)</fold>;
         var p2 = <fold text='' expand='false'>Optional.ofNullable(</fold>data<fold text='' expand='false'>)</fold><fold text='?.' expand='false'>.map(</fold>OptionalTestData::getOutsideData<fold text='' expand='false'>)</fold><fold text='!!' expand='false'>.get()</fold>;
@@ -35,7 +33,7 @@ public class OptionalTestData {
 
         <fold text='' expand='false'>Optional.of(</fold>data<fold text='!!' expand='false'>)</fold><fold text='.' expand='false'>.flatMap(</fold>this::ofNullable<fold text='' expand='false'>)</fold><fold text='?.' expand='false'>.map(</fold>data::getDataMethod<fold text='' expand='false'>)</fold><fold text=' ?: ' expand='false'>.orElseGet(</fold>() -> getOutsideData(data)<fold text='' expand='false'>)</fold>;
 
-        Optional.<fold text='<~>' expand='false'><Data></fold>empty()<fold text='?.' expand='false'>.map(</fold><fold text='data' expand='false'>Data::getData</fold><fold text='' expand='false'>)</fold>.stream()<fold text='*.' expand='false'>.map(</fold><fold text='data()' expand='false'>Data::getData</fold><fold text='' expand='false'>)</fold>.filter(Objects::nonNull).findAny()<fold text='?.' expand='false'>.map(</fold><fold text='string' expand='false'>Data::getString</fold><fold text='' expand='false'>)</fold><fold text='!!' expand='false'>.get()</fold>;
+        Optional.<fold text='<~>' expand='false'><Data></fold>empty()<fold text='?.' expand='false'>.map(</fold><fold text='data' expand='false'>Data::getData</fold><fold text='' expand='false'>)</fold>.stream()<fold text='*.' expand='false'>.map(</fold><fold text='data()' expand='false'>Data::getData</fold><fold text='' expand='false'>)</fold><fold text='!!' expand='false'>.filter(Objects::nonNull</fold><fold text='' expand='false'>)</fold>.findAny()<fold text='?.' expand='false'>.map(</fold><fold text='string' expand='false'>Data::getString</fold><fold text='' expand='false'>)</fold><fold text='!!' expand='false'>.get()</fold>;
 
         opt<fold text='?.' expand='false'>.map(</fold><fold text='data' expand='false'>Data::getData</fold><fold text='' expand='false'>)</fold><fold text=' ?: ' expand='false'>.orElse(</fold>null<fold text='' expand='false'>)</fold>;
     }</fold>

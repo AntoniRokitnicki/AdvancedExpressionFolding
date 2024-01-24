@@ -8,9 +8,9 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class OptionalOfNullable extends Operation {
-    public OptionalOfNullable(@NotNull PsiElement element, @NotNull TextRange textRange, @NotNull List<Expression> operands) {
-        super(element, textRange, "", 300, operands);
+public class StreamFilterNotNull extends Operation {
+    public StreamFilterNotNull(@NotNull PsiElement element, @NotNull TextRange textRange, @NotNull List<Expression> operands) {
+        super(element, textRange, "!!", 300, operands);
     }
 
     @Override
@@ -19,8 +19,8 @@ public class OptionalOfNullable extends Operation {
     }
 
     @Override
-    protected int changeOperandsStartOffset(int offset) {
-        return offset - "Optional".length();
+    protected int changeOperandsEndOffset(int startOffset) {
+        return startOffset + "Objects::nonNull".length();
     }
 
     @Override

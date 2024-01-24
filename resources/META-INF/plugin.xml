@@ -29,12 +29,6 @@
       <keyboard-shortcut first-keystroke="alt Y" keymap="Mac OS X 10.5+" replace-all="true" />
     </action>
 
-
   </actions>
 
-  <project-components>
-    <component>
-      <implementation-class>com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingHighlightingComponent</implementation-class>
-    </component>
-  </project-components>
 </idea-plugin>
