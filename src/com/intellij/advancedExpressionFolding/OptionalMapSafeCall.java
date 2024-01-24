@@ -9,8 +9,8 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 public class OptionalMapSafeCall extends Operation {
-    public OptionalMapSafeCall(@NotNull PsiElement element, @NotNull TextRange textRange, @NotNull List<Expression> operands) {
-        super(element, textRange, "?.", 300, operands);
+    public OptionalMapSafeCall(@NotNull PsiElement element, @NotNull TextRange textRange, @NotNull List<Expression> operands, boolean flatMap) {
+        super(element, textRange, flatMap ? "?.*" : "?.", 300, operands);
     }
 
     @Override

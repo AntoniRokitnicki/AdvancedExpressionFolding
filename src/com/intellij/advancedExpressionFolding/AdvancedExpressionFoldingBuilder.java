@@ -1599,15 +1599,17 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
                                         case "java.util.Optional":
                                             if (settings.getState().isOptional() &&
                                                     (argumentExpression instanceof OptionalMapSafeCallParam || isPureMethodReference(element))) {
+                                                boolean flatMap = methodName.equals("flatMap");
                                                 if (qualifierExpression instanceof OptionalOf) {
-                                                    return new OptionalMapCall(element, element.getTextRange(), Arrays.asList(qualifierExpression, argumentExpression));
+                                                    return new OptionalMapCall(element, element.getTextRange(), Arrays.asList(qualifierExpression, argumentExpression), flatMap);
                                                 }
-                                                return new OptionalMapSafeCall(element, element.getTextRange(), Arrays.asList(qualifierExpression, argumentExpression));
+                                                return new OptionalMapSafeCall(element, element.getTextRange(), Arrays.asList(qualifierExpression, argumentExpression), flatMap);
                                             }
                                         case "java.util.stream.Stream":
                                             if (settings.getState().isOptional() &&
                                                     (argumentExpression instanceof StreamMapCallParam || isPureMethodReference(element))) {
-                                                return new StreamMapCall(element, element.getTextRange(), Arrays.asList(qualifierExpression, argumentExpression));
+                                                boolean flatMap = methodName.equals("flatMap");
+                                                return new StreamMapCall(element, element.getTextRange(), Arrays.asList(qualifierExpression, argumentExpression), flatMap);
                                             }
                                     }
                                     return null;
