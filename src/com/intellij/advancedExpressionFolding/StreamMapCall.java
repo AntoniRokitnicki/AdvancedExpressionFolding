@@ -9,8 +9,8 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 public class StreamMapCall extends Operation {
-    public StreamMapCall(@NotNull PsiElement element, @NotNull TextRange textRange, @NotNull List<Expression> operands) {
-        super(element, textRange, "*.", 300, operands);
+    public StreamMapCall(@NotNull PsiElement element, @NotNull TextRange textRange, @NotNull List<Expression> operands, boolean flatMap) {
+        super(element, textRange, flatMap ? "**." : "*.", 300, operands);
     }
 
     @Override
