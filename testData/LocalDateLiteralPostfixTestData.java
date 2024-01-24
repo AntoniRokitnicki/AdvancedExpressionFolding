@@ -1,9 +1,9 @@
 import java.time.LocalDate;
 
-class LocalDateLiteralTestData {
+class LocalDateLiteralPostfixTestData {
     public static void main(String[] args) <fold text='{...}' expand='true'>{
         LocalDate d1 = <fold text='' expand='false'>LocalDate.of(</fold>2018<fold text='Y-' expand='false'>, </fold>01<fold text='M-' expand='false'>, </fold>10<fold text='D' expand='false'>)</fold>;
-        LocalDate d1 = <fold text='' expand='false'>LocalDate.of(</fold>2018<fold text='Y-' expand='false'>, </fold>01<fold text='M-' expand='false'>, </fold>10<fold text='D' expand='false'>)</fold>;
+        LocalDate d4 = <fold text='' expand='false'>LocalDate.of(</fold>2018<fold text='Y-' expand='false'>, </fold>01<fold text='M-' expand='false'>, </fold>10<fold text='D' expand='false'>)</fold>;
         LocalDate d2 = <fold text='' expand='false'>LocalDate.of(</fold>2018<fold text='Y-' expand='false'>, </fold>12<fold text='M-' expand='false'>, </fold>10<fold text='D' expand='false'>)</fold>;
         LocalDate d3 = <fold text='' expand='false'>LocalDate.of(</fold>2018<fold text='Y-0' expand='false'>,  </fold>4<fold text='M-0' expand='false'> ,  </fold>4<fold text='D' expand='false'>   )</fold>;
         boolean isBefore = d1.isBefore(d2);

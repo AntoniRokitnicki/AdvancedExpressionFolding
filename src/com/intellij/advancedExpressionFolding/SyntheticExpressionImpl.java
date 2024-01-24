@@ -52,4 +52,8 @@ public class SyntheticExpressionImpl extends Expression {
         }
         return descriptors.toArray(FoldingDescriptor.EMPTY);
     }
+
+    public String getText() {
+        return text;
+    }
 }
