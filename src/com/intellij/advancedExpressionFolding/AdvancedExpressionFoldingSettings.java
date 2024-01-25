@@ -62,6 +62,17 @@ public class AdvancedExpressionFoldingSettings implements PersistentStateCompone
         private boolean ASSERTS = true;
         private boolean OPTIONAL = true;
 
+        private boolean STREAM_SPREAD = true;
+
+
+        public boolean isStreamSpread() {
+            return STREAM_SPREAD;
+        }
+
+        public void setStreamSpread(boolean streamSpread) {
+            this.STREAM_SPREAD = streamSpread;
+        }
+
         public boolean isArithmeticExpressionsCollapse() {
             return ARITHMETIC_EXPRESSIONS;
         }
@@ -101,6 +112,7 @@ public class AdvancedExpressionFoldingSettings implements PersistentStateCompone
         public void setOptional(boolean OPTIONAL) {
             this.OPTIONAL = OPTIONAL;
         }
+
 
         public boolean isRangeExpressionsCollapse() {
             return RANGE_EXPRESSIONS;
@@ -234,6 +246,8 @@ public class AdvancedExpressionFoldingSettings implements PersistentStateCompone
             this.setComparingLocalDatesCollapse(false);
             this.setLocalDateLiteralCollapse(false);
             this.setLocalDateLiteralPostfix(false);
+            this.setOptional(false);
+            this.setStreamSpread(false);
         }
     }
 }
