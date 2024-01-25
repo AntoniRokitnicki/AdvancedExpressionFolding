@@ -4,23 +4,23 @@ import java.util.stream.Stream;</fold>
 
 <fold text='@Getter @Setter p' expand='false'>p</fold>ublic class LombokTestData {
 
-    private static final long serialVersionUID = 1234567L;<fold text='' expand='true'>
+    private static final long serialVersionUID = 1234567L;
 
-    </fold><fold text='' expand='true'>LombokTestData data;</fold><fold text='' expand='true'>
-    </fold><fold text='' expand='true'>boolean ok;</fold><fold text='' expand='true'>
-    </fold><fold text='' expand='true'>String string;</fold><fold text='' expand='true'>
+    LombokTestData data;
+    boolean ok;
+    String string;<fold text='' expand='true'>
     </fold><fold text='' expand='true'>public LombokTestData getData()<fold text=' { ' expand='false'> {
         </fold>return data;<fold text=' }' expand='false'>
-    }</fold><fold text='' expand='true'></fold>
+    }</fold></fold><fold text='' expand='true'>
     </fold><fold text='' expand='true'>public boolean isOk()<fold text=' { ' expand='false'> {
         </fold>return ok;<fold text=' }' expand='false'>
-    }</fold></fold><fold text='' expand='true'>
+    }</fold><fold text='' expand='true'></fold>
     </fold><fold text='' expand='true'>public void setData(LombokTestData data)<fold text=' { ' expand='false'> {
         </fold>this.data = data;<fold text=' }' expand='false'>
-    }</fold><fold text='' expand='true'></fold>
+    }</fold></fold><fold text='' expand='true'>
     </fold><fold text='' expand='true'>public void setOk(boolean ok)<fold text=' { ' expand='false'> {
         </fold>this.ok = ok;<fold text=' }' expand='false'>
-    }</fold></fold><fold text='' expand='true'>
+    }</fold><fold text='' expand='true'></fold>
     </fold><fold text='' expand='true'>public String getString()<fold text=' { ' expand='false'> {
         </fold>return string;<fold text=' }' expand='false'>
     }</fold></fold><fold text='' expand='true'>
