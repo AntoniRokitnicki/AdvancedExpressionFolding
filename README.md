@@ -1,8 +1,13 @@
 # AdvancedExpressionFolding2
-<iframe width="245px" height="48px" src="https://plugins.jetbrains.com/embeddable/install/23647"></iframe>
+<script src="https://plugins.jetbrains.com/assets/scripts/mp-widget.js"></script>
+<script>
+  MarketplaceWidget.setupMarketplaceWidget('install', 23647, "#repository-container-header");
+</script>
 
-
-<iframe width="384px" height="319px" src="https://plugins.jetbrains.com/embeddable/card/23647"></iframe>
+<script src="https://plugins.jetbrains.com/assets/scripts/mp-widget.js"></script>
+<script>
+  MarketplaceWidget.setupMarketplaceWidget('card', 23647, "repository-container-header");
+</script>
 
 <!-- Plugin description -->
 <h5>New Version of <a href="https://plugins.jetbrains.com/plugin/9320-advanced-java-folding">Advanced Java Folding</a></h5>
