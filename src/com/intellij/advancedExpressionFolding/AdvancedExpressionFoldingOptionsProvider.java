@@ -27,5 +27,6 @@ public class AdvancedExpressionFoldingOptionsProvider extends com.intellij.opena
         checkBox("Asserts", state::isAssertsCollapse, state::setAssertsCollapse);
         checkBox("Display optional as kotlin null-safe (experimental)", state::isOptional, state::setOptional);
         checkBox("Display stream operations as groovy's spread operator (experimental)", state::isStreamSpread, state::setStreamSpread);
+        checkBox("Display java bean as lombok (experimental)", state::isLombok, state::setLombok);
     }
 }
