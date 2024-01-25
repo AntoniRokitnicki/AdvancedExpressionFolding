@@ -9,6 +9,7 @@
 <li><a href="https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/22">Display Optional as Kotlin Null-Safe</a></li>
 <li><a href="https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/23">Groovy spread operator in streams</a></li>
 <li><a href="https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/25">Actions for folding and unfolding with key-shortcuts</a></li>
+<li><a href="https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/29">fold java-bean to lombok @Getter and @Setter on class level</a></li>
 <li><a href="https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pulls?q=is%3Apr+is%3Aclosed">Optimizations and bugfixes</a></li>
 </ul>
 
