@@ -1,7 +1,19 @@
 <plugin-repository>
     <ff>"Formatting"</ff>
     <category name="Formatting">
-        <idea-plugin downloads="201783" size="194112" date="1625903057006" updatedDate="1625903057006" url="">
+        <idea-plugin downloads="201784" size="194113" date="1625903057007" updatedDate="1625903057007"><name>Advanced Java Folding2</name>
+            <id>com.github.bigdecimal-folding2</id>
+            <description>
+AdvancedExpressionFolding2</description>
+            <version>1.0.7</version>
+            <vendor email="android.rokitnicki@gmail.com" url="https://github.com/AntoniRokitnicki/AdvancedExpressionFolding">Antoni</vendor>
+            <rating>4.6</rating>
+            <change-notes>
+                 
+            </change-notes>
+            <download-url>https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/releases/download/v1.0.7/advanced-expression-folding-1.0.7.jar</download-url>
+            <idea-version min="n/a" max="n/a" since-build="212.4638" />
+        </idea-plugin><idea-plugin downloads="201783" size="194112" date="1625903057006" updatedDate="1625903057006" url="">
             <name>Advanced Java Folding2</name>
             <id>com.github.bigdecimal-folding2</id>
             <description>AdvancedExpressionFolding2</description>
@@ -9,10 +21,10 @@
             <vendor email="android.rokitnicki@gmail.com" url="https://github.com/AntoniRokitnicki/AdvancedExpressionFolding">Antoni</vendor>
             <rating>4.6</rating>
             <change-notes>
-                <![CDATA[ ]]>
+                 
             </change-notes>
             <download-url>https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/releases/download/v1.0.6/advanced-expression-folding-1.0.6.jar</download-url>
-            <idea-version min="n/a" max="n/a" since-build="212.4638"/>
+            <idea-version min="n/a" max="n/a" since-build="212.4638" />
         </idea-plugin>
 
         <idea-plugin downloads="201783" size="194112" date="1625903057005" updatedDate="1625903057005" url="">
@@ -23,10 +35,10 @@
             <vendor email="android.rokitnicki@gmail.com" url="https://github.com/AntoniRokitnicki/AdvancedExpressionFolding">Antoni</vendor>
             <rating>4.6</rating>
             <change-notes>
-                <![CDATA[ ]]>
+                 
             </change-notes>
             <download-url>https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/releases/download/v1.0.5/advanced-expression-folding-1.0.5.jar</download-url>
-            <idea-version min="n/a" max="n/a" since-build="212.4638"/>
+            <idea-version min="n/a" max="n/a" since-build="212.4638" />
         </idea-plugin>
         <idea-plugin downloads="201783" size="194112" date="1625903057004" updatedDate="1625903057004" url="">
             <name>Advanced Java Folding2</name>
@@ -36,10 +48,10 @@
             <vendor email="android.rokitnicki@gmail.com" url="https://github.com/AntoniRokitnicki/AdvancedExpressionFolding">Antoni</vendor>
             <rating>4.6</rating>
             <change-notes>
-                <![CDATA[ ]]>
+                 
             </change-notes>
             <download-url>https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/releases/download/1.0.4/advanced-expression-folding-1.0.4.jar</download-url>
-            <idea-version min="n/a" max="n/a" since-build="212.4638"/>
+            <idea-version min="n/a" max="n/a" since-build="212.4638" />
         </idea-plugin>
         <idea-plugin downloads="201783" size="194112" date="1625903057003" updatedDate="1625903057003" url="">
             <name>Advanced Java Folding2</name>
@@ -49,10 +61,10 @@
             <vendor email="android.rokitnicki@gmail.com" url="https://github.com/AntoniRokitnicki/AdvancedExpressionFolding">Antoni</vendor>
             <rating>4.6</rating>
             <change-notes>
-                <![CDATA[ ]]>
+                 
             </change-notes>
             <download-url>https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/releases/download/1.0.3/advanced-expression-folding-1.0.3.jar</download-url>
-            <idea-version min="n/a" max="n/a" since-build="212.4638"/>
+            <idea-version min="n/a" max="n/a" since-build="212.4638" />
         </idea-plugin>
         <idea-plugin downloads="201783" size="194112" date="1625903057002" updatedDate="1625903057002" url="">
             <name>Advanced Java Folding2</name>
@@ -62,10 +74,10 @@
             <vendor email="android.rokitnicki@gmail.com" url="https://github.com/AntoniRokitnicki/AdvancedExpressionFolding">Antoni</vendor>
             <rating>4.6</rating>
             <change-notes>
-                <![CDATA[ ]]>
+                 
             </change-notes>
             <download-url>https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/releases/download/1.0.2/advanced-expression-folding-1.0.2.jar</download-url>
-            <idea-version min="n/a" max="n/a" since-build="212.4638"/>
+            <idea-version min="n/a" max="n/a" since-build="212.4638" />
         </idea-plugin>
     </category>
 </plugin-repository>
