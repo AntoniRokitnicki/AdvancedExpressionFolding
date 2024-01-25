@@ -1,4 +1,8 @@
 # AdvancedExpressionFolding2
+<iframe width="245px" height="48px" src="https://plugins.jetbrains.com/embeddable/install/23647"></iframe>
+
+
+<iframe width="384px" height="319px" src="https://plugins.jetbrains.com/embeddable/card/23647"></iframe>
 
 <!-- Plugin description -->
 <h5>New Version of <a href="https://plugins.jetbrains.com/plugin/9320-advanced-java-folding">Advanced Java Folding</a></h5>
