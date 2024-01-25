@@ -64,6 +64,16 @@ public class AdvancedExpressionFoldingSettings implements PersistentStateCompone
 
         private boolean STREAM_SPREAD = true;
 
+        private boolean lombok = true;
+
+
+        public boolean isLombok() {
+            return lombok;
+        }
+
+        public void setLombok(boolean lombok) {
+            this.lombok = lombok;
+        }
 
         public boolean isStreamSpread() {
             return STREAM_SPREAD;

@@ -14,7 +14,7 @@ public class OptionalTestData {
         <fold text='' expand='false'>Optional.of(</fold>data<fold text='!!' expand='false'>)</fold>;
 
         <fold text='' expand='false'>Optional.ofNullable(</fold>data<fold text='' expand='false'>)</fold><fold text=' ?: ' expand='false'>.orElseGet(</fold>this::orElseGetReturn<fold text='' expand='false'>)</fold>;
-        <fold text='' expand='false'>Optional.ofNullable(</fold>data<fold text='' expand='false'>)<fold text=' ?: ' expand='false'></fold>.orElseGet(</fold>() -> data.getData()<fold text='' expand='false'>)</fold>;
+        <fold text='' expand='false'>Optional.ofNullable(</fold>data<fold text='' expand='false'>)</fold><fold text=' ?: ' expand='false'>.orElseGet(</fold>() -> data.getData()<fold text='' expand='false'>)</fold>;
 
         var p = <fold text='' expand='false'>Optional.of(</fold>data<fold text='!!' expand='false'>)</fold><fold text='.' expand='false'>.map(</fold><fold text='data' expand='false'>Data::getData</fold><fold text='' expand='false'>)</fold><fold text=' ?: ' expand='false'>.orElse(</fold>null<fold text='' expand='false'>)</fold>;
         var p2 = <fold text='' expand='false'>Optional.ofNullable(</fold>data<fold text='' expand='false'>)</fold><fold text='?.' expand='false'>.map(</fold>OptionalTestData::getOutsideData<fold text='' expand='false'>)</fold><fold text='!!' expand='false'>.get()</fold>;
@@ -50,35 +50,35 @@ public class OptionalTestData {
         </fold>return null;<fold text=' }' expand='false'>
     }</fold>
 
-    class Data <fold text='{...}' expand='true'>{
-        Data data;
-        boolean ok;
+    <fold text='@Getter @Setter c' expand='false'>c</fold>lass Data <fold text='{...}' expand='true'>{<fold text='' expand='true'>
+        </fold><fold text='' expand='true'>Data data;</fold><fold text='' expand='true'>
+        </fold><fold text='' expand='true'>boolean ok;</fold><fold text='' expand='true'>
 
-        String string;
+        </fold><fold text='' expand='true'>String string;</fold><fold text='' expand='true'>
 
-        public Data getData()<fold text=' { ' expand='false'> {
+        </fold><fold text='' expand='true'>public Data getData()<fold text=' { ' expand='false'> {
                 </fold>return data;<fold text=' }' expand='false'>
-        }</fold>
+        }</fold></fold><fold text='' expand='true'>
 
-        public boolean isOk()<fold text=' { ' expand='false'> {
+        </fold><fold text='' expand='true'>public boolean isOk()<fold text=' { ' expand='false'> {
                 </fold>return ok;<fold text=' }' expand='false'>
-        }</fold>
+        }</fold></fold><fold text='' expand='true'>
 
-        public void setData(Data data)<fold text=' { ' expand='false'> {
+        </fold><fold text='' expand='true'>public void setData(Data data)<fold text=' { ' expand='false'> {
                 </fold>this.data = data;<fold text=' }' expand='false'>
-        }</fold>
+        }</fold></fold><fold text='' expand='true'>
 
-        public void setOk(boolean ok)<fold text=' { ' expand='false'> {
+        </fold><fold text='' expand='true'>public void setOk(boolean ok)<fold text=' { ' expand='false'> {
                 </fold>this.ok = ok;<fold text=' }' expand='false'>
-        }</fold>
+        }</fold></fold><fold text='' expand='true'>
 
-        public String getString()<fold text=' { ' expand='false'> {
+        </fold><fold text='' expand='true'>public String getString()<fold text=' { ' expand='false'> {
                 </fold>return string;<fold text=' }' expand='false'>
-        }</fold>
+        }</fold></fold><fold text='' expand='true'>
 
-        public void setString(String string)<fold text=' { ' expand='false'> {
+        </fold><fold text='' expand='true'>public void setString(String string)<fold text=' { ' expand='false'> {
                 </fold>this.string = string;<fold text=' }' expand='false'>
-        }</fold>
+        }</fold></fold>
 
         public Data getDataMethod(Data data)<fold text=' { ' expand='false'> {
                 </fold>return data;<fold text=' }' expand='false'>

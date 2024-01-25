@@ -12,7 +12,7 @@ public class SpreadTestData {
         var stream3 = Stream.of("123", "2313")<fold text='*.' expand='false'>.map(</fold><fold text='length()' expand='false'>String::length</fold><fold text='' expand='false'>)</fold>.toList();
 
         var a = stream<fold text='*.' expand='false'>.map(</fold><fold text='data()' expand='false'>Data::getData</fold><fold text='' expand='false'>)</fold><fold text='!!' expand='false'>.filter(Objects::nonNull</fold><fold text='' expand='false'>)</fold><fold text='*.' expand='false'>
-                .map(</fold><fold text='data()' expand='false'>Data::getData</fold><fold text='' expand='false'>)</fold><fold text='**.' expand='false'>.flatMap(</fold><fold text='dataStream()' expand='false'>Data::getDataStream</fold><fold text='' expand='false'>)</fold><fold text='*.' expand='false'>
+                .map(</fold><fold text='data()' expand='false'>Data::getData<fold text='' expand='false'></fold>)</fold><fold text='**.' expand='false'>.flatMap(</fold><fold text='dataStream()' expand='false'>Data::getDataStream</fold><fold text='' expand='false'>)</fold><fold text='*.' expand='false'>
                 .map(</fold><fold text='dataList()' expand='false'>Data::getDataList</fold><fold text='' expand='false'>)</fold><fold text='**.' expand='false'>.flatMap(</fold><fold text='stream()' expand='false'>List::stream</fold><fold text='' expand='false'>)</fold><fold text='*.' expand='false'>
                 .map(</fold><fold text='string()' expand='false'>Data::getString</fold><fold text='' expand='false'>)</fold><fold text='*.' expand='false'>.map(</fold><fold text='chars()' expand='false'>String::chars</fold><fold text='' expand='false'>)</fold>
                 .map(it -> it.count())
@@ -34,39 +34,39 @@ public class SpreadTestData {
         </fold>return Stream.of(data);<fold text=' }' expand='false'>
     }</fold>
 
-    class Data <fold text='{...}' expand='true'>{
-        Data data;
-        boolean ok;
-        String string;
-        public Data getData()<fold text=' { ' expand='false'> {
+    <fold text='@Getter @Setter c' expand='false'>c</fold>lass Data <fold text='{...}' expand='true'>{<fold text='' expand='true'>
+        </fold><fold text='' expand='true'>Data data;</fold><fold text='' expand='true'>
+        </fold><fold text='' expand='true'>boolean ok;</fold><fold text='' expand='true'>
+        </fold><fold text='' expand='true'>String string;</fold><fold text='' expand='true'>
+        </fold><fold text='' expand='true'>public Data getData()<fold text=' { ' expand='false'> {
             </fold>return data;<fold text=' }' expand='false'>
-        }</fold>
-        public boolean isOk()<fold text=' { ' expand='false'> {
+        }</fold></fold><fold text='' expand='true'>
+        </fold><fold text='' expand='true'>public boolean isOk()<fold text=' { ' expand='false'> {
             </fold>return ok;<fold text=' }' expand='false'>
-        }</fold>
-        public void setData(Data data)<fold text=' { ' expand='false'> {
+        }</fold><fold text='' expand='true'></fold>
+        </fold><fold text='' expand='true'>public void setData(Data data)<fold text=' { ' expand='false'> {
             </fold>this.data = data;<fold text=' }' expand='false'>
-        }</fold>
-        public void setOk(boolean ok)<fold text=' { ' expand='false'> {
+        }</fold></fold><fold text='' expand='true'>
+        </fold><fold text='' expand='true'>public void setOk(boolean ok)<fold text=' { ' expand='false'> {
             </fold>this.ok = ok;<fold text=' }' expand='false'>
-        }</fold>
-        public String getString()<fold text=' { ' expand='false'> {
+        }</fold></fold><fold text='' expand='true'>
+        </fold><fold text='' expand='true'>public String getString()<fold text=' { ' expand='false'> {
             </fold>return string;<fold text=' }' expand='false'>
-        }</fold>
-        public void setString(String string)<fold text=' { ' expand='false'> {
+        }</fold><fold text='' expand='true'></fold>
+        </fold><fold text='' expand='true'>public void setString(String string)<fold text=' { ' expand='false'> {
             </fold>this.string = string;<fold text=' }' expand='false'>
-        }</fold>
+        }</fold></fold>
         public Data getDataMethod(Data data)<fold text=' { ' expand='false'> {
             </fold>return data;<fold text=' }' expand='false'>
         }</fold>
         public Optional<Data> getDataOpt()<fold text=' { ' expand='false'> {
-            </fold>return <fold text='' expand='false'>Optional.ofNullable(</fold>data<fold text='' expand='false'>)</fold>;<fold text=' }' expand='false'>
+            </fold>return Optional.ofNullable(data);<fold text=' }' expand='false'>
         }</fold>
         public Stream<Data> getDataStream()<fold text=' { ' expand='false'> {
-            </fold>return <fold text='' expand='false'>Optional.ofNullable(</fold>data<fold text='' expand='false'>)</fold>.stream();<fold text=' }' expand='false'>
+            </fold>return Optional.ofNullable(data).stream();<fold text=' }' expand='false'>
         }</fold>
         public List<Data> getDataList()<fold text=' { ' expand='false'> {
-            </fold>return <fold text='' expand='false'>Optional.ofNullable(</fold>data<fold text='' expand='false'>)</fold>.stream().toList();<fold text=' }' expand='false'>
+            </fold>return Optional.ofNullable(data).stream().toList();<fold text=' }' expand='false'>
         }</fold>
     }</fold>
 }
