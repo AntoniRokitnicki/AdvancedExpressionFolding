@@ -1,6 +1,5 @@
 package com.intellij.advancedExpressionFolding;
 
-import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiField;
 import com.intellij.psi.PsiMethod;
 
@@ -16,7 +15,7 @@ public class LombokGetterSetter {
         this.methods = methods;
     }
 
-    public Stream<PsiElement> getElements() {
-        return Stream.concat(Stream.of(field), methods.stream());
+    public Stream<PsiMethod> getElements() {
+        return methods.stream();
     }
 }
