@@ -1343,7 +1343,9 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
 
 
     private static Optional<? extends Expression> getMethodReference(PsiElement element) {
-        if (AdvancedExpressionFoldingSettings.getInstance().getState().isOptional() && element instanceof PsiMethodReferenceExpression) {
+        boolean optional = AdvancedExpressionFoldingSettings.getInstance().getState().isOptional();
+        boolean spread = AdvancedExpressionFoldingSettings.getInstance().getState().isStreamSpread();
+        if ((optional || spread) && element instanceof PsiMethodReferenceExpression) {
             PsiReference reference = element.getReference();
             if (reference != null) {
                 PsiElement e = reference.resolve();
@@ -1359,12 +1361,12 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
                             .map(PsiClass::getQualifiedName);
                     var isMapMethod = method.map(PsiMethod::getName).filter(((Predicate<String>) "map"::equals).or("flatMap"::equals));
                     if (isMapMethod.isPresent()) {
-                        if (className.filter("java.util.Optional"::equals).isPresent()) {
+                        if (optional && className.filter("java.util.Optional"::equals).isPresent()) {
                             return descendIntoHierarchyByClasses(e, PsiIdentifier.class, PsiIdentifier.class)
                                     .map(PsiElement::getText)
                                     .map(it -> new OptionalMapSafeCallParam(element, element.getTextRange(),
                                             guessPropertyName(it)));
-                        } else if (className.filter("java.util.stream.Stream"::equals).isPresent()) {
+                        } else if (spread && className.filter("java.util.stream.Stream"::equals).isPresent()) {
                             return descendIntoHierarchyByClasses(e, PsiIdentifier.class, PsiIdentifier.class)
                                     .map(PsiElement::getText)
                                     .map(it -> new StreamMapCallParam(element, element.getTextRange(),
@@ -1570,7 +1572,7 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
                                 case "filter":
                                     switch (className) {
                                         case "java.util.stream.Stream":
-                                            if (settings.getState().isOptional()) {
+                                            if (settings.getState().isStreamSpread()) {
                                                 if (argumentExpression instanceof SyntheticExpressionImpl syn && syn.getText().equals("Objects::nonNull")) {
                                                     return new StreamFilterNotNull(element, element.getTextRange(), Arrays.asList(qualifierExpression, argumentExpression));
                                                 }
@@ -1606,7 +1608,7 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
                                                 return new OptionalMapSafeCall(element, element.getTextRange(), Arrays.asList(qualifierExpression, argumentExpression), flatMap);
                                             }
                                         case "java.util.stream.Stream":
-                                            if (settings.getState().isOptional() &&
+                                            if (settings.getState().isStreamSpread() &&
                                                     (argumentExpression instanceof StreamMapCallParam || isPureMethodReference(element))) {
                                                 boolean flatMap = methodName.equals("flatMap");
                                                 return new StreamMapCall(element, element.getTextRange(), Arrays.asList(qualifierExpression, argumentExpression), flatMap);

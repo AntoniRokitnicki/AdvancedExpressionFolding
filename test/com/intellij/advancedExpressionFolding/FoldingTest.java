@@ -137,11 +137,6 @@ public class FoldingTest extends LightJavaCodeInsightFixtureTestCase {
         doFoldingTest();
     }
 
-    public void testConcatenationTestData() {
-        AdvancedExpressionFoldingSettings.getInstance().getState().setConcatenationExpressionsCollapse(true);
-        doFoldingTest();
-    }
-
     public void testGetSetPutTestData() {
         AdvancedExpressionFoldingSettings.getInstance().getState().setGetExpressionsCollapse(true);
         doFoldingTest();
@@ -219,13 +214,25 @@ public class FoldingTest extends LightJavaCodeInsightFixtureTestCase {
         doReadOnlyFoldingTest();
     }
 
-    public void testOptionalTestData() {
+    //TODO: make tests below independent of others flags
+    public void testConcatenationTestData() {
+        AdvancedExpressionFoldingSettings.getInstance().getState().setConcatenationExpressionsCollapse(true);
         AdvancedExpressionFoldingSettings.getInstance().getState().setOptional(true);
+        AdvancedExpressionFoldingSettings.getInstance().getState().setStreamSpread(true);
+        doFoldingTest();
+    }
+
+    public void testOptionalTestData() {
+        AdvancedExpressionFoldingSettings.getInstance().getState().setConcatenationExpressionsCollapse(true);
+        AdvancedExpressionFoldingSettings.getInstance().getState().setOptional(true);
+        AdvancedExpressionFoldingSettings.getInstance().getState().setStreamSpread(true);
         doFoldingTest();
     }
 
     public void testSpreadTestData() {
+        AdvancedExpressionFoldingSettings.getInstance().getState().setConcatenationExpressionsCollapse(true);
         AdvancedExpressionFoldingSettings.getInstance().getState().setOptional(true);
+        AdvancedExpressionFoldingSettings.getInstance().getState().setStreamSpread(true);
         doFoldingTest();
     }
 

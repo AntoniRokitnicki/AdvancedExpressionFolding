@@ -38,11 +38,14 @@ public class Pow extends Function implements ArithmeticExpression {
             Collections.addAll(descriptors, operands.get(0).buildFoldRegions(operands.get(0).getElement(), document, this));
         }
         String b = operands.get(1).getElement().getText();
-        descriptors.add(new FoldingDescriptor(element.getNode(),
-                TextRange.create(operands.get(0).getTextRange().getEndOffset(),
-                        getTextRange().getEndOffset()), group,
-                operands.get(0) instanceof Operation
-                        ? ")" + superscript(b) : superscript(b)));
+        String superscript = superscript(b);
+        if (superscript != null) {
+            descriptors.add(new FoldingDescriptor(element.getNode(),
+                    TextRange.create(operands.get(0).getTextRange().getEndOffset(),
+                            getTextRange().getEndOffset()), group,
+                    operands.get(0) instanceof Operation
+                            ? ")" + superscript : superscript));
+        }
         return descriptors.toArray(FoldingDescriptor.EMPTY);
     }
 }
