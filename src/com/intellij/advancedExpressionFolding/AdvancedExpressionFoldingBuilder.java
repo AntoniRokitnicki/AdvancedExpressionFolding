@@ -536,12 +536,61 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
                 return expression;
             }
         }
+        if (settings.getState().isLombok() && element instanceof PsiClass psiClass) {
+            Expression expression = getPsiClass(psiClass, document);
+            if (expression != null) {
+                return expression;
+            }
+        }
+
         if (synthetic) {
             ArrayList<Expression> children = new ArrayList<>();
             findChildExpressions(element, children, document);
             return new SyntheticExpressionImpl(element, element.getTextRange(), document.getText(element.getTextRange()), children);
         }
         return null;
+    }
+
+    private static Expression getPsiClass(PsiClass clazz, Document document) {
+        var fields = Arrays.stream(clazz.getFields())
+                .filter(it -> !it.hasModifierProperty(PsiModifier.STATIC))
+                .collect(Collectors.toMap(PsiField::getName, it -> it));
+        var methods = Arrays.stream(clazz.getMethods())
+                .filter(it -> {
+                    String name = it.getName();
+                    if (isGetter(name)) {
+                        return isGetter(it);
+                    }
+                    if (isSetter(name)) {
+                        return isSetter(it);
+                    }
+                    return false;
+                })
+                .collect(Collectors.groupingBy(it -> {
+                    String name = it.getName();
+                    return guessPropertyName(name);
+                }));
+        var getterSetterList = methods.entrySet().stream().map(e-> {
+            var field = fields.get(e.getKey());
+            if (field != null) {
+                if (e.getValue().size() == 2) {
+                    return new LombokGetterSetter(field, e.getValue());
+                }
+            }
+            return null;
+        }).filter(Objects::nonNull).toList();
+        if (!getterSetterList.isEmpty() && getterSetterList.size() == fields.size()) {
+            return new LombokGetterSetterExpression(clazz, getterSetterList);
+        }
+        return null;
+    }
+
+    private static boolean isSetter(PsiMethod it) {
+        return it.getParameterList().getParametersCount() == 1 && Objects.equals(it.getReturnType(), PsiType.VOID);
+    }
+
+    private static boolean isGetter(PsiMethod it) {
+        return it.getParameterList().getParametersCount() == 0 && !Objects.equals(it.getReturnType(), PsiType.VOID);
     }
 
     private static Expression getForeachStatementExpression(PsiForeachStatement element) {
@@ -2078,29 +2127,37 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
 
         }
         if (settings.getState().isGetSetExpressionsCollapse() && identifier.isPresent()) {
-            if (isGetter(identifier.get(), element)) {
-                return new Getter(element, element.getTextRange(), TextRange.create(identifier.get().getTextRange().getStartOffset(),
+            PsiElement identi = identifier.get();
+            if (isGetter(identi, element)) {
+                return new Getter(element, element.getTextRange(), TextRange.create(identi.getTextRange().getStartOffset(),
                         element.getTextRange().getEndOffset()),
                         qualifier != null
                                 ? getAnyExpression(qualifier, document)
                                 : null,
-                        guessPropertyName(identifier.get().getText()));
-            } else if (identifier.get().getText().startsWith("set")
-                    && identifier.get().getText().length() > 3
-                    && Character.isUpperCase(identifier.get().getText().charAt(3))
-                    && element.getArgumentList().getExpressions().length == 1
-                    && element.getParent() instanceof PsiStatement
-                    && (qualifier == null
-                    || !(qualifier instanceof PsiMethodCallExpression)
-                    || !(startsWith(((PsiMethodCallExpression) qualifier).getMethodExpression().getReferenceName(), "set")))) {
-                return new Setter(element, element.getTextRange(), TextRange.create(identifier.get().getTextRange().getStartOffset(),
-                        element.getTextRange().getEndOffset()),
-                        qualifier != null ? getAnyExpression(qualifier, document) : null,
-                        guessPropertyName(identifier.get().getText()),
-                        getAnyExpression(element.getArgumentList().getExpressions()[0], document));
+                        guessPropertyName(identi.getText()));
+            } else {
+                String text = identi.getText();
+                if (isSetter(text)
+                        && element.getArgumentList().getExpressions().length == 1
+                        && element.getParent() instanceof PsiStatement
+                        && (qualifier == null
+                        || !(qualifier instanceof PsiMethodCallExpression)
+                        || !(startsWith(((PsiMethodCallExpression) qualifier).getMethodExpression().getReferenceName(), "set")))) {
+                    return new Setter(element, element.getTextRange(), TextRange.create(identi.getTextRange().getStartOffset(),
+                            element.getTextRange().getEndOffset()),
+                            qualifier != null ? getAnyExpression(qualifier, document) : null,
+                            guessPropertyName(text),
+                            getAnyExpression(element.getArgumentList().getExpressions()[0], document));
+                }
             }
         }
         return null;
+    }
+
+    private static boolean isSetter(String text) {
+        return text.startsWith("set")
+                && text.length() > 3
+                && Character.isUpperCase(text.charAt(3));
     }
 
     private static boolean isPureMethodReference(PsiMethodCallExpression element) {
@@ -2114,11 +2171,11 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
 
     private static boolean isGetter(@NotNull PsiElement element, @NotNull PsiMethodCallExpression expression) {
         return expression.getArgumentList().getExpressions().length == 0
-                && isGetter(element);
+                && isGetter(element.getText());
     }
 
-    private static boolean isGetter(@NotNull PsiElement element) {
-        return isGetterAux(element.getText(), "get") || isGetterAux(element.getText(), "is");
+    private static boolean isGetter(@NotNull String name) {
+        return isGetterAux(name, "get") || isGetterAux(name, "is");
     }
 
     private static boolean isGetterAux(@Nullable String name, @NotNull String prefix) {

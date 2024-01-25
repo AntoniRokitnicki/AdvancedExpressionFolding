@@ -240,4 +240,9 @@ public class FoldingTest extends LightJavaCodeInsightFixtureTestCase {
         // TODO: Find a way to test all folding both together and separately
         AdvancedExpressionFoldingSettings.getInstance().getState().disableAll();
     }
+
+    public void testLombokTestData() {
+        AdvancedExpressionFoldingSettings.getInstance().getState().setLombok(true);
+        doFoldingTest();
+    }
 }
