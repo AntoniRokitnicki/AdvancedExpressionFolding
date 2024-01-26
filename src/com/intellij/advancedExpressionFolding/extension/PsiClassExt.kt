@@ -9,6 +9,14 @@ typealias CustomClassAnnotation = String
 object PsiClassExt {
     @JvmStatic
     fun createExpression(clazz: PsiClass): Expression? {
+        //TODO: do this as PsiMethod level
+        return clazz.methods.filter {
+            it.isSetter()
+        }.map {
+            MapStructExpression(it)
+        }.first()
+
+
         if (clazz.isIgnored()) {
             return null
         }

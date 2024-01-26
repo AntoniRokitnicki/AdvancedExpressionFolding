@@ -11,11 +11,15 @@ class FoldingService {
         val regions = editor.foldingModel.allFoldRegions.filter {
             it.group?.toString()?.startsWith("com.intellij.advancedExpressionFolding") ?: false
         }
+        val others = editor.foldingModel.allFoldRegions.toList() - regions
 
         editor.foldingModel
             .runBatchFoldingOperation {
                 regions.forEach {
                     it.isExpanded = !state
+                }
+                others.forEach {
+                    it.isExpanded = state
                 }
             }
     }
