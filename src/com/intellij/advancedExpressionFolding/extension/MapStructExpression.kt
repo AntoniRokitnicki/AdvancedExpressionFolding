@@ -46,19 +46,23 @@ class MapStructExpression(
         // 4 = {PsiJavaTokenImpl@15983} } []
         var a = mutableListOf<FoldingDescriptor>()
 
+
+        val t1 = "@Mapping(target = \"data\", source = \"data\")"
+
         var s = m.s()
-        var e = m.s() + "public void setData(MapstructTestData2 data) {".length - 4  // can't do -3
-        a += fold(m, s, e, "@Mapping(target = \"data\", source = \"data\")", "a")
+        var e = m.s() + "public void setData(MapstructTestData2 data) {".length - 5  // can't do -3
+
+        a += fold(m, s, e, t1, "a")
 
 
         val f = c[2]
         s = f.s()
         e = f.e()
-        a += fold(body, s, e, "void setData(MapstructTestData data)", "a2")
+        a += fold(body, s, e, "", "a2")
         val ss = c[4]
         s = ss.s()
         e = ss.e()
-        a += fold(ss, s, e, "", "a3")
+        a += fold(ss, s, e, "void setData(MapstructTestData data)", "a3")
         //a += fold(m, s, e, "")
 
 

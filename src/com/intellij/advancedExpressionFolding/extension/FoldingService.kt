@@ -19,7 +19,7 @@ class FoldingService {
                     it.isExpanded = !state
                 }
                 others.forEach {
-                    it.isExpanded = state
+                    it.isExpanded = true
                 }
             }
     }
