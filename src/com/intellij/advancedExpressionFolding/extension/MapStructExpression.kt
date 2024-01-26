@@ -47,13 +47,16 @@ class MapStructExpression(
         var a = mutableListOf<FoldingDescriptor>()
 
 
-        val t1 = "@Mapping(target = \"data\", source = \"data\")"
+        val t1 = "@Mapping(target = \"data\", source = \""
+               // "data\")"
 
         var s = m.s()
-        var e = m.s() + "public void setData(MapstructTestData2 data) {".length - 5  // can't do -3
-
+        var e = m.s() + "public void setData(MapstructTestData2 data) {".length - 7  // can't do -3
         a += fold(m, s, e, t1, "a")
 
+        s = e +4
+        e = s +1
+        a += fold(m, s, e, "", "a")
 
         val f = c[2]
         s = f.s()
