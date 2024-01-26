@@ -47,7 +47,7 @@ class MapStructExpression(
         var a = mutableListOf<FoldingDescriptor>()
 
 
-        val t1 = "@Mapping(target = \"data\", source = \""
+        val t1 = "@Mapping(\n\n\n = \"data\", source = \""
                // "data\")"
 
         var s = m.s()

@@ -15,7 +15,10 @@ public class MapstructTestData {
     public boolean isOk()<fold text=' { ' expand='false'> {
         </fold>return ok;<fold text=' }' expand='false'>
     }</fold>
-    <fold text='@Mapping(target = "data", source = "data")' expand='true'>public void setData(MapstructTestData dat</fold>a)<fold text=' { ' expand='false'> {
+    <fold text='@Mapping(
+
+
+ = "data", source = "' expand='true'>public void setData(MapstructTestData d</fold>ata)<fold text='")' expand='true'><fold text=' { ' expand='false'> </fold>{
         </fold><fold text='' expand='true'>this.data = data;</fold><fold text=' }' expand='false'>
     <fold text='void setData(MapstructTestData data)' expand='true'>}</fold></fold>
     public void setOk(boolean ok)<fold text=' { ' expand='false'> {
