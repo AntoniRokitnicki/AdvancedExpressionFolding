@@ -56,6 +56,10 @@ class MapStructExpression(
 
         s = e +4
         e = s +1
+        a += fold(m, s, e, "\")", "a")
+
+        s = e +1
+        e = s +4 + 6
         a += fold(m, s, e, "", "a")
 
         val f = c[2]
