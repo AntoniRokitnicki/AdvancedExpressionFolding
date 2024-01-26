@@ -51,26 +51,29 @@ public class InterpolatedString extends Expression {
         ArrayList<FoldingDescriptor> descriptors = new ArrayList<>();
         final String[] buf = {""};
         if (!(first instanceof CharSequenceLiteral)) {
-            TextRange overflowLeftRange = TextRange.create(first.getTextRange().getStartOffset() - 1, first.getTextRange().getStartOffset());
-            String overflowLeftText = document.getText(overflowLeftRange);
-            if (OVERFLOW_CHARACTERS.contains(overflowLeftText)) {
-                String overflowText = overflowLeftPlaceholder != null ? overflowLeftPlaceholder : overflowLeftText;
-                if (first instanceof Variable) {
-                    descriptors.add(new FoldingDescriptor(element.getNode(), overflowLeftRange, group, overflowText + "\"$"));
+            int startOffset = first.getTextRange().getStartOffset();
+            if (startOffset > 0) {
+                TextRange overflowLeftRange = TextRange.create(startOffset - 1, startOffset);
+                String overflowLeftText = document.getText(overflowLeftRange);
+                if (OVERFLOW_CHARACTERS.contains(overflowLeftText)) {
+                    String overflowText = overflowLeftPlaceholder != null ? overflowLeftPlaceholder : overflowLeftText;
+                    if (first instanceof Variable) {
+                        descriptors.add(new FoldingDescriptor(element.getNode(), overflowLeftRange, group, overflowText + "\"$"));
+                    } else {
+                        descriptors.add(new FoldingDescriptor(element.getNode(), overflowLeftRange, group, overflowText + "\"${"));
+                        buf[0] = "}";
+                    }
                 } else {
-                    descriptors.add(new FoldingDescriptor(element.getNode(), overflowLeftRange, group, overflowText + "\"${"));
-                    buf[0] = "}";
+                    String p;
+                    if (first instanceof Variable) {
+                        p = "\"$" + first.getElement().getText(); // TODO no-format: not sure
+                    } else {
+                        p = "\"${" + first.getElement().getText() + "}"; // TODO no-format: not sure
+                    }
+                    descriptors.add(new FoldingDescriptor(element.getNode(),
+                            TextRange.create(startOffset,
+                                    first.getTextRange().getEndOffset()), group, p));
                 }
-            } else {
-                String p;
-                if (first instanceof Variable) {
-                    p = "\"$" + first.getElement().getText(); // TODO no-format: not sure
-                } else {
-                    p = "\"${" + first.getElement().getText() + "}"; // TODO no-format: not sure
-                }
-                descriptors.add(new FoldingDescriptor(element.getNode(),
-                        TextRange.create(first.getTextRange().getStartOffset(),
-                                first.getTextRange().getEndOffset()), group, p));
             }
         } else if (first instanceof CharacterLiteral) {
             descriptors.add(new FoldingDescriptor(element.getNode(), TextRange.create(first.getTextRange().getStartOffset(),

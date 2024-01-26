@@ -1,9 +1,12 @@
 package com.intellij.advancedExpressionFolding;
 
+import com.intellij.advancedExpressionFolding.extension.PsiClassExt;
+import com.intellij.advancedExpressionFolding.extension.UnexpectedException;
 import com.intellij.lang.ASTNode;
 import com.intellij.lang.folding.FoldingBuilderEx;
 import com.intellij.lang.folding.FoldingDescriptor;
 import com.intellij.openapi.editor.Document;
+import com.intellij.openapi.progress.ProcessCanceledException;
 import com.intellij.openapi.project.IndexNotReadyException;
 import com.intellij.openapi.util.Key;
 import com.intellij.openapi.util.TextRange;
@@ -537,7 +540,7 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
             }
         }
         if (settings.getState().isLombok() && element instanceof PsiClass psiClass) {
-            Expression expression = getPsiClass(psiClass, document);
+            Expression expression = PsiClassExt.createExpression(psiClass);
             if (expression != null) {
                 return expression;
             }
@@ -549,48 +552,6 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
             return new SyntheticExpressionImpl(element, element.getTextRange(), document.getText(element.getTextRange()), children);
         }
         return null;
-    }
-
-    private static Expression getPsiClass(PsiClass clazz, Document document) {
-        var fields = Arrays.stream(clazz.getFields())
-                .filter(it -> !it.hasModifierProperty(PsiModifier.STATIC))
-                .collect(Collectors.toMap(PsiField::getName, it -> it));
-        var methods = Arrays.stream(clazz.getMethods())
-                .filter(it -> {
-                    String name = it.getName();
-                    if (isGetter(name)) {
-                        return isGetter(it);
-                    }
-                    if (isSetter(name)) {
-                        return isSetter(it);
-                    }
-                    return false;
-                })
-                .collect(Collectors.groupingBy(it -> {
-                    String name = it.getName();
-                    return guessPropertyName(name);
-                }));
-        var getterSetterList = methods.entrySet().stream().map(e-> {
-            var field = fields.get(e.getKey());
-            if (field != null) {
-                if (e.getValue().size() == 2) {
-                    return new LombokGetterSetter(field, e.getValue());
-                }
-            }
-            return null;
-        }).filter(Objects::nonNull).toList();
-        if (!getterSetterList.isEmpty() && getterSetterList.size() == fields.size()) {
-            return new LombokGetterSetterExpression(clazz, getterSetterList);
-        }
-        return null;
-    }
-
-    private static boolean isSetter(PsiMethod it) {
-        return it.getParameterList().getParametersCount() == 1 && Objects.equals(it.getReturnType(), PsiType.VOID);
-    }
-
-    private static boolean isGetter(PsiMethod it) {
-        return it.getParameterList().getParametersCount() == 0 && !Objects.equals(it.getReturnType(), PsiType.VOID);
     }
 
     private static Expression getForeachStatementExpression(PsiForeachStatement element) {
@@ -2295,6 +2256,12 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
     @NotNull
     @Override
     public FoldingDescriptor[] buildFoldRegions(@NotNull PsiElement element, @NotNull Document document, boolean quick) {
+        return collectFoldRegionsRecursively(element, document, quick);
+    }
+
+    @NotNull
+    public FoldingDescriptor[] collectFoldRegionsRecursively(@NotNull PsiElement element, @NotNull Document document, boolean quick) {
+        PsiElement lastElement = element;
         List<FoldingDescriptor> allDescriptors = null;
         try {
             @Nullable Expression expression = getNonSyntheticExpression(element, document);
@@ -2305,7 +2272,8 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
             }
             if (expression == null || expression.isNested()) {
                 for (PsiElement child : element.getChildren()) {
-                    FoldingDescriptor[] descriptors = buildFoldRegions(child, document, quick);
+                    lastElement = child;
+                    FoldingDescriptor[] descriptors = collectFoldRegionsRecursively(child, document, quick);
                     if (descriptors.length > 0) {
                         if (allDescriptors == null) {
                             allDescriptors = new ArrayList<>();
@@ -2314,7 +2282,14 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
                     }
                 }
             }
-        } catch (IndexNotReadyException ignore) {
+        } catch (IndexNotReadyException | ProcessCanceledException ignore) {
+        } catch (Exception e) {
+            String fileName = null;
+            PsiFile containingFile = lastElement.getContainingFile();
+            if (containingFile != null) {
+                fileName = containingFile.getName();
+            }
+            throw new UnexpectedException(lastElement.getClass(), lastElement.getText(), lastElement.getTextRange(), fileName, e);
         }
         return allDescriptors != null ? allDescriptors.toArray(NO_DESCRIPTORS) : NO_DESCRIPTORS;
     }

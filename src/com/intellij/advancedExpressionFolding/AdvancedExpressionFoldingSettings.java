@@ -37,6 +37,9 @@ public class AdvancedExpressionFoldingSettings implements PersistentStateCompone
         myState.COMPACT_CONTROL_FLOW_SYNTAX = state.COMPACT_CONTROL_FLOW_SYNTAX;
         myState.SEMICOLONS = state.SEMICOLONS;
         myState.ASSERTS = state.ASSERTS;
+        myState.OPTIONAL = state.OPTIONAL;
+        myState.STREAM_SPREAD = state.STREAM_SPREAD;
+        myState.lombok = state.lombok;
     }
 
     public static final class State {
@@ -47,7 +50,7 @@ public class AdvancedExpressionFoldingSettings implements PersistentStateCompone
 
         private boolean COMPARING_LOCAL_DATES = true;
         private boolean LOCAL_DATE_LITERAL = true;
-        private boolean LOCAL_DATE_LITERAL_POSTFIX = true;
+        private boolean LOCAL_DATE_LITERAL_POSTFIX = false;
 
         private boolean GET_EXPRESSIONS = true;
         private boolean RANGE_EXPRESSIONS = true;
@@ -61,9 +64,7 @@ public class AdvancedExpressionFoldingSettings implements PersistentStateCompone
         private boolean SEMICOLONS = true;
         private boolean ASSERTS = true;
         private boolean OPTIONAL = true;
-
         private boolean STREAM_SPREAD = true;
-
         private boolean lombok = true;
 
 
@@ -258,6 +259,7 @@ public class AdvancedExpressionFoldingSettings implements PersistentStateCompone
             this.setLocalDateLiteralPostfix(false);
             this.setOptional(false);
             this.setStreamSpread(false);
+            this.setLombok(false);
         }
     }
 }
