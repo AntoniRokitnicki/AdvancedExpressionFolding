@@ -245,4 +245,9 @@ public class FoldingTest extends LightJavaCodeInsightFixtureTestCase {
         AdvancedExpressionFoldingSettings.getInstance().getState().setLombok(true);
         doFoldingTest();
     }
+
+    public void testLombokUsageTestData() {
+        AdvancedExpressionFoldingSettings.getInstance().getState().setLombok(true);
+        doFoldingTest();
+    }
 }
