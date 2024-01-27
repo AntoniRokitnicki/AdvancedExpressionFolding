@@ -19,38 +19,35 @@ object PsiClassExt {
             return null
         }
 
-        val customClassAnnotations = mutableListOf<CustomClassAnnotation>()
-        val elementsToFold = mutableListOf<PsiElement>()
-
-        addLombokSupport(clazz, customClassAnnotations, elementsToFold)
-        addSerialVersionUID(serialField, customClassAnnotations, elementsToFold)
-
-        if (customClassAnnotations.isNotEmpty()) {
-            return CustomClassAnnotationExpression(clazz, customClassAnnotations, elementsToFold)
+        val changes = listOfNotNull(addLombokSupport(clazz), addSerialVersionUID(serialField))
+        if (changes.isEmpty()) {
+            clazz.markIgnored()
+            return null
         }
-        clazz.markIgnored()
-        return null
+
+        val (customClassAnnotations, elementsToFold) = changes.unzip()
+        return CustomClassAnnotationExpression(clazz, customClassAnnotations.flatten(), elementsToFold.flatten())
     }
 
     private fun addSerialVersionUID(
-        serialField: PsiField?,
-        customClassAnnotations: MutableList<CustomClassAnnotation>,
-        elementsToFold: MutableList<PsiElement>
-    ) {
+        serialField: PsiField?
+    ): Pair<MutableList<CustomClassAnnotation>, MutableList<PsiElement>>? {
         serialField?.let { field ->
+            val customClassAnnotations = mutableListOf<CustomClassAnnotation>()
+            val elementsToFold = mutableListOf<PsiElement>()
             customClassAnnotations += "@Serial"
             elementsToFold += field
             field.prevWhiteSpace()?.let {
                 elementsToFold += it
             }
+            return Pair(customClassAnnotations, elementsToFold)
         }
+        return null
     }
 
     private fun addLombokSupport(
-        clazz: PsiClass,
-        customClassAnnotations: MutableList<CustomClassAnnotation>,
-        elementsToFold: MutableList<PsiElement>
-    ) {
+        clazz: PsiClass
+    ): Pair<MutableList<CustomClassAnnotation>, MutableList<PsiElement>>? {
         val fieldsMap = clazz.fields.filter {
             !it.hasModifierProperty(PsiModifier.STATIC)
         }.associateBy {
@@ -68,13 +65,17 @@ object PsiClassExt {
             }
 
             if (fieldsMap.size == propertyList.filter { it.hasGetterOrSetter() }.size) {
+                val customClassAnnotations = mutableListOf<CustomClassAnnotation>()
+                val elementsToFold = mutableListOf<PsiElement>()
                 customClassAnnotations += "@Getter"
                 customClassAnnotations += "@Setter"
                 val methods = propertyList.flatMap { it.methods }
                 elementsToFold += methods
                 elementsToFold += methods.mapNotNull { it.prevWhiteSpace() }
+                return Pair(customClassAnnotations, elementsToFold)
             }
         }
+        return null
     }
 
     private fun isSerial(clazz: PsiClass): PsiField? = clazz.fields.firstOrNull { it.name == "serialVersionUID" }
