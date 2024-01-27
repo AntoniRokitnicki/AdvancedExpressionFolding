@@ -22,7 +22,7 @@ def upload_jar_to_github_release(token, owner, repo, version, jar_path):
     release_id = response.json()["id"]
 
     upload_url = f"https://uploads.github.com/repos/{owner}/{repo}/releases/{release_id}/assets?name={repo}-{version}.jar"
-    files = {"file": (f"{repo}.jar", open(jar_path, "rb"))}
+    file_content = open(jar_path, "rb").read()
 
     upload_headers = {
         "Authorization": f"Bearer {token}",
@@ -30,8 +30,9 @@ def upload_jar_to_github_release(token, owner, repo, version, jar_path):
         "Content-Type": "application/octet-stream"
     }
 
-    response = requests.post(upload_url, files=files, headers=upload_headers)
+    response = requests.post(upload_url, data=file_content, headers=upload_headers)
     print(f"response: {response}")
+
 
 github_token = os.environ.get("GITHUB_TOKEN")
 
