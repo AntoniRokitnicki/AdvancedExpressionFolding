@@ -1,17 +1,18 @@
-# AdvancedExpressionFolding2
+# Advanced Expression Folding 2
 
 <!-- Plugin description -->
 <h5>New Version of <a href="https://plugins.jetbrains.com/plugin/9320-advanced-java-folding">Advanced Java Folding</a></h5>
-<h2><font color="brown">Project migrated to IntelliJ template plugin to support new version of IntelliJ.</font></h2>
+<h6><font color="brown">Project migrated to IntelliJ template plugin to support new version of IntelliJ.</font></h6>
 <h4>Merged Pull Requests:</h4>
 <ul>
 <li><a href="https://github.com/cheptsov/AdvancedExpressionFolding/pull/132">java.time.* isBefore/isAfter folding and LocalDate literals</a></li>
 <li><a href="https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/22">Display Optional as Kotlin Null-Safe</a></li>
 <li><a href="https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/23">Groovy spread operator in streams</a></li>
 <li><a href="https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/25">Actions for folding and unfolding with key-shortcuts</a></li>
-<li><a href="https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/29">fold java-bean to lombok @Getter and @Setter on class level</a></li>
+<li><a href="https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/29">Lombok @Getter and @Setter on class level for POJO</a></li>
 <li><a href="https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pulls?q=is%3Apr+is%3Aclosed">Optimizations and bugfixes</a></li>
 </ul>
+
 
 <p>Modern JVM languages such as Kotlin, Groovy, Scala and some others offer many language features that let you
   write code in a more concise and expressive manner. These features include type inference, properties,
