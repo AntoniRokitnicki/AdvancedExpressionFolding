@@ -6,10 +6,10 @@ import com.intellij.psi.*
 
 typealias CustomClassAnnotation = String
 
-object PsiClassExt {
+object PsiClassExt : ExpressionExt {
     @JvmStatic
     fun createExpression(clazz: PsiClass): Expression? {
-        if (clazz.isIgnored()) {
+        if (clazz.isIgnored() || !isLombokSetting()) {
             return null
         }
 

@@ -1,10 +1,15 @@
 package com.intellij.advancedExpressionFolding.extension
 
+import com.intellij.advancedExpressionFolding.PropertyUtil
 import com.intellij.openapi.util.Key
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiMethod
 import com.intellij.psi.PsiType
+import java.util.*
 
+inline fun String.filter(predicate: (String) -> Boolean): String? = takeIf {
+    predicate(it)
+}
 
 val IGNORED = Key<Boolean>("aef-ignored")
 fun PsiElement.isIgnored(): Boolean = getUserData(IGNORED) ?: false
@@ -26,3 +31,26 @@ fun PsiMethod.isGetter(): Boolean {
 }
 
 fun PsiMethod.isGetterOrSetter(): Boolean = isSetter() || isGetter()
+
+fun PsiMethod.guessPropertyName(): String = PropertyUtil.guessPropertyName(name)
+
+fun <T : PsiElement> PsiElement.findParents(
+    parentClass: Class<T>,
+    vararg parents: Class<out PsiElement>
+): T? {
+    val classQueue = LinkedList(parents.asList())
+    val next = classQueue.poll()
+    var parent = this.parent
+
+    while (parent != null) {
+        if (next != null && next.isInstance(parent)) {
+            return if (classQueue.isEmpty()) {
+                parent as? T
+            } else {
+                findParents(parentClass, *classQueue.toTypedArray())
+            }
+        }
+        parent = parent.parent
+    }
+    return null
+}

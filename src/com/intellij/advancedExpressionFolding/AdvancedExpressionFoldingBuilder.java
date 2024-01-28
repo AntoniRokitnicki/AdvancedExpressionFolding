@@ -1,5 +1,6 @@
 package com.intellij.advancedExpressionFolding;
 
+import com.intellij.advancedExpressionFolding.extension.MethodReferenceExt;
 import com.intellij.advancedExpressionFolding.extension.PsiClassExt;
 import com.intellij.advancedExpressionFolding.extension.UnexpectedException;
 import com.intellij.lang.ASTNode;
@@ -536,7 +537,7 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
                 return expression;
             }
         }
-        if (settings.getState().isLombok() && element instanceof PsiClass psiClass) {
+        if (element instanceof PsiClass psiClass) {
             Expression expression = PsiClassExt.createExpression(psiClass);
             if (expression != null) {
                 return expression;
@@ -1330,11 +1331,12 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
                 Expression variable = getVariableExpression(element, copy);
                 if (variable != null) return variable;
 
-                var methodReference = getMethodReference(element);
-                if (methodReference.isPresent()) {
-                    return methodReference.get();
+                if (element instanceof PsiMethodReferenceExpression methodReferenceExpression) {
+                    var methodReference = MethodReferenceExt.createExpression(methodReferenceExpression);
+                    if (methodReference != null) {
+                        return methodReference;
+                    }
                 }
-
             }
         }
         return null;
@@ -1345,68 +1347,6 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
         return getVariableExpression(element, false);
     }
 
-
-    private static Optional<? extends Expression> getMethodReference(PsiElement element) {
-        boolean optional = AdvancedExpressionFoldingSettings.getInstance().getState().isOptional();
-        boolean spread = AdvancedExpressionFoldingSettings.getInstance().getState().isStreamSpread();
-        if ((optional || spread) && element instanceof PsiMethodReferenceExpression) {
-            PsiReference reference = element.getReference();
-            if (reference != null) {
-                PsiElement e = reference.resolve();
-                if (e instanceof PsiMethod psiMethod && psiMethod.getParameterList().isEmpty()) {
-                    var optionalCall = ascendIntoHierarchyByClasses(element, PsiMethodCallExpression.class, PsiExpressionList.class, PsiMethodCallExpression.class);
-                    var method = optionalCall
-                            .map(PsiMethodCallExpression::getMethodExpression)
-                            .map(PsiReference::resolve)
-                            .filter(PsiMethod.class::isInstance)
-                            .map(PsiMethod.class::cast);
-                    var className = method
-                            .map(PsiMember::getContainingClass)
-                            .map(PsiClass::getQualifiedName);
-                    var isMapMethod = method.map(PsiMethod::getName).filter(((Predicate<String>) "map"::equals).or("flatMap"::equals));
-                    if (isMapMethod.isPresent()) {
-                        if (optional && className.filter("java.util.Optional"::equals).isPresent()) {
-                            return descendIntoHierarchyByClasses(e, PsiIdentifier.class, PsiIdentifier.class)
-                                    .map(PsiElement::getText)
-                                    .map(it -> new OptionalMapSafeCallParam(element, element.getTextRange(),
-                                            guessPropertyName(it)));
-                        } else if (spread && className.filter("java.util.stream.Stream"::equals).isPresent()) {
-                            return descendIntoHierarchyByClasses(e, PsiIdentifier.class, PsiIdentifier.class)
-                                    .map(PsiElement::getText)
-                                    .map(it -> new StreamMapCallParam(element, element.getTextRange(),
-                                            guessPropertyName(it)));
-                        }
-                    }
-                }
-            }
-        }
-        return Optional.empty();
-    }
-
-    @SafeVarargs
-    private static <T extends PsiElement> Optional<T> ascendIntoHierarchyByClasses(PsiElement element, Class<T> parentClass, Class<? extends PsiElement>... parents) {
-        LinkedList<Class<? extends PsiElement>> classQueue = new LinkedList<>(List.of(parents));
-        PsiElement parent = element.getParent();
-
-        Class<? extends PsiElement> next = classQueue.poll();
-        PsiElement lastMatchingParent;
-
-        while (parent != null) {
-            if (next != null && next.isInstance(parent)) {
-                lastMatchingParent = parent;
-
-                if (classQueue.isEmpty()) {
-                    return Optional.of((T) lastMatchingParent);
-                } else {
-                    return ascendIntoHierarchyByClasses(parent, parentClass, classQueue.toArray(new Class[0]));
-                }
-            }
-
-            parent = parent.getParent();
-        }
-
-        return Optional.empty();
-    }
     private static <T extends PsiElement> Stream<PsiElement> findAncestorsUntilClass(PsiElement element, Class<T> ancestorClass) {
         return findAncestorsUntil(element, (parent -> !ancestorClass.isInstance(parent)));
     }
@@ -1417,7 +1357,7 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
     }
 
     @SafeVarargs
-    private static <T extends PsiElement> Optional<T> descendIntoHierarchyByClasses(PsiElement element, Class<T> childClass, Class<? extends PsiElement>... children) {
+    private static <T extends PsiElement> Optional<T> findChildByTypeHierarchy(PsiElement element, Class<T> childClass, Class<? extends PsiElement>... children) {
         LinkedList<Class<? extends PsiElement>> classQueue = new LinkedList<>(List.of(children));
         Class<? extends PsiElement> next = classQueue.poll();
 
@@ -1426,7 +1366,7 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
                 if (classQueue.isEmpty()) {
                     return Optional.of((T) child);
                 } else {
-                    return descendIntoHierarchyByClasses(child, childClass, classQueue.toArray(new Class[classQueue.size()]));
+                    return findChildByTypeHierarchy(child, childClass, classQueue.toArray(new Class[classQueue.size()]));
                 }
             }
         }
@@ -1565,7 +1505,7 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
                                     switch (className) {
                                         case "java.util.Optional":
                                             if (settings.getState().isOptional() &&
-                                                    descendIntoHierarchyByClasses(element, PsiExpressionList.class, PsiExpressionList.class)
+                                                    findChildByTypeHierarchy(element, PsiExpressionList.class, PsiExpressionList.class)
                                                             .isPresent()) {
                                                 return new OptionalOrElseElvis(element, element.getTextRange(), Arrays.asList(qualifierExpression, argumentExpression));
                                             }
@@ -2048,7 +1988,7 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
     }
 
     private static boolean isPureMethodReference(PsiMethodCallExpression element) {
-        return descendIntoHierarchyByClasses(element, PsiMethodReferenceExpression.class, PsiExpressionList.class, PsiMethodReferenceExpression.class)
+        return findChildByTypeHierarchy(element, PsiMethodReferenceExpression.class, PsiExpressionList.class, PsiMethodReferenceExpression.class)
                 .isPresent();
     }
 
