@@ -1,7 +1,7 @@
 package com.intellij.advancedExpressionFolding;
 
+import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.components.PersistentStateComponent;
-import com.intellij.openapi.components.ServiceManager;
 import com.intellij.openapi.components.State;
 import com.intellij.openapi.components.Storage;
 import org.jetbrains.annotations.NotNull;
@@ -18,7 +18,7 @@ public class AdvancedExpressionFoldingSettings implements PersistentStateCompone
 
     @NotNull
     public static AdvancedExpressionFoldingSettings getInstance() {
-        return ServiceManager.getService(AdvancedExpressionFoldingSettings.class);
+        return ApplicationManager.getApplication().getService(AdvancedExpressionFoldingSettings.class);
     }     
     
     @Override
