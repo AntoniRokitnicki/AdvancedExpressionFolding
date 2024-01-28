@@ -1379,9 +1379,8 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
         PsiReference reference = element.getReference();
         if (reference != null) {
             PsiElement e = reference.resolve();
-            if (e instanceof PsiVariable && ((PsiVariable) e).getName() != null
-                    && Objects.equals(((PsiVariable) e).getName(), element.getText())) {
-                PsiVariable variable = (PsiVariable) e;
+            if (e instanceof PsiVariable variable && variable.getName() != null
+                    && Objects.equals(variable.getName(), element.getText())) {
                 String name = variable.getName();
                 if (name != null) {
                     // TODO: Please make sure this fix works
@@ -1411,8 +1410,7 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
         PsiReference reference = element.getReference();
         if (reference != null) {
             PsiElement e = reference.resolve();
-            if (e instanceof PsiField) {
-                PsiField field = (PsiField) e;
+            if (e instanceof PsiField field) {
                 PsiClass psiClass = field.getContainingClass();
                 if (psiClass != null && psiClass.getQualifiedName() != null) {
                     return supportedClasses.contains(eraseGenerics(psiClass.getQualifiedName()));
@@ -1619,8 +1617,7 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
                                                 argumentExpression, Get.Style.FIRST)*/
                                         ;
                                         return null;
-                                    } else if (argument instanceof PsiBinaryExpression) {
-                                        PsiBinaryExpression a2b = (PsiBinaryExpression) argument;
+                                    } else if (argument instanceof PsiBinaryExpression a2b) {
                                         NumberLiteral position = getSlicePosition(element, qualifierExpression, a2b, document);
                                         if (position != null && position.getNumber().equals(-1)) {
                                             if (settings.getState().isGetExpressionsCollapse()) {
@@ -1741,17 +1738,13 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
                                         break;
                                     }
                                 case "toString": // TODO: Generalize for literals and variables
-                                    if (qualifierExpression instanceof Append) {
-                                        Append append = (Append) qualifierExpression;
+                                    if (qualifierExpression instanceof Append append) {
                                         return new Append(element, element.getTextRange(), append.getOperands(), element.getParent() instanceof PsiStatement);
-                                    } else if (qualifierExpression instanceof StringLiteral) {
-                                        StringLiteral stringLiteral = (StringLiteral) qualifierExpression;
+                                    } else if (qualifierExpression instanceof StringLiteral stringLiteral) {
                                         return new StringLiteral(element, element.getTextRange(), stringLiteral.getString());
-                                    } else if (qualifierExpression instanceof NumberLiteral) {
-                                        NumberLiteral numberLiteral = (NumberLiteral) qualifierExpression;
+                                    } else if (qualifierExpression instanceof NumberLiteral numberLiteral) {
                                         return new NumberLiteral(element, element.getTextRange(), numberLiteral.getNumberTextRange(), numberLiteral.getNumber(), true);
-                                    } else if (qualifierExpression instanceof Variable) {
-                                        Variable variable = (Variable) qualifierExpression;
+                                    } else if (qualifierExpression instanceof Variable variable) {
                                         return new Variable(element, element.getTextRange(), variable.getTextRange(), variable.getName(), true);
                                     } else {
                                         break;
