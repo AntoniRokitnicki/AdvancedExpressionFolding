@@ -67,8 +67,10 @@
 
 ## [0.0.1]
 
-[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.12...HEAD
+[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.13...HEAD
+[1.0.13]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.12...v1.0.13
 [1.0.12]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.6...v1.0.12
+[1.0.11]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.6...v1.0.11
 [1.0.6]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.5...v1.0.6
 [1.0.5]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.4...v1.0.5
 [1.0.4]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.3...v1.0.4
