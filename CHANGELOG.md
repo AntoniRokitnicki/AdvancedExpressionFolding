@@ -4,6 +4,18 @@
 
 ## [Unreleased]
 
+## [1.0.13]
+
+- Publishing by script
+
+## [1.0.12]
+
+- Publishing by script
+
+## [1.0.11]
+
+- Published to Intellij Marketplace
+
 ## [1.0.6]
 
 ### Added
@@ -55,7 +67,9 @@
 
 ## [0.0.1]
 
-[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.5...HEAD
+[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.12...HEAD
+[1.0.12]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.6...v1.0.12
+[1.0.6]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.5...v1.0.6
 [1.0.5]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.4...v1.0.5
 [1.0.4]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.3...v1.0.4
 [1.0.3]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.2...v1.0.3
