@@ -1,7 +1,7 @@
 <plugin-repository>
     <ff>"Formatting"</ff>
     <category name="Formatting">
-        <idea-plugin downloads="201790" size="194119" date="1625903057013" updatedDate="1625903057013"><name>Advanced Java Folding2</name>
+        <idea-plugin downloads="201790" size="194119" date="1625903057013" updatedDate="1625903057013"><name>Advanced Java Folding 2 (Beta)</name>
             <id>com.github.bigdecimal-folding2</id>
             <description />
             <version>1.0.13</version>
@@ -12,7 +12,7 @@
             </change-notes>
             <download-url>https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/releases/download/v1.0.13/AdvancedExpressionFolding-v1.0.13.jar</download-url>
             <idea-version min="n/a" max="n/a" since-build="212.4638" />
-        </idea-plugin><idea-plugin downloads="201789" size="194118" date="1625903057012" updatedDate="1625903057012"><name>Advanced Java Folding2</name>
+        </idea-plugin><idea-plugin downloads="201789" size="194118" date="1625903057012" updatedDate="1625903057012"><name>Advanced Java Folding 2 (Beta)</name>
             <id>com.github.bigdecimal-folding2</id>
             <description />
             <version>1.0.12</version>
@@ -23,7 +23,7 @@
             </change-notes>
             <download-url>https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/releases/download/v1.0.12/AdvancedExpressionFolding-v1.0.12.jar</download-url>
             <idea-version min="n/a" max="n/a" since-build="212.4638" />
-        </idea-plugin><idea-plugin downloads="201788" size="194117" date="1625903057011" updatedDate="1625903057011"><name>Advanced Java Folding2</name>
+        </idea-plugin><idea-plugin downloads="201788" size="194117" date="1625903057011" updatedDate="1625903057011"><name>Advanced Java Folding 2 (Beta)</name>
             <id>com.github.bigdecimal-folding2</id>
             <description />
             <version>1.0.11</version>
@@ -34,7 +34,7 @@
             </change-notes>
             <download-url>https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/releases/download/v1.0.11/AdvancedExpressionFolding-v1.0.11.jar</download-url>
             <idea-version min="n/a" max="n/a" since-build="212.4638" />
-        </idea-plugin><idea-plugin downloads="201787" size="194116" date="1625903057010" updatedDate="1625903057010"><name>Advanced Java Folding2</name>
+        </idea-plugin><idea-plugin downloads="201787" size="194116" date="1625903057010" updatedDate="1625903057010"><name>Advanced Java Folding 2 (Beta)</name>
             <id>com.github.bigdecimal-folding2</id>
             <description />
             <version>1.0.10</version>
@@ -45,7 +45,7 @@
             </change-notes>
             <download-url>https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/releases/download/v1.0.10/AdvancedExpressionFolding-v1.0.10.jar</download-url>
             <idea-version min="n/a" max="n/a" since-build="212.4638" />
-        </idea-plugin><idea-plugin downloads="201786" size="194115" date="1625903057009" updatedDate="1625903057009"><name>Advanced Java Folding2</name>
+        </idea-plugin><idea-plugin downloads="201786" size="194115" date="1625903057009" updatedDate="1625903057009"><name>Advanced Java Folding 2 (Beta)</name>
             <id>com.github.bigdecimal-folding2</id>
             <description />
             <version>1.0.9</version>
@@ -56,7 +56,7 @@
             </change-notes>
             <download-url>https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/releases/download/v1.0.9/AdvancedExpressionFolding-v1.0.9.jar</download-url>
             <idea-version min="n/a" max="n/a" since-build="212.4638" />
-        </idea-plugin><idea-plugin downloads="201785" size="194114" date="1625903057008" updatedDate="1625903057008"><name>Advanced Java Folding2</name>
+        </idea-plugin><idea-plugin downloads="201785" size="194114" date="1625903057008" updatedDate="1625903057008"><name>Advanced Java Folding 2 (Beta)</name>
             <id>com.github.bigdecimal-folding2</id>
             <description />
             <version>1.0.8</version>
@@ -67,7 +67,7 @@
             </change-notes>
             <download-url>https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/releases/download/v1.0.8/AdvancedExpressionFolding-v1.0.8.jar</download-url>
             <idea-version min="n/a" max="n/a" since-build="212.4638" />
-        </idea-plugin><idea-plugin downloads="201784" size="194113" date="1625903057007" updatedDate="1625903057007"><name>Advanced Java Folding2</name>
+        </idea-plugin><idea-plugin downloads="201784" size="194113" date="1625903057007" updatedDate="1625903057007"><name>Advanced Java Folding 2 (Beta)</name>
             <id>com.github.bigdecimal-folding2</id>
             <description>
 AdvancedExpressionFolding2</description>
@@ -80,7 +80,7 @@ AdvancedExpressionFolding2</description>
             <download-url>https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/releases/download/v1.0.7/AdvancedExpressionFolding-v1.0.7.jar</download-url>
             <idea-version min="n/a" max="n/a" since-build="212.4638" />
         </idea-plugin><idea-plugin downloads="201783" size="194112" date="1625903057006" updatedDate="1625903057006" url="">
-            <name>Advanced Java Folding2</name>
+            <name>Advanced Java Folding 2 (Beta)</name>
             <id>com.github.bigdecimal-folding2</id>
             <description>AdvancedExpressionFolding2</description>
             <version>1.0.6</version>
@@ -94,7 +94,7 @@ AdvancedExpressionFolding2</description>
         </idea-plugin>
 
         <idea-plugin downloads="201783" size="194112" date="1625903057005" updatedDate="1625903057005" url="">
-            <name>Advanced Java Folding2</name>
+            <name>Advanced Java Folding 2 (Beta)</name>
             <id>com.github.bigdecimal-folding2</id>
             <description>AdvancedExpressionFolding2</description>
             <version>1.0.5</version>
@@ -107,7 +107,7 @@ AdvancedExpressionFolding2</description>
             <idea-version min="n/a" max="n/a" since-build="212.4638" />
         </idea-plugin>
         <idea-plugin downloads="201783" size="194112" date="1625903057004" updatedDate="1625903057004" url="">
-            <name>Advanced Java Folding2</name>
+            <name>Advanced Java Folding 2 (Beta)</name>
             <id>com.github.bigdecimal-folding2</id>
             <description>AdvancedExpressionFolding2</description>
             <version>1.0.4</version>
@@ -120,7 +120,7 @@ AdvancedExpressionFolding2</description>
             <idea-version min="n/a" max="n/a" since-build="212.4638" />
         </idea-plugin>
         <idea-plugin downloads="201783" size="194112" date="1625903057003" updatedDate="1625903057003" url="">
-            <name>Advanced Java Folding2</name>
+            <name>Advanced Java Folding 2 (Beta)</name>
             <id>com.github.bigdecimal-folding2</id>
             <description>AdvancedExpressionFolding2</description>
             <version>1.0.3</version>
@@ -133,7 +133,7 @@ AdvancedExpressionFolding2</description>
             <idea-version min="n/a" max="n/a" since-build="212.4638" />
         </idea-plugin>
         <idea-plugin downloads="201783" size="194112" date="1625903057002" updatedDate="1625903057002" url="">
-            <name>Advanced Java Folding2</name>
+            <name>Advanced Java Folding 2 (Beta)</name>
             <id>com.github.bigdecimal-folding2</id>
             <description>AdvancedExpressionFolding2</description>
             <version>1.0.2</version>
