@@ -148,10 +148,10 @@ tasks {
 
     //TODO: migrate to github actions
     register("incVersion", Exec::class) {
-        commandLine("python3", "increment_plugin_version.py")
+        commandLine("python3", "_increment_plugin_version.py")
     }
     register("uploadJar", Exec::class) {
-        commandLine("python3", "upload_jar.py")
+        commandLine("python3", "_upload_jar.py")
     }
 
 }
