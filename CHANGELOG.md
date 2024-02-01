@@ -6,7 +6,8 @@
 
 ## [1.0.14] - 2024-02-01
 
-v1.0.14
+- different name for the beta plugin
+- support of EAP
 
 ## [1.0.13]
 
@@ -18,7 +19,7 @@ v1.0.14
 
 ## [1.0.11]
 
-- Published to Intellij Marketplace
+- Published to IntelliJ Marketplace
 
 ## [1.0.6]
 
