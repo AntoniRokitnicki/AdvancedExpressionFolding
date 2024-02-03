@@ -17,7 +17,7 @@
 <li><a href="https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/23">Groovy spread operator in streams</a></li>
 <li><a href="https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/25">Actions for folding and unfolding with key-shortcuts</a></li>
 <li><a href="https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/29">Lombok @Getter and @Setter on class level for POJO</a></li>
-<li><a href="https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pulls?q=is%3Apr+is%3Aclosed">Optimizations and bugfixes</a></li>
+<li><a href="https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pulls?q=is%3Apr+is%3Aclosed">Optimizations and bug fixes</a></li>
 </ul>
 
 
@@ -40,7 +40,7 @@ To disable certain types of folding, go to <strong>Settings</strong> | <strong>E
 <!-- Plugin description end -->
 
 
-## Installation
+## Beta installation
 
 - Using the Custom plugin repository:
 
