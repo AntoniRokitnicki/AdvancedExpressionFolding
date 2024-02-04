@@ -53,7 +53,7 @@ public class LocalDateLiteral extends Expression {
             }
         });
 
-        boolean usePostfix = AdvancedExpressionFoldingSettings.getInstance().getState().isLocalDateLiteralPostfix();
+        boolean usePostfix = AdvancedExpressionFoldingSettings.getInstance().getState().getLocalDateLiteralPostfixCollapse();
 
         final String dateSep = DATE_SEPARATOR;
         final String yearPostfix = usePostfix ? YEAR_POSTFIX : "";

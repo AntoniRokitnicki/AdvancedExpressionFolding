@@ -40,7 +40,7 @@ public class ForEachStatement extends Expression {
     public FoldingDescriptor[] buildFoldRegions(@NotNull PsiElement element, @NotNull Document document, @Nullable Expression parent) {
         ArrayList<FoldingDescriptor> descriptors = new ArrayList<>();
         FoldingGroup group = FoldingGroup.newGroup(ForEachStatement.class.getName());
-        if (AdvancedExpressionFoldingSettings.getInstance().getState().isCompactControlFlowSyntaxCollapse()
+        if (AdvancedExpressionFoldingSettings.getInstance().getState().getCompactControlFlowSyntaxCollapse()
                 && this.element.getLParenth() != null) {
             descriptors.add(new FoldingDescriptor(element.getNode(), TextRange.create(this.element.getLParenth().getTextRange().getStartOffset(),
                     this.element.getLParenth().getTextRange().getStartOffset() + 1), group, ""));
@@ -50,7 +50,7 @@ public class ForEachStatement extends Expression {
         descriptors.add(new FoldingDescriptor(element.getNode(), TextRange.create(variableTextRange.getEndOffset(),
                 arrayTextRange.getStartOffset()), group, " : "));
         descriptors.add(new FoldingDescriptor(element.getNode(), TextRange.create(arrayTextRange.getEndOffset(),
-                declarationTextRange.getEndOffset()), group, AdvancedExpressionFoldingSettings.getInstance().getState().isCompactControlFlowSyntaxCollapse()
+                declarationTextRange.getEndOffset()), group, AdvancedExpressionFoldingSettings.getInstance().getState().getCompactControlFlowSyntaxCollapse()
                 ? " {\n"
                 : ") {\n"));
         return descriptors.toArray(FoldingDescriptor.EMPTY);

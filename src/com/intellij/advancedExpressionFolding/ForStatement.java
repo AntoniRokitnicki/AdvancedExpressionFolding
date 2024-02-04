@@ -29,7 +29,7 @@ public class ForStatement extends Range {
                                                 @Nullable Expression parent) {
         // TODO: Refactor this mess
         ArrayList<FoldingDescriptor> descriptors = new ArrayList<>(Arrays.asList(super.buildFoldRegions(element, document, parent)));
-        if (AdvancedExpressionFoldingSettings.getInstance().getState().isCompactControlFlowSyntaxCollapse()
+        if (AdvancedExpressionFoldingSettings.getInstance().getState().getCompactControlFlowSyntaxCollapse()
                 && this.element.getLParenth() != null && this.element.getRParenth() != null) {
             // TODO: Refactor this mess
             TextRange textRange = TextRange.create(this.element.getLParenth().getTextRange().getStartOffset(),
