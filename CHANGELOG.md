@@ -7,11 +7,13 @@
 ## [1.0.15] - 2024-02-04
 
 ### Added
+
 - Display mapping of field with same name as << for builders
 
 ## [1.0.14] - 2024-02-01
 
 ### Added
+
 - Different name for the beta plugin
 - Support of EAP
 
@@ -83,7 +85,8 @@
 
 ## [0.0.1]
 
-[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.14...HEAD
+[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.15...HEAD
+[1.0.15]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.14...v1.0.15
 [1.0.14]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.13...v1.0.14
 [1.0.13]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.12...v1.0.13
 [1.0.12]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.6...v1.0.12
