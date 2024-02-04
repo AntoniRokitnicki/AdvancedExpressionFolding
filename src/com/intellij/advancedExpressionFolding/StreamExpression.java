@@ -21,12 +21,12 @@ public class StreamExpression extends Expression {
 
     @Override
     public FoldingDescriptor[] buildFoldRegions(@NotNull PsiElement element, @NotNull Document document, @Nullable Expression parent) {
-        int startOffset = AdvancedExpressionFoldingBuilder.findDot(document, textRange.getStartOffset(), -1, true);
-        int endOffset = AdvancedExpressionFoldingBuilder.findDot(document, textRange.getEndOffset() - 1, 1, false);
+        int startOffset = Helper.findDot(document, textRange.getStartOffset(), -1, true);
+        int endOffset = Helper.findDot(document, textRange.getEndOffset() - 1, 1, false);
         if (startOffset < -1
                 && document.getText(TextRange.create(textRange.getStartOffset() + startOffset, textRange.getStartOffset() + startOffset + 1)).equals("\n")
                 && endOffset > 1) {
-            int startOffsetNoWhitespace = AdvancedExpressionFoldingBuilder.findDot(document, textRange.getStartOffset(), -1, false);
+            int startOffsetNoWhitespace = Helper.findDot(document, textRange.getStartOffset(), -1, false);
             return new FoldingDescriptor[]{
                     new FoldingDescriptor(element.getNode(), TextRange.create(textRange.getStartOffset() + startOffsetNoWhitespace,
                             textRange.getEndOffset() + endOffset),
@@ -34,7 +34,7 @@ public class StreamExpression extends Expression {
             };
         } else if (startOffset < -1
                 && document.getText(TextRange.create(textRange.getStartOffset() + startOffset, textRange.getStartOffset() + startOffset + 1)).equals(".")) {
-            int endOffsetWithWhitespace = AdvancedExpressionFoldingBuilder.findDot(document, textRange.getEndOffset() - 1, 1, true);
+            int endOffsetWithWhitespace = Helper.findDot(document, textRange.getEndOffset() - 1, 1, true);
             return new FoldingDescriptor[]{
                     new FoldingDescriptor(element.getNode(), TextRange.create(textRange.getStartOffset(),
                             textRange.getEndOffset() + endOffsetWithWhitespace),
@@ -50,7 +50,7 @@ public class StreamExpression extends Expression {
         } else if (startOffset < -1
                 && document.getText(TextRange.create(textRange.getStartOffset() - 1, textRange.getStartOffset())).equals(".")
                 && endOffset == 1) {
-            int endOffsetWithWhitespace = AdvancedExpressionFoldingBuilder.findDot(document, textRange.getEndOffset() - 1, 1, true);
+            int endOffsetWithWhitespace = Helper.findDot(document, textRange.getEndOffset() - 1, 1, true);
             return new FoldingDescriptor[]{
                     new FoldingDescriptor(element.getNode(), TextRange.create(textRange.getStartOffset() - 1,
                             textRange.getEndOffset() + endOffsetWithWhitespace),

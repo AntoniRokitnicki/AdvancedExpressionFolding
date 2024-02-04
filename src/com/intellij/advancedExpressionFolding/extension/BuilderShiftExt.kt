@@ -28,7 +28,7 @@ object BuilderShiftExt : ExpressionExt {
     @JvmStatic
     fun createExpression(
         element: PsiMethodCallExpression,
-        psiClass: PsiClass
+        psiClass: PsiClass?
     ): Expression? {
         if (!isFieldShiftSetting() || !psiClass.isBuilder()) {
             return null
