@@ -31,14 +31,14 @@ public class IfExpression extends Expression {
     }
 
     public static boolean isCompactExpression(AdvancedExpressionFoldingSettings.State state, PsiIfStatement element) {
-        return state.isCompactControlFlowSyntaxCollapse()
+        return state.getCompactControlFlowSyntaxCollapse()
                 && element.getRParenth() != null
                 && element.getLParenth() != null
                 && element.getCondition() != null;
     }
 
     public static boolean isAssertExpression(AdvancedExpressionFoldingSettings.State state, PsiIfStatement element) {
-        return state.isAssertsCollapse()
+        return state.getAssertsCollapse()
                 && element.getCondition() instanceof PsiBinaryExpression
                 && supportedOperatorSigns.contains(((PsiBinaryExpression) element.getCondition()).getOperationSign().getText())
                 && element.getElseBranch() == null
@@ -145,7 +145,7 @@ public class IfExpression extends Expression {
                                                     .getExpressions()[0]
                                                     .getTextRange().getStartOffset()), group, " : "));
                         }
-                        if (!state.isSemicolonsCollapse() && throwStatement.getText().endsWith(";")) {
+                        if (!state.getSemicolonsCollapse() && throwStatement.getText().endsWith(";")) {
                             descriptors.add(new FoldingDescriptor(element.getNode(),
                                     TextRange.create(newException.getArgumentList()
                                                     .getExpressions()[0].getTextRange().getEndOffset(),
@@ -159,10 +159,10 @@ public class IfExpression extends Expression {
                             descriptors.add(new FoldingDescriptor(element.getNode(),
                                     TextRange.create(newException.getArgumentList()
                                                     .getExpressions()[0].getTextRange().getEndOffset(),
-                                            this.element.getTextRange().getEndOffset()), group, state.isSemicolonsCollapse() ? "" : ";"));
+                                            this.element.getTextRange().getEndOffset()), group, state.getSemicolonsCollapse() ? "" : ";"));
                         }
                     } else {
-                        if (!state.isSemicolonsCollapse() && throwStatement.getText().endsWith(";")) {
+                        if (!state.getSemicolonsCollapse() && throwStatement.getText().endsWith(";")) {
                             descriptors.add(new FoldingDescriptor(element.getNode(),
                                     TextRange.create(this.element.getCondition().getTextRange().getEndOffset(),
                                             throwStatement.getTextRange().getEndOffset() - 1), group, ""));
@@ -174,7 +174,7 @@ public class IfExpression extends Expression {
                         } else {
                             descriptors.add(new FoldingDescriptor(element.getNode(),
                                     TextRange.create(this.element.getCondition().getTextRange().getEndOffset(),
-                                            this.element.getTextRange().getEndOffset()), group, state.isSemicolonsCollapse() ? "" : ";"));
+                                            this.element.getTextRange().getEndOffset()), group, state.getSemicolonsCollapse() ? "" : ";"));
                         }
                     }
                 }

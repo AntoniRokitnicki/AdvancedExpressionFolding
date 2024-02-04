@@ -1,20 +1,26 @@
 package com.intellij.advancedExpressionFolding.extension
 
 import com.intellij.advancedExpressionFolding.PropertyUtil
-import com.intellij.openapi.util.Key
-import com.intellij.psi.PsiElement
-import com.intellij.psi.PsiMethod
-import com.intellij.psi.PsiType
+import com.intellij.advancedExpressionFolding.extension.Keys.IGNORED
+import com.intellij.openapi.util.TextRange
+import com.intellij.psi.*
 import java.util.*
 
-inline fun String.filter(predicate: (String) -> Boolean): String? = takeIf {
-    predicate(it)
-}
+inline fun String.filter(predicate: (String) -> Boolean): String? = takeIf(predicate)
 
-val IGNORED = Key<Boolean>("aef-ignored")
 fun PsiElement.isIgnored(): Boolean = getUserData(IGNORED) ?: false
-
 fun PsiElement.markIgnored() = putUserData(IGNORED, true)
+
+operator fun TextRange.plus(string: String): TextRange =
+    TextRange.create(startOffset+string.length, endOffset+string.length)
+operator fun TextRange.plus(addon: IntRange): TextRange =
+    TextRange.create(startOffset + addon.first, endOffset + addon.last)
+operator fun TextRange.minus(addon: IntRange): TextRange =
+    TextRange.create(startOffset - addon.first, endOffset - addon.last)
+fun PsiElement.start(): Int = textRange.startOffset
+fun PsiElement.end(): Int = textRange.endOffset
+
+fun PsiField.isStatic(): Boolean = modifierList?.hasModifierProperty(PsiModifier.STATIC) == true
 
 fun PsiMethod.isSetter(): Boolean {
     fun isSetter(text: String) = text.startsWith("set") && text.length > 3 && Character.isUpperCase(text[3])

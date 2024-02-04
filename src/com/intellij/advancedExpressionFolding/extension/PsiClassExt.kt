@@ -2,11 +2,18 @@ package com.intellij.advancedExpressionFolding.extension
 
 import com.intellij.advancedExpressionFolding.Expression
 import com.intellij.advancedExpressionFolding.PropertyUtil
+import com.intellij.advancedExpressionFolding.extension.Keys.CLASS_TYPE_KEY
+import com.intellij.advancedExpressionFolding.extension.PsiClassExt.ClassType.BUILDER
 import com.intellij.psi.*
 
 typealias CustomClassAnnotation = String
 
 object PsiClassExt : ExpressionExt {
+
+    enum class ClassType {
+        BUILDER
+    }
+
     @JvmStatic
     fun createExpression(clazz: PsiClass): Expression? {
         if (clazz.isIgnored() || !isLombokSetting()) {
@@ -85,8 +92,27 @@ object PsiClassExt : ExpressionExt {
             it.qualifiedName?.contains("lombok") ?: false
         } ?: false
 
+    fun PsiClass?.isBuilder() : Boolean {
+        if (this == null) {
+            return false
+        }
+        val userData = getUserData(CLASS_TYPE_KEY)
+        if (userData == null) {
+            allMethods.forEach {
+                if (it.name == "build") {
+                    putUserData(CLASS_TYPE_KEY, BUILDER)
+                    putCopyableUserData(CLASS_TYPE_KEY, BUILDER)
+                    return true
+                }
+            }
+        }
+        return userData == BUILDER
+    }
+
+    private fun PsiElement.prevWhiteSpace(): PsiWhiteSpace? = prevSibling as? PsiWhiteSpace
 }
 
-private fun PsiElement.prevWhiteSpace(): PsiWhiteSpace? = prevSibling as? PsiWhiteSpace
+
+
 
 

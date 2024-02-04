@@ -4,17 +4,13 @@ import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings
 
 interface ExpressionExt {
 
-    fun isOptionalSetting(): Boolean {
-        return settings().isOptional
-    }
+    fun isOptionalSetting(): Boolean = settings().optional
 
-    fun isStreamSpreadSetting(): Boolean {
-        return settings().isStreamSpread
-    }
+    fun isStreamSpreadSetting(): Boolean = settings().streamSpread
 
-    fun isLombokSetting(): Boolean {
-        return settings().isLombok
-    }
+    fun isLombokSetting(): Boolean = settings().lombok
+
+    fun isFieldShiftSetting(): Boolean = settings().fieldShift
 
     private fun settings() = AdvancedExpressionFoldingSettings.getInstance().state
 

@@ -200,7 +200,7 @@ public class FoldingTest extends LightJavaCodeInsightFixtureTestCase {
     public void testLocalDateLiteralPostfixTestData() {
         AdvancedExpressionFoldingSettings.State state = AdvancedExpressionFoldingSettings.getInstance().getState();
         state.setLocalDateLiteralCollapse(true);
-        state.setLocalDateLiteralPostfix(true);
+        state.setLocalDateLiteralPostfixCollapse(true);
         doReadOnlyFoldingTest();
     }
 
@@ -238,7 +238,7 @@ public class FoldingTest extends LightJavaCodeInsightFixtureTestCase {
 
     private void disableAllFoldings() {
         // TODO: Find a way to test all folding both together and separately
-        AdvancedExpressionFoldingSettings.getInstance().getState().disableAll();
+        AdvancedExpressionFoldingSettings.getInstance().disableAll();
     }
 
     public void testLombokTestData() {
@@ -248,6 +248,12 @@ public class FoldingTest extends LightJavaCodeInsightFixtureTestCase {
 
     public void testLombokUsageTestData() {
         AdvancedExpressionFoldingSettings.getInstance().getState().setLombok(true);
+        doFoldingTest();
+    }
+
+    public void testBuilderFieldShift() {
+        AdvancedExpressionFoldingSettings.getInstance().getState().setFieldShift(true);
+        AdvancedExpressionFoldingSettings.getInstance().getState().setGetSetExpressionsCollapse(true);
         doFoldingTest();
     }
 }

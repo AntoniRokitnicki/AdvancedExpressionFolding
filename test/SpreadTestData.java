@@ -15,7 +15,7 @@ public class SpreadTestData {
                 .map(Data::getData).flatMap(Data::getDataStream)
                 .map(Data::getDataList).flatMap(List::stream)
                 .map(Data::getString).map(String::chars)
-                .map(it -> it.count())
+                .map(it -> it.count()+1)
                 .map(it -> {
                     var z = 2;
                     var max = Stream.of(data).map(Data::getString).max(Comparator.comparing(String::length)).map(String::length).stream().map(Object::getClass).findAny().map(Object::hashCode).orElse(1);

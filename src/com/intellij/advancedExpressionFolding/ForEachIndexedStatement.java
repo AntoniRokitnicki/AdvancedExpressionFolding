@@ -49,7 +49,7 @@ public class ForEachIndexedStatement extends Expression {
                 textRange.getStartOffset() + 1);
         String prefix = document.getText(prefixRange);
         // TODO: Refactor this mess
-        if (AdvancedExpressionFoldingSettings.getInstance().getState().isCompactControlFlowSyntaxCollapse() &&
+        if (AdvancedExpressionFoldingSettings.getInstance().getState().getCompactControlFlowSyntaxCollapse() &&
                 prefix.equals("(")) {
             prefix = "";
         }
@@ -65,7 +65,7 @@ public class ForEachIndexedStatement extends Expression {
         }
         descriptors.add(new FoldingDescriptor(element.getNode(), TextRange.create(variableTextRange.getEndOffset(),
                 arrayTextRange.getStartOffset()), group,
-                AdvancedExpressionFoldingSettings.getInstance().getState().isCompactControlFlowSyntaxCollapse() ?
+                AdvancedExpressionFoldingSettings.getInstance().getState().getCompactControlFlowSyntaxCollapse() ?
                         " : " : ") : "));
         descriptors.add(new FoldingDescriptor(element.getNode(), TextRange.create(arrayTextRange.getEndOffset(),
                 declarationTextRange.getEndOffset()), group, ") {\n"));
