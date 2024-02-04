@@ -4,20 +4,32 @@
 
 ## [Unreleased]
 
+## [1.0.15] - 2024-02-04
+
+### Added
+- Display mapping of field with same name as << for builders
+
 ## [1.0.14] - 2024-02-01
 
-- different name for the beta plugin
-- support of EAP
+### Added
+- Different name for the beta plugin
+- Support of EAP
 
 ## [1.0.13]
 
-- Publishing by script
+### Added
+
+- Publishing by script to Marketplace
 
 ## [1.0.12]
 
-- Publishing by script
+### Added
+
+- Publishing by script to GitHub
 
 ## [1.0.11]
+
+### Added
 
 - Published to IntelliJ Marketplace
 
@@ -26,7 +38,7 @@
 ### Added
 
 - Fold Optional.ofNullable, Optional.of, Optional.orElseThrow & Optional.flatMap
-- Spread operator implementation for stream
+- Spread operator implementation for streams
 
 ## [1.0.5]
 
@@ -49,7 +61,6 @@
 ### Fixed
 
 - update site
--
 
 ## [1.0.2]
 

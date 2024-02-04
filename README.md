@@ -8,16 +8,15 @@
 
 
 <!-- Plugin description -->
-<h5>New Version of <a href="https://plugins.jetbrains.com/plugin/9320-advanced-java-folding">Advanced Java Folding</a></h5>
-<h6><font color="brown">Project migrated to IntelliJ template plugin to support new version of IntelliJ.</font></h6>
-<h4>Merged Pull Requests:</h4>
+<h4>Fork of abandoned <a href="https://plugins.jetbrains.com/plugin/9320-advanced-java-folding">Advanced Java Folding</a></h5>
+<h4>New features:</h4>
 <ul>
-<li><a href="https://github.com/cheptsov/AdvancedExpressionFolding/pull/132">java.time.* isBefore/isAfter folding and LocalDate literals</a></li>
 <li><a href="https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/22">Display Optional as Kotlin Null-Safe</a></li>
 <li><a href="https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/23">Groovy spread operator in streams</a></li>
-<li><a href="https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/25">Actions for folding and unfolding with key-shortcuts</a></li>
 <li><a href="https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/29">Lombok @Getter and @Setter on class level for POJO</a></li>
-<li><a href="https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pulls?q=is%3Apr+is%3Aclosed">Optimizations and bug fixes</a></li>
+<li><a href="https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/44">Display mapping of field with same name as << for builders</a></li>
+<li><a href="https://github.com/cheptsov/AdvancedExpressionFolding/pull/132">java.time.* isBefore/isAfter folding and LocalDate literals</a></li>
+<li><a href="https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/25">Actions for folding and unfolding with key-shortcuts</a></li>
 </ul>
 
 
@@ -31,7 +30,7 @@
 <p>For more information, read the <a href="https://medium.com/@andrey_cheptsov/making-java-code-easier-to-read-without-changing-it-adeebd5c36de" target="_blank">blog post</a>.</p>
 
 <p>For more clarity, you may try to adjust your color scheme: go to <strong>Settings</strong> | <strong>Editor</strong> |
-<strong>Colors &amp; Fonts</strong> | <strong>General</strong>, select <strong>Folded text</strong>,
+<strong>Colors &amp; Fonts</strong> | <strong>General</strong> | <strong>Text</strong>, select <strong>Folded text</strong>
 uncheck the <strong>Background</strong> color, and change the
 <strong>Foreground</strong> color to #000091 for the default scheme and #7CA0BB for Darcula.</p>
 

@@ -1,25 +1,29 @@
+import org.jetbrains.annotations.NotNull;
+
+import javax.annotation.Nullable;
 import java.util.Objects;
 import java.util.Optional;
-import static java.util.Optional.ofNullable;
-import static java.util.Optional.of;
 import java.util.function.Function;
 
 public class OptionalTestData {
 
-    public void main(Data data, Optional<Data> opt) {
-        opt.get();
-        opt.orElseThrow();
+    public void main(Optional<Data> opt, @NotNull Data data, @Nullable Data dataNull) {
+        Object o = null;
+        if (opt.isPresent()) {
+            o = opt.get();
+        }
+        o = opt.orElseThrow();
 
-        Optional.ofNullable(data);
-        Optional.of(data);
+        o = Optional.ofNullable(dataNull);
+        o = Optional.of(data);
 
-        Optional.ofNullable(data).orElseGet(this::orElseGetReturn);
-        Optional.ofNullable(data).orElseGet(() -> data.getData());
+        o = Optional.ofNullable(dataNull).orElseGet(this::orElseGetReturn);
+        o = Optional.ofNullable(dataNull).orElseGet(() -> data.getData().getData());
 
-        var p = Optional.of(data).map(Data::getData).orElse(null);
-        var p2 = Optional.ofNullable(data).map(OptionalTestData::getOutsideData).get();
+        o = Optional.of(data).map(Data::getData).orElse(null);
+        o = Optional.ofNullable(dataNull).map(OptionalTestData::getOutsideData).get();
 
-        var ok = Optional.ofNullable(data).map(Data::getData)
+        o = Optional.of(data).map(Data::getData)
                 .map(Data::getData)
                 .filter(it -> it.ok)
                 .map(Function.identity())
@@ -29,13 +33,13 @@ public class OptionalTestData {
         return s.equals("false");
                 }).orElse(null);
 
-        var string = Optional.of(data.getData()).map(OptionalTestData::getOutsideData).map(Data::getString).orElse(data.getString());
+        o = Optional.of(data.getData()).map(OptionalTestData::getOutsideData).map(Data::getString).orElse(data.getString());
 
         Optional.of(data).flatMap(this::ofNullable).map(data::getDataMethod).orElseGet(() -> getOutsideData(data));
 
-        Optional.<Data>empty().map(Data::getData).stream().map(Data::getData).filter(Objects::nonNull).findAny().map(Data::getString).get();
+        o = Optional.<Data>empty().map(Data::getData).stream().map(Data::getData).filter(Objects::nonNull).findAny().map(Data::getString).get();
 
-        opt.map(Data::getData).orElse(null);
+        o = opt.map(Data::getData).orElse(null);
     }
 
     private Data orElseGetReturn() {

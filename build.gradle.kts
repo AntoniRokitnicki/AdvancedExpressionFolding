@@ -20,10 +20,12 @@ version = properties("pluginVersion").get()
 sourceSets {
     named("main") {
         java.srcDirs("src")
+        kotlin.srcDirs("src")
         resources.srcDirs("resources")
     }
     named("test") {
         java.srcDir("test")
+        kotlin.srcDirs("test")
     }
 }
 

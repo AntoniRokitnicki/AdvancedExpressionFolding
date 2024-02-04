@@ -39,4 +39,6 @@ class CustomClassAnnotationExpression(
     private fun fold(element: PsiElement, textRange: TextRange, placeholderText: String): FoldingDescriptor {
         return FoldingDescriptor(element.node, textRange, FoldingGroup.newGroup(CustomClassAnnotationExpression::class.java.name), placeholderText)
     }
+
+    override fun isNested(): Boolean = true
 }
