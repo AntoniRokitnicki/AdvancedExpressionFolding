@@ -40,25 +40,25 @@ public class ConcatenationTestData {
         streamToList = <fold text='' expand='false'>Arrays.stream(</fold>args<fold text='' expand='false'>)</fold><fold text='*.' expand='false'>.map(</fold><fold text='toUpperCase()' expand='false'>String::toUpperCase</fold><fold text='' expand='false'>)</fold><fold text='.' expand='false'>.collect(Collectors.</fold>toList()<fold text='' expand='false'>)</fold>;
         System.out.println(streamToList);
 
-        streamToList = <fold text='' expand='false'>list.</fold>stream()<fold text='*.' expand='false'>.map(</fold><fold text='toUpperCase()' expand='false'>String::toUpperCase</fold><fold text='' expand='false'>)</fold><fold text='.' expand='false'>.collect(Collectors.</fold>toList()<fold text='' expand='false'>)</fold>;
+        streamToList = list.stream()<fold text='*.' expand='false'>.map(</fold><fold text='toUpperCase()' expand='false'>String::toUpperCase</fold><fold text='' expand='false'>)</fold><fold text='.' expand='false'>.collect(Collectors.</fold>toList()<fold text='' expand='false'>)</fold>;
         System.out.println(streamToList);
-        streamToList = <fold text='' expand='false'>list.</fold>stream()<fold text='*.' expand='false'>.map(</fold><fold text='toUpperCase()' expand='false'>String::toUpperCase</fold><fold text='' expand='false'>)</fold><fold text='.' expand='false'>.collect(Collectors.</fold>toList()<fold text='' expand='false'>)</fold>;
+        streamToList = list.stream()<fold text='*.' expand='false'>.map(</fold><fold text='toUpperCase()' expand='false'>String::toUpperCase</fold><fold text='' expand='false'>)</fold><fold text='.' expand='false'>.collect(Collectors.</fold>toList()<fold text='' expand='false'>)</fold>;
         System.out.println(streamToList);
-        streamToList = <fold text='' expand='false'>list.</fold>stream()<fold text='*.' expand='false'>.map(</fold><fold text='toUpperCase()' expand='false'>String::toUpperCase</fold><fold text='' expand='false'>)</fold><fold text='.' expand='false'>.collect(Collectors.</fold>toList()<fold text='' expand='false'>)</fold>;
+        streamToList = list.stream()<fold text='*.' expand='false'>.map(</fold><fold text='toUpperCase()' expand='false'>String::toUpperCase</fold><fold text='' expand='false'>)</fold><fold text='.' expand='false'>.collect(Collectors.</fold>toList()<fold text='' expand='false'>)</fold>;
         System.out.println(streamToList);
-        streamToList = <fold text='' expand='false'>list.</fold>stream()<fold text='*.' expand='false'>.map(</fold><fold text='toUpperCase()' expand='false'>String::toUpperCase</fold><fold text='' expand='false'>)</fold><fold text='.' expand='false'>.collect(Collectors.</fold>toList()<fold text='' expand='false'>)</fold>;
+        streamToList = list.stream()<fold text='*.' expand='false'>.map(</fold><fold text='toUpperCase()' expand='false'>String::toUpperCase</fold><fold text='' expand='false'>)</fold><fold text='.' expand='false'>.collect(Collectors.</fold>toList()<fold text='' expand='false'>)</fold>;
         System.out.println(streamToList);
-        streamToList = <fold text='' expand='false'>list.</fold>stream()<fold text='*.' expand='false'>.map(</fold><fold text='toUpperCase()' expand='false'>String::toUpperCase</fold><fold text='' expand='false'>)</fold><fold text='.' expand='false'>.collect(Collectors.</fold>toList()<fold text='' expand='false'>)</fold>;
+        streamToList = list.stream()<fold text='*.' expand='false'>.map(</fold><fold text='toUpperCase()' expand='false'>String::toUpperCase</fold><fold text='' expand='false'>)</fold><fold text='.' expand='false'>.collect(Collectors.</fold>toList()<fold text='' expand='false'>)</fold>;
         System.out.println(streamToList);
-        streamToList = <fold text='' expand='false'>list.</fold>stream()<fold text='*.' expand='false'>.map(</fold><fold text='toUpperCase()' expand='false'>String::toUpperCase</fold><fold text='' expand='false'>)</fold><fold text='.' expand='false'>.collect(Collectors.</fold>toList()<fold text='' expand='false'>)</fold>;
+        streamToList = list.stream()<fold text='*.' expand='false'>.map(</fold><fold text='toUpperCase()' expand='false'>String::toUpperCase</fold><fold text='' expand='false'>)</fold><fold text='.' expand='false'>.collect(Collectors.</fold>toList()<fold text='' expand='false'>)</fold>;
         System.out.println(streamToList);
-        streamToList = <fold text='' expand='false'>list.</fold>stream()<fold text='*.' expand='false'>.map(</fold><fold text='toUpperCase()' expand='false'>String::toUpperCase</fold><fold text='' expand='false'>)</fold><fold text='.' expand='false'>.collect(Collectors.</fold>toList()<fold text='' expand='false'>)</fold>;
+        streamToList = list.stream()<fold text='*.' expand='false'>.map(</fold><fold text='toUpperCase()' expand='false'>String::toUpperCase</fold><fold text='' expand='false'>)</fold><fold text='.' expand='false'>.collect(Collectors.</fold>toList()<fold text='' expand='false'>)</fold>;
         System.out.println(streamToList);
-        streamToList = <fold text='' expand='false'>list.</fold>stream()<fold text='*.' expand='false'>.map(</fold><fold text='toUpperCase()' expand='false'>String::toUpperCase</fold><fold text='' expand='false'>)</fold><fold text='.' expand='false'>.collect(Collectors.</fold>toList()<fold text='' expand='false'>)</fold>;
+        streamToList = list.stream()<fold text='*.' expand='false'>.map(</fold><fold text='toUpperCase()' expand='false'>String::toUpperCase</fold><fold text='' expand='false'>)</fold><fold text='.' expand='false'>.collect(Collectors.</fold>toList()<fold text='' expand='false'>)</fold>;
         System.out.println(streamToList);
-        streamToList = <fold text='' expand='false'>list.</fold>stream()<fold text='*.' expand='false'>.map(</fold><fold text='toUpperCase()' expand='false'>String::toUpperCase</fold><fold text='' expand='false'>)</fold><fold text='.' expand='false'>.collect(Collectors.</fold>toList()<fold text='' expand='false'>)</fold>;
+        streamToList = list.stream()<fold text='*.' expand='false'>.map(</fold><fold text='toUpperCase()' expand='false'>String::toUpperCase</fold><fold text='' expand='false'>)</fold><fold text='.' expand='false'>.collect(Collectors.</fold>toList()<fold text='' expand='false'>)</fold>;
         System.out.println(streamToList);
-        streamToList = <fold text='' expand='false'>list.</fold>stream()<fold text='*.' expand='false'>.map(</fold><fold text='toUpperCase()' expand='false'>String::toUpperCase</fold><fold text='' expand='false'>)</fold><fold text='.' expand='false'>.collect(Collectors.</fold>toList()<fold text='' expand='false'>)</fold>;
+        streamToList = list.stream()<fold text='*.' expand='false'>.map(</fold><fold text='toUpperCase()' expand='false'>String::toUpperCase</fold><fold text='' expand='false'>)</fold><fold text='.' expand='false'>.collect(Collectors.</fold>toList()<fold text='' expand='false'>)</fold>;
         System.out.println(streamToList);
 
         long count = streamToList<fold text='.' expand='false'>.stream().</fold>distinct().count();

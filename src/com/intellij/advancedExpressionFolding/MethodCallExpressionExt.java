@@ -91,7 +91,8 @@ public class MethodCallExpressionExt {
                                             if (settings.getState().getStreamSpread() &&
                                                     (argumentExpression instanceof StreamMapCallParam || Helper.isPureMethodReference(element))) {
                                                 boolean flatMap = methodName.equals("flatMap");
-                                                return new StreamMapCall(element, element.getTextRange(), Arrays.asList(qualifierExpression, argumentExpression), flatMap);
+                                                var textRange = new TextRange(identifier.get().getTextRange().getStartOffset(), element.getTextRange().getEndOffset());
+                                                return new StreamMapCall(element, textRange, Arrays.asList(qualifierExpression, argumentExpression), flatMap);
                                             }
                                     }
                                     return null;
