@@ -1,0 +1,9 @@
+version: 1.0
+profile:
+  name: Qodana
+include:
+  - name: CheckDependencyLicenses
+exclude:
+  - name: All
+    paths:
+      - test
