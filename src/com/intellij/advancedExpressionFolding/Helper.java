@@ -310,7 +310,7 @@ public class Helper {
                 if (classQueue.isEmpty()) {
                     return Optional.of((T) child);
                 } else {
-                    return findChildByTypeHierarchy(child, childClass, classQueue.toArray(new Class[classQueue.size()]));
+                    return findChildByTypeHierarchy(child, childClass, classQueue.toArray(new Class[0]));
                 }
             }
         }
