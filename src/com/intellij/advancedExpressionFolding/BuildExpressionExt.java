@@ -219,7 +219,7 @@ public class BuildExpressionExt {
     }
 
     @NotNull
-    public static FoldingDescriptor[] collectFoldRegionsRecursively(@NotNull PsiElement element, @NotNull Document document, boolean quick) {
+    public static FoldingDescriptor @NotNull [] collectFoldRegionsRecursively(@NotNull PsiElement element, @NotNull Document document, boolean quick) {
         PsiElement lastElement = element;
         List<FoldingDescriptor> allDescriptors = null;
         try {
