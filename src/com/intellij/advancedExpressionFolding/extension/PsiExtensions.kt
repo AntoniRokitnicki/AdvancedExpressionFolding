@@ -51,6 +51,7 @@ fun <T : PsiElement> PsiElement.findParents(
     while (parent != null) {
         if (next != null && next.isInstance(parent)) {
             return if (classQueue.isEmpty()) {
+                @Suppress("UNCHECKED_CAST")
                 parent as? T
             } else {
                 findParents(parentClass, *classQueue.toTypedArray())
