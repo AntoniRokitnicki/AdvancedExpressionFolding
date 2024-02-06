@@ -1,22 +1,26 @@
 package com.intellij.advancedExpressionFolding.extension
 
-import com.intellij.advancedExpressionFolding.Expression
-import com.intellij.advancedExpressionFolding.PropertyUtil
+import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression
 import com.intellij.advancedExpressionFolding.extension.Keys.CLASS_TYPE_KEY
 import com.intellij.advancedExpressionFolding.extension.PsiClassExt.ClassType.BUILDER
 import com.intellij.psi.*
 
 typealias CustomClassAnnotation = String
 
-object PsiClassExt : ExpressionExt {
+object PsiClassExt : IExtension {
 
     enum class ClassType {
         BUILDER
     }
 
+    data class JavaProperty(val field: PsiField, val methods: List<PsiMethod>) {
+        fun hasGetterOrSetter(): Boolean = methods.count() == 2
+    }
+
     @JvmStatic
     fun createExpression(clazz: PsiClass): Expression? {
-        if (clazz.isIgnored() || !isLombokSetting()) {
+        if (clazz.isIgnored() || !isLombok()) {
             return null
         }
 
@@ -33,7 +37,7 @@ object PsiClassExt : ExpressionExt {
         }
 
         val (customClassAnnotations, elementsToFold) = changes.unzip()
-        return CustomClassAnnotationExpression(clazz, customClassAnnotations.flatten(), elementsToFold.flatten())
+        return ClassAnnotationExpression(clazz, customClassAnnotations.flatten(), elementsToFold.flatten())
     }
 
     private fun addSerialVersionUID(

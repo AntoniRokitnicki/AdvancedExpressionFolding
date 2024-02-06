@@ -10,11 +10,11 @@
     <lang.foldingBuilder language="JAVA" implementationClass="com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingBuilder"/>
     <codeFoldingOptionsProvider instance="com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingOptionsProvider"/>
     <applicationService serviceImplementation="com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings"/>
-    <editorFactoryListener implementation="com.intellij.advancedExpressionFolding.extension.FoldingEditorCreatedListener"/>
+    <editorFactoryListener implementation="com.intellij.advancedExpressionFolding.FoldingEditorCreatedListener"/>
   </extensions>
 
   <actions>
-    <action id="advanced.folding.toggle.on" class="com.intellij.advancedExpressionFolding.extension.FoldingOnAction"
+    <action id="advanced.folding.toggle.on" class="com.intellij.advancedExpressionFolding.FoldingOnAction"
             text="Advanced Folding Toggle On" description="Advanced folding toggle on"
             icon="AllIcons.Actions.ArrowExpand">
       <add-to-group group-id="CodeMenu" anchor="last"/>
@@ -22,7 +22,7 @@
 
     </action>
 
-    <action id="advanced.folding.toggle.off" class="com.intellij.advancedExpressionFolding.extension.FoldingOffAction"
+    <action id="advanced.folding.toggle.off" class="com.intellij.advancedExpressionFolding.FoldingOffAction"
             text="Advanced Folding Toggle Off" description="Advanced folding toggle off"
             icon="AllIcons.Actions.ArrowCollapse">
       <add-to-group group-id="CodeMenu" anchor="last"/>

@@ -1,6 +1,5 @@
 package com.intellij.advancedExpressionFolding.extension
 
-import com.intellij.advancedExpressionFolding.PropertyUtil
 import com.intellij.advancedExpressionFolding.extension.Keys.IGNORED
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.*
