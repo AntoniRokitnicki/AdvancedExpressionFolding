@@ -4,6 +4,10 @@
 
 ## [Unreleased]
 
+## [1.0.16] - 2024-02-06
+
+- Bug in stream folding fixed
+
 ## [1.0.15] - 2024-02-04
 
 ### Added
@@ -85,7 +89,8 @@
 
 ## [0.0.1]
 
-[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.15...HEAD
+[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.16...HEAD
+[1.0.16]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.15...v1.0.16
 [1.0.15]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.14...v1.0.15
 [1.0.14]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.13...v1.0.14
 [1.0.13]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.12...v1.0.13

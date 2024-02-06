@@ -1,7 +1,18 @@
 <plugin-repository>
     <ff>"Formatting"</ff>
     <category name="Formatting">
-        <idea-plugin downloads="201792" size="194121" date="1625903057015" updatedDate="1625903057015"><name>Advanced Java Folding 2 (Beta)</name>
+        <idea-plugin downloads="201793" size="194122" date="1625903057016" updatedDate="1625903057016"><name>Advanced Java Folding 2 (Beta)</name>
+            <id>com.github.bigdecimal-folding2</id>
+            <description />
+            <version>1.0.16</version>
+            <vendor email="android.rokitnicki@gmail.com" url="https://github.com/AntoniRokitnicki/AdvancedExpressionFolding">Antoni</vendor>
+            <rating>4.6</rating>
+            <change-notes>
+                Bug in stream folding fixed
+            </change-notes>
+            <download-url>https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/releases/download/v1.0.16/AdvancedExpressionFolding-v1.0.16.jar</download-url>
+            <idea-version min="n/a" max="n/a" since-build="212.4638" />
+        </idea-plugin><idea-plugin downloads="201792" size="194121" date="1625903057015" updatedDate="1625903057015"><name>Advanced Java Folding 2 (Beta)</name>
             <id>com.github.bigdecimal-folding2</id>
             <description />
             <version>1.0.15</version>
