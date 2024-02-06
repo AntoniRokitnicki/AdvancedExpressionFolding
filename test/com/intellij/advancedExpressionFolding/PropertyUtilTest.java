@@ -2,8 +2,8 @@ package com.intellij.advancedExpressionFolding;
 
 import org.junit.Test;
 
-import static com.intellij.advancedExpressionFolding.PropertyUtil.guessPropertyName;
-import static org.junit.Assert.*;
+import static com.intellij.advancedExpressionFolding.extension.PropertyUtil.guessPropertyName;
+import static org.junit.Assert.assertEquals;
 
 public class PropertyUtilTest {
     @Test
