@@ -1,18 +1,18 @@
 package com.intellij.advancedExpressionFolding.extension
 
-import com.intellij.advancedExpressionFolding.Expression
-import com.intellij.advancedExpressionFolding.OptionalMapSafeCallParam
-import com.intellij.advancedExpressionFolding.StreamMapCallParam
+import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCallParam
+import com.intellij.advancedExpressionFolding.expression.stream.StreamMapCallParam
 import com.intellij.psi.PsiExpressionList
 import com.intellij.psi.PsiMethod
 import com.intellij.psi.PsiMethodCallExpression
 import com.intellij.psi.PsiMethodReferenceExpression
 
-object MethodReferenceExt : ExpressionExt {
+object MethodReferenceExt : IExtension {
     @JvmStatic
     fun createExpression(element: PsiMethodReferenceExpression): Expression? {
-        val optional = isOptionalSetting()
-        val spread = isStreamSpreadSetting()
+        val optional = isOptional()
+        val spread = isStreamSpread()
 
         if (!(optional || spread)) {
             return null
