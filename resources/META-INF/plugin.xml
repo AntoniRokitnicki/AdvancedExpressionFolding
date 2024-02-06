@@ -10,7 +10,7 @@
     <lang.foldingBuilder language="JAVA" implementationClass="com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingBuilder"/>
     <codeFoldingOptionsProvider instance="com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingOptionsProvider"/>
     <applicationService serviceImplementation="com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings"/>
-    <textEditorCustomizer implementation="com.intellij.advancedExpressionFolding.extension.FoldingListener"/>
+    <editorFactoryListener implementation="com.intellij.advancedExpressionFolding.extension.FoldingEditorCreatedListener"/>
   </extensions>
 
   <actions>
