@@ -8,6 +8,14 @@ import java.util.stream.Stream;
 
 public class SpreadTestData {
     public static void main(Stream<Data> stream, Data data) {
+        var p1 = data.getDataList().stream().map(Data::getData).toList();
+        var p2 = data.getDataList()
+                .stream()
+                .map(Data::getData)
+                .toList()
+                .stream()
+                .map(Data::getData)
+                .toList();
 
         var stream3 = Stream.of("123", "2313").map(String::length).toList();
 

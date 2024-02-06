@@ -14,7 +14,7 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
 
     @NotNull
     @Override
-    public FoldingDescriptor[] buildFoldRegions(@NotNull PsiElement element, @NotNull Document document, boolean quick) {
+    public FoldingDescriptor @NotNull [] buildFoldRegions(@NotNull PsiElement element, @NotNull Document document, boolean quick) {
         return BuildExpressionExt.collectFoldRegionsRecursively(element, document, quick);
     }
 
