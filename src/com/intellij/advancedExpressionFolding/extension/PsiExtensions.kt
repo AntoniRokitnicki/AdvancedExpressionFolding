@@ -14,8 +14,6 @@ operator fun TextRange.plus(string: String): TextRange =
     TextRange.create(startOffset+string.length, endOffset+string.length)
 operator fun TextRange.plus(addon: IntRange): TextRange =
     TextRange.create(startOffset + addon.first, endOffset + addon.last)
-operator fun TextRange.minus(addon: IntRange): TextRange =
-    TextRange.create(startOffset - addon.first, endOffset - addon.last)
 fun PsiElement.start(): Int = textRange.startOffset
 fun PsiElement.end(): Int = textRange.endOffset
 

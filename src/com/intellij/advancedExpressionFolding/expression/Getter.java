@@ -11,7 +11,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Getter extends Expression {
+public class Getter extends Expression implements IGetter {
     private @NotNull String name;
     private @NotNull TextRange getterTextRange;
     private @Nullable Expression object;
@@ -33,11 +33,27 @@ public class Getter extends Expression {
     public FoldingDescriptor[] buildFoldRegions(@NotNull PsiElement element, @NotNull Document document, @Nullable Expression parent) {
         ArrayList<FoldingDescriptor> descriptors = new ArrayList<>();
         descriptors.add(
-                new FoldingDescriptor(element.getNode(), getterTextRange,
-                        FoldingGroup.newGroup(Getter.class.getName()), name));
+                new FoldingDescriptor(element.getNode(), getGetterTextRange(),
+                        FoldingGroup.newGroup(Getter.class.getName()), getName()));
         if (object != null && object.supportsFoldRegions(document, this)) {
             Collections.addAll(descriptors, object.buildFoldRegions(object.getElement(), document, this));
         }
         return descriptors.toArray(FoldingDescriptor.EMPTY);
+    }
+
+    @Override
+    public @NotNull String getName() {
+        return name;
+    }
+
+    @Override
+    public @NotNull TextRange getGetterTextRange() {
+        return getterTextRange;
+    }
+
+    @Override
+    public void makeFieldShift() {
+        name = "<<";
+        getterTextRange = new TextRange(getterTextRange.getStartOffset() - 1, getterTextRange.getEndOffset());
     }
 }

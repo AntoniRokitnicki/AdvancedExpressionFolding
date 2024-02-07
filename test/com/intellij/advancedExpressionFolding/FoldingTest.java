@@ -251,7 +251,13 @@ public class FoldingTest extends LightJavaCodeInsightFixtureTestCase {
         doFoldingTest();
     }
 
-    public void testBuilderFieldShift() {
+    public void testFieldShiftBuilder() {
+        AdvancedExpressionFoldingSettings.getInstance().getState().setFieldShift(true);
+        AdvancedExpressionFoldingSettings.getInstance().getState().setGetSetExpressionsCollapse(true);
+        doFoldingTest();
+    }
+
+    public void testFieldShiftSetters() {
         AdvancedExpressionFoldingSettings.getInstance().getState().setFieldShift(true);
         AdvancedExpressionFoldingSettings.getInstance().getState().setGetSetExpressionsCollapse(true);
         doFoldingTest();

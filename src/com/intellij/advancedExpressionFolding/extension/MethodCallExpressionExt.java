@@ -3,6 +3,7 @@ package com.intellij.advancedExpressionFolding.extension;
 import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings;
 import com.intellij.advancedExpressionFolding.expression.Random;
 import com.intellij.advancedExpressionFolding.expression.*;
+import com.intellij.advancedExpressionFolding.expression.custom.GetterRecord;
 import com.intellij.advancedExpressionFolding.expression.optional.*;
 import com.intellij.advancedExpressionFolding.expression.stream.StreamExpression;
 import com.intellij.advancedExpressionFolding.expression.stream.StreamFilterNotNull;
@@ -558,32 +559,53 @@ public class MethodCallExpressionExt {
                 if (BuilderShiftExt.isShifted(element)) {
                     return null;
                 }
-
+                Expression expression = qualifier != null
+                        ? BuildExpressionExt.getAnyExpression(qualifier, document)
+                        : null;
                 return new Getter(element, element.getTextRange(), TextRange.create(identi.getTextRange().getStartOffset(),
                         element.getTextRange().getEndOffset()),
-                        qualifier != null
-                                ? BuildExpressionExt.getAnyExpression(qualifier, document)
-                                : null,
+                        expression,
                         guessPropertyName(identi.getText()));
             } else {
                 String text = identi.getText();
                 if (Helper.isSetter(text)
                         && element.getArgumentList().getExpressions().length == 1
                         && element.getParent() instanceof PsiStatement
-                        && (qualifier == null
-                        || !(qualifier instanceof PsiMethodCallExpression)
+                        && (!(qualifier instanceof PsiMethodCallExpression)
                         || !(Helper.startsWith(((PsiMethodCallExpression) qualifier).getMethodExpression().getReferenceName(), "set")))) {
+                    Expression qualifierExpression = qualifier != null ? BuildExpressionExt.getAnyExpression(qualifier, document) : null;
+                    Expression paramExpression = BuildExpressionExt.getAnyExpression(element.getArgumentList().getExpressions()[0], document);
+                    String propertyName = guessPropertyName(text);
+                    if (settings.getState().getFieldShift()) {
+                        if (paramExpression instanceof IGetter getter) {
+                            if (getter.getName().equals(propertyName)) {
+                                getter.makeFieldShift();
+                            }
+                        }
+                    }
                     return new Setter(element, element.getTextRange(), TextRange.create(identi.getTextRange().getStartOffset(),
                             element.getTextRange().getEndOffset()),
-                            qualifier != null ? BuildExpressionExt.getAnyExpression(qualifier, document) : null,
-                            guessPropertyName(text),
-                            BuildExpressionExt.getAnyExpression(element.getArgumentList().getExpressions()[0], document));
+                            qualifierExpression,
+                            propertyName,
+                            paramExpression);
                 }
             }
         }
         if (identifier.isPresent()) {
             if (referenceExpression.resolve() instanceof PsiMethod psiMethod) {
                 PsiClass psiClass = psiMethod.getContainingClass();
+                if (psiClass != null && psiClass.isRecord()) {
+                    if (settings.getState().getGetSetExpressionsCollapse()) {
+                        Expression expression = qualifier != null
+                                ? BuildExpressionExt.getAnyExpression(qualifier, document)
+                                : null;
+                        PsiElement identi = identifier.get();
+                        return new GetterRecord(element, element.getTextRange(), TextRange.create(identi.getTextRange().getStartOffset(),
+                                element.getTextRange().getEndOffset()),
+                                expression,
+                                guessPropertyName(identi.getText()));
+                    }
+                }
                 return BuilderShiftExt.createExpression(element, psiClass);
             }
         }
