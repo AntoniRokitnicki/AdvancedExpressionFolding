@@ -4,6 +4,10 @@
 
 ## [Unreleased]
 
+## [1.0.17] - 2024-02-07
+
+- Field shift for setters
+
 ## [1.0.16] - 2024-02-06
 
 - Bug in stream folding fixed
