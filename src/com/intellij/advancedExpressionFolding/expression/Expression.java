@@ -16,7 +16,7 @@ public abstract class Expression {
 
     public static String HIGHLIGHTED_GROUP_POSTFIX = ":highlighting";
 
-    private static Map<Character, Character> superscriptMapping = new HashMap<Character, Character>() {
+    private static Map<Character, Character> superscriptMapping = new HashMap<>() {
         {
             put('0', '⁰');
             put('1', '¹');
