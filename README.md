@@ -49,7 +49,7 @@ To disable certain types of folding, go to <strong>Settings</strong> | <strong>E
   - add
   - https://antonirokitnicki.github.io/AdvancedExpressionFolding/plugin_repository.xml
   - goto <kbd>Marketplace</kbd>
-  - search for <kbd>Advanced Java Folding2</kbd>
+  - search for <kbd>Beta</kbd>
 
 - Manually:
 
