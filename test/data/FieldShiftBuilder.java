@@ -1,12 +1,12 @@
 package data;
 
-public class BuilderFieldShift {
+public class FieldShiftBuilder {
     private String username;
     private boolean active;
     private String userIdentifier;
-    private BuilderFieldShift child;
+    private FieldShiftBuilder child;
 
-    BuilderFieldShift(String username, boolean active, String userIdentifier, BuilderFieldShift child) {
+    FieldShiftBuilder(String username, boolean active, String userIdentifier, FieldShiftBuilder child) {
         this.username = username;
         this.active = active;
         this.userIdentifier = userIdentifier;
@@ -14,16 +14,16 @@ public class BuilderFieldShift {
     }
 
 
-    public static BuilderFieldShift map(UserData2 source, BuilderFieldShift.BuilderFieldShiftBuilder builder, UserDataRecord record) {
-        BuilderFieldShift.BuilderFieldShiftBuilder builder1 = builder
+    public static FieldShiftBuilder map(UserData2 source, BuilderFieldShiftBuilder builder, UserDataRecord record) {
+        BuilderFieldShiftBuilder builder1 = builder
                 .username(record.username());
         var builder2 = builder
                 .active(source.isActive());
-        return BuilderFieldShift.builder().username(record.userIdentifier())
+        return FieldShiftBuilder.builder().username(record.userIdentifier()).username(changer(record.username()))
                 .username(source.getUsername()).username(builder.username("a").build().getUsername())
                 .username(source.getUsername() + "1")
                 .active(source.isActive()).userIdentifier(source.getUserIdentifier())
-                .child(BuilderFieldShift.builder()
+                .child(FieldShiftBuilder.builder()
                         .child(builder1
                                 .userIdentifier(source.getUsername())
                                 .username(source.getUsername())
@@ -38,16 +38,20 @@ public class BuilderFieldShift {
                 .build();
     }
 
+    private static String changer(String username) {
+        return username;
+    }
 
-    public static BuilderFieldShift mapSimple(BuilderFieldShift source) {
-        return BuilderFieldShift.builder()
+
+    public static FieldShiftBuilder mapSimple(FieldShiftBuilder source) {
+        return FieldShiftBuilder.builder()
                 .username(source.getUsername())
                 .userIdentifier(source.getUserIdentifier())
                 .build();
     }
 
-    public static BuilderFieldShift mapUserDataAllFields(UserDataRecord source) {
-        return BuilderFieldShift.builder()
+    public static FieldShiftBuilder mapUserDataAllFields(UserDataRecord source) {
+        return FieldShiftBuilder.builder()
                 .username(source.username())
                 .active(source.active())
                 .userIdentifier(source.userIdentifier())
@@ -70,7 +74,7 @@ public class BuilderFieldShift {
         return this.userIdentifier;
     }
 
-    public BuilderFieldShift getChild() {
+    public FieldShiftBuilder getChild() {
         return this.child;
     }
 
@@ -141,7 +145,7 @@ public class BuilderFieldShift {
         private String username;
         private boolean active;
         private String userIdentifier;
-        private BuilderFieldShift child;
+        private FieldShiftBuilder child;
 
         BuilderFieldShiftBuilder() {
         }
@@ -161,13 +165,13 @@ public class BuilderFieldShift {
             return this;
         }
 
-        public BuilderFieldShiftBuilder child(BuilderFieldShift child) {
+        public BuilderFieldShiftBuilder child(FieldShiftBuilder child) {
             this.child = child;
             return this;
         }
 
-        public BuilderFieldShift build() {
-            return new BuilderFieldShift(username, active, userIdentifier, child);
+        public FieldShiftBuilder build() {
+            return new FieldShiftBuilder(username, active, userIdentifier, child);
         }
 
         public String toString() {
