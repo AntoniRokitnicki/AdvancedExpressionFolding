@@ -24,6 +24,8 @@ import static com.intellij.advancedExpressionFolding.extension.Helper.getReferen
 import static com.intellij.advancedExpressionFolding.extension.PropertyUtil.guessPropertyName;
 
 public class MethodCallExpressionExt {
+
+    @SuppressWarnings({"RedundantIfStatement", "SwitchStatementWithTooFewBranches"})
     @Nullable
     static Expression getMethodCallExpression(PsiMethodCallExpression element, @NotNull Document document) {
         @NotNull AdvancedExpressionFoldingSettings settings = AdvancedExpressionFoldingSettings.getInstance();
@@ -388,8 +390,7 @@ public class MethodCallExpressionExt {
                                                                 Arrays.asList(qualifierExpression, p1, p2));
                                                     }
                                                 } else //noinspection Duplicates
-                                                    if (a2 instanceof PsiMethodCallExpression) {
-                                                        @NotNull PsiMethodCallExpression a2m = (PsiMethodCallExpression) a2;
+                                                    if (a2 instanceof @NotNull PsiMethodCallExpression a2m) {
                                                         @NotNull PsiReferenceExpression a2me = a2m.getMethodExpression();
                                                         Optional<PsiElement> a2i = Stream.of(a2me.getChildren())
                                                                 .filter(c -> c instanceof PsiIdentifier).findAny();
@@ -606,7 +607,10 @@ public class MethodCallExpressionExt {
                                 guessPropertyName(identi.getText()));
                     }
                 }
-                return BuilderShiftExt.createExpression(element, psiClass);
+                Expression builder = BuilderShiftExt.createExpression(element, psiClass);
+                if (builder != null) {
+                    return builder;
+                }
             }
         }
         return null;
