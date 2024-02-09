@@ -7,9 +7,10 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Function;
 
+@SuppressWarnings({"OptionalUsedAsFieldOrParameterType", "ClassEscapesDefinedScope", "DataFlowIssue", "OptionalGetWithoutIsPresent"})
 public class OptionalTestData {
 
-    public void main(Optional<Data> opt, @NotNull Data data, @Nullable Data dataNull) {
+    public void enter(Optional<Data> opt, @NotNull Data data, @Nullable Data dataNull) {
         Object o = null;
         if (opt.isPresent()) {
             o = opt.get();
@@ -56,7 +57,7 @@ public class OptionalTestData {
         return null;
     }
 
-    class Data {
+    static class Data {
         Data data;
         boolean ok;
 
