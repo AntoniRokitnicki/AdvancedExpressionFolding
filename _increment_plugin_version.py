@@ -48,3 +48,4 @@ for i in range(len(lines)):
 with open(file_path, 'w') as file:
     file.writelines(lines)
 
+print(new_version)

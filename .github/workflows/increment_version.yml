@@ -1,4 +1,4 @@
-name: Increment Version
+name: Increment Version Pull Request
 
 on:
   workflow_dispatch:
@@ -20,4 +20,32 @@ jobs:
           python-version: '3.x'
 
       - name: Run Python script to increment version
-        run: python3 _increment_plugin_version.py ${{ github.event.inputs.release_msg }}
+        id: increment_version
+        run: |
+          VERSION=$(python3 _increment_plugin_version.py ${{ github.event.inputs.release_msg }})
+          echo "::set-output name=version::$VERSION"
+
+      - name: Create Pull Request
+        if: success()
+        run: |
+          VERSION="${{ steps.increment_version.outputs.version }}"
+          BRANCH="increment_version-$VERSION"
+          LABEL="release changelog"
+
+          git config user.email "action@github.com"
+          git config user.name "GitHub Action"
+
+          git checkout -b $BRANCH
+          git commit -am "$VERSION"
+          git push --set-upstream origin $BRANCH
+          
+          gh label create "$LABEL" \
+            --description "Pull requests with incremented version to $VERSION" \
+            --force \
+            || true
+
+          gh pr create \
+            --title "Pull requests with incremented version to \`$VERSION\`" \
+            --body "Increment version to \`$VERSION\` in \`plugin_repository.xml\` and \`gradle.properties\`." \
+            --label "$LABEL" \
+            --head $BRANCH
