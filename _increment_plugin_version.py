@@ -1,4 +1,8 @@
 import xml.etree.ElementTree as ET
+import sys
+
+commit_msg = ' '.join(sys.argv[1:])
+
 
 tree = ET.parse('plugin_repository.xml')
 root = tree.getroot()
@@ -27,6 +31,7 @@ version_parts[2] += 1
 new_version = '.'.join(map(str, version_parts))
 
 new_idea_plugin.find('version').text = new_version
+new_idea_plugin.find('change-notes').text = commit_msg
 new_idea_plugin.find('download-url').text = new_idea_plugin.find('download-url').text.replace(version, new_version)
 
 
