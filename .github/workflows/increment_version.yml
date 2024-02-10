@@ -66,7 +66,7 @@ jobs:
             || true
 
           gh pr create \
-            --title "Pull requests with incremented version to \`$VERSION\`" \
-            --body "Increment version to \`$VERSION\` in \`plugin_repository.xml\` and \`gradle.properties\`." \
+            --title "Pull Requests with Incremented Version to \`$VERSION\`" \
+            --body "Increment the version to \`$VERSION\` in \`plugin_repository.xml\`, \`gradle.properties\` and  \`CHANGELOG.md\`." \
             --label "$LABEL" \
             --head $BRANCH
