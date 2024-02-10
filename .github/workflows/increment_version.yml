@@ -26,10 +26,12 @@ jobs:
           echo "::set-output name=version::$VERSION"
 
       - name: Create Pull Request
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         if: success()
         run: |
           VERSION="${{ steps.increment_version.outputs.version }}"
-          BRANCH="increment_version-$VERSION"
+          BRANCH="increment_version-to-$VERSION"
           LABEL="release changelog"
 
           git config user.email "action@github.com"
