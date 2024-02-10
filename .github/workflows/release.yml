@@ -53,7 +53,6 @@ jobs:
 
       # Update Unreleased section with the current release note
       - name: Patch Changelog
-        if: ${{ steps.properties.outputs.changelog != '' }}
         env:
           CHANGELOG: ${{ steps.properties.outputs.changelog }}
         run: |
@@ -75,8 +74,8 @@ jobs:
         run: gh release upload ${{ github.event.release.tag_name }} ./build/distributions/*
 
       # Create a pull request
-      - name: Create Pull Request
-        if: ${{ steps.properties.outputs.changelog != '' }}
+      - name: Create Pull Request(off)
+        if: ${{ false && steps.properties.outputs.changelog != '' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
