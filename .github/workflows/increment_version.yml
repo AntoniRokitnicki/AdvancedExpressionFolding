@@ -1,0 +1,23 @@
+name: Increment Version
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_msg:
+        description: 'Release message'
+        required: true
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Run Python script to increment version
+        run: python3 _increment_plugin_version.py ${{ github.event.inputs.release_msg }}
