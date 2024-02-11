@@ -40,18 +40,22 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
         var streamSpread: Boolean = true,
         var lombok: Boolean = true,
         var fieldShift: Boolean = true,
+        var kotlinQuickReturn: Boolean = true,
 
     )
 
-    fun disableAll() {
+    private fun updateAllState(value: Boolean) {
         with(myState) {
-            State::class.memberProperties
-                .filterIsInstance<KMutableProperty<*>>()
-                .forEach {
-                    it.setter.call(this, false)
-                }
+            state::class.memberProperties
+                    .filterIsInstance<KMutableProperty<*>>()
+                    .forEach {
+                        it.setter.call(this, value)
+                    }
         }
     }
+
+    fun disableAll() = updateAllState(false)
+    fun enableAll() = updateAllState(true)
 
     companion object {
         @JvmStatic

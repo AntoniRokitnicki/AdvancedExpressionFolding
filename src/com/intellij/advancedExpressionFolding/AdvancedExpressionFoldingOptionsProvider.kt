@@ -34,6 +34,7 @@ class AdvancedExpressionFoldingOptionsProvider protected constructor() :
         checkBox("Display stream operations as Groovy's spread operator", myState::streamSpread)
         checkBox("Display Java bean as Lombok", myState::lombok)
         checkBox("Display mapping of field with same name as << (4 builders & setters)", myState::fieldShift)
+        checkBox("Kotlin quick return", myState::kotlinQuickReturn)
     }
 
 }

@@ -12,6 +12,8 @@ interface IExtension {
 
     fun isFieldShift(): Boolean = settings().fieldShift
 
+    fun isKotlinQuickReturn() = settings().kotlinQuickReturn
+
     private fun settings() = AdvancedExpressionFoldingSettings.getInstance().state
 
 }

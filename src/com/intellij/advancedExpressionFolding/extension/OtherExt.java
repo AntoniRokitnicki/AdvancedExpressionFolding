@@ -129,6 +129,11 @@ public class OtherExt {
     @Nullable
     static Expression getIfExpression(PsiIfStatement element, Document document) {
         AdvancedExpressionFoldingSettings settings = AdvancedExpressionFoldingSettings.getInstance();
+        var getIfExpression = LetReturnExt.getIfExpression(element);
+        if (getIfExpression != null) {
+            return getIfExpression;
+        }
+
         if (settings.getState().getCheckExpressionsCollapse()
                 && element.getCondition() instanceof PsiBinaryExpression) {
             PsiBinaryExpression condition = (PsiBinaryExpression) element.getCondition();
