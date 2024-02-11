@@ -18,6 +18,7 @@
 <li><a href="https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/51">Display mapping of field with same name as << for setters</a></li>
 <li><a href="https://github.com/cheptsov/AdvancedExpressionFolding/pull/132">java.time.* isBefore/isAfter folding and LocalDate literals</a></li>
 <li><a href="https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/25">Actions for folding and unfolding with key-shortcuts</a></li>
+<li><a href="https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/57">Kotlin quick return - ?.let { return it } and ?: return null</a></li>
 </ul>
 
 
