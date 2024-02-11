@@ -14,9 +14,9 @@ if (expression == null) {
 }</fold>
  */
 class ElvisReturnNull(
-        element: PsiElement, textRange: TextRange,
-        private val declaration: PsiElement, private val declarationRange: TextRange,
-        private val letElement: PsiElement, private val letRange: TextRange,
+    element: PsiElement, textRange: TextRange,
+    private val declaration: PsiElement, private val declarationRange: TextRange,
+    private val letElement: PsiElement, private val letRange: TextRange, val foldVariable: Boolean,
         ) : Expression(element, textRange) {
     override fun supportsFoldRegions(document: Document,
                                      parent: Expression?): Boolean {
@@ -25,9 +25,11 @@ class ElvisReturnNull(
 
     override fun buildFoldRegions(element: PsiElement, document: Document, parent: Expression?): Array<FoldingDescriptor> {
         val descriptors = mutableListOf<FoldingDescriptor>()
-        descriptors.add(
+        if (foldVariable) {
+            descriptors.add(
                 FoldingDescriptor(declaration.node, declarationRange,
-                        FoldingGroup.newGroup(ElvisReturnNull::class.java.name), ""))
+                    FoldingGroup.newGroup(ElvisReturnNull::class.java.name), ""))
+        }
         descriptors.add(
                 FoldingDescriptor(letElement.node, letRange,
                         FoldingGroup.newGroup(ElvisReturnNull::class.java.name), " ?: return null"))

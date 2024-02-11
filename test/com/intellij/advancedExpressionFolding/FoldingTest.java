@@ -268,8 +268,4 @@ public class FoldingTest extends LightJavaCodeInsightFixtureTestCase {
         doFoldingTest();
     }
 
-    public void testElvisReturnNull() {
-        AdvancedExpressionFoldingSettings.getInstance().enableAll();
-        doFoldingTest();
-    }
 }

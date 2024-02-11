@@ -8,6 +8,12 @@ import com.intellij.psi.*
 import com.intellij.refactoring.suggested.endOffset
 import com.intellij.refactoring.suggested.startOffset
 
+private val PsiElement.prevRealSibling: PsiElement?
+    get() {
+        return generateSequence(this.prevSibling) { it.prevSibling }
+            .firstOrNull { it !is PsiWhiteSpace }
+    }
+
 class LetReturnExt : IExtension {
     companion object {
         @JvmStatic
@@ -15,25 +21,19 @@ class LetReturnExt : IExtension {
             if (!isKotlinQuickReturn()) {
                 return null
             }
-
-            val containingBlock = element.parent as? PsiCodeBlock ?: return null
-            val array =
-                containingBlock.statements.asInstance(PsiDeclarationStatement::class.java, PsiIfStatement::class.java)
-                    ?: return null
             /*
             Expression expression = ForStatementExpressionExt.getForStatementExpression((PsiForStatement) element, document);
             if (expression != null) {
                 return expression;
             }
             */
-            val declaration = array[0] as PsiDeclarationStatement
-            val ifNotNullStatement = array[1] as PsiIfStatement
-            val psiBinaryExpression = ifNotNullStatement.condition as? PsiBinaryExpression
+            val declaration = element.prevRealSibling as? PsiDeclarationStatement ?: return null
+            val psiBinaryExpression = element.condition as? PsiBinaryExpression ?: return null
 
             // 1) if (expression != null) {
 
             // 1a) expression
-            val variable = (psiBinaryExpression?.lOperand as? PsiReferenceExpression)?.resolve() as? PsiLocalVariable
+            val variable = (psiBinaryExpression.lOperand as? PsiReferenceExpression)?.resolve() as? PsiLocalVariable
                 ?: return null
 
             val token = psiBinaryExpression.operationTokenType
@@ -58,11 +58,11 @@ class LetReturnExt : IExtension {
 
             // 2) return expression;
             // 2a) no else
-            ifNotNullStatement.elseBranch?.let { return null }
+            element.elseBranch?.let { return null }
             // 2b) then
             // return local var
             val returnValue =
-                ifNotNullStatement.thenBranch.asInstance<PsiBlockStatement>()?.codeBlock?.statements?.asInstance(
+                element.thenBranch.asInstance<PsiBlockStatement>()?.codeBlock?.statements?.asInstance(
                     PsiReturnStatement::class.java
                 )
                     ?.firstOrNullIfNotEmpty()
@@ -98,24 +98,58 @@ class LetReturnExt : IExtension {
                 .asInstance<PsiLocalVariable>()?.initializer.asInstance<PsiMethodCallExpression>()
                 ?: return null
 
-            val ifParent = ifNotNullStatement.parent
+            val block = element.parent.asInstance<PsiCodeBlock>() ?: return null
+            val index = block.statements.indexOf(element)
+
+            val foldVariable = !isLocalVariableUsed(block, variable, index)
+
+            val ifParent = element.parent
             val methodCallComma = methodCall.nextSibling
 
             val declarationRange = (declaration.startOffset..methodCall.startOffset).toTextRange()
-            val letRange = (methodCallComma.startOffset..ifNotNullStatement.endOffset).toTextRange()
-            if (notEquals) {
-                return LetReturnIt(
-                    ifNotNullStatement, ifNotNullStatement.textRange,
+            val letRange = (methodCallComma.startOffset..element.endOffset).toTextRange()
+            return if (notEquals) {
+                LetReturnIt(
+                    element, element.textRange,
                     declaration, declarationRange,
-                    ifParent, letRange
+                    ifParent, letRange, foldVariable
                 )
             } else {
-                return ElvisReturnNull(
-                    ifNotNullStatement, ifNotNullStatement.textRange,
+                ElvisReturnNull(
+                    element, element.textRange,
                     declaration, declarationRange,
-                    ifParent, letRange
+                    ifParent, letRange, foldVariable
                 )
             }
+        }
+
+        private fun isLocalVariableUsed(block: PsiCodeBlock, variable: PsiLocalVariable, afterIndex: Int): Boolean {
+            var used = false
+            var startChecking = false
+            block.accept(object : JavaRecursiveElementVisitor() {
+                override fun visitStatement(statement: PsiStatement) {
+                    val indexOf = block.statements.indexOf(statement)
+                    if (afterIndex < indexOf) {
+                        startChecking = true
+                    }
+                    if (!used) {
+                        super.visitStatement(statement)
+                    }
+                }
+
+                override fun visitReferenceExpression(expression: PsiReferenceExpression) {
+                    if (!startChecking) {
+                        return
+                    }
+                    if (expression.resolve() == variable) {
+                        used = true
+                    }
+                    if (!used) {
+                        super.visitReferenceExpression(expression)
+                    }
+                }
+            })
+            return used
         }
     }
 
