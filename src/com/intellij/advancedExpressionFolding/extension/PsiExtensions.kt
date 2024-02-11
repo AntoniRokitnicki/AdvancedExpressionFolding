@@ -58,3 +58,35 @@ fun <T : PsiElement> PsiElement.findParents(
     }
     return null
 }
+
+fun IntRange.toTextRange(): TextRange = TextRange(this.first, this.last)
+
+inline fun <reified T> Any?.asInstance(): T? = if (T::class.isInstance(this)) {
+    this as T
+} else {
+    null
+}
+
+
+fun <T> Array<T>.firstOrNullIfNotEmpty(): T? {
+    return if (isEmpty() || size > 1) {
+        null
+    } else {
+        first()
+    }
+}
+
+
+fun Array<out PsiElement>.asInstance(vararg elements: Class<out PsiElement>): Array<out PsiElement>? {
+    if (elements.size != this.size) {
+        return null
+    }
+    val classQueue = LinkedList(elements.asList())
+    forEach {
+        val next = classQueue.poll()
+        if (!next.isInstance(it)) {
+            return null
+        }
+    }
+    return this
+}
