@@ -1,4 +1,4 @@
-name: Upload Release Jar
+name: _Upload Release Jar
 on:
   workflow_dispatch
 
@@ -6,7 +6,6 @@ jobs:
 
   # Prepare environment and build the plugin
   build:
-    name: Upload Release Jar
     runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.properties.outputs.version }}

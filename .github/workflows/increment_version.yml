@@ -1,4 +1,4 @@
-name: Increment Version Pull Request
+name: _Increment Version Pull Request
 
 on:
   workflow_dispatch:
