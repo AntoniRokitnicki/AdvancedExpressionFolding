@@ -1,4 +1,4 @@
-name: Ipload Release Jar
+name: Upload Release Jar
 on:
   workflow_dispatch
 
