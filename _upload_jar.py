@@ -45,7 +45,7 @@ version = f"v{last_idea_plugin.find('version').text}"
 github_owner = "AntoniRokitnicki"
 github_repo = "AdvancedExpressionFolding"
 
-dir = os.environ.get("AEF_BUILD_DIR")
+dir = "build/libs"
 file_prefix = "advanced-expression-folding"
 jar_file_path = get_latest_jar(dir, file_prefix)
 print(f"jar_file_path: {jar_file_path}")
