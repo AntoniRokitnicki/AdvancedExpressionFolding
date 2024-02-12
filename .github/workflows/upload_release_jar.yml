@@ -6,7 +6,7 @@ jobs:
 
   # Prepare environment and build the plugin
   build:
-    name: Build
+    name: Upload Release Jar
     runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.properties.outputs.version }}
@@ -37,6 +37,10 @@ jobs:
 
       # Build plugin
       - name: Build plugin
+        run: ./gradlew buildPlugin
+
+      # Upload JAR
+      - name: Upload JAR
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: ./gradlew buildPlugin uploadJar
+        run: ./gradlew uploadJar
