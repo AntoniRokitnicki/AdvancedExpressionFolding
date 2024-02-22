@@ -3,7 +3,7 @@ package com.intellij.advancedExpressionFolding.extension
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.custom.ElvisReturnNull
 import com.intellij.advancedExpressionFolding.expression.custom.LetReturnIt
-import com.intellij.advancedExpressionFolding.extension.BuilderShiftExt.isKotlinQuickReturn
+import com.intellij.advancedExpressionFolding.extension.BuilderShiftExt.kotlinQuickReturn
 import com.intellij.psi.*
 import com.intellij.refactoring.suggested.endOffset
 import com.intellij.refactoring.suggested.startOffset
@@ -14,11 +14,11 @@ private val PsiElement.prevRealSibling: PsiElement?
             .firstOrNull { it !is PsiWhiteSpace }
     }
 
-class LetReturnExt : IExtension {
+class LetReturnExt : BaseExtension() {
     companion object {
         @JvmStatic
         fun getIfExpression(element: PsiIfStatement): Expression? {
-            if (!isKotlinQuickReturn()) {
+            if (!kotlinQuickReturn) {
                 return null
             }
             /*

@@ -11,11 +11,11 @@ import com.intellij.psi.util.elementType
 import com.intellij.refactoring.suggested.endOffset
 import com.intellij.refactoring.suggested.startOffset
 
-object IfNullSafeExt : IExtension {
+object IfNullSafeExt : BaseExtension() {
 
     @JvmStatic
     fun createExpression(element: PsiPolyadicExpression, document: Document): Expression? {
-        if (!isIfNullSafe()) {
+        if (!ifNullSafe) {
             return null
         }
         if (element.operands.size < 2) {

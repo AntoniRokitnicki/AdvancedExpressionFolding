@@ -12,7 +12,7 @@ import com.intellij.psi.*
 import com.intellij.psi.util.PsiTreeUtil
 import com.intellij.psi.util.descendantsOfType
 
-object BuilderShiftExt : IExtension {
+object BuilderShiftExt : BaseExtension() {
 
     @JvmStatic
     fun markIfBuilder(
@@ -29,7 +29,7 @@ object BuilderShiftExt : IExtension {
         element: PsiMethodCallExpression,
         psiClass: PsiClass?
     ): Expression? {
-        if (!isFieldShift() || !psiClass.isBuilder()) {
+        if (!fieldShift || !psiClass.isBuilder()) {
             return null
         }
 
@@ -53,7 +53,7 @@ object BuilderShiftExt : IExtension {
 
     @JvmStatic
     fun isShifted(element: PsiMethodCallExpression): Boolean {
-        if (!isFieldShift()) {
+        if (!fieldShift) {
             return false
         }
 

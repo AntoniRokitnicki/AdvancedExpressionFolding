@@ -8,13 +8,10 @@ import com.intellij.psi.PsiMethod
 import com.intellij.psi.PsiMethodCallExpression
 import com.intellij.psi.PsiMethodReferenceExpression
 
-object MethodReferenceExt : IExtension {
+object MethodReferenceExt : BaseExtension() {
     @JvmStatic
     fun createExpression(element: PsiMethodReferenceExpression): Expression? {
-        val optional = isOptional()
-        val spread = isStreamSpread()
-
-        if (!(optional || spread)) {
+        if (!(optional || streamSpread)) {
             return null
         }
 

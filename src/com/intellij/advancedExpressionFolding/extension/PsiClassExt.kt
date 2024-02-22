@@ -8,7 +8,7 @@ import com.intellij.psi.*
 
 typealias CustomClassAnnotation = String
 
-object PsiClassExt : IExtension {
+object PsiClassExt : BaseExtension() {
 
     enum class ClassType {
         BUILDER
@@ -20,7 +20,7 @@ object PsiClassExt : IExtension {
 
     @JvmStatic
     fun createExpression(clazz: PsiClass): Expression? {
-        if (clazz.isIgnored() || !isLombok()) {
+        if (clazz.isIgnored() || !lombok) {
             return null
         }
 

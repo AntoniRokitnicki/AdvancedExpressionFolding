@@ -17,33 +17,63 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
         myState = state.copy()
     }
 
-    data class State(
-        var arithmeticExpressionsCollapse: Boolean = false,
-        var concatenationExpressionsCollapse: Boolean = true,
-        var slicingExpressionsCollapse: Boolean = true,
-        var comparingExpressionsCollapse: Boolean = true,
-        var comparingLocalDatesCollapse: Boolean = true,
-        var localDateLiteralCollapse: Boolean = true,
-        var localDateLiteralPostfixCollapse: Boolean = false,
-        var getExpressionsCollapse: Boolean = true,
-        var rangeExpressionsCollapse: Boolean = true,
-        var checkExpressionsCollapse: Boolean = true,
-        var castExpressionsCollapse: Boolean = true,
-        var varExpressionsCollapse: Boolean = true,
-        var getSetExpressionsCollapse: Boolean = true,
-        var controlFlowSingleStatementCodeBlockCollapse: Boolean = false,
-        var compactControlFlowSyntaxCollapse: Boolean = true,
-        var controlFlowMultiStatementCodeBlockCollapse: Boolean = false,
-        var semicolonsCollapse: Boolean = true,
-        var assertsCollapse: Boolean = true,
-        var optional: Boolean = true,
-        var streamSpread: Boolean = true,
-        var lombok: Boolean = true,
-        var fieldShift: Boolean = true,
-        var kotlinQuickReturn: Boolean = true,
-        var ifNullSafe: Boolean = true,
+    interface IState {
+        val arithmeticExpressionsCollapse: Boolean
+        val concatenationExpressionsCollapse: Boolean
+        val slicingExpressionsCollapse: Boolean
+        val comparingExpressionsCollapse: Boolean
+        val comparingLocalDatesCollapse: Boolean
+        val localDateLiteralCollapse: Boolean
+        val localDateLiteralPostfixCollapse: Boolean
+        val getExpressionsCollapse: Boolean
+        val rangeExpressionsCollapse: Boolean
+        val checkExpressionsCollapse: Boolean
+        val castExpressionsCollapse: Boolean
+        val varExpressionsCollapse: Boolean
+        val getSetExpressionsCollapse: Boolean
+        val controlFlowSingleStatementCodeBlockCollapse: Boolean
+        val compactControlFlowSyntaxCollapse: Boolean
+        val controlFlowMultiStatementCodeBlockCollapse: Boolean
+        val semicolonsCollapse: Boolean
+        val assertsCollapse: Boolean
+        val optional: Boolean
+        val streamSpread: Boolean
+        val lombok: Boolean
+        val fieldShift: Boolean
+        val kotlinQuickReturn: Boolean
+        val ifNullSafe: Boolean
 
-    )
+    }
+
+    data class State(
+        override var arithmeticExpressionsCollapse: Boolean = false,
+        override var concatenationExpressionsCollapse: Boolean = true,
+        override var slicingExpressionsCollapse: Boolean = true,
+        override var comparingExpressionsCollapse: Boolean = true,
+        override var comparingLocalDatesCollapse: Boolean = true,
+        override var localDateLiteralCollapse: Boolean = true,
+        override var localDateLiteralPostfixCollapse: Boolean = false,
+        override var getExpressionsCollapse: Boolean = true,
+        override var rangeExpressionsCollapse: Boolean = true,
+        override var checkExpressionsCollapse: Boolean = true,
+        override var castExpressionsCollapse: Boolean = true,
+        override var varExpressionsCollapse: Boolean = true,
+        override var getSetExpressionsCollapse: Boolean = true,
+        override var controlFlowSingleStatementCodeBlockCollapse: Boolean = false,
+        override var compactControlFlowSyntaxCollapse: Boolean = true,
+        override var controlFlowMultiStatementCodeBlockCollapse: Boolean = false,
+        override var semicolonsCollapse: Boolean = true,
+        override var assertsCollapse: Boolean = true,
+        override var optional: Boolean = true,
+        override var streamSpread: Boolean = true,
+        override var lombok: Boolean = true,
+        override var fieldShift: Boolean = true,
+        override var kotlinQuickReturn: Boolean = true,
+        override var ifNullSafe: Boolean = true,
+
+    ) : IState
+
+    open class StateDelegate(private val state: State = getInstance().state) : IState by state
 
     private fun updateAllState(value: Boolean) {
         with(myState) {
