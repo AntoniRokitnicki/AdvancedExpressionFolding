@@ -4,8 +4,7 @@
 
 name: Release
 on:
-  release:
-    types: [prereleased, released]
+  workflow_dispatch
 
 jobs:
 
@@ -52,7 +51,8 @@ jobs:
           echo "EOF" >> $GITHUB_OUTPUT
 
       # Update Unreleased section with the current release note
-      - name: Patch Changelog
+      - name: Patch Changelog (off)
+        if: ${{ false }}
         env:
           CHANGELOG: ${{ steps.properties.outputs.changelog }}
         run: |
@@ -68,13 +68,14 @@ jobs:
         run: ./gradlew publishPlugin
 
       # Upload artifact as a release asset
-      - name: Upload Release Asset
+      - name: Upload Release Asset (off)
+        if: ${{ false }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: gh release upload ${{ github.event.release.tag_name }} ./build/distributions/*
 
       # Create a pull request
-      - name: Create Pull Request(off)
+      - name: Create Pull Request (off)
         if: ${{ false && steps.properties.outputs.changelog != '' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
