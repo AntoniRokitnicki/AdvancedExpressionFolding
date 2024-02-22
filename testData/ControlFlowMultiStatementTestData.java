@@ -1,4 +1,4 @@
-import java.util.Arrays;
+package data;
 
 public class ControlFlowMultiStatementTestData {
     public static void main(String[] args) <fold text='{...}' expand='true'>{

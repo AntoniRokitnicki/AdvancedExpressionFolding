@@ -1,3 +1,5 @@
+package data;
+
 public class FieldShiftSetters {
     private String username;
     private boolean active;

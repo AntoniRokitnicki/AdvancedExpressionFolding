@@ -1,3 +1,5 @@
+package data;
+
 public class TypeCastTestData {
     public static void main(String[] args) <fold text='{...}' expand='true'>{
         TypeCastTestData t = new TypeCastTestData();

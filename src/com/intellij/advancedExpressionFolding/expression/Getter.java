@@ -56,4 +56,9 @@ public class Getter extends Expression implements IGetter {
         name = "<<";
         getterTextRange = new TextRange(getterTextRange.getStartOffset() - 1, getterTextRange.getEndOffset());
     }
+
+    @Override
+    public Expression getObject() {
+        return object;
+    }
 }

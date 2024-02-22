@@ -48,13 +48,13 @@ public class FoldingTest extends LightJavaCodeInsightFixtureTestCase {
     }
 
 
-
-    private static void rewriteFileOnFailure(String fileName, Runnable action) {
+    private static void rewriteFileOnFailure(String fileName, String testName, Runnable action) {
         try {
             action.run();
         } catch (FileComparisonFailure e) {
             try {
-                Files.writeString(new File(fileName).toPath(), e.getActual());
+                String actual = e.getActual();
+                Files.writeString(new File(fileName).toPath(), actual);
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
@@ -63,13 +63,15 @@ public class FoldingTest extends LightJavaCodeInsightFixtureTestCase {
     }
 
     public void doFoldingTest() {
-        String fileName = getTestDataPath() + "/" + getTestName(false) + ".java";
-        rewriteFileOnFailure(fileName, () -> myFixture.testFoldingWithCollapseStatus(fileName));
+        String testName = getTestName(false);
+        String fileName = getTestDataPath() + "/" + testName + ".java";
+        rewriteFileOnFailure(fileName, testName, () -> myFixture.testFoldingWithCollapseStatus(fileName));
     }
 
     public void doReadOnlyFoldingTest() {
-        String fileName = getTestDataPath() + "/" + getTestName(false) + ".java";
-        rewriteFileOnFailure(fileName, () -> testReadOnlyFoldingRegions(fileName,
+        String testName = getTestName(false);
+        String fileName = getTestDataPath() + "/" + testName + ".java";
+        rewriteFileOnFailure(fileName, testName, () -> testReadOnlyFoldingRegions(fileName,
                 null, true));
     }
 
@@ -264,7 +266,17 @@ public class FoldingTest extends LightJavaCodeInsightFixtureTestCase {
     }
 
     public void testLetReturnIt() {
-        AdvancedExpressionFoldingSettings.getInstance().enableAll();
+        AdvancedExpressionFoldingSettings.getInstance().getState().setVarExpressionsCollapse(true);
+        AdvancedExpressionFoldingSettings.getInstance().getState().setKotlinQuickReturn(true);
+        doFoldingTest();
+    }
+
+    /**
+     * {@link data.IfNullSafeData}
+     */
+    public void testIfNullSafeData() {
+        AdvancedExpressionFoldingSettings.getInstance().getState().setCheckExpressionsCollapse(true);
+        AdvancedExpressionFoldingSettings.getInstance().getState().setGetSetExpressionsCollapse(true);
         doFoldingTest();
     }
 

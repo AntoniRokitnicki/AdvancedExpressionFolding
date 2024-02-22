@@ -1,3 +1,5 @@
+package data;
+
 public class GetterSetterTestData {
     public static void main(String[] args) <fold text='{...}' expand='true'>{
         GetterSetterTestData d = new GetterSetterTestData();

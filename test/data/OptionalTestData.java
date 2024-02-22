@@ -7,7 +7,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Function;
 
-@SuppressWarnings({"OptionalUsedAsFieldOrParameterType", "ClassEscapesDefinedScope", "DataFlowIssue", "OptionalGetWithoutIsPresent"})
+@SuppressWarnings("ALL")
 public class OptionalTestData {
 
     public void enter(Optional<Data> opt, @NotNull Data data, @Nullable Data dataNull) {

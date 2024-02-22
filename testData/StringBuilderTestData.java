@@ -1,3 +1,5 @@
+package data;
+
 public class StringBuilderTestData {
     public static void main(String[] args) <fold text='{...}' expand='true'>{
         StringBuilder sb1 = <fold text='"["' expand='false'>new StringBuilder("[")</fold>;

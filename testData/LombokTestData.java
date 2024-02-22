@@ -1,3 +1,5 @@
+package data;
+
 import <fold text='...' expand='false'>java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;</fold>

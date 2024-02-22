@@ -1,3 +1,5 @@
+package data<fold text='' expand='false'>;</fold>
+
 import java.util.Arrays<fold text='' expand='false'>;</fold>
 
 public class SemicolonTestData {

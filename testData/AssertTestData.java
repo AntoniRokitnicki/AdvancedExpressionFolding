@@ -1,3 +1,5 @@
+package data;
+
 public class AssertTestData {
     public static void main(String[] args) {
         if (args.length == 0) {

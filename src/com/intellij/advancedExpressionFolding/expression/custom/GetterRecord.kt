@@ -39,4 +39,6 @@ class GetterRecord(element: PsiElement, textRange: TextRange, private var getter
         name = "<<"
         getterTextRange += (-1..0)
     }
+
+    override fun getObject(): Expression? = `object`
 }

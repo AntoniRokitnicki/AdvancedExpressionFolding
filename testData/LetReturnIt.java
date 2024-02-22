@@ -21,16 +21,16 @@ class LetReturnIt {
         if (var5 == null) <fold text='{...}' expand='true'>{
             return null;
         }</fold></fold>
-        System.out.println<fold text='("$' expand='false'>(</fold>var5<fold text='' expand='false'> + "</fold>1");
+        System.out.println(var5 + "1");
 
 
         <fold text='val' expand='false'>String</fold> var6 = getData(someString)<fold text=' ?: return null' expand='true'>;
         if (var6 == null) <fold text='{...}' expand='true'>{
             return null;
         }</fold></fold>
-        while <fold text='' expand='false'>(</fold>true<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
-            if <fold text='' expand='false'>(</fold>LocalDate.now()<fold text=' > ' expand='false'>.isAfter(</fold>LocalDate.now()<fold text='' expand='false'>)</fold><fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
-                if <fold text='' expand='false'>(</fold>var6 == null<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
+        while (true) <fold text='{...}' expand='true'>{
+            if (LocalDate.now().isAfter(LocalDate.now())) <fold text='{...}' expand='true'>{
+                if (var6 == null) <fold text='{...}' expand='true'>{
                     System.out.println("1");
                 }</fold>
             }</fold>
@@ -45,7 +45,7 @@ class LetReturnIt {
         new Thread(<fold text='run() → { ' expand='false'>new Runnable() {
             @Override
             public void run() {
-                </fold>System.out.println<fold text='("$' expand='false'>(</fold>var7<fold text='' expand='false'> + "</fold>1");<fold text=' }' expand='false'>
+                </fold>System.out.println(var7 + "1");<fold text=' }' expand='false'>
             }
         }</fold>);
         return null;
@@ -54,7 +54,7 @@ class LetReturnIt {
     private static String getData(String someString) <fold text='{...}' expand='true'>{
         try <fold text='{...}' expand='true'>{
             return ClassLoader.getSystemResource("a").toString();
-        }</fold> catch <fold text='' expand='false'>(</fold>Exception e<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
+        }</fold> catch (Exception e) <fold text='{...}' expand='true'>{
             return null;
         }</fold>
     }</fold>

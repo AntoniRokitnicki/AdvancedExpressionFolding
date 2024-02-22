@@ -1,3 +1,5 @@
+package data;
+
 public class AppendSetterInterpolatedStringTestData {
     private String name;
 

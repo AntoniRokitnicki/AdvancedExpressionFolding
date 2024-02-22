@@ -98,6 +98,7 @@ public class OtherExt {
             } else {
                 if (settings.getState().getControlFlowMultiStatementCodeBlockCollapse()
                         && !element.isWritable()) {
+                    //noinspection deprecation
                     return new ControlFlowMultiStatementCodeBlockExpression(element, element.getTextRange());
                 }
             }
@@ -285,6 +286,10 @@ public class OtherExt {
             if (binaryExpression != null) {
                 return binaryExpression;
             }
+        }
+        Expression expression = IfNullSafeExt.createExpression(element, document);
+        if (expression != null) {
+            return expression;
         }
         return null;
     }

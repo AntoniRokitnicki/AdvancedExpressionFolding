@@ -1,3 +1,5 @@
+package data;
+
 import java.util.Arrays;
 
 public class ControlFlowSingleStatementTestData {

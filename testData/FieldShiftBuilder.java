@@ -1,3 +1,5 @@
+package data;
+
 public class FieldShiftBuilder {
     private String username;
     private boolean active;

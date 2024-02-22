@@ -1,3 +1,5 @@
+package data;
+
 import <fold text='...' expand='false'>java.math.BigDecimal;
 import java.util.Comparator;
 import java.util.List;
@@ -47,34 +49,34 @@ public class SpreadTestData {
         boolean ok;
         String string;
         public Data getData()<fold text=' { ' expand='false'> {
-            </fold>return data;<fold text=' }' expand='false'>
+                </fold>return data;<fold text=' }' expand='false'>
         }</fold>
         public boolean isOk()<fold text=' { ' expand='false'> {
-            </fold>return ok;<fold text=' }' expand='false'>
+                </fold>return ok;<fold text=' }' expand='false'>
         }</fold>
         public void setData(Data data)<fold text=' { ' expand='false'> {
-            </fold>this.data = data;<fold text=' }' expand='false'>
+                </fold>this.data = data;<fold text=' }' expand='false'>
         }</fold>
         public void setOk(boolean ok)<fold text=' { ' expand='false'> {
-            </fold>this.ok = ok;<fold text=' }' expand='false'>
+                </fold>this.ok = ok;<fold text=' }' expand='false'>
         }</fold>
         public String getString()<fold text=' { ' expand='false'> {
-            </fold>return string;<fold text=' }' expand='false'>
+                </fold>return string;<fold text=' }' expand='false'>
         }</fold>
         public void setString(String string)<fold text=' { ' expand='false'> {
-            </fold>this.string = string;<fold text=' }' expand='false'>
+                </fold>this.string = string;<fold text=' }' expand='false'>
         }</fold>
         public Data getDataMethod(Data data)<fold text=' { ' expand='false'> {
-            </fold>return data;<fold text=' }' expand='false'>
+                </fold>return data;<fold text=' }' expand='false'>
         }</fold>
         public Optional<Data> getDataOpt()<fold text=' { ' expand='false'> {
-            </fold>return <fold text='' expand='false'>Optional.ofNullable(</fold>data<fold text='' expand='false'>)</fold>;<fold text=' }' expand='false'>
+                </fold>return <fold text='' expand='false'>Optional.ofNullable(</fold>data<fold text='' expand='false'>)</fold>;<fold text=' }' expand='false'>
         }</fold>
         public Stream<Data> getDataStream()<fold text=' { ' expand='false'> {
-            </fold>return <fold text='' expand='false'>Optional.ofNullable(</fold>data<fold text='' expand='false'>)</fold>.stream();<fold text=' }' expand='false'>
+                </fold>return <fold text='' expand='false'>Optional.ofNullable(</fold>data<fold text='' expand='false'>)</fold>.stream();<fold text=' }' expand='false'>
         }</fold>
         public List<Data> getDataList()<fold text=' { ' expand='false'> {
-            </fold>return <fold text='' expand='false'>Optional.ofNullable(</fold>data<fold text='' expand='false'>)</fold>.stream().toList();<fold text=' }' expand='false'>
+                </fold>return <fold text='' expand='false'>Optional.ofNullable(</fold>data<fold text='' expand='false'>)</fold>.stream().toList();<fold text=' }' expand='false'>
         }</fold>
     }</fold>
 }

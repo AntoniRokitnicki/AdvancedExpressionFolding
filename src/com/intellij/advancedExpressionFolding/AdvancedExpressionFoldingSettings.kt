@@ -41,6 +41,7 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
         var lombok: Boolean = true,
         var fieldShift: Boolean = true,
         var kotlinQuickReturn: Boolean = true,
+        var ifNullSafe: Boolean = true,
 
     )
 

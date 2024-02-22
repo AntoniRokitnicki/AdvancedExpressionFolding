@@ -2,6 +2,7 @@ package data;
 
 import java.time.LocalDate;
 
+@SuppressWarnings("ALL")
 class LetReturnIt {
     static String buildExpression(String someString) {
         String var1 = getData(someString);

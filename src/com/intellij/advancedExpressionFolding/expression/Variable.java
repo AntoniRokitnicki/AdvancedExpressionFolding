@@ -10,7 +10,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 
-public class Variable extends Expression implements ArithmeticExpression {
+public class Variable extends Expression implements ArithmeticExpression, INameable {
     private @NotNull String name;
     private boolean copy;
     private @Nullable TextRange variableTextRange;

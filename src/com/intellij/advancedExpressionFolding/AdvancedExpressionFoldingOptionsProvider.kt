@@ -12,6 +12,9 @@ class AdvancedExpressionFoldingOptionsProvider protected constructor() :
         val myState = settings.state
 
         title = "Advanced Expression Folding 2"
+        checkBox("Getters and setters as properties", myState::getSetExpressionsCollapse)
+        checkBox("Variable declarations (var/val)", myState::varExpressionsCollapse)
+
         checkBox("Math, BigDecimal and BigInteger expressions (deprecated)", myState::arithmeticExpressionsCollapse)
         checkBox("StringBuilder.append and Collection.add/remove expressions, interpolated Strings and Stream expressions", myState::concatenationExpressionsCollapse)
         checkBox("List.subList and String.substring expressions", myState::slicingExpressionsCollapse)
@@ -21,10 +24,8 @@ class AdvancedExpressionFoldingOptionsProvider protected constructor() :
         checkBox("Postfix LocalDate literals (e.g. 2018Y-02M-12D)", myState::localDateLiteralPostfixCollapse)
         checkBox("List.get, List.set, Map.get and Map.put expressions, array and list literals", myState::getExpressionsCollapse)
         checkBox("For loops, range expressions", myState::rangeExpressionsCollapse)
-        checkBox("Null safe calls", myState::checkExpressionsCollapse)
+        checkBox("Null-safe calls", myState::checkExpressionsCollapse)
         checkBox("Type cast expressions", myState::castExpressionsCollapse)
-        checkBox("Variable declarations", myState::varExpressionsCollapse)
-        checkBox("Getters and setters", myState::getSetExpressionsCollapse)
         checkBox("Control flow single-statement code block braces (read-only files)", myState::controlFlowSingleStatementCodeBlockCollapse)
         checkBox("Control flow multi-statement code block braces (read-only files, deprecated)", myState::controlFlowMultiStatementCodeBlockCollapse)
         checkBox("Compact control flow condition syntax", myState::compactControlFlowSyntaxCollapse)
@@ -35,6 +36,7 @@ class AdvancedExpressionFoldingOptionsProvider protected constructor() :
         checkBox("Display Java bean as Lombok", myState::lombok)
         checkBox("Display mapping of field with same name as << (4 builders & setters)", myState::fieldShift)
         checkBox("Kotlin quick return", myState::kotlinQuickReturn)
+        checkBox("Extended null-safe ifs (experimental)", myState::ifNullSafe)
     }
 
 }

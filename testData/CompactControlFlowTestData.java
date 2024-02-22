@@ -1,3 +1,5 @@
+package data;
+
 public class CompactControlFlowTestData {
     public static void main(String[] args) <fold text='{...}' expand='true'>{
         if <fold text='' expand='false'>(</fold>args.length > 0<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{

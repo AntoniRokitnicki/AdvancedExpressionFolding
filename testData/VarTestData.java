@@ -1,3 +1,5 @@
+package data;
+
 public class VarTestData {
     public static void main(String[] args) <fold text='{...}' expand='true'>{
         <fold text='val' expand='false'>String</fold> string = "Hello, world";

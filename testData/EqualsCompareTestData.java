@@ -1,3 +1,5 @@
+package data;
+
 public class EqualsCompareTestData implements Comparable<EqualsCompareTestData> {
     public static void main(String[] args) <fold text='{...}' expand='true'>{
         EqualsCompareTestData a = new EqualsCompareTestData();

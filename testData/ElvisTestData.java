@@ -1,3 +1,5 @@
+package data;
+
 public class ElvisTestData {
     private ElvisTestData e = create();
 

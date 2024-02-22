@@ -246,6 +246,8 @@ public class BuildExpressionExt {
                 }
             }
         } catch (IndexNotReadyException | ProcessCanceledException ignore) {
+        } catch (UnexpectedException e) {
+            throw e;
         } catch (Exception e) {
             String fileName = null;
             PsiFile containingFile = lastElement.getContainingFile();

@@ -1,3 +1,5 @@
+package data;
+
 import <fold text='...' expand='false'>java.util.*;
 import java.util.stream.Collectors;</fold>
 

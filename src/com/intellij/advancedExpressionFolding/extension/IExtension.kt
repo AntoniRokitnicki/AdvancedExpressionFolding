@@ -14,6 +14,10 @@ interface IExtension {
 
     fun isKotlinQuickReturn() = settings().kotlinQuickReturn
 
+    fun isCheckExpressions() = settings().checkExpressionsCollapse
+
+    fun isIfNullSafe() = settings().ifNullSafe
+
     private fun settings() = AdvancedExpressionFoldingSettings.getInstance().state
 
 }
