@@ -1,6 +1,6 @@
 package com.intellij.advancedExpressionFolding.extension
 
-import com.intellij.advancedExpressionFolding.extension.IfNullSafeExt.isVoid
+import com.intellij.advancedExpressionFolding.extension.BaseExtension.Companion.isVoid
 import com.intellij.advancedExpressionFolding.extension.Keys.IGNORED
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiElement
