@@ -48,14 +48,14 @@ jobs:
             ~/.gradle/caches
           key: ${{ runner.os }}-java2-gradle-${{ hashFiles('**/*.java', '**/*.gradle*', '**/gradle-wrapper.properties') }}
 
+      # Check out current repository
+      - name: Fetch Sources
+        uses: actions/checkout@v4
 
       # Validate wrapper
       - name: Gradle Wrapper Validation
         uses: gradle/wrapper-validation-action@v2.1.1
 
-      # Check out current repository
-      - name: Fetch Sources
-        uses: actions/checkout@v4
 
       # Build plugin
       - name: Build plugin
