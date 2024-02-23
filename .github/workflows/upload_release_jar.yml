@@ -16,12 +16,12 @@ jobs:
       # Restore Java and Gradle cache
       - name: Restore Cache
         id: cache
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: |
             ~/.jabba
             ~/.gradle/caches
-          key: ${{ runner.os }}-java2-gradle-${{ hashFiles('**/*.java', '**/*.gradle*', '**/gradle-wrapper.properties') }}
+          key: ${{ runner.os }}-java12-gradle-${{ hashFiles('**/*.java', '**/*.gradle*', '**/gradle-wrapper.properties') }}
           restore-keys: |
             ${{ runner.os }}-java-gradle-
 
@@ -41,12 +41,12 @@ jobs:
       # Save Java and Gradle cache
       - name: Save Cache
         if: steps.cache.outputs.cache-hit != 'true'
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: |
             ~/.jabba
             ~/.gradle/caches
-          key: ${{ runner.os }}-java2-gradle-${{ hashFiles('**/*.java', '**/*.gradle*', '**/gradle-wrapper.properties') }}
+          key: ${{ runner.os }}-java12-gradle-${{ hashFiles('**/*.java', '**/*.gradle*', '**/gradle-wrapper.properties') }}
 
       # Check out current repository
       - name: Fetch Sources
