@@ -74,10 +74,11 @@ object IfNullSafeExt : BaseExtension() {
                 if (firstNotNullWithAnd) {
                     val lOperand = (prev as PsiBinaryExpression).lOperand
                     if (curr is PsiPrefixExpression) {
-                        if (isNext(lOperand, curr)) {
-                            val isNegation = curr.operationTokenType == JavaTokenType.EXCL
-                            // !isActive
-                            if (isNegation && curr.operand?.let { BuildExpressionExt.getAnyExpression(it, document) } is IGetter) {
+                        // !isActive
+                        val isNegation = curr.operationTokenType == JavaTokenType.EXCL
+                        val callExpression = curr.operand as? PsiMethodCallExpression
+                        if (isNegation && callExpression != null && isNext(lOperand, callExpression)) {
+                            if (callExpression.let { BuildExpressionExt.getAnyExpression(it, document) } is IGetter) {
                                 currentList += prev
                                 currentList += curr
                             }

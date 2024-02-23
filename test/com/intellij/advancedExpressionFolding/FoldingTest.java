@@ -277,6 +277,7 @@ public class FoldingTest extends LightJavaCodeInsightFixtureTestCase {
     public void testIfNullSafeData() {
         AdvancedExpressionFoldingSettings.getInstance().getState().setCheckExpressionsCollapse(true);
         AdvancedExpressionFoldingSettings.getInstance().getState().setGetSetExpressionsCollapse(true);
+        AdvancedExpressionFoldingSettings.getInstance().getState().setIfNullSafe(true);
         doFoldingTest();
     }
 
