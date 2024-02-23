@@ -19,6 +19,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static com.intellij.advancedExpressionFolding.extension.BaseExtension.isInt;
 import static com.intellij.advancedExpressionFolding.extension.Consts.*;
 import static com.intellij.advancedExpressionFolding.extension.Helper.getReferenceExpression;
 import static com.intellij.advancedExpressionFolding.extension.PropertyUtil.guessPropertyName;
@@ -137,7 +138,7 @@ public class MethodCallExpressionExt {
                                     }
                                 case "remove":
                                     if (method.getParameterList().getParameters().length == 1
-                                            && !method.getParameterList().getParameters()[0].getType().equals(PsiType.INT)) {
+                                            && !isInt(method.getParameterList().getParameters()[0].getType())) {
                                         if (element.getParent() instanceof PsiStatement && settings.getState().getConcatenationExpressionsCollapse()) {
                                             return new RemoveAssignForCollection(element, element.getTextRange(), Arrays.asList(qualifierExpression, argumentExpression));
                                         }
@@ -615,5 +616,7 @@ public class MethodCallExpressionExt {
         }
         return null;
     }
+
+
 
 }

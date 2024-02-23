@@ -14,7 +14,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class OtherExt {
+public class OtherExt extends BaseExtension {
     static Expression getForeachStatementExpression(PsiForeachStatement element) {
         AdvancedExpressionFoldingSettings settings = AdvancedExpressionFoldingSettings.getInstance();
         if (element.getIteratedValue() != null && element.getRParenth() != null &&
@@ -140,9 +140,9 @@ public class OtherExt {
             PsiBinaryExpression condition = (PsiBinaryExpression) element.getCondition();
             if (condition.getOperationSign().getText().equals("!=")
                     && element.getElseBranch() == null
-                    && (condition.getLOperand().getType() == PsiType.NULL
+                    && (isNull(condition.getLOperand().getType())
                     && condition.getROperand() != null
-                    || condition.getROperand() != null && condition.getROperand().getType() == PsiType.NULL)
+                    || condition.getROperand() != null && isNull(condition.getROperand().getType()))
                     && element.getThenBranch() != null) {
                 PsiStatement thenStatement = element.getThenBranch();
                 if (thenStatement.getChildren().length == 1 && thenStatement
@@ -154,7 +154,7 @@ public class OtherExt {
                         return null;
                     }
                 }
-                PsiElement qualifier = condition.getLOperand().getType() == PsiType.NULL
+                PsiElement qualifier = isNull(condition.getLOperand().getType())
                         ? condition.getROperand()
                         : condition.getLOperand();
                 if (qualifier instanceof PsiReferenceExpression
@@ -186,11 +186,11 @@ public class OtherExt {
                 && element.getCondition() instanceof @NotNull PsiBinaryExpression condition) {
             if (condition.getOperationSign().getText().equals("!=")
                     && condition.getROperand() != null
-                    && (condition.getLOperand().getType() == PsiType.NULL
-                    || condition.getROperand().getType() == PsiType.NULL)
+                    && (isNull(condition.getLOperand().getType())
+                    || isNull(condition.getROperand().getType()))
                     && element.getThenExpression() != null
                     && element.getElseExpression() != null) {
-                PsiElement qualifier = condition.getLOperand().getType() == PsiType.NULL
+                PsiElement qualifier = isNull(condition.getLOperand().getType())
                         ? condition.getROperand()
                         : condition.getLOperand();
                 if (qualifier instanceof PsiReferenceExpression

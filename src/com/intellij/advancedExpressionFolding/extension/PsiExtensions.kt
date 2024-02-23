@@ -1,8 +1,12 @@
 package com.intellij.advancedExpressionFolding.extension
 
+import com.intellij.advancedExpressionFolding.extension.IfNullSafeExt.isVoid
 import com.intellij.advancedExpressionFolding.extension.Keys.IGNORED
 import com.intellij.openapi.util.TextRange
-import com.intellij.psi.*
+import com.intellij.psi.PsiElement
+import com.intellij.psi.PsiField
+import com.intellij.psi.PsiMethod
+import com.intellij.psi.PsiModifier
 import java.util.*
 
 inline fun String.filter(predicate: (String) -> Boolean): String? = takeIf(predicate)
@@ -21,7 +25,7 @@ fun PsiField.isStatic(): Boolean = modifierList?.hasModifierProperty(PsiModifier
 
 fun PsiMethod.isSetter(): Boolean {
     fun isSetter(text: String) = text.startsWith("set") && text.length > 3 && Character.isUpperCase(text[3])
-    return parameterList.parametersCount == 1 && returnType == PsiType.VOID && isSetter(name)
+    return parameterList.parametersCount == 1 && returnType.isVoid() && isSetter(name)
 }
 
 fun PsiMethod.isGetter(): Boolean {
@@ -30,7 +34,7 @@ fun PsiMethod.isGetter(): Boolean {
 
     fun isGetter(name: String) = isGetterAux(name, "get") || isGetterAux(name, "is")
 
-    return parameterList.parametersCount == 0 && returnType != PsiType.VOID && isGetter(name)
+    return parameterList.parametersCount == 0 && !returnType.isVoid() && isGetter(name)
 }
 
 fun PsiMethod.isGetterOrSetter(): Boolean = isSetter() || isGetter()
