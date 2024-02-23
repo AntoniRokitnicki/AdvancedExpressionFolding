@@ -34,6 +34,6 @@ public class StringLiteral extends Expression implements CharSequenceLiteral {
         FoldingGroup group = FoldingGroup.newGroup(StringLiteral.class.getName());
         ArrayList<FoldingDescriptor> descriptors = new ArrayList<>();
         descriptors.add(new FoldingDescriptor(element.getNode(), element.getTextRange(), group, "\"" + string  + "\""));
-        return descriptors.toArray(FoldingDescriptor.EMPTY);
+        return descriptors.toArray(EMPTY_ARRAY);
     }
 }

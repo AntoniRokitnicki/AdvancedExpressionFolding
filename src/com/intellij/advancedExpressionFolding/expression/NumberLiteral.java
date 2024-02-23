@@ -72,7 +72,7 @@ public class NumberLiteral extends Expression implements ArithmeticExpression {
                         TextRange.create(numberTextRange.getEndOffset(), textRange.getEndOffset()), group, ""));
             }
         }
-        return descriptors.toArray(FoldingDescriptor.EMPTY);
+        return descriptors.toArray(EMPTY_ARRAY);
     }
 
     @Override

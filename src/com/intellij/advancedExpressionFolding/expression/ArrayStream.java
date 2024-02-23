@@ -41,7 +41,7 @@ public class ArrayStream extends Expression {
         if (argument.supportsFoldRegions(document, this)) {
             Collections.addAll(descriptors, argument.buildFoldRegions(argument.getElement(), document, this));
         }
-        return descriptors.toArray(FoldingDescriptor.EMPTY);
+        return descriptors.toArray(EMPTY_ARRAY);
     }
 
     @Override

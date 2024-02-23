@@ -87,7 +87,7 @@ public abstract class Function extends Expression {
                 Collections.addAll(descriptors, operand.buildFoldRegions(operand.getElement(), document, this));
             }
         }
-        return descriptors.toArray(FoldingDescriptor.EMPTY);
+        return descriptors.toArray(EMPTY_ARRAY);
     }
 
     @NotNull

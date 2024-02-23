@@ -69,6 +69,6 @@ public class Get extends Expression {
                 Collections.addAll(descriptors, key.buildFoldRegions(key.getElement(), document, this));
             }
         }
-        return descriptors.toArray(FoldingDescriptor.EMPTY);
+        return descriptors.toArray(EMPTY_ARRAY);
     }
 }

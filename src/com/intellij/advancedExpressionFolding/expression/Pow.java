@@ -46,6 +46,6 @@ public class Pow extends Function implements ArithmeticExpression {
                     operands.get(0) instanceof Operation
                             ? ")" + superscript : superscript));
         }
-        return descriptors.toArray(FoldingDescriptor.EMPTY);
+        return descriptors.toArray(EMPTY_ARRAY);
     }
 }

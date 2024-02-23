@@ -48,6 +48,6 @@ public class Collect extends Expression {
         if (qualifier.supportsFoldRegions(document, this)) {
             Collections.addAll(descriptors, qualifier.buildFoldRegions(qualifier.getElement(), document, this));
         }
-        return descriptors.toArray(FoldingDescriptor.EMPTY);
+        return descriptors.toArray(EMPTY_ARRAY);
     }
 }

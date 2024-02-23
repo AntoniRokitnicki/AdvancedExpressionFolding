@@ -53,6 +53,6 @@ public class Put extends Expression {
         if (value.supportsFoldRegions(document, this)) {
             Collections.addAll(descriptors, value.buildFoldRegions(value.getElement(), document, this));
         }
-        return descriptors.toArray(FoldingDescriptor.EMPTY);
+        return descriptors.toArray(EMPTY_ARRAY);
     }
 }

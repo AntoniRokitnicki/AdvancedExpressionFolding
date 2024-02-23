@@ -96,7 +96,7 @@ public abstract class Operation extends Expression {
                 Collections.addAll(descriptors, operand.buildFoldRegions(operand.getElement(), document, this));
             }
         }
-        return descriptors.toArray(FoldingDescriptor.EMPTY);
+        return descriptors.toArray(EMPTY_ARRAY);
     }
 
     protected int changeOperandsEndOffset(int startOffset) {

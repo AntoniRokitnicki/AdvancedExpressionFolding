@@ -70,6 +70,6 @@ public class ForEachIndexedStatement extends Expression {
                         " : " : ") : "));
         descriptors.add(new FoldingDescriptor(element.getNode(), TextRange.create(arrayTextRange.getEndOffset(),
                 declarationTextRange.getEndOffset()), group, ") {\n"));
-        return descriptors.toArray(FoldingDescriptor.EMPTY);
+        return descriptors.toArray(EMPTY_ARRAY);
     }
 }

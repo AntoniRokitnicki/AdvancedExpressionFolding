@@ -48,7 +48,7 @@ public class CompactControlFlowExpression extends Expression {
                         .newGroup(CompactControlFlowExpression.class.getName()
                                 + Expression.HIGHLIGHTED_GROUP_POSTFIX),
                 descriptors, textRange);
-        return descriptors.toArray(FoldingDescriptor.EMPTY);
+        return descriptors.toArray(EMPTY_ARRAY);
     }
 
     @Override

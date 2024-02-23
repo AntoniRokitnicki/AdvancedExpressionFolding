@@ -119,7 +119,7 @@ public abstract class AbstractControlFlowCodeBlock extends Expression {
             }
         }
 
-        return descriptors.toArray(FoldingDescriptor.EMPTY);
+        return descriptors.toArray(EMPTY_ARRAY);
 
     }
 }

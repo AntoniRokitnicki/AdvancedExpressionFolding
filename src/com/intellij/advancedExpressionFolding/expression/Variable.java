@@ -68,7 +68,7 @@ public class Variable extends Expression implements ArithmeticExpression, INamea
                         TextRange.create(variableTextRange.getEndOffset(), textRange.getEndOffset()), group, ""));
             }
         }
-        return descriptors.toArray(FoldingDescriptor.EMPTY);
+        return descriptors.toArray(EMPTY_ARRAY);
     }
 
     @Override

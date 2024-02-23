@@ -8,7 +8,9 @@ import com.intellij.psi.PsiElement;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * TODO: sb.append(interpolatedString).append(x) - merge x into interpolatedString
@@ -101,7 +103,7 @@ public class Append extends Operation {
                         range, group, ""));
             }
         }
-        return descriptors.toArray(FoldingDescriptor.EMPTY);
+        return descriptors.toArray(EMPTY_ARRAY);
     }
 
     @Override

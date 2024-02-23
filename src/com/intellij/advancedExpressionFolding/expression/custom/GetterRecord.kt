@@ -24,7 +24,7 @@ class GetterRecord(element: PsiElement, textRange: TextRange, private var getter
         if (`object` != null && `object`.supportsFoldRegions(document, this)) {
             Collections.addAll(descriptors, *`object`.buildFoldRegions(`object`.element, document, this))
         }
-        return descriptors.toArray(FoldingDescriptor.EMPTY)
+        return descriptors.toArray(EMPTY_ARRAY)
     }
 
     override fun getName(): String {

@@ -28,6 +28,6 @@ public class Exp extends Function implements ArithmeticExpression {
         FoldingGroup group = FoldingGroup.newGroup(Exp.class.getName());
         descriptors.add(new FoldingDescriptor(element.getNode(),
                 TextRange.create(textRange), group, "\uD835\uDC52" + superscript(operands.get(0).getElement().getText())));
-        return descriptors.toArray(FoldingDescriptor.EMPTY);
+        return descriptors.toArray(EMPTY_ARRAY);
     }
 }

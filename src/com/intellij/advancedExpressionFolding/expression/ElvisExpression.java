@@ -45,7 +45,7 @@ public class ElvisExpression extends Expression {
         if (elseExpression.supportsFoldRegions(document, this)) {
             Collections.addAll(descriptors, elseExpression.buildFoldRegions(elseExpression.getElement(), document, this));
         }
-        return descriptors.toArray(FoldingDescriptor.EMPTY);
+        return descriptors.toArray(EMPTY_ARRAY);
     }
 
     @Override

@@ -12,6 +12,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public abstract class Expression {
+    public static final FoldingDescriptor[] EMPTY_ARRAY = new FoldingDescriptor[0];
+
     private final static double EPSILON = 0.00001;
 
     public static String HIGHLIGHTED_GROUP_POSTFIX = ":highlighting";
@@ -173,7 +175,7 @@ public abstract class Expression {
     }
 
     public FoldingDescriptor[] buildFoldRegions(@NotNull PsiElement element, @NotNull Document document, @Nullable Expression parent) {
-        return FoldingDescriptor.EMPTY;
+        return EMPTY_ARRAY;
     }
 
     public FoldingDescriptor[] buildFoldRegions(@NotNull PsiElement element, @NotNull Document document, @Nullable Expression parent,

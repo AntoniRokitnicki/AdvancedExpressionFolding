@@ -37,7 +37,7 @@ public class ShortElvisExpression extends Expression {
         if (thenExpression.supportsFoldRegions(document, this)) {
             Collections.addAll(descriptors, thenExpression.buildFoldRegions(thenExpression.getElement(), document, this));
         }
-        return descriptors.toArray(FoldingDescriptor.EMPTY);
+        return descriptors.toArray(EMPTY_ARRAY);
     }
 
     protected static Set<String> supportedPostfixes = new HashSet<String>() {

@@ -34,6 +34,6 @@ public class Cbrt extends Function implements ArithmeticExpression {
         if (operands.get(0).supportsFoldRegions(document, this)) {
             Collections.addAll(descriptors, operands.get(0).buildFoldRegions(operands.get(0).getElement(), document, this));
         }
-        return descriptors.toArray(FoldingDescriptor.EMPTY);
+        return descriptors.toArray(EMPTY_ARRAY);
     }
 }

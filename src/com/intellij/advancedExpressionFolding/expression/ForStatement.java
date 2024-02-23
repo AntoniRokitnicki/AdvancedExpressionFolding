@@ -42,6 +42,6 @@ public class ForStatement extends Range {
                         textRange);
             }
         }
-        return descriptors.toArray(FoldingDescriptor.EMPTY);
+        return descriptors.toArray(EMPTY_ARRAY);
     }
 }
