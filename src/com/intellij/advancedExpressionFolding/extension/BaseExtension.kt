@@ -11,14 +11,16 @@ abstract class BaseExtension : AdvancedExpressionFoldingSettings.StateDelegate()
 
     companion object {
 
+        // workaround for @ScheduledForRemoval on PsiType since 231.*
         @JvmStatic
-        @SuppressWarnings("deprecation") // since 231.*
-        fun PsiType?.isNull() : Boolean = this is PsiPrimitiveType && this == PsiType.NULL
+        fun PsiType?.isNull() : Boolean = (this as PsiPrimitiveType).name == "null"
 
+        // workaround for @ScheduledForRemoval on PsiType since 231.*
         @JvmStatic
         fun PsiType?.isInt() : Boolean = (this as? PsiPrimitiveType)?.kind == JvmPrimitiveTypeKind.INT
     }
 
+    // workaround for @ScheduledForRemoval on PsiType since 231.*
     fun PsiType?.isVoid() : Boolean = (this as? PsiPrimitiveType)?.kind == JvmPrimitiveTypeKind.VOID
 
 
