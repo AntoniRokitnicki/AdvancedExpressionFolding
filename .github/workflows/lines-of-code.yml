@@ -9,8 +9,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Launch the local action
-        uses: build.yml
+      - name: Make Code Badge
+        uses: DeathSy/GHA-LoC-Badge@1.0.3
         id: badge
         with:
           debug: true
