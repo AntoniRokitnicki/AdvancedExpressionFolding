@@ -12,6 +12,7 @@
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/w/AntoniRokitnicki/AdvancedExpressionFolding)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/t/AntoniRokitnicki/AdvancedExpressionFolding)
 ![GitHub commits since latest release](https://img.shields.io/github/commits-since/AntoniRokitnicki/AdvancedExpressionFolding/latest)
+![Lines of Code Badge](https://raw.githubusercontent.com/AntoniRokitnicki/AdvancedExpressionFolding/lines-of-code-badge/badge.svg)
 
 
 
