@@ -2,7 +2,7 @@ package data;
 
 import java.time.LocalDate;
 
-class LocalDateTestData {
+public class LocalDateTestData {
     public static void main(String[] args) <fold text='{...}' expand='true'>{
         LocalDate d1 = LocalDate.of(2018, 12, 10);
         LocalDate d2 = LocalDate.of(2018, 12, 10);

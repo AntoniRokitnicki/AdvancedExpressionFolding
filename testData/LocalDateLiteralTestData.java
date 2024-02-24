@@ -2,7 +2,7 @@ package data;
 
 import java.time.LocalDate;
 
-class LocalDateLiteralTestData {
+public class LocalDateLiteralTestData {
     public static void main(String[] args) <fold text='{...}' expand='true'>{
         LocalDate d1 = <fold text='' expand='false'>LocalDate.of(</fold>2018<fold text='-' expand='false'>, </fold>01<fold text='-' expand='false'>, </fold>10<fold text='' expand='false'>)</fold>;
         LocalDate d4 = <fold text='' expand='false'>LocalDate.of(</fold>2018<fold text='-' expand='false'>, </fold>01<fold text='-' expand='false'>, </fold>10<fold text='' expand='false'>)</fold>;

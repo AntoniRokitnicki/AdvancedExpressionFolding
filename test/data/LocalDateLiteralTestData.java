@@ -2,7 +2,7 @@ package data;
 
 import java.time.LocalDate;
 
-class LocalDateLiteralTestData {
+public class LocalDateLiteralTestData {
     public static void main(String[] args) {
         LocalDate d1 = LocalDate.of(2018, 01, 10);
         LocalDate d4 = LocalDate.of(2018, 01, 10);
