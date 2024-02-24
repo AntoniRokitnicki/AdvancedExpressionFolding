@@ -24,6 +24,11 @@ jobs:
         run: |
           echo "Files Scanned: ${{ steps.generate_badge.outputs.counted_files }}";
           echo "Total Lines of Code: ${{ steps.generate_badge.outputs.total_lines }}";
+          echo "Ignored Files: ${{ steps.generate_badge.outputs.ignored_files }}";
+          echo "Elapsed Time: ${{ steps.generate_badge.outputs.elapsed_ms }} milliseconds";
+          echo "Output Path: ${{ steps.generate_badge.outputs.output_path }}";
+          echo "Output Directory: ${{ steps.generate_badge.outputs.output_dir }}";
+
 
       - name: Deploy to lines-of-code-badge branch
         uses: peaceiris/actions-gh-pages@v3
