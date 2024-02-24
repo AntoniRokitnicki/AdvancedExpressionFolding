@@ -1,0 +1,35 @@
+name: Lines of Code Badge Generator
+on:
+  push:
+    branches:
+      - master
+jobs:
+  generate_badge_job:
+    runs-on: ubuntu-latest
+    name: Generate Badge
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Generate Code Badge
+        uses: DeathSy/GHA-LoC-Badge@1.0.3
+        id: generate_badge
+        with:
+          debug: true
+          directory: ./
+          badge: ./output/badge.svg
+          ignore: 'node_modules/|README'
+
+      - name: Print Output
+        run: |
+          echo "Files Scanned: ${{ steps.generate_badge.outputs.counted_files }}";
+          echo "Total Lines of Code: ${{ steps.generate_badge.outputs.total_lines }}";
+
+      - name: Deploy to lines-of-code-badge branch
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          publish_dir: ./output
+          publish_branch: lines-of-code-badge
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
