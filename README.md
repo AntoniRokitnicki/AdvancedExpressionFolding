@@ -9,10 +9,15 @@
 <!-- https://plugins.jetbrains.com/api/plugins/23659/updates?channel=&size=8 -->
 
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/AntoniRokitnicki/AdvancedExpressionFolding)
+![GitHub repo size](https://img.shields.io/github/repo-size/AntoniRokitnicki/AdvancedExpressionFolding)
+![Lines of Code Badge](https://raw.githubusercontent.com/AntoniRokitnicki/AdvancedExpressionFolding/lines-of-code-badge/badge.svg)
+![Dynamic JSON Badge](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2FAntoniRokitnicki%2FAdvancedExpressionFolding%2Flanguages&query=%24.Java&label=Java%20(bytes))
+![Dynamic JSON Badge](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2FAntoniRokitnicki%2FAdvancedExpressionFolding%2Flanguages&query=%24.Kotlin&label=Kotlin%20(bytes))
+
+
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/w/AntoniRokitnicki/AdvancedExpressionFolding)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/t/AntoniRokitnicki/AdvancedExpressionFolding)
 ![GitHub commits since latest release](https://img.shields.io/github/commits-since/AntoniRokitnicki/AdvancedExpressionFolding/latest)
-![Lines of Code Badge](https://raw.githubusercontent.com/AntoniRokitnicki/AdvancedExpressionFolding/lines-of-code-badge/badge.svg)
 
 
 
