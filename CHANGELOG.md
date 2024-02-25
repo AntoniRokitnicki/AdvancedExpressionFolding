@@ -6,19 +6,20 @@
 
 ## [1.0.21] - 2024-02-25
 
-log folding
+- log folding
+- improve null‐safe ifs to support negation
 
 ## [1.0.20] - 2024-02-22
 
-Extended null‐safe ifs
+- Extended null‐safe ifs
 
 ## [1.0.19] - 2024-02-12
 
-let return and elvis return support the returned variable
+- let return and elvis return support the returned variable
 
 ## [1.0.18] - 2024-02-11
 
-Kotlin quick return - ?.let { return it } and ?: return null
+- Kotlin quick return - ?.let { return it } and ?: return null
 
 ## [1.0.17] - 2024-02-07
 
