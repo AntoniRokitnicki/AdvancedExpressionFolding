@@ -42,6 +42,7 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
         val fieldShift: Boolean
         val kotlinQuickReturn: Boolean
         val ifNullSafe: Boolean
+        val logFolding: Boolean
 
     }
 
@@ -70,6 +71,7 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
         override var fieldShift: Boolean = true,
         override var kotlinQuickReturn: Boolean = true,
         override var ifNullSafe: Boolean = true,
+        override var logFolding: Boolean = true,
 
     ) : IState
 

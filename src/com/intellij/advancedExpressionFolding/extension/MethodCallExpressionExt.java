@@ -613,6 +613,12 @@ public class MethodCallExpressionExt {
                     return builder;
                 }
             }
+            PsiElement identi = identifier.get();
+            String text = identi.getText();
+            Expression logger = LoggerExt.createExpression(element, text, document);
+            if (logger != null) {
+                return logger;
+            }
         }
         return null;
     }

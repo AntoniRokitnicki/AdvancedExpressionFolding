@@ -46,6 +46,7 @@
   <li><a href="https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/25">Actions for folding and unfolding with key-shortcuts</a></li>
   <li><a href="https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/62">Kotlin quick return - ?.let { return it } and ?: return null</a></li>
   <li><a href="https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/Extended-null%E2%80%90safe-ifs">Extended null-safe ifs</a></li>
+  <li><a href="https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/Log-folding">Log folding</a></li>
 </ul>
 <br />
 <p>For more clarity, you may try to adjust your color scheme: go to <strong>Settings</strong> | <strong>Editor</strong> |

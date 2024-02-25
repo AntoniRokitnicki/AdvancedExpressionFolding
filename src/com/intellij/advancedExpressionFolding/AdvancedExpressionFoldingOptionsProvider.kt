@@ -37,6 +37,7 @@ class AdvancedExpressionFoldingOptionsProvider protected constructor() :
         checkBox("Display mapping of field with same name as << (4 builders & setters)", myState::fieldShift)
         checkBox("Kotlin quick return", myState::kotlinQuickReturn)
         checkBox("Extended null-safe ifs (experimental)", myState::ifNullSafe)
+        checkBox("Log folding (experimental)", myState::logFolding)
     }
 
 }
