@@ -6,10 +6,20 @@ updates:
   # Maintain dependencies for Gradle dependencies
   - package-ecosystem: "gradle"
     directory: "/"
+    assignees: [ 'AntoniRokitnicki' ]
+    reviewers: [ 'AntoniRokitnicki' ]
     schedule:
-      interval: "daily"
+      interval: 'weekly'
+      timezone: 'Europe/Warsaw'
+      day: 'saturday'
+      time: '02:00'
   # Maintain dependencies for GitHub Actions
   - package-ecosystem: "github-actions"
     directory: "/"
+    assignees: [ 'AntoniRokitnicki' ]
+    reviewers: [ 'AntoniRokitnicki' ]
     schedule:
-      interval: "daily"
+      interval: 'weekly'
+      timezone: 'Europe/Warsaw'
+      day: 'saturday'
+      time: '02:00'
