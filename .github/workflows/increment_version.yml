@@ -8,7 +8,7 @@ on:
         required: true
 
 jobs:
-  release:
+  prepare-pr:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
