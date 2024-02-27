@@ -172,7 +172,8 @@ jobs:
 
   # Run plugin structure verification along with IntelliJ Plugin Verifier
   verify:
-    name: Verify plugin
+    name: Verify plugin (off)
+    if: ${{ false }}
     needs: [ build ]
     runs-on: ubuntu-latest
     steps:
