@@ -21,6 +21,16 @@ public class LogBraces {
         LOGGER.trace("Trace message with three parameters - Name: <fold text='$' expand='false'>{}, log:{}    $", </fold>data.<fold text='name' expand='false'>getName()</fold><fold text=', log:$' expand='false'>, </fold>log(data)<fold text='    $")' expand='false'>)</fold>;
         LOGGER.warn("Warning message with three parameters - Name: <fold text='$' expand='false'>{}, Age: {}, City: {}", </fold>name<fold text=', Age: $' expand='false'>, </fold>data.<fold text='data' expand='false'>getData()</fold>.<fold text='name' expand='false'>getName()</fold><fold text=', City: $' expand='false'>, </fold>city<fold text='")' expand='false'>)</fold>;
 
+
+        LOGGER.warn("Warning message with three parameters - Name: <fold text='$' expand='false'>{}, Age: {}, City: {}",
+                </fold>name<fold text=', Age: $' expand='false'>,
+
+                </fold>data.<fold text='data' expand='false'>getData()</fold>
+                        .<fold text='name' expand='false'>getName()</fold><fold text=', City: $' expand='false'>,
+
+                </fold>city<fold text='"' expand='false'>
+        </fold>);
+
         LOGGER.error("Missing last parameter - Name: <fold text='$' expand='false'>{}, Age: {}, City: {}, Salary: {}", </fold>name<fold text=', Age: $' expand='false'>, </fold>age<fold text=', City: $' expand='false'>, </fold>city<fold text=', Salary: {}")' expand='false'>)</fold>;
         LOGGER.error("Missing last parameter - Name: <fold text='$' expand='false'>{}, Age: {}, City: {}, Salary: {}", </fold>name<fold text=', Age: $' expand='false'>, </fold>age<fold text=', City: {}, Salary: {}")' expand='false'>)</fold>;
         LOGGER.error("Missing last parameter - Name: <fold text='$' expand='false'>{}, Age: {}, City: {}, Salary: {}", </fold>name<fold text=', Age: {}, City: {}, Salary: {}")' expand='false'>)</fold>;

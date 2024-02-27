@@ -21,6 +21,16 @@ public class LogBraces {
         LOGGER.trace("Trace message with three parameters - Name: {}, log:{}    $", data.getName(), log(data));
         LOGGER.warn("Warning message with three parameters - Name: {}, Age: {}, City: {}", name, data.getData().getName(), city);
 
+
+        LOGGER.warn("Warning message with three parameters - Name: {}, Age: {}, City: {}",
+                name,
+
+                data.getData()
+                        .getName(),
+
+                city
+        );
+
         LOGGER.error("Missing last parameter - Name: {}, Age: {}, City: {}, Salary: {}", name, age, city);
         LOGGER.error("Missing last parameter - Name: {}, Age: {}, City: {}, Salary: {}", name, age);
         LOGGER.error("Missing last parameter - Name: {}, Age: {}, City: {}, Salary: {}", name);

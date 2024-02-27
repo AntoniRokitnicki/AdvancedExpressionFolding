@@ -2,15 +2,15 @@ package com.intellij.advancedExpressionFolding.extension
 
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpressions
 import com.intellij.advancedExpressionFolding.expression.custom.Logger
+import com.intellij.advancedExpressionFolding.expression.custom.WrapperExpression
 import com.intellij.openapi.editor.Document
 import com.intellij.psi.PsiLiteralExpression
 import com.intellij.psi.PsiMethodCallExpression
 import com.intellij.refactoring.suggested.endOffset
 import com.intellij.refactoring.suggested.startOffset
 
-object LoggerExt : BaseExtension() {
+object LoggerBracesExt : BaseExtension() {
 
     private val LOG_METHODS = listOf("debug", "trace", "info", "warn", "error")
 
@@ -53,13 +53,13 @@ object LoggerExt : BaseExtension() {
                         nextString
                     }
                     val bracket = arguments.last().nextSibling
-                    Logger(element, bracket.textRange,  restAsString + bracket.text, null)
+                    Logger(element, bracket.textRange,  restAsString + bracket.text.trim(), null)
                 } else {
                     null
                 }
             } else if (index == 0) {
                 val countChars = literal.startOffset + nextString.length
-                val toTextRange = (countChars..literal.endOffset + 2).toTextRange() //TODO: 2 cant be right always
+                val toTextRange = (countChars..argument.prevSibling.endOffset).toTextRange()
                 val expression = BuildExpressionExt.getAnyExpression(argument, document)
                 Logger(element, toTextRange, "\$", expression)
             } else {
@@ -70,7 +70,7 @@ object LoggerExt : BaseExtension() {
         }.toList().takeIf {
             it.isNotEmpty()
         }?.let {
-            return IfNullSafeExpressions(element, element.textRange, it)
+            return WrapperExpression(element, element.textRange, it)
         }
         return null
     }

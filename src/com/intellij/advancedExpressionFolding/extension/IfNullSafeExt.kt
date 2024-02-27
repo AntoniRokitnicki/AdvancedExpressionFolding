@@ -4,7 +4,7 @@ import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.IGetter
 import com.intellij.advancedExpressionFolding.expression.INameable
 import com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression
-import com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpressions
+import com.intellij.advancedExpressionFolding.expression.custom.WrapperExpression
 import com.intellij.openapi.editor.Document
 import com.intellij.psi.*
 import com.intellij.psi.util.elementType
@@ -30,7 +30,7 @@ object IfNullSafeExt : BaseExtension() {
             BuildExpressionExt.getAnyExpression(it, document)
         }
 
-        return IfNullSafeExpressions(element, element.textRange, lists.filter {
+        return WrapperExpression(element, element.textRange, lists.filter {
             it.size > 1
         }.flatMap {
             buildChain(it, document, element)

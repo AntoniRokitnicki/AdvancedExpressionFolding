@@ -615,7 +615,7 @@ public class MethodCallExpressionExt {
             }
             PsiElement identi = identifier.get();
             String text = identi.getText();
-            Expression logger = LoggerExt.createExpression(element, text, document);
+            Expression logger = LoggerBracesExt.createExpression(element, text, document);
             if (logger != null) {
                 return logger;
             }
