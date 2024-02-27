@@ -4,6 +4,10 @@
 
 ## [Unreleased]
 
+## [1.0.22] - 2024-02-27
+
+Improved handling of multi-line log messages
+
 ## [1.0.21] - 2024-02-25
 
 - log folding
@@ -110,7 +114,8 @@
 
 ## [0.0.1]
 
-[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.21...HEAD
+[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.22...HEAD
+[1.0.22]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.21...v1.0.22
 [1.0.21]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.20...v1.0.21
 [1.0.20]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.19...v1.0.20
 [1.0.19]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.18...v1.0.19
