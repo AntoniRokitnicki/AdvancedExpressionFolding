@@ -7,7 +7,7 @@ import com.intellij.openapi.editor.FoldingGroup
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiElement
 
-class Logger(
+class LoggerBraces(
     element: PsiElement, textRange: TextRange, private val text: String, private val child: Expression?
 ) : Expression(element, textRange) {
 
@@ -28,7 +28,7 @@ class Logger(
         val folding = FoldingDescriptor(
             element.node,
             textRange,
-            FoldingGroup.newGroup(Logger::class.java.name),
+            FoldingGroup.newGroup(LoggerBraces::class.java.name),
             text
         )
         return if (child != null && child.supportsFoldRegions(document, this)) {
