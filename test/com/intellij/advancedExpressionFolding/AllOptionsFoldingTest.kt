@@ -8,7 +8,7 @@ class AllOptionsFoldingTest : FoldingTest() {
 
     override fun getTestFileName(testName: String): String {
         val baseFile = super.getTestFileName(testName)
-        val allName = baseFile.replace(".java", "-all.java")
+        val allName = getAllTestFileName(baseFile)
         val file = File(allName)
         if (!file.exists()) {
             Files.copy(File(baseFile).toPath(), file.toPath())

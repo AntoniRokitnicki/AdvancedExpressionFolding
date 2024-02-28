@@ -49,6 +49,9 @@ public abstract class BaseTest extends LightJavaCodeInsightFixtureTestCase {
             try {
                 String actual = e.getActual();
                 Files.writeString(new File(fileName).toPath(), actual);
+                if (!fileName.contains("-all")) {
+                    Files.writeString(new File(getAllTestFileName(fileName)).toPath(), actual);
+                }
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
@@ -72,6 +75,11 @@ public abstract class BaseTest extends LightJavaCodeInsightFixtureTestCase {
     protected @NotNull String getTestFileName(String testName) {
         return getTestDataPath() + "/" + testName + ".java";
     }
+
+    protected static @NotNull String getAllTestFileName(String testName) {
+        return testName.replace(".java", "-all.java");
+    }
+
 
     // TODO: Refactor this mess
     private void testReadOnlyFoldingRegions(@NotNull String verificationFileName,
