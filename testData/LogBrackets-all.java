@@ -1,17 +1,22 @@
 package data;
 
 import <fold text='...' expand='false'>org.slf4j.Logger;
-import org.slf4j.LoggerFactory;</fold>
+import org.slf4j.LoggerFactory;
+import org.slf4j.Marker;
+import org.slf4j.MarkerFactory;</fold>
 
 @SuppressWarnings("ALL")
 public class LogBrackets {
 
     private static final Logger log = LoggerFactory.getLogger(LogBrackets.class);
+    private static final Marker MY_MARKER = MarkerFactory.getMarker("MY_MARKER");
+
 
     public Data log(Data data) <fold text='{...}' expand='true'>{
         <fold text='val' expand='false'>String</fold> name = "John";
         <fold text='val' expand='false'>int</fold> age = 30;
         <fold text='val' expand='false'>String</fold> city = "New York";
+        log.info(MY_MARKER, "Info message with two parameters - Name: <fold text='$' expand='false'>{}, Age: {}", </fold>name<fold text=', Age: $' expand='false'>, </fold>age<fold text='")' expand='false'>)</fold>;
 
         log.info("Info message with two parameters - Name: <fold text='$' expand='false'>{}, Age: {}    ", </fold>name<fold text=', Age: $' expand='false'>, </fold>age<fold text='    ")' expand='false'>)</fold>;
         log.info("Info message with two parameters - Name: <fold text='$' expand='false'>{}, Age: {}", </fold>name<fold text=', Age: $' expand='false'>, </fold>age<fold text='")' expand='false'>)</fold>;
@@ -50,4 +55,5 @@ public class LogBrackets {
             </fold>return data;<fold text=' }' expand='false'>
         }</fold>
     }</fold>
+
 }

@@ -7,6 +7,8 @@ import com.intellij.advancedExpressionFolding.expression.custom.WrapperExpressio
 import com.intellij.openapi.editor.Document
 import com.intellij.psi.PsiLiteralExpression
 import com.intellij.psi.PsiMethodCallExpression
+import com.intellij.psi.PsiReferenceExpression
+import com.intellij.psi.impl.source.PsiClassReferenceType
 import com.intellij.refactoring.suggested.endOffset
 import com.intellij.refactoring.suggested.startOffset
 
@@ -20,6 +22,7 @@ object LoggerBracketsExt : BaseExtension() {
         methodName: String,
         document: Document
     ): Expression? {
+        var hasMarker = false
         val logLiteral = logFolding.takeIf {
             it
         }?.takeIf {
@@ -28,15 +31,23 @@ object LoggerBracketsExt : BaseExtension() {
             element.argumentList.expressions
         }?.takeIf {
             it.size > 1
-        }?.takeIf {
-            (it[0] as? PsiLiteralExpression)?.value is String
-        }?.let {
-            it[0].text
+        }?.let { array ->
+            var index = 0
+            if (array[0].asInstance<PsiReferenceExpression>()?.type.asInstance<PsiClassReferenceType>()?.reference?.qualifiedName == "Marker") {
+                index = 1
+                hasMarker = true
+            }
+            array[index].asInstance<PsiLiteralExpression>()?.takeIf {
+                it.value is String
+            }?.text
         }?.takeIf {
             it.contains("{}")
         } ?: return null
 
         val arguments = element.argumentList.expressions.toMutableList()
+        if (hasMarker) {
+            arguments.removeFirst()
+        }
         val literal = arguments.removeFirst()
 
         val split = logLiteral.split("{}")
