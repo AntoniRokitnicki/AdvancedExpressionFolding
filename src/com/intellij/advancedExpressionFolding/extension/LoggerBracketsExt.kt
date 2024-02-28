@@ -2,7 +2,7 @@ package com.intellij.advancedExpressionFolding.extension
 
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.expression.custom.LoggerBraces
+import com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets
 import com.intellij.advancedExpressionFolding.expression.custom.WrapperExpression
 import com.intellij.openapi.editor.Document
 import com.intellij.psi.PsiLiteralExpression
@@ -10,7 +10,7 @@ import com.intellij.psi.PsiMethodCallExpression
 import com.intellij.refactoring.suggested.endOffset
 import com.intellij.refactoring.suggested.startOffset
 
-object LoggerBracesExt : BaseExtension() {
+object LoggerBracketsExt : BaseExtension() {
 
     private val LOG_METHODS = listOf("debug", "trace", "info", "warn", "error")
 
@@ -53,7 +53,7 @@ object LoggerBracesExt : BaseExtension() {
                         nextString
                     }
                     val bracket = arguments.last().nextSibling
-                    LoggerBraces(element, bracket.textRange,  restAsString + bracket.text.trim(), null)
+                    LoggerBrackets(element, bracket.textRange,  restAsString + bracket.text.trim(), null)
                 } else {
                     null
                 }
@@ -61,11 +61,11 @@ object LoggerBracesExt : BaseExtension() {
                 val countChars = literal.startOffset + nextString.length
                 val toTextRange = (countChars..argument.prevSibling.endOffset).toTextRange()
                 val expression = BuildExpressionExt.getAnyExpression(argument, document)
-                LoggerBraces(element, toTextRange, "\$", expression)
+                LoggerBrackets(element, toTextRange, "\$", expression)
             } else {
                 val textRange = (argument.prevSibling.prevSibling.startOffset..argument.prevSibling.endOffset).toTextRange()
                 val expression = BuildExpressionExt.getAnyExpression(argument, document)
-                LoggerBraces(element, textRange, nextString + "\$", expression)
+                LoggerBrackets(element, textRange, nextString + "\$", expression)
             }
         }.toList().takeIf {
             it.isNotEmpty()

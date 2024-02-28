@@ -4,14 +4,14 @@ import <fold text='...' expand='false'>org.slf4j.Logger;
 import org.slf4j.LoggerFactory;</fold>
 
 @SuppressWarnings("ALL")
-public class LogBraces {
+public class LogBrackets {
 
-    private static final Logger log = LoggerFactory.getLogger(LogBraces.class);
+    private static final Logger log = LoggerFactory.getLogger(LogBrackets.class);
 
     public Data log(Data data) <fold text='{...}' expand='true'>{
-        String name = "John";
-        int age = 30;
-        String city = "New York";
+        <fold text='val' expand='false'>String</fold> name = "John";
+        <fold text='val' expand='false'>int</fold> age = 30;
+        <fold text='val' expand='false'>String</fold> city = "New York";
 
         log.info("Info message with two parameters - Name: <fold text='$' expand='false'>{}, Age: {}    ", </fold>name<fold text=', Age: $' expand='false'>, </fold>age<fold text='    ")' expand='false'>)</fold>;
         log.info("Info message with two parameters - Name: <fold text='$' expand='false'>{}, Age: {}", </fold>name<fold text=', Age: $' expand='false'>, </fold>age<fold text='")' expand='false'>)</fold>;

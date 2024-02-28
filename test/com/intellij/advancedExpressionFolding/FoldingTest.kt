@@ -212,9 +212,9 @@ open class FoldingTest : BaseTest() {
     }
 
     /**
-     * [data.LogBraces]
+     * [data.LogBrackets]
      */
-    fun testLogBraces() {
+    fun testLogBrackets() {
         doFoldingTest(state::getSetExpressionsCollapse, state::logFolding)
     }
 

@@ -4,9 +4,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @SuppressWarnings("ALL")
-public class LogBraces {
+public class LogBrackets {
 
-    private static final Logger log = LoggerFactory.getLogger(LogBraces.class);
+    private static final Logger log = LoggerFactory.getLogger(LogBrackets.class);
 
     public Data log(Data data) {
         String name = "John";
