@@ -33,7 +33,7 @@ object LoggerBracketsExt : BaseExtension() {
             it.size > 1
         }?.let { array ->
             var index = 0
-            if (array[0].asInstance<PsiReferenceExpression>()?.type.asInstance<PsiClassReferenceType>()?.reference?.qualifiedName == "Marker") {
+            if (array[0].asInstance<PsiReferenceExpression>()?.type.asInstance<PsiClassReferenceType>()?.reference?.qualifiedName?.contains("Marker") == true) {
                 index = 1
                 hasMarker = true
             }

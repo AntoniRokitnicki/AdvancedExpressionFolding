@@ -26,6 +26,10 @@ public class LogBrackets {
         log.trace("Trace message with three parameters - Name: {}, log:{}    $", data.getName(), log(data));
         log.warn("Warning message with three parameters - Name: {}, Age: {}, City: {}", name, data.getData().getName(), city);
 
+        log.error("Missing last parameter - Name: {}, Age: {}, City: {}, Salary: {}", name, age, city);
+        log.error("Missing last parameter - Name: {}, Age: {}, City: {}, Salary: {}", name, age);
+        log.error("Missing last parameter - Name: {}, Age: {}, City: {}, Salary: {}", name);
+        log.error("Missing last parameter - Name: {}, Age: {}, City: {}, Salary: {}");
 
         log.warn("Warning message with three parameters - Name: {}, Age: {}, City: {}",
                 name,
@@ -34,11 +38,6 @@ public class LogBrackets {
 
                 city
         );
-
-        log.error("Missing last parameter - Name: {}, Age: {}, City: {}, Salary: {}", name, age, city);
-        log.error("Missing last parameter - Name: {}, Age: {}, City: {}, Salary: {}", name, age);
-        log.error("Missing last parameter - Name: {}, Age: {}, City: {}, Salary: {}", name);
-        log.error("Missing last parameter - Name: {}, Age: {}, City: {}, Salary: {}");
 
         return data;
     }
