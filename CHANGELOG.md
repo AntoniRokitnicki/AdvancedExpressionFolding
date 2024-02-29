@@ -4,6 +4,10 @@
 
 ## [Unreleased]
 
+## [1.0.24] - 2024-02-29
+
+Resolved folding inconsistency in Collectors.joining
+
 ## [1.0.23] - 2024-02-28
 
 Enable Marker support in log folding
@@ -118,7 +122,8 @@ Improved handling of multi-line log messages
 
 ## [0.0.1]
 
-[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.23...HEAD
+[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.24...HEAD
+[1.0.24]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.23...v1.0.24
 [1.0.23]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.22...v1.0.23
 [1.0.22]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.21...v1.0.22
 [1.0.21]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.20...v1.0.21
