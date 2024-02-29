@@ -6,10 +6,16 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+@SuppressWarnings("ALL")
 public class SpreadTestData {
-    public static void main(Stream<Data> stream, Data data) {
+    public static void main(Stream<Data> stream, Data data, List<Data> list) {
+        String empNames = list.stream()
+                .map(Data::getString)
+                .collect(Collectors.joining(", "));
+
         var p1 = data.getDataList().stream().map(Data::getData).toList();
         var p2 = data.getDataList()
                 .stream()

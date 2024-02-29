@@ -224,7 +224,6 @@ public class MethodCallExpressionExt {
                                     if (argumentExpression instanceof NumberLiteral && ((NumberLiteral) argumentExpression).getNumber().equals(0)) {
                                         /*return new Get(element, element.getTextRange(), qualifierExpression,
                                                 argumentExpression, Get.Style.FIRST)*/
-                                        ;
                                         return null;
                                     } else if (argument instanceof PsiBinaryExpression a2b) {
                                         NumberLiteral position = Helper.getSlicePosition(element, qualifierExpression, a2b, document);
@@ -283,12 +282,11 @@ public class MethodCallExpressionExt {
                                                             element.getTextRange().getEndOffset()), qualifierExpression,
                                                             TextRange.create(i.get().getTextRange().getStartOffset(),
                                                                     argument.getTextRange().getEndOffset()));
-                                                } else {
-                                                    break;
                                                 }
                                             }
                                         }
                                     }
+                                    break;
                                 case "stream":
                                     if (!className.equals("java.util.Optional") &&
                                             element.getParent() instanceof PsiReferenceExpression &&
@@ -296,10 +294,9 @@ public class MethodCallExpressionExt {
                                         if (settings.getState().getConcatenationExpressionsCollapse()) {
                                             return new ArrayStream(element, TextRange.create(
                                                     element.getTextRange().getStartOffset(), element.getTextRange().getEndOffset()), argumentExpression);
-                                        } else {
-                                            break;
                                         }
                                     }
+                                    break;
                                 // LocalDate handling
                                 case "isBefore":
                                     if (settings.getState().getComparingLocalDatesCollapse()) {
@@ -427,9 +424,8 @@ public class MethodCallExpressionExt {
                                                 }
                                             }
                                         return new Slice(element, element.getTextRange(), Arrays.asList(qualifierExpression, a1Expression, a2Expression));
-                                    } else {
-                                        break;
                                     }
+                                    break;
                             }
                         }
                         else if (element.getArgumentList().getExpressions().length == 3) {
