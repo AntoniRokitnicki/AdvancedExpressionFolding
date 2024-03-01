@@ -35,6 +35,7 @@ public class MethodCallExpressionExt {
                 .filter(c -> c instanceof PsiIdentifier).findAny();
         @Nullable PsiExpression qualifier = element.getMethodExpression().getQualifierExpression();
         if (identifierOpt.isPresent() && SUPPORTED_METHODS.contains(identifierOpt.get().getText())) {
+            PsiElement identifier = identifierOpt.get();
             PsiMethod method = (PsiMethod) referenceExpression.resolve();
             if (method != null) {
                 PsiClass psiClass = method.getContainingClass();
@@ -44,7 +45,7 @@ public class MethodCallExpressionExt {
                     if ((SUPPORTED_CLASSES.contains(className) || UNSUPPORTED_CLASSES_METHODS_EXCEPTIONS.contains(method.getName()))
                             && qualifier != null) {
                         @NotNull Expression qualifierExpression = BuildExpressionExt.getAnyExpression(qualifier, document);
-                        String methodName = identifierOpt.get().getText();
+                        String methodName = identifier.getText();
                         if (methodName.equals("asList") || methodName.equals("singletonList")) {
                             if (!methodName.equals("asList") ||
                                     element.getArgumentList().getExpressions().length != 1 ||
@@ -57,31 +58,31 @@ public class MethodCallExpressionExt {
                                 }
                             }
                         } else if (element.getArgumentList().getExpressions().length == 1) {
-                            var result = onSingleArgument(element, methodName, className, qualifierExpression, settings, method, document, identifierOpt.get());
+                            var result = onSingleArgument(element, methodName, className, qualifierExpression, settings, method, document, identifier);
                             if (result != null) {
                                 return result;
                             }
                         } else if (element.getArgumentList().getExpressions().length == 0) {
-                            var result = onNoArguments(element, methodName, className, qualifierExpression, settings, method, document, identifierOpt.get());
+                            var result = onNoArguments(element, methodName, className, qualifierExpression, settings, method, document, identifier);
                             if (result != null) {
                                 return result;
                             }
 
                         } else if (element.getArgumentList().getExpressions().length == 2) {
-                            var result = onTwoArguments(element, methodName, className, qualifierExpression, settings, method, document, identifierOpt.get());
+                            var result = onTwoArguments(element, methodName, className, qualifierExpression, settings, method, document, identifier);
                             if (result != null) {
                                 return result;
                             }
 
                         }
                         else if (element.getArgumentList().getExpressions().length == 3) {
-                            var result = onThreeArguments(element, methodName, className, qualifierExpression, settings, method, document, identifierOpt.get());
+                            var result = onThreeArguments(element, methodName, className, qualifierExpression, settings, method, document, identifier);
                             if (result != null) {
                                 return result;
                             }
                         }
                         if (element.getArgumentList().getExpressions().length == 1) {
-                            var result = onSingleArgumentAllClasses(element, methodName, className, qualifierExpression, settings, method, document, identifierOpt.get());
+                            var result = onSingleArgumentAllClasses(element, methodName, className, qualifierExpression, settings, method, document, identifier);
                             if (result != null) {
                                 return result;
                             }
@@ -197,21 +198,21 @@ public class MethodCallExpressionExt {
 
         }
         if (settings.getState().getGetSetExpressionsCollapse() && identifierOpt.isPresent()) {
-            PsiElement identi = identifierOpt.get();
+            PsiElement identifier = identifierOpt.get();
 
-            if (Helper.isGetter(identi, element)) {
+            if (Helper.isGetter(identifier, element)) {
                 if (BuilderShiftExt.isShifted(element)) {
                     return null;
                 }
                 Expression expression = qualifier != null
                         ? BuildExpressionExt.getAnyExpression(qualifier, document)
                         : null;
-                return new Getter(element, element.getTextRange(), TextRange.create(identi.getTextRange().getStartOffset(),
+                return new Getter(element, element.getTextRange(), TextRange.create(identifier.getTextRange().getStartOffset(),
                         element.getTextRange().getEndOffset()),
                         expression,
-                        guessPropertyName(identi.getText()));
+                        guessPropertyName(identifier.getText()));
             } else {
-                String text = identi.getText();
+                String text = identifier.getText();
                 if (Helper.isSetter(text)
                         && element.getArgumentList().getExpressions().length == 1
                         && element.getParent() instanceof PsiStatement
@@ -227,7 +228,7 @@ public class MethodCallExpressionExt {
                             }
                         }
                     }
-                    return new Setter(element, element.getTextRange(), TextRange.create(identi.getTextRange().getStartOffset(),
+                    return new Setter(element, element.getTextRange(), TextRange.create(identifier.getTextRange().getStartOffset(),
                             element.getTextRange().getEndOffset()),
                             qualifierExpression,
                             propertyName,
@@ -255,8 +256,8 @@ public class MethodCallExpressionExt {
                     return builder;
                 }
             }
-            PsiElement identi = identifierOpt.get();
-            String text = identi.getText();
+            PsiElement identifier = identifierOpt.get();
+            String text = identifier.getText();
             Expression logger = LoggerBracketsExt.createExpression(element, text, document);
             if (logger != null) {
                 return logger;
