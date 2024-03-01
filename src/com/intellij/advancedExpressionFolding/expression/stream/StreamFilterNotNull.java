@@ -12,7 +12,7 @@ import java.util.List;
 
 public class StreamFilterNotNull extends Operation {
     public StreamFilterNotNull(@NotNull PsiElement element, @NotNull TextRange textRange, @NotNull List<Expression> operands) {
-        super(element, textRange, "!!", 300, operands);
+        super(element, textRange, ".filterNotNull()", 300, operands);
     }
 
     @Override

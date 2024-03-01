@@ -12,12 +12,26 @@ import com.intellij.psi.PsiElement;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
 
     @NotNull
     @Override
     public FoldingDescriptor @NotNull [] buildFoldRegions(@NotNull PsiElement element, @NotNull Document document, boolean quick) {
+        //preview(element, document, quick)
         return BuildExpressionExt.collectFoldRegionsRecursively(element, document, quick);
+    }
+
+    public List<String> preview(@NotNull PsiElement element, @NotNull Document document, boolean quick) {
+        FoldingDescriptor[] foldingDescriptors = BuildExpressionExt.collectFoldRegionsRecursively(element, document, quick);
+        return Arrays.stream(foldingDescriptors).map(it -> it.getRange().substring(document.getText())
+                + " => "
+                + it.getPlaceholderText()
+                + "[" +
+                it.getGroup()
+                + "]").toList();
     }
 
     @Nullable

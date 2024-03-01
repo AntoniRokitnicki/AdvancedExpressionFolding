@@ -6,6 +6,7 @@ import javax.annotation.Nullable;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Function;
+import java.util.stream.Stream;
 
 @SuppressWarnings("ALL")
 public class OptionalTestData {
@@ -43,6 +44,11 @@ public class OptionalTestData {
         o = Optional.<Data>empty().map(Data::getData).stream().map(Data::getData).filter(Objects::nonNull).findAny().map(Data::getString).get();
 
         o = opt.map(Data::getData).orElse(null);
+
+        o = Optional.<Data>empty().map(Data::getData).stream().map(Data::getData) .filter(Objects::nonNull).findAny().map(Data::getString).get();
+
+        Stream.of(data).map(Data::getData).filter(Objects::nonNull);
+        Stream.of(data).map(Data::getData) .filter(Objects::nonNull).map(Data::getData).findFirst().orElseThrow();
     }
 
     private Data orElseGetReturn() {

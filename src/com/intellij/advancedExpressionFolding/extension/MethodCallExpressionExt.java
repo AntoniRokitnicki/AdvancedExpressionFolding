@@ -65,7 +65,9 @@ public class MethodCallExpressionExt {
                                         case "java.util.stream.Stream":
                                             if (settings.getState().getStreamSpread()) {
                                                 if (argumentExpression instanceof SyntheticExpressionImpl syn && syn.getText().equals("Objects::nonNull")) {
-                                                    return new StreamFilterNotNull(element, element.getTextRange(), Arrays.asList(qualifierExpression, argumentExpression));
+                                                    var start = qualifierExpression.getElement().getTextRange().getEndOffset();
+                                                    var end = element.getTextRange().getEndOffset();
+                                                    return new StreamFilterNotNull(element, new TextRange(start, end), Arrays.asList(qualifierExpression, argumentExpression));
                                                 }
                                             }
                                     }
