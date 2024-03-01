@@ -85,34 +85,14 @@ public class MethodCallExpressionExt {
                                 return result;
                             }
                         } else if (element.getArgumentList().getExpressions().length == 2) {
-                            PsiExpression a1 = element.getArgumentList().getExpressions()[0];
-                            @NotNull Expression a1Expression = BuildExpressionExt.getAnyExpression(a1, document);
-                            PsiExpression a2 = element.getArgumentList().getExpressions()[1];
-                            @NotNull Expression a2Expression = BuildExpressionExt.getAnyExpression(a2, document);
-                            switch (methodName) {
-                                case "min":
-                                    return new Min(element, element.getTextRange(), Arrays.asList(a1Expression, a2Expression));
-                                case "max":
-                                    return new Max(element, element.getTextRange(), Arrays.asList(a1Expression, a2Expression));
-                                case "pow":
-                                    return new Pow(element, element.getTextRange(), Arrays.asList(a1Expression, a2Expression));
-                                case "addAll":
-                                    if (settings.getState().getConcatenationExpressionsCollapse()) {
-                                        return new AddAssignForCollection(element, element.getTextRange(), Arrays.asList(a1Expression, a2Expression));
-                                    } else {
-                                        break;
-                                    }
-                                case "equals":
-                                    if (settings.getState().getComparingExpressionsCollapse()) {
-                                        return new Equal(element, element.getTextRange(), Arrays.asList(a1Expression, a2Expression));
-                                    } else {
-                                        break;
-                                    }
+                            var result = onTwoArgumentsAllClasses(element, methodName, className, qualifierExpression, settings, method, document, identifier);
+                            if (result != null) {
+                                return result;
                             }
                         } else if (element.getArgumentList().getExpressions().length == 0) {
-                            switch (method.getName()) {
-                                case "random":
-                                    return new Random(element, element.getTextRange(), Collections.emptyList());
+                            var result = onNoArgumentsAllClasses(element, methodName, className, qualifierExpression, settings, method, document, identifier);
+                            if (result != null) {
+                                return result;
                             }
                         }
                     }
@@ -122,64 +102,26 @@ public class MethodCallExpressionExt {
         }
         if (settings.getState().getGetSetExpressionsCollapse() && identifierOpt.isPresent()) {
             PsiElement identifier = identifierOpt.get();
-
-            if (Helper.isGetter(identifier, element)) {
-                if (BuilderShiftExt.isShifted(element)) {
-                    return null;
-                }
-                Expression expression = qualifier != null
-                        ? BuildExpressionExt.getAnyExpression(qualifier, document)
-                        : null;
-                return new Getter(element, element.getTextRange(), TextRange.create(identifier.getTextRange().getStartOffset(),
-                        element.getTextRange().getEndOffset()),
-                        expression,
-                        guessPropertyName(identifier.getText()));
-            } else {
-                String text = identifier.getText();
-                if (Helper.isSetter(text)
-                        && element.getArgumentList().getExpressions().length == 1
-                        && element.getParent() instanceof PsiStatement
-                        && (!(qualifier instanceof PsiMethodCallExpression)
-                        || !(Helper.startsWith(((PsiMethodCallExpression) qualifier).getMethodExpression().getReferenceName(), "set")))) {
-                    Expression qualifierExpression = qualifier != null ? BuildExpressionExt.getAnyExpression(qualifier, document) : null;
-                    Expression paramExpression = BuildExpressionExt.getAnyExpression(element.getArgumentList().getExpressions()[0], document);
-                    String propertyName = guessPropertyName(text);
-                    if (settings.getState().getFieldShift()) {
-                        if (paramExpression instanceof IGetter getter) {
-                            if (getter.getName().equals(propertyName)) {
-                                getter.makeFieldShift();
-                            }
-                        }
-                    }
-                    return new Setter(element, element.getTextRange(), TextRange.create(identifier.getTextRange().getStartOffset(),
-                            element.getTextRange().getEndOffset()),
-                            qualifierExpression,
-                            propertyName,
-                            paramExpression);
-                }
+            var result = onGetterSetter(element, settings, document, identifier, qualifier);
+            if (result != null) {
+                return result;
             }
         }
         if (identifierOpt.isPresent()) {
+
+            PsiElement identifier = identifierOpt.get();
             if (referenceExpression.resolve() instanceof PsiMethod psiMethod) {
                 PsiClass psiClass = psiMethod.getContainingClass();
-                if (psiClass != null && psiClass.isRecord()) {
-                    if (settings.getState().getGetSetExpressionsCollapse()) {
-                        Expression expression = qualifier != null
-                                ? BuildExpressionExt.getAnyExpression(qualifier, document)
-                                : null;
-                        PsiElement identi = identifierOpt.get();
-                        return new GetterRecord(element, element.getTextRange(), TextRange.create(identi.getTextRange().getStartOffset(),
-                                element.getTextRange().getEndOffset()),
-                                expression,
-                                guessPropertyName(identi.getText()));
-                    }
+                var result = onGetterRecord(element, settings, document, psiClass, qualifier, identifier);
+                if (result != null) {
+                    return result;
                 }
+
                 Expression builder = BuilderShiftExt.createExpression(element, psiClass);
                 if (builder != null) {
                     return builder;
                 }
             }
-            PsiElement identifier = identifierOpt.get();
             String text = identifier.getText();
             Expression logger = LoggerBracketsExt.createExpression(element, text, document);
             if (logger != null) {
@@ -189,9 +131,100 @@ public class MethodCallExpressionExt {
         return null;
     }
 
+    private static Expression onGetterRecord(PsiMethodCallExpression element, AdvancedExpressionFoldingSettings settings, Document document, PsiClass psiClass, PsiExpression qualifier, PsiElement identifier) {
+        if (psiClass != null && psiClass.isRecord()) {
+            if (settings.getState().getGetSetExpressionsCollapse()) {
+                Expression expression = qualifier != null
+                        ? BuildExpressionExt.getAnyExpression(qualifier, document)
+                        : null;
+                PsiElement identi = identifier;
+                return new GetterRecord(element, element.getTextRange(), TextRange.create(identi.getTextRange().getStartOffset(),
+                        element.getTextRange().getEndOffset()),
+                        expression,
+                        guessPropertyName(identi.getText()));
+            }
+        }
+        return null;
+    }
+
+    private static Expression onGetterSetter(PsiMethodCallExpression element, AdvancedExpressionFoldingSettings settings, Document document, PsiElement identifier, @Nullable PsiExpression qualifier) {
+        if (Helper.isGetter(identifier, element)) {
+            if (BuilderShiftExt.isShifted(element)) {
+                return null;
+            }
+            Expression expression = qualifier != null
+                    ? BuildExpressionExt.getAnyExpression(qualifier, document)
+                    : null;
+            return new Getter(element, element.getTextRange(), TextRange.create(identifier.getTextRange().getStartOffset(),
+                    element.getTextRange().getEndOffset()),
+                    expression,
+                    guessPropertyName(identifier.getText()));
+        } else {
+            String text = identifier.getText();
+            if (Helper.isSetter(text)
+                    && element.getArgumentList().getExpressions().length == 1
+                    && element.getParent() instanceof PsiStatement
+                    && (!(qualifier instanceof PsiMethodCallExpression)
+                    || !(Helper.startsWith(((PsiMethodCallExpression) qualifier).getMethodExpression().getReferenceName(), "set")))) {
+                Expression qualifierExpression = qualifier != null ? BuildExpressionExt.getAnyExpression(qualifier, document) : null;
+                Expression paramExpression = BuildExpressionExt.getAnyExpression(element.getArgumentList().getExpressions()[0], document);
+                String propertyName = guessPropertyName(text);
+                if (settings.getState().getFieldShift()) {
+                    if (paramExpression instanceof IGetter getter) {
+                        if (getter.getName().equals(propertyName)) {
+                            getter.makeFieldShift();
+                        }
+                    }
+                }
+                return new Setter(element, element.getTextRange(), TextRange.create(identifier.getTextRange().getStartOffset(),
+                        element.getTextRange().getEndOffset()),
+                        qualifierExpression,
+                        propertyName,
+                        paramExpression);
+            }
+        }
+        return null;
+    }
+
 
     private static @Nullable Expression xxx(PsiMethodCallExpression element, String methodName, String className, Expression qualifierExpression, @NotNull AdvancedExpressionFoldingSettings settings, PsiMethod method, @NotNull Document document, PsiElement identifier) {
 
+        return null;
+    }
+
+    private static @Nullable Expression onNoArgumentsAllClasses(PsiMethodCallExpression element, String methodName, String className, Expression qualifierExpression, @NotNull AdvancedExpressionFoldingSettings settings, PsiMethod method, @NotNull Document document, PsiElement identifier) {
+        switch (method.getName()) {
+            case "random":
+                return new Random(element, element.getTextRange(), Collections.emptyList());
+        }
+        return null;
+    }
+
+    private static @Nullable Expression onTwoArgumentsAllClasses(PsiMethodCallExpression element, String methodName, String className, Expression qualifierExpression, @NotNull AdvancedExpressionFoldingSettings settings, PsiMethod method, @NotNull Document document, PsiElement identifier) {
+        PsiExpression a1 = element.getArgumentList().getExpressions()[0];
+        @NotNull Expression a1Expression = BuildExpressionExt.getAnyExpression(a1, document);
+        PsiExpression a2 = element.getArgumentList().getExpressions()[1];
+        @NotNull Expression a2Expression = BuildExpressionExt.getAnyExpression(a2, document);
+        switch (methodName) {
+            case "min":
+                return new Min(element, element.getTextRange(), Arrays.asList(a1Expression, a2Expression));
+            case "max":
+                return new Max(element, element.getTextRange(), Arrays.asList(a1Expression, a2Expression));
+            case "pow":
+                return new Pow(element, element.getTextRange(), Arrays.asList(a1Expression, a2Expression));
+            case "addAll":
+                if (settings.getState().getConcatenationExpressionsCollapse()) {
+                    return new AddAssignForCollection(element, element.getTextRange(), Arrays.asList(a1Expression, a2Expression));
+                } else {
+                    break;
+                }
+            case "equals":
+                if (settings.getState().getComparingExpressionsCollapse()) {
+                    return new Equal(element, element.getTextRange(), Arrays.asList(a1Expression, a2Expression));
+                } else {
+                    break;
+                }
+        }
         return null;
     }
 
