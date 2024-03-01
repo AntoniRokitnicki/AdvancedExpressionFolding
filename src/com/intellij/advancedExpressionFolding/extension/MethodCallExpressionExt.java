@@ -24,9 +24,9 @@ import static com.intellij.advancedExpressionFolding.extension.Consts.*;
 import static com.intellij.advancedExpressionFolding.extension.Helper.getReferenceExpression;
 import static com.intellij.advancedExpressionFolding.extension.PropertyUtil.guessPropertyName;
 
+@SuppressWarnings({"RedundantIfStatement", "SwitchStatementWithTooFewBranches"})
 public class MethodCallExpressionExt {
 
-    @SuppressWarnings({"RedundantIfStatement", "SwitchStatementWithTooFewBranches"})
     @Nullable
     static Expression getMethodCallExpression(PsiMethodCallExpression element, @NotNull Document document) {
         @NotNull AdvancedExpressionFoldingSettings settings = AdvancedExpressionFoldingSettings.getInstance();
@@ -47,55 +47,9 @@ public class MethodCallExpressionExt {
                     BuilderShiftExt.markIfBuilder(element, psiClass);
                     if ((SUPPORTED_CLASSES.contains(className) || UNSUPPORTED_CLASSES_METHODS_EXCEPTIONS.contains(method.getName()))
                             && qualifier != null) {
-                        @NotNull Expression qualifierExpression = BuildExpressionExt.getAnyExpression(qualifier, document);
-                        String methodName = identifier.getText();
-                        if (methodName.equals("asList") || methodName.equals("singletonList")) {
-                            if (!methodName.equals("asList") ||
-                                    element.getArgumentList().getExpressions().length != 1 ||
-                                    !(element.getArgumentList().getExpressions()[0].getType() instanceof PsiArrayType)) {
-                                if (settings.getState().getGetExpressionsCollapse()) {
-                                    return new ListLiteral(element, element.getTextRange(),
-                                            Stream.of(element.getArgumentList().getExpressions())
-                                                    .map(e -> BuildExpressionExt.getAnyExpression(e, document)).collect(
-                                                            Collectors.toList()));
-                                }
-                            }
-                        } else if (element.getArgumentList().getExpressions().length == 1) {
-                            var result = onSingleArgument(element, methodName, className, qualifierExpression, settings, method, document, identifier);
-                            if (result != null) {
-                                return result;
-                            }
-                        } else if (element.getArgumentList().getExpressions().length == 0) {
-                            var result = onNoArguments(element, methodName, className, qualifierExpression, settings, method, document, identifier);
-                            if (result != null) {
-                                return result;
-                            }
-                        } else if (element.getArgumentList().getExpressions().length == 2) {
-                            var result = onTwoArguments(element, methodName, className, qualifierExpression, settings, method, document, identifier);
-                            if (result != null) {
-                                return result;
-                            }
-                        } else if (element.getArgumentList().getExpressions().length == 3) {
-                            var result = onThreeArguments(element, methodName, className, qualifierExpression, settings, method, document, identifier);
-                            if (result != null) {
-                                return result;
-                            }
-                        }
-                        if (element.getArgumentList().getExpressions().length == 1) {
-                            var result = onSingleArgumentAllClasses(element, methodName, className, qualifierExpression, settings, method, document, identifier);
-                            if (result != null) {
-                                return result;
-                            }
-                        } else if (element.getArgumentList().getExpressions().length == 2) {
-                            var result = onTwoArgumentsAllClasses(element, methodName, className, qualifierExpression, settings, method, document, identifier);
-                            if (result != null) {
-                                return result;
-                            }
-                        } else if (element.getArgumentList().getExpressions().length == 0) {
-                            var result = onNoArgumentsAllClasses(element, methodName, className, qualifierExpression, settings, method, document, identifier);
-                            if (result != null) {
-                                return result;
-                            }
+                        Expression result = onAnyExpression(element, document, qualifier, identifier, settings, className, method);
+                        if (result != null) {
+                            return result;
                         }
                     }
                 }
@@ -105,6 +59,68 @@ public class MethodCallExpressionExt {
         var result = onAnyArguments(element, settings, document, identifier, qualifier, referenceExpression);
         if (result != null) {
             return result;
+        }
+        return null;
+    }
+
+    private static @Nullable Expression onAnyExpression(PsiMethodCallExpression element, @NotNull Document document, @NotNull PsiExpression qualifier, PsiElement identifier, @NotNull AdvancedExpressionFoldingSettings settings, String className, PsiMethod method) {
+        @NotNull Expression qualifierExpression = BuildExpressionExt.getAnyExpression(qualifier, document);
+        String methodName = identifier.getText();
+        if (methodName.equals("asList") || methodName.equals("singletonList")) {
+            ListLiteral result = onListLiteral(element, document, methodName, settings);
+            if (result != null) {
+                return result;
+            }
+        } else if (element.getArgumentList().getExpressions().length == 1) {
+            var result = onSingleArgument(element, methodName, className, qualifierExpression, settings, method, document, identifier);
+            if (result != null) {
+                return result;
+            }
+        } else if (element.getArgumentList().getExpressions().length == 0) {
+            var result = onNoArguments(element, methodName, className, qualifierExpression, settings, method, document, identifier);
+            if (result != null) {
+                return result;
+            }
+        } else if (element.getArgumentList().getExpressions().length == 2) {
+            var result = onTwoArguments(element, methodName, className, qualifierExpression, settings, method, document, identifier);
+            if (result != null) {
+                return result;
+            }
+        } else if (element.getArgumentList().getExpressions().length == 3) {
+            var result = onThreeArguments(element, methodName, className, qualifierExpression, settings, method, document, identifier);
+            if (result != null) {
+                return result;
+            }
+        }
+        if (element.getArgumentList().getExpressions().length == 1) {
+            var result = onSingleArgumentAllClasses(element, methodName, className, qualifierExpression, settings, method, document, identifier);
+            if (result != null) {
+                return result;
+            }
+        } else if (element.getArgumentList().getExpressions().length == 2) {
+            var result = onTwoArgumentsAllClasses(element, methodName, className, qualifierExpression, settings, method, document, identifier);
+            if (result != null) {
+                return result;
+            }
+        } else if (element.getArgumentList().getExpressions().length == 0) {
+            var result = onNoArgumentsAllClasses(element, methodName, className, qualifierExpression, settings, method, document, identifier);
+            if (result != null) {
+                return result;
+            }
+        }
+        return null;
+    }
+
+    private static @Nullable ListLiteral onListLiteral(PsiMethodCallExpression element, @NotNull Document document, String methodName, @NotNull AdvancedExpressionFoldingSettings settings) {
+        if (!methodName.equals("asList") ||
+                element.getArgumentList().getExpressions().length != 1 ||
+                !(element.getArgumentList().getExpressions()[0].getType() instanceof PsiArrayType)) {
+            if (settings.getState().getGetExpressionsCollapse()) {
+                return new ListLiteral(element, element.getTextRange(),
+                        Stream.of(element.getArgumentList().getExpressions())
+                                .map(e -> BuildExpressionExt.getAnyExpression(e, document)).collect(
+                                        Collectors.toList()));
+            }
         }
         return null;
     }
