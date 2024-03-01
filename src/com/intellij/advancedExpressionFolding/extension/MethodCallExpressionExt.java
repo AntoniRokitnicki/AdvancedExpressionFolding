@@ -38,7 +38,7 @@ public class MethodCallExpressionExt {
             return null;
         }
         PsiElement identifier = identifierOpt.get();
-        if (SUPPORTED_METHODS.contains(identifierOpt.get().getText())) {
+        if (SUPPORTED_METHODS.contains(identifier.getText())) {
             PsiMethod method = (PsiMethod) referenceExpression.resolve();
             if (method != null) {
                 PsiClass psiClass = method.getContainingClass();
@@ -187,12 +187,6 @@ public class MethodCallExpressionExt {
                         paramExpression);
             }
         }
-        return null;
-    }
-
-
-    private static @Nullable Expression xxx(PsiMethodCallExpression element, String methodName, String className, Expression qualifierExpression, @NotNull AdvancedExpressionFoldingSettings settings, PsiMethod method, @NotNull Document document, PsiElement identifier) {
-
         return null;
     }
 
