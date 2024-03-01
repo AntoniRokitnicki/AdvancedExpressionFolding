@@ -24,7 +24,7 @@ import static com.intellij.advancedExpressionFolding.extension.Consts.*;
 import static com.intellij.advancedExpressionFolding.extension.Helper.getReferenceExpression;
 import static com.intellij.advancedExpressionFolding.extension.PropertyUtil.guessPropertyName;
 
-@SuppressWarnings({"RedundantIfStatement", "SwitchStatementWithTooFewBranches"})
+@SuppressWarnings({"RedundantIfStatement", "SwitchStatementWithTooFewBranches", "unused", "EnhancedSwitchMigration", "RedundantSuppression"})
 public class MethodCallExpressionExt {
 
     @Nullable
@@ -33,11 +33,11 @@ public class MethodCallExpressionExt {
         PsiReferenceExpression referenceExpression = element.getMethodExpression();
         Optional<PsiElement> identifierOpt = Stream.of(referenceExpression.getChildren())
                 .filter(c -> c instanceof PsiIdentifier).findAny();
-        @Nullable PsiExpression qualifier = element.getMethodExpression().getQualifierExpression();
         if (identifierOpt.isEmpty()) {
             return null;
         }
-        PsiElement identifier = identifierOpt.get();
+        PsiElement identifier = identifierOpt.orElseThrow();
+        @Nullable PsiExpression qualifier = element.getMethodExpression().getQualifierExpression();
         if (SUPPORTED_METHODS.contains(identifier.getText())) {
             PsiMethod method = (PsiMethod) referenceExpression.resolve();
             if (method != null) {
@@ -118,8 +118,7 @@ public class MethodCallExpressionExt {
             if (settings.getState().getGetExpressionsCollapse()) {
                 return new ListLiteral(element, element.getTextRange(),
                         Stream.of(element.getArgumentList().getExpressions())
-                                .map(e -> BuildExpressionExt.getAnyExpression(e, document)).collect(
-                                        Collectors.toList()));
+                                .map(e -> BuildExpressionExt.getAnyExpression(e, document)).collect(Collectors.toList()));
             }
         }
         return null;
