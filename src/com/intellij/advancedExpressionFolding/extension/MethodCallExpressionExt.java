@@ -67,13 +67,11 @@ public class MethodCallExpressionExt {
                             if (result != null) {
                                 return result;
                             }
-
                         } else if (element.getArgumentList().getExpressions().length == 2) {
                             var result = onTwoArguments(element, methodName, className, qualifierExpression, settings, method, document, identifier);
                             if (result != null) {
                                 return result;
                             }
-
                         }
                         else if (element.getArgumentList().getExpressions().length == 3) {
                             var result = onThreeArguments(element, methodName, className, qualifierExpression, settings, method, document, identifier);
@@ -85,81 +83,6 @@ public class MethodCallExpressionExt {
                             var result = onSingleArgumentAllClasses(element, methodName, className, qualifierExpression, settings, method, document, identifier);
                             if (result != null) {
                                 return result;
-                            }
-                            PsiExpression argument = element.getArgumentList().getExpressions()[0];
-                            if (method.getName().equals("valueOf") && argument instanceof PsiLiteralExpression) {
-                                return NewExpressionExt.getConstructorExpression(element, (PsiLiteralExpression) argument,
-                                        className);
-                            } else if (method.getName().equals("valueOf") && argument instanceof PsiReferenceExpression) {
-                                Expression refExpr = getReferenceExpression((PsiReferenceExpression) argument);
-                                if (refExpr instanceof Variable) {
-                                    return new Variable(element, element.getTextRange(), refExpr.getTextRange(), ((Variable) refExpr).getName(), true);
-                                } else {
-                                    return null;
-                                }
-                            } else {
-                                @NotNull Expression argumentExpression = BuildExpressionExt.getAnyExpression(argument, document);
-                                switch (method.getName()) {
-                                    case "abs":
-                                        return new Abs(element, element.getTextRange(), Collections.singletonList(argumentExpression));
-                                    case "acos":
-                                        return new Acos(element, element.getTextRange(), Collections.singletonList(argumentExpression));
-                                    case "asin":
-                                        return new Asin(element, element.getTextRange(), Collections.singletonList(argumentExpression));
-                                    case "atan":
-                                        return new Atan(element, element.getTextRange(), Collections.singletonList(argumentExpression));
-                                    case "cbrt":
-                                        return new Cbrt(element, element.getTextRange(), Collections.singletonList(argumentExpression));
-                                    case "ceil":
-                                        return new Ceil(element, element.getTextRange(), Collections.singletonList(argumentExpression));
-                                    case "cos":
-                                        return new Cos(element, element.getTextRange(), Collections.singletonList(argumentExpression));
-                                    case "cosh":
-                                        return new Cosh(element, element.getTextRange(), Collections.singletonList(argumentExpression));
-                                    case "floor":
-                                        return new Floor(element, element.getTextRange(), Collections.singletonList(argumentExpression));
-                                    case "log":
-                                        return new Log(element, element.getTextRange(), Collections.singletonList(argumentExpression));
-                                    case "log10":
-                                        return new Log10(element, element.getTextRange(), Collections.singletonList(argumentExpression));
-                                    case "rint":
-                                        return new Rint(element, element.getTextRange(), Collections.singletonList(argumentExpression));
-                                    case "round":
-                                        return new Round(element, element.getTextRange(), Collections.singletonList(argumentExpression));
-                                    case "sin":
-                                        return new Sin(element, element.getTextRange(), Collections.singletonList(argumentExpression));
-                                    case "sinh":
-                                        return new Sinh(element, element.getTextRange(), Collections.singletonList(argumentExpression));
-                                    case "sqrt":
-                                        return new Sqrt(element, element.getTextRange(), Collections.singletonList(argumentExpression));
-                                    case "tan":
-                                        return new Tan(element, element.getTextRange(), Collections.singletonList(argumentExpression));
-                                    case "tanh":
-                                        return new Tanh(element, element.getTextRange(), Collections.singletonList(argumentExpression));
-                                    case "toDegrees":
-                                        return new ToDegrees(element, element.getTextRange(), Collections.singletonList(argumentExpression));
-                                    case "toRadians":
-                                        return new ToRadians(element, element.getTextRange(), Collections.singletonList(argumentExpression));
-                                    case "ulp":
-                                        return new Ulp(element, element.getTextRange(), Collections.singletonList(argumentExpression));
-                                    case "exp":
-                                        return new Exp(element, element.getTextRange(), Collections.singletonList(argumentExpression));
-                                    case "unmodifiableSet":
-                                        if (argumentExpression instanceof SetLiteral setLiteral && settings.getState().getGetExpressionsCollapse()) {
-                                            return new SetLiteral(element, element.getTextRange(),
-                                                    setLiteral.getFirstBracesRange(), setLiteral.getSecondBracesRange(),
-                                                    setLiteral.getOperands());
-                                        } else {
-                                            break;
-                                        }
-                                    case "unmodifiableList":
-                                        if (argumentExpression instanceof ListLiteral setLiteral && settings.getState().getGetExpressionsCollapse()) {
-                                            return new ListLiteral(element, element.getTextRange(),
-                                                    setLiteral.getItems());
-                                        } else {
-                                            break;
-                                        }
-                                }
                             }
                         } else if (element.getArgumentList().getExpressions().length == 2) {
                             PsiExpression a1 = element.getArgumentList().getExpressions()[0];
@@ -274,7 +197,81 @@ public class MethodCallExpressionExt {
 
 
     private static @Nullable Expression onSingleArgumentAllClasses(PsiMethodCallExpression element, String methodName, String className, Expression qualifierExpression, @NotNull AdvancedExpressionFoldingSettings settings, PsiMethod method, @NotNull Document document, PsiElement identifier) {
-
+        PsiExpression argument = element.getArgumentList().getExpressions()[0];
+        if (method.getName().equals("valueOf") && argument instanceof PsiLiteralExpression) {
+            return NewExpressionExt.getConstructorExpression(element, (PsiLiteralExpression) argument,
+                    className);
+        } else if (method.getName().equals("valueOf") && argument instanceof PsiReferenceExpression) {
+            Expression refExpr = getReferenceExpression((PsiReferenceExpression) argument);
+            if (refExpr instanceof Variable) {
+                return new Variable(element, element.getTextRange(), refExpr.getTextRange(), ((Variable) refExpr).getName(), true);
+            } else {
+                return null;
+            }
+        } else {
+            @NotNull Expression argumentExpression = BuildExpressionExt.getAnyExpression(argument, document);
+            switch (method.getName()) {
+                case "abs":
+                    return new Abs(element, element.getTextRange(), Collections.singletonList(argumentExpression));
+                case "acos":
+                    return new Acos(element, element.getTextRange(), Collections.singletonList(argumentExpression));
+                case "asin":
+                    return new Asin(element, element.getTextRange(), Collections.singletonList(argumentExpression));
+                case "atan":
+                    return new Atan(element, element.getTextRange(), Collections.singletonList(argumentExpression));
+                case "cbrt":
+                    return new Cbrt(element, element.getTextRange(), Collections.singletonList(argumentExpression));
+                case "ceil":
+                    return new Ceil(element, element.getTextRange(), Collections.singletonList(argumentExpression));
+                case "cos":
+                    return new Cos(element, element.getTextRange(), Collections.singletonList(argumentExpression));
+                case "cosh":
+                    return new Cosh(element, element.getTextRange(), Collections.singletonList(argumentExpression));
+                case "floor":
+                    return new Floor(element, element.getTextRange(), Collections.singletonList(argumentExpression));
+                case "log":
+                    return new Log(element, element.getTextRange(), Collections.singletonList(argumentExpression));
+                case "log10":
+                    return new Log10(element, element.getTextRange(), Collections.singletonList(argumentExpression));
+                case "rint":
+                    return new Rint(element, element.getTextRange(), Collections.singletonList(argumentExpression));
+                case "round":
+                    return new Round(element, element.getTextRange(), Collections.singletonList(argumentExpression));
+                case "sin":
+                    return new Sin(element, element.getTextRange(), Collections.singletonList(argumentExpression));
+                case "sinh":
+                    return new Sinh(element, element.getTextRange(), Collections.singletonList(argumentExpression));
+                case "sqrt":
+                    return new Sqrt(element, element.getTextRange(), Collections.singletonList(argumentExpression));
+                case "tan":
+                    return new Tan(element, element.getTextRange(), Collections.singletonList(argumentExpression));
+                case "tanh":
+                    return new Tanh(element, element.getTextRange(), Collections.singletonList(argumentExpression));
+                case "toDegrees":
+                    return new ToDegrees(element, element.getTextRange(), Collections.singletonList(argumentExpression));
+                case "toRadians":
+                    return new ToRadians(element, element.getTextRange(), Collections.singletonList(argumentExpression));
+                case "ulp":
+                    return new Ulp(element, element.getTextRange(), Collections.singletonList(argumentExpression));
+                case "exp":
+                    return new Exp(element, element.getTextRange(), Collections.singletonList(argumentExpression));
+                case "unmodifiableSet":
+                    if (argumentExpression instanceof SetLiteral setLiteral && settings.getState().getGetExpressionsCollapse()) {
+                        return new SetLiteral(element, element.getTextRange(),
+                                setLiteral.getFirstBracesRange(), setLiteral.getSecondBracesRange(),
+                                setLiteral.getOperands());
+                    } else {
+                        break;
+                    }
+                case "unmodifiableList":
+                    if (argumentExpression instanceof ListLiteral setLiteral && settings.getState().getGetExpressionsCollapse()) {
+                        return new ListLiteral(element, element.getTextRange(),
+                                setLiteral.getItems());
+                    } else {
+                        break;
+                    }
+            }
+        }
         return null;
     }
 
