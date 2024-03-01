@@ -31,10 +31,10 @@ public class MethodCallExpressionExt {
     static Expression getMethodCallExpression(PsiMethodCallExpression element, @NotNull Document document) {
         @NotNull AdvancedExpressionFoldingSettings settings = AdvancedExpressionFoldingSettings.getInstance();
         PsiReferenceExpression referenceExpression = element.getMethodExpression();
-        Optional<PsiElement> identifier = Stream.of(referenceExpression.getChildren())
+        Optional<PsiElement> identifierOpt = Stream.of(referenceExpression.getChildren())
                 .filter(c -> c instanceof PsiIdentifier).findAny();
         @Nullable PsiExpression qualifier = element.getMethodExpression().getQualifierExpression();
-        if (identifier.isPresent() && SUPPORTED_METHODS.contains(identifier.get().getText())) {
+        if (identifierOpt.isPresent() && SUPPORTED_METHODS.contains(identifierOpt.get().getText())) {
             PsiMethod method = (PsiMethod) referenceExpression.resolve();
             if (method != null) {
                 PsiClass psiClass = method.getContainingClass();
@@ -44,7 +44,7 @@ public class MethodCallExpressionExt {
                     if ((SUPPORTED_CLASSES.contains(className) || UNSUPPORTED_CLASSES_METHODS_EXCEPTIONS.contains(method.getName()))
                             && qualifier != null) {
                         @NotNull Expression qualifierExpression = BuildExpressionExt.getAnyExpression(qualifier, document);
-                        String methodName = identifier.get().getText();
+                        String methodName = identifierOpt.get().getText();
                         if (methodName.equals("asList") || methodName.equals("singletonList")) {
                             if (!methodName.equals("asList") ||
                                     element.getArgumentList().getExpressions().length != 1 ||
@@ -57,34 +57,34 @@ public class MethodCallExpressionExt {
                                 }
                             }
                         } else if (element.getArgumentList().getExpressions().length == 1) {
-                            var result = onSingleArgument(element, methodName, className, qualifierExpression, settings, method, document, identifier.get());
+                            var result = onSingleArgument(element, methodName, className, qualifierExpression, settings, method, document, identifierOpt.get());
                             if (result != null) {
                                 return result;
                             }
                         } else if (element.getArgumentList().getExpressions().length == 0) {
-                            var result = onNoArguments(element, methodName, className, qualifierExpression, settings, method, document, identifier.get());
+                            var result = onNoArguments(element, methodName, className, qualifierExpression, settings, method, document, identifierOpt.get());
                             if (result != null) {
                                 return result;
                             }
 
                         } else if (element.getArgumentList().getExpressions().length == 2) {
-                            var result = onTwoArguments(element, methodName, className, qualifierExpression, settings, method, document, identifier.get());
+                            var result = onTwoArguments(element, methodName, className, qualifierExpression, settings, method, document, identifierOpt.get());
                             if (result != null) {
                                 return result;
                             }
 
                         }
                         else if (element.getArgumentList().getExpressions().length == 3) {
-                            PsiExpression a1 = element.getArgumentList().getExpressions()[0];
-                            PsiExpression a2 = element.getArgumentList().getExpressions()[1];
-                            PsiExpression a3 = element.getArgumentList().getExpressions()[2];
-                            if (methodName.equals("of") && className.equals("java.time.LocalDate") && settings.getState().getLocalDateLiteralCollapse()) {
-                                if (a1 instanceof PsiLiteralExpression year && a2 instanceof PsiLiteralExpression month && a3 instanceof PsiLiteralExpression day) {
-                                    return new LocalDateLiteral(element, element.getTextRange(), year, month, day);
-                                }
+                            var result = onThreeArguments(element, methodName, className, qualifierExpression, settings, method, document, identifierOpt.get());
+                            if (result != null) {
+                                return result;
                             }
                         }
                         if (element.getArgumentList().getExpressions().length == 1) {
+                            var result = onSingleArgumentAllClasses(element, methodName, className, qualifierExpression, settings, method, document, identifierOpt.get());
+                            if (result != null) {
+                                return result;
+                            }
                             PsiExpression argument = element.getArgumentList().getExpressions()[0];
                             if (method.getName().equals("valueOf") && argument instanceof PsiLiteralExpression) {
                                 return NewExpressionExt.getConstructorExpression(element, (PsiLiteralExpression) argument,
@@ -196,8 +196,8 @@ public class MethodCallExpressionExt {
             }
 
         }
-        if (settings.getState().getGetSetExpressionsCollapse() && identifier.isPresent()) {
-            PsiElement identi = identifier.get();
+        if (settings.getState().getGetSetExpressionsCollapse() && identifierOpt.isPresent()) {
+            PsiElement identi = identifierOpt.get();
 
             if (Helper.isGetter(identi, element)) {
                 if (BuilderShiftExt.isShifted(element)) {
@@ -235,7 +235,7 @@ public class MethodCallExpressionExt {
                 }
             }
         }
-        if (identifier.isPresent()) {
+        if (identifierOpt.isPresent()) {
             if (referenceExpression.resolve() instanceof PsiMethod psiMethod) {
                 PsiClass psiClass = psiMethod.getContainingClass();
                 if (psiClass != null && psiClass.isRecord()) {
@@ -243,7 +243,7 @@ public class MethodCallExpressionExt {
                         Expression expression = qualifier != null
                                 ? BuildExpressionExt.getAnyExpression(qualifier, document)
                                 : null;
-                        PsiElement identi = identifier.get();
+                        PsiElement identi = identifierOpt.get();
                         return new GetterRecord(element, element.getTextRange(), TextRange.create(identi.getTextRange().getStartOffset(),
                                 element.getTextRange().getEndOffset()),
                                 expression,
@@ -255,11 +255,35 @@ public class MethodCallExpressionExt {
                     return builder;
                 }
             }
-            PsiElement identi = identifier.get();
+            PsiElement identi = identifierOpt.get();
             String text = identi.getText();
             Expression logger = LoggerBracketsExt.createExpression(element, text, document);
             if (logger != null) {
                 return logger;
+            }
+        }
+        return null;
+    }
+
+
+    private static @Nullable Expression xxx(PsiMethodCallExpression element, String methodName, String className, Expression qualifierExpression, @NotNull AdvancedExpressionFoldingSettings settings, PsiMethod method, @NotNull Document document, PsiElement identifier) {
+
+        return null;
+    }
+
+
+    private static @Nullable Expression onSingleArgumentAllClasses(PsiMethodCallExpression element, String methodName, String className, Expression qualifierExpression, @NotNull AdvancedExpressionFoldingSettings settings, PsiMethod method, @NotNull Document document, PsiElement identifier) {
+
+        return null;
+    }
+
+    private static @Nullable Expression onThreeArguments(PsiMethodCallExpression element, String methodName, String className, Expression qualifierExpression, @NotNull AdvancedExpressionFoldingSettings settings, PsiMethod method, @NotNull Document document, PsiElement identifier) {
+        PsiExpression a1 = element.getArgumentList().getExpressions()[0];
+        PsiExpression a2 = element.getArgumentList().getExpressions()[1];
+        PsiExpression a3 = element.getArgumentList().getExpressions()[2];
+        if (methodName.equals("of") && className.equals("java.time.LocalDate") && settings.getState().getLocalDateLiteralCollapse()) {
+            if (a1 instanceof PsiLiteralExpression year && a2 instanceof PsiLiteralExpression month && a3 instanceof PsiLiteralExpression day) {
+                return new LocalDateLiteral(element, element.getTextRange(), year, month, day);
             }
         }
         return null;
