@@ -10,15 +10,17 @@ import com.intellij.psi.PsiAssignmentExpression
 import com.intellij.psi.PsiReferenceExpression
 
 object FieldShiftExt : BaseExtension() {
+
     @JvmStatic
-    fun createExpression(element: PsiAssignmentExpression, document: Document): Expression? {
+    fun createExpression(element: PsiAssignmentExpression, document: Document?): Expression? {
         fieldShift.takeIf {
             it
         } ?: return null
 
-        val right= element.rExpression ?: return null
+        val right = element.rExpression ?: return null
 
-        val leftText = element.lExpression.asInstance<PsiReferenceExpression>()?.referenceNameElement?.text ?: return null
+        val leftText =
+            element.lExpression.asInstance<PsiReferenceExpression>()?.referenceNameElement?.text ?: return null
 
         val rightExp = BuildExpressionExt.getAnyExpression(right, document)
         val rightText = if (rightExp is INameable) {
@@ -38,7 +40,7 @@ object FieldShiftExt : BaseExtension() {
                 return BuilderShiftExpression(it, it.textRange, "<<")
             }
         }
-
         return null
     }
+
 }

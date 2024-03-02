@@ -34,7 +34,7 @@ class AdvancedExpressionFoldingOptionsProvider protected constructor() :
         checkBox("Display optional as Kotlin null-safe", myState::optional)
         checkBox("Display stream operations as Groovy's spread operator", myState::streamSpread)
         checkBox("Display Java bean as Lombok", myState::lombok)
-        checkBox("Display mapping of field with same name as << (4 builders & setters)", myState::fieldShift)
+        checkBox("Display mapping of field with same name as << (for builders, setters and assignments)", myState::fieldShift)
         checkBox("Kotlin quick return", myState::kotlinQuickReturn)
         checkBox("Extended null-safe ifs (experimental)", myState::ifNullSafe)
         checkBox("Log folding (experimental)", myState::logFolding)
