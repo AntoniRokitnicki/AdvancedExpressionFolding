@@ -18,16 +18,16 @@ import java.util.stream.Stream;</fold>
         </fold>return ok;<fold text=' }' expand='false'>
     }</fold><fold text='' expand='true'></fold>
     </fold><fold text='' expand='true'>public void setData(LombokTestData data)<fold text=' { ' expand='false'> {
-        </fold>this.data = data;<fold text=' }' expand='false'>
+        </fold>this.data = <fold text='<<' expand='false'>data</fold>;<fold text=' }' expand='false'>
     }</fold></fold><fold text='' expand='true'>
     </fold><fold text='' expand='true'>public void setOk(boolean ok)<fold text=' { ' expand='false'> {
-        </fold>this.ok = ok;<fold text=' }' expand='false'>
+        </fold>this.ok = <fold text='<<' expand='false'>ok</fold>;<fold text=' }' expand='false'>
     }</fold></fold><fold text='' expand='true'>
-    <fold text='' expand='true'></fold>public String getString()<fold text=' { ' expand='false'> {
+    </fold><fold text='' expand='true'>public String getString()<fold text=' { ' expand='false'> {
         </fold>return string;<fold text=' }' expand='false'>
     }</fold></fold><fold text='' expand='true'>
     </fold><fold text='' expand='true'>public void setString(String string)<fold text=' { ' expand='false'> {
-        </fold>this.string = string;<fold text=' }' expand='false'>
+        </fold>this.string = <fold text='<<' expand='false'>string</fold>;<fold text=' }' expand='false'>
     }</fold></fold>
     public LombokTestData getDataMethod(LombokTestData data)<fold text=' { ' expand='false'> {
         </fold>return data;<fold text=' }' expand='false'>

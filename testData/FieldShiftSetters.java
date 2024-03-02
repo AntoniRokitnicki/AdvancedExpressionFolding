@@ -10,19 +10,19 @@ public class FieldShiftSetters {
     }</fold>
 
     public void setUsername(String username)<fold text=' { ' expand='false'> {
-        </fold>this.username = username;<fold text=' }' expand='false'>
+        </fold>this.username = <fold text='<<' expand='false'>username</fold>;<fold text=' }' expand='false'>
     }</fold>
 
     public void setActive(boolean active)<fold text=' { ' expand='false'> {
-        </fold>this.active = active;<fold text=' }' expand='false'>
+        </fold>this.active = <fold text='<<' expand='false'>active</fold>;<fold text=' }' expand='false'>
     }</fold>
 
     public void setUserIdentifier(String userIdentifier)<fold text=' { ' expand='false'> {
-        </fold>this.userIdentifier = userIdentifier;<fold text=' }' expand='false'>
+        </fold>this.userIdentifier = <fold text='<<' expand='false'>userIdentifier</fold>;<fold text=' }' expand='false'>
     }</fold>
 
     public void setChild(FieldShiftSetters child)<fold text=' { ' expand='false'> {
-        </fold>this.child = child;<fold text=' }' expand='false'>
+        </fold>this.child = <fold text='<<' expand='false'>child</fold>;<fold text=' }' expand='false'>
     }</fold>
 
     public static FieldShiftSetters mapPojoChain(FieldShiftSetters source) <fold text='{...}' expand='true'>{
@@ -109,15 +109,15 @@ public class FieldShiftSetters {
         }</fold>
 
         public void setUsername(String username)<fold text=' { ' expand='false'> {
-            </fold>this.username = username;<fold text=' }' expand='false'>
+            </fold>this.username = <fold text='<<' expand='false'>username</fold>;<fold text=' }' expand='false'>
         }</fold>
 
         public void setActive(boolean active)<fold text=' { ' expand='false'> {
-            </fold>this.active = active;<fold text=' }' expand='false'>
+            </fold>this.active = <fold text='<<' expand='false'>active</fold>;<fold text=' }' expand='false'>
         }</fold>
 
         public void setUserIdentifier(String userIdentifier)<fold text=' { ' expand='false'> {
-            </fold>this.userIdentifier = userIdentifier;<fold text=' }' expand='false'>
+            </fold>this.userIdentifier = <fold text='<<' expand='false'>userIdentifier</fold>;<fold text=' }' expand='false'>
         }</fold>
 
         public String getUsername()<fold text=' { ' expand='false'> {

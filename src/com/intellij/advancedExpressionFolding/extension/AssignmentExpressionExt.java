@@ -55,6 +55,12 @@ public class AssignmentExpressionExt {
                 }
             }
         }
+        Expression expression = FieldShiftExt.createExpression(element, document);
+        if (expression != null) {
+            return expression;
+        }
+
+
         return null;
     }
 

@@ -18,6 +18,6 @@ public class AppendSetterInterpolatedStringTestData {
     }</fold>
 
     public void setName(String name)<fold text=' { ' expand='false'> {
-        </fold>this.name = name;<fold text=' }' expand='false'>
+        </fold>this.name = <fold text='<<' expand='false'>name</fold>;<fold text=' }' expand='false'>
     }</fold>
 }

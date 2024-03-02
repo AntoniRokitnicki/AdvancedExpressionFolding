@@ -219,4 +219,13 @@ open class FoldingTest : BaseTest() {
     }
 
 
+
+    /**
+     * [data.FieldShiftFields]
+     */
+    fun testFieldShiftFields() {
+        doFoldingTest(state::getSetExpressionsCollapse, state::fieldShift)
+    }
+
+
 }

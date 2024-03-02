@@ -5,12 +5,13 @@ import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.editor.FoldingGroup;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.PsiElement;
+import kotlin.ranges.IntRange;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 
-public class Variable extends Expression implements ArithmeticExpression, INameable {
+public class Variable extends Expression implements ArithmeticExpression, INameable, IFieldShift {
     private @NotNull String name;
     private boolean copy;
     private @Nullable TextRange variableTextRange;
@@ -88,5 +89,17 @@ public class Variable extends Expression implements ArithmeticExpression, INamea
     @Nullable
     public TextRange getVariableTextRange() {
         return variableTextRange;
+    }
+
+    @Override
+    public void makeFieldShift() {
+        name = "<<";
+        textRange = plus(textRange, new IntRange(-1, 0));
+    }
+
+    private static TextRange plus(TextRange textRange, IntRange addon) {
+        int newStartOffset = textRange.getStartOffset() + addon.getFirst();
+        int newEndOffset = textRange.getEndOffset() + addon.getLast();
+        return TextRange.create(newStartOffset, newEndOffset);
     }
 }
