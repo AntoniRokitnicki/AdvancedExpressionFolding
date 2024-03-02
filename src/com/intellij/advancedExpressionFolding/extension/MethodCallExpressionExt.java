@@ -66,43 +66,44 @@ public class MethodCallExpressionExt {
     private static @Nullable Expression onAnyExpression(PsiMethodCallExpression element, @NotNull Document document, @NotNull PsiExpression qualifier, PsiElement identifier, @NotNull AdvancedExpressionFoldingSettings settings, String className, PsiMethod method) {
         @NotNull Expression qualifierExpression = BuildExpressionExt.getAnyExpression(qualifier, document);
         String methodName = identifier.getText();
+        int argumentCount = element.getArgumentList().getExpressions().length;
         if (methodName.equals("asList") || methodName.equals("singletonList")) {
             ListLiteral result = onListLiteral(element, document, methodName, settings);
             if (result != null) {
                 return result;
             }
-        } else if (element.getArgumentList().getExpressions().length == 1) {
+        } else if (argumentCount == 1) {
             var result = onSingleArgument(element, methodName, className, qualifierExpression, settings, method, document, identifier);
             if (result != null) {
                 return result;
             }
-        } else if (element.getArgumentList().getExpressions().length == 0) {
+        } else if (argumentCount == 0) {
             var result = onNoArguments(element, methodName, className, qualifierExpression, settings, method, document, identifier);
             if (result != null) {
                 return result;
             }
-        } else if (element.getArgumentList().getExpressions().length == 2) {
+        } else if (argumentCount == 2) {
             var result = onTwoArguments(element, methodName, className, qualifierExpression, settings, method, document, identifier);
             if (result != null) {
                 return result;
             }
-        } else if (element.getArgumentList().getExpressions().length == 3) {
+        } else if (argumentCount == 3) {
             var result = onThreeArguments(element, methodName, className, qualifierExpression, settings, method, document, identifier);
             if (result != null) {
                 return result;
             }
         }
-        if (element.getArgumentList().getExpressions().length == 1) {
+        if (argumentCount == 1) {
             var result = onSingleArgumentAllClasses(element, methodName, className, qualifierExpression, settings, method, document, identifier);
             if (result != null) {
                 return result;
             }
-        } else if (element.getArgumentList().getExpressions().length == 2) {
+        } else if (argumentCount == 2) {
             var result = onTwoArgumentsAllClasses(element, methodName, className, qualifierExpression, settings, method, document, identifier);
             if (result != null) {
                 return result;
             }
-        } else if (element.getArgumentList().getExpressions().length == 0) {
+        } else if (argumentCount == 0) {
             var result = onNoArgumentsAllClasses(element, methodName, className, qualifierExpression, settings, method, document, identifier);
             if (result != null) {
                 return result;

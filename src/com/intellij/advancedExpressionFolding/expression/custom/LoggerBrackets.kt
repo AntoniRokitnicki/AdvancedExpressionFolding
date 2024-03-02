@@ -23,8 +23,6 @@ class LoggerBrackets(
         document: Document,
         parent: Expression?
     ): Array<FoldingDescriptor> {
-        var t = element.text
-
         val folding = FoldingDescriptor(
             element.node,
             textRange,
@@ -32,8 +30,6 @@ class LoggerBrackets(
             text
         )
         return if (child != null && child.supportsFoldRegions(document, this)) {
-            var ta = child
-
             arrayOf(
                 folding
             ) + child.buildFoldRegions(child.element, document, this)
@@ -42,8 +38,6 @@ class LoggerBrackets(
                 folding
             )
         }
-
-
     }
 
 }

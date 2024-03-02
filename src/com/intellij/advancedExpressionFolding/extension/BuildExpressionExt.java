@@ -2,15 +2,13 @@ package com.intellij.advancedExpressionFolding.extension;
 
 import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings;
 import com.intellij.advancedExpressionFolding.UnexpectedException;
-import com.intellij.advancedExpressionFolding.expression.Expression;
-import com.intellij.advancedExpressionFolding.expression.SemicolonExpression;
-import com.intellij.advancedExpressionFolding.expression.SyntheticExpressionImpl;
-import com.intellij.advancedExpressionFolding.expression.TypeCast;
+import com.intellij.advancedExpressionFolding.expression.*;
 import com.intellij.lang.folding.FoldingDescriptor;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.progress.ProcessCanceledException;
 import com.intellij.openapi.project.IndexNotReadyException;
 import com.intellij.openapi.util.Key;
+import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.*;
 import com.intellij.psi.util.CachedValue;
 import com.intellij.psi.util.CachedValueProvider;
@@ -21,8 +19,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
-
-import static com.intellij.advancedExpressionFolding.extension.OtherExt.*;
 
 public class BuildExpressionExt {
     static final Map<String, Key<CachedValue<Expression>>> KEY_MAP = new WeakHashMap<>();
@@ -40,19 +36,19 @@ public class BuildExpressionExt {
             }
         }
         if (element instanceof PsiForeachStatement) {
-            Expression expression = getForeachStatementExpression((PsiForeachStatement) element);
+            Expression expression = LoopExt.getForeachStatementExpression((PsiForeachStatement) element);
             if (expression != null) {
                 return expression;
             }
         }
         if (element instanceof PsiIfStatement) {
-            Expression expression = getIfExpression((PsiIfStatement) element, document);
+            Expression expression = IfExt.getIfExpression((PsiIfStatement) element, document);
             if (expression != null) {
                 return expression;
             }
         }
         if (element instanceof PsiWhileStatement) {
-            Expression expression = getWhileStatement((PsiWhileStatement) element);
+            Expression expression = LoopExt.getWhileStatement((PsiWhileStatement) element);
             if (expression != null) {
                 return expression;
             }
@@ -63,25 +59,33 @@ public class BuildExpressionExt {
             return new SemicolonExpression(element, element.getTextRange());
         }
         if (element instanceof PsiCatchSection) {
-            Expression expression = getCatchStatement((PsiCatchSection) element);
+            Expression expression = null;
+            AdvancedExpressionFoldingSettings settings1 = AdvancedExpressionFoldingSettings.getInstance();
+            if (((PsiCatchSection) element).getParameter() != null
+                    && ((PsiCatchSection) element).getLParenth() != null && ((PsiCatchSection) element).getRParenth() != null
+                    && settings1.getState().getCompactControlFlowSyntaxCollapse()) {
+                expression = new CompactControlFlowExpression((PsiCatchSection) element,
+                        TextRange.create(((PsiCatchSection) element).getLParenth().getTextRange().getStartOffset(),
+                                ((PsiCatchSection) element).getRParenth().getTextRange().getEndOffset()));
+            }
             if (expression != null) {
                 return expression;
             }
         }
         if (element instanceof PsiDoWhileStatement) {
-            Expression expression = getDoWhileStatement((PsiDoWhileStatement) element);
+            Expression expression = LoopExt.getDoWhileStatement((PsiDoWhileStatement) element);
             if (expression != null) {
                 return expression;
             }
         }
         if (element instanceof PsiSwitchStatement) {
-            Expression expression = getSwitchStatement((PsiSwitchStatement) element);
+            Expression expression = IfExt.getSwitchStatement((PsiSwitchStatement) element);
             if (expression != null) {
                 return expression;
             }
         }
         if (element instanceof PsiArrayAccessExpression && settings.getState().getGetExpressionsCollapse()) {
-            Expression expression = getArrayAccessExpression((PsiArrayAccessExpression) element, document);
+            Expression expression = PsiArrayAccessExpressionExt.getArrayAccessExpression((PsiArrayAccessExpression) element, document);
             if (expression != null) {
                 return expression;
             }
@@ -117,7 +121,7 @@ public class BuildExpressionExt {
             }
         }
         if (element instanceof PsiPolyadicExpression) {
-            Expression expression = getPolyadicExpression((PsiPolyadicExpression) element, document);
+            Expression expression = IfExt.getPolyadicExpression((PsiPolyadicExpression) element, document);
             if (expression != null) {
                 return expression;
             }
@@ -129,7 +133,7 @@ public class BuildExpressionExt {
             }
         }
         if (element instanceof PsiConditionalExpression) {
-            Expression expression = getConditionalExpression((PsiConditionalExpression) element, document);
+            Expression expression = IfExt.getConditionalExpression((PsiConditionalExpression) element, document);
             if (expression != null) {
                 return expression;
             }
@@ -143,7 +147,7 @@ public class BuildExpressionExt {
         if (element instanceof PsiParenthesizedExpression
                 && settings.getState().getCastExpressionsCollapse()) {
             if (((PsiParenthesizedExpression) element).getExpression() instanceof PsiTypeCastExpression e) {
-                TypeCast typeCast = getTypeCastExpression(e, document);
+                TypeCast typeCast = PsiTypeCastExpressionExt.getTypeCastExpression(e, document);
                 if (typeCast != null) {
                     return new TypeCast(element, element.getTextRange(), typeCast.getObject());
                 }
@@ -158,7 +162,7 @@ public class BuildExpressionExt {
         }
         if (element instanceof PsiTypeCastExpression
                 && settings.getState().getCastExpressionsCollapse()) {
-            TypeCast expression = getTypeCastExpression((PsiTypeCastExpression) element, document);
+            TypeCast expression = PsiTypeCastExpressionExt.getTypeCastExpression((PsiTypeCastExpression) element, document);
             if (expression != null) {
                 return expression;
             }
@@ -167,13 +171,13 @@ public class BuildExpressionExt {
                 && element instanceof PsiVariable
                 && (element.getParent() instanceof PsiDeclarationStatement
                 || element.getParent() instanceof PsiForeachStatement)) {
-            Expression expression = getVariableDeclaration((PsiVariable) element);
+            Expression expression = PsiVariableExt.getVariableDeclaration((PsiVariable) element);
             if (expression != null) {
                 return expression;
             }
         }
         if (element instanceof PsiCodeBlock) {
-            Expression expression = getCodeBlockExpression((PsiCodeBlock) element);
+            Expression expression = PsiCodeBlockExt.getCodeBlockExpression((PsiCodeBlock) element);
             if (expression != null) {
                 return expression;
             }

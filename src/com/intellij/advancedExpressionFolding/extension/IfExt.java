@@ -5,7 +5,6 @@ import com.intellij.advancedExpressionFolding.expression.*;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.*;
-import com.intellij.psi.impl.source.tree.java.PsiAssignmentExpressionImpl;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -14,41 +13,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class OtherExt extends BaseExtension {
-    static Expression getForeachStatementExpression(PsiForeachStatement element) {
-        AdvancedExpressionFoldingSettings settings = AdvancedExpressionFoldingSettings.getInstance();
-        if (element.getIteratedValue() != null && element.getRParenth() != null &&
-                settings.getState().getCompactControlFlowSyntaxCollapse()) {
-            return new CompactControlFlowExpression(element,
-                    TextRange.create(element.getLParenth().getTextRange().getStartOffset(),
-                            element.getRParenth().getTextRange().getEndOffset()));
-        }
-        return null;
-    }
-
-    static Expression getWhileStatement(PsiWhileStatement element) {
-        AdvancedExpressionFoldingSettings settings = AdvancedExpressionFoldingSettings.getInstance();
-        if (element.getCondition() != null
-                && element.getLParenth() != null && element.getRParenth() != null
-                && settings.getState().getCompactControlFlowSyntaxCollapse()) {
-            return new CompactControlFlowExpression(element,
-                    TextRange.create(element.getLParenth().getTextRange().getStartOffset(),
-                            element.getRParenth().getTextRange().getEndOffset()));
-        }
-        return null;
-    }
-
-    static Expression getDoWhileStatement(PsiDoWhileStatement element) {
-        AdvancedExpressionFoldingSettings settings = AdvancedExpressionFoldingSettings.getInstance();
-        if (element.getCondition() != null
-                && element.getLParenth() != null && element.getRParenth() != null
-                && settings.getState().getCompactControlFlowSyntaxCollapse()) {
-            return new CompactControlFlowExpression(element,
-                    TextRange.create(element.getLParenth().getTextRange().getStartOffset(),
-                            element.getRParenth().getTextRange().getEndOffset()));
-        }
-        return null;
-    }
+public class IfExt {
 
     static Expression getSwitchStatement(PsiSwitchStatement element) {
         AdvancedExpressionFoldingSettings settings = AdvancedExpressionFoldingSettings.getInstance();
@@ -58,71 +23,6 @@ public class OtherExt extends BaseExtension {
             return new CompactControlFlowExpression(element,
                     TextRange.create(element.getLParenth().getTextRange().getStartOffset(),
                             element.getRParenth().getTextRange().getEndOffset()));
-        }
-        return null;
-    }
-
-    static Expression getCatchStatement(PsiCatchSection element) {
-        AdvancedExpressionFoldingSettings settings = AdvancedExpressionFoldingSettings.getInstance();
-        if (element.getParameter() != null
-                && element.getLParenth() != null && element.getRParenth() != null
-                && settings.getState().getCompactControlFlowSyntaxCollapse()) {
-            return new CompactControlFlowExpression(element,
-                    TextRange.create(element.getLParenth().getTextRange().getStartOffset(),
-                            element.getRParenth().getTextRange().getEndOffset()));
-        }
-        return null;
-    }
-
-    static Expression getCodeBlockExpression(PsiCodeBlock element) {
-        PsiElement parent = element.getParent();
-        AdvancedExpressionFoldingSettings settings = AdvancedExpressionFoldingSettings.getInstance();
-        if (parent instanceof PsiBlockStatement
-                && (
-                (parent.getParent() instanceof PsiIfStatement || parent.getParent() instanceof PsiLoopStatement)
-                        && element.getRBrace() != null
-                        && element.getLBrace() != null
-        )
-                || parent instanceof PsiSwitchStatement
-                || parent instanceof PsiTryStatement
-                || parent instanceof PsiCatchSection) {
-            if (element.getStatements().length == 1 || parent instanceof PsiSwitchStatement) {
-                if (settings.getState().getControlFlowSingleStatementCodeBlockCollapse()
-                        && !element.isWritable()
-                        &&
-                        (!(parent.getParent() instanceof PsiIfStatement) ||
-                                !IfExpression.isAssertExpression(settings.getState(),
-                                        (PsiIfStatement) parent.getParent()))) {
-                    return new ControlFlowSingleStatementCodeBlockExpression(element, element.getTextRange());
-                }
-            } else {
-                if (settings.getState().getControlFlowMultiStatementCodeBlockCollapse()
-                        && !element.isWritable()) {
-                    //noinspection deprecation
-                    return new ControlFlowMultiStatementCodeBlockExpression(element, element.getTextRange());
-                }
-            }
-        }
-        return null;
-    }
-
-    @Nullable
-    static Expression getArrayAccessExpression(@NotNull PsiArrayAccessExpression element, @NotNull Document document) {
-        @Nullable PsiExpression index = element.getIndexExpression();
-        AdvancedExpressionFoldingSettings settings = AdvancedExpressionFoldingSettings.getInstance();
-        if (!(element.getParent() instanceof PsiAssignmentExpression
-                && ((PsiAssignmentExpressionImpl) element.getParent()).getLExpression() == element) && index != null && settings.getState().getGetExpressionsCollapse()) {
-            /*@Nullable Expression indexExpression = getNonSyntheticExpression(index, document);*/
-            @NotNull Expression arrayExpression = BuildExpressionExt.getAnyExpression(element.getArrayExpression(), document);
-            /*if (indexExpression instanceof NumberLiteral && ((NumberLiteral) indexExpression).getNumber().equals(0)) {
-                return new ArrayGet(element, element.getTextRange(), arrayExpression, ArrayGet.Style.FIRST);
-            } else */
-            if (index instanceof PsiBinaryExpression a2b) {
-                NumberLiteral position = Helper.getSlicePosition(element, arrayExpression, a2b, document);
-                if (position != null && position.getNumber().equals(-1)) {
-                    return new ArrayGet(element, element.getTextRange(), arrayExpression/*, ArrayGet.Style.LAST*/);
-                }
-            }
         }
         return null;
     }
@@ -140,9 +40,9 @@ public class OtherExt extends BaseExtension {
             PsiBinaryExpression condition = (PsiBinaryExpression) element.getCondition();
             if (condition.getOperationSign().getText().equals("!=")
                     && element.getElseBranch() == null
-                    && (isNull(condition.getLOperand().getType())
+                    && (BaseExtension.isNull(condition.getLOperand().getType())
                     && condition.getROperand() != null
-                    || condition.getROperand() != null && isNull(condition.getROperand().getType()))
+                    || condition.getROperand() != null && BaseExtension.isNull(condition.getROperand().getType()))
                     && element.getThenBranch() != null) {
                 PsiStatement thenStatement = element.getThenBranch();
                 if (thenStatement.getChildren().length == 1 && thenStatement
@@ -154,7 +54,7 @@ public class OtherExt extends BaseExtension {
                         return null;
                     }
                 }
-                PsiElement qualifier = isNull(condition.getLOperand().getType())
+                PsiElement qualifier = BaseExtension.isNull(condition.getLOperand().getType())
                         ? condition.getROperand()
                         : condition.getLOperand();
                 if (qualifier instanceof PsiReferenceExpression
@@ -186,11 +86,11 @@ public class OtherExt extends BaseExtension {
                 && element.getCondition() instanceof @NotNull PsiBinaryExpression condition) {
             if (condition.getOperationSign().getText().equals("!=")
                     && condition.getROperand() != null
-                    && (isNull(condition.getLOperand().getType())
-                    || isNull(condition.getROperand().getType()))
+                    && (BaseExtension.isNull(condition.getLOperand().getType())
+                    || BaseExtension.isNull(condition.getROperand().getType()))
                     && element.getThenExpression() != null
                     && element.getElseExpression() != null) {
-                PsiElement qualifier = isNull(condition.getLOperand().getType())
+                PsiElement qualifier = BaseExtension.isNull(condition.getLOperand().getType())
                         ? condition.getROperand()
                         : condition.getLOperand();
                 if (qualifier instanceof PsiReferenceExpression
@@ -215,23 +115,6 @@ public class OtherExt extends BaseExtension {
                     }
                 }
             }
-        }
-        return null;
-    }
-
-    @Nullable
-    static VariableDeclarationImpl getVariableDeclaration(@NotNull PsiVariable element) {
-        AdvancedExpressionFoldingSettings settings = AdvancedExpressionFoldingSettings.getInstance();
-        if (settings.getState().getVarExpressionsCollapse()
-                && element.getName() != null
-                && element.getTypeElement() != null
-                && (element.getInitializer() != null || element.getParent() instanceof PsiForeachStatement)
-                && element.getTextRange().getStartOffset() < element.getTypeElement().getTextRange().getEndOffset()) {
-            boolean isFinal = Helper.calculateIfFinal(element);
-            return new VariableDeclarationImpl(element, TextRange.create(
-                    element.getTextRange().getStartOffset(),
-                    element.getTypeElement().getTextRange().getEndOffset()),
-                    element.getModifierList() != null && isFinal);
         }
         return null;
     }
@@ -292,13 +175,5 @@ public class OtherExt extends BaseExtension {
             return expression;
         }
         return null;
-    }
-
-    @Nullable
-    static TypeCast getTypeCastExpression(@NotNull PsiTypeCastExpression expression, @NotNull Document document) {
-        PsiExpression operand = expression.getOperand();
-        return operand != null
-                ? new TypeCast(expression, expression.getTextRange(), BuildExpressionExt.getAnyExpression(operand, document))
-                : null;
     }
 }
