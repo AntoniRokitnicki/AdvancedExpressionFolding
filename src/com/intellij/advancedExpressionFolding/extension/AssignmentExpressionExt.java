@@ -15,7 +15,6 @@ import java.util.Objects;
 
 import static java.util.Arrays.asList;
 
-
 public class AssignmentExpressionExt {
     @Nullable
     static Expression getAssignmentExpression(PsiAssignmentExpression element, @Nullable Document document) {
@@ -24,75 +23,39 @@ public class AssignmentExpressionExt {
             @NotNull Expression leftExpression = BuildExpressionExt.getAnyExpression(element.getRExpression(), document);
             if (leftExpression instanceof Operation operation) {
                 if (operation.getOperands().size() >= 2 && operation.getOperands().get(0).equals(leftVariable)) {
-                    Expression first = first(operation);
+                    Expression firstOperand = first(operation);
                     if (operation instanceof Add) {
-                        return new AddAssign(element, element.getTextRange(),
-                                asList(leftVariable, atLeastTwoOperands(operation) ?
-                                        new Add(element, getTextRange(operation), getOperands(operation)) : first));
+                        return new AddAssign(element, element.getTextRange(), asList(leftVariable, atLeastTwoOperands(operation) ?
+                                new Add(element, getTextRange(operation), getOperands(operation)) : firstOperand));
                     } else if (operation instanceof Subtract) {
-                        return new SubtractAssign(element, element.getTextRange(),
-                                asList(leftVariable, atLeastTwoOperands(operation) ?
-                                        new Add(element, getTextRange(operation), getOperands(operation)) : first));
+                        return new SubtractAssign(element, element.getTextRange(), asList(leftVariable, atLeastTwoOperands(operation) ?
+                                new Add(element, getTextRange(operation), getOperands(operation)) : firstOperand));
                     } else if (operation instanceof And) {
-                        return new AndAssign(element, element.getTextRange(),
-                                asList(leftVariable, atLeastTwoOperands(operation) ?
-                                        new And(element, getTextRange(operation), getOperands(operation)) : first));
+                        return new AndAssign(element, element.getTextRange(), asList(leftVariable, atLeastTwoOperands(operation) ?
+                                new And(element, getTextRange(operation), getOperands(operation)) : firstOperand));
                     } else if (operation instanceof Or) {
-                        return new AndAssign(element, element.getTextRange(),
-                                asList(leftVariable, atLeastTwoOperands(operation) ?
-                                        new Or(element, getTextRange(operation), getOperands(operation)) : first));
+                        return new AndAssign(element, element.getTextRange(), asList(leftVariable, atLeastTwoOperands(operation) ?
+                                new Or(element, getTextRange(operation), getOperands(operation)) : firstOperand));
                     } else if (operation instanceof Xor) {
-                        return new AndAssign(element, element.getTextRange(),
-                                asList(leftVariable, atLeastTwoOperands(operation) ?
-                                        new Xor(element, getTextRange(operation), getOperands(operation)) : first));
+                        return new AndAssign(element, element.getTextRange(), asList(leftVariable, atLeastTwoOperands(operation) ?
+                                new Xor(element, getTextRange(operation), getOperands(operation)) : firstOperand));
                     } else if (operation instanceof Multiply) {
-                        return new MultiplyAssign(element, element.getTextRange(),
-                                asList(leftVariable, atLeastTwoOperands(operation) ?
-                                        new Multiply(element, getTextRange(operation), getOperands(operation)) : first));
+                        return new MultiplyAssign(element, element.getTextRange(), asList(leftVariable, atLeastTwoOperands(operation) ?
+                                new Multiply(element, getTextRange(operation), getOperands(operation)) : firstOperand));
                     } else if (operation instanceof Divide) {
-                        return new DivideAssign(element, element.getTextRange(),
-                                asList(leftVariable, atLeastTwoOperands(operation) ?
-                                        new Multiply(element, getTextRange(operation), getOperands(operation)) : first));
+                        return new DivideAssign(element, element.getTextRange(), asList(leftVariable, atLeastTwoOperands(operation) ?
+                                new Multiply(element, getTextRange(operation), getOperands(operation)) : firstOperand));
                     } else if (operation instanceof ShiftRight && twoOperands(operation)) {
-                        return new ShiftRightAssign(element, element.getTextRange(),
-                                asList(leftVariable, first));
+                        return new ShiftRightAssign(element, element.getTextRange(), asList(leftVariable, firstOperand));
                     } else if (operation instanceof ShiftLeft && twoOperands(operation)) {
-                        return new ShiftLeftAssign(element, element.getTextRange(),
-                                asList(leftVariable, first));
+                        return new ShiftLeftAssign(element, element.getTextRange(), asList(leftVariable, firstOperand));
                     } else if (operation instanceof Remainder && twoOperands(operation)) {
-                        return new RemainderAssign(element, element.getTextRange(),
-                                asList(leftVariable, first));
+                        return new RemainderAssign(element, element.getTextRange(), asList(leftVariable, firstOperand));
                     }
                 }
             }
         }
         return null;
-    }
-
-    private static boolean twoOperands(Operation operation) {
-        return operation.getOperands().size() == 2;
-    }
-
-    private static boolean atLeastTwoOperands(Operation operation) {
-        return operation.getOperands().size() > 2;
-    }
-
-    private static Expression first(Operation operation) {
-        return operation.getOperands().get(1);
-    }
-
-    private static @NotNull List<Expression> getOperands(Operation operation) {
-        return operation.getOperands().subList(1, operation.getOperands().size());
-    }
-
-    private static @NotNull TextRange getTextRange(Operation operation) {
-        return TextRange.create(first(operation).getTextRange().getStartOffset(),
-                operation.getOperands().get(operation.getOperands().size() - 1).getTextRange().getEndOffset());
-    }
-
-    @Nullable
-    static Variable getVariableExpression(PsiElement element) {
-        return getVariableExpression(element, false);
     }
 
     @Nullable
@@ -116,4 +79,31 @@ public class AssignmentExpressionExt {
         }
         return null;
     }
+
+    @Nullable
+    static Variable getVariableExpression(PsiElement element) {
+        return getVariableExpression(element, false);
+    }
+
+    private static boolean twoOperands(Operation operation) {
+        return operation.getOperands().size() == 2;
+    }
+
+    private static boolean atLeastTwoOperands(Operation operation) {
+        return operation.getOperands().size() > 2;
+    }
+
+    private static Expression first(Operation operation) {
+        return operation.getOperands().get(1);
+    }
+
+    private static @NotNull List<Expression> getOperands(Operation operation) {
+        return operation.getOperands().subList(1, operation.getOperands().size());
+    }
+
+    private static @NotNull TextRange getTextRange(Operation operation) {
+        return TextRange.create(first(operation).getTextRange().getStartOffset(),
+                operation.getOperands().get(operation.getOperands().size() - 1).getTextRange().getEndOffset());
+    }
+
 }
