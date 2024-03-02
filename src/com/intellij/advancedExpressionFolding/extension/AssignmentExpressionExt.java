@@ -11,6 +11,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 public class AssignmentExpressionExt {
@@ -19,57 +20,42 @@ public class AssignmentExpressionExt {
         Variable leftVariable = getVariableExpression(element.getLExpression());
         if (leftVariable != null && element.getRExpression() != null) {
             @NotNull Expression leftExpression = BuildExpressionExt.getAnyExpression(element.getRExpression(), document);
-            if (leftExpression instanceof Operation) {
-                Operation operation = (Operation) leftExpression;
+            if (leftExpression instanceof Operation operation) {
                 if (operation.getOperands().size() >= 2 && operation.getOperands().get(0).equals(leftVariable)) {
                     if (operation instanceof Add) {
                         return new AddAssign(element, element.getTextRange(),
                                 Arrays.asList(leftVariable, operation.getOperands().size() > 2 ?
-                                        new Add(element, TextRange.create(operation.getOperands().get(1).getTextRange().getStartOffset(),
-                                                operation.getOperands().get(operation.getOperands().size() - 1).getTextRange().getEndOffset()), operation.getOperands()
-                                                .subList(1, operation.getOperands().size())) : operation
+                                        new Add(element, getTextRange(operation), getOperands(operation)) : operation
                                         .getOperands().get(1)));
                     } else if (operation instanceof Subtract) {
                         return new SubtractAssign(element, element.getTextRange(),
                                 Arrays.asList(leftVariable, operation.getOperands().size() > 2 ?
-                                        new Add(element, TextRange.create(operation.getOperands().get(1).getTextRange().getStartOffset(),
-                                                operation.getOperands().get(operation.getOperands().size() - 1).getTextRange().getEndOffset()), operation.getOperands()
-                                                .subList(1, operation.getOperands().size())) : operation
+                                        new Add(element, getTextRange(operation), getOperands(operation)) : operation
                                         .getOperands().get(1)));
                     } else if (operation instanceof And) {
                         return new AndAssign(element, element.getTextRange(),
                                 Arrays.asList(leftVariable, operation.getOperands().size() > 2 ?
-                                        new And(element, TextRange.create(operation.getOperands().get(1).getTextRange().getStartOffset(),
-                                                operation.getOperands().get(operation.getOperands().size() - 1).getTextRange().getEndOffset()), operation.getOperands()
-                                                .subList(1, operation.getOperands().size())) : operation
+                                        new And(element, getTextRange(operation), getOperands(operation)) : operation
                                         .getOperands().get(1)));
                     } else if (operation instanceof Or) {
                         return new AndAssign(element, element.getTextRange(),
                                 Arrays.asList(leftVariable, operation.getOperands().size() > 2 ?
-                                        new Or(element, TextRange.create(operation.getOperands().get(1).getTextRange().getStartOffset(),
-                                                operation.getOperands().get(operation.getOperands().size() - 1).getTextRange().getEndOffset()), operation.getOperands()
-                                                .subList(1, operation.getOperands().size())) : operation
+                                        new Or(element, getTextRange(operation), getOperands(operation)) : operation
                                         .getOperands().get(1)));
                     } else if (operation instanceof Xor) {
                         return new AndAssign(element, element.getTextRange(),
                                 Arrays.asList(leftVariable, operation.getOperands().size() > 2 ?
-                                        new Xor(element, TextRange.create(operation.getOperands().get(1).getTextRange().getStartOffset(),
-                                                operation.getOperands().get(operation.getOperands().size() - 1).getTextRange().getEndOffset()), operation.getOperands()
-                                                .subList(1, operation.getOperands().size())) : operation
+                                        new Xor(element, getTextRange(operation), getOperands(operation)) : operation
                                         .getOperands().get(1)));
                     } else if (operation instanceof Multiply) {
                         return new MultiplyAssign(element, element.getTextRange(),
                                 Arrays.asList(leftVariable, operation.getOperands().size() > 2 ?
-                                        new Multiply(element, TextRange.create(operation.getOperands().get(1).getTextRange().getStartOffset(),
-                                                operation.getOperands().get(operation.getOperands().size() - 1).getTextRange().getEndOffset()), operation.getOperands()
-                                                .subList(1, operation.getOperands().size())) : operation
+                                        new Multiply(element, getTextRange(operation), getOperands(operation)) : operation
                                         .getOperands().get(1)));
                     } else if (operation instanceof Divide) {
                         return new DivideAssign(element, element.getTextRange(),
                                 Arrays.asList(leftVariable, operation.getOperands().size() > 2 ?
-                                        new Multiply(element, TextRange.create(operation.getOperands().get(1).getTextRange().getStartOffset(),
-                                                operation.getOperands().get(operation.getOperands().size() - 1).getTextRange().getEndOffset()), operation.getOperands()
-                                                .subList(1, operation.getOperands().size())) : operation
+                                        new Multiply(element, getTextRange(operation), getOperands(operation)) : operation
                                         .getOperands().get(1)));
                     } else if (operation instanceof ShiftRight && operation.getOperands().size() == 2) {
                         return new ShiftRightAssign(element, element.getTextRange(),
@@ -85,6 +71,15 @@ public class AssignmentExpressionExt {
             }
         }
         return null;
+    }
+
+    private static @NotNull List<Expression> getOperands(Operation operation) {
+        return operation.getOperands().subList(1, operation.getOperands().size());
+    }
+
+    private static @NotNull TextRange getTextRange(Operation operation) {
+        return TextRange.create(operation.getOperands().get(1).getTextRange().getStartOffset(),
+                operation.getOperands().get(operation.getOperands().size() - 1).getTextRange().getEndOffset());
     }
 
     @Nullable
