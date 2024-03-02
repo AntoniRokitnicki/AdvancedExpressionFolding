@@ -214,8 +214,13 @@ open class FoldingTest : BaseTest() {
     /**
      * [data.LogBrackets]
      */
+    @Suppress("UnstableApiUsage")
     fun testLogBrackets() {
-        doFoldingTest(state::getSetExpressionsCollapse, state::logFolding)
+        val performanceTestInfo = com.intellij.testFramework.PlatformTestUtil.startPerformanceTest("logBrackets", 10_000) {
+            doFoldingTest(state::getSetExpressionsCollapse, state::logFolding)
+        }
+        performanceTestInfo.assertTiming();
+
     }
 
 
