@@ -12,28 +12,29 @@ import com.intellij.psi.PsiReferenceExpression
 object FieldShiftExt : BaseExtension() {
     @JvmStatic
     fun createExpression(element: PsiAssignmentExpression, document: Document): Expression? {
-        if (!fieldShift) {
-            return null
-        }
-        val l = element.lExpression as? PsiReferenceExpression ?: return null
-        val r= element.rExpression ?: return null
-        val r2 = BuildExpressionExt.getAnyExpression(r, document)
+        fieldShift.takeIf {
+            it
+        } ?: return null
 
-        val rName = if (r2 is INameable) {
-            r2.name
+        val right= element.rExpression ?: return null
+
+        val leftText = element.lExpression.asInstance<PsiReferenceExpression>()?.referenceNameElement?.text ?: return null
+
+        val rightExp = BuildExpressionExt.getAnyExpression(right, document)
+        val rightText = if (rightExp is INameable) {
+            rightExp.name
         } else {
-            r.asInstance<PsiReferenceExpression>()?.referenceNameElement?.text
+            right.asInstance<PsiReferenceExpression>()?.referenceNameElement?.text
         }
-        val lName = l.referenceNameElement?.text
 
-        if (lName == rName && lName != null) {
-            if (r2 is IGetter) {
-                return BuilderShiftExpression(r, r2.getterTextRange, "<<")
+        if (leftText == rightText) {
+            if (rightExp is IGetter) {
+                return BuilderShiftExpression(right, rightExp.getterTextRange, "<<")
             }
-            if (r2 is Variable) {
-                return BuilderShiftExpression(r, r2.textRange, "<<")
+            if (rightExp is Variable) {
+                return BuilderShiftExpression(right, rightExp.textRange, "<<")
             }
-            r.asInstance<PsiReferenceExpression>()?.referenceNameElement?.let {
+            right.asInstance<PsiReferenceExpression>()?.referenceNameElement?.let {
                 return BuilderShiftExpression(it, it.textRange, "<<")
             }
         }
