@@ -10,9 +10,11 @@ import com.intellij.psi.PsiVariable;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+
+import static java.util.Arrays.asList;
+
 
 public class AssignmentExpressionExt {
     @Nullable
@@ -22,50 +24,44 @@ public class AssignmentExpressionExt {
             @NotNull Expression leftExpression = BuildExpressionExt.getAnyExpression(element.getRExpression(), document);
             if (leftExpression instanceof Operation operation) {
                 if (operation.getOperands().size() >= 2 && operation.getOperands().get(0).equals(leftVariable)) {
+                    Expression first = first(operation);
                     if (operation instanceof Add) {
                         return new AddAssign(element, element.getTextRange(),
-                                Arrays.asList(leftVariable, operation.getOperands().size() > 2 ?
-                                        new Add(element, getTextRange(operation), getOperands(operation)) : operation
-                                        .getOperands().get(1)));
+                                asList(leftVariable, atLeastTwoOperands(operation) ?
+                                        new Add(element, getTextRange(operation), getOperands(operation)) : first));
                     } else if (operation instanceof Subtract) {
                         return new SubtractAssign(element, element.getTextRange(),
-                                Arrays.asList(leftVariable, operation.getOperands().size() > 2 ?
-                                        new Add(element, getTextRange(operation), getOperands(operation)) : operation
-                                        .getOperands().get(1)));
+                                asList(leftVariable, atLeastTwoOperands(operation) ?
+                                        new Add(element, getTextRange(operation), getOperands(operation)) : first));
                     } else if (operation instanceof And) {
                         return new AndAssign(element, element.getTextRange(),
-                                Arrays.asList(leftVariable, operation.getOperands().size() > 2 ?
-                                        new And(element, getTextRange(operation), getOperands(operation)) : operation
-                                        .getOperands().get(1)));
+                                asList(leftVariable, atLeastTwoOperands(operation) ?
+                                        new And(element, getTextRange(operation), getOperands(operation)) : first));
                     } else if (operation instanceof Or) {
                         return new AndAssign(element, element.getTextRange(),
-                                Arrays.asList(leftVariable, operation.getOperands().size() > 2 ?
-                                        new Or(element, getTextRange(operation), getOperands(operation)) : operation
-                                        .getOperands().get(1)));
+                                asList(leftVariable, atLeastTwoOperands(operation) ?
+                                        new Or(element, getTextRange(operation), getOperands(operation)) : first));
                     } else if (operation instanceof Xor) {
                         return new AndAssign(element, element.getTextRange(),
-                                Arrays.asList(leftVariable, operation.getOperands().size() > 2 ?
-                                        new Xor(element, getTextRange(operation), getOperands(operation)) : operation
-                                        .getOperands().get(1)));
+                                asList(leftVariable, atLeastTwoOperands(operation) ?
+                                        new Xor(element, getTextRange(operation), getOperands(operation)) : first));
                     } else if (operation instanceof Multiply) {
                         return new MultiplyAssign(element, element.getTextRange(),
-                                Arrays.asList(leftVariable, operation.getOperands().size() > 2 ?
-                                        new Multiply(element, getTextRange(operation), getOperands(operation)) : operation
-                                        .getOperands().get(1)));
+                                asList(leftVariable, atLeastTwoOperands(operation) ?
+                                        new Multiply(element, getTextRange(operation), getOperands(operation)) : first));
                     } else if (operation instanceof Divide) {
                         return new DivideAssign(element, element.getTextRange(),
-                                Arrays.asList(leftVariable, operation.getOperands().size() > 2 ?
-                                        new Multiply(element, getTextRange(operation), getOperands(operation)) : operation
-                                        .getOperands().get(1)));
-                    } else if (operation instanceof ShiftRight && operation.getOperands().size() == 2) {
+                                asList(leftVariable, atLeastTwoOperands(operation) ?
+                                        new Multiply(element, getTextRange(operation), getOperands(operation)) : first));
+                    } else if (operation instanceof ShiftRight && twoOperands(operation)) {
                         return new ShiftRightAssign(element, element.getTextRange(),
-                                Arrays.asList(leftVariable, operation.getOperands().get(1)));
-                    } else if (operation instanceof ShiftLeft && operation.getOperands().size() == 2) {
+                                asList(leftVariable, first));
+                    } else if (operation instanceof ShiftLeft && twoOperands(operation)) {
                         return new ShiftLeftAssign(element, element.getTextRange(),
-                                Arrays.asList(leftVariable, operation.getOperands().get(1)));
-                    } else if (operation instanceof Remainder && operation.getOperands().size() == 2) {
+                                asList(leftVariable, first));
+                    } else if (operation instanceof Remainder && twoOperands(operation)) {
                         return new RemainderAssign(element, element.getTextRange(),
-                                Arrays.asList(leftVariable, operation.getOperands().get(1)));
+                                asList(leftVariable, first));
                     }
                 }
             }
@@ -73,12 +69,24 @@ public class AssignmentExpressionExt {
         return null;
     }
 
+    private static boolean twoOperands(Operation operation) {
+        return operation.getOperands().size() == 2;
+    }
+
+    private static boolean atLeastTwoOperands(Operation operation) {
+        return operation.getOperands().size() > 2;
+    }
+
+    private static Expression first(Operation operation) {
+        return operation.getOperands().get(1);
+    }
+
     private static @NotNull List<Expression> getOperands(Operation operation) {
         return operation.getOperands().subList(1, operation.getOperands().size());
     }
 
     private static @NotNull TextRange getTextRange(Operation operation) {
-        return TextRange.create(operation.getOperands().get(1).getTextRange().getStartOffset(),
+        return TextRange.create(first(operation).getTextRange().getStartOffset(),
                 operation.getOperands().get(operation.getOperands().size() - 1).getTextRange().getEndOffset());
     }
 
