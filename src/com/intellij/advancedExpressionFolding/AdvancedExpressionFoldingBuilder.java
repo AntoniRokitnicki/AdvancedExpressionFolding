@@ -14,6 +14,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
 
@@ -31,7 +32,7 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
                 + it.getPlaceholderText()
                 + "[" +
                 it.getGroup()
-                + "]").toList();
+                + "]").collect(Collectors.toList());
     }
 
     @Nullable
