@@ -1,6 +1,6 @@
 package com.intellij.advancedExpressionFolding.diff
 
-import com.intellij.advancedExpressionFolding.extension.BaseExtension
+import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings
 import com.intellij.diff.DiffContentFactory
 import com.intellij.diff.requests.DiffRequest
 import com.intellij.diff.requests.SimpleDiffRequest
@@ -14,7 +14,7 @@ import com.intellij.openapi.vcs.changes.actions.diff.ChangeDiffRequestProvider
 import com.intellij.util.ThreeState
 
 
-class DiffRequestProvider : ChangeDiffRequestProvider, BaseExtension() {
+class DiffRequestProvider : ChangeDiffRequestProvider, AdvancedExpressionFoldingSettings.StateDelegate() {
     override fun isEquals(change1: Change, change2: Change) = ThreeState.UNSURE
 
     override fun canCreate(project: Project?, change: Change) =
