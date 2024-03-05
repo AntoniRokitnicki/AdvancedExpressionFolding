@@ -4,6 +4,10 @@
 
 ## [Unreleased]
 
+## [1.0.26] - 2024-03-05
+
+Folding of testData in diff
+
 ## [1.0.25] - 2024-03-04
 
 FieldShift for assignments
@@ -126,7 +130,8 @@ Improved handling of multi-line log messages
 
 ## [0.0.1]
 
-[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.25...HEAD
+[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.26...HEAD
+[1.0.26]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.25...v1.0.26
 [1.0.25]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.24...v1.0.25
 [1.0.24]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.23...v1.0.24
 [1.0.23]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.22...v1.0.23
