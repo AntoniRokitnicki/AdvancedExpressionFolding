@@ -43,6 +43,7 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
         val kotlinQuickReturn: Boolean
         val ifNullSafe: Boolean
         val logFolding: Boolean
+        val testDataFoldingDiff: Boolean
 
     }
 
@@ -72,8 +73,9 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
         override var kotlinQuickReturn: Boolean = true,
         override var ifNullSafe: Boolean = true,
         override var logFolding: Boolean = true,
+        override var testDataFoldingDiff: Boolean = false,
 
-    ) : IState
+        ) : IState
 
     open class StateDelegate(private val state: State = getInstance().state) : IState by state
 

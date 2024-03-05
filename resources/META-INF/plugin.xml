@@ -11,6 +11,10 @@
     <codeFoldingOptionsProvider instance="com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingOptionsProvider"/>
     <applicationService serviceImplementation="com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings"/>
     <editorFactoryListener implementation="com.intellij.advancedExpressionFolding.FoldingEditorCreatedListener"/>
+
+    <openapi.vcs.changes.actions.diff.ChangeDiffRequestProvider
+            implementation="com.intellij.advancedExpressionFolding.diff.DiffRequestProvider"/>
+
   </extensions>
 
   <actions>

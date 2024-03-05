@@ -43,6 +43,7 @@ class AdvancedExpressionFoldingOptionsProvider protected constructor() :
         checkBox("Control flow single-statement code block braces (read-only files)", myState::controlFlowSingleStatementCodeBlockCollapse)
         checkBox("Control flow multi-statement code block braces (read-only files, deprecated)", myState::controlFlowMultiStatementCodeBlockCollapse)
         checkBox("Semicolons (read-only files)", myState::semicolonsCollapse)
+        checkBox("Folding of testData in diff", myState::testDataFoldingDiff)
     }
 
 }
