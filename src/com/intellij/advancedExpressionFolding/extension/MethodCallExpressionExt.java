@@ -492,7 +492,7 @@ public class MethodCallExpressionExt {
                 switch (className) {
                     case "java.util.Optional":
                         if (settings.getState().getOptional() &&
-                                (argumentExpression instanceof OptionalMapSafeCallParam || Helper.isPureMethodReference(element))) {
+                                (argumentExpression instanceof OptionalMapSafeCallParam)) {
                             boolean flatMap = methodName.equals("flatMap");
                             if (qualifierExpression instanceof OptionalOf) {
                                 return new OptionalMapCall(element, element.getTextRange(), Arrays.asList(qualifierExpression, argumentExpression), flatMap);
@@ -501,7 +501,7 @@ public class MethodCallExpressionExt {
                         }
                     case "java.util.stream.Stream":
                         if (settings.getState().getStreamSpread() &&
-                                (argumentExpression instanceof StreamMapCallParam || Helper.isPureMethodReference(element))) {
+                                (argumentExpression instanceof StreamMapCallParam)) {
                             boolean flatMap = methodName.equals("flatMap");
                             var textRange = new TextRange(identifier.getTextRange().getStartOffset(), element.getTextRange().getEndOffset());
                             return new StreamMapCall(element, textRange, Arrays.asList(qualifierExpression, argumentExpression), flatMap);

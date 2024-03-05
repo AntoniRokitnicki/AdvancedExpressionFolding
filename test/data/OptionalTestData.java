@@ -27,6 +27,8 @@ public class OptionalTestData {
         o = Optional.of(data).map(Data::getData).orElse(null);
         o = Optional.ofNullable(dataNull).map(OptionalTestData::getOutsideData).get();
 
+        o = opt.map(Data::new).filter(Data.class::isInstance).map(Data.class::cast);
+
         o = Optional.of(data).map(Data::getData)
                 .map(Data::getData)
                 .filter(it -> it.ok)
@@ -68,6 +70,10 @@ public class OptionalTestData {
         boolean ok;
 
         String string;
+
+        public Data(Data data) {
+            this.data = data;
+        }
 
         public Data getData() {
                 return data;

@@ -44,16 +44,24 @@ public class SpreadTestData {
                 .toList();
 
         var p = methodStream(data).toList().stream().min(Comparator.comparing(Data::isOk)).stream().min(Comparator.comparing(Data::getString)).map(Data::getString).orElse("string1");
+
+
+        var o1 = stream.map(Data::new).filter(Data.class::isInstance).map(Data.class::cast);
     }
 
     static Stream<Data> methodStream(Data data) {
         return Stream.of(data);
     }
 
-    class Data {
+    static class Data {
         Data data;
         boolean ok;
         String string;
+
+        public Data(Data data) {
+            this.data = data;
+        }
+
         public Data getData() {
                 return data;
         }

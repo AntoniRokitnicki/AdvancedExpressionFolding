@@ -44,45 +44,53 @@ public class SpreadTestData {
                 .toList();
 
         var p = methodStream(data).toList()<fold text='.' expand='false'>.stream().</fold>min(Comparator.comparing(Data::isOk)).stream().min(Comparator.comparing(Data::getString))<fold text='?.' expand='false'>.map(</fold><fold text='string' expand='false'>Data::getString</fold><fold text='' expand='false'>)</fold><fold text=' ?: ' expand='false'>.orElse(</fold>"string1"<fold text='' expand='false'>)</fold>;
+
+
+        var o1 = stream.map(Data::new).filter(Data.class::isInstance).map(Data.class::cast);
     }</fold>
 
     static Stream<Data> methodStream(Data data)<fold text=' { ' expand='false'> {
         </fold>return Stream.of(data);<fold text=' }' expand='false'>
     }</fold>
 
-    class Data <fold text='{...}' expand='true'>{
+    static class Data <fold text='{...}' expand='true'>{
         Data data;
         boolean ok;
         String string;
-        public Data getData()<fold text=' { ' expand='false'> {
-            </fold>return data;<fold text=' }' expand='false'>
-        }</fold>
-        public boolean isOk()<fold text=' { ' expand='false'> {
-            </fold>return ok;<fold text=' }' expand='false'>
-        }</fold>
-        public void setData(Data data)<fold text=' { ' expand='false'> {
+
+        public Data(Data data)<fold text=' { ' expand='false'> {
             </fold>this.data = data;<fold text=' }' expand='false'>
         }</fold>
+
+        public Data getData()<fold text=' { ' expand='false'> {
+                </fold>return data;<fold text=' }' expand='false'>
+        }</fold>
+        public boolean isOk()<fold text=' { ' expand='false'> {
+                </fold>return ok;<fold text=' }' expand='false'>
+        }</fold>
+        public void setData(Data data)<fold text=' { ' expand='false'> {
+                </fold>this.data = data;<fold text=' }' expand='false'>
+        }</fold>
         public void setOk(boolean ok)<fold text=' { ' expand='false'> {
-            </fold>this.ok = ok;<fold text=' }' expand='false'>
+                </fold>this.ok = ok;<fold text=' }' expand='false'>
         }</fold>
         public String getString()<fold text=' { ' expand='false'> {
-            </fold>return string;<fold text=' }' expand='false'>
+                </fold>return string;<fold text=' }' expand='false'>
         }</fold>
         public void setString(String string)<fold text=' { ' expand='false'> {
-            </fold>this.string = string;<fold text=' }' expand='false'>
+                </fold>this.string = string;<fold text=' }' expand='false'>
         }</fold>
         public Data getDataMethod(Data data)<fold text=' { ' expand='false'> {
-            </fold>return data;<fold text=' }' expand='false'>
+                </fold>return data;<fold text=' }' expand='false'>
         }</fold>
         public Optional<Data> getDataOpt()<fold text=' { ' expand='false'> {
-            </fold>return <fold text='' expand='false'>Optional.ofNullable(</fold>data<fold text='' expand='false'>)</fold>;<fold text=' }' expand='false'>
+                </fold>return <fold text='' expand='false'>Optional.ofNullable(</fold>data<fold text='' expand='false'>)</fold>;<fold text=' }' expand='false'>
         }</fold>
         public Stream<Data> getDataStream()<fold text=' { ' expand='false'> {
-            </fold>return <fold text='' expand='false'>Optional.ofNullable(</fold>data<fold text='' expand='false'>)</fold>.stream();<fold text=' }' expand='false'>
+                </fold>return <fold text='' expand='false'>Optional.ofNullable(</fold>data<fold text='' expand='false'>)</fold>.stream();<fold text=' }' expand='false'>
         }</fold>
         public List<Data> getDataList()<fold text=' { ' expand='false'> {
-            </fold>return <fold text='' expand='false'>Optional.ofNullable(</fold>data<fold text='' expand='false'>)</fold>.stream().toList();<fold text=' }' expand='false'>
+                </fold>return <fold text='' expand='false'>Optional.ofNullable(</fold>data<fold text='' expand='false'>)</fold>.stream().toList();<fold text=' }' expand='false'>
         }</fold>
     }</fold>
 }
