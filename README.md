@@ -16,6 +16,7 @@
 ![Dynamic XML Badge](https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fantonirokitnicki.github.io%2FAdvancedExpressionFolding%2Fplugin_repository.xml&query=%2Fplugin-repository%2Fcategory%2Fidea-plugin%5B1%5D%2Fversion&label=beta%20version)
 ![Dynamic JSON Badge](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fplugins.jetbrains.com%2Fapi%2Fplugins%2F23659%2Fupdates%3Fchannel%3D%26size%3D8&query=%24%5B0%5D..version&label=marketplace%20version)
 ![GitHub Release Date](https://img.shields.io/github/release-date/AntoniRokitnicki/AdvancedExpressionFolding)
+![GitHub commits since latest release](https://img.shields.io/github/commits-since/AntoniRokitnicki/AdvancedExpressionFolding/latest)
 <!-- https://plugins.jetbrains.com/api/plugins/23659/updates?channel=&size=8 -->
 
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/AntoniRokitnicki/AdvancedExpressionFolding)
@@ -24,7 +25,6 @@
 
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/w/AntoniRokitnicki/AdvancedExpressionFolding)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/t/AntoniRokitnicki/AdvancedExpressionFolding)
-![GitHub commits since latest release](https://img.shields.io/github/commits-since/AntoniRokitnicki/AdvancedExpressionFolding/latest)
 
 <!-- Plugin description -->
 <p>Modern JVM languages such as Kotlin, Groovy, Scala and some others offer many language features that let you
