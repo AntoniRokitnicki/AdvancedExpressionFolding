@@ -18,6 +18,8 @@ import java.util.stream.Collectors;
 
 public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
 
+    private static EmptyStorage store = new EmptyStorage();
+
     @NotNull
     @Override
     public FoldingDescriptor @NotNull [] buildFoldRegions(@NotNull PsiElement element, @NotNull Document document, boolean quick) {
@@ -26,7 +28,7 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
         }
 
         //preview(element, document, quick)
-        return BuildExpressionExt.collectFoldRegionsRecursively(element, document, quick);
+        return store.store(BuildExpressionExt.collectFoldRegionsRecursively(element, document, quick), document);
     }
 
     public List<String> preview(@NotNull PsiElement element, @NotNull Document document, boolean quick) {
@@ -62,4 +64,7 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
         return false;
     }
 
+    public static void setStore(EmptyStorage store) {
+        AdvancedExpressionFoldingBuilder.store = store;
+    }
 }

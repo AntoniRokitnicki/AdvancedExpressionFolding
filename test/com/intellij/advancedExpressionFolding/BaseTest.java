@@ -43,6 +43,8 @@ public abstract class BaseTest extends LightJavaCodeInsightFixtureTestCase {
     }
 
     private static void rewriteFileOnFailure(String fileName, String testName, Runnable action) {
+        var store = new FoldingDataStorage();
+        AdvancedExpressionFoldingBuilder.setStore(store);
         try {
             action.run();
         } catch (FileComparisonFailure e) {
@@ -52,6 +54,7 @@ public abstract class BaseTest extends LightJavaCodeInsightFixtureTestCase {
                 if (!fileName.contains("-all")) {
                     Files.writeString(new File(getAllTestFileName(fileName)).toPath(), actual);
                 }
+                store.saveFolding(new File(fileName.replace(".java", ".json")));
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
