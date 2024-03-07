@@ -18,12 +18,17 @@
   </extensions>
 
   <actions>
+    <action id="advanced.folding.toggle.global" class="com.intellij.advancedExpressionFolding.GlobalToggleFoldingAction"
+            text="Advanced Folding" description="Advanced folding global toggle"
+            icon="AllIcons.Actions.ToggleSoftWrap">
+      <add-to-group group-id="CodeMenu" anchor="last"/>
+    </action>
+
     <action id="advanced.folding.toggle.on" class="com.intellij.advancedExpressionFolding.FoldingOnAction"
             text="Advanced Folding Toggle On" description="Advanced folding toggle on"
             icon="AllIcons.Actions.ArrowExpand">
       <add-to-group group-id="CodeMenu" anchor="last"/>
       <keyboard-shortcut first-keystroke="alt T" keymap="Mac OS X 10.5+" replace-all="true" />
-
     </action>
 
     <action id="advanced.folding.toggle.off" class="com.intellij.advancedExpressionFolding.FoldingOffAction"

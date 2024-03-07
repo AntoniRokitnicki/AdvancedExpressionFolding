@@ -17,6 +17,11 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
         myState = state.copy()
     }
 
+    interface IConfig {
+        val testDataFoldingDiff: Boolean
+        var globalOn: Boolean
+    }
+
     interface IState {
         val arithmeticExpressionsCollapse: Boolean
         val concatenationExpressionsCollapse: Boolean
@@ -43,8 +48,6 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
         val kotlinQuickReturn: Boolean
         val ifNullSafe: Boolean
         val logFolding: Boolean
-        val testDataFoldingDiff: Boolean
-
     }
 
     data class State(
@@ -73,11 +76,14 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
         override var kotlinQuickReturn: Boolean = true,
         override var ifNullSafe: Boolean = true,
         override var logFolding: Boolean = true,
-        override var testDataFoldingDiff: Boolean = false,
 
-        ) : IState
+        override var testDataFoldingDiff: Boolean = false,
+        override var globalOn: Boolean = true,
+
+        ) : IState, IConfig
 
     open class StateDelegate(private val state: State = getInstance().state) : IState by state
+    open class ConfigDelegate(private val config: IConfig = getInstance().state) : IConfig by config
 
     private fun updateAllState(value: Boolean) {
         with(myState) {

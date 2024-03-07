@@ -21,6 +21,10 @@ public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
     @NotNull
     @Override
     public FoldingDescriptor @NotNull [] buildFoldRegions(@NotNull PsiElement element, @NotNull Document document, boolean quick) {
+        if (!AdvancedExpressionFoldingSettings.getInstance().getState().getGlobalOn()) {
+            return Expression.EMPTY_ARRAY;
+        }
+
         //preview(element, document, quick)
         return BuildExpressionExt.collectFoldRegionsRecursively(element, document, quick);
     }

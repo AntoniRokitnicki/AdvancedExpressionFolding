@@ -14,7 +14,7 @@ import com.intellij.openapi.vcs.changes.actions.diff.ChangeDiffRequestProvider
 import com.intellij.util.ThreeState
 
 
-class DiffRequestProvider : ChangeDiffRequestProvider, AdvancedExpressionFoldingSettings.StateDelegate() {
+class DiffRequestProvider : ChangeDiffRequestProvider, AdvancedExpressionFoldingSettings.ConfigDelegate() {
     override fun isEquals(change1: Change, change2: Change) = ThreeState.UNSURE
 
     override fun canCreate(project: Project?, change: Change) =
