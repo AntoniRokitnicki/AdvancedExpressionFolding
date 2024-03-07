@@ -1,0 +1,144 @@
+{
+  "size" : 14,
+  "list" : [ {
+    "id" : 0,
+    "text" : "(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 113,
+      "end" : 114,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+  }, {
+    "id" : 1,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 129,
+      "end" : 130,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+  }, {
+    "id" : 2,
+    "text" : "(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 198,
+      "end" : 199,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+  }, {
+    "id" : 3,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 216,
+      "end" : 217,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+  }, {
+    "id" : 4,
+    "text" : "(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 283,
+      "end" : 284,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+  }, {
+    "id" : 5,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 315,
+      "end" : 316,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+  }, {
+    "id" : 6,
+    "text" : "(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 382,
+      "end" : 383,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+  }, {
+    "id" : 7,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 387,
+      "end" : 388,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+  }, {
+    "id" : 8,
+    "text" : "(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 503,
+      "end" : 504,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+  }, {
+    "id" : 9,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 508,
+      "end" : 509,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+  }, {
+    "id" : 10,
+    "text" : "(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 526,
+      "end" : 527,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+  }, {
+    "id" : 11,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 538,
+      "end" : 539,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+  }, {
+    "id" : 12,
+    "text" : "(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 684,
+      "end" : 685,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+  }, {
+    "id" : 13,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 696,
+      "end" : 697,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+  } ]
+}

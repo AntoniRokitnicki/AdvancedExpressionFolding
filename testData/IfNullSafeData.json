@@ -1,0 +1,284 @@
+{
+  "size" : 28,
+  "list" : [ {
+    "id" : 0,
+    "text" : "data != null\n                && data.getData1() != null",
+    "placeholder" : "data?.data1 != null",
+    "range" : {
+      "start" : 123,
+      "end" : 178,
+      "size" : 55
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
+  }, {
+    "id" : 1,
+    "text" : "data != null\n                && data.getData1() != null",
+    "placeholder" : "data?.data1 != null",
+    "range" : {
+      "start" : 198,
+      "end" : 253,
+      "size" : 55
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
+  }, {
+    "id" : 2,
+    "text" : "data != null\n                && data.getData1() != null\n                && data.getData1().isActive()",
+    "placeholder" : "data?.data1?.active == true",
+    "range" : {
+      "start" : 299,
+      "end" : 400,
+      "size" : 101
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
+  }, {
+    "id" : 3,
+    "text" : "isActive()",
+    "placeholder" : "active",
+    "range" : {
+      "start" : 454,
+      "end" : 464,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 4,
+    "text" : "getData1()",
+    "placeholder" : "data1",
+    "range" : {
+      "start" : 443,
+      "end" : 453,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 5,
+    "text" : "data != null && data.getData1() != null && data.getData1().getData4() != null",
+    "placeholder" : "data?.data1?.data4 != null",
+    "range" : {
+      "start" : 485,
+      "end" : 562,
+      "size" : 77
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
+  }, {
+    "id" : 6,
+    "text" : "data != null && data.getData1() != null &&\n                data.getData1().getData2() != null && data.getData1().\n                getData2()\n                .getData3() != null",
+    "placeholder" : "data?.data1?.data2?.data3 != null",
+    "range" : {
+      "start" : 577,
+      "end" : 753,
+      "size" : 176
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
+  }, {
+    "id" : 7,
+    "text" : "data != null && data.getData1() != null",
+    "placeholder" : "data?.data1 != null",
+    "range" : {
+      "start" : 814,
+      "end" : 853,
+      "size" : 39
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
+  }, {
+    "id" : 8,
+    "text" : "data != null && data.isActive()",
+    "placeholder" : "data?.active == true",
+    "range" : {
+      "start" : 914,
+      "end" : 945,
+      "size" : 31
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
+  }, {
+    "id" : 9,
+    "text" : "data != null\n                && data.getData1() != null\n                && data.getData1().getData2() != null\n                && data.getData1().getData2().getData3() != null\n                && data.getData1().getData2().getData3().getData4() != null",
+    "placeholder" : "data?.data1?.data2?.data3?.data4 != null",
+    "range" : {
+      "start" : 1006,
+      "end" : 1256,
+      "size" : 250
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
+  }, {
+    "id" : 10,
+    "text" : "data != null\n                && data.getData1() != null",
+    "placeholder" : "data?.data1 != null",
+    "range" : {
+      "start" : 1308,
+      "end" : 1363,
+      "size" : 55
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
+  }, {
+    "id" : 11,
+    "text" : "data != null\n                && data.getData1() != null\n                && data.getData1().getData2() != null\n                && data.getData1().getData2().getData3() != null\n                && data.getData1().getData2().getData3().getData4() != null",
+    "placeholder" : "data?.data1?.data2?.data3?.data4 != null",
+    "range" : {
+      "start" : 1470,
+      "end" : 1720,
+      "size" : 250
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
+  }, {
+    "id" : 12,
+    "text" : "data != null\n                && data.getData1() != null\n                && data.getData1().isActive()",
+    "placeholder" : "data?.data1?.active == true",
+    "range" : {
+      "start" : 1743,
+      "end" : 1844,
+      "size" : 101
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
+  }, {
+    "id" : 13,
+    "text" : "data != null && !data.isActive()",
+    "placeholder" : "data?.active == false",
+    "range" : {
+      "start" : 1869,
+      "end" : 1901,
+      "size" : 32
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
+  }, {
+    "id" : 14,
+    "text" : "data != null && data.getData2() != null && !data.getData2().isActive()",
+    "placeholder" : "data?.data2?.active == false",
+    "range" : {
+      "start" : 1918,
+      "end" : 1988,
+      "size" : 70
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
+  }, {
+    "id" : 15,
+    "text" : "isActive()",
+    "placeholder" : "active",
+    "range" : {
+      "start" : 2030,
+      "end" : 2040,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 16,
+    "text" : "getData1()",
+    "placeholder" : "data1",
+    "range" : {
+      "start" : 2019,
+      "end" : 2029,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 17,
+    "text" : "data != null && data.getData6() != null &&\n                data.getData6().isActive()",
+    "placeholder" : "data?.data6?.active == true",
+    "range" : {
+      "start" : 2126,
+      "end" : 2211,
+      "size" : 85
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
+  }, {
+    "id" : 18,
+    "text" : "data != null && data.getData6() != null &&\n                !data.getData6().isActive()",
+    "placeholder" : "data?.data6?.active == false",
+    "range" : {
+      "start" : 2352,
+      "end" : 2438,
+      "size" : 86
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
+  }, {
+    "id" : 19,
+    "text" : "data != null\n                && data.getData1() != null\n                && data.getData1().isActive()",
+    "placeholder" : "data?.data1?.active == true",
+    "range" : {
+      "start" : 2606,
+      "end" : 2707,
+      "size" : 101
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
+  }, {
+    "id" : 20,
+    "text" : "data != null\n                && data.getData2() != null\n                && data.getData2().isActive()",
+    "placeholder" : "data?.data2?.active == true",
+    "range" : {
+      "start" : 2730,
+      "end" : 2831,
+      "size" : 101
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
+  }, {
+    "id" : 21,
+    "text" : "data != null\n                        && data.getData3() != null\n                        && data.getData3().isActive()",
+    "placeholder" : "data?.data3?.active == true",
+    "range" : {
+      "start" : 2852,
+      "end" : 2969,
+      "size" : 117
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
+  }, {
+    "id" : 22,
+    "text" : "data.getData3().getData4() != null\n                        && data.getData3().getData4().isActive()",
+    "placeholder" : "data.data3.data4?.active == true",
+    "range" : {
+      "start" : 2997,
+      "end" : 3096,
+      "size" : 99
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
+  }, {
+    "id" : 23,
+    "text" : "data != null\n                        && data.getData5() != null\n                        && data.getData5().isActive()",
+    "placeholder" : "data?.data5?.active == true",
+    "range" : {
+      "start" : 3119,
+      "end" : 3236,
+      "size" : 117
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
+  }, {
+    "id" : 24,
+    "text" : "data != null &&\n                                data.getData6() != null &&\n                                data.getData6().isActive()",
+    "placeholder" : "data?.data6?.active == true",
+    "range" : {
+      "start" : 3323,
+      "end" : 3456,
+      "size" : 133
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
+  }, {
+    "id" : 25,
+    "text" : "data.getData1().getData2().getData3() != null &&\n                data.getData1().getData2().getData3().isActive()",
+    "placeholder" : "data.data1.data2.data3?.active == true",
+    "range" : {
+      "start" : 3609,
+      "end" : 3722,
+      "size" : 113
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
+  }, {
+    "id" : 26,
+    "text" : "data2.getData1().getData2() != null &&\n                data2.getData1().getData2().isActive()",
+    "placeholder" : "data2.data1.data2?.active == true",
+    "range" : {
+      "start" : 3750,
+      "end" : 3843,
+      "size" : 93
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
+  }, {
+    "id" : 27,
+    "text" : "data2.getData1() != null &&\n                data2.getData1().isActive()",
+    "placeholder" : "data2.data1?.active == true",
+    "range" : {
+      "start" : 3872,
+      "end" : 3943,
+      "size" : 71
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
+  } ]
+}

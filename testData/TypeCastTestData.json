@@ -1,0 +1,104 @@
+{
+  "size" : 10,
+  "list" : [ {
+    "id" : 0,
+    "text" : "((TypeCastTestData) ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 218,
+      "end" : 238,
+      "size" : 20
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.TypeCast"
+  }, {
+    "id" : 1,
+    "text" : ").",
+    "placeholder" : ".",
+    "range" : {
+      "start" : 251,
+      "end" : 253,
+      "size" : 2
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.TypeCast"
+  }, {
+    "id" : 2,
+    "text" : "((TypeCastTestData) ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 331,
+      "end" : 351,
+      "size" : 20
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.TypeCast"
+  }, {
+    "id" : 3,
+    "text" : ").",
+    "placeholder" : ".",
+    "range" : {
+      "start" : 397,
+      "end" : 399,
+      "size" : 2
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.TypeCast"
+  }, {
+    "id" : 4,
+    "text" : "((TypeCastTestData) ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 351,
+      "end" : 371,
+      "size" : 20
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.TypeCast"
+  }, {
+    "id" : 5,
+    "text" : ").",
+    "placeholder" : ".",
+    "range" : {
+      "start" : 384,
+      "end" : 386,
+      "size" : 2
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.TypeCast"
+  }, {
+    "id" : 6,
+    "text" : "((TypeCastTestData) ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 428,
+      "end" : 448,
+      "size" : 20
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.TypeCast:highlighting"
+  }, {
+    "id" : 7,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 494,
+      "end" : 495,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.TypeCast:highlighting"
+  }, {
+    "id" : 8,
+    "text" : "((TypeCastTestData) ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 448,
+      "end" : 468,
+      "size" : 20
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.TypeCast"
+  }, {
+    "id" : 9,
+    "text" : ").",
+    "placeholder" : ".",
+    "range" : {
+      "start" : 481,
+      "end" : 483,
+      "size" : 2
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.TypeCast"
+  } ]
+}

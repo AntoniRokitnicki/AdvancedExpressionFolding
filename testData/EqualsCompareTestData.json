@@ -1,0 +1,254 @@
+{
+  "size" : 25,
+  "list" : [ {
+    "id" : 0,
+    "text" : ".equals(",
+    "placeholder" : " ≡ ",
+    "range" : {
+      "start" : 296,
+      "end" : 304,
+      "size" : 8
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Equal"
+  }, {
+    "id" : 1,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 305,
+      "end" : 306,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Equal"
+  }, {
+    "id" : 2,
+    "text" : "!",
+    "placeholder" : "",
+    "range" : {
+      "start" : 336,
+      "end" : 337,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.NotEqual"
+  }, {
+    "id" : 3,
+    "text" : ".equals(",
+    "placeholder" : " ≢ ",
+    "range" : {
+      "start" : 338,
+      "end" : 346,
+      "size" : 8
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.NotEqual"
+  }, {
+    "id" : 4,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 347,
+      "end" : 348,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.NotEqual"
+  }, {
+    "id" : 5,
+    "text" : ".compareTo(",
+    "placeholder" : " ≡ ",
+    "range" : {
+      "start" : 379,
+      "end" : 390,
+      "size" : 11
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Equal"
+  }, {
+    "id" : 6,
+    "text" : ") == 0",
+    "placeholder" : "",
+    "range" : {
+      "start" : 391,
+      "end" : 397,
+      "size" : 6
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Equal"
+  }, {
+    "id" : 7,
+    "text" : ".compareTo(",
+    "placeholder" : " ≢ ",
+    "range" : {
+      "start" : 428,
+      "end" : 439,
+      "size" : 11
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.NotEqual"
+  }, {
+    "id" : 8,
+    "text" : ") != 0",
+    "placeholder" : "",
+    "range" : {
+      "start" : 440,
+      "end" : 446,
+      "size" : 6
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.NotEqual"
+  }, {
+    "id" : 9,
+    "text" : ".compareTo(",
+    "placeholder" : " > ",
+    "range" : {
+      "start" : 478,
+      "end" : 489,
+      "size" : 11
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Greater"
+  }, {
+    "id" : 10,
+    "text" : ") > 0",
+    "placeholder" : "",
+    "range" : {
+      "start" : 490,
+      "end" : 495,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Greater"
+  }, {
+    "id" : 11,
+    "text" : ".compareTo(",
+    "placeholder" : " > ",
+    "range" : {
+      "start" : 526,
+      "end" : 537,
+      "size" : 11
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Greater"
+  }, {
+    "id" : 12,
+    "text" : ") == 1",
+    "placeholder" : "",
+    "range" : {
+      "start" : 538,
+      "end" : 544,
+      "size" : 6
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Greater"
+  }, {
+    "id" : 13,
+    "text" : ".compareTo(",
+    "placeholder" : " ≥ ",
+    "range" : {
+      "start" : 575,
+      "end" : 586,
+      "size" : 11
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.GreaterEqual"
+  }, {
+    "id" : 14,
+    "text" : ") > -1",
+    "placeholder" : "",
+    "range" : {
+      "start" : 587,
+      "end" : 593,
+      "size" : 6
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.GreaterEqual"
+  }, {
+    "id" : 15,
+    "text" : ".compareTo(",
+    "placeholder" : " ≥ ",
+    "range" : {
+      "start" : 624,
+      "end" : 635,
+      "size" : 11
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.GreaterEqual"
+  }, {
+    "id" : 16,
+    "text" : ") >= 0",
+    "placeholder" : "",
+    "range" : {
+      "start" : 636,
+      "end" : 642,
+      "size" : 6
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.GreaterEqual"
+  }, {
+    "id" : 17,
+    "text" : ".compareTo(",
+    "placeholder" : " < ",
+    "range" : {
+      "start" : 694,
+      "end" : 705,
+      "size" : 11
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Less"
+  }, {
+    "id" : 18,
+    "text" : ") < 0",
+    "placeholder" : "",
+    "range" : {
+      "start" : 706,
+      "end" : 711,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Less"
+  }, {
+    "id" : 19,
+    "text" : ".compareTo(",
+    "placeholder" : " < ",
+    "range" : {
+      "start" : 742,
+      "end" : 753,
+      "size" : 11
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Less"
+  }, {
+    "id" : 20,
+    "text" : ") == -1",
+    "placeholder" : "",
+    "range" : {
+      "start" : 754,
+      "end" : 761,
+      "size" : 7
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Less"
+  }, {
+    "id" : 21,
+    "text" : ".compareTo(",
+    "placeholder" : " ≤ ",
+    "range" : {
+      "start" : 792,
+      "end" : 803,
+      "size" : 11
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.LessEqual"
+  }, {
+    "id" : 22,
+    "text" : ") < 1",
+    "placeholder" : "",
+    "range" : {
+      "start" : 804,
+      "end" : 809,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.LessEqual"
+  }, {
+    "id" : 23,
+    "text" : ".compareTo(",
+    "placeholder" : " ≤ ",
+    "range" : {
+      "start" : 840,
+      "end" : 851,
+      "size" : 11
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.LessEqual"
+  }, {
+    "id" : 24,
+    "text" : ") <= 0",
+    "placeholder" : "",
+    "range" : {
+      "start" : 852,
+      "end" : 858,
+      "size" : 6
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.LessEqual"
+  } ]
+}

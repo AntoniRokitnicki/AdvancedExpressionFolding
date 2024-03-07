@@ -1,0 +1,154 @@
+{
+  "size" : 15,
+  "list" : [ {
+    "id" : 0,
+    "text" : "public LombokTestData getData() {\n        return data;\n    }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 253,
+      "end" : 313,
+      "size" : 60
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 1,
+    "text" : "public void setData(LombokTestData data) {\n        this.data = data;\n    }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 371,
+      "end" : 445,
+      "size" : 74
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 2,
+    "text" : "public boolean isOk() {\n        return ok;\n    }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 318,
+      "end" : 366,
+      "size" : 48
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 3,
+    "text" : "public void setOk(boolean ok) {\n        this.ok = ok;\n    }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 450,
+      "end" : 509,
+      "size" : 59
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 4,
+    "text" : "public String getString() {\n        return string;\n    }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 514,
+      "end" : 570,
+      "size" : 56
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 5,
+    "text" : "public void setString(String string) {\n        this.string = string;\n    }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 575,
+      "end" : 649,
+      "size" : 74
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 6,
+    "text" : "\n    ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 248,
+      "end" : 253,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 7,
+    "text" : "\n    ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 366,
+      "end" : 371,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 8,
+    "text" : "\n    ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 313,
+      "end" : 318,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 9,
+    "text" : "\n    ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 445,
+      "end" : 450,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 10,
+    "text" : "\n    ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 509,
+      "end" : 514,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 11,
+    "text" : "\n    ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 570,
+      "end" : 575,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 12,
+    "text" : "private static final long serialVersionUID = 1234567L;",
+    "placeholder" : "",
+    "range" : {
+      "start" : 133,
+      "end" : 187,
+      "size" : 54
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 13,
+    "text" : "\n\n    ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 127,
+      "end" : 133,
+      "size" : 6
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 14,
+    "text" : "p",
+    "placeholder" : "@Getter @Setter @Serial p",
+    "range" : {
+      "start" : 98,
+      "end" : 99,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  } ]
+}

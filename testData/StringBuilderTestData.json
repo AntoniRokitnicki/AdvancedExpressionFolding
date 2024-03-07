@@ -1,0 +1,224 @@
+{
+  "size" : 22,
+  "list" : [ {
+    "id" : 0,
+    "text" : "new StringBuilder(\"[\")",
+    "placeholder" : "\"[\"",
+    "range" : {
+      "start" : 125,
+      "end" : 147,
+      "size" : 22
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 1,
+    "text" : ".append(",
+    "placeholder" : " += ",
+    "range" : {
+      "start" : 246,
+      "end" : 254,
+      "size" : 8
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Append"
+  }, {
+    "id" : 2,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 257,
+      "end" : 258,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Append"
+  }, {
+    "id" : 3,
+    "text" : ".append(",
+    "placeholder" : " += ",
+    "range" : {
+      "start" : 314,
+      "end" : 322,
+      "size" : 8
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Append"
+  }, {
+    "id" : 4,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 325,
+      "end" : 326,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Append"
+  }, {
+    "id" : 5,
+    "text" : ".append(",
+    "placeholder" : " + ",
+    "range" : {
+      "start" : 390,
+      "end" : 398,
+      "size" : 8
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Append"
+  }, {
+    "id" : 6,
+    "text" : ").toString()",
+    "placeholder" : "",
+    "range" : {
+      "start" : 401,
+      "end" : 413,
+      "size" : 12
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Append"
+  }, {
+    "id" : 7,
+    "text" : "new StringBuilder().append(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 445,
+      "end" : 472,
+      "size" : 27
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Append:highlighting"
+  }, {
+    "id" : 8,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 475,
+      "end" : 476,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Append:highlighting"
+  }, {
+    "id" : 9,
+    "text" : ".append(",
+    "placeholder" : " += ",
+    "range" : {
+      "start" : 575,
+      "end" : 583,
+      "size" : 8
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Append"
+  }, {
+    "id" : 10,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 586,
+      "end" : 587,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Append"
+  }, {
+    "id" : 11,
+    "text" : ".append(",
+    "placeholder" : " += ",
+    "range" : {
+      "start" : 643,
+      "end" : 651,
+      "size" : 8
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Append"
+  }, {
+    "id" : 12,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 654,
+      "end" : 655,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Append"
+  }, {
+    "id" : 13,
+    "text" : ".append(",
+    "placeholder" : " + ",
+    "range" : {
+      "start" : 719,
+      "end" : 727,
+      "size" : 8
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Append"
+  }, {
+    "id" : 14,
+    "text" : ").toString()",
+    "placeholder" : "",
+    "range" : {
+      "start" : 730,
+      "end" : 742,
+      "size" : 12
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Append"
+  }, {
+    "id" : 15,
+    "text" : "new StringBuilder()",
+    "placeholder" : "\"\"",
+    "range" : {
+      "start" : 774,
+      "end" : 793,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 16,
+    "text" : ".append(",
+    "placeholder" : " += ",
+    "range" : {
+      "start" : 892,
+      "end" : 900,
+      "size" : 8
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Append"
+  }, {
+    "id" : 17,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 903,
+      "end" : 904,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Append"
+  }, {
+    "id" : 18,
+    "text" : ".append(",
+    "placeholder" : " += ",
+    "range" : {
+      "start" : 960,
+      "end" : 968,
+      "size" : 8
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Append"
+  }, {
+    "id" : 19,
+    "text" : ").append(",
+    "placeholder" : " + ",
+    "range" : {
+      "start" : 971,
+      "end" : 980,
+      "size" : 9
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Append"
+  }, {
+    "id" : 20,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 983,
+      "end" : 984,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Append"
+  }, {
+    "id" : 21,
+    "text" : ".toString()",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1048,
+      "end" : 1059,
+      "size" : 11
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Variable:highlighting"
+  } ]
+}

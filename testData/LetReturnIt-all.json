@@ -1,0 +1,294 @@
+{
+  "size" : 29,
+  "list" : [ {
+    "id" : 0,
+    "text" : "String",
+    "placeholder" : "val",
+    "range" : {
+      "start" : 152,
+      "end" : 158,
+      "size" : 6
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+  }, {
+    "id" : 1,
+    "text" : "String var1 = ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 152,
+      "end" : 166,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LetReturnIt"
+  }, {
+    "id" : 2,
+    "text" : ";\n        if (var1 != null) {\n            return var1;\n        }",
+    "placeholder" : "?.let { return it }",
+    "range" : {
+      "start" : 185,
+      "end" : 249,
+      "size" : 64
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LetReturnIt"
+  }, {
+    "id" : 3,
+    "text" : "String",
+    "placeholder" : "val",
+    "range" : {
+      "start" : 258,
+      "end" : 264,
+      "size" : 6
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+  }, {
+    "id" : 4,
+    "text" : "String var2 = ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 258,
+      "end" : 272,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ElvisReturnNull"
+  }, {
+    "id" : 5,
+    "text" : ";\n        if (var2 == null) {\n            return null;\n        }",
+    "placeholder" : " ?: return null",
+    "range" : {
+      "start" : 291,
+      "end" : 355,
+      "size" : 64
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ElvisReturnNull"
+  }, {
+    "id" : 6,
+    "text" : "String",
+    "placeholder" : "val",
+    "range" : {
+      "start" : 364,
+      "end" : 370,
+      "size" : 6
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+  }, {
+    "id" : 7,
+    "text" : ";\n        if (var4 != null) {\n            return var4;\n        }",
+    "placeholder" : "?.let { return it }",
+    "range" : {
+      "start" : 397,
+      "end" : 461,
+      "size" : 64
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LetReturnIt"
+  }, {
+    "id" : 8,
+    "text" : ".toString()",
+    "placeholder" : "",
+    "range" : {
+      "start" : 474,
+      "end" : 485,
+      "size" : 11
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Variable:highlighting"
+  }, {
+    "id" : 9,
+    "text" : "String",
+    "placeholder" : "val",
+    "range" : {
+      "start" : 495,
+      "end" : 501,
+      "size" : 6
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+  }, {
+    "id" : 10,
+    "text" : ";\n        if (var5 == null) {\n            return null;\n        }",
+    "placeholder" : " ?: return null",
+    "range" : {
+      "start" : 528,
+      "end" : 592,
+      "size" : 64
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ElvisReturnNull"
+  }, {
+    "id" : 11,
+    "text" : "(",
+    "placeholder" : "(\"$",
+    "range" : {
+      "start" : 619,
+      "end" : 620,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+  }, {
+    "id" : 12,
+    "text" : " + \"",
+    "placeholder" : "",
+    "range" : {
+      "start" : 624,
+      "end" : 628,
+      "size" : 4
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+  }, {
+    "id" : 13,
+    "text" : "String",
+    "placeholder" : "val",
+    "range" : {
+      "start" : 643,
+      "end" : 649,
+      "size" : 6
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+  }, {
+    "id" : 14,
+    "text" : ";\n        if (var6 == null) {\n            return null;\n        }",
+    "placeholder" : " ?: return null",
+    "range" : {
+      "start" : 676,
+      "end" : 740,
+      "size" : 64
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ElvisReturnNull"
+  }, {
+    "id" : 15,
+    "text" : "(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 755,
+      "end" : 756,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+  }, {
+    "id" : 16,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 760,
+      "end" : 761,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+  }, {
+    "id" : 17,
+    "text" : "(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 779,
+      "end" : 780,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+  }, {
+    "id" : 18,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 820,
+      "end" : 821,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+  }, {
+    "id" : 19,
+    "text" : ".isAfter(",
+    "placeholder" : " > ",
+    "range" : {
+      "start" : 795,
+      "end" : 804,
+      "size" : 9
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Greater"
+  }, {
+    "id" : 20,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 819,
+      "end" : 820,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Greater"
+  }, {
+    "id" : 21,
+    "text" : "(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 843,
+      "end" : 844,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+  }, {
+    "id" : 22,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 856,
+      "end" : 857,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+  }, {
+    "id" : 23,
+    "text" : "String",
+    "placeholder" : "val",
+    "range" : {
+      "start" : 976,
+      "end" : 982,
+      "size" : 6
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+  }, {
+    "id" : 24,
+    "text" : ";\n        if (var7 != null) {\n            return var7;\n        }",
+    "placeholder" : "?.let { return it }",
+    "range" : {
+      "start" : 1009,
+      "end" : 1073,
+      "size" : 64
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LetReturnIt"
+  }, {
+    "id" : 25,
+    "text" : "(",
+    "placeholder" : "(\"$",
+    "range" : {
+      "start" : 1198,
+      "end" : 1199,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+  }, {
+    "id" : 26,
+    "text" : " + \"",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1203,
+      "end" : 1207,
+      "size" : 4
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+  }, {
+    "id" : 27,
+    "text" : "(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1417,
+      "end" : 1418,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+  }, {
+    "id" : 28,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1429,
+      "end" : 1430,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+  } ]
+}

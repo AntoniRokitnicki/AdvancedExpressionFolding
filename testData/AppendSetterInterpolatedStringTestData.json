@@ -1,0 +1,244 @@
+{
+  "size" : 24,
+  "list" : [ {
+    "id" : 0,
+    "text" : "new StringBuilder().append(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 168,
+      "end" : 195,
+      "size" : 27
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Append:highlighting"
+  }, {
+    "id" : 1,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 202,
+      "end" : 203,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Append:highlighting"
+  }, {
+    "id" : 2,
+    "text" : "\" + ",
+    "placeholder" : "${",
+    "range" : {
+      "start" : 232,
+      "end" : 236,
+      "size" : 4
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Append"
+  }, {
+    "id" : 3,
+    "text" : "\" + ",
+    "placeholder" : "${",
+    "range" : {
+      "start" : 232,
+      "end" : 236,
+      "size" : 4
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Append"
+  }, {
+    "id" : 4,
+    "text" : ")",
+    "placeholder" : "}\"",
+    "range" : {
+      "start" : 243,
+      "end" : 244,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Append"
+  }, {
+    "id" : 5,
+    "text" : ".append(",
+    "placeholder" : " += ",
+    "range" : {
+      "start" : 216,
+      "end" : 224,
+      "size" : 8
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Append"
+  }, {
+    "id" : 6,
+    "text" : ".toString()",
+    "placeholder" : "",
+    "range" : {
+      "start" : 276,
+      "end" : 287,
+      "size" : 11
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Variable:highlighting"
+  }, {
+    "id" : 7,
+    "text" : "new StringBuilder(\"\")",
+    "placeholder" : "\"\"",
+    "range" : {
+      "start" : 318,
+      "end" : 339,
+      "size" : 21
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 8,
+    "text" : "(",
+    "placeholder" : "\"${",
+    "range" : {
+      "start" : 359,
+      "end" : 360,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Append"
+  }, {
+    "id" : 9,
+    "text" : " + \"",
+    "placeholder" : "}",
+    "range" : {
+      "start" : 367,
+      "end" : 371,
+      "size" : 4
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Append"
+  }, {
+    "id" : 10,
+    "text" : ".append",
+    "placeholder" : " += ",
+    "range" : {
+      "start" : 352,
+      "end" : 359,
+      "size" : 7
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Append"
+  }, {
+    "id" : 11,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 380,
+      "end" : 381,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Append"
+  }, {
+    "id" : 12,
+    "text" : ".toString()",
+    "placeholder" : "",
+    "range" : {
+      "start" : 413,
+      "end" : 424,
+      "size" : 11
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Variable:highlighting"
+  }, {
+    "id" : 13,
+    "text" : "new StringBuilder(\"Hello, \")",
+    "placeholder" : "\"Hello, \"",
+    "range" : {
+      "start" : 455,
+      "end" : 483,
+      "size" : 28
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 14,
+    "text" : ".append(",
+    "placeholder" : " + ",
+    "range" : {
+      "start" : 483,
+      "end" : 491,
+      "size" : 8
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Append"
+  }, {
+    "id" : 15,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 498,
+      "end" : 499,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Append"
+  }, {
+    "id" : 16,
+    "text" : "setName(",
+    "placeholder" : "name = ",
+    "range" : {
+      "start" : 641,
+      "end" : 649,
+      "size" : 8
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+  }, {
+    "id" : 17,
+    "text" : "\" + ",
+    "placeholder" : "${",
+    "range" : {
+      "start" : 657,
+      "end" : 661,
+      "size" : 4
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+  }, {
+    "id" : 18,
+    "text" : "\" + ",
+    "placeholder" : "${",
+    "range" : {
+      "start" : 657,
+      "end" : 661,
+      "size" : 4
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+  }, {
+    "id" : 19,
+    "text" : ")",
+    "placeholder" : "}\"",
+    "range" : {
+      "start" : 668,
+      "end" : 669,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+  }, {
+    "id" : 20,
+    "text" : "setName",
+    "placeholder" : "name = ",
+    "range" : {
+      "start" : 724,
+      "end" : 731,
+      "size" : 7
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+  }, {
+    "id" : 21,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 752,
+      "end" : 753,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+  }, {
+    "id" : 22,
+    "text" : "(",
+    "placeholder" : "\"${",
+    "range" : {
+      "start" : 731,
+      "end" : 732,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+  }, {
+    "id" : 23,
+    "text" : " + \"",
+    "placeholder" : "}",
+    "range" : {
+      "start" : 739,
+      "end" : 743,
+      "size" : 4
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+  } ]
+}

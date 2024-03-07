@@ -1,0 +1,214 @@
+{
+  "size" : 21,
+  "list" : [ {
+    "id" : 0,
+    "text" : "TypeCastTestData",
+    "placeholder" : "val",
+    "range" : {
+      "start" : 100,
+      "end" : 116,
+      "size" : 16
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+  }, {
+    "id" : 1,
+    "text" : "(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 156,
+      "end" : 157,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+  }, {
+    "id" : 2,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 292,
+      "end" : 293,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+  }, {
+    "id" : 3,
+    "text" : "getObject()",
+    "placeholder" : "object",
+    "range" : {
+      "start" : 159,
+      "end" : 170,
+      "size" : 11
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 4,
+    "text" : "getObject()",
+    "placeholder" : "object",
+    "range" : {
+      "start" : 253,
+      "end" : 264,
+      "size" : 11
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 5,
+    "text" : "((TypeCastTestData) ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 218,
+      "end" : 238,
+      "size" : 20
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.TypeCast"
+  }, {
+    "id" : 6,
+    "text" : ").",
+    "placeholder" : ".",
+    "range" : {
+      "start" : 251,
+      "end" : 253,
+      "size" : 2
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.TypeCast"
+  }, {
+    "id" : 7,
+    "text" : "getObject()",
+    "placeholder" : "object",
+    "range" : {
+      "start" : 240,
+      "end" : 251,
+      "size" : 11
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 8,
+    "text" : "getObject()",
+    "placeholder" : "object",
+    "range" : {
+      "start" : 399,
+      "end" : 410,
+      "size" : 11
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 9,
+    "text" : "((TypeCastTestData) ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 331,
+      "end" : 351,
+      "size" : 20
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.TypeCast"
+  }, {
+    "id" : 10,
+    "text" : ").",
+    "placeholder" : ".",
+    "range" : {
+      "start" : 397,
+      "end" : 399,
+      "size" : 2
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.TypeCast"
+  }, {
+    "id" : 11,
+    "text" : "getObject()",
+    "placeholder" : "object",
+    "range" : {
+      "start" : 386,
+      "end" : 397,
+      "size" : 11
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 12,
+    "text" : "((TypeCastTestData) ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 351,
+      "end" : 371,
+      "size" : 20
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.TypeCast"
+  }, {
+    "id" : 13,
+    "text" : ").",
+    "placeholder" : ".",
+    "range" : {
+      "start" : 384,
+      "end" : 386,
+      "size" : 2
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.TypeCast"
+  }, {
+    "id" : 14,
+    "text" : "getObject()",
+    "placeholder" : "object",
+    "range" : {
+      "start" : 373,
+      "end" : 384,
+      "size" : 11
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 15,
+    "text" : "((TypeCastTestData) ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 428,
+      "end" : 448,
+      "size" : 20
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.TypeCast:highlighting"
+  }, {
+    "id" : 16,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 494,
+      "end" : 495,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.TypeCast:highlighting"
+  }, {
+    "id" : 17,
+    "text" : "getObject()",
+    "placeholder" : "object",
+    "range" : {
+      "start" : 483,
+      "end" : 494,
+      "size" : 11
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 18,
+    "text" : "((TypeCastTestData) ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 448,
+      "end" : 468,
+      "size" : 20
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.TypeCast"
+  }, {
+    "id" : 19,
+    "text" : ").",
+    "placeholder" : ".",
+    "range" : {
+      "start" : 481,
+      "end" : 483,
+      "size" : 2
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.TypeCast"
+  }, {
+    "id" : 20,
+    "text" : "getObject()",
+    "placeholder" : "object",
+    "range" : {
+      "start" : 470,
+      "end" : 481,
+      "size" : 11
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  } ]
+}

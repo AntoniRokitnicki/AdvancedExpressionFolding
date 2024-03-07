@@ -1,0 +1,54 @@
+{
+  "size" : 5,
+  "list" : [ {
+    "id" : 0,
+    "text" : "String",
+    "placeholder" : "val",
+    "range" : {
+      "start" : 95,
+      "end" : 101,
+      "size" : 6
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+  }, {
+    "id" : 1,
+    "text" : "int",
+    "placeholder" : "var",
+    "range" : {
+      "start" : 165,
+      "end" : 168,
+      "size" : 3
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+  }, {
+    "id" : 2,
+    "text" : "String",
+    "placeholder" : "val",
+    "range" : {
+      "start" : 193,
+      "end" : 199,
+      "size" : 6
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+  }, {
+    "id" : 3,
+    "text" : "int",
+    "placeholder" : "var",
+    "range" : {
+      "start" : 295,
+      "end" : 298,
+      "size" : 3
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+  }, {
+    "id" : 4,
+    "text" : "String",
+    "placeholder" : "val",
+    "range" : {
+      "start" : 346,
+      "end" : 352,
+      "size" : 6
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+  } ]
+}

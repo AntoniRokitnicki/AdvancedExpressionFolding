@@ -1,0 +1,44 @@
+{
+  "size" : 4,
+  "list" : [ {
+    "id" : 0,
+    "text" : ";",
+    "placeholder" : "",
+    "range" : {
+      "start" : 12,
+      "end" : 13,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+  }, {
+    "id" : 1,
+    "text" : ";",
+    "placeholder" : "",
+    "range" : {
+      "start" : 38,
+      "end" : 39,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+  }, {
+    "id" : 2,
+    "text" : ";",
+    "placeholder" : "",
+    "range" : {
+      "start" : 223,
+      "end" : 224,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+  }, {
+    "id" : 3,
+    "text" : ";",
+    "placeholder" : "",
+    "range" : {
+      "start" : 313,
+      "end" : 314,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+  } ]
+}

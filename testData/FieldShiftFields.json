@@ -1,0 +1,744 @@
+{
+  "size" : 74,
+  "list" : [ {
+    "id" : 0,
+    "text" : "username",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 347,
+      "end" : 355,
+      "size" : 8
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+  }, {
+    "id" : 1,
+    "text" : "active",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 379,
+      "end" : 385,
+      "size" : 6
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+  }, {
+    "id" : 2,
+    "text" : "userIdentifier",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 417,
+      "end" : 431,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+  }, {
+    "id" : 3,
+    "text" : "child",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 454,
+      "end" : 459,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+  }, {
+    "id" : 4,
+    "text" : "userIdentifier",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 497,
+      "end" : 511,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+  }, {
+    "id" : 5,
+    "text" : "getUserIdentifier()",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 549,
+      "end" : 568,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+  }, {
+    "id" : 6,
+    "text" : "getUserIdentifier()",
+    "placeholder" : "userIdentifier",
+    "range" : {
+      "start" : 549,
+      "end" : 568,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 7,
+    "text" : "username",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 749,
+      "end" : 757,
+      "size" : 8
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+  }, {
+    "id" : 8,
+    "text" : "userIdentifier",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 816,
+      "end" : 830,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+  }, {
+    "id" : 9,
+    "text" : "active",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 869,
+      "end" : 875,
+      "size" : 6
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+  }, {
+    "id" : 10,
+    "text" : "username",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 1068,
+      "end" : 1076,
+      "size" : 8
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+  }, {
+    "id" : 11,
+    "text" : "userIdentifier",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 1117,
+      "end" : 1131,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+  }, {
+    "id" : 12,
+    "text" : "active",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 1164,
+      "end" : 1170,
+      "size" : 6
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+  }, {
+    "id" : 13,
+    "text" : "username",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 1371,
+      "end" : 1379,
+      "size" : 8
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+  }, {
+    "id" : 14,
+    "text" : "active",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 1412,
+      "end" : 1418,
+      "size" : 6
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+  }, {
+    "id" : 15,
+    "text" : "userIdentifier",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 1459,
+      "end" : 1473,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+  }, {
+    "id" : 16,
+    "text" : "username()",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 1675,
+      "end" : 1685,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+  }, {
+    "id" : 17,
+    "text" : "username()",
+    "placeholder" : "username",
+    "range" : {
+      "start" : 1675,
+      "end" : 1685,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.GetterRecord"
+  }, {
+    "id" : 18,
+    "text" : "active()",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 1718,
+      "end" : 1726,
+      "size" : 8
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+  }, {
+    "id" : 19,
+    "text" : "active()",
+    "placeholder" : "active",
+    "range" : {
+      "start" : 1718,
+      "end" : 1726,
+      "size" : 8
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.GetterRecord"
+  }, {
+    "id" : 20,
+    "text" : "userIdentifier()",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 1767,
+      "end" : 1783,
+      "size" : 16
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+  }, {
+    "id" : 21,
+    "text" : "userIdentifier()",
+    "placeholder" : "userIdentifier",
+    "range" : {
+      "start" : 1767,
+      "end" : 1783,
+      "size" : 16
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.GetterRecord"
+  }, {
+    "id" : 22,
+    "text" : "username",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 1999,
+      "end" : 2007,
+      "size" : 8
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+  }, {
+    "id" : 23,
+    "text" : "active",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 2076,
+      "end" : 2082,
+      "size" : 6
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+  }, {
+    "id" : 24,
+    "text" : "username",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 2276,
+      "end" : 2284,
+      "size" : 8
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+  }, {
+    "id" : 25,
+    "text" : "username",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 2323,
+      "end" : 2331,
+      "size" : 8
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+  }, {
+    "id" : 26,
+    "text" : "active",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 2480,
+      "end" : 2486,
+      "size" : 6
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+  }, {
+    "id" : 27,
+    "text" : "userIdentifier",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 2527,
+      "end" : 2541,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+  }, {
+    "id" : 28,
+    "text" : "child",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 2633,
+      "end" : 2638,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+  }, {
+    "id" : 29,
+    "text" : "username",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 2718,
+      "end" : 2726,
+      "size" : 8
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+  }, {
+    "id" : 30,
+    "text" : "active",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 2761,
+      "end" : 2767,
+      "size" : 6
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+  }, {
+    "id" : 31,
+    "text" : "username",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 2804,
+      "end" : 2812,
+      "size" : 8
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+  }, {
+    "id" : 32,
+    "text" : "userIdentifier()",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 2855,
+      "end" : 2871,
+      "size" : 16
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+  }, {
+    "id" : 33,
+    "text" : "userIdentifier()",
+    "placeholder" : "userIdentifier",
+    "range" : {
+      "start" : 2855,
+      "end" : 2871,
+      "size" : 16
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.GetterRecord"
+  }, {
+    "id" : 34,
+    "text" : "username",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 3011,
+      "end" : 3019,
+      "size" : 8
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+  }, {
+    "id" : 35,
+    "text" : "child",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 3076,
+      "end" : 3081,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+  }, {
+    "id" : 36,
+    "text" : "username()",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 3300,
+      "end" : 3310,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+  }, {
+    "id" : 37,
+    "text" : "username()",
+    "placeholder" : "username",
+    "range" : {
+      "start" : 3300,
+      "end" : 3310,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.GetterRecord"
+  }, {
+    "id" : 38,
+    "text" : "isActive()",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 3379,
+      "end" : 3389,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+  }, {
+    "id" : 39,
+    "text" : "isActive()",
+    "placeholder" : "active",
+    "range" : {
+      "start" : 3379,
+      "end" : 3389,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 40,
+    "text" : "username()",
+    "placeholder" : "username",
+    "range" : {
+      "start" : 3539,
+      "end" : 3549,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.GetterRecord"
+  }, {
+    "id" : 41,
+    "text" : "getUsername()",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 3585,
+      "end" : 3598,
+      "size" : 13
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+  }, {
+    "id" : 42,
+    "text" : "getUsername()",
+    "placeholder" : "username",
+    "range" : {
+      "start" : 3585,
+      "end" : 3598,
+      "size" : 13
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 43,
+    "text" : "getUsername()",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 3642,
+      "end" : 3655,
+      "size" : 13
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+  }, {
+    "id" : 44,
+    "text" : "getUsername()",
+    "placeholder" : "username",
+    "range" : {
+      "start" : 3642,
+      "end" : 3655,
+      "size" : 13
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 45,
+    "text" : "getChild()",
+    "placeholder" : "child",
+    "range" : {
+      "start" : 3631,
+      "end" : 3641,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 46,
+    "text" : "getUsername()",
+    "placeholder" : "username",
+    "range" : {
+      "start" : 3690,
+      "end" : 3703,
+      "size" : 13
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 47,
+    "text" : "getUsername()",
+    "placeholder" : "username",
+    "range" : {
+      "start" : 3744,
+      "end" : 3757,
+      "size" : 13
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 48,
+    "text" : "getUserIdentifier()",
+    "placeholder" : "userIdentifier",
+    "range" : {
+      "start" : 3767,
+      "end" : 3786,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 49,
+    "text" : "isActive()",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 3819,
+      "end" : 3829,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+  }, {
+    "id" : 50,
+    "text" : "isActive()",
+    "placeholder" : "active",
+    "range" : {
+      "start" : 3819,
+      "end" : 3829,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 51,
+    "text" : "getUserIdentifier()",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 3870,
+      "end" : 3889,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+  }, {
+    "id" : 52,
+    "text" : "getUserIdentifier()",
+    "placeholder" : "userIdentifier",
+    "range" : {
+      "start" : 3870,
+      "end" : 3889,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 53,
+    "text" : "getChild()",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 3981,
+      "end" : 3991,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+  }, {
+    "id" : 54,
+    "text" : "getChild()",
+    "placeholder" : "child",
+    "range" : {
+      "start" : 3981,
+      "end" : 3991,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 55,
+    "text" : "getUsername()",
+    "placeholder" : "username",
+    "range" : {
+      "start" : 4031,
+      "end" : 4044,
+      "size" : 13
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 56,
+    "text" : "getUsername()",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 4078,
+      "end" : 4091,
+      "size" : 13
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+  }, {
+    "id" : 57,
+    "text" : "getUsername()",
+    "placeholder" : "username",
+    "range" : {
+      "start" : 4078,
+      "end" : 4091,
+      "size" : 13
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 58,
+    "text" : "getChild()",
+    "placeholder" : "child",
+    "range" : {
+      "start" : 4110,
+      "end" : 4120,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 59,
+    "text" : "isActive()",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 4156,
+      "end" : 4166,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+  }, {
+    "id" : 60,
+    "text" : "isActive()",
+    "placeholder" : "active",
+    "range" : {
+      "start" : 4156,
+      "end" : 4166,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 61,
+    "text" : "getUsername()",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 4204,
+      "end" : 4217,
+      "size" : 13
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+  }, {
+    "id" : 62,
+    "text" : "getUsername()",
+    "placeholder" : "username",
+    "range" : {
+      "start" : 4204,
+      "end" : 4217,
+      "size" : 13
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 63,
+    "text" : "userIdentifier()",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 4260,
+      "end" : 4276,
+      "size" : 16
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+  }, {
+    "id" : 64,
+    "text" : "userIdentifier()",
+    "placeholder" : "userIdentifier",
+    "range" : {
+      "start" : 4260,
+      "end" : 4276,
+      "size" : 16
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.GetterRecord"
+  }, {
+    "id" : 65,
+    "text" : "getChild()",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 4310,
+      "end" : 4320,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+  }, {
+    "id" : 66,
+    "text" : "getChild()",
+    "placeholder" : "child",
+    "range" : {
+      "start" : 4310,
+      "end" : 4320,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 67,
+    "text" : "getUsername()",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 4427,
+      "end" : 4440,
+      "size" : 13
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+  }, {
+    "id" : 68,
+    "text" : "getUsername()",
+    "placeholder" : "username",
+    "range" : {
+      "start" : 4427,
+      "end" : 4440,
+      "size" : 13
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 69,
+    "text" : "getChild()",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 4512,
+      "end" : 4522,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+  }, {
+    "id" : 70,
+    "text" : "getChild()",
+    "placeholder" : "child",
+    "range" : {
+      "start" : 4512,
+      "end" : 4522,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 71,
+    "text" : "getChild()",
+    "placeholder" : "child",
+    "range" : {
+      "start" : 4501,
+      "end" : 4511,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 72,
+    "text" : "getChild()",
+    "placeholder" : "child",
+    "range" : {
+      "start" : 4490,
+      "end" : 4500,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 73,
+    "text" : "getChild()",
+    "placeholder" : "child",
+    "range" : {
+      "start" : 4479,
+      "end" : 4489,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  } ]
+}

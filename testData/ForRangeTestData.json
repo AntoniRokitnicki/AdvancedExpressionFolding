@@ -1,0 +1,234 @@
+{
+  "size" : 23,
+  "list" : [ {
+    "id" : 0,
+    "text" : "(",
+    "placeholder" : "((",
+    "range" : {
+      "start" : 168,
+      "end" : 169,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ForEachIndexedStatement"
+  }, {
+    "id" : 1,
+    "text" : " = 0; i < args.length; i++) {\n                        ",
+    "placeholder" : ", ",
+    "range" : {
+      "start" : 174,
+      "end" : 228,
+      "size" : 54
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ForEachIndexedStatement"
+  }, {
+    "id" : 2,
+    "text" : " = ",
+    "placeholder" : ") : ",
+    "range" : {
+      "start" : 238,
+      "end" : 241,
+      "size" : 3
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ForEachIndexedStatement"
+  }, {
+    "id" : 3,
+    "text" : "\n                                [i];",
+    "placeholder" : ") {\n",
+    "range" : {
+      "start" : 245,
+      "end" : 282,
+      "size" : 37
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ForEachIndexedStatement"
+  }, {
+    "id" : 4,
+    "text" : "int i = 0; i < args.length; i++) {\n                        ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 394,
+      "end" : 453,
+      "size" : 59
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ForEachStatement"
+  }, {
+    "id" : 5,
+    "text" : " = ",
+    "placeholder" : " : ",
+    "range" : {
+      "start" : 463,
+      "end" : 466,
+      "size" : 3
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ForEachStatement"
+  }, {
+    "id" : 6,
+    "text" : "\n                                [i];",
+    "placeholder" : ") {\n",
+    "range" : {
+      "start" : 470,
+      "end" : 507,
+      "size" : 37
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ForEachStatement"
+  }, {
+    "id" : 7,
+    "text" : " = ",
+    "placeholder" : " : [",
+    "range" : {
+      "start" : 585,
+      "end" : 588,
+      "size" : 3
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ForStatement"
+  }, {
+    "id" : 8,
+    "text" : "; i < ",
+    "placeholder" : ", ",
+    "range" : {
+      "start" : 589,
+      "end" : 595,
+      "size" : 6
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ForStatement"
+  }, {
+    "id" : 9,
+    "text" : "; i++",
+    "placeholder" : ")",
+    "range" : {
+      "start" : 606,
+      "end" : 611,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ForStatement"
+  }, {
+    "id" : 10,
+    "text" : " = ",
+    "placeholder" : " : [",
+    "range" : {
+      "start" : 698,
+      "end" : 701,
+      "size" : 3
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ForStatement"
+  }, {
+    "id" : 11,
+    "text" : "; i <= ",
+    "placeholder" : ", ",
+    "range" : {
+      "start" : 702,
+      "end" : 709,
+      "size" : 7
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ForStatement"
+  }, {
+    "id" : 12,
+    "text" : "; i++",
+    "placeholder" : "]",
+    "range" : {
+      "start" : 724,
+      "end" : 729,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ForStatement"
+  }, {
+    "id" : 13,
+    "text" : "int i = 0; i < list.size(); i++) {\n                        ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 874,
+      "end" : 933,
+      "size" : 59
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ForEachStatement"
+  }, {
+    "id" : 14,
+    "text" : " = ",
+    "placeholder" : " : ",
+    "range" : {
+      "start" : 941,
+      "end" : 944,
+      "size" : 3
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ForEachStatement"
+  }, {
+    "id" : 15,
+    "text" : "\n                                .get(i);",
+    "placeholder" : ") {\n",
+    "range" : {
+      "start" : 948,
+      "end" : 989,
+      "size" : 41
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ForEachStatement"
+  }, {
+    "id" : 16,
+    "text" : "(",
+    "placeholder" : "((",
+    "range" : {
+      "start" : 1059,
+      "end" : 1060,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ForEachIndexedStatement"
+  }, {
+    "id" : 17,
+    "text" : " = 0; i < list.size(); i++) {\n                        ",
+    "placeholder" : ", ",
+    "range" : {
+      "start" : 1065,
+      "end" : 1119,
+      "size" : 54
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ForEachIndexedStatement"
+  }, {
+    "id" : 18,
+    "text" : " = ",
+    "placeholder" : ") : ",
+    "range" : {
+      "start" : 1127,
+      "end" : 1130,
+      "size" : 3
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ForEachIndexedStatement"
+  }, {
+    "id" : 19,
+    "text" : "\n                                .get(i);",
+    "placeholder" : ") {\n",
+    "range" : {
+      "start" : 1134,
+      "end" : 1175,
+      "size" : 41
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ForEachIndexedStatement"
+  }, {
+    "id" : 20,
+    "text" : " > ",
+    "placeholder" : " in (",
+    "range" : {
+      "start" : 1295,
+      "end" : 1298,
+      "size" : 3
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Range"
+  }, {
+    "id" : 21,
+    "text" : " && args.length < ",
+    "placeholder" : ", ",
+    "range" : {
+      "start" : 1299,
+      "end" : 1317,
+      "size" : 18
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Range"
+  }, {
+    "id" : 22,
+    "text" : ")",
+    "placeholder" : "))",
+    "range" : {
+      "start" : 1318,
+      "end" : 1319,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Range"
+  } ]
+}

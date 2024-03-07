@@ -1,0 +1,1124 @@
+{
+  "size" : 112,
+  "list" : [ {
+    "id" : 0,
+    "text" : ";",
+    "placeholder" : "",
+    "range" : {
+      "start" : 12,
+      "end" : 13,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+  }, {
+    "id" : 1,
+    "text" : ";",
+    "placeholder" : "",
+    "range" : {
+      "start" : 38,
+      "end" : 39,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+  }, {
+    "id" : 2,
+    "text" : "(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 147,
+      "end" : 148,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+  }, {
+    "id" : 3,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 163,
+      "end" : 164,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+  }, {
+    "id" : 4,
+    "text" : "{",
+    "placeholder" : "",
+    "range" : {
+      "start" : 165,
+      "end" : 166,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+  }, {
+    "id" : 5,
+    "text" : "        }\n",
+    "placeholder" : "",
+    "range" : {
+      "start" : 224,
+      "end" : 234,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+  }, {
+    "id" : 6,
+    "text" : ";",
+    "placeholder" : "",
+    "range" : {
+      "start" : 222,
+      "end" : 223,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+  }, {
+    "id" : 7,
+    "text" : "(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 245,
+      "end" : 246,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+  }, {
+    "id" : 8,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 262,
+      "end" : 263,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+  }, {
+    "id" : 9,
+    "text" : "{",
+    "placeholder" : "",
+    "range" : {
+      "start" : 264,
+      "end" : 265,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+  }, {
+    "id" : 10,
+    "text" : "} ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 317,
+      "end" : 319,
+      "size" : 2
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+  }, {
+    "id" : 11,
+    "text" : ";",
+    "placeholder" : "",
+    "range" : {
+      "start" : 307,
+      "end" : 308,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+  }, {
+    "id" : 12,
+    "text" : "{",
+    "placeholder" : "",
+    "range" : {
+      "start" : 324,
+      "end" : 325,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+  }, {
+    "id" : 13,
+    "text" : "        }\n",
+    "placeholder" : "",
+    "range" : {
+      "start" : 369,
+      "end" : 379,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+  }, {
+    "id" : 14,
+    "text" : ";",
+    "placeholder" : "",
+    "range" : {
+      "start" : 367,
+      "end" : 368,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+  }, {
+    "id" : 15,
+    "text" : "(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 390,
+      "end" : 391,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+  }, {
+    "id" : 16,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 407,
+      "end" : 408,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+  }, {
+    "id" : 17,
+    "text" : "{",
+    "placeholder" : "",
+    "range" : {
+      "start" : 409,
+      "end" : 410,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+  }, {
+    "id" : 18,
+    "text" : "} ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 497,
+      "end" : 499,
+      "size" : 2
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+  }, {
+    "id" : 19,
+    "text" : ";",
+    "placeholder" : "",
+    "range" : {
+      "start" : 452,
+      "end" : 453,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+  }, {
+    "id" : 20,
+    "text" : ";",
+    "placeholder" : "",
+    "range" : {
+      "start" : 487,
+      "end" : 488,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+  }, {
+    "id" : 21,
+    "text" : "{",
+    "placeholder" : "",
+    "range" : {
+      "start" : 504,
+      "end" : 505,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+  }, {
+    "id" : 22,
+    "text" : "        }\n",
+    "placeholder" : "",
+    "range" : {
+      "start" : 549,
+      "end" : 559,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+  }, {
+    "id" : 23,
+    "text" : ";",
+    "placeholder" : "",
+    "range" : {
+      "start" : 547,
+      "end" : 548,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+  }, {
+    "id" : 24,
+    "text" : "(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 570,
+      "end" : 571,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+  }, {
+    "id" : 25,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 586,
+      "end" : 587,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+  }, {
+    "id" : 26,
+    "text" : "{",
+    "placeholder" : "",
+    "range" : {
+      "start" : 588,
+      "end" : 589,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+  }, {
+    "id" : 27,
+    "text" : "} ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 641,
+      "end" : 643,
+      "size" : 2
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+  }, {
+    "id" : 28,
+    "text" : ";",
+    "placeholder" : "",
+    "range" : {
+      "start" : 631,
+      "end" : 632,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+  }, {
+    "id" : 29,
+    "text" : "{",
+    "placeholder" : "",
+    "range" : {
+      "start" : 648,
+      "end" : 649,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+  }, {
+    "id" : 30,
+    "text" : "        }\n",
+    "placeholder" : "",
+    "range" : {
+      "start" : 728,
+      "end" : 738,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+  }, {
+    "id" : 31,
+    "text" : ";",
+    "placeholder" : "",
+    "range" : {
+      "start" : 691,
+      "end" : 692,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+  }, {
+    "id" : 32,
+    "text" : ";",
+    "placeholder" : "",
+    "range" : {
+      "start" : 726,
+      "end" : 727,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+  }, {
+    "id" : 33,
+    "text" : "(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 750,
+      "end" : 751,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+  }, {
+    "id" : 34,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 768,
+      "end" : 769,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+  }, {
+    "id" : 35,
+    "text" : "String",
+    "placeholder" : "val",
+    "range" : {
+      "start" : 751,
+      "end" : 757,
+      "size" : 6
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+  }, {
+    "id" : 36,
+    "text" : "{",
+    "placeholder" : "",
+    "range" : {
+      "start" : 770,
+      "end" : 771,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+  }, {
+    "id" : 37,
+    "text" : "        }\n",
+    "placeholder" : "",
+    "range" : {
+      "start" : 813,
+      "end" : 823,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+  }, {
+    "id" : 38,
+    "text" : ";",
+    "placeholder" : "",
+    "range" : {
+      "start" : 811,
+      "end" : 812,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+  }, {
+    "id" : 39,
+    "text" : " = ",
+    "placeholder" : " : [",
+    "range" : {
+      "start" : 841,
+      "end" : 844,
+      "size" : 3
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ForStatement"
+  }, {
+    "id" : 40,
+    "text" : "; i < ",
+    "placeholder" : ", ",
+    "range" : {
+      "start" : 845,
+      "end" : 851,
+      "size" : 6
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ForStatement"
+  }, {
+    "id" : 41,
+    "text" : "; i++",
+    "placeholder" : ")",
+    "range" : {
+      "start" : 862,
+      "end" : 867,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ForStatement"
+  }, {
+    "id" : 42,
+    "text" : "(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 835,
+      "end" : 836,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ForStatement"
+  }, {
+    "id" : 43,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 867,
+      "end" : 868,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ForStatement"
+  }, {
+    "id" : 44,
+    "text" : "int",
+    "placeholder" : "val",
+    "range" : {
+      "start" : 836,
+      "end" : 839,
+      "size" : 3
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+  }, {
+    "id" : 45,
+    "text" : ";",
+    "placeholder" : "",
+    "range" : {
+      "start" : 845,
+      "end" : 846,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+  }, {
+    "id" : 46,
+    "text" : ";",
+    "placeholder" : "",
+    "range" : {
+      "start" : 862,
+      "end" : 863,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+  }, {
+    "id" : 47,
+    "text" : "{",
+    "placeholder" : "",
+    "range" : {
+      "start" : 869,
+      "end" : 870,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+  }, {
+    "id" : 48,
+    "text" : "        }\n",
+    "placeholder" : "",
+    "range" : {
+      "start" : 916,
+      "end" : 926,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+  }, {
+    "id" : 49,
+    "text" : ";",
+    "placeholder" : "",
+    "range" : {
+      "start" : 914,
+      "end" : 915,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+  }, {
+    "id" : 50,
+    "text" : " = ",
+    "placeholder" : " : [",
+    "range" : {
+      "start" : 944,
+      "end" : 947,
+      "size" : 3
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ForStatement"
+  }, {
+    "id" : 51,
+    "text" : "; i < ",
+    "placeholder" : ", ",
+    "range" : {
+      "start" : 948,
+      "end" : 954,
+      "size" : 6
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ForStatement"
+  }, {
+    "id" : 52,
+    "text" : "; i++",
+    "placeholder" : ")",
+    "range" : {
+      "start" : 965,
+      "end" : 970,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ForStatement"
+  }, {
+    "id" : 53,
+    "text" : "(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 938,
+      "end" : 939,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ForStatement"
+  }, {
+    "id" : 54,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 970,
+      "end" : 971,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ForStatement"
+  }, {
+    "id" : 55,
+    "text" : "int",
+    "placeholder" : "val",
+    "range" : {
+      "start" : 939,
+      "end" : 942,
+      "size" : 3
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+  }, {
+    "id" : 56,
+    "text" : ";",
+    "placeholder" : "",
+    "range" : {
+      "start" : 948,
+      "end" : 949,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+  }, {
+    "id" : 57,
+    "text" : ";",
+    "placeholder" : "",
+    "range" : {
+      "start" : 965,
+      "end" : 966,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+  }, {
+    "id" : 58,
+    "text" : "{",
+    "placeholder" : "",
+    "range" : {
+      "start" : 972,
+      "end" : 973,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+  }, {
+    "id" : 59,
+    "text" : "        }\n",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1050,
+      "end" : 1060,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+  }, {
+    "id" : 60,
+    "text" : ";",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1011,
+      "end" : 1012,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+  }, {
+    "id" : 61,
+    "text" : ";",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1048,
+      "end" : 1049,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+  }, {
+    "id" : 62,
+    "text" : "(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1074,
+      "end" : 1075,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+  }, {
+    "id" : 63,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1079,
+      "end" : 1080,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+  }, {
+    "id" : 64,
+    "text" : "{",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1081,
+      "end" : 1082,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+  }, {
+    "id" : 65,
+    "text" : "        }\n",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1098,
+      "end" : 1108,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+  }, {
+    "id" : 66,
+    "text" : ";",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1096,
+      "end" : 1097,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+  }, {
+    "id" : 67,
+    "text" : "(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1122,
+      "end" : 1123,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+  }, {
+    "id" : 68,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1127,
+      "end" : 1128,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+  }, {
+    "id" : 69,
+    "text" : "{",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1129,
+      "end" : 1130,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+  }, {
+    "id" : 70,
+    "text" : "        }\n",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1189,
+      "end" : 1199,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+  }, {
+    "id" : 71,
+    "text" : ";",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1172,
+      "end" : 1173,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+  }, {
+    "id" : 72,
+    "text" : ";",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1187,
+      "end" : 1188,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+  }, {
+    "id" : 73,
+    "text" : "(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1243,
+      "end" : 1244,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+  }, {
+    "id" : 74,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1248,
+      "end" : 1249,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+  }, {
+    "id" : 75,
+    "text" : "{",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1210,
+      "end" : 1211,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+  }, {
+    "id" : 76,
+    "text" : "} ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1235,
+      "end" : 1237,
+      "size" : 2
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+  }, {
+    "id" : 77,
+    "text" : ";",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1225,
+      "end" : 1226,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+  }, {
+    "id" : 78,
+    "text" : ";",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1249,
+      "end" : 1250,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+  }, {
+    "id" : 79,
+    "text" : "(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1338,
+      "end" : 1339,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+  }, {
+    "id" : 80,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1343,
+      "end" : 1344,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+  }, {
+    "id" : 81,
+    "text" : "{",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1262,
+      "end" : 1263,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+  }, {
+    "id" : 82,
+    "text" : "} ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1330,
+      "end" : 1332,
+      "size" : 2
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+  }, {
+    "id" : 83,
+    "text" : ";",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1305,
+      "end" : 1306,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+  }, {
+    "id" : 84,
+    "text" : ";",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1320,
+      "end" : 1321,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+  }, {
+    "id" : 85,
+    "text" : ";",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1344,
+      "end" : 1345,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+  }, {
+    "id" : 86,
+    "text" : "{",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1358,
+      "end" : 1359,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+  }, {
+    "id" : 87,
+    "text" : "} ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1411,
+      "end" : 1413,
+      "size" : 2
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+  }, {
+    "id" : 88,
+    "text" : ";",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1401,
+      "end" : 1402,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+  }, {
+    "id" : 89,
+    "text" : "(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1419,
+      "end" : 1420,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+  }, {
+    "id" : 90,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1431,
+      "end" : 1432,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+  }, {
+    "id" : 91,
+    "text" : "{",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1433,
+      "end" : 1434,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+  }, {
+    "id" : 92,
+    "text" : "        }\n",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1478,
+      "end" : 1488,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+  }, {
+    "id" : 93,
+    "text" : ";",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1476,
+      "end" : 1477,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+  }, {
+    "id" : 94,
+    "text" : "{",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1500,
+      "end" : 1501,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+  }, {
+    "id" : 95,
+    "text" : "} ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1588,
+      "end" : 1590,
+      "size" : 2
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+  }, {
+    "id" : 96,
+    "text" : ";",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1543,
+      "end" : 1544,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+  }, {
+    "id" : 97,
+    "text" : ";",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1578,
+      "end" : 1579,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+  }, {
+    "id" : 98,
+    "text" : "(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1596,
+      "end" : 1597,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+  }, {
+    "id" : 99,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1608,
+      "end" : 1609,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+  }, {
+    "id" : 100,
+    "text" : "{",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1610,
+      "end" : 1611,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+  }, {
+    "id" : 101,
+    "text" : "        }\n",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1655,
+      "end" : 1665,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+  }, {
+    "id" : 102,
+    "text" : ";",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1653,
+      "end" : 1654,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+  }, {
+    "id" : 103,
+    "text" : "{",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1677,
+      "end" : 1678,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+  }, {
+    "id" : 104,
+    "text" : "} ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1730,
+      "end" : 1732,
+      "size" : 2
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+  }, {
+    "id" : 105,
+    "text" : ";",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1720,
+      "end" : 1721,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+  }, {
+    "id" : 106,
+    "text" : "(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1738,
+      "end" : 1739,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+  }, {
+    "id" : 107,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1750,
+      "end" : 1751,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+  }, {
+    "id" : 108,
+    "text" : "{",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1752,
+      "end" : 1753,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+  }, {
+    "id" : 109,
+    "text" : "        }\n",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1832,
+      "end" : 1842,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+  }, {
+    "id" : 110,
+    "text" : ";",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1795,
+      "end" : 1796,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+  }, {
+    "id" : 111,
+    "text" : ";",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1830,
+      "end" : 1831,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+  } ]
+}

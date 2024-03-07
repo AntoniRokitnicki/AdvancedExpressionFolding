@@ -1,0 +1,164 @@
+{
+  "size" : 16,
+  "list" : [ {
+    "id" : 0,
+    "text" : "{",
+    "placeholder" : "",
+    "range" : {
+      "start" : 138,
+      "end" : 139,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+  }, {
+    "id" : 1,
+    "text" : "        }\n",
+    "placeholder" : "",
+    "range" : {
+      "start" : 218,
+      "end" : 228,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+  }, {
+    "id" : 2,
+    "text" : "{",
+    "placeholder" : "",
+    "range" : {
+      "start" : 258,
+      "end" : 259,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+  }, {
+    "id" : 3,
+    "text" : "} ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 346,
+      "end" : 348,
+      "size" : 2
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+  }, {
+    "id" : 4,
+    "text" : "{",
+    "placeholder" : "",
+    "range" : {
+      "start" : 509,
+      "end" : 510,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+  }, {
+    "id" : 5,
+    "text" : "        }\n",
+    "placeholder" : "",
+    "range" : {
+      "start" : 597,
+      "end" : 607,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+  }, {
+    "id" : 6,
+    "text" : "{",
+    "placeholder" : "",
+    "range" : {
+      "start" : 743,
+      "end" : 744,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+  }, {
+    "id" : 7,
+    "text" : "        }\n",
+    "placeholder" : "",
+    "range" : {
+      "start" : 819,
+      "end" : 829,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+  }, {
+    "id" : 8,
+    "text" : "{",
+    "placeholder" : "",
+    "range" : {
+      "start" : 850,
+      "end" : 851,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+  }, {
+    "id" : 9,
+    "text" : "        }\n",
+    "placeholder" : "",
+    "range" : {
+      "start" : 910,
+      "end" : 920,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+  }, {
+    "id" : 10,
+    "text" : "{",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1116,
+      "end" : 1117,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+  }, {
+    "id" : 11,
+    "text" : "} ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1204,
+      "end" : 1206,
+      "size" : 2
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+  }, {
+    "id" : 12,
+    "text" : "{",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1226,
+      "end" : 1227,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+  }, {
+    "id" : 13,
+    "text" : "        }\n",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1300,
+      "end" : 1310,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+  }, {
+    "id" : 14,
+    "text" : "{",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1321,
+      "end" : 1322,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+  }, {
+    "id" : 15,
+    "text" : "} ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1389,
+      "end" : 1391,
+      "size" : 2
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+  } ]
+}

@@ -1,0 +1,2944 @@
+{
+  "size" : 294,
+  "list" : [ {
+    "id" : 0,
+    "text" : "List<String>",
+    "placeholder" : "val",
+    "range" : {
+      "start" : 162,
+      "end" : 174,
+      "size" : 12
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+  }, {
+    "id" : 1,
+    "text" : ".add(",
+    "placeholder" : " += ",
+    "range" : {
+      "start" : 215,
+      "end" : 220,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AddAssignForCollection"
+  }, {
+    "id" : 2,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 225,
+      "end" : 226,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AddAssignForCollection"
+  }, {
+    "id" : 3,
+    "text" : ".remove(",
+    "placeholder" : " -= ",
+    "range" : {
+      "start" : 240,
+      "end" : 248,
+      "size" : 8
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.RemoveAssignForCollection"
+  }, {
+    "id" : 4,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 253,
+      "end" : 254,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.RemoveAssignForCollection"
+  }, {
+    "id" : 5,
+    "text" : "List<String>",
+    "placeholder" : "val",
+    "range" : {
+      "start" : 357,
+      "end" : 369,
+      "size" : 12
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+  }, {
+    "id" : 6,
+    "text" : ".addAll(",
+    "placeholder" : " += ",
+    "range" : {
+      "start" : 419,
+      "end" : 427,
+      "size" : 8
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AddAssignForCollection"
+  }, {
+    "id" : 7,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 436,
+      "end" : 437,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AddAssignForCollection"
+  }, {
+    "id" : 8,
+    "text" : ".removeAll(",
+    "placeholder" : " -= ",
+    "range" : {
+      "start" : 451,
+      "end" : 462,
+      "size" : 11
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.RemoveAssignForCollection"
+  }, {
+    "id" : 9,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 471,
+      "end" : 472,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.RemoveAssignForCollection"
+  }, {
+    "id" : 10,
+    "text" : "Collections.addAll(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 482,
+      "end" : 501,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AddAssignForCollection"
+  }, {
+    "id" : 11,
+    "text" : ", ",
+    "placeholder" : " += ",
+    "range" : {
+      "start" : 505,
+      "end" : 507,
+      "size" : 2
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AddAssignForCollection"
+  }, {
+    "id" : 12,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 511,
+      "end" : 512,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AddAssignForCollection"
+  }, {
+    "id" : 13,
+    "text" : "Set<String>",
+    "placeholder" : "val",
+    "range" : {
+      "start" : 522,
+      "end" : 533,
+      "size" : 11
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+  }, {
+    "id" : 14,
+    "text" : ".add(",
+    "placeholder" : " += ",
+    "range" : {
+      "start" : 568,
+      "end" : 573,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AddAssignForCollection"
+  }, {
+    "id" : 15,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 580,
+      "end" : 581,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AddAssignForCollection"
+  }, {
+    "id" : 16,
+    "text" : ".remove(",
+    "placeholder" : " -= ",
+    "range" : {
+      "start" : 594,
+      "end" : 602,
+      "size" : 8
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.RemoveAssignForCollection"
+  }, {
+    "id" : 17,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 609,
+      "end" : 610,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.RemoveAssignForCollection"
+  }, {
+    "id" : 18,
+    "text" : "Set<String>",
+    "placeholder" : "val",
+    "range" : {
+      "start" : 653,
+      "end" : 664,
+      "size" : 11
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+  }, {
+    "id" : 19,
+    "text" : ".addAll(",
+    "placeholder" : " += ",
+    "range" : {
+      "start" : 705,
+      "end" : 713,
+      "size" : 8
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AddAssignForCollection"
+  }, {
+    "id" : 20,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 722,
+      "end" : 723,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.AddAssignForCollection"
+  }, {
+    "id" : 21,
+    "text" : "List<String>",
+    "placeholder" : "var",
+    "range" : {
+      "start" : 772,
+      "end" : 784,
+      "size" : 12
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+  }, {
+    "id" : 22,
+    "text" : ".collect(Collectors.",
+    "placeholder" : ".",
+    "range" : {
+      "start" : 844,
+      "end" : 864,
+      "size" : 20
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Collect"
+  }, {
+    "id" : 23,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 872,
+      "end" : 873,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Collect"
+  }, {
+    "id" : 24,
+    "text" : ".map(",
+    "placeholder" : "*.",
+    "range" : {
+      "start" : 819,
+      "end" : 824,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 25,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 843,
+      "end" : 844,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 26,
+    "text" : "Arrays.stream(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 800,
+      "end" : 814,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayStream:highlighting"
+  }, {
+    "id" : 27,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 818,
+      "end" : 819,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayStream:highlighting"
+  }, {
+    "id" : 28,
+    "text" : "String::toUpperCase",
+    "placeholder" : "toUpperCase()",
+    "range" : {
+      "start" : 824,
+      "end" : 843,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 29,
+    "text" : ".map(",
+    "placeholder" : "*.",
+    "range" : {
+      "start" : 819,
+      "end" : 824,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 30,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 843,
+      "end" : 844,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 31,
+    "text" : "Arrays.stream(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 800,
+      "end" : 814,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayStream:highlighting"
+  }, {
+    "id" : 32,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 818,
+      "end" : 819,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayStream:highlighting"
+  }, {
+    "id" : 33,
+    "text" : "String::toUpperCase",
+    "placeholder" : "toUpperCase()",
+    "range" : {
+      "start" : 824,
+      "end" : 843,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 34,
+    "text" : "Arrays.stream(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 800,
+      "end" : 814,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayStream:highlighting"
+  }, {
+    "id" : 35,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 818,
+      "end" : 819,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayStream:highlighting"
+  }, {
+    "id" : 36,
+    "text" : "String::toUpperCase",
+    "placeholder" : "toUpperCase()",
+    "range" : {
+      "start" : 824,
+      "end" : 843,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 37,
+    "text" : ".collect(Collectors.",
+    "placeholder" : ".",
+    "range" : {
+      "start" : 984,
+      "end" : 1004,
+      "size" : 20
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Collect"
+  }, {
+    "id" : 38,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1012,
+      "end" : 1013,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Collect"
+  }, {
+    "id" : 39,
+    "text" : ".map(",
+    "placeholder" : "*.",
+    "range" : {
+      "start" : 959,
+      "end" : 964,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 40,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 983,
+      "end" : 984,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 41,
+    "text" : "Arrays.stream(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 940,
+      "end" : 954,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayStream:highlighting"
+  }, {
+    "id" : 42,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 958,
+      "end" : 959,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayStream:highlighting"
+  }, {
+    "id" : 43,
+    "text" : "String::toUpperCase",
+    "placeholder" : "toUpperCase()",
+    "range" : {
+      "start" : 964,
+      "end" : 983,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 44,
+    "text" : ".map(",
+    "placeholder" : "*.",
+    "range" : {
+      "start" : 959,
+      "end" : 964,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 45,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 983,
+      "end" : 984,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 46,
+    "text" : "Arrays.stream(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 940,
+      "end" : 954,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayStream:highlighting"
+  }, {
+    "id" : 47,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 958,
+      "end" : 959,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayStream:highlighting"
+  }, {
+    "id" : 48,
+    "text" : "String::toUpperCase",
+    "placeholder" : "toUpperCase()",
+    "range" : {
+      "start" : 964,
+      "end" : 983,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 49,
+    "text" : "Arrays.stream(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 940,
+      "end" : 954,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayStream:highlighting"
+  }, {
+    "id" : 50,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 958,
+      "end" : 959,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayStream:highlighting"
+  }, {
+    "id" : 51,
+    "text" : "String::toUpperCase",
+    "placeholder" : "toUpperCase()",
+    "range" : {
+      "start" : 964,
+      "end" : 983,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 52,
+    "text" : ".collect(Collectors.",
+    "placeholder" : ".",
+    "range" : {
+      "start" : 1124,
+      "end" : 1144,
+      "size" : 20
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Collect"
+  }, {
+    "id" : 53,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1152,
+      "end" : 1153,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Collect"
+  }, {
+    "id" : 54,
+    "text" : ".map(",
+    "placeholder" : "*.",
+    "range" : {
+      "start" : 1099,
+      "end" : 1104,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 55,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1123,
+      "end" : 1124,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 56,
+    "text" : "Arrays.stream(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1080,
+      "end" : 1094,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayStream:highlighting"
+  }, {
+    "id" : 57,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1098,
+      "end" : 1099,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayStream:highlighting"
+  }, {
+    "id" : 58,
+    "text" : "String::toUpperCase",
+    "placeholder" : "toUpperCase()",
+    "range" : {
+      "start" : 1104,
+      "end" : 1123,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 59,
+    "text" : ".map(",
+    "placeholder" : "*.",
+    "range" : {
+      "start" : 1099,
+      "end" : 1104,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 60,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1123,
+      "end" : 1124,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 61,
+    "text" : "Arrays.stream(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1080,
+      "end" : 1094,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayStream:highlighting"
+  }, {
+    "id" : 62,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1098,
+      "end" : 1099,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayStream:highlighting"
+  }, {
+    "id" : 63,
+    "text" : "String::toUpperCase",
+    "placeholder" : "toUpperCase()",
+    "range" : {
+      "start" : 1104,
+      "end" : 1123,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 64,
+    "text" : "Arrays.stream(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1080,
+      "end" : 1094,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayStream:highlighting"
+  }, {
+    "id" : 65,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1098,
+      "end" : 1099,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayStream:highlighting"
+  }, {
+    "id" : 66,
+    "text" : "String::toUpperCase",
+    "placeholder" : "toUpperCase()",
+    "range" : {
+      "start" : 1104,
+      "end" : 1123,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 67,
+    "text" : ".collect(Collectors.",
+    "placeholder" : ".",
+    "range" : {
+      "start" : 1264,
+      "end" : 1284,
+      "size" : 20
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Collect"
+  }, {
+    "id" : 68,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1292,
+      "end" : 1293,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Collect"
+  }, {
+    "id" : 69,
+    "text" : ".map(",
+    "placeholder" : "*.",
+    "range" : {
+      "start" : 1239,
+      "end" : 1244,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 70,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1263,
+      "end" : 1264,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 71,
+    "text" : "Arrays.stream(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1220,
+      "end" : 1234,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayStream:highlighting"
+  }, {
+    "id" : 72,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1238,
+      "end" : 1239,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayStream:highlighting"
+  }, {
+    "id" : 73,
+    "text" : "String::toUpperCase",
+    "placeholder" : "toUpperCase()",
+    "range" : {
+      "start" : 1244,
+      "end" : 1263,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 74,
+    "text" : ".map(",
+    "placeholder" : "*.",
+    "range" : {
+      "start" : 1239,
+      "end" : 1244,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 75,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1263,
+      "end" : 1264,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 76,
+    "text" : "Arrays.stream(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1220,
+      "end" : 1234,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayStream:highlighting"
+  }, {
+    "id" : 77,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1238,
+      "end" : 1239,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayStream:highlighting"
+  }, {
+    "id" : 78,
+    "text" : "String::toUpperCase",
+    "placeholder" : "toUpperCase()",
+    "range" : {
+      "start" : 1244,
+      "end" : 1263,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 79,
+    "text" : "Arrays.stream(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1220,
+      "end" : 1234,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayStream:highlighting"
+  }, {
+    "id" : 80,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1238,
+      "end" : 1239,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayStream:highlighting"
+  }, {
+    "id" : 81,
+    "text" : "String::toUpperCase",
+    "placeholder" : "toUpperCase()",
+    "range" : {
+      "start" : 1244,
+      "end" : 1263,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 82,
+    "text" : ".collect(Collectors.",
+    "placeholder" : ".",
+    "range" : {
+      "start" : 1404,
+      "end" : 1424,
+      "size" : 20
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Collect"
+  }, {
+    "id" : 83,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1432,
+      "end" : 1433,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Collect"
+  }, {
+    "id" : 84,
+    "text" : ".map(",
+    "placeholder" : "*.",
+    "range" : {
+      "start" : 1379,
+      "end" : 1384,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 85,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1403,
+      "end" : 1404,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 86,
+    "text" : "Arrays.stream(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1360,
+      "end" : 1374,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayStream:highlighting"
+  }, {
+    "id" : 87,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1378,
+      "end" : 1379,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayStream:highlighting"
+  }, {
+    "id" : 88,
+    "text" : "String::toUpperCase",
+    "placeholder" : "toUpperCase()",
+    "range" : {
+      "start" : 1384,
+      "end" : 1403,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 89,
+    "text" : ".map(",
+    "placeholder" : "*.",
+    "range" : {
+      "start" : 1379,
+      "end" : 1384,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 90,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1403,
+      "end" : 1404,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 91,
+    "text" : "Arrays.stream(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1360,
+      "end" : 1374,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayStream:highlighting"
+  }, {
+    "id" : 92,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1378,
+      "end" : 1379,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayStream:highlighting"
+  }, {
+    "id" : 93,
+    "text" : "String::toUpperCase",
+    "placeholder" : "toUpperCase()",
+    "range" : {
+      "start" : 1384,
+      "end" : 1403,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 94,
+    "text" : "Arrays.stream(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1360,
+      "end" : 1374,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayStream:highlighting"
+  }, {
+    "id" : 95,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1378,
+      "end" : 1379,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayStream:highlighting"
+  }, {
+    "id" : 96,
+    "text" : "String::toUpperCase",
+    "placeholder" : "toUpperCase()",
+    "range" : {
+      "start" : 1384,
+      "end" : 1403,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 97,
+    "text" : ".collect(Collectors.",
+    "placeholder" : ".",
+    "range" : {
+      "start" : 1544,
+      "end" : 1564,
+      "size" : 20
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Collect"
+  }, {
+    "id" : 98,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1572,
+      "end" : 1573,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Collect"
+  }, {
+    "id" : 99,
+    "text" : ".map(",
+    "placeholder" : "*.",
+    "range" : {
+      "start" : 1519,
+      "end" : 1524,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 100,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1543,
+      "end" : 1544,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 101,
+    "text" : "Arrays.stream(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1500,
+      "end" : 1514,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayStream:highlighting"
+  }, {
+    "id" : 102,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1518,
+      "end" : 1519,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayStream:highlighting"
+  }, {
+    "id" : 103,
+    "text" : "String::toUpperCase",
+    "placeholder" : "toUpperCase()",
+    "range" : {
+      "start" : 1524,
+      "end" : 1543,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 104,
+    "text" : ".map(",
+    "placeholder" : "*.",
+    "range" : {
+      "start" : 1519,
+      "end" : 1524,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 105,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1543,
+      "end" : 1544,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 106,
+    "text" : "Arrays.stream(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1500,
+      "end" : 1514,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayStream:highlighting"
+  }, {
+    "id" : 107,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1518,
+      "end" : 1519,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayStream:highlighting"
+  }, {
+    "id" : 108,
+    "text" : "String::toUpperCase",
+    "placeholder" : "toUpperCase()",
+    "range" : {
+      "start" : 1524,
+      "end" : 1543,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 109,
+    "text" : "Arrays.stream(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1500,
+      "end" : 1514,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayStream:highlighting"
+  }, {
+    "id" : 110,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1518,
+      "end" : 1519,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayStream:highlighting"
+  }, {
+    "id" : 111,
+    "text" : "String::toUpperCase",
+    "placeholder" : "toUpperCase()",
+    "range" : {
+      "start" : 1524,
+      "end" : 1543,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 112,
+    "text" : ".collect(Collectors.",
+    "placeholder" : ".",
+    "range" : {
+      "start" : 1684,
+      "end" : 1704,
+      "size" : 20
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Collect"
+  }, {
+    "id" : 113,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1712,
+      "end" : 1713,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Collect"
+  }, {
+    "id" : 114,
+    "text" : ".map(",
+    "placeholder" : "*.",
+    "range" : {
+      "start" : 1659,
+      "end" : 1664,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 115,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1683,
+      "end" : 1684,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 116,
+    "text" : "Arrays.stream(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1640,
+      "end" : 1654,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayStream:highlighting"
+  }, {
+    "id" : 117,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1658,
+      "end" : 1659,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayStream:highlighting"
+  }, {
+    "id" : 118,
+    "text" : "String::toUpperCase",
+    "placeholder" : "toUpperCase()",
+    "range" : {
+      "start" : 1664,
+      "end" : 1683,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 119,
+    "text" : ".map(",
+    "placeholder" : "*.",
+    "range" : {
+      "start" : 1659,
+      "end" : 1664,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 120,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1683,
+      "end" : 1684,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 121,
+    "text" : "Arrays.stream(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1640,
+      "end" : 1654,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayStream:highlighting"
+  }, {
+    "id" : 122,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1658,
+      "end" : 1659,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayStream:highlighting"
+  }, {
+    "id" : 123,
+    "text" : "String::toUpperCase",
+    "placeholder" : "toUpperCase()",
+    "range" : {
+      "start" : 1664,
+      "end" : 1683,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 124,
+    "text" : "Arrays.stream(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1640,
+      "end" : 1654,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayStream:highlighting"
+  }, {
+    "id" : 125,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1658,
+      "end" : 1659,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayStream:highlighting"
+  }, {
+    "id" : 126,
+    "text" : "String::toUpperCase",
+    "placeholder" : "toUpperCase()",
+    "range" : {
+      "start" : 1664,
+      "end" : 1683,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 127,
+    "text" : ".collect(Collectors.",
+    "placeholder" : ".",
+    "range" : {
+      "start" : 1824,
+      "end" : 1844,
+      "size" : 20
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Collect"
+  }, {
+    "id" : 128,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1852,
+      "end" : 1853,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Collect"
+  }, {
+    "id" : 129,
+    "text" : ".map(",
+    "placeholder" : "*.",
+    "range" : {
+      "start" : 1799,
+      "end" : 1804,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 130,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1823,
+      "end" : 1824,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 131,
+    "text" : "Arrays.stream(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1780,
+      "end" : 1794,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayStream:highlighting"
+  }, {
+    "id" : 132,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1798,
+      "end" : 1799,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayStream:highlighting"
+  }, {
+    "id" : 133,
+    "text" : "String::toUpperCase",
+    "placeholder" : "toUpperCase()",
+    "range" : {
+      "start" : 1804,
+      "end" : 1823,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 134,
+    "text" : ".map(",
+    "placeholder" : "*.",
+    "range" : {
+      "start" : 1799,
+      "end" : 1804,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 135,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1823,
+      "end" : 1824,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 136,
+    "text" : "Arrays.stream(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1780,
+      "end" : 1794,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayStream:highlighting"
+  }, {
+    "id" : 137,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1798,
+      "end" : 1799,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayStream:highlighting"
+  }, {
+    "id" : 138,
+    "text" : "String::toUpperCase",
+    "placeholder" : "toUpperCase()",
+    "range" : {
+      "start" : 1804,
+      "end" : 1823,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 139,
+    "text" : "Arrays.stream(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1780,
+      "end" : 1794,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayStream:highlighting"
+  }, {
+    "id" : 140,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1798,
+      "end" : 1799,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayStream:highlighting"
+  }, {
+    "id" : 141,
+    "text" : "String::toUpperCase",
+    "placeholder" : "toUpperCase()",
+    "range" : {
+      "start" : 1804,
+      "end" : 1823,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 142,
+    "text" : ".collect(Collectors.",
+    "placeholder" : ".",
+    "range" : {
+      "start" : 1964,
+      "end" : 1984,
+      "size" : 20
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Collect"
+  }, {
+    "id" : 143,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1992,
+      "end" : 1993,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Collect"
+  }, {
+    "id" : 144,
+    "text" : ".map(",
+    "placeholder" : "*.",
+    "range" : {
+      "start" : 1939,
+      "end" : 1944,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 145,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1963,
+      "end" : 1964,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 146,
+    "text" : "Arrays.stream(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1920,
+      "end" : 1934,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayStream:highlighting"
+  }, {
+    "id" : 147,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1938,
+      "end" : 1939,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayStream:highlighting"
+  }, {
+    "id" : 148,
+    "text" : "String::toUpperCase",
+    "placeholder" : "toUpperCase()",
+    "range" : {
+      "start" : 1944,
+      "end" : 1963,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 149,
+    "text" : ".map(",
+    "placeholder" : "*.",
+    "range" : {
+      "start" : 1939,
+      "end" : 1944,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 150,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1963,
+      "end" : 1964,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 151,
+    "text" : "Arrays.stream(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1920,
+      "end" : 1934,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayStream:highlighting"
+  }, {
+    "id" : 152,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1938,
+      "end" : 1939,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayStream:highlighting"
+  }, {
+    "id" : 153,
+    "text" : "String::toUpperCase",
+    "placeholder" : "toUpperCase()",
+    "range" : {
+      "start" : 1944,
+      "end" : 1963,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 154,
+    "text" : "Arrays.stream(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1920,
+      "end" : 1934,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayStream:highlighting"
+  }, {
+    "id" : 155,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1938,
+      "end" : 1939,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayStream:highlighting"
+  }, {
+    "id" : 156,
+    "text" : "String::toUpperCase",
+    "placeholder" : "toUpperCase()",
+    "range" : {
+      "start" : 1944,
+      "end" : 1963,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 157,
+    "text" : ".collect(Collectors.",
+    "placeholder" : ".",
+    "range" : {
+      "start" : 2104,
+      "end" : 2124,
+      "size" : 20
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Collect"
+  }, {
+    "id" : 158,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2132,
+      "end" : 2133,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Collect"
+  }, {
+    "id" : 159,
+    "text" : ".map(",
+    "placeholder" : "*.",
+    "range" : {
+      "start" : 2079,
+      "end" : 2084,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 160,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2103,
+      "end" : 2104,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 161,
+    "text" : "Arrays.stream(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2060,
+      "end" : 2074,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayStream:highlighting"
+  }, {
+    "id" : 162,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2078,
+      "end" : 2079,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayStream:highlighting"
+  }, {
+    "id" : 163,
+    "text" : "String::toUpperCase",
+    "placeholder" : "toUpperCase()",
+    "range" : {
+      "start" : 2084,
+      "end" : 2103,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 164,
+    "text" : ".map(",
+    "placeholder" : "*.",
+    "range" : {
+      "start" : 2079,
+      "end" : 2084,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 165,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2103,
+      "end" : 2104,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 166,
+    "text" : "Arrays.stream(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2060,
+      "end" : 2074,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayStream:highlighting"
+  }, {
+    "id" : 167,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2078,
+      "end" : 2079,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayStream:highlighting"
+  }, {
+    "id" : 168,
+    "text" : "String::toUpperCase",
+    "placeholder" : "toUpperCase()",
+    "range" : {
+      "start" : 2084,
+      "end" : 2103,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 169,
+    "text" : "Arrays.stream(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2060,
+      "end" : 2074,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayStream:highlighting"
+  }, {
+    "id" : 170,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2078,
+      "end" : 2079,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayStream:highlighting"
+  }, {
+    "id" : 171,
+    "text" : "String::toUpperCase",
+    "placeholder" : "toUpperCase()",
+    "range" : {
+      "start" : 2084,
+      "end" : 2103,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 172,
+    "text" : ".collect(Collectors.",
+    "placeholder" : ".",
+    "range" : {
+      "start" : 2239,
+      "end" : 2259,
+      "size" : 20
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Collect"
+  }, {
+    "id" : 173,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2267,
+      "end" : 2268,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Collect"
+  }, {
+    "id" : 174,
+    "text" : ".map(",
+    "placeholder" : "*.",
+    "range" : {
+      "start" : 2214,
+      "end" : 2219,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 175,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2238,
+      "end" : 2239,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 176,
+    "text" : ".stream().",
+    "placeholder" : ".",
+    "range" : {
+      "start" : 2205,
+      "end" : 2215,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamExpression"
+  }, {
+    "id" : 177,
+    "text" : "String::toUpperCase",
+    "placeholder" : "toUpperCase()",
+    "range" : {
+      "start" : 2219,
+      "end" : 2238,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 178,
+    "text" : ".map(",
+    "placeholder" : "*.",
+    "range" : {
+      "start" : 2214,
+      "end" : 2219,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 179,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2238,
+      "end" : 2239,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 180,
+    "text" : ".stream().",
+    "placeholder" : ".",
+    "range" : {
+      "start" : 2205,
+      "end" : 2215,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamExpression"
+  }, {
+    "id" : 181,
+    "text" : "String::toUpperCase",
+    "placeholder" : "toUpperCase()",
+    "range" : {
+      "start" : 2219,
+      "end" : 2238,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 182,
+    "text" : ".stream().",
+    "placeholder" : ".",
+    "range" : {
+      "start" : 2205,
+      "end" : 2215,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamExpression"
+  }, {
+    "id" : 183,
+    "text" : "String::toUpperCase",
+    "placeholder" : "toUpperCase()",
+    "range" : {
+      "start" : 2219,
+      "end" : 2238,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 184,
+    "text" : ".collect(Collectors.",
+    "placeholder" : ".",
+    "range" : {
+      "start" : 2373,
+      "end" : 2393,
+      "size" : 20
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Collect"
+  }, {
+    "id" : 185,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2401,
+      "end" : 2402,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Collect"
+  }, {
+    "id" : 186,
+    "text" : ".map(",
+    "placeholder" : "*.",
+    "range" : {
+      "start" : 2348,
+      "end" : 2353,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 187,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2372,
+      "end" : 2373,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 188,
+    "text" : ".stream().",
+    "placeholder" : ".",
+    "range" : {
+      "start" : 2339,
+      "end" : 2349,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamExpression"
+  }, {
+    "id" : 189,
+    "text" : "String::toUpperCase",
+    "placeholder" : "toUpperCase()",
+    "range" : {
+      "start" : 2353,
+      "end" : 2372,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 190,
+    "text" : ".map(",
+    "placeholder" : "*.",
+    "range" : {
+      "start" : 2348,
+      "end" : 2353,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 191,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2372,
+      "end" : 2373,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 192,
+    "text" : ".stream().",
+    "placeholder" : ".",
+    "range" : {
+      "start" : 2339,
+      "end" : 2349,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamExpression"
+  }, {
+    "id" : 193,
+    "text" : "String::toUpperCase",
+    "placeholder" : "toUpperCase()",
+    "range" : {
+      "start" : 2353,
+      "end" : 2372,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 194,
+    "text" : ".stream().",
+    "placeholder" : ".",
+    "range" : {
+      "start" : 2339,
+      "end" : 2349,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamExpression"
+  }, {
+    "id" : 195,
+    "text" : "String::toUpperCase",
+    "placeholder" : "toUpperCase()",
+    "range" : {
+      "start" : 2353,
+      "end" : 2372,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 196,
+    "text" : ".collect(Collectors.",
+    "placeholder" : ".",
+    "range" : {
+      "start" : 2507,
+      "end" : 2527,
+      "size" : 20
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Collect"
+  }, {
+    "id" : 197,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2535,
+      "end" : 2536,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Collect"
+  }, {
+    "id" : 198,
+    "text" : ".map(",
+    "placeholder" : "*.",
+    "range" : {
+      "start" : 2482,
+      "end" : 2487,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 199,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2506,
+      "end" : 2507,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 200,
+    "text" : ".stream().",
+    "placeholder" : ".",
+    "range" : {
+      "start" : 2473,
+      "end" : 2483,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamExpression"
+  }, {
+    "id" : 201,
+    "text" : "String::toUpperCase",
+    "placeholder" : "toUpperCase()",
+    "range" : {
+      "start" : 2487,
+      "end" : 2506,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 202,
+    "text" : ".map(",
+    "placeholder" : "*.",
+    "range" : {
+      "start" : 2482,
+      "end" : 2487,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 203,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2506,
+      "end" : 2507,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 204,
+    "text" : ".stream().",
+    "placeholder" : ".",
+    "range" : {
+      "start" : 2473,
+      "end" : 2483,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamExpression"
+  }, {
+    "id" : 205,
+    "text" : "String::toUpperCase",
+    "placeholder" : "toUpperCase()",
+    "range" : {
+      "start" : 2487,
+      "end" : 2506,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 206,
+    "text" : ".stream().",
+    "placeholder" : ".",
+    "range" : {
+      "start" : 2473,
+      "end" : 2483,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamExpression"
+  }, {
+    "id" : 207,
+    "text" : "String::toUpperCase",
+    "placeholder" : "toUpperCase()",
+    "range" : {
+      "start" : 2487,
+      "end" : 2506,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 208,
+    "text" : ".collect(Collectors.",
+    "placeholder" : ".",
+    "range" : {
+      "start" : 2641,
+      "end" : 2661,
+      "size" : 20
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Collect"
+  }, {
+    "id" : 209,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2669,
+      "end" : 2670,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Collect"
+  }, {
+    "id" : 210,
+    "text" : ".map(",
+    "placeholder" : "*.",
+    "range" : {
+      "start" : 2616,
+      "end" : 2621,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 211,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2640,
+      "end" : 2641,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 212,
+    "text" : ".stream().",
+    "placeholder" : ".",
+    "range" : {
+      "start" : 2607,
+      "end" : 2617,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamExpression"
+  }, {
+    "id" : 213,
+    "text" : "String::toUpperCase",
+    "placeholder" : "toUpperCase()",
+    "range" : {
+      "start" : 2621,
+      "end" : 2640,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 214,
+    "text" : ".map(",
+    "placeholder" : "*.",
+    "range" : {
+      "start" : 2616,
+      "end" : 2621,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 215,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2640,
+      "end" : 2641,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 216,
+    "text" : ".stream().",
+    "placeholder" : ".",
+    "range" : {
+      "start" : 2607,
+      "end" : 2617,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamExpression"
+  }, {
+    "id" : 217,
+    "text" : "String::toUpperCase",
+    "placeholder" : "toUpperCase()",
+    "range" : {
+      "start" : 2621,
+      "end" : 2640,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 218,
+    "text" : ".stream().",
+    "placeholder" : ".",
+    "range" : {
+      "start" : 2607,
+      "end" : 2617,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamExpression"
+  }, {
+    "id" : 219,
+    "text" : "String::toUpperCase",
+    "placeholder" : "toUpperCase()",
+    "range" : {
+      "start" : 2621,
+      "end" : 2640,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 220,
+    "text" : ".collect(Collectors.",
+    "placeholder" : ".",
+    "range" : {
+      "start" : 2775,
+      "end" : 2795,
+      "size" : 20
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Collect"
+  }, {
+    "id" : 221,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2803,
+      "end" : 2804,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Collect"
+  }, {
+    "id" : 222,
+    "text" : ".map(",
+    "placeholder" : "*.",
+    "range" : {
+      "start" : 2750,
+      "end" : 2755,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 223,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2774,
+      "end" : 2775,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 224,
+    "text" : ".stream().",
+    "placeholder" : ".",
+    "range" : {
+      "start" : 2741,
+      "end" : 2751,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamExpression"
+  }, {
+    "id" : 225,
+    "text" : "String::toUpperCase",
+    "placeholder" : "toUpperCase()",
+    "range" : {
+      "start" : 2755,
+      "end" : 2774,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 226,
+    "text" : ".map(",
+    "placeholder" : "*.",
+    "range" : {
+      "start" : 2750,
+      "end" : 2755,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 227,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2774,
+      "end" : 2775,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 228,
+    "text" : ".stream().",
+    "placeholder" : ".",
+    "range" : {
+      "start" : 2741,
+      "end" : 2751,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamExpression"
+  }, {
+    "id" : 229,
+    "text" : "String::toUpperCase",
+    "placeholder" : "toUpperCase()",
+    "range" : {
+      "start" : 2755,
+      "end" : 2774,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 230,
+    "text" : ".stream().",
+    "placeholder" : ".",
+    "range" : {
+      "start" : 2741,
+      "end" : 2751,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamExpression"
+  }, {
+    "id" : 231,
+    "text" : "String::toUpperCase",
+    "placeholder" : "toUpperCase()",
+    "range" : {
+      "start" : 2755,
+      "end" : 2774,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 232,
+    "text" : ".collect(Collectors.",
+    "placeholder" : ".",
+    "range" : {
+      "start" : 2909,
+      "end" : 2929,
+      "size" : 20
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Collect"
+  }, {
+    "id" : 233,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2937,
+      "end" : 2938,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Collect"
+  }, {
+    "id" : 234,
+    "text" : ".map(",
+    "placeholder" : "*.",
+    "range" : {
+      "start" : 2884,
+      "end" : 2889,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 235,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2908,
+      "end" : 2909,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 236,
+    "text" : ".stream().",
+    "placeholder" : ".",
+    "range" : {
+      "start" : 2875,
+      "end" : 2885,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamExpression"
+  }, {
+    "id" : 237,
+    "text" : "String::toUpperCase",
+    "placeholder" : "toUpperCase()",
+    "range" : {
+      "start" : 2889,
+      "end" : 2908,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 238,
+    "text" : ".map(",
+    "placeholder" : "*.",
+    "range" : {
+      "start" : 2884,
+      "end" : 2889,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 239,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2908,
+      "end" : 2909,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 240,
+    "text" : ".stream().",
+    "placeholder" : ".",
+    "range" : {
+      "start" : 2875,
+      "end" : 2885,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamExpression"
+  }, {
+    "id" : 241,
+    "text" : "String::toUpperCase",
+    "placeholder" : "toUpperCase()",
+    "range" : {
+      "start" : 2889,
+      "end" : 2908,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 242,
+    "text" : ".stream().",
+    "placeholder" : ".",
+    "range" : {
+      "start" : 2875,
+      "end" : 2885,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamExpression"
+  }, {
+    "id" : 243,
+    "text" : "String::toUpperCase",
+    "placeholder" : "toUpperCase()",
+    "range" : {
+      "start" : 2889,
+      "end" : 2908,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 244,
+    "text" : ".collect(Collectors.",
+    "placeholder" : ".",
+    "range" : {
+      "start" : 3043,
+      "end" : 3063,
+      "size" : 20
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Collect"
+  }, {
+    "id" : 245,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3071,
+      "end" : 3072,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Collect"
+  }, {
+    "id" : 246,
+    "text" : ".map(",
+    "placeholder" : "*.",
+    "range" : {
+      "start" : 3018,
+      "end" : 3023,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 247,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3042,
+      "end" : 3043,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 248,
+    "text" : ".stream().",
+    "placeholder" : ".",
+    "range" : {
+      "start" : 3009,
+      "end" : 3019,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamExpression"
+  }, {
+    "id" : 249,
+    "text" : "String::toUpperCase",
+    "placeholder" : "toUpperCase()",
+    "range" : {
+      "start" : 3023,
+      "end" : 3042,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 250,
+    "text" : ".map(",
+    "placeholder" : "*.",
+    "range" : {
+      "start" : 3018,
+      "end" : 3023,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 251,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3042,
+      "end" : 3043,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 252,
+    "text" : ".stream().",
+    "placeholder" : ".",
+    "range" : {
+      "start" : 3009,
+      "end" : 3019,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamExpression"
+  }, {
+    "id" : 253,
+    "text" : "String::toUpperCase",
+    "placeholder" : "toUpperCase()",
+    "range" : {
+      "start" : 3023,
+      "end" : 3042,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 254,
+    "text" : ".stream().",
+    "placeholder" : ".",
+    "range" : {
+      "start" : 3009,
+      "end" : 3019,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamExpression"
+  }, {
+    "id" : 255,
+    "text" : "String::toUpperCase",
+    "placeholder" : "toUpperCase()",
+    "range" : {
+      "start" : 3023,
+      "end" : 3042,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 256,
+    "text" : ".collect(Collectors.",
+    "placeholder" : ".",
+    "range" : {
+      "start" : 3177,
+      "end" : 3197,
+      "size" : 20
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Collect"
+  }, {
+    "id" : 257,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3205,
+      "end" : 3206,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Collect"
+  }, {
+    "id" : 258,
+    "text" : ".map(",
+    "placeholder" : "*.",
+    "range" : {
+      "start" : 3152,
+      "end" : 3157,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 259,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3176,
+      "end" : 3177,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 260,
+    "text" : ".stream().",
+    "placeholder" : ".",
+    "range" : {
+      "start" : 3143,
+      "end" : 3153,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamExpression"
+  }, {
+    "id" : 261,
+    "text" : "String::toUpperCase",
+    "placeholder" : "toUpperCase()",
+    "range" : {
+      "start" : 3157,
+      "end" : 3176,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 262,
+    "text" : ".map(",
+    "placeholder" : "*.",
+    "range" : {
+      "start" : 3152,
+      "end" : 3157,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 263,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3176,
+      "end" : 3177,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 264,
+    "text" : ".stream().",
+    "placeholder" : ".",
+    "range" : {
+      "start" : 3143,
+      "end" : 3153,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamExpression"
+  }, {
+    "id" : 265,
+    "text" : "String::toUpperCase",
+    "placeholder" : "toUpperCase()",
+    "range" : {
+      "start" : 3157,
+      "end" : 3176,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 266,
+    "text" : ".stream().",
+    "placeholder" : ".",
+    "range" : {
+      "start" : 3143,
+      "end" : 3153,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamExpression"
+  }, {
+    "id" : 267,
+    "text" : "String::toUpperCase",
+    "placeholder" : "toUpperCase()",
+    "range" : {
+      "start" : 3157,
+      "end" : 3176,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 268,
+    "text" : ".collect(Collectors.",
+    "placeholder" : ".",
+    "range" : {
+      "start" : 3311,
+      "end" : 3331,
+      "size" : 20
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Collect"
+  }, {
+    "id" : 269,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3339,
+      "end" : 3340,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Collect"
+  }, {
+    "id" : 270,
+    "text" : ".map(",
+    "placeholder" : "*.",
+    "range" : {
+      "start" : 3286,
+      "end" : 3291,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 271,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3310,
+      "end" : 3311,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 272,
+    "text" : ".stream().",
+    "placeholder" : ".",
+    "range" : {
+      "start" : 3277,
+      "end" : 3287,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamExpression"
+  }, {
+    "id" : 273,
+    "text" : "String::toUpperCase",
+    "placeholder" : "toUpperCase()",
+    "range" : {
+      "start" : 3291,
+      "end" : 3310,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 274,
+    "text" : ".map(",
+    "placeholder" : "*.",
+    "range" : {
+      "start" : 3286,
+      "end" : 3291,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 275,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3310,
+      "end" : 3311,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 276,
+    "text" : ".stream().",
+    "placeholder" : ".",
+    "range" : {
+      "start" : 3277,
+      "end" : 3287,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamExpression"
+  }, {
+    "id" : 277,
+    "text" : "String::toUpperCase",
+    "placeholder" : "toUpperCase()",
+    "range" : {
+      "start" : 3291,
+      "end" : 3310,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 278,
+    "text" : ".stream().",
+    "placeholder" : ".",
+    "range" : {
+      "start" : 3277,
+      "end" : 3287,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamExpression"
+  }, {
+    "id" : 279,
+    "text" : "String::toUpperCase",
+    "placeholder" : "toUpperCase()",
+    "range" : {
+      "start" : 3291,
+      "end" : 3310,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 280,
+    "text" : ".collect(Collectors.",
+    "placeholder" : ".",
+    "range" : {
+      "start" : 3445,
+      "end" : 3465,
+      "size" : 20
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Collect"
+  }, {
+    "id" : 281,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3473,
+      "end" : 3474,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Collect"
+  }, {
+    "id" : 282,
+    "text" : ".map(",
+    "placeholder" : "*.",
+    "range" : {
+      "start" : 3420,
+      "end" : 3425,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 283,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3444,
+      "end" : 3445,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 284,
+    "text" : ".stream().",
+    "placeholder" : ".",
+    "range" : {
+      "start" : 3411,
+      "end" : 3421,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamExpression"
+  }, {
+    "id" : 285,
+    "text" : "String::toUpperCase",
+    "placeholder" : "toUpperCase()",
+    "range" : {
+      "start" : 3425,
+      "end" : 3444,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 286,
+    "text" : ".map(",
+    "placeholder" : "*.",
+    "range" : {
+      "start" : 3420,
+      "end" : 3425,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 287,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3444,
+      "end" : 3445,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+  }, {
+    "id" : 288,
+    "text" : ".stream().",
+    "placeholder" : ".",
+    "range" : {
+      "start" : 3411,
+      "end" : 3421,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamExpression"
+  }, {
+    "id" : 289,
+    "text" : "String::toUpperCase",
+    "placeholder" : "toUpperCase()",
+    "range" : {
+      "start" : 3425,
+      "end" : 3444,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 290,
+    "text" : ".stream().",
+    "placeholder" : ".",
+    "range" : {
+      "start" : 3411,
+      "end" : 3421,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamExpression"
+  }, {
+    "id" : 291,
+    "text" : "String::toUpperCase",
+    "placeholder" : "toUpperCase()",
+    "range" : {
+      "start" : 3425,
+      "end" : 3444,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+  }, {
+    "id" : 292,
+    "text" : "long",
+    "placeholder" : "val",
+    "range" : {
+      "start" : 3527,
+      "end" : 3531,
+      "size" : 4
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+  }, {
+    "id" : 293,
+    "text" : ".stream().",
+    "placeholder" : ".",
+    "range" : {
+      "start" : 3552,
+      "end" : 3562,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamExpression"
+  } ]
+}

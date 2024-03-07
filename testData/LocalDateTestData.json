@@ -1,0 +1,104 @@
+{
+  "size" : 10,
+  "list" : [ {
+    "id" : 0,
+    "text" : ".isBefore(",
+    "placeholder" : " < ",
+    "range" : {
+      "start" : 253,
+      "end" : 263,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Less"
+  }, {
+    "id" : 1,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 265,
+      "end" : 266,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Less"
+  }, {
+    "id" : 2,
+    "text" : ".isAfter(",
+    "placeholder" : " > ",
+    "range" : {
+      "start" : 296,
+      "end" : 305,
+      "size" : 9
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Greater"
+  }, {
+    "id" : 3,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 307,
+      "end" : 308,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Greater"
+  }, {
+    "id" : 4,
+    "text" : "!",
+    "placeholder" : "",
+    "range" : {
+      "start" : 347,
+      "end" : 348,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.GreaterEqual"
+  }, {
+    "id" : 5,
+    "text" : ".isBefore(",
+    "placeholder" : " ≥ ",
+    "range" : {
+      "start" : 350,
+      "end" : 360,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.GreaterEqual"
+  }, {
+    "id" : 6,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 362,
+      "end" : 363,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.GreaterEqual"
+  }, {
+    "id" : 7,
+    "text" : "!",
+    "placeholder" : "",
+    "range" : {
+      "start" : 403,
+      "end" : 404,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.LessEqual"
+  }, {
+    "id" : 8,
+    "text" : ".isAfter(",
+    "placeholder" : " ≤ ",
+    "range" : {
+      "start" : 406,
+      "end" : 415,
+      "size" : 9
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.LessEqual"
+  }, {
+    "id" : 9,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 417,
+      "end" : 418,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.LessEqual"
+  } ]
+}

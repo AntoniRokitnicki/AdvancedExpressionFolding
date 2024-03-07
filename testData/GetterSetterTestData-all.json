@@ -1,0 +1,214 @@
+{
+  "size" : 21,
+  "list" : [ {
+    "id" : 0,
+    "text" : "private void setParent(GetterSetterTestData parent) {\n        this.parent = parent;\n    }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 379,
+      "end" : 468,
+      "size" : 89
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 1,
+    "text" : "private GetterSetterTestData getParent() {\n        return parent;\n    }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 474,
+      "end" : 545,
+      "size" : 71
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 2,
+    "text" : "private String getName() {\n        return name;\n    }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 551,
+      "end" : 604,
+      "size" : 53
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 3,
+    "text" : "private void setName(String name) {\n        this.name = name;\n    }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 610,
+      "end" : 677,
+      "size" : 67
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 4,
+    "text" : "\n\n    ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 373,
+      "end" : 379,
+      "size" : 6
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 5,
+    "text" : "\n\n    ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 468,
+      "end" : 474,
+      "size" : 6
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 6,
+    "text" : "\n\n    ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 545,
+      "end" : 551,
+      "size" : 6
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 7,
+    "text" : "\n\n    ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 604,
+      "end" : 610,
+      "size" : 6
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 8,
+    "text" : "p",
+    "placeholder" : "@Getter @Setter p",
+    "range" : {
+      "start" : 15,
+      "end" : 16,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 9,
+    "text" : "GetterSetterTestData",
+    "placeholder" : "val",
+    "range" : {
+      "start" : 104,
+      "end" : 124,
+      "size" : 20
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+  }, {
+    "id" : 10,
+    "text" : "setParent(",
+    "placeholder" : "parent = ",
+    "range" : {
+      "start" : 167,
+      "end" : 177,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+  }, {
+    "id" : 11,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 178,
+      "end" : 179,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+  }, {
+    "id" : 12,
+    "text" : "setName(",
+    "placeholder" : "name = ",
+    "range" : {
+      "start" : 191,
+      "end" : 199,
+      "size" : 8
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+  }, {
+    "id" : 13,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 206,
+      "end" : 207,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+  }, {
+    "id" : 14,
+    "text" : "setName(",
+    "placeholder" : "name = ",
+    "range" : {
+      "start" : 231,
+      "end" : 239,
+      "size" : 8
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+  }, {
+    "id" : 15,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 245,
+      "end" : 246,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+  }, {
+    "id" : 16,
+    "text" : "getParent()",
+    "placeholder" : "parent",
+    "range" : {
+      "start" : 219,
+      "end" : 230,
+      "size" : 11
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 17,
+    "text" : "getName()",
+    "placeholder" : "name",
+    "range" : {
+      "start" : 289,
+      "end" : 298,
+      "size" : 9
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 18,
+    "text" : "getParent()",
+    "placeholder" : "parent",
+    "range" : {
+      "start" : 277,
+      "end" : 288,
+      "size" : 11
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 19,
+    "text" : "parent",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 455,
+      "end" : 461,
+      "size" : 6
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+  }, {
+    "id" : 20,
+    "text" : "name",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 666,
+      "end" : 670,
+      "size" : 4
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+  } ]
+}

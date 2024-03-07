@@ -1,0 +1,484 @@
+{
+  "size" : 48,
+  "list" : [ {
+    "id" : 0,
+    "text" : ";",
+    "placeholder" : "",
+    "range" : {
+      "start" : 12,
+      "end" : 13,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+  }, {
+    "id" : 1,
+    "text" : ";",
+    "placeholder" : "",
+    "range" : {
+      "start" : 41,
+      "end" : 42,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+  }, {
+    "id" : 2,
+    "text" : "LocalDate",
+    "placeholder" : "val",
+    "range" : {
+      "start" : 144,
+      "end" : 153,
+      "size" : 9
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+  }, {
+    "id" : 3,
+    "text" : "LocalDate.of(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 159,
+      "end" : 172,
+      "size" : 13
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+  }, {
+    "id" : 4,
+    "text" : ", ",
+    "placeholder" : "Y-",
+    "range" : {
+      "start" : 176,
+      "end" : 178,
+      "size" : 2
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+  }, {
+    "id" : 5,
+    "text" : ", ",
+    "placeholder" : "M-",
+    "range" : {
+      "start" : 180,
+      "end" : 182,
+      "size" : 2
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+  }, {
+    "id" : 6,
+    "text" : ")",
+    "placeholder" : "D",
+    "range" : {
+      "start" : 184,
+      "end" : 185,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+  }, {
+    "id" : 7,
+    "text" : ";",
+    "placeholder" : "",
+    "range" : {
+      "start" : 185,
+      "end" : 186,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+  }, {
+    "id" : 8,
+    "text" : "LocalDate",
+    "placeholder" : "val",
+    "range" : {
+      "start" : 195,
+      "end" : 204,
+      "size" : 9
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+  }, {
+    "id" : 9,
+    "text" : "LocalDate.of(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 210,
+      "end" : 223,
+      "size" : 13
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+  }, {
+    "id" : 10,
+    "text" : ", ",
+    "placeholder" : "Y-",
+    "range" : {
+      "start" : 227,
+      "end" : 229,
+      "size" : 2
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+  }, {
+    "id" : 11,
+    "text" : ", ",
+    "placeholder" : "M-",
+    "range" : {
+      "start" : 231,
+      "end" : 233,
+      "size" : 2
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+  }, {
+    "id" : 12,
+    "text" : ")",
+    "placeholder" : "D",
+    "range" : {
+      "start" : 235,
+      "end" : 236,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+  }, {
+    "id" : 13,
+    "text" : ";",
+    "placeholder" : "",
+    "range" : {
+      "start" : 236,
+      "end" : 237,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+  }, {
+    "id" : 14,
+    "text" : "LocalDate",
+    "placeholder" : "val",
+    "range" : {
+      "start" : 246,
+      "end" : 255,
+      "size" : 9
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+  }, {
+    "id" : 15,
+    "text" : "LocalDate.of(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 261,
+      "end" : 274,
+      "size" : 13
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+  }, {
+    "id" : 16,
+    "text" : ", ",
+    "placeholder" : "Y-",
+    "range" : {
+      "start" : 278,
+      "end" : 280,
+      "size" : 2
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+  }, {
+    "id" : 17,
+    "text" : ", ",
+    "placeholder" : "M-",
+    "range" : {
+      "start" : 282,
+      "end" : 284,
+      "size" : 2
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+  }, {
+    "id" : 18,
+    "text" : ")",
+    "placeholder" : "D",
+    "range" : {
+      "start" : 286,
+      "end" : 287,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+  }, {
+    "id" : 19,
+    "text" : ";",
+    "placeholder" : "",
+    "range" : {
+      "start" : 287,
+      "end" : 288,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+  }, {
+    "id" : 20,
+    "text" : "LocalDate",
+    "placeholder" : "val",
+    "range" : {
+      "start" : 297,
+      "end" : 306,
+      "size" : 9
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+  }, {
+    "id" : 21,
+    "text" : "LocalDate.of(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 312,
+      "end" : 325,
+      "size" : 13
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+  }, {
+    "id" : 22,
+    "text" : ",  ",
+    "placeholder" : "Y-0",
+    "range" : {
+      "start" : 329,
+      "end" : 332,
+      "size" : 3
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+  }, {
+    "id" : 23,
+    "text" : " ,  ",
+    "placeholder" : "M-0",
+    "range" : {
+      "start" : 333,
+      "end" : 337,
+      "size" : 4
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+  }, {
+    "id" : 24,
+    "text" : "   )",
+    "placeholder" : "D",
+    "range" : {
+      "start" : 338,
+      "end" : 342,
+      "size" : 4
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+  }, {
+    "id" : 25,
+    "text" : ";",
+    "placeholder" : "",
+    "range" : {
+      "start" : 342,
+      "end" : 343,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+  }, {
+    "id" : 26,
+    "text" : "boolean",
+    "placeholder" : "val",
+    "range" : {
+      "start" : 352,
+      "end" : 359,
+      "size" : 7
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+  }, {
+    "id" : 27,
+    "text" : ".isBefore(",
+    "placeholder" : " < ",
+    "range" : {
+      "start" : 373,
+      "end" : 383,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Less"
+  }, {
+    "id" : 28,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 385,
+      "end" : 386,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Less"
+  }, {
+    "id" : 29,
+    "text" : ";",
+    "placeholder" : "",
+    "range" : {
+      "start" : 386,
+      "end" : 387,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+  }, {
+    "id" : 30,
+    "text" : "boolean",
+    "placeholder" : "val",
+    "range" : {
+      "start" : 396,
+      "end" : 403,
+      "size" : 7
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+  }, {
+    "id" : 31,
+    "text" : ".isAfter(",
+    "placeholder" : " > ",
+    "range" : {
+      "start" : 416,
+      "end" : 425,
+      "size" : 9
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Greater"
+  }, {
+    "id" : 32,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 427,
+      "end" : 428,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Greater"
+  }, {
+    "id" : 33,
+    "text" : ";",
+    "placeholder" : "",
+    "range" : {
+      "start" : 428,
+      "end" : 429,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+  }, {
+    "id" : 34,
+    "text" : "boolean",
+    "placeholder" : "val",
+    "range" : {
+      "start" : 438,
+      "end" : 445,
+      "size" : 7
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+  }, {
+    "id" : 35,
+    "text" : "!",
+    "placeholder" : "",
+    "range" : {
+      "start" : 467,
+      "end" : 468,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.GreaterEqual"
+  }, {
+    "id" : 36,
+    "text" : ".isBefore(",
+    "placeholder" : " ≥ ",
+    "range" : {
+      "start" : 470,
+      "end" : 480,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.GreaterEqual"
+  }, {
+    "id" : 37,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 482,
+      "end" : 483,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.GreaterEqual"
+  }, {
+    "id" : 38,
+    "text" : ";",
+    "placeholder" : "",
+    "range" : {
+      "start" : 483,
+      "end" : 484,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+  }, {
+    "id" : 39,
+    "text" : "boolean",
+    "placeholder" : "val",
+    "range" : {
+      "start" : 493,
+      "end" : 500,
+      "size" : 7
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+  }, {
+    "id" : 40,
+    "text" : "!",
+    "placeholder" : "",
+    "range" : {
+      "start" : 522,
+      "end" : 523,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.LessEqual"
+  }, {
+    "id" : 41,
+    "text" : ".isAfter(",
+    "placeholder" : " ≤ ",
+    "range" : {
+      "start" : 525,
+      "end" : 534,
+      "size" : 9
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.LessEqual"
+  }, {
+    "id" : 42,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 559,
+      "end" : 560,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.LessEqual"
+  }, {
+    "id" : 43,
+    "text" : "LocalDate.of(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 534,
+      "end" : 547,
+      "size" : 13
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+  }, {
+    "id" : 44,
+    "text" : ", ",
+    "placeholder" : "Y-0",
+    "range" : {
+      "start" : 551,
+      "end" : 553,
+      "size" : 2
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+  }, {
+    "id" : 45,
+    "text" : ", ",
+    "placeholder" : "M-",
+    "range" : {
+      "start" : 554,
+      "end" : 556,
+      "size" : 2
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+  }, {
+    "id" : 46,
+    "text" : ")",
+    "placeholder" : "D",
+    "range" : {
+      "start" : 558,
+      "end" : 559,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+  }, {
+    "id" : 47,
+    "text" : ";",
+    "placeholder" : "",
+    "range" : {
+      "start" : 560,
+      "end" : 561,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+  } ]
+}

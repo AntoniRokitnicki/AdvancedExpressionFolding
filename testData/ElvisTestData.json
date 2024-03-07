@@ -1,0 +1,114 @@
+{
+  "size" : 11,
+  "list" : [ {
+    "id" : 0,
+    "text" : "e != null ? ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 193,
+      "end" : 205,
+      "size" : 12
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ElvisExpression"
+  }, {
+    "id" : 1,
+    "text" : " : ",
+    "placeholder" : " ?: ",
+    "range" : {
+      "start" : 206,
+      "end" : 209,
+      "size" : 3
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ElvisExpression"
+  }, {
+    "id" : 2,
+    "text" : "e != null ? ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 241,
+      "end" : 253,
+      "size" : 12
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ElvisExpression"
+  }, {
+    "id" : 3,
+    "text" : " : ",
+    "placeholder" : " ?: ",
+    "range" : {
+      "start" : 265,
+      "end" : 268,
+      "size" : 3
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ElvisExpression"
+  }, {
+    "id" : 4,
+    "text" : ".",
+    "placeholder" : "?.",
+    "range" : {
+      "start" : 254,
+      "end" : 255,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ElvisExpression"
+  }, {
+    "id" : 5,
+    "text" : "if (e != null) {\n                ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 542,
+      "end" : 575,
+      "size" : 33
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ShortElvisExpression"
+  }, {
+    "id" : 6,
+    "text" : "\n        }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 594,
+      "end" : 604,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ShortElvisExpression"
+  }, {
+    "id" : 7,
+    "text" : ".",
+    "placeholder" : "?.",
+    "range" : {
+      "start" : 576,
+      "end" : 577,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ShortElvisExpression"
+  }, {
+    "id" : 8,
+    "text" : "if (e.get() != null) {\n                ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 613,
+      "end" : 652,
+      "size" : 39
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ShortElvisExpression"
+  }, {
+    "id" : 9,
+    "text" : "\n        }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 671,
+      "end" : 681,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ShortElvisExpression"
+  }, {
+    "id" : 10,
+    "text" : ".",
+    "placeholder" : "?.",
+    "range" : {
+      "start" : 659,
+      "end" : 660,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ShortElvisExpression"
+  } ]
+}

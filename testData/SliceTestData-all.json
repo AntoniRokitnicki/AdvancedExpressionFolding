@@ -1,0 +1,384 @@
+{
+  "size" : 38,
+  "list" : [ {
+    "id" : 0,
+    "text" : "List<String>",
+    "placeholder" : "val",
+    "range" : {
+      "start" : 146,
+      "end" : 158,
+      "size" : 12
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+  }, {
+    "id" : 1,
+    "text" : ".subList(",
+    "placeholder" : "[",
+    "range" : {
+      "start" : 218,
+      "end" : 227,
+      "size" : 9
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+  }, {
+    "id" : 2,
+    "text" : ", list.size())",
+    "placeholder" : ":]",
+    "range" : {
+      "start" : 228,
+      "end" : 242,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+  }, {
+    "id" : 3,
+    "text" : ".subList(",
+    "placeholder" : "[",
+    "range" : {
+      "start" : 276,
+      "end" : 285,
+      "size" : 9
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+  }, {
+    "id" : 4,
+    "text" : ", ",
+    "placeholder" : ":",
+    "range" : {
+      "start" : 286,
+      "end" : 288,
+      "size" : 2
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+  }, {
+    "id" : 5,
+    "text" : ")",
+    "placeholder" : "]",
+    "range" : {
+      "start" : 289,
+      "end" : 290,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+  }, {
+    "id" : 6,
+    "text" : ".subList(",
+    "placeholder" : "[",
+    "range" : {
+      "start" : 324,
+      "end" : 333,
+      "size" : 9
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+  }, {
+    "id" : 7,
+    "text" : ", list.size())",
+    "placeholder" : ":]",
+    "range" : {
+      "start" : 334,
+      "end" : 348,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+  }, {
+    "id" : 8,
+    "text" : ".subList(0",
+    "placeholder" : "[",
+    "range" : {
+      "start" : 382,
+      "end" : 392,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+  }, {
+    "id" : 9,
+    "text" : ", ",
+    "placeholder" : ":",
+    "range" : {
+      "start" : 392,
+      "end" : 394,
+      "size" : 2
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+  }, {
+    "id" : 10,
+    "text" : ")",
+    "placeholder" : "]",
+    "range" : {
+      "start" : 395,
+      "end" : 396,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+  }, {
+    "id" : 11,
+    "text" : ".subList(",
+    "placeholder" : "[",
+    "range" : {
+      "start" : 430,
+      "end" : 439,
+      "size" : 9
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+  }, {
+    "id" : 12,
+    "text" : ", list.size() ",
+    "placeholder" : ":",
+    "range" : {
+      "start" : 440,
+      "end" : 454,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+  }, {
+    "id" : 13,
+    "text" : " ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 455,
+      "end" : 456,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+  }, {
+    "id" : 14,
+    "text" : ")",
+    "placeholder" : "]",
+    "range" : {
+      "start" : 457,
+      "end" : 458,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+  }, {
+    "id" : 15,
+    "text" : ".subList(0",
+    "placeholder" : "[",
+    "range" : {
+      "start" : 492,
+      "end" : 502,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+  }, {
+    "id" : 16,
+    "text" : ", list.size() ",
+    "placeholder" : ":",
+    "range" : {
+      "start" : 502,
+      "end" : 516,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+  }, {
+    "id" : 17,
+    "text" : " ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 517,
+      "end" : 518,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+  }, {
+    "id" : 18,
+    "text" : ")",
+    "placeholder" : "]",
+    "range" : {
+      "start" : 519,
+      "end" : 520,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+  }, {
+    "id" : 19,
+    "text" : "String",
+    "placeholder" : "val",
+    "range" : {
+      "start" : 531,
+      "end" : 537,
+      "size" : 6
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+  }, {
+    "id" : 20,
+    "text" : ".substring(",
+    "placeholder" : "[",
+    "range" : {
+      "start" : 579,
+      "end" : 590,
+      "size" : 11
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+  }, {
+    "id" : 21,
+    "text" : ")",
+    "placeholder" : ":]",
+    "range" : {
+      "start" : 591,
+      "end" : 592,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+  }, {
+    "id" : 22,
+    "text" : ".substring(",
+    "placeholder" : "[",
+    "range" : {
+      "start" : 623,
+      "end" : 634,
+      "size" : 11
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+  }, {
+    "id" : 23,
+    "text" : ", ",
+    "placeholder" : ":",
+    "range" : {
+      "start" : 635,
+      "end" : 637,
+      "size" : 2
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+  }, {
+    "id" : 24,
+    "text" : ")",
+    "placeholder" : "]",
+    "range" : {
+      "start" : 638,
+      "end" : 639,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+  }, {
+    "id" : 25,
+    "text" : ".substring(",
+    "placeholder" : "[",
+    "range" : {
+      "start" : 670,
+      "end" : 681,
+      "size" : 11
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+  }, {
+    "id" : 26,
+    "text" : ", f.length())",
+    "placeholder" : ":]",
+    "range" : {
+      "start" : 682,
+      "end" : 695,
+      "size" : 13
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+  }, {
+    "id" : 27,
+    "text" : ".substring(0",
+    "placeholder" : "[",
+    "range" : {
+      "start" : 726,
+      "end" : 738,
+      "size" : 12
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+  }, {
+    "id" : 28,
+    "text" : ", ",
+    "placeholder" : ":",
+    "range" : {
+      "start" : 738,
+      "end" : 740,
+      "size" : 2
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+  }, {
+    "id" : 29,
+    "text" : ")",
+    "placeholder" : "]",
+    "range" : {
+      "start" : 741,
+      "end" : 742,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+  }, {
+    "id" : 30,
+    "text" : ".substring(",
+    "placeholder" : "[",
+    "range" : {
+      "start" : 773,
+      "end" : 784,
+      "size" : 11
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+  }, {
+    "id" : 31,
+    "text" : ", f.length() ",
+    "placeholder" : ":",
+    "range" : {
+      "start" : 785,
+      "end" : 798,
+      "size" : 13
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+  }, {
+    "id" : 32,
+    "text" : " ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 799,
+      "end" : 800,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+  }, {
+    "id" : 33,
+    "text" : ")",
+    "placeholder" : "]",
+    "range" : {
+      "start" : 801,
+      "end" : 802,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+  }, {
+    "id" : 34,
+    "text" : ".substring(0",
+    "placeholder" : "[",
+    "range" : {
+      "start" : 833,
+      "end" : 845,
+      "size" : 12
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+  }, {
+    "id" : 35,
+    "text" : ", f.length() ",
+    "placeholder" : ":",
+    "range" : {
+      "start" : 845,
+      "end" : 858,
+      "size" : 13
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+  }, {
+    "id" : 36,
+    "text" : " ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 859,
+      "end" : 860,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+  }, {
+    "id" : 37,
+    "text" : ")",
+    "placeholder" : "]",
+    "range" : {
+      "start" : 861,
+      "end" : 862,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+  } ]
+}

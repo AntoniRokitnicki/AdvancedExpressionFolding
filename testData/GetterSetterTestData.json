@@ -1,0 +1,94 @@
+{
+  "size" : 9,
+  "list" : [ {
+    "id" : 0,
+    "text" : "setParent(",
+    "placeholder" : "parent = ",
+    "range" : {
+      "start" : 167,
+      "end" : 177,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+  }, {
+    "id" : 1,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 178,
+      "end" : 179,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+  }, {
+    "id" : 2,
+    "text" : "setName(",
+    "placeholder" : "name = ",
+    "range" : {
+      "start" : 191,
+      "end" : 199,
+      "size" : 8
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+  }, {
+    "id" : 3,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 206,
+      "end" : 207,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+  }, {
+    "id" : 4,
+    "text" : "setName(",
+    "placeholder" : "name = ",
+    "range" : {
+      "start" : 231,
+      "end" : 239,
+      "size" : 8
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+  }, {
+    "id" : 5,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 245,
+      "end" : 246,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+  }, {
+    "id" : 6,
+    "text" : "getParent()",
+    "placeholder" : "parent",
+    "range" : {
+      "start" : 219,
+      "end" : 230,
+      "size" : 11
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 7,
+    "text" : "getName()",
+    "placeholder" : "name",
+    "range" : {
+      "start" : 289,
+      "end" : 298,
+      "size" : 9
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 8,
+    "text" : "getParent()",
+    "placeholder" : "parent",
+    "range" : {
+      "start" : 277,
+      "end" : 288,
+      "size" : 11
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  } ]
+}

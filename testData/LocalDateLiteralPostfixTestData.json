@@ -1,0 +1,204 @@
+{
+  "size" : 20,
+  "list" : [ {
+    "id" : 0,
+    "text" : "LocalDate.of(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 159,
+      "end" : 172,
+      "size" : 13
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+  }, {
+    "id" : 1,
+    "text" : ", ",
+    "placeholder" : "Y-",
+    "range" : {
+      "start" : 176,
+      "end" : 178,
+      "size" : 2
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+  }, {
+    "id" : 2,
+    "text" : ", ",
+    "placeholder" : "M-",
+    "range" : {
+      "start" : 180,
+      "end" : 182,
+      "size" : 2
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+  }, {
+    "id" : 3,
+    "text" : ")",
+    "placeholder" : "D",
+    "range" : {
+      "start" : 184,
+      "end" : 185,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+  }, {
+    "id" : 4,
+    "text" : "LocalDate.of(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 210,
+      "end" : 223,
+      "size" : 13
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+  }, {
+    "id" : 5,
+    "text" : ", ",
+    "placeholder" : "Y-",
+    "range" : {
+      "start" : 227,
+      "end" : 229,
+      "size" : 2
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+  }, {
+    "id" : 6,
+    "text" : ", ",
+    "placeholder" : "M-",
+    "range" : {
+      "start" : 231,
+      "end" : 233,
+      "size" : 2
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+  }, {
+    "id" : 7,
+    "text" : ")",
+    "placeholder" : "D",
+    "range" : {
+      "start" : 235,
+      "end" : 236,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+  }, {
+    "id" : 8,
+    "text" : "LocalDate.of(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 261,
+      "end" : 274,
+      "size" : 13
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+  }, {
+    "id" : 9,
+    "text" : ", ",
+    "placeholder" : "Y-",
+    "range" : {
+      "start" : 278,
+      "end" : 280,
+      "size" : 2
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+  }, {
+    "id" : 10,
+    "text" : ", ",
+    "placeholder" : "M-",
+    "range" : {
+      "start" : 282,
+      "end" : 284,
+      "size" : 2
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+  }, {
+    "id" : 11,
+    "text" : ")",
+    "placeholder" : "D",
+    "range" : {
+      "start" : 286,
+      "end" : 287,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+  }, {
+    "id" : 12,
+    "text" : "LocalDate.of(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 312,
+      "end" : 325,
+      "size" : 13
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+  }, {
+    "id" : 13,
+    "text" : ",  ",
+    "placeholder" : "Y-0",
+    "range" : {
+      "start" : 329,
+      "end" : 332,
+      "size" : 3
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+  }, {
+    "id" : 14,
+    "text" : " ,  ",
+    "placeholder" : "M-0",
+    "range" : {
+      "start" : 333,
+      "end" : 337,
+      "size" : 4
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+  }, {
+    "id" : 15,
+    "text" : "   )",
+    "placeholder" : "D",
+    "range" : {
+      "start" : 338,
+      "end" : 342,
+      "size" : 4
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+  }, {
+    "id" : 16,
+    "text" : "LocalDate.of(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 534,
+      "end" : 547,
+      "size" : 13
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+  }, {
+    "id" : 17,
+    "text" : ", ",
+    "placeholder" : "Y-0",
+    "range" : {
+      "start" : 551,
+      "end" : 553,
+      "size" : 2
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+  }, {
+    "id" : 18,
+    "text" : ", ",
+    "placeholder" : "M-",
+    "range" : {
+      "start" : 554,
+      "end" : 556,
+      "size" : 2
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+  }, {
+    "id" : 19,
+    "text" : ")",
+    "placeholder" : "D",
+    "range" : {
+      "start" : 558,
+      "end" : 559,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+  } ]
+}
