@@ -88,10 +88,11 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
     private fun updateAllState(value: Boolean) {
         with(myState) {
             state::class.memberProperties
-                    .filterIsInstance<KMutableProperty<*>>()
-                    .forEach {
-                        it.setter.call(this, value)
-                    }
+                .filterIsInstance<KMutableProperty<*>>()
+                .filter { property -> !IConfig::class.memberProperties.map { it.name }.contains(property.name) }
+                .forEach {
+                    it.setter.call(this, value)
+                }
         }
     }
 
