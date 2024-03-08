@@ -19,7 +19,6 @@ import org.jetbrains.annotations.Nullable;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Paths;
 
 public abstract class BaseTest extends LightJavaCodeInsightFixtureTestCase {
 
@@ -48,12 +47,6 @@ public abstract class BaseTest extends LightJavaCodeInsightFixtureTestCase {
         AdvancedExpressionFoldingBuilder.setStore(store);
         try {
             action.run();
-            var wrapper = store.saveFolding(createOutputFile(fileName, ".json"));
-            try {
-                Files.writeString(createOutputFile(fileName, "-folded.java").toPath(), FoldingTemporaryTestEditor.INSTANCE.getFoldedText(Files.readString(Paths.get(fileName)), wrapper));
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
         } catch (FileComparisonFailure e) {
             try {
                 String actual = e.getActual();
