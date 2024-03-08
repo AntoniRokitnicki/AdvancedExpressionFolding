@@ -52,14 +52,19 @@ public abstract class BaseTest extends LightJavaCodeInsightFixtureTestCase {
                 String actual = e.getActual();
                 Files.writeString(new File(fileName).toPath(), actual);
                 if (!fileName.contains("-all")) {
-                    Files.writeString(new File(getAllTestFileName(fileName)).toPath(), actual);
+                    Files.writeString(getAllTestFileName(fileName).toPath(), actual);
                 }
-                store.saveFolding(new File(fileName.replace(".java", ".json")));
+                var wrapper = store.saveFolding(createOutputFile(fileName, ".json"));
+                Files.writeString(createOutputFile(fileName, "-folded.java").toPath(), FoldingTemporaryTestEditor.INSTANCE.getFoldedText(actual, wrapper));
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
             throw e;
         }
+    }
+
+    private static File createOutputFile(String fileName, String extension) {
+        return new File(fileName.replace(".java", extension));
     }
 
     protected void doFoldingTest() {
@@ -79,8 +84,8 @@ public abstract class BaseTest extends LightJavaCodeInsightFixtureTestCase {
         return getTestDataPath() + "/" + testName + ".java";
     }
 
-    protected static @NotNull String getAllTestFileName(String testName) {
-        return testName.replace(".java", "-all.java");
+    protected static File getAllTestFileName(String testName) {
+        return createOutputFile(testName, "-all.java");
     }
 
 

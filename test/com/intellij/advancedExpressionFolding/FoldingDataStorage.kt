@@ -23,7 +23,7 @@ class FoldingDataStorage : EmptyStorage() {
         return descriptors
     }
 
-    fun saveFolding(file: File) {
+    fun saveFolding(file: File): FoldingDescriptorExWrapper {
         val text = document.text
         val mapper = ObjectMapper().registerKotlinModule().enable(SerializationFeature.INDENT_OUTPUT);
         val list = descriptors.mapIndexed { index, it ->
@@ -35,7 +35,9 @@ class FoldingDataStorage : EmptyStorage() {
                 it.group.toString()
             )
         }
-        mapper.writeValue(file, FoldingDescriptorExWrapper(list.size, list))
+        val foldingDescriptorExWrapper = FoldingDescriptorExWrapper(list.size, list)
+        mapper.writeValue(file, foldingDescriptorExWrapper)
+        return foldingDescriptorExWrapper
     }
 }
 
