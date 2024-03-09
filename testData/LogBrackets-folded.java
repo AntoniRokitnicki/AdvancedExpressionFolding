@@ -23,19 +23,21 @@ public class LogBrackets {
 
         log.debug("Debug message with 1 parameter - Name: $name");
         log.debug("Debug message with 1 parameter - Name: $name");
-        log.trace("Trace message - Name: $data.name, log:$log(data)    $");
-        log.warn("Warning message with three parameters - Name: $name, Age: $data.data.name, City: $city");
+        log.trace("Trace message - Name: ${data.name}, log:${log(data)}    $");
+        log.warn("Warning message with three parameters - Name: $name, Age: ${data.data.name}, City: $city");
 
-        log.error("Missing 1 parameter - Name: $name, Age: $age, City: $city, Salary: {}");
-        log.error("Missing 2 parameters - Name: $name, Age: $age, City: {}, Salary: {}");
-        log.error("Missing 3 parameters - Name: $name, Age: {}, City: {}, Salary: {}");
-        log.error("Missing all parameters - Name: {}, Age: {}, City: {}, Salary: {}");
+        log.error("Missing 1 parameter - 1: $name, 2: $age, 3: $city, empty: {}");
+        log.error("Missing 2 parameters - 1: $name, 2: $age, empty: {}, empty: {}");
+        log.error("Missing 3 parameters - 1: $name, empty: {}, empty: {}, empty: {}");
+        log.error("Missing all parameters - - empty: {}, empty: {}, empty: {}, empty: {}");
 
         try {
-            log.warn("Warning message with 3 parameters and formatting - Name: $name, Age: $data.data.name, City: $city");
+            log.warn("Warning message with 3 parameters and formatting - 1: $name, 2: ${data.data.name}, 3: $city");
+
+            log.warn("Warning message with 3 parameters and formatting - 1: ${data.data.name}, 2: $name, 3: ${data.data.name}");
         } catch (Exception e) {
-            log.error("error1 $e.message"$e);
-            log.error("error2 $log(data)"$e, e);
+            log.error("error1 ${e.message}", e);
+            log.error("error2 ${data.data.name}", data.getData().getName(), data.getData().getName());
         }
 
         return data;

@@ -26,22 +26,28 @@ public class LogBrackets {
         log.trace("Trace message - Name: {}, log:{}    $", data.getName(), log(data));
         log.warn("Warning message with three parameters - Name: {}, Age: {}, City: {}", name, data.getData().getName(), city);
 
-        log.error("Missing 1 parameter - Name: {}, Age: {}, City: {}, Salary: {}", name, age, city);
-        log.error("Missing 2 parameters - Name: {}, Age: {}, City: {}, Salary: {}", name, age);
-        log.error("Missing 3 parameters - Name: {}, Age: {}, City: {}, Salary: {}", name);
-        log.error("Missing all parameters - Name: {}, Age: {}, City: {}, Salary: {}");
+        log.error("Missing 1 parameter - 1: {}, 2: {}, 3: {}, empty: {}", name, age, city);
+        log.error("Missing 2 parameters - 1: {}, 2: {}, empty: {}, empty: {}", name, age);
+        log.error("Missing 3 parameters - 1: {}, empty: {}, empty: {}, empty: {}", name);
+        log.error("Missing all parameters - - empty: {}, empty: {}, empty: {}, empty: {}");
 
         try {
-            log.warn("Warning message with 3 parameters and formatting - Name: {}, Age: {}, City: {}",
+            log.warn("Warning message with 3 parameters and formatting - 1: {}, 2: {}, 3: {}",
                     name,
     
                     data.getData().getName(),
     
                     city
             );
+
+            log.warn("Warning message with 3 parameters and formatting - 1: {}, 2: {}, 3: {}",
+                    data.getData().getName(),
+name,
+                                                    data.getData().getName()
+            );
         } catch (Exception e) {
             log.error("error1 {}", e.getMessage(), e);
-            log.error("error2 {}", log(data), e, e);
+            log.error("error2 {}", data.getData().getName(), data.getData().getName(), data.getData().getName());
         }
 
         return data;

@@ -16,23 +16,29 @@ public class LogBrackets {
         val name = "John";
         val age = 30;
         val city = "New York";
-        log.info(MY_MARKER, "Info message with two parameters - Name: $name, Age: $age");
+        log.info(MY_MARKER, "Info message with 2 parameters - Name: $name, Age: $age");
 
-        log.info("Info message with two parameters - Name: $name, Age: $age    ");
-        log.info("Info message with two parameters - Name: $name, Age: $age");
+        log.info("Info message with 2 parameters - Name: $name, Age: $age    ");
+        log.info("Info message with 2 parameters - Name: $name, Age: $age");
 
-        log.debug("Debug message with one parameter - Name: $name");
-        log.debug("Debug message with one parameter - Name: $name");
-        log.trace("Trace message with three parameters - Name: $data.name, log:$log(data)    $");
-        log.warn("Warning message with three parameters - Name: $name, Age: $data.data.name, City: $city");
+        log.debug("Debug message with 1 parameter - Name: $name");
+        log.debug("Debug message with 1 parameter - Name: $name");
+        log.trace("Trace message - Name: ${data.name}, log:${log(data)}    $");
+        log.warn("Warning message with three parameters - Name: $name, Age: ${data.data.name}, City: $city");
 
+        log.error("Missing 1 parameter - 1: $name, 2: $age, 3: $city, empty: {}");
+        log.error("Missing 2 parameters - 1: $name, 2: $age, empty: {}, empty: {}");
+        log.error("Missing 3 parameters - 1: $name, empty: {}, empty: {}, empty: {}");
+        log.error("Missing all parameters - - empty: {}, empty: {}, empty: {}, empty: {}");
 
-        log.warn("Warning message with three parameters - Name: $name, Age: $data.data.name, City: $city");
+        try {
+            log.warn("Warning message with 3 parameters and formatting - 1: $name, 2: ${data.data.name}, 3: $city");
 
-        log.error("Missing last parameter - Name: $name, Age: $age, City: $city, Salary: {}");
-        log.error("Missing last parameter - Name: $name, Age: $age, City: {}, Salary: {}");
-        log.error("Missing last parameter - Name: $name, Age: {}, City: {}, Salary: {}");
-        log.error("Missing last parameter - Name: {}, Age: {}, City: {}, Salary: {}");
+            log.warn("Warning message with 3 parameters and formatting - 1: ${data.data.name}, 2: $name, 3: ${data.data.name}");
+        } catch Exception e {
+            log.error("error1 ${e.message}", e);
+            log.error("error2 ${data.data.name}", data.getData().getName(), data.getData().getName());
+        }
 
         return data;
     }
