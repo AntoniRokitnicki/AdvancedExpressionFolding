@@ -40,7 +40,7 @@ public class ShortElvisExpression extends Expression {
         return descriptors.toArray(EMPTY_ARRAY);
     }
 
-    protected static Set<String> supportedPostfixes = new HashSet<String>() {
+    protected static final Set<String> SUPPORTED_POSTFIXES = new HashSet<>() {
         {
             add(".");
             add(";");
@@ -54,7 +54,7 @@ public class ShortElvisExpression extends Expression {
                                   List<TextRange> elements, boolean replaceSingle) {
         for (TextRange range : elements) {
             String postfix = document.getText(TextRange.create(range.getEndOffset(), range.getEndOffset() + 1));
-            if (supportedPostfixes.contains(postfix)) {
+            if (SUPPORTED_POSTFIXES.contains(postfix)) {
                 descriptors.add(new FoldingDescriptor(element.getNode(),
                         TextRange.create(range.getEndOffset(), range.getEndOffset() + 1),
                         group, "?" + postfix));

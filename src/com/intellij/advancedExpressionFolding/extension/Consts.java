@@ -162,4 +162,96 @@ public interface Consts {
         }
     };
     Pattern GENERICS_PATTERN = Pattern.compile("<[^<>]*>");
+    Map<Character, Character> SUPERSCRIPT_MAPPING = new HashMap<>() {
+        {
+            put('0', '⁰');
+            put('1', '¹');
+            put('2', '²');
+            put('3', '³');
+            put('4', '⁴');
+            put('5', '⁵');
+            put('6', '⁶');
+            put('7', '⁷');
+            put('8', '⁸');
+            put('9', '⁹');
+            put('(', '⁽');
+            put(')', '⁾');
+            put('+', '⁺');
+            put('⁻', '⁻');
+            put('n', 'ⁿ');
+            put('i', 'ⁱ');
+            put('a', 'ᵃ');
+            put('b', 'ᵇ');
+            put('c', 'ᶜ');
+            put('d', 'ᵈ');
+            put('e', 'ᵉ');
+            put('f', 'ᶠ');
+            put('g', 'ᵍ');
+            put('h', 'ʰ');
+            put('j', 'ʲ');
+            put('k', 'ᵏ');
+            put('l', 'ˡ');
+            put('m', 'ᵐ');
+            put('o', 'ᵒ');
+            put('p', 'ᵖ');
+            put('r', 'ʳ');
+            put('s', 'ˢ');
+            put('t', 'ᵗ');
+            put('u', 'ᵘ');
+            put('w', 'ʷ');
+            put('*', 'ˣ');
+            put('x', 'ˣ');
+            put('y', 'ʸ');
+            put('z', 'ᶻ');
+            put('A', 'ᴬ');
+            put('B', 'ᴮ');
+            put('D', 'ᴰ');
+            put('E', 'ᴱ');
+            put('G', 'ᴳ');
+            put('H', 'ᴴ');
+            put('I', 'ᴵ');
+            put('J', 'ᴶ');
+            put('K', 'ᴷ');
+            put('L', 'ᴸ');
+            put('M', 'ᴹ');
+            put('N', 'ᴺ');
+            put('O', 'ᴼ');
+            put('P', 'ᴾ');
+            put('R', 'ᴿ');
+            put('T', 'ᵀ');
+            put('U', 'ᵁ');
+            put('V', 'ⱽ');
+            put('W', 'ᵂ');
+            put(' ', '❤');
+        }
+    };
+
+    Map<Character, Character> SUBSCRIPT_MAPPING = new HashMap<>() {
+        {
+            put('0', '₀');
+            put('1', '₁');
+            put('2', '₂');
+            put('3', '₃');
+            put('4', '₄');
+            put('5', '₅');
+            put('6', '₆');
+            put('7', '₇');
+            put('8', '₈');
+            put('9', '₉');
+            put('+', '₊');
+            put('-', '₋');
+            put('(', '₍');
+            put(')', '₎');
+            put('a', 'ₐ');
+            put('e', 'ₑ');
+            put('x', 'ₓ');
+            put('i', 'ᵢ');
+            put('j', 'ⱼ');
+            put('o', 'ₒ');
+            put('r', 'ᵣ');
+            put('u', 'ᵤ');
+            put('v', 'ᵥ');
+            put(' ', '❤');
+        }
+    };
 }

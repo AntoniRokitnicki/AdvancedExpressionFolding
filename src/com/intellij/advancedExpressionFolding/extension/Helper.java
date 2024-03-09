@@ -251,13 +251,14 @@ public class Helper {
         for (PsiElement child : element.getChildren()) {
             if (next != null && next.isInstance(child)) {
                 if (classQueue.isEmpty()) {
+                    //noinspection unchecked
                     return Optional.of((T) child);
                 } else {
+                    //noinspection unchecked
                     return findChildByTypeHierarchy(child, childClass, classQueue.toArray(new Class[0]));
                 }
             }
         }
-
         return Optional.empty();
     }
 }

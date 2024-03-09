@@ -87,7 +87,7 @@ public class Range extends Expression {
         return endRange;
     }
 
-    private static Set<String> supportedOverlappedSymbols = new HashSet<String>() {
+    private static final Set<String> SUPPORTED_OVERLAPPED_SYMBOLS = new HashSet<>() {
         {
             add(" ");
             add("&");
@@ -102,7 +102,7 @@ public class Range extends Expression {
                                        @Nullable Expression parent) {
         return getStart().getTextRange().getStartOffset() < getEnd().getTextRange().getStartOffset()
                 && (getEnd().getTextRange().getEndOffset() < getTextRange().getEndOffset()
-                || supportedOverlappedSymbols.contains(document.getText(TextRange.create(getEnd().getTextRange().getEndOffset(), getEnd().getTextRange().getEndOffset() + 1))));
+                || SUPPORTED_OVERLAPPED_SYMBOLS.contains(document.getText(TextRange.create(getEnd().getTextRange().getEndOffset(), getEnd().getTextRange().getEndOffset() + 1))));
     }
 
     @Override

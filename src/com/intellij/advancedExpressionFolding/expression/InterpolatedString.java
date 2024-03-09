@@ -25,7 +25,7 @@ public class InterpolatedString extends Expression {
         return true;
     }
 
-    public static Set<String> OVERFLOW_CHARACTERS = new HashSet<String>() {
+    public static final Set<String> OVERFLOW_CHARACTERS = new HashSet<>() {
         {
             add(".");
             add(";");
