@@ -1,12 +1,12 @@
 {
-  "size" : 36,
+  "size" : 41,
   "list" : [ {
     "id" : 0,
     "text" : "{}, Age: {}\", ",
     "placeholder" : "$",
     "range" : {
-      "start" : 538,
-      "end" : 552,
+      "start" : 536,
+      "end" : 550,
       "size" : 14
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
@@ -15,8 +15,8 @@
     "text" : ", ",
     "placeholder" : ", Age: $",
     "range" : {
-      "start" : 556,
-      "end" : 558,
+      "start" : 554,
+      "end" : 556,
       "size" : 2
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
@@ -25,8 +25,8 @@
     "text" : ")",
     "placeholder" : "\")",
     "range" : {
-      "start" : 561,
-      "end" : 562,
+      "start" : 559,
+      "end" : 560,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
@@ -35,8 +35,8 @@
     "text" : "{}, Age: {}    \", ",
     "placeholder" : "$",
     "range" : {
-      "start" : 624,
-      "end" : 642,
+      "start" : 620,
+      "end" : 638,
       "size" : 18
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
@@ -45,8 +45,8 @@
     "text" : ", ",
     "placeholder" : ", Age: $",
     "range" : {
-      "start" : 646,
-      "end" : 648,
+      "start" : 642,
+      "end" : 644,
       "size" : 2
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
@@ -55,8 +55,8 @@
     "text" : ")",
     "placeholder" : "    \")",
     "range" : {
-      "start" : 651,
-      "end" : 652,
+      "start" : 647,
+      "end" : 648,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
@@ -65,8 +65,8 @@
     "text" : "{}, Age: {}\", ",
     "placeholder" : "$",
     "range" : {
-      "start" : 713,
-      "end" : 727,
+      "start" : 707,
+      "end" : 721,
       "size" : 14
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
@@ -75,8 +75,8 @@
     "text" : ", ",
     "placeholder" : ", Age: $",
     "range" : {
-      "start" : 731,
-      "end" : 733,
+      "start" : 725,
+      "end" : 727,
       "size" : 2
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
@@ -85,8 +85,8 @@
     "text" : ")",
     "placeholder" : "\")",
     "range" : {
-      "start" : 736,
-      "end" : 737,
+      "start" : 730,
+      "end" : 731,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
@@ -95,8 +95,8 @@
     "text" : "{}\", ",
     "placeholder" : "$",
     "range" : {
-      "start" : 800,
-      "end" : 805,
+      "start" : 792,
+      "end" : 797,
       "size" : 5
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
@@ -105,8 +105,8 @@
     "text" : ")",
     "placeholder" : "\")",
     "range" : {
-      "start" : 809,
-      "end" : 810,
+      "start" : 801,
+      "end" : 802,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
@@ -115,8 +115,8 @@
     "text" : "{}, log:{}    $\", ",
     "placeholder" : "$",
     "range" : {
-      "start" : 944,
-      "end" : 962,
+      "start" : 912,
+      "end" : 930,
       "size" : 18
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
@@ -125,8 +125,8 @@
     "text" : "getName()",
     "placeholder" : "name",
     "range" : {
-      "start" : 967,
-      "end" : 976,
+      "start" : 935,
+      "end" : 944,
       "size" : 9
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
@@ -135,8 +135,8 @@
     "text" : ", ",
     "placeholder" : ", log:$",
     "range" : {
-      "start" : 976,
-      "end" : 978,
+      "start" : 944,
+      "end" : 946,
       "size" : 2
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
@@ -145,8 +145,8 @@
     "text" : ")",
     "placeholder" : "    $\")",
     "range" : {
-      "start" : 987,
-      "end" : 988,
+      "start" : 955,
+      "end" : 956,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
@@ -155,8 +155,8 @@
     "text" : "{}, Age: {}, City: {}\", ",
     "placeholder" : "$",
     "range" : {
-      "start" : 1054,
-      "end" : 1078,
+      "start" : 1022,
+      "end" : 1046,
       "size" : 24
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
@@ -165,8 +165,8 @@
     "text" : ", ",
     "placeholder" : ", Age: $",
     "range" : {
-      "start" : 1082,
-      "end" : 1084,
+      "start" : 1050,
+      "end" : 1052,
       "size" : 2
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
@@ -175,8 +175,8 @@
     "text" : "getName()",
     "placeholder" : "name",
     "range" : {
-      "start" : 1099,
-      "end" : 1108,
+      "start" : 1067,
+      "end" : 1076,
       "size" : 9
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
@@ -185,8 +185,8 @@
     "text" : "getData()",
     "placeholder" : "data",
     "range" : {
-      "start" : 1089,
-      "end" : 1098,
+      "start" : 1057,
+      "end" : 1066,
       "size" : 9
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
@@ -195,8 +195,8 @@
     "text" : ", ",
     "placeholder" : ", City: $",
     "range" : {
-      "start" : 1108,
-      "end" : 1110,
+      "start" : 1076,
+      "end" : 1078,
       "size" : 2
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
@@ -205,159 +205,209 @@
     "text" : ")",
     "placeholder" : "\")",
     "range" : {
-      "start" : 1114,
-      "end" : 1115,
+      "start" : 1082,
+      "end" : 1083,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
   }, {
     "id" : 21,
-    "text" : "{}, Age: {}, City: {}\",\n                ",
+    "text" : "{}, Age: {}, City: {}, Salary: {}\", ",
     "placeholder" : "$",
     "range" : {
-      "start" : 1183,
-      "end" : 1223,
-      "size" : 40
+      "start" : 1133,
+      "end" : 1169,
+      "size" : 36
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
   }, {
     "id" : 22,
-    "text" : ",\n\n                ",
+    "text" : ", ",
     "placeholder" : ", Age: $",
     "range" : {
-      "start" : 1227,
-      "end" : 1246,
-      "size" : 19
+      "start" : 1173,
+      "end" : 1175,
+      "size" : 2
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
   }, {
     "id" : 23,
-    "text" : "getName()",
-    "placeholder" : "name",
-    "range" : {
-      "start" : 1261,
-      "end" : 1270,
-      "size" : 9
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
-  }, {
-    "id" : 24,
-    "text" : "getData()",
-    "placeholder" : "data",
-    "range" : {
-      "start" : 1251,
-      "end" : 1260,
-      "size" : 9
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
-  }, {
-    "id" : 25,
-    "text" : ",\n\n                ",
+    "text" : ", ",
     "placeholder" : ", City: $",
     "range" : {
-      "start" : 1270,
-      "end" : 1289,
-      "size" : 19
+      "start" : 1178,
+      "end" : 1180,
+      "size" : 2
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
+  }, {
+    "id" : 24,
+    "text" : ")",
+    "placeholder" : ", Salary: {}\")",
+    "range" : {
+      "start" : 1184,
+      "end" : 1185,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
+  }, {
+    "id" : 25,
+    "text" : "{}, Age: {}, City: {}, Salary: {}\", ",
+    "placeholder" : "$",
+    "range" : {
+      "start" : 1235,
+      "end" : 1271,
+      "size" : 36
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
   }, {
     "id" : 26,
-    "text" : "\n        ",
-    "placeholder" : "\"",
+    "text" : ", ",
+    "placeholder" : ", Age: $",
     "range" : {
-      "start" : 1293,
-      "end" : 1302,
-      "size" : 9
+      "start" : 1275,
+      "end" : 1277,
+      "size" : 2
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
   }, {
     "id" : 27,
-    "text" : "{}, Age: {}, City: {}, Salary: {}\", ",
-    "placeholder" : "$",
+    "text" : ")",
+    "placeholder" : ", City: {}, Salary: {}\")",
     "range" : {
-      "start" : 1356,
-      "end" : 1392,
-      "size" : 36
+      "start" : 1280,
+      "end" : 1281,
+      "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
   }, {
     "id" : 28,
-    "text" : ", ",
-    "placeholder" : ", Age: $",
+    "text" : "{}, Age: {}, City: {}, Salary: {}\", ",
+    "placeholder" : "$",
     "range" : {
-      "start" : 1396,
-      "end" : 1398,
-      "size" : 2
+      "start" : 1331,
+      "end" : 1367,
+      "size" : 36
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
   }, {
     "id" : 29,
-    "text" : ", ",
-    "placeholder" : ", City: $",
+    "text" : ")",
+    "placeholder" : ", Age: {}, City: {}, Salary: {}\")",
     "range" : {
-      "start" : 1401,
-      "end" : 1403,
-      "size" : 2
+      "start" : 1371,
+      "end" : 1372,
+      "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
   }, {
     "id" : 30,
-    "text" : ")",
-    "placeholder" : ", Salary: {}\")",
+    "text" : "{}, Age: {}, City: {}\",\n                    ",
+    "placeholder" : "$",
     "range" : {
-      "start" : 1407,
-      "end" : 1408,
-      "size" : 1
+      "start" : 1555,
+      "end" : 1599,
+      "size" : 44
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
   }, {
     "id" : 31,
-    "text" : "{}, Age: {}, City: {}, Salary: {}\", ",
-    "placeholder" : "$",
+    "text" : ",\n\n                    ",
+    "placeholder" : ", Age: $",
     "range" : {
-      "start" : 1460,
-      "end" : 1496,
-      "size" : 36
+      "start" : 1603,
+      "end" : 1626,
+      "size" : 23
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
   }, {
     "id" : 32,
-    "text" : ", ",
-    "placeholder" : ", Age: $",
+    "text" : "getName()",
+    "placeholder" : "name",
     "range" : {
-      "start" : 1500,
-      "end" : 1502,
-      "size" : 2
+      "start" : 1641,
+      "end" : 1650,
+      "size" : 9
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
   }, {
     "id" : 33,
-    "text" : ")",
-    "placeholder" : ", City: {}, Salary: {}\")",
+    "text" : "getData()",
+    "placeholder" : "data",
     "range" : {
-      "start" : 1505,
-      "end" : 1506,
-      "size" : 1
+      "start" : 1631,
+      "end" : 1640,
+      "size" : 9
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
   }, {
     "id" : 34,
-    "text" : "{}, Age: {}, City: {}, Salary: {}\", ",
-    "placeholder" : "$",
+    "text" : ",\n\n                    ",
+    "placeholder" : ", City: $",
     "range" : {
-      "start" : 1558,
-      "end" : 1594,
-      "size" : 36
+      "start" : 1650,
+      "end" : 1673,
+      "size" : 23
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
   }, {
     "id" : 35,
-    "text" : ")",
-    "placeholder" : ", Age: {}, City: {}, Salary: {}\")",
+    "text" : "\n            ",
+    "placeholder" : "\"",
     "range" : {
-      "start" : 1598,
-      "end" : 1599,
-      "size" : 1
+      "start" : 1677,
+      "end" : 1690,
+      "size" : 13
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
+  }, {
+    "id" : 36,
+    "text" : "{}\", ",
+    "placeholder" : "$",
+    "range" : {
+      "start" : 1755,
+      "end" : 1760,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
+  }, {
+    "id" : 37,
+    "text" : "getMessage()",
+    "placeholder" : "message",
+    "range" : {
+      "start" : 1762,
+      "end" : 1774,
+      "size" : 12
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 38,
+    "text" : ", ",
+    "placeholder" : "\"$",
+    "range" : {
+      "start" : 1774,
+      "end" : 1776,
+      "size" : 2
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
+  }, {
+    "id" : 39,
+    "text" : "{}\", ",
+    "placeholder" : "$",
+    "range" : {
+      "start" : 1810,
+      "end" : 1815,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
+  }, {
+    "id" : 40,
+    "text" : ", ",
+    "placeholder" : "\"$",
+    "range" : {
+      "start" : 1824,
+      "end" : 1826,
+      "size" : 2
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
   } ]
