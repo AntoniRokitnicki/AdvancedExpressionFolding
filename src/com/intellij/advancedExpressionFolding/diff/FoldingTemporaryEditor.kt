@@ -49,9 +49,13 @@ object FoldingTemporaryEditor {
         for (region in editor.foldingModel.allFoldRegions) {
             if (region.isValid && region.isExpanded) {
                 val foldStart = region.startOffset
-                foldedText.append(document.getText(TextRange(offset, foldStart)))
-                foldedText.append(region.placeholderText)
-                offset = region.endOffset
+                try {
+                    foldedText.append(document.getText(TextRange(offset, foldStart)))
+                    foldedText.append(region.placeholderText)
+                    offset = region.endOffset
+                } catch (e: IllegalArgumentException) {
+                    //ignore text that has already been folded
+                }
             }
         }
         foldedText.append(document.getText(TextRange(offset, document.textLength)))
