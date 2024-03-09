@@ -4,6 +4,7 @@ import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings
 import com.intellij.diff.DiffContentFactory
 import com.intellij.diff.requests.DiffRequest
 import com.intellij.diff.requests.SimpleDiffRequest
+import com.intellij.ide.highlighter.JavaFileType
 import com.intellij.openapi.progress.ProgressIndicator
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.util.UserDataHolder
@@ -29,7 +30,7 @@ class DiffRequestProvider : ChangeDiffRequestProvider, AdvancedExpressionFolding
 
         val factory = DiffContentFactory.getInstance()
         fun modifyContent(contentRevision: ContentRevision?) = contentRevision?.content?.let {
-            factory.create(FoldTagsParser.asVisible(it))
+            factory.create(FoldTagsParser.asVisible(it), JavaFileType.INSTANCE)
         } ?: factory.createEmpty()
 
         return SimpleDiffRequest(
