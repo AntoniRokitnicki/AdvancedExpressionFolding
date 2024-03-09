@@ -52,31 +52,32 @@ object LoggerBracketsExt : BaseExtension() {
 
         val split = logLiteral.split("{}")
 
+        val hasTooManyArguments = split.size <= arguments.size
         var hasLast = false
         split.mapIndexedNotNull { index, nextString ->
             val argument = arguments.getOrNull(index)
-            if (argument == null) {
+            if (argument == null || split.size - 1 == index) {
                 if (!hasLast) {
                     hasLast = true
-                    val restAsString = if (index != split.size - 1) {
+                    val restAsString = if (index != split.size - 1 && !hasTooManyArguments) {
                         calculateMissingString(split, index, logLiteral)
                     } else {
                         nextString
                     }
-                    val bracket = arguments.last().nextSibling
+                    val bracket = arguments[index - 1].nextSibling
                     LoggerBrackets(element, bracket.textRange,  restAsString + bracket.text.trim(), null)
                 } else {
                     null
                 }
             } else if (index == 0) {
                 val countChars = literal.startOffset + nextString.length
-                val toTextRange = (countChars..argument.prevSibling.endOffset).toTextRange()
+                val textRange = (countChars..argument.prevSibling.endOffset).toTextRange()
                 val expression = BuildExpressionExt.getAnyExpression(argument, document)
-                LoggerBrackets(element, toTextRange, "\$", expression)
+                LoggerBrackets(element, textRange, getInterpolation(), expression)
             } else {
                 val textRange = (argument.prevSibling.prevSibling.startOffset..argument.prevSibling.endOffset).toTextRange()
                 val expression = BuildExpressionExt.getAnyExpression(argument, document)
-                LoggerBrackets(element, textRange, nextString + "\$", expression)
+                LoggerBrackets(element, textRange, nextString + getInterpolation(), expression)
             }
         }.toList().takeIf {
             it.isNotEmpty()
@@ -85,6 +86,8 @@ object LoggerBracketsExt : BaseExtension() {
         }
         return null
     }
+
+    private fun getInterpolation() = "\$"
 
     private fun calculateMissingString(
         split: List<String>,
