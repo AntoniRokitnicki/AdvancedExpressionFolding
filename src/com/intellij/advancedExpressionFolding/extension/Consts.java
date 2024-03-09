@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 public interface Consts {
 
@@ -160,4 +161,5 @@ public interface Consts {
             put("E", "\uD835\uDC52");
         }
     };
+    Pattern GENERICS_PATTERN = Pattern.compile("<[^<>]*>");
 }

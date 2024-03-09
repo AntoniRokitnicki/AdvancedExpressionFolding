@@ -1,6 +1,7 @@
 package com.intellij.advancedExpressionFolding.extension;
 
-import com.intellij.advancedExpressionFolding.expression.*;
+import com.intellij.advancedExpressionFolding.expression.Expression;
+import com.intellij.advancedExpressionFolding.expression.NumberLiteral;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.*;
@@ -13,12 +14,9 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
 public class Helper {
-
-    public static final Pattern GENERICS_PATTERN = Pattern.compile("<[^<>]*>");
 
     public static boolean isReferenceToReference(@Nullable PsiReferenceExpression referenceExpression, @Nullable PsiReference reference) {
         if (reference != null) {
@@ -115,45 +113,12 @@ public class Helper {
         }
     }
 
-    @Nullable
-    public static Expression getReferenceExpression(PsiReferenceExpression element, boolean copy) {
-        Optional<PsiElement> found = Optional.empty();
-        for (PsiElement c : element.getChildren()) {
-            if (c instanceof PsiIdentifier) {
-                found = Optional.of(c);
-                break;
-            }
-        }
-        Optional<PsiElement> identifier = found;
-        if (identifier.isPresent()) {
-            Object constant = Consts.SUPPORTED_CONSTANTS.get(identifier.get().getText());
-            if (constant != null) {
-                if (isSupportedClass(element) && constant instanceof Number) {
-                    return new NumberLiteral(element, element.getTextRange(), element.getTextRange(), (Number) constant, true);
-                } else if (isSupportedClass(element) && constant instanceof String) {
-                    return new Variable(element, element.getTextRange(), null, (String) constant, copy);
-                }
-            } else {
-                Expression variable = AssignmentExpressionExt.getVariableExpression(element, copy);
-                if (variable != null) return variable;
-
-                if (element instanceof PsiMethodReferenceExpression methodReferenceExpression) {
-                    var methodReference = MethodReferenceExt.createExpression(methodReferenceExpression);
-                    if (methodReference != null) {
-                        return methodReference;
-                    }
-                }
-            }
-        }
-        return null;
-    }
-
     @NotNull
     public static String eraseGenerics(@NotNull String signature) {
-        Matcher m = GENERICS_PATTERN.matcher(signature);
+        Matcher m = Consts.GENERICS_PATTERN.matcher(signature);
         while (m.find()) {
             signature = m.replaceAll("");
-            m = GENERICS_PATTERN.matcher(signature);
+            m = Consts.GENERICS_PATTERN.matcher(signature);
         }
         return signature;
     }
@@ -233,28 +198,6 @@ public class Helper {
                                 TextRange.create(a2b.getOperationSign().getTextRange().getStartOffset(),
                                         a2b.getTextRange().getEndOffset()), null, -((NumberLiteral) s).getNumber().intValue(), false);
                     }
-                }
-            }
-        }
-        return null;
-    }
-
-    @Nullable
-    public static Expression getReferenceExpression(PsiReferenceExpression element) {
-        return getReferenceExpression(element, false);
-    }
-
-    @Nullable
-    public static Expression getLiteralExpression(@NotNull PsiLiteralExpression element) {
-        if (element.getType() != null) {
-            if (Consts.SUPPORTED_PRIMITIVE_TYPES.contains(element.getType().getCanonicalText())) {
-                Object value = element.getValue();
-                if (value instanceof Number) {
-                    return new NumberLiteral(element, element.getTextRange(), null, (Number) value, false);
-                } else if (value instanceof String) {
-                    return new StringLiteral(element, element.getTextRange(), (String) value);
-                } else if (value instanceof Character) {
-                    return new CharacterLiteral(element, element.getTextRange(), (Character) value);
                 }
             }
         }

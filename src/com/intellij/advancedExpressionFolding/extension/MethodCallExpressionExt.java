@@ -21,8 +21,8 @@ import java.util.stream.Stream;
 
 import static com.intellij.advancedExpressionFolding.extension.BaseExtension.isInt;
 import static com.intellij.advancedExpressionFolding.extension.Consts.*;
-import static com.intellij.advancedExpressionFolding.extension.Helper.getReferenceExpression;
 import static com.intellij.advancedExpressionFolding.extension.PropertyUtil.guessPropertyName;
+import static com.intellij.advancedExpressionFolding.extension.ReferenceExpressionExt.getReferenceExpression;
 
 @SuppressWarnings({"RedundantIfStatement", "SwitchStatementWithTooFewBranches", "unused", "EnhancedSwitchMigration", "RedundantSuppression"})
 public class MethodCallExpressionExt {
@@ -216,8 +216,8 @@ public class MethodCallExpressionExt {
 
     private static @Nullable Expression onTwoArgumentsAllClasses(PsiMethodCallExpression element, String methodName, String className, Expression qualifierExpression, @NotNull AdvancedExpressionFoldingSettings settings, PsiMethod method, @NotNull Document document, PsiElement identifier) {
         PsiExpression a1 = element.getArgumentList().getExpressions()[0];
-        @NotNull Expression a1Expression = BuildExpressionExt.getAnyExpression(a1, document);
         PsiExpression a2 = element.getArgumentList().getExpressions()[1];
+        @NotNull Expression a1Expression = BuildExpressionExt.getAnyExpression(a1, document);
         @NotNull Expression a2Expression = BuildExpressionExt.getAnyExpression(a2, document);
         switch (methodName) {
             case "min":

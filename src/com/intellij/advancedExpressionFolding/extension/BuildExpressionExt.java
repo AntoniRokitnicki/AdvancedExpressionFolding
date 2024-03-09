@@ -97,7 +97,7 @@ public class BuildExpressionExt {
             }
         }
         if (element instanceof PsiReferenceExpression) {
-            Expression expression = Helper.getReferenceExpression((PsiReferenceExpression) element);
+            Expression expression = ReferenceExpressionExt.getReferenceExpression((PsiReferenceExpression) element);
             if (expression != null) {
                 return expression;
             }
@@ -109,7 +109,7 @@ public class BuildExpressionExt {
             }
         }
         if (element instanceof PsiLiteralExpression) {
-            Expression expression = Helper.getLiteralExpression((PsiLiteralExpression) element);
+            Expression expression = LiteralExpressionExt.getLiteralExpression((PsiLiteralExpression) element);
             if (expression != null) {
                 return expression;
             }

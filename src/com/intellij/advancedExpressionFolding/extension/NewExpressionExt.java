@@ -29,7 +29,7 @@ public class NewExpressionExt {
                             (PsiLiteralExpression) element.getArgumentList().getExpressions()[0],
                             erasedType);
                 } else if (element.getArgumentList().getExpressions()[0] instanceof PsiReferenceExpression) {
-                    return Helper.getReferenceExpression(
+                    return ReferenceExpressionExt.getReferenceExpression(
                             (PsiReferenceExpression) element.getArgumentList().getExpressions()[0], true);
                 } else if (erasedType.equals("java.util.ArrayList")
                         && element.getArgumentList().getExpressions()[0] instanceof PsiMethodCallExpression) {
@@ -107,7 +107,7 @@ public class NewExpressionExt {
 
     @Nullable
     static Expression getConstructorExpression(@NotNull PsiElement parent, @NotNull PsiLiteralExpression argument, @NotNull String classQualifiedNameNoGenerics) {
-        Expression literalExpression = Helper.getLiteralExpression(argument);
+        Expression literalExpression = LiteralExpressionExt.getLiteralExpression(argument);
         if (literalExpression instanceof NumberLiteral) {
             return new NumberLiteral(parent, parent.getTextRange(), literalExpression.getTextRange(), ((NumberLiteral) literalExpression).getNumber(), false);
         } else {
