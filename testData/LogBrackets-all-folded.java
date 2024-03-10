@@ -36,8 +36,8 @@ public class LogBrackets {
 
             log.warn("Warning message with 3 parameters and formatting - 1: ${data.data.name}, 2: $name, 3: ${data.data.name}");
         } catch Exception e {
-            log.error("error1 ${e.message}", e);
-            log.error("error2 ${data.data.name}", data.getData().getName(), data.getData().getName());
+            log.error("error1 $e", e.message, e);
+            log.error("error2 ${data.data.name}", data.data.name, data.data.name);
         }
 
         return data;

@@ -46,8 +46,8 @@ public class LogBrackets {
                     </fold>data.<fold text='data' expand='false'>getData()</fold>.<fold text='name' expand='false'>getName()</fold><fold text='}"' expand='false'>
             </fold>);
         }</fold> catch <fold text='' expand='false'>(</fold>Exception e<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
-            log.error("error1 <fold text='${' expand='false'>{}", </fold>e.<fold text='message' expand='false'>getMessage()</fold><fold text='}",' expand='false'>,</fold> e);
-            log.error("error2 <fold text='${' expand='false'>{}", </fold>data.<fold text='data' expand='false'>getData()</fold>.<fold text='name' expand='false'>getName()</fold><fold text='}",' expand='false'>,</fold> data.getData().getName(), data.getData().getName());
+            log.error("error1 <fold text='$' expand='false'>{}", </fold>e<fold text='",' expand='false'>,</fold> e.<fold text='message' expand='false'>getMessage()</fold>, e);
+            log.error("error2 <fold text='${' expand='false'>{}", </fold>data.<fold text='data' expand='false'>getData()</fold>.<fold text='name' expand='false'>getName()</fold><fold text='}",' expand='false'>,</fold> data.<fold text='data' expand='false'>getData()</fold>.<fold text='name' expand='false'>getName()</fold>, data.<fold text='data' expand='false'>getData()</fold>.<fold text='name' expand='false'>getName()</fold>);
         }</fold>
 
         return data;

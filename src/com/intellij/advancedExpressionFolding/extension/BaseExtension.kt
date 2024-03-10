@@ -3,6 +3,9 @@
 package com.intellij.advancedExpressionFolding.extension
 
 import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings
+import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.openapi.editor.Document
+import com.intellij.psi.PsiExpression
 import com.intellij.psi.PsiPrimitiveType
 import com.intellij.psi.PsiType
 
@@ -18,5 +21,6 @@ abstract class BaseExtension : AdvancedExpressionFoldingSettings.StateDelegate()
         fun PsiType?.isVoid(): Boolean = (this as? PsiPrimitiveType)?.name == "void"
     }
 
+    fun getAnyExpression(element: PsiExpression, document: Document): Expression = BuildExpressionExt.getAnyExpression(element, document)
 
 }

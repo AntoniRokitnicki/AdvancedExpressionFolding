@@ -46,7 +46,7 @@ name,
                                                     data.getData().getName()
             );
         } catch (Exception e) {
-            log.error("error1 {}", e.getMessage(), e);
+            log.error("error1 {}", e, e.getMessage(), e);
             log.error("error2 {}", data.getData().getName(), data.getData().getName(), data.getData().getName());
         }
 

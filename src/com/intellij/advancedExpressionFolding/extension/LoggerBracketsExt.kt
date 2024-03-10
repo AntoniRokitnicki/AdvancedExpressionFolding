@@ -100,7 +100,14 @@ object LoggerBracketsExt : BaseExtension() {
         }.toList().takeIf {
             it.isNotEmpty()
         }?.let {
-            return WrapperExpression(element, element.textRange, it)
+            val expressions = if (hasTooManyArguments) {
+                it + arguments.subList(split.size - 1, arguments.size).map { expr ->
+                    getAnyExpression(expr, document)
+                }
+            } else {
+                it
+            }
+            return WrapperExpression(element, element.textRange, expressions)
         }
         return null
     }

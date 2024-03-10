@@ -23,7 +23,7 @@ public class LogBrackets {
 
         log.debug("Debug message with 1 parameter - Name: <fold text='$' expand='false'>{}", </fold>name<fold text='")' expand='false'>)</fold>;
         log.debug("Debug message with 1 parameter - Name: $name");
-        log.trace("Trace message - Name: <fold text='${' expand='false'>{}, log:{}    $", </fold>data.<fold text='name' expand='false'>getName()<fold text='}, log:${' expand='false'></fold>, </fold>log(data)<fold text='}    $")' expand='false'>)</fold>;
+        log.trace("Trace message - Name: <fold text='${' expand='false'>{}, log:{}    $", </fold>data.<fold text='name' expand='false'>getName()</fold><fold text='}, log:${' expand='false'>, </fold>log(data)<fold text='}    $")' expand='false'>)</fold>;
         log.warn("Warning message with three parameters - Name: <fold text='$' expand='false'>{}, Age: {}, City: {}", </fold>name<fold text=', Age: ${' expand='false'>, </fold>data.<fold text='data' expand='false'>getData()</fold>.<fold text='name' expand='false'>getName()</fold><fold text='}, City: $' expand='false'>, </fold>city<fold text='")' expand='false'>)</fold>;
 
         log.error("Missing 1 parameter - 1: <fold text='$' expand='false'>{}, 2: {}, 3: {}, empty: {}", </fold>name<fold text=', 2: $' expand='false'>, </fold>age<fold text=', 3: $' expand='false'>, </fold>city<fold text=', empty: {}")' expand='false'>)</fold>;
@@ -46,8 +46,8 @@ public class LogBrackets {
                     </fold>data.<fold text='data' expand='false'>getData()</fold>.<fold text='name' expand='false'>getName()</fold><fold text='}"' expand='false'>
             </fold>);
         }</fold> catch (Exception e) <fold text='{...}' expand='true'>{
-            log.error("error1 <fold text='${' expand='false'>{}", </fold>e.<fold text='message' expand='false'>getMessage()</fold><fold text='}",' expand='false'>,</fold> e);
-            log.error("error2 <fold text='${' expand='false'>{}", </fold>data.<fold text='data' expand='false'>getData()</fold>.<fold text='name' expand='false'>getName()</fold><fold text='}",' expand='false'>,</fold> data.getData().getName(), data.getData().getName());
+            log.error("error1 <fold text='$' expand='false'>{}", </fold>e<fold text='",' expand='false'>,</fold> e.<fold text='message' expand='false'>getMessage()</fold>, e);
+            log.error("error2 <fold text='${' expand='false'>{}", </fold>data.<fold text='data' expand='false'>getData()</fold>.<fold text='name' expand='false'>getName()</fold><fold text='}",' expand='false'>,</fold> data.<fold text='data' expand='false'>getData()</fold>.<fold text='name' expand='false'>getName()</fold>, data.<fold text='data' expand='false'>getData()</fold>.<fold text='name' expand='false'>getName()</fold>);
         }</fold>
 
         return data;

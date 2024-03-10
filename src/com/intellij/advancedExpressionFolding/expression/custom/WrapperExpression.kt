@@ -13,7 +13,7 @@ class WrapperExpression(element: PsiElement, textRange: TextRange, private val c
         parent: Expression?
     ): Array<FoldingDescriptor> {
         return chain.flatMap {
-            it.buildFoldRegions(it.element, document, null).toList()
+            it.buildFoldRegions(it.element, document, it).toList()
         }.toTypedArray()
     }
 
