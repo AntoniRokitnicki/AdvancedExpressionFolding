@@ -4,7 +4,7 @@ import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.
 import java.io.File
 import java.nio.file.Files
 
-class AllOptionsFoldingTest : FoldingTest() {
+class FullFoldingTest : FoldingTest() {
 
     override fun getTestFileName(testName: String): String {
         val baseFile = super.getTestFileName(testName)

@@ -15,8 +15,8 @@
     "text" : "data != null\n                && data.getData1() != null",
     "placeholder" : "data?.data1 != null",
     "range" : {
-      "start" : 123,
-      "end" : 178,
+      "start" : 131,
+      "end" : 186,
       "size" : 55
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
@@ -25,8 +25,8 @@
     "text" : "data != null\n                && data.getData1() != null",
     "placeholder" : "data?.data1 != null",
     "range" : {
-      "start" : 198,
-      "end" : 253,
+      "start" : 206,
+      "end" : 261,
       "size" : 55
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
@@ -35,8 +35,8 @@
     "text" : "data != null\n                && data.getData1() != null\n                && data.getData1().isActive()",
     "placeholder" : "data?.data1?.active == true",
     "range" : {
-      "start" : 299,
-      "end" : 400,
+      "start" : 313,
+      "end" : 414,
       "size" : 101
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
@@ -45,8 +45,8 @@
     "text" : "var",
     "placeholder" : "val",
     "range" : {
-      "start" : 411,
-      "end" : 414,
+      "start" : 425,
+      "end" : 428,
       "size" : 3
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
@@ -55,8 +55,8 @@
     "text" : "isActive()",
     "placeholder" : "active",
     "range" : {
-      "start" : 454,
-      "end" : 464,
+      "start" : 473,
+      "end" : 483,
       "size" : 10
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
@@ -65,8 +65,8 @@
     "text" : "getData1()",
     "placeholder" : "data1",
     "range" : {
-      "start" : 443,
-      "end" : 453,
+      "start" : 462,
+      "end" : 472,
       "size" : 10
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
@@ -75,8 +75,8 @@
     "text" : "var",
     "placeholder" : "val",
     "range" : {
-      "start" : 474,
-      "end" : 477,
+      "start" : 493,
+      "end" : 496,
       "size" : 3
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
@@ -85,8 +85,8 @@
     "text" : "data != null && data.getData1() != null && data.getData1().getData4() != null",
     "placeholder" : "data?.data1?.data4 != null",
     "range" : {
-      "start" : 485,
-      "end" : 562,
+      "start" : 505,
+      "end" : 582,
       "size" : 77
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
@@ -95,8 +95,8 @@
     "text" : "(",
     "placeholder" : "",
     "range" : {
-      "start" : 576,
-      "end" : 577,
+      "start" : 596,
+      "end" : 597,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
@@ -105,8 +105,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 753,
-      "end" : 754,
+      "start" : 773,
+      "end" : 774,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
@@ -115,8 +115,8 @@
     "text" : "data != null && data.getData1() != null &&\n                data.getData1().getData2() != null && data.getData1().\n                getData2()\n                .getData3() != null",
     "placeholder" : "data?.data1?.data2?.data3 != null",
     "range" : {
-      "start" : 577,
-      "end" : 753,
+      "start" : 597,
+      "end" : 773,
       "size" : 176
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
@@ -125,8 +125,8 @@
     "text" : "(",
     "placeholder" : "",
     "range" : {
-      "start" : 813,
-      "end" : 814,
+      "start" : 867,
+      "end" : 868,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
@@ -135,8 +135,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 853,
-      "end" : 854,
+      "start" : 907,
+      "end" : 908,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
@@ -145,8 +145,8 @@
     "text" : "data != null && data.getData1() != null",
     "placeholder" : "data?.data1 != null",
     "range" : {
-      "start" : 814,
-      "end" : 853,
+      "start" : 868,
+      "end" : 907,
       "size" : 39
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
@@ -155,8 +155,8 @@
     "text" : "(",
     "placeholder" : "",
     "range" : {
-      "start" : 913,
-      "end" : 914,
+      "start" : 987,
+      "end" : 988,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
@@ -165,8 +165,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 945,
-      "end" : 946,
+      "start" : 1019,
+      "end" : 1020,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
@@ -175,8 +175,8 @@
     "text" : "data != null && data.isActive()",
     "placeholder" : "data?.active == true",
     "range" : {
-      "start" : 914,
-      "end" : 945,
+      "start" : 988,
+      "end" : 1019,
       "size" : 31
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
@@ -185,8 +185,8 @@
     "text" : "(",
     "placeholder" : "",
     "range" : {
-      "start" : 1005,
-      "end" : 1006,
+      "start" : 1100,
+      "end" : 1101,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
@@ -195,8 +195,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 1398,
-      "end" : 1399,
+      "start" : 1514,
+      "end" : 1515,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
@@ -205,19 +205,19 @@
     "text" : "data != null\n                && data.getData1() != null\n                && data.getData1().getData2() != null\n                && data.getData1().getData2().getData3() != null\n                && data.getData1().getData2().getData3().getData4() != null",
     "placeholder" : "data?.data1?.data2?.data3?.data4 != null",
     "range" : {
-      "start" : 1006,
-      "end" : 1256,
+      "start" : 1101,
+      "end" : 1351,
       "size" : 250
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
   }, {
     "id" : 21,
-    "text" : "data != null\n                && data.getData1() != null",
-    "placeholder" : "data?.data1 != null",
+    "text" : "data != null\n                && data.getData1() != null\n                && !data.getData1().isActive()",
+    "placeholder" : "data?.data1?.active == false",
     "range" : {
-      "start" : 1308,
-      "end" : 1363,
-      "size" : 55
+      "start" : 1403,
+      "end" : 1505,
+      "size" : 102
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
   }, {
@@ -225,8 +225,8 @@
     "text" : "boolean",
     "placeholder" : "val",
     "range" : {
-      "start" : 1455,
-      "end" : 1462,
+      "start" : 1579,
+      "end" : 1586,
       "size" : 7
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
@@ -235,8 +235,8 @@
     "text" : "data != null\n                && data.getData1() != null\n                && data.getData1().getData2() != null\n                && data.getData1().getData2().getData3() != null\n                && data.getData1().getData2().getData3().getData4() != null",
     "placeholder" : "data?.data1?.data2?.data3?.data4 != null",
     "range" : {
-      "start" : 1470,
-      "end" : 1720,
+      "start" : 1593,
+      "end" : 1843,
       "size" : 250
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
@@ -245,8 +245,8 @@
     "text" : "var",
     "placeholder" : "var",
     "range" : {
-      "start" : 1730,
-      "end" : 1733,
+      "start" : 1853,
+      "end" : 1856,
       "size" : 3
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
@@ -255,8 +255,8 @@
     "text" : "data != null\n                && data.getData1() != null\n                && data.getData1().isActive()",
     "placeholder" : "data?.data1?.active == true",
     "range" : {
-      "start" : 1743,
-      "end" : 1844,
+      "start" : 1866,
+      "end" : 1967,
       "size" : 101
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
@@ -265,8 +265,8 @@
     "text" : "var",
     "placeholder" : "val",
     "range" : {
-      "start" : 1854,
-      "end" : 1857,
+      "start" : 1977,
+      "end" : 1980,
       "size" : 3
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
@@ -275,8 +275,8 @@
     "text" : "data != null && !data.isActive()",
     "placeholder" : "data?.active == false",
     "range" : {
-      "start" : 1869,
-      "end" : 1901,
+      "start" : 1992,
+      "end" : 2024,
       "size" : 32
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
@@ -285,8 +285,8 @@
     "text" : "(",
     "placeholder" : "",
     "range" : {
-      "start" : 1917,
-      "end" : 1918,
+      "start" : 2040,
+      "end" : 2041,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
@@ -295,8 +295,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 1988,
-      "end" : 1989,
+      "start" : 2111,
+      "end" : 2112,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
@@ -305,8 +305,8 @@
     "text" : "data != null && data.getData2() != null && !data.getData2().isActive()",
     "placeholder" : "data?.data2?.active == false",
     "range" : {
-      "start" : 1918,
-      "end" : 1988,
+      "start" : 2041,
+      "end" : 2111,
       "size" : 70
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
@@ -315,8 +315,8 @@
     "text" : "isActive()",
     "placeholder" : "active",
     "range" : {
-      "start" : 2030,
-      "end" : 2040,
+      "start" : 2153,
+      "end" : 2163,
       "size" : 10
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
@@ -325,8 +325,8 @@
     "text" : "getData1()",
     "placeholder" : "data1",
     "range" : {
-      "start" : 2019,
-      "end" : 2029,
+      "start" : 2142,
+      "end" : 2152,
       "size" : 10
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
@@ -335,8 +335,8 @@
     "text" : "(",
     "placeholder" : "",
     "range" : {
-      "start" : 2124,
-      "end" : 2125,
+      "start" : 2247,
+      "end" : 2248,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
@@ -345,8 +345,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 2212,
-      "end" : 2213,
+      "start" : 2335,
+      "end" : 2336,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
@@ -355,8 +355,8 @@
     "text" : "data != null && data.getData6() != null &&\n                data.getData6().isActive()",
     "placeholder" : "data?.data6?.active == true",
     "range" : {
-      "start" : 2126,
-      "end" : 2211,
+      "start" : 2249,
+      "end" : 2334,
       "size" : 85
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
@@ -365,8 +365,8 @@
     "text" : "(",
     "placeholder" : "",
     "range" : {
-      "start" : 2350,
-      "end" : 2351,
+      "start" : 2473,
+      "end" : 2474,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
@@ -375,8 +375,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 2439,
-      "end" : 2440,
+      "start" : 2562,
+      "end" : 2563,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
@@ -385,8 +385,8 @@
     "text" : "data != null && data.getData6() != null &&\n                !data.getData6().isActive()",
     "placeholder" : "data?.data6?.active == false",
     "range" : {
-      "start" : 2352,
-      "end" : 2438,
+      "start" : 2475,
+      "end" : 2561,
       "size" : 86
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
@@ -395,8 +395,8 @@
     "text" : "(",
     "placeholder" : "",
     "range" : {
-      "start" : 2580,
-      "end" : 2581,
+      "start" : 2704,
+      "end" : 2705,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
@@ -405,8 +405,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 3457,
-      "end" : 3458,
+      "start" : 3581,
+      "end" : 3582,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
@@ -415,8 +415,8 @@
     "text" : "data != null\n                && data.getData1() != null\n                && data.getData1().isActive()",
     "placeholder" : "data?.data1?.active == true",
     "range" : {
-      "start" : 2606,
-      "end" : 2707,
+      "start" : 2730,
+      "end" : 2831,
       "size" : 101
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
@@ -425,8 +425,8 @@
     "text" : "data != null\n                && data.getData2() != null\n                && data.getData2().isActive()",
     "placeholder" : "data?.data2?.active == true",
     "range" : {
-      "start" : 2730,
-      "end" : 2831,
+      "start" : 2854,
+      "end" : 2955,
       "size" : 101
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
@@ -435,8 +435,8 @@
     "text" : "data != null\n                        && data.getData3() != null\n                        && data.getData3().isActive()",
     "placeholder" : "data?.data3?.active == true",
     "range" : {
-      "start" : 2852,
-      "end" : 2969,
+      "start" : 2976,
+      "end" : 3093,
       "size" : 117
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
@@ -445,8 +445,8 @@
     "text" : "data.getData3().getData4() != null\n                        && data.getData3().getData4().isActive()",
     "placeholder" : "data.data3.data4?.active == true",
     "range" : {
-      "start" : 2997,
-      "end" : 3096,
+      "start" : 3121,
+      "end" : 3220,
       "size" : 99
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
@@ -455,8 +455,8 @@
     "text" : "data != null\n                        && data.getData5() != null\n                        && data.getData5().isActive()",
     "placeholder" : "data?.data5?.active == true",
     "range" : {
-      "start" : 3119,
-      "end" : 3236,
+      "start" : 3243,
+      "end" : 3360,
       "size" : 117
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
@@ -465,8 +465,8 @@
     "text" : "data != null &&\n                                data.getData6() != null &&\n                                data.getData6().isActive()",
     "placeholder" : "data?.data6?.active == true",
     "range" : {
-      "start" : 3323,
-      "end" : 3456,
+      "start" : 3447,
+      "end" : 3580,
       "size" : 133
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
@@ -475,8 +475,8 @@
     "text" : "Data",
     "placeholder" : "val",
     "range" : {
-      "start" : 3578,
-      "end" : 3582,
+      "start" : 3702,
+      "end" : 3706,
       "size" : 4
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
@@ -485,8 +485,8 @@
     "text" : "(",
     "placeholder" : "",
     "range" : {
-      "start" : 3608,
-      "end" : 3609,
+      "start" : 3732,
+      "end" : 3733,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
@@ -495,8 +495,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 3722,
-      "end" : 3723,
+      "start" : 3846,
+      "end" : 3847,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
@@ -505,8 +505,8 @@
     "text" : "data.getData1().getData2().getData3() != null &&\n                data.getData1().getData2().getData3().isActive()",
     "placeholder" : "data.data1.data2.data3?.active == true",
     "range" : {
-      "start" : 3609,
-      "end" : 3722,
+      "start" : 3733,
+      "end" : 3846,
       "size" : 113
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
@@ -515,8 +515,8 @@
     "text" : "(",
     "placeholder" : "",
     "range" : {
-      "start" : 3749,
-      "end" : 3750,
+      "start" : 3873,
+      "end" : 3874,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
@@ -525,8 +525,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 3843,
-      "end" : 3844,
+      "start" : 3967,
+      "end" : 3968,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
@@ -535,8 +535,8 @@
     "text" : "data2.getData1().getData2() != null &&\n                data2.getData1().getData2().isActive()",
     "placeholder" : "data2.data1.data2?.active == true",
     "range" : {
-      "start" : 3750,
-      "end" : 3843,
+      "start" : 3874,
+      "end" : 3967,
       "size" : 93
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
@@ -545,8 +545,8 @@
     "text" : "(",
     "placeholder" : "",
     "range" : {
-      "start" : 3871,
-      "end" : 3872,
+      "start" : 3995,
+      "end" : 3996,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
@@ -555,8 +555,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 3943,
-      "end" : 3944,
+      "start" : 4067,
+      "end" : 4068,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
@@ -565,8 +565,8 @@
     "text" : "data2.getData1() != null &&\n                data2.getData1().isActive()",
     "placeholder" : "data2.data1?.active == true",
     "range" : {
-      "start" : 3872,
-      "end" : 3943,
+      "start" : 3996,
+      "end" : 4067,
       "size" : 71
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"

@@ -3,31 +3,30 @@ package data;
 @SuppressWarnings("ALL")
 public class IfNullSafeData {
     public void enter(Data data) {
-        var dup = data?.data1 != null
+        var threeChains = data?.data1 != null
                 && data?.data1 != null
-                && 1 == 1
+                && data != null
                 && data?.data1?.active == true;
 
-        var bad = data != null && !data.data1.active;
-        var bad1 = data?.data1?.data4 != null;
+        var notChain = data != null && !data.data1.active;
+        var chain = data?.data1?.data4 != null;
 
         if (data?.data1?.data2?.data3 != null) {
-            System.out.println(1);
+            System.out.println("data?.data1?.data2?.data3 != null");
         }
         if (data?.data1 != null) {
-            System.out.println(2);
+            System.out.println("data?.data1 != null");
         }
         if (data?.active == true) {
-            System.out.println(3);
+            System.out.println("data?.active == true");
         }
         if (data?.data1?.data2?.data3?.data4 != null
                 && data != null
-                && data?.data1 != null
-                && 1 == 1
+                && data?.data1?.active == false
         ) {
-            System.out.println(4);
+            System.out.println("2chainz");
         }
-        boolean has =  data?.data1?.data2?.data3?.data4 != null;
+        boolean has = data?.data1?.data2?.data3?.data4 != null;
         var active = data?.data1?.active == true;
         var inactive = data?.active == false;
         while (data?.data2?.active == false) {
@@ -46,6 +45,7 @@ public class IfNullSafeData {
             System.out.println("Conditions met!");
         }
     }
+
     public void checkConditions(Data data, boolean flag) {
         if ((flag
                 || data?.data1?.active == true)
@@ -83,17 +83,29 @@ public class IfNullSafeData {
         public Data getData1() {
             return null;
         }
+
         public Data getData2() {
             return null;
         }
+
         public Data getData3() {
             return null;
         }
+
         public Data getData4() {
             return null;
         }
-        public Data getData5() { return null; }
-        public Data getData6() { return null; }
-        public boolean isActive() {return true; }
+
+        public Data getData5() {
+            return null;
+        }
+
+        public Data getData6() {
+            return null;
+        }
+
+        public boolean isActive() {
+            return true;
+        }
     }
 }
