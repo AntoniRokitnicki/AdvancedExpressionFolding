@@ -3,29 +3,29 @@ package data;
 @SuppressWarnings("ALL")
 public class IfNullSafeData {
     public void enter(Data data) {
-        var dup = data != null
+        var threeChains = data != null
                 && data.getData1() != null
                 && data != null
                 && data.getData1() != null
-                && 1 == 1
+                && data != null
                 && data != null
                 && data.getData1() != null
                 && data.getData1().isActive();
 
-        var bad = data != null && !data.getData1().isActive();
-        var bad1 = data != null && data.getData1() != null && data.getData1().getData4() != null;
+        var notChain = data != null && !data.getData1().isActive();
+        var chain = data != null && data.getData1() != null && data.getData1().getData4() != null;
 
         if (data != null && data.getData1() != null &&
                 data.getData1().getData2() != null && data.getData1().
                 getData2()
                 .getData3() != null) {
-            System.out.println(1);
+            System.out.println("data?.data1?.data2?.data3 != null");
         }
         if (data != null && data.getData1() != null) {
-            System.out.println(2);
+            System.out.println("data?.data1 != null");
         }
         if (data != null && data.isActive()) {
-            System.out.println(3);
+            System.out.println("data?.active == true");
         }
         if (data != null
                 && data.getData1() != null
@@ -35,11 +35,11 @@ public class IfNullSafeData {
                 && data != null
                 && data != null
                 && data.getData1() != null
-                && 1 == 1
+                && !data.getData1().isActive()
         ) {
-            System.out.println(4);
+            System.out.println("2chainz");
         }
-        boolean has =  data != null
+        boolean has = data != null
                 && data.getData1() != null
                 && data.getData1().getData2() != null
                 && data.getData1().getData2().getData3() != null
@@ -66,6 +66,7 @@ public class IfNullSafeData {
             System.out.println("Conditions met!");
         }
     }
+
     public void checkConditions(Data data, boolean flag) {
         if ((flag
                 || data != null
@@ -117,17 +118,29 @@ public class IfNullSafeData {
         public Data getData1() {
             return null;
         }
+
         public Data getData2() {
             return null;
         }
+
         public Data getData3() {
             return null;
         }
+
         public Data getData4() {
             return null;
         }
-        public Data getData5() { return null; }
-        public Data getData6() { return null; }
-        public boolean isActive() {return true; }
+
+        public Data getData5() {
+            return null;
+        }
+
+        public Data getData6() {
+            return null;
+        }
+
+        public boolean isActive() {
+            return true;
+        }
     }
 }
