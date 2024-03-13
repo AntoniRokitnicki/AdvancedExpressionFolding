@@ -6,7 +6,6 @@ import com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpr
 import com.intellij.advancedExpressionFolding.extension.Keys.BUILDER
 import com.intellij.advancedExpressionFolding.extension.Keys.isOn
 import com.intellij.advancedExpressionFolding.extension.Keys.turnOn
-import com.intellij.advancedExpressionFolding.extension.PsiClassExt.isBuilder
 import com.intellij.openapi.util.NullUtils.hasNull
 import com.intellij.psi.*
 import com.intellij.psi.util.PsiTreeUtil
@@ -19,7 +18,7 @@ object BuilderShiftExt : BaseExtension() {
         element: PsiMethodCallExpression,
         psiClass: PsiClass
     ) {
-        if (psiClass.isBuilder()) {
+        if (fieldShiftOld && psiClass.isBuilder()) {
             element.markBuilder()
         }
     }
@@ -29,7 +28,7 @@ object BuilderShiftExt : BaseExtension() {
         element: PsiMethodCallExpression,
         psiClass: PsiClass?
     ): Expression? {
-        if (!fieldShift || !psiClass.isBuilder()) {
+        if (!fieldShiftOld || !psiClass.isBuilder()) {
             return null
         }
 
@@ -53,7 +52,7 @@ object BuilderShiftExt : BaseExtension() {
 
     @JvmStatic
     fun isShifted(element: PsiMethodCallExpression): Boolean {
-        if (!fieldShift) {
+        if (!fieldShiftOld) {
             return false
         }
 

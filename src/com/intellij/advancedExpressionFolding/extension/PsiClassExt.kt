@@ -96,22 +96,6 @@ object PsiClassExt : BaseExtension() {
             it.qualifiedName?.contains("lombok") ?: false
         } ?: false
 
-    fun PsiClass?.isBuilder() : Boolean {
-        if (this == null) {
-            return false
-        }
-        val userData = getUserData(CLASS_TYPE_KEY)
-        if (userData == null) {
-            allMethods.forEach {
-                if (it.name == "build") {
-                    putUserData(CLASS_TYPE_KEY, BUILDER)
-                    putCopyableUserData(CLASS_TYPE_KEY, BUILDER)
-                    return true
-                }
-            }
-        }
-        return userData == BUILDER
-    }
 
     private fun PsiElement.prevWhiteSpace(): PsiWhiteSpace? = prevSibling as? PsiWhiteSpace
 }
