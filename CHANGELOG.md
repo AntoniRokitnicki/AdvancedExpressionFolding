@@ -4,6 +4,10 @@
 
 ## [Unreleased]
 
+## [1.0.29] - 2024-03-13
+
+New version of fieldShift for better compatibility
+
 ## [1.0.28] - 2024-03-10
 
 Enhanced logger interpolation and added support for extra parameters
@@ -138,7 +142,8 @@ Improved handling of multi-line log messages
 
 ## [0.0.1]
 
-[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.28...HEAD
+[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.29...HEAD
+[1.0.29]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.28...v1.0.29
 [1.0.28]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.27...v1.0.28
 [1.0.27]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.26...v1.0.27
 [1.0.26]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.25...v1.0.26
