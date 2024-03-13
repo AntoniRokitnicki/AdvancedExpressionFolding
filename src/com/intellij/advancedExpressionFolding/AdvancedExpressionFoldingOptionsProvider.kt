@@ -28,8 +28,8 @@ class AdvancedExpressionFoldingOptionsProvider protected constructor() :
         checkBox("Type cast expressions", myState::castExpressionsCollapse)
         checkBox("For loops, range expressions", myState::rangeExpressionsCollapse)
         checkBox("Null-safe calls", myState::checkExpressionsCollapse)
-        checkBox("Kotlin quick return", myState::kotlinQuickReturn)
         checkBox("Extended null-safe ifs", myState::ifNullSafe)
+        checkBox("Kotlin quick return", myState::kotlinQuickReturn)
 
         checkBox("Asserts", myState::assertsCollapse)
 
@@ -38,7 +38,8 @@ class AdvancedExpressionFoldingOptionsProvider protected constructor() :
 
         checkBox("Display Java bean as Lombok", myState::lombok)
         checkBox("Display mapping of field with same name as << (for builders, setters and assignments)", myState::fieldShift)
-        checkBox("Log folding (experimental)", myState::logFolding)
+        checkBox("Display mapping of field with same name as << (for builders, setters and assignments, v1 deprecated)", myState::fieldShiftOld)
+        checkBox("Log folding", myState::logFolding)
 
         checkBox("Control flow single-statement code block braces (read-only files)", myState::controlFlowSingleStatementCodeBlockCollapse)
         checkBox("Control flow multi-statement code block braces (read-only files, deprecated)", myState::controlFlowMultiStatementCodeBlockCollapse)

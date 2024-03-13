@@ -38,6 +38,12 @@ public class MethodCallExpressionExt {
         }
         PsiElement identifier = identifierOpt.orElseThrow();
         @Nullable PsiExpression qualifier = element.getMethodExpression().getQualifierExpression();
+
+        Expression shiftExpr = FieldShiftExt2.createExpression(element, document, qualifier);
+        if (shiftExpr != null) {
+            return shiftExpr;
+        }
+
         if (SUPPORTED_METHODS.contains(identifier.getText())) {
             PsiMethod method = (PsiMethod) referenceExpression.resolve();
             if (method != null) {
@@ -189,7 +195,7 @@ public class MethodCallExpressionExt {
                 Expression qualifierExpression = qualifier != null ? BuildExpressionExt.getAnyExpression(qualifier, document) : null;
                 Expression paramExpression = BuildExpressionExt.getAnyExpression(element.getArgumentList().getExpressions()[0], document);
                 String propertyName = guessPropertyName(text);
-                if (settings.getState().getFieldShift()) {
+                if (settings.getState().getFieldShiftOld()) {
                     if (paramExpression instanceof IGetter getter) {
                         if (getter.getName().equals(propertyName)) {
                             getter.makeFieldShift();

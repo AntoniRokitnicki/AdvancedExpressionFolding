@@ -3,10 +3,7 @@ package com.intellij.advancedExpressionFolding.extension
 import com.intellij.advancedExpressionFolding.extension.BaseExtension.Companion.isVoid
 import com.intellij.advancedExpressionFolding.extension.Keys.IGNORED
 import com.intellij.openapi.util.TextRange
-import com.intellij.psi.PsiElement
-import com.intellij.psi.PsiField
-import com.intellij.psi.PsiMethod
-import com.intellij.psi.PsiModifier
+import com.intellij.psi.*
 import java.util.*
 
 inline fun String.filter(predicate: (String) -> Boolean): String? = takeIf(predicate)
@@ -21,7 +18,13 @@ operator fun TextRange.plus(addon: IntRange): TextRange =
 fun PsiElement.start(): Int = textRange.startOffset
 fun PsiElement.end(): Int = textRange.endOffset
 
+fun PsiExpressionList.filterOutWhiteSpaceAndTokens() = children.filter {
+    it !is PsiJavaToken && it !is PsiWhiteSpace
+}
+
 fun PsiField.isStatic(): Boolean = modifierList?.hasModifierProperty(PsiModifier.STATIC) == true
+
+fun PsiMethod.isSetterOrBuilder(): Boolean = isSetter() || isBuilder()
 
 fun PsiMethod.isSetter(): Boolean {
     fun isSetter(text: String) = text.startsWith("set") && text.length > 3 && Character.isUpperCase(text[3])
@@ -34,10 +37,29 @@ fun PsiMethod.isGetter(): Boolean {
 
     fun isGetter(name: String) = isGetterAux(name, "get") || isGetterAux(name, "is")
 
-    return parameterList.parametersCount == 0 && !returnType.isVoid() && isGetter(name)
+    return parameterList.parametersCount == 0 && !returnType.isVoid() && (isGetter(name) || containingClass?.isRecord == true)
 }
 
 fun PsiMethod.isGetterOrSetter(): Boolean = isSetter() || isGetter()
+
+fun PsiClass?.isBuilder() : Boolean {
+    if (this == null) {
+        return false
+    }
+    val userData = getUserData(Keys.CLASS_TYPE_KEY)
+    if (userData == null) {
+        allMethods.forEach {
+            if (it.name == "build") {
+                putUserData(Keys.CLASS_TYPE_KEY, PsiClassExt.ClassType.BUILDER)
+                putCopyableUserData(Keys.CLASS_TYPE_KEY, PsiClassExt.ClassType.BUILDER)
+                return true
+            }
+        }
+    }
+    return userData == PsiClassExt.ClassType.BUILDER
+}
+
+fun PsiMethod.isBuilder(): Boolean = containingClass?.isBuilder() == true
 
 fun PsiMethod.guessPropertyName(): String = PropertyUtil.guessPropertyName(name)
 

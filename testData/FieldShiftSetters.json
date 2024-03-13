@@ -69,7 +69,7 @@
       "end" : 781,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod"
   }, {
     "id" : 7,
     "text" : "getChild()",
@@ -109,7 +109,7 @@
       "end" : 876,
       "size" : 20
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod"
   }, {
     "id" : 11,
     "text" : "getChild()",
@@ -169,7 +169,7 @@
       "end" : 932,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod"
   }, {
     "id" : 17,
     "text" : "getChild()",
@@ -209,7 +209,7 @@
       "end" : 1144,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod"
   }, {
     "id" : 21,
     "text" : "setUserIdentifier(",
@@ -239,7 +239,7 @@
       "end" : 1206,
       "size" : 20
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod"
   }, {
     "id" : 24,
     "text" : "setActive(",
@@ -269,7 +269,7 @@
       "end" : 1251,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod"
   }, {
     "id" : 27,
     "text" : "setUsername(",
@@ -299,7 +299,7 @@
       "end" : 1459,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.GetterRecord"
+    "group" : "com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod"
   }, {
     "id" : 30,
     "text" : "setActive(",
@@ -329,7 +329,7 @@
       "end" : 1502,
       "size" : 9
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.GetterRecord"
+    "group" : "com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod"
   }, {
     "id" : 33,
     "text" : "setUserIdentifier(",
@@ -359,7 +359,7 @@
       "end" : 1561,
       "size" : 17
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.GetterRecord"
+    "group" : "com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod"
   }, {
     "id" : 36,
     "text" : "setUsername(",
@@ -389,7 +389,7 @@
       "end" : 1788,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.GetterRecord"
+    "group" : "com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod"
   }, {
     "id" : 39,
     "text" : "setActive(",
@@ -419,7 +419,7 @@
       "end" : 1870,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod"
   }, {
     "id" : 42,
     "text" : "setUsername(",
@@ -509,7 +509,7 @@
       "end" : 2089,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod"
   }, {
     "id" : 51,
     "text" : "setUsername(",
@@ -539,7 +539,7 @@
       "end" : 2148,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod"
   }, {
     "id" : 54,
     "text" : "getChild()",
@@ -649,7 +649,7 @@
       "end" : 2328,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod"
   }, {
     "id" : 65,
     "text" : "setUserIdentifier(",
@@ -679,7 +679,7 @@
       "end" : 2390,
       "size" : 20
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod"
   }, {
     "id" : 68,
     "text" : "setChild(",
@@ -709,7 +709,7 @@
       "end" : 2496,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod"
   }, {
     "id" : 71,
     "text" : "setUserIdentifier(",
@@ -769,7 +769,7 @@
       "end" : 2598,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod"
   }, {
     "id" : 77,
     "text" : "getChild()",
@@ -809,7 +809,7 @@
       "end" : 2675,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod"
   }, {
     "id" : 81,
     "text" : "setUsername(",
@@ -839,7 +839,7 @@
       "end" : 2728,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod"
   }, {
     "id" : 84,
     "text" : "setUserIdentifier(",
@@ -869,7 +869,7 @@
       "end" : 2789,
       "size" : 17
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.GetterRecord"
+    "group" : "com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod"
   }, {
     "id" : 87,
     "text" : "setChild(",
@@ -919,7 +919,7 @@
       "end" : 2948,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod"
   }, {
     "id" : 92,
     "text" : "setChild(",
@@ -949,7 +949,7 @@
       "end" : 3032,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod"
   }, {
     "id" : 95,
     "text" : "getChild()",

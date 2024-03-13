@@ -13,8 +13,8 @@ object FieldShiftExt : BaseExtension() {
 
     @JvmStatic
     fun createExpression(element: PsiAssignmentExpression, document: Document?): Expression? {
-        fieldShift.takeIf {
-            it
+        fieldShiftOld.takeIf {
+            it || fieldShift
         } ?: return null
 
         val right = element.rExpression ?: return null

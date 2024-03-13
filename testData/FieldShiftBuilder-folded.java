@@ -25,7 +25,7 @@ public class FieldShiftBuilder {
                 .active(source<<).userIdentifier(source<<)
                 .child(FieldShiftBuilder.builder()
                         .child(builder1
-                                .userIdentifier(source.getUsername())
+                                .userIdentifier(source.username)
                                 .username(source<<)
                                 .build()<<)
                         .active(builder.build()<<)

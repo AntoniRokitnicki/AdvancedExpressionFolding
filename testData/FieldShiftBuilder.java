@@ -16,24 +16,24 @@ public class FieldShiftBuilder {
 
     public static FieldShiftBuilder map(UserData2 source, BuilderFieldShiftBuilder builder, UserDataRecord record) <fold text='{...}' expand='true'>{
         BuilderFieldShiftBuilder builder1 = builder
-                .username(record<fold text='<<' expand='true'>.<fold text='username' expand='false'>username()</fold></fold>);
+                .username(record<fold text='<<' expand='false'>.username()</fold>);
         var builder2 = builder
-                .active(source<fold text='<<' expand='true'>.<fold text='active' expand='false'>isActive()</fold></fold>);
+                .active(source<fold text='<<' expand='false'>.isActive()</fold>);
         return FieldShiftBuilder.builder().username(record.<fold text='userIdentifier' expand='false'>userIdentifier()</fold>).username(changer(record.<fold text='username' expand='false'>username()</fold>))
-                .username(source<fold text='<<' expand='true'>.getUsername()</fold>).username(builder.username("a").build()<fold text='<<' expand='true'>.getUsername()</fold>)
+                .username(source<fold text='<<' expand='false'>.getUsername()</fold>).username(builder.username("a").build()<fold text='<<' expand='false'>.getUsername()</fold>)
                 .username(source.<fold text='username' expand='false'>getUsername()</fold> + "1")
-                .active(source<fold text='<<' expand='true'>.isActive()</fold>).userIdentifier(source<fold text='<<' expand='true'>.getUserIdentifier()</fold>)
+                .active(source<fold text='<<' expand='false'>.isActive()</fold>).userIdentifier(source<fold text='<<' expand='false'>.getUserIdentifier()</fold>)
                 .child(FieldShiftBuilder.builder()
                         .child(builder1
-                                .userIdentifier(source.getUsername())
-                                .username(source<fold text='<<' expand='true'>.getUsername()</fold>)
-                                .build()<fold text='<<' expand='true'>.getChild()</fold>)
-                        .active(builder.build()<fold text='<<' expand='true'>.isActive()</fold>)
-                        .username(builder.build()<fold text='<<' expand='true'>.getUsername()</fold>)
-                        .userIdentifier(record<fold text='<<' expand='true'>.<fold text='userIdentifier' expand='false'>userIdentifier()</fold></fold>)
+                                .userIdentifier(source.<fold text='username' expand='false'>getUsername()</fold>)
+                                .username(source<fold text='<<' expand='false'>.getUsername()</fold>)
+                                .build()<fold text='<<' expand='false'>.getChild()</fold>)
+                        .active(builder.build()<fold text='<<' expand='false'>.isActive()</fold>)
+                        .username(builder.build()<fold text='<<' expand='false'>.getUsername()</fold>)
+                        .userIdentifier(record<fold text='<<' expand='false'>.userIdentifier()</fold>)
                         .build())
                 .child(builder2
-                        .username(source<fold text='<<' expand='true'>.getUsername()</fold>)
+                        .username(source<fold text='<<' expand='false'>.getUsername()</fold>)
                         .build())
                 .build();
     }</fold>
@@ -45,16 +45,16 @@ public class FieldShiftBuilder {
 
     public static FieldShiftBuilder mapSimple(FieldShiftBuilder source) <fold text='{...}' expand='true'>{
         return FieldShiftBuilder.builder()
-                .username(source<fold text='<<' expand='true'>.getUsername()</fold>)
-                .userIdentifier(source<fold text='<<' expand='true'>.getUserIdentifier()</fold>)
+                .username(source<fold text='<<' expand='false'>.getUsername()</fold>)
+                .userIdentifier(source<fold text='<<' expand='false'>.getUserIdentifier()</fold>)
                 .build();
     }</fold>
 
     public static FieldShiftBuilder mapUserDataAllFields(UserDataRecord source) <fold text='{...}' expand='true'>{
         return FieldShiftBuilder.builder()
-                .username(source<fold text='<<' expand='true'>.<fold text='username' expand='false'>username()</fold></fold>)
-                .active(source<fold text='<<' expand='true'>.<fold text='active' expand='false'>active()</fold></fold>)
-                .userIdentifier(source<fold text='<<' expand='true'>.<fold text='userIdentifier' expand='false'>userIdentifier()</fold></fold>)
+                .username(source<fold text='<<' expand='false'>.username()</fold>)
+                .active(source<fold text='<<' expand='false'>.active()</fold>)
+                .userIdentifier(source<fold text='<<' expand='false'>.userIdentifier()</fold>)
                 .build();
     }</fold>
 
