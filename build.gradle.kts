@@ -29,6 +29,10 @@ sourceSets {
     }
 }
 
+tasks.withType<JavaCompile> {
+    options.encoding = "UTF-8"
+}
+
 // Configure project's dependencies
 repositories {
     mavenCentral()
@@ -156,5 +160,7 @@ tasks {
     register("uploadJar", Exec::class) {
         commandLine("python3", "_upload_jar.py")
     }
+
+
 
 }
