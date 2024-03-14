@@ -32,6 +32,11 @@ sourceSets {
 tasks.withType<JavaCompile> {
     options.encoding = "UTF-8"
 }
+tasks.test {
+    systemProperty("file.encoding", "UTF-8")
+    systemProperty("line.separator", "\n")
+}
+
 
 // Configure project's dependencies
 repositories {
@@ -160,6 +165,7 @@ tasks {
     register("uploadJar", Exec::class) {
         commandLine("python3", "_upload_jar.py")
     }
+
 
 
 
