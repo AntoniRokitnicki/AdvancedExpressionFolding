@@ -19,22 +19,23 @@
 
   <actions>
     <action id="advanced.folding.toggle.global" class="com.intellij.advancedExpressionFolding.GlobalToggleFoldingAction"
-            text="Advanced Folding" description="Advanced folding global toggle"
-            icon="AllIcons.Actions.ToggleSoftWrap">
+            text="Advanced Folding: Global" description="Toggle advanced folding globally across all files">
       <add-to-group group-id="CodeMenu" anchor="last"/>
     </action>
 
     <action id="advanced.folding.toggle.on" class="com.intellij.advancedExpressionFolding.FoldingOnAction"
-            text="Advanced Folding Toggle On" description="Advanced folding toggle on"
+            text="Advanced Folding: Activate" description="Activate advanced folding in the current file"
             icon="AllIcons.Actions.ArrowExpand">
       <add-to-group group-id="CodeMenu" anchor="last"/>
+      <keyboard-shortcut first-keystroke="control shift Y" keymap="$default"/>
       <keyboard-shortcut first-keystroke="alt T" keymap="Mac OS X 10.5+" replace-all="true" />
     </action>
 
     <action id="advanced.folding.toggle.off" class="com.intellij.advancedExpressionFolding.FoldingOffAction"
-            text="Advanced Folding Toggle Off" description="Advanced folding toggle off"
+            text="Advanced Folding: Deactivate" description="Deactivate advanced folding in the current file"
             icon="AllIcons.Actions.ArrowCollapse">
       <add-to-group group-id="CodeMenu" anchor="last"/>
+      <keyboard-shortcut first-keystroke="control shift U" keymap="$default"/>
       <keyboard-shortcut first-keystroke="alt Y" keymap="Mac OS X 10.5+" replace-all="true" />
     </action>
 
