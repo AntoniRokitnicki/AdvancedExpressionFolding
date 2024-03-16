@@ -243,6 +243,7 @@ public class Helper {
                 .takeWhile(untilPredicate);
     }
 
+    @SuppressWarnings("unchecked")
     @SafeVarargs
     public static <T extends PsiElement> Optional<T> findChildByTypeHierarchy(PsiElement element, Class<T> childClass, Class<? extends PsiElement>... children) {
         LinkedList<Class<? extends PsiElement>> classQueue = new LinkedList<>(List.of(children));
@@ -251,10 +252,8 @@ public class Helper {
         for (PsiElement child : element.getChildren()) {
             if (next != null && next.isInstance(child)) {
                 if (classQueue.isEmpty()) {
-                    //noinspection unchecked
                     return Optional.of((T) child);
                 } else {
-                    //noinspection unchecked
                     return findChildByTypeHierarchy(child, childClass, classQueue.toArray(new Class[0]));
                 }
             }
