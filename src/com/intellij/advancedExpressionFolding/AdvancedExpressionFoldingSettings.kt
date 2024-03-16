@@ -57,7 +57,7 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
         override var slicingExpressionsCollapse: Boolean = true,
         override var comparingExpressionsCollapse: Boolean = true,
         override var comparingLocalDatesCollapse: Boolean = true,
-        override var localDateLiteralCollapse: Boolean = true,
+        override var localDateLiteralCollapse: Boolean = false,
         override var localDateLiteralPostfixCollapse: Boolean = false,
         override var getExpressionsCollapse: Boolean = true,
         override var rangeExpressionsCollapse: Boolean = true,

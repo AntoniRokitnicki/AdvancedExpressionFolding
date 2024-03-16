@@ -37,9 +37,9 @@ class AdvancedExpressionFoldingOptionsProvider protected constructor() :
         checkBox("Display stream operations as Groovy's spread operator", myState::streamSpread)
 
         checkBox("Display Java bean as Lombok", myState::lombok)
-        checkBox("Display mapping of field with same name as << (for builders, setters and assignments)", myState::fieldShift)
-        checkBox("Display mapping of field with same name as << (for builders, setters and assignments, v1 deprecated)", myState::fieldShiftOld)
         checkBox("Log folding", myState::logFolding)
+        checkBox("Display mapping of field with same name as << (for builders, setters and assignments)", myState::fieldShift)
+        checkBox("Display mapping of field with same name as << (v1 deprecated)", myState::fieldShiftOld)
 
         checkBox("Control flow single-statement code block braces (read-only files)", myState::controlFlowSingleStatementCodeBlockCollapse)
         checkBox("Control flow multi-statement code block braces (read-only files, deprecated)", myState::controlFlowMultiStatementCodeBlockCollapse)
