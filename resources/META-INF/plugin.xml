@@ -27,7 +27,7 @@
             text="Advanced Folding: Activate" description="Activate advanced folding in the current file"
             icon="AllIcons.Actions.ArrowExpand">
       <add-to-group group-id="CodeMenu" anchor="last"/>
-      <keyboard-shortcut first-keystroke="control shift Y" keymap="$default"/>
+      <keyboard-shortcut first-keystroke="alt shift F" keymap="$default" replace-all="true" />
       <keyboard-shortcut first-keystroke="alt T" keymap="Mac OS X 10.5+" replace-all="true" />
     </action>
 
@@ -35,7 +35,7 @@
             text="Advanced Folding: Deactivate" description="Deactivate advanced folding in the current file"
             icon="AllIcons.Actions.ArrowCollapse">
       <add-to-group group-id="CodeMenu" anchor="last"/>
-      <keyboard-shortcut first-keystroke="control shift U" keymap="$default"/>
+      <keyboard-shortcut first-keystroke="alt shift D" keymap="$default"/>
       <keyboard-shortcut first-keystroke="alt Y" keymap="Mac OS X 10.5+" replace-all="true" />
     </action>
 
