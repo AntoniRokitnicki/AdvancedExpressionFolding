@@ -4,6 +4,10 @@
 
 ## [Unreleased]
 
+## [1.0.31] - 2024-03-18
+
+Destructuring assignment for array - preview
+
 ## [1.0.30] - 2024-03-14
 
 windows-compatible keyboard shortcuts for IntelliJ and Android Studio
@@ -146,7 +150,8 @@ Improved handling of multi-line log messages
 
 ## [0.0.1]
 
-[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.30...HEAD
+[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.31...HEAD
+[1.0.31]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.30...v1.0.31
 [1.0.30]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.29...v1.0.30
 [1.0.29]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.28...v1.0.29
 [1.0.28]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.27...v1.0.28
