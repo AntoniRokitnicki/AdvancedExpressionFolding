@@ -51,6 +51,8 @@
 - [Log brackets folding](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/Log-brackets-folding)
 - [FieldShift for assignments](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/FieldShift-for-assignments)
 - [Folding of testData in diff](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/Folding-of-testData-in-diff)
+- [Destructuring assignment for array (preview)](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/Destructuring-assignment-for-array)
+
 
 <br />
 <p>For more clarity, you may try to adjust your color scheme: go to <strong>Settings</strong> | <strong>Editor</strong> |
