@@ -2,8 +2,6 @@ package com.intellij.advancedExpressionFolding.extension
 
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression
-import com.intellij.advancedExpressionFolding.extension.Keys.CLASS_TYPE_KEY
-import com.intellij.advancedExpressionFolding.extension.PsiClassExt.ClassType.BUILDER
 import com.intellij.psi.*
 
 typealias CustomClassAnnotation = String
@@ -11,7 +9,7 @@ typealias CustomClassAnnotation = String
 object PsiClassExt : BaseExtension() {
 
     enum class ClassType {
-        BUILDER
+        BUILDER, DESTRUCTURING
     }
 
     data class JavaProperty(val field: PsiField, val methods: List<PsiMethod>) {

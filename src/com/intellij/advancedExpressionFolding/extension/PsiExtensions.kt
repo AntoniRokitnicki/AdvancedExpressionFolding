@@ -19,8 +19,20 @@ fun PsiElement.start(): Int = textRange.startOffset
 fun PsiElement.end(): Int = textRange.endOffset
 
 fun PsiExpressionList.filterOutWhiteSpaceAndTokens() = children.filter {
-    it !is PsiJavaToken && it !is PsiWhiteSpace
+    !it.isIgnorable()
 }
+
+fun PsiElement.isIgnorable() = this is PsiJavaToken || this is PsiWhiteSpace
+
+fun PsiElement.realNextSibling(): PsiElement? {
+    var sibling = nextSibling
+    while (sibling != null && sibling.isIgnorable()) {
+        sibling = sibling.nextSibling
+    }
+    return sibling
+}
+
+
 
 fun PsiField.isStatic(): Boolean = modifierList?.hasModifierProperty(PsiModifier.STATIC) == true
 
@@ -50,14 +62,18 @@ fun PsiClass?.isBuilder() : Boolean {
     if (userData == null) {
         allMethods.forEach {
             if (it.name == "build") {
-                putUserData(Keys.CLASS_TYPE_KEY, PsiClassExt.ClassType.BUILDER)
-                putCopyableUserData(Keys.CLASS_TYPE_KEY, PsiClassExt.ClassType.BUILDER)
+                setType(PsiClassExt.ClassType.BUILDER)
                 return true
             }
         }
     }
     return userData == PsiClassExt.ClassType.BUILDER
 }
+fun PsiElement.setType(type: PsiClassExt.ClassType) {
+    putUserData(Keys.CLASS_TYPE_KEY, type)
+    putCopyableUserData(Keys.CLASS_TYPE_KEY, type)
+}
+fun PsiElement.getType() : PsiClassExt.ClassType? = getUserData(Keys.CLASS_TYPE_KEY)
 
 fun PsiMethod.isBuilder(): Boolean = containingClass?.isBuilder() == true
 

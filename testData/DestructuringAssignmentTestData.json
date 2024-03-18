@@ -1,0 +1,264 @@
+{
+  "size" : 26,
+  "list" : [ {
+    "id" : 0,
+    "text" : "Data ",
+    "placeholder" : "def (",
+    "range" : {
+      "start" : 198,
+      "end" : 203,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:1-prefix"
+  }, {
+    "id" : 1,
+    "text" : " = array[0];",
+    "placeholder" : ", ",
+    "range" : {
+      "start" : 205,
+      "end" : 217,
+      "size" : 12
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:1-methodCall"
+  }, {
+    "id" : 2,
+    "text" : "\n        Data ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 217,
+      "end" : 231,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:2-prefix"
+  }, {
+    "id" : 3,
+    "text" : " ",
+    "placeholder" : ") ",
+    "range" : {
+      "start" : 233,
+      "end" : 234,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:2-secondBracket"
+  }, {
+    "id" : 4,
+    "text" : "[1]",
+    "placeholder" : "",
+    "range" : {
+      "start" : 241,
+      "end" : 244,
+      "size" : 3
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:2-hideIndex"
+  }, {
+    "id" : 5,
+    "text" : "getArray()",
+    "placeholder" : "array",
+    "range" : {
+      "start" : 269,
+      "end" : 279,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 6,
+    "text" : "getArray()",
+    "placeholder" : "array",
+    "range" : {
+      "start" : 307,
+      "end" : 317,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 7,
+    "text" : "Data ",
+    "placeholder" : "def (",
+    "range" : {
+      "start" : 331,
+      "end" : 336,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:1-prefix"
+  }, {
+    "id" : 8,
+    "text" : " = data.getArray()[0];",
+    "placeholder" : ", ",
+    "range" : {
+      "start" : 338,
+      "end" : 360,
+      "size" : 22
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:1-methodCall"
+  }, {
+    "id" : 9,
+    "text" : "getArray()",
+    "placeholder" : "array",
+    "range" : {
+      "start" : 346,
+      "end" : 356,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 10,
+    "text" : "\n        Data ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 360,
+      "end" : 374,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:2-prefix"
+  }, {
+    "id" : 11,
+    "text" : " ",
+    "placeholder" : ") ",
+    "range" : {
+      "start" : 376,
+      "end" : 377,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:2-secondBracket"
+  }, {
+    "id" : 12,
+    "text" : "[1]",
+    "placeholder" : "",
+    "range" : {
+      "start" : 394,
+      "end" : 397,
+      "size" : 3
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:2-hideIndex"
+  }, {
+    "id" : 13,
+    "text" : "getArray()",
+    "placeholder" : "array",
+    "range" : {
+      "start" : 384,
+      "end" : 394,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 14,
+    "text" : "Data ",
+    "placeholder" : "def (",
+    "range" : {
+      "start" : 408,
+      "end" : 413,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:1-prefix"
+  }, {
+    "id" : 15,
+    "text" : " = data.getData().getArray()[0];",
+    "placeholder" : ", ",
+    "range" : {
+      "start" : 415,
+      "end" : 447,
+      "size" : 32
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:1-methodCall"
+  }, {
+    "id" : 16,
+    "text" : "getArray()",
+    "placeholder" : "array",
+    "range" : {
+      "start" : 433,
+      "end" : 443,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 17,
+    "text" : "getData()",
+    "placeholder" : "data",
+    "range" : {
+      "start" : 423,
+      "end" : 432,
+      "size" : 9
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 18,
+    "text" : "\n        Data ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 447,
+      "end" : 461,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:2-prefix"
+  }, {
+    "id" : 19,
+    "text" : " ",
+    "placeholder" : ") ",
+    "range" : {
+      "start" : 463,
+      "end" : 464,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:2-secondBracket"
+  }, {
+    "id" : 20,
+    "text" : "[1]",
+    "placeholder" : "",
+    "range" : {
+      "start" : 491,
+      "end" : 494,
+      "size" : 3
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:2-hideIndex"
+  }, {
+    "id" : 21,
+    "text" : "getArray()",
+    "placeholder" : "array",
+    "range" : {
+      "start" : 481,
+      "end" : 491,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 22,
+    "text" : "getData()",
+    "placeholder" : "data",
+    "range" : {
+      "start" : 471,
+      "end" : 480,
+      "size" : 9
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 23,
+    "text" : "getArray()",
+    "placeholder" : "array",
+    "range" : {
+      "start" : 547,
+      "end" : 557,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 24,
+    "text" : "getArray()",
+    "placeholder" : "array",
+    "range" : {
+      "start" : 596,
+      "end" : 606,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 25,
+    "text" : "getData()",
+    "placeholder" : "data",
+    "range" : {
+      "start" : 586,
+      "end" : 595,
+      "size" : 9
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  } ]
+}

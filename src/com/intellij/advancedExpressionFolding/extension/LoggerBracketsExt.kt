@@ -3,7 +3,7 @@ package com.intellij.advancedExpressionFolding.extension
 
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.Variable
-import com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets
+import com.intellij.advancedExpressionFolding.expression.custom.LoggerBracketExpression
 import com.intellij.advancedExpressionFolding.expression.custom.WrapperExpression
 import com.intellij.openapi.editor.Document
 import com.intellij.psi.PsiLiteralExpression
@@ -75,7 +75,7 @@ object LoggerBracketsExt : BaseExtension() {
                         nextString
                     }
                     val bracket = arguments[index - 1].nextSibling
-                    LoggerBrackets(element, bracket.textRange,  restAsString + bracket.text.trim(), null)
+                    LoggerBracketExpression(element, bracket.textRange,  restAsString + bracket.text.trim(), null)
                 } else {
                     null
                 }
@@ -91,10 +91,10 @@ object LoggerBracketsExt : BaseExtension() {
                 if (index == 0) {
                     val countChars = literal.startOffset + nextString.length
                     val textRange = (countChars..argument.prevSibling.endOffset).toTextRange()
-                    LoggerBrackets(element, textRange, text, expression)
+                    LoggerBracketExpression(element, textRange, text, expression)
                 } else {
                     val textRange = (argument.prevSibling.prevSibling.startOffset..argument.prevSibling.endOffset).toTextRange()
-                    LoggerBrackets(element, textRange, nextString + text, expression)
+                    LoggerBracketExpression(element, textRange, nextString + text, expression)
                 }
             }
         }.toList().takeIf {

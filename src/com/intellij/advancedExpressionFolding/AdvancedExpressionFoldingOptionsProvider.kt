@@ -40,6 +40,7 @@ class AdvancedExpressionFoldingOptionsProvider protected constructor() :
         checkBox("Log folding", myState::logFolding)
         checkBox("Display mapping of field with same name as << (for builders, setters and assignments)", myState::fieldShift)
         checkBox("Display mapping of field with same name as << (v1 deprecated)", myState::fieldShiftOld)
+        checkBox("Destructuring assignment for array (preview)", myState::destructuring)
 
         checkBox("Control flow single-statement code block braces (read-only files)", myState::controlFlowSingleStatementCodeBlockCollapse)
         checkBox("Control flow multi-statement code block braces (read-only files, deprecated)", myState::controlFlowMultiStatementCodeBlockCollapse)

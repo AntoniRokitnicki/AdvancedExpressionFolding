@@ -49,6 +49,7 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
         val kotlinQuickReturn: Boolean
         val ifNullSafe: Boolean
         val logFolding: Boolean
+        val destructuring: Boolean
     }
 
     data class State(
@@ -78,6 +79,7 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
         override var kotlinQuickReturn: Boolean = true,
         override var ifNullSafe: Boolean = true,
         override var logFolding: Boolean = true,
+        override var destructuring: Boolean = true,
 
         override var testDataFoldingDiff: Boolean = false,
         override var globalOn: Boolean = true,

@@ -218,8 +218,6 @@ open class FoldingTest : BaseTest() {
         doFoldingTest(state::getSetExpressionsCollapse, state::logFolding)
     }
 
-
-
     /**
      * [data.FieldShiftFields]
      */
@@ -227,5 +225,10 @@ open class FoldingTest : BaseTest() {
         doFoldingTest(state::getSetExpressionsCollapse, state::fieldShift)
     }
 
-
+    /**
+     * [data.DestructuringAssignmentTestData]
+     */
+    fun testDestructuringAssignmentTestData() {
+        doFoldingTest(state::destructuring, state::getSetExpressionsCollapse)
+    }
 }

@@ -167,6 +167,13 @@ public class BuildExpressionExt {
                 return expression;
             }
         }
+        if (element instanceof PsiDeclarationStatement st) {
+            Expression expression = PsiDeclarationStatementEx.createExpression(st, document);
+            if (expression != null) {
+                return expression;
+            }
+        }
+
         if (settings.getState().getVarExpressionsCollapse()
                 && element instanceof PsiVariable
                 && (element.getParent() instanceof PsiDeclarationStatement
