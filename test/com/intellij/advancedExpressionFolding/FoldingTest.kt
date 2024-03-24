@@ -229,6 +229,13 @@ open class FoldingTest : BaseTest() {
      * [data.DestructuringAssignmentTestData]
      */
     fun testDestructuringAssignmentTestData() {
+        doFoldingTest(state::destructuring, state::getSetExpressionsCollapse, state::varExpressionsCollapse)
+    }
+
+    /**
+     * [data.DestructuringAssignmentWithoutValTestData]
+     */
+    open fun testDestructuringAssignmentWithoutValTestData() {
         doFoldingTest(state::destructuring, state::getSetExpressionsCollapse)
     }
 }

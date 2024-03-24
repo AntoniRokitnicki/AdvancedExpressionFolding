@@ -5,23 +5,29 @@ import java.util.List;
 @SuppressWarnings("ALL")
 public class DestructuringAssignmentTestData {
     public void enter(Data data, Data[] array) <fold text='{...}' expand='true'>{
-        System.out.println();
-        <fold text='def (' expand='false'>Data </fold>a1<fold text=', ' expand='false'> = array[0];</fold><fold text='' expand='false'>
-        Data </fold>a2<fold text=') ' expand='false'> </fold>= array<fold text='' expand='true'>[1]</fold>;
-        Data a4 = data.<fold text='array' expand='false'>getArray()</fold>[4];
-        Data a5 = data.<fold text='array' expand='false'>getArray()</fold>[5];
+        <fold text='val' expand='false'>Data</fold> ignored1 = array[0];
 
-        <fold text='def (' expand='false'>Data </fold>a6<fold text=', ' expand='false'> = data.<fold text='array' expand='false'>getArray()</fold>[0];</fold><fold text='' expand='false'>
-        Data </fold>a7<fold text=') ' expand='false'> </fold>= data.<fold text='array' expand='false'>getArray()</fold><fold text='' expand='true'>[1]</fold>;
+        <fold text='val (' expand='false'>Data </fold>first<fold text=', ' expand='false'> = array[0];</fold><fold text='' expand='true'>
 
-        <fold text='def (' expand='false'>Data </fold>a8<fold text=', ' expand='false'> = data.<fold text='data' expand='false'>getData()</fold>.<fold text='array' expand='false'>getArray()</fold>[0];<fold text='' expand='false'></fold>
-        Data </fold>a9<fold text=') ' expand='false'> </fold>= data.<fold text='data' expand='false'>getData()</fold>.<fold text='array' expand='false'>getArray()</fold><fold text='' expand='true'>[1]</fold>;
+        <fold text='val' expand='false'>Data</fold> </fold>second<fold text=', ' expand='true'> = array[1];</fold><fold text='' expand='true'>
+        <fold text='val' expand='false'>Data</fold> </fold>third<fold text=', ' expand='true'> = array[2];</fold><fold text='' expand='true'>
+        <fold text='val' expand='false'>Data</fold> </fold>fourth<fold text=') ' expand='true'> </fold>= array<fold text='' expand='true'>[3]</fold>;
 
-        // wrong "parent"
-        Data a10 = data.<fold text='array' expand='false'>getArray()</fold>[0];
-        Data a11 = data.<fold text='data' expand='false'>getData()</fold>.<fold text='array' expand='false'>getArray()</fold>[1];
+        <fold text='val' expand='false'>Data</fold> ignored21 = data.<fold text='array' expand='false'>getArray()</fold>[4];
+        <fold text='val' expand='false'>Data</fold> ignored22 = data.<fold text='array' expand='false'>getArray()</fold>[5];
 
-        blackhole(a1, a2, a4, a5, a6, a7, a8, a9, a10, a11);
+        <fold text='var (' expand='false'>Data </fold>getter1<fold text=', ' expand='false'> = data.getArray()[0];</fold><fold text='' expand='true'>
+        <fold text='val' expand='false'>Data</fold> </fold>getter2<fold text=') ' expand='true'> </fold>= data.<fold text='array' expand='false'>getArray()</fold><fold text='' expand='true'>[1]</fold>;
+        getter1 = data;
+
+        <fold text='var (' expand='false'>Data </fold>deepGetter1<fold text=', ' expand='false'> = data.getData().getArray()[0];</fold><fold text='' expand='true'>
+        <fold text='var' expand='false'>Data</fold> </fold>deepGetter2<fold text=') ' expand='true'> </fold>= data.<fold text='data' expand='false'>getData()</fold>.<fold text='array' expand='false'>getArray()</fold><fold text='' expand='true'>[1]</fold>;
+        deepGetter2 = data;
+        
+        <fold text='val' expand='false'>Data</fold> wrongParent1 = data.<fold text='array' expand='false'>getArray()</fold>[0];
+        <fold text='val' expand='false'>Data</fold> wrongParent2 = data.<fold text='data' expand='false'>getData()</fold>.<fold text='array' expand='false'>getArray()</fold>[1];
+
+        blackhole(first, second, third, fourth, ignored21, ignored22, getter1, getter2, deepGetter1, deepGetter2, wrongParent1, wrongParent2);
     }</fold>
 
     static class Data <fold text='{...}' expand='true'>{
