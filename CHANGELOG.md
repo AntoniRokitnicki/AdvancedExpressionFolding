@@ -4,6 +4,10 @@
 
 ## [Unreleased]
 
+## [1.0.32] - 2024-03-24
+
+multi-line folding globally fixed and destructuring arrays fully supported
+
 ## [1.0.31] - 2024-03-18
 
 Destructuring assignment for array - preview
@@ -150,7 +154,8 @@ Improved handling of multi-line log messages
 
 ## [0.0.1]
 
-[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.31...HEAD
+[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.32...HEAD
+[1.0.32]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.31...v1.0.32
 [1.0.31]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.30...v1.0.31
 [1.0.30]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.29...v1.0.30
 [1.0.29]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.28...v1.0.29
