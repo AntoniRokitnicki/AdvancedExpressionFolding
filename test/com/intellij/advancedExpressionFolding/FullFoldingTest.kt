@@ -19,4 +19,8 @@ class FullFoldingTest : FoldingTest() {
         super.setUp()
         getInstance().enableAll()
     }
+
+    override fun testDestructuringAssignmentWithoutValTestData() {
+        // ignored, already tested in testDestructuringAssignmentTestData
+    }
 }
