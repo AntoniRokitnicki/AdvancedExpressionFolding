@@ -6,7 +6,8 @@
 
 ## [1.0.32] - 2024-03-24
 
-multi-line folding globally fixed and destructuring arrays fully supported
+- multi-line folding globally fixed
+- destructuring arrays fully supported
 
 ## [1.0.31] - 2024-03-18
 
