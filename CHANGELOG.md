@@ -6,7 +6,7 @@
 
 ## [1.0.33] - 2024-03-27
 
-Destructuring assignment for list
+- Destructuring assignment for list
 
 ## [1.0.32] - 2024-03-24
 
