@@ -1,0 +1,414 @@
+{
+  "size" : 41,
+  "list" : [ {
+    "id" : 0,
+    "text" : "Data",
+    "placeholder" : "val",
+    "range" : {
+      "start" : 168,
+      "end" : 172,
+      "size" : 4
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+  }, {
+    "id" : 1,
+    "text" : "Data ",
+    "placeholder" : "val (",
+    "range" : {
+      "start" : 203,
+      "end" : 208,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:1-prefix-val"
+  }, {
+    "id" : 2,
+    "text" : " = array[0];",
+    "placeholder" : ", ",
+    "range" : {
+      "start" : 213,
+      "end" : 225,
+      "size" : 12
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:1-methodCallExclusion"
+  }, {
+    "id" : 3,
+    "text" : "\n\n        Data ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 225,
+      "end" : 240,
+      "size" : 15
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:1-prefix"
+  }, {
+    "id" : 4,
+    "text" : " = array[1];",
+    "placeholder" : ", ",
+    "range" : {
+      "start" : 246,
+      "end" : 258,
+      "size" : 12
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:1-methodCallExclusion"
+  }, {
+    "id" : 5,
+    "text" : "\n        Data ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 258,
+      "end" : 272,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:2-prefix"
+  }, {
+    "id" : 6,
+    "text" : " = array[2];",
+    "placeholder" : ", ",
+    "range" : {
+      "start" : 277,
+      "end" : 289,
+      "size" : 12
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:2-methodCallExclusion"
+  }, {
+    "id" : 7,
+    "text" : "\n        Data ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 289,
+      "end" : 303,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:3-prefix"
+  }, {
+    "id" : 8,
+    "text" : " ",
+    "placeholder" : ") ",
+    "range" : {
+      "start" : 309,
+      "end" : 310,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:3-closingBracket"
+  }, {
+    "id" : 9,
+    "text" : "[3]",
+    "placeholder" : "",
+    "range" : {
+      "start" : 317,
+      "end" : 320,
+      "size" : 3
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:3-indexExclusion"
+  }, {
+    "id" : 10,
+    "text" : "Data",
+    "placeholder" : "val",
+    "range" : {
+      "start" : 235,
+      "end" : 239,
+      "size" : 4
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+  }, {
+    "id" : 11,
+    "text" : "Data",
+    "placeholder" : "val",
+    "range" : {
+      "start" : 267,
+      "end" : 271,
+      "size" : 4
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+  }, {
+    "id" : 12,
+    "text" : "Data",
+    "placeholder" : "val",
+    "range" : {
+      "start" : 298,
+      "end" : 302,
+      "size" : 4
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+  }, {
+    "id" : 13,
+    "text" : "Data",
+    "placeholder" : "val",
+    "range" : {
+      "start" : 331,
+      "end" : 335,
+      "size" : 4
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+  }, {
+    "id" : 14,
+    "text" : "getArray()",
+    "placeholder" : "array",
+    "range" : {
+      "start" : 353,
+      "end" : 363,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 15,
+    "text" : "Data",
+    "placeholder" : "val",
+    "range" : {
+      "start" : 376,
+      "end" : 380,
+      "size" : 4
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+  }, {
+    "id" : 16,
+    "text" : "getArray()",
+    "placeholder" : "array",
+    "range" : {
+      "start" : 398,
+      "end" : 408,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 17,
+    "text" : "Data ",
+    "placeholder" : "var (",
+    "range" : {
+      "start" : 422,
+      "end" : 427,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:1-prefix-var"
+  }, {
+    "id" : 18,
+    "text" : " = data.getArray()[0];",
+    "placeholder" : ", ",
+    "range" : {
+      "start" : 434,
+      "end" : 456,
+      "size" : 22
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:1-methodCallExclusion"
+  }, {
+    "id" : 19,
+    "text" : "\n        Data ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 456,
+      "end" : 470,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:1-prefix"
+  }, {
+    "id" : 20,
+    "text" : " = data.getArray()[1];",
+    "placeholder" : ", ",
+    "range" : {
+      "start" : 477,
+      "end" : 499,
+      "size" : 22
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:1-methodCallExclusion"
+  }, {
+    "id" : 21,
+    "text" : "\n        Data ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 499,
+      "end" : 513,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:2-prefix"
+  }, {
+    "id" : 22,
+    "text" : " ",
+    "placeholder" : ") ",
+    "range" : {
+      "start" : 520,
+      "end" : 521,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:2-closingBracket"
+  }, {
+    "id" : 23,
+    "text" : "[2]",
+    "placeholder" : "",
+    "range" : {
+      "start" : 538,
+      "end" : 541,
+      "size" : 3
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:2-indexExclusion"
+  }, {
+    "id" : 24,
+    "text" : "Data",
+    "placeholder" : "val",
+    "range" : {
+      "start" : 465,
+      "end" : 469,
+      "size" : 4
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+  }, {
+    "id" : 25,
+    "text" : "getArray()",
+    "placeholder" : "array",
+    "range" : {
+      "start" : 485,
+      "end" : 495,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 26,
+    "text" : "Data",
+    "placeholder" : "val",
+    "range" : {
+      "start" : 508,
+      "end" : 512,
+      "size" : 4
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+  }, {
+    "id" : 27,
+    "text" : "getArray()",
+    "placeholder" : "array",
+    "range" : {
+      "start" : 528,
+      "end" : 538,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 28,
+    "text" : "Data ",
+    "placeholder" : "var (",
+    "range" : {
+      "start" : 576,
+      "end" : 581,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:1-prefix-var"
+  }, {
+    "id" : 29,
+    "text" : " = data.getData().getArray()[0];",
+    "placeholder" : ", ",
+    "range" : {
+      "start" : 592,
+      "end" : 624,
+      "size" : 32
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:1-methodCallExclusion"
+  }, {
+    "id" : 30,
+    "text" : "\n        Data ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 624,
+      "end" : 638,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:1-prefix"
+  }, {
+    "id" : 31,
+    "text" : " ",
+    "placeholder" : ") ",
+    "range" : {
+      "start" : 649,
+      "end" : 650,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:1-closingBracket"
+  }, {
+    "id" : 32,
+    "text" : "[1]",
+    "placeholder" : "",
+    "range" : {
+      "start" : 677,
+      "end" : 680,
+      "size" : 3
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:1-indexExclusion"
+  }, {
+    "id" : 33,
+    "text" : "Data",
+    "placeholder" : "var",
+    "range" : {
+      "start" : 633,
+      "end" : 637,
+      "size" : 4
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+  }, {
+    "id" : 34,
+    "text" : "getArray()",
+    "placeholder" : "array",
+    "range" : {
+      "start" : 667,
+      "end" : 677,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 35,
+    "text" : "getData()",
+    "placeholder" : "data",
+    "range" : {
+      "start" : 657,
+      "end" : 666,
+      "size" : 9
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 36,
+    "text" : "Data",
+    "placeholder" : "val",
+    "range" : {
+      "start" : 719,
+      "end" : 723,
+      "size" : 4
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+  }, {
+    "id" : 37,
+    "text" : "getArray()",
+    "placeholder" : "array",
+    "range" : {
+      "start" : 744,
+      "end" : 754,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 38,
+    "text" : "Data",
+    "placeholder" : "val",
+    "range" : {
+      "start" : 767,
+      "end" : 771,
+      "size" : 4
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+  }, {
+    "id" : 39,
+    "text" : "getArray()",
+    "placeholder" : "array",
+    "range" : {
+      "start" : 802,
+      "end" : 812,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 40,
+    "text" : "getData()",
+    "placeholder" : "data",
+    "range" : {
+      "start" : 792,
+      "end" : 801,
+      "size" : 9
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  } ]
+}

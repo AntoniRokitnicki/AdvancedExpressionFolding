@@ -17,13 +17,14 @@ public class DestructuringAssignmentTestData {
         <fold text='val' expand='false'>Data</fold> ignored22 = data.<fold text='array' expand='false'>getArray()</fold>[5];
 
         <fold text='var (' expand='false'>Data </fold>getter1<fold text=', ' expand='false'> = data.getArray()[0];</fold><fold text='' expand='true'>
-        <fold text='val' expand='false'>Data</fold> </fold>getter2<fold text=') ' expand='true'> </fold>= data.<fold text='array' expand='false'>getArray()</fold><fold text='' expand='true'>[1]</fold>;
+        <fold text='val' expand='false'>Data</fold> </fold>getter2<fold text=', ' expand='true'> = data.<fold text='array' expand='false'>getArray()</fold>[1];</fold><fold text='' expand='true'>
+        <fold text='val' expand='false'>Data</fold> </fold>getter3<fold text=') ' expand='true'> </fold>= data.<fold text='array' expand='false'>getArray()</fold><fold text='' expand='true'>[2]</fold>;
         getter1 = data;
 
         <fold text='var (' expand='false'>Data </fold>deepGetter1<fold text=', ' expand='false'> = data.getData().getArray()[0];</fold><fold text='' expand='true'>
         <fold text='var' expand='false'>Data</fold> </fold>deepGetter2<fold text=') ' expand='true'> </fold>= data.<fold text='data' expand='false'>getData()</fold>.<fold text='array' expand='false'>getArray()</fold><fold text='' expand='true'>[1]</fold>;
         deepGetter2 = data;
-        
+
         <fold text='val' expand='false'>Data</fold> wrongParent1 = data.<fold text='array' expand='false'>getArray()</fold>[0];
         <fold text='val' expand='false'>Data</fold> wrongParent2 = data.<fold text='data' expand='false'>getData()</fold>.<fold text='array' expand='false'>getArray()</fold>[1];
 
