@@ -14,19 +14,23 @@ object PsiDeclarationStatementEx : BaseExtension() {
         document: Document
     ): Expression? {
         if (destructuring) {
-            return createDestructuringExpression(element)
+            return createCollectionDestructuringExpression(element)
         }
         return null
     }
 
-    private fun createDestructuringExpression(element: PsiDeclarationStatement): WrapperExpression? {
-        val initialArray = element.asVariable()?.asArray().takeIf {
-            it?.index() == 0
+
+    private fun createCollectionDestructuringExpression(element: PsiDeclarationStatement): WrapperExpression? {
+        val variable = element.asVariable()
+        val initialCollection = variable?.let {
+            it.asArray() ?: it.asList()
+        }?.takeIf {
+            it.index() == 0
         } ?: return null
 
-        val list = generateSequence(Pair(element, initialArray)) { (statement, array) ->
+        val list = generateSequence(Pair(element, initialCollection)) { (statement, collection) ->
             val nextStatement = statement.nextStatement()
-            nextStatement?.getNextArray(array)?.let {
+            nextStatement?.findNextCollection(collection)?.let {
                 Pair(nextStatement, it)
             }
         }.toList()
@@ -37,7 +41,7 @@ object PsiDeclarationStatementEx : BaseExtension() {
             when (index) {
                 0 -> transformFirstElement(statement, identifier, list)
                 list.lastIndex -> transformLastElement(statement, array, identifier, index)
-                else -> transformMiddleElements(statement, identifier, index)
+                else -> transformMiddleElement(statement, identifier, index)
             }
         }?.let {
             WrapperExpression(element.parent, element.parent.textRange, it)
@@ -46,15 +50,21 @@ object PsiDeclarationStatementEx : BaseExtension() {
 
     /**
     @formatter:off
+
     Data a1 = data.getArray()[0];
     into
     val (a1,
+
+    without val:
+    Data a1 = data.getArray()[0];
+    into
+    Data (a1,
     @formatter:on
      */
     private fun transformFirstElement(
         statement: PsiDeclarationStatement,
         identifier: PsiIdentifier,
-        list: List<Pair<PsiDeclarationStatement, PsiArrayAccessExpression>>
+        list: List<Pair<PsiDeclarationStatement, PsiExpression>>
     ): DestructuringExpression {
         val methodCallExclusion =
             DestructuringExpression(
@@ -64,7 +74,7 @@ object PsiDeclarationStatementEx : BaseExtension() {
                 null,
                 "1-methodCallExclusion"
             )
-        if (varExpressionsCollapse) {
+        return if (varExpressionsCollapse) {
             val notFinal = list.mapNotNull {
                 it.first.asVariable()
             }.any {
@@ -74,24 +84,25 @@ object PsiDeclarationStatementEx : BaseExtension() {
                 true -> "var"
                 false -> "val"
             }
-            return DestructuringExpression(
+            DestructuringExpression(
                 statement,
                 (statement.start()..identifier.start()),
                 "$varType (",
                 methodCallExclusion,
                 "1-prefix-$varType"
             )
+        } else {
+            val variable = statement.asVariable()!!
+            val whiteSpaceAfterType = variable.typeElement?.nextSibling
+                ?: variable.children[0] // should never happen
+            DestructuringExpression(
+                whiteSpaceAfterType,
+                (whiteSpaceAfterType.start()..whiteSpaceAfterType.end()),
+                " (",
+                methodCallExclusion,
+                "1-prefix"
+            )
         }
-        val variable = statement.asVariable()!!
-        val whiteSpaceAfterType = variable.typeElement?.nextSibling
-            ?: variable.children[2] // should never happen
-        return DestructuringExpression(
-            whiteSpaceAfterType,
-            (whiteSpaceAfterType.start()..whiteSpaceAfterType.end()),
-            " (",
-            methodCallExclusion,
-            "1-prefix"
-        )
     }
 
     /**
@@ -101,7 +112,7 @@ object PsiDeclarationStatementEx : BaseExtension() {
                 a3,
     @formatter:on
      */
-    private fun transformMiddleElements(
+    private fun transformMiddleElement(
         statement: PsiDeclarationStatement,
         identifier: PsiIdentifier,
         index: Int
@@ -127,27 +138,38 @@ object PsiDeclarationStatementEx : BaseExtension() {
     @formatter:off
     <ENTER>Data a2 = data.getArray()[2];
     into
-    a2) = data.getArray();
+                a2) = data.getArray();
     @formatter:on
      */
     private fun transformLastElement(
         statement: PsiDeclarationStatement,
-        array: PsiArrayAccessExpression,
+        collection: PsiExpression,
         identifier: PsiIdentifier,
         index: Int
     ): DestructuringExpression {
-        val indexExclusion = DestructuringExpression(
-            statement,
-            (array.children[1].start()..array.children[3].end()),
-            "",
-            null,
-            "$index-indexExclusion"
-        )
+        val typeSpecificExclusion = if (collection is PsiMethodCallExpression) {
+            val start = collection.methodExpression.qualifierExpression!!.end()
+            DestructuringExpression(
+                statement,
+                (start..collection.end()),
+                "",
+                null,
+                "$index-get-call"
+            )
+        } else {
+            DestructuringExpression(
+                statement,
+                (collection.children[1].start()..collection.children[3].end()),
+                "",
+                null,
+                "$index-indexExclusion"
+            )
+        }
         val closingBracket = DestructuringExpression(
             statement,
             (identifier.end()..identifier.end() + 1),
             ") ",
-            indexExclusion,
+            typeSpecificExclusion,
             "$index-closingBracket"
         )
         return DestructuringExpression(
@@ -159,33 +181,59 @@ object PsiDeclarationStatementEx : BaseExtension() {
         )
     }
 
-    private fun PsiDeclarationStatement.getNextArray(
-        previousArray: PsiArrayAccessExpression
-    ): PsiArrayAccessExpression? {
-        fun PsiArrayAccessExpression.hasSequentialIndexWith(nextArray: PsiArrayAccessExpression): Boolean =
-            sequenceOf(this.index(), nextArray.index()).filterNotNull().zipWithNext { a, b -> a + 1 == b }
-                .singleOrNull() == true
+    private fun PsiDeclarationStatement.findNextCollection(
+        previousCollection: PsiExpression
+    ): PsiExpression? {
+        fun hasSequentialIndexWith(vararg indexes: Int?): Boolean =
+            indexes.filterNotNull().zipWithNext().all { (a, b) -> a + 1 == b }
 
-        return this.asVariable()?.asArray()?.takeIf {
-            it.hasSameParentMethodCall(previousArray) && previousArray.hasSequentialIndexWith(it)
+        val variable = asVariable()
+        return variable?.let { it.asArray() ?: it.asList() }?.takeIf {
+            it.hasSameParent(previousCollection) &&
+                    hasSequentialIndexWith(
+                        previousCollection.index(),
+                        it.index()
+                    )
         }
     }
 
-    private fun PsiArrayAccessExpression.hasSameParentMethodCall(second: PsiArrayAccessExpression) =
-        this.arrayExpression.text == second.arrayExpression.text
-
-    private fun PsiDeclarationStatement.nextStatement(): PsiDeclarationStatement? =
-        this.realNextSibling().asInstance<PsiDeclarationStatement>()
-
-    private fun PsiArrayAccessExpression.index(): Int? =
-        this.indexExpression.asInstance<PsiLiteralExpression>()?.value.asInstance<Int>()
+    private fun PsiVariable.asList(): PsiMethodCallExpression? {
+        return initializer.asInstance<PsiMethodCallExpression>().takeIf {
+            it?.methodExpression?.referenceName == "get"
+        }
+    }
 
     private fun PsiVariable.asArray(): PsiArrayAccessExpression? =
         this.initializer.asInstance<PsiArrayAccessExpression>()
+
+
+    private fun PsiExpression.index(): Int? = when (this) {
+        is PsiArrayAccessExpression -> indexExpression.asInstance<PsiLiteralExpression>()?.value.asInstance<Int>()
+
+        is PsiMethodCallExpression -> argumentList.expressions.singleOrNull()
+            .asInstance<PsiLiteralExpression>()?.value.asInstance<Int>()
+
+        else -> null
+    }
+
+    private fun PsiExpression.hasSameParent(other: PsiExpression): Boolean = when {
+        this is PsiMethodCallExpression && other is PsiMethodCallExpression ->
+            methodExpression.text == other.methodExpression.text
+
+        this is PsiArrayAccessExpression && other is PsiArrayAccessExpression ->
+            arrayExpression.text == other.arrayExpression.text
+
+        else -> false
+    }
+
+    private fun PsiDeclarationStatement.nextStatement(): PsiDeclarationStatement? =
+        this.realNextSibling().asInstance<PsiDeclarationStatement>()
 
     private fun PsiDeclarationStatement.asVariable(): PsiVariable? =
         this.declaredElements.singleOrNull().asInstance<PsiVariable>()
 
 }
+
+
 
 

@@ -20,7 +20,11 @@ class FullFoldingTest : FoldingTest() {
         getInstance().enableAll()
     }
 
-    override fun testDestructuringAssignmentWithoutValTestData() {
-        // ignored, already tested in testDestructuringAssignmentTestData
+    override fun testDestructuringAssignmentArrayWithoutValTestData() {
+        // ignored, already tested in testDestructuringAssignmentArrayTestData
+    }
+
+    override fun testDestructuringAssignmentListWithoutValTestData() {
+        // ignored, already tested in testDestructuringAssignmentListTestData
     }
 }

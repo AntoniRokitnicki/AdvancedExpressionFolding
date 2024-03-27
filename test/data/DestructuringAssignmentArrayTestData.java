@@ -3,7 +3,7 @@ package data;
 import java.util.List;
 
 @SuppressWarnings("ALL")
-public class DestructuringAssignmentTestData {
+public class DestructuringAssignmentArrayTestData {
     public void enter(Data data, Data[] array) {
         Data ignored1 = array[0];
 
@@ -18,6 +18,7 @@ public class DestructuringAssignmentTestData {
 
         Data getter1 = data.getArray()[0];
         Data getter2 = data.getArray()[1];
+        Data getter3 = data.getArray()[2];
         getter1 = data;
 
         Data deepGetter1 = data.getData().getArray()[0];

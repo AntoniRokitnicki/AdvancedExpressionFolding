@@ -3,23 +3,23 @@ package data;
 import java.util.List;
 
 @SuppressWarnings("ALL")
-public class DestructuringAssignmentTestData {
-    public void enter(Data data, Data[] array) {
-        val ignored1 = array[0];
+public class DestructuringAssignmentListTestData {
+    public void enter(Data data, List<Data> list) {
+        val ignored1 = list.get(0);
 
-        val (first, second, third, fourth) = array;
+        val (first, second, third, fourth) = list;
 
-        val ignored21 = data.array[4];
-        val ignored22 = data.array[5];
+        val ignored21 = data.list.get(4);
+        val ignored22 = data.list.get(5);
 
-        var (getter1, getter2) = data.array;
+        var (getter1, getter2, getter3) = data.list;
         getter1 = data;
 
-        var (deepGetter1, deepGetter2) = data.data.array;
+        var (deepGetter1, deepGetter2) = data.data.list;
         deepGetter2 = data;
-        
-        val wrongParent1 = data.array[0];
-        val wrongParent2 = data.data.array[1];
+
+        val wrongParent1 = data.list.get(0);
+        val wrongParent2 = data.data.list.get(1);
 
         blackhole(first, second, third, fourth, ignored21, ignored22, getter1, getter2, deepGetter1, deepGetter2, wrongParent1, wrongParent2);
     }

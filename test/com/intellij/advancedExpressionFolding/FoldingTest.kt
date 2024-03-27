@@ -226,16 +226,31 @@ open class FoldingTest : BaseTest() {
     }
 
     /**
-     * [data.DestructuringAssignmentTestData]
+     * [data.DestructuringAssignmentArrayTestData]
      */
-    fun testDestructuringAssignmentTestData() {
+    fun testDestructuringAssignmentArrayTestData() {
         doFoldingTest(state::destructuring, state::getSetExpressionsCollapse, state::varExpressionsCollapse)
     }
 
     /**
-     * [data.DestructuringAssignmentWithoutValTestData]
+     * [data.DestructuringAssignmentArrayWithoutValTestData]
      */
-    open fun testDestructuringAssignmentWithoutValTestData() {
+    open fun testDestructuringAssignmentArrayWithoutValTestData() {
         doFoldingTest(state::destructuring, state::getSetExpressionsCollapse)
     }
+
+    /**
+     * [data.DestructuringAssignmentListTestData]
+     */
+    fun testDestructuringAssignmentListTestData() {
+        doFoldingTest(state::destructuring, state::getSetExpressionsCollapse, state::varExpressionsCollapse)
+    }
+
+    /**
+     * [data.DestructuringAssignmentListWithoutValTestData]
+     */
+    open fun testDestructuringAssignmentListWithoutValTestData() {
+        doFoldingTest(state::destructuring, state::getSetExpressionsCollapse)
+    }
+
 }
