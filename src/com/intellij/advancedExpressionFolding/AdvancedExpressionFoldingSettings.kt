@@ -23,7 +23,6 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
     }
 
     interface IState {
-        val arithmeticExpressionsCollapse: Boolean
         val concatenationExpressionsCollapse: Boolean
         val slicingExpressionsCollapse: Boolean
         val comparingExpressionsCollapse: Boolean
@@ -53,7 +52,6 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
     }
 
     data class State(
-        override var arithmeticExpressionsCollapse: Boolean = false,
         override var concatenationExpressionsCollapse: Boolean = true,
         override var slicingExpressionsCollapse: Boolean = true,
         override var comparingExpressionsCollapse: Boolean = true,

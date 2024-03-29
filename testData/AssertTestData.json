@@ -1,0 +1,204 @@
+{
+  "size" : 20,
+  "list" : [ {
+    "id" : 0,
+    "text" : "if",
+    "placeholder" : "assert",
+    "range" : {
+      "start" : 98,
+      "end" : 100,
+      "size" : 2
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression"
+  }, {
+    "id" : 1,
+    "text" : "(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 101,
+      "end" : 102,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression"
+  }, {
+    "id" : 2,
+    "text" : "==",
+    "placeholder" : "!=",
+    "range" : {
+      "start" : 114,
+      "end" : 116,
+      "size" : 2
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression"
+  }, {
+    "id" : 3,
+    "text" : ") {\n            throw new IllegalArgumentException()",
+    "placeholder" : "",
+    "range" : {
+      "start" : 118,
+      "end" : 170,
+      "size" : 52
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression"
+  }, {
+    "id" : 4,
+    "text" : "\n        }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 171,
+      "end" : 181,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression"
+  }, {
+    "id" : 5,
+    "text" : "if",
+    "placeholder" : "assert",
+    "range" : {
+      "start" : 190,
+      "end" : 192,
+      "size" : 2
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression"
+  }, {
+    "id" : 6,
+    "text" : "(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 193,
+      "end" : 194,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression"
+  }, {
+    "id" : 7,
+    "text" : "==",
+    "placeholder" : "!=",
+    "range" : {
+      "start" : 206,
+      "end" : 208,
+      "size" : 2
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression"
+  }, {
+    "id" : 8,
+    "text" : ") {\n         ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 210,
+      "end" : 223,
+      "size" : 13
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression"
+  }, {
+    "id" : 9,
+    "text" : " ",
+    "placeholder" : ":",
+    "range" : {
+      "start" : 224,
+      "end" : 225,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression"
+  }, {
+    "id" : 10,
+    "text" : "throw new IllegalArgumentException(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 226,
+      "end" : 261,
+      "size" : 35
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression"
+  }, {
+    "id" : 11,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 266,
+      "end" : 267,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression"
+  }, {
+    "id" : 12,
+    "text" : "\n        }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 268,
+      "end" : 278,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression"
+  }, {
+    "id" : 13,
+    "text" : "if",
+    "placeholder" : "assert",
+    "range" : {
+      "start" : 287,
+      "end" : 289,
+      "size" : 2
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression"
+  }, {
+    "id" : 14,
+    "text" : "(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 290,
+      "end" : 291,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression"
+  }, {
+    "id" : 15,
+    "text" : "==",
+    "placeholder" : "!=",
+    "range" : {
+      "start" : 303,
+      "end" : 305,
+      "size" : 2
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression"
+  }, {
+    "id" : 16,
+    "text" : ")\n         ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 307,
+      "end" : 318,
+      "size" : 11
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression"
+  }, {
+    "id" : 17,
+    "text" : " ",
+    "placeholder" : ":",
+    "range" : {
+      "start" : 319,
+      "end" : 320,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression"
+  }, {
+    "id" : 18,
+    "text" : "throw new IllegalArgumentException(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 321,
+      "end" : 356,
+      "size" : 35
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression"
+  }, {
+    "id" : 19,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 361,
+      "end" : 362,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression"
+  } ]
+}
