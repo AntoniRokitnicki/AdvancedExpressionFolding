@@ -1,0 +1,224 @@
+{
+  "size" : 22,
+  "list" : [ {
+    "id" : 0,
+    "text" : ";",
+    "placeholder" : "",
+    "range" : {
+      "start" : 12,
+      "end" : 13,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+  }, {
+    "id" : 1,
+    "text" : "if",
+    "placeholder" : "assert",
+    "range" : {
+      "start" : 98,
+      "end" : 100,
+      "size" : 2
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression"
+  }, {
+    "id" : 2,
+    "text" : "(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 101,
+      "end" : 102,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression"
+  }, {
+    "id" : 3,
+    "text" : "==",
+    "placeholder" : "!=",
+    "range" : {
+      "start" : 114,
+      "end" : 116,
+      "size" : 2
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression"
+  }, {
+    "id" : 4,
+    "text" : ") {\n            throw new IllegalArgumentException();\n        }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 118,
+      "end" : 181,
+      "size" : 63
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression"
+  }, {
+    "id" : 5,
+    "text" : ";",
+    "placeholder" : "",
+    "range" : {
+      "start" : 170,
+      "end" : 171,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+  }, {
+    "id" : 6,
+    "text" : "if",
+    "placeholder" : "assert",
+    "range" : {
+      "start" : 190,
+      "end" : 192,
+      "size" : 2
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression"
+  }, {
+    "id" : 7,
+    "text" : "(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 193,
+      "end" : 194,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression"
+  }, {
+    "id" : 8,
+    "text" : "==",
+    "placeholder" : "!=",
+    "range" : {
+      "start" : 206,
+      "end" : 208,
+      "size" : 2
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression"
+  }, {
+    "id" : 9,
+    "text" : ") {\n         ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 210,
+      "end" : 223,
+      "size" : 13
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression"
+  }, {
+    "id" : 10,
+    "text" : " ",
+    "placeholder" : ":",
+    "range" : {
+      "start" : 224,
+      "end" : 225,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression"
+  }, {
+    "id" : 11,
+    "text" : "throw new IllegalArgumentException(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 226,
+      "end" : 261,
+      "size" : 35
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression"
+  }, {
+    "id" : 12,
+    "text" : ");\n        }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 266,
+      "end" : 278,
+      "size" : 12
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression"
+  }, {
+    "id" : 13,
+    "text" : ";",
+    "placeholder" : "",
+    "range" : {
+      "start" : 267,
+      "end" : 268,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+  }, {
+    "id" : 14,
+    "text" : "if",
+    "placeholder" : "assert",
+    "range" : {
+      "start" : 287,
+      "end" : 289,
+      "size" : 2
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression"
+  }, {
+    "id" : 15,
+    "text" : "(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 290,
+      "end" : 291,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression"
+  }, {
+    "id" : 16,
+    "text" : "==",
+    "placeholder" : "!=",
+    "range" : {
+      "start" : 303,
+      "end" : 305,
+      "size" : 2
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression"
+  }, {
+    "id" : 17,
+    "text" : ")\n         ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 307,
+      "end" : 318,
+      "size" : 11
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression"
+  }, {
+    "id" : 18,
+    "text" : " ",
+    "placeholder" : ":",
+    "range" : {
+      "start" : 319,
+      "end" : 320,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression"
+  }, {
+    "id" : 19,
+    "text" : "throw new IllegalArgumentException(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 321,
+      "end" : 356,
+      "size" : 35
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression"
+  }, {
+    "id" : 20,
+    "text" : ");",
+    "placeholder" : "",
+    "range" : {
+      "start" : 361,
+      "end" : 363,
+      "size" : 2
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression"
+  }, {
+    "id" : 21,
+    "text" : ";",
+    "placeholder" : "",
+    "range" : {
+      "start" : 362,
+      "end" : 363,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+  } ]
+}

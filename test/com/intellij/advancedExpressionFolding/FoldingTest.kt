@@ -152,6 +152,13 @@ open class FoldingTest : BaseTest() {
     }
 
     /**
+     * [data.AssertTestData]
+     */
+    fun testAssertTestData() {
+        doReadOnlyFoldingTest(state::assertsCollapse)
+    }
+
+    /**
      * [data.ConcatenationTestData]
      */
     fun testConcatenationTestData() {
