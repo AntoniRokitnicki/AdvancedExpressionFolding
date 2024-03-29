@@ -3,6 +3,7 @@ package com.intellij.advancedExpressionFolding
 import com.intellij.advancedExpressionFolding.extension.asInstance
 import com.intellij.application.options.editor.CodeFoldingOptionsProvider
 import com.intellij.ide.BrowserUtil
+import com.intellij.openapi.diagnostic.Logger
 import com.intellij.openapi.options.BeanConfigurable
 import com.intellij.ui.components.ActionLink
 import java.awt.Component
@@ -17,6 +18,9 @@ class AdvancedExpressionFoldingOptionsProvider protected constructor() :
     BeanConfigurable<AdvancedExpressionFoldingSettings.State?>(
         AdvancedExpressionFoldingSettings.getInstance().state
     ), CodeFoldingOptionsProvider {
+
+    private val log: Logger = Logger.getInstance(AdvancedExpressionFoldingOptionsProvider::class.java)
+
 
     private val checkboxAddonMap = HashMap<String, Component>()
 
@@ -166,50 +170,55 @@ class AdvancedExpressionFoldingOptionsProvider protected constructor() :
             state::semicolonsCollapse,
             mapOf("SemicolonTestData.java" to null)
         )
-        checkBox("Folding of testData in diff",
+        checkBox(
+            "Folding of testData in diff",
             state::testDataFoldingDiff,
-            docLink = "/Folding-of-testData-in-diff")
+            docLink = "/Folding-of-testData-in-diff"
+        )
     }
 
     private fun checkBox(
         title: String,
-        prop: KMutableProperty0<Boolean>,
+        property: KMutableProperty0<Boolean>,
         exampleLinkMap: Map<UrlSuffix, Description?>? = null,
         docLink: UrlSuffix? = null
     ) {
-        super.checkBox(title, prop)
+        super.checkBox(title, property)
 
-        //val panel = UI.PanelFactory.grid().createPanel()
-        val panel = JPanel()
-        val gridLayout = FlowLayout(FlowLayout.LEFT)
-        panel.setLayout(gridLayout)
-        docLink?.let {
-            addLink(panel, "doc", "https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki$it")
-        }
-        exampleLinkMap?.let {
-            it.forEach { (file, desc) ->
-                val description = "example" + if (desc != null) {
-                    " $desc"
-                } else {
-                    ""
-                }
-
-                addLink(
-                    panel,
-                    description,
-                    "https://raw.githubusercontent.com/AntoniRokitnicki/AdvancedExpressionFolding/master/test/data/$file"
-                )
+        try {
+            val panel = JPanel()
+            val gridLayout = FlowLayout(FlowLayout.LEFT)
+            panel.setLayout(gridLayout)
+            docLink?.let {
+                addLink(panel, "doc", "https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki$it")
             }
+            exampleLinkMap?.let {
+                it.forEach { (file, desc) ->
+                    val description = "example" + if (desc != null) {
+                        " $desc"
+                    } else {
+                        ""
+                    }
+
+                    addLink(
+                        panel,
+                        description,
+                        "https://raw.githubusercontent.com/AntoniRokitnicki/AdvancedExpressionFolding/master/test/data/$file"
+                    )
+                }
+            }
+            checkboxAddonMap[title] = panel
+        } catch (e: Exception) {
+            log.error("Unexpected issue while creating checkBox for $title", e);
         }
-        checkboxAddonMap[title] = panel
     }
 
     private fun addLink(panel: JPanel, title: String, url: String): Component? {
-        val link = ActionLink(title) {
+        val actionLink = ActionLink(title) {
             BrowserUtil.browse(url);
         }
-        link.setExternalLinkIcon()
-        return panel.add(link)
+        actionLink.setExternalLinkIcon()
+        return panel.add(actionLink)
     }
 
     override fun createComponent(): JComponent? {
@@ -230,8 +239,7 @@ class AdvancedExpressionFoldingOptionsProvider protected constructor() :
                 it.rows += withLinks.size
             }
         } catch (e: Exception) {
-            // if implemenation changes
-            TODO("Not yet implemented")
+            log.error("Unexpected issue while creating component", e);
         }
         return superComponent
     }
