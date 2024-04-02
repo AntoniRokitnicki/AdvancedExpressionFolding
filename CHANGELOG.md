@@ -4,6 +4,10 @@
 
 ## [Unreleased]
 
+## [1.0.34] - 2024-04-02
+
+Enhance settings with example documentation links
+
 ## [1.0.33] - 2024-03-27
 
 - Destructuring assignment for list
@@ -159,7 +163,8 @@ Improved handling of multi-line log messages
 
 ## [0.0.1]
 
-[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.33...HEAD
+[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.34...HEAD
+[1.0.34]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.33...v1.0.34
 [1.0.33]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.32...v1.0.33
 [1.0.32]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.31...v1.0.32
 [1.0.31]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.30...v1.0.31
