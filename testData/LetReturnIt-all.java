@@ -22,7 +22,7 @@ class LetReturnIt {
         if (var5 == null) <fold text='{...}' expand='true'>{
             return null;
         }</fold></fold>
-        System.out.println<fold text='("$' expand='false'>(</fold>var5<fold text='' expand='false'> + "</fold>1");
+        <fold text='' expand='false'>System.out.</fold>println<fold text='("$' expand='false'>(</fold>var5<fold text='' expand='false'> + "</fold>1");
 
 
         <fold text='val' expand='false'>String</fold> var6 = getData(someString)<fold text=' ?: return null' expand='true'>;
@@ -32,7 +32,7 @@ class LetReturnIt {
         while <fold text='' expand='false'>(</fold>true<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
             if <fold text='' expand='false'>(</fold>LocalDate.now()<fold text=' > ' expand='false'>.isAfter(</fold>LocalDate.now()<fold text='' expand='false'>)</fold><fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
                 if <fold text='' expand='false'>(</fold>var6 == null<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
-                    System.out.println("1");
+                    <fold text='' expand='false'>System.out.</fold>println("1");
                 }</fold>
             }</fold>
             break;
@@ -46,7 +46,7 @@ class LetReturnIt {
         new Thread(<fold text='run() → { ' expand='false'>new Runnable() {
             @Override
             public void run() {
-                </fold>System.out.println<fold text='("$' expand='false'>(</fold>var7<fold text='' expand='false'> + "</fold>1");<fold text=' }' expand='false'>
+                </fold><fold text='' expand='false'>System.out.</fold>println<fold text='("$' expand='false'>(</fold>var7<fold text='' expand='false'> + "</fold>1");<fold text=' }' expand='false'>
             }
         }</fold>);
         return null;

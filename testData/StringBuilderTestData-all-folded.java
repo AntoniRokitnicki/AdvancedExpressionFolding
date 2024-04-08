@@ -10,7 +10,7 @@ public class StringBuilderTestData {
                 sb1 += ",";
             }
         }
-                System.out.println(sb1 + "]");
+                println(sb1 + "]");
 
         val sb2 = "[";
         for val (i, arg : args) {
@@ -20,7 +20,7 @@ public class StringBuilderTestData {
                 sb2 += ",";
             }
         }
-                System.out.println(sb2 + "]");
+                println(sb2 + "]");
 
         val sb3 = "";
         for val (i, arg : args) {
@@ -30,6 +30,6 @@ public class StringBuilderTestData {
                 sb3 += "," + " ";
             }
         }
-                System.out.println(sb3);
+                println(sb3);
     }
 }

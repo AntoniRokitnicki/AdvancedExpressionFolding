@@ -22,7 +22,9 @@ fun PsiExpressionList.filterOutWhiteSpaceAndTokens() = children.filter {
     !it.isIgnorable()
 }
 
-fun PsiElement.isIgnorable() = this is PsiJavaToken || this is PsiWhiteSpace
+fun PsiElement.isIgnorable() = this is PsiJavaToken || isWhitespace()
+
+fun PsiElement.isWhitespace() = this is PsiWhiteSpace
 
 fun PsiElement.realNextSibling(): PsiElement? {
     var sibling = nextSibling
@@ -132,3 +134,6 @@ fun Array<out PsiElement>.asInstance(vararg elements: Class<out PsiElement>): Ar
     }
     return this
 }
+
+
+fun String.equalsIgnoreSpaces(second: String): Boolean = filterNot(Char::isWhitespace) == second.filterNot(Char::isWhitespace)

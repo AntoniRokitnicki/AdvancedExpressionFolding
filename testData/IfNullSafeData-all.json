@@ -1,5 +1,5 @@
 {
-  "size" : 57,
+  "size" : 64,
   "list" : [ {
     "id" : 0,
     "text" : "var",
@@ -122,6 +122,16 @@
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
   }, {
     "id" : 12,
+    "text" : "System.out.",
+    "placeholder" : "",
+    "range" : {
+      "start" : 789,
+      "end" : 800,
+      "size" : 11
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+  }, {
+    "id" : 13,
     "text" : "(",
     "placeholder" : "",
     "range" : {
@@ -131,7 +141,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
   }, {
-    "id" : 13,
+    "id" : 14,
     "text" : ")",
     "placeholder" : "",
     "range" : {
@@ -141,7 +151,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
   }, {
-    "id" : 14,
+    "id" : 15,
     "text" : "data != null && data.getData1() != null",
     "placeholder" : "data?.data1 != null",
     "range" : {
@@ -151,7 +161,17 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
   }, {
-    "id" : 15,
+    "id" : 16,
+    "text" : "System.out.",
+    "placeholder" : "",
+    "range" : {
+      "start" : 923,
+      "end" : 934,
+      "size" : 11
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+  }, {
+    "id" : 17,
     "text" : "(",
     "placeholder" : "",
     "range" : {
@@ -161,7 +181,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
   }, {
-    "id" : 16,
+    "id" : 18,
     "text" : ")",
     "placeholder" : "",
     "range" : {
@@ -171,7 +191,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
   }, {
-    "id" : 17,
+    "id" : 19,
     "text" : "data != null && data.isActive()",
     "placeholder" : "data?.active == true",
     "range" : {
@@ -181,7 +201,17 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
   }, {
-    "id" : 18,
+    "id" : 20,
+    "text" : "System.out.",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1035,
+      "end" : 1046,
+      "size" : 11
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+  }, {
+    "id" : 21,
     "text" : "(",
     "placeholder" : "",
     "range" : {
@@ -191,7 +221,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
   }, {
-    "id" : 19,
+    "id" : 22,
     "text" : ")",
     "placeholder" : "",
     "range" : {
@@ -201,7 +231,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
   }, {
-    "id" : 20,
+    "id" : 23,
     "text" : "data != null\n                && data.getData1() != null\n                && data.getData1().getData2() != null\n                && data.getData1().getData2().getData3() != null\n                && data.getData1().getData2().getData3().getData4() != null",
     "placeholder" : "data?.data1?.data2?.data3?.data4 != null",
     "range" : {
@@ -211,7 +241,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
   }, {
-    "id" : 21,
+    "id" : 24,
     "text" : "data != null\n                && data.getData1() != null\n                && !data.getData1().isActive()",
     "placeholder" : "data?.data1?.active == false",
     "range" : {
@@ -221,7 +251,17 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
   }, {
-    "id" : 22,
+    "id" : 25,
+    "text" : "System.out.",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1530,
+      "end" : 1541,
+      "size" : 11
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+  }, {
+    "id" : 26,
     "text" : "boolean",
     "placeholder" : "val",
     "range" : {
@@ -231,7 +271,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
   }, {
-    "id" : 23,
+    "id" : 27,
     "text" : "data != null\n                && data.getData1() != null\n                && data.getData1().getData2() != null\n                && data.getData1().getData2().getData3() != null\n                && data.getData1().getData2().getData3().getData4() != null",
     "placeholder" : "data?.data1?.data2?.data3?.data4 != null",
     "range" : {
@@ -241,7 +281,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
   }, {
-    "id" : 24,
+    "id" : 28,
     "text" : "var",
     "placeholder" : "var",
     "range" : {
@@ -251,7 +291,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
   }, {
-    "id" : 25,
+    "id" : 29,
     "text" : "data != null\n                && data.getData1() != null\n                && data.getData1().isActive()",
     "placeholder" : "data?.data1?.active == true",
     "range" : {
@@ -261,7 +301,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
   }, {
-    "id" : 26,
+    "id" : 30,
     "text" : "var",
     "placeholder" : "val",
     "range" : {
@@ -271,7 +311,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
   }, {
-    "id" : 27,
+    "id" : 31,
     "text" : "data != null && !data.isActive()",
     "placeholder" : "data?.active == false",
     "range" : {
@@ -281,7 +321,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
   }, {
-    "id" : 28,
+    "id" : 32,
     "text" : "(",
     "placeholder" : "",
     "range" : {
@@ -291,7 +331,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
   }, {
-    "id" : 29,
+    "id" : 33,
     "text" : ")",
     "placeholder" : "",
     "range" : {
@@ -301,7 +341,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
   }, {
-    "id" : 30,
+    "id" : 34,
     "text" : "data != null && data.getData2() != null && !data.getData2().isActive()",
     "placeholder" : "data?.data2?.active == false",
     "range" : {
@@ -311,7 +351,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
   }, {
-    "id" : 31,
+    "id" : 35,
     "text" : "isActive()",
     "placeholder" : "active",
     "range" : {
@@ -321,7 +361,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
   }, {
-    "id" : 32,
+    "id" : 36,
     "text" : "getData1()",
     "placeholder" : "data1",
     "range" : {
@@ -331,7 +371,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
   }, {
-    "id" : 33,
+    "id" : 37,
     "text" : "(",
     "placeholder" : "",
     "range" : {
@@ -341,7 +381,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
   }, {
-    "id" : 34,
+    "id" : 38,
     "text" : ")",
     "placeholder" : "",
     "range" : {
@@ -351,7 +391,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
   }, {
-    "id" : 35,
+    "id" : 39,
     "text" : "data != null && data.getData6() != null &&\n                data.getData6().isActive()",
     "placeholder" : "data?.data6?.active == true",
     "range" : {
@@ -361,7 +401,17 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
   }, {
-    "id" : 36,
+    "id" : 40,
+    "text" : "System.out.",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2351,
+      "end" : 2362,
+      "size" : 11
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+  }, {
+    "id" : 41,
     "text" : "(",
     "placeholder" : "",
     "range" : {
@@ -371,7 +421,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
   }, {
-    "id" : 37,
+    "id" : 42,
     "text" : ")",
     "placeholder" : "",
     "range" : {
@@ -381,7 +431,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
   }, {
-    "id" : 38,
+    "id" : 43,
     "text" : "data != null && data.getData6() != null &&\n                !data.getData6().isActive()",
     "placeholder" : "data?.data6?.active == false",
     "range" : {
@@ -391,7 +441,17 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
   }, {
-    "id" : 39,
+    "id" : 44,
+    "text" : "System.out.",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2578,
+      "end" : 2589,
+      "size" : 11
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+  }, {
+    "id" : 45,
     "text" : "(",
     "placeholder" : "",
     "range" : {
@@ -401,7 +461,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
   }, {
-    "id" : 40,
+    "id" : 46,
     "text" : ")",
     "placeholder" : "",
     "range" : {
@@ -411,7 +471,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
   }, {
-    "id" : 41,
+    "id" : 47,
     "text" : "data != null\n                && data.getData1() != null\n                && data.getData1().isActive()",
     "placeholder" : "data?.data1?.active == true",
     "range" : {
@@ -421,7 +481,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
   }, {
-    "id" : 42,
+    "id" : 48,
     "text" : "data != null\n                && data.getData2() != null\n                && data.getData2().isActive()",
     "placeholder" : "data?.data2?.active == true",
     "range" : {
@@ -431,7 +491,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
   }, {
-    "id" : 43,
+    "id" : 49,
     "text" : "data != null\n                        && data.getData3() != null\n                        && data.getData3().isActive()",
     "placeholder" : "data?.data3?.active == true",
     "range" : {
@@ -441,7 +501,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
   }, {
-    "id" : 44,
+    "id" : 50,
     "text" : "data.getData3().getData4() != null\n                        && data.getData3().getData4().isActive()",
     "placeholder" : "data.data3.data4?.active == true",
     "range" : {
@@ -451,7 +511,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
   }, {
-    "id" : 45,
+    "id" : 51,
     "text" : "data != null\n                        && data.getData5() != null\n                        && data.getData5().isActive()",
     "placeholder" : "data?.data5?.active == true",
     "range" : {
@@ -461,7 +521,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
   }, {
-    "id" : 46,
+    "id" : 52,
     "text" : "data != null &&\n                                data.getData6() != null &&\n                                data.getData6().isActive()",
     "placeholder" : "data?.data6?.active == true",
     "range" : {
@@ -471,7 +531,17 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
   }, {
-    "id" : 47,
+    "id" : 53,
+    "text" : "System.out.",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3597,
+      "end" : 3608,
+      "size" : 11
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+  }, {
+    "id" : 54,
     "text" : "Data",
     "placeholder" : "val",
     "range" : {
@@ -481,7 +551,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
   }, {
-    "id" : 48,
+    "id" : 55,
     "text" : "(",
     "placeholder" : "",
     "range" : {
@@ -491,7 +561,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
   }, {
-    "id" : 49,
+    "id" : 56,
     "text" : ")",
     "placeholder" : "",
     "range" : {
@@ -501,7 +571,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
   }, {
-    "id" : 50,
+    "id" : 57,
     "text" : "data.getData1().getData2().getData3() != null &&\n                data.getData1().getData2().getData3().isActive()",
     "placeholder" : "data.data1.data2.data3?.active == true",
     "range" : {
@@ -511,7 +581,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
   }, {
-    "id" : 51,
+    "id" : 58,
     "text" : "(",
     "placeholder" : "",
     "range" : {
@@ -521,7 +591,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
   }, {
-    "id" : 52,
+    "id" : 59,
     "text" : ")",
     "placeholder" : "",
     "range" : {
@@ -531,7 +601,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
   }, {
-    "id" : 53,
+    "id" : 60,
     "text" : "data2.getData1().getData2() != null &&\n                data2.getData1().getData2().isActive()",
     "placeholder" : "data2.data1.data2?.active == true",
     "range" : {
@@ -541,7 +611,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
   }, {
-    "id" : 54,
+    "id" : 61,
     "text" : "(",
     "placeholder" : "",
     "range" : {
@@ -551,7 +621,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
   }, {
-    "id" : 55,
+    "id" : 62,
     "text" : ")",
     "placeholder" : "",
     "range" : {
@@ -561,7 +631,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
   }, {
-    "id" : 56,
+    "id" : 63,
     "text" : "data2.getData1() != null &&\n                data2.getData1().isActive()",
     "placeholder" : "data2.data1?.active == true",
     "range" : {

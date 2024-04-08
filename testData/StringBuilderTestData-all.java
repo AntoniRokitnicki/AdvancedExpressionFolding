@@ -11,7 +11,7 @@ public class StringBuilderTestData {
                 sb1<fold text=' += ' expand='false'>.append(</fold>","<fold text='' expand='false'>)</fold>;
             }</fold>
         }</fold>
-                System.out.println(sb1<fold text=' + ' expand='false'>.append(</fold>"]"<fold text='' expand='false'>).toString()</fold>);
+                <fold text='' expand='false'>System.out.</fold>println(sb1<fold text=' + ' expand='false'>.append(</fold>"]"<fold text='' expand='false'>).toString()</fold>);
 
         <fold text='val' expand='false'>StringBuilder</fold> sb2 = <fold text='' expand='false'>new StringBuilder().append(</fold>"["<fold text='' expand='false'>)</fold>;
         for <fold text='val (' expand='false'>(<fold text='val' expand='false'>int</fold> </fold>i = 0; i < args.length; i++) <fold text='{...}' expand='true'>{
@@ -22,7 +22,7 @@ public class StringBuilderTestData {
                 sb2<fold text=' += ' expand='false'>.append(</fold>","<fold text='' expand='false'>)</fold>;
             }</fold>
         }</fold>
-                System.out.println(sb2<fold text=' + ' expand='false'>.append(</fold>"]"<fold text='' expand='false'>).toString()</fold>);
+                <fold text='' expand='false'>System.out.</fold>println(sb2<fold text=' + ' expand='false'>.append(</fold>"]"<fold text='' expand='false'>).toString()</fold>);
 
         <fold text='val' expand='false'>StringBuilder</fold> sb3 = <fold text='""' expand='false'>new StringBuilder()</fold>;
         for <fold text='val (' expand='false'>(<fold text='val' expand='false'>int</fold> </fold>i = 0; i < args.length; i++) <fold text='{...}' expand='true'>{
@@ -33,6 +33,6 @@ public class StringBuilderTestData {
                 sb3<fold text=' += ' expand='false'>.append(</fold>","<fold text=' + ' expand='false'>).append(</fold>" "<fold text='' expand='false'>)</fold>;
             }</fold>
         }</fold>
-                System.out.println(sb3<fold text='' expand='false'>.toString()</fold>);
+                <fold text='' expand='false'>System.out.</fold>println(sb3<fold text='' expand='false'>.toString()</fold>);
     }</fold>
 }

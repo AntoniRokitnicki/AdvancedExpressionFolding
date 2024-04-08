@@ -7,31 +7,31 @@ public class ForRangeTestData {
         public static void main(String[] args) {
                 for val (i, arg : args) {
 
-                System.out.println(arg);
-                System.out.println(i);
+                println(arg);
+                println(i);
         }
                 for val i = 0; i < args.length; i++) {
                         val arg : args {
 
-                System.out.println(arg);
+                println(arg);
         }
                 for val i : [0, args.length) {
-                        System.out.println(i);
+                        println(i);
         }
                 for val i : [0, args.length - 1] {
-                        System.out.println(i);
+                        println(i);
         }
                         val list = [];
                 for val i = 0; i < list.size(); i++) {
                         val a : list[i];
-                System.out.println(a);
+                println(a);
         }
                 for val (i, a : list[i];
-                System.out.println(a);
-                System.out.println(i);
+                println(a);
+                println(i);
         }
                 if args.length in (0, 2 {
-                        System.out.println(args.length);
+                        println(args.length);
         }
         }
 }

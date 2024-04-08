@@ -52,6 +52,7 @@
 - [FieldShift for assignments](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/FieldShift)
 - [Folding of testData in diff](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/Folding-of-testData-in-diff)
 - [Destructuring assignment for array & list](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/Destructuring-assignment)
+- [Simplify System.out.println to println](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/Simplify-System.out.println-to-println)
 
 
 <br />

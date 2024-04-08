@@ -97,6 +97,7 @@ public interface Consts {
             add("filter");
             // Lombok builder
             add("build");
+            add("println");
         }
     };
     Set<String> SUPPORTED_CLASSES = new HashSet<>() {
@@ -126,6 +127,7 @@ public interface Consts {
             add("java.util.Objects");
             add("java.util.stream.Stream");
             add("java.time.LocalDate");
+            add("java.io.PrintStream");
         }
     };
     Set<String> UNSUPPORTED_CLASSES_METHODS_EXCEPTIONS = new HashSet<>() {

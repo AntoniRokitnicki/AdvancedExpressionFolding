@@ -6,18 +6,18 @@ import java.util.List;
 public class SliceTestData {
     public static void main(String[] args) {
         val list = Arrays.asList(args);
-        System.out.println(list[1:]);
-        System.out.println(list[1:2]);
-        System.out.println(list[1:]);
-        System.out.println(list[:2]);
-        System.out.println(list[1:-2]);
-        System.out.println(list[:-2]);
+        println(list[1:]);
+        println(list[1:2]);
+        println(list[1:]);
+        println(list[:2]);
+        println(list[1:-2]);
+        println(list[:-2]);
         val f = args[0];
-        System.out.println(f[1:]);
-        System.out.println(f[1:2]);
-        System.out.println(f[1:]);
-        System.out.println(f[:2]);
-        System.out.println(f[1:-2]);
-        System.out.println(f[:-2]);
+        println(f[1:]);
+        println(f[1:2]);
+        println(f[1:]);
+        println(f[:2]);
+        println(f[1:-2]);
+        println(f[:-2]);
     }
 }
