@@ -12,19 +12,19 @@ public class IfNullSafeData {
         val chain = data?.data1?.data4 != null;
 
         if data?.data1?.data2?.data3 != null {
-            System.out.println("data?.data1?.data2?.data3 != null");
+            println("data?.data1?.data2?.data3 != null");
         }
         if data?.data1 != null {
-            System.out.println("data?.data1 != null");
+            println("data?.data1 != null");
         }
         if data?.active == true {
-            System.out.println("data?.active == true");
+            println("data?.active == true");
         }
         if data?.data1?.data2?.data3?.data4 != null
                 && data != null
                 && data?.data1?.active == false
          {
-            System.out.println("2chainz");
+            println("2chainz");
         }
         val has = data?.data1?.data2?.data3?.data4 != null;
         var active = data?.data1?.active == true;
@@ -36,13 +36,13 @@ public class IfNullSafeData {
 
     public void equalsTrue(Data data, boolean flag) {
         if (data?.data6?.active == true) {
-            System.out.println("Conditions met!");
+            println("Conditions met!");
         }
     }
 
     public void equalsFalse(Data data, boolean flag) {
         if (data?.data6?.active == false) {
-            System.out.println("Conditions met!");
+            println("Conditions met!");
         }
     }
 
@@ -59,7 +59,7 @@ public class IfNullSafeData {
                         (flag && flag || flag &&
 
                                 data?.data6?.active == true) {
-            System.out.println("Conditions met!");
+            println("Conditions met!");
         }
     }
 

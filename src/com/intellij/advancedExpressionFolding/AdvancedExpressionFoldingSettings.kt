@@ -49,6 +49,7 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
         val ifNullSafe: Boolean
         val logFolding: Boolean
         val destructuring: Boolean
+        val println: Boolean
     }
 
     data class State(
@@ -78,6 +79,7 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
         override var ifNullSafe: Boolean = true,
         override var logFolding: Boolean = true,
         override var destructuring: Boolean = true,
+        override var println: Boolean = true,
 
         override var testDataFoldingDiff: Boolean = false,
         override var globalOn: Boolean = true,

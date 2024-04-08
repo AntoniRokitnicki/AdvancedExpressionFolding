@@ -3,6 +3,7 @@ package com.intellij.advancedExpressionFolding.extension;
 import com.intellij.advancedExpressionFolding.expression.Expression;
 import com.intellij.advancedExpressionFolding.expression.NumberLiteral;
 import com.intellij.openapi.editor.Document;
+import com.intellij.openapi.project.Project;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.*;
 import org.jetbrains.annotations.NotNull;
@@ -17,6 +18,14 @@ import java.util.regex.Matcher;
 import java.util.stream.Stream;
 
 public class Helper {
+
+    public static @Nullable Document getDocument(PsiElement element) {
+        Project project = element.getProject();
+        PsiFile psiFile = element.getContainingFile();
+        PsiDocumentManager psiDocumentManager = PsiDocumentManager.getInstance(project);
+        return psiDocumentManager.getDocument(psiFile);
+    }
+
 
     public static boolean isReferenceToReference(@Nullable PsiReferenceExpression referenceExpression, @Nullable PsiReference reference) {
         if (reference != null) {

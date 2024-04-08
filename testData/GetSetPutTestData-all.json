@@ -1,5 +1,5 @@
 {
-  "size" : 56,
+  "size" : 71,
   "list" : [ {
     "id" : 0,
     "text" : "List<String>",
@@ -82,6 +82,16 @@
     "group" : "com.intellij.advancedExpressionFolding.expression.Put"
   }, {
     "id" : 8,
+    "text" : "System.out.",
+    "placeholder" : "",
+    "range" : {
+      "start" : 209,
+      "end" : 220,
+      "size" : 11
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+  }, {
+    "id" : 9,
     "text" : ".get",
     "placeholder" : ".last",
     "range" : {
@@ -91,7 +101,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.Get"
   }, {
-    "id" : 9,
+    "id" : 10,
     "text" : "list.size() - 1",
     "placeholder" : "",
     "range" : {
@@ -101,7 +111,37 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.Get"
   }, {
-    "id" : 10,
+    "id" : 11,
+    "text" : ".get",
+    "placeholder" : ".last",
+    "range" : {
+      "start" : 232,
+      "end" : 236,
+      "size" : 4
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Get"
+  }, {
+    "id" : 12,
+    "text" : "list.size() - 1",
+    "placeholder" : "",
+    "range" : {
+      "start" : 237,
+      "end" : 252,
+      "size" : 15
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Get"
+  }, {
+    "id" : 13,
+    "text" : "System.out.",
+    "placeholder" : "",
+    "range" : {
+      "start" : 264,
+      "end" : 275,
+      "size" : 11
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+  }, {
+    "id" : 14,
     "text" : "[args.length - 1]",
     "placeholder" : ".last()",
     "range" : {
@@ -111,7 +151,17 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.ArrayGet"
   }, {
-    "id" : 11,
+    "id" : 15,
+    "text" : "[args.length - 1]",
+    "placeholder" : ".last()",
+    "range" : {
+      "start" : 287,
+      "end" : 304,
+      "size" : 17
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayGet"
+  }, {
+    "id" : 16,
     "text" : "HashMap<String, Integer>",
     "placeholder" : "val",
     "range" : {
@@ -121,7 +171,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
   }, {
-    "id" : 12,
+    "id" : 17,
     "text" : ".put(",
     "placeholder" : "[",
     "range" : {
@@ -131,7 +181,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.Put"
   }, {
-    "id" : 13,
+    "id" : 18,
     "text" : ", ",
     "placeholder" : "] = ",
     "range" : {
@@ -141,7 +191,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.Put"
   }, {
-    "id" : 14,
+    "id" : 19,
     "text" : ")",
     "placeholder" : "",
     "range" : {
@@ -151,7 +201,17 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.Put"
   }, {
-    "id" : 15,
+    "id" : 20,
+    "text" : "System.out.",
+    "placeholder" : "",
+    "range" : {
+      "start" : 398,
+      "end" : 409,
+      "size" : 11
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+  }, {
+    "id" : 21,
     "text" : ".get(",
     "placeholder" : "[",
     "range" : {
@@ -161,7 +221,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.Get"
   }, {
-    "id" : 16,
+    "id" : 22,
     "text" : ")",
     "placeholder" : "]",
     "range" : {
@@ -171,7 +231,27 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.Get"
   }, {
-    "id" : 17,
+    "id" : 23,
+    "text" : ".get(",
+    "placeholder" : "[",
+    "range" : {
+      "start" : 420,
+      "end" : 425,
+      "size" : 5
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Get"
+  }, {
+    "id" : 24,
+    "text" : ")",
+    "placeholder" : "]",
+    "range" : {
+      "start" : 430,
+      "end" : 431,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Get"
+  }, {
+    "id" : 25,
     "text" : "List<String>",
     "placeholder" : "val",
     "range" : {
@@ -181,7 +261,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
   }, {
-    "id" : 18,
+    "id" : 26,
     "text" : "java.util.Collections.singletonList(",
     "placeholder" : "[",
     "range" : {
@@ -191,7 +271,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
   }, {
-    "id" : 19,
+    "id" : 27,
     "text" : ")",
     "placeholder" : "]",
     "range" : {
@@ -201,7 +281,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
   }, {
-    "id" : 20,
+    "id" : 28,
     "text" : "\"one\"",
     "placeholder" : "\"one\"",
     "range" : {
@@ -211,7 +291,17 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
   }, {
-    "id" : 21,
+    "id" : 29,
+    "text" : "System.out.",
+    "placeholder" : "",
+    "range" : {
+      "start" : 519,
+      "end" : 530,
+      "size" : 11
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+  }, {
+    "id" : 30,
     "text" : "List<String>",
     "placeholder" : "val",
     "range" : {
@@ -221,7 +311,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
   }, {
-    "id" : 22,
+    "id" : 31,
     "text" : "Arrays.asList(",
     "placeholder" : "[",
     "range" : {
@@ -231,7 +321,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
   }, {
-    "id" : 23,
+    "id" : 32,
     "text" : ")",
     "placeholder" : "]",
     "range" : {
@@ -241,7 +331,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
   }, {
-    "id" : 24,
+    "id" : 33,
     "text" : "\"one\"",
     "placeholder" : "\"one\"",
     "range" : {
@@ -251,7 +341,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
   }, {
-    "id" : 25,
+    "id" : 34,
     "text" : "\"two\"",
     "placeholder" : "\"two\"",
     "range" : {
@@ -261,7 +351,17 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
   }, {
-    "id" : 26,
+    "id" : 35,
+    "text" : "System.out.",
+    "placeholder" : "",
+    "range" : {
+      "start" : 617,
+      "end" : 628,
+      "size" : 11
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+  }, {
+    "id" : 36,
     "text" : "List<String>",
     "placeholder" : "val",
     "range" : {
@@ -271,7 +371,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
   }, {
-    "id" : 27,
+    "id" : 37,
     "text" : "new ArrayList<>(Arrays.asList(",
     "placeholder" : "[",
     "range" : {
@@ -281,7 +381,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
   }, {
-    "id" : 28,
+    "id" : 38,
     "text" : "))",
     "placeholder" : "]",
     "range" : {
@@ -291,7 +391,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
   }, {
-    "id" : 29,
+    "id" : 39,
     "text" : "\"one\"",
     "placeholder" : "\"one\"",
     "range" : {
@@ -301,7 +401,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
   }, {
-    "id" : 30,
+    "id" : 40,
     "text" : "\"two\"",
     "placeholder" : "\"two\"",
     "range" : {
@@ -311,7 +411,17 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
   }, {
-    "id" : 31,
+    "id" : 41,
+    "text" : "System.out.",
+    "placeholder" : "",
+    "range" : {
+      "start" : 727,
+      "end" : 738,
+      "size" : 11
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+  }, {
+    "id" : 42,
     "text" : "List<String>",
     "placeholder" : "val",
     "range" : {
@@ -321,7 +431,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
   }, {
-    "id" : 32,
+    "id" : 43,
     "text" : "Collections.unmodifiableList(Arrays.asList(",
     "placeholder" : "[",
     "range" : {
@@ -331,7 +441,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
   }, {
-    "id" : 33,
+    "id" : 44,
     "text" : "))",
     "placeholder" : "]",
     "range" : {
@@ -341,7 +451,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
   }, {
-    "id" : 34,
+    "id" : 45,
     "text" : "\"one\"",
     "placeholder" : "\"one\"",
     "range" : {
@@ -351,7 +461,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
   }, {
-    "id" : 35,
+    "id" : 46,
     "text" : "\"two\"",
     "placeholder" : "\"two\"",
     "range" : {
@@ -361,7 +471,17 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
   }, {
-    "id" : 36,
+    "id" : 47,
+    "text" : "System.out.",
+    "placeholder" : "",
+    "range" : {
+      "start" : 856,
+      "end" : 867,
+      "size" : 11
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+  }, {
+    "id" : 48,
     "text" : "Set<String>",
     "placeholder" : "val",
     "range" : {
@@ -371,7 +491,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
   }, {
-    "id" : 37,
+    "id" : 49,
     "text" : "new HashSet<String>() ",
     "placeholder" : "[",
     "range" : {
@@ -381,7 +501,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.SetLiteral"
   }, {
-    "id" : 38,
+    "id" : 50,
     "text" : "{\n            ",
     "placeholder" : "",
     "range" : {
@@ -391,7 +511,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.SetLiteral"
   }, {
-    "id" : 39,
+    "id" : 51,
     "text" : "{\n                add(",
     "placeholder" : "",
     "range" : {
@@ -401,7 +521,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.SetLiteral"
   }, {
-    "id" : 40,
+    "id" : 52,
     "text" : ");\n                add(",
     "placeholder" : ", ",
     "range" : {
@@ -411,7 +531,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.SetLiteral"
   }, {
-    "id" : 41,
+    "id" : 53,
     "text" : ");\n            }",
     "placeholder" : "",
     "range" : {
@@ -421,7 +541,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.SetLiteral"
   }, {
-    "id" : 42,
+    "id" : 54,
     "text" : "\n        ",
     "placeholder" : "",
     "range" : {
@@ -431,7 +551,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.SetLiteral"
   }, {
-    "id" : 43,
+    "id" : 55,
     "text" : "}",
     "placeholder" : "]",
     "range" : {
@@ -441,7 +561,17 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.SetLiteral"
   }, {
-    "id" : 44,
+    "id" : 56,
+    "text" : "System.out.",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1043,
+      "end" : 1054,
+      "size" : 11
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+  }, {
+    "id" : 57,
     "text" : "Set<String>",
     "placeholder" : "val",
     "range" : {
@@ -451,7 +581,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
   }, {
-    "id" : 45,
+    "id" : 58,
     "text" : "Collections.unmodifiableSet(new HashSet<String>() ",
     "placeholder" : "[",
     "range" : {
@@ -461,7 +591,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.SetLiteral"
   }, {
-    "id" : 46,
+    "id" : 59,
     "text" : "{\n            ",
     "placeholder" : "",
     "range" : {
@@ -471,7 +601,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.SetLiteral"
   }, {
-    "id" : 47,
+    "id" : 60,
     "text" : "{\n                add(",
     "placeholder" : "",
     "range" : {
@@ -481,7 +611,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.SetLiteral"
   }, {
-    "id" : 48,
+    "id" : 61,
     "text" : ");\n                add(",
     "placeholder" : ", ",
     "range" : {
@@ -491,7 +621,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.SetLiteral"
   }, {
-    "id" : 49,
+    "id" : 62,
     "text" : ");\n            }",
     "placeholder" : "",
     "range" : {
@@ -501,7 +631,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.SetLiteral"
   }, {
-    "id" : 50,
+    "id" : 63,
     "text" : "\n        ",
     "placeholder" : "",
     "range" : {
@@ -511,7 +641,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.SetLiteral"
   }, {
-    "id" : 51,
+    "id" : 64,
     "text" : "}",
     "placeholder" : "]",
     "range" : {
@@ -521,7 +651,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.SetLiteral"
   }, {
-    "id" : 52,
+    "id" : 65,
     "text" : ")",
     "placeholder" : "",
     "range" : {
@@ -531,7 +661,17 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.SetLiteral"
   }, {
-    "id" : 53,
+    "id" : 66,
+    "text" : "System.out.",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1256,
+      "end" : 1267,
+      "size" : 11
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+  }, {
+    "id" : 67,
     "text" : "String[]",
     "placeholder" : "val",
     "range" : {
@@ -541,7 +681,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
   }, {
-    "id" : 54,
+    "id" : 68,
     "text" : "new String[] {",
     "placeholder" : "[",
     "range" : {
@@ -551,7 +691,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.ArrayLiteral"
   }, {
-    "id" : 55,
+    "id" : 69,
     "text" : "}",
     "placeholder" : "]",
     "range" : {
@@ -560,5 +700,15 @@
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.ArrayLiteral"
+  }, {
+    "id" : 70,
+    "text" : "System.out.",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1351,
+      "end" : 1362,
+      "size" : 11
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
   } ]
 }

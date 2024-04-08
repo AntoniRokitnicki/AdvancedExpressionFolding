@@ -6,7 +6,7 @@ package data;
         d.parent = d;
         d.name = "Hello";
         d.parent.name = "Pum!";
-        System.out.println(d.parent.name);
+        println(d.parent.name);
     }
 
     private GetterSetterTestData parent;

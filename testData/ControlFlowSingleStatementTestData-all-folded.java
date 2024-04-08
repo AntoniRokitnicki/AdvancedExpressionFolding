@@ -5,53 +5,53 @@ import java.util.Arrays
 public class ControlFlowSingleStatementTestData {
     public static void main(String[] args) {
         if args.length > 0 
-                System.out.println(Arrays.asList(args))
+                println(Arrays.asList(args))
         if args.length == 0 
-                System.out.println("...")
+                println("...")
         else 
-                System.out.println("...")
+                println("...")
         if args.length == 0 
-                System.out.println("...")
-        System.out.println("...")
+                println("...")
+        println("...")
         else 
-                System.out.println("...")
+                println("...")
         if args.length > 0 
-                System.out.println("...")
+                println("...")
         else 
-                System.out.println("...")
-        System.out.println("...")
+                println("...")
+        println("...")
         for val arg : args 
-                System.out.println(arg)
+                println(arg)
         for val i : [0 i < args.length i++ 
-                System.out.println(args[i])
+                println(args[i])
         for val i : [0 i < args.length i++ 
-                System.out.println(i)
-        System.out.println(args[i])
+                println(i)
+        println(args[i])
         while true 
         break
         while true 
-                System.out.println("...")
+                println("...")
         break
         do 
         break
         while true
         do 
-                System.out.println("...")
+                println("...")
         break
         while true
         try 
-                System.out.println("...")
+                println("...")
         catch Exception e 
-                System.out.println("...")
+                println("...")
         try 
-                System.out.println("...")
-        System.out.println("...")
+                println("...")
+        println("...")
         catch Exception e 
-                System.out.println("...")
+                println("...")
         try 
-                System.out.println("...")
+                println("...")
         catch Exception e 
-                System.out.println("...")
-        System.out.println("...")
+                println("...")
+        println("...")
     }
 }

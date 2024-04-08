@@ -1,15 +1,15 @@
 {
-  "size" : 25,
+  "size" : 57,
   "list" : [ {
     "id" : 0,
-    "text" : "\" + ",
-    "placeholder" : "${",
+    "text" : "System.out.",
+    "placeholder" : "",
     "range" : {
-      "start" : 137,
-      "end" : 141,
-      "size" : 4
+      "start" : 110,
+      "end" : 121,
+      "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
   }, {
     "id" : 1,
     "text" : "\" + ",
@@ -22,6 +22,16 @@
     "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
   }, {
     "id" : 2,
+    "text" : "\" + ",
+    "placeholder" : "${",
+    "range" : {
+      "start" : 137,
+      "end" : 141,
+      "size" : 4
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+  }, {
+    "id" : 3,
     "text" : ")",
     "placeholder" : "}\")",
     "range" : {
@@ -31,7 +41,47 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
   }, {
-    "id" : 3,
+    "id" : 4,
+    "text" : "\" + ",
+    "placeholder" : "${",
+    "range" : {
+      "start" : 137,
+      "end" : 141,
+      "size" : 4
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+  }, {
+    "id" : 5,
+    "text" : "\" + ",
+    "placeholder" : "${",
+    "range" : {
+      "start" : 137,
+      "end" : 141,
+      "size" : 4
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+  }, {
+    "id" : 6,
+    "text" : ")",
+    "placeholder" : "}\")",
+    "range" : {
+      "start" : 148,
+      "end" : 149,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+  }, {
+    "id" : 7,
+    "text" : "System.out.",
+    "placeholder" : "",
+    "range" : {
+      "start" : 159,
+      "end" : 170,
+      "size" : 11
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+  }, {
+    "id" : 8,
     "text" : "\" + ",
     "placeholder" : "${",
     "range" : {
@@ -41,7 +91,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
   }, {
-    "id" : 4,
+    "id" : 9,
     "text" : " + \"",
     "placeholder" : "}",
     "range" : {
@@ -51,7 +101,37 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
   }, {
-    "id" : 5,
+    "id" : 10,
+    "text" : "\" + ",
+    "placeholder" : "${",
+    "range" : {
+      "start" : 186,
+      "end" : 190,
+      "size" : 4
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+  }, {
+    "id" : 11,
+    "text" : " + \"",
+    "placeholder" : "}",
+    "range" : {
+      "start" : 197,
+      "end" : 201,
+      "size" : 4
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+  }, {
+    "id" : 12,
+    "text" : "System.out.",
+    "placeholder" : "",
+    "range" : {
+      "start" : 214,
+      "end" : 225,
+      "size" : 11
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+  }, {
+    "id" : 13,
     "text" : "(",
     "placeholder" : "(\"${",
     "range" : {
@@ -61,7 +141,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
   }, {
-    "id" : 6,
+    "id" : 14,
     "text" : " + \"",
     "placeholder" : "}",
     "range" : {
@@ -71,7 +151,37 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
   }, {
-    "id" : 7,
+    "id" : 15,
+    "text" : "(",
+    "placeholder" : "(\"${",
+    "range" : {
+      "start" : 232,
+      "end" : 233,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+  }, {
+    "id" : 16,
+    "text" : " + \"",
+    "placeholder" : "}",
+    "range" : {
+      "start" : 240,
+      "end" : 244,
+      "size" : 4
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+  }, {
+    "id" : 17,
+    "text" : "System.out.",
+    "placeholder" : "",
+    "range" : {
+      "start" : 264,
+      "end" : 275,
+      "size" : 11
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+  }, {
+    "id" : 18,
     "text" : "(",
     "placeholder" : "(\"${",
     "range" : {
@@ -81,7 +191,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
   }, {
-    "id" : 8,
+    "id" : 19,
     "text" : " + \"",
     "placeholder" : "}",
     "range" : {
@@ -91,7 +201,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
   }, {
-    "id" : 9,
+    "id" : 20,
     "text" : "\" + ",
     "placeholder" : "${",
     "range" : {
@@ -101,7 +211,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
   }, {
-    "id" : 10,
+    "id" : 21,
     "text" : "\" + ",
     "placeholder" : "${",
     "range" : {
@@ -111,7 +221,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
   }, {
-    "id" : 11,
+    "id" : 22,
     "text" : ")",
     "placeholder" : "}\")",
     "range" : {
@@ -121,7 +231,57 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
   }, {
-    "id" : 12,
+    "id" : 23,
+    "text" : "(",
+    "placeholder" : "(\"${",
+    "range" : {
+      "start" : 282,
+      "end" : 283,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+  }, {
+    "id" : 24,
+    "text" : " + \"",
+    "placeholder" : "}",
+    "range" : {
+      "start" : 290,
+      "end" : 294,
+      "size" : 4
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+  }, {
+    "id" : 25,
+    "text" : "\" + ",
+    "placeholder" : "${",
+    "range" : {
+      "start" : 296,
+      "end" : 300,
+      "size" : 4
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+  }, {
+    "id" : 26,
+    "text" : "\" + ",
+    "placeholder" : "${",
+    "range" : {
+      "start" : 296,
+      "end" : 300,
+      "size" : 4
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+  }, {
+    "id" : 27,
+    "text" : ")",
+    "placeholder" : "}\")",
+    "range" : {
+      "start" : 307,
+      "end" : 308,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+  }, {
+    "id" : 28,
     "text" : "String",
     "placeholder" : "val",
     "range" : {
@@ -131,7 +291,17 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
   }, {
-    "id" : 13,
+    "id" : 29,
+    "text" : "System.out.",
+    "placeholder" : "",
+    "range" : {
+      "start" : 349,
+      "end" : 360,
+      "size" : 11
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+  }, {
+    "id" : 30,
     "text" : "\" + ",
     "placeholder" : "$",
     "range" : {
@@ -141,7 +311,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
   }, {
-    "id" : 14,
+    "id" : 31,
     "text" : "\" + ",
     "placeholder" : "$",
     "range" : {
@@ -151,7 +321,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
   }, {
-    "id" : 15,
+    "id" : 32,
     "text" : ")",
     "placeholder" : "\")",
     "range" : {
@@ -161,7 +331,47 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
   }, {
-    "id" : 16,
+    "id" : 33,
+    "text" : "\" + ",
+    "placeholder" : "$",
+    "range" : {
+      "start" : 376,
+      "end" : 380,
+      "size" : 4
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+  }, {
+    "id" : 34,
+    "text" : "\" + ",
+    "placeholder" : "$",
+    "range" : {
+      "start" : 376,
+      "end" : 380,
+      "size" : 4
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+  }, {
+    "id" : 35,
+    "text" : ")",
+    "placeholder" : "\")",
+    "range" : {
+      "start" : 384,
+      "end" : 385,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+  }, {
+    "id" : 36,
+    "text" : "System.out.",
+    "placeholder" : "",
+    "range" : {
+      "start" : 395,
+      "end" : 406,
+      "size" : 11
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+  }, {
+    "id" : 37,
     "text" : "\" + ",
     "placeholder" : "$",
     "range" : {
@@ -171,7 +381,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
   }, {
-    "id" : 17,
+    "id" : 38,
     "text" : " + \"",
     "placeholder" : "",
     "range" : {
@@ -181,7 +391,37 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
   }, {
-    "id" : 18,
+    "id" : 39,
+    "text" : "\" + ",
+    "placeholder" : "$",
+    "range" : {
+      "start" : 422,
+      "end" : 426,
+      "size" : 4
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+  }, {
+    "id" : 40,
+    "text" : " + \"",
+    "placeholder" : "",
+    "range" : {
+      "start" : 430,
+      "end" : 434,
+      "size" : 4
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+  }, {
+    "id" : 41,
+    "text" : "System.out.",
+    "placeholder" : "",
+    "range" : {
+      "start" : 447,
+      "end" : 458,
+      "size" : 11
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+  }, {
+    "id" : 42,
     "text" : "(",
     "placeholder" : "(\"$",
     "range" : {
@@ -191,7 +431,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
   }, {
-    "id" : 19,
+    "id" : 43,
     "text" : " + \"",
     "placeholder" : "",
     "range" : {
@@ -201,7 +441,37 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
   }, {
-    "id" : 20,
+    "id" : 44,
+    "text" : "(",
+    "placeholder" : "(\"$",
+    "range" : {
+      "start" : 465,
+      "end" : 466,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+  }, {
+    "id" : 45,
+    "text" : " + \"",
+    "placeholder" : "",
+    "range" : {
+      "start" : 470,
+      "end" : 474,
+      "size" : 4
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+  }, {
+    "id" : 46,
+    "text" : "System.out.",
+    "placeholder" : "",
+    "range" : {
+      "start" : 494,
+      "end" : 505,
+      "size" : 11
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+  }, {
+    "id" : 47,
     "text" : "(",
     "placeholder" : "(\"$",
     "range" : {
@@ -211,7 +481,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
   }, {
-    "id" : 21,
+    "id" : 48,
     "text" : " + \"",
     "placeholder" : "",
     "range" : {
@@ -221,7 +491,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
   }, {
-    "id" : 22,
+    "id" : 49,
     "text" : "\" + ",
     "placeholder" : "$",
     "range" : {
@@ -231,7 +501,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
   }, {
-    "id" : 23,
+    "id" : 50,
     "text" : "\" + ",
     "placeholder" : "$",
     "range" : {
@@ -241,7 +511,57 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
   }, {
-    "id" : 24,
+    "id" : 51,
+    "text" : ")",
+    "placeholder" : "\")",
+    "range" : {
+      "start" : 531,
+      "end" : 532,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+  }, {
+    "id" : 52,
+    "text" : "(",
+    "placeholder" : "(\"$",
+    "range" : {
+      "start" : 512,
+      "end" : 513,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+  }, {
+    "id" : 53,
+    "text" : " + \"",
+    "placeholder" : "",
+    "range" : {
+      "start" : 517,
+      "end" : 521,
+      "size" : 4
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+  }, {
+    "id" : 54,
+    "text" : "\" + ",
+    "placeholder" : "$",
+    "range" : {
+      "start" : 523,
+      "end" : 527,
+      "size" : 4
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+  }, {
+    "id" : 55,
+    "text" : "\" + ",
+    "placeholder" : "$",
+    "range" : {
+      "start" : 523,
+      "end" : 527,
+      "size" : 4
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+  }, {
+    "id" : 56,
     "text" : ")",
     "placeholder" : "\")",
     "range" : {

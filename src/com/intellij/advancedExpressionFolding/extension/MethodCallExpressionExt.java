@@ -465,6 +465,8 @@ public class MethodCallExpressionExt {
         @NotNull PsiExpression argument = element.getArgumentList().getExpressions()[0];
         @NotNull Expression argumentExpression = BuildExpressionExt.getAnyExpression(argument, document);
         switch (methodName) {
+            case "println":
+                return PrintlnExt.createExpression(element, qualifierExpression, argumentExpression);
             case "filter":
                 switch (className) {
                     case "java.util.stream.Stream":

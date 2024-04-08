@@ -5,7 +5,7 @@ public class TypeCastTestData {
         val t = new TypeCastTestData();
         if t.object instanceof TypeCastTestData &&
                 t.object.object instanceof TypeCastTestData {
-                System.out.println(t.object.object.object);
+                println(t.object.object.object);
         handle(t.object.object);
         }
     }
@@ -15,6 +15,6 @@ public class TypeCastTestData {
     }
 
     private static void handle(TypeCastTestData t) {
-        System.out.println(t);
+        println(t);
     }
 }

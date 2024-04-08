@@ -133,6 +133,12 @@ class AdvancedExpressionFoldingOptionsProvider : AbstractExpressionFoldingOption
             ),
             "/Destructuring-assignment"
         )
+        checkBox("Simplify System.out.println to println",
+            state::println,
+            mapOf("PrintlnTestData.java" to null),
+            "/Simplify-System.out.println-to-println"
+        )
+
         checkBox(
             "Control flow single-statement code block braces (read-only files)",
             state::controlFlowSingleStatementCodeBlockCollapse,

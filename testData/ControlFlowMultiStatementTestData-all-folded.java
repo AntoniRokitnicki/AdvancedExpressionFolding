@@ -3,41 +3,41 @@ package data
 public class ControlFlowMultiStatementTestData {
     public static void main(String[] args) {
         if args.length > 0 
-                System.out.println("...")
-        System.out.println("...")
+                println("...")
+        println("...")
         if args.length == 0 
-                System.out.println("...")
-        System.out.println("...")
+                println("...")
+        println("...")
         else 
-                System.out.println("Success")
+                println("Success")
         if args.length > 0 
-                System.out.println("Terminating")
+                println("Terminating")
         else 
-                System.out.println("Terminating")
-        System.out.println("...")
+                println("Terminating")
+        println("...")
         for val arg : args 
-                System.out.println(arg)
+                println(arg)
         var i = 0
         for val arg : args 
-                System.out.println(i++)
-        System.out.println(arg)
+                println(i++)
+        println(arg)
         while true 
-                System.out.println("...")
+                println("...")
         break
         while true 
         break
         try 
-                System.out.println("...")
+                println("...")
         catch Exception e 
                 e.printStackTrace()
         try 
-                System.out.println("...")
-        System.out.println("...")
+                println("...")
+        println("...")
         catch Exception e 
-                System.out.println("...")
+                println("...")
         e.printStackTrace()
         do 
-                System.out.println("...")
+                println("...")
         break
         while true
         do 

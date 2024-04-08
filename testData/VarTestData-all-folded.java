@@ -6,12 +6,12 @@ public class VarTestData {
         System.out.println();
         var count = 0;
         for val arg : args {
-                System.out.println(arg);
+                println(arg);
         count++;
         }
         for var (i, arg : args) {
 
-        System.out.println(arg);
+        println(arg);
         i++;
         }
     }

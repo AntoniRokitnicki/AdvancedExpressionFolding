@@ -260,4 +260,11 @@ open class FoldingTest : BaseTest() {
         doFoldingTest(state::destructuring, state::getSetExpressionsCollapse)
     }
 
+    /**
+     * [data.PrintlnTestData]
+     */
+    fun testPrintlnTestData() {
+        doFoldingTest()
+    }
+
 }

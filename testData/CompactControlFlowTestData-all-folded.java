@@ -3,16 +3,16 @@ package data;
 public class CompactControlFlowTestData {
     public static void main(String[] args) {
         if args.length > 0 {
-                System.out.println("...");
+                println("...");
         }
         for val arg : args {
-                System.out.println(arg);
+                println(arg);
         }
         for val i : [0, args.length) {
-                System.out.println(i);
+                println(i);
         }
         while true {
-                System.out.println("...");
+                println("...");
         break;
         }
         do {
@@ -20,15 +20,15 @@ public class CompactControlFlowTestData {
         } while true;
         switch args.length {
         case 0:
-            System.out.println("...");
+            println("...");
         }
             try {
-                System.out.println("...");
+                println("...");
         } catch Exception e {
                 e.printStackTrace();
         }
             if (true){
-                System.out.println("...");
+                println("...");
         }
     }
 }

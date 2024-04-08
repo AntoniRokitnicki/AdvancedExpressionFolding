@@ -10,14 +10,14 @@ class LetReturnIt {
         val var4 = getData(someString)?.let { return it }
         var4;
         val var5 = getData(someString) ?: return null
-        System.out.println("$var51");
+        println("$var51");
 
 
         val var6 = getData(someString) ?: return null
         while true {
             if LocalDate.now() > LocalDate.now() {
                 if var6 == null {
-                    System.out.println("1");
+                    println("1");
                 }
             }
             break;
@@ -28,7 +28,7 @@ class LetReturnIt {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                System.out.println("$var71");
+                println("$var71");
             }
         });
         return null;

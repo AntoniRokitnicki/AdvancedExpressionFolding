@@ -5,10 +5,10 @@ public class ElvisTestData {
 
     public static void main(String[] args) <fold text='{...}' expand='true'>{
         <fold text='val' expand='false'>ElvisTestData</fold> e = create();
-        System.out.println(<fold text='' expand='false'>e != null ? </fold>e<fold text=' ?: ' expand='false'> : </fold>"");
-        System.out.println(<fold text='' expand='false'>e != null ? </fold>e<fold text='?.' expand='false'>.</fold>sayHello()<fold text=' ?: ' expand='false'> : </fold>"");
-        System.out.println(<fold text='e?.get != null' expand='false'>e != null && e.get() != null</fold> ? e.get() : ""); // Should be System.out.println(e?.get ?: "")
-        System.out.println(<fold text='e?.get != null' expand='false'>e != null && e.get() != null</fold> ? e.get().sayHello() : ""); // Should be System.out.println(e?.get?.sayHello() ?: "")
+        <fold text='' expand='false'>System.out.</fold>println(<fold text='' expand='false'>e != null ? </fold>e<fold text=' ?: ' expand='false'> : </fold>"");
+        <fold text='' expand='false'>System.out.</fold>println(<fold text='' expand='false'>e != null ? </fold>e<fold text='?.' expand='false'>.</fold>sayHello()<fold text=' ?: ' expand='false'> : </fold>"");
+        <fold text='' expand='false'>System.out.</fold>println(<fold text='e?.get != null' expand='false'>e != null && e.get() != null</fold> ? e.get() : ""); // Should be System.out.println(e?.get ?: "")
+        <fold text='' expand='false'>System.out.</fold>println(<fold text='e?.get != null' expand='false'>e != null && e.get() != null</fold> ? e.get().sayHello() : ""); // Should be System.out.println(e?.get?.sayHello() ?: "")
         if (e != null) <fold text='{...}' expand='true'>{
                 e<fold text='?.' expand='false'>.</fold>get().sayHello();<fold text='' expand='false'>
         }</fold></fold>

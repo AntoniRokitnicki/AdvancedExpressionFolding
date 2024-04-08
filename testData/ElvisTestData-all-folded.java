@@ -5,10 +5,10 @@ public class ElvisTestData {
 
     public static void main(String[] args) {
         val e = create();
-        System.out.println(e ?: "");
-        System.out.println(e?.sayHello() ?: "");
-        System.out.println(e?.get != null ? e.get() : ""); // Should be System.out.println(e?.get ?: "")
-        System.out.println(e?.get != null ? e.get().sayHello() : ""); // Should be System.out.println(e?.get?.sayHello() ?: "")
+        println(e ?: "");
+        println(e?.sayHello() ?: "");
+        println(e?.get != null ? e.get() : ""); // Should be System.out.println(e?.get ?: "")
+        println(e?.get != null ? e.get().sayHello() : ""); // Should be System.out.println(e?.get?.sayHello() ?: "")
         e?.get().sayHello();
         e.get()?.sayHello();
         if e?.get != null {

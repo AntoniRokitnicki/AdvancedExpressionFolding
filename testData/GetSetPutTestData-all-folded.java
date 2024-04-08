@@ -6,24 +6,24 @@ public class GetSetPutTestData {
     public static void main(String[] args) {
         val list = ["one", "two"];
         list[1] = "three";
-        System.out.println(list.last());
-        System.out.println(args.last());
+        println(list.last());
+        println(args.last());
         val map = new HashMap<>();
         map["one"] = 1;
-        System.out.println(map["two"]);
+        println(map["two"]);
         val singleton = ["one"];
-        System.out.println(singleton);
+        println(singleton);
         val asList = ["one", "two"];
-        System.out.println(asList);
+        println(asList);
         val copy = ["one", "two"];
-        System.out.println(copy);
+        println(copy);
         val unmodifiable = ["one", "two"];
-        System.out.println(unmodifiable);
+        println(unmodifiable);
         val set = ["one", "two"];
-        System.out.println(set);
+        println(set);
         val copyOfSet = ["one", "two"];
-        System.out.println(copyOfSet);
+        println(copyOfSet);
         val strings = ["one", "two"];
-        System.out.println(Arrays.toString(strings));
+        println(Arrays.toString(strings));
     }
 }
