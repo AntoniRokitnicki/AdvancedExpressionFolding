@@ -49,7 +49,7 @@ abstract class AbstractExpressionFoldingOptionsProvider : BeanConfigurable<Advan
                     addLink(
                         panel,
                         description,
-                        "https://raw.githubusercontent.com/AntoniRokitnicki/AdvancedExpressionFolding/master/test/data/$file"
+                        "https://raw.githubusercontent.com/AntoniRokitnicki/AdvancedExpressionFolding/master/examples/data/$file"
                     )
                 }
             }
