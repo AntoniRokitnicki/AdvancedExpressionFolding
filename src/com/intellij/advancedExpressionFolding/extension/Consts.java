@@ -82,11 +82,8 @@ public interface Consts {
             add("unmodifiableSet");
             add("unmodifiableList");
             add("toString");
-            add("isBefore");
-            add("isAfter");
-            // LocalDate literal
-            add("of");
             //Optional
+            add("of");
             add("map");
             add("flatMap");
             add("orElse");
@@ -126,7 +123,6 @@ public interface Consts {
             add("java.util.Collections");
             add("java.util.Objects");
             add("java.util.stream.Stream");
-            add("java.time.LocalDate");
             add("java.io.PrintStream");
         }
     };

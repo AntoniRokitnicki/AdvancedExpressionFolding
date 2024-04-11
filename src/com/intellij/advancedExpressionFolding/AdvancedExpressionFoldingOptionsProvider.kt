@@ -1,5 +1,7 @@
 package com.intellij.advancedExpressionFolding
 
+import com.intellij.advancedExpressionFolding.extension.methodcall.MethodCallFactory
+
 class AdvancedExpressionFoldingOptionsProvider : AbstractExpressionFoldingOptionsProvider() {
 
     init {
@@ -159,6 +161,11 @@ class AdvancedExpressionFoldingOptionsProvider : AbstractExpressionFoldingOption
             state::testDataFoldingDiff,
             docLink = "/Folding-of-testData-in-diff"
         )
+    }
+
+    override fun apply() {
+        super.apply()
+        MethodCallFactory.clear()
     }
 
 }

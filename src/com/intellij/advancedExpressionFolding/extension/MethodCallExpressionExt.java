@@ -9,6 +9,9 @@ import com.intellij.advancedExpressionFolding.expression.stream.StreamExpression
 import com.intellij.advancedExpressionFolding.expression.stream.StreamFilterNotNull;
 import com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall;
 import com.intellij.advancedExpressionFolding.expression.stream.StreamMapCallParam;
+import com.intellij.advancedExpressionFolding.extension.methodcall.AbstractMethodCall;
+import com.intellij.advancedExpressionFolding.extension.methodcall.Context;
+import com.intellij.advancedExpressionFolding.extension.methodcall.MethodCallFactory;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.*;
@@ -20,12 +23,14 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static com.intellij.advancedExpressionFolding.extension.BaseExtension.isInt;
-import static com.intellij.advancedExpressionFolding.extension.Consts.*;
+import static com.intellij.advancedExpressionFolding.extension.Consts.UNSUPPORTED_CLASSES_METHODS_EXCEPTIONS;
 import static com.intellij.advancedExpressionFolding.extension.PropertyUtil.guessPropertyName;
 import static com.intellij.advancedExpressionFolding.extension.ReferenceExpressionExt.getReferenceExpression;
 
 @SuppressWarnings({"RedundantIfStatement", "SwitchStatementWithTooFewBranches", "unused", "EnhancedSwitchMigration", "RedundantSuppression"})
 public class MethodCallExpressionExt {
+
+    private static final MethodCallFactory FACTORY = MethodCallFactory.INSTANCE;
 
     @Nullable
     static Expression getMethodCallExpression(PsiMethodCallExpression element, @NotNull Document document) {
@@ -44,14 +49,14 @@ public class MethodCallExpressionExt {
             return shiftExpr;
         }
 
-        if (SUPPORTED_METHODS.contains(identifier.getText())) {
+        if (FACTORY.getSupportedMethods().contains(identifier.getText())) {
             PsiMethod method = (PsiMethod) referenceExpression.resolve();
             if (method != null) {
                 PsiClass psiClass = method.getContainingClass();
                 if (psiClass != null && psiClass.getQualifiedName() != null) {
                     String className = Helper.eraseGenerics(psiClass.getQualifiedName());
                     BuilderShiftExt.markIfBuilder(element, psiClass);
-                    if ((SUPPORTED_CLASSES.contains(className) || UNSUPPORTED_CLASSES_METHODS_EXCEPTIONS.contains(method.getName()))
+                    if ((FACTORY.getSupportedClasses().contains(className) || UNSUPPORTED_CLASSES_METHODS_EXCEPTIONS.contains(method.getName()))
                             && qualifier != null) {
                         Expression result = onAnyExpression(element, document, qualifier, identifier, settings, className, method);
                         if (result != null) {
@@ -73,6 +78,16 @@ public class MethodCallExpressionExt {
         @NotNull Expression qualifierExpression = BuildExpressionExt.getAnyExpression(qualifier, document);
         String methodName = identifier.getText();
         int argumentCount = element.getArgumentList().getExpressions().length;
+
+        var context = new Context(methodName, className, qualifierExpression, method, document, identifier);
+
+        for (AbstractMethodCall methodCall : FACTORY.getMethodCalls()) {
+            var expression = methodCall.onAnyArguments(element, context);
+            if (expression != null) {
+                return expression;
+            }
+        }
+
         if (methodName.equals("asList") || methodName.equals("singletonList")) {
             ListLiteral result = onListLiteral(element, document, methodName, settings);
             if (result != null) {
@@ -90,11 +105,6 @@ public class MethodCallExpressionExt {
             }
         } else if (argumentCount == 2) {
             var result = onTwoArguments(element, methodName, className, qualifierExpression, settings, method, document, identifier);
-            if (result != null) {
-                return result;
-            }
-        } else if (argumentCount == 3) {
-            var result = onThreeArguments(element, methodName, className, qualifierExpression, settings, method, document, identifier);
             if (result != null) {
                 return result;
             }
@@ -323,18 +333,6 @@ public class MethodCallExpressionExt {
                     } else {
                         break;
                     }
-            }
-        }
-        return null;
-    }
-
-    private static @Nullable Expression onThreeArguments(PsiMethodCallExpression element, String methodName, String className, Expression qualifierExpression, @NotNull AdvancedExpressionFoldingSettings settings, PsiMethod method, @NotNull Document document, PsiElement identifier) {
-        PsiExpression a1 = element.getArgumentList().getExpressions()[0];
-        PsiExpression a2 = element.getArgumentList().getExpressions()[1];
-        PsiExpression a3 = element.getArgumentList().getExpressions()[2];
-        if (methodName.equals("of") && className.equals("java.time.LocalDate") && settings.getState().getLocalDateLiteralCollapse()) {
-            if (a1 instanceof PsiLiteralExpression year && a2 instanceof PsiLiteralExpression month && a3 instanceof PsiLiteralExpression day) {
-                return new LocalDateLiteral(element, element.getTextRange(), year, month, day);
             }
         }
         return null;
@@ -706,20 +704,6 @@ public class MethodCallExpressionExt {
                     }
                 }
                 break;
-            // LocalDate handling
-            case "isBefore":
-                if (settings.getState().getComparingLocalDatesCollapse()) {
-                    return new Less(element, element.getTextRange(), Arrays.asList(qualifierExpression, argumentExpression));
-                } else {
-                    break;
-                }
-
-            case "isAfter":
-                if (settings.getState().getComparingLocalDatesCollapse()) {
-                    return new Greater(element, element.getTextRange(), Arrays.asList(qualifierExpression, argumentExpression));
-                } else {
-                    break;
-                }
         }
 
         return null;
