@@ -30,11 +30,7 @@ import static com.intellij.advancedExpressionFolding.extension.ReferenceExpressi
 @SuppressWarnings({"RedundantIfStatement", "SwitchStatementWithTooFewBranches", "unused", "EnhancedSwitchMigration", "RedundantSuppression"})
 public class MethodCallExpressionExt {
 
-
-    //FIXME: override in tests and by GUI
-
     private static final MethodCallFactory FACTORY = MethodCallFactory.INSTANCE;
-
 
     @Nullable
     static Expression getMethodCallExpression(PsiMethodCallExpression element, @NotNull Document document) {
