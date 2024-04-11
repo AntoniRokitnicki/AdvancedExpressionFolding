@@ -82,8 +82,6 @@ public interface Consts {
             add("unmodifiableSet");
             add("unmodifiableList");
             add("toString");
-            // LocalDate literal
-            //Removed: add("of");
             //Optional
             add("of");
             add("map");
