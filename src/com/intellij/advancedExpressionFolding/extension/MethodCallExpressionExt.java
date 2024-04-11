@@ -108,11 +108,6 @@ public class MethodCallExpressionExt {
             if (result != null) {
                 return result;
             }
-        } else if (argumentCount == 3) {
-            var result = onThreeArguments(element, methodName, className, qualifierExpression, settings, method, document, identifier);
-            if (result != null) {
-                return result;
-            }
         }
         if (argumentCount == 1) {
             var result = onSingleArgumentAllClasses(element, methodName, className, qualifierExpression, settings, method, document, identifier);
@@ -338,18 +333,6 @@ public class MethodCallExpressionExt {
                     } else {
                         break;
                     }
-            }
-        }
-        return null;
-    }
-
-    private static @Nullable Expression onThreeArguments(PsiMethodCallExpression element, String methodName, String className, Expression qualifierExpression, @NotNull AdvancedExpressionFoldingSettings settings, PsiMethod method, @NotNull Document document, PsiElement identifier) {
-        PsiExpression a1 = element.getArgumentList().getExpressions()[0];
-        PsiExpression a2 = element.getArgumentList().getExpressions()[1];
-        PsiExpression a3 = element.getArgumentList().getExpressions()[2];
-        if (methodName.equals("of") && className.equals("java.time.LocalDate") && settings.getState().getLocalDateLiteralCollapse()) {
-            if (a1 instanceof PsiLiteralExpression year && a2 instanceof PsiLiteralExpression month && a3 instanceof PsiLiteralExpression day) {
-                return new LocalDateLiteral(element, element.getTextRange(), year, month, day);
             }
         }
         return null;
@@ -721,20 +704,6 @@ public class MethodCallExpressionExt {
                     }
                 }
                 break;
-            // LocalDate handling
-            case "isBefore":
-                if (settings.getState().getComparingLocalDatesCollapse()) {
-                    return new Less(element, element.getTextRange(), Arrays.asList(qualifierExpression, argumentExpression));
-                } else {
-                    break;
-                }
-
-            case "isAfter":
-                if (settings.getState().getComparingLocalDatesCollapse()) {
-                    return new Greater(element, element.getTextRange(), Arrays.asList(qualifierExpression, argumentExpression));
-                } else {
-                    break;
-                }
         }
 
         return null;

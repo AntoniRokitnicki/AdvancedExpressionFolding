@@ -12,7 +12,7 @@ class FactoryDateMethodCall : AbstractDateMethodCall() {
 
     override fun methodName() = "of"
 
-    override fun OnManyArguments(
+    override fun onManyArguments(
         element: PsiMethodCallExpression,
         context: Context,
         expressions: Array<PsiExpression>

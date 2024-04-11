@@ -23,7 +23,6 @@ abstract class AbstractMethodCall : BaseExtension() {
             return null
         }
 
-
         val expressions = element.argumentList.expressions
         return when (expressions.size) {
             0 -> onNoArguments(element, context)
@@ -40,7 +39,7 @@ abstract class AbstractMethodCall : BaseExtension() {
                 onTwoArguments(element, context, a1, a2, a1Expression, a2Expression)
             }
 
-            else -> OnManyArguments(element, context, expressions)
+            else -> onManyArguments(element, context, expressions)
         }
     }
 
@@ -61,7 +60,7 @@ abstract class AbstractMethodCall : BaseExtension() {
         a2Expression: Expression
     ): Expression? = null
 
-    open fun OnManyArguments(
+    open fun onManyArguments(
         element: PsiMethodCallExpression,
         context: Context,
         expressions: Array<PsiExpression>
