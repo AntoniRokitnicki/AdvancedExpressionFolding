@@ -17,11 +17,13 @@ class FactoryDateMethodCall : AbstractDateMethodCall() {
         context: Context,
         expressions: Array<PsiExpression>
     ): Expression? {
-        val literals = element.argumentList.expressions.let { array ->
+        val literals = element.argumentList.expressions.takeIf {
+            it.size == 3
+        }?.let { array ->
             array.mapNotNull {
                 it as? PsiLiteralExpression
             }
-        }.takeIf {
+        }?.takeIf {
             it.size == 3
         } ?: return null
 
