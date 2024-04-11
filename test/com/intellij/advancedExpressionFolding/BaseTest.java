@@ -1,5 +1,6 @@
 package com.intellij.advancedExpressionFolding;
 
+import com.intellij.advancedExpressionFolding.extension.methodcall.MethodCallFactory;
 import com.intellij.openapi.application.WriteAction;
 import com.intellij.openapi.fileTypes.FileTypeManager;
 import com.intellij.openapi.projectRoots.JavaSdk;
@@ -43,6 +44,7 @@ public abstract class BaseTest extends LightJavaCodeInsightFixtureTestCase {
     }
 
     private static void rewriteFileOnFailure(String fileName, String testName, Runnable action) {
+        MethodCallFactory.INSTANCE.clear();
         var store = new FoldingDataStorage();
         AdvancedExpressionFoldingBuilder.setStore(store);
         try {
