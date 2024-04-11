@@ -9,6 +9,9 @@ import com.intellij.advancedExpressionFolding.expression.stream.StreamExpression
 import com.intellij.advancedExpressionFolding.expression.stream.StreamFilterNotNull;
 import com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall;
 import com.intellij.advancedExpressionFolding.expression.stream.StreamMapCallParam;
+import com.intellij.advancedExpressionFolding.extension.methodcall.AbstractMethodCall;
+import com.intellij.advancedExpressionFolding.extension.methodcall.Context;
+import com.intellij.advancedExpressionFolding.extension.methodcall.MethodCallFactory;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.*;
@@ -27,6 +30,12 @@ import static com.intellij.advancedExpressionFolding.extension.ReferenceExpressi
 @SuppressWarnings({"RedundantIfStatement", "SwitchStatementWithTooFewBranches", "unused", "EnhancedSwitchMigration", "RedundantSuppression"})
 public class MethodCallExpressionExt {
 
+
+    //FIXME: override in tests and by GUI
+    private static final List<AbstractMethodCall> METHOD_CALLS = MethodCallFactory.INSTANCE.getMethods();
+    private static final Set<String> SUPPORTED_METHODS_EX = MethodCallFactory.INSTANCE.appendSupportedMethods(SUPPORTED_METHODS);
+    private static final Set<String> SUPPORTED_CLASSES_EX = MethodCallFactory.INSTANCE.appendSupportedClasses(SUPPORTED_CLASSES);
+
     @Nullable
     static Expression getMethodCallExpression(PsiMethodCallExpression element, @NotNull Document document) {
         @NotNull AdvancedExpressionFoldingSettings settings = AdvancedExpressionFoldingSettings.getInstance();
@@ -44,14 +53,14 @@ public class MethodCallExpressionExt {
             return shiftExpr;
         }
 
-        if (SUPPORTED_METHODS.contains(identifier.getText())) {
+        if (SUPPORTED_METHODS_EX.contains(identifier.getText())) {
             PsiMethod method = (PsiMethod) referenceExpression.resolve();
             if (method != null) {
                 PsiClass psiClass = method.getContainingClass();
                 if (psiClass != null && psiClass.getQualifiedName() != null) {
                     String className = Helper.eraseGenerics(psiClass.getQualifiedName());
                     BuilderShiftExt.markIfBuilder(element, psiClass);
-                    if ((SUPPORTED_CLASSES.contains(className) || UNSUPPORTED_CLASSES_METHODS_EXCEPTIONS.contains(method.getName()))
+                    if ((SUPPORTED_CLASSES_EX.contains(className) || UNSUPPORTED_CLASSES_METHODS_EXCEPTIONS.contains(method.getName()))
                             && qualifier != null) {
                         Expression result = onAnyExpression(element, document, qualifier, identifier, settings, className, method);
                         if (result != null) {
@@ -73,6 +82,16 @@ public class MethodCallExpressionExt {
         @NotNull Expression qualifierExpression = BuildExpressionExt.getAnyExpression(qualifier, document);
         String methodName = identifier.getText();
         int argumentCount = element.getArgumentList().getExpressions().length;
+
+        var context = new Context(methodName, className, qualifierExpression, method, document, identifier);
+
+        for (AbstractMethodCall methodCall : METHOD_CALLS) {
+            var expression = methodCall.onAnyArguments(element, context);
+            if (expression != null) {
+                return expression;
+            }
+        }
+
         if (methodName.equals("asList") || methodName.equals("singletonList")) {
             ListLiteral result = onListLiteral(element, document, methodName, settings);
             if (result != null) {
