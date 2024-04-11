@@ -1,26 +1,37 @@
 package com.intellij.advancedExpressionFolding.extension.methodcall
 
+import com.intellij.advancedExpressionFolding.extension.Consts
 import com.intellij.advancedExpressionFolding.extension.methodcall.date.FactoryDateMethodCall
 import com.intellij.advancedExpressionFolding.extension.methodcall.date.IsAfterDateMethodCall
 import com.intellij.advancedExpressionFolding.extension.methodcall.date.IsBeforeDateMethodCall
 
 //TODO: move to extension-point
 object MethodCallFactory {
-    val methods: List<AbstractMethodCall> by lazy {
-        mutableListOf(IsBeforeDateMethodCall(), IsAfterDateMethodCall(), FactoryDateMethodCall()).filter {
-            it.permission()
+    var methodCalls: MutableList<AbstractMethodCall> = createMethodCalls()
+    var supportedMethods: Collection<String> = createSupportedMethods()
+    var supportedClasses: Collection<String> = createSupportedClasses()
+
+    fun clear() {
+        methodCalls.clear()
+        init()
+    }
+
+    fun init() {
+        if (methodCalls.isEmpty()) {
+            methodCalls = createMethodCalls()
+            supportedMethods = createSupportedMethods()
+            supportedClasses = createSupportedClasses()
         }
     }
 
-    //FIXME: dont reuse sets
+    private fun createMethodCalls(): MutableList<AbstractMethodCall> =
+        mutableListOf(IsBeforeDateMethodCall(), IsAfterDateMethodCall(), FactoryDateMethodCall()).filter {
+            it.permission()
+        }.toMutableList()
 
-    fun appendSupportedMethods(supportedMethods: MutableSet<String>): MutableSet<String> {
-        methods.mapNotNull { it.methodName() }.forEach(supportedMethods::add)
-        return supportedMethods
-    }
+    private fun createSupportedMethods(): List<String> =
+        methodCalls.mapNotNull { it.methodName() } + Consts.SUPPORTED_METHODS
 
-    fun appendSupportedClasses(supportedClasses: MutableSet<String>): MutableSet<String> {
-        methods.map { it.classNames }.flatten().forEach(supportedClasses::add)
-        return supportedClasses
-    }
+    private fun createSupportedClasses(): Collection<String> =
+        methodCalls.map { it.classNames }.flatten() + Consts.SUPPORTED_CLASSES
 }

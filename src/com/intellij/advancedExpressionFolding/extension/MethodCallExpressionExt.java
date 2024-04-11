@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static com.intellij.advancedExpressionFolding.extension.BaseExtension.isInt;
-import static com.intellij.advancedExpressionFolding.extension.Consts.*;
+import static com.intellij.advancedExpressionFolding.extension.Consts.UNSUPPORTED_CLASSES_METHODS_EXCEPTIONS;
 import static com.intellij.advancedExpressionFolding.extension.PropertyUtil.guessPropertyName;
 import static com.intellij.advancedExpressionFolding.extension.ReferenceExpressionExt.getReferenceExpression;
 
@@ -32,9 +32,9 @@ public class MethodCallExpressionExt {
 
 
     //FIXME: override in tests and by GUI
-    private static final List<AbstractMethodCall> METHOD_CALLS = MethodCallFactory.INSTANCE.getMethods();
-    private static final Set<String> SUPPORTED_METHODS_EX = MethodCallFactory.INSTANCE.appendSupportedMethods(SUPPORTED_METHODS);
-    private static final Set<String> SUPPORTED_CLASSES_EX = MethodCallFactory.INSTANCE.appendSupportedClasses(SUPPORTED_CLASSES);
+
+    private static final MethodCallFactory FACTORY = MethodCallFactory.INSTANCE;
+
 
     @Nullable
     static Expression getMethodCallExpression(PsiMethodCallExpression element, @NotNull Document document) {
@@ -53,14 +53,14 @@ public class MethodCallExpressionExt {
             return shiftExpr;
         }
 
-        if (SUPPORTED_METHODS_EX.contains(identifier.getText())) {
+        if (FACTORY.getSupportedMethods().contains(identifier.getText())) {
             PsiMethod method = (PsiMethod) referenceExpression.resolve();
             if (method != null) {
                 PsiClass psiClass = method.getContainingClass();
                 if (psiClass != null && psiClass.getQualifiedName() != null) {
                     String className = Helper.eraseGenerics(psiClass.getQualifiedName());
                     BuilderShiftExt.markIfBuilder(element, psiClass);
-                    if ((SUPPORTED_CLASSES_EX.contains(className) || UNSUPPORTED_CLASSES_METHODS_EXCEPTIONS.contains(method.getName()))
+                    if ((FACTORY.getSupportedClasses().contains(className) || UNSUPPORTED_CLASSES_METHODS_EXCEPTIONS.contains(method.getName()))
                             && qualifier != null) {
                         Expression result = onAnyExpression(element, document, qualifier, identifier, settings, className, method);
                         if (result != null) {
@@ -85,7 +85,7 @@ public class MethodCallExpressionExt {
 
         var context = new Context(methodName, className, qualifierExpression, method, document, identifier);
 
-        for (AbstractMethodCall methodCall : METHOD_CALLS) {
+        for (AbstractMethodCall methodCall : FACTORY.getMethodCalls()) {
             var expression = methodCall.onAnyArguments(element, context);
             if (expression != null) {
                 return expression;
