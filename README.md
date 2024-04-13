@@ -26,6 +26,8 @@
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/w/AntoniRokitnicki/AdvancedExpressionFolding)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/t/AntoniRokitnicki/AdvancedExpressionFolding)
 
+![Known Vulnerabilities](https://snyk.io/test/github/antonirokitnicki/AdvancedExpressionFolding/badge.svg)
+
 <!-- Plugin description -->
 <p>Modern JVM languages such as Kotlin, Groovy, Scala and some others offer many language features that let you
   write code in a more concise and expressive manner. These features include type inference, properties,
