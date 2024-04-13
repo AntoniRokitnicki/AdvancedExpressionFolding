@@ -5,8 +5,8 @@
     "text" : "Object",
     "placeholder" : "var",
     "range" : {
-      "start" : 369,
-      "end" : 375,
+      "start" : 273,
+      "end" : 279,
       "size" : 6
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
@@ -15,8 +15,8 @@
     "text" : "(",
     "placeholder" : "",
     "range" : {
-      "start" : 397,
-      "end" : 398,
+      "start" : 301,
+      "end" : 302,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
@@ -25,8 +25,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 413,
-      "end" : 414,
+      "start" : 317,
+      "end" : 318,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
@@ -35,8 +35,8 @@
     "text" : "isPresent()",
     "placeholder" : "present",
     "range" : {
-      "start" : 402,
-      "end" : 413,
+      "start" : 306,
+      "end" : 317,
       "size" : 11
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
@@ -45,8 +45,8 @@
     "text" : ".get()",
     "placeholder" : "!!",
     "range" : {
-      "start" : 436,
-      "end" : 442,
+      "start" : 340,
+      "end" : 346,
       "size" : 6
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
@@ -55,8 +55,8 @@
     "text" : ".orElseThrow()",
     "placeholder" : "!!",
     "range" : {
-      "start" : 469,
-      "end" : 483,
+      "start" : 373,
+      "end" : 387,
       "size" : 14
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
@@ -65,8 +65,8 @@
     "text" : "Optional.ofNullable(",
     "placeholder" : "",
     "range" : {
-      "start" : 498,
-      "end" : 518,
+      "start" : 402,
+      "end" : 422,
       "size" : 20
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOfNullable"
@@ -75,8 +75,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 526,
-      "end" : 527,
+      "start" : 430,
+      "end" : 431,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOfNullable"
@@ -85,8 +85,8 @@
     "text" : "Optional.of(",
     "placeholder" : "",
     "range" : {
-      "start" : 541,
-      "end" : 553,
+      "start" : 445,
+      "end" : 457,
       "size" : 12
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOf"
@@ -95,8 +95,8 @@
     "text" : ")",
     "placeholder" : "!!",
     "range" : {
-      "start" : 557,
-      "end" : 558,
+      "start" : 461,
+      "end" : 462,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOf"
@@ -105,8 +105,8 @@
     "text" : ".orElseGet(",
     "placeholder" : " ?: ",
     "range" : {
-      "start" : 602,
-      "end" : 613,
+      "start" : 506,
+      "end" : 517,
       "size" : 11
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOrElseElvis"
@@ -115,8 +115,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 634,
-      "end" : 635,
+      "start" : 538,
+      "end" : 539,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOrElseElvis"
@@ -125,8 +125,8 @@
     "text" : "Optional.ofNullable(",
     "placeholder" : "",
     "range" : {
-      "start" : 573,
-      "end" : 593,
+      "start" : 477,
+      "end" : 497,
       "size" : 20
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOfNullable"
@@ -135,8 +135,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 601,
-      "end" : 602,
+      "start" : 505,
+      "end" : 506,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOfNullable"
@@ -145,8 +145,8 @@
     "text" : ".orElseGet(",
     "placeholder" : " ?: ",
     "range" : {
-      "start" : 678,
-      "end" : 689,
+      "start" : 582,
+      "end" : 593,
       "size" : 11
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOrElseElvis"
@@ -155,8 +155,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 719,
-      "end" : 720,
+      "start" : 623,
+      "end" : 624,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOrElseElvis"
@@ -165,8 +165,8 @@
     "text" : "Optional.ofNullable(",
     "placeholder" : "",
     "range" : {
-      "start" : 649,
-      "end" : 669,
+      "start" : 553,
+      "end" : 573,
       "size" : 20
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOfNullable"
@@ -175,8 +175,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 677,
-      "end" : 678,
+      "start" : 581,
+      "end" : 582,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOfNullable"
@@ -185,8 +185,8 @@
     "text" : "getData()",
     "placeholder" : "data",
     "range" : {
-      "start" : 710,
-      "end" : 719,
+      "start" : 614,
+      "end" : 623,
       "size" : 9
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
@@ -195,8 +195,8 @@
     "text" : "getData()",
     "placeholder" : "data",
     "range" : {
-      "start" : 700,
-      "end" : 709,
+      "start" : 604,
+      "end" : 613,
       "size" : 9
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
@@ -205,8 +205,8 @@
     "text" : ".orElse(",
     "placeholder" : " ?: ",
     "range" : {
-      "start" : 771,
-      "end" : 779,
+      "start" : 675,
+      "end" : 683,
       "size" : 8
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOrElseElvis"
@@ -215,8 +215,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 783,
-      "end" : 784,
+      "start" : 687,
+      "end" : 688,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOrElseElvis"
@@ -225,8 +225,8 @@
     "text" : ".map(",
     "placeholder" : ".",
     "range" : {
-      "start" : 752,
-      "end" : 757,
+      "start" : 656,
+      "end" : 661,
       "size" : 5
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapCall"
@@ -235,8 +235,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 770,
-      "end" : 771,
+      "start" : 674,
+      "end" : 675,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapCall"
@@ -245,8 +245,8 @@
     "text" : "Optional.of(",
     "placeholder" : "",
     "range" : {
-      "start" : 735,
-      "end" : 747,
+      "start" : 639,
+      "end" : 651,
       "size" : 12
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOf"
@@ -255,8 +255,8 @@
     "text" : ")",
     "placeholder" : "!!",
     "range" : {
-      "start" : 751,
-      "end" : 752,
+      "start" : 655,
+      "end" : 656,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOf"
@@ -265,8 +265,8 @@
     "text" : "Data::getData",
     "placeholder" : "data",
     "range" : {
-      "start" : 757,
-      "end" : 770,
+      "start" : 661,
+      "end" : 674,
       "size" : 13
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
@@ -275,8 +275,8 @@
     "text" : ".get()",
     "placeholder" : "!!",
     "range" : {
-      "start" : 865,
-      "end" : 871,
+      "start" : 769,
+      "end" : 775,
       "size" : 6
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
@@ -285,8 +285,8 @@
     "text" : "Optional.ofNullable(",
     "placeholder" : "",
     "range" : {
-      "start" : 798,
-      "end" : 818,
+      "start" : 702,
+      "end" : 722,
       "size" : 20
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOfNullable"
@@ -295,8 +295,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 826,
-      "end" : 827,
+      "start" : 730,
+      "end" : 731,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOfNullable"
@@ -305,8 +305,8 @@
     "text" : "Optional.ofNullable(",
     "placeholder" : "",
     "range" : {
-      "start" : 798,
-      "end" : 818,
+      "start" : 702,
+      "end" : 722,
       "size" : 20
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOfNullable"
@@ -315,8 +315,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 826,
-      "end" : 827,
+      "start" : 730,
+      "end" : 731,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOfNullable"
@@ -325,8 +325,8 @@
     "text" : ".orElse(",
     "placeholder" : " ?: ",
     "range" : {
-      "start" : 1292,
-      "end" : 1300,
+      "start" : 1196,
+      "end" : 1204,
       "size" : 8
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOrElseElvis"
@@ -335,8 +335,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 1304,
-      "end" : 1305,
+      "start" : 1208,
+      "end" : 1209,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOrElseElvis"
@@ -345,8 +345,8 @@
     "text" : "\n                .map(",
     "placeholder" : "?.",
     "range" : {
-      "start" : 1123,
-      "end" : 1145,
+      "start" : 1027,
+      "end" : 1049,
       "size" : 22
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
@@ -355,8 +355,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 1155,
-      "end" : 1156,
+      "start" : 1059,
+      "end" : 1060,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
@@ -365,8 +365,8 @@
     "text" : "\n                .map(",
     "placeholder" : "?.",
     "range" : {
-      "start" : 1008,
-      "end" : 1030,
+      "start" : 912,
+      "end" : 934,
       "size" : 22
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
@@ -375,8 +375,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 1043,
-      "end" : 1044,
+      "start" : 947,
+      "end" : 948,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
@@ -385,8 +385,8 @@
     "text" : ".map(",
     "placeholder" : ".",
     "range" : {
-      "start" : 989,
-      "end" : 994,
+      "start" : 893,
+      "end" : 898,
       "size" : 5
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapCall"
@@ -395,8 +395,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 1007,
-      "end" : 1008,
+      "start" : 911,
+      "end" : 912,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapCall"
@@ -405,8 +405,8 @@
     "text" : "Optional.of(",
     "placeholder" : "",
     "range" : {
-      "start" : 972,
-      "end" : 984,
+      "start" : 876,
+      "end" : 888,
       "size" : 12
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOf"
@@ -415,8 +415,8 @@
     "text" : ")",
     "placeholder" : "!!",
     "range" : {
-      "start" : 988,
-      "end" : 989,
+      "start" : 892,
+      "end" : 893,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOf"
@@ -425,8 +425,8 @@
     "text" : "Data::getData",
     "placeholder" : "data",
     "range" : {
-      "start" : 994,
-      "end" : 1007,
+      "start" : 898,
+      "end" : 911,
       "size" : 13
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
@@ -435,8 +435,8 @@
     "text" : "Data::getData",
     "placeholder" : "data",
     "range" : {
-      "start" : 1030,
-      "end" : 1043,
+      "start" : 934,
+      "end" : 947,
       "size" : 13
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
@@ -445,8 +445,8 @@
     "text" : "Data::isOk",
     "placeholder" : "ok",
     "range" : {
-      "start" : 1145,
-      "end" : 1155,
+      "start" : 1049,
+      "end" : 1059,
       "size" : 10
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
@@ -455,8 +455,8 @@
     "text" : "var",
     "placeholder" : "val",
     "range" : {
-      "start" : 1217,
-      "end" : 1220,
+      "start" : 1121,
+      "end" : 1124,
       "size" : 3
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
@@ -465,8 +465,8 @@
     "text" : ".equals(",
     "placeholder" : " ≡ ",
     "range" : {
-      "start" : 1256,
-      "end" : 1264,
+      "start" : 1160,
+      "end" : 1168,
       "size" : 8
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.Equal"
@@ -475,8 +475,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 1271,
-      "end" : 1272,
+      "start" : 1175,
+      "end" : 1176,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.Equal"
@@ -485,8 +485,8 @@
     "text" : ".orElse(",
     "placeholder" : " ?: ",
     "range" : {
-      "start" : 1406,
-      "end" : 1414,
+      "start" : 1310,
+      "end" : 1318,
       "size" : 8
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOrElseElvis"
@@ -495,8 +495,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 1430,
-      "end" : 1431,
+      "start" : 1334,
+      "end" : 1335,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOrElseElvis"
@@ -505,8 +505,8 @@
     "text" : ".map(",
     "placeholder" : "?.",
     "range" : {
-      "start" : 1385,
-      "end" : 1390,
+      "start" : 1289,
+      "end" : 1294,
       "size" : 5
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
@@ -515,8 +515,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 1405,
-      "end" : 1406,
+      "start" : 1309,
+      "end" : 1310,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
@@ -525,8 +525,8 @@
     "text" : "Optional.of(",
     "placeholder" : "",
     "range" : {
-      "start" : 1320,
-      "end" : 1332,
+      "start" : 1224,
+      "end" : 1236,
       "size" : 12
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOf"
@@ -535,8 +535,8 @@
     "text" : ")",
     "placeholder" : "!!",
     "range" : {
-      "start" : 1346,
-      "end" : 1347,
+      "start" : 1250,
+      "end" : 1251,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOf"
@@ -545,8 +545,8 @@
     "text" : "getData()",
     "placeholder" : "data",
     "range" : {
-      "start" : 1337,
-      "end" : 1346,
+      "start" : 1241,
+      "end" : 1250,
       "size" : 9
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
@@ -555,8 +555,8 @@
     "text" : "Data::getString",
     "placeholder" : "string",
     "range" : {
-      "start" : 1390,
-      "end" : 1405,
+      "start" : 1294,
+      "end" : 1309,
       "size" : 15
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
@@ -565,8 +565,8 @@
     "text" : "getString()",
     "placeholder" : "string",
     "range" : {
-      "start" : 1419,
-      "end" : 1430,
+      "start" : 1323,
+      "end" : 1334,
       "size" : 11
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
@@ -575,8 +575,8 @@
     "text" : ".orElseGet(",
     "placeholder" : " ?: ",
     "range" : {
-      "start" : 1510,
-      "end" : 1521,
+      "start" : 1414,
+      "end" : 1425,
       "size" : 11
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOrElseElvis"
@@ -585,8 +585,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 1547,
-      "end" : 1548,
+      "start" : 1451,
+      "end" : 1452,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOrElseElvis"
@@ -595,8 +595,8 @@
     "text" : "Optional.of(",
     "placeholder" : "",
     "range" : {
-      "start" : 1442,
-      "end" : 1454,
+      "start" : 1346,
+      "end" : 1358,
       "size" : 12
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOf"
@@ -605,8 +605,8 @@
     "text" : ")",
     "placeholder" : "!!",
     "range" : {
-      "start" : 1458,
-      "end" : 1459,
+      "start" : 1362,
+      "end" : 1363,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOf"
@@ -615,8 +615,8 @@
     "text" : ".get()",
     "placeholder" : "!!",
     "range" : {
-      "start" : 1688,
-      "end" : 1694,
+      "start" : 1592,
+      "end" : 1598,
       "size" : 6
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
@@ -625,8 +625,8 @@
     "text" : ".map(",
     "placeholder" : "?.",
     "range" : {
-      "start" : 1667,
-      "end" : 1672,
+      "start" : 1571,
+      "end" : 1576,
       "size" : 5
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
@@ -635,8 +635,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 1687,
-      "end" : 1688,
+      "start" : 1591,
+      "end" : 1592,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
@@ -645,8 +645,8 @@
     "text" : ".filter(Objects::nonNull",
     "placeholder" : ".filterNotNull()",
     "range" : {
-      "start" : 1632,
-      "end" : 1656,
+      "start" : 1536,
+      "end" : 1560,
       "size" : 24
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamFilterNotNull"
@@ -655,8 +655,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 1656,
-      "end" : 1657,
+      "start" : 1560,
+      "end" : 1561,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamFilterNotNull"
@@ -665,8 +665,8 @@
     "text" : ".map(",
     "placeholder" : "*.",
     "range" : {
-      "start" : 1613,
-      "end" : 1618,
+      "start" : 1517,
+      "end" : 1522,
       "size" : 5
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
@@ -675,8 +675,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 1631,
-      "end" : 1632,
+      "start" : 1535,
+      "end" : 1536,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
@@ -685,8 +685,8 @@
     "text" : ".map(",
     "placeholder" : "?.",
     "range" : {
-      "start" : 1585,
-      "end" : 1590,
+      "start" : 1489,
+      "end" : 1494,
       "size" : 5
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
@@ -695,8 +695,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 1603,
-      "end" : 1604,
+      "start" : 1507,
+      "end" : 1508,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
@@ -705,8 +705,8 @@
     "text" : "Data::getData",
     "placeholder" : "data",
     "range" : {
-      "start" : 1590,
-      "end" : 1603,
+      "start" : 1494,
+      "end" : 1507,
       "size" : 13
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
@@ -715,8 +715,8 @@
     "text" : "Data::getData",
     "placeholder" : "data()",
     "range" : {
-      "start" : 1618,
-      "end" : 1631,
+      "start" : 1522,
+      "end" : 1535,
       "size" : 13
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
@@ -725,8 +725,8 @@
     "text" : ".map(",
     "placeholder" : "*.",
     "range" : {
-      "start" : 1613,
-      "end" : 1618,
+      "start" : 1517,
+      "end" : 1522,
       "size" : 5
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
@@ -735,8 +735,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 1631,
-      "end" : 1632,
+      "start" : 1535,
+      "end" : 1536,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
@@ -745,8 +745,8 @@
     "text" : ".map(",
     "placeholder" : "?.",
     "range" : {
-      "start" : 1585,
-      "end" : 1590,
+      "start" : 1489,
+      "end" : 1494,
       "size" : 5
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
@@ -755,8 +755,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 1603,
-      "end" : 1604,
+      "start" : 1507,
+      "end" : 1508,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
@@ -765,8 +765,8 @@
     "text" : "Data::getData",
     "placeholder" : "data",
     "range" : {
-      "start" : 1590,
-      "end" : 1603,
+      "start" : 1494,
+      "end" : 1507,
       "size" : 13
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
@@ -775,8 +775,8 @@
     "text" : "Data::getData",
     "placeholder" : "data()",
     "range" : {
-      "start" : 1618,
-      "end" : 1631,
+      "start" : 1522,
+      "end" : 1535,
       "size" : 13
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
@@ -785,8 +785,8 @@
     "text" : ".map(",
     "placeholder" : "?.",
     "range" : {
-      "start" : 1585,
-      "end" : 1590,
+      "start" : 1489,
+      "end" : 1494,
       "size" : 5
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
@@ -795,8 +795,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 1603,
-      "end" : 1604,
+      "start" : 1507,
+      "end" : 1508,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
@@ -805,8 +805,8 @@
     "text" : "Data::getData",
     "placeholder" : "data",
     "range" : {
-      "start" : 1590,
-      "end" : 1603,
+      "start" : 1494,
+      "end" : 1507,
       "size" : 13
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
@@ -815,8 +815,8 @@
     "text" : "Data::getData",
     "placeholder" : "data()",
     "range" : {
-      "start" : 1618,
-      "end" : 1631,
+      "start" : 1522,
+      "end" : 1535,
       "size" : 13
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
@@ -825,8 +825,8 @@
     "text" : "Data::getString",
     "placeholder" : "string",
     "range" : {
-      "start" : 1672,
-      "end" : 1687,
+      "start" : 1576,
+      "end" : 1591,
       "size" : 15
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
@@ -835,8 +835,8 @@
     "text" : ".map(",
     "placeholder" : "?.",
     "range" : {
-      "start" : 1667,
-      "end" : 1672,
+      "start" : 1571,
+      "end" : 1576,
       "size" : 5
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
@@ -845,8 +845,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 1687,
-      "end" : 1688,
+      "start" : 1591,
+      "end" : 1592,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
@@ -855,8 +855,8 @@
     "text" : ".filter(Objects::nonNull",
     "placeholder" : ".filterNotNull()",
     "range" : {
-      "start" : 1632,
-      "end" : 1656,
+      "start" : 1536,
+      "end" : 1560,
       "size" : 24
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamFilterNotNull"
@@ -865,8 +865,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 1656,
-      "end" : 1657,
+      "start" : 1560,
+      "end" : 1561,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamFilterNotNull"
@@ -875,8 +875,8 @@
     "text" : ".map(",
     "placeholder" : "*.",
     "range" : {
-      "start" : 1613,
-      "end" : 1618,
+      "start" : 1517,
+      "end" : 1522,
       "size" : 5
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
@@ -885,8 +885,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 1631,
-      "end" : 1632,
+      "start" : 1535,
+      "end" : 1536,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
@@ -895,8 +895,8 @@
     "text" : ".map(",
     "placeholder" : "?.",
     "range" : {
-      "start" : 1585,
-      "end" : 1590,
+      "start" : 1489,
+      "end" : 1494,
       "size" : 5
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
@@ -905,8 +905,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 1603,
-      "end" : 1604,
+      "start" : 1507,
+      "end" : 1508,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
@@ -915,8 +915,8 @@
     "text" : "Data::getData",
     "placeholder" : "data",
     "range" : {
-      "start" : 1590,
-      "end" : 1603,
+      "start" : 1494,
+      "end" : 1507,
       "size" : 13
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
@@ -925,8 +925,8 @@
     "text" : "Data::getData",
     "placeholder" : "data()",
     "range" : {
-      "start" : 1618,
-      "end" : 1631,
+      "start" : 1522,
+      "end" : 1535,
       "size" : 13
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
@@ -935,8 +935,8 @@
     "text" : ".map(",
     "placeholder" : "*.",
     "range" : {
-      "start" : 1613,
-      "end" : 1618,
+      "start" : 1517,
+      "end" : 1522,
       "size" : 5
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
@@ -945,8 +945,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 1631,
-      "end" : 1632,
+      "start" : 1535,
+      "end" : 1536,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
@@ -955,8 +955,8 @@
     "text" : ".map(",
     "placeholder" : "?.",
     "range" : {
-      "start" : 1585,
-      "end" : 1590,
+      "start" : 1489,
+      "end" : 1494,
       "size" : 5
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
@@ -965,8 +965,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 1603,
-      "end" : 1604,
+      "start" : 1507,
+      "end" : 1508,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
@@ -975,8 +975,8 @@
     "text" : "Data::getData",
     "placeholder" : "data",
     "range" : {
-      "start" : 1590,
-      "end" : 1603,
+      "start" : 1494,
+      "end" : 1507,
       "size" : 13
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
@@ -985,8 +985,8 @@
     "text" : "Data::getData",
     "placeholder" : "data()",
     "range" : {
-      "start" : 1618,
-      "end" : 1631,
+      "start" : 1522,
+      "end" : 1535,
       "size" : 13
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
@@ -995,8 +995,8 @@
     "text" : ".map(",
     "placeholder" : "?.",
     "range" : {
-      "start" : 1585,
-      "end" : 1590,
+      "start" : 1489,
+      "end" : 1494,
       "size" : 5
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
@@ -1005,8 +1005,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 1603,
-      "end" : 1604,
+      "start" : 1507,
+      "end" : 1508,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
@@ -1015,8 +1015,8 @@
     "text" : "Data::getData",
     "placeholder" : "data",
     "range" : {
-      "start" : 1590,
-      "end" : 1603,
+      "start" : 1494,
+      "end" : 1507,
       "size" : 13
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
@@ -1025,8 +1025,8 @@
     "text" : "Data::getData",
     "placeholder" : "data()",
     "range" : {
-      "start" : 1618,
-      "end" : 1631,
+      "start" : 1522,
+      "end" : 1535,
       "size" : 13
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
@@ -1035,8 +1035,8 @@
     "text" : "Data::getString",
     "placeholder" : "string",
     "range" : {
-      "start" : 1672,
-      "end" : 1687,
+      "start" : 1576,
+      "end" : 1591,
       "size" : 15
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
@@ -1045,8 +1045,8 @@
     "text" : ".orElse(",
     "placeholder" : " ?: ",
     "range" : {
-      "start" : 1731,
-      "end" : 1739,
+      "start" : 1635,
+      "end" : 1643,
       "size" : 8
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOrElseElvis"
@@ -1055,8 +1055,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 1743,
-      "end" : 1744,
+      "start" : 1647,
+      "end" : 1648,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOrElseElvis"
@@ -1065,8 +1065,8 @@
     "text" : ".map(",
     "placeholder" : "?.",
     "range" : {
-      "start" : 1712,
-      "end" : 1717,
+      "start" : 1616,
+      "end" : 1621,
       "size" : 5
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
@@ -1075,8 +1075,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 1730,
-      "end" : 1731,
+      "start" : 1634,
+      "end" : 1635,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
@@ -1085,8 +1085,8 @@
     "text" : "Data::getData",
     "placeholder" : "data",
     "range" : {
-      "start" : 1717,
-      "end" : 1730,
+      "start" : 1621,
+      "end" : 1634,
       "size" : 13
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
@@ -1095,8 +1095,8 @@
     "text" : ".get()",
     "placeholder" : "!!",
     "range" : {
-      "start" : 1885,
-      "end" : 1891,
+      "start" : 1789,
+      "end" : 1795,
       "size" : 6
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
@@ -1105,8 +1105,8 @@
     "text" : ".map(",
     "placeholder" : "?.",
     "range" : {
-      "start" : 1864,
-      "end" : 1869,
+      "start" : 1768,
+      "end" : 1773,
       "size" : 5
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
@@ -1115,8 +1115,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 1884,
-      "end" : 1885,
+      "start" : 1788,
+      "end" : 1789,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
@@ -1125,8 +1125,8 @@
     "text" : " .filter(Objects::nonNull",
     "placeholder" : ".filterNotNull()",
     "range" : {
-      "start" : 1828,
-      "end" : 1853,
+      "start" : 1732,
+      "end" : 1757,
       "size" : 25
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamFilterNotNull"
@@ -1135,8 +1135,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 1853,
-      "end" : 1854,
+      "start" : 1757,
+      "end" : 1758,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamFilterNotNull"
@@ -1145,8 +1145,8 @@
     "text" : ".map(",
     "placeholder" : "*.",
     "range" : {
-      "start" : 1809,
-      "end" : 1814,
+      "start" : 1713,
+      "end" : 1718,
       "size" : 5
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
@@ -1155,8 +1155,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 1827,
-      "end" : 1828,
+      "start" : 1731,
+      "end" : 1732,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
@@ -1165,8 +1165,8 @@
     "text" : ".map(",
     "placeholder" : "?.",
     "range" : {
-      "start" : 1781,
-      "end" : 1786,
+      "start" : 1685,
+      "end" : 1690,
       "size" : 5
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
@@ -1175,8 +1175,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 1799,
-      "end" : 1800,
+      "start" : 1703,
+      "end" : 1704,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
@@ -1185,8 +1185,8 @@
     "text" : "Data::getData",
     "placeholder" : "data",
     "range" : {
-      "start" : 1786,
-      "end" : 1799,
+      "start" : 1690,
+      "end" : 1703,
       "size" : 13
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
@@ -1195,8 +1195,8 @@
     "text" : "Data::getData",
     "placeholder" : "data()",
     "range" : {
-      "start" : 1814,
-      "end" : 1827,
+      "start" : 1718,
+      "end" : 1731,
       "size" : 13
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
@@ -1205,8 +1205,8 @@
     "text" : ".map(",
     "placeholder" : "*.",
     "range" : {
-      "start" : 1809,
-      "end" : 1814,
+      "start" : 1713,
+      "end" : 1718,
       "size" : 5
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
@@ -1215,8 +1215,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 1827,
-      "end" : 1828,
+      "start" : 1731,
+      "end" : 1732,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
@@ -1225,8 +1225,8 @@
     "text" : ".map(",
     "placeholder" : "?.",
     "range" : {
-      "start" : 1781,
-      "end" : 1786,
+      "start" : 1685,
+      "end" : 1690,
       "size" : 5
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
@@ -1235,8 +1235,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 1799,
-      "end" : 1800,
+      "start" : 1703,
+      "end" : 1704,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
@@ -1245,8 +1245,8 @@
     "text" : "Data::getData",
     "placeholder" : "data",
     "range" : {
-      "start" : 1786,
-      "end" : 1799,
+      "start" : 1690,
+      "end" : 1703,
       "size" : 13
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
@@ -1255,8 +1255,8 @@
     "text" : "Data::getData",
     "placeholder" : "data()",
     "range" : {
-      "start" : 1814,
-      "end" : 1827,
+      "start" : 1718,
+      "end" : 1731,
       "size" : 13
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
@@ -1265,8 +1265,8 @@
     "text" : ".map(",
     "placeholder" : "?.",
     "range" : {
-      "start" : 1781,
-      "end" : 1786,
+      "start" : 1685,
+      "end" : 1690,
       "size" : 5
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
@@ -1275,8 +1275,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 1799,
-      "end" : 1800,
+      "start" : 1703,
+      "end" : 1704,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
@@ -1285,8 +1285,8 @@
     "text" : "Data::getData",
     "placeholder" : "data",
     "range" : {
-      "start" : 1786,
-      "end" : 1799,
+      "start" : 1690,
+      "end" : 1703,
       "size" : 13
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
@@ -1295,8 +1295,8 @@
     "text" : "Data::getData",
     "placeholder" : "data()",
     "range" : {
-      "start" : 1814,
-      "end" : 1827,
+      "start" : 1718,
+      "end" : 1731,
       "size" : 13
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
@@ -1305,8 +1305,8 @@
     "text" : "Data::getString",
     "placeholder" : "string",
     "range" : {
-      "start" : 1869,
-      "end" : 1884,
+      "start" : 1773,
+      "end" : 1788,
       "size" : 15
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
@@ -1315,8 +1315,8 @@
     "text" : ".map(",
     "placeholder" : "?.",
     "range" : {
-      "start" : 1864,
-      "end" : 1869,
+      "start" : 1768,
+      "end" : 1773,
       "size" : 5
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
@@ -1325,8 +1325,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 1884,
-      "end" : 1885,
+      "start" : 1788,
+      "end" : 1789,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
@@ -1335,8 +1335,8 @@
     "text" : " .filter(Objects::nonNull",
     "placeholder" : ".filterNotNull()",
     "range" : {
-      "start" : 1828,
-      "end" : 1853,
+      "start" : 1732,
+      "end" : 1757,
       "size" : 25
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamFilterNotNull"
@@ -1345,8 +1345,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 1853,
-      "end" : 1854,
+      "start" : 1757,
+      "end" : 1758,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamFilterNotNull"
@@ -1355,8 +1355,8 @@
     "text" : ".map(",
     "placeholder" : "*.",
     "range" : {
-      "start" : 1809,
-      "end" : 1814,
+      "start" : 1713,
+      "end" : 1718,
       "size" : 5
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
@@ -1365,8 +1365,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 1827,
-      "end" : 1828,
+      "start" : 1731,
+      "end" : 1732,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
@@ -1375,8 +1375,8 @@
     "text" : ".map(",
     "placeholder" : "?.",
     "range" : {
-      "start" : 1781,
-      "end" : 1786,
+      "start" : 1685,
+      "end" : 1690,
       "size" : 5
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
@@ -1385,8 +1385,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 1799,
-      "end" : 1800,
+      "start" : 1703,
+      "end" : 1704,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
@@ -1395,8 +1395,8 @@
     "text" : "Data::getData",
     "placeholder" : "data",
     "range" : {
-      "start" : 1786,
-      "end" : 1799,
+      "start" : 1690,
+      "end" : 1703,
       "size" : 13
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
@@ -1405,8 +1405,8 @@
     "text" : "Data::getData",
     "placeholder" : "data()",
     "range" : {
-      "start" : 1814,
-      "end" : 1827,
+      "start" : 1718,
+      "end" : 1731,
       "size" : 13
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
@@ -1415,8 +1415,8 @@
     "text" : ".map(",
     "placeholder" : "*.",
     "range" : {
-      "start" : 1809,
-      "end" : 1814,
+      "start" : 1713,
+      "end" : 1718,
       "size" : 5
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
@@ -1425,8 +1425,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 1827,
-      "end" : 1828,
+      "start" : 1731,
+      "end" : 1732,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
@@ -1435,8 +1435,8 @@
     "text" : ".map(",
     "placeholder" : "?.",
     "range" : {
-      "start" : 1781,
-      "end" : 1786,
+      "start" : 1685,
+      "end" : 1690,
       "size" : 5
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
@@ -1445,8 +1445,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 1799,
-      "end" : 1800,
+      "start" : 1703,
+      "end" : 1704,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
@@ -1455,8 +1455,8 @@
     "text" : "Data::getData",
     "placeholder" : "data",
     "range" : {
-      "start" : 1786,
-      "end" : 1799,
+      "start" : 1690,
+      "end" : 1703,
       "size" : 13
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
@@ -1465,8 +1465,8 @@
     "text" : "Data::getData",
     "placeholder" : "data()",
     "range" : {
-      "start" : 1814,
-      "end" : 1827,
+      "start" : 1718,
+      "end" : 1731,
       "size" : 13
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
@@ -1475,8 +1475,8 @@
     "text" : ".map(",
     "placeholder" : "?.",
     "range" : {
-      "start" : 1781,
-      "end" : 1786,
+      "start" : 1685,
+      "end" : 1690,
       "size" : 5
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
@@ -1485,8 +1485,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 1799,
-      "end" : 1800,
+      "start" : 1703,
+      "end" : 1704,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
@@ -1495,8 +1495,8 @@
     "text" : "Data::getData",
     "placeholder" : "data",
     "range" : {
-      "start" : 1786,
-      "end" : 1799,
+      "start" : 1690,
+      "end" : 1703,
       "size" : 13
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
@@ -1505,8 +1505,8 @@
     "text" : "Data::getData",
     "placeholder" : "data()",
     "range" : {
-      "start" : 1814,
-      "end" : 1827,
+      "start" : 1718,
+      "end" : 1731,
       "size" : 13
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
@@ -1515,8 +1515,8 @@
     "text" : "Data::getString",
     "placeholder" : "string",
     "range" : {
-      "start" : 1869,
-      "end" : 1884,
+      "start" : 1773,
+      "end" : 1788,
       "size" : 15
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
@@ -1525,8 +1525,8 @@
     "text" : ".filter(Objects::nonNull",
     "placeholder" : ".filterNotNull()",
     "range" : {
-      "start" : 1936,
-      "end" : 1960,
+      "start" : 1840,
+      "end" : 1864,
       "size" : 24
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamFilterNotNull"
@@ -1535,8 +1535,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 1960,
-      "end" : 1961,
+      "start" : 1864,
+      "end" : 1865,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamFilterNotNull"
@@ -1545,8 +1545,8 @@
     "text" : ".map(",
     "placeholder" : "*.",
     "range" : {
-      "start" : 1917,
-      "end" : 1922,
+      "start" : 1821,
+      "end" : 1826,
       "size" : 5
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
@@ -1555,8 +1555,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 1935,
-      "end" : 1936,
+      "start" : 1839,
+      "end" : 1840,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
@@ -1565,8 +1565,8 @@
     "text" : "Data::getData",
     "placeholder" : "data()",
     "range" : {
-      "start" : 1922,
-      "end" : 1935,
+      "start" : 1826,
+      "end" : 1839,
       "size" : 13
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
@@ -1575,8 +1575,8 @@
     "text" : ".map(",
     "placeholder" : "*.",
     "range" : {
-      "start" : 1917,
-      "end" : 1922,
+      "start" : 1821,
+      "end" : 1826,
       "size" : 5
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
@@ -1585,8 +1585,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 1935,
-      "end" : 1936,
+      "start" : 1839,
+      "end" : 1840,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
@@ -1595,8 +1595,8 @@
     "text" : "Data::getData",
     "placeholder" : "data()",
     "range" : {
-      "start" : 1922,
-      "end" : 1935,
+      "start" : 1826,
+      "end" : 1839,
       "size" : 13
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
@@ -1605,8 +1605,8 @@
     "text" : "Data::getData",
     "placeholder" : "data()",
     "range" : {
-      "start" : 1922,
-      "end" : 1935,
+      "start" : 1826,
+      "end" : 1839,
       "size" : 13
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
@@ -1615,8 +1615,8 @@
     "text" : ".orElseThrow()",
     "placeholder" : "!!",
     "range" : {
-      "start" : 2062,
-      "end" : 2076,
+      "start" : 1966,
+      "end" : 1980,
       "size" : 14
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
@@ -1625,8 +1625,8 @@
     "text" : ".map(",
     "placeholder" : "*.",
     "range" : {
-      "start" : 2031,
-      "end" : 2036,
+      "start" : 1935,
+      "end" : 1940,
       "size" : 5
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
@@ -1635,8 +1635,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 2049,
-      "end" : 2050,
+      "start" : 1953,
+      "end" : 1954,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
@@ -1645,8 +1645,8 @@
     "text" : " .filter(Objects::nonNull",
     "placeholder" : ".filterNotNull()",
     "range" : {
-      "start" : 2005,
-      "end" : 2030,
+      "start" : 1909,
+      "end" : 1934,
       "size" : 25
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamFilterNotNull"
@@ -1655,8 +1655,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 2030,
-      "end" : 2031,
+      "start" : 1934,
+      "end" : 1935,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamFilterNotNull"
@@ -1665,8 +1665,8 @@
     "text" : ".map(",
     "placeholder" : "*.",
     "range" : {
-      "start" : 1986,
-      "end" : 1991,
+      "start" : 1890,
+      "end" : 1895,
       "size" : 5
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
@@ -1675,8 +1675,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 2004,
-      "end" : 2005,
+      "start" : 1908,
+      "end" : 1909,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
@@ -1685,8 +1685,8 @@
     "text" : "Data::getData",
     "placeholder" : "data()",
     "range" : {
-      "start" : 1991,
-      "end" : 2004,
+      "start" : 1895,
+      "end" : 1908,
       "size" : 13
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
@@ -1695,8 +1695,8 @@
     "text" : "Data::getData",
     "placeholder" : "data()",
     "range" : {
-      "start" : 2036,
-      "end" : 2049,
+      "start" : 1940,
+      "end" : 1953,
       "size" : 13
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
@@ -1705,8 +1705,8 @@
     "text" : " .filter(Objects::nonNull",
     "placeholder" : ".filterNotNull()",
     "range" : {
-      "start" : 2005,
-      "end" : 2030,
+      "start" : 1909,
+      "end" : 1934,
       "size" : 25
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamFilterNotNull"
@@ -1715,8 +1715,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 2030,
-      "end" : 2031,
+      "start" : 1934,
+      "end" : 1935,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamFilterNotNull"
@@ -1725,8 +1725,8 @@
     "text" : ".map(",
     "placeholder" : "*.",
     "range" : {
-      "start" : 1986,
-      "end" : 1991,
+      "start" : 1890,
+      "end" : 1895,
       "size" : 5
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
@@ -1735,8 +1735,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 2004,
-      "end" : 2005,
+      "start" : 1908,
+      "end" : 1909,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
@@ -1745,8 +1745,8 @@
     "text" : "Data::getData",
     "placeholder" : "data()",
     "range" : {
-      "start" : 1991,
-      "end" : 2004,
+      "start" : 1895,
+      "end" : 1908,
       "size" : 13
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
@@ -1755,8 +1755,8 @@
     "text" : ".map(",
     "placeholder" : "*.",
     "range" : {
-      "start" : 1986,
-      "end" : 1991,
+      "start" : 1890,
+      "end" : 1895,
       "size" : 5
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
@@ -1765,8 +1765,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 2004,
-      "end" : 2005,
+      "start" : 1908,
+      "end" : 1909,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
@@ -1775,8 +1775,8 @@
     "text" : "Data::getData",
     "placeholder" : "data()",
     "range" : {
-      "start" : 1991,
-      "end" : 2004,
+      "start" : 1895,
+      "end" : 1908,
       "size" : 13
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
@@ -1785,8 +1785,8 @@
     "text" : "Data::getData",
     "placeholder" : "data()",
     "range" : {
-      "start" : 1991,
-      "end" : 2004,
+      "start" : 1895,
+      "end" : 1908,
       "size" : 13
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
@@ -1795,8 +1795,8 @@
     "text" : "Data::getData",
     "placeholder" : "data()",
     "range" : {
-      "start" : 2036,
-      "end" : 2049,
+      "start" : 1940,
+      "end" : 1953,
       "size" : 13
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
@@ -1805,8 +1805,8 @@
     "text" : ".map(",
     "placeholder" : "*.",
     "range" : {
-      "start" : 2031,
-      "end" : 2036,
+      "start" : 1935,
+      "end" : 1940,
       "size" : 5
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
@@ -1815,8 +1815,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 2049,
-      "end" : 2050,
+      "start" : 1953,
+      "end" : 1954,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
@@ -1825,8 +1825,8 @@
     "text" : " .filter(Objects::nonNull",
     "placeholder" : ".filterNotNull()",
     "range" : {
-      "start" : 2005,
-      "end" : 2030,
+      "start" : 1909,
+      "end" : 1934,
       "size" : 25
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamFilterNotNull"
@@ -1835,8 +1835,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 2030,
-      "end" : 2031,
+      "start" : 1934,
+      "end" : 1935,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamFilterNotNull"
@@ -1845,8 +1845,8 @@
     "text" : ".map(",
     "placeholder" : "*.",
     "range" : {
-      "start" : 1986,
-      "end" : 1991,
+      "start" : 1890,
+      "end" : 1895,
       "size" : 5
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
@@ -1855,8 +1855,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 2004,
-      "end" : 2005,
+      "start" : 1908,
+      "end" : 1909,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
@@ -1865,8 +1865,8 @@
     "text" : "Data::getData",
     "placeholder" : "data()",
     "range" : {
-      "start" : 1991,
-      "end" : 2004,
+      "start" : 1895,
+      "end" : 1908,
       "size" : 13
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
@@ -1875,8 +1875,8 @@
     "text" : "Data::getData",
     "placeholder" : "data()",
     "range" : {
-      "start" : 2036,
-      "end" : 2049,
+      "start" : 1940,
+      "end" : 1953,
       "size" : 13
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
@@ -1885,8 +1885,8 @@
     "text" : " .filter(Objects::nonNull",
     "placeholder" : ".filterNotNull()",
     "range" : {
-      "start" : 2005,
-      "end" : 2030,
+      "start" : 1909,
+      "end" : 1934,
       "size" : 25
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamFilterNotNull"
@@ -1895,8 +1895,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 2030,
-      "end" : 2031,
+      "start" : 1934,
+      "end" : 1935,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamFilterNotNull"
@@ -1905,8 +1905,8 @@
     "text" : ".map(",
     "placeholder" : "*.",
     "range" : {
-      "start" : 1986,
-      "end" : 1991,
+      "start" : 1890,
+      "end" : 1895,
       "size" : 5
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
@@ -1915,8 +1915,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 2004,
-      "end" : 2005,
+      "start" : 1908,
+      "end" : 1909,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
@@ -1925,8 +1925,8 @@
     "text" : "Data::getData",
     "placeholder" : "data()",
     "range" : {
-      "start" : 1991,
-      "end" : 2004,
+      "start" : 1895,
+      "end" : 1908,
       "size" : 13
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
@@ -1935,8 +1935,8 @@
     "text" : ".map(",
     "placeholder" : "*.",
     "range" : {
-      "start" : 1986,
-      "end" : 1991,
+      "start" : 1890,
+      "end" : 1895,
       "size" : 5
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
@@ -1945,8 +1945,8 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 2004,
-      "end" : 2005,
+      "start" : 1908,
+      "end" : 1909,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
@@ -1955,8 +1955,8 @@
     "text" : "Data::getData",
     "placeholder" : "data()",
     "range" : {
-      "start" : 1991,
-      "end" : 2004,
+      "start" : 1895,
+      "end" : 1908,
       "size" : 13
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
@@ -1965,8 +1965,8 @@
     "text" : "Data::getData",
     "placeholder" : "data()",
     "range" : {
-      "start" : 1991,
-      "end" : 2004,
+      "start" : 1895,
+      "end" : 1908,
       "size" : 13
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
@@ -1975,8 +1975,8 @@
     "text" : "Data::getData",
     "placeholder" : "data()",
     "range" : {
-      "start" : 2036,
-      "end" : 2049,
+      "start" : 1940,
+      "end" : 1953,
       "size" : 13
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
@@ -1985,8 +1985,8 @@
     "text" : "public Data getData() {\n                return data;\n        }",
     "placeholder" : "",
     "range" : {
-      "start" : 2491,
-      "end" : 2553,
+      "start" : 2395,
+      "end" : 2457,
       "size" : 62
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
@@ -1995,8 +1995,8 @@
     "text" : "public void setData(Data data) {\n                this.data = data;\n        }",
     "placeholder" : "",
     "range" : {
-      "start" : 2633,
-      "end" : 2709,
+      "start" : 2537,
+      "end" : 2613,
       "size" : 76
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
@@ -2005,8 +2005,8 @@
     "text" : "public boolean isOk() {\n                return ok;\n        }",
     "placeholder" : "",
     "range" : {
-      "start" : 2563,
-      "end" : 2623,
+      "start" : 2467,
+      "end" : 2527,
       "size" : 60
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
@@ -2015,8 +2015,8 @@
     "text" : "public void setOk(boolean ok) {\n                this.ok = ok;\n        }",
     "placeholder" : "",
     "range" : {
-      "start" : 2719,
-      "end" : 2790,
+      "start" : 2623,
+      "end" : 2694,
       "size" : 71
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
@@ -2025,8 +2025,8 @@
     "text" : "public String getString() {\n                return string;\n        }",
     "placeholder" : "",
     "range" : {
-      "start" : 2800,
-      "end" : 2868,
+      "start" : 2704,
+      "end" : 2772,
       "size" : 68
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
@@ -2035,8 +2035,8 @@
     "text" : "public void setString(String string) {\n                this.string = string;\n        }",
     "placeholder" : "",
     "range" : {
-      "start" : 2878,
-      "end" : 2964,
+      "start" : 2782,
+      "end" : 2868,
       "size" : 86
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
@@ -2045,8 +2045,8 @@
     "text" : "\n\n        ",
     "placeholder" : "",
     "range" : {
-      "start" : 2481,
-      "end" : 2491,
+      "start" : 2385,
+      "end" : 2395,
       "size" : 10
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
@@ -2055,8 +2055,8 @@
     "text" : "\n\n        ",
     "placeholder" : "",
     "range" : {
-      "start" : 2623,
-      "end" : 2633,
+      "start" : 2527,
+      "end" : 2537,
       "size" : 10
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
@@ -2065,8 +2065,8 @@
     "text" : "\n\n        ",
     "placeholder" : "",
     "range" : {
-      "start" : 2553,
-      "end" : 2563,
+      "start" : 2457,
+      "end" : 2467,
       "size" : 10
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
@@ -2075,8 +2075,8 @@
     "text" : "\n\n        ",
     "placeholder" : "",
     "range" : {
-      "start" : 2709,
-      "end" : 2719,
+      "start" : 2613,
+      "end" : 2623,
       "size" : 10
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
@@ -2085,8 +2085,8 @@
     "text" : "\n\n        ",
     "placeholder" : "",
     "range" : {
-      "start" : 2790,
-      "end" : 2800,
+      "start" : 2694,
+      "end" : 2704,
       "size" : 10
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
@@ -2095,8 +2095,8 @@
     "text" : "\n\n        ",
     "placeholder" : "",
     "range" : {
-      "start" : 2868,
-      "end" : 2878,
+      "start" : 2772,
+      "end" : 2782,
       "size" : 10
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
@@ -2105,8 +2105,8 @@
     "text" : "s",
     "placeholder" : "@Getter @Setter s",
     "range" : {
-      "start" : 2325,
-      "end" : 2326,
+      "start" : 2229,
+      "end" : 2230,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
@@ -2115,8 +2115,8 @@
     "text" : "data",
     "placeholder" : "<<",
     "range" : {
-      "start" : 2466,
-      "end" : 2470,
+      "start" : 2370,
+      "end" : 2374,
       "size" : 4
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
@@ -2125,8 +2125,8 @@
     "text" : "data",
     "placeholder" : "<<",
     "range" : {
-      "start" : 2694,
-      "end" : 2698,
+      "start" : 2598,
+      "end" : 2602,
       "size" : 4
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
@@ -2135,8 +2135,8 @@
     "text" : "ok",
     "placeholder" : "<<",
     "range" : {
-      "start" : 2777,
-      "end" : 2779,
+      "start" : 2681,
+      "end" : 2683,
       "size" : 2
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
@@ -2145,8 +2145,8 @@
     "text" : "string",
     "placeholder" : "<<",
     "range" : {
-      "start" : 2947,
-      "end" : 2953,
+      "start" : 2851,
+      "end" : 2857,
       "size" : 6
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
