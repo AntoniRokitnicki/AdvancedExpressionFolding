@@ -9,7 +9,7 @@
 [![Deploy static content to Pages](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/actions/workflows/static.yml/badge.svg?branch=master)](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/actions/workflows/static.yml)
 
 [![Java](https://img.shields.io/badge/java-17-blue.svg)](https://www.java.com)
-[![Kotlin](https://img.shields.io/badge/kotlin-1.9.22-blue.svg)](https://kotlinlang.org)
+[![Kotlin](https://img.shields.io/badge/dynamic/toml?url=https%3A%2F%2Fraw.githubusercontent.com%2FAntoniRokitnicki%2FAdvancedExpressionFolding%2Fmaster%2Fgradle%2Flibs.versions.toml&query=%24.versions.kotlin&label=kotlin)](https://kotlinlang.org)
 [![Gradle](https://img.shields.io/badge/gradle-8.5-blue.svg)](https://gradle.org)
 
 
