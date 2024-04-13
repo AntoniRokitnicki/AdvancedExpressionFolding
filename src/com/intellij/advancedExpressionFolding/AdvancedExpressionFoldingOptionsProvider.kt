@@ -32,7 +32,11 @@ class AdvancedExpressionFoldingOptionsProvider : AbstractExpressionFoldingOption
         checkBox(
             "StringBuilder.append and Collection.add/remove expressions, interpolated Strings and Stream expressions",
             state::concatenationExpressionsCollapse,
-            mapOf("StringBuilderTestData.java" to "StringBuilder", "InterpolatedStringTestData.java" to "Interpolate")
+            mapOf("StringBuilderTestData.java" to "StringBuilder",
+                "InterpolatedStringTestData.java" to "Interpolate",
+                "AppendSetterInterpolatedStringTestData.java" to "Append",
+                "ConcatenationTestData.java" to "Concatenation"
+            )
         )
         checkBox(
             "List.subList and String.substring expressions",
