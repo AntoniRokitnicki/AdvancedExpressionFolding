@@ -22,6 +22,7 @@ sourceSets {
         java.srcDirs("src")
         kotlin.srcDirs("src")
         resources.srcDirs("resources")
+        resources.srcDirs("examples")
     }
     named("test") {
         java.srcDir("test")
