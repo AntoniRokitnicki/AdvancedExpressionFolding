@@ -26,7 +26,8 @@
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/w/AntoniRokitnicki/AdvancedExpressionFolding)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/t/AntoniRokitnicki/AdvancedExpressionFolding)
 
-![Known Vulnerabilities](https://snyk.io/test/github/antonirokitnicki/AdvancedExpressionFolding/badge.svg)
+[![Known Vulnerabilities](https://snyk.io/test/github/antonirokitnicki/AdvancedExpressionFolding/badge.svg)](https://app.snyk.io/org/antonirokitnicki/project/cb199e96-f9b6-471e-a7f2-befcd26d62ca)
+
 
 <!-- Plugin description -->
 <p>Modern JVM languages such as Kotlin, Groovy, Scala and some others offer many language features that let you
