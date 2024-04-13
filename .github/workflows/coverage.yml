@@ -1,16 +1,10 @@
-name: Upload coverage reports to Codecov
+name: Coverage reports
 on:
   workflow_dispatch
 
 jobs:
-  test:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - os: ubuntu-latest
-            test: ./gradlew test
+  kover:
+    runs-on: ubuntu-latest
     steps:
       - name: Fetch Sources
         uses: actions/checkout@v4
@@ -26,11 +20,8 @@ jobs:
         with:
           gradle-home-cache-cleanup: true
 
-      - name: Run tests
-        run: ${{ matrix.test }}
+      - name: Run koverPrintCoverage
+        run: ./gradlew koverPrintCoverage
 
-      - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v4.0.1
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          slug: AntoniRokitnicki/AdvancedExpressionFolding
+      - name: Run koverHtmlReport
+        run: ./gradlew koverHtmlReport
