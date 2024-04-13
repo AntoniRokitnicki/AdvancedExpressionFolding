@@ -1,8 +1,5 @@
 package data;
 
-import org.jetbrains.annotations.NotNull;
-
-import javax.annotation.Nullable;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Function;
@@ -11,7 +8,7 @@ import java.util.stream.Stream;
 @SuppressWarnings("ALL")
 public class OptionalTestData {
 
-    public void enter(Optional<Data> opt, @NotNull Data data, @Nullable Data dataNull) {
+    public void enter(Optional<Data> opt, Data data, Data dataNull) {
         var o = null;
         if opt.present {
             o = opt!!;

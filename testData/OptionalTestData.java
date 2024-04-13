@@ -1,9 +1,6 @@
 package data;
 
-import <fold text='...' expand='false'>org.jetbrains.annotations.NotNull;
-
-import javax.annotation.Nullable;
-import java.util.Objects;
+import <fold text='...' expand='false'>java.util.Objects;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Stream;</fold>
@@ -11,7 +8,7 @@ import java.util.stream.Stream;</fold>
 @SuppressWarnings("ALL")
 public class OptionalTestData {
 
-    public void enter(Optional<Data> opt, @NotNull Data data, @Nullable Data dataNull) <fold text='{...}' expand='true'>{
+    public void enter(Optional<Data> opt, Data data, Data dataNull) <fold text='{...}' expand='true'>{
         Object o = null;
         if (opt.isPresent()) <fold text='{...}' expand='true'>{
             o = opt<fold text='!!' expand='false'>.get()</fold>;
