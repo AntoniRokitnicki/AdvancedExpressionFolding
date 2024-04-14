@@ -2,10 +2,20 @@ package com.intellij.advancedExpressionFolding
 
 
 import com.intellij.advancedExpressionFolding.extension.asInstance
+import com.intellij.application.options.CodeStyle
 import com.intellij.application.options.editor.CodeFoldingOptionsProvider
+import com.intellij.icons.AllIcons.Actions.CheckOut
 import com.intellij.ide.BrowserUtil
+import com.intellij.ide.HelpTooltip
+import com.intellij.ide.impl.ProjectUtil
+import com.intellij.openapi.command.WriteCommandAction.runWriteCommandAction
 import com.intellij.openapi.diagnostic.Logger
+import com.intellij.openapi.fileEditor.FileEditorManager
 import com.intellij.openapi.options.BeanConfigurable
+import com.intellij.openapi.project.Project
+import com.intellij.openapi.roots.ProjectRootManager
+import com.intellij.openapi.vfs.VirtualFile
+import com.intellij.openapi.vfs.encoding.EncodingProjectManager
 import com.intellij.ui.components.ActionLink
 import java.awt.Component
 import java.awt.FlowLayout
@@ -15,6 +25,7 @@ import javax.swing.JComponent
 import javax.swing.JPanel
 import kotlin.reflect.KMutableProperty0
 
+
 abstract class AbstractExpressionFoldingOptionsProvider : BeanConfigurable<AdvancedExpressionFoldingSettings.State?>(
     AdvancedExpressionFoldingSettings.getInstance().state
 ), CodeFoldingOptionsProvider {
@@ -22,11 +33,12 @@ abstract class AbstractExpressionFoldingOptionsProvider : BeanConfigurable<Advan
     private val log: Logger = Logger.getInstance(AdvancedExpressionFoldingOptionsProvider::class.java)
     private val checkboxAddonMap = HashMap<String, Component>()
 
+    private val exampleList = mutableListOf<ExampleFile>()
 
     protected fun checkBox(
         title: String,
         property: KMutableProperty0<Boolean>,
-        exampleLinkMap: Map<UrlSuffix, Description?>? = null,
+        exampleLinkMap: Map<ExampleFile, Description?>? = null,
         docLink: UrlSuffix? = null
     ) {
         super.checkBox(title, property)
@@ -36,22 +48,20 @@ abstract class AbstractExpressionFoldingOptionsProvider : BeanConfigurable<Advan
             val gridLayout = FlowLayout(FlowLayout.LEFT)
             panel.setLayout(gridLayout)
             docLink?.let {
-                addLink(panel, "doc", "https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki$it")
+                addLink(panel, "https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki$it")
             }
-            exampleLinkMap?.let {
-                it.forEach { (file, desc) ->
-                    val description = "example" + if (desc != null) {
-                        " $desc"
-                    } else {
-                        ""
-                    }
+            exampleLinkMap?.onEach { (file, desc) ->
+                exampleList.add(file)
+                val suffix = desc?.let {
+                    " $it"
+                } ?: ""
+                val description = "example$suffix"
 
-                    addLink(
-                        panel,
-                        description,
-                        "https://raw.githubusercontent.com/AntoniRokitnicki/AdvancedExpressionFolding/master/examples/data/$file"
-                    )
-                }
+                addExample(
+                    panel,
+                    description,
+                    file
+                )
             }
             checkboxAddonMap[title] = panel
         } catch (e: Exception) {
@@ -59,12 +69,47 @@ abstract class AbstractExpressionFoldingOptionsProvider : BeanConfigurable<Advan
         }
     }
 
-    private fun addLink(panel: JPanel, title: String, url: String): Component? {
-        val actionLink = ActionLink(title) {
-            BrowserUtil.browse(url);
+    private fun addLink(panel: JPanel, url: UrlSuffix): Component? {
+        val actionLink = ActionLink("doc") {
+            BrowserUtil.browse(url)
         }
         actionLink.setExternalLinkIcon()
         return panel.add(actionLink)
+    }
+
+    private fun addExample(panel: JPanel, title: Description, file: ExampleFile): Component? {
+        val actionLink = ActionLink(title) {
+            val project = selectedProject()
+            val sourceRoot = firstSourceRoot(project)
+
+            runWriteCommandAction(project) {
+                val directory = sourceRoot.getOrCreatePackageDir()
+                createFileIfExists(directory, file, project)?.open(project)
+            }
+        }
+        actionLink.setIcon(CheckOut, true)
+        HelpTooltip().setDescription("WARNING: Clicking this button will checkout $file into your current project")
+            .installOn(actionLink)
+        return panel.add(actionLink)
+    }
+
+
+    private fun createDownloadExamplesLink(): ActionLink {
+        val actionLink = ActionLink("Checkout Examples to Current Project") {
+            val project = selectedProject()
+            val sourceRoot = firstSourceRoot(project)
+
+            runWriteCommandAction(project) {
+                val directory = sourceRoot.getOrCreatePackageDir()
+                exampleList.forEach {
+                    createFileIfExists(directory, it, project)
+                }
+            }
+        }
+        actionLink.setIcon(CheckOut, true)
+        HelpTooltip().setDescription("WARNING: Clicking this button will checkout examples into your current project")
+            .installOn(actionLink)
+        return actionLink
     }
 
     override fun createComponent(): JComponent? {
@@ -80,16 +125,54 @@ abstract class AbstractExpressionFoldingOptionsProvider : BeanConfigurable<Advan
             withLinks.forEach { (link, index) ->
                 mainPanel.add(link, index)
             }
+            mainPanel.add(createDownloadExamplesLink(), 0)
 
             (mainPanel.layout as? GridLayout)?.let {
-                it.rows += withLinks.size
+                it.rows += withLinks.size + 1
             }
         } catch (e: Exception) {
             log.error("Unexpected issue while creating component", e);
         }
         return superComponent
     }
+
+    private fun firstSourceRoot(project: Project) =
+        ProjectRootManager.getInstance(project).contentSourceRoots.firstOrNull() ?: TODO("No sourceRoot found")
+
+    private fun selectedProject(): Project = ProjectUtil.getActiveProject() ?: TODO("No project is opened")
+
+    private fun createFileIfExists(
+        directory: VirtualFile,
+        file: ExampleFile,
+        project: Project
+    ): VirtualFile? {
+        val projectEncoding = EncodingProjectManager.getInstance(project).defaultCharset
+        val lineSeparator = CodeStyle.getDefaultSettings().lineSeparator
+        return javaClass.classLoader.getResource("$EXAMPLE_DIR/$file")
+            ?.readText()
+            ?.replace("\n", lineSeparator)?.let { fileContent ->
+                val newFile = directory.createChildData(null, file)
+                newFile.setBinaryContent(fileContent.toByteArray(charset = projectEncoding))
+                newFile
+            }
+    }
+
+    private fun VirtualFile.getOrCreatePackageDir(): VirtualFile {
+        val directory = this.findChild(EXAMPLE_DIR)?.takeIf {
+            it.exists()
+        } ?: this.createChildDirectory(null, EXAMPLE_DIR)
+        return directory
+    }
+
+    private fun VirtualFile.open(project: Project) {
+        val fileEditorManager = FileEditorManager.getInstance(project)
+        fileEditorManager.openFile(this, true)
+    }
+
 }
 
 typealias Description = String
 typealias UrlSuffix = String
+typealias ExampleFile = String
+
+private const val EXAMPLE_DIR = "data"
