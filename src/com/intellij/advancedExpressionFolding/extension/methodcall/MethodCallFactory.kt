@@ -1,37 +1,39 @@
 package com.intellij.advancedExpressionFolding.extension.methodcall
 
 import com.intellij.advancedExpressionFolding.extension.Consts
-import com.intellij.advancedExpressionFolding.extension.methodcall.date.FactoryDateMethodCall
+import com.intellij.advancedExpressionFolding.extension.methodcall.date.AbstractDateMethodCall
+import com.intellij.advancedExpressionFolding.extension.methodcall.date.CreateDateFactoryMethodCall
 import com.intellij.advancedExpressionFolding.extension.methodcall.date.IsAfterDateMethodCall
 import com.intellij.advancedExpressionFolding.extension.methodcall.date.IsBeforeDateMethodCall
 
 //TODO: move to extension-point
 object MethodCallFactory {
-    var methodCalls: MutableList<AbstractMethodCall> = createMethodCalls()
-    var supportedMethods: Collection<String> = createSupportedMethods()
-    var supportedClasses: Collection<String> = createSupportedClasses()
+    private lateinit var methodCallMap: Map<String?, AbstractMethodCall>
+    lateinit var supportedMethods: Collection<String>
+    lateinit var supportedClasses: Collection<String>
 
     fun clear() {
-        methodCalls.clear()
-        init()
+        methodCallMap = createMethodCalls()
+        supportedMethods = createSupportedMethods()
+        supportedClasses = createSupportedClasses()
     }
 
-    fun init() {
-        if (methodCalls.isEmpty()) {
-            methodCalls = createMethodCalls()
-            supportedMethods = createSupportedMethods()
-            supportedClasses = createSupportedClasses()
-        }
+    init {
+        clear()
     }
 
-    private fun createMethodCalls(): MutableList<AbstractMethodCall> =
-        mutableListOf(IsBeforeDateMethodCall(), IsAfterDateMethodCall(), FactoryDateMethodCall()).filter {
+    private fun createMethodCalls(): Map<String?, AbstractDateMethodCall> =
+        mutableListOf(IsBeforeDateMethodCall(), IsAfterDateMethodCall(), CreateDateFactoryMethodCall()).filter {
             it.permission()
-        }.toMutableList()
+        }.associateBy {
+            it.methodName()
+        }
 
     private fun createSupportedMethods(): List<String> =
-        methodCalls.mapNotNull { it.methodName() } + Consts.SUPPORTED_METHODS
+        methodCallMap.values.mapNotNull { it.methodName() } + Consts.SUPPORTED_METHODS
 
     private fun createSupportedClasses(): Collection<String> =
-        methodCalls.map { it.classNames }.flatten() + Consts.SUPPORTED_CLASSES
+        methodCallMap.values.map { it.classNames }.flatten() + Consts.SUPPORTED_CLASSES
+
+    fun findByMethodName(methodName: String?): AbstractMethodCall? = methodCallMap[methodName]
 }
