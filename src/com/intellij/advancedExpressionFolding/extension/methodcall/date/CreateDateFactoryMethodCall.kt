@@ -7,7 +7,7 @@ import com.intellij.psi.PsiExpression
 import com.intellij.psi.PsiLiteralExpression
 import com.intellij.psi.PsiMethodCallExpression
 
-class FactoryDateMethodCall : AbstractDateMethodCall() {
+class CreateDateFactoryMethodCall : AbstractDateMethodCall() {
     override fun permission(): Boolean = localDateLiteralCollapse || localDateLiteralPostfixCollapse
 
     override fun methodName() = "of"
