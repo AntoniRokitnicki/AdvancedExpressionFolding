@@ -4,6 +4,8 @@
     <img src="https://yiiguxing.github.io/TranslationPlugin/img/ext/installation_button.svg" height="52" alt="Get from Marketplace" title="Get from Marketplace">
 </a></p>
 
+
+
 [![Build](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/actions/workflows/build.yml/badge.svg)](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/actions/workflows/build.yml)
 [![Release](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/actions/workflows/release.yml/badge.svg)](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/actions/workflows/release.yml)
 [![Deploy static content to Pages](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/actions/workflows/static.yml/badge.svg?branch=master)](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/actions/workflows/static.yml)
@@ -15,7 +17,8 @@
 
 
 ![Dynamic XML Badge](https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fantonirokitnicki.github.io%2FAdvancedExpressionFolding%2Fplugin_repository.xml&query=%2Fplugin-repository%2Fcategory%2Fidea-plugin%5B1%5D%2Fversion&label=beta%20version)
-![Dynamic JSON Badge](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fplugins.jetbrains.com%2Fapi%2Fplugins%2F23659%2Fupdates%3Fchannel%3D%26size%3D8&query=%24%5B0%5D..version&label=marketplace%20version)
+[![Version](https://img.shields.io/jetbrains/plugin/v/com.github.advanced-java-folding2.svg)](https://plugins.jetbrains.com/plugin/23659-advanced-java-folding-2-fork-)
+[![Downloads](https://img.shields.io/jetbrains/plugin/d/com.github.advanced-java-folding2.svg)](https://plugins.jetbrains.com/plugin/23659-advanced-java-folding-2-fork-)
 ![GitHub Release Date](https://img.shields.io/github/release-date/AntoniRokitnicki/AdvancedExpressionFolding)
 ![GitHub commits since latest release](https://img.shields.io/github/commits-since/AntoniRokitnicki/AdvancedExpressionFolding/latest)
 <!-- https://plugins.jetbrains.com/api/plugins/23659/updates?channel=&size=8 -->
