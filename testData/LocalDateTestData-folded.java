@@ -1,7 +1,9 @@
 package data;
 
+import java.sql.Timestamp;
 import java.time.LocalDate;
 
+@SuppressWarnings("ALL")
 public class LocalDateTestData {
     public static void main(String[] args) {
         LocalDate d1 = LocalDate.of(2018, 12, 10);
@@ -69,6 +71,25 @@ public class LocalDateTestData {
         var thaiBuddhistDate2 = java.time.chrono.ThaiBuddhistDate.now();
         if (thaiBuddhistDate1 < thaiBuddhistDate2 | thaiBuddhistDate1 > thaiBuddhistDate2 | thaiBuddhistDate1 ≥ thaiBuddhistDate2 | thaiBuddhistDate1 ≤ thaiBuddhistDate2) {
             thaiBuddhistDate1 = thaiBuddhistDate2;
+        }
+
+        var utilDate1 = new java.util.Date();
+        var utilDate2 = new java.util.Date();
+        if (utilDate1 < utilDate2 | utilDate1 > utilDate2 | utilDate1 ≥ utilDate2 | utilDate1 ≤ utilDate2) {
+            utilDate1 = utilDate2;
+        }
+
+        long currentTime = System.currentTimeMillis();
+        var sqlDate1 = new java.sql.Date(currentTime);
+        var sqlDate2 = new java.sql.Date(currentTime);
+        if (sqlDate1 < sqlDate2 | sqlDate1 > sqlDate2 | sqlDate1 ≥ sqlDate2 | sqlDate1 ≤ sqlDate2) {
+            sqlDate1 = sqlDate2;
+        }
+
+        var timestamp1 = new Timestamp(System.currentTimeMillis());
+        var timestamp2 = new Timestamp(System.currentTimeMillis());
+        if (timestamp1 < timestamp2 | timestamp1 > timestamp2 | timestamp1 ≥ timestamp2 | timestamp1 ≤ timestamp2) {
+            timestamp1 = timestamp2;
         }
     }
 }

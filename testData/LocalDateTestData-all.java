@@ -1,11 +1,13 @@
 package data<fold text='' expand='false'>;</fold>
 
-import java.time.LocalDate<fold text='' expand='false'>;</fold>
+import <fold text='...' expand='false'>java.sql.Timestamp<fold text='' expand='false'>;</fold>
+import java.time.LocalDate<fold text='' expand='false'>;</fold></fold>
 
+@SuppressWarnings("ALL")
 public class LocalDateTestData {
     public static void main(String[] args) <fold text='{...}' expand='true'>{
         <fold text='val' expand='false'>LocalDate</fold> d1 = <fold text='' expand='false'>LocalDate.of(</fold>2018<fold text='Y-' expand='false'>, </fold>12<fold text='M-' expand='false'>, </fold>10<fold text='D' expand='false'>)</fold><fold text='' expand='false'>;</fold>
-        <fold text='val' expand='false'>LocalDate</fold> d2 = <fold text='' expand='false'>LocalDate.of(</fold>2018<fold text='Y-' expand='false'>, </fold>12<fold text='M-' expand='false'>, </fold>10<fold text='D' expand='false'>)<fold text='' expand='false'></fold>;</fold>
+        <fold text='val' expand='false'>LocalDate</fold> d2 = <fold text='' expand='false'>LocalDate.of(</fold>2018<fold text='Y-' expand='false'>, </fold>12<fold text='M-' expand='false'>, </fold>10<fold text='D' expand='false'>)</fold><fold text='' expand='false'>;</fold>
         <fold text='val' expand='false'>boolean</fold> isBefore = d1<fold text=' < ' expand='false'>.isBefore(</fold>d2<fold text='' expand='false'>)</fold><fold text='' expand='false'>;</fold>
         <fold text='val' expand='false'>boolean</fold> isAfter = d1<fold text=' > ' expand='false'>.isAfter(</fold>d2<fold text='' expand='false'>)</fold><fold text='' expand='false'>;</fold>
         <fold text='val' expand='false'>boolean</fold> d2SmallerOrEqualD1 = <fold text='' expand='false'>!</fold>d1<fold text=' ≥ ' expand='false'>.isBefore(</fold>d2<fold text='' expand='false'>)</fold><fold text='' expand='false'>;</fold><fold text='' expand='false'>;</fold>
@@ -69,6 +71,25 @@ public class LocalDateTestData {
         <fold text='val' expand='false'>var</fold> thaiBuddhistDate2 = java.time.chrono.ThaiBuddhistDate.now()<fold text='' expand='false'>;</fold>
         if <fold text='' expand='false'>(</fold>thaiBuddhistDate1<fold text=' < ' expand='false'>.isBefore(</fold>thaiBuddhistDate2<fold text='' expand='false'>)</fold> | thaiBuddhistDate1<fold text=' > ' expand='false'>.isAfter(</fold>thaiBuddhistDate2<fold text='' expand='false'>)</fold> | <fold text='' expand='false'>!</fold>thaiBuddhistDate1<fold text=' ≥ ' expand='false'>.isBefore(</fold>thaiBuddhistDate2<fold text='' expand='false'>)</fold> | <fold text='' expand='false'>!</fold>thaiBuddhistDate1<fold text=' ≤ ' expand='false'>.isAfter(</fold>thaiBuddhistDate2<fold text='' expand='false'>)</fold><fold text='' expand='false'>)</fold> <fold text='' expand='false'><fold text='{...}' expand='true'>{</fold>
             thaiBuddhistDate1 = thaiBuddhistDate2<fold text='' expand='false'>;</fold>
+        }</fold>
+
+        <fold text='var' expand='false'>var</fold> utilDate1 = new java.util.Date()<fold text='' expand='false'>;</fold>
+        <fold text='val' expand='false'>var</fold> utilDate2 = new java.util.Date()<fold text='' expand='false'>;</fold>
+        if <fold text='' expand='false'>(</fold>utilDate1<fold text=' < ' expand='false'>.before(</fold>utilDate2<fold text='' expand='false'>)</fold> | utilDate1<fold text=' > ' expand='false'>.after(</fold>utilDate2<fold text='' expand='false'>)</fold> | <fold text='' expand='false'>!</fold>utilDate1<fold text=' ≥ ' expand='false'>.before(</fold>utilDate2<fold text='' expand='false'>)</fold> | <fold text='' expand='false'>!</fold>utilDate1<fold text=' ≤ ' expand='false'>.after(</fold>utilDate2<fold text='' expand='false'>)</fold><fold text='' expand='false'>)</fold> <fold text='' expand='false'><fold text='{...}' expand='true'>{</fold>
+            utilDate1 = utilDate2<fold text='' expand='false'>;</fold>
+        }</fold>
+
+        <fold text='val' expand='false'>long</fold> currentTime = System.currentTimeMillis()<fold text='' expand='false'>;</fold>
+        <fold text='var' expand='false'>var</fold> sqlDate1 = new java.sql.Date(currentTime)<fold text='' expand='false'>;</fold>
+        <fold text='val' expand='false'>var</fold> sqlDate2 = new java.sql.Date(currentTime)<fold text='' expand='false'>;</fold>
+        if <fold text='' expand='false'>(</fold>sqlDate1<fold text=' < ' expand='false'>.before(</fold>sqlDate2<fold text='' expand='false'>)</fold> | sqlDate1<fold text=' > ' expand='false'>.after(</fold>sqlDate2<fold text='' expand='false'>)</fold> | <fold text='' expand='false'>!</fold>sqlDate1<fold text=' ≥ ' expand='false'>.before(</fold>sqlDate2<fold text='' expand='false'>)</fold> | <fold text='' expand='false'>!</fold>sqlDate1<fold text=' ≤ ' expand='false'>.after(</fold>sqlDate2<fold text='' expand='false'>)</fold><fold text='' expand='false'>)</fold> <fold text='' expand='false'><fold text='{...}' expand='true'>{</fold>
+            sqlDate1 = sqlDate2<fold text='' expand='false'>;</fold>
+        }</fold>
+
+        <fold text='var' expand='false'>var</fold> timestamp1 = new Timestamp(System.currentTimeMillis())<fold text='' expand='false'>;</fold>
+        <fold text='val' expand='false'>var</fold> timestamp2 = new Timestamp(System.currentTimeMillis())<fold text='' expand='false'>;</fold>
+        if <fold text='' expand='false'>(</fold>timestamp1<fold text=' < ' expand='false'>.before(</fold>timestamp2<fold text='' expand='false'>)</fold> | timestamp1<fold text=' > ' expand='false'>.after(</fold>timestamp2<fold text='' expand='false'>)</fold> | <fold text='' expand='false'>!</fold>timestamp1<fold text=' ≥ ' expand='false'>.before(</fold>timestamp2<fold text='' expand='false'>)</fold> | <fold text='' expand='false'>!</fold>timestamp1<fold text=' ≤ ' expand='false'>.after(</fold>timestamp2<fold text='' expand='false'>)</fold><fold text='' expand='false'>)</fold> <fold text='' expand='false'><fold text='{...}' expand='true'>{</fold>
+            timestamp1 = timestamp2<fold text='' expand='false'>;</fold>
         }</fold>
     }</fold>
 }

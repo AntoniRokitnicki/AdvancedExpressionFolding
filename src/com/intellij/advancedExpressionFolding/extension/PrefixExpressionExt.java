@@ -29,15 +29,16 @@ public class PrefixExpressionExt {
                     if (element.getOperand() instanceof PsiMethodCallExpression operand) {
                         Optional<MethodCallInformation> methodCallInformationOptional = MethodCallInformation.tryGet(operand, document,
                                 AbstractDateMethodCall.getSHARED_CLASS_NAMES()
-                                , "isBefore", "isAfter");
+                                , "isBefore", "isAfter", "before", "after");
                         if (methodCallInformationOptional.isPresent()) {
                             MethodCallInformation callInformation = methodCallInformationOptional.get();
 
-                            if (callInformation.methodName.equals("isBefore")) {
+                            String methodName = callInformation.methodName;
+                            if (methodName.equals("isBefore") || methodName.equals("before")) {
                                 return new GreaterEqual(element, element.getTextRange(), Arrays.asList(callInformation.qualifierExpression, callInformation.getFoldedArgument(0)));
                             }
 
-                            if (callInformation.methodName.equals("isAfter")) {
+                            if (methodName.equals("isAfter") || methodName.equals("after")) {
                                 return new LessEqual(element, element.getTextRange(), Arrays.asList(callInformation.qualifierExpression, callInformation.getFoldedArgument(0)));
                             }
                         }

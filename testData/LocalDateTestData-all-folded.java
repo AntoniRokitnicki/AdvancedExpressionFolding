@@ -1,7 +1,9 @@
 package data
 
+import java.sql.Timestamp
 import java.time.LocalDate
 
+@SuppressWarnings("ALL")
 public class LocalDateTestData {
     public static void main(String[] args) {
         val d1 = 2018Y-12M-10D
@@ -60,5 +62,21 @@ public class LocalDateTestData {
         val thaiBuddhistDate2 = java.time.chrono.ThaiBuddhistDate.now()
         if thaiBuddhistDate1 < thaiBuddhistDate2 | thaiBuddhistDate1 > thaiBuddhistDate2 | thaiBuddhistDate1 ≥ thaiBuddhistDate2 | thaiBuddhistDate1 ≤ thaiBuddhistDate2 
             thaiBuddhistDate1 = thaiBuddhistDate2
+
+        var utilDate1 = new java.util.Date()
+        val utilDate2 = new java.util.Date()
+        if utilDate1 < utilDate2 | utilDate1 > utilDate2 | utilDate1 ≥ utilDate2 | utilDate1 ≤ utilDate2 
+            utilDate1 = utilDate2
+
+        val currentTime = System.currentTimeMillis()
+        var sqlDate1 = new java.sql.Date(currentTime)
+        val sqlDate2 = new java.sql.Date(currentTime)
+        if sqlDate1 < sqlDate2 | sqlDate1 > sqlDate2 | sqlDate1 ≥ sqlDate2 | sqlDate1 ≤ sqlDate2 
+            sqlDate1 = sqlDate2
+
+        var timestamp1 = new Timestamp(System.currentTimeMillis())
+        val timestamp2 = new Timestamp(System.currentTimeMillis())
+        if timestamp1 < timestamp2 | timestamp1 > timestamp2 | timestamp1 ≥ timestamp2 | timestamp1 ≤ timestamp2 
+            timestamp1 = timestamp2
     }
 }
