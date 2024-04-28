@@ -21,6 +21,10 @@ public abstract class Expression {
     protected @NotNull PsiElement element;
     protected @NotNull TextRange textRange;
 
+    protected Expression() {
+        super();
+    }
+
     public Expression(@NotNull PsiElement element, @NotNull TextRange textRange) {
         this.element = element;
         this.textRange = textRange;
