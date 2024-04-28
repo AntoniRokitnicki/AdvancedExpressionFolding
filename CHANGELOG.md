@@ -4,6 +4,10 @@
 
 ## [Unreleased]
 
+## [1.0.37] - 2024-04-28
+
+improve memory consumption and extend support for java time folding
+
 ## [1.0.36] - 2024-04-14
 
 Open example files specified in the settings within the current project
@@ -171,7 +175,8 @@ Improved handling of multi-line log messages
 
 ## [0.0.1]
 
-[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.36...HEAD
+[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.37...HEAD
+[1.0.37]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.36...v1.0.37
 [1.0.36]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.35...v1.0.36
 [1.0.35]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.34...v1.0.35
 [1.0.34]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.33...v1.0.34
