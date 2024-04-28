@@ -1,5 +1,5 @@
 {
-  "size" : 10,
+  "size" : 110,
   "list" : [ {
     "id" : 0,
     "text" : ".isBefore(",
@@ -97,6 +97,1006 @@
     "range" : {
       "start" : 417,
       "end" : 418,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.LessEqual"
+  }, {
+    "id" : 10,
+    "text" : ".isBefore(",
+    "placeholder" : " < ",
+    "range" : {
+      "start" : 532,
+      "end" : 542,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Less"
+  }, {
+    "id" : 11,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 547,
+      "end" : 548,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Less"
+  }, {
+    "id" : 12,
+    "text" : ".isAfter(",
+    "placeholder" : " > ",
+    "range" : {
+      "start" : 556,
+      "end" : 565,
+      "size" : 9
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Greater"
+  }, {
+    "id" : 13,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 570,
+      "end" : 571,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Greater"
+  }, {
+    "id" : 14,
+    "text" : "!",
+    "placeholder" : "",
+    "range" : {
+      "start" : 574,
+      "end" : 575,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.GreaterEqual"
+  }, {
+    "id" : 15,
+    "text" : ".isBefore(",
+    "placeholder" : " ≥ ",
+    "range" : {
+      "start" : 580,
+      "end" : 590,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.GreaterEqual"
+  }, {
+    "id" : 16,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 595,
+      "end" : 596,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.GreaterEqual"
+  }, {
+    "id" : 17,
+    "text" : "!",
+    "placeholder" : "",
+    "range" : {
+      "start" : 599,
+      "end" : 600,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.LessEqual"
+  }, {
+    "id" : 18,
+    "text" : ".isAfter(",
+    "placeholder" : " ≤ ",
+    "range" : {
+      "start" : 605,
+      "end" : 614,
+      "size" : 9
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.LessEqual"
+  }, {
+    "id" : 19,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 619,
+      "end" : 620,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.LessEqual"
+  }, {
+    "id" : 20,
+    "text" : ".isBefore(",
+    "placeholder" : " < ",
+    "range" : {
+      "start" : 793,
+      "end" : 803,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Less"
+  }, {
+    "id" : 21,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 812,
+      "end" : 813,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Less"
+  }, {
+    "id" : 22,
+    "text" : ".isAfter(",
+    "placeholder" : " > ",
+    "range" : {
+      "start" : 825,
+      "end" : 834,
+      "size" : 9
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Greater"
+  }, {
+    "id" : 23,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 843,
+      "end" : 844,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Greater"
+  }, {
+    "id" : 24,
+    "text" : "!",
+    "placeholder" : "",
+    "range" : {
+      "start" : 847,
+      "end" : 848,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.GreaterEqual"
+  }, {
+    "id" : 25,
+    "text" : ".isBefore(",
+    "placeholder" : " ≥ ",
+    "range" : {
+      "start" : 857,
+      "end" : 867,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.GreaterEqual"
+  }, {
+    "id" : 26,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 876,
+      "end" : 877,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.GreaterEqual"
+  }, {
+    "id" : 27,
+    "text" : "!",
+    "placeholder" : "",
+    "range" : {
+      "start" : 880,
+      "end" : 881,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.LessEqual"
+  }, {
+    "id" : 28,
+    "text" : ".isAfter(",
+    "placeholder" : " ≤ ",
+    "range" : {
+      "start" : 890,
+      "end" : 899,
+      "size" : 9
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.LessEqual"
+  }, {
+    "id" : 29,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 908,
+      "end" : 909,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.LessEqual"
+  }, {
+    "id" : 30,
+    "text" : ".isBefore(",
+    "placeholder" : " < ",
+    "range" : {
+      "start" : 1070,
+      "end" : 1080,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Less"
+  }, {
+    "id" : 31,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1085,
+      "end" : 1086,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Less"
+  }, {
+    "id" : 32,
+    "text" : ".isAfter(",
+    "placeholder" : " > ",
+    "range" : {
+      "start" : 1094,
+      "end" : 1103,
+      "size" : 9
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Greater"
+  }, {
+    "id" : 33,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1108,
+      "end" : 1109,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Greater"
+  }, {
+    "id" : 34,
+    "text" : "!",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1112,
+      "end" : 1113,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.GreaterEqual"
+  }, {
+    "id" : 35,
+    "text" : ".isBefore(",
+    "placeholder" : " ≥ ",
+    "range" : {
+      "start" : 1118,
+      "end" : 1128,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.GreaterEqual"
+  }, {
+    "id" : 36,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1133,
+      "end" : 1134,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.GreaterEqual"
+  }, {
+    "id" : 37,
+    "text" : "!",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1137,
+      "end" : 1138,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.LessEqual"
+  }, {
+    "id" : 38,
+    "text" : ".isAfter(",
+    "placeholder" : " ≤ ",
+    "range" : {
+      "start" : 1143,
+      "end" : 1152,
+      "size" : 9
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.LessEqual"
+  }, {
+    "id" : 39,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1157,
+      "end" : 1158,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.LessEqual"
+  }, {
+    "id" : 40,
+    "text" : ".isBefore(",
+    "placeholder" : " < ",
+    "range" : {
+      "start" : 1331,
+      "end" : 1341,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Less"
+  }, {
+    "id" : 41,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1352,
+      "end" : 1353,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Less"
+  }, {
+    "id" : 42,
+    "text" : ".isAfter(",
+    "placeholder" : " > ",
+    "range" : {
+      "start" : 1367,
+      "end" : 1376,
+      "size" : 9
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Greater"
+  }, {
+    "id" : 43,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1387,
+      "end" : 1388,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Greater"
+  }, {
+    "id" : 44,
+    "text" : "!",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1391,
+      "end" : 1392,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.GreaterEqual"
+  }, {
+    "id" : 45,
+    "text" : ".isBefore(",
+    "placeholder" : " ≥ ",
+    "range" : {
+      "start" : 1403,
+      "end" : 1413,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.GreaterEqual"
+  }, {
+    "id" : 46,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1424,
+      "end" : 1425,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.GreaterEqual"
+  }, {
+    "id" : 47,
+    "text" : "!",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1428,
+      "end" : 1429,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.LessEqual"
+  }, {
+    "id" : 48,
+    "text" : ".isAfter(",
+    "placeholder" : " ≤ ",
+    "range" : {
+      "start" : 1440,
+      "end" : 1449,
+      "size" : 9
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.LessEqual"
+  }, {
+    "id" : 49,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1460,
+      "end" : 1461,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.LessEqual"
+  }, {
+    "id" : 50,
+    "text" : ".isBefore(",
+    "placeholder" : " < ",
+    "range" : {
+      "start" : 1666,
+      "end" : 1676,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Less"
+  }, {
+    "id" : 51,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1691,
+      "end" : 1692,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Less"
+  }, {
+    "id" : 52,
+    "text" : ".isAfter(",
+    "placeholder" : " > ",
+    "range" : {
+      "start" : 1710,
+      "end" : 1719,
+      "size" : 9
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Greater"
+  }, {
+    "id" : 53,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1734,
+      "end" : 1735,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Greater"
+  }, {
+    "id" : 54,
+    "text" : "!",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1738,
+      "end" : 1739,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.GreaterEqual"
+  }, {
+    "id" : 55,
+    "text" : ".isBefore(",
+    "placeholder" : " ≥ ",
+    "range" : {
+      "start" : 1754,
+      "end" : 1764,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.GreaterEqual"
+  }, {
+    "id" : 56,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1779,
+      "end" : 1780,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.GreaterEqual"
+  }, {
+    "id" : 57,
+    "text" : "!",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1783,
+      "end" : 1784,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.LessEqual"
+  }, {
+    "id" : 58,
+    "text" : ".isAfter(",
+    "placeholder" : " ≤ ",
+    "range" : {
+      "start" : 1799,
+      "end" : 1808,
+      "size" : 9
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.LessEqual"
+  }, {
+    "id" : 59,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1823,
+      "end" : 1824,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.LessEqual"
+  }, {
+    "id" : 60,
+    "text" : ".isBefore(",
+    "placeholder" : " < ",
+    "range" : {
+      "start" : 2032,
+      "end" : 2042,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Less"
+  }, {
+    "id" : 61,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2056,
+      "end" : 2057,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Less"
+  }, {
+    "id" : 62,
+    "text" : ".isAfter(",
+    "placeholder" : " > ",
+    "range" : {
+      "start" : 2074,
+      "end" : 2083,
+      "size" : 9
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Greater"
+  }, {
+    "id" : 63,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2097,
+      "end" : 2098,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Greater"
+  }, {
+    "id" : 64,
+    "text" : "!",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2101,
+      "end" : 2102,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.GreaterEqual"
+  }, {
+    "id" : 65,
+    "text" : ".isBefore(",
+    "placeholder" : " ≥ ",
+    "range" : {
+      "start" : 2116,
+      "end" : 2126,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.GreaterEqual"
+  }, {
+    "id" : 66,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2140,
+      "end" : 2141,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.GreaterEqual"
+  }, {
+    "id" : 67,
+    "text" : "!",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2144,
+      "end" : 2145,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.LessEqual"
+  }, {
+    "id" : 68,
+    "text" : ".isAfter(",
+    "placeholder" : " ≤ ",
+    "range" : {
+      "start" : 2159,
+      "end" : 2168,
+      "size" : 9
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.LessEqual"
+  }, {
+    "id" : 69,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2182,
+      "end" : 2183,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.LessEqual"
+  }, {
+    "id" : 70,
+    "text" : ".isBefore(",
+    "placeholder" : " < ",
+    "range" : {
+      "start" : 2388,
+      "end" : 2398,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Less"
+  }, {
+    "id" : 71,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2409,
+      "end" : 2410,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Less"
+  }, {
+    "id" : 72,
+    "text" : ".isAfter(",
+    "placeholder" : " > ",
+    "range" : {
+      "start" : 2424,
+      "end" : 2433,
+      "size" : 9
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Greater"
+  }, {
+    "id" : 73,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2444,
+      "end" : 2445,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Greater"
+  }, {
+    "id" : 74,
+    "text" : "!",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2448,
+      "end" : 2449,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.GreaterEqual"
+  }, {
+    "id" : 75,
+    "text" : ".isBefore(",
+    "placeholder" : " ≥ ",
+    "range" : {
+      "start" : 2460,
+      "end" : 2470,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.GreaterEqual"
+  }, {
+    "id" : 76,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2481,
+      "end" : 2482,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.GreaterEqual"
+  }, {
+    "id" : 77,
+    "text" : "!",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2485,
+      "end" : 2486,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.LessEqual"
+  }, {
+    "id" : 78,
+    "text" : ".isAfter(",
+    "placeholder" : " ≤ ",
+    "range" : {
+      "start" : 2497,
+      "end" : 2506,
+      "size" : 9
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.LessEqual"
+  }, {
+    "id" : 79,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2517,
+      "end" : 2518,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.LessEqual"
+  }, {
+    "id" : 80,
+    "text" : ".isBefore(",
+    "placeholder" : " < ",
+    "range" : {
+      "start" : 2727,
+      "end" : 2737,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Less"
+  }, {
+    "id" : 81,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2750,
+      "end" : 2751,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Less"
+  }, {
+    "id" : 82,
+    "text" : ".isAfter(",
+    "placeholder" : " > ",
+    "range" : {
+      "start" : 2767,
+      "end" : 2776,
+      "size" : 9
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Greater"
+  }, {
+    "id" : 83,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2789,
+      "end" : 2790,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Greater"
+  }, {
+    "id" : 84,
+    "text" : "!",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2793,
+      "end" : 2794,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.GreaterEqual"
+  }, {
+    "id" : 85,
+    "text" : ".isBefore(",
+    "placeholder" : " ≥ ",
+    "range" : {
+      "start" : 2807,
+      "end" : 2817,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.GreaterEqual"
+  }, {
+    "id" : 86,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2830,
+      "end" : 2831,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.GreaterEqual"
+  }, {
+    "id" : 87,
+    "text" : "!",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2834,
+      "end" : 2835,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.LessEqual"
+  }, {
+    "id" : 88,
+    "text" : ".isAfter(",
+    "placeholder" : " ≤ ",
+    "range" : {
+      "start" : 2848,
+      "end" : 2857,
+      "size" : 9
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.LessEqual"
+  }, {
+    "id" : 89,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2870,
+      "end" : 2871,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.LessEqual"
+  }, {
+    "id" : 90,
+    "text" : ".isBefore(",
+    "placeholder" : " < ",
+    "range" : {
+      "start" : 3074,
+      "end" : 3084,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Less"
+  }, {
+    "id" : 91,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3095,
+      "end" : 3096,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Less"
+  }, {
+    "id" : 92,
+    "text" : ".isAfter(",
+    "placeholder" : " > ",
+    "range" : {
+      "start" : 3110,
+      "end" : 3119,
+      "size" : 9
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Greater"
+  }, {
+    "id" : 93,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3130,
+      "end" : 3131,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Greater"
+  }, {
+    "id" : 94,
+    "text" : "!",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3134,
+      "end" : 3135,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.GreaterEqual"
+  }, {
+    "id" : 95,
+    "text" : ".isBefore(",
+    "placeholder" : " ≥ ",
+    "range" : {
+      "start" : 3146,
+      "end" : 3156,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.GreaterEqual"
+  }, {
+    "id" : 96,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3167,
+      "end" : 3168,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.GreaterEqual"
+  }, {
+    "id" : 97,
+    "text" : "!",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3171,
+      "end" : 3172,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.LessEqual"
+  }, {
+    "id" : 98,
+    "text" : ".isAfter(",
+    "placeholder" : " ≤ ",
+    "range" : {
+      "start" : 3183,
+      "end" : 3192,
+      "size" : 9
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.LessEqual"
+  }, {
+    "id" : 99,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3203,
+      "end" : 3204,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.LessEqual"
+  }, {
+    "id" : 100,
+    "text" : ".isBefore(",
+    "placeholder" : " < ",
+    "range" : {
+      "start" : 3433,
+      "end" : 3443,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Less"
+  }, {
+    "id" : 101,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3460,
+      "end" : 3461,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Less"
+  }, {
+    "id" : 102,
+    "text" : ".isAfter(",
+    "placeholder" : " > ",
+    "range" : {
+      "start" : 3481,
+      "end" : 3490,
+      "size" : 9
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Greater"
+  }, {
+    "id" : 103,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3507,
+      "end" : 3508,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Greater"
+  }, {
+    "id" : 104,
+    "text" : "!",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3511,
+      "end" : 3512,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.GreaterEqual"
+  }, {
+    "id" : 105,
+    "text" : ".isBefore(",
+    "placeholder" : " ≥ ",
+    "range" : {
+      "start" : 3529,
+      "end" : 3539,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.GreaterEqual"
+  }, {
+    "id" : 106,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3556,
+      "end" : 3557,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.GreaterEqual"
+  }, {
+    "id" : 107,
+    "text" : "!",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3560,
+      "end" : 3561,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.LessEqual"
+  }, {
+    "id" : 108,
+    "text" : ".isAfter(",
+    "placeholder" : " ≤ ",
+    "range" : {
+      "start" : 3578,
+      "end" : 3587,
+      "size" : 9
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.LessEqual"
+  }, {
+    "id" : 109,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3604,
+      "end" : 3605,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.LessEqual"

@@ -33,7 +33,7 @@ object MethodCallFactory {
         methodCallMap.values.mapNotNull { it.methodName() } + Consts.SUPPORTED_METHODS
 
     private fun createSupportedClasses(): Collection<String> =
-        methodCallMap.values.map { it.classNames }.flatten() + Consts.SUPPORTED_CLASSES
+        methodCallMap.values.map { it.classNames }.distinct().flatten() + Consts.SUPPORTED_CLASSES
 
     fun findByMethodName(methodName: String?): AbstractMethodCall? = methodCallMap[methodName]
 }
