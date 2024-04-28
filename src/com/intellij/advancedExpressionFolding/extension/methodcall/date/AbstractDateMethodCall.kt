@@ -23,6 +23,18 @@ abstract class AbstractDateMethodCall : AbstractMethodCall() {
             "java.time.chrono.JapaneseDate",
             "java.time.chrono.MinguoDate",
             "java.time.chrono.ThaiBuddhistDate",
+
+            "org.joda.time.LocalDate",
+            "org.joda.time.LocalDateTime",
+            "org.joda.time.LocalTime",
+            "org.joda.time.DateTime",
+            "org.joda.time.Instant",
+
+            //TODO: remove those after ignoring second arg in PrefixExpressionExt.MethodCallInformation.tryGet - isMethodSupported.test(className, methodName)
+            // later Date/Calendar can be supported as well or maybe make isAfter/isBefore and after/before with 2 args work for all classes
+            "org.joda.time.base.AbstractDateTime",
+            "org.joda.time.base.AbstractInstant",
+            "org.joda.time.base.AbstractPartial",
         )
     }
 }
