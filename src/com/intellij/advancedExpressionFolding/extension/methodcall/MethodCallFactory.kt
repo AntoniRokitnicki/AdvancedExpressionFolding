@@ -1,10 +1,7 @@
 package com.intellij.advancedExpressionFolding.extension.methodcall
 
 import com.intellij.advancedExpressionFolding.extension.Consts
-import com.intellij.advancedExpressionFolding.extension.methodcall.date.AbstractDateMethodCall
-import com.intellij.advancedExpressionFolding.extension.methodcall.date.CreateDateFactoryMethodCall
-import com.intellij.advancedExpressionFolding.extension.methodcall.date.IsAfterDateMethodCall
-import com.intellij.advancedExpressionFolding.extension.methodcall.date.IsBeforeDateMethodCall
+import com.intellij.advancedExpressionFolding.extension.methodcall.date.*
 
 //TODO: move to extension-point
 object MethodCallFactory {
@@ -23,7 +20,9 @@ object MethodCallFactory {
     }
 
     private fun createMethodCalls(): Map<String?, AbstractDateMethodCall> =
-        mutableListOf(IsBeforeDateMethodCall(), IsAfterDateMethodCall(), CreateDateFactoryMethodCall()).filter {
+        mutableListOf(IsBeforeDateMethodCall(), IsAfterDateMethodCall(), CreateDateFactoryMethodCall(),
+            AfterDateMethodCall(), BeforeDateMethodCall(),
+        ).filter {
             it.permission()
         }.associateBy {
             it.methodName()
