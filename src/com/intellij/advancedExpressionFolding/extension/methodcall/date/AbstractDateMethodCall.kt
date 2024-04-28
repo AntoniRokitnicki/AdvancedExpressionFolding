@@ -30,7 +30,8 @@ abstract class AbstractDateMethodCall : AbstractMethodCall() {
             "org.joda.time.DateTime",
             "org.joda.time.Instant",
             //TODO: remove those after ignoring second arg in PrefixExpressionExt.MethodCallInformation.tryGet - isMethodSupported.test(className, methodName)
-            // later Date/Calendar can be supported as well or maybe make isAfter/isBefore and after/before with 1 arg work for all classes
+            // later Date/Calendar can be supported as well
+            // or maybe make isAfter/isBefore and after/before (with 1 arg that returns boolean) work for all classes
             "org.joda.time.base.AbstractDateTime",
             "org.joda.time.base.AbstractInstant",
             "org.joda.time.base.AbstractPartial",
