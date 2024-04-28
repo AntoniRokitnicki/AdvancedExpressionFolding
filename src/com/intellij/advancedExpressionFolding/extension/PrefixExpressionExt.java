@@ -2,6 +2,7 @@ package com.intellij.advancedExpressionFolding.extension;
 
 import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings;
 import com.intellij.advancedExpressionFolding.expression.*;
+import com.intellij.advancedExpressionFolding.extension.methodcall.date.AbstractDateMethodCall;
 import com.intellij.openapi.editor.Document;
 import com.intellij.psi.*;
 import org.jetbrains.annotations.NotNull;
@@ -26,7 +27,9 @@ public class PrefixExpressionExt {
             if (element.getOperationSign().getText().equals("!")) {
                 if (settings.getState().getComparingLocalDatesCollapse()) {
                     if (element.getOperand() instanceof PsiMethodCallExpression operand) {
-                        Optional<MethodCallInformation> methodCallInformationOptional = MethodCallInformation.tryGet(operand, document, Arrays.asList("java.time.LocalDate", "java.time.LocalTime", "java.time.LocalDateTime", "java.time.Year", "java.time.YearMonth", "java.time.ChronoLocalDateTime", "java.time.Instant"), "isBefore", "isAfter");
+                        Optional<MethodCallInformation> methodCallInformationOptional = MethodCallInformation.tryGet(operand, document,
+                                AbstractDateMethodCall.getSHARED_CLASS_NAMES()
+                                , "isBefore", "isAfter");
                         if (methodCallInformationOptional.isPresent()) {
                             MethodCallInformation callInformation = methodCallInformationOptional.get();
 

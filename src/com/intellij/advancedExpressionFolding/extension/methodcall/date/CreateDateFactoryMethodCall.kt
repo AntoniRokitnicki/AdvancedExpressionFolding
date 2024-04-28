@@ -12,6 +12,8 @@ class CreateDateFactoryMethodCall : AbstractDateMethodCall() {
 
     override fun methodName() = "of"
 
+    override val classNames: List<String> by lazy { listOf("java.time.LocalDate") }
+
     override fun onManyArguments(
         element: PsiMethodCallExpression,
         context: Context,
