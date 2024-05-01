@@ -1,5 +1,9 @@
 package com.intellij.advancedExpressionFolding.extension
 
+import com.intellij.advancedExpressionFolding.extension.BaseExtension.Companion.isBoolean
+import com.intellij.advancedExpressionFolding.extension.BaseExtension.Companion.isInt
+import com.intellij.advancedExpressionFolding.extension.BaseExtension.Companion.isObject
+import com.intellij.advancedExpressionFolding.extension.BaseExtension.Companion.isString
 import com.intellij.advancedExpressionFolding.extension.BaseExtension.Companion.isVoid
 import com.intellij.advancedExpressionFolding.extension.Keys.IGNORED
 import com.intellij.openapi.util.TextRange
@@ -35,8 +39,8 @@ fun PsiElement.realNextSibling(): PsiElement? {
 }
 
 
-
-fun PsiField.isStatic(): Boolean = modifierList?.hasModifierProperty(PsiModifier.STATIC) == true
+fun PsiModifierListOwner.isNotStatic() = !hasModifierProperty(PsiModifier.STATIC)
+fun PsiModifierListOwner.isNotFinal() = !hasModifierProperty(PsiModifier.FINAL)
 
 fun PsiMethod.isSetterOrBuilder(): Boolean = isSetter() || isBuilder()
 
@@ -54,7 +58,18 @@ fun PsiMethod.isGetter(): Boolean {
     return parameterList.parametersCount == 0 && !returnType.isVoid() && (isGetter(name) || containingClass?.isRecord == true)
 }
 
-fun PsiMethod.isGetterOrSetter(): Boolean = isSetter() || isGetter()
+fun PsiMethod.isToString() = name == "toString"
+        && returnType.isString()
+        && !hasParameters()
+
+fun PsiMethod.isEquals() = name == "equals"
+        && returnType.isBoolean()
+        && parameterList.parametersCount == 1
+        && parameterList.parameters[0].type.isObject()
+
+fun PsiMethod.isHashCode() = name == "hashCode"
+        && returnType.isInt()
+        && !hasParameters()
 
 fun PsiClass?.isBuilder() : Boolean {
     if (this == null) {
