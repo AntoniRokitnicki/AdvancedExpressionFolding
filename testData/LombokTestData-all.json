@@ -1,152 +1,152 @@
 {
-  "size" : 24,
+  "size" : 309,
   "list" : [ {
     "id" : 0,
-    "text" : "public LombokTestData getData() {\n        return data;\n    }",
+    "text" : "\n    ",
     "placeholder" : "",
     "range" : {
-      "start" : 253,
-      "end" : 313,
-      "size" : 60
+      "start" : 388,
+      "end" : 393,
+      "size" : 5
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
   }, {
     "id" : 1,
-    "text" : "public void setData(LombokTestData data) {\n        this.data = data;\n    }",
+    "text" : "\n    ",
     "placeholder" : "",
     "range" : {
-      "start" : 371,
-      "end" : 445,
-      "size" : 74
+      "start" : 532,
+      "end" : 537,
+      "size" : 5
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
   }, {
     "id" : 2,
-    "text" : "public boolean isOk() {\n        return ok;\n    }",
+    "text" : "\n    ",
     "placeholder" : "",
     "range" : {
-      "start" : 318,
-      "end" : 366,
-      "size" : 48
+      "start" : 649,
+      "end" : 654,
+      "size" : 5
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
   }, {
     "id" : 3,
-    "text" : "public void setOk(boolean ok) {\n        this.ok = ok;\n    }",
+    "text" : "\n    ",
     "placeholder" : "",
     "range" : {
-      "start" : 450,
-      "end" : 509,
-      "size" : 59
+      "start" : 453,
+      "end" : 458,
+      "size" : 5
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
   }, {
     "id" : 4,
-    "text" : "public String getString() {\n        return string;\n    }",
+    "text" : "\n    ",
     "placeholder" : "",
     "range" : {
-      "start" : 514,
-      "end" : 570,
-      "size" : 56
+      "start" : 585,
+      "end" : 590,
+      "size" : 5
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
   }, {
     "id" : 5,
-    "text" : "public void setString(String string) {\n        this.string = string;\n    }",
+    "text" : "\n    ",
     "placeholder" : "",
     "range" : {
-      "start" : 575,
-      "end" : 649,
-      "size" : 74
+      "start" : 710,
+      "end" : 715,
+      "size" : 5
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
   }, {
     "id" : 6,
-    "text" : "\n    ",
-    "placeholder" : "",
-    "range" : {
-      "start" : 248,
-      "end" : 253,
-      "size" : 5
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
-  }, {
-    "id" : 7,
-    "text" : "\n    ",
-    "placeholder" : "",
-    "range" : {
-      "start" : 366,
-      "end" : 371,
-      "size" : 5
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
-  }, {
-    "id" : 8,
-    "text" : "\n    ",
-    "placeholder" : "",
-    "range" : {
-      "start" : 313,
-      "end" : 318,
-      "size" : 5
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
-  }, {
-    "id" : 9,
-    "text" : "\n    ",
-    "placeholder" : "",
-    "range" : {
-      "start" : 445,
-      "end" : 450,
-      "size" : 5
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
-  }, {
-    "id" : 10,
-    "text" : "\n    ",
-    "placeholder" : "",
-    "range" : {
-      "start" : 509,
-      "end" : 514,
-      "size" : 5
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
-  }, {
-    "id" : 11,
-    "text" : "\n    ",
-    "placeholder" : "",
-    "range" : {
-      "start" : 570,
-      "end" : 575,
-      "size" : 5
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
-  }, {
-    "id" : 12,
-    "text" : "private static final long serialVersionUID = 1234567L;",
-    "placeholder" : "",
-    "range" : {
-      "start" : 133,
-      "end" : 187,
-      "size" : 54
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
-  }, {
-    "id" : 13,
     "text" : "\n\n    ",
     "placeholder" : "",
     "range" : {
-      "start" : 127,
-      "end" : 133,
+      "start" : 267,
+      "end" : 273,
       "size" : 6
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
   }, {
-    "id" : 14,
-    "text" : "p",
-    "placeholder" : "@Getter @Setter @Serial p",
+    "id" : 7,
+    "text" : "public LombokTestData getData() {\n        return data;\n    }",
+    "placeholder" : "",
     "range" : {
-      "start" : 98,
-      "end" : 99,
+      "start" : 393,
+      "end" : 453,
+      "size" : 60
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 8,
+    "text" : "public boolean isOk() {\n        return ok;\n    }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 537,
+      "end" : 585,
+      "size" : 48
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 9,
+    "text" : "public String getString() {\n        return string;\n    }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 654,
+      "end" : 710,
+      "size" : 56
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 10,
+    "text" : "public void setData(LombokTestData data) {\n        this.data = data;\n    }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 458,
+      "end" : 532,
+      "size" : 74
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 11,
+    "text" : "public void setOk(boolean ok) {\n        this.ok = ok;\n    }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 590,
+      "end" : 649,
+      "size" : 59
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 12,
+    "text" : "public void setString(String string) {\n        this.string = string;\n    }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 715,
+      "end" : 789,
+      "size" : 74
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 13,
+    "text" : "private static final long serialVersionUID = 1234567L;",
+    "placeholder" : "",
+    "range" : {
+      "start" : 273,
+      "end" : 327,
+      "size" : 54
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 14,
+    "text" : "@",
+    "placeholder" : "@Getter @Setter @Serial @",
+    "range" : {
+      "start" : 213,
+      "end" : 214,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
@@ -155,8 +155,8 @@
     "text" : "data",
     "placeholder" : "<<",
     "range" : {
-      "start" : 434,
-      "end" : 438,
+      "start" : 521,
+      "end" : 525,
       "size" : 4
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
@@ -165,8 +165,8 @@
     "text" : "ok",
     "placeholder" : "<<",
     "range" : {
-      "start" : 500,
-      "end" : 502,
+      "start" : 640,
+      "end" : 642,
       "size" : 2
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
@@ -175,8 +175,8 @@
     "text" : "string",
     "placeholder" : "<<",
     "range" : {
-      "start" : 636,
-      "end" : 642,
+      "start" : 776,
+      "end" : 782,
       "size" : 6
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
@@ -185,8 +185,8 @@
     "text" : "Optional.ofNullable(",
     "placeholder" : "",
     "range" : {
-      "start" : 806,
-      "end" : 826,
+      "start" : 857,
+      "end" : 877,
       "size" : 20
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOfNullable"
@@ -195,50 +195,2900 @@
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 830,
-      "end" : 831,
+      "start" : 881,
+      "end" : 882,
       "size" : 1
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOfNullable"
   }, {
     "id" : 20,
-    "text" : "Optional.ofNullable(",
+    "text" : "\n        ",
     "placeholder" : "",
     "range" : {
-      "start" : 906,
-      "end" : 926,
-      "size" : 20
+      "start" : 972,
+      "end" : 981,
+      "size" : 9
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOfNullable"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
   }, {
     "id" : 21,
-    "text" : ")",
+    "text" : "\n        ",
     "placeholder" : "",
     "range" : {
-      "start" : 930,
-      "end" : 931,
-      "size" : 1
+      "start" : 1054,
+      "end" : 1063,
+      "size" : 9
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOfNullable"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
   }, {
     "id" : 22,
-    "text" : "Optional.ofNullable(",
+    "text" : "public data.LombokTestData getData() {\n            return data;\n        }",
     "placeholder" : "",
     "range" : {
-      "start" : 1011,
-      "end" : 1031,
-      "size" : 20
+      "start" : 981,
+      "end" : 1054,
+      "size" : 73
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOfNullable"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
   }, {
     "id" : 23,
+    "text" : "public boolean isOk() {\n            return ok;\n        }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1063,
+      "end" : 1119,
+      "size" : 56
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 24,
+    "text" : "p",
+    "placeholder" : "@Getter p",
+    "range" : {
+      "start" : 895,
+      "end" : 896,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 25,
+    "text" : "\n            ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1221,
+      "end" : 1234,
+      "size" : 13
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 26,
+    "text" : "public boolean isOk() {\n                return ok;\n            }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1234,
+      "end" : 1298,
+      "size" : 64
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 27,
+    "text" : "p",
+    "placeholder" : "@Getter* p",
+    "range" : {
+      "start" : 1129,
+      "end" : 1130,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 28,
+    "text" : "\n        ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1397,
+      "end" : 1406,
+      "size" : 9
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 29,
+    "text" : "\n        ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1565,
+      "end" : 1574,
+      "size" : 9
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 30,
+    "text" : "\n        ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1474,
+      "end" : 1483,
+      "size" : 9
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 31,
+    "text" : "\n        ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1630,
+      "end" : 1639,
+      "size" : 9
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 32,
+    "text" : "public LombokTestData getData() {\n            return data;\n        }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1406,
+      "end" : 1474,
+      "size" : 68
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 33,
+    "text" : "public boolean isOk() {\n            return ok;\n        }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1574,
+      "end" : 1630,
+      "size" : 56
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 34,
+    "text" : "public void setData(LombokTestData data) {\n            this.data = data;\n        }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1483,
+      "end" : 1565,
+      "size" : 82
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 35,
+    "text" : "public void setOk(boolean ok) {\n            this.ok = ok;\n        }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1639,
+      "end" : 1706,
+      "size" : 67
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 36,
+    "text" : "p",
+    "placeholder" : "@Getter @Setter p",
+    "range" : {
+      "start" : 1320,
+      "end" : 1321,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 37,
+    "text" : "data",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 1550,
+      "end" : 1554,
+      "size" : 4
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+  }, {
+    "id" : 38,
+    "text" : "ok",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 1693,
+      "end" : 1695,
+      "size" : 2
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+  }, {
+    "id" : 39,
+    "text" : "\n            ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1808,
+      "end" : 1821,
+      "size" : 13
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 40,
+    "text" : "public void setData(LombokTestData data) {\n                this.data = data;\n            }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1821,
+      "end" : 1911,
+      "size" : 90
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 41,
+    "text" : "p",
+    "placeholder" : "@Setter* p",
+    "range" : {
+      "start" : 1716,
+      "end" : 1717,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 42,
+    "text" : "data",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 1892,
+      "end" : 1896,
+      "size" : 4
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+  }, {
+    "id" : 43,
+    "text" : "\n            ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2039,
+      "end" : 2052,
+      "size" : 13
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 44,
+    "text" : "public void setData(LombokTestData data) {\n                this.data = data;\n            }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2052,
+      "end" : 2142,
+      "size" : 90
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 45,
+    "text" : "p",
+    "placeholder" : "@Setter p",
+    "range" : {
+      "start" : 1931,
+      "end" : 1932,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 46,
+    "text" : "data",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 2123,
+      "end" : 2127,
+      "size" : 4
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+  }, {
+    "id" : 47,
+    "text" : "\n\n        ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2240,
+      "end" : 2250,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 48,
+    "text" : "@Override\n        public String toString() {\n            return \"ToStringFull{\" +\n                    \"data=\" + data +\n                    \", ok=\" + ok +\n                    '}';\n        }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2250,
+      "end" : 2438,
+      "size" : 188
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 49,
+    "text" : "p",
+    "placeholder" : "@ToString p",
+    "range" : {
+      "start" : 2164,
+      "end" : 2165,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 50,
+    "text" : "\" +\n                    \"",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2328,
+      "end" : 2353,
+      "size" : 25
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+  }, {
+    "id" : 51,
+    "text" : "\" + ",
+    "placeholder" : "$",
+    "range" : {
+      "start" : 2358,
+      "end" : 2362,
+      "size" : 4
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+  }, {
+    "id" : 52,
+    "text" : " +\n                    \"",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2366,
+      "end" : 2390,
+      "size" : 24
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+  }, {
+    "id" : 53,
+    "text" : "\" + ",
+    "placeholder" : "$",
+    "range" : {
+      "start" : 2395,
+      "end" : 2399,
+      "size" : 4
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+  }, {
+    "id" : 54,
+    "text" : " +\n                    ",
+    "placeholder" : "${",
+    "range" : {
+      "start" : 2401,
+      "end" : 2424,
+      "size" : 23
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+  }, {
+    "id" : 55,
+    "text" : " +\n                    ",
+    "placeholder" : "${",
+    "range" : {
+      "start" : 2401,
+      "end" : 2424,
+      "size" : 23
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+  }, {
+    "id" : 56,
+    "text" : ";",
+    "placeholder" : "}\";",
+    "range" : {
+      "start" : 2427,
+      "end" : 2428,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+  }, {
+    "id" : 57,
+    "text" : "\n\n            ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2535,
+      "end" : 2549,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 58,
+    "text" : "@Override\n            public String toString() {\n                return \"ToStringPartial{\" +\n                        \"data=\" + data +\n                        '}';\n            }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2549,
+      "end" : 2725,
+      "size" : 176
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 59,
+    "text" : "p",
+    "placeholder" : "@ToString* p",
+    "range" : {
+      "start" : 2448,
+      "end" : 2449,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 60,
+    "text" : "\" +\n                        \"",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2638,
+      "end" : 2667,
+      "size" : 29
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+  }, {
+    "id" : 61,
+    "text" : "\" + ",
+    "placeholder" : "$",
+    "range" : {
+      "start" : 2672,
+      "end" : 2676,
+      "size" : 4
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+  }, {
+    "id" : 62,
+    "text" : " +\n                        ",
+    "placeholder" : "${",
+    "range" : {
+      "start" : 2680,
+      "end" : 2707,
+      "size" : 27
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+  }, {
+    "id" : 63,
+    "text" : " +\n                        ",
+    "placeholder" : "${",
+    "range" : {
+      "start" : 2680,
+      "end" : 2707,
+      "size" : 27
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+  }, {
+    "id" : 64,
+    "text" : ";",
+    "placeholder" : "}\";",
+    "range" : {
+      "start" : 2710,
+      "end" : 2711,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+  }, {
+    "id" : 65,
+    "text" : "\n\n            ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2860,
+      "end" : 2874,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 66,
+    "text" : "@Override\n            public String toString() {\n                return \"ToStringPartial{\" +\n                        \"data=\" + data +\n                        '}';\n            }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2874,
+      "end" : 3050,
+      "size" : 176
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 67,
+    "text" : "p",
+    "placeholder" : "@ToString* p",
+    "range" : {
+      "start" : 2745,
+      "end" : 2746,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 68,
+    "text" : "\" +\n                        \"",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2963,
+      "end" : 2992,
+      "size" : 29
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+  }, {
+    "id" : 69,
+    "text" : "\" + ",
+    "placeholder" : "$",
+    "range" : {
+      "start" : 2997,
+      "end" : 3001,
+      "size" : 4
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+  }, {
+    "id" : 70,
+    "text" : " +\n                        ",
+    "placeholder" : "${",
+    "range" : {
+      "start" : 3005,
+      "end" : 3032,
+      "size" : 27
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+  }, {
+    "id" : 71,
+    "text" : " +\n                        ",
+    "placeholder" : "${",
+    "range" : {
+      "start" : 3005,
+      "end" : 3032,
+      "size" : 27
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+  }, {
+    "id" : 72,
+    "text" : ";",
+    "placeholder" : "}\";",
+    "range" : {
+      "start" : 3035,
+      "end" : 3036,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+  }, {
+    "id" : 73,
+    "text" : "\n\n        ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3157,
+      "end" : 3167,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 74,
+    "text" : "\n\n        ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3504,
+      "end" : 3514,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 75,
+    "text" : "@Override\n        public boolean equals(Object o) {\n            if (this == o) return true;\n            if (o == null || getClass() != o.getClass()) return false;\n            EqualsAndHashCodeFull that = (EqualsAndHashCodeFull) o;\n            return ok == that.ok && (data != null ? data.equals(that.data) : that.data == null);\n        }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3167,
+      "end" : 3504,
+      "size" : 337
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 76,
+    "text" : "@Override\n        public int hashCode() {\n            int result = (data != null ? data.hashCode() : 0);\n            result = 31 * result + (ok ? 1 : 0);\n            return result;\n        }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3514,
+      "end" : 3704,
+      "size" : 190
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 77,
+    "text" : "p",
+    "placeholder" : "@EqualsAndHashCode p",
+    "range" : {
+      "start" : 3072,
+      "end" : 3073,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 78,
+    "text" : "(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3234,
+      "end" : 3235,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+  }, {
+    "id" : 79,
     "text" : ")",
     "placeholder" : "",
     "range" : {
-      "start" : 1035,
-      "end" : 1036,
+      "start" : 3244,
+      "end" : 3245,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOfNullable"
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+  }, {
+    "id" : 80,
+    "text" : "(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3274,
+      "end" : 3275,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+  }, {
+    "id" : 81,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3314,
+      "end" : 3315,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+  }, {
+    "id" : 82,
+    "text" : "getClass()",
+    "placeholder" : "class",
+    "range" : {
+      "start" : 3288,
+      "end" : 3298,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 83,
+    "text" : "getClass()",
+    "placeholder" : "class",
+    "range" : {
+      "start" : 3304,
+      "end" : 3314,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 84,
+    "text" : "EqualsAndHashCodeFull",
+    "placeholder" : "val",
+    "range" : {
+      "start" : 3342,
+      "end" : 3363,
+      "size" : 21
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+  }, {
+    "id" : 85,
+    "text" : "(EqualsAndHashCodeFull) ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3371,
+      "end" : 3395,
+      "size" : 24
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.TypeCast:highlighting"
+  }, {
+    "id" : 86,
+    "text" : "data != null ? ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3435,
+      "end" : 3450,
+      "size" : 15
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ElvisExpression"
+  }, {
+    "id" : 87,
+    "text" : " : ",
+    "placeholder" : " ?: ",
+    "range" : {
+      "start" : 3472,
+      "end" : 3475,
+      "size" : 3
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ElvisExpression"
+  }, {
+    "id" : 88,
+    "text" : ".",
+    "placeholder" : "?.",
+    "range" : {
+      "start" : 3454,
+      "end" : 3455,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ElvisExpression"
+  }, {
+    "id" : 89,
+    "text" : ")",
+    "placeholder" : "?)",
+    "range" : {
+      "start" : 3471,
+      "end" : 3472,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ElvisExpression"
+  }, {
+    "id" : 90,
+    "text" : ".equals(",
+    "placeholder" : " ≡ ",
+    "range" : {
+      "start" : 3454,
+      "end" : 3462,
+      "size" : 8
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Equal"
+  }, {
+    "id" : 91,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3471,
+      "end" : 3472,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Equal"
+  }, {
+    "id" : 92,
+    "text" : "int",
+    "placeholder" : "var",
+    "range" : {
+      "start" : 3568,
+      "end" : 3571,
+      "size" : 3
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+  }, {
+    "id" : 93,
+    "text" : "data != null ? ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3582,
+      "end" : 3597,
+      "size" : 15
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ElvisExpression"
+  }, {
+    "id" : 94,
+    "text" : " : ",
+    "placeholder" : " ?: ",
+    "range" : {
+      "start" : 3612,
+      "end" : 3615,
+      "size" : 3
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ElvisExpression"
+  }, {
+    "id" : 95,
+    "text" : ".",
+    "placeholder" : "?.",
+    "range" : {
+      "start" : 3601,
+      "end" : 3602,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ElvisExpression"
+  }, {
+    "id" : 96,
+    "text" : " + (",
+    "placeholder" : " + ",
+    "range" : {
+      "start" : 3651,
+      "end" : 3655,
+      "size" : 4
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Add"
+  }, {
+    "id" : 97,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3665,
+      "end" : 3666,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Add"
+  }, {
+    "id" : 98,
+    "text" : "\n\n            ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3810,
+      "end" : 3824,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 99,
+    "text" : "\n\n            ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 4172,
+      "end" : 4186,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 100,
+    "text" : "@Override\n            public boolean equals(Object o) {\n                if (this == o) return true;\n                if (o == null || getClass() != o.getClass()) return false;\n                EqualsAndHashCodePartial that = (EqualsAndHashCodePartial) o;\n                return data != null ? data.equals(that.data) : that.data == null;\n            }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3824,
+      "end" : 4172,
+      "size" : 348
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 101,
+    "text" : "@Override\n            public int hashCode() {\n                return data != null ? data.hashCode() : 0;\n            }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 4186,
+      "end" : 4304,
+      "size" : 118
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 102,
+    "text" : "p",
+    "placeholder" : "@EqualsAndHashCode* p",
+    "range" : {
+      "start" : 3714,
+      "end" : 3715,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 103,
+    "text" : "(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3899,
+      "end" : 3900,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+  }, {
+    "id" : 104,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3909,
+      "end" : 3910,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+  }, {
+    "id" : 105,
+    "text" : "(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3943,
+      "end" : 3944,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+  }, {
+    "id" : 106,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3983,
+      "end" : 3984,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+  }, {
+    "id" : 107,
+    "text" : "getClass()",
+    "placeholder" : "class",
+    "range" : {
+      "start" : 3957,
+      "end" : 3967,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 108,
+    "text" : "getClass()",
+    "placeholder" : "class",
+    "range" : {
+      "start" : 3973,
+      "end" : 3983,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 109,
+    "text" : "EqualsAndHashCodePartial",
+    "placeholder" : "val",
+    "range" : {
+      "start" : 4015,
+      "end" : 4039,
+      "size" : 24
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+  }, {
+    "id" : 110,
+    "text" : "(EqualsAndHashCodePartial) ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 4047,
+      "end" : 4074,
+      "size" : 27
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.TypeCast:highlighting"
+  }, {
+    "id" : 111,
+    "text" : "data != null ? ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 4100,
+      "end" : 4115,
+      "size" : 15
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ElvisExpression"
+  }, {
+    "id" : 112,
+    "text" : " : ",
+    "placeholder" : " ?: ",
+    "range" : {
+      "start" : 4137,
+      "end" : 4140,
+      "size" : 3
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ElvisExpression"
+  }, {
+    "id" : 113,
+    "text" : ".",
+    "placeholder" : "?.",
+    "range" : {
+      "start" : 4119,
+      "end" : 4120,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ElvisExpression"
+  }, {
+    "id" : 114,
+    "text" : ")",
+    "placeholder" : "?)",
+    "range" : {
+      "start" : 4136,
+      "end" : 4137,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ElvisExpression"
+  }, {
+    "id" : 115,
+    "text" : ".equals(",
+    "placeholder" : " ≡ ",
+    "range" : {
+      "start" : 4119,
+      "end" : 4127,
+      "size" : 8
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Equal"
+  }, {
+    "id" : 116,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 4136,
+      "end" : 4137,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Equal"
+  }, {
+    "id" : 117,
+    "text" : "data != null ? ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 4255,
+      "end" : 4270,
+      "size" : 15
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ElvisExpression"
+  }, {
+    "id" : 118,
+    "text" : " : ",
+    "placeholder" : " ?: ",
+    "range" : {
+      "start" : 4285,
+      "end" : 4288,
+      "size" : 3
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ElvisExpression"
+  }, {
+    "id" : 119,
+    "text" : ".",
+    "placeholder" : "?.",
+    "range" : {
+      "start" : 4274,
+      "end" : 4275,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ElvisExpression"
+  }, {
+    "id" : 120,
+    "text" : "\n\n            ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 4450,
+      "end" : 4464,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 121,
+    "text" : "\n\n            ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 4837,
+      "end" : 4851,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 122,
+    "text" : "@Override\n            public boolean equals(Object o) {\n                if (this == o) return true;\n                if (o == null || getClass() != o.getClass()) return false;\n                EqualsAndHashCodePartialTwo that = (EqualsAndHashCodePartialTwo) o;\n                return ok == that.ok && (data != null ? data.equals(that.data) : that.data == null);\n            }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 4464,
+      "end" : 4837,
+      "size" : 373
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 123,
+    "text" : "@Override\n            public int hashCode() {\n                int result = (data != null ? data.hashCode() : 0);\n                result = 31 * result + (ok ? 1 : 0);\n                return result;\n            }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 4851,
+      "end" : 5061,
+      "size" : 210
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 124,
+    "text" : "p",
+    "placeholder" : "@EqualsAndHashCode* p",
+    "range" : {
+      "start" : 4324,
+      "end" : 4325,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 125,
+    "text" : "(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 4539,
+      "end" : 4540,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+  }, {
+    "id" : 126,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 4549,
+      "end" : 4550,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+  }, {
+    "id" : 127,
+    "text" : "(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 4583,
+      "end" : 4584,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+  }, {
+    "id" : 128,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 4623,
+      "end" : 4624,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+  }, {
+    "id" : 129,
+    "text" : "getClass()",
+    "placeholder" : "class",
+    "range" : {
+      "start" : 4597,
+      "end" : 4607,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 130,
+    "text" : "getClass()",
+    "placeholder" : "class",
+    "range" : {
+      "start" : 4613,
+      "end" : 4623,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 131,
+    "text" : "EqualsAndHashCodePartialTwo",
+    "placeholder" : "val",
+    "range" : {
+      "start" : 4655,
+      "end" : 4682,
+      "size" : 27
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+  }, {
+    "id" : 132,
+    "text" : "(EqualsAndHashCodePartialTwo) ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 4690,
+      "end" : 4720,
+      "size" : 30
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.TypeCast:highlighting"
+  }, {
+    "id" : 133,
+    "text" : "data != null ? ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 4764,
+      "end" : 4779,
+      "size" : 15
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ElvisExpression"
+  }, {
+    "id" : 134,
+    "text" : " : ",
+    "placeholder" : " ?: ",
+    "range" : {
+      "start" : 4801,
+      "end" : 4804,
+      "size" : 3
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ElvisExpression"
+  }, {
+    "id" : 135,
+    "text" : ".",
+    "placeholder" : "?.",
+    "range" : {
+      "start" : 4783,
+      "end" : 4784,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ElvisExpression"
+  }, {
+    "id" : 136,
+    "text" : ")",
+    "placeholder" : "?)",
+    "range" : {
+      "start" : 4800,
+      "end" : 4801,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ElvisExpression"
+  }, {
+    "id" : 137,
+    "text" : ".equals(",
+    "placeholder" : " ≡ ",
+    "range" : {
+      "start" : 4783,
+      "end" : 4791,
+      "size" : 8
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Equal"
+  }, {
+    "id" : 138,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 4800,
+      "end" : 4801,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Equal"
+  }, {
+    "id" : 139,
+    "text" : "int",
+    "placeholder" : "var",
+    "range" : {
+      "start" : 4913,
+      "end" : 4916,
+      "size" : 3
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+  }, {
+    "id" : 140,
+    "text" : "data != null ? ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 4927,
+      "end" : 4942,
+      "size" : 15
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ElvisExpression"
+  }, {
+    "id" : 141,
+    "text" : " : ",
+    "placeholder" : " ?: ",
+    "range" : {
+      "start" : 4957,
+      "end" : 4960,
+      "size" : 3
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ElvisExpression"
+  }, {
+    "id" : 142,
+    "text" : ".",
+    "placeholder" : "?.",
+    "range" : {
+      "start" : 4946,
+      "end" : 4947,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ElvisExpression"
+  }, {
+    "id" : 143,
+    "text" : " + (",
+    "placeholder" : " + ",
+    "range" : {
+      "start" : 5000,
+      "end" : 5004,
+      "size" : 4
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Add"
+  }, {
+    "id" : 144,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 5014,
+      "end" : 5015,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Add"
+  }, {
+    "id" : 145,
+    "text" : "\n\n        ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 5157,
+      "end" : 5167,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 146,
+    "text" : "@Override\n        public boolean equals(Object o) {\n            if (this == o) return true;\n            if (o == null || getClass() != o.getClass()) return false;\n            EqualsFull that = (EqualsFull) o;\n            return ok == that.ok && (data != null ? data.equals(that.data) : that.data == null);\n        }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 5167,
+      "end" : 5482,
+      "size" : 315
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 147,
+    "text" : "p",
+    "placeholder" : "@Equals p",
+    "range" : {
+      "start" : 5083,
+      "end" : 5084,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 148,
+    "text" : "(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 5234,
+      "end" : 5235,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+  }, {
+    "id" : 149,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 5244,
+      "end" : 5245,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+  }, {
+    "id" : 150,
+    "text" : "(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 5274,
+      "end" : 5275,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+  }, {
+    "id" : 151,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 5314,
+      "end" : 5315,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+  }, {
+    "id" : 152,
+    "text" : "getClass()",
+    "placeholder" : "class",
+    "range" : {
+      "start" : 5288,
+      "end" : 5298,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 153,
+    "text" : "getClass()",
+    "placeholder" : "class",
+    "range" : {
+      "start" : 5304,
+      "end" : 5314,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 154,
+    "text" : "EqualsFull",
+    "placeholder" : "val",
+    "range" : {
+      "start" : 5342,
+      "end" : 5352,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+  }, {
+    "id" : 155,
+    "text" : "(EqualsFull) ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 5360,
+      "end" : 5373,
+      "size" : 13
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.TypeCast:highlighting"
+  }, {
+    "id" : 156,
+    "text" : "data != null ? ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 5413,
+      "end" : 5428,
+      "size" : 15
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ElvisExpression"
+  }, {
+    "id" : 157,
+    "text" : " : ",
+    "placeholder" : " ?: ",
+    "range" : {
+      "start" : 5450,
+      "end" : 5453,
+      "size" : 3
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ElvisExpression"
+  }, {
+    "id" : 158,
+    "text" : ".",
+    "placeholder" : "?.",
+    "range" : {
+      "start" : 5432,
+      "end" : 5433,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ElvisExpression"
+  }, {
+    "id" : 159,
+    "text" : ")",
+    "placeholder" : "?)",
+    "range" : {
+      "start" : 5449,
+      "end" : 5450,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ElvisExpression"
+  }, {
+    "id" : 160,
+    "text" : ".equals(",
+    "placeholder" : " ≡ ",
+    "range" : {
+      "start" : 5432,
+      "end" : 5440,
+      "size" : 8
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Equal"
+  }, {
+    "id" : 161,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 5449,
+      "end" : 5450,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Equal"
+  }, {
+    "id" : 162,
+    "text" : "\n\n            ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 5577,
+      "end" : 5591,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 163,
+    "text" : "@Override\n            public boolean equals(Object o) {\n                if (this == o) return true;\n                if (o == null || getClass() != o.getClass()) return false;\n                EqualsPartial that = (EqualsPartial) o;\n                return data != null ? data.equals(that.data) : that.data == null;\n            }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 5591,
+      "end" : 5917,
+      "size" : 326
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 164,
+    "text" : "p",
+    "placeholder" : "@Equals* p",
+    "range" : {
+      "start" : 5492,
+      "end" : 5493,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 165,
+    "text" : "(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 5666,
+      "end" : 5667,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+  }, {
+    "id" : 166,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 5676,
+      "end" : 5677,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+  }, {
+    "id" : 167,
+    "text" : "(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 5710,
+      "end" : 5711,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+  }, {
+    "id" : 168,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 5750,
+      "end" : 5751,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+  }, {
+    "id" : 169,
+    "text" : "getClass()",
+    "placeholder" : "class",
+    "range" : {
+      "start" : 5724,
+      "end" : 5734,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 170,
+    "text" : "getClass()",
+    "placeholder" : "class",
+    "range" : {
+      "start" : 5740,
+      "end" : 5750,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 171,
+    "text" : "EqualsPartial",
+    "placeholder" : "val",
+    "range" : {
+      "start" : 5782,
+      "end" : 5795,
+      "size" : 13
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+  }, {
+    "id" : 172,
+    "text" : "(EqualsPartial) ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 5803,
+      "end" : 5819,
+      "size" : 16
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.TypeCast:highlighting"
+  }, {
+    "id" : 173,
+    "text" : "data != null ? ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 5845,
+      "end" : 5860,
+      "size" : 15
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ElvisExpression"
+  }, {
+    "id" : 174,
+    "text" : " : ",
+    "placeholder" : " ?: ",
+    "range" : {
+      "start" : 5882,
+      "end" : 5885,
+      "size" : 3
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ElvisExpression"
+  }, {
+    "id" : 175,
+    "text" : ".",
+    "placeholder" : "?.",
+    "range" : {
+      "start" : 5864,
+      "end" : 5865,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ElvisExpression"
+  }, {
+    "id" : 176,
+    "text" : ")",
+    "placeholder" : "?)",
+    "range" : {
+      "start" : 5881,
+      "end" : 5882,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ElvisExpression"
+  }, {
+    "id" : 177,
+    "text" : ".equals(",
+    "placeholder" : " ≡ ",
+    "range" : {
+      "start" : 5864,
+      "end" : 5872,
+      "size" : 8
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Equal"
+  }, {
+    "id" : 178,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 5881,
+      "end" : 5882,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Equal"
+  }, {
+    "id" : 179,
+    "text" : "\n\n            ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 6052,
+      "end" : 6066,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 180,
+    "text" : "@Override\n            public boolean equals(Object o) {\n                if (this == o) return true;\n                if (o == null || getClass() != o.getClass()) return false;\n                EqualsPartialTwo that = (EqualsPartialTwo) o;\n                return ok == that.ok && (data != null ? data.equals(that.data) : that.data == null);\n            }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 6066,
+      "end" : 6417,
+      "size" : 351
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 181,
+    "text" : "p",
+    "placeholder" : "@Equals* p",
+    "range" : {
+      "start" : 5937,
+      "end" : 5938,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 182,
+    "text" : "(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 6141,
+      "end" : 6142,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+  }, {
+    "id" : 183,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 6151,
+      "end" : 6152,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+  }, {
+    "id" : 184,
+    "text" : "(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 6185,
+      "end" : 6186,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+  }, {
+    "id" : 185,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 6225,
+      "end" : 6226,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+  }, {
+    "id" : 186,
+    "text" : "getClass()",
+    "placeholder" : "class",
+    "range" : {
+      "start" : 6199,
+      "end" : 6209,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 187,
+    "text" : "getClass()",
+    "placeholder" : "class",
+    "range" : {
+      "start" : 6215,
+      "end" : 6225,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 188,
+    "text" : "EqualsPartialTwo",
+    "placeholder" : "val",
+    "range" : {
+      "start" : 6257,
+      "end" : 6273,
+      "size" : 16
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+  }, {
+    "id" : 189,
+    "text" : "(EqualsPartialTwo) ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 6281,
+      "end" : 6300,
+      "size" : 19
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.TypeCast:highlighting"
+  }, {
+    "id" : 190,
+    "text" : "data != null ? ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 6344,
+      "end" : 6359,
+      "size" : 15
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ElvisExpression"
+  }, {
+    "id" : 191,
+    "text" : " : ",
+    "placeholder" : " ?: ",
+    "range" : {
+      "start" : 6381,
+      "end" : 6384,
+      "size" : 3
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ElvisExpression"
+  }, {
+    "id" : 192,
+    "text" : ".",
+    "placeholder" : "?.",
+    "range" : {
+      "start" : 6363,
+      "end" : 6364,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ElvisExpression"
+  }, {
+    "id" : 193,
+    "text" : ")",
+    "placeholder" : "?)",
+    "range" : {
+      "start" : 6380,
+      "end" : 6381,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ElvisExpression"
+  }, {
+    "id" : 194,
+    "text" : ".equals(",
+    "placeholder" : " ≡ ",
+    "range" : {
+      "start" : 6363,
+      "end" : 6371,
+      "size" : 8
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Equal"
+  }, {
+    "id" : 195,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 6380,
+      "end" : 6381,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Equal"
+  }, {
+    "id" : 196,
+    "text" : "\n\n        ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 6515,
+      "end" : 6525,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 197,
+    "text" : "@Override\n        public int hashCode() {\n            int result = (data != null ? data.hashCode() : 0);\n            result = 31 * result + (ok ? 1 : 0);\n            return result;\n        }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 6525,
+      "end" : 6715,
+      "size" : 190
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 198,
+    "text" : "p",
+    "placeholder" : "@HashCode p",
+    "range" : {
+      "start" : 6439,
+      "end" : 6440,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 199,
+    "text" : "int",
+    "placeholder" : "var",
+    "range" : {
+      "start" : 6579,
+      "end" : 6582,
+      "size" : 3
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+  }, {
+    "id" : 200,
+    "text" : "data != null ? ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 6593,
+      "end" : 6608,
+      "size" : 15
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ElvisExpression"
+  }, {
+    "id" : 201,
+    "text" : " : ",
+    "placeholder" : " ?: ",
+    "range" : {
+      "start" : 6623,
+      "end" : 6626,
+      "size" : 3
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ElvisExpression"
+  }, {
+    "id" : 202,
+    "text" : ".",
+    "placeholder" : "?.",
+    "range" : {
+      "start" : 6612,
+      "end" : 6613,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ElvisExpression"
+  }, {
+    "id" : 203,
+    "text" : " + (",
+    "placeholder" : " + ",
+    "range" : {
+      "start" : 6662,
+      "end" : 6666,
+      "size" : 4
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Add"
+  }, {
+    "id" : 204,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 6676,
+      "end" : 6677,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Add"
+  }, {
+    "id" : 205,
+    "text" : "\n\n            ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 6812,
+      "end" : 6826,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 206,
+    "text" : "@Override\n            public int hashCode() {\n                return data != null ? data.hashCode() : 0;\n            }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 6826,
+      "end" : 6944,
+      "size" : 118
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 207,
+    "text" : "p",
+    "placeholder" : "@HashCode* p",
+    "range" : {
+      "start" : 6725,
+      "end" : 6726,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 208,
+    "text" : "data != null ? ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 6895,
+      "end" : 6910,
+      "size" : 15
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ElvisExpression"
+  }, {
+    "id" : 209,
+    "text" : " : ",
+    "placeholder" : " ?: ",
+    "range" : {
+      "start" : 6925,
+      "end" : 6928,
+      "size" : 3
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ElvisExpression"
+  }, {
+    "id" : 210,
+    "text" : ".",
+    "placeholder" : "?.",
+    "range" : {
+      "start" : 6914,
+      "end" : 6915,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ElvisExpression"
+  }, {
+    "id" : 211,
+    "text" : "\n\n            ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 7081,
+      "end" : 7095,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 212,
+    "text" : "@Override\n            public int hashCode() {\n                int result = (data != null ? data.hashCode() : 0);\n                result = 31 * result + (ok ? 1 : 0);\n                return result;\n            }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 7095,
+      "end" : 7305,
+      "size" : 210
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 213,
+    "text" : "p",
+    "placeholder" : "@HashCode* p",
+    "range" : {
+      "start" : 6964,
+      "end" : 6965,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 214,
+    "text" : "int",
+    "placeholder" : "var",
+    "range" : {
+      "start" : 7157,
+      "end" : 7160,
+      "size" : 3
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+  }, {
+    "id" : 215,
+    "text" : "data != null ? ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 7171,
+      "end" : 7186,
+      "size" : 15
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ElvisExpression"
+  }, {
+    "id" : 216,
+    "text" : " : ",
+    "placeholder" : " ?: ",
+    "range" : {
+      "start" : 7201,
+      "end" : 7204,
+      "size" : 3
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ElvisExpression"
+  }, {
+    "id" : 217,
+    "text" : ".",
+    "placeholder" : "?.",
+    "range" : {
+      "start" : 7190,
+      "end" : 7191,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.ElvisExpression"
+  }, {
+    "id" : 218,
+    "text" : " + (",
+    "placeholder" : " + ",
+    "range" : {
+      "start" : 7244,
+      "end" : 7248,
+      "size" : 4
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Add"
+  }, {
+    "id" : 219,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 7258,
+      "end" : 7259,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Add"
+  }, {
+    "id" : 220,
+    "text" : "\n\n        ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 7399,
+      "end" : 7409,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 221,
+    "text" : "\n        ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 7568,
+      "end" : 7577,
+      "size" : 9
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 222,
+    "text" : "\n        ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 7477,
+      "end" : 7486,
+      "size" : 9
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 223,
+    "text" : "\n        ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 7633,
+      "end" : 7642,
+      "size" : 9
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 224,
+    "text" : "\n\n        ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 8171,
+      "end" : 8181,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 225,
+    "text" : "\n\n        ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 7709,
+      "end" : 7719,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 226,
+    "text" : "\n\n        ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 8025,
+      "end" : 8035,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 227,
+    "text" : "public LombokTestData getData() {\n            return data;\n        }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 7409,
+      "end" : 7477,
+      "size" : 68
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 228,
+    "text" : "public boolean isOk() {\n            return ok;\n        }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 7577,
+      "end" : 7633,
+      "size" : 56
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 229,
+    "text" : "public void setData(LombokTestData data) {\n            this.data = data;\n        }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 7486,
+      "end" : 7568,
+      "size" : 82
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 230,
+    "text" : "public void setOk(boolean ok) {\n            this.ok = ok;\n        }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 7642,
+      "end" : 7709,
+      "size" : 67
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 231,
+    "text" : "@Override\n        public String toString() {\n            return new ToStringBuilder(this)\n                    .append(\"data\", data)\n                    .append(\"ok\", ok)\n                    .toString();\n        }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 8181,
+      "end" : 8393,
+      "size" : 212
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 232,
+    "text" : "@Override\n        public boolean equals(Object o) {\n            if (this == o) return true;\n            if (!(o instanceof DataFull)) return false;\n            DataFull dataFull = (DataFull) o;\n            return new EqualsBuilder().append(ok, dataFull.ok).append(data, dataFull.data).isEquals();\n        }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 7719,
+      "end" : 8025,
+      "size" : 306
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 233,
+    "text" : "@Override\n        public int hashCode() {\n            return new HashCodeBuilder(17, 37).append(data).append(ok).toHashCode();\n        }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 8035,
+      "end" : 8171,
+      "size" : 136
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 234,
+    "text" : "p",
+    "placeholder" : "@Data p",
+    "range" : {
+      "start" : 7327,
+      "end" : 7328,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 235,
+    "text" : "data",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 7553,
+      "end" : 7557,
+      "size" : 4
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+  }, {
+    "id" : 236,
+    "text" : "ok",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 7696,
+      "end" : 7698,
+      "size" : 2
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+  }, {
+    "id" : 237,
+    "text" : "(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 7786,
+      "end" : 7787,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+  }, {
+    "id" : 238,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 7796,
+      "end" : 7797,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+  }, {
+    "id" : 239,
+    "text" : "(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 7826,
+      "end" : 7827,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+  }, {
+    "id" : 240,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 7851,
+      "end" : 7852,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+  }, {
+    "id" : 241,
+    "text" : "DataFull",
+    "placeholder" : "val",
+    "range" : {
+      "start" : 7879,
+      "end" : 7887,
+      "size" : 8
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+  }, {
+    "id" : 242,
+    "text" : "(DataFull) ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 7899,
+      "end" : 7910,
+      "size" : 11
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.TypeCast:highlighting"
+  }, {
+    "id" : 243,
+    "text" : "isEquals()",
+    "placeholder" : "equals",
+    "range" : {
+      "start" : 8004,
+      "end" : 8014,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 244,
+    "text" : "\n\n            ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 8494,
+      "end" : 8508,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 245,
+    "text" : "\n            ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 8687,
+      "end" : 8700,
+      "size" : 13
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 246,
+    "text" : "\n            ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 8584,
+      "end" : 8597,
+      "size" : 13
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 247,
+    "text" : "\n            ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 8764,
+      "end" : 8777,
+      "size" : 13
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 248,
+    "text" : "\n\n            ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 8852,
+      "end" : 8866,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 249,
+    "text" : "\n\n            ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 9241,
+      "end" : 9255,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 250,
+    "text" : "public LombokTestData getData() {\n                return data;\n            }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 8508,
+      "end" : 8584,
+      "size" : 76
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 251,
+    "text" : "public boolean isOk() {\n                return ok;\n            }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 8700,
+      "end" : 8764,
+      "size" : 64
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 252,
+    "text" : "public void setData(LombokTestData data) {\n                this.data = data;\n            }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 8597,
+      "end" : 8687,
+      "size" : 90
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 253,
+    "text" : "public void setOk(boolean ok) {\n                this.ok = ok;\n            }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 8777,
+      "end" : 8852,
+      "size" : 75
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 254,
+    "text" : "@Override\n            public boolean equals(Object o) {\n                if (this == o) return true;\n                if (!(o instanceof LombokTestData.DataFull)) return false;\n                LombokTestData.DataFull dataFull = (LombokTestData.DataFull) o;\n                return new EqualsBuilder().append(ok, dataFull.ok).append(data, dataFull.data).isEquals();\n            }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 8866,
+      "end" : 9241,
+      "size" : 375
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 255,
+    "text" : "@Override\n            public int hashCode() {\n                return new HashCodeBuilder(17, 37).append(data).append(ok).toHashCode();\n            }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 9255,
+      "end" : 9403,
+      "size" : 148
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 256,
+    "text" : "p",
+    "placeholder" : "@Data p",
+    "range" : {
+      "start" : 8403,
+      "end" : 8404,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 257,
+    "text" : "data",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 8668,
+      "end" : 8672,
+      "size" : 4
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+  }, {
+    "id" : 258,
+    "text" : "ok",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 8835,
+      "end" : 8837,
+      "size" : 2
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+  }, {
+    "id" : 259,
+    "text" : "(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 8941,
+      "end" : 8942,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+  }, {
+    "id" : 260,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 8951,
+      "end" : 8952,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+  }, {
+    "id" : 261,
+    "text" : "(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 8985,
+      "end" : 8986,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+  }, {
+    "id" : 262,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 9025,
+      "end" : 9026,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+  }, {
+    "id" : 263,
+    "text" : "LombokTestData.DataFull",
+    "placeholder" : "val",
+    "range" : {
+      "start" : 9057,
+      "end" : 9080,
+      "size" : 23
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+  }, {
+    "id" : 264,
+    "text" : "(LombokTestData.DataFull) ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 9092,
+      "end" : 9118,
+      "size" : 26
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.TypeCast:highlighting"
+  }, {
+    "id" : 265,
+    "text" : "isEquals()",
+    "placeholder" : "equals",
+    "range" : {
+      "start" : 9216,
+      "end" : 9226,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 266,
+    "text" : "\n\n            ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 9518,
+      "end" : 9532,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 267,
+    "text" : "\n            ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 9608,
+      "end" : 9621,
+      "size" : 13
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 268,
+    "text" : "\n            ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 9711,
+      "end" : 9724,
+      "size" : 13
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 269,
+    "text" : "\n\n            ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 10350,
+      "end" : 10364,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 270,
+    "text" : "\n\n            ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 9799,
+      "end" : 9813,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 271,
+    "text" : "\n\n            ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 10188,
+      "end" : 10202,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 272,
+    "text" : "public LombokTestData getData() {\n                return data;\n            }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 9532,
+      "end" : 9608,
+      "size" : 76
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 273,
+    "text" : "public void setData(LombokTestData data) {\n                this.data = data;\n            }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 9621,
+      "end" : 9711,
+      "size" : 90
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 274,
+    "text" : "public void setOk(boolean ok) {\n                this.ok = ok;\n            }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 9724,
+      "end" : 9799,
+      "size" : 75
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 275,
+    "text" : "@Override\n            public String toString() {\n                return new ToStringBuilder(this)\n                        .append(\"data\", data)\n                        .append(\"ok\", ok)\n                        .toString();\n            }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 10364,
+      "end" : 10600,
+      "size" : 236
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 276,
+    "text" : "@Override\n            public boolean equals(Object o) {\n                if (this == o) return true;\n                if (!(o instanceof LombokTestData.DataFull)) return false;\n                LombokTestData.DataFull dataFull = (LombokTestData.DataFull) o;\n                return new EqualsBuilder().append(ok, dataFull.ok).append(data, dataFull.data).isEquals();\n            }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 9813,
+      "end" : 10188,
+      "size" : 375
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 277,
+    "text" : "@Override\n            public int hashCode() {\n                return new HashCodeBuilder(17, 37).append(data).append(ok).toHashCode();\n            }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 10202,
+      "end" : 10350,
+      "size" : 148
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 278,
+    "text" : "p",
+    "placeholder" : "@Data* p",
+    "range" : {
+      "start" : 9424,
+      "end" : 9425,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 279,
+    "text" : "data",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 9692,
+      "end" : 9696,
+      "size" : 4
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+  }, {
+    "id" : 280,
+    "text" : "ok",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 9782,
+      "end" : 9784,
+      "size" : 2
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+  }, {
+    "id" : 281,
+    "text" : "(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 9888,
+      "end" : 9889,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+  }, {
+    "id" : 282,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 9898,
+      "end" : 9899,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+  }, {
+    "id" : 283,
+    "text" : "(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 9932,
+      "end" : 9933,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+  }, {
+    "id" : 284,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 9972,
+      "end" : 9973,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+  }, {
+    "id" : 285,
+    "text" : "LombokTestData.DataFull",
+    "placeholder" : "val",
+    "range" : {
+      "start" : 10004,
+      "end" : 10027,
+      "size" : 23
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+  }, {
+    "id" : 286,
+    "text" : "(LombokTestData.DataFull) ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 10039,
+      "end" : 10065,
+      "size" : 26
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.TypeCast:highlighting"
+  }, {
+    "id" : 287,
+    "text" : "isEquals()",
+    "placeholder" : "equals",
+    "range" : {
+      "start" : 10163,
+      "end" : 10173,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 288,
+    "text" : "\n\n            ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 10714,
+      "end" : 10728,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 289,
+    "text" : "\n            ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 10907,
+      "end" : 10920,
+      "size" : 13
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 290,
+    "text" : "\n            ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 10804,
+      "end" : 10817,
+      "size" : 13
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 291,
+    "text" : "\n\n            ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 11535,
+      "end" : 11549,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 292,
+    "text" : "\n\n            ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 10984,
+      "end" : 10998,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 293,
+    "text" : "\n\n            ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 11373,
+      "end" : 11387,
+      "size" : 14
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 294,
+    "text" : "public LombokTestData getData() {\n                return data;\n            }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 10728,
+      "end" : 10804,
+      "size" : 76
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 295,
+    "text" : "public boolean isOk() {\n                return ok;\n            }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 10920,
+      "end" : 10984,
+      "size" : 64
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 296,
+    "text" : "public void setData(LombokTestData data) {\n                this.data = data;\n            }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 10817,
+      "end" : 10907,
+      "size" : 90
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 297,
+    "text" : "@Override\n            public String toString() {\n                return new ToStringBuilder(this)\n                        .append(\"data\", data)\n                        .append(\"ok\", ok)\n                        .toString();\n            }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 11549,
+      "end" : 11785,
+      "size" : 236
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 298,
+    "text" : "@Override\n            public boolean equals(Object o) {\n                if (this == o) return true;\n                if (!(o instanceof LombokTestData.DataFull)) return false;\n                LombokTestData.DataFull dataFull = (LombokTestData.DataFull) o;\n                return new EqualsBuilder().append(ok, dataFull.ok).append(data, dataFull.data).isEquals();\n            }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 10998,
+      "end" : 11373,
+      "size" : 375
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 299,
+    "text" : "@Override\n            public int hashCode() {\n                return new HashCodeBuilder(17, 37).append(data).append(ok).toHashCode();\n            }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 11387,
+      "end" : 11535,
+      "size" : 148
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 300,
+    "text" : "p",
+    "placeholder" : "@Data* p",
+    "range" : {
+      "start" : 10620,
+      "end" : 10621,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 301,
+    "text" : "data",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 10888,
+      "end" : 10892,
+      "size" : 4
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+  }, {
+    "id" : 302,
+    "text" : "(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 11073,
+      "end" : 11074,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+  }, {
+    "id" : 303,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 11083,
+      "end" : 11084,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+  }, {
+    "id" : 304,
+    "text" : "(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 11117,
+      "end" : 11118,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+  }, {
+    "id" : 305,
+    "text" : ")",
+    "placeholder" : "",
+    "range" : {
+      "start" : 11157,
+      "end" : 11158,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+  }, {
+    "id" : 306,
+    "text" : "LombokTestData.DataFull",
+    "placeholder" : "val",
+    "range" : {
+      "start" : 11189,
+      "end" : 11212,
+      "size" : 23
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+  }, {
+    "id" : 307,
+    "text" : "(LombokTestData.DataFull) ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 11224,
+      "end" : 11250,
+      "size" : 26
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.TypeCast:highlighting"
+  }, {
+    "id" : 308,
+    "text" : "isEquals()",
+    "placeholder" : "equals",
+    "range" : {
+      "start" : 11348,
+      "end" : 11358,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
   } ]
 }

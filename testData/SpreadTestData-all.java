@@ -53,7 +53,7 @@ public class SpreadTestData {
         </fold>return Stream.of(data);<fold text=' }' expand='false'>
     }</fold>
 
-    <fold text='@Getter @Setter s' expand='false'>s</fold>tatic class Data <fold text='{...}' expand='true'>{
+    <fold text='@Getter* @Setter s' expand='false'>s</fold>tatic class Data <fold text='{...}' expand='true'>{
         Data data;
         boolean ok;
         String string;

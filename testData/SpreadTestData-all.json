@@ -3152,66 +3152,6 @@
     "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
   }, {
     "id" : 315,
-    "text" : "public Data getData() {\n                return data;\n        }",
-    "placeholder" : "",
-    "range" : {
-      "start" : 2266,
-      "end" : 2328,
-      "size" : 62
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
-  }, {
-    "id" : 316,
-    "text" : "public void setData(Data data) {\n                this.data = data;\n        }",
-    "placeholder" : "",
-    "range" : {
-      "start" : 2406,
-      "end" : 2482,
-      "size" : 76
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
-  }, {
-    "id" : 317,
-    "text" : "public boolean isOk() {\n                return ok;\n        }",
-    "placeholder" : "",
-    "range" : {
-      "start" : 2337,
-      "end" : 2397,
-      "size" : 60
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
-  }, {
-    "id" : 318,
-    "text" : "public void setOk(boolean ok) {\n                this.ok = ok;\n        }",
-    "placeholder" : "",
-    "range" : {
-      "start" : 2491,
-      "end" : 2562,
-      "size" : 71
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
-  }, {
-    "id" : 319,
-    "text" : "public String getString() {\n                return string;\n        }",
-    "placeholder" : "",
-    "range" : {
-      "start" : 2571,
-      "end" : 2639,
-      "size" : 68
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
-  }, {
-    "id" : 320,
-    "text" : "public void setString(String string) {\n                this.string = string;\n        }",
-    "placeholder" : "",
-    "range" : {
-      "start" : 2648,
-      "end" : 2734,
-      "size" : 86
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
-  }, {
-    "id" : 321,
     "text" : "\n\n        ",
     "placeholder" : "",
     "range" : {
@@ -3221,17 +3161,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
   }, {
-    "id" : 322,
-    "text" : "\n        ",
-    "placeholder" : "",
-    "range" : {
-      "start" : 2397,
-      "end" : 2406,
-      "size" : 9
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
-  }, {
-    "id" : 323,
+    "id" : 316,
     "text" : "\n        ",
     "placeholder" : "",
     "range" : {
@@ -3241,17 +3171,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
   }, {
-    "id" : 324,
-    "text" : "\n        ",
-    "placeholder" : "",
-    "range" : {
-      "start" : 2482,
-      "end" : 2491,
-      "size" : 9
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
-  }, {
-    "id" : 325,
+    "id" : 317,
     "text" : "\n        ",
     "placeholder" : "",
     "range" : {
@@ -3261,7 +3181,27 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
   }, {
-    "id" : 326,
+    "id" : 318,
+    "text" : "\n        ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2397,
+      "end" : 2406,
+      "size" : 9
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 319,
+    "text" : "\n        ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2482,
+      "end" : 2491,
+      "size" : 9
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 320,
     "text" : "\n        ",
     "placeholder" : "",
     "range" : {
@@ -3271,9 +3211,69 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
   }, {
+    "id" : 321,
+    "text" : "public Data getData() {\n                return data;\n        }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2266,
+      "end" : 2328,
+      "size" : 62
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 322,
+    "text" : "public boolean isOk() {\n                return ok;\n        }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2337,
+      "end" : 2397,
+      "size" : 60
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 323,
+    "text" : "public String getString() {\n                return string;\n        }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2571,
+      "end" : 2639,
+      "size" : 68
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 324,
+    "text" : "public void setData(Data data) {\n                this.data = data;\n        }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2406,
+      "end" : 2482,
+      "size" : 76
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 325,
+    "text" : "public void setOk(boolean ok) {\n                this.ok = ok;\n        }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2491,
+      "end" : 2562,
+      "size" : 71
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 326,
+    "text" : "public void setString(String string) {\n                this.string = string;\n        }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2648,
+      "end" : 2734,
+      "size" : 86
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
     "id" : 327,
     "text" : "s",
-    "placeholder" : "@Getter @Setter s",
+    "placeholder" : "@Getter* @Setter s",
     "range" : {
       "start" : 2101,
       "end" : 2102,
