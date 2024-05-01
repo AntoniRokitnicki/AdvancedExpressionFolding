@@ -9,6 +9,7 @@ import com.intellij.openapi.editor.Document
 import com.intellij.psi.PsiExpression
 import com.intellij.psi.PsiPrimitiveType
 import com.intellij.psi.PsiType
+import com.intellij.psi.impl.source.PsiClassReferenceType
 
 abstract class BaseExtension : AdvancedExpressionFoldingSettings.StateDelegate() {
 
@@ -20,6 +21,9 @@ abstract class BaseExtension : AdvancedExpressionFoldingSettings.StateDelegate()
         @JvmStatic
         fun PsiType?.isInt(): Boolean = (this as? PsiPrimitiveType)?.name == "int"
         fun PsiType?.isVoid(): Boolean = (this as? PsiPrimitiveType)?.name == "void"
+        fun PsiType?.isBoolean(): Boolean = (this as? PsiPrimitiveType)?.name == "boolean"
+        fun PsiType?.isString() = asInstance<PsiClassReferenceType>()?.name == "String"
+        fun PsiType?.isObject() = this?.canonicalText == "java.lang.Object"
     }
 
     fun getAnyExpression(element: PsiExpression, document: Document): Expression = BuildExpressionExt.getAnyExpression(element, document)
