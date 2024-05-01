@@ -43,17 +43,9 @@ public class LogBrackets {
         return data;
     }
 
-    public static class Data {
+    @Getter public static class Data {
         private Data data;
         private String name;
-
-        public String getName() {
-            return name;
-        }
-
-        public Data getData() {
-            return data;
-        }
     }
 
 }

@@ -1,5 +1,5 @@
 {
-  "size" : 60,
+  "size" : 65,
   "list" : [ {
     "id" : 0,
     "text" : "String",
@@ -39,7 +39,7 @@
       "end" : 550,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBracketExpression"
   }, {
     "id" : 4,
     "text" : ", ",
@@ -49,7 +49,7 @@
       "end" : 556,
       "size" : 2
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBracketExpression"
   }, {
     "id" : 5,
     "text" : ")",
@@ -59,7 +59,7 @@
       "end" : 560,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBracketExpression"
   }, {
     "id" : 6,
     "text" : "{}, Age: {}    \", ",
@@ -69,7 +69,7 @@
       "end" : 638,
       "size" : 18
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBracketExpression"
   }, {
     "id" : 7,
     "text" : ", ",
@@ -79,7 +79,7 @@
       "end" : 644,
       "size" : 2
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBracketExpression"
   }, {
     "id" : 8,
     "text" : ")",
@@ -89,7 +89,7 @@
       "end" : 648,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBracketExpression"
   }, {
     "id" : 9,
     "text" : "{}, Age: {}\", ",
@@ -99,7 +99,7 @@
       "end" : 721,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBracketExpression"
   }, {
     "id" : 10,
     "text" : ", ",
@@ -109,7 +109,7 @@
       "end" : 727,
       "size" : 2
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBracketExpression"
   }, {
     "id" : 11,
     "text" : ")",
@@ -119,7 +119,7 @@
       "end" : 731,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBracketExpression"
   }, {
     "id" : 12,
     "text" : "{}\", ",
@@ -129,7 +129,7 @@
       "end" : 797,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBracketExpression"
   }, {
     "id" : 13,
     "text" : ")",
@@ -139,7 +139,7 @@
       "end" : 802,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBracketExpression"
   }, {
     "id" : 14,
     "text" : "{}, log:{}    $\", ",
@@ -149,7 +149,7 @@
       "end" : 930,
       "size" : 18
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBracketExpression"
   }, {
     "id" : 15,
     "text" : "getName()",
@@ -169,7 +169,7 @@
       "end" : 946,
       "size" : 2
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBracketExpression"
   }, {
     "id" : 17,
     "text" : ")",
@@ -179,7 +179,7 @@
       "end" : 956,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBracketExpression"
   }, {
     "id" : 18,
     "text" : "{}, Age: {}, City: {}\", ",
@@ -189,7 +189,7 @@
       "end" : 1046,
       "size" : 24
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBracketExpression"
   }, {
     "id" : 19,
     "text" : ", ",
@@ -199,7 +199,7 @@
       "end" : 1052,
       "size" : 2
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBracketExpression"
   }, {
     "id" : 20,
     "text" : "getName()",
@@ -229,7 +229,7 @@
       "end" : 1078,
       "size" : 2
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBracketExpression"
   }, {
     "id" : 23,
     "text" : ")",
@@ -239,7 +239,7 @@
       "end" : 1083,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBracketExpression"
   }, {
     "id" : 24,
     "text" : "{}, 2: {}, 3: {}, empty: {}\", ",
@@ -249,7 +249,7 @@
       "end" : 1160,
       "size" : 30
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBracketExpression"
   }, {
     "id" : 25,
     "text" : ", ",
@@ -259,7 +259,7 @@
       "end" : 1166,
       "size" : 2
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBracketExpression"
   }, {
     "id" : 26,
     "text" : ", ",
@@ -269,7 +269,7 @@
       "end" : 1171,
       "size" : 2
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBracketExpression"
   }, {
     "id" : 27,
     "text" : ")",
@@ -279,7 +279,7 @@
       "end" : 1176,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBracketExpression"
   }, {
     "id" : 28,
     "text" : "{}, 2: {}, empty: {}, empty: {}\", ",
@@ -289,7 +289,7 @@
       "end" : 1257,
       "size" : 34
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBracketExpression"
   }, {
     "id" : 29,
     "text" : ", ",
@@ -299,7 +299,7 @@
       "end" : 1263,
       "size" : 2
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBracketExpression"
   }, {
     "id" : 30,
     "text" : ")",
@@ -309,7 +309,7 @@
       "end" : 1267,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBracketExpression"
   }, {
     "id" : 31,
     "text" : "{}, empty: {}, empty: {}, empty: {}\", ",
@@ -319,7 +319,7 @@
       "end" : 1352,
       "size" : 38
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBracketExpression"
   }, {
     "id" : 32,
     "text" : ")",
@@ -329,7 +329,7 @@
       "end" : 1357,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBracketExpression"
   }, {
     "id" : 33,
     "text" : "{}, 2: {}, 3: {}\",\n                    ",
@@ -339,7 +339,7 @@
       "end" : 1581,
       "size" : 39
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBracketExpression"
   }, {
     "id" : 34,
     "text" : ",\n\n                    ",
@@ -349,7 +349,7 @@
       "end" : 1608,
       "size" : 23
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBracketExpression"
   }, {
     "id" : 35,
     "text" : "getName()",
@@ -379,7 +379,7 @@
       "end" : 1655,
       "size" : 23
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBracketExpression"
   }, {
     "id" : 38,
     "text" : "\n            ",
@@ -389,7 +389,7 @@
       "end" : 1672,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBracketExpression"
   }, {
     "id" : 39,
     "text" : "{}, 2: {}, 3: {}\",\n                    ",
@@ -399,7 +399,7 @@
       "end" : 1791,
       "size" : 39
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBracketExpression"
   }, {
     "id" : 40,
     "text" : "getName()",
@@ -429,7 +429,7 @@
       "end" : 1837,
       "size" : 22
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBracketExpression"
   }, {
     "id" : 43,
     "text" : ",\n                    ",
@@ -439,7 +439,7 @@
       "end" : 1863,
       "size" : 22
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBracketExpression"
   }, {
     "id" : 44,
     "text" : "getName()",
@@ -469,7 +469,7 @@
       "end" : 1900,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBracketExpression"
   }, {
     "id" : 47,
     "text" : "(",
@@ -499,7 +499,7 @@
       "end" : 1970,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBracketExpression"
   }, {
     "id" : 50,
     "text" : ",",
@@ -509,7 +509,7 @@
       "end" : 1972,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBracketExpression"
   }, {
     "id" : 51,
     "text" : "getMessage()",
@@ -529,7 +529,7 @@
       "end" : 2028,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBracketExpression"
   }, {
     "id" : 53,
     "text" : "getName()",
@@ -559,7 +559,7 @@
       "end" : 2053,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBrackets"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.LoggerBracketExpression"
   }, {
     "id" : 56,
     "text" : "getName()",
@@ -600,5 +600,55 @@
       "size" : 9
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+  }, {
+    "id" : 60,
+    "text" : "\n\n        ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2232,
+      "end" : 2242,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 61,
+    "text" : "\n\n        ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2302,
+      "end" : 2312,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 62,
+    "text" : "public String getName() {\n            return name;\n        }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2242,
+      "end" : 2302,
+      "size" : 60
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 63,
+    "text" : "public Data getData() {\n            return data;\n        }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2312,
+      "end" : 2370,
+      "size" : 58
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 64,
+    "text" : "p",
+    "placeholder" : "@Getter p",
+    "range" : {
+      "start" : 2150,
+      "end" : 2151,
+      "size" : 1
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
   } ]
 }

@@ -53,17 +53,17 @@ public class LogBrackets {
         return data;
     }</fold>
 
-    public static class Data <fold text='{...}' expand='true'>{
+    <fold text='@Getter p' expand='false'>p</fold>ublic static class Data <fold text='{...}' expand='true'>{
         private Data data;
-        private String name;
+        private String name;<fold text='' expand='true'>
 
-        public String getName()<fold text=' { ' expand='false'> {
+        </fold><fold text='' expand='true'>public String getName()<fold text=' { ' expand='false'> {
             </fold>return name;<fold text=' }' expand='false'>
-        }</fold>
+        }</fold></fold><fold text='' expand='true'>
 
-        public Data getData()<fold text=' { ' expand='false'> {
+        </fold><fold text='' expand='true'>public Data getData()<fold text=' { ' expand='false'> {
             </fold>return data;<fold text=' }' expand='false'>
-        }</fold>
+        }</fold></fold>
     }</fold>
 
 }
