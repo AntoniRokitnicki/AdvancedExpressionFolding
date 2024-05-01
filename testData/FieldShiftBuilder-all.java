@@ -1,6 +1,6 @@
 package data;
 
-public class FieldShiftBuilder {
+<fold text='@Getter p' expand='false'>p</fold>ublic class FieldShiftBuilder {
     private String username;
     private boolean active;
     private String userIdentifier;
@@ -60,25 +60,25 @@ public class FieldShiftBuilder {
 
     public static BuilderFieldShiftBuilder builder()<fold text=' { ' expand='false'> {
         </fold>return new BuilderFieldShiftBuilder();<fold text=' }' expand='false'>
-    }</fold>
+    }</fold><fold text='' expand='true'>
 
-    public String getUsername()<fold text=' { ' expand='false'> {
+    </fold><fold text='' expand='true'>public String getUsername()<fold text=' { ' expand='false'> {
         </fold>return this.username;<fold text=' }' expand='false'>
-    }</fold>
+    }</fold></fold><fold text='' expand='true'>
 
-    public boolean isActive()<fold text=' { ' expand='false'> {
+    </fold><fold text='' expand='true'>public boolean isActive()<fold text=' { ' expand='false'> {
         </fold>return this.active;<fold text=' }' expand='false'>
-    }</fold>
+    }</fold><fold text='' expand='true'></fold>
 
-    public String getUserIdentifier()<fold text=' { ' expand='false'> {
+    </fold><fold text='' expand='true'>public String getUserIdentifier()<fold text=' { ' expand='false'> {
         </fold>return this.userIdentifier;<fold text=' }' expand='false'>
-    }</fold>
+    }</fold></fold><fold text='' expand='true'>
 
-    public FieldShiftBuilder getChild()<fold text=' { ' expand='false'> {
+    </fold><fold text='' expand='true'>public FieldShiftBuilder getChild()<fold text=' { ' expand='false'> {
         </fold>return this.child;<fold text=' }' expand='false'>
-    }</fold>
+    }</fold></fold>
 
-    public static class UserData2 <fold text='{...}' expand='true'>{
+    <fold text='@Getter p' expand='false'>p</fold>ublic static class UserData2 <fold text='{...}' expand='true'>{
         private String username;
         private boolean active;
         private String userIdentifier;
@@ -91,21 +91,21 @@ public class FieldShiftBuilder {
 
         public static UserData2Builder builder()<fold text=' { ' expand='false'> {
             </fold>return new UserData2Builder();<fold text=' }' expand='false'>
-        }</fold>
+        }</fold><fold text='' expand='true'>
 
-        public String getUsername()<fold text=' { ' expand='false'> {
+        </fold><fold text='' expand='true'>public String getUsername()<fold text=' { ' expand='false'> {
             </fold>return this.username;<fold text=' }' expand='false'>
-        }</fold>
+        }</fold></fold><fold text='' expand='true'>
 
-        public boolean isActive()<fold text=' { ' expand='false'> {
+        </fold><fold text='' expand='true'>public boolean isActive()<fold text=' { ' expand='false'> {
             </fold>return this.active;<fold text=' }' expand='false'>
-        }</fold>
+        }</fold></fold><fold text='' expand='true'>
 
-        public String getUserIdentifier()<fold text=' { ' expand='false'> {
+        </fold><fold text='' expand='true'>public String getUserIdentifier()<fold text=' { ' expand='false'> {
             </fold>return this.userIdentifier;<fold text=' }' expand='false'>
-        }</fold>
+        }</fold></fold>
 
-        public static class UserData2Builder <fold text='{...}' expand='true'>{
+        <fold text='@ToString p' expand='false'>p</fold>ublic static class UserData2Builder <fold text='{...}' expand='true'>{
             private String username;
             private boolean active;
             private String userIdentifier;
@@ -130,18 +130,18 @@ public class FieldShiftBuilder {
 
             public UserData2 build()<fold text=' { ' expand='false'> {
                 </fold>return new UserData2(username, active, userIdentifier);<fold text=' }' expand='false'>
-            }</fold>
+            }</fold><fold text='' expand='true'>
 
-            public String toString() <fold text='{...}' expand='true'>{
+            </fold><fold text='' expand='true'>public String toString() <fold text='{...}' expand='true'>{
                 return "BuilderFieldShift.UserData2.UserData2Builder(username=<fold text='${' expand='false'>" + </fold>this.username<fold text='}' expand='false'> + "</fold>, active=<fold text='${' expand='false'>" + </fold>this.active<fold text='}' expand='false'> + "</fold>, userIdentifier=<fold text='${' expand='false'>" + </fold>this.userIdentifier<fold text='}' expand='false'> + "</fold>)";
-            }</fold>
+            }</fold></fold>
         }</fold>
     }</fold>
 
     public record UserDataRecord(String username, boolean active, String userIdentifier) <fold text='{...}' expand='true'>{
     }</fold>
 
-    public static class BuilderFieldShiftBuilder <fold text='{...}' expand='true'>{
+    <fold text='@ToString p' expand='false'>p</fold>ublic static class BuilderFieldShiftBuilder <fold text='{...}' expand='true'>{
         private String username;
         private boolean active;
         private String userIdentifier;
@@ -172,10 +172,10 @@ public class FieldShiftBuilder {
 
         public FieldShiftBuilder build()<fold text=' { ' expand='false'> {
             </fold>return new FieldShiftBuilder(username, active, userIdentifier, child);<fold text=' }' expand='false'>
-        }</fold>
+        }</fold><fold text='' expand='true'>
 
-        public String toString() <fold text='{...}' expand='true'>{
+        </fold><fold text='' expand='true'>public String toString() <fold text='{...}' expand='true'>{
             return "BuilderFieldShift.BuilderFieldShiftBuilder(username=<fold text='${' expand='false'>" + </fold>this.username<fold text='}' expand='false'> + "</fold>, active=<fold text='${' expand='false'>" + </fold>this.active<fold text='}' expand='false'> + "</fold>, userIdentifier=<fold text='${' expand='false'>" + </fold>this.userIdentifier<fold text='}' expand='false'> + "</fold>, child=<fold text='${' expand='false'>" + </fold>this.child<fold text='}' expand='false'> + "</fold>)";
-        }</fold>
+        }</fold></fold>
     }</fold>
 }

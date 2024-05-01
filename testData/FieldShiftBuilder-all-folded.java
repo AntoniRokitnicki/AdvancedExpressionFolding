@@ -1,6 +1,6 @@
 package data;
 
-public class FieldShiftBuilder {
+@Getter public class FieldShiftBuilder {
     private String username;
     private boolean active;
     private String userIdentifier;
@@ -62,23 +62,7 @@ public class FieldShiftBuilder {
         return new BuilderFieldShiftBuilder();
     }
 
-    public String getUsername() {
-        return this.username;
-    }
-
-    public boolean isActive() {
-        return this.active;
-    }
-
-    public String getUserIdentifier() {
-        return this.userIdentifier;
-    }
-
-    public FieldShiftBuilder getChild() {
-        return this.child;
-    }
-
-    public static class UserData2 {
+    @Getter public static class UserData2 {
         private String username;
         private boolean active;
         private String userIdentifier;
@@ -93,19 +77,7 @@ public class FieldShiftBuilder {
             return new UserData2Builder();
         }
 
-        public String getUsername() {
-            return this.username;
-        }
-
-        public boolean isActive() {
-            return this.active;
-        }
-
-        public String getUserIdentifier() {
-            return this.userIdentifier;
-        }
-
-        public static class UserData2Builder {
+        @ToString public static class UserData2Builder {
             private String username;
             private boolean active;
             private String userIdentifier;
@@ -131,17 +103,13 @@ public class FieldShiftBuilder {
             public UserData2 build() {
                 return new UserData2(username, active, userIdentifier);
             }
-
-            public String toString() {
-                return "BuilderFieldShift.UserData2.UserData2Builder(username=${this.username}, active=${this.active}, userIdentifier=${this.userIdentifier})";
-            }
         }
     }
 
     public record UserDataRecord(String username, boolean active, String userIdentifier) {
     }
 
-    public static class BuilderFieldShiftBuilder {
+    @ToString public static class BuilderFieldShiftBuilder {
         private String username;
         private boolean active;
         private String userIdentifier;
@@ -172,10 +140,6 @@ public class FieldShiftBuilder {
 
         public FieldShiftBuilder build() {
             return new FieldShiftBuilder(username, active, userIdentifier, child);
-        }
-
-        public String toString() {
-            return "BuilderFieldShift.BuilderFieldShiftBuilder(username=${this.username}, active=${this.active}, userIdentifier=${this.userIdentifier}, child=${this.child})";
         }
     }
 }
