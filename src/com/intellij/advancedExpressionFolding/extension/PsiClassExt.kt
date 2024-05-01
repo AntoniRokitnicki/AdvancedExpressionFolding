@@ -64,7 +64,7 @@ object PsiClassExt : BaseExtension() {
 
     @JvmStatic
     fun createExpression(clazz: PsiClass): Expression? {
-        if (clazz.isIgnored() || !lombok) {
+        if (clazz.isIgnored() || !lombok || clazz.isRecord || clazz.isInterface) {
             return null
         }
 

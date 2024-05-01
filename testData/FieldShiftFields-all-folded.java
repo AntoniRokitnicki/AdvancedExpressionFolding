@@ -1,6 +1,6 @@
 package data;
 
-public class FieldShiftFields {
+@Getter public class FieldShiftFields {
     public String username;
     public boolean active;
     public String userIdentifier;
@@ -114,38 +114,10 @@ public class FieldShiftFields {
         return username;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public String getUserIdentifier() {
-        return userIdentifier;
-    }
-
-    public FieldShiftFields getChild() {
-        return child;
-    }
-
-    public static class UserData2 {
+    @Getter public static class UserData2 {
         public String username;
         public boolean active;
         public String userIdentifier;
-
-        public String getUsername() {
-            return username;
-        }
-
-        public boolean isActive() {
-            return active;
-        }
-
-        public String getUserIdentifier() {
-            return userIdentifier;
-        }
     }
 
     public record UserDataRecord(String username, boolean active, String userIdentifier) {

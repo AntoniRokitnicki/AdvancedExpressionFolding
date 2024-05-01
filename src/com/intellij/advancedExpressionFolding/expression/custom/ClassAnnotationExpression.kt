@@ -23,6 +23,9 @@ class ClassAnnotationExpression(
             .filter {
                 !it.textRange.isEmpty
             }
+            .filterNot {
+                it.node == null
+            }
             .map {
                 fold(it, it.textRange, "")
             }
