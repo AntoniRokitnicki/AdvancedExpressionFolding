@@ -16,18 +16,14 @@ import com.intellij.psi.util.CachedValue
 import com.intellij.psi.util.CachedValueProvider
 import com.intellij.psi.util.CachedValuesManager
 import com.intellij.psi.util.PsiModificationTracker
-import com.intellij.util.containers.ContainerUtil
-import com.intellij.util.containers.IntObjectMap
 import org.jetbrains.annotations.Contract
 import java.lang.ref.WeakReference
 import java.util.*
 
 object BuildExpressionExt {
-    private val KEY_MAP: IntObjectMap<Key<CachedValue<WeakReference<Expression>>>> =
-        ContainerUtil.createIntKeyWeakValueMap()
+    private val KEY_MAP: MutableMap<String, Key<CachedValue<WeakReference<Expression>>>> = WeakHashMap()
     private val NO_DESCRIPTORS: Array<FoldingDescriptor> = emptyArray()
     private val NULL_EXPRESSION: Expression = NullExpression()
-    
 
     // 💩💩💩 Define the AdvancedExpressionFoldingProvider extension point
     @Contract("_, _, true -> !null")
@@ -124,11 +120,10 @@ object BuildExpressionExt {
     }
 
     private fun getKey(document: Document, synthetic: Boolean): Key<CachedValue<WeakReference<Expression>>> {
-        val key = document.hashCode() + (if (synthetic) 1 else 0)
-        KEY_MAP.get(key)?.let { return it }
-        val create = Key.create<CachedValue<WeakReference<Expression>>>(key.toString())
-        KEY_MAP.put(key, create)
-        return create
+        val key = document.hashCode().toString() + " " + (if (synthetic) 1 else 0)
+        return KEY_MAP.computeIfAbsent(key) {
+            Key.create(it)
+        }
     }
 
     @JvmStatic
@@ -187,5 +182,6 @@ object BuildExpressionExt {
         }
         return allDescriptors?.filterNotNull()?.toTypedArray() ?: NO_DESCRIPTORS
     }
+
 
 }
