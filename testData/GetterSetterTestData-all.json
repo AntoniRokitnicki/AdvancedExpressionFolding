@@ -2,56 +2,6 @@
   "size" : 24,
   "list" : [ {
     "id" : 0,
-    "text" : "private void setParent(GetterSetterTestData parent) {\n        this.parent = parent;\n    }",
-    "placeholder" : "",
-    "range" : {
-      "start" : 379,
-      "end" : 468,
-      "size" : 89
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
-  }, {
-    "id" : 1,
-    "text" : "private GetterSetterTestData getParent() {\n        return parent;\n    }",
-    "placeholder" : "",
-    "range" : {
-      "start" : 474,
-      "end" : 545,
-      "size" : 71
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
-  }, {
-    "id" : 2,
-    "text" : "private String getName() {\n        return name;\n    }",
-    "placeholder" : "",
-    "range" : {
-      "start" : 551,
-      "end" : 604,
-      "size" : 53
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
-  }, {
-    "id" : 3,
-    "text" : "private void setName(String name) {\n        this.name = name;\n    }",
-    "placeholder" : "",
-    "range" : {
-      "start" : 610,
-      "end" : 677,
-      "size" : 67
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
-  }, {
-    "id" : 4,
-    "text" : "\n\n    ",
-    "placeholder" : "",
-    "range" : {
-      "start" : 373,
-      "end" : 379,
-      "size" : 6
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
-  }, {
-    "id" : 5,
     "text" : "\n\n    ",
     "placeholder" : "",
     "range" : {
@@ -61,7 +11,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
   }, {
-    "id" : 6,
+    "id" : 1,
     "text" : "\n\n    ",
     "placeholder" : "",
     "range" : {
@@ -71,13 +21,63 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
   }, {
-    "id" : 7,
+    "id" : 2,
+    "text" : "\n\n    ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 373,
+      "end" : 379,
+      "size" : 6
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 3,
     "text" : "\n\n    ",
     "placeholder" : "",
     "range" : {
       "start" : 604,
       "end" : 610,
       "size" : 6
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 4,
+    "text" : "private GetterSetterTestData getParent() {\n        return parent;\n    }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 474,
+      "end" : 545,
+      "size" : 71
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 5,
+    "text" : "private String getName() {\n        return name;\n    }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 551,
+      "end" : 604,
+      "size" : 53
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 6,
+    "text" : "private void setParent(GetterSetterTestData parent) {\n        this.parent = parent;\n    }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 379,
+      "end" : 468,
+      "size" : 89
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 7,
+    "text" : "private void setName(String name) {\n        this.name = name;\n    }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 610,
+      "end" : 677,
+      "size" : 67
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
   }, {
