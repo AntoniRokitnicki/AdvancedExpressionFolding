@@ -25,14 +25,15 @@ class ElvisReturnNull(
 
     override fun buildFoldRegions(element: PsiElement, document: Document, parent: Expression?): Array<FoldingDescriptor> {
         val descriptors = mutableListOf<FoldingDescriptor>()
+        val group = FoldingGroup.newGroup(ElvisReturnNull::class.java.name)
         if (foldVariable) {
             descriptors.add(
                 FoldingDescriptor(declaration.node, declarationRange,
-                    FoldingGroup.newGroup(ElvisReturnNull::class.java.name), ""))
+                    group, ""))
         }
         descriptors.add(
                 FoldingDescriptor(letElement.node, letRange,
-                        FoldingGroup.newGroup(ElvisReturnNull::class.java.name), " ?: return null"))
+                    group, " ?: return null"))
         return descriptors.toTypedArray()
     }
 
