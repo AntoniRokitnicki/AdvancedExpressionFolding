@@ -68,7 +68,7 @@ open class FoldingTest : BaseTest() {
     /**
      * [data.AppendSetterInterpolatedStringTestData]
      */
-    fun testAppendSetterInterpolatedStringTestData() {
+    open fun testAppendSetterInterpolatedStringTestData() {
         doFoldingTest(state::concatenationExpressionsCollapse, state::getSetExpressionsCollapse)
     }
 
