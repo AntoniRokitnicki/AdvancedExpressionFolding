@@ -4,6 +4,10 @@
 
 ## [Unreleased]
 
+## [1.0.40] - 2024-05-02
+
+reuse folding group for lombok
+
 ## [1.0.39] - 2024-05-01
 
 fix for records
@@ -183,7 +187,8 @@ Improved handling of multi-line log messages
 
 ## [0.0.1]
 
-[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.39...HEAD
+[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.40...HEAD
+[1.0.40]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.39...v1.0.40
 [1.0.39]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.38...v1.0.39
 [1.0.38]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.37...v1.0.38
 [1.0.37]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.36...v1.0.37
