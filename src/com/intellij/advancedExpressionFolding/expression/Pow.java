@@ -1,5 +1,6 @@
 package com.intellij.advancedExpressionFolding.expression;
 
+import com.intellij.advancedExpressionFolding.extension.Helper;
 import com.intellij.lang.folding.FoldingDescriptor;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.editor.FoldingGroup;
@@ -21,7 +22,7 @@ public class Pow extends Function implements ArithmeticExpression {
     public boolean supportsFoldRegions(@NotNull Document document,
                                        @Nullable Expression parent) {
         return operands.get(0).getTextRange().getEndOffset() < getTextRange().getEndOffset()
-                && superscript(operands.get(1).getElement().getText()) != null; // TODO no-format: Forbid non-literal/non-variable operands.get(1)
+                && Helper.superscript(operands.get(1).getElement().getText()) != null; // TODO no-format: Forbid non-literal/non-variable operands.get(1)
     }
 
     @Override
@@ -38,7 +39,7 @@ public class Pow extends Function implements ArithmeticExpression {
             Collections.addAll(descriptors, operands.get(0).buildFoldRegions(operands.get(0).getElement(), document, this));
         }
         String b = operands.get(1).getElement().getText();
-        String superscript = superscript(b);
+        String superscript = Helper.superscript(b);
         if (superscript != null) {
             descriptors.add(new FoldingDescriptor(element.getNode(),
                     TextRange.create(operands.get(0).getTextRange().getEndOffset(),

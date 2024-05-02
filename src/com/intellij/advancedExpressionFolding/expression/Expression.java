@@ -1,6 +1,5 @@
 package com.intellij.advancedExpressionFolding.expression;
 
-import com.intellij.advancedExpressionFolding.extension.Consts;
 import com.intellij.lang.folding.FoldingDescriptor;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.editor.FoldingGroup;
@@ -9,12 +8,8 @@ import com.intellij.psi.PsiElement;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Map;
-
 public abstract class Expression {
     public static final FoldingDescriptor[] EMPTY_ARRAY = new FoldingDescriptor[0];
-
-    private final static double EPSILON = 0.00001;
 
     public static String HIGHLIGHTED_GROUP_POSTFIX = ":highlighting";
 
@@ -29,33 +24,6 @@ public abstract class Expression {
     @Override
     public String toString() {
         return element.getText(); // TODO: Use document.getText(textRange)
-    }
-
-    @Nullable
-    protected static String superscript(String str) {
-        return map(str, Consts.SUPERSCRIPT_MAPPING);
-    }
-
-    @Nullable
-    protected static String subscript(String str) {
-        return map(str, Consts.SUBSCRIPT_MAPPING);
-    }
-
-    private static String map(String str, Map<Character, Character> subscriptMapping) {
-        StringBuilder sb = new StringBuilder(str.length());
-        for (int i = 0; i < str.length(); i++) {
-            Character c = subscriptMapping.get(str.charAt(i));
-            if (c == null) {
-                return null;
-            } else if (!c.equals('❤')) {
-                sb.append((char) c);
-            }
-        }
-        return sb.toString();
-    }
-
-    public static boolean equals(double a, double b) {
-        return a == b || Math.abs(a - b) < EPSILON;
     }
 
     public boolean supportsFoldRegions(@NotNull Document document,

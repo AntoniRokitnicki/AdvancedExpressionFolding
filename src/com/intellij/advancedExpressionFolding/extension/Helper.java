@@ -9,10 +9,7 @@ import com.intellij.psi.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.stream.Stream;
@@ -268,5 +265,23 @@ public class Helper {
             }
         }
         return Optional.empty();
+    }
+
+    @Nullable
+    public static String superscript(String str) {
+        return map(str, Consts.SUPERSCRIPT_MAPPING);
+    }
+
+    private static String map(String str, Map<Character, Character> subscriptMapping) {
+        StringBuilder sb = new StringBuilder(str.length());
+        for (int i = 0; i < str.length(); i++) {
+            Character c = subscriptMapping.get(str.charAt(i));
+            if (c == null) {
+                return null;
+            } else if (!c.equals('❤')) {
+                sb.append((char) c);
+            }
+        }
+        return sb.toString();
     }
 }
