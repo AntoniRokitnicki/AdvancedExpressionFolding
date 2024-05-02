@@ -1,5 +1,6 @@
 package com.intellij.advancedExpressionFolding.expression;
 
+import com.intellij.advancedExpressionFolding.extension.Helper;
 import com.intellij.lang.folding.FoldingDescriptor;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.editor.FoldingGroup;
@@ -19,7 +20,7 @@ public class Exp extends Function implements ArithmeticExpression {
     @Override
     public boolean supportsFoldRegions(@NotNull Document document,
                                        @Nullable Expression parent) {
-        return superscript(operands.get(0).getElement().getText()) != null;
+        return Helper.superscript(operands.get(0).getElement().getText()) != null;
     }
 
     @Override
@@ -27,7 +28,7 @@ public class Exp extends Function implements ArithmeticExpression {
         ArrayList<FoldingDescriptor> descriptors = new ArrayList<>();
         FoldingGroup group = FoldingGroup.newGroup(Exp.class.getName());
         descriptors.add(new FoldingDescriptor(element.getNode(),
-                TextRange.create(textRange), group, "\uD835\uDC52" + superscript(operands.get(0).getElement().getText())));
+                TextRange.create(textRange), group, "\uD835\uDC52" + Helper.superscript(operands.get(0).getElement().getText())));
         return descriptors.toArray(EMPTY_ARRAY);
     }
 }
