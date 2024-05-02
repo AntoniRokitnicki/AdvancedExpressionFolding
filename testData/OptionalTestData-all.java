@@ -70,29 +70,29 @@ public class OptionalTestData {
 
         public Data(Data data)<fold text=' { ' expand='false'> {
             </fold>this.data = <fold text='<<' expand='false'>data</fold>;<fold text=' }' expand='false'>
-        }</fold><fold text='' expand='true'>
+        }</fold><fold text='' expand='false'>
 
-        </fold><fold text='' expand='true'>public Data getData()<fold text=' { ' expand='false'> {
+        </fold><fold text='' expand='false'>public Data getData()<fold text=' { ' expand='false'> {
                 </fold>return data;<fold text=' }' expand='false'>
-        }</fold></fold><fold text='' expand='true'>
+        }</fold></fold><fold text='' expand='false'>
 
-        </fold><fold text='' expand='true'>public boolean isOk()<fold text=' { ' expand='false'> {
+        </fold><fold text='' expand='false'>public boolean isOk()<fold text=' { ' expand='false'> {
                 </fold>return ok;<fold text=' }' expand='false'>
-        }</fold><fold text='' expand='true'></fold>
+        }</fold><fold text='' expand='false'></fold>
 
-        </fold><fold text='' expand='true'>public void setData(Data data)<fold text=' { ' expand='false'> {
+        </fold><fold text='' expand='false'>public void setData(Data data)<fold text=' { ' expand='false'> {
                 </fold>this.data = <fold text='<<' expand='false'>data</fold>;<fold text=' }' expand='false'>
-        }</fold></fold><fold text='' expand='true'>
+        }</fold></fold><fold text='' expand='false'>
 
-        </fold><fold text='' expand='true'>public void setOk(boolean ok)<fold text=' { ' expand='false'> {
+        </fold><fold text='' expand='false'>public void setOk(boolean ok)<fold text=' { ' expand='false'> {
                 </fold>this.ok = <fold text='<<' expand='false'>ok</fold>;<fold text=' }' expand='false'>
-        }</fold><fold text='' expand='true'></fold>
+        }</fold><fold text='' expand='false'></fold>
 
-        </fold><fold text='' expand='true'>public String getString()<fold text=' { ' expand='false'> {
+        </fold><fold text='' expand='false'>public String getString()<fold text=' { ' expand='false'> {
                 </fold>return string;<fold text=' }' expand='false'>
-        }</fold></fold><fold text='' expand='true'>
+        }</fold></fold><fold text='' expand='false'>
 
-        </fold><fold text='' expand='true'>public void setString(String string)<fold text=' { ' expand='false'> {
+        </fold><fold text='' expand='false'>public void setString(String string)<fold text=' { ' expand='false'> {
                 </fold>this.string = <fold text='<<' expand='false'>string</fold>;<fold text=' }' expand='false'>
         }</fold></fold>
 

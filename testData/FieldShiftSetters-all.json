@@ -2,96 +2,6 @@
   "size" : 141,
   "list" : [ {
     "id" : 0,
-    "text" : "public void setUsername(String username) {\n        this.username = username;\n    }",
-    "placeholder" : "",
-    "range" : {
-      "start" : 222,
-      "end" : 304,
-      "size" : 82
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
-  }, {
-    "id" : 1,
-    "text" : "public String getUsername() {\n        return this.username;\n    }",
-    "placeholder" : "",
-    "range" : {
-      "start" : 3156,
-      "end" : 3221,
-      "size" : 65
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
-  }, {
-    "id" : 2,
-    "text" : "public void setActive(boolean active) {\n        this.active = active;\n    }",
-    "placeholder" : "",
-    "range" : {
-      "start" : 310,
-      "end" : 385,
-      "size" : 75
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
-  }, {
-    "id" : 3,
-    "text" : "public boolean isActive() {\n        return this.active;\n    }",
-    "placeholder" : "",
-    "range" : {
-      "start" : 3227,
-      "end" : 3288,
-      "size" : 61
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
-  }, {
-    "id" : 4,
-    "text" : "public void setUserIdentifier(String userIdentifier) {\n        this.userIdentifier = userIdentifier;\n    }",
-    "placeholder" : "",
-    "range" : {
-      "start" : 391,
-      "end" : 497,
-      "size" : 106
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
-  }, {
-    "id" : 5,
-    "text" : "public String getUserIdentifier() {\n        return this.userIdentifier;\n    }",
-    "placeholder" : "",
-    "range" : {
-      "start" : 3294,
-      "end" : 3371,
-      "size" : 77
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
-  }, {
-    "id" : 6,
-    "text" : "public void setChild(FieldShiftSetters child) {\n        this.child = child;\n    }",
-    "placeholder" : "",
-    "range" : {
-      "start" : 503,
-      "end" : 584,
-      "size" : 81
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
-  }, {
-    "id" : 7,
-    "text" : "public FieldShiftSetters getChild() {\n        return this.child;\n    }",
-    "placeholder" : "",
-    "range" : {
-      "start" : 3377,
-      "end" : 3447,
-      "size" : 70
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
-  }, {
-    "id" : 8,
-    "text" : "\n\n    ",
-    "placeholder" : "",
-    "range" : {
-      "start" : 216,
-      "end" : 222,
-      "size" : 6
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
-  }, {
-    "id" : 9,
     "text" : "\n\n\n\n    ",
     "placeholder" : "",
     "range" : {
@@ -101,17 +11,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
   }, {
-    "id" : 10,
-    "text" : "\n\n    ",
-    "placeholder" : "",
-    "range" : {
-      "start" : 304,
-      "end" : 310,
-      "size" : 6
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
-  }, {
-    "id" : 11,
+    "id" : 1,
     "text" : "\n\n    ",
     "placeholder" : "",
     "range" : {
@@ -121,17 +21,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
   }, {
-    "id" : 12,
-    "text" : "\n\n    ",
-    "placeholder" : "",
-    "range" : {
-      "start" : 385,
-      "end" : 391,
-      "size" : 6
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
-  }, {
-    "id" : 13,
+    "id" : 2,
     "text" : "\n\n    ",
     "placeholder" : "",
     "range" : {
@@ -141,7 +31,47 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
   }, {
-    "id" : 14,
+    "id" : 3,
+    "text" : "\n\n    ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3371,
+      "end" : 3377,
+      "size" : 6
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 4,
+    "text" : "\n\n    ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 216,
+      "end" : 222,
+      "size" : 6
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 5,
+    "text" : "\n\n    ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 304,
+      "end" : 310,
+      "size" : 6
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 6,
+    "text" : "\n\n    ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 385,
+      "end" : 391,
+      "size" : 6
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 7,
     "text" : "\n\n    ",
     "placeholder" : "",
     "range" : {
@@ -151,13 +81,83 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
   }, {
-    "id" : 15,
-    "text" : "\n\n    ",
+    "id" : 8,
+    "text" : "public String getUsername() {\n        return this.username;\n    }",
     "placeholder" : "",
     "range" : {
-      "start" : 3371,
-      "end" : 3377,
-      "size" : 6
+      "start" : 3156,
+      "end" : 3221,
+      "size" : 65
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 9,
+    "text" : "public boolean isActive() {\n        return this.active;\n    }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3227,
+      "end" : 3288,
+      "size" : 61
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 10,
+    "text" : "public String getUserIdentifier() {\n        return this.userIdentifier;\n    }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3294,
+      "end" : 3371,
+      "size" : 77
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 11,
+    "text" : "public FieldShiftSetters getChild() {\n        return this.child;\n    }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3377,
+      "end" : 3447,
+      "size" : 70
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 12,
+    "text" : "public void setUsername(String username) {\n        this.username = username;\n    }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 222,
+      "end" : 304,
+      "size" : 82
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 13,
+    "text" : "public void setActive(boolean active) {\n        this.active = active;\n    }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 310,
+      "end" : 385,
+      "size" : 75
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 14,
+    "text" : "public void setUserIdentifier(String userIdentifier) {\n        this.userIdentifier = userIdentifier;\n    }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 391,
+      "end" : 497,
+      "size" : 106
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 15,
+    "text" : "public void setChild(FieldShiftSetters child) {\n        this.child = child;\n    }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 503,
+      "end" : 584,
+      "size" : 81
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
   }, {
@@ -1252,76 +1252,6 @@
     "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
   }, {
     "id" : 125,
-    "text" : "public void setUsername(String username) {\n            this.username = username;\n        }",
-    "placeholder" : "",
-    "range" : {
-      "start" : 3638,
-      "end" : 3728,
-      "size" : 90
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
-  }, {
-    "id" : 126,
-    "text" : "public String getUsername() {\n            return this.username;\n        }",
-    "placeholder" : "",
-    "range" : {
-      "start" : 3955,
-      "end" : 4028,
-      "size" : 73
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
-  }, {
-    "id" : 127,
-    "text" : "public void setActive(boolean active) {\n            this.active = active;\n        }",
-    "placeholder" : "",
-    "range" : {
-      "start" : 3738,
-      "end" : 3821,
-      "size" : 83
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
-  }, {
-    "id" : 128,
-    "text" : "public boolean isActive() {\n            return this.active;\n        }",
-    "placeholder" : "",
-    "range" : {
-      "start" : 4038,
-      "end" : 4107,
-      "size" : 69
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
-  }, {
-    "id" : 129,
-    "text" : "public void setUserIdentifier(String userIdentifier) {\n            this.userIdentifier = userIdentifier;\n        }",
-    "placeholder" : "",
-    "range" : {
-      "start" : 3831,
-      "end" : 3945,
-      "size" : 114
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
-  }, {
-    "id" : 130,
-    "text" : "public String getUserIdentifier() {\n            return this.userIdentifier;\n        }",
-    "placeholder" : "",
-    "range" : {
-      "start" : 4117,
-      "end" : 4202,
-      "size" : 85
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
-  }, {
-    "id" : 131,
-    "text" : "\n\n        ",
-    "placeholder" : "",
-    "range" : {
-      "start" : 3628,
-      "end" : 3638,
-      "size" : 10
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
-  }, {
-    "id" : 132,
     "text" : "\n\n        ",
     "placeholder" : "",
     "range" : {
@@ -1331,17 +1261,7 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
   }, {
-    "id" : 133,
-    "text" : "\n\n        ",
-    "placeholder" : "",
-    "range" : {
-      "start" : 3728,
-      "end" : 3738,
-      "size" : 10
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
-  }, {
-    "id" : 134,
+    "id" : 126,
     "text" : "\n\n        ",
     "placeholder" : "",
     "range" : {
@@ -1351,7 +1271,37 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
   }, {
-    "id" : 135,
+    "id" : 127,
+    "text" : "\n\n        ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 4107,
+      "end" : 4117,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 128,
+    "text" : "\n\n        ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3628,
+      "end" : 3638,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 129,
+    "text" : "\n\n        ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3728,
+      "end" : 3738,
+      "size" : 10
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 130,
     "text" : "\n\n        ",
     "placeholder" : "",
     "range" : {
@@ -1361,13 +1311,63 @@
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
   }, {
-    "id" : 136,
-    "text" : "\n\n        ",
+    "id" : 131,
+    "text" : "public String getUsername() {\n            return this.username;\n        }",
     "placeholder" : "",
     "range" : {
-      "start" : 4107,
-      "end" : 4117,
-      "size" : 10
+      "start" : 3955,
+      "end" : 4028,
+      "size" : 73
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 132,
+    "text" : "public boolean isActive() {\n            return this.active;\n        }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 4038,
+      "end" : 4107,
+      "size" : 69
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 133,
+    "text" : "public String getUserIdentifier() {\n            return this.userIdentifier;\n        }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 4117,
+      "end" : 4202,
+      "size" : 85
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 134,
+    "text" : "public void setUsername(String username) {\n            this.username = username;\n        }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3638,
+      "end" : 3728,
+      "size" : 90
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 135,
+    "text" : "public void setActive(boolean active) {\n            this.active = active;\n        }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3738,
+      "end" : 3821,
+      "size" : 83
+    },
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+  }, {
+    "id" : 136,
+    "text" : "public void setUserIdentifier(String userIdentifier) {\n            this.userIdentifier = userIdentifier;\n        }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3831,
+      "end" : 3945,
+      "size" : 114
     },
     "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
   }, {
