@@ -3,6 +3,9 @@ package data;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import javax.annotation.Nonnull;
+import java.time.LocalDate;
+
 @SuppressWarnings("ALL")
 public class NullableAnnotationTestData {
 
@@ -31,7 +34,7 @@ public class NullableAnnotationTestData {
         this.string = string;
     }
 
-    @NotNull
+    @Nonnull
     private NullableAnnotationTestData data2;
     boolean ok2;
     @Nullable
@@ -39,7 +42,9 @@ public class NullableAnnotationTestData {
 
     public void select(@Nullable String element,
                        int i,
-                       @NotNull Object o) {
+                       @NotNull Object o,
+                       @Nonnull LocalDate date
+                       ) {
 
     }
 
@@ -48,9 +53,47 @@ public class NullableAnnotationTestData {
         return string;
     }
 
+    @Nonnull
+    public String getStringNotNull2() {
+        return string;
+    }
+
     @Nullable
     public String getStringNull() {
         return string;
+    }
+
+    interface Datable {
+        @Nullable
+        public Integer select(@Nullable String element,
+                           int i,
+                           @NotNull Object o,
+                           @Nonnull LocalDate date
+        );
+    }
+
+    public enum FieldFoldingAnnotation {
+        NOT_NULL("NotNull", "NonNull"),
+        NULLABLE("Nullable");
+
+        private String[] annotations;
+
+        FieldFoldingAnnotation(String... annotations) {
+
+        }
+
+        @Nonnull
+        public static int select(@Nullable String element,
+                                 int i,
+                                 @NotNull Object o,
+                                 @Nonnull LocalDate date
+        ) {
+            return 1;
+        }
+
+    }
+
+    public record UserDataRecord(@Nonnull String username, boolean active, @Nullable String userIdentifier, @NotNull String username2) {
     }
 
 }
