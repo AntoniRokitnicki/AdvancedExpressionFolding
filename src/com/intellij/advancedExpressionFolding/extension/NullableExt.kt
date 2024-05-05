@@ -13,6 +13,7 @@ object NullableExt : BaseExtension() {
         NOT_NULL("NotNull", "NonNull"),
         NULLABLE("Nullable"),
         ;
+
         init {
             this.annotations = annotations.map {
                 it.lowercase()
@@ -42,7 +43,34 @@ object NullableExt : BaseExtension() {
 
     @JvmStatic
     fun createExpression(field: PsiField): Expression? {
-        return fieldAnnotationExpression(field.annotations, field.typeElement)
+        if (!lombok || field.typeElement == null) {
+            return null
+        }
+        val expression = fieldAnnotationExpression(field.annotations, field.typeElement)
+        return expression ?: findPropertyAnnotation(field, field.typeElement)
+    }
+
+    private fun findPropertyAnnotation(field: PsiField, typeElement: PsiTypeElement?): Expression? {
+        return field.getter()
+            ?.takeIf {
+                it.annotations.firstOrNull() != null
+            }?.let { method ->
+                fieldAnnotationExpression(method.annotations, method.returnTypeElement)?.let {
+                    method.markIgnored()
+                    FieldAnnotationExpression(typeElement!!, null, it.typeSuffix)
+                }
+            }
+            ?: field.setter()?.let { method ->
+                val second = method.parameters.firstOrNull()?.annotations.asInstance<Array<out PsiAnnotation>>()
+                second?.firstOrNull()?.let {
+                    Pair(method, second)
+                }
+            }?.let { (method, ann) ->
+                fieldAnnotationExpression(ann, method.returnTypeElement)?.let {
+                    method.markIgnored()
+                    FieldAnnotationExpression(typeElement!!, null, it.typeSuffix)
+                }
+            }
     }
 
     @JvmStatic
@@ -52,6 +80,9 @@ object NullableExt : BaseExtension() {
 
     @JvmStatic
     fun createExpression(psiMethod: PsiMethod): Expression? {
+        if (psiMethod.isIgnored()) {
+            return null
+        }
         return fieldAnnotationExpression(psiMethod.annotations, psiMethod.returnTypeElement)
     }
 
@@ -69,6 +100,9 @@ object NullableExt : BaseExtension() {
         } ?: return null
 
         return annotations.mapNotNull {
+            if (it.isIgnored()) {
+                return null
+            }
             val fieldFoldingAnnotation = findByName(it.qualifiedName) ?: return@mapNotNull null
             Pair(fieldFoldingAnnotation, it)
         }.firstOrNull()

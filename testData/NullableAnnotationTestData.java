@@ -17,7 +17,7 @@ public class NullableAnnotationTestData {<fold text='' expand='false'>
     String<fold text='? ' expand='false'> </fold>string;<fold text='' expand='false'>
     </fold><fold text='' expand='false'>public NullableAnnotationTestData getData()<fold text=' { ' expand='false'> {
         </fold>return data;<fold text=' }' expand='false'>
-    }</fold><fold text='' expand='false'></fold>
+    }</fold></fold><fold text='' expand='false'>
     </fold><fold text='' expand='false'>public void setData(NullableAnnotationTestData data)<fold text=' { ' expand='false'> {
         </fold>this.data = data;<fold text=' }' expand='false'>
     }</fold></fold><fold text='' expand='false'>
@@ -27,7 +27,7 @@ public class NullableAnnotationTestData {<fold text='' expand='false'>
     </fold><fold text='' expand='false'>public void setOk(boolean ok)<fold text=' { ' expand='false'> {
         </fold>this.ok = ok;<fold text=' }' expand='false'>
     }</fold></fold><fold text='' expand='false'>
-    </fold><fold text='' expand='false'>public String getString()<fold text=' { ' expand='false'> {
+    <fold text='' expand='false'></fold>public String getString()<fold text=' { ' expand='false'> {
         </fold>return string;<fold text=' }' expand='false'>
     }</fold></fold><fold text='' expand='false'>
     </fold><fold text='' expand='false'>public void setString(String string)<fold text=' { ' expand='false'> {
@@ -94,6 +94,23 @@ public class NullableAnnotationTestData {<fold text='' expand='false'>
     }</fold>
 
     public record UserDataRecord(<fold text='' expand='false'>@Nonnull</fold> String<fold text='!! ' expand='false'> </fold>username, boolean active, <fold text='' expand='false'>@Nullable</fold> String<fold text='? ' expand='false'> </fold>userIdentifier, <fold text='' expand='false'>@NotNull</fold> String<fold text='!! ' expand='false'> </fold>username2) <fold text='{...}' expand='true'>{
+    }</fold>
+
+    <fold text='@Getter c' expand='false'>c</fold>lass GetterNullable <fold text='{...}' expand='true'>{
+        NullableAnnotationTestData<fold text='? ' expand='false'> </fold>getterNullable;<fold text='' expand='false'>
+
+        </fold><fold text='' expand='false'>@Nullable
+        public NullableAnnotationTestData getGetterNullable()<fold text=' { ' expand='false'> {
+            </fold>return getterNullable;<fold text=' }' expand='false'>
+        }</fold></fold>
+    }</fold>
+
+    <fold text='@Setter c' expand='false'>c</fold>lass SetterNullable <fold text='{...}' expand='true'>{
+        NullableAnnotationTestData<fold text='!! ' expand='false'> </fold>setterNullable;<fold text='' expand='false'>
+
+        </fold><fold text='' expand='false'>public void setSetterNullable(<fold text='' expand='false'>@Nonnull</fold> NullableAnnotationTestData<fold text='!! ' expand='false'> </fold>setterNullable) <fold text='{...}' expand='true'>{
+            this.setterNullable = setterNullable;
+        }</fold></fold>
     }</fold>
 
 }

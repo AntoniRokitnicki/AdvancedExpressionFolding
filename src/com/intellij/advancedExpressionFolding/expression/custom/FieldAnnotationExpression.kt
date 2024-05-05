@@ -12,23 +12,37 @@ import com.intellij.refactoring.suggested.endOffset
 
 class FieldAnnotationExpression(
     private val typeElement: PsiTypeElement,
-    private val annotationElement: PsiAnnotation,
-    private val typeSuffix: String
-)
-    : Expression(typeElement, typeElement.textRange) {
+    private val annotationElement: PsiAnnotation?,
+    val typeSuffix: String
+) : Expression(typeElement, typeElement.textRange) {
     override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean {
         return true
     }
 
-    override fun buildFoldRegions(element: PsiElement, document: Document, parent: Expression?): Array<FoldingDescriptor> {
+    override fun buildFoldRegions(
+        element: PsiElement,
+        document: Document,
+        parent: Expression?
+    ): Array<FoldingDescriptor> {
         val group = FoldingGroup.newGroup(FieldAnnotationExpression::class.java.name)
-        return arrayOf(
-            fold(typeElement, TextRange(typeElement.endOffset, typeElement.endOffset+1), "$typeSuffix ", group),
-            fold(annotationElement, annotationElement.textRange, "", group),
-        )
+
+        val typeSuffix =
+            fold(typeElement, TextRange(typeElement.endOffset, typeElement.endOffset + 1), "$typeSuffix ", group)
+        if (annotationElement != null) {
+            return arrayOf(
+                typeSuffix,
+                fold(annotationElement, annotationElement.textRange, "", group),
+            )
+        }
+        return arrayOf(typeSuffix)
     }
 
-    private fun fold(element: PsiElement, textRange: TextRange, placeholderText: String, group: FoldingGroup): FoldingDescriptor {
+    private fun fold(
+        element: PsiElement,
+        textRange: TextRange,
+        placeholderText: String,
+        group: FoldingGroup
+    ): FoldingDescriptor {
         return FoldingDescriptor(element.node, textRange, group, placeholderText, true, emptySet<Any>())
     }
 

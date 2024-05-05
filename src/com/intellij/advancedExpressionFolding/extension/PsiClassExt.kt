@@ -129,8 +129,14 @@ object PsiClassExt : BaseExtension() {
             SETTER to LOMBOK_SETTER
         ).forEach { (methodType, annotation) ->
             val methods = methodTypeToMethodsMap.getMethodsOfType(methodType)
-            methods.filter {
-                fieldsMap[it.guessPropertyName()] != null
+            methods.filter { method ->
+                val psiField = fieldsMap[method.guessPropertyName()]
+                when(methodType) {
+                    GETTER -> psiField?.setProperty(method, null)
+                    SETTER -> psiField?.setProperty(null, method)
+                    else -> {}
+                }
+                psiField != null
             }.takeIf {
                 it.isNotEmpty()
             }?.let { properties ->

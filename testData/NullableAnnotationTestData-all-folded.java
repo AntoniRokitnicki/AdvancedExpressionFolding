@@ -76,4 +76,12 @@ public class NullableAnnotationTestData {
     public record UserDataRecord( String!! username, boolean active,  String? userIdentifier,  String!! username2) {
     }
 
+    @Getter class GetterNullable {
+        NullableAnnotationTestData? getterNullable;
+    }
+
+    @Setter class SetterNullable {
+        NullableAnnotationTestData!! setterNullable;
+    }
+
 }
