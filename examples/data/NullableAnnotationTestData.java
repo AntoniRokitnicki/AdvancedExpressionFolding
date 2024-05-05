@@ -96,4 +96,21 @@ public class NullableAnnotationTestData {
     public record UserDataRecord(@Nonnull String username, boolean active, @Nullable String userIdentifier, @NotNull String username2) {
     }
 
+    class GetterNullable {
+        NullableAnnotationTestData getterNullable;
+
+        @Nullable
+        public NullableAnnotationTestData getGetterNullable() {
+            return getterNullable;
+        }
+    }
+
+    class SetterNullable {
+        NullableAnnotationTestData setterNullable;
+
+        public void setSetterNullable(@Nonnull NullableAnnotationTestData setterNullable) {
+            this.setterNullable = setterNullable;
+        }
+    }
+
 }

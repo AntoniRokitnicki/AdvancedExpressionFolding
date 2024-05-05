@@ -92,6 +92,18 @@ fun PsiElement.setType(type: PsiClassExt.ClassType) {
 }
 fun PsiElement.getType() : PsiClassExt.ClassType? = getUserData(Keys.CLASS_TYPE_KEY)
 
+
+fun PsiField.setProperty(getter: PsiMethod?,setter: PsiMethod?) {
+    getter?.let {
+        putUserData(Keys.GETTER_KEY, it)
+    }
+    setter?.let {
+        putUserData(Keys.SETTER_KEY, it)
+    }
+}
+fun PsiField.getter(): PsiMethod? = getUserData(Keys.GETTER_KEY)
+fun PsiField.setter(): PsiMethod? = getUserData(Keys.SETTER_KEY)
+
 fun PsiMethod.isBuilder(): Boolean = containingClass?.isBuilder() == true
 
 fun PsiMethod.guessPropertyName(): String = PropertyUtil.guessPropertyName(name)
