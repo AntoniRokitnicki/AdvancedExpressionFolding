@@ -195,6 +195,24 @@ public class BuildExpressionExt {
                 return expression;
             }
         }
+        if (element instanceof PsiField psiField) {
+            Expression expression = NullableExt.createExpression(psiField);
+            if (expression != null) {
+                return expression;
+            }
+        }
+        if (element instanceof PsiParameter psiParameter) {
+            Expression expression = NullableExt.createExpression(psiParameter);
+            if (expression != null) {
+                return expression;
+            }
+        }
+        if (element instanceof PsiMethod psiMethod) {
+            Expression expression = NullableExt.createExpression(psiMethod);
+            if (expression != null) {
+                return expression;
+            }
+        }
 
         if (synthetic) {
             ArrayList<Expression> children = new ArrayList<>();
