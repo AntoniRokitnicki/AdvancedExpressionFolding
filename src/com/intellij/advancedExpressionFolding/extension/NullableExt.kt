@@ -24,6 +24,12 @@ object NullableExt : BaseExtension() {
             fun findByName(annotationName: String?): FieldFoldingAnnotation? {
                 val name = annotationName?.let {
                     it.lowercase()
+                }?.let { name ->
+                    if (name.contains(".")) {
+                        name.substringAfterLast(".")
+                    } else {
+                        name
+                    }
                 } ?: return null
                 return values().firstOrNull { e ->
                     e.annotations.firstOrNull { single ->
