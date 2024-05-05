@@ -4,6 +4,10 @@
 
 ## [Unreleased]
 
+## [1.0.41] - 2024-05-05
+
+@Nullable and @NotNull annotations for fields, method parameters, and method return type
+
 ## [1.0.40] - 2024-05-02
 
 reuse folding group for lombok
@@ -187,7 +191,8 @@ Improved handling of multi-line log messages
 
 ## [0.0.1]
 
-[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.40...HEAD
+[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.41...HEAD
+[1.0.41]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.40...v1.0.41
 [1.0.40]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.39...v1.0.40
 [1.0.39]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.38...v1.0.39
 [1.0.38]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.37...v1.0.38
