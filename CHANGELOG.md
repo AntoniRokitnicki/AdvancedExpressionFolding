@@ -4,6 +4,10 @@
 
 ## [Unreleased]
 
+## [1.0.43] - 2024-05-05
+
+@Nullable, @NotNull, @Nonnull annotations for fields, method parameters, and method return type - edge cases fixed
+
 ## [1.0.42] - 2024-05-05
 
 @Nullable, @NotNull, @Nonnull annotations for fields, method parameters, and method return type
@@ -195,7 +199,8 @@ Improved handling of multi-line log messages
 
 ## [0.0.1]
 
-[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.42...HEAD
+[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.43...HEAD
+[1.0.43]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.42...v1.0.43
 [1.0.42]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.41...v1.0.42
 [1.0.41]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.40...v1.0.41
 [1.0.40]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.39...v1.0.40
