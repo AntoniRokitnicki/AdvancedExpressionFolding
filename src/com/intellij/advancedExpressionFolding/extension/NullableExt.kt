@@ -10,7 +10,7 @@ import com.intellij.psi.*
 object NullableExt : BaseExtension() {
 
     enum class FieldFoldingAnnotation(vararg var annotations: String) {
-        NOT_NULL("NotNull", "Supp"),
+        NOT_NULL("NotNull", "NonNull"),
         NULLABLE("Nullable"),
         ;
         init {
@@ -47,6 +47,11 @@ object NullableExt : BaseExtension() {
     @JvmStatic
     fun createExpression(psiMethod: PsiMethod): Expression? {
         return fieldAnnotationExpression(psiMethod.annotations, psiMethod.returnTypeElement)
+    }
+
+    @JvmStatic
+    fun createExpression(psiRecordComponent: PsiRecordComponent): FieldAnnotationExpression? {
+        return fieldAnnotationExpression(psiRecordComponent.annotations, psiRecordComponent.typeElement)
     }
 
     private fun fieldAnnotationExpression(
