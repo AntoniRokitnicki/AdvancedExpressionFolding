@@ -73,7 +73,7 @@ public class NullableAnnotationTestData {
 
     }
 
-    public record UserDataRecord(@Nonnull String username, boolean active, @Nullable String userIdentifier, @NotNull String username2) {
+    public record UserDataRecord( String!! username, boolean active,  String? userIdentifier,  String!! username2) {
     }
 
 }

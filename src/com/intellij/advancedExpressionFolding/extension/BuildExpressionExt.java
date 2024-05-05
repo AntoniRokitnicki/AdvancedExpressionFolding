@@ -207,6 +207,12 @@ public class BuildExpressionExt {
                 return expression;
             }
         }
+        if (element instanceof PsiRecordComponent psiRecordComponent) {
+            Expression expression = NullableExt.createExpression(psiRecordComponent);
+            if (expression != null) {
+                return expression;
+            }
+        }
         if (element instanceof PsiMethod psiMethod) {
             Expression expression = NullableExt.createExpression(psiMethod);
             if (expression != null) {

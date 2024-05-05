@@ -23,14 +23,14 @@ public class NullableAnnotationTestData {<fold text='' expand='false'>
     }</fold></fold><fold text='' expand='false'>
     </fold><fold text='' expand='false'>public boolean isOk()<fold text=' { ' expand='false'> {
         </fold>return ok;<fold text=' }' expand='false'>
-    }</fold><fold text='' expand='false'></fold>
+    }</fold></fold><fold text='' expand='false'>
     </fold><fold text='' expand='false'>public void setOk(boolean ok)<fold text=' { ' expand='false'> {
         </fold>this.ok = ok;<fold text=' }' expand='false'>
     }</fold></fold><fold text='' expand='false'>
     </fold><fold text='' expand='false'>public String getString()<fold text=' { ' expand='false'> {
         </fold>return string;<fold text=' }' expand='false'>
     }</fold></fold><fold text='' expand='false'>
-    <fold text='' expand='false'></fold>public void setString(String string)<fold text=' { ' expand='false'> {
+    </fold><fold text='' expand='false'>public void setString(String string)<fold text=' { ' expand='false'> {
         </fold>this.string = string;<fold text=' }' expand='false'>
     }</fold></fold>
 
@@ -93,7 +93,7 @@ public class NullableAnnotationTestData {<fold text='' expand='false'>
 
     }</fold>
 
-    public record UserDataRecord(@Nonnull String username, boolean active, @Nullable String userIdentifier, @NotNull String username2) <fold text='{...}' expand='true'>{
+    public record UserDataRecord(<fold text='' expand='false'>@Nonnull</fold> String<fold text='!! ' expand='false'> </fold>username, boolean active, <fold text='' expand='false'>@Nullable</fold> String<fold text='? ' expand='false'> </fold>userIdentifier, <fold text='' expand='false'>@NotNull</fold> String<fold text='!! ' expand='false'> </fold>username2) <fold text='{...}' expand='true'>{
     }</fold>
 
 }
