@@ -9,51 +9,54 @@ import com.intellij.psi.*
 
 object NullableExt : BaseExtension() {
 
-    enum class FieldFoldingAnnotation(val annotation: String) {
-        NOT_NULL("NotNull"),
+    enum class FieldFoldingAnnotation(vararg var annotations: String) {
+        NOT_NULL("NotNull", "Supp"),
         NULLABLE("Nullable"),
-
         ;
+        init {
+            this.annotations = annotations.map {
+                it.lowercase()
+            }.toTypedArray()
+        }
+
 
         companion object {
             fun findByName(annotationName: String?): FieldFoldingAnnotation? {
-                annotationName ?: return null
-                return values().firstOrNull {
-                    it.annotation.contains(annotationName)
+                val name = annotationName?.let {
+                    it.lowercase()
+                } ?: return null
+                return values().firstOrNull { e ->
+                    e.annotations.firstOrNull { single ->
+                        single.contains(name)
+                    } != null
                 }
             }
         }
-
     }
 
     @JvmStatic
     fun createExpression(field: PsiField): Expression? {
-        if (!field.isNotStatic()) {
-            return null
-        }
-        val typeElement = field.typeElement ?: return null
-        val annotations = field.annotations
-        return fieldAnnotationExpression(annotations, typeElement)
+        return fieldAnnotationExpression(field.annotations, field.typeElement)
     }
 
     @JvmStatic
     fun createExpression(psiParameter: PsiParameter): Expression? {
-        val typeElement = psiParameter.typeElement ?: return null
-        val annotations = psiParameter.annotations
-        return fieldAnnotationExpression(annotations, typeElement)
+        return fieldAnnotationExpression(psiParameter.annotations, psiParameter.typeElement)
     }
 
     @JvmStatic
     fun createExpression(psiMethod: PsiMethod): Expression? {
-        val typeElement = psiMethod.returnTypeElement ?: return null
-        val annotations = psiMethod.annotations
-        return fieldAnnotationExpression(annotations, typeElement)
+        return fieldAnnotationExpression(psiMethod.annotations, psiMethod.returnTypeElement)
     }
 
     private fun fieldAnnotationExpression(
         annotations: Array<out PsiAnnotation>,
-        typeElement: PsiTypeElement
+        typeElement: PsiTypeElement?
     ): FieldAnnotationExpression? {
+        typeElement?.takeIf {
+            lombok
+        } ?: return null
+
         return annotations.mapNotNull {
             val fieldFoldingAnnotation = findByName(it.qualifiedName) ?: return@mapNotNull null
             Pair(fieldFoldingAnnotation, it)
