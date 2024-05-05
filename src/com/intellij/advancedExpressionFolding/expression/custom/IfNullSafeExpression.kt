@@ -20,14 +20,6 @@ class IfNullSafeExpression(element: PsiElement, textRange: TextRange, val charac
         return descriptors.toTypedArray()
     }
 
-
-    fun buildFoldRegion(): MutableList<FoldingDescriptor> {
-        val descriptors = mutableListOf<FoldingDescriptor>()
-        val group = FoldingGroup.newGroup(IfNullSafeExpression::class.java.name)
-        descriptors.add(FoldingDescriptor(element.node, textRange, group, character))
-        return descriptors
-    }
-
     override fun isCollapsedByDefault(): Boolean {
         return true
     }
