@@ -12,7 +12,7 @@ import com.intellij.psi.PsiTypeElement
 class FieldConstExpression(
     private val typeElement: PsiTypeElement?,
     private val annotationElement: PsiElement,
-    val typeSuffix: String,
+    private val typeSuffix: String,
     private val initializer: PsiElement? = null,
     private val initializerText: String? = null,
 ) : Expression(annotationElement, annotationElement.textRange) {

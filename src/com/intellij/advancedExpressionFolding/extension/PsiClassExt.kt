@@ -5,8 +5,6 @@ import com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationE
 import com.intellij.advancedExpressionFolding.extension.FoldingAnnotation.*
 import com.intellij.advancedExpressionFolding.extension.MethodType.*
 import com.intellij.psi.*
-import com.intellij.psi.search.LocalSearchScope
-import com.intellij.psi.search.searches.ReferencesSearch
 import java.util.*
 import java.util.EnumSet.of
 
@@ -54,6 +52,7 @@ object PsiClassExt : BaseExtension() {
 
     enum class ClassType {
         BUILDER,
+        NOT_NULL,
     }
 
     data class HidingAnnotation(
@@ -132,7 +131,7 @@ object PsiClassExt : BaseExtension() {
             val methods = methodTypeToMethodsMap.getMethodsOfType(methodType)
             methods.filter { method ->
                 val psiField = fieldsMap[method.guessPropertyName()]
-                when(methodType) {
+                when (methodType) {
                     GETTER -> psiField?.setProperty(method, null)
                     SETTER -> psiField?.setProperty(null, method)
                     else -> {}
@@ -204,8 +203,7 @@ object PsiClassExt : BaseExtension() {
     private fun PsiMethod.getFieldsUsed(fieldsMap: Collection<PsiField>): List<PsiField> {
         body ?: return emptyList()
         return fieldsMap.mapNotNull { field ->
-            ReferencesSearch.search(field, LocalSearchScope(this))
-                .findFirst()
+            field.findLocalReference(this)
                 ?.let {
                     field
                 }
@@ -234,5 +232,5 @@ object PsiClassExt : BaseExtension() {
         } ?: false
 
 
-    private fun PsiElement.prevWhiteSpace(): PsiWhiteSpace? = prevSibling as? PsiWhiteSpace
+    fun PsiElement.prevWhiteSpace(): PsiWhiteSpace? = prevSibling as? PsiWhiteSpace
 }

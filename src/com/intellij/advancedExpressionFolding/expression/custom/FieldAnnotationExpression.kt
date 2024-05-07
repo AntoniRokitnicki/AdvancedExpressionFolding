@@ -10,10 +10,10 @@ import com.intellij.psi.PsiTypeElement
 import com.intellij.refactoring.suggested.endOffset
 
 class FieldAnnotationExpression(
-    private val typeElement: PsiTypeElement,
-    private val annotationElement: PsiElement?,
+    private val typeToAppend: PsiTypeElement,
+    private val annotationToHide: PsiElement?,
     val typeSuffix: String
-) : Expression(typeElement, typeElement.textRange) {
+) : Expression(typeToAppend, typeToAppend.textRange) {
     override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean {
         return true
     }
@@ -26,11 +26,11 @@ class FieldAnnotationExpression(
         val group = FoldingGroup.newGroup(FieldAnnotationExpression::class.java.name)
 
         val typeSuffix =
-            fold(typeElement, TextRange(typeElement.endOffset, typeElement.endOffset + 1), "$typeSuffix ", group)
-        if (annotationElement != null) {
+            fold(typeToAppend, TextRange(typeToAppend.endOffset, typeToAppend.endOffset + 1), "$typeSuffix ", group)
+        if (annotationToHide != null) {
             return arrayOf(
                 typeSuffix,
-                fold(annotationElement, annotationElement.textRange, "", group),
+                fold(annotationToHide, annotationToHide.textRange, "", group),
             )
         }
         return arrayOf(typeSuffix)

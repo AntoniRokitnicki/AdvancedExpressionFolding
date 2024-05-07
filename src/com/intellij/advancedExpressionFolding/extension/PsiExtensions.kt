@@ -8,6 +8,8 @@ import com.intellij.advancedExpressionFolding.extension.BaseExtension.Companion.
 import com.intellij.advancedExpressionFolding.extension.Keys.IGNORED
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.*
+import com.intellij.psi.search.LocalSearchScope
+import com.intellij.psi.search.searches.ReferencesSearch
 import java.util.*
 
 inline fun String.filter(predicate: (String) -> Boolean): String? = takeIf(predicate)
@@ -75,22 +77,24 @@ fun PsiClass?.isBuilder() : Boolean {
     if (this == null) {
         return false
     }
-    val userData = getUserData(Keys.CLASS_TYPE_KEY)
+    val userData = getClassType()
     if (userData == null) {
         allMethods.forEach {
             if (it.name == "build") {
-                setType(PsiClassExt.ClassType.BUILDER)
+                setClassType(PsiClassExt.ClassType.BUILDER)
                 return true
             }
         }
     }
     return userData == PsiClassExt.ClassType.BUILDER
 }
-fun PsiElement.setType(type: PsiClassExt.ClassType) {
+fun PsiElement.setClassType(type: PsiClassExt.ClassType) {
     putUserData(Keys.CLASS_TYPE_KEY, type)
     putCopyableUserData(Keys.CLASS_TYPE_KEY, type)
 }
-fun PsiElement.getType() : PsiClassExt.ClassType? = getUserData(Keys.CLASS_TYPE_KEY)
+fun PsiElement.getClassType() : PsiClassExt.ClassType? = getUserData(Keys.CLASS_TYPE_KEY)
+
+fun PsiElement.findLocalReference(element: PsiElement): PsiReference? = ReferencesSearch.search(this, LocalSearchScope(element)).findFirst()
 
 
 fun PsiField.setProperty(getter: PsiMethod?,setter: PsiMethod?) {

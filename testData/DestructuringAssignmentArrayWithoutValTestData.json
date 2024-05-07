@@ -19,7 +19,7 @@
       "end" : 235,
       "size" : 12
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:1-methodCallExclusion"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:1-prefix"
   }, {
     "id" : 2,
     "text" : "\n\n        Data ",
@@ -39,7 +39,7 @@
       "end" : 268,
       "size" : 12
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:1-methodCallExclusion"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:1-prefix"
   }, {
     "id" : 4,
     "text" : "\n        Data ",
@@ -59,7 +59,7 @@
       "end" : 299,
       "size" : 12
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:2-methodCallExclusion"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:2-prefix"
   }, {
     "id" : 6,
     "text" : "\n        Data ",
@@ -79,7 +79,7 @@
       "end" : 320,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:3-closingBracket"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:3-prefix"
   }, {
     "id" : 8,
     "text" : "[3]",
@@ -89,7 +89,7 @@
       "end" : 330,
       "size" : 3
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:3-indexExclusion"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:3-prefix"
   }, {
     "id" : 9,
     "text" : "getArray()",
@@ -129,7 +129,7 @@
       "end" : 466,
       "size" : 22
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:1-methodCallExclusion"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:1-prefix"
   }, {
     "id" : 13,
     "text" : "\n        Data ",
@@ -149,7 +149,7 @@
       "end" : 488,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:1-closingBracket"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:1-prefix"
   }, {
     "id" : 15,
     "text" : "[1]",
@@ -159,7 +159,7 @@
       "end" : 508,
       "size" : 3
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:1-indexExclusion"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:1-prefix"
   }, {
     "id" : 16,
     "text" : "getArray()",
@@ -189,7 +189,7 @@
       "end" : 591,
       "size" : 32
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:1-methodCallExclusion"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:1-prefix"
   }, {
     "id" : 19,
     "text" : "\n        Data ",
@@ -209,7 +209,7 @@
       "end" : 617,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:1-closingBracket"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:1-prefix"
   }, {
     "id" : 21,
     "text" : "[1]",
@@ -219,7 +219,7 @@
       "end" : 647,
       "size" : 3
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:1-indexExclusion"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:1-prefix"
   }, {
     "id" : 22,
     "text" : "getArray()",

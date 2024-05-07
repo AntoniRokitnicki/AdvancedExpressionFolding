@@ -7,7 +7,7 @@ public class DestructuringAssignmentWithoutValTestData {
     public void enter(Data data, Data[] array) <fold text='{...}' expand='true'>{
         Data ignored1 = array[0];
 
-        Data<fold text=' (' expand='true'> </fold>first<fold text=', ' expand='false'> = array[0];</fold><fold text='' expand='true'>
+        Data<fold text=' (' expand='true'> </fold>first<fold text=', ' expand='true'> = array[0];</fold><fold text='' expand='true'>
 
         Data </fold>second<fold text=', ' expand='true'> = array[1];</fold><fold text='' expand='true'>
         Data </fold>third<fold text=', ' expand='true'> = array[2];</fold><fold text='' expand='true'>
@@ -16,11 +16,11 @@ public class DestructuringAssignmentWithoutValTestData {
         Data ignored21 = data.<fold text='array' expand='false'>getArray()</fold>[4];
         Data ignored22 = data.<fold text='array' expand='false'>getArray()</fold>[5];
 
-        Data<fold text=' (' expand='true'> </fold>getter1<fold text=', ' expand='false'> = data.getArray()[0];</fold><fold text='' expand='true'>
+        Data<fold text=' (' expand='true'> </fold>getter1<fold text=', ' expand='true'> = data.getArray()[0];</fold><fold text='' expand='true'>
         Data </fold>getter2<fold text=') ' expand='true'> </fold>= data.<fold text='array' expand='false'>getArray()</fold><fold text='' expand='true'>[1]</fold>;
         getter1 = data;
 
-        Data<fold text=' (' expand='true'> </fold>deepGetter1<fold text=', ' expand='false'> = data.getData().getArray()[0];</fold><fold text='' expand='true'>
+        Data<fold text=' (' expand='true'> </fold>deepGetter1<fold text=', ' expand='true'> = data.getData().getArray()[0];</fold><fold text='' expand='true'>
         Data </fold>deepGetter2<fold text=') ' expand='true'> </fold>= data.<fold text='data' expand='false'>getData()</fold>.<fold text='array' expand='false'>getArray()</fold><fold text='' expand='true'>[1]</fold>;
         deepGetter2 = data;
         
