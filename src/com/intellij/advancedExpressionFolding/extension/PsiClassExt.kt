@@ -100,6 +100,7 @@ object PsiClassExt : BaseExtension() {
         serialField: PsiField?
     ): List<HidingAnnotation> {
         return serialField?.let {
+            serialField.markIgnored()
             listOf(HidingAnnotation(SERIAL, listOf(it)))
         } ?: emptyList()
     }

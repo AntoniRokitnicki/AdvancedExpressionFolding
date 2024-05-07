@@ -8,8 +8,8 @@ import org.slf4j.MarkerFactory;
 @SuppressWarnings("ALL")
 public class LogBrackets {
 
-    private static final Logger log = LoggerFactory.getLogger(LogBrackets.class);
-    private static final Marker MY_MARKER = MarkerFactory.getMarker("MY_MARKER");
+    const Logger log = LoggerFactory.getLogger(LogBrackets.class);
+    const Marker MY_MARKER = MarkerFactory.getMarker("MY_MARKER");
 
 
     public Data log(Data data) {

@@ -2,7 +2,7 @@ package data;
 
 @SuppressWarnings("unused")
 class PrintlnTestData {
-    static final int CONST_VALUE = 0;
+    const CONST_VALUE = 0;
 
     void println(String string) {
         println("Hello");
