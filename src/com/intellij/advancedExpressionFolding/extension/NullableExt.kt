@@ -2,10 +2,12 @@ package com.intellij.advancedExpressionFolding.extension
 
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression
+import com.intellij.advancedExpressionFolding.expression.custom.FieldConstExpression
 import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFoldingAnnotation.Companion.findByName
 import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFoldingAnnotation.NOT_NULL
 import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFoldingAnnotation.NULLABLE
 import com.intellij.psi.*
+import com.intellij.psi.impl.source.PsiClassReferenceType
 
 object NullableExt : BaseExtension() {
 
@@ -41,14 +43,78 @@ object NullableExt : BaseExtension() {
         }
     }
 
+    enum class Modifiers {
+        STATIC,
+        FINAL
+    }
+
     @JvmStatic
     fun createExpression(field: PsiField): Expression? {
-        if (!lombok || field.typeElement == null) {
+        val typeElement = field.typeElement
+        if (!lombok || typeElement == null || field.isIgnored()) {
             return null
         }
-        val expression = fieldAnnotationExpression(field.annotations, field.typeElement)
-        return expression ?: findPropertyAnnotation(field, field.typeElement)
+        val typeExpression = fieldAnnotationExpression(field.annotations, typeElement)
+        typeExpression ?: findPropertyAnnotation(field, typeElement)?.let {
+            return it
+        }
+
+        return fieldConstExpression(field, typeElement)
     }
+
+    private fun fieldConstExpression(
+        field: PsiField,
+        typeElement: PsiTypeElement?
+    ): FieldConstExpression? {
+        if (!field.isNotStatic() && !field.isNotFinal()) {
+            return if (foldConstType(field)) {
+                FieldConstExpression(typeElement, field.modifierList!!, "const")
+            } else {
+                foldConstructor(field) ?: FieldConstExpression(null, field.modifierList!!, "const")
+            }
+        }
+        return null
+    }
+
+    private fun foldConstructor(field: PsiField): FieldConstExpression? {
+        val initializer = field.initializer.asInstance<PsiNewExpression>()
+        val noParams = initializer?.argumentList?.isEmpty == true
+        val anonymousClass = initializer?.anonymousClass
+
+        var noBody = initializer?.classReference != null
+        if (anonymousClass != null) {
+            noBody = anonymousClass.methods.size + anonymousClass.fields.size == 0
+        }
+
+        val sameType = sameTypeOfFieldAndInitializer(initializer, field)
+        if (noBody && sameType) {
+            val suffix = anonymousClass?.let {
+                "{}"
+            } ?: ""
+
+            val parameters = if (noParams) {
+                ""
+            } else {
+                //TODO: fold around arguments
+                initializer!!.argumentList!!.text
+            }
+            return FieldConstExpression(
+                null,
+                field.modifierList!!,
+                "const",
+                field.initializer,
+                "::new$parameters$suffix"
+            )
+        }
+        return null
+    }
+
+    private fun sameTypeOfFieldAndInitializer(initializer: PsiNewExpression?, field: PsiField) =
+        initializer?.classOrAnonymousClassReference?.resolve() == field.type.asInstance<PsiClassReferenceType>()
+            ?.resolve()
+
+    private fun foldConstType(field: PsiField) =
+        (field.type.isString() || field.type.isPrimitive()) && field.initializer is PsiLiteralExpression
 
     private fun findPropertyAnnotation(field: PsiField, typeElement: PsiTypeElement?): Expression? {
         return field.getter()

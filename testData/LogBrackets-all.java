@@ -8,8 +8,8 @@ import org.slf4j.MarkerFactory;</fold>
 @SuppressWarnings("ALL")
 public class LogBrackets {
 
-    private static final Logger log = LoggerFactory.getLogger(LogBrackets.class);
-    private static final Marker MY_MARKER = MarkerFactory.getMarker("MY_MARKER");
+    <fold text='const' expand='false'>private static final</fold> Logger log = LoggerFactory.getLogger(LogBrackets.class);
+    <fold text='const' expand='false'>private static final</fold> Marker MY_MARKER = MarkerFactory.getMarker("MY_MARKER");
 
 
     public Data log(Data data) <fold text='{...}' expand='true'>{

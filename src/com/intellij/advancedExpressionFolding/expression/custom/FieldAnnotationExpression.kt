@@ -5,14 +5,13 @@ import com.intellij.lang.folding.FoldingDescriptor
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.editor.FoldingGroup
 import com.intellij.openapi.util.TextRange
-import com.intellij.psi.PsiAnnotation
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiTypeElement
 import com.intellij.refactoring.suggested.endOffset
 
 class FieldAnnotationExpression(
     private val typeElement: PsiTypeElement,
-    private val annotationElement: PsiAnnotation?,
+    private val annotationElement: PsiElement?,
     val typeSuffix: String
 ) : Expression(typeElement, typeElement.textRange) {
     override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean {
