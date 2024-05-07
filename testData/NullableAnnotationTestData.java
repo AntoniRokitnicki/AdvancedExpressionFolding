@@ -10,14 +10,14 @@ import java.time.LocalDate;</fold>
 public class NullableAnnotationTestData {<fold text='' expand='false'>
 
     </fold><fold text='' expand='false'>private static final long serialVersionUID = 1234567L;</fold>
-    @NotNull
-    NullableAnnotationTestData data;
+    <fold text='' expand='false'>@NotNull</fold>
+    NullableAnnotationTestData<fold text='!! ' expand='false'> </fold>data;
     boolean ok;
-    @Nullable
-    String string;<fold text='' expand='false'>
+    <fold text='' expand='false'>@Nullable</fold>
+    String<fold text='? ' expand='false'> </fold>string;<fold text='' expand='false'>
     </fold><fold text='' expand='false'>public NullableAnnotationTestData getData()<fold text=' { ' expand='false'> {
         </fold>return data;<fold text=' }' expand='false'>
-    }</fold></fold><fold text='' expand='false'>
+    }</fold><fold text='' expand='false'></fold>
     </fold><fold text='' expand='false'>public void setData(NullableAnnotationTestData data)<fold text=' { ' expand='false'> {
         </fold>this.data = data;<fold text=' }' expand='false'>
     }</fold></fold><fold text='' expand='false'>
@@ -29,16 +29,16 @@ public class NullableAnnotationTestData {<fold text='' expand='false'>
     }</fold></fold><fold text='' expand='false'>
     </fold><fold text='' expand='false'>public String getString()<fold text=' { ' expand='false'> {
         </fold>return string;<fold text=' }' expand='false'>
-    }</fold></fold><fold text='' expand='false'>
+    }</fold><fold text='' expand='false'></fold>
     </fold><fold text='' expand='false'>public void setString(String string)<fold text=' { ' expand='false'> {
         </fold>this.string = string;<fold text=' }' expand='false'>
     }</fold></fold>
 
-    @Nonnull
-    private NullableAnnotationTestData data2;
+    <fold text='' expand='false'>@Nonnull</fold>
+    private NullableAnnotationTestData<fold text='!! ' expand='false'> </fold>data2;
     boolean ok2;
-    @Nullable
-    private String string2;
+    <fold text='' expand='false'>@Nullable</fold>
+    private String<fold text='? ' expand='false'> </fold>string2;
 
     public void select(<fold text='' expand='false'>@Nullable</fold> String<fold text='? ' expand='false'> </fold>element,
                        int i,

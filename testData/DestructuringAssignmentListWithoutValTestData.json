@@ -19,7 +19,7 @@
       "end" : 248,
       "size" : 15
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:1-methodCallExclusion"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:1-prefix"
   }, {
     "id" : 2,
     "text" : "\n        Data ",
@@ -39,7 +39,7 @@
       "end" : 283,
       "size" : 15
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:1-methodCallExclusion"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:1-prefix"
   }, {
     "id" : 4,
     "text" : "\n        Data ",
@@ -59,7 +59,7 @@
       "end" : 317,
       "size" : 15
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:2-methodCallExclusion"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:2-prefix"
   }, {
     "id" : 6,
     "text" : "\n        Data ",
@@ -79,7 +79,7 @@
       "end" : 338,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:3-closingBracket"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:3-prefix"
   }, {
     "id" : 8,
     "text" : ".get(3)",
@@ -89,7 +89,7 @@
       "end" : 351,
       "size" : 7
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:3-get-call"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:3-prefix"
   }, {
     "id" : 9,
     "text" : "getList()",
@@ -129,7 +129,7 @@
       "end" : 496,
       "size" : 25
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:1-methodCallExclusion"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:1-prefix"
   }, {
     "id" : 13,
     "text" : "\n        Data ",
@@ -149,7 +149,7 @@
       "end" : 542,
       "size" : 25
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:1-methodCallExclusion"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:1-prefix"
   }, {
     "id" : 15,
     "text" : "\n        Data ",
@@ -169,7 +169,7 @@
       "end" : 564,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:2-closingBracket"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:2-prefix"
   }, {
     "id" : 17,
     "text" : ".get(2)",
@@ -179,7 +179,7 @@
       "end" : 587,
       "size" : 7
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:2-get-call"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:2-prefix"
   }, {
     "id" : 18,
     "text" : "getList()",
@@ -219,7 +219,7 @@
       "end" : 673,
       "size" : 35
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:1-methodCallExclusion"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:1-prefix"
   }, {
     "id" : 22,
     "text" : "\n        Data ",
@@ -239,7 +239,7 @@
       "end" : 699,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:1-closingBracket"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:1-prefix"
   }, {
     "id" : 24,
     "text" : ".get(1)",
@@ -249,7 +249,7 @@
       "end" : 732,
       "size" : 7
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:1-get-call"
+    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:1-prefix"
   }, {
     "id" : 25,
     "text" : "getList()",

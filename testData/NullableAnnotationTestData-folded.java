@@ -8,17 +8,17 @@ import java.time.LocalDate;
 
 @Getter @Setter* @Serial @SuppressWarnings("ALL")
 public class NullableAnnotationTestData {
-    @NotNull
-    NullableAnnotationTestData data;
+    
+    NullableAnnotationTestData!! data;
     boolean ok;
-    @Nullable
-    String string;
+    
+    String? string;
 
-    @Nonnull
-    private NullableAnnotationTestData data2;
+    
+    private NullableAnnotationTestData!! data2;
     boolean ok2;
-    @Nullable
-    private String string2;
+    
+    private String? string2;
 
     public void select( String? element,
                        int i,

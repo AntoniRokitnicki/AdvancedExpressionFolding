@@ -202,7 +202,7 @@ public class BuildExpressionExt {
             }
         }
         if (element instanceof PsiParameter psiParameter) {
-            Expression expression = NullableExt.createExpression(psiParameter);
+            Expression expression = NullableExt.createExpression(psiParameter,document);
             if (expression != null) {
                 return expression;
             }

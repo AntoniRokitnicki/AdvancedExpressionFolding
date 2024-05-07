@@ -22,7 +22,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static com.intellij.advancedExpressionFolding.extension.BaseExtension.isInt;
-import static com.intellij.advancedExpressionFolding.extension.Consts.UNSUPPORTED_CLASSES_METHODS_EXCEPTIONS;
 import static com.intellij.advancedExpressionFolding.extension.PropertyUtil.guessPropertyName;
 import static com.intellij.advancedExpressionFolding.extension.ReferenceExpressionExt.getReferenceExpression;
 
@@ -55,7 +54,7 @@ public class MethodCallExpressionExt {
                 if (psiClass != null && psiClass.getQualifiedName() != null) {
                     String className = Helper.eraseGenerics(psiClass.getQualifiedName());
                     BuilderShiftExt.markIfBuilder(element, psiClass);
-                    if ((FACTORY.getSupportedClasses().contains(className) || UNSUPPORTED_CLASSES_METHODS_EXCEPTIONS.contains(method.getName()))
+                    if ((FACTORY.getSupportedClasses().contains(className) || FACTORY.getClasslessMethods().contains(method.getName()))
                             && qualifier != null) {
                         Expression result = onAnyExpression(element, document, qualifier, identifier, settings, className, method);
                         if (result != null) {

@@ -19,7 +19,7 @@ abstract class AbstractMethodCall : BaseExtension() {
                 return null
             }
         }
-        if (!classNames.contains(context.className)) {
+        if (classNames.isNotEmpty() && !classNames.contains(context.className)) {
             return null
         }
 

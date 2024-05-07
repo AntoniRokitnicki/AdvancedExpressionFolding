@@ -1,11 +1,14 @@
 package com.intellij.advancedExpressionFolding.extension
 
 import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression
 import com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression
 import com.intellij.advancedExpressionFolding.expression.custom.FieldConstExpression
 import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFoldingAnnotation.Companion.findByName
 import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFoldingAnnotation.NOT_NULL
 import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFoldingAnnotation.NULLABLE
+import com.intellij.advancedExpressionFolding.extension.PsiClassExt.prevWhiteSpace
+import com.intellij.openapi.editor.Document
 import com.intellij.psi.*
 import com.intellij.psi.impl.source.PsiClassReferenceType
 
@@ -55,7 +58,7 @@ object NullableExt : BaseExtension() {
             return null
         }
         val typeExpression = fieldAnnotationExpression(field.annotations, typeElement)
-        typeExpression ?: findPropertyAnnotation(field, typeElement)?.let {
+        (typeExpression ?: findPropertyAnnotation(field, typeElement))?.let {
             return it
         }
 
@@ -140,8 +143,37 @@ object NullableExt : BaseExtension() {
     }
 
     @JvmStatic
-    fun createExpression(psiParameter: PsiParameter): Expression? {
-        return fieldAnnotationExpression(psiParameter.annotations, psiParameter.typeElement)
+    fun createExpression(psiParameter: PsiParameter, document: Document): Expression? {
+        return readCheckNotNullMethods(psiParameter, document) ?: fieldAnnotationExpression(psiParameter.annotations, psiParameter.typeElement)
+    }
+
+    private fun readCheckNotNullMethods(psiParameter: PsiParameter, document: Document): Expression? {
+        val typeToAppend = psiParameter.typeElement ?: return null
+
+        return psiParameter.parent.parent.asInstance<PsiMethod>()?.let {
+            it.body?.statements
+        }?.let { statements ->
+            val methodCallFound = statements.map {
+                it.firstChild.asInstance<PsiMethodCallExpression>()
+            }.takeWhile {
+                it != null
+            }.map {
+                getAnyExpression(it!!, document).asInstance<CheckNotNullExpression>()
+            }.takeWhile {
+                it != null && it.isMethodParameterWrappable
+            }.firstOrNull {
+                psiParameter.findLocalReference(it!!.element) != null
+            }
+            methodCallFound?.let { checkNotNullExpression ->
+                checkNotNullExpression.ignored = true
+                val methodCall = checkNotNullExpression.element
+                val typeSuffix = FieldAnnotationExpression(typeToAppend, null, "!!!")
+                val child = methodCall.parent.prevWhiteSpace()?.let {
+                    CheckNotNullExpression(it, it.textRange, "", typeSuffix)
+                } ?: typeSuffix
+                CheckNotNullExpression(methodCall.parent, methodCall.parent.textRange, "", child)
+            }
+        }
     }
 
     @JvmStatic
@@ -180,4 +212,5 @@ object NullableExt : BaseExtension() {
                 FieldAnnotationExpression(typeElement, annotationElement, typeSuffix)
             }
     }
+
 }

@@ -198,6 +198,13 @@ open class FoldingTest : BaseTest() {
     }
 
     /**
+     * [data.NullableAnnotationCheckNotNullTestData]
+     */
+    fun testNullableAnnotationCheckNotNullTestData() {
+        doFoldingTest(state::lombok)
+    }
+
+    /**
      * [data.FieldShiftBuilder]
      */
     fun testFieldShiftBuilder() {
