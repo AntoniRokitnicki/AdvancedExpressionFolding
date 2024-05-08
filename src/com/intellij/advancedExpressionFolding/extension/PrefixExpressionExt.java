@@ -2,7 +2,6 @@ package com.intellij.advancedExpressionFolding.extension;
 
 import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings;
 import com.intellij.advancedExpressionFolding.expression.*;
-import com.intellij.advancedExpressionFolding.extension.methodcall.date.AbstractDateMethodCall;
 import com.intellij.openapi.editor.Document;
 import com.intellij.psi.*;
 import org.jetbrains.annotations.NotNull;
@@ -10,7 +9,6 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 import java.util.Optional;
 import java.util.function.BiPredicate;
 import java.util.function.Predicate;
@@ -27,9 +25,7 @@ public class PrefixExpressionExt {
             if (element.getOperationSign().getText().equals("!")) {
                 if (settings.getState().getComparingLocalDatesCollapse()) {
                     if (element.getOperand() instanceof PsiMethodCallExpression operand) {
-                        Optional<MethodCallInformation> methodCallInformationOptional = MethodCallInformation.tryGet(operand, document,
-                                AbstractDateMethodCall.getSHARED_CLASS_NAMES()
-                                , "isBefore", "isAfter", "before", "after");
+                        Optional<MethodCallInformation> methodCallInformationOptional = MethodCallInformation.tryGet(operand, document, "isBefore", "isAfter", "before", "after");
                         if (methodCallInformationOptional.isPresent()) {
                             MethodCallInformation callInformation = methodCallInformationOptional.get();
 
@@ -85,8 +81,8 @@ public class PrefixExpressionExt {
             return getAnyExpression(element.getArgumentList().getExpressions()[index], document);
         }
 
-        static Optional<MethodCallInformation> tryGet(PsiMethodCallExpression element, @NotNull Document document, List<String> classNames, String... methodNames) {
-            return tryGet(element, document, Arrays.asList(methodNames)::contains, (actualClassName, methodName) -> classNames.contains(actualClassName));
+        static Optional<MethodCallInformation> tryGet(PsiMethodCallExpression element, @NotNull Document document, String... methodNames) {
+            return tryGet(element, document, Arrays.asList(methodNames)::contains, (actualClassName, methodName) -> true);
         }
 
         static Optional<MethodCallInformation> tryGet(PsiMethodCallExpression element, @NotNull Document document, Predicate<String> isMethodNameSupported, BiPredicate<String, String> isMethodSupported) {

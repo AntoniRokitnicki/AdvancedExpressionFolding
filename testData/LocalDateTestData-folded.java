@@ -2,10 +2,11 @@ package data;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.util.Calendar;
 
 @SuppressWarnings("ALL")
 public class LocalDateTestData {
-    public static void main(String[] args) {
+    public void main(String[] args) {
         LocalDate d1 = LocalDate.of(2018, 12, 10);
         LocalDate d2 = LocalDate.of(2018, 12, 10);
         boolean isBefore = d1 < d2;
@@ -91,5 +92,58 @@ public class LocalDateTestData {
         if (timestamp1 < timestamp2 | timestamp1 > timestamp2 | timestamp1 ≥ timestamp2 | timestamp1 ≤ timestamp2) {
             timestamp1 = timestamp2;
         }
+
+        var cal1 = Calendar.getInstance();
+        var cal2 = Calendar.getInstance();
+        if (cal1 < cal2 | cal1 > cal2 | cal1 ≥ cal2 | cal1 ≤ cal2) {
+            cal1 = cal2;
+        }
+
+        var customObj1 = new CustomClass();
+        var customObj2 = new CustomClass();
+        if (customObj1 < customObj2 | customObj1 > customObj2 | customObj1 ≥ customObj2 | customObj1 ≤ customObj2) {
+            customObj1 = customObj2;
+        }
+
+        var customObj2_1 = new CustomClass2();
+        var customObj2_2 = new CustomClass2();
+        if (customObj2_1 < customObj2_2 | customObj2_1 > customObj2_2 | customObj2_1 ≥ customObj2_2 | customObj2_1 ≤ customObj2_2) {
+            customObj2_1 = customObj2_2;
+        }
+
     }
+
+    public static class CustomClass {
+        private final long timestamp;
+
+        public CustomClass() {
+            this.timestamp = System.currentTimeMillis();
+        }
+
+        public boolean before(CustomClass other) {
+            return this.timestamp < other.timestamp;
+        }
+
+        public boolean after(CustomClass other) {
+            return this.timestamp > other.timestamp;
+        }
+    }
+
+    public class CustomClass2  {
+        private final java.time.chrono.MinguoDate minguoDate;
+
+        public CustomClass2() {
+            this.minguoDate = java.time.chrono.MinguoDate.now();
+        }
+
+        public boolean isBefore(CustomClass2 other) {
+            return this.minguoDate < other.minguoDate;
+        }
+
+        public boolean isAfter(CustomClass2 other) {
+            return this.minguoDate > other.minguoDate;
+        }
+    }
+
+
 }

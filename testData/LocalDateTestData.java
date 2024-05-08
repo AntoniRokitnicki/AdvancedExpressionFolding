@@ -1,11 +1,12 @@
 package data;
 
 import <fold text='...' expand='false'>java.sql.Timestamp;
-import java.time.LocalDate;</fold>
+import java.time.LocalDate;
+import java.util.Calendar;</fold>
 
 @SuppressWarnings("ALL")
 public class LocalDateTestData {
-    public static void main(String[] args) <fold text='{...}' expand='true'>{
+    public void main(String[] args) <fold text='{...}' expand='true'>{
         LocalDate d1 = LocalDate.of(2018, 12, 10);
         LocalDate d2 = LocalDate.of(2018, 12, 10);
         boolean isBefore = d1<fold text=' < ' expand='false'>.isBefore(</fold>d2<fold text='' expand='false'>)</fold>;
@@ -91,5 +92,58 @@ public class LocalDateTestData {
         if (timestamp1<fold text=' < ' expand='false'>.before(</fold>timestamp2<fold text='' expand='false'>)</fold> | timestamp1<fold text=' > ' expand='false'>.after(</fold>timestamp2<fold text='' expand='false'>)</fold> | <fold text='' expand='false'>!</fold>timestamp1<fold text=' ≥ ' expand='false'>.before(</fold>timestamp2<fold text='' expand='false'>)</fold> | <fold text='' expand='false'>!</fold>timestamp1<fold text=' ≤ ' expand='false'>.after(</fold>timestamp2<fold text='' expand='false'>)</fold>) <fold text='{...}' expand='true'>{
             timestamp1 = timestamp2;
         }</fold>
+
+        var cal1 = Calendar.getInstance();
+        var cal2 = Calendar.getInstance();
+        if (cal1<fold text=' < ' expand='false'>.before(</fold>cal2<fold text='' expand='false'>)</fold> | cal1<fold text=' > ' expand='false'>.after(</fold>cal2<fold text='' expand='false'>)</fold> | <fold text='' expand='false'>!</fold>cal1<fold text=' ≥ ' expand='false'>.before(</fold>cal2<fold text='' expand='false'>)</fold> | <fold text='' expand='false'>!</fold>cal1<fold text=' ≤ ' expand='false'>.after(</fold>cal2<fold text='' expand='false'>)</fold>) <fold text='{...}' expand='true'>{
+            cal1 = cal2;
+        }</fold>
+
+        var customObj1 = new CustomClass();
+        var customObj2 = new CustomClass();
+        if (customObj1<fold text=' < ' expand='false'>.before(</fold>customObj2<fold text='' expand='false'>)</fold> | customObj1<fold text=' > ' expand='false'>.after(</fold>customObj2<fold text='' expand='false'>)</fold> | <fold text='' expand='false'>!</fold>customObj1<fold text=' ≥ ' expand='false'>.before(</fold>customObj2<fold text='' expand='false'>)</fold> | <fold text='' expand='false'>!</fold>customObj1<fold text=' ≤ ' expand='false'>.after(</fold>customObj2<fold text='' expand='false'>)</fold>) <fold text='{...}' expand='true'>{
+            customObj1 = customObj2;
+        }</fold>
+
+        var customObj2_1 = new CustomClass2();
+        var customObj2_2 = new CustomClass2();
+        if (customObj2_1<fold text=' < ' expand='false'>.isBefore(</fold>customObj2_2<fold text='' expand='false'>)</fold> | customObj2_1<fold text=' > ' expand='false'>.isAfter(</fold>customObj2_2<fold text='' expand='false'>)</fold> | <fold text='' expand='false'>!</fold>customObj2_1<fold text=' ≥ ' expand='false'>.isBefore(</fold>customObj2_2<fold text='' expand='false'>)</fold> | <fold text='' expand='false'>!</fold>customObj2_1<fold text=' ≤ ' expand='false'>.isAfter(</fold>customObj2_2<fold text='' expand='false'>)</fold>) <fold text='{...}' expand='true'>{
+            customObj2_1 = customObj2_2;
+        }</fold>
+
     }</fold>
+
+    public static class CustomClass <fold text='{...}' expand='true'>{
+        private final long timestamp;
+
+        public CustomClass()<fold text=' { ' expand='false'> {
+            </fold>this.timestamp = System.currentTimeMillis();<fold text=' }' expand='false'>
+        }</fold>
+
+        public boolean before(CustomClass other)<fold text=' { ' expand='false'> {
+            </fold>return this.timestamp < other.timestamp;<fold text=' }' expand='false'>
+        }</fold>
+
+        public boolean after(CustomClass other)<fold text=' { ' expand='false'> {
+            </fold>return this.timestamp > other.timestamp;<fold text=' }' expand='false'>
+        }</fold>
+    }</fold>
+
+    public class CustomClass2  <fold text='{...}' expand='true'>{
+        private final java.time.chrono.MinguoDate minguoDate;
+
+        public CustomClass2()<fold text=' { ' expand='false'> {
+            </fold>this.minguoDate = java.time.chrono.MinguoDate.now();<fold text=' }' expand='false'>
+        }</fold>
+
+        public boolean isBefore(CustomClass2 other)<fold text=' { ' expand='false'> {
+            </fold>return this.minguoDate<fold text=' < ' expand='false'>.isBefore(</fold>other.minguoDate<fold text='' expand='false'>)</fold>;<fold text=' }' expand='false'>
+        }</fold>
+
+        public boolean isAfter(CustomClass2 other)<fold text=' { ' expand='false'> {
+            </fold>return this.minguoDate<fold text=' > ' expand='false'>.isAfter(</fold>other.minguoDate<fold text='' expand='false'>)</fold>;<fold text=' }' expand='false'>
+        }</fold>
+    }</fold>
+
+
 }
