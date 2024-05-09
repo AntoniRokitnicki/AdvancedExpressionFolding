@@ -4,12 +4,18 @@
 
 name: _Release
 on:
-  workflow_dispatch
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+  pull_request:
+    types: [closed]
 
 jobs:
 
   # Prepare and publish the plugin to JetBrains Marketplace repository
   release:
+    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.event.pull_request.merged == true && contains(github.event.pull_request.labels.*.name, 'autorelease') && github.event.pull_request.merged == true)
     name: Publish Plugin
     runs-on: ubuntu-latest
     permissions:
