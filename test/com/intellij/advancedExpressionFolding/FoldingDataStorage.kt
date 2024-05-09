@@ -8,6 +8,7 @@ import com.intellij.advancedExpressionFolding.diff.FoldingDescriptorExWrapper
 import com.intellij.advancedExpressionFolding.diff.Range
 import com.intellij.lang.folding.FoldingDescriptor
 import com.intellij.openapi.editor.Document
+import com.intellij.openapi.editor.FoldingGroup
 import java.io.File
 
 class FoldingDataStorage : EmptyStorage() {
@@ -24,20 +25,39 @@ class FoldingDataStorage : EmptyStorage() {
     }
 
     fun saveFolding(file: File): FoldingDescriptorExWrapper {
+        val foldingGroupSet = mutableSetOf<FoldingGroup>()
+
         val text = document.text
         val mapper = ObjectMapper().registerKotlinModule().enable(SerializationFeature.INDENT_OUTPUT);
-        val list = descriptors.mapIndexed { index, it ->
+        val list = descriptors.mapIndexed { index, foldingDescriptor ->
+            foldingDescriptor.group?.let {
+                foldingGroupSet += it
+            }
+
             FoldingDescriptorEx(
                 index,
-                it.range.substring(text),
-                it.placeholderText,
-                Range(it.range.startOffset, it.range.endOffset, it.range.length),
-                it.group.toString()
+                foldingDescriptor.range.substring(text),
+                foldingDescriptor.placeholderText,
+                Range(
+                    foldingDescriptor.range.startOffset,
+                    foldingDescriptor.range.endOffset,
+                    foldingDescriptor.range.length
+                ),
+                foldingDescriptor.group.asSimpleString(),
+                foldingGroupSet.size - 1
             )
         }
         val foldingDescriptorExWrapper = FoldingDescriptorExWrapper(list.size, list)
         mapper.writeValue(file, foldingDescriptorExWrapper)
         return foldingDescriptorExWrapper
     }
+
+    private fun FoldingGroup?.asSimpleString(): String? {
+        return this?.toString()?.takeIf {
+            it.contains('.')
+        }?.substringAfterLast('.') ?: this?.toString()
+    }
+
 }
+
 

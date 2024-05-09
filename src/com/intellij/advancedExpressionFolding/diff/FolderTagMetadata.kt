@@ -13,7 +13,8 @@ data class FoldingDescriptorEx(
     val text: String,
     val placeholder: String?,
     val range: Range,
-    val group: String,
+    val group: String?,
+    val groupReference: Int,
 )
 
 @JvmRecord
