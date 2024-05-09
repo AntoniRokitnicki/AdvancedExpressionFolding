@@ -227,9 +227,8 @@ jobs:
   # Prepare a draft release for GitHub Releases page for the manual verification
   # If accepted and published, release workflow would be triggered
   releaseDraft:
-    if: "!contains(github.event.pull_request.labels.*.name, 'release changelog')"
+    if: "!contains(github.event.pull_request.labels.*.name, 'release changelog') && github.event_name != 'pull_request'"
     name: Release draft
-    if: github.event_name != 'pull_request'
     needs: [ build, test, inspectCode, verify ]
     runs-on: ubuntu-latest
     permissions:
