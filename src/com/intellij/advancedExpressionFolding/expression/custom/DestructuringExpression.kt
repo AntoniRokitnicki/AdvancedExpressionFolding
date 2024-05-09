@@ -6,8 +6,4 @@ import com.intellij.psi.PsiElement
 
 class DestructuringExpression(
     element: PsiElement, textRange: IntRange, text: String, child: Expression?, private val subName: String
-) : AbstractSingleChildExpression(element, textRange.toTextRange(), text, child) {
-
-    override fun groupName(): String  = "${DestructuringExpression::class.java.name}:$subName"
-
-}
+) : AbstractSingleChildExpression(element, textRange.toTextRange(), text, child)

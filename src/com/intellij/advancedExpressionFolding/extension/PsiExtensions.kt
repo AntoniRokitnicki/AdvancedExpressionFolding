@@ -6,11 +6,13 @@ import com.intellij.advancedExpressionFolding.extension.BaseExtension.Companion.
 import com.intellij.advancedExpressionFolding.extension.BaseExtension.Companion.isString
 import com.intellij.advancedExpressionFolding.extension.BaseExtension.Companion.isVoid
 import com.intellij.advancedExpressionFolding.extension.Keys.IGNORED
+import com.intellij.openapi.editor.FoldingGroup
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.*
 import com.intellij.psi.search.LocalSearchScope
 import com.intellij.psi.search.searches.ReferencesSearch
 import java.util.*
+import kotlin.reflect.KClass
 
 inline fun String.filter(predicate: (String) -> Boolean): String? = takeIf(predicate)
 
@@ -96,6 +98,7 @@ fun PsiElement.getClassType() : PsiClassExt.ClassType? = getUserData(Keys.CLASS_
 
 fun PsiElement.findLocalReference(element: PsiElement): PsiReference? = ReferencesSearch.search(this, LocalSearchScope(element)).findFirst()
 
+fun KClass<*>.group(): FoldingGroup = FoldingGroup.newGroup(qualifiedName)
 
 fun PsiField.setProperty(getter: PsiMethod?,setter: PsiMethod?) {
     getter?.let {

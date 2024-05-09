@@ -6,8 +6,4 @@ import com.intellij.psi.PsiElement
 
 class PrintlnExpression(
     element: PsiElement, textRange: TextRange, child: Expression?
-) : AbstractSingleChildExpression(element, textRange, "", child) {
-
-    override fun groupName(): String  = PrintlnExpression::class.java.name
-
-}
+) : AbstractMultiExpression(element, textRange, child)

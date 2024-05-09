@@ -165,6 +165,10 @@ class AdvancedExpressionFoldingOptionsProvider : AbstractExpressionFoldingOption
             state::testDataFoldingDiff,
             docLink = "/Folding-of-testData-in-diff"
         )
+
+        checkBox("Memory improvements(experimental)",
+            state::memoryImprovements
+        )
     }
 
     override fun apply() {

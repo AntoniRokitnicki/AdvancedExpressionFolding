@@ -6,8 +6,4 @@ import com.intellij.psi.PsiElement
 
 class LoggerBracketExpression(
     element: PsiElement, textRange: TextRange, text: String, child: Expression?
-) : AbstractSingleChildExpression(element, textRange, text, child) {
-
-    override fun groupName(): String  = LoggerBracketExpression::class.java.name
-
-}
+) : AbstractSingleChildExpression(element, textRange, text, child)

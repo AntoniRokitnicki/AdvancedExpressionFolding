@@ -34,10 +34,55 @@ public class NullableAnnotationCheckNotNullTestData {
 
     }
 
-    class Preconditions {
-        public static void checkNotNull(Object o, String s) {
+    class PreconditionsCheckReturn {
+        private String args;
+        private Object o;
+        private Long l;
+        private String saaa;
+
+        public void main(String args, Object o, Long l, NullableAnnotationCheckNotNullTestData z) {
+            this.args = args!!;
+            this.l = l!!;
+            this.saaa = Preconditions.checkNotNull(z.getSaaa());
+            this.o = o!!;
+            printStatus();
         }
-        public static void checkNotNull(Object o) {
+
+        public void mainMsgs(String args, Object o, Long l, NullableAnnotationCheckNotNullTestData z) {
+            this.args = args!!;
+            this.l = l!!;
+            this.saaa = Preconditions.checkNotNull(z.getSaaa(), "saaa is null");
+            this.o = o!!;
+            printStatus();
+        }
+
+        public void mainNullable( String? args,  Object? o,  Long? l,  NullableAnnotationCheckNotNullTestData? z) {
+            this.args = args!!;
+            this.l = l!!;
+            this.saaa = Preconditions.checkNotNull(z.getSaaa());
+            this.o = o!!;
+            printStatus();
+        }
+
+        public void mainMsgsNullable( String? args,  Object? o,  Long? l,  NullableAnnotationCheckNotNullTestData? z) {
+            this.args = args!!;
+            this.l = l!!;
+            this.saaa = Preconditions.checkNotNull(z.getSaaa(), "saaa is null");
+            this.o = o!!;
+            printStatus();
+        }
+
+        private void printStatus() {
+        }
+    }
+
+
+    class Preconditions {
+        public static <T> T checkNotNull(T o, String s) {
+            return (T) o;
+        }
+        public static <T> T checkNotNull(T o) {
+            return (T) o;
         }
     }
 }
