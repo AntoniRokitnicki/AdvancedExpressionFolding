@@ -1,7 +1,16 @@
 <plugin-repository>
     <ff>"Formatting"</ff>
     <category name="Formatting">
-        <idea-plugin downloads="201823" size="194152" date="1625903057046" updatedDate="1625903057046"><name>Advanced Java Folding 2 (Beta)</name>
+        <idea-plugin downloads="201824" size="194153" date="1625903057047" updatedDate="1625903057047"><name>Advanced Java Folding 2 (Beta)</name>
+            <id>com.github.bigdecimal-folding2</id>
+            <description />
+            <version>1.0.47</version>
+            <vendor email="android.rokitnicki@gmail.com" url="https://github.com/AntoniRokitnicki/AdvancedExpressionFolding">Antoni</vendor>
+            <rating>4.6</rating>
+            <change-notes>Experimental memory improvements - disabled by default</change-notes>
+            <download-url>https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/releases/download/v1.0.47/AdvancedExpressionFolding-v1.0.47.jar</download-url>
+            <idea-version min="n/a" max="n/a" since-build="212.4638" />
+        </idea-plugin><idea-plugin downloads="201823" size="194152" date="1625903057046" updatedDate="1625903057046"><name>Advanced Java Folding 2 (Beta)</name>
             <id>com.github.bigdecimal-folding2</id>
             <description />
             <version>1.0.46</version>

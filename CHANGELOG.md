@@ -4,6 +4,10 @@
 
 ## [Unreleased]
 
+## [1.0.47] - 2024-05-09
+
+Experimental memory improvements - disabled by default
+
 ## [1.0.46] - 2024-05-08
 
 checkNotNull as !!, also folded to method argument as !!! and make before and after work on every type
@@ -211,7 +215,8 @@ Improved handling of multi-line log messages
 
 ## [0.0.1]
 
-[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.46...HEAD
+[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.47...HEAD
+[1.0.47]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.46...v1.0.47
 [1.0.46]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.45...v1.0.46
 [1.0.45]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.44...v1.0.45
 [1.0.44]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.43...v1.0.44
