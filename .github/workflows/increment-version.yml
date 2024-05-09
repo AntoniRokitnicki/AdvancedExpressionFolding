@@ -8,12 +8,25 @@ on:
         required: true
 
 jobs:
+  debug:
+    name: Debug Information
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Debug Information
+        run: |
+          echo "Event Name: ${{ github.event_name }}"
+          echo "Is PR Merged?: ${{ github.event.pull_request.merged }}"
+          echo "PR Labels: ${{ toJson(github.event.pull_request.labels.*.name) }}"
+          echo "Workflow Dispatch Triggered: ${{ github.event_name == 'workflow_dispatch' }}"
+          echo "Push Event and PR Merged: ${{ github.event_name == 'push' && github.event.pull_request.merged == true }}"
+          echo "PR contains 'autorelease' label: ${{ contains(github.event.pull_request.labels.*.name, 'autorelease') }}"
+
+
   prepare-pr:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
 
       # Set up Java environment for the next steps
       - name: Setup Java
