@@ -24,6 +24,7 @@ jobs:
 
   # Prepare environment and build the plugin
   build:
+    if: "!contains(github.event.pull_request.labels.*.name, 'changelog')"
     name: Build
     runs-on: ubuntu-latest
     outputs:
@@ -95,6 +96,7 @@ jobs:
 
   # Run tests and upload a code coverage report
   test:
+    if: "!contains(github.event.pull_request.labels.*.name, 'release changelog')"
     name: Test
     needs: [ build ]
     runs-on: ubuntu-latest
@@ -137,6 +139,7 @@ jobs:
 
   # Run Qodana inspections and provide report
   inspectCode:
+    if: "!contains(github.event.pull_request.labels.*.name, 'release changelog')"
     name: Inspect code
     needs: [ build ]
     runs-on: ubuntu-latest
@@ -172,6 +175,7 @@ jobs:
 
   # Run plugin structure verification along with IntelliJ Plugin Verifier
   verify:
+    if: "!contains(github.event.pull_request.labels.*.name, 'release changelog')"
     name: Verify plugin
     needs: [ build ]
     runs-on: ubuntu-latest
@@ -223,6 +227,7 @@ jobs:
   # Prepare a draft release for GitHub Releases page for the manual verification
   # If accepted and published, release workflow would be triggered
   releaseDraft:
+    if: "!contains(github.event.pull_request.labels.*.name, 'release changelog')"
     name: Release draft
     if: github.event_name != 'pull_request'
     needs: [ build, test, inspectCode, verify ]
