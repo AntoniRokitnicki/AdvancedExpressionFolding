@@ -39,8 +39,9 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           # Upload entire repository
-          #path: '.'
-          path: 'plugin_repository.xml'
+          path: '.'
+          #don't work, needs to be a dir
+          #path: 'plugin_repository.xml'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
