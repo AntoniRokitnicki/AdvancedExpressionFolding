@@ -1,7 +1,7 @@
 <plugin-repository>
     <ff>"Formatting"</ff>
     <category name="Formatting">
-        <idea-plugin downloads="201824" size="194153" date="1625903057047" updatedDate="1625903057047"><name>Advanced Java Folding 2 (Beta)</name>
+        <idea-plugin downloads="201825" size="194153" date="1625903057047" updatedDate="1625903057047"><name>Advanced Java Folding 2 (Beta)</name>
             <id>com.github.bigdecimal-folding2</id>
             <description />
             <version>1.0.47</version>
