@@ -6,4 +6,4 @@ import com.intellij.psi.PsiElement
 
 class LoggerBracketExpression(
     element: PsiElement, textRange: TextRange, text: String, child: Expression?
-) : AbstractSingleChildExpression(element, textRange, text, child)
+) : AbstractMultiExpression(element, textRange, child, text = text)

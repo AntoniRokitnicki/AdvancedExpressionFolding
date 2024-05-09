@@ -6,4 +6,4 @@ import com.intellij.psi.PsiElement
 
 class DestructuringExpression(
     element: PsiElement, textRange: IntRange, text: String, child: Expression?, private val subName: String
-) : AbstractSingleChildExpression(element, textRange.toTextRange(), text, child)
+) : AbstractMultiExpression(element, textRange.toTextRange(), child, text = text)

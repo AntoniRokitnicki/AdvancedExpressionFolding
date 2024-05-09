@@ -28,14 +28,7 @@ abstract class AbstractMultiExpression(
     ): Array<FoldingDescriptor> {
         val parentGroup = group ?: createGroup()
 
-        val list = mutableListOf(
-            FoldingDescriptor(
-                element.node,
-                textRange,
-                parentGroup,
-                text,
-            )
-        )
+        val list = wrapElement(element, parentGroup)
         if (foldPrevWhiteSpace) {
             element.prevWhiteSpace()?.let {
                 list += FoldingDescriptor(
@@ -62,6 +55,20 @@ abstract class AbstractMultiExpression(
             }
         }
         return list.toTypedArray()
+    }
+
+    open fun wrapElement(
+        element: PsiElement,
+        parentGroup: FoldingGroup
+    ): MutableList<FoldingDescriptor> {
+        return mutableListOf(
+            FoldingDescriptor(
+                element.node,
+                textRange,
+                parentGroup,
+                text,
+            )
+        )
     }
 
     open fun createGroup(): FoldingGroup = this::class.group()
