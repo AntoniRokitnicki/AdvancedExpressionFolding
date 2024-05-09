@@ -130,7 +130,7 @@ object NullableExt : BaseExtension() {
                 }
             }
             ?: field.setter()?.let { method ->
-                val second = method.parameters.firstOrNull()?.annotations.asInstance<Array<out PsiAnnotation>>()
+                val second = method.parameterList.parameters.firstOrNull()?.annotations.asInstance<Array<out PsiAnnotation>>()
                 second?.firstOrNull()?.let {
                     Pair(method, second)
                 }

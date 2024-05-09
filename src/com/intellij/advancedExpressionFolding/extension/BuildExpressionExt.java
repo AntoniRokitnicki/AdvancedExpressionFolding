@@ -21,8 +21,11 @@ import org.jetbrains.annotations.Nullable;
 import java.util.*;
 
 public class BuildExpressionExt {
-    static final Map<String, Key<CachedValue<Expression>>> KEY_MAP = new WeakHashMap<>();
     static final FoldingDescriptor[] NO_DESCRIPTORS = new FoldingDescriptor[0];
+
+    static final Map<String, Key<CachedValue<Expression>>> KEY_MAP = new WeakHashMap<>();
+    private static final Key<CachedValue<Expression>> SYNTETIC_KEY = Key.create("syn");
+    private static final Key<CachedValue<Expression>> NOT_SYNTETIC_KEY = Key.create("no-syn");
 
 
     // 💩💩💩 Define the AdvancedExpressionFoldingProvider extension point
@@ -228,16 +231,29 @@ public class BuildExpressionExt {
         return null;
     }
 
+    // method is run from different threads
     @Contract("_, _, true -> !null")
     static Expression getExpression(@NotNull PsiElement element, @NotNull Document document, boolean synthetic) {
-        return CachedValuesManager.getCachedValue(element, getKey(document, synthetic),
-                () -> CachedValueProvider.Result.create(buildExpression(element, document, synthetic), PsiModificationTracker.MODIFICATION_COUNT)
+        Expression cachedValue = CachedValuesManager.getCachedValue(element, getKey(document, synthetic),
+                () -> {
+                    var expression = buildExpression(element, document, synthetic);
+                    return CachedValueProvider.Result.create(Expression.ofNullable(expression), PsiModificationTracker.MODIFICATION_COUNT);
+                }
         );
+        return Expression.getOrNull(cachedValue);
     }
 
     static Key<CachedValue<Expression>> getKey(Document document, boolean synthetic) {
-        var key = document.hashCode() + " " + (synthetic ? 1 : 0);
-        return KEY_MAP.computeIfAbsent(key, Key::create);
+        if (AdvancedExpressionFoldingSettings.getInstance().getState().getMemoryImprovements()) {
+            if (synthetic) {
+                return SYNTETIC_KEY;
+            } else {
+                return NOT_SYNTETIC_KEY;
+            }
+        } else {
+            var key = document.hashCode() + " " + (synthetic ? 1 : 0);
+            return KEY_MAP.computeIfAbsent(key, Key::create);
+        }
     }
 
     @SuppressWarnings("WeakerAccess")

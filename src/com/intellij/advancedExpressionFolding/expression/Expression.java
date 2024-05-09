@@ -1,5 +1,6 @@
 package com.intellij.advancedExpressionFolding.expression;
 
+import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings;
 import com.intellij.lang.folding.FoldingDescriptor;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.editor.FoldingGroup;
@@ -13,12 +14,41 @@ public abstract class Expression {
 
     public static String HIGHLIGHTED_GROUP_POSTFIX = ":highlighting";
 
+    private static final Expression NULL_OBJECT = new Expression() {
+        @Override
+        public String toString() {
+            return "NULL_OBJECT";
+        }
+    };
+
     protected @NotNull PsiElement element;
     protected @NotNull TextRange textRange;
+
+    private Expression() {
+        super();
+    }
 
     public Expression(@NotNull PsiElement element, @NotNull TextRange textRange) {
         this.element = element;
         this.textRange = textRange;
+    }
+
+    @Nullable
+    public static Expression ofNullable(@Nullable Expression expression) {
+        if (expression == null) {
+            if (AdvancedExpressionFoldingSettings.getInstance().getState().getMemoryImprovements()) {
+                return NULL_OBJECT;
+            }
+        }
+        return expression;
+    }
+
+    @Nullable
+    public static Expression getOrNull(@Nullable Expression expression) {
+        if (expression == NULL_OBJECT) {
+            return null;
+        }
+        return expression;
     }
 
     @Override
@@ -95,4 +125,6 @@ public abstract class Expression {
         result = 31 * result + textRange.hashCode();
         return result;
     }
+
+
 }

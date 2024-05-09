@@ -2,6 +2,7 @@ package com.intellij.advancedExpressionFolding.expression.custom
 
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.extension.asInstance
+import com.intellij.advancedExpressionFolding.extension.group
 import com.intellij.lang.folding.FoldingDescriptor
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.editor.FoldingGroup
@@ -36,7 +37,7 @@ abstract class AbstractSingleChildExpression(
             return emptyArray()
         }
         group = parent.asInstance<AbstractSingleChildExpression>()?.group
-            ?: FoldingGroup.newGroup(groupName())
+            ?: group()
         val folding = FoldingDescriptor(
             element.node,
             textRange,
@@ -51,6 +52,6 @@ abstract class AbstractSingleChildExpression(
         }
     }
 
-    abstract fun groupName(): String
+    fun group(): FoldingGroup = this::class.group()
 
 }

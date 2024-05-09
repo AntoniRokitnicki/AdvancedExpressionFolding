@@ -23,8 +23,8 @@ object PrintlnExt : BaseExtension() {
         val endSibling = dotElement.nextSibling?.nextSibling?.takeIf {
             it.isWhitespace()
         } ?: dotElement
-        val start = element.textRange.startOffset
-        val end = endSibling.textRange.endOffset
+        val start = element.start()
+        val end = endSibling.end()
         return PrintlnExpression(element, TextRange(start, end), argumentExpression)
     }
 
