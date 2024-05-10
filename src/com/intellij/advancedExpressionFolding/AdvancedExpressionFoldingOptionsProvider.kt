@@ -169,6 +169,9 @@ class AdvancedExpressionFoldingOptionsProvider : AbstractExpressionFoldingOption
         checkBox("Memory improvements(experimental)",
             state::memoryImprovements
         )
+        checkBox("Experimental features",
+            state::experimental
+        )
     }
 
     override fun apply() {

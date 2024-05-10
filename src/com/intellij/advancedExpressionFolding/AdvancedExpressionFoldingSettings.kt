@@ -51,6 +51,8 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
         val destructuring: Boolean
         val println: Boolean
         var memoryImprovements: Boolean
+
+        var experimental: Boolean
     }
 
     data class State(
@@ -82,6 +84,8 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
         override var destructuring: Boolean = true,
         override var println: Boolean = true,
         override var memoryImprovements: Boolean = false,
+
+        override var experimental: Boolean = false,
 
         override var testDataFoldingDiff: Boolean = false,
         override var globalOn: Boolean = true,
