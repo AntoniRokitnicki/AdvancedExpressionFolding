@@ -199,7 +199,7 @@ public class BuildExpressionExt {
             }
         }
         if (element instanceof PsiField psiField) {
-            Expression expression = NullableExt.createExpression(psiField);
+            Expression expression = NullableExt.createExpression(psiField, document);
             if (expression != null) {
                 return expression;
             }

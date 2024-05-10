@@ -21,7 +21,7 @@ public class Get extends Expression {
 
     public enum Style {
         NORMAL,
-        /*FIRST,*/
+        FIRST,
         LAST
     }
 
@@ -55,7 +55,7 @@ public class Get extends Expression {
         } else {
             descriptors.add(new FoldingDescriptor(element.getNode(),
                     TextRange.create(object.getTextRange().getEndOffset(),
-                            key.getTextRange().getStartOffset() - 1), group, "." + (/*style == Style.FIRST ? "first" : */"last")));
+                            key.getTextRange().getStartOffset() - 1), group, "." + (style == Style.FIRST ? "getFirst" : "getLast")));
             descriptors.add(new FoldingDescriptor(element.getNode(),
                     TextRange.create(key.getTextRange().getStartOffset(),
                             key.getTextRange().getEndOffset()), group, ""));

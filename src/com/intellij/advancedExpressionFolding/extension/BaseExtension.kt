@@ -7,13 +7,11 @@ import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.custom.HideExpression
 import com.intellij.advancedExpressionFolding.expression.custom.SimpleExpression
 import com.intellij.advancedExpressionFolding.expression.custom.WrapAroundExpression
+import com.intellij.advancedExpressionFolding.expression.custom.WrapperExpression
 import com.intellij.advancedExpressionFolding.extension.methodcall.Context
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.editor.FoldingGroup
-import com.intellij.psi.PsiElement
-import com.intellij.psi.PsiExpression
-import com.intellij.psi.PsiPrimitiveType
-import com.intellij.psi.PsiType
+import com.intellij.psi.*
 import com.intellij.psi.impl.source.PsiClassReferenceType
 
 abstract class BaseExtension : AdvancedExpressionFoldingSettings.StateDelegate() {
@@ -33,7 +31,7 @@ abstract class BaseExtension : AdvancedExpressionFoldingSettings.StateDelegate()
         fun PsiType?.isObject() = this?.canonicalText == "java.lang.Object"
     }
 
-    fun getAnyExpression(element: PsiExpression, document: Document): Expression =
+    fun getAnyExpression(element: PsiElement, document: Document): Expression =
         BuildExpressionExt.getAnyExpression(element, document)
 
     fun getAnyExpressions(
@@ -42,7 +40,7 @@ abstract class BaseExtension : AdvancedExpressionFoldingSettings.StateDelegate()
     ) = expressions.map { getAnyExpression(it, context.document) }
 
 
-    fun PsiElement.simpleExpr(
+    fun PsiElement.expr(
         text: String,
         vararg children: Expression?,
         group: FoldingGroup? = null,
@@ -60,7 +58,7 @@ abstract class BaseExtension : AdvancedExpressionFoldingSettings.StateDelegate()
             group = group,
             foldPrevWhiteSpace = foldPrevWhiteSpace)
     }
-    fun PsiElement.hideExpr(
+    fun PsiElement.exprHide(
         vararg children: Expression?,
         group: FoldingGroup? = null,
         foldPrevWhiteSpace: Boolean = false
@@ -77,7 +75,7 @@ abstract class BaseExtension : AdvancedExpressionFoldingSettings.StateDelegate()
             foldPrevWhiteSpace = foldPrevWhiteSpace)
     }
 
-    fun PsiElement.wrapAroundExpr(
+    fun PsiElement.exprWrapAround(
         vararg children: Expression?,
         group: FoldingGroup? = null,
         textBefore: String? = null,
@@ -96,5 +94,9 @@ abstract class BaseExtension : AdvancedExpressionFoldingSettings.StateDelegate()
             textAfter = textAfter,
             foldNextWhiteSpace = foldNextWhiteSpace
         )
+
+    fun Collection<Expression?>.exprWrap(
+        field: PsiField,
+    ) = WrapperExpression(field, chain = filterNotNull())
 
 }
