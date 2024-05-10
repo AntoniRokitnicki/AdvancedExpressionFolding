@@ -31,7 +31,7 @@ abstract class BaseExtension : AdvancedExpressionFoldingSettings.StateDelegate()
         fun PsiType?.isObject() = this?.canonicalText == "java.lang.Object"
     }
 
-    fun getAnyExpression(element: PsiElement, document: Document): Expression =
+    fun getAnyExpression(element: PsiElement, document: Document = element.containingFile.viewProvider.document): Expression =
         BuildExpressionExt.getAnyExpression(element, document)
 
     fun getAnyExpressions(

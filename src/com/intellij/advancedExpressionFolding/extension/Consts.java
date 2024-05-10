@@ -252,4 +252,30 @@ public interface Consts {
             put(' ', '❤');
         }
     };
+
+
+    enum SYMBOLS {
+        STONE_FACE("\uD83D\uDDFF"), // 🗿
+        LOCK("\uD83D\uDD12"), //🔒
+        OVERRIDE1("⇡"),
+        OVERRIDE2("↺"),
+        EVENT("\uD83D\uDE80"), //🚀
+        FIRE("\uD83D\uDD25"), //🔥
+        RANDOM("\uD83C\uDFB2"), //🎲
+        MAGIC("✨"),
+        EYES("\uD83D\uDC40"), //👀
+
+        ;
+
+        private final String unicode;
+
+        SYMBOLS(String unicode) {
+            this.unicode = unicode;
+        }
+
+        @Override
+        public String toString() {
+            return unicode;
+        }
+    }
 }
