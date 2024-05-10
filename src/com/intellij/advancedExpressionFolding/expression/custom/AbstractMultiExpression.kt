@@ -16,7 +16,7 @@ abstract class AbstractMultiExpression(
     private vararg val children: Expression?,
     private val text: String = "",
     private var group: FoldingGroup? = null,
-    private val foldPrevWhiteSpace: Boolean = false
+    private val foldPrevWhiteSpace: Boolean = false,
 ) : Expression(element, textRange) {
 
     override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean = true

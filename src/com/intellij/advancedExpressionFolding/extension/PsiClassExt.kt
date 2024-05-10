@@ -233,4 +233,5 @@ object PsiClassExt : BaseExtension() {
 
 
     fun PsiElement.prevWhiteSpace(): PsiWhiteSpace? = prevSibling as? PsiWhiteSpace
+    fun PsiElement.nextWhiteSpace(): PsiWhiteSpace? = nextSibling as? PsiWhiteSpace
 }

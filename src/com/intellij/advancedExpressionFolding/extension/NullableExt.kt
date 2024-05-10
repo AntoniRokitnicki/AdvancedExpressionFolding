@@ -4,6 +4,7 @@ import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression
 import com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression
 import com.intellij.advancedExpressionFolding.expression.custom.FieldConstExpression
+import com.intellij.advancedExpressionFolding.expression.custom.WrapperExpression
 import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFoldingAnnotation.Companion.findByName
 import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFoldingAnnotation.NOT_NULL
 import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFoldingAnnotation.NULLABLE
@@ -46,23 +47,28 @@ object NullableExt : BaseExtension() {
         }
     }
 
-    enum class Modifiers {
-        STATIC,
-        FINAL
-    }
-
     @JvmStatic
     fun createExpression(field: PsiField): Expression? {
         val typeElement = field.typeElement
-        if (!lombok || typeElement == null || field.isIgnored()) {
+        if (typeElement == null || field.isIgnored()) {
             return null
         }
-        val typeExpression = fieldAnnotationExpression(field.annotations, typeElement)
-        (typeExpression ?: findPropertyAnnotation(field, typeElement))?.let {
-            return it
+
+        val list = mutableListOf<Expression?>()
+        list += lombok.takeIf {
+            it
+        }?.let {
+            val typeExpression = fieldAnnotationExpression(field.annotations, typeElement)
+            typeExpression ?: findPropertyAnnotation(field, typeElement)
         }
 
-        return fieldConstExpression(field, typeElement)
+        list += experimental.takeIf {
+            it
+        }?.let {
+            fieldConstExpression(field, typeElement)
+        }
+
+        return WrapperExpression(field, chain = list.filterNotNull())
     }
 
     private fun fieldConstExpression(
