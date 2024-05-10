@@ -53,22 +53,19 @@ object NullableExt : BaseExtension() {
             return null
         }
 
-        val list = mutableListOf<Expression?>()
-        list += lombok.takeIf {
-            it
-        }?.let {
+        val list = exprList()
+        list += lombok.asNull()?.let {
             val typeExpression = fieldAnnotationExpression(field.annotations, typeElement)
             typeExpression ?: findPropertyAnnotation(field, typeElement)
         }
 
-        list += experimental.takeIf {
-            it
-        }?.let {
+        list += experimental.asNull()?.let {
             fieldConstExpression(field, typeElement, document)
         }
 
         return list.exprWrap(field)
     }
+
 
     private fun fieldConstExpression(
         field: PsiField,
@@ -97,7 +94,7 @@ object NullableExt : BaseExtension() {
 
         val sameType = sameTypeOfFieldAndInitializer(initializer, field)
         if (noBody && sameType && initializer != null) {
-            val list = mutableListOf<Expression?>()
+            val list = exprList()
             initializer.classReference?.let {
                 list += it.prevWhiteSpace()?.exprHide()
                 list += it.exprHide()

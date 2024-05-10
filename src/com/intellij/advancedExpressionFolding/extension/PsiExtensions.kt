@@ -1,5 +1,6 @@
 package com.intellij.advancedExpressionFolding.extension
 
+import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.extension.BaseExtension.Companion.isBoolean
 import com.intellij.advancedExpressionFolding.extension.BaseExtension.Companion.isInt
 import com.intellij.advancedExpressionFolding.extension.BaseExtension.Companion.isObject
@@ -171,3 +172,12 @@ fun Array<out PsiElement>.asInstance(vararg elements: Class<out PsiElement>): Ar
 
 
 fun String.equalsIgnoreSpaces(second: String): Boolean = filterNot(Char::isWhitespace) == second.filterNot(Char::isWhitespace)
+
+
+fun Boolean.asNull() : Any? = if (this) {
+    true
+} else {
+    null
+}
+
+fun exprList() = mutableListOf<Expression?>()
