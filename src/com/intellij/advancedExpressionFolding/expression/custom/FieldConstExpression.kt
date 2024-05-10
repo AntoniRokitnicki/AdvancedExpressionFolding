@@ -12,9 +12,7 @@ import com.intellij.psi.PsiTypeElement
 class FieldConstExpression(
     private val typeElement: PsiTypeElement?,
     private val annotationElement: PsiElement,
-    private val typeSuffix: String,
-    private val initializer: PsiElement? = null,
-    private val initializerText: String? = null,
+    private val typeSuffix: String
 ) : Expression(annotationElement, annotationElement.textRange) {
     override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean {
         return true
@@ -38,9 +36,7 @@ class FieldConstExpression(
         if (typeElement != null) {
             elements += fold(typeElement, typeElement.textRange, "", group)
         }
-        if (initializer != null && initializerText != null) {
-            elements += fold(initializer, initializer.textRange, initializerText, group)
-        }
+
         return elements.toTypedArray()
     }
 
