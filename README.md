@@ -40,7 +40,7 @@
 <p>For more information, read the <a href="https://medium.com/@andrey_cheptsov/making-java-code-easier-to-read-without-changing-it-adeebd5c36de" target="_blank">blog post</a>.</p>
 
 ## New features:
-- [**Lombok Annotations**: `@Data`, `@Getter`, `@Setter`, `@EqualsAndHashCode`, `@ToString`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/Lombok)
+- [**Lombok Emulator**: `@Data`, `@Getter`, `@Setter`, `@EqualsAndHashCode`, `@ToString`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/Lombok)
 - [java.time.* isBefore/isAfter folding and LocalDate literals](https://github.com/cheptsov/AdvancedExpressionFolding/pull/132)
 - [Extended java time folding](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/Extended-java-time-folding)
 - [**Logger Brackets Folding**: For Slf4j and other logging framework](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/Log-brackets-folding)
