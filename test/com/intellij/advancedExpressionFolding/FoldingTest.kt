@@ -281,4 +281,11 @@ open class FoldingTest : BaseTest() {
         doFoldingTest()
     }
 
+    /**
+     * [data.ExperimentalTestData]
+     */
+    fun testExperimentalTestData() {
+        doFoldingTest(state::experimental)
+    }
+
 }
