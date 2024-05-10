@@ -6,7 +6,7 @@ import com.intellij.openapi.editor.FoldingGroup
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiElement
 
-class WrapperExpression(element: PsiElement, textRange: TextRange, chain : List<Expression>) :
+class WrapperExpression(element: PsiElement, textRange: TextRange = element.textRange, chain : List<Expression> = emptyList()) :
     AbstractMultiExpression(element, textRange, *chain.toTypedArray()) {
 
     override fun wrapElement(element: PsiElement, parentGroup: FoldingGroup): MutableList<FoldingDescriptor> =

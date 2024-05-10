@@ -4,8 +4,10 @@ package com.intellij.advancedExpressionFolding.extension
 
 import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings
 import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.advancedExpressionFolding.expression.custom.HideExpression
 import com.intellij.advancedExpressionFolding.extension.methodcall.Context
 import com.intellij.openapi.editor.Document
+import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiExpression
 import com.intellij.psi.PsiPrimitiveType
 import com.intellij.psi.PsiType
@@ -32,5 +34,8 @@ abstract class BaseExtension : AdvancedExpressionFoldingSettings.StateDelegate()
         expressions: Array<out PsiExpression>,
         context: Context
     ) = expressions.map { getAnyExpression(it, context.document) }
+
+    fun PsiElement.hideExpr() = HideExpression(this)
+    fun PsiElement.wrapAroundExpr() = HideExpression(this)
 
 }
