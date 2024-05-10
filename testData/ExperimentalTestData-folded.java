@@ -2,25 +2,6 @@ package data;
 
 public class ExperimentalTestData {
 
-    static class ConstClass {
-        boolean ok;
-        String string;
-
-        public ConstClass() {
-        }
-
-        public ConstClass(boolean ok) {
-            this.ok = ok;
-        }
-
-        public ConstClass(boolean ok, String string) {
-            this.ok = ok;
-            this.string = string;
-        }
-    }
-    static class SubConstClass extends ConstClass {
-
-    }
     static class Const {
         const ConstClass SELF = ::new;
         const ConstClass SELF_ANN = ::new{};
@@ -30,6 +11,7 @@ public class ExperimentalTestData {
 
         const ConstClass SELF_PARAM_1 = ::new(true);
         const ConstClass SELF_PARAM_2 = ::new(false, "1");
+
 
 
         const ConstClass SELF_SUBCLASS_MORE_FIELD = new ConstClass() {
@@ -48,5 +30,25 @@ public class ExperimentalTestData {
 
         const VERSION = 1;
         const int VERSION_REF = VERSION;
+    }
+
+    static class ConstClass {
+        boolean ok;
+        String string;
+
+        public ConstClass() {
+        }
+
+        public ConstClass(boolean ok) {
+            this.ok = ok;
+        }
+
+        public ConstClass(boolean ok, String string) {
+            this.ok = ok;
+            this.string = string;
+        }
+    }
+    static class SubConstClass extends ConstClass {
+
     }
 }

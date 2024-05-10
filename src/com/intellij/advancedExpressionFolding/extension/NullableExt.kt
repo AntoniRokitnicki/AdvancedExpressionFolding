@@ -74,7 +74,7 @@ object NullableExt : BaseExtension() {
     private fun fieldConstExpression(
         field: PsiField,
         typeElement: PsiTypeElement?
-    ): FieldConstExpression? {
+    ): Expression? {
         if (!field.isNotStatic() && !field.isNotFinal()) {
             return if (foldConstType(field)) {
                 FieldConstExpression(typeElement, field.modifierList!!, "const")
@@ -85,7 +85,7 @@ object NullableExt : BaseExtension() {
         return null
     }
 
-    private fun foldConstructor(field: PsiField): FieldConstExpression? {
+    private fun foldConstructor(field: PsiField): Expression? {
         val initializer = field.initializer.asInstance<PsiNewExpression>()
         val noParams = initializer?.argumentList?.isEmpty == true
         val anonymousClass = initializer?.anonymousClass
@@ -96,24 +96,28 @@ object NullableExt : BaseExtension() {
         }
 
         val sameType = sameTypeOfFieldAndInitializer(initializer, field)
-        if (noBody && sameType) {
-            val suffix = anonymousClass?.let {
-                "{}"
-            } ?: ""
-
-            val parameters = if (noParams) {
-                ""
-            } else {
-                //TODO: fold around arguments
-                initializer!!.argumentList!!.text
+        if (noBody && sameType && initializer != null) {
+            val list = mutableListOf<Expression?>()
+            initializer.classReference?.let {
+                list += it.prevWhiteSpace()?.hideExpr()
+                list += it.hideExpr()
             }
-            return FieldConstExpression(
+            initializer.anonymousClass?.let {
+                list += it.prevWhiteSpace()?.hideExpr()
+                list += it.simpleExpr("{}")
+            }
+            list += initializer.wrapAroundExpr(textBefore = "::")
+
+            if (noParams) {
+                list += initializer.argumentList?.hideExpr()
+            }
+
+            list += FieldConstExpression(
                 null,
                 field.modifierList!!,
-                "const",
-                field.initializer,
-                "::new$parameters$suffix"
+                "const"
             )
+            return WrapperExpression(field, chain = list.filterNotNull())
         }
         return null
     }

@@ -9,9 +9,9 @@ class SimpleExpression(
     element: PsiElement,
     vararg val children: Expression?,
     textRange: TextRange = element.textRange,
-    val text: String = "",
-    var group: FoldingGroup? = null,
-    val foldPrevWhiteSpace: Boolean = false,
+    text: String = "",
+    group: FoldingGroup? = null,
+    foldPrevWhiteSpace: Boolean = false,
 ) :
     AbstractMultiExpression(
         element,

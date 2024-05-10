@@ -23,22 +23,24 @@ public class NewExpressionExt {
 
         @Nullable String erasedType = type != null ? Helper.eraseGenerics(type.getCanonicalText()) : null;
         if (type != null && Consts.SUPPORTED_CLASSES.contains(erasedType)) {
-            if (element.getArgumentList() != null && element.getArgumentList().getExpressions().length == 1) {
-                if (element.getArgumentList().getExpressions()[0] instanceof PsiLiteralExpression) {
+            PsiExpressionList argumentList = element.getArgumentList();
+            if (argumentList != null && argumentList.getExpressions().length == 1) {
+                PsiExpression arg = argumentList.getExpressions()[0];
+                if (arg instanceof PsiLiteralExpression) {
                     return getConstructorExpression(element,
-                            (PsiLiteralExpression) element.getArgumentList().getExpressions()[0],
+                            (PsiLiteralExpression) arg,
                             erasedType);
-                } else if (element.getArgumentList().getExpressions()[0] instanceof PsiReferenceExpression) {
+                } else if (arg instanceof PsiReferenceExpression) {
                     return ReferenceExpressionExt.getReferenceExpression(
-                            (PsiReferenceExpression) element.getArgumentList().getExpressions()[0], true);
+                            (PsiReferenceExpression) arg, true);
                 } else if (erasedType.equals("java.util.ArrayList")
-                        && element.getArgumentList().getExpressions()[0] instanceof PsiMethodCallExpression) {
-                    Expression methodCallExpression = MethodCallExpressionExt.getMethodCallExpression(((PsiMethodCallExpression) element.getArgumentList().getExpressions()[0]), document);
+                        && arg instanceof PsiMethodCallExpression) {
+                    Expression methodCallExpression = MethodCallExpressionExt.getMethodCallExpression(((PsiMethodCallExpression) arg), document);
                     if (methodCallExpression instanceof ListLiteral && settings.getState().getGetExpressionsCollapse()) {
                         return new ListLiteral(element, element.getTextRange(), ((ListLiteral) methodCallExpression).getItems());
                     }
                 }
-            } else if (element.getArgumentList() != null && element.getArgumentList().getExpressions().length == 0) {
+            } else if (argumentList != null && argumentList.getExpressions().length == 0) {
                 switch (erasedType) {
                     case "java.lang.String":
                     case "java.lang.StringBuilder":
@@ -69,8 +71,7 @@ public class NewExpressionExt {
                         ArrayList<PsiElement> arguments = new ArrayList<>();
                         for (PsiStatement statement : statements) {
                             if (statement instanceof PsiExpressionStatement
-                                    && ((PsiExpressionStatement) statement).getExpression() instanceof PsiMethodCallExpression) {
-                                @NotNull PsiMethodCallExpression methodCall = (PsiMethodCallExpression) ((PsiExpressionStatement) statement).getExpression();
+                                    && ((PsiExpressionStatement) statement).getExpression() instanceof @NotNull PsiMethodCallExpression methodCall) {
                                 if (methodCall.getMethodExpression().getText().equals("add") && methodCall.getArgumentList().getExpressions().length == 1) {
                                     PsiMethod method = (PsiMethod) methodCall.getMethodExpression().resolve();
                                     if (method != null && method.getContainingClass() != null

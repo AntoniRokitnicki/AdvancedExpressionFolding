@@ -1,268 +1,378 @@
 {
-  "size" : 24,
+  "size" : 34,
   "list" : [ {
     "id" : 0,
-    "text" : "public static final",
-    "placeholder" : "const",
+    "text" : " ",
+    "placeholder" : "",
     "range" : {
-      "start" : 467,
-      "end" : 486,
-      "size" : 19
+      "start" : 126,
+      "end" : 127,
+      "size" : 1
     },
-    "group" : "FieldConstExpression",
+    "group" : "WrapperExpression",
     "groupReference" : 0
   }, {
     "id" : 1,
-    "text" : "new ConstClass()",
-    "placeholder" : "::new",
+    "text" : "ConstClass",
+    "placeholder" : "",
     "range" : {
-      "start" : 505,
-      "end" : 521,
-      "size" : 16
+      "start" : 127,
+      "end" : 137,
+      "size" : 10
     },
-    "group" : "FieldConstExpression",
+    "group" : "WrapperExpression",
     "groupReference" : 0
   }, {
     "id" : 2,
-    "text" : "public static final",
-    "placeholder" : "const",
+    "text" : " ",
+    "placeholder" : " ::",
     "range" : {
-      "start" : 531,
-      "end" : 550,
-      "size" : 19
+      "start" : 122,
+      "end" : 123,
+      "size" : 1
     },
-    "group" : "FieldConstExpression",
-    "groupReference" : 1
+    "group" : "WrapperExpression",
+    "groupReference" : 0
   }, {
     "id" : 3,
-    "text" : "new ConstClass() {\n        }",
-    "placeholder" : "::new{}",
+    "text" : "()",
+    "placeholder" : "",
     "range" : {
-      "start" : 573,
-      "end" : 601,
-      "size" : 28
+      "start" : 137,
+      "end" : 139,
+      "size" : 2
     },
-    "group" : "FieldConstExpression",
-    "groupReference" : 1
+    "group" : "WrapperExpression",
+    "groupReference" : 0
   }, {
     "id" : 4,
     "text" : "public static final",
     "placeholder" : "const",
     "range" : {
-      "start" : 611,
-      "end" : 630,
+      "start" : 85,
+      "end" : 104,
       "size" : 19
     },
     "group" : "FieldConstExpression",
-    "groupReference" : 2
+    "groupReference" : 1
   }, {
     "id" : 5,
+    "text" : " ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 194,
+      "end" : 195,
+      "size" : 1
+    },
+    "group" : "WrapperExpression",
+    "groupReference" : 2
+  }, {
+    "id" : 6,
+    "text" : "ConstClass() {\n        }",
+    "placeholder" : "{}",
+    "range" : {
+      "start" : 195,
+      "end" : 219,
+      "size" : 24
+    },
+    "group" : "WrapperExpression",
+    "groupReference" : 2
+  }, {
+    "id" : 7,
+    "text" : " ",
+    "placeholder" : " ::",
+    "range" : {
+      "start" : 190,
+      "end" : 191,
+      "size" : 1
+    },
+    "group" : "WrapperExpression",
+    "groupReference" : 2
+  }, {
+    "id" : 8,
+    "text" : "()",
+    "placeholder" : "",
+    "range" : {
+      "start" : 205,
+      "end" : 207,
+      "size" : 2
+    },
+    "group" : "WrapperExpression",
+    "groupReference" : 2
+  }, {
+    "id" : 9,
     "text" : "public static final",
     "placeholder" : "const",
     "range" : {
-      "start" : 682,
-      "end" : 701,
+      "start" : 149,
+      "end" : 168,
       "size" : 19
     },
     "group" : "FieldConstExpression",
     "groupReference" : 3
   }, {
-    "id" : 6,
-    "text" : "public static final",
-    "placeholder" : "const",
-    "range" : {
-      "start" : 770,
-      "end" : 789,
-      "size" : 19
-    },
-    "group" : "FieldConstExpression",
-    "groupReference" : 4
-  }, {
-    "id" : 7,
-    "text" : "new ConstClass(true)",
-    "placeholder" : "::new(true)",
-    "range" : {
-      "start" : 816,
-      "end" : 836,
-      "size" : 20
-    },
-    "group" : "FieldConstExpression",
-    "groupReference" : 4
-  }, {
-    "id" : 8,
-    "text" : "public static final",
-    "placeholder" : "const",
-    "range" : {
-      "start" : 846,
-      "end" : 865,
-      "size" : 19
-    },
-    "group" : "FieldConstExpression",
-    "groupReference" : 5
-  }, {
-    "id" : 9,
-    "text" : "new ConstClass(false, \"1\")",
-    "placeholder" : "::new(false, \"1\")",
-    "range" : {
-      "start" : 892,
-      "end" : 918,
-      "size" : 26
-    },
-    "group" : "FieldConstExpression",
-    "groupReference" : 5
-  }, {
     "id" : 10,
     "text" : "public static final",
     "placeholder" : "const",
     "range" : {
-      "start" : 930,
-      "end" : 949,
+      "start" : 229,
+      "end" : 248,
       "size" : 19
     },
     "group" : "FieldConstExpression",
-    "groupReference" : 6
+    "groupReference" : 4
   }, {
     "id" : 11,
     "text" : "public static final",
     "placeholder" : "const",
     "range" : {
-      "start" : 1049,
-      "end" : 1068,
+      "start" : 300,
+      "end" : 319,
+      "size" : 19
+    },
+    "group" : "FieldConstExpression",
+    "groupReference" : 5
+  }, {
+    "id" : 12,
+    "text" : " ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 437,
+      "end" : 438,
+      "size" : 1
+    },
+    "group" : "WrapperExpression",
+    "groupReference" : 6
+  }, {
+    "id" : 13,
+    "text" : "ConstClass",
+    "placeholder" : "",
+    "range" : {
+      "start" : 438,
+      "end" : 448,
+      "size" : 10
+    },
+    "group" : "WrapperExpression",
+    "groupReference" : 6
+  }, {
+    "id" : 14,
+    "text" : " ",
+    "placeholder" : " ::",
+    "range" : {
+      "start" : 433,
+      "end" : 434,
+      "size" : 1
+    },
+    "group" : "WrapperExpression",
+    "groupReference" : 6
+  }, {
+    "id" : 15,
+    "text" : "public static final",
+    "placeholder" : "const",
+    "range" : {
+      "start" : 388,
+      "end" : 407,
       "size" : 19
     },
     "group" : "FieldConstExpression",
     "groupReference" : 7
   }, {
-    "id" : 12,
+    "id" : 16,
+    "text" : " ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 513,
+      "end" : 514,
+      "size" : 1
+    },
+    "group" : "WrapperExpression",
+    "groupReference" : 8
+  }, {
+    "id" : 17,
+    "text" : "ConstClass",
+    "placeholder" : "",
+    "range" : {
+      "start" : 514,
+      "end" : 524,
+      "size" : 10
+    },
+    "group" : "WrapperExpression",
+    "groupReference" : 8
+  }, {
+    "id" : 18,
+    "text" : " ",
+    "placeholder" : " ::",
+    "range" : {
+      "start" : 509,
+      "end" : 510,
+      "size" : 1
+    },
+    "group" : "WrapperExpression",
+    "groupReference" : 8
+  }, {
+    "id" : 19,
+    "text" : "public static final",
+    "placeholder" : "const",
+    "range" : {
+      "start" : 464,
+      "end" : 483,
+      "size" : 19
+    },
+    "group" : "FieldConstExpression",
+    "groupReference" : 9
+  }, {
+    "id" : 20,
+    "text" : "public static final",
+    "placeholder" : "const",
+    "range" : {
+      "start" : 549,
+      "end" : 568,
+      "size" : 19
+    },
+    "group" : "FieldConstExpression",
+    "groupReference" : 10
+  }, {
+    "id" : 21,
+    "text" : "public static final",
+    "placeholder" : "const",
+    "range" : {
+      "start" : 668,
+      "end" : 687,
+      "size" : 19
+    },
+    "group" : "FieldConstExpression",
+    "groupReference" : 11
+  }, {
+    "id" : 22,
     "text" : "public static final ",
     "placeholder" : "const",
     "range" : {
-      "start" : 1203,
-      "end" : 1223,
+      "start" : 822,
+      "end" : 842,
       "size" : 20
-    },
-    "group" : "FieldConstExpression",
-    "groupReference" : 8
-  }, {
-    "id" : 13,
-    "text" : "String",
-    "placeholder" : "",
-    "range" : {
-      "start" : 1223,
-      "end" : 1229,
-      "size" : 6
-    },
-    "group" : "FieldConstExpression",
-    "groupReference" : 8
-  }, {
-    "id" : 14,
-    "text" : "private static final ",
-    "placeholder" : "const",
-    "range" : {
-      "start" : 1268,
-      "end" : 1289,
-      "size" : 21
-    },
-    "group" : "FieldConstExpression",
-    "groupReference" : 9
-  }, {
-    "id" : 15,
-    "text" : "String",
-    "placeholder" : "",
-    "range" : {
-      "start" : 1289,
-      "end" : 1295,
-      "size" : 6
-    },
-    "group" : "FieldConstExpression",
-    "groupReference" : 9
-  }, {
-    "id" : 16,
-    "text" : "protected static final ",
-    "placeholder" : "const",
-    "range" : {
-      "start" : 1335,
-      "end" : 1358,
-      "size" : 23
-    },
-    "group" : "FieldConstExpression",
-    "groupReference" : 10
-  }, {
-    "id" : 17,
-    "text" : "String",
-    "placeholder" : "",
-    "range" : {
-      "start" : 1358,
-      "end" : 1364,
-      "size" : 6
-    },
-    "group" : "FieldConstExpression",
-    "groupReference" : 10
-  }, {
-    "id" : 18,
-    "text" : "static final ",
-    "placeholder" : "const",
-    "range" : {
-      "start" : 1406,
-      "end" : 1419,
-      "size" : 13
-    },
-    "group" : "FieldConstExpression",
-    "groupReference" : 11
-  }, {
-    "id" : 19,
-    "text" : "String",
-    "placeholder" : "",
-    "range" : {
-      "start" : 1419,
-      "end" : 1425,
-      "size" : 6
-    },
-    "group" : "FieldConstExpression",
-    "groupReference" : 11
-  }, {
-    "id" : 20,
-    "text" : "static final",
-    "placeholder" : "const",
-    "range" : {
-      "start" : 1465,
-      "end" : 1477,
-      "size" : 12
     },
     "group" : "FieldConstExpression",
     "groupReference" : 12
   }, {
-    "id" : 21,
-    "text" : "static final ",
-    "placeholder" : "const",
-    "range" : {
-      "start" : 1551,
-      "end" : 1564,
-      "size" : 13
-    },
-    "group" : "FieldConstExpression",
-    "groupReference" : 13
-  }, {
-    "id" : 22,
-    "text" : "int",
+    "id" : 23,
+    "text" : "String",
     "placeholder" : "",
     "range" : {
-      "start" : 1564,
-      "end" : 1567,
-      "size" : 3
+      "start" : 842,
+      "end" : 848,
+      "size" : 6
+    },
+    "group" : "FieldConstExpression",
+    "groupReference" : 12
+  }, {
+    "id" : 24,
+    "text" : "private static final ",
+    "placeholder" : "const",
+    "range" : {
+      "start" : 887,
+      "end" : 908,
+      "size" : 21
     },
     "group" : "FieldConstExpression",
     "groupReference" : 13
   }, {
-    "id" : 23,
-    "text" : "static final",
+    "id" : 25,
+    "text" : "String",
+    "placeholder" : "",
+    "range" : {
+      "start" : 908,
+      "end" : 914,
+      "size" : 6
+    },
+    "group" : "FieldConstExpression",
+    "groupReference" : 13
+  }, {
+    "id" : 26,
+    "text" : "protected static final ",
     "placeholder" : "const",
     "range" : {
-      "start" : 1589,
-      "end" : 1601,
-      "size" : 12
+      "start" : 954,
+      "end" : 977,
+      "size" : 23
     },
     "group" : "FieldConstExpression",
     "groupReference" : 14
+  }, {
+    "id" : 27,
+    "text" : "String",
+    "placeholder" : "",
+    "range" : {
+      "start" : 977,
+      "end" : 983,
+      "size" : 6
+    },
+    "group" : "FieldConstExpression",
+    "groupReference" : 14
+  }, {
+    "id" : 28,
+    "text" : "static final ",
+    "placeholder" : "const",
+    "range" : {
+      "start" : 1025,
+      "end" : 1038,
+      "size" : 13
+    },
+    "group" : "FieldConstExpression",
+    "groupReference" : 15
+  }, {
+    "id" : 29,
+    "text" : "String",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1038,
+      "end" : 1044,
+      "size" : 6
+    },
+    "group" : "FieldConstExpression",
+    "groupReference" : 15
+  }, {
+    "id" : 30,
+    "text" : "static final",
+    "placeholder" : "const",
+    "range" : {
+      "start" : 1084,
+      "end" : 1096,
+      "size" : 12
+    },
+    "group" : "FieldConstExpression",
+    "groupReference" : 16
+  }, {
+    "id" : 31,
+    "text" : "static final ",
+    "placeholder" : "const",
+    "range" : {
+      "start" : 1170,
+      "end" : 1183,
+      "size" : 13
+    },
+    "group" : "FieldConstExpression",
+    "groupReference" : 17
+  }, {
+    "id" : 32,
+    "text" : "int",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1183,
+      "end" : 1186,
+      "size" : 3
+    },
+    "group" : "FieldConstExpression",
+    "groupReference" : 17
+  }, {
+    "id" : 33,
+    "text" : "static final",
+    "placeholder" : "const",
+    "range" : {
+      "start" : 1208,
+      "end" : 1220,
+      "size" : 12
+    },
+    "group" : "FieldConstExpression",
+    "groupReference" : 18
   } ]
 }

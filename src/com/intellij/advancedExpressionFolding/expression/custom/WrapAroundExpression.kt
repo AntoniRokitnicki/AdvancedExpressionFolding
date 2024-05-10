@@ -1,8 +1,8 @@
 package com.intellij.advancedExpressionFolding.expression.custom
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.extension.FieldShiftExt2.hideExpr
-import com.intellij.advancedExpressionFolding.extension.PsiClassExt.nextWhiteSpace
+import com.intellij.advancedExpressionFolding.extension.PsiClassExt.prevWhiteSpace
+import com.intellij.advancedExpressionFolding.extension.end
 import com.intellij.lang.folding.FoldingDescriptor
 import com.intellij.openapi.editor.FoldingGroup
 import com.intellij.openapi.util.TextRange
@@ -39,12 +39,27 @@ AbstractMultiExpression(element,
         ): Array<Expression?> {
             val list = mutableListOf<Expression?>()
             list.addAll(children)
-            textBefore?.let {
-                list += SimpleExpression(element, text = it, foldPrevWhiteSpace = foldPrevWhiteSpace)
+
+            if (textBefore != null) {
+                element.prevWhiteSpace()?.let {
+                    if (foldPrevWhiteSpace) {
+                        list += SimpleExpression(it, textRange = it.textRange, text = textBefore)
+                    } else {
+                        val text = it.text
+                        val c = text.substring(text.length - 1)
+                        list += SimpleExpression(it, textRange = TextRange(it.end()-1, it.end()), text = "$c$textBefore")
+                    }
+                }
+                //TODO: else
             }
+
             textAfter?.let {
-                list += SimpleExpression(element, element.nextWhiteSpace()?.hideExpr(), text = it)
+                TODO()
             }
+            if (foldNextWhiteSpace) {
+                TODO()
+            }
+
             return list.toTypedArray()
         }
     }
