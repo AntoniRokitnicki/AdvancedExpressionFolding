@@ -628,9 +628,8 @@ public class MethodCallExpressionExt {
                 }
             case "get":
                 if (argumentExpression instanceof NumberLiteral && ((NumberLiteral) argumentExpression).getNumber().equals(0)) {
-                                        /*return new Get(element, element.getTextRange(), qualifierExpression,
-                                                argumentExpression, Get.Style.FIRST)*/
-                    return null;
+                    return new Get(element, element.getTextRange(), qualifierExpression,
+                            argumentExpression, Get.Style.FIRST);
                 } else if (argument instanceof PsiBinaryExpression a2b) {
                     NumberLiteral position = Helper.getSlicePosition(element, qualifierExpression, a2b, document);
                     if (position != null && position.getNumber().equals(-1)) {

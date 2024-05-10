@@ -1,5 +1,8 @@
 package data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ExperimentalTestData {
 
     static class Const {
@@ -9,8 +12,10 @@ public class ExperimentalTestData {
         const ConstClass SELF_SUB_ANN = new SubConstClass() {
         };
 
+        const List<String> LIST = new ArrayList<>();
+
         const ConstClass SELF_PARAM_1 = ::new(true);
-        const ConstClass SELF_PARAM_2 = ::new(false, "1");
+        const ConstClass SELF_PARAM_2 = ::new(false, LIST.getFirst());
 
 
 

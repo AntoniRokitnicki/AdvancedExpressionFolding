@@ -1,5 +1,8 @@
 package data;
 
+import <fold text='...' expand='false'>java.util.ArrayList;
+import java.util.List;</fold>
+
 public class ExperimentalTestData {
 
     static class Const <fold text='{...}' expand='true'>{
@@ -10,8 +13,10 @@ public class ExperimentalTestData {
         <fold text='const' expand='false'>public static final</fold> ConstClass SELF_SUB_ANN = new SubConstClass() <fold text='{...}' expand='true'>{
         }</fold>;
 
+        <fold text='const' expand='false'>private static final</fold> List<String> LIST = new ArrayList<>();
+
         <fold text='const' expand='false'>public static final</fold> ConstClass SELF_PARAM_1 =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> </fold><fold text='' expand='true'>ConstClass</fold>(true);
-        <fold text='const' expand='false'>public static final</fold> ConstClass SELF_PARAM_2 =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> </fold><fold text='' expand='true'>ConstClass</fold>(false, "1");
+        <fold text='const' expand='false'>public static final</fold> ConstClass SELF_PARAM_2 =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> </fold><fold text='' expand='true'>ConstClass</fold>(false, LIST<fold text='.getFirst' expand='false'>.get</fold>(<fold text='' expand='false'>0</fold>));
 
 
 

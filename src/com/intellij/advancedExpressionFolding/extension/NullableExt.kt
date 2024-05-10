@@ -4,7 +4,6 @@ import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression
 import com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression
 import com.intellij.advancedExpressionFolding.expression.custom.FieldConstExpression
-import com.intellij.advancedExpressionFolding.expression.custom.WrapperExpression
 import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFoldingAnnotation.Companion.findByName
 import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFoldingAnnotation.NOT_NULL
 import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFoldingAnnotation.NULLABLE
@@ -48,7 +47,7 @@ object NullableExt : BaseExtension() {
     }
 
     @JvmStatic
-    fun createExpression(field: PsiField): Expression? {
+    fun createExpression(field: PsiField, document: Document): Expression? {
         val typeElement = field.typeElement
         if (typeElement == null || field.isIgnored()) {
             return null
@@ -65,27 +64,28 @@ object NullableExt : BaseExtension() {
         list += experimental.takeIf {
             it
         }?.let {
-            fieldConstExpression(field, typeElement)
+            fieldConstExpression(field, typeElement, document)
         }
 
-        return WrapperExpression(field, chain = list.filterNotNull())
+        return list.exprWrap(field)
     }
 
     private fun fieldConstExpression(
         field: PsiField,
-        typeElement: PsiTypeElement?
+        typeElement: PsiTypeElement?,
+        document: Document
     ): Expression? {
         if (!field.isNotStatic() && !field.isNotFinal()) {
             return if (foldConstType(field)) {
                 FieldConstExpression(typeElement, field.modifierList!!, "const")
             } else {
-                foldConstructor(field) ?: FieldConstExpression(null, field.modifierList!!, "const")
+                foldConstructor(field, document) ?: FieldConstExpression(null, field.modifierList!!, "const")
             }
         }
         return null
     }
 
-    private fun foldConstructor(field: PsiField): Expression? {
+    private fun foldConstructor(field: PsiField, document: Document): Expression? {
         val initializer = field.initializer.asInstance<PsiNewExpression>()
         val noParams = initializer?.argumentList?.isEmpty == true
         val anonymousClass = initializer?.anonymousClass
@@ -99,17 +99,21 @@ object NullableExt : BaseExtension() {
         if (noBody && sameType && initializer != null) {
             val list = mutableListOf<Expression?>()
             initializer.classReference?.let {
-                list += it.prevWhiteSpace()?.hideExpr()
-                list += it.hideExpr()
+                list += it.prevWhiteSpace()?.exprHide()
+                list += it.exprHide()
             }
             initializer.anonymousClass?.let {
-                list += it.prevWhiteSpace()?.hideExpr()
-                list += it.simpleExpr("{}")
+                list += it.prevWhiteSpace()?.exprHide()
+                list += it.expr("{}")
             }
-            list += initializer.wrapAroundExpr(textBefore = "::")
+            list += initializer.exprWrapAround(textBefore = "::")
 
             if (noParams) {
-                list += initializer.argumentList?.hideExpr()
+                list += initializer.argumentList?.exprHide()
+            } else {
+                list += initializer.argumentList!!.expressions.map {
+                    getAnyExpression(it, document)
+                }
             }
 
             list += FieldConstExpression(
@@ -117,10 +121,11 @@ object NullableExt : BaseExtension() {
                 field.modifierList!!,
                 "const"
             )
-            return WrapperExpression(field, chain = list.filterNotNull())
+            return list.exprWrap(field)
         }
         return null
     }
+
 
     private fun sameTypeOfFieldAndInitializer(initializer: PsiNewExpression?, field: PsiField) =
         initializer?.classOrAnonymousClassReference?.resolve() == field.type.asInstance<PsiClassReferenceType>()
