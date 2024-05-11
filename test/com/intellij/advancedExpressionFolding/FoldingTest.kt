@@ -280,6 +280,13 @@ open class FoldingTest : BaseTest() {
     fun testPrintlnTestData() {
         doFoldingTest()
     }
+
+    /**
+     * [data.ConstTestData]
+     */
+    fun testConstTestData() {
+        doFoldingTest(state::const)
+    }
     // NEW OPTION
     /**
      * [data.ExperimentalTestData]

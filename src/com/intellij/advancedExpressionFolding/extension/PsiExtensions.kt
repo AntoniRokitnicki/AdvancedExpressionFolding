@@ -20,6 +20,9 @@ import com.intellij.psi.search.searches.ReferencesSearch
 import java.util.*
 import kotlin.reflect.KClass
 
+val PsiField.enum: Boolean
+    get() = (type as? PsiClassType)?.resolve()?.isEnum == true
+
 inline fun String.filter(predicate: (String) -> Boolean): String? = takeIf(predicate)
 
 fun PsiElement.isIgnored(): Boolean = getUserData(IGNORED) ?: false

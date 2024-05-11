@@ -45,7 +45,7 @@ object NullableExt : BaseExtension() {
             typeExpression ?: findPropertyAnnotation(field, typeElement)
         }
 
-        list += experimental.asNull()?.let {
+        list += const.asNull()?.let {
             fieldConstExpression(field, typeElement, document)
         }
 
@@ -92,15 +92,26 @@ object NullableExt : BaseExtension() {
     ): Expression? {
         if (!field.isNotStatic() && !field.isNotFinal()) {
             return if (foldConstType(field)) {
-                FieldConstExpression(typeElement, field.modifierList!!, "const")
+                FieldConstExpression(typeElement, field.modifierList!!, field.constText())
             } else {
-                foldConstructor(field, document) ?: FieldConstExpression(null, field.modifierList!!, "const")
+                foldConstructor(field, document)
             }
         }
         return null
     }
+    
+    private fun PsiField.constText(): String {
+        @Suppress("SpellCheckingInspection")
+        return when (this.enum){
+            true -> "econst"
+            false -> "const"
+        }
+    }
 
     private fun foldConstructor(field: PsiField, document: Document): Expression? {
+        val constFolding = FieldConstExpression(null, field.modifierList!!, field.constText())
+        experimental.asNull() ?: return constFolding
+
         val initializer = field.initializer.asInstance<PsiNewExpression>()
         val noParams = initializer?.argumentList?.isEmpty == true
         val anonymousClass = initializer?.anonymousClass
@@ -131,14 +142,10 @@ object NullableExt : BaseExtension() {
                 }
             }
 
-            list += FieldConstExpression(
-                null,
-                field.modifierList!!,
-                "const"
-            )
+            list += constFolding
             return list.exprWrap(field)
         }
-        return null
+        return constFolding
     }
 
 
@@ -228,3 +235,4 @@ object NullableExt : BaseExtension() {
     }
 
 }
+
