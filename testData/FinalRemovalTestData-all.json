@@ -1,0 +1,246 @@
+{
+  "size" : 22,
+  "list" : [ {
+    "id" : 0,
+    "text" : "\n\n    ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 201,
+      "end" : 207,
+      "size" : 6
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 0
+  }, {
+    "id" : 1,
+    "text" : "@Override\n    public final String toString() {\n        final String s = \"1\";\n        final var s2 = \"2\";\n        var s3 = \"3\";\n        return s + s2 + s3;\n    }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 207,
+      "end" : 367,
+      "size" : 160
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 0
+  }, {
+    "id" : 2,
+    "text" : "p",
+    "placeholder" : "@ToString* p",
+    "range" : {
+      "start" : 15,
+      "end" : 16,
+      "size" : 1
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 0
+  }, {
+    "id" : 3,
+    "text" : "public static final ",
+    "placeholder" : "const",
+    "range" : {
+      "start" : 56,
+      "end" : 76,
+      "size" : 20
+    },
+    "group" : "FieldConstExpression",
+    "groupReference" : 1
+  }, {
+    "id" : 4,
+    "text" : "String",
+    "placeholder" : "",
+    "range" : {
+      "start" : 76,
+      "end" : 82,
+      "size" : 6
+    },
+    "group" : "FieldConstExpression",
+    "groupReference" : 1
+  }, {
+    "id" : 5,
+    "text" : "final private static ",
+    "placeholder" : "const",
+    "range" : {
+      "start" : 117,
+      "end" : 138,
+      "size" : 21
+    },
+    "group" : "FieldConstExpression",
+    "groupReference" : 2
+  }, {
+    "id" : 6,
+    "text" : "String",
+    "placeholder" : "",
+    "range" : {
+      "start" : 138,
+      "end" : 144,
+      "size" : 6
+    },
+    "group" : "FieldConstExpression",
+    "groupReference" : 2
+  }, {
+    "id" : 7,
+    "text" : "final",
+    "placeholder" : "",
+    "range" : {
+      "start" : 228,
+      "end" : 233,
+      "size" : 5
+    },
+    "group" : "WrapperExpression",
+    "groupReference" : 3
+  }, {
+    "id" : 8,
+    "text" : "final String",
+    "placeholder" : "val",
+    "range" : {
+      "start" : 262,
+      "end" : 274,
+      "size" : 12
+    },
+    "group" : "VariableDeclarationImpl",
+    "groupReference" : 4
+  }, {
+    "id" : 9,
+    "text" : "final",
+    "placeholder" : "",
+    "range" : {
+      "start" : 262,
+      "end" : 267,
+      "size" : 5
+    },
+    "group" : "WrapperExpression",
+    "groupReference" : 5
+  }, {
+    "id" : 10,
+    "text" : "final var",
+    "placeholder" : "val",
+    "range" : {
+      "start" : 292,
+      "end" : 301,
+      "size" : 9
+    },
+    "group" : "VariableDeclarationImpl",
+    "groupReference" : 6
+  }, {
+    "id" : 11,
+    "text" : "final",
+    "placeholder" : "",
+    "range" : {
+      "start" : 292,
+      "end" : 297,
+      "size" : 5
+    },
+    "group" : "WrapperExpression",
+    "groupReference" : 7
+  }, {
+    "id" : 12,
+    "text" : "var",
+    "placeholder" : "val",
+    "range" : {
+      "start" : 320,
+      "end" : 323,
+      "size" : 3
+    },
+    "group" : "VariableDeclarationImpl",
+    "groupReference" : 8
+  }, {
+    "id" : 13,
+    "text" : "final",
+    "placeholder" : "",
+    "range" : {
+      "start" : 405,
+      "end" : 410,
+      "size" : 5
+    },
+    "group" : "WrapperExpression",
+    "groupReference" : 9
+  }, {
+    "id" : 14,
+    "text" : "final",
+    "placeholder" : "",
+    "range" : {
+      "start" : 423,
+      "end" : 428,
+      "size" : 5
+    },
+    "group" : "WrapperExpression",
+    "groupReference" : 10
+  }, {
+    "id" : 15,
+    "text" : "final",
+    "placeholder" : "",
+    "range" : {
+      "start" : 436,
+      "end" : 441,
+      "size" : 5
+    },
+    "group" : "WrapperExpression",
+    "groupReference" : 11
+  }, {
+    "id" : 16,
+    "text" : "final",
+    "placeholder" : "",
+    "range" : {
+      "start" : 475,
+      "end" : 480,
+      "size" : 5
+    },
+    "group" : "WrapperExpression",
+    "groupReference" : 12
+  }, {
+    "id" : 17,
+    "text" : "final",
+    "placeholder" : "",
+    "range" : {
+      "start" : 652,
+      "end" : 657,
+      "size" : 5
+    },
+    "group" : "WrapperExpression",
+    "groupReference" : 13
+  }, {
+    "id" : 18,
+    "text" : "final",
+    "placeholder" : "",
+    "range" : {
+      "start" : 753,
+      "end" : 758,
+      "size" : 5
+    },
+    "group" : "WrapperExpression",
+    "groupReference" : 14
+  }, {
+    "id" : 19,
+    "text" : "final",
+    "placeholder" : "",
+    "range" : {
+      "start" : 769,
+      "end" : 774,
+      "size" : 5
+    },
+    "group" : "WrapperExpression",
+    "groupReference" : 15
+  }, {
+    "id" : 20,
+    "text" : "final",
+    "placeholder" : "",
+    "range" : {
+      "start" : 787,
+      "end" : 792,
+      "size" : 5
+    },
+    "group" : "WrapperExpression",
+    "groupReference" : 16
+  }, {
+    "id" : 21,
+    "text" : "final",
+    "placeholder" : "",
+    "range" : {
+      "start" : 800,
+      "end" : 805,
+      "size" : 5
+    },
+    "group" : "WrapperExpression",
+    "groupReference" : 17
+  } ]
+}

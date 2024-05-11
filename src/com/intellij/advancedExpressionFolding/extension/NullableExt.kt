@@ -12,6 +12,10 @@ import com.intellij.openapi.editor.Document
 import com.intellij.psi.*
 import com.intellij.psi.impl.source.PsiClassReferenceType
 
+/**
+ * [data.NullableAnnotationTestData]
+ * [data.NullableAnnotationCheckNotNullTestData]
+*/
 object NullableExt : BaseExtension() {
 
     @JvmStatic
@@ -40,12 +44,12 @@ object NullableExt : BaseExtension() {
         }
 
         val list = exprList()
-        list += nullable.asNull()?.let {
+        list += nullable.on()?.let {
             val typeExpression = fieldAnnotationExpression(field.annotations, typeElement, false)
             typeExpression ?: findPropertyAnnotation(field, typeElement)
         }
 
-        list += const.asNull()?.let {
+        list += const.on()?.let {
             fieldConstExpression(field, typeElement, document)
         }
 
@@ -110,7 +114,7 @@ object NullableExt : BaseExtension() {
 
     private fun foldConstructor(field: PsiField, document: Document): Expression? {
         val constFolding = FieldConstExpression(null, field.modifierList!!, field.constText())
-        experimental.asNull() ?: return constFolding
+        experimental.on() ?: return constFolding
 
         val initializer = field.initializer.asInstance<PsiNewExpression>()
         val noParams = initializer?.argumentList?.isEmpty == true

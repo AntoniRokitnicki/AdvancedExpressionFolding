@@ -56,12 +56,9 @@ public class ExperimentalTestData {
 
     static class SubConstClass extends ConstClass {
 
-        @Override
-        public final String toString() {
-            final String s = "1";
-            final var s2= "2";
-            var s3 = "3";
-            return s + s2 + s3;
-        }
+    }
+
+    static final class SubConstClass2 extends ConstClass {
+
     }
 }

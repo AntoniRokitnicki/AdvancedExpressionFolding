@@ -1,5 +1,6 @@
 package com.intellij.advancedExpressionFolding
 
+import com.intellij.advancedExpressionFolding.extension.Consts.Emoji
 import com.intellij.advancedExpressionFolding.extension.methodcall.MethodCallFactory
 
 class AdvancedExpressionFoldingOptionsProvider : AbstractExpressionFoldingOptionsProvider() {
@@ -180,8 +181,15 @@ class AdvancedExpressionFoldingOptionsProvider : AbstractExpressionFoldingOption
                 "NullableAnnotationCheckNotNullTestData.java" to "checkNotNull"
             )
         )
+        checkBox("Remove the 'final' modifier from all elements except fields",
+            state::finalRemoval,
+            mapOf("FinalRemovalTestData.java" to null),
+        )
+        checkBox("Replace the 'final' modifier with "+ Emoji.LOCK,
+            state::finalEmoji,
+            mapOf("FinalEmojiTestData.java" to null),
+        )
         // NEW OPTION
-
 
         checkBox(
             "Memory improvements(experimental)",

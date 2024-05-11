@@ -98,7 +98,7 @@ public class LocalDateTestData {
     }
 
     public static class CustomClass {
-        private final long timestamp;
+        private final long timestamp
 
         public CustomClass() {
             this.timestamp = System.currentTimeMillis()
@@ -114,7 +114,7 @@ public class LocalDateTestData {
     }
 
     public class CustomClass2  {
-        private final java.time.chrono.MinguoDate minguoDate;
+        private final java.time.chrono.MinguoDate minguoDate
 
         public CustomClass2() {
             this.minguoDate = java.time.chrono.MinguoDate.now()

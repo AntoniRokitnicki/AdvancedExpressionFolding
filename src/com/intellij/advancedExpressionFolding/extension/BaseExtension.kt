@@ -37,5 +37,4 @@ abstract class BaseExtension : AdvancedExpressionFoldingSettings.StateDelegate()
         context: Context
     ) = expressions.map { getAnyExpression(it, context.document) }
 
-
 }

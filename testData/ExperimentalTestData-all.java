@@ -37,18 +37,18 @@ public class ExperimentalTestData {
         }</fold>
 
         public ConstClass(boolean ok)<fold text=' { ' expand='false'> {
-            </fold>this.ok = ok;<fold text=' }' expand='false'>
+            </fold>this.ok = <fold text='<<' expand='false'>ok</fold>;<fold text=' }' expand='false'>
         }</fold>
 
         public ConstClass(boolean ok, String string) <fold text='{...}' expand='true'>{
-            this.ok = ok;
-            this.string = string;
+            this.ok = <fold text='<<' expand='false'>ok</fold>;
+            this.string = <fold text='<<' expand='false'>string</fold>;
         }</fold><fold text='' expand='false'>
 
         </fold><fold text='' expand='false'>@Override
         public String toString() <fold text='{...}' expand='true'>{
-            return new StringJoiner(", ", ConstClass.class.getSimpleName() + "[", "]")
-                    .add("string='" + string + "'")
+            return new StringJoiner(", ",<fold text=' "${' expand='false'> </fold>ConstClass.class.<fold text='simpleName' expand='false'>getSimpleName()</fold><fold text='}' expand='false'> + "</fold>[", "]")
+                    .add("string='<fold text='$' expand='false'>" + </fold>string<fold text='' expand='false'> + "</fold>'")
                     .toString();
         }</fold></fold>
     }</fold>
@@ -57,10 +57,10 @@ public class ExperimentalTestData {
     static class SubConstClass extends ConstClass <fold text='{...}' expand='true'>{
 
         @Override
-        public final String toString() <fold text='{...}' expand='true'>{
-            final String s = "1";
-            final var s2= "2";
-            var s3 = "3";
+        public <fold text='' expand='false'>final</fold> String toString() <fold text='{...}' expand='true'>{
+            <fold text='' expand='false'><fold text='val' expand='false'>final</fold> String</fold> s = "1";
+            <fold text='' expand='false'><fold text='val' expand='false'>final</fold> var</fold> s2= "2";
+            <fold text='val' expand='false'>var</fold> s3 = "3";
             return s + s2 + s3;
         }</fold>
     }</fold>

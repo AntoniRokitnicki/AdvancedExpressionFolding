@@ -254,7 +254,7 @@ public interface Consts {
     };
 
 
-    enum SYMBOLS {
+    enum Emoji {
         STONE_FACE("\uD83D\uDDFF"), // 🗿
         LOCK("\uD83D\uDD12"), //🔒
         OVERRIDE1("⇡"),
@@ -264,12 +264,15 @@ public interface Consts {
         RANDOM("\uD83C\uDFB2"), //🎲
         MAGIC("✨"),
         EYES("\uD83D\uDC40"), //👀
+        SHILD("\uD83D\uDEE1\uFE0F"), //🛡️
+        PIN("\uD83D\uDCCD"), //📍
+        MAN_STANDING("\uD83E\uDDCD")// 🧍
 
         ;
 
         private final String unicode;
 
-        SYMBOLS(String unicode) {
+        Emoji(String unicode) {
             this.unicode = unicode;
         }
 
