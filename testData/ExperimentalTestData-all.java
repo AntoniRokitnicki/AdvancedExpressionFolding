@@ -46,12 +46,12 @@ public class ExperimentalTestData {
         }</fold>
 
         public ConstClass(boolean ok)<fold text=' { ' expand='false'> {
-            </fold>this.ok = ok;<fold text=' }' expand='false'>
+            </fold>this.ok = <fold text='<<' expand='false'>ok</fold>;<fold text=' }' expand='false'>
         }</fold>
 
         public ConstClass(boolean ok, String string) <fold text='{...}' expand='true'>{
-            this.ok = ok;
-            this.string = string;
+            this.ok = <fold text='<<' expand='false'>ok</fold>;
+            this.string = <fold text='<<' expand='false'>string</fold>;
         }</fold>
     }</fold>
     static class SubConstClass extends ConstClass <fold text='{...}' expand='true'>{

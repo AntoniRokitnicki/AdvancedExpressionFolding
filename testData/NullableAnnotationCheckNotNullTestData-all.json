@@ -1,5 +1,5 @@
 {
-  "size" : 125,
+  "size" : 137,
   "list" : [ {
     "id" : 0,
     "text" : "\n\n    ",
@@ -9,7 +9,8 @@
       "end" : 169,
       "size" : 6
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 0
   }, {
     "id" : 1,
     "text" : "public String getSaaa() {\n        return saaa;\n    }",
@@ -19,7 +20,8 @@
       "end" : 221,
       "size" : 52
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 0
   }, {
     "id" : 2,
     "text" : "@",
@@ -29,7 +31,8 @@
       "end" : 60,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 0
   }, {
     "id" : 3,
     "text" : "Preconditions.checkNotNull(args);",
@@ -39,7 +42,8 @@
       "end" : 399,
       "size" : 33
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 1
   }, {
     "id" : 4,
     "text" : "\n            ",
@@ -49,7 +53,8 @@
       "end" : 366,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 1
   }, {
     "id" : 5,
     "text" : " ",
@@ -59,7 +64,8 @@
       "end" : 286,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 2
   }, {
     "id" : 6,
     "text" : "Preconditions.checkNotNull(l);",
@@ -69,7 +75,8 @@
       "end" : 442,
       "size" : 30
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 3
   }, {
     "id" : 7,
     "text" : "\n            ",
@@ -79,7 +86,8 @@
       "end" : 412,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 3
   }, {
     "id" : 8,
     "text" : " ",
@@ -89,7 +97,8 @@
       "end" : 307,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 4
   }, {
     "id" : 9,
     "text" : "Preconditions.checkNotNull(",
@@ -99,7 +108,8 @@
       "end" : 393,
       "size" : 27
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 5
   }, {
     "id" : 10,
     "text" : ")",
@@ -109,7 +119,8 @@
       "end" : 398,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 5
   }, {
     "id" : 11,
     "text" : "Preconditions.checkNotNull(",
@@ -119,7 +130,8 @@
       "end" : 439,
       "size" : 27
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 6
   }, {
     "id" : 12,
     "text" : ")",
@@ -129,7 +141,8 @@
       "end" : 441,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 6
   }, {
     "id" : 13,
     "text" : "Preconditions.checkNotNull(",
@@ -139,7 +152,8 @@
       "end" : 482,
       "size" : 27
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 7
   }, {
     "id" : 14,
     "text" : ")",
@@ -149,7 +163,8 @@
       "end" : 494,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 7
   }, {
     "id" : 15,
     "text" : "getSaaa()",
@@ -159,7 +174,8 @@
       "end" : 493,
       "size" : 9
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "Getter",
+    "groupReference" : 8
   }, {
     "id" : 16,
     "text" : "Preconditions.checkNotNull(",
@@ -169,7 +185,8 @@
       "end" : 535,
       "size" : 27
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 9
   }, {
     "id" : 17,
     "text" : ")",
@@ -179,7 +196,8 @@
       "end" : 537,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 9
   }, {
     "id" : 18,
     "text" : "Preconditions.checkNotNull(args, \"args are null\");",
@@ -189,7 +207,8 @@
       "end" : 750,
       "size" : 50
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 10
   }, {
     "id" : 19,
     "text" : "\n            ",
@@ -199,7 +218,8 @@
       "end" : 700,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 10
   }, {
     "id" : 20,
     "text" : " ",
@@ -209,7 +229,8 @@
       "end" : 620,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 11
   }, {
     "id" : 21,
     "text" : "Preconditions.checkNotNull(l, \"l is null\");",
@@ -219,7 +240,8 @@
       "end" : 806,
       "size" : 43
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 12
   }, {
     "id" : 22,
     "text" : "\n            ",
@@ -229,7 +251,8 @@
       "end" : 763,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 12
   }, {
     "id" : 23,
     "text" : " ",
@@ -239,7 +262,8 @@
       "end" : 641,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 13
   }, {
     "id" : 24,
     "text" : "Preconditions.checkNotNull(",
@@ -249,7 +273,8 @@
       "end" : 727,
       "size" : 27
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 14
   }, {
     "id" : 25,
     "text" : ", \"args are null\")",
@@ -259,7 +284,8 @@
       "end" : 749,
       "size" : 18
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 14
   }, {
     "id" : 26,
     "text" : "Preconditions.checkNotNull(",
@@ -269,7 +295,8 @@
       "end" : 790,
       "size" : 27
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 15
   }, {
     "id" : 27,
     "text" : ", \"l is null\")",
@@ -279,7 +306,8 @@
       "end" : 805,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 15
   }, {
     "id" : 28,
     "text" : "Preconditions.checkNotNull(",
@@ -289,7 +317,8 @@
       "end" : 846,
       "size" : 27
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 16
   }, {
     "id" : 29,
     "text" : ", \"o is null\")",
@@ -299,7 +328,8 @@
       "end" : 871,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 16
   }, {
     "id" : 30,
     "text" : "getSaaa()",
@@ -309,7 +339,8 @@
       "end" : 857,
       "size" : 9
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "Getter",
+    "groupReference" : 17
   }, {
     "id" : 31,
     "text" : "Preconditions.checkNotNull(",
@@ -319,7 +350,8 @@
       "end" : 912,
       "size" : 27
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 18
   }, {
     "id" : 32,
     "text" : ", \"o is null\")",
@@ -329,926 +361,1151 @@
       "end" : 927,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 18
   }, {
     "id" : 33,
     "text" : "Preconditions.checkNotNull(args);",
     "placeholder" : "",
     "range" : {
-      "start" : 1134,
-      "end" : 1167,
+      "start" : 1145,
+      "end" : 1178,
       "size" : 33
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 19
   }, {
     "id" : 34,
     "text" : "\n            ",
     "placeholder" : "",
     "range" : {
-      "start" : 1121,
-      "end" : 1134,
+      "start" : 1132,
+      "end" : 1145,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 19
   }, {
     "id" : 35,
     "text" : " ",
     "placeholder" : "!!! ",
     "range" : {
-      "start" : 1023,
-      "end" : 1024,
+      "start" : 1034,
+      "end" : 1035,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 20
   }, {
     "id" : 36,
     "text" : " ",
     "placeholder" : "? ",
     "range" : {
-      "start" : 1046,
-      "end" : 1047,
+      "start" : 1057,
+      "end" : 1058,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 21
   }, {
     "id" : 37,
+    "text" : " ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1050,
+      "end" : 1051,
+      "size" : 1
+    },
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 21
+  }, {
+    "id" : 38,
     "text" : "@Nullable",
     "placeholder" : "",
     "range" : {
-      "start" : 1030,
-      "end" : 1039,
+      "start" : 1041,
+      "end" : 1050,
       "size" : 9
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 21
   }, {
-    "id" : 38,
+    "id" : 39,
     "text" : "Preconditions.checkNotNull(l);",
     "placeholder" : "",
     "range" : {
-      "start" : 1180,
-      "end" : 1210,
+      "start" : 1191,
+      "end" : 1221,
       "size" : 30
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 22
   }, {
-    "id" : 39,
+    "id" : 40,
     "text" : "\n            ",
     "placeholder" : "",
     "range" : {
-      "start" : 1167,
-      "end" : 1180,
+      "start" : 1178,
+      "end" : 1191,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
-  }, {
-    "id" : 40,
-    "text" : " ",
-    "placeholder" : "!!! ",
-    "range" : {
-      "start" : 1064,
-      "end" : 1065,
-      "size" : 1
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 22
   }, {
     "id" : 41,
     "text" : " ",
-    "placeholder" : "? ",
+    "placeholder" : "!!! ",
     "range" : {
-      "start" : 1116,
-      "end" : 1117,
+      "start" : 1075,
+      "end" : 1076,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 23
   }, {
     "id" : 42,
+    "text" : " ",
+    "placeholder" : "? ",
+    "range" : {
+      "start" : 1127,
+      "end" : 1128,
+      "size" : 1
+    },
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 24
+  }, {
+    "id" : 43,
+    "text" : " ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1088,
+      "end" : 1089,
+      "size" : 1
+    },
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 24
+  }, {
+    "id" : 44,
     "text" : "@Nullable",
     "placeholder" : "",
     "range" : {
-      "start" : 1068,
-      "end" : 1077,
+      "start" : 1079,
+      "end" : 1088,
       "size" : 9
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
-  }, {
-    "id" : 43,
-    "text" : "Preconditions.checkNotNull(",
-    "placeholder" : "",
-    "range" : {
-      "start" : 1134,
-      "end" : 1161,
-      "size" : 27
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
-  }, {
-    "id" : 44,
-    "text" : ")",
-    "placeholder" : "!!",
-    "range" : {
-      "start" : 1165,
-      "end" : 1166,
-      "size" : 1
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 24
   }, {
     "id" : 45,
     "text" : "Preconditions.checkNotNull(",
     "placeholder" : "",
     "range" : {
-      "start" : 1180,
-      "end" : 1207,
+      "start" : 1145,
+      "end" : 1172,
       "size" : 27
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 25
   }, {
     "id" : 46,
     "text" : ")",
     "placeholder" : "!!",
     "range" : {
-      "start" : 1208,
-      "end" : 1209,
+      "start" : 1176,
+      "end" : 1177,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 25
   }, {
     "id" : 47,
     "text" : "Preconditions.checkNotNull(",
     "placeholder" : "",
     "range" : {
-      "start" : 1223,
-      "end" : 1250,
+      "start" : 1191,
+      "end" : 1218,
       "size" : 27
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 26
   }, {
     "id" : 48,
     "text" : ")",
     "placeholder" : "!!",
     "range" : {
-      "start" : 1261,
-      "end" : 1262,
+      "start" : 1219,
+      "end" : 1220,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 26
   }, {
     "id" : 49,
-    "text" : "getSaaa()",
-    "placeholder" : "saaa",
-    "range" : {
-      "start" : 1252,
-      "end" : 1261,
-      "size" : 9
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
-  }, {
-    "id" : 50,
     "text" : "Preconditions.checkNotNull(",
     "placeholder" : "",
     "range" : {
-      "start" : 1276,
-      "end" : 1303,
+      "start" : 1234,
+      "end" : 1261,
       "size" : 27
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 27
   }, {
-    "id" : 51,
+    "id" : 50,
     "text" : ")",
     "placeholder" : "!!",
     "range" : {
-      "start" : 1304,
-      "end" : 1305,
+      "start" : 1272,
+      "end" : 1273,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 27
+  }, {
+    "id" : 51,
+    "text" : "getSaaa()",
+    "placeholder" : "saaa",
+    "range" : {
+      "start" : 1263,
+      "end" : 1272,
+      "size" : 9
+    },
+    "group" : "Getter",
+    "groupReference" : 28
   }, {
     "id" : 52,
+    "text" : "Preconditions.checkNotNull(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1287,
+      "end" : 1314,
+      "size" : 27
+    },
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 29
+  }, {
+    "id" : 53,
+    "text" : ")",
+    "placeholder" : "!!",
+    "range" : {
+      "start" : 1315,
+      "end" : 1316,
+      "size" : 1
+    },
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 29
+  }, {
+    "id" : 54,
     "text" : "Preconditions.checkNotNull(args, \"args are null\");",
     "placeholder" : "",
     "range" : {
-      "start" : 1516,
-      "end" : 1566,
+      "start" : 1541,
+      "end" : 1591,
       "size" : 50
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 30
   }, {
-    "id" : 53,
+    "id" : 55,
     "text" : "\n            ",
     "placeholder" : "",
     "range" : {
-      "start" : 1503,
-      "end" : 1516,
+      "start" : 1528,
+      "end" : 1541,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 30
   }, {
-    "id" : 54,
+    "id" : 56,
     "text" : " ",
     "placeholder" : "!!! ",
     "range" : {
-      "start" : 1405,
-      "end" : 1406,
+      "start" : 1430,
+      "end" : 1431,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 31
   }, {
-    "id" : 55,
+    "id" : 57,
     "text" : " ",
     "placeholder" : "? ",
     "range" : {
-      "start" : 1428,
-      "end" : 1429,
+      "start" : 1453,
+      "end" : 1454,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
-  }, {
-    "id" : 56,
-    "text" : "@Nullable",
-    "placeholder" : "",
-    "range" : {
-      "start" : 1412,
-      "end" : 1421,
-      "size" : 9
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
-  }, {
-    "id" : 57,
-    "text" : "Preconditions.checkNotNull(l, \"l is null\");",
-    "placeholder" : "",
-    "range" : {
-      "start" : 1579,
-      "end" : 1622,
-      "size" : 43
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 32
   }, {
     "id" : 58,
-    "text" : "\n            ",
-    "placeholder" : "",
-    "range" : {
-      "start" : 1566,
-      "end" : 1579,
-      "size" : 13
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
-  }, {
-    "id" : 59,
     "text" : " ",
-    "placeholder" : "!!! ",
+    "placeholder" : "",
     "range" : {
       "start" : 1446,
       "end" : 1447,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 32
   }, {
-    "id" : 60,
-    "text" : " ",
-    "placeholder" : "? ",
-    "range" : {
-      "start" : 1498,
-      "end" : 1499,
-      "size" : 1
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
-  }, {
-    "id" : 61,
+    "id" : 59,
     "text" : "@Nullable",
     "placeholder" : "",
     "range" : {
-      "start" : 1450,
-      "end" : 1459,
+      "start" : 1437,
+      "end" : 1446,
       "size" : 9
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 32
+  }, {
+    "id" : 60,
+    "text" : "Preconditions.checkNotNull(l, \"l is null\");",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1604,
+      "end" : 1647,
+      "size" : 43
+    },
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 33
+  }, {
+    "id" : 61,
+    "text" : "\n            ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1591,
+      "end" : 1604,
+      "size" : 13
+    },
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 33
   }, {
     "id" : 62,
-    "text" : "Preconditions.checkNotNull(",
-    "placeholder" : "",
+    "text" : " ",
+    "placeholder" : "!!! ",
     "range" : {
-      "start" : 1516,
-      "end" : 1543,
-      "size" : 27
+      "start" : 1471,
+      "end" : 1472,
+      "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 34
   }, {
     "id" : 63,
-    "text" : ", \"args are null\")",
-    "placeholder" : "!!",
+    "text" : " ",
+    "placeholder" : "? ",
     "range" : {
-      "start" : 1547,
-      "end" : 1565,
-      "size" : 18
+      "start" : 1523,
+      "end" : 1524,
+      "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 35
   }, {
     "id" : 64,
-    "text" : "Preconditions.checkNotNull(",
+    "text" : " ",
     "placeholder" : "",
     "range" : {
-      "start" : 1579,
-      "end" : 1606,
-      "size" : 27
+      "start" : 1484,
+      "end" : 1485,
+      "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 35
   }, {
     "id" : 65,
-    "text" : ", \"l is null\")",
-    "placeholder" : "!!",
+    "text" : "@Nullable",
+    "placeholder" : "",
     "range" : {
-      "start" : 1607,
-      "end" : 1621,
-      "size" : 14
+      "start" : 1475,
+      "end" : 1484,
+      "size" : 9
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 35
   }, {
     "id" : 66,
     "text" : "Preconditions.checkNotNull(",
     "placeholder" : "",
     "range" : {
-      "start" : 1635,
-      "end" : 1662,
+      "start" : 1541,
+      "end" : 1568,
       "size" : 27
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 36
   }, {
     "id" : 67,
+    "text" : ", \"args are null\")",
+    "placeholder" : "!!",
+    "range" : {
+      "start" : 1572,
+      "end" : 1590,
+      "size" : 18
+    },
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 36
+  }, {
+    "id" : 68,
+    "text" : "Preconditions.checkNotNull(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1604,
+      "end" : 1631,
+      "size" : 27
+    },
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 37
+  }, {
+    "id" : 69,
+    "text" : ", \"l is null\")",
+    "placeholder" : "!!",
+    "range" : {
+      "start" : 1632,
+      "end" : 1646,
+      "size" : 14
+    },
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 37
+  }, {
+    "id" : 70,
+    "text" : "Preconditions.checkNotNull(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1660,
+      "end" : 1687,
+      "size" : 27
+    },
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 38
+  }, {
+    "id" : 71,
     "text" : ", \"o is null\")",
     "placeholder" : "!!",
     "range" : {
-      "start" : 1673,
-      "end" : 1687,
+      "start" : 1698,
+      "end" : 1712,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 38
   }, {
-    "id" : 68,
+    "id" : 72,
     "text" : "getSaaa()",
     "placeholder" : "saaa",
     "range" : {
-      "start" : 1664,
-      "end" : 1673,
+      "start" : 1689,
+      "end" : 1698,
       "size" : 9
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
-  }, {
-    "id" : 69,
-    "text" : "Preconditions.checkNotNull(",
-    "placeholder" : "",
-    "range" : {
-      "start" : 1701,
-      "end" : 1728,
-      "size" : 27
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
-  }, {
-    "id" : 70,
-    "text" : ", \"o is null\")",
-    "placeholder" : "!!",
-    "range" : {
-      "start" : 1729,
-      "end" : 1743,
-      "size" : 14
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
-  }, {
-    "id" : 71,
-    "text" : "Preconditions.checkNotNull(",
-    "placeholder" : "",
-    "range" : {
-      "start" : 2067,
-      "end" : 2094,
-      "size" : 27
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
-  }, {
-    "id" : 72,
-    "text" : ")",
-    "placeholder" : "!!",
-    "range" : {
-      "start" : 2098,
-      "end" : 2099,
-      "size" : 1
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "Getter",
+    "groupReference" : 39
   }, {
     "id" : 73,
     "text" : "Preconditions.checkNotNull(",
     "placeholder" : "",
     "range" : {
-      "start" : 2122,
-      "end" : 2149,
+      "start" : 1726,
+      "end" : 1753,
       "size" : 27
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 40
   }, {
     "id" : 74,
-    "text" : ")",
+    "text" : ", \"o is null\")",
     "placeholder" : "!!",
     "range" : {
-      "start" : 2150,
-      "end" : 2151,
-      "size" : 1
+      "start" : 1754,
+      "end" : 1768,
+      "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 40
   }, {
     "id" : 75,
     "text" : "Preconditions.checkNotNull(",
     "placeholder" : "",
     "range" : {
-      "start" : 2177,
-      "end" : 2204,
+      "start" : 2091,
+      "end" : 2118,
       "size" : 27
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 41
   }, {
     "id" : 76,
     "text" : ")",
     "placeholder" : "!!",
     "range" : {
-      "start" : 2215,
-      "end" : 2216,
+      "start" : 2122,
+      "end" : 2123,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 41
   }, {
     "id" : 77,
-    "text" : "getSaaa()",
-    "placeholder" : "saaa",
-    "range" : {
-      "start" : 2206,
-      "end" : 2215,
-      "size" : 9
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
-  }, {
-    "id" : 78,
     "text" : "Preconditions.checkNotNull(",
     "placeholder" : "",
     "range" : {
-      "start" : 2239,
-      "end" : 2266,
+      "start" : 2146,
+      "end" : 2173,
       "size" : 27
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 42
   }, {
-    "id" : 79,
+    "id" : 78,
     "text" : ")",
     "placeholder" : "!!",
     "range" : {
-      "start" : 2267,
-      "end" : 2268,
+      "start" : 2174,
+      "end" : 2175,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 42
   }, {
-    "id" : 80,
+    "id" : 79,
     "text" : "Preconditions.checkNotNull(",
     "placeholder" : "",
     "range" : {
-      "start" : 2436,
-      "end" : 2463,
+      "start" : 2201,
+      "end" : 2228,
       "size" : 27
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 43
   }, {
-    "id" : 81,
-    "text" : ", \"args are null\")",
+    "id" : 80,
+    "text" : ")",
     "placeholder" : "!!",
     "range" : {
-      "start" : 2467,
-      "end" : 2485,
-      "size" : 18
+      "start" : 2239,
+      "end" : 2240,
+      "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 43
+  }, {
+    "id" : 81,
+    "text" : "getSaaa()",
+    "placeholder" : "saaa",
+    "range" : {
+      "start" : 2230,
+      "end" : 2239,
+      "size" : 9
+    },
+    "group" : "Getter",
+    "groupReference" : 44
   }, {
     "id" : 82,
     "text" : "Preconditions.checkNotNull(",
     "placeholder" : "",
     "range" : {
-      "start" : 2508,
-      "end" : 2535,
+      "start" : 2263,
+      "end" : 2290,
       "size" : 27
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 45
   }, {
     "id" : 83,
-    "text" : ", \"l is null\")",
+    "text" : ")",
     "placeholder" : "!!",
     "range" : {
-      "start" : 2536,
-      "end" : 2550,
-      "size" : 14
+      "start" : 2291,
+      "end" : 2292,
+      "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 45
   }, {
     "id" : 84,
     "text" : "Preconditions.checkNotNull(",
     "placeholder" : "",
     "range" : {
-      "start" : 2576,
-      "end" : 2603,
+      "start" : 2460,
+      "end" : 2487,
       "size" : 27
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 46
   }, {
     "id" : 85,
-    "text" : ", \"saaa is null\")",
+    "text" : ", \"args are null\")",
     "placeholder" : "!!",
     "range" : {
-      "start" : 2614,
-      "end" : 2631,
-      "size" : 17
+      "start" : 2491,
+      "end" : 2509,
+      "size" : 18
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 46
   }, {
     "id" : 86,
-    "text" : "getSaaa()",
-    "placeholder" : "saaa",
-    "range" : {
-      "start" : 2605,
-      "end" : 2614,
-      "size" : 9
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
-  }, {
-    "id" : 87,
     "text" : "Preconditions.checkNotNull(",
     "placeholder" : "",
     "range" : {
-      "start" : 2654,
-      "end" : 2681,
+      "start" : 2532,
+      "end" : 2559,
       "size" : 27
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 47
+  }, {
+    "id" : 87,
+    "text" : ", \"l is null\")",
+    "placeholder" : "!!",
+    "range" : {
+      "start" : 2560,
+      "end" : 2574,
+      "size" : 14
+    },
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 47
   }, {
     "id" : 88,
+    "text" : "Preconditions.checkNotNull(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2600,
+      "end" : 2627,
+      "size" : 27
+    },
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 48
+  }, {
+    "id" : 89,
+    "text" : ", \"saaa is null\")",
+    "placeholder" : "!!",
+    "range" : {
+      "start" : 2638,
+      "end" : 2655,
+      "size" : 17
+    },
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 48
+  }, {
+    "id" : 90,
+    "text" : "getSaaa()",
+    "placeholder" : "saaa",
+    "range" : {
+      "start" : 2629,
+      "end" : 2638,
+      "size" : 9
+    },
+    "group" : "Getter",
+    "groupReference" : 49
+  }, {
+    "id" : 91,
+    "text" : "Preconditions.checkNotNull(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2678,
+      "end" : 2705,
+      "size" : 27
+    },
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 50
+  }, {
+    "id" : 92,
     "text" : ", \"o is null\")",
     "placeholder" : "!!",
     "range" : {
-      "start" : 2682,
-      "end" : 2696,
+      "start" : 2706,
+      "end" : 2720,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
-  }, {
-    "id" : 89,
-    "text" : " ",
-    "placeholder" : "? ",
-    "range" : {
-      "start" : 2785,
-      "end" : 2786,
-      "size" : 1
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
-  }, {
-    "id" : 90,
-    "text" : "@Nullable",
-    "placeholder" : "",
-    "range" : {
-      "start" : 2769,
-      "end" : 2778,
-      "size" : 9
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
-  }, {
-    "id" : 91,
-    "text" : " ",
-    "placeholder" : "? ",
-    "range" : {
-      "start" : 2808,
-      "end" : 2809,
-      "size" : 1
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
-  }, {
-    "id" : 92,
-    "text" : "@Nullable",
-    "placeholder" : "",
-    "range" : {
-      "start" : 2792,
-      "end" : 2801,
-      "size" : 9
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 50
   }, {
     "id" : 93,
     "text" : " ",
     "placeholder" : "? ",
     "range" : {
-      "start" : 2826,
-      "end" : 2827,
+      "start" : 2809,
+      "end" : 2810,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 51
   }, {
     "id" : 94,
+    "text" : " ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2802,
+      "end" : 2803,
+      "size" : 1
+    },
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 51
+  }, {
+    "id" : 95,
     "text" : "@Nullable",
     "placeholder" : "",
     "range" : {
-      "start" : 2812,
-      "end" : 2821,
+      "start" : 2793,
+      "end" : 2802,
       "size" : 9
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 51
   }, {
-    "id" : 95,
+    "id" : 96,
     "text" : " ",
     "placeholder" : "? ",
     "range" : {
-      "start" : 2878,
-      "end" : 2879,
+      "start" : 2832,
+      "end" : 2833,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 52
   }, {
-    "id" : 96,
+    "id" : 97,
+    "text" : " ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2825,
+      "end" : 2826,
+      "size" : 1
+    },
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 52
+  }, {
+    "id" : 98,
     "text" : "@Nullable",
     "placeholder" : "",
     "range" : {
-      "start" : 2830,
-      "end" : 2839,
+      "start" : 2816,
+      "end" : 2825,
       "size" : 9
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
-  }, {
-    "id" : 97,
-    "text" : "Preconditions.checkNotNull(",
-    "placeholder" : "",
-    "range" : {
-      "start" : 2908,
-      "end" : 2935,
-      "size" : 27
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
-  }, {
-    "id" : 98,
-    "text" : ")",
-    "placeholder" : "!!",
-    "range" : {
-      "start" : 2939,
-      "end" : 2940,
-      "size" : 1
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 52
   }, {
     "id" : 99,
-    "text" : "Preconditions.checkNotNull(",
-    "placeholder" : "",
+    "text" : " ",
+    "placeholder" : "? ",
     "range" : {
-      "start" : 2963,
-      "end" : 2990,
-      "size" : 27
+      "start" : 2850,
+      "end" : 2851,
+      "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 53
   }, {
     "id" : 100,
-    "text" : ")",
-    "placeholder" : "!!",
+    "text" : " ",
+    "placeholder" : "",
     "range" : {
-      "start" : 2991,
-      "end" : 2992,
+      "start" : 2845,
+      "end" : 2846,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 53
   }, {
     "id" : 101,
+    "text" : "@Nullable",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2836,
+      "end" : 2845,
+      "size" : 9
+    },
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 53
+  }, {
+    "id" : 102,
+    "text" : " ",
+    "placeholder" : "? ",
+    "range" : {
+      "start" : 2902,
+      "end" : 2903,
+      "size" : 1
+    },
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 54
+  }, {
+    "id" : 103,
+    "text" : " ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2863,
+      "end" : 2864,
+      "size" : 1
+    },
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 54
+  }, {
+    "id" : 104,
+    "text" : "@Nullable",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2854,
+      "end" : 2863,
+      "size" : 9
+    },
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 54
+  }, {
+    "id" : 105,
     "text" : "Preconditions.checkNotNull(",
     "placeholder" : "",
     "range" : {
-      "start" : 3018,
-      "end" : 3045,
+      "start" : 2932,
+      "end" : 2959,
       "size" : 27
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 55
   }, {
-    "id" : 102,
+    "id" : 106,
     "text" : ")",
     "placeholder" : "!!",
     "range" : {
-      "start" : 3056,
-      "end" : 3057,
+      "start" : 2963,
+      "end" : 2964,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 55
   }, {
-    "id" : 103,
+    "id" : 107,
+    "text" : "Preconditions.checkNotNull(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2987,
+      "end" : 3014,
+      "size" : 27
+    },
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 56
+  }, {
+    "id" : 108,
+    "text" : ")",
+    "placeholder" : "!!",
+    "range" : {
+      "start" : 3015,
+      "end" : 3016,
+      "size" : 1
+    },
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 56
+  }, {
+    "id" : 109,
+    "text" : "Preconditions.checkNotNull(",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3042,
+      "end" : 3069,
+      "size" : 27
+    },
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 57
+  }, {
+    "id" : 110,
+    "text" : ")",
+    "placeholder" : "!!",
+    "range" : {
+      "start" : 3080,
+      "end" : 3081,
+      "size" : 1
+    },
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 57
+  }, {
+    "id" : 111,
     "text" : "getSaaa()",
     "placeholder" : "saaa",
     "range" : {
-      "start" : 3047,
-      "end" : 3056,
+      "start" : 3071,
+      "end" : 3080,
       "size" : 9
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "Getter",
+    "groupReference" : 58
   }, {
-    "id" : 104,
+    "id" : 112,
     "text" : "Preconditions.checkNotNull(",
     "placeholder" : "",
     "range" : {
-      "start" : 3080,
-      "end" : 3107,
+      "start" : 3104,
+      "end" : 3131,
       "size" : 27
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 59
   }, {
-    "id" : 105,
+    "id" : 113,
     "text" : ")",
     "placeholder" : "!!",
     "range" : {
-      "start" : 3108,
-      "end" : 3109,
+      "start" : 3132,
+      "end" : 3133,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
-  }, {
-    "id" : 106,
-    "text" : " ",
-    "placeholder" : "? ",
-    "range" : {
-      "start" : 3202,
-      "end" : 3203,
-      "size" : 1
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
-  }, {
-    "id" : 107,
-    "text" : "@Nullable",
-    "placeholder" : "",
-    "range" : {
-      "start" : 3186,
-      "end" : 3195,
-      "size" : 9
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
-  }, {
-    "id" : 108,
-    "text" : " ",
-    "placeholder" : "? ",
-    "range" : {
-      "start" : 3225,
-      "end" : 3226,
-      "size" : 1
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
-  }, {
-    "id" : 109,
-    "text" : "@Nullable",
-    "placeholder" : "",
-    "range" : {
-      "start" : 3209,
-      "end" : 3218,
-      "size" : 9
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
-  }, {
-    "id" : 110,
-    "text" : " ",
-    "placeholder" : "? ",
-    "range" : {
-      "start" : 3243,
-      "end" : 3244,
-      "size" : 1
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
-  }, {
-    "id" : 111,
-    "text" : "@Nullable",
-    "placeholder" : "",
-    "range" : {
-      "start" : 3229,
-      "end" : 3238,
-      "size" : 9
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
-  }, {
-    "id" : 112,
-    "text" : " ",
-    "placeholder" : "? ",
-    "range" : {
-      "start" : 3295,
-      "end" : 3296,
-      "size" : 1
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
-  }, {
-    "id" : 113,
-    "text" : "@Nullable",
-    "placeholder" : "",
-    "range" : {
-      "start" : 3247,
-      "end" : 3256,
-      "size" : 9
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 59
   }, {
     "id" : 114,
+    "text" : " ",
+    "placeholder" : "? ",
+    "range" : {
+      "start" : 3226,
+      "end" : 3227,
+      "size" : 1
+    },
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 60
+  }, {
+    "id" : 115,
+    "text" : " ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3219,
+      "end" : 3220,
+      "size" : 1
+    },
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 60
+  }, {
+    "id" : 116,
+    "text" : "@Nullable",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3210,
+      "end" : 3219,
+      "size" : 9
+    },
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 60
+  }, {
+    "id" : 117,
+    "text" : " ",
+    "placeholder" : "? ",
+    "range" : {
+      "start" : 3249,
+      "end" : 3250,
+      "size" : 1
+    },
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 61
+  }, {
+    "id" : 118,
+    "text" : " ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3242,
+      "end" : 3243,
+      "size" : 1
+    },
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 61
+  }, {
+    "id" : 119,
+    "text" : "@Nullable",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3233,
+      "end" : 3242,
+      "size" : 9
+    },
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 61
+  }, {
+    "id" : 120,
+    "text" : " ",
+    "placeholder" : "? ",
+    "range" : {
+      "start" : 3267,
+      "end" : 3268,
+      "size" : 1
+    },
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 62
+  }, {
+    "id" : 121,
+    "text" : " ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3262,
+      "end" : 3263,
+      "size" : 1
+    },
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 62
+  }, {
+    "id" : 122,
+    "text" : "@Nullable",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3253,
+      "end" : 3262,
+      "size" : 9
+    },
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 62
+  }, {
+    "id" : 123,
+    "text" : " ",
+    "placeholder" : "? ",
+    "range" : {
+      "start" : 3319,
+      "end" : 3320,
+      "size" : 1
+    },
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 63
+  }, {
+    "id" : 124,
+    "text" : " ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3280,
+      "end" : 3281,
+      "size" : 1
+    },
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 63
+  }, {
+    "id" : 125,
+    "text" : "@Nullable",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3271,
+      "end" : 3280,
+      "size" : 9
+    },
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 63
+  }, {
+    "id" : 126,
     "text" : "Preconditions.checkNotNull(",
     "placeholder" : "",
     "range" : {
-      "start" : 3325,
-      "end" : 3352,
+      "start" : 3349,
+      "end" : 3376,
       "size" : 27
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 64
   }, {
-    "id" : 115,
+    "id" : 127,
     "text" : ", \"args are null\")",
     "placeholder" : "!!",
     "range" : {
-      "start" : 3356,
-      "end" : 3374,
+      "start" : 3380,
+      "end" : 3398,
       "size" : 18
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 64
   }, {
-    "id" : 116,
+    "id" : 128,
     "text" : "Preconditions.checkNotNull(",
     "placeholder" : "",
     "range" : {
-      "start" : 3397,
-      "end" : 3424,
+      "start" : 3421,
+      "end" : 3448,
       "size" : 27
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 65
   }, {
-    "id" : 117,
+    "id" : 129,
     "text" : ", \"l is null\")",
     "placeholder" : "!!",
     "range" : {
-      "start" : 3425,
-      "end" : 3439,
+      "start" : 3449,
+      "end" : 3463,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 65
   }, {
-    "id" : 118,
+    "id" : 130,
     "text" : "Preconditions.checkNotNull(",
     "placeholder" : "",
     "range" : {
-      "start" : 3465,
-      "end" : 3492,
+      "start" : 3489,
+      "end" : 3516,
       "size" : 27
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 66
   }, {
-    "id" : 119,
+    "id" : 131,
     "text" : ", \"saaa is null\")",
     "placeholder" : "!!",
     "range" : {
-      "start" : 3503,
-      "end" : 3520,
+      "start" : 3527,
+      "end" : 3544,
       "size" : 17
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 66
   }, {
-    "id" : 120,
+    "id" : 132,
     "text" : "getSaaa()",
     "placeholder" : "saaa",
     "range" : {
-      "start" : 3494,
-      "end" : 3503,
+      "start" : 3518,
+      "end" : 3527,
       "size" : 9
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "Getter",
+    "groupReference" : 67
   }, {
-    "id" : 121,
+    "id" : 133,
     "text" : "Preconditions.checkNotNull(",
     "placeholder" : "",
     "range" : {
-      "start" : 3543,
-      "end" : 3570,
+      "start" : 3567,
+      "end" : 3594,
       "size" : 27
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 68
   }, {
-    "id" : 122,
+    "id" : 134,
     "text" : ", \"o is null\")",
     "placeholder" : "!!",
     "range" : {
-      "start" : 3571,
-      "end" : 3585,
+      "start" : 3595,
+      "end" : 3609,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression"
+    "group" : "CheckNotNullExpression",
+    "groupReference" : 68
   }, {
-    "id" : 123,
+    "id" : 135,
     "text" : "(T) ",
     "placeholder" : "",
     "range" : {
-      "start" : 3783,
-      "end" : 3787,
+      "start" : 3807,
+      "end" : 3811,
       "size" : 4
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.TypeCast:highlighting"
+    "group" : "TypeCast:highlighting",
+    "groupReference" : 69
   }, {
-    "id" : 124,
+    "id" : 136,
     "text" : "(T) ",
     "placeholder" : "",
     "range" : {
-      "start" : 3867,
-      "end" : 3871,
+      "start" : 3891,
+      "end" : 3895,
       "size" : 4
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.TypeCast:highlighting"
+    "group" : "TypeCast:highlighting",
+    "groupReference" : 70
   } ]
 }

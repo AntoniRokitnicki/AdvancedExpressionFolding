@@ -1,5 +1,5 @@
 {
-  "size" : 41,
+  "size" : 45,
   "list" : [ {
     "id" : 0,
     "text" : "Data",
@@ -13,6 +13,28 @@
     "groupReference" : 0
   }, {
     "id" : 1,
+    "text" : ".get",
+    "placeholder" : ".getFirst",
+    "range" : {
+      "start" : 195,
+      "end" : 199,
+      "size" : 4
+    },
+    "group" : "Get",
+    "groupReference" : 1
+  }, {
+    "id" : 2,
+    "text" : "0",
+    "placeholder" : "",
+    "range" : {
+      "start" : 200,
+      "end" : 201,
+      "size" : 1
+    },
+    "group" : "Get",
+    "groupReference" : 1
+  }, {
+    "id" : 3,
     "text" : "Data ",
     "placeholder" : "val (",
     "range" : {
@@ -21,9 +43,9 @@
       "size" : 5
     },
     "group" : "WrapperExpression",
-    "groupReference" : 1
+    "groupReference" : 2
   }, {
-    "id" : 2,
+    "id" : 4,
     "text" : " = list.get(0);",
     "placeholder" : ", ",
     "range" : {
@@ -32,9 +54,9 @@
       "size" : 15
     },
     "group" : "WrapperExpression",
-    "groupReference" : 1
+    "groupReference" : 2
   }, {
-    "id" : 3,
+    "id" : 5,
     "text" : "\n        Data ",
     "placeholder" : "",
     "range" : {
@@ -43,9 +65,9 @@
       "size" : 14
     },
     "group" : "WrapperExpression",
-    "groupReference" : 1
+    "groupReference" : 2
   }, {
-    "id" : 4,
+    "id" : 6,
     "text" : " = list.get(1);",
     "placeholder" : ", ",
     "range" : {
@@ -54,9 +76,9 @@
       "size" : 15
     },
     "group" : "WrapperExpression",
-    "groupReference" : 1
+    "groupReference" : 2
   }, {
-    "id" : 5,
+    "id" : 7,
     "text" : "\n        Data ",
     "placeholder" : "",
     "range" : {
@@ -65,9 +87,9 @@
       "size" : 14
     },
     "group" : "WrapperExpression",
-    "groupReference" : 1
+    "groupReference" : 2
   }, {
-    "id" : 6,
+    "id" : 8,
     "text" : " = list.get(2);",
     "placeholder" : ", ",
     "range" : {
@@ -76,9 +98,9 @@
       "size" : 15
     },
     "group" : "WrapperExpression",
-    "groupReference" : 1
+    "groupReference" : 2
   }, {
-    "id" : 7,
+    "id" : 9,
     "text" : "\n        Data ",
     "placeholder" : "",
     "range" : {
@@ -87,9 +109,9 @@
       "size" : 14
     },
     "group" : "WrapperExpression",
-    "groupReference" : 1
+    "groupReference" : 2
   }, {
-    "id" : 8,
+    "id" : 10,
     "text" : " ",
     "placeholder" : ") ",
     "range" : {
@@ -98,9 +120,9 @@
       "size" : 1
     },
     "group" : "WrapperExpression",
-    "groupReference" : 1
+    "groupReference" : 2
   }, {
-    "id" : 9,
+    "id" : 11,
     "text" : ".get(3)",
     "placeholder" : "",
     "range" : {
@@ -109,9 +131,9 @@
       "size" : 7
     },
     "group" : "WrapperExpression",
-    "groupReference" : 1
+    "groupReference" : 2
   }, {
-    "id" : 10,
+    "id" : 12,
     "text" : "Data",
     "placeholder" : "val",
     "range" : {
@@ -120,9 +142,9 @@
       "size" : 4
     },
     "group" : "VariableDeclarationImpl",
-    "groupReference" : 2
+    "groupReference" : 3
   }, {
-    "id" : 11,
+    "id" : 13,
     "text" : "Data",
     "placeholder" : "val",
     "range" : {
@@ -131,9 +153,9 @@
       "size" : 4
     },
     "group" : "VariableDeclarationImpl",
-    "groupReference" : 3
+    "groupReference" : 4
   }, {
-    "id" : 12,
+    "id" : 14,
     "text" : "Data",
     "placeholder" : "val",
     "range" : {
@@ -142,9 +164,9 @@
       "size" : 4
     },
     "group" : "VariableDeclarationImpl",
-    "groupReference" : 4
+    "groupReference" : 5
   }, {
-    "id" : 13,
+    "id" : 15,
     "text" : "Data",
     "placeholder" : "val",
     "range" : {
@@ -153,9 +175,9 @@
       "size" : 4
     },
     "group" : "VariableDeclarationImpl",
-    "groupReference" : 5
+    "groupReference" : 6
   }, {
-    "id" : 14,
+    "id" : 16,
     "text" : "getList()",
     "placeholder" : "list",
     "range" : {
@@ -164,9 +186,9 @@
       "size" : 9
     },
     "group" : "Getter",
-    "groupReference" : 6
+    "groupReference" : 7
   }, {
-    "id" : 15,
+    "id" : 17,
     "text" : "Data",
     "placeholder" : "val",
     "range" : {
@@ -175,9 +197,9 @@
       "size" : 4
     },
     "group" : "VariableDeclarationImpl",
-    "groupReference" : 7
+    "groupReference" : 8
   }, {
-    "id" : 16,
+    "id" : 18,
     "text" : "getList()",
     "placeholder" : "list",
     "range" : {
@@ -186,9 +208,9 @@
       "size" : 9
     },
     "group" : "Getter",
-    "groupReference" : 8
+    "groupReference" : 9
   }, {
-    "id" : 17,
+    "id" : 19,
     "text" : "Data ",
     "placeholder" : "var (",
     "range" : {
@@ -197,9 +219,9 @@
       "size" : 5
     },
     "group" : "WrapperExpression",
-    "groupReference" : 9
+    "groupReference" : 10
   }, {
-    "id" : 18,
+    "id" : 20,
     "text" : " = data.getList().get(0);",
     "placeholder" : ", ",
     "range" : {
@@ -208,9 +230,9 @@
       "size" : 25
     },
     "group" : "WrapperExpression",
-    "groupReference" : 9
+    "groupReference" : 10
   }, {
-    "id" : 19,
+    "id" : 21,
     "text" : "\n        Data ",
     "placeholder" : "",
     "range" : {
@@ -219,9 +241,9 @@
       "size" : 14
     },
     "group" : "WrapperExpression",
-    "groupReference" : 9
+    "groupReference" : 10
   }, {
-    "id" : 20,
+    "id" : 22,
     "text" : " = data.getList().get(1);",
     "placeholder" : ", ",
     "range" : {
@@ -230,9 +252,9 @@
       "size" : 25
     },
     "group" : "WrapperExpression",
-    "groupReference" : 9
+    "groupReference" : 10
   }, {
-    "id" : 21,
+    "id" : 23,
     "text" : "\n        Data ",
     "placeholder" : "",
     "range" : {
@@ -241,9 +263,9 @@
       "size" : 14
     },
     "group" : "WrapperExpression",
-    "groupReference" : 9
+    "groupReference" : 10
   }, {
-    "id" : 22,
+    "id" : 24,
     "text" : " ",
     "placeholder" : ") ",
     "range" : {
@@ -252,9 +274,9 @@
       "size" : 1
     },
     "group" : "WrapperExpression",
-    "groupReference" : 9
+    "groupReference" : 10
   }, {
-    "id" : 23,
+    "id" : 25,
     "text" : ".get(2)",
     "placeholder" : "",
     "range" : {
@@ -263,9 +285,9 @@
       "size" : 7
     },
     "group" : "WrapperExpression",
-    "groupReference" : 9
+    "groupReference" : 10
   }, {
-    "id" : 24,
+    "id" : 26,
     "text" : "Data",
     "placeholder" : "val",
     "range" : {
@@ -274,9 +296,9 @@
       "size" : 4
     },
     "group" : "VariableDeclarationImpl",
-    "groupReference" : 10
+    "groupReference" : 11
   }, {
-    "id" : 25,
+    "id" : 27,
     "text" : "getList()",
     "placeholder" : "list",
     "range" : {
@@ -285,9 +307,9 @@
       "size" : 9
     },
     "group" : "Getter",
-    "groupReference" : 11
+    "groupReference" : 12
   }, {
-    "id" : 26,
+    "id" : 28,
     "text" : "Data",
     "placeholder" : "val",
     "range" : {
@@ -296,9 +318,9 @@
       "size" : 4
     },
     "group" : "VariableDeclarationImpl",
-    "groupReference" : 12
+    "groupReference" : 13
   }, {
-    "id" : 27,
+    "id" : 29,
     "text" : "getList()",
     "placeholder" : "list",
     "range" : {
@@ -307,9 +329,9 @@
       "size" : 9
     },
     "group" : "Getter",
-    "groupReference" : 13
+    "groupReference" : 14
   }, {
-    "id" : 28,
+    "id" : 30,
     "text" : "Data ",
     "placeholder" : "var (",
     "range" : {
@@ -318,9 +340,9 @@
       "size" : 5
     },
     "group" : "WrapperExpression",
-    "groupReference" : 14
+    "groupReference" : 15
   }, {
-    "id" : 29,
+    "id" : 31,
     "text" : " = data.getData().getList().get(0);",
     "placeholder" : ", ",
     "range" : {
@@ -329,9 +351,9 @@
       "size" : 35
     },
     "group" : "WrapperExpression",
-    "groupReference" : 14
+    "groupReference" : 15
   }, {
-    "id" : 30,
+    "id" : 32,
     "text" : "\n        Data ",
     "placeholder" : "",
     "range" : {
@@ -340,9 +362,9 @@
       "size" : 14
     },
     "group" : "WrapperExpression",
-    "groupReference" : 14
+    "groupReference" : 15
   }, {
-    "id" : 31,
+    "id" : 33,
     "text" : " ",
     "placeholder" : ") ",
     "range" : {
@@ -351,9 +373,9 @@
       "size" : 1
     },
     "group" : "WrapperExpression",
-    "groupReference" : 14
+    "groupReference" : 15
   }, {
-    "id" : 32,
+    "id" : 34,
     "text" : ".get(1)",
     "placeholder" : "",
     "range" : {
@@ -362,9 +384,9 @@
       "size" : 7
     },
     "group" : "WrapperExpression",
-    "groupReference" : 14
+    "groupReference" : 15
   }, {
-    "id" : 33,
+    "id" : 35,
     "text" : "Data",
     "placeholder" : "var",
     "range" : {
@@ -373,9 +395,9 @@
       "size" : 4
     },
     "group" : "VariableDeclarationImpl",
-    "groupReference" : 15
+    "groupReference" : 16
   }, {
-    "id" : 34,
+    "id" : 36,
     "text" : "getList()",
     "placeholder" : "list",
     "range" : {
@@ -384,9 +406,9 @@
       "size" : 9
     },
     "group" : "Getter",
-    "groupReference" : 16
+    "groupReference" : 17
   }, {
-    "id" : 35,
+    "id" : 37,
     "text" : "getData()",
     "placeholder" : "data",
     "range" : {
@@ -395,9 +417,9 @@
       "size" : 9
     },
     "group" : "Getter",
-    "groupReference" : 17
+    "groupReference" : 18
   }, {
-    "id" : 36,
+    "id" : 38,
     "text" : "Data",
     "placeholder" : "val",
     "range" : {
@@ -406,9 +428,31 @@
       "size" : 4
     },
     "group" : "VariableDeclarationImpl",
-    "groupReference" : 18
+    "groupReference" : 19
   }, {
-    "id" : 37,
+    "id" : 39,
+    "text" : ".get",
+    "placeholder" : ".getFirst",
+    "range" : {
+      "start" : 795,
+      "end" : 799,
+      "size" : 4
+    },
+    "group" : "Get",
+    "groupReference" : 20
+  }, {
+    "id" : 40,
+    "text" : "0",
+    "placeholder" : "",
+    "range" : {
+      "start" : 800,
+      "end" : 801,
+      "size" : 1
+    },
+    "group" : "Get",
+    "groupReference" : 20
+  }, {
+    "id" : 41,
     "text" : "getList()",
     "placeholder" : "list",
     "range" : {
@@ -417,9 +461,9 @@
       "size" : 9
     },
     "group" : "Getter",
-    "groupReference" : 19
+    "groupReference" : 21
   }, {
-    "id" : 38,
+    "id" : 42,
     "text" : "Data",
     "placeholder" : "val",
     "range" : {
@@ -428,9 +472,9 @@
       "size" : 4
     },
     "group" : "VariableDeclarationImpl",
-    "groupReference" : 20
+    "groupReference" : 22
   }, {
-    "id" : 39,
+    "id" : 43,
     "text" : "getList()",
     "placeholder" : "list",
     "range" : {
@@ -439,9 +483,9 @@
       "size" : 9
     },
     "group" : "Getter",
-    "groupReference" : 21
+    "groupReference" : 23
   }, {
-    "id" : 40,
+    "id" : 44,
     "text" : "getData()",
     "placeholder" : "data",
     "range" : {
@@ -450,6 +494,6 @@
       "size" : 9
     },
     "group" : "Getter",
-    "groupReference" : 22
+    "groupReference" : 24
   } ]
 }

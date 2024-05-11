@@ -6,7 +6,7 @@ public class GetSetPutTestData {
     public static void main(String[] args) {
         List<String> list = ["one", "two"];
         list[1] = "three";
-        System.out.println(list.last());
+        System.out.println(list.getLast());
         System.out.println(args.last());
         HashMap<String, Integer> map = new HashMap<>();
         map["one"] = 1;

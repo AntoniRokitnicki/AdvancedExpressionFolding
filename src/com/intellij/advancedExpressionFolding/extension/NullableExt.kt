@@ -2,8 +2,8 @@ package com.intellij.advancedExpressionFolding.extension
 
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression
-import com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression
 import com.intellij.advancedExpressionFolding.expression.custom.FieldConstExpression
+import com.intellij.advancedExpressionFolding.expression.custom.NullAnnotationExpression
 import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFoldingAnnotation.Companion.findByName
 import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFoldingAnnotation.NOT_NULL
 import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFoldingAnnotation.NULLABLE
@@ -13,6 +13,45 @@ import com.intellij.psi.*
 import com.intellij.psi.impl.source.PsiClassReferenceType
 
 object NullableExt : BaseExtension() {
+
+    @JvmStatic
+    fun createExpression(psiMethod: PsiMethod): Expression? {
+        if (psiMethod.isIgnored()) {
+            return null
+        }
+        return fieldAnnotationExpression(psiMethod.annotations, psiMethod.returnTypeElement)
+    }
+
+    @JvmStatic
+    fun createExpression(psiRecordComponent: PsiRecordComponent): NullAnnotationExpression? {
+        return fieldAnnotationExpression(psiRecordComponent.annotations, psiRecordComponent.typeElement, true)
+    }
+
+    @JvmStatic
+    fun createExpression(psiParameter: PsiParameter, document: Document): Expression? {
+        return readCheckNotNullMethods(psiParameter, document) ?: fieldAnnotationExpression(psiParameter.annotations, psiParameter.typeElement, true)
+    }
+
+    @JvmStatic
+    fun createExpression(field: PsiField, document: Document): Expression? {
+        val typeElement = field.typeElement
+        if (typeElement == null || field.isIgnored()) {
+            return null
+        }
+
+        val list = exprList()
+        list += lombok.asNull()?.let {
+            val typeExpression = fieldAnnotationExpression(field.annotations, typeElement, false)
+            typeExpression ?: findPropertyAnnotation(field, typeElement)
+        }
+
+        list += experimental.asNull()?.let {
+            fieldConstExpression(field, typeElement, document)
+        }
+
+        return list.exprWrap(field)
+    }
+
 
     enum class FieldFoldingAnnotation(vararg var annotations: String) {
         NOT_NULL("NotNull", "NonNull"),
@@ -45,27 +84,6 @@ object NullableExt : BaseExtension() {
             }
         }
     }
-
-    @JvmStatic
-    fun createExpression(field: PsiField, document: Document): Expression? {
-        val typeElement = field.typeElement
-        if (typeElement == null || field.isIgnored()) {
-            return null
-        }
-
-        val list = exprList()
-        list += lombok.asNull()?.let {
-            val typeExpression = fieldAnnotationExpression(field.annotations, typeElement)
-            typeExpression ?: findPropertyAnnotation(field, typeElement)
-        }
-
-        list += experimental.asNull()?.let {
-            fieldConstExpression(field, typeElement, document)
-        }
-
-        return list.exprWrap(field)
-    }
-
 
     private fun fieldConstExpression(
         field: PsiField,
@@ -138,7 +156,7 @@ object NullableExt : BaseExtension() {
             }?.let { method ->
                 fieldAnnotationExpression(method.annotations, method.returnTypeElement)?.let {
                     method.markIgnored()
-                    FieldAnnotationExpression(typeElement!!, null, it.typeSuffix)
+                    NullAnnotationExpression(typeElement!!, null, it.typeSuffix)
                 }
             }
             ?: field.setter()?.let { method ->
@@ -149,14 +167,9 @@ object NullableExt : BaseExtension() {
             }?.let { (method, ann) ->
                 fieldAnnotationExpression(ann, method.returnTypeElement)?.let {
                     method.markIgnored()
-                    FieldAnnotationExpression(typeElement!!, null, it.typeSuffix)
+                    NullAnnotationExpression(typeElement!!, null, it.typeSuffix)
                 }
             }
-    }
-
-    @JvmStatic
-    fun createExpression(psiParameter: PsiParameter, document: Document): Expression? {
-        return readCheckNotNullMethods(psiParameter, document) ?: fieldAnnotationExpression(psiParameter.annotations, psiParameter.typeElement)
     }
 
     private fun readCheckNotNullMethods(psiParameter: PsiParameter, document: Document): Expression? {
@@ -179,7 +192,7 @@ object NullableExt : BaseExtension() {
             methodCallFound?.let { checkNotNullExpression ->
                 checkNotNullExpression.ignored = true
                 val methodCall = checkNotNullExpression.element
-                val typeSuffix = FieldAnnotationExpression(typeToAppend, null, "!!!")
+                val typeSuffix = NullAnnotationExpression(typeToAppend, null, "!!!")
                 val child = methodCall.parent.prevWhiteSpace()?.let {
                     CheckNotNullExpression(it, it.textRange, "", typeSuffix)
                 } ?: typeSuffix
@@ -188,23 +201,12 @@ object NullableExt : BaseExtension() {
         }
     }
 
-    @JvmStatic
-    fun createExpression(psiMethod: PsiMethod): Expression? {
-        if (psiMethod.isIgnored()) {
-            return null
-        }
-        return fieldAnnotationExpression(psiMethod.annotations, psiMethod.returnTypeElement)
-    }
-
-    @JvmStatic
-    fun createExpression(psiRecordComponent: PsiRecordComponent): FieldAnnotationExpression? {
-        return fieldAnnotationExpression(psiRecordComponent.annotations, psiRecordComponent.typeElement)
-    }
 
     private fun fieldAnnotationExpression(
         annotations: Array<out PsiAnnotation>,
-        typeElement: PsiTypeElement?
-    ): FieldAnnotationExpression? {
+        typeElement: PsiTypeElement?,
+        foldPrevWhiteSpace: Boolean = false,
+    ): NullAnnotationExpression? {
         typeElement?.takeIf {
             lombok
         } ?: return null
@@ -221,7 +223,7 @@ object NullableExt : BaseExtension() {
                     NOT_NULL -> "!!"
                     NULLABLE -> "?"
                 }
-                FieldAnnotationExpression(typeElement, annotationElement, typeSuffix)
+                NullAnnotationExpression(typeElement, annotationElement, typeSuffix, foldPrevWhiteSpace)
             }
     }
 

@@ -13,7 +13,7 @@ public class NullableAnnotationCheckNotNullTestData {
 
     class PreconditionsCheck <fold text='{...}' expand='true'>{
         public void main(String<fold text='!!! ' expand='false'> </fold>args, Object o, Long<fold text='!!! ' expand='false'> </fold>l, NullableAnnotationCheckNotNullTestData z) <fold text='{...}' expand='true'>{<fold text='' expand='true'>
-            </fold><fold text='' expand='false'><fold text='' expand='true'>Preconditions.checkNotNull(</fold>args<fold text='!!' expand='false'>)</fold>;</fold><fold text='' expand='true'>
+            <fold text='' expand='false'><fold text='' expand='true'></fold>Preconditions.checkNotNull(</fold>args<fold text='!!' expand='false'>)</fold>;</fold><fold text='' expand='true'>
             </fold><fold text='' expand='false'><fold text='' expand='true'>Preconditions.checkNotNull(</fold>l<fold text='!!' expand='false'>)</fold>;</fold>
             <fold text='' expand='false'>Preconditions.checkNotNull(</fold>z.<fold text='saaa' expand='false'>getSaaa()</fold><fold text='!!' expand='false'>)</fold>;
             <fold text='' expand='false'>Preconditions.checkNotNull(</fold>o<fold text='!!' expand='false'>)</fold>;
@@ -22,28 +22,27 @@ public class NullableAnnotationCheckNotNullTestData {
 
         public void mainMsgs(String<fold text='!!! ' expand='false'> </fold>args, Object o, Long<fold text='!!! ' expand='false'> </fold>l, NullableAnnotationCheckNotNullTestData z) <fold text='{...}' expand='true'>{<fold text='' expand='true'>
             </fold><fold text='' expand='false'><fold text='' expand='true'>Preconditions.checkNotNull(</fold>args<fold text='!!' expand='false'>, "args are null")</fold>;</fold><fold text='' expand='true'>
-            </fold><fold text='' expand='false'><fold text='' expand='true'>Preconditions.checkNotNull(</fold>l<fold text='!!' expand='false'>, "l is null")</fold>;</fold>
+            <fold text='' expand='false'><fold text='' expand='true'></fold>Preconditions.checkNotNull(</fold>l<fold text='!!' expand='false'>, "l is null")</fold>;</fold>
             <fold text='' expand='false'>Preconditions.checkNotNull(</fold>z.<fold text='saaa' expand='false'>getSaaa()</fold><fold text='!!' expand='false'>, "o is null")</fold>;
             <fold text='' expand='false'>Preconditions.checkNotNull(</fold>o<fold text='!!' expand='false'>, "o is null")</fold>;
             System.out.println();
         }</fold>
 
-        public void mainNullable(@Nullable String<fold text='!!! ' expand='false'> </fold>args, <fold text='' expand='false'>@Nullable</fold> Object<fold text='? ' expand='false'> </fold>o, @Nullable Long<fold text='!!! ' expand='false'> </fold>l, <fold text='' expand='false'>@Nullable</fold> NullableAnnotationCheckNotNullTestData<fold text='? ' expand='false'> </fold>z) <fold text='{...}' expand='true'>{<fold text='' expand='true'>
-            </fold><fold text='' expand='false'><fold text='' expand='true'>Preconditions.checkNotNull(</fold>args<fold text='!!' expand='false'>)</fold>;</fold><fold text='' expand='true'>
+        public void mainConflictAnnotations(@Nullable String<fold text='!!! ' expand='false'> </fold>args, <fold text='' expand='false'>@Nullable<fold text='' expand='false'></fold> </fold>Object<fold text='? ' expand='false'> </fold>o, @Nullable Long<fold text='!!! ' expand='false'> </fold>l, <fold text='' expand='false'>@Nullable</fold><fold text='' expand='false'> </fold>NullableAnnotationCheckNotNullTestData<fold text='? ' expand='false'> </fold>z) <fold text='{...}' expand='true'>{<fold text='' expand='true'>
+            </fold><fold text='' expand='false'><fold text='' expand='true'>Preconditions.checkNotNull(</fold>args<fold text='!!' expand='false'>)</fold>;<fold text='' expand='true'></fold>
             </fold><fold text='' expand='false'><fold text='' expand='true'>Preconditions.checkNotNull(</fold>l<fold text='!!' expand='false'>)</fold>;</fold>
             <fold text='' expand='false'>Preconditions.checkNotNull(</fold>z.<fold text='saaa' expand='false'>getSaaa()</fold><fold text='!!' expand='false'>)</fold>;
             <fold text='' expand='false'>Preconditions.checkNotNull(</fold>o<fold text='!!' expand='false'>)</fold>;
             System.out.println();
         }</fold>
 
-        public void mainMsgsNullable(@Nullable String<fold text='!!! ' expand='false'> </fold>args, <fold text='' expand='false'>@Nullable</fold> Object<fold text='? ' expand='false'> </fold>o, @Nullable Long<fold text='!!! ' expand='false'> </fold>l, <fold text='' expand='false'>@Nullable</fold> NullableAnnotationCheckNotNullTestData<fold text='? ' expand='false'> </fold>z) <fold text='{...}' expand='true'>{<fold text='' expand='true'>
-            </fold><fold text='' expand='false'><fold text='' expand='true'>Preconditions.checkNotNull(</fold>args<fold text='!!' expand='false'>, "args are null")</fold>;</fold><fold text='' expand='true'>
+        public void mainConflictAnnotationsWithMsg(@Nullable String<fold text='!!! ' expand='false'> </fold>args, <fold text='' expand='false'>@Nullable</fold><fold text='' expand='false'> </fold>Object<fold text='? ' expand='false'> </fold>o, @Nullable Long<fold text='!!! ' expand='false'> </fold>l, <fold text='' expand='false'>@Nullable</fold><fold text='' expand='false'> </fold>NullableAnnotationCheckNotNullTestData<fold text='? ' expand='false'> </fold>z) <fold text='{...}' expand='true'>{<fold text='' expand='true'>
+            <fold text='' expand='false'><fold text='' expand='true'></fold>Preconditions.checkNotNull(</fold>args<fold text='!!' expand='false'>, "args are null")</fold>;</fold><fold text='' expand='true'>
             </fold><fold text='' expand='false'><fold text='' expand='true'>Preconditions.checkNotNull(</fold>l<fold text='!!' expand='false'>, "l is null")</fold>;</fold>
             <fold text='' expand='false'>Preconditions.checkNotNull(</fold>z.<fold text='saaa' expand='false'>getSaaa()</fold><fold text='!!' expand='false'>, "o is null")</fold>;
             <fold text='' expand='false'>Preconditions.checkNotNull(</fold>o<fold text='!!' expand='false'>, "o is null")</fold>;
             System.out.println();
         }</fold>
-
     }</fold>
 
     class PreconditionsCheckReturn <fold text='{...}' expand='true'>{
@@ -55,7 +54,7 @@ public class NullableAnnotationCheckNotNullTestData {
         public void main(String args, Object o, Long l, NullableAnnotationCheckNotNullTestData z) <fold text='{...}' expand='true'>{
             this.args = <fold text='' expand='false'>Preconditions.checkNotNull(</fold>args<fold text='!!' expand='false'>)</fold>;
             this.l = <fold text='' expand='false'>Preconditions.checkNotNull(</fold>l<fold text='!!' expand='false'>)</fold>;
-            this.saaa = <fold text='' expand='false'>Preconditions.checkNotNull(</fold>z.<fold text='saaa' expand='false'>getSaaa()</fold><fold text='!!' expand='false'>)</fold>;
+            this.saaa = <fold text='' expand='false'>Preconditions.checkNotNull(</fold>z.<fold text='saaa' expand='false'>getSaaa()<fold text='!!' expand='false'></fold>)</fold>;
             this.o = <fold text='' expand='false'>Preconditions.checkNotNull(</fold>o<fold text='!!' expand='false'>)</fold>;
             printStatus();
         }</fold>
@@ -68,7 +67,7 @@ public class NullableAnnotationCheckNotNullTestData {
             printStatus();
         }</fold>
 
-        public void mainNullable(<fold text='' expand='false'>@Nullable</fold> String<fold text='? ' expand='false'> </fold>args, <fold text='' expand='false'>@Nullable</fold> Object<fold text='? ' expand='false'> </fold>o, <fold text='' expand='false'>@Nullable</fold> Long<fold text='? ' expand='false'> </fold>l, <fold text='' expand='false'>@Nullable</fold> NullableAnnotationCheckNotNullTestData<fold text='? ' expand='false'> </fold>z) <fold text='{...}' expand='true'>{
+        public void mainNullable(<fold text='' expand='false'>@Nullable</fold><fold text='' expand='false'> </fold>String<fold text='? ' expand='false'> </fold>args, <fold text='' expand='false'>@Nullable</fold><fold text='' expand='false'> </fold>Object<fold text='? ' expand='false'> </fold>o, <fold text='' expand='false'>@Nullable</fold><fold text='' expand='false'> </fold>Long<fold text='? ' expand='false'> </fold>l, <fold text='' expand='false'>@Nullable</fold><fold text='' expand='false'> </fold>NullableAnnotationCheckNotNullTestData<fold text='? ' expand='false'> </fold>z) <fold text='{...}' expand='true'>{
             this.args = <fold text='' expand='false'>Preconditions.checkNotNull(</fold>args<fold text='!!' expand='false'>)</fold>;
             this.l = <fold text='' expand='false'>Preconditions.checkNotNull(</fold>l<fold text='!!' expand='false'>)</fold>;
             this.saaa = <fold text='' expand='false'>Preconditions.checkNotNull(</fold>z.<fold text='saaa' expand='false'>getSaaa()</fold><fold text='!!' expand='false'>)</fold>;
@@ -76,7 +75,7 @@ public class NullableAnnotationCheckNotNullTestData {
             printStatus();
         }</fold>
 
-        public void mainMsgsNullable(<fold text='' expand='false'>@Nullable</fold> String<fold text='? ' expand='false'> </fold>args, <fold text='' expand='false'>@Nullable</fold> Object<fold text='? ' expand='false'> </fold>o, <fold text='' expand='false'>@Nullable</fold> Long<fold text='? ' expand='false'> </fold>l, <fold text='' expand='false'>@Nullable</fold> NullableAnnotationCheckNotNullTestData<fold text='? ' expand='false'> </fold>z) <fold text='{...}' expand='true'>{
+        public void mainMsgsNullable(<fold text='' expand='false'>@Nullable</fold><fold text='' expand='false'> </fold>String<fold text='? ' expand='false'> </fold>args, <fold text='' expand='false'>@Nullable</fold><fold text='' expand='false'> </fold>Object<fold text='? ' expand='false'> </fold>o, <fold text='' expand='false'>@Nullable</fold><fold text='' expand='false'> </fold>Long<fold text='? ' expand='false'> </fold>l, <fold text='' expand='false'>@Nullable</fold><fold text='' expand='false'> </fold>NullableAnnotationCheckNotNullTestData<fold text='? ' expand='false'> </fold>z) <fold text='{...}' expand='true'>{
             this.args = <fold text='' expand='false'>Preconditions.checkNotNull(</fold>args<fold text='!!' expand='false'>, "args are null")</fold>;
             this.l = <fold text='' expand='false'>Preconditions.checkNotNull(</fold>l<fold text='!!' expand='false'>, "l is null")</fold>;
             this.saaa = <fold text='' expand='false'>Preconditions.checkNotNull(</fold>z.<fold text='saaa' expand='false'>getSaaa()</fold><fold text='!!' expand='false'>, "saaa is null")</fold>;

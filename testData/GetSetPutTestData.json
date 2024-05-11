@@ -9,7 +9,8 @@
       "end" : 156,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+    "group" : "ListLiteral",
+    "groupReference" : 0
   }, {
     "id" : 1,
     "text" : ")",
@@ -19,7 +20,8 @@
       "end" : 169,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+    "group" : "ListLiteral",
+    "groupReference" : 0
   }, {
     "id" : 2,
     "text" : "\"one\"",
@@ -29,7 +31,8 @@
       "end" : 161,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+    "group" : "StringLiteral",
+    "groupReference" : 1
   }, {
     "id" : 3,
     "text" : "\"two\"",
@@ -39,7 +42,8 @@
       "end" : 168,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+    "group" : "StringLiteral",
+    "groupReference" : 2
   }, {
     "id" : 4,
     "text" : ".set(",
@@ -49,7 +53,8 @@
       "end" : 188,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Put"
+    "group" : "Put",
+    "groupReference" : 3
   }, {
     "id" : 5,
     "text" : ",",
@@ -59,7 +64,8 @@
       "end" : 190,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Put"
+    "group" : "Put",
+    "groupReference" : 3
   }, {
     "id" : 6,
     "text" : " )",
@@ -69,17 +75,19 @@
       "end" : 199,
       "size" : 2
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Put"
+    "group" : "Put",
+    "groupReference" : 3
   }, {
     "id" : 7,
     "text" : ".get",
-    "placeholder" : ".last",
+    "placeholder" : ".getLast",
     "range" : {
       "start" : 232,
       "end" : 236,
       "size" : 4
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Get"
+    "group" : "Get",
+    "groupReference" : 4
   }, {
     "id" : 8,
     "text" : "list.size() - 1",
@@ -89,7 +97,8 @@
       "end" : 252,
       "size" : 15
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Get"
+    "group" : "Get",
+    "groupReference" : 4
   }, {
     "id" : 9,
     "text" : "[args.length - 1]",
@@ -99,7 +108,8 @@
       "end" : 304,
       "size" : 17
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayGet"
+    "group" : "ArrayGet",
+    "groupReference" : 5
   }, {
     "id" : 10,
     "text" : ".put(",
@@ -109,7 +119,8 @@
       "end" : 379,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Put"
+    "group" : "Put",
+    "groupReference" : 6
   }, {
     "id" : 11,
     "text" : ", ",
@@ -119,7 +130,8 @@
       "end" : 386,
       "size" : 2
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Put"
+    "group" : "Put",
+    "groupReference" : 6
   }, {
     "id" : 12,
     "text" : ")",
@@ -129,7 +141,8 @@
       "end" : 388,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Put"
+    "group" : "Put",
+    "groupReference" : 6
   }, {
     "id" : 13,
     "text" : ".get(",
@@ -139,7 +152,8 @@
       "end" : 425,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Get"
+    "group" : "Get",
+    "groupReference" : 7
   }, {
     "id" : 14,
     "text" : ")",
@@ -149,7 +163,8 @@
       "end" : 431,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Get"
+    "group" : "Get",
+    "groupReference" : 7
   }, {
     "id" : 15,
     "text" : "java.util.Collections.singletonList(",
@@ -159,7 +174,8 @@
       "end" : 503,
       "size" : 36
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+    "group" : "ListLiteral",
+    "groupReference" : 8
   }, {
     "id" : 16,
     "text" : ")",
@@ -169,7 +185,8 @@
       "end" : 509,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+    "group" : "ListLiteral",
+    "groupReference" : 8
   }, {
     "id" : 17,
     "text" : "\"one\"",
@@ -179,7 +196,8 @@
       "end" : 508,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+    "group" : "StringLiteral",
+    "groupReference" : 9
   }, {
     "id" : 18,
     "text" : "Arrays.asList(",
@@ -189,7 +207,8 @@
       "end" : 594,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+    "group" : "ListLiteral",
+    "groupReference" : 10
   }, {
     "id" : 19,
     "text" : ")",
@@ -199,7 +218,8 @@
       "end" : 607,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+    "group" : "ListLiteral",
+    "groupReference" : 10
   }, {
     "id" : 20,
     "text" : "\"one\"",
@@ -209,7 +229,8 @@
       "end" : 599,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+    "group" : "StringLiteral",
+    "groupReference" : 11
   }, {
     "id" : 21,
     "text" : "\"two\"",
@@ -219,7 +240,8 @@
       "end" : 606,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+    "group" : "StringLiteral",
+    "groupReference" : 12
   }, {
     "id" : 22,
     "text" : "new ArrayList<>(Arrays.asList(",
@@ -229,7 +251,8 @@
       "end" : 703,
       "size" : 30
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+    "group" : "ListLiteral",
+    "groupReference" : 13
   }, {
     "id" : 23,
     "text" : "))",
@@ -239,7 +262,8 @@
       "end" : 717,
       "size" : 2
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+    "group" : "ListLiteral",
+    "groupReference" : 13
   }, {
     "id" : 24,
     "text" : "\"one\"",
@@ -249,7 +273,8 @@
       "end" : 708,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+    "group" : "StringLiteral",
+    "groupReference" : 14
   }, {
     "id" : 25,
     "text" : "\"two\"",
@@ -259,7 +284,8 @@
       "end" : 715,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+    "group" : "StringLiteral",
+    "groupReference" : 15
   }, {
     "id" : 26,
     "text" : "Collections.unmodifiableList(Arrays.asList(",
@@ -269,7 +295,8 @@
       "end" : 832,
       "size" : 43
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+    "group" : "ListLiteral",
+    "groupReference" : 16
   }, {
     "id" : 27,
     "text" : "))",
@@ -279,7 +306,8 @@
       "end" : 846,
       "size" : 2
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+    "group" : "ListLiteral",
+    "groupReference" : 16
   }, {
     "id" : 28,
     "text" : "\"one\"",
@@ -289,7 +317,8 @@
       "end" : 837,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+    "group" : "StringLiteral",
+    "groupReference" : 17
   }, {
     "id" : 29,
     "text" : "\"two\"",
@@ -299,7 +328,8 @@
       "end" : 844,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+    "group" : "StringLiteral",
+    "groupReference" : 18
   }, {
     "id" : 30,
     "text" : "new HashSet<String>() ",
@@ -309,7 +339,8 @@
       "end" : 938,
       "size" : 22
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.SetLiteral"
+    "group" : "SetLiteral",
+    "groupReference" : 19
   }, {
     "id" : 31,
     "text" : "{\n            ",
@@ -319,7 +350,8 @@
       "end" : 952,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.SetLiteral"
+    "group" : "SetLiteral",
+    "groupReference" : 19
   }, {
     "id" : 32,
     "text" : "{\n                add(",
@@ -329,7 +361,8 @@
       "end" : 974,
       "size" : 22
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.SetLiteral"
+    "group" : "SetLiteral",
+    "groupReference" : 19
   }, {
     "id" : 33,
     "text" : ");\n                add(",
@@ -339,7 +372,8 @@
       "end" : 1002,
       "size" : 23
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.SetLiteral"
+    "group" : "SetLiteral",
+    "groupReference" : 19
   }, {
     "id" : 34,
     "text" : ");\n            }",
@@ -349,7 +383,8 @@
       "end" : 1023,
       "size" : 16
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.SetLiteral"
+    "group" : "SetLiteral",
+    "groupReference" : 19
   }, {
     "id" : 35,
     "text" : "\n        ",
@@ -359,7 +394,8 @@
       "end" : 1032,
       "size" : 9
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.SetLiteral"
+    "group" : "SetLiteral",
+    "groupReference" : 19
   }, {
     "id" : 36,
     "text" : "}",
@@ -369,7 +405,8 @@
       "end" : 1033,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.SetLiteral"
+    "group" : "SetLiteral",
+    "groupReference" : 19
   }, {
     "id" : 37,
     "text" : "Collections.unmodifiableSet(new HashSet<String>() ",
@@ -379,7 +416,8 @@
       "end" : 1150,
       "size" : 50
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.SetLiteral"
+    "group" : "SetLiteral",
+    "groupReference" : 20
   }, {
     "id" : 38,
     "text" : "{\n            ",
@@ -389,7 +427,8 @@
       "end" : 1164,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.SetLiteral"
+    "group" : "SetLiteral",
+    "groupReference" : 20
   }, {
     "id" : 39,
     "text" : "{\n                add(",
@@ -399,7 +438,8 @@
       "end" : 1186,
       "size" : 22
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.SetLiteral"
+    "group" : "SetLiteral",
+    "groupReference" : 20
   }, {
     "id" : 40,
     "text" : ");\n                add(",
@@ -409,7 +449,8 @@
       "end" : 1214,
       "size" : 23
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.SetLiteral"
+    "group" : "SetLiteral",
+    "groupReference" : 20
   }, {
     "id" : 41,
     "text" : ");\n            }",
@@ -419,7 +460,8 @@
       "end" : 1235,
       "size" : 16
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.SetLiteral"
+    "group" : "SetLiteral",
+    "groupReference" : 20
   }, {
     "id" : 42,
     "text" : "\n        ",
@@ -429,7 +471,8 @@
       "end" : 1244,
       "size" : 9
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.SetLiteral"
+    "group" : "SetLiteral",
+    "groupReference" : 20
   }, {
     "id" : 43,
     "text" : "}",
@@ -439,7 +482,8 @@
       "end" : 1245,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.SetLiteral"
+    "group" : "SetLiteral",
+    "groupReference" : 20
   }, {
     "id" : 44,
     "text" : ")",
@@ -449,7 +493,8 @@
       "end" : 1246,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.SetLiteral"
+    "group" : "SetLiteral",
+    "groupReference" : 20
   }, {
     "id" : 45,
     "text" : "new String[] {",
@@ -459,7 +504,8 @@
       "end" : 1328,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayLiteral"
+    "group" : "ArrayLiteral",
+    "groupReference" : 21
   }, {
     "id" : 46,
     "text" : "}",
@@ -469,6 +515,7 @@
       "end" : 1341,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ArrayLiteral"
+    "group" : "ArrayLiteral",
+    "groupReference" : 21
   } ]
 }

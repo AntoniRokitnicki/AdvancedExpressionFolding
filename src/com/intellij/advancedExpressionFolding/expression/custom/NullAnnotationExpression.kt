@@ -1,6 +1,8 @@
 package com.intellij.advancedExpressionFolding.expression.custom
 
 import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.advancedExpressionFolding.extension.PsiClassExt.prevWhiteSpace
+import com.intellij.advancedExpressionFolding.extension.foldingList
 import com.intellij.lang.folding.FoldingDescriptor
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.editor.FoldingGroup
@@ -9,10 +11,11 @@ import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiTypeElement
 import com.intellij.refactoring.suggested.endOffset
 
-class FieldAnnotationExpression(
+class NullAnnotationExpression(
     private val typeToAppend: PsiTypeElement,
     private val annotationToHide: PsiElement?,
-    val typeSuffix: String
+    val typeSuffix: String,
+    private val foldPrevWhiteSpace: Boolean = false,
 ) : Expression(typeToAppend, typeToAppend.textRange) {
     override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean {
         return true
@@ -23,17 +26,17 @@ class FieldAnnotationExpression(
         document: Document,
         parent: Expression?
     ): Array<FoldingDescriptor> {
-        val group = FoldingGroup.newGroup(FieldAnnotationExpression::class.java.name)
-
-        val typeSuffix =
-            fold(typeToAppend, TextRange(typeToAppend.endOffset, typeToAppend.endOffset + 1), "$typeSuffix ", group)
-        if (annotationToHide != null) {
-            return arrayOf(
-                typeSuffix,
-                fold(annotationToHide, annotationToHide.textRange, "", group),
-            )
+        val group = FoldingGroup.newGroup(NullAnnotationExpression::class.java.name)
+        val list = foldingList(fold(typeToAppend, TextRange(typeToAppend.endOffset, typeToAppend.endOffset + 1), "$typeSuffix ", group))
+        typeToAppend.prevWhiteSpace()?.takeIf {
+            foldPrevWhiteSpace
+        }?.let {
+            list += fold(it, it.textRange, "", group)
         }
-        return arrayOf(typeSuffix)
+        if (annotationToHide != null) {
+            list += fold(annotationToHide, annotationToHide.textRange, "", group)
+         }
+        return list.toTypedArray()
     }
 
     private fun fold(

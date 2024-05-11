@@ -28,7 +28,7 @@ public class NullableAnnotationCheckNotNullTestData {
             System.out.println();
         }
 
-        public void mainNullable(@Nullable String args, @Nullable Object o, @Nullable Long l, @Nullable NullableAnnotationCheckNotNullTestData z) {
+        public void mainConflictAnnotations(@Nullable String args, @Nullable Object o, @Nullable Long l, @Nullable NullableAnnotationCheckNotNullTestData z) {
             Preconditions.checkNotNull(args);
             Preconditions.checkNotNull(l);
             Preconditions.checkNotNull(z.getSaaa());
@@ -36,14 +36,13 @@ public class NullableAnnotationCheckNotNullTestData {
             System.out.println();
         }
 
-        public void mainMsgsNullable(@Nullable String args, @Nullable Object o, @Nullable Long l, @Nullable NullableAnnotationCheckNotNullTestData z) {
+        public void mainConflictAnnotationsWithMsg(@Nullable String args, @Nullable Object o, @Nullable Long l, @Nullable NullableAnnotationCheckNotNullTestData z) {
             Preconditions.checkNotNull(args, "args are null");
             Preconditions.checkNotNull(l, "l is null");
             Preconditions.checkNotNull(z.getSaaa(), "o is null");
             Preconditions.checkNotNull(o, "o is null");
             System.out.println();
         }
-
     }
 
     class PreconditionsCheckReturn {

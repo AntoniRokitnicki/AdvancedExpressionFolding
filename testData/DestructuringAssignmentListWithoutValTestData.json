@@ -1,7 +1,29 @@
 {
-  "size" : 30,
+  "size" : 34,
   "list" : [ {
     "id" : 0,
+    "text" : ".get",
+    "placeholder" : ".getFirst",
+    "range" : {
+      "start" : 205,
+      "end" : 209,
+      "size" : 4
+    },
+    "group" : "Get",
+    "groupReference" : 0
+  }, {
+    "id" : 1,
+    "text" : "0",
+    "placeholder" : "",
+    "range" : {
+      "start" : 210,
+      "end" : 211,
+      "size" : 1
+    },
+    "group" : "Get",
+    "groupReference" : 0
+  }, {
+    "id" : 2,
     "text" : " ",
     "placeholder" : " (",
     "range" : {
@@ -9,9 +31,10 @@
       "end" : 228,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:1-prefix"
+    "group" : "WrapperExpression",
+    "groupReference" : 1
   }, {
-    "id" : 1,
+    "id" : 3,
     "text" : " = list.get(0);",
     "placeholder" : ", ",
     "range" : {
@@ -19,9 +42,10 @@
       "end" : 248,
       "size" : 15
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:1-prefix"
+    "group" : "WrapperExpression",
+    "groupReference" : 1
   }, {
-    "id" : 2,
+    "id" : 4,
     "text" : "\n        Data ",
     "placeholder" : "",
     "range" : {
@@ -29,9 +53,10 @@
       "end" : 262,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:1-prefix"
+    "group" : "WrapperExpression",
+    "groupReference" : 1
   }, {
-    "id" : 3,
+    "id" : 5,
     "text" : " = list.get(1);",
     "placeholder" : ", ",
     "range" : {
@@ -39,9 +64,10 @@
       "end" : 283,
       "size" : 15
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:1-prefix"
+    "group" : "WrapperExpression",
+    "groupReference" : 1
   }, {
-    "id" : 4,
+    "id" : 6,
     "text" : "\n        Data ",
     "placeholder" : "",
     "range" : {
@@ -49,9 +75,10 @@
       "end" : 297,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:2-prefix"
+    "group" : "WrapperExpression",
+    "groupReference" : 1
   }, {
-    "id" : 5,
+    "id" : 7,
     "text" : " = list.get(2);",
     "placeholder" : ", ",
     "range" : {
@@ -59,9 +86,10 @@
       "end" : 317,
       "size" : 15
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:2-prefix"
+    "group" : "WrapperExpression",
+    "groupReference" : 1
   }, {
-    "id" : 6,
+    "id" : 8,
     "text" : "\n        Data ",
     "placeholder" : "",
     "range" : {
@@ -69,9 +97,10 @@
       "end" : 331,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:3-prefix"
+    "group" : "WrapperExpression",
+    "groupReference" : 1
   }, {
-    "id" : 7,
+    "id" : 9,
     "text" : " ",
     "placeholder" : ") ",
     "range" : {
@@ -79,9 +108,10 @@
       "end" : 338,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:3-prefix"
+    "group" : "WrapperExpression",
+    "groupReference" : 1
   }, {
-    "id" : 8,
+    "id" : 10,
     "text" : ".get(3)",
     "placeholder" : "",
     "range" : {
@@ -89,9 +119,10 @@
       "end" : 351,
       "size" : 7
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:3-prefix"
+    "group" : "WrapperExpression",
+    "groupReference" : 1
   }, {
-    "id" : 9,
+    "id" : 11,
     "text" : "getList()",
     "placeholder" : "list",
     "range" : {
@@ -99,9 +130,10 @@
       "end" : 393,
       "size" : 9
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "Getter",
+    "groupReference" : 2
   }, {
-    "id" : 10,
+    "id" : 12,
     "text" : "getList()",
     "placeholder" : "list",
     "range" : {
@@ -109,9 +141,10 @@
       "end" : 441,
       "size" : 9
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "Getter",
+    "groupReference" : 3
   }, {
-    "id" : 11,
+    "id" : 13,
     "text" : " ",
     "placeholder" : " (",
     "range" : {
@@ -119,9 +152,10 @@
       "end" : 464,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:1-prefix"
+    "group" : "WrapperExpression",
+    "groupReference" : 4
   }, {
-    "id" : 12,
+    "id" : 14,
     "text" : " = data.getList().get(0);",
     "placeholder" : ", ",
     "range" : {
@@ -129,9 +163,10 @@
       "end" : 496,
       "size" : 25
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:1-prefix"
+    "group" : "WrapperExpression",
+    "groupReference" : 4
   }, {
-    "id" : 13,
+    "id" : 15,
     "text" : "\n        Data ",
     "placeholder" : "",
     "range" : {
@@ -139,9 +174,10 @@
       "end" : 510,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:1-prefix"
+    "group" : "WrapperExpression",
+    "groupReference" : 4
   }, {
-    "id" : 14,
+    "id" : 16,
     "text" : " = data.getList().get(1);",
     "placeholder" : ", ",
     "range" : {
@@ -149,9 +185,10 @@
       "end" : 542,
       "size" : 25
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:1-prefix"
+    "group" : "WrapperExpression",
+    "groupReference" : 4
   }, {
-    "id" : 15,
+    "id" : 17,
     "text" : "\n        Data ",
     "placeholder" : "",
     "range" : {
@@ -159,9 +196,10 @@
       "end" : 556,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:2-prefix"
+    "group" : "WrapperExpression",
+    "groupReference" : 4
   }, {
-    "id" : 16,
+    "id" : 18,
     "text" : " ",
     "placeholder" : ") ",
     "range" : {
@@ -169,9 +207,10 @@
       "end" : 564,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:2-prefix"
+    "group" : "WrapperExpression",
+    "groupReference" : 4
   }, {
-    "id" : 17,
+    "id" : 19,
     "text" : ".get(2)",
     "placeholder" : "",
     "range" : {
@@ -179,9 +218,10 @@
       "end" : 587,
       "size" : 7
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:2-prefix"
+    "group" : "WrapperExpression",
+    "groupReference" : 4
   }, {
-    "id" : 18,
+    "id" : 20,
     "text" : "getList()",
     "placeholder" : "list",
     "range" : {
@@ -189,9 +229,10 @@
       "end" : 534,
       "size" : 9
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "Getter",
+    "groupReference" : 5
   }, {
-    "id" : 19,
+    "id" : 21,
     "text" : "getList()",
     "placeholder" : "list",
     "range" : {
@@ -199,9 +240,10 @@
       "end" : 580,
       "size" : 9
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "Getter",
+    "groupReference" : 6
   }, {
-    "id" : 20,
+    "id" : 22,
     "text" : " ",
     "placeholder" : " (",
     "range" : {
@@ -209,9 +251,10 @@
       "end" : 627,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:1-prefix"
+    "group" : "WrapperExpression",
+    "groupReference" : 7
   }, {
-    "id" : 21,
+    "id" : 23,
     "text" : " = data.getData().getList().get(0);",
     "placeholder" : ", ",
     "range" : {
@@ -219,9 +262,10 @@
       "end" : 673,
       "size" : 35
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:1-prefix"
+    "group" : "WrapperExpression",
+    "groupReference" : 7
   }, {
-    "id" : 22,
+    "id" : 24,
     "text" : "\n        Data ",
     "placeholder" : "",
     "range" : {
@@ -229,9 +273,10 @@
       "end" : 687,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:1-prefix"
+    "group" : "WrapperExpression",
+    "groupReference" : 7
   }, {
-    "id" : 23,
+    "id" : 25,
     "text" : " ",
     "placeholder" : ") ",
     "range" : {
@@ -239,9 +284,10 @@
       "end" : 699,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:1-prefix"
+    "group" : "WrapperExpression",
+    "groupReference" : 7
   }, {
-    "id" : 24,
+    "id" : 26,
     "text" : ".get(1)",
     "placeholder" : "",
     "range" : {
@@ -249,9 +295,10 @@
       "end" : 732,
       "size" : 7
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression:1-prefix"
+    "group" : "WrapperExpression",
+    "groupReference" : 7
   }, {
-    "id" : 25,
+    "id" : 27,
     "text" : "getList()",
     "placeholder" : "list",
     "range" : {
@@ -259,9 +306,10 @@
       "end" : 725,
       "size" : 9
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "Getter",
+    "groupReference" : 8
   }, {
-    "id" : 26,
+    "id" : 28,
     "text" : "getData()",
     "placeholder" : "data",
     "range" : {
@@ -269,9 +317,32 @@
       "end" : 715,
       "size" : 9
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "Getter",
+    "groupReference" : 9
   }, {
-    "id" : 27,
+    "id" : 29,
+    "text" : ".get",
+    "placeholder" : ".getFirst",
+    "range" : {
+      "start" : 805,
+      "end" : 809,
+      "size" : 4
+    },
+    "group" : "Get",
+    "groupReference" : 10
+  }, {
+    "id" : 30,
+    "text" : "0",
+    "placeholder" : "",
+    "range" : {
+      "start" : 810,
+      "end" : 811,
+      "size" : 1
+    },
+    "group" : "Get",
+    "groupReference" : 10
+  }, {
+    "id" : 31,
     "text" : "getList()",
     "placeholder" : "list",
     "range" : {
@@ -279,9 +350,10 @@
       "end" : 805,
       "size" : 9
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "Getter",
+    "groupReference" : 11
   }, {
-    "id" : 28,
+    "id" : 32,
     "text" : "getList()",
     "placeholder" : "list",
     "range" : {
@@ -289,9 +361,10 @@
       "end" : 866,
       "size" : 9
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "Getter",
+    "groupReference" : 12
   }, {
-    "id" : 29,
+    "id" : 33,
     "text" : "getData()",
     "placeholder" : "data",
     "range" : {
@@ -299,6 +372,7 @@
       "end" : 856,
       "size" : 9
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "Getter",
+    "groupReference" : 13
   } ]
 }

@@ -20,10 +20,10 @@ public class NullableAnnotationTestData {
     
     private String? string2;
 
-    public void select( String? element,
+    public void select(String? element,
                        int i,
-                        Object!! o,
-                        LocalDate!! date
+                       Object!! o,
+                       LocalDate!! date
     ) {
 
     }
@@ -45,10 +45,10 @@ public class NullableAnnotationTestData {
 
     interface Datable {
         
-        public Integer? select( String? element,
+        public Integer? select(String? element,
                               int i,
-                               Object!! o,
-                               LocalDate!! date
+                              Object!! o,
+                              LocalDate!! date
         );
     }
 
@@ -63,17 +63,17 @@ public class NullableAnnotationTestData {
         }
 
         
-        public static int!! select( String? element,
+        public static int!! select(String? element,
                                  int i,
-                                  Object!! o,
-                                  LocalDate!! date
+                                 Object!! o,
+                                 LocalDate!! date
         ) {
             return 1;
         }
 
     }
 
-    public record UserDataRecord( String!! username, boolean active,  String? userIdentifier,  String!! username2) {
+    public record UserDataRecord(String!! username, boolean active, String? userIdentifier, String!! username2) {
     }
 
     @Getter class GetterNullable {
@@ -82,55 +82,6 @@ public class NullableAnnotationTestData {
 
     @Setter class SetterNullable {
         NullableAnnotationTestData!! setterNullable;
-    }
-
-
-    static class ConstClass {
-        boolean ok;
-        String string;
-
-        public ConstClass() {
-        }
-
-        public ConstClass(boolean ok) {
-            this.ok = <<;
-        }
-
-        public ConstClass(boolean ok, String string) {
-            this.ok = <<;
-            this.string = <<;
-        }
-    }
-    static class SubConstClass extends ConstClass {
-
-    }
-    static class Const {
-        const ConstClass SELF = ::new;
-        const ConstClass SELF_ANN = ::new{};
-        const ConstClass SELF_SUB = new SubConstClass();
-        const ConstClass SELF_SUB_ANN = new SubConstClass() {
-        };
-
-        const ConstClass SELF_PARAM_1 = ::new(true);
-        const ConstClass SELF_PARAM_2 = ::new(false, "1");
-
-
-        const ConstClass SELF_SUBCLASS_MORE_FIELD = new ConstClass() {
-            int i = 1;
-        };
-        const ConstClass SELF_SUBCLASS_MORE_FUNC = new ConstClass() {
-            public void setOk(boolean ok) {
-            }
-        };
-
-        const PUBLIC_STATIC_FINAL_VAR = "";
-        const PRIVATE_STATIC_FINAL_VAR = "";
-        const PROTECTED_STATIC_FINAL_VAR = "";
-        const DEFAULT_STATIC_FINAL_VAR = "";
-        const String DEFAULT_STATIC_FINAL_VAR_REF = DEFAULT_STATIC_FINAL_VAR;
-
-        const VERSION = 1;
-        const int VERSION_REF = VERSION;
     }
 
 }

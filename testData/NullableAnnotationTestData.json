@@ -1,5 +1,5 @@
 {
-  "size" : 91,
+  "size" : 80,
   "list" : [ {
     "id" : 0,
     "text" : "\n    ",
@@ -9,7 +9,8 @@
       "end" : 393,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 0
   }, {
     "id" : 1,
     "text" : "\n    ",
@@ -19,7 +20,8 @@
       "end" : 561,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 0
   }, {
     "id" : 2,
     "text" : "\n    ",
@@ -29,7 +31,8 @@
       "end" : 678,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 0
   }, {
     "id" : 3,
     "text" : "\n    ",
@@ -39,7 +42,8 @@
       "end" : 470,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 0
   }, {
     "id" : 4,
     "text" : "\n    ",
@@ -49,7 +53,8 @@
       "end" : 614,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 0
   }, {
     "id" : 5,
     "text" : "\n    ",
@@ -59,7 +64,8 @@
       "end" : 739,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 0
   }, {
     "id" : 6,
     "text" : "\n\n    ",
@@ -69,7 +75,8 @@
       "end" : 235,
       "size" : 6
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 0
   }, {
     "id" : 7,
     "text" : "public NullableAnnotationTestData getData() {\n        return data;\n    }",
@@ -79,7 +86,8 @@
       "end" : 465,
       "size" : 72
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 0
   }, {
     "id" : 8,
     "text" : "public boolean isOk() {\n        return ok;\n    }",
@@ -89,7 +97,8 @@
       "end" : 609,
       "size" : 48
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 0
   }, {
     "id" : 9,
     "text" : "public String getString() {\n        return string;\n    }",
@@ -99,7 +108,8 @@
       "end" : 734,
       "size" : 56
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 0
   }, {
     "id" : 10,
     "text" : "public void setData(NullableAnnotationTestData data) {\n        this.data = data;\n    }",
@@ -109,7 +119,8 @@
       "end" : 556,
       "size" : 86
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 0
   }, {
     "id" : 11,
     "text" : "public void setOk(boolean ok) {\n        this.ok = ok;\n    }",
@@ -119,7 +130,8 @@
       "end" : 673,
       "size" : 59
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 0
   }, {
     "id" : 12,
     "text" : "public void setString(String string) {\n        this.string = string;\n    }",
@@ -129,7 +141,8 @@
       "end" : 813,
       "size" : 74
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 0
   }, {
     "id" : 13,
     "text" : "private static final long serialVersionUID = 1234567L;",
@@ -139,7 +152,8 @@
       "end" : 289,
       "size" : 54
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 0
   }, {
     "id" : 14,
     "text" : "@",
@@ -149,7 +163,8 @@
       "end" : 164,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 0
   }, {
     "id" : 15,
     "text" : " ",
@@ -159,7 +174,8 @@
       "end" : 334,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 1
   }, {
     "id" : 16,
     "text" : "@NotNull",
@@ -169,7 +185,8 @@
       "end" : 302,
       "size" : 8
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 1
   }, {
     "id" : 17,
     "text" : " ",
@@ -179,7 +196,8 @@
       "end" : 381,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 2
   }, {
     "id" : 18,
     "text" : "@Nullable",
@@ -189,7 +207,8 @@
       "end" : 369,
       "size" : 9
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 2
   }, {
     "id" : 19,
     "text" : " ",
@@ -199,7 +218,8 @@
       "end" : 867,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 3
   }, {
     "id" : 20,
     "text" : "@Nonnull",
@@ -209,7 +229,8 @@
       "end" : 827,
       "size" : 8
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 3
   }, {
     "id" : 21,
     "text" : " ",
@@ -219,7 +240,8 @@
       "end" : 924,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 4
   }, {
     "id" : 22,
     "text" : "@Nullable",
@@ -229,7 +251,8 @@
       "end" : 904,
       "size" : 9
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 4
   }, {
     "id" : 23,
     "text" : " ",
@@ -239,9 +262,21 @@
       "end" : 974,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 5
   }, {
     "id" : 24,
+    "text" : " ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 966,
+      "end" : 967,
+      "size" : 1
+    },
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 5
+  }, {
+    "id" : 25,
     "text" : "@Nullable",
     "placeholder" : "",
     "range" : {
@@ -249,9 +284,10 @@
       "end" : 966,
       "size" : 9
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 5
   }, {
-    "id" : 25,
+    "id" : 26,
     "text" : " ",
     "placeholder" : "!! ",
     "range" : {
@@ -259,9 +295,21 @@
       "end" : 1052,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 6
   }, {
-    "id" : 26,
+    "id" : 27,
+    "text" : " ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1044,
+      "end" : 1045,
+      "size" : 1
+    },
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 6
+  }, {
+    "id" : 28,
     "text" : "@NotNull",
     "placeholder" : "",
     "range" : {
@@ -269,9 +317,10 @@
       "end" : 1044,
       "size" : 8
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 6
   }, {
-    "id" : 27,
+    "id" : 29,
     "text" : " ",
     "placeholder" : "!! ",
     "range" : {
@@ -279,9 +328,21 @@
       "end" : 1097,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 7
   }, {
-    "id" : 28,
+    "id" : 30,
+    "text" : " ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1086,
+      "end" : 1087,
+      "size" : 1
+    },
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 7
+  }, {
+    "id" : 31,
     "text" : "@Nonnull",
     "placeholder" : "",
     "range" : {
@@ -289,9 +350,10 @@
       "end" : 1086,
       "size" : 8
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 7
   }, {
-    "id" : 29,
+    "id" : 32,
     "text" : " ",
     "placeholder" : "!! ",
     "range" : {
@@ -299,9 +361,10 @@
       "end" : 1149,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 8
   }, {
-    "id" : 30,
+    "id" : 33,
     "text" : "@NotNull",
     "placeholder" : "",
     "range" : {
@@ -309,9 +372,10 @@
       "end" : 1130,
       "size" : 8
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 8
   }, {
-    "id" : 31,
+    "id" : 34,
     "text" : " ",
     "placeholder" : "!! ",
     "range" : {
@@ -319,9 +383,10 @@
       "end" : 1231,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 9
   }, {
-    "id" : 32,
+    "id" : 35,
     "text" : "@Nonnull",
     "placeholder" : "",
     "range" : {
@@ -329,9 +394,10 @@
       "end" : 1212,
       "size" : 8
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 9
   }, {
-    "id" : 33,
+    "id" : 36,
     "text" : " ",
     "placeholder" : "? ",
     "range" : {
@@ -339,9 +405,10 @@
       "end" : 1315,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 10
   }, {
-    "id" : 34,
+    "id" : 37,
     "text" : "@Nullable",
     "placeholder" : "",
     "range" : {
@@ -349,9 +416,10 @@
       "end" : 1296,
       "size" : 9
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 10
   }, {
-    "id" : 35,
+    "id" : 38,
     "text" : " ",
     "placeholder" : "? ",
     "range" : {
@@ -359,9 +427,10 @@
       "end" : 1428,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 11
   }, {
-    "id" : 36,
+    "id" : 39,
     "text" : "@Nullable",
     "placeholder" : "",
     "range" : {
@@ -369,9 +438,10 @@
       "end" : 1404,
       "size" : 9
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 11
   }, {
-    "id" : 37,
+    "id" : 40,
     "text" : " ",
     "placeholder" : "? ",
     "range" : {
@@ -379,9 +449,21 @@
       "end" : 1452,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 12
   }, {
-    "id" : 38,
+    "id" : 41,
+    "text" : " ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1444,
+      "end" : 1445,
+      "size" : 1
+    },
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 12
+  }, {
+    "id" : 42,
     "text" : "@Nullable",
     "placeholder" : "",
     "range" : {
@@ -389,9 +471,10 @@
       "end" : 1444,
       "size" : 9
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 12
   }, {
-    "id" : 39,
+    "id" : 43,
     "text" : " ",
     "placeholder" : "!! ",
     "range" : {
@@ -399,9 +482,21 @@
       "end" : 1544,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 13
   }, {
-    "id" : 40,
+    "id" : 44,
+    "text" : " ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1536,
+      "end" : 1537,
+      "size" : 1
+    },
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 13
+  }, {
+    "id" : 45,
     "text" : "@NotNull",
     "placeholder" : "",
     "range" : {
@@ -409,9 +504,10 @@
       "end" : 1536,
       "size" : 8
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 13
   }, {
-    "id" : 41,
+    "id" : 46,
     "text" : " ",
     "placeholder" : "!! ",
     "range" : {
@@ -419,9 +515,21 @@
       "end" : 1596,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 14
   }, {
-    "id" : 42,
+    "id" : 47,
+    "text" : " ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1585,
+      "end" : 1586,
+      "size" : 1
+    },
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 14
+  }, {
+    "id" : 48,
     "text" : "@Nonnull",
     "placeholder" : "",
     "range" : {
@@ -429,9 +537,10 @@
       "end" : 1585,
       "size" : 8
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 14
   }, {
-    "id" : 43,
+    "id" : 49,
     "text" : " ",
     "placeholder" : "!! ",
     "range" : {
@@ -439,9 +548,10 @@
       "end" : 1881,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 15
   }, {
-    "id" : 44,
+    "id" : 50,
     "text" : "@Nonnull",
     "placeholder" : "",
     "range" : {
@@ -449,9 +559,10 @@
       "end" : 1854,
       "size" : 8
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 15
   }, {
-    "id" : 45,
+    "id" : 51,
     "text" : " ",
     "placeholder" : "? ",
     "range" : {
@@ -459,9 +570,21 @@
       "end" : 1905,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 16
   }, {
-    "id" : 46,
+    "id" : 52,
+    "text" : " ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1897,
+      "end" : 1898,
+      "size" : 1
+    },
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 16
+  }, {
+    "id" : 53,
     "text" : "@Nullable",
     "placeholder" : "",
     "range" : {
@@ -469,9 +592,10 @@
       "end" : 1897,
       "size" : 9
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 16
   }, {
-    "id" : 47,
+    "id" : 54,
     "text" : " ",
     "placeholder" : "!! ",
     "range" : {
@@ -479,9 +603,21 @@
       "end" : 2003,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 17
   }, {
-    "id" : 48,
+    "id" : 55,
+    "text" : " ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1995,
+      "end" : 1996,
+      "size" : 1
+    },
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 17
+  }, {
+    "id" : 56,
     "text" : "@NotNull",
     "placeholder" : "",
     "range" : {
@@ -489,9 +625,10 @@
       "end" : 1995,
       "size" : 8
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 17
   }, {
-    "id" : 49,
+    "id" : 57,
     "text" : " ",
     "placeholder" : "!! ",
     "range" : {
@@ -499,9 +636,21 @@
       "end" : 2058,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 18
   }, {
-    "id" : 50,
+    "id" : 58,
+    "text" : " ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2047,
+      "end" : 2048,
+      "size" : 1
+    },
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 18
+  }, {
+    "id" : 59,
     "text" : "@Nonnull",
     "placeholder" : "",
     "range" : {
@@ -509,9 +658,10 @@
       "end" : 2047,
       "size" : 8
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 18
   }, {
-    "id" : 51,
+    "id" : 60,
     "text" : " ",
     "placeholder" : "!! ",
     "range" : {
@@ -519,9 +669,21 @@
       "end" : 2164,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 19
   }, {
-    "id" : 52,
+    "id" : 61,
+    "text" : " ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2156,
+      "end" : 2157,
+      "size" : 1
+    },
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 19
+  }, {
+    "id" : 62,
     "text" : "@Nonnull",
     "placeholder" : "",
     "range" : {
@@ -529,9 +691,10 @@
       "end" : 2156,
       "size" : 8
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 19
   }, {
-    "id" : 53,
+    "id" : 63,
     "text" : " ",
     "placeholder" : "? ",
     "range" : {
@@ -539,9 +702,21 @@
       "end" : 2207,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 20
   }, {
-    "id" : 54,
+    "id" : 64,
+    "text" : " ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2199,
+      "end" : 2200,
+      "size" : 1
+    },
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 20
+  }, {
+    "id" : 65,
     "text" : "@Nullable",
     "placeholder" : "",
     "range" : {
@@ -549,9 +724,10 @@
       "end" : 2199,
       "size" : 9
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 20
   }, {
-    "id" : 55,
+    "id" : 66,
     "text" : " ",
     "placeholder" : "!! ",
     "range" : {
@@ -559,9 +735,21 @@
       "end" : 2239,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 21
   }, {
-    "id" : 56,
+    "id" : 67,
+    "text" : " ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2231,
+      "end" : 2232,
+      "size" : 1
+    },
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 21
+  }, {
+    "id" : 68,
     "text" : "@NotNull",
     "placeholder" : "",
     "range" : {
@@ -569,9 +757,10 @@
       "end" : 2231,
       "size" : 8
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 21
   }, {
-    "id" : 57,
+    "id" : 69,
     "text" : "\n\n        ",
     "placeholder" : "",
     "range" : {
@@ -579,9 +768,10 @@
       "end" : 2346,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 22
   }, {
-    "id" : 58,
+    "id" : 70,
     "text" : "@Nullable\n        public NullableAnnotationTestData getGetterNullable() {\n            return getterNullable;\n        }",
     "placeholder" : "",
     "range" : {
@@ -589,9 +779,10 @@
       "end" : 2464,
       "size" : 118
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 22
   }, {
-    "id" : 59,
+    "id" : 71,
     "text" : "c",
     "placeholder" : "@Getter c",
     "range" : {
@@ -599,9 +790,10 @@
       "end" : 2264,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 22
   }, {
-    "id" : 60,
+    "id" : 72,
     "text" : " ",
     "placeholder" : "? ",
     "range" : {
@@ -609,9 +801,10 @@
       "end" : 2321,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 23
   }, {
-    "id" : 61,
+    "id" : 73,
     "text" : "\n\n        ",
     "placeholder" : "",
     "range" : {
@@ -619,9 +812,10 @@
       "end" : 2559,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 24
   }, {
-    "id" : 62,
+    "id" : 74,
     "text" : "public void setSetterNullable(@Nonnull NullableAnnotationTestData setterNullable) {\n            this.setterNullable = setterNullable;\n        }",
     "placeholder" : "",
     "range" : {
@@ -629,9 +823,10 @@
       "end" : 2702,
       "size" : 143
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 24
   }, {
-    "id" : 63,
+    "id" : 75,
     "text" : "c",
     "placeholder" : "@Setter c",
     "range" : {
@@ -639,9 +834,10 @@
       "end" : 2477,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 24
   }, {
-    "id" : 64,
+    "id" : 76,
     "text" : " ",
     "placeholder" : "!! ",
     "range" : {
@@ -649,9 +845,10 @@
       "end" : 2534,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 25
   }, {
-    "id" : 65,
+    "id" : 77,
     "text" : " ",
     "placeholder" : "!! ",
     "range" : {
@@ -659,9 +856,21 @@
       "end" : 2625,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 26
   }, {
-    "id" : 66,
+    "id" : 78,
+    "text" : " ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2597,
+      "end" : 2598,
+      "size" : 1
+    },
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 26
+  }, {
+    "id" : 79,
     "text" : "@Nonnull",
     "placeholder" : "",
     "range" : {
@@ -669,246 +878,7 @@
       "end" : 2597,
       "size" : 8
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression"
-  }, {
-    "id" : 67,
-    "text" : "public static final",
-    "placeholder" : "const",
-    "range" : {
-      "start" : 3126,
-      "end" : 3145,
-      "size" : 19
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldConstExpression"
-  }, {
-    "id" : 68,
-    "text" : "new ConstClass()",
-    "placeholder" : "::new",
-    "range" : {
-      "start" : 3164,
-      "end" : 3180,
-      "size" : 16
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldConstExpression"
-  }, {
-    "id" : 69,
-    "text" : "public static final",
-    "placeholder" : "const",
-    "range" : {
-      "start" : 3190,
-      "end" : 3209,
-      "size" : 19
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldConstExpression"
-  }, {
-    "id" : 70,
-    "text" : "new ConstClass() {\n        }",
-    "placeholder" : "::new{}",
-    "range" : {
-      "start" : 3232,
-      "end" : 3260,
-      "size" : 28
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldConstExpression"
-  }, {
-    "id" : 71,
-    "text" : "public static final",
-    "placeholder" : "const",
-    "range" : {
-      "start" : 3270,
-      "end" : 3289,
-      "size" : 19
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldConstExpression"
-  }, {
-    "id" : 72,
-    "text" : "public static final",
-    "placeholder" : "const",
-    "range" : {
-      "start" : 3341,
-      "end" : 3360,
-      "size" : 19
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldConstExpression"
-  }, {
-    "id" : 73,
-    "text" : "public static final",
-    "placeholder" : "const",
-    "range" : {
-      "start" : 3429,
-      "end" : 3448,
-      "size" : 19
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldConstExpression"
-  }, {
-    "id" : 74,
-    "text" : "new ConstClass(true)",
-    "placeholder" : "::new(true)",
-    "range" : {
-      "start" : 3475,
-      "end" : 3495,
-      "size" : 20
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldConstExpression"
-  }, {
-    "id" : 75,
-    "text" : "public static final",
-    "placeholder" : "const",
-    "range" : {
-      "start" : 3505,
-      "end" : 3524,
-      "size" : 19
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldConstExpression"
-  }, {
-    "id" : 76,
-    "text" : "new ConstClass(false, \"1\")",
-    "placeholder" : "::new(false, \"1\")",
-    "range" : {
-      "start" : 3551,
-      "end" : 3577,
-      "size" : 26
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldConstExpression"
-  }, {
-    "id" : 77,
-    "text" : "public static final",
-    "placeholder" : "const",
-    "range" : {
-      "start" : 3589,
-      "end" : 3608,
-      "size" : 19
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldConstExpression"
-  }, {
-    "id" : 78,
-    "text" : "public static final",
-    "placeholder" : "const",
-    "range" : {
-      "start" : 3708,
-      "end" : 3727,
-      "size" : 19
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldConstExpression"
-  }, {
-    "id" : 79,
-    "text" : "public static final ",
-    "placeholder" : "const",
-    "range" : {
-      "start" : 3862,
-      "end" : 3882,
-      "size" : 20
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldConstExpression"
-  }, {
-    "id" : 80,
-    "text" : "String",
-    "placeholder" : "",
-    "range" : {
-      "start" : 3882,
-      "end" : 3888,
-      "size" : 6
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldConstExpression"
-  }, {
-    "id" : 81,
-    "text" : "private static final ",
-    "placeholder" : "const",
-    "range" : {
-      "start" : 3927,
-      "end" : 3948,
-      "size" : 21
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldConstExpression"
-  }, {
-    "id" : 82,
-    "text" : "String",
-    "placeholder" : "",
-    "range" : {
-      "start" : 3948,
-      "end" : 3954,
-      "size" : 6
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldConstExpression"
-  }, {
-    "id" : 83,
-    "text" : "protected static final ",
-    "placeholder" : "const",
-    "range" : {
-      "start" : 3994,
-      "end" : 4017,
-      "size" : 23
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldConstExpression"
-  }, {
-    "id" : 84,
-    "text" : "String",
-    "placeholder" : "",
-    "range" : {
-      "start" : 4017,
-      "end" : 4023,
-      "size" : 6
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldConstExpression"
-  }, {
-    "id" : 85,
-    "text" : "static final ",
-    "placeholder" : "const",
-    "range" : {
-      "start" : 4065,
-      "end" : 4078,
-      "size" : 13
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldConstExpression"
-  }, {
-    "id" : 86,
-    "text" : "String",
-    "placeholder" : "",
-    "range" : {
-      "start" : 4078,
-      "end" : 4084,
-      "size" : 6
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldConstExpression"
-  }, {
-    "id" : 87,
-    "text" : "static final",
-    "placeholder" : "const",
-    "range" : {
-      "start" : 4124,
-      "end" : 4136,
-      "size" : 12
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldConstExpression"
-  }, {
-    "id" : 88,
-    "text" : "static final ",
-    "placeholder" : "const",
-    "range" : {
-      "start" : 4210,
-      "end" : 4223,
-      "size" : 13
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldConstExpression"
-  }, {
-    "id" : 89,
-    "text" : "int",
-    "placeholder" : "",
-    "range" : {
-      "start" : 4223,
-      "end" : 4226,
-      "size" : 3
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldConstExpression"
-  }, {
-    "id" : 90,
-    "text" : "static final",
-    "placeholder" : "const",
-    "range" : {
-      "start" : 4248,
-      "end" : 4260,
-      "size" : 12
-    },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.FieldConstExpression"
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 26
   } ]
 }

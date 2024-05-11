@@ -6,7 +6,7 @@ public class GetSetPutTestData {
     public static void main(String[] args) <fold text='{...}' expand='true'>{
         <fold text='val' expand='false'>List<String></fold> list = <fold text='[' expand='false'>Arrays.asList(</fold><fold text='"one"' expand='false'>"one"</fold>, <fold text='"two"' expand='false'>"two"</fold><fold text=']' expand='false'>)</fold>;
         list<fold text='[' expand='false'>.set(</fold>1<fold text='] = ' expand='false'>,</fold>"three"<fold text='' expand='false'> )</fold>;
-        <fold text='' expand='false'>System.out.</fold>println(list<fold text='.last' expand='false'>.get</fold>(<fold text='' expand='false'>list.size() - 1</fold>));
+        <fold text='' expand='false'>System.out.</fold>println(list<fold text='.getLast' expand='false'>.get</fold>(<fold text='' expand='false'>list.size() - 1</fold>));
         <fold text='' expand='false'>System.out.</fold>println(args<fold text='.last()' expand='false'>[args.length - 1]</fold>);
         <fold text='val' expand='false'>HashMap<String, Integer></fold> map = new HashMap<>();
         map<fold text='[' expand='false'>.put(</fold>"one"<fold text='] = ' expand='false'>, </fold>1<fold text='' expand='false'>)</fold>;
