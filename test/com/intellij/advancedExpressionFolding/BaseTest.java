@@ -44,6 +44,11 @@ public abstract class BaseTest extends LightJavaCodeInsightFixtureTestCase {
     }
 
     private static void rewriteFileOnFailure(String fileName, String testName, Runnable action) {
+        File testDataFile = new File(fileName);
+        if (devMode()) {
+            replaceTestDataWithExample(testName, testDataFile);
+        }
+
         MethodCallFactory.INSTANCE.clear();
         var store = new FoldingDataStorage();
         AdvancedExpressionFoldingBuilder.setStore(store);
@@ -52,7 +57,7 @@ public abstract class BaseTest extends LightJavaCodeInsightFixtureTestCase {
         } catch (FileComparisonFailure e) {
             try {
                 String actual = e.getActual();
-                Files.writeString(new File(fileName).toPath(), actual);
+                Files.writeString(testDataFile.toPath(), actual);
                 if (!fileName.contains("-all")) {
                     Files.writeString(getAllTestFileName(fileName).toPath(), actual);
                 }
@@ -62,6 +67,19 @@ public abstract class BaseTest extends LightJavaCodeInsightFixtureTestCase {
                 throw new RuntimeException(ex);
             }
             throw e;
+        }
+    }
+
+    private static boolean devMode() {
+        return System.getenv("dev-mode") != null;
+    }
+
+    private static void replaceTestDataWithExample(String testName, File testDataFile) {
+        var exampleFile = new File(".", "/examples/data/" + testName + ".java");
+        try {
+            com.google.common.io.Files.copy(exampleFile, testDataFile);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -100,8 +118,7 @@ public abstract class BaseTest extends LightJavaCodeInsightFixtureTestCase {
         try {
             verificationFile = new File(verificationFileName);
             expectedContent = FileUtil.loadFile(verificationFile);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
         assertNotNull(expectedContent);
@@ -111,15 +128,13 @@ public abstract class BaseTest extends LightJavaCodeInsightFixtureTestCase {
                 .replace("</" + FOLD + ">", "");
         if (destinationFileName == null) {
             myFixture.configureByText(FileTypeManager.getInstance().getFileTypeByFileName(verificationFileName), cleanContent);
-        }
-        else {
+        } else {
             try {
                 FileUtil.writeToFile(new File(destinationFileName), cleanContent);
                 VirtualFile file = LocalFileSystem.getInstance().refreshAndFindFileByPath(destinationFileName);
                 assertNotNull(file);
                 myFixture.configureFromExistingVirtualFile(file);
-            }
-            catch (IOException e) {
+            } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         }
@@ -128,7 +143,7 @@ public abstract class BaseTest extends LightJavaCodeInsightFixtureTestCase {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        final String actual = ((CodeInsightTestFixtureImpl)myFixture).getFoldingDescription(doCheckCollapseStatus);
+        final String actual = ((CodeInsightTestFixtureImpl) myFixture).getFoldingDescription(doCheckCollapseStatus);
         if (!expectedContent.equals(actual)) {
             throw new FileComparisonFailure(verificationFile.getName(), expectedContent, actual, verificationFile.getPath());
         }
