@@ -17,7 +17,7 @@ class CheckNotNullMethodCall : AbstractMethodCall() {
 
     override fun permission(): Boolean = lombok
 
-    override fun methodName() = "checkNotNull"
+    override val methodNames: List<String> by lazy { listOf("checkNotNull") }
 
     override fun onTwoArguments(
         element: PsiMethodCallExpression,
