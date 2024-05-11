@@ -39,41 +39,32 @@ public class $exampleFileName {
         System.out.println("Data data: " + data.getData());
         System.out.println("Data string: " + data.getString());
         System.out.println("Data ok: " + data.isOk());
-    public void main(String[] args) {
-        System.out.println("Sample output");
     }
 
     static class Data {
         Data data;
         boolean ok;
         String string;
-
         public Data getData() {
             return data;
         }
-
         public void setData(Data data) {
             this.data = data;
         }
-
         public boolean isOk() {
             return ok;
         }
-
         public void setOk(boolean ok) {
             this.ok = ok;
         }
-
         public String getString() {
             return string;
         }
-
         public void setString(String string) {
             this.string = string;
         }
     }
 }
-
 """
     }
 
