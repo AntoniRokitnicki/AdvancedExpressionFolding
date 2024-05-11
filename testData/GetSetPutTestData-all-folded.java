@@ -6,7 +6,7 @@ public class GetSetPutTestData {
     public static void main(String[] args) {
         val list = ["one", "two"];
         list[1] = "three";
-        println(list.last());
+        println(list.getLast());
         println(args.last());
         val map = new HashMap<>();
         map["one"] = 1;

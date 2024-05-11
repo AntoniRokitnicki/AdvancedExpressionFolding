@@ -5,7 +5,7 @@ import java.util.List;
 @SuppressWarnings("ALL")
 public class DestructuringAssignmentListWithoutValTestData {
     public void enter(Data data, List<Data> list) <fold text='{...}' expand='true'>{
-        Data ignored1 = list.get(0);
+        Data ignored1 = list<fold text='.getFirst' expand='false'>.get</fold>(<fold text='' expand='false'>0</fold>);
 
         Data<fold text=' (' expand='true'> </fold>first<fold text=', ' expand='true'> = list.get(0);</fold><fold text='' expand='true'>
         Data </fold>second<fold text=', ' expand='true'> = list.get(1);</fold><fold text='' expand='true'>
@@ -24,7 +24,7 @@ public class DestructuringAssignmentListWithoutValTestData {
         Data </fold>deepGetter2<fold text=') ' expand='true'> </fold>= data.<fold text='data' expand='false'>getData()</fold>.<fold text='list' expand='false'>getList()</fold><fold text='' expand='true'>.get(1)</fold>;
         deepGetter2 = data;
 
-        Data wrongParent1 = data.<fold text='list' expand='false'>getList()</fold>.get(0);
+        Data wrongParent1 = data.<fold text='list' expand='false'>getList()</fold><fold text='.getFirst' expand='false'>.get</fold>(<fold text='' expand='false'>0</fold>);
         Data wrongParent2 = data.<fold text='data' expand='false'>getData()</fold>.<fold text='list' expand='false'>getList()</fold>.get(1);
 
         blackhole(first, second, third, fourth, ignored21, ignored22, getter1, getter2, deepGetter1, deepGetter2, wrongParent1, wrongParent2);

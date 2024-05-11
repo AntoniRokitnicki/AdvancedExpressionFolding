@@ -20,18 +20,17 @@ public class NullableAnnotationCheckNotNullTestData {
             System.out.println();
         }
 
-        public void mainNullable(@Nullable String!!! args,  Object? o, @Nullable Long!!! l,  NullableAnnotationCheckNotNullTestData? z) {args!!;l!!;
+        public void mainConflictAnnotations(@Nullable String!!! args, Object? o, @Nullable Long!!! l, NullableAnnotationCheckNotNullTestData? z) {args!!;l!!;
             Preconditions.checkNotNull(z.getSaaa());
             o!!;
             System.out.println();
         }
 
-        public void mainMsgsNullable(@Nullable String!!! args,  Object? o, @Nullable Long!!! l,  NullableAnnotationCheckNotNullTestData? z) {args!!;l!!;
+        public void mainConflictAnnotationsWithMsg(@Nullable String!!! args, Object? o, @Nullable Long!!! l, NullableAnnotationCheckNotNullTestData? z) {args!!;l!!;
             Preconditions.checkNotNull(z.getSaaa(), "o is null");
             o!!;
             System.out.println();
         }
-
     }
 
     class PreconditionsCheckReturn {
@@ -56,7 +55,7 @@ public class NullableAnnotationCheckNotNullTestData {
             printStatus();
         }
 
-        public void mainNullable( String? args,  Object? o,  Long? l,  NullableAnnotationCheckNotNullTestData? z) {
+        public void mainNullable(String? args, Object? o, Long? l, NullableAnnotationCheckNotNullTestData? z) {
             this.args = args!!;
             this.l = l!!;
             this.saaa = Preconditions.checkNotNull(z.getSaaa());
@@ -64,7 +63,7 @@ public class NullableAnnotationCheckNotNullTestData {
             printStatus();
         }
 
-        public void mainMsgsNullable( String? args,  Object? o,  Long? l,  NullableAnnotationCheckNotNullTestData? z) {
+        public void mainMsgsNullable(String? args, Object? o, Long? l, NullableAnnotationCheckNotNullTestData? z) {
             this.args = args!!;
             this.l = l!!;
             this.saaa = Preconditions.checkNotNull(z.getSaaa(), "saaa is null");

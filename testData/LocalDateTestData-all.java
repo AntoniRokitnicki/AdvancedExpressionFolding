@@ -114,7 +114,7 @@ public class LocalDateTestData {
     }</fold>
 
     public static class CustomClass <fold text='{...}' expand='true'>{
-        private final long timestamp<fold text='' expand='false'>;</fold>
+        private final long timestamp;
 
         public CustomClass()<fold text=' { ' expand='false'> {
             </fold>this.timestamp = System.currentTimeMillis()<fold text='' expand='false'>;</fold><fold text=' }' expand='false'>
@@ -130,7 +130,7 @@ public class LocalDateTestData {
     }</fold>
 
     public class CustomClass2  <fold text='{...}' expand='true'>{
-        private final java.time.chrono.MinguoDate minguoDate<fold text='' expand='false'>;</fold>
+        private final java.time.chrono.MinguoDate minguoDate;
 
         public CustomClass2()<fold text=' { ' expand='false'> {
             </fold>this.minguoDate = java.time.chrono.MinguoDate.now()<fold text='' expand='false'>;</fold><fold text=' }' expand='false'>
