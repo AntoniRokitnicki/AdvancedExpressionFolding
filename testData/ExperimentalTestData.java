@@ -1,7 +1,8 @@
 package data;
 
 import <fold text='...' expand='false'>java.util.ArrayList;
-import java.util.List;</fold>
+import java.util.List;
+import java.util.StringJoiner;</fold>
 
 public class ExperimentalTestData {
 
@@ -18,8 +19,6 @@ public class ExperimentalTestData {
         <fold text='const' expand='false'>public static final</fold> ConstClass SELF_PARAM_1 =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> </fold><fold text='' expand='true'>ConstClass</fold>(true);
         <fold text='const' expand='false'>public static final</fold> ConstClass SELF_PARAM_2 =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> </fold><fold text='' expand='true'>ConstClass</fold>(false, LIST<fold text='.getFirst' expand='false'>.get</fold>(<fold text='' expand='false'>0</fold>));
 
-
-
         <fold text='const' expand='false'>public static final</fold> ConstClass SELF_SUBCLASS_MORE_FIELD = new ConstClass() <fold text='{...}' expand='true'>{
             int i = 1;
         }</fold>;
@@ -28,17 +27,9 @@ public class ExperimentalTestData {
             }</fold>
         }</fold>;
 
-        <fold text='const' expand='false'>public static final </fold><fold text='' expand='false'>String</fold> PUBLIC_STATIC_FINAL_VAR = "";
-        <fold text='const' expand='false'>private static final </fold><fold text='' expand='false'>String</fold> PRIVATE_STATIC_FINAL_VAR = "";
-        <fold text='const' expand='false'>protected static final </fold><fold text='' expand='false'>String</fold> PROTECTED_STATIC_FINAL_VAR = "";
-        <fold text='const' expand='false'>static final </fold><fold text='' expand='false'>String</fold> DEFAULT_STATIC_FINAL_VAR = "";
-        <fold text='const' expand='false'>static final</fold> String DEFAULT_STATIC_FINAL_VAR_REF = DEFAULT_STATIC_FINAL_VAR;
-
-        <fold text='const' expand='false'>static final </fold><fold text='' expand='false'>int</fold> VERSION = 1;
-        <fold text='const' expand='false'>static final</fold> int VERSION_REF = VERSION;
     }</fold>
 
-    static class ConstClass <fold text='{...}' expand='true'>{
+    <fold text='@ToString* s' expand='false'>s</fold>tatic class ConstClass <fold text='{...}' expand='true'>{
         boolean ok;
         String string;
 
@@ -52,9 +43,25 @@ public class ExperimentalTestData {
         public ConstClass(boolean ok, String string) <fold text='{...}' expand='true'>{
             this.ok = ok;
             this.string = string;
-        }</fold>
+        }</fold><fold text='' expand='false'>
+
+        </fold><fold text='' expand='false'>@Override
+        public String toString() <fold text='{...}' expand='true'>{
+            return new StringJoiner(", ", ConstClass.class.getSimpleName() + "[", "]")
+                    .add("string='" + string + "'")
+                    .toString();
+        }</fold></fold>
     }</fold>
+
+
     static class SubConstClass extends ConstClass <fold text='{...}' expand='true'>{
 
+        @Override
+        public final String toString() <fold text='{...}' expand='true'>{
+            final String s = "1";
+            final var s2= "2";
+            var s3 = "3";
+            return s + s2 + s3;
+        }</fold>
     }</fold>
 }
