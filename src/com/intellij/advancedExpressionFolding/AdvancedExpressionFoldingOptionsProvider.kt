@@ -165,6 +165,8 @@ class AdvancedExpressionFoldingOptionsProvider : AbstractExpressionFoldingOption
             state::testDataFoldingDiff,
             docLink = "/Folding-of-testData-in-diff"
         )
+        // NEW OPTION
+
 
         checkBox("Memory improvements(experimental)",
             state::memoryImprovements
