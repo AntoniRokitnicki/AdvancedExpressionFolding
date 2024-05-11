@@ -165,6 +165,11 @@ class AdvancedExpressionFoldingOptionsProvider : AbstractExpressionFoldingOption
             state::testDataFoldingDiff,
             docLink = "/Folding-of-testData-in-diff"
         )
+        checkBox("Simplify public static final to const",
+            state::const,
+            mapOf("ConstTestData.java" to null),
+        )
+        
         // NEW OPTION
 
 
@@ -182,4 +187,3 @@ class AdvancedExpressionFoldingOptionsProvider : AbstractExpressionFoldingOption
     }
 
 }
-

@@ -51,6 +51,7 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
         val destructuring: Boolean
         val println: Boolean
         val memoryImprovements: Boolean
+        val const: Boolean
         // NEW OPTION VAL
 
         var experimental: Boolean
@@ -84,6 +85,7 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
         override var logFolding: Boolean = true,
         override var destructuring: Boolean = true,
         override var println: Boolean = true,
+        override var const: Boolean = true,
         // NEW OPTION VAR
 
         override var memoryImprovements: Boolean = false,
