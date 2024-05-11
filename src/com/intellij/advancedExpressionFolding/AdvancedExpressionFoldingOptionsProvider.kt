@@ -32,7 +32,8 @@ class AdvancedExpressionFoldingOptionsProvider : AbstractExpressionFoldingOption
         checkBox(
             "StringBuilder.append and Collection.add/remove expressions, interpolated Strings and Stream expressions",
             state::concatenationExpressionsCollapse,
-            mapOf("StringBuilderTestData.java" to "StringBuilder",
+            mapOf(
+                "StringBuilderTestData.java" to "StringBuilder",
                 "InterpolatedStringTestData.java" to "Interpolate",
                 "AppendSetterInterpolatedStringTestData.java" to "Append",
                 "ConcatenationTestData.java" to "Concatenation"
@@ -139,7 +140,8 @@ class AdvancedExpressionFoldingOptionsProvider : AbstractExpressionFoldingOption
             ),
             "/Destructuring-assignment"
         )
-        checkBox("Simplify System.out.println to println",
+        checkBox(
+            "Simplify System.out.println to println",
             state::println,
             mapOf("PrintlnTestData.java" to null),
             "/Simplify-System.out.println-to-println"
@@ -165,18 +167,28 @@ class AdvancedExpressionFoldingOptionsProvider : AbstractExpressionFoldingOption
             state::testDataFoldingDiff,
             docLink = "/Folding-of-testData-in-diff"
         )
-        checkBox("Simplify public static final to const",
+        checkBox(
+            "Simplify public static final to const",
             state::const,
             mapOf("ConstTestData.java" to null),
         )
-        
+        checkBox(
+            "Simplify @NotNull to Type!! and @Nullable to Type?",
+            state::nullable,
+            mapOf(
+                "NullableAnnotationTestData.java" to "annotations",
+                "NullableAnnotationCheckNotNullTestData.java" to "checkNotNull"
+            )
+        )
         // NEW OPTION
 
 
-        checkBox("Memory improvements(experimental)",
+        checkBox(
+            "Memory improvements(experimental)",
             state::memoryImprovements
         )
-        checkBox("Experimental features",
+        checkBox(
+            "Experimental features",
             state::experimental
         )
     }

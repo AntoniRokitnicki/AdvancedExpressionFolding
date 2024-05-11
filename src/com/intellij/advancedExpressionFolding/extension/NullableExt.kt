@@ -40,7 +40,7 @@ object NullableExt : BaseExtension() {
         }
 
         val list = exprList()
-        list += lombok.asNull()?.let {
+        list += nullable.asNull()?.let {
             val typeExpression = fieldAnnotationExpression(field.annotations, typeElement, false)
             typeExpression ?: findPropertyAnnotation(field, typeElement)
         }
@@ -215,7 +215,7 @@ object NullableExt : BaseExtension() {
         foldPrevWhiteSpace: Boolean = false,
     ): NullAnnotationExpression? {
         typeElement?.takeIf {
-            lombok
+            nullable
         } ?: return null
 
         return annotations.mapNotNull {

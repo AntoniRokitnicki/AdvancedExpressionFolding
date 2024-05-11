@@ -191,20 +191,6 @@ open class FoldingTest : BaseTest() {
     }
 
     /**
-     * [data.NullableAnnotationTestData]
-     */
-    fun testNullableAnnotationTestData() {
-        doFoldingTest(state::lombok)
-    }
-
-    /**
-     * [data.NullableAnnotationCheckNotNullTestData]
-     */
-    fun testNullableAnnotationCheckNotNullTestData() {
-        doFoldingTest(state::lombok)
-    }
-
-    /**
      * [data.FieldShiftBuilder]
      */
     fun testFieldShiftBuilder() {
@@ -280,19 +266,32 @@ open class FoldingTest : BaseTest() {
     fun testPrintlnTestData() {
         doFoldingTest()
     }
+    /**
+     * [data.NullableAnnotationTestData]
+     */
+    fun testNullableAnnotationTestData() {
+        doFoldingTest(state::nullable, state::lombok)
+    }
 
+    /**
+     * [data.NullableAnnotationCheckNotNullTestData]
+     */
+    fun testNullableAnnotationCheckNotNullTestData() {
+        doFoldingTest(state::nullable, state::lombok)
+    }
     /**
      * [data.ConstTestData]
      */
     fun testConstTestData() {
         doFoldingTest(state::const)
     }
+
     // NEW OPTION
     /**
      * [data.ExperimentalTestData]
      */
     fun testExperimentalTestData() {
-        doFoldingTest(state::experimental)
+        doFoldingTest(state::experimental, state::nullable, state::const, state::lombok)
     }
 
 }
