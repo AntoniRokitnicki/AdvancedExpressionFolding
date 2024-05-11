@@ -286,6 +286,20 @@ open class FoldingTest : BaseTest() {
         doFoldingTest(state::const)
     }
 
+
+    /**
+     * [data.FinalRemovalTestData]
+     */
+    fun testFinalRemovalTestData() {
+        doFoldingTest(state::finalRemoval)
+    }
+
+    /**
+     * [data.FinalEmojiTestData]
+     */
+    fun testFinalEmojiTestData() {
+        doFoldingTest(state::finalEmoji)
+    }
     // NEW OPTION
     /**
      * [data.ExperimentalTestData]

@@ -2,6 +2,7 @@ package data;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringJoiner;
 
 public class ExperimentalTestData {
 
@@ -17,8 +18,6 @@ public class ExperimentalTestData {
         const ConstClass SELF_PARAM_1 = ::new(true);
         const ConstClass SELF_PARAM_2 = ::new(false, LIST.getFirst());
 
-
-
         const ConstClass SELF_SUBCLASS_MORE_FIELD = new ConstClass() {
             int i = 1;
         };
@@ -27,17 +26,9 @@ public class ExperimentalTestData {
             }
         };
 
-        const PUBLIC_STATIC_FINAL_VAR = "";
-        const PRIVATE_STATIC_FINAL_VAR = "";
-        const PROTECTED_STATIC_FINAL_VAR = "";
-        const DEFAULT_STATIC_FINAL_VAR = "";
-        const String DEFAULT_STATIC_FINAL_VAR_REF = DEFAULT_STATIC_FINAL_VAR;
-
-        const VERSION = 1;
-        const int VERSION_REF = VERSION;
     }
 
-    static class ConstClass {
+    @ToString* static class ConstClass {
         boolean ok;
         String string;
 
@@ -53,7 +44,16 @@ public class ExperimentalTestData {
             this.string = <<;
         }
     }
+
+
     static class SubConstClass extends ConstClass {
 
+        @Override
+        public  String toString() {
+             String s = "1";
+             var s2= "2";
+            val s3 = "3";
+            return s + s2 + s3;
+        }
     }
 }

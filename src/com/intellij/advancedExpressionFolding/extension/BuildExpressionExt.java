@@ -222,6 +222,12 @@ public class BuildExpressionExt {
                 return expression;
             }
         }
+        if (element instanceof PsiKeyword psiKeyword) {
+            Expression expression = KeywordExt.createExpression(psiKeyword);
+            if (expression != null) {
+                return expression;
+            }
+        }
 
         if (synthetic) {
             ArrayList<Expression> children = new ArrayList<>();

@@ -182,8 +182,14 @@ fun Array<out PsiElement>.asInstance(vararg elements: Class<out PsiElement>): Ar
 fun String.equalsIgnoreSpaces(second: String): Boolean = filterNot(Char::isWhitespace) == second.filterNot(Char::isWhitespace)
 
 
-fun Boolean.asNull() : Any? = if (this) {
-    true
+fun Boolean.on() : Any? = if (this) {
+    on(true)
+} else {
+    null
+}
+
+fun <T> Boolean.on(element: T) : T? = if (this) {
+    element
 } else {
     null
 }
@@ -244,8 +250,14 @@ fun PsiElement.exprWrapAround(
     )
 
 fun Collection<Expression?>.exprWrap(
-    field: PsiField,
-) = WrapperExpression(field, chain = filterNotNull())
+    parent: PsiElement,
+): WrapperExpression? {
+    val chain = filterNotNull()
+    if (chain.isEmpty()) {
+        return null
+    }
+    return WrapperExpression(parent, chain = chain)
+}
 
 fun exprList(vararg elements: Expression?) = mutableListOf(*elements)
 fun foldingList(vararg elements: FoldingDescriptor) = mutableListOf(*elements)
