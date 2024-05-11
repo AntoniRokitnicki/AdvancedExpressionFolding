@@ -14,11 +14,10 @@ abstract class AbstractMethodCall : BaseExtension() {
         element: PsiMethodCallExpression,
         context: Context
     ): Expression? {
-        methodName()?.let {
-            if (it != context.methodName) {
-                return null
-            }
-        }
+        methodNames.firstOrNull {
+            it == context.methodName
+        } ?: return null
+
         if (classNames.isNotEmpty() && !classNames.contains(context.className)) {
             return null
         }
@@ -66,6 +65,6 @@ abstract class AbstractMethodCall : BaseExtension() {
         expressions: Array<PsiExpression>
     ): Expression? = null
 
-    abstract fun methodName(): String?
+    open val methodNames: List<String> by lazy { emptyList() }
     open val classNames: List<String> by lazy { emptyList() }
 }

@@ -171,7 +171,7 @@ public class BuildExpressionExt {
             }
         }
         if (element instanceof PsiDeclarationStatement st) {
-            Expression expression = PsiDeclarationStatementEx.createExpression(st, document);
+            Expression expression = PsiDeclarationStatementEx.createExpression(st);
             if (expression != null) {
                 return expression;
             }

@@ -3,15 +3,13 @@ package com.intellij.advancedExpressionFolding.extension
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.custom.DestructuringExpression
 import com.intellij.advancedExpressionFolding.expression.custom.WrapperExpression
-import com.intellij.openapi.editor.Document
 import com.intellij.psi.*
 
 object PsiDeclarationStatementEx : BaseExtension() {
 
     @JvmStatic
     fun createExpression(
-        element: PsiDeclarationStatement,
-        document: Document
+        element: PsiDeclarationStatement
     ): Expression? {
         if (destructuring) {
             return createCollectionDestructuringExpression(element)

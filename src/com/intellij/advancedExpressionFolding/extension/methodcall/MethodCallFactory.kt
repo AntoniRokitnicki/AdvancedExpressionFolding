@@ -1,7 +1,9 @@
 package com.intellij.advancedExpressionFolding.extension.methodcall
 
 import com.intellij.advancedExpressionFolding.extension.Consts
-import com.intellij.advancedExpressionFolding.extension.methodcall.date.*
+import com.intellij.advancedExpressionFolding.extension.methodcall.date.CreateDateFactoryMethodCall
+import com.intellij.advancedExpressionFolding.extension.methodcall.date.IsAfterDateMethodCall
+import com.intellij.advancedExpressionFolding.extension.methodcall.date.IsBeforeDateMethodCall
 import com.intellij.advancedExpressionFolding.extension.methodcall.nullable.CheckNotNullMethodCall
 
 //TODO: move to extension-point
@@ -30,12 +32,14 @@ object MethodCallFactory {
     private fun createMethodCalls(): Map<String?, AbstractMethodCall> =
         mutableListOf(
             IsBeforeDateMethodCall(), IsAfterDateMethodCall(), CreateDateFactoryMethodCall(),
-            AfterDateMethodCall(), BeforeDateMethodCall(), CheckNotNullMethodCall()
+            CheckNotNullMethodCall()
         ).filter {
             it.permission()
-        }.associateBy {
-            it.methodName()
-        }
+        }.flatMap { methodCall ->
+            methodCall.methodNames.map { methodName ->
+                methodName to methodCall
+            }
+        }.toMap()
 
     private fun createSupportedClasses(): Collection<String> =
         methodCallMap.values
@@ -48,16 +52,16 @@ object MethodCallFactory {
     private fun createSupportedMethods(): List<String> =
         methodCallMap.values
             .mapNotNull {
-                it.methodName()
-            } + Consts.SUPPORTED_METHODS
+                it.methodNames
+            }.flatten() + Consts.SUPPORTED_METHODS
 
     private fun createClasslessMethods(): List<String> =
         methodCallMap.values
             .filter {
                 it.classNames.isEmpty()
             }.mapNotNull {
-                it.methodName()
-            } + Consts.UNSUPPORTED_CLASSES_METHODS_EXCEPTIONS
+                it.methodNames
+            }.flatten() + Consts.UNSUPPORTED_CLASSES_METHODS_EXCEPTIONS
 
     fun findByMethodName(methodName: String?): AbstractMethodCall? = methodCallMap[methodName]
 }
