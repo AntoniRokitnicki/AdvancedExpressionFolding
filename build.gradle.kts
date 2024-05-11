@@ -40,7 +40,6 @@ tasks.test {
     systemProperty("line.separator", "\n")
 }
 
-
 // Configure project's dependencies
 repositories {
     mavenCentral()
