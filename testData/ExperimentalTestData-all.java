@@ -29,7 +29,28 @@ public class ExperimentalTestData {
 
     }</fold>
 
-    <fold text='@ToString* s' expand='false'>s</fold>tatic class ConstClass <fold text='{...}' expand='true'>{
+    void main()<fold text='{...}' expand='true'>{
+        var s = Singleton.<fold text='🧍' expand='true'>INSTANCE</fold>;
+        System.out.println(Singleton.<fold text='🧍' expand='true'>INSTANCE</fold>.isOk());
+        System.out.println(Singleton.<fold text='🧍' expand='true'>INSTANCE</fold>.main(Singleton.<fold text='🧍' expand='true'>INSTANCE</fold>.main(Singleton.getInstance())));
+    }</fold>
+    <fold text='@Getter s' expand='false'>s</fold>tatic class Singleton <fold text='{...}' expand='true'>{
+        static Singleton INSTANCE = new Singleton();
+        boolean ok;
+        Singleton main(Singleton s)<fold text=' { ' expand='false'> {
+            </fold>return this;<fold text=' }' expand='false'>
+        }</fold><fold text='' expand='false'>
+
+        </fold><fold text='' expand='false'>public boolean isOk()<fold text=' { ' expand='false'> {
+            </fold>return ok;<fold text=' }' expand='false'>
+        }</fold></fold>
+
+        public static Singleton getInstance()<fold text=' { ' expand='false'> {
+            </fold>return INSTANCE;<fold text=' }' expand='false'>
+        }</fold>
+    }</fold>
+
+    <fold text='@ToStringˣ s' expand='false'>s</fold>tatic class ConstClass <fold text='{...}' expand='true'>{
         boolean ok;
         String string;
 
@@ -37,18 +58,18 @@ public class ExperimentalTestData {
         }</fold>
 
         public ConstClass(boolean ok)<fold text=' { ' expand='false'> {
-            </fold>this.ok = <fold text='<<' expand='false'>ok</fold>;<fold text=' }' expand='false'>
+            </fold>this.ok = ok;<fold text=' }' expand='false'>
         }</fold>
 
         public ConstClass(boolean ok, String string) <fold text='{...}' expand='true'>{
-            this.ok = <fold text='<<' expand='false'>ok</fold>;
-            this.string = <fold text='<<' expand='false'>string</fold>;
+            this.ok = ok;
+            this.string = string;
         }</fold><fold text='' expand='false'>
 
         </fold><fold text='' expand='false'>@Override
         public String toString() <fold text='{...}' expand='true'>{
-            return new StringJoiner(", ",<fold text=' "${' expand='false'> </fold>ConstClass.class.<fold text='simpleName' expand='false'>getSimpleName()</fold><fold text='}' expand='false'> + "</fold>[", "]")
-                    .add("string='<fold text='$' expand='false'>" + </fold>string<fold text='' expand='false'> + "</fold>'")
+            return new StringJoiner(", ", ConstClass.class.getSimpleName() + "[", "]")
+                    .add("string='" + string + "'")
                     .toString();
         }</fold></fold>
     }</fold>
@@ -56,12 +77,9 @@ public class ExperimentalTestData {
 
     static class SubConstClass extends ConstClass <fold text='{...}' expand='true'>{
 
-        @Override
-        public <fold text='' expand='false'>final</fold> String toString() <fold text='{...}' expand='true'>{
-            <fold text='' expand='false'><fold text='val' expand='false'>final</fold> String</fold> s = "1";
-            <fold text='' expand='false'><fold text='val' expand='false'>final</fold> var</fold> s2= "2";
-            <fold text='val' expand='false'>var</fold> s3 = "3";
-            return s + s2 + s3;
-        }</fold>
+    }</fold>
+
+    static final class SubConstClass2 extends ConstClass <fold text='{...}' expand='true'>{
+
     }</fold>
 }

@@ -29,7 +29,28 @@ public class ExperimentalTestData {
 
     }</fold>
 
-    <fold text='@ToString* s' expand='false'>s</fold>tatic class ConstClass <fold text='{...}' expand='true'>{
+    void main()<fold text='{...}' expand='true'>{
+        var s = Singleton.<fold text='🧍' expand='true'>INSTANCE</fold>;
+        System.out.println(Singleton.<fold text='🧍' expand='true'>INSTANCE</fold>.isOk());
+        System.out.println(Singleton.<fold text='🧍' expand='true'>INSTANCE</fold>.main(Singleton.<fold text='🧍' expand='true'>INSTANCE</fold>.main(Singleton.getInstance())));
+    }</fold>
+    <fold text='@Getter s' expand='false'>s</fold>tatic class Singleton <fold text='{...}' expand='true'>{
+        static Singleton INSTANCE = new Singleton();
+        boolean ok;
+        Singleton main(Singleton s)<fold text=' { ' expand='false'> {
+            </fold>return this;<fold text=' }' expand='false'>
+        }</fold><fold text='' expand='false'>
+
+        </fold><fold text='' expand='false'>public boolean isOk()<fold text=' { ' expand='false'> {
+            </fold>return ok;<fold text=' }' expand='false'>
+        }</fold></fold>
+
+        public static Singleton getInstance()<fold text=' { ' expand='false'> {
+            </fold>return INSTANCE;<fold text=' }' expand='false'>
+        }</fold>
+    }</fold>
+
+    <fold text='@ToStringˣ s' expand='false'>s</fold>tatic class ConstClass <fold text='{...}' expand='true'>{
         boolean ok;
         String string;
 
@@ -56,12 +77,9 @@ public class ExperimentalTestData {
 
     static class SubConstClass extends ConstClass <fold text='{...}' expand='true'>{
 
-        @Override
-        public final String toString() <fold text='{...}' expand='true'>{
-            final String s = "1";
-            final var s2= "2";
-            var s3 = "3";
-            return s + s2 + s3;
-        }</fold>
+    }</fold>
+
+    static final class SubConstClass2 extends ConstClass <fold text='{...}' expand='true'>{
+
     }</fold>
 }

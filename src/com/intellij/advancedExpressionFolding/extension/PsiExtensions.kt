@@ -23,6 +23,8 @@ import kotlin.reflect.KClass
 val PsiField.enum: Boolean
     get() = (type as? PsiClassType)?.resolve()?.isEnum == true
 
+
+
 inline fun String.filter(predicate: (String) -> Boolean): String? = takeIf(predicate)
 
 fun PsiElement.isIgnored(): Boolean = getUserData(IGNORED) ?: false
@@ -52,7 +54,8 @@ fun PsiElement.realNextSibling(): PsiElement? {
 }
 
 
-fun PsiModifierListOwner.isNotStatic() = !hasModifierProperty(PsiModifier.STATIC)
+fun PsiModifierListOwner.isStatic() = hasModifierProperty(PsiModifier.STATIC)
+fun PsiModifierListOwner.isNotStatic() = !isStatic()
 fun PsiModifierListOwner.isNotFinal() = !hasModifierProperty(PsiModifier.FINAL)
 
 fun PsiMethod.isSetterOrBuilder(): Boolean = isSetter() || isBuilder()
@@ -258,6 +261,12 @@ fun Collection<Expression?>.exprWrap(
     }
     return WrapperExpression(parent, chain = chain)
 }
-
 fun exprList(vararg elements: Expression?) = mutableListOf(*elements)
 fun foldingList(vararg elements: FoldingDescriptor) = mutableListOf(*elements)
+
+
+val PsiElement.identifier: PsiIdentifier?
+    get() = this.children.firstOrNull {
+        it is PsiIdentifier
+    } as? PsiIdentifier
+

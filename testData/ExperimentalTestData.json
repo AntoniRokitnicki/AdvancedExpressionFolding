@@ -1,5 +1,5 @@
 {
-  "size" : 28,
+  "size" : 35,
   "list" : [ {
     "id" : 0,
     "text" : " ",
@@ -277,36 +277,113 @@
     "groupReference" : 13
   }, {
     "id" : 25,
-    "text" : "\n\n        ",
-    "placeholder" : "",
+    "text" : "INSTANCE",
+    "placeholder" : "\uD83E\uDDCD",
     "range" : {
-      "start" : 1295,
-      "end" : 1305,
-      "size" : 10
+      "start" : 1022,
+      "end" : 1030,
+      "size" : 8
     },
-    "group" : "ClassAnnotationExpression",
+    "group" : "WrapperExpression",
     "groupReference" : 14
   }, {
     "id" : 26,
-    "text" : "@Override\n        public String toString() {\n            return new StringJoiner(\", \", ConstClass.class.getSimpleName() + \"[\", \"]\")\n                    .add(\"string='\" + string + \"'\")\n                    .toString();\n        }",
-    "placeholder" : "",
+    "text" : "INSTANCE",
+    "placeholder" : "\uD83E\uDDCD",
     "range" : {
-      "start" : 1305,
-      "end" : 1531,
-      "size" : 226
+      "start" : 1069,
+      "end" : 1077,
+      "size" : 8
     },
-    "group" : "ClassAnnotationExpression",
-    "groupReference" : 14
+    "group" : "WrapperExpression",
+    "groupReference" : 15
   }, {
     "id" : 27,
-    "text" : "s",
-    "placeholder" : "@ToString* s",
+    "text" : "INSTANCE",
+    "placeholder" : "\uD83E\uDDCD",
     "range" : {
-      "start" : 983,
-      "end" : 984,
+      "start" : 1124,
+      "end" : 1132,
+      "size" : 8
+    },
+    "group" : "WrapperExpression",
+    "groupReference" : 16
+  }, {
+    "id" : 28,
+    "text" : "INSTANCE",
+    "placeholder" : "\uD83E\uDDCD",
+    "range" : {
+      "start" : 1148,
+      "end" : 1156,
+      "size" : 8
+    },
+    "group" : "WrapperExpression",
+    "groupReference" : 17
+  }, {
+    "id" : 29,
+    "text" : "\n\n        ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1370,
+      "end" : 1380,
+      "size" : 10
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 18
+  }, {
+    "id" : 30,
+    "text" : "public boolean isOk() {\n            return ok;\n        }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1380,
+      "end" : 1436,
+      "size" : 56
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 18
+  }, {
+    "id" : 31,
+    "text" : "s",
+    "placeholder" : "@Getter s",
+    "range" : {
+      "start" : 1200,
+      "end" : 1201,
       "size" : 1
     },
     "group" : "ClassAnnotationExpression",
-    "groupReference" : 14
+    "groupReference" : 18
+  }, {
+    "id" : 32,
+    "text" : "\n\n        ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1848,
+      "end" : 1858,
+      "size" : 10
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 19
+  }, {
+    "id" : 33,
+    "text" : "@Override\n        public String toString() {\n            return new StringJoiner(\", \", ConstClass.class.getSimpleName() + \"[\", \"]\")\n                    .add(\"string='\" + string + \"'\")\n                    .toString();\n        }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1858,
+      "end" : 2084,
+      "size" : 226
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 19
+  }, {
+    "id" : 34,
+    "text" : "s",
+    "placeholder" : "@ToStringˣ s",
+    "range" : {
+      "start" : 1536,
+      "end" : 1537,
+      "size" : 1
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 19
   } ]
 }

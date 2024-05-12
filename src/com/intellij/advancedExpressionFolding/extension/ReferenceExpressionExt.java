@@ -41,6 +41,11 @@ public class ReferenceExpressionExt {
                         return methodReference;
                     }
                 }
+                var expression = ExperimentalExt.createExpression(element);
+                if (expression != null) {
+                    return expression;
+                }
+
             }
         }
         return null;

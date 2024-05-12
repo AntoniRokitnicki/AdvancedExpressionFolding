@@ -28,7 +28,24 @@ public class ExperimentalTestData {
 
     }
 
-    @ToString* static class ConstClass {
+    void main(){
+        var s = Singleton.🧍;
+        System.out.println(Singleton.🧍.isOk());
+        System.out.println(Singleton.🧍.main(Singleton.🧍.main(Singleton.getInstance())));
+    }
+    @Getter static class Singleton {
+        static Singleton INSTANCE = new Singleton();
+        boolean ok;
+        Singleton main(Singleton s) {
+            return this;
+        }
+
+        public static Singleton getInstance() {
+            return INSTANCE;
+        }
+    }
+
+    @ToStringˣ static class ConstClass {
         boolean ok;
         String string;
 
@@ -48,12 +65,9 @@ public class ExperimentalTestData {
 
     static class SubConstClass extends ConstClass {
 
-        @Override
-        public final String toString() {
-            final String s = "1";
-            final var s2= "2";
-            var s3 = "3";
-            return s + s2 + s3;
-        }
+    }
+
+    static final class SubConstClass2 extends ConstClass {
+
     }
 }
