@@ -9,7 +9,8 @@
       "end" : 118,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+    "group" : "VariableDeclarationImpl",
+    "groupReference" : 0
   }, {
     "id" : 1,
     "text" : "new StringBuilder(\"[\")",
@@ -19,7 +20,8 @@
       "end" : 147,
       "size" : 22
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+    "group" : "StringLiteral",
+    "groupReference" : 1
   }, {
     "id" : 2,
     "text" : "(int ",
@@ -29,7 +31,8 @@
       "end" : 166,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ForEachIndexedStatement"
+    "group" : "ForEachIndexedStatement",
+    "groupReference" : 2
   }, {
     "id" : 3,
     "text" : " = 0; i < args.length; i++) {\n                String",
@@ -39,7 +42,8 @@
       "end" : 219,
       "size" : 52
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ForEachIndexedStatement"
+    "group" : "ForEachIndexedStatement",
+    "groupReference" : 2
   }, {
     "id" : 4,
     "text" : " = ",
@@ -49,7 +53,8 @@
       "end" : 226,
       "size" : 3
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ForEachIndexedStatement"
+    "group" : "ForEachIndexedStatement",
+    "groupReference" : 2
   }, {
     "id" : 5,
     "text" : "[i];",
@@ -59,7 +64,8 @@
       "end" : 234,
       "size" : 4
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ForEachIndexedStatement"
+    "group" : "ForEachIndexedStatement",
+    "groupReference" : 2
   }, {
     "id" : 6,
     "text" : "int",
@@ -69,7 +75,8 @@
       "end" : 165,
       "size" : 3
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+    "group" : "VariableDeclarationImpl",
+    "groupReference" : 3
   }, {
     "id" : 7,
     "text" : "String",
@@ -79,7 +86,8 @@
       "end" : 219,
       "size" : 6
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+    "group" : "VariableDeclarationImpl",
+    "groupReference" : 4
   }, {
     "id" : 8,
     "text" : ".append(",
@@ -89,7 +97,8 @@
       "end" : 254,
       "size" : 8
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Append"
+    "group" : "Append",
+    "groupReference" : 5
   }, {
     "id" : 9,
     "text" : ")",
@@ -99,7 +108,8 @@
       "end" : 258,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Append"
+    "group" : "Append",
+    "groupReference" : 5
   }, {
     "id" : 10,
     "text" : "(",
@@ -109,7 +119,8 @@
       "end" : 272,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+    "group" : "IfExpression:highlighting",
+    "groupReference" : 6
   }, {
     "id" : 11,
     "text" : ")",
@@ -119,7 +130,8 @@
       "end" : 292,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+    "group" : "IfExpression:highlighting",
+    "groupReference" : 6
   }, {
     "id" : 12,
     "text" : ".append(",
@@ -129,7 +141,8 @@
       "end" : 322,
       "size" : 8
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Append"
+    "group" : "Append",
+    "groupReference" : 7
   }, {
     "id" : 13,
     "text" : ")",
@@ -139,7 +152,8 @@
       "end" : 326,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Append"
+    "group" : "Append",
+    "groupReference" : 7
   }, {
     "id" : 14,
     "text" : "System.out.",
@@ -149,7 +163,8 @@
       "end" : 379,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+    "group" : "PrintlnExpression",
+    "groupReference" : 8
   }, {
     "id" : 15,
     "text" : ".append(",
@@ -159,7 +174,8 @@
       "end" : 398,
       "size" : 8
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Append"
+    "group" : "Append",
+    "groupReference" : 9
   }, {
     "id" : 16,
     "text" : ").toString()",
@@ -169,7 +185,8 @@
       "end" : 413,
       "size" : 12
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Append"
+    "group" : "Append",
+    "groupReference" : 9
   }, {
     "id" : 17,
     "text" : ".append(",
@@ -179,7 +196,8 @@
       "end" : 398,
       "size" : 8
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Append"
+    "group" : "Append",
+    "groupReference" : 10
   }, {
     "id" : 18,
     "text" : ").toString()",
@@ -189,7 +207,8 @@
       "end" : 413,
       "size" : 12
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Append"
+    "group" : "Append",
+    "groupReference" : 10
   }, {
     "id" : 19,
     "text" : "StringBuilder",
@@ -199,7 +218,8 @@
       "end" : 438,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+    "group" : "VariableDeclarationImpl",
+    "groupReference" : 11
   }, {
     "id" : 20,
     "text" : "new StringBuilder().append(",
@@ -209,7 +229,8 @@
       "end" : 472,
       "size" : 27
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Append:highlighting"
+    "group" : "Append:highlighting",
+    "groupReference" : 12
   }, {
     "id" : 21,
     "text" : ")",
@@ -219,7 +240,8 @@
       "end" : 476,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Append:highlighting"
+    "group" : "Append:highlighting",
+    "groupReference" : 12
   }, {
     "id" : 22,
     "text" : "(int ",
@@ -229,7 +251,8 @@
       "end" : 495,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ForEachIndexedStatement"
+    "group" : "ForEachIndexedStatement",
+    "groupReference" : 13
   }, {
     "id" : 23,
     "text" : " = 0; i < args.length; i++) {\n                String",
@@ -239,7 +262,8 @@
       "end" : 548,
       "size" : 52
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ForEachIndexedStatement"
+    "group" : "ForEachIndexedStatement",
+    "groupReference" : 13
   }, {
     "id" : 24,
     "text" : " = ",
@@ -249,7 +273,8 @@
       "end" : 555,
       "size" : 3
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ForEachIndexedStatement"
+    "group" : "ForEachIndexedStatement",
+    "groupReference" : 13
   }, {
     "id" : 25,
     "text" : "[i];",
@@ -259,7 +284,8 @@
       "end" : 563,
       "size" : 4
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ForEachIndexedStatement"
+    "group" : "ForEachIndexedStatement",
+    "groupReference" : 13
   }, {
     "id" : 26,
     "text" : "int",
@@ -269,7 +295,8 @@
       "end" : 494,
       "size" : 3
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+    "group" : "VariableDeclarationImpl",
+    "groupReference" : 14
   }, {
     "id" : 27,
     "text" : "String",
@@ -279,7 +306,8 @@
       "end" : 548,
       "size" : 6
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+    "group" : "VariableDeclarationImpl",
+    "groupReference" : 15
   }, {
     "id" : 28,
     "text" : ".append(",
@@ -289,7 +317,8 @@
       "end" : 583,
       "size" : 8
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Append"
+    "group" : "Append",
+    "groupReference" : 16
   }, {
     "id" : 29,
     "text" : ")",
@@ -299,7 +328,8 @@
       "end" : 587,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Append"
+    "group" : "Append",
+    "groupReference" : 16
   }, {
     "id" : 30,
     "text" : "(",
@@ -309,7 +339,8 @@
       "end" : 601,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+    "group" : "IfExpression:highlighting",
+    "groupReference" : 17
   }, {
     "id" : 31,
     "text" : ")",
@@ -319,7 +350,8 @@
       "end" : 621,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+    "group" : "IfExpression:highlighting",
+    "groupReference" : 17
   }, {
     "id" : 32,
     "text" : ".append(",
@@ -329,7 +361,8 @@
       "end" : 651,
       "size" : 8
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Append"
+    "group" : "Append",
+    "groupReference" : 18
   }, {
     "id" : 33,
     "text" : ")",
@@ -339,7 +372,8 @@
       "end" : 655,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Append"
+    "group" : "Append",
+    "groupReference" : 18
   }, {
     "id" : 34,
     "text" : "System.out.",
@@ -349,7 +383,8 @@
       "end" : 708,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+    "group" : "PrintlnExpression",
+    "groupReference" : 19
   }, {
     "id" : 35,
     "text" : ".append(",
@@ -359,7 +394,8 @@
       "end" : 727,
       "size" : 8
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Append"
+    "group" : "Append",
+    "groupReference" : 20
   }, {
     "id" : 36,
     "text" : ").toString()",
@@ -369,7 +405,8 @@
       "end" : 742,
       "size" : 12
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Append"
+    "group" : "Append",
+    "groupReference" : 20
   }, {
     "id" : 37,
     "text" : ".append(",
@@ -379,7 +416,8 @@
       "end" : 727,
       "size" : 8
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Append"
+    "group" : "Append",
+    "groupReference" : 21
   }, {
     "id" : 38,
     "text" : ").toString()",
@@ -389,7 +427,8 @@
       "end" : 742,
       "size" : 12
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Append"
+    "group" : "Append",
+    "groupReference" : 21
   }, {
     "id" : 39,
     "text" : "StringBuilder",
@@ -399,7 +438,8 @@
       "end" : 767,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+    "group" : "VariableDeclarationImpl",
+    "groupReference" : 22
   }, {
     "id" : 40,
     "text" : "new StringBuilder()",
@@ -409,7 +449,8 @@
       "end" : 793,
       "size" : 19
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+    "group" : "StringLiteral",
+    "groupReference" : 23
   }, {
     "id" : 41,
     "text" : "(int ",
@@ -419,7 +460,8 @@
       "end" : 812,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ForEachIndexedStatement"
+    "group" : "ForEachIndexedStatement",
+    "groupReference" : 24
   }, {
     "id" : 42,
     "text" : " = 0; i < args.length; i++) {\n                String",
@@ -429,7 +471,8 @@
       "end" : 865,
       "size" : 52
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ForEachIndexedStatement"
+    "group" : "ForEachIndexedStatement",
+    "groupReference" : 24
   }, {
     "id" : 43,
     "text" : " = ",
@@ -439,7 +482,8 @@
       "end" : 872,
       "size" : 3
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ForEachIndexedStatement"
+    "group" : "ForEachIndexedStatement",
+    "groupReference" : 24
   }, {
     "id" : 44,
     "text" : "[i];",
@@ -449,7 +493,8 @@
       "end" : 880,
       "size" : 4
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ForEachIndexedStatement"
+    "group" : "ForEachIndexedStatement",
+    "groupReference" : 24
   }, {
     "id" : 45,
     "text" : "int",
@@ -459,7 +504,8 @@
       "end" : 811,
       "size" : 3
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+    "group" : "VariableDeclarationImpl",
+    "groupReference" : 25
   }, {
     "id" : 46,
     "text" : "String",
@@ -469,7 +515,8 @@
       "end" : 865,
       "size" : 6
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+    "group" : "VariableDeclarationImpl",
+    "groupReference" : 26
   }, {
     "id" : 47,
     "text" : ".append(",
@@ -479,7 +526,8 @@
       "end" : 900,
       "size" : 8
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Append"
+    "group" : "Append",
+    "groupReference" : 27
   }, {
     "id" : 48,
     "text" : ")",
@@ -489,7 +537,8 @@
       "end" : 904,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Append"
+    "group" : "Append",
+    "groupReference" : 27
   }, {
     "id" : 49,
     "text" : "(",
@@ -499,7 +548,8 @@
       "end" : 918,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+    "group" : "IfExpression:highlighting",
+    "groupReference" : 28
   }, {
     "id" : 50,
     "text" : ")",
@@ -509,7 +559,8 @@
       "end" : 938,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+    "group" : "IfExpression:highlighting",
+    "groupReference" : 28
   }, {
     "id" : 51,
     "text" : ".append(",
@@ -519,7 +570,8 @@
       "end" : 968,
       "size" : 8
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Append"
+    "group" : "Append",
+    "groupReference" : 29
   }, {
     "id" : 52,
     "text" : ").append(",
@@ -529,7 +581,8 @@
       "end" : 980,
       "size" : 9
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Append"
+    "group" : "Append",
+    "groupReference" : 29
   }, {
     "id" : 53,
     "text" : ")",
@@ -539,7 +592,8 @@
       "end" : 984,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Append"
+    "group" : "Append",
+    "groupReference" : 29
   }, {
     "id" : 54,
     "text" : "System.out.",
@@ -549,7 +603,8 @@
       "end" : 1037,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+    "group" : "PrintlnExpression",
+    "groupReference" : 30
   }, {
     "id" : 55,
     "text" : ".toString()",
@@ -559,7 +614,8 @@
       "end" : 1059,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Variable:highlighting"
+    "group" : "Variable:highlighting",
+    "groupReference" : 31
   }, {
     "id" : 56,
     "text" : ".toString()",
@@ -569,6 +625,7 @@
       "end" : 1059,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Variable:highlighting"
+    "group" : "Variable:highlighting",
+    "groupReference" : 32
   } ]
 }

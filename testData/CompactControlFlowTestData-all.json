@@ -9,7 +9,8 @@
       "end" : 114,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+    "group" : "IfExpression:highlighting",
+    "groupReference" : 0
   }, {
     "id" : 1,
     "text" : ")",
@@ -19,7 +20,8 @@
       "end" : 130,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+    "group" : "IfExpression:highlighting",
+    "groupReference" : 0
   }, {
     "id" : 2,
     "text" : "System.out.",
@@ -29,7 +31,8 @@
       "end" : 160,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+    "group" : "PrintlnExpression",
+    "groupReference" : 1
   }, {
     "id" : 3,
     "text" : "(",
@@ -39,7 +42,8 @@
       "end" : 199,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+    "group" : "CompactControlFlowExpression:highlighting",
+    "groupReference" : 2
   }, {
     "id" : 4,
     "text" : ")",
@@ -49,7 +53,8 @@
       "end" : 217,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+    "group" : "CompactControlFlowExpression:highlighting",
+    "groupReference" : 2
   }, {
     "id" : 5,
     "text" : "String",
@@ -59,7 +64,8 @@
       "end" : 205,
       "size" : 6
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+    "group" : "VariableDeclarationImpl",
+    "groupReference" : 3
   }, {
     "id" : 6,
     "text" : "System.out.",
@@ -69,7 +75,8 @@
       "end" : 247,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+    "group" : "PrintlnExpression",
+    "groupReference" : 4
   }, {
     "id" : 7,
     "text" : " = ",
@@ -79,7 +86,8 @@
       "end" : 292,
       "size" : 3
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ForStatement"
+    "group" : "ForStatement",
+    "groupReference" : 5
   }, {
     "id" : 8,
     "text" : "; i < ",
@@ -89,7 +97,8 @@
       "end" : 299,
       "size" : 6
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ForStatement"
+    "group" : "ForStatement",
+    "groupReference" : 5
   }, {
     "id" : 9,
     "text" : "; i++",
@@ -99,7 +108,8 @@
       "end" : 315,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ForStatement"
+    "group" : "ForStatement",
+    "groupReference" : 5
   }, {
     "id" : 10,
     "text" : "(",
@@ -109,7 +119,8 @@
       "end" : 284,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ForStatement"
+    "group" : "ForStatement",
+    "groupReference" : 5
   }, {
     "id" : 11,
     "text" : ")",
@@ -119,7 +130,8 @@
       "end" : 316,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ForStatement"
+    "group" : "ForStatement",
+    "groupReference" : 5
   }, {
     "id" : 12,
     "text" : "int",
@@ -129,7 +141,8 @@
       "end" : 287,
       "size" : 3
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+    "group" : "VariableDeclarationImpl",
+    "groupReference" : 6
   }, {
     "id" : 13,
     "text" : "System.out.",
@@ -139,7 +152,8 @@
       "end" : 346,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+    "group" : "PrintlnExpression",
+    "groupReference" : 7
   }, {
     "id" : 14,
     "text" : "(",
@@ -149,7 +163,8 @@
       "end" : 383,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+    "group" : "CompactControlFlowExpression:highlighting",
+    "groupReference" : 8
   }, {
     "id" : 15,
     "text" : ")",
@@ -159,7 +174,8 @@
       "end" : 388,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+    "group" : "CompactControlFlowExpression:highlighting",
+    "groupReference" : 8
   }, {
     "id" : 16,
     "text" : "System.out.",
@@ -169,7 +185,8 @@
       "end" : 418,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+    "group" : "PrintlnExpression",
+    "groupReference" : 9
   }, {
     "id" : 17,
     "text" : "(",
@@ -179,7 +196,8 @@
       "end" : 504,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+    "group" : "CompactControlFlowExpression:highlighting",
+    "groupReference" : 10
   }, {
     "id" : 18,
     "text" : ")",
@@ -189,7 +207,8 @@
       "end" : 509,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+    "group" : "CompactControlFlowExpression:highlighting",
+    "groupReference" : 10
   }, {
     "id" : 19,
     "text" : "(",
@@ -199,7 +218,8 @@
       "end" : 527,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+    "group" : "CompactControlFlowExpression:highlighting",
+    "groupReference" : 11
   }, {
     "id" : 20,
     "text" : ")",
@@ -209,7 +229,8 @@
       "end" : 539,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+    "group" : "CompactControlFlowExpression:highlighting",
+    "groupReference" : 11
   }, {
     "id" : 21,
     "text" : "System.out.",
@@ -219,7 +240,8 @@
       "end" : 581,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+    "group" : "PrintlnExpression",
+    "groupReference" : 12
   }, {
     "id" : 22,
     "text" : "System.out.",
@@ -229,7 +251,8 @@
       "end" : 652,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+    "group" : "PrintlnExpression",
+    "groupReference" : 13
   }, {
     "id" : 23,
     "text" : "(",
@@ -239,7 +262,8 @@
       "end" : 685,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+    "group" : "CompactControlFlowExpression:highlighting",
+    "groupReference" : 14
   }, {
     "id" : 24,
     "text" : ")",
@@ -249,7 +273,8 @@
       "end" : 697,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+    "group" : "CompactControlFlowExpression:highlighting",
+    "groupReference" : 14
   }, {
     "id" : 25,
     "text" : "System.out.",
@@ -259,6 +284,7 @@
       "end" : 797,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+    "group" : "PrintlnExpression",
+    "groupReference" : 15
   } ]
 }

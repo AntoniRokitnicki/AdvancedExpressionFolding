@@ -6,8 +6,7 @@ public class FinalEmojiTestData {
     final private static String FINAL_FIRST_MANY = "";
     final String ONLY_FINAL = "";
 
-    @Override
-    public 🔒 String toString() {
+    public 🔒 String m() {
         🔒 String s = "1";
         🔒 var s2 = "2";
         var s3 = "3";
@@ -15,20 +14,19 @@ public class FinalEmojiTestData {
     }
 
     interface A {
-        void main(🔒 String arg, 🔒 int i, 🔒 Object o, data.FinalRemovalTestData.Data data);
+        void main(🔒 String arg, 🔒 int i, 🔒 Object o, Data data);
     }
 
     🔒 static class Data {
-        data.FinalRemovalTestData.Data data;
+        Data data;
         final boolean ok = true;
         protected final boolean ok2 = true;
         final protected boolean ok3 = true;
     }
 
     🔒 public record UserDataRecord(String username, boolean active, String userIdentifier) {
-        🔒 void main(🔒 String arg, 🔒 int i, 🔒 Object o, data.FinalRemovalTestData.Data data) {
+        🔒 void main(🔒 String arg, 🔒 int i, 🔒 Object o, Data data) {
         }
     }
 
 }
-

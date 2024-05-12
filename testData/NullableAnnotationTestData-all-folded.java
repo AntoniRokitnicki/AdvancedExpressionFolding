@@ -24,7 +24,7 @@ import java.time.LocalDate;
                        int i,
                        Object!! o,
                        LocalDate!! date
-    ) {
+                       ) {
 
     }
 
@@ -46,9 +46,9 @@ import java.time.LocalDate;
     interface Datable {
         
         public Integer? select(String? element,
-                              int i,
-                              Object!! o,
-                              LocalDate!! date
+                           int i,
+                           Object!! o,
+                           LocalDate!! date
         );
     }
 

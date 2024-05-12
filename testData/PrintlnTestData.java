@@ -21,7 +21,7 @@ class PrintlnTestData {
                 </fold>" multiple" + " " + "strings");
         System.out.println("Passed as parameter: " + string);
         System.out.println("Passed as parameter: "<fold text=' + ' expand='false'> +
-                </fold>this.getClass());
+</fold>this.getClass());
         System.out.println(<fold text='"text
 block
 "' expand='false'>"""

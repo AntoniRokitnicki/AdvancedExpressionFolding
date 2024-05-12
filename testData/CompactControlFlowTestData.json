@@ -9,7 +9,8 @@
       "end" : 114,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+    "group" : "IfExpression:highlighting",
+    "groupReference" : 0
   }, {
     "id" : 1,
     "text" : ")",
@@ -19,7 +20,8 @@
       "end" : 130,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+    "group" : "IfExpression:highlighting",
+    "groupReference" : 0
   }, {
     "id" : 2,
     "text" : "(",
@@ -29,7 +31,8 @@
       "end" : 199,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+    "group" : "CompactControlFlowExpression:highlighting",
+    "groupReference" : 1
   }, {
     "id" : 3,
     "text" : ")",
@@ -39,7 +42,8 @@
       "end" : 217,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+    "group" : "CompactControlFlowExpression:highlighting",
+    "groupReference" : 1
   }, {
     "id" : 4,
     "text" : "(",
@@ -49,7 +53,8 @@
       "end" : 284,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+    "group" : "CompactControlFlowExpression:highlighting",
+    "groupReference" : 2
   }, {
     "id" : 5,
     "text" : ")",
@@ -59,7 +64,8 @@
       "end" : 316,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+    "group" : "CompactControlFlowExpression:highlighting",
+    "groupReference" : 2
   }, {
     "id" : 6,
     "text" : "(",
@@ -69,7 +75,8 @@
       "end" : 383,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+    "group" : "CompactControlFlowExpression:highlighting",
+    "groupReference" : 3
   }, {
     "id" : 7,
     "text" : ")",
@@ -79,7 +86,8 @@
       "end" : 388,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+    "group" : "CompactControlFlowExpression:highlighting",
+    "groupReference" : 3
   }, {
     "id" : 8,
     "text" : "(",
@@ -89,7 +97,8 @@
       "end" : 504,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+    "group" : "CompactControlFlowExpression:highlighting",
+    "groupReference" : 4
   }, {
     "id" : 9,
     "text" : ")",
@@ -99,7 +108,8 @@
       "end" : 509,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+    "group" : "CompactControlFlowExpression:highlighting",
+    "groupReference" : 4
   }, {
     "id" : 10,
     "text" : "(",
@@ -109,7 +119,8 @@
       "end" : 527,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+    "group" : "CompactControlFlowExpression:highlighting",
+    "groupReference" : 5
   }, {
     "id" : 11,
     "text" : ")",
@@ -119,7 +130,8 @@
       "end" : 539,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+    "group" : "CompactControlFlowExpression:highlighting",
+    "groupReference" : 5
   }, {
     "id" : 12,
     "text" : "(",
@@ -129,7 +141,8 @@
       "end" : 685,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+    "group" : "CompactControlFlowExpression:highlighting",
+    "groupReference" : 6
   }, {
     "id" : 13,
     "text" : ")",
@@ -139,6 +152,7 @@
       "end" : 697,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+    "group" : "CompactControlFlowExpression:highlighting",
+    "groupReference" : 6
   } ]
 }

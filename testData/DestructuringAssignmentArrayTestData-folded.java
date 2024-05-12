@@ -3,7 +3,7 @@ package data;
 import java.util.List;
 
 @SuppressWarnings("ALL")
-public class DestructuringAssignmentTestData {
+public class DestructuringAssignmentArrayTestData {
     public void enter(Data data, Data[] array) {
         val ignored1 = array[0];
 
@@ -17,7 +17,7 @@ public class DestructuringAssignmentTestData {
 
         var (deepGetter1, deepGetter2) = data.data.array;
         deepGetter2 = data;
-
+        
         val wrongParent1 = data.array[0];
         val wrongParent2 = data.data.array[1];
 

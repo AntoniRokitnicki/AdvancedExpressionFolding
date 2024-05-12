@@ -9,7 +9,8 @@
       "end" : 315,
       "size" : 8
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+    "group" : "BuilderShiftExpression",
+    "groupReference" : 0
   }, {
     "id" : 1,
     "text" : "active",
@@ -19,7 +20,8 @@
       "end" : 345,
       "size" : 6
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+    "group" : "BuilderShiftExpression",
+    "groupReference" : 1
   }, {
     "id" : 2,
     "text" : "userIdentifier",
@@ -29,7 +31,8 @@
       "end" : 391,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+    "group" : "BuilderShiftExpression",
+    "groupReference" : 2
   }, {
     "id" : 3,
     "text" : "child",
@@ -39,7 +42,8 @@
       "end" : 419,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+    "group" : "BuilderShiftExpression",
+    "groupReference" : 3
   }, {
     "id" : 4,
     "text" : ".username()",
@@ -49,7 +53,8 @@
       "end" : 641,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod"
+    "group" : "FieldShiftMethod",
+    "groupReference" : 4
   }, {
     "id" : 5,
     "text" : ".isActive()",
@@ -59,7 +64,8 @@
       "end" : 716,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod"
+    "group" : "FieldShiftMethod",
+    "groupReference" : 5
   }, {
     "id" : 6,
     "text" : "userIdentifier()",
@@ -69,7 +75,8 @@
       "end" : 794,
       "size" : 16
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.GetterRecord"
+    "group" : "GetterRecord",
+    "groupReference" : 6
   }, {
     "id" : 7,
     "text" : "username()",
@@ -79,7 +86,8 @@
       "end" : 830,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.GetterRecord"
+    "group" : "GetterRecord",
+    "groupReference" : 7
   }, {
     "id" : 8,
     "text" : ".getUsername()",
@@ -89,7 +97,8 @@
       "end" : 879,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod"
+    "group" : "FieldShiftMethod",
+    "groupReference" : 8
   }, {
     "id" : 9,
     "text" : ".getUsername()",
@@ -99,7 +108,8 @@
       "end" : 933,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod"
+    "group" : "FieldShiftMethod",
+    "groupReference" : 9
   }, {
     "id" : 10,
     "text" : "getUsername()",
@@ -109,7 +119,8 @@
       "end" : 981,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "Getter",
+    "groupReference" : 10
   }, {
     "id" : 11,
     "text" : ".isActive()",
@@ -119,7 +130,8 @@
       "end" : 1030,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod"
+    "group" : "FieldShiftMethod",
+    "groupReference" : 11
   }, {
     "id" : 12,
     "text" : ".getUserIdentifier()",
@@ -129,7 +141,8 @@
       "end" : 1073,
       "size" : 20
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod"
+    "group" : "FieldShiftMethod",
+    "groupReference" : 12
   }, {
     "id" : 13,
     "text" : ".getChild()",
@@ -139,7 +152,8 @@
       "end" : 1351,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod"
+    "group" : "FieldShiftMethod",
+    "groupReference" : 13
   }, {
     "id" : 14,
     "text" : "getUsername()",
@@ -149,7 +163,8 @@
       "end" : 1234,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "Getter",
+    "groupReference" : 14
   }, {
     "id" : 15,
     "text" : ".getUsername()",
@@ -159,7 +174,8 @@
       "end" : 1298,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod"
+    "group" : "FieldShiftMethod",
+    "groupReference" : 15
   }, {
     "id" : 16,
     "text" : ".isActive()",
@@ -169,7 +185,8 @@
       "end" : 1411,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod"
+    "group" : "FieldShiftMethod",
+    "groupReference" : 16
   }, {
     "id" : 17,
     "text" : ".getUsername()",
@@ -179,7 +196,8 @@
       "end" : 1476,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod"
+    "group" : "FieldShiftMethod",
+    "groupReference" : 17
   }, {
     "id" : 18,
     "text" : ".userIdentifier()",
@@ -189,7 +207,8 @@
       "end" : 1541,
       "size" : 17
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod"
+    "group" : "FieldShiftMethod",
+    "groupReference" : 18
   }, {
     "id" : 19,
     "text" : ".getUsername()",
@@ -199,7 +218,8 @@
       "end" : 1663,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod"
+    "group" : "FieldShiftMethod",
+    "groupReference" : 19
   }, {
     "id" : 20,
     "text" : ".getUsername()",
@@ -209,7 +229,8 @@
       "end" : 1981,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod"
+    "group" : "FieldShiftMethod",
+    "groupReference" : 20
   }, {
     "id" : 21,
     "text" : ".getUserIdentifier()",
@@ -219,7 +240,8 @@
       "end" : 2041,
       "size" : 20
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod"
+    "group" : "FieldShiftMethod",
+    "groupReference" : 21
   }, {
     "id" : 22,
     "text" : ".username()",
@@ -229,7 +251,8 @@
       "end" : 2244,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod"
+    "group" : "FieldShiftMethod",
+    "groupReference" : 22
   }, {
     "id" : 23,
     "text" : ".active()",
@@ -239,7 +262,8 @@
       "end" : 2285,
       "size" : 9
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod"
+    "group" : "FieldShiftMethod",
+    "groupReference" : 23
   }, {
     "id" : 24,
     "text" : ".userIdentifier()",
@@ -249,7 +273,8 @@
       "end" : 2342,
       "size" : 17
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod"
+    "group" : "FieldShiftMethod",
+    "groupReference" : 24
   }, {
     "id" : 25,
     "text" : "username",
@@ -259,7 +284,8 @@
       "end" : 3036,
       "size" : 8
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+    "group" : "BuilderShiftExpression",
+    "groupReference" : 25
   }, {
     "id" : 26,
     "text" : "active",
@@ -269,7 +295,8 @@
       "end" : 3070,
       "size" : 6
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+    "group" : "BuilderShiftExpression",
+    "groupReference" : 26
   }, {
     "id" : 27,
     "text" : "userIdentifier",
@@ -279,7 +306,8 @@
       "end" : 3120,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+    "group" : "BuilderShiftExpression",
+    "groupReference" : 27
   }, {
     "id" : 28,
     "text" : "username",
@@ -289,7 +317,8 @@
       "end" : 3811,
       "size" : 8
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+    "group" : "BuilderShiftExpression",
+    "groupReference" : 28
   }, {
     "id" : 29,
     "text" : "active",
@@ -299,7 +328,8 @@
       "end" : 3954,
       "size" : 6
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+    "group" : "BuilderShiftExpression",
+    "groupReference" : 29
   }, {
     "id" : 30,
     "text" : "userIdentifier",
@@ -309,7 +339,8 @@
       "end" : 4128,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+    "group" : "BuilderShiftExpression",
+    "groupReference" : 30
   }, {
     "id" : 31,
     "text" : "username",
@@ -319,7 +350,8 @@
       "end" : 4992,
       "size" : 8
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+    "group" : "BuilderShiftExpression",
+    "groupReference" : 31
   }, {
     "id" : 32,
     "text" : "active",
@@ -329,7 +361,8 @@
       "end" : 5127,
       "size" : 6
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+    "group" : "BuilderShiftExpression",
+    "groupReference" : 32
   }, {
     "id" : 33,
     "text" : "userIdentifier",
@@ -339,7 +372,8 @@
       "end" : 5293,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+    "group" : "BuilderShiftExpression",
+    "groupReference" : 33
   }, {
     "id" : 34,
     "text" : "child",
@@ -349,6 +383,7 @@
       "end" : 5434,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+    "group" : "BuilderShiftExpression",
+    "groupReference" : 34
   } ]
 }

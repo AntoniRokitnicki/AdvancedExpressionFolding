@@ -44,7 +44,7 @@ import java.time.LocalDate;</fold>
                        int i,
                        <fold text='' expand='false'>@NotNull</fold><fold text='' expand='false'> </fold>Object<fold text='!! ' expand='false'> </fold>o,
                        <fold text='' expand='false'>@Nonnull</fold><fold text='' expand='false'> </fold>LocalDate<fold text='!! ' expand='false'> </fold>date
-    ) <fold text='{}' expand='true'>{
+                       ) <fold text='{}' expand='true'>{
 
     }</fold>
 
@@ -66,9 +66,9 @@ import java.time.LocalDate;</fold>
     interface Datable <fold text='{...}' expand='true'>{
         <fold text='' expand='false'>@Nullable</fold>
         public Integer<fold text='? ' expand='false'> </fold>select(<fold text='' expand='false'>@Nullable</fold><fold text='' expand='false'> </fold>String<fold text='? ' expand='false'> </fold>element,
-                              int i,
-                              <fold text='' expand='false'>@NotNull</fold><fold text='' expand='false'> </fold>Object<fold text='!! ' expand='false'> </fold>o,
-                              <fold text='' expand='false'>@Nonnull</fold><fold text='' expand='false'> </fold>LocalDate<fold text='!! ' expand='false'> </fold>date
+                           int i,
+                           <fold text='' expand='false'>@NotNull</fold><fold text='' expand='false'> </fold>Object<fold text='!! ' expand='false'> </fold>o,
+                           <fold text='' expand='false'>@Nonnull</fold><fold text='' expand='false'> </fold>LocalDate<fold text='!! ' expand='false'> </fold>date
         );
     }</fold>
 
