@@ -20,15 +20,24 @@ jobs:
       - name: Print Debug Information
         run: |
           echo "Event Name: ${{ github.event_name }}"
+          event_name_check=$(if [[ "${{ github.event_name }}" == 'workflow_dispatch' ]]; then echo "true"; else echo "false"; fi)
           echo "Is PR Merged?: ${{ github.event.pull_request.merged }}"
+          merged_check=$(if [[ "${{ github.event.pull_request.merged }}" == 'true' ]]; then echo "true"; else echo "false"; fi)
           echo "PR Labels: ${{ toJson(github.event.pull_request.labels.*.name) }}"
-          echo "Workflow Dispatch Triggered: ${{ github.event_name == 'workflow_dispatch' }}"
-          echo "Push Event and PR Merged: ${{ github.event_name == 'push' && github.event.pull_request.merged == true }}"
-          echo "PR contains 'autorelease' label: ${{ contains(github.event.pull_request.labels.*.name, 'autorelease') }}"
+          labels_check=$(if [[ $(contains(github.event.pull_request.labels.*.name, 'autorelease')) == 'true' ]]; then echo "true"; else echo "false"; fi)
+          echo "Contains 'autorelease' Label: $labels_check"
+          echo "Workflow Dispatch Triggered: $event_name_check"
+          push_event_check=$(if [[ "${{ github.event_name }}" == 'pull_request' && "${{ github.event.pull_request.merged }}" == 'true' ]]; then echo "true"; else echo "false"; fi)
+          echo "Push Event and PR Merged: $push_event_check"
+          if [[ $event_name_check == 'true' || ($event_name_check == 'false' && $merged_check == 'true' && $labels_check == 'true') ]]; then
+            echo "Overall Condition: true"
+          else
+            echo "Overall Condition: false"
+          fi
 
   # Prepare and publish the plugin to JetBrains Marketplace repository
   release:
-    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.event.pull_request.merged == true && contains(github.event.pull_request.labels.*.name, 'autorelease'))
+    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true && contains(github.event.pull_request.labels.*.name, 'autorelease'))
     name: Publish Plugin
     runs-on: ubuntu-latest
     permissions:
