@@ -29,6 +29,27 @@ public class ExperimentalTestData {
 
     }
 
+    void main(){
+        var s = Singleton.INSTANCE;
+        System.out.println(Singleton.INSTANCE.isOk());
+        System.out.println(Singleton.INSTANCE.main(Singleton.INSTANCE.main(Singleton.getInstance())));
+    }
+    static class Singleton {
+        static Singleton INSTANCE = new Singleton();
+        boolean ok;
+        Singleton main(Singleton s) {
+            return this;
+        }
+
+        public boolean isOk() {
+            return ok;
+        }
+
+        public static Singleton getInstance() {
+            return INSTANCE;
+        }
+    }
+
     static class ConstClass {
         boolean ok;
         String string;

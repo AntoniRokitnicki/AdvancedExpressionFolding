@@ -28,7 +28,6 @@ sourceSets {
         java.srcDir("test")
         java.srcDir("examples")
         kotlin.srcDirs("test")
-        java.srcDirs("examples")
     }
 }
 
