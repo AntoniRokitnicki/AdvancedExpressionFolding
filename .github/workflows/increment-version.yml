@@ -64,7 +64,7 @@ jobs:
         run: |
           VERSION="${{ steps.increment_version.outputs.version }}"
           BRANCH="increment_version-to-$VERSION"
-          LABEL="release changelog autorelease"
+          LABEL="auto-release"
 
           git config user.email "action@github.com"
           git config user.name "GitHub Action"
