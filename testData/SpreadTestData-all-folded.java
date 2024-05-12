@@ -46,7 +46,7 @@ public class SpreadTestData {
         return Stream.of(data);
     }
 
-    @Getter* @Setter static class Data {
+    @Getterˣ @Setter static class Data {
         Data data;
         boolean ok;
         String string;

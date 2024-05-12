@@ -6,8 +6,8 @@ import org.jetbrains.annotations.Nullable;
 import javax.annotation.Nonnull;
 import java.time.LocalDate;</fold>
 
-<fold text='@Getter @Setter* @Serial @' expand='false'>@</fold>SuppressWarnings("ALL")
-public class NullableAnnotationTestData {<fold text='' expand='false'>
+@SuppressWarnings("ALL")
+<fold text='@Getter @Setterˣ @Serial p' expand='false'>p</fold>ublic class NullableAnnotationTestData {<fold text='' expand='false'>
 
     </fold><fold text='' expand='false'>private static final long serialVersionUID = 1234567L;</fold>
     <fold text='' expand='false'>@NotNull</fold>

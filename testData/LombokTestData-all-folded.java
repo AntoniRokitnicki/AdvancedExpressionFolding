@@ -6,8 +6,8 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.util.Optional;
 
-@Getter @Setter @Serial @SuppressWarnings("ALL")
-public class LombokTestData {
+@SuppressWarnings("ALL")
+@Getter @Setter @Serial public class LombokTestData {
 
     LombokTestData data;
     boolean ok;
@@ -21,7 +21,7 @@ public class LombokTestData {
         LombokTestData data;
         boolean ok;
 
-        @Getter* public class LombokGettersPartial {
+        @Getterˣ public class LombokGettersPartial {
             LombokTestData data;
             boolean ok;
         }
@@ -31,7 +31,7 @@ public class LombokTestData {
         LombokTestData data;
         boolean ok;
 
-        @Setter* public class LombokSettersPartial {
+        @Setterˣ public class LombokSettersPartial {
             LombokTestData data;
             boolean ok;
         }
@@ -46,12 +46,12 @@ public class LombokTestData {
         LombokTestData data;
         boolean ok;
 
-        @ToString* public class ToStringPartial {
+        @ToStringˣ public class ToStringPartial {
             LombokTestData data;
             boolean ok;
         }
 
-        @ToString* public class ToStringPartial2 {
+        @ToStringˣ public class ToStringPartial2 {
             LombokTestData data;
             boolean ok;
             String string;
@@ -62,12 +62,12 @@ public class LombokTestData {
         LombokTestData data;
         boolean ok;
 
-        @EqualsAndHashCode* public class EqualsAndHashCodePartial {
+        @EqualsAndHashCodeˣ public class EqualsAndHashCodePartial {
             LombokTestData data;
             boolean ok;
         }
 
-        @EqualsAndHashCode* public class EqualsAndHashCodePartialTwo {
+        @EqualsAndHashCodeˣ public class EqualsAndHashCodePartialTwo {
             LombokTestData data;
             boolean ok;
             String string;
@@ -78,12 +78,12 @@ public class LombokTestData {
         LombokTestData data;
         boolean ok;
 
-        @Equals* public class EqualsPartial {
+        @Equalsˣ public class EqualsPartial {
             LombokTestData data;
             boolean ok;
         }
 
-        @Equals* public class EqualsPartialTwo {
+        @Equalsˣ public class EqualsPartialTwo {
             LombokTestData data;
             boolean ok;
             String string;
@@ -94,12 +94,12 @@ public class LombokTestData {
         LombokTestData data;
         boolean ok;
 
-        @HashCode* public class HashCodePartial {
+        @HashCodeˣ public class HashCodePartial {
             LombokTestData data;
             boolean ok;
         }
 
-        @HashCode* public class HashCodePartialTwo {
+        @HashCodeˣ public class HashCodePartialTwo {
             LombokTestData data;
             boolean ok;
             String string;
@@ -116,13 +116,28 @@ public class LombokTestData {
 
         }
 
-        @Data* public class DataWithPartialGetters {
+        @Dataˣ public class DataWithPartialGetters {
             LombokTestData data;
             boolean ok;
         }
 
-        @Data* public class DataWithPartialSetters {
+        @Dataˣ public class DataWithPartialSetters {
             LombokTestData data;
+            boolean ok;
+        }
+    }
+
+    public class FoldOn {
+        @Getter public class FoldOnPublic{
+            boolean ok;
+        }
+
+        @Getter class FoldOnClass{
+            boolean ok;
+        }
+
+        @SuppressWarnings("ALL")
+        @Getter class FoldOnWithAnnotation {
             boolean ok;
         }
     }

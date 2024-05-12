@@ -182,7 +182,7 @@ object IfNullSafeExt : BaseExtension() {
         val startOffset = currentList.first().startOffset
         val endOffset = currentList.last().endOffset
 
-        return IfNullSafeExpression(element, (startOffset..endOffset).toTextRange(), replacementText)
+        return IfNullSafeExpression(element, (startOffset to endOffset).toTextRange(), replacementText)
     }
 
 

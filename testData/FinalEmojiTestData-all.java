@@ -1,6 +1,6 @@
 package data;
 
-<fold text='@ToString* p' expand='false'>p</fold>ublic class FinalEmojiTestData {
+<fold text='@ToStringˣ p' expand='false'>p</fold>ublic class FinalEmojiTestData {
 
     <fold text='const' expand='false'>public static final </fold><fold text='' expand='false'>String</fold> PUBLIC_STATIC_FINAL_VAR = "";
     <fold text='const' expand='false'>final private static </fold><fold text='' expand='false'>String</fold> FINAL_FIRST_MANY = "";

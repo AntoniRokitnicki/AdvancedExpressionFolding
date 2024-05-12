@@ -15,6 +15,7 @@ import com.intellij.lang.folding.FoldingDescriptor
 import com.intellij.openapi.editor.FoldingGroup
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.*
+import com.intellij.psi.impl.source.PsiClassReferenceType
 import com.intellij.psi.search.LocalSearchScope
 import com.intellij.psi.search.searches.ReferencesSearch
 import java.util.*
@@ -22,8 +23,8 @@ import kotlin.reflect.KClass
 
 val PsiField.enum: Boolean
     get() = (type as? PsiClassType)?.resolve()?.isEnum == true
-
-
+val PsiField.singletonField: Boolean
+    get() = type.asInstance<PsiClassReferenceType>()?.resolve() == containingClass
 
 inline fun String.filter(predicate: (String) -> Boolean): String? = takeIf(predicate)
 
@@ -44,6 +45,12 @@ fun PsiExpressionList.filterOutWhiteSpaceAndTokens() = children.filter {
 fun PsiElement.isIgnorable() = this is PsiJavaToken || isWhitespace()
 
 fun PsiElement.isWhitespace() = this is PsiWhiteSpace
+
+val PsiElement.prevRealSibling: PsiElement?
+    get() {
+        return generateSequence(this.prevSibling) { it.prevSibling }
+            .firstOrNull { it !is PsiWhiteSpace }
+    }
 
 fun PsiElement.realNextSibling(): PsiElement? {
     var sibling = nextSibling
@@ -149,7 +156,8 @@ fun <T : PsiElement> PsiElement.findParents(
     return null
 }
 
-fun IntRange.toTextRange(): TextRange = TextRange(this.first, this.last)
+fun IntRange.toTextRange() = TextRange(this.first, this.last)
+fun Pair<Int, Int>.toTextRange() = TextRange(first, second)
 
 inline fun <reified T> Any?.asInstance(): T? = if (T::class.isInstance(this)) {
     this as T

@@ -2,8 +2,8 @@ package data;
 
 import org.jetbrains.annotations.Nullable;
 
-@Getter @SuppressWarnings("ALL")
-public class NullableAnnotationCheckNotNullTestData {
+@SuppressWarnings("ALL")
+@Getter public class NullableAnnotationCheckNotNullTestData {
 
     private String saaa;
 

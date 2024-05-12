@@ -156,11 +156,11 @@
     "groupReference" : 0
   }, {
     "id" : 14,
-    "text" : "@",
-    "placeholder" : "@Getter @Setter* @Serial @",
+    "text" : "p",
+    "placeholder" : "@Getter @Setterˣ @Serial p",
     "range" : {
-      "start" : 163,
-      "end" : 164,
+      "start" : 188,
+      "end" : 189,
       "size" : 1
     },
     "group" : "ClassAnnotationExpression",

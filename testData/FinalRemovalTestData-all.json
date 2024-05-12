@@ -25,7 +25,7 @@
   }, {
     "id" : 2,
     "text" : "p",
-    "placeholder" : "@ToString* p",
+    "placeholder" : "@ToStringˣ p",
     "range" : {
       "start" : 15,
       "end" : 16,
