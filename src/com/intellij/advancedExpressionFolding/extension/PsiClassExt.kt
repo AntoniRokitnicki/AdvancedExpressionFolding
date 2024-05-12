@@ -2,6 +2,7 @@ package com.intellij.advancedExpressionFolding.extension
 
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression
+import com.intellij.advancedExpressionFolding.extension.Consts.SUPERSCRIPT_MAPPING
 import com.intellij.advancedExpressionFolding.extension.FoldingAnnotation.*
 import com.intellij.advancedExpressionFolding.extension.MethodType.*
 import com.intellij.psi.*
@@ -89,7 +90,7 @@ object PsiClassExt : BaseExtension() {
             val notPureSuffix = hidingAnnotation.pure.takeIf { it ->
                 !it
             }?.let {
-                "*"
+                SUPERSCRIPT_MAPPING['*']
             } ?: ""
             hidingAnnotation.classAnnotation.annotation + notPureSuffix
         }, elementsToFold)
