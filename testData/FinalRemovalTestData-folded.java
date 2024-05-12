@@ -6,8 +6,7 @@ public class FinalRemovalTestData {
     final private static String FINAL_FIRST_MANY = "";
     final String ONLY_FINAL = "";
 
-    @Override
-    public  String toString() {
+    public  String m() {
          String s = "1";
          var s2 = "2";
         var s3 = "3";

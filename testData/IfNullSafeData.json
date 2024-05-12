@@ -9,7 +9,8 @@
       "end" : 186,
       "size" : 55
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
+    "group" : "IfNullSafeExpression",
+    "groupReference" : 0
   }, {
     "id" : 1,
     "text" : "data != null\n                && data.getData1() != null",
@@ -19,7 +20,8 @@
       "end" : 261,
       "size" : 55
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
+    "group" : "IfNullSafeExpression",
+    "groupReference" : 1
   }, {
     "id" : 2,
     "text" : "data != null\n                && data.getData1() != null\n                && data.getData1().isActive()",
@@ -29,7 +31,8 @@
       "end" : 414,
       "size" : 101
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
+    "group" : "IfNullSafeExpression",
+    "groupReference" : 2
   }, {
     "id" : 3,
     "text" : "isActive()",
@@ -39,7 +42,8 @@
       "end" : 483,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "Getter",
+    "groupReference" : 3
   }, {
     "id" : 4,
     "text" : "getData1()",
@@ -49,7 +53,8 @@
       "end" : 472,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "Getter",
+    "groupReference" : 4
   }, {
     "id" : 5,
     "text" : "data != null && data.getData1() != null && data.getData1().getData4() != null",
@@ -59,7 +64,8 @@
       "end" : 582,
       "size" : 77
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
+    "group" : "IfNullSafeExpression",
+    "groupReference" : 5
   }, {
     "id" : 6,
     "text" : "data != null && data.getData1() != null &&\n                data.getData1().getData2() != null && data.getData1().\n                getData2()\n                .getData3() != null",
@@ -69,7 +75,8 @@
       "end" : 773,
       "size" : 176
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
+    "group" : "IfNullSafeExpression",
+    "groupReference" : 6
   }, {
     "id" : 7,
     "text" : "data != null && data.getData1() != null",
@@ -79,7 +86,8 @@
       "end" : 907,
       "size" : 39
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
+    "group" : "IfNullSafeExpression",
+    "groupReference" : 7
   }, {
     "id" : 8,
     "text" : "data != null && data.isActive()",
@@ -89,7 +97,8 @@
       "end" : 1019,
       "size" : 31
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
+    "group" : "IfNullSafeExpression",
+    "groupReference" : 8
   }, {
     "id" : 9,
     "text" : "data != null\n                && data.getData1() != null\n                && data.getData1().getData2() != null\n                && data.getData1().getData2().getData3() != null\n                && data.getData1().getData2().getData3().getData4() != null",
@@ -99,7 +108,8 @@
       "end" : 1351,
       "size" : 250
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
+    "group" : "IfNullSafeExpression",
+    "groupReference" : 9
   }, {
     "id" : 10,
     "text" : "data != null\n                && data.getData1() != null\n                && !data.getData1().isActive()",
@@ -109,7 +119,8 @@
       "end" : 1505,
       "size" : 102
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
+    "group" : "IfNullSafeExpression",
+    "groupReference" : 10
   }, {
     "id" : 11,
     "text" : "data != null\n                && data.getData1() != null\n                && data.getData1().getData2() != null\n                && data.getData1().getData2().getData3() != null\n                && data.getData1().getData2().getData3().getData4() != null",
@@ -119,7 +130,8 @@
       "end" : 1843,
       "size" : 250
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
+    "group" : "IfNullSafeExpression",
+    "groupReference" : 11
   }, {
     "id" : 12,
     "text" : "data != null\n                && data.getData1() != null\n                && data.getData1().isActive()",
@@ -129,7 +141,8 @@
       "end" : 1967,
       "size" : 101
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
+    "group" : "IfNullSafeExpression",
+    "groupReference" : 12
   }, {
     "id" : 13,
     "text" : "data != null && !data.isActive()",
@@ -139,7 +152,8 @@
       "end" : 2024,
       "size" : 32
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
+    "group" : "IfNullSafeExpression",
+    "groupReference" : 13
   }, {
     "id" : 14,
     "text" : "data != null && data.getData2() != null && !data.getData2().isActive()",
@@ -149,7 +163,8 @@
       "end" : 2111,
       "size" : 70
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
+    "group" : "IfNullSafeExpression",
+    "groupReference" : 14
   }, {
     "id" : 15,
     "text" : "isActive()",
@@ -159,7 +174,8 @@
       "end" : 2163,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "Getter",
+    "groupReference" : 15
   }, {
     "id" : 16,
     "text" : "getData1()",
@@ -169,7 +185,8 @@
       "end" : 2152,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "Getter",
+    "groupReference" : 16
   }, {
     "id" : 17,
     "text" : "data != null && data.getData6() != null &&\n                data.getData6().isActive()",
@@ -179,7 +196,8 @@
       "end" : 2334,
       "size" : 85
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
+    "group" : "IfNullSafeExpression",
+    "groupReference" : 17
   }, {
     "id" : 18,
     "text" : "data != null && data.getData6() != null &&\n                !data.getData6().isActive()",
@@ -189,7 +207,8 @@
       "end" : 2561,
       "size" : 86
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
+    "group" : "IfNullSafeExpression",
+    "groupReference" : 18
   }, {
     "id" : 19,
     "text" : "data != null\n                && data.getData1() != null\n                && data.getData1().isActive()",
@@ -199,7 +218,8 @@
       "end" : 2831,
       "size" : 101
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
+    "group" : "IfNullSafeExpression",
+    "groupReference" : 19
   }, {
     "id" : 20,
     "text" : "data != null\n                && data.getData2() != null\n                && data.getData2().isActive()",
@@ -209,7 +229,8 @@
       "end" : 2955,
       "size" : 101
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
+    "group" : "IfNullSafeExpression",
+    "groupReference" : 20
   }, {
     "id" : 21,
     "text" : "data != null\n                        && data.getData3() != null\n                        && data.getData3().isActive()",
@@ -219,7 +240,8 @@
       "end" : 3093,
       "size" : 117
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
+    "group" : "IfNullSafeExpression",
+    "groupReference" : 21
   }, {
     "id" : 22,
     "text" : "data.getData3().getData4() != null\n                        && data.getData3().getData4().isActive()",
@@ -229,7 +251,8 @@
       "end" : 3220,
       "size" : 99
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
+    "group" : "IfNullSafeExpression",
+    "groupReference" : 22
   }, {
     "id" : 23,
     "text" : "data != null\n                        && data.getData5() != null\n                        && data.getData5().isActive()",
@@ -239,7 +262,8 @@
       "end" : 3360,
       "size" : 117
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
+    "group" : "IfNullSafeExpression",
+    "groupReference" : 23
   }, {
     "id" : 24,
     "text" : "data != null &&\n                                data.getData6() != null &&\n                                data.getData6().isActive()",
@@ -249,7 +273,8 @@
       "end" : 3580,
       "size" : 133
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
+    "group" : "IfNullSafeExpression",
+    "groupReference" : 24
   }, {
     "id" : 25,
     "text" : "data.getData1().getData2().getData3() != null &&\n                data.getData1().getData2().getData3().isActive()",
@@ -259,7 +284,8 @@
       "end" : 3846,
       "size" : 113
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
+    "group" : "IfNullSafeExpression",
+    "groupReference" : 25
   }, {
     "id" : 26,
     "text" : "data2.getData1().getData2() != null &&\n                data2.getData1().getData2().isActive()",
@@ -269,7 +295,8 @@
       "end" : 3967,
       "size" : 93
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
+    "group" : "IfNullSafeExpression",
+    "groupReference" : 26
   }, {
     "id" : 27,
     "text" : "data2.getData1() != null &&\n                data2.getData1().isActive()",
@@ -279,6 +306,7 @@
       "end" : 4067,
       "size" : 71
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
+    "group" : "IfNullSafeExpression",
+    "groupReference" : 27
   } ]
 }

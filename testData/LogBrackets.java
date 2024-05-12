@@ -34,16 +34,16 @@ public class LogBrackets {
         try <fold text='{...}' expand='true'>{
             log.warn("Warning message with 3 parameters and formatting - 1: <fold text='$' expand='false'>{}, 2: {}, 3: {}",
                     </fold>name<fold text=', 2: ${' expand='false'>,
-
+    
                     </fold>data.<fold text='data' expand='false'>getData()</fold>.<fold text='name' expand='false'>getName()</fold><fold text='}, 3: $' expand='false'>,
-
+    
                     </fold>city<fold text='"' expand='false'>
             </fold>);
 
             log.warn("Warning message with 3 parameters and formatting - 1: <fold text='${' expand='false'>{}, 2: {}, 3: {}",
                     </fold>data.<fold text='data' expand='false'>getData()</fold>.<fold text='name' expand='false'>getName()</fold><fold text='}, 2: $' expand='false'>,
-                    </fold>name<fold text=', 3: ${' expand='false'>,
-                    </fold>data.<fold text='data' expand='false'>getData()</fold>.<fold text='name' expand='false'>getName()</fold><fold text='}"' expand='false'>
+</fold>name<fold text=', 3: ${' expand='false'>,
+                                                    </fold>data.<fold text='data' expand='false'>getData()</fold>.<fold text='name' expand='false'>getName()</fold><fold text='}"' expand='false'>
             </fold>);
         }</fold> catch (Exception e) <fold text='{...}' expand='true'>{
             log.error("error1 <fold text='$' expand='false'>{}", </fold>e<fold text='",' expand='false'>,</fold> e.<fold text='message' expand='false'>getMessage()</fold>, e);

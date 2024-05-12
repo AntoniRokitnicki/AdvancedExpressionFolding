@@ -9,7 +9,8 @@
       "end" : 101,
       "size" : 6
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+    "group" : "VariableDeclarationImpl",
+    "groupReference" : 0
   }, {
     "id" : 1,
     "text" : "int",
@@ -19,7 +20,8 @@
       "end" : 168,
       "size" : 3
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+    "group" : "VariableDeclarationImpl",
+    "groupReference" : 1
   }, {
     "id" : 2,
     "text" : "String",
@@ -29,7 +31,8 @@
       "end" : 199,
       "size" : 6
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+    "group" : "VariableDeclarationImpl",
+    "groupReference" : 2
   }, {
     "id" : 3,
     "text" : "int",
@@ -39,7 +42,8 @@
       "end" : 298,
       "size" : 3
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+    "group" : "VariableDeclarationImpl",
+    "groupReference" : 3
   }, {
     "id" : 4,
     "text" : "String",
@@ -49,6 +53,7 @@
       "end" : 352,
       "size" : 6
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+    "group" : "VariableDeclarationImpl",
+    "groupReference" : 4
   } ]
 }

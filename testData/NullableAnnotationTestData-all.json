@@ -390,8 +390,8 @@
     "text" : " ",
     "placeholder" : "!! ",
     "range" : {
-      "start" : 1148,
-      "end" : 1149,
+      "start" : 1167,
+      "end" : 1168,
       "size" : 1
     },
     "group" : "NullAnnotationExpression",
@@ -401,8 +401,8 @@
     "text" : "@NotNull",
     "placeholder" : "",
     "range" : {
-      "start" : 1122,
-      "end" : 1130,
+      "start" : 1141,
+      "end" : 1149,
       "size" : 8
     },
     "group" : "NullAnnotationExpression",
@@ -412,8 +412,8 @@
     "text" : " ",
     "placeholder" : "!! ",
     "range" : {
-      "start" : 1230,
-      "end" : 1231,
+      "start" : 1249,
+      "end" : 1250,
       "size" : 1
     },
     "group" : "NullAnnotationExpression",
@@ -423,8 +423,8 @@
     "text" : "@Nonnull",
     "placeholder" : "",
     "range" : {
-      "start" : 1204,
-      "end" : 1212,
+      "start" : 1223,
+      "end" : 1231,
       "size" : 8
     },
     "group" : "NullAnnotationExpression",
@@ -434,8 +434,8 @@
     "text" : " ",
     "placeholder" : "? ",
     "range" : {
-      "start" : 1314,
-      "end" : 1315,
+      "start" : 1333,
+      "end" : 1334,
       "size" : 1
     },
     "group" : "NullAnnotationExpression",
@@ -445,8 +445,8 @@
     "text" : "@Nullable",
     "placeholder" : "",
     "range" : {
-      "start" : 1287,
-      "end" : 1296,
+      "start" : 1306,
+      "end" : 1315,
       "size" : 9
     },
     "group" : "NullAnnotationExpression",
@@ -456,8 +456,8 @@
     "text" : " ",
     "placeholder" : "? ",
     "range" : {
-      "start" : 1427,
-      "end" : 1428,
+      "start" : 1446,
+      "end" : 1447,
       "size" : 1
     },
     "group" : "NullAnnotationExpression",
@@ -467,8 +467,8 @@
     "text" : "@Nullable",
     "placeholder" : "",
     "range" : {
-      "start" : 1395,
-      "end" : 1404,
+      "start" : 1414,
+      "end" : 1423,
       "size" : 9
     },
     "group" : "NullAnnotationExpression",
@@ -478,8 +478,8 @@
     "text" : " ",
     "placeholder" : "? ",
     "range" : {
-      "start" : 1451,
-      "end" : 1452,
+      "start" : 1470,
+      "end" : 1471,
       "size" : 1
     },
     "group" : "NullAnnotationExpression",
@@ -489,8 +489,8 @@
     "text" : " ",
     "placeholder" : "",
     "range" : {
-      "start" : 1444,
-      "end" : 1445,
+      "start" : 1463,
+      "end" : 1464,
       "size" : 1
     },
     "group" : "NullAnnotationExpression",
@@ -500,8 +500,8 @@
     "text" : "@Nullable",
     "placeholder" : "",
     "range" : {
-      "start" : 1435,
-      "end" : 1444,
+      "start" : 1454,
+      "end" : 1463,
       "size" : 9
     },
     "group" : "NullAnnotationExpression",
@@ -511,8 +511,8 @@
     "text" : " ",
     "placeholder" : "!! ",
     "range" : {
-      "start" : 1543,
-      "end" : 1544,
+      "start" : 1556,
+      "end" : 1557,
       "size" : 1
     },
     "group" : "NullAnnotationExpression",
@@ -522,8 +522,8 @@
     "text" : " ",
     "placeholder" : "",
     "range" : {
-      "start" : 1536,
-      "end" : 1537,
+      "start" : 1549,
+      "end" : 1550,
       "size" : 1
     },
     "group" : "NullAnnotationExpression",
@@ -533,8 +533,8 @@
     "text" : "@NotNull",
     "placeholder" : "",
     "range" : {
-      "start" : 1528,
-      "end" : 1536,
+      "start" : 1541,
+      "end" : 1549,
       "size" : 8
     },
     "group" : "NullAnnotationExpression",
@@ -544,8 +544,8 @@
     "text" : " ",
     "placeholder" : "!! ",
     "range" : {
-      "start" : 1595,
-      "end" : 1596,
+      "start" : 1605,
+      "end" : 1606,
       "size" : 1
     },
     "group" : "NullAnnotationExpression",
@@ -555,8 +555,8 @@
     "text" : " ",
     "placeholder" : "",
     "range" : {
-      "start" : 1585,
-      "end" : 1586,
+      "start" : 1595,
+      "end" : 1596,
       "size" : 1
     },
     "group" : "NullAnnotationExpression",
@@ -566,8 +566,8 @@
     "text" : "@Nonnull",
     "placeholder" : "",
     "range" : {
-      "start" : 1577,
-      "end" : 1585,
+      "start" : 1587,
+      "end" : 1595,
       "size" : 8
     },
     "group" : "NullAnnotationExpression",
@@ -577,8 +577,8 @@
     "text" : " ",
     "placeholder" : "!! ",
     "range" : {
-      "start" : 1880,
-      "end" : 1881,
+      "start" : 1890,
+      "end" : 1891,
       "size" : 1
     },
     "group" : "NullAnnotationExpression",
@@ -588,8 +588,8 @@
     "text" : "@Nonnull",
     "placeholder" : "",
     "range" : {
-      "start" : 1846,
-      "end" : 1854,
+      "start" : 1856,
+      "end" : 1864,
       "size" : 8
     },
     "group" : "NullAnnotationExpression",
@@ -599,8 +599,8 @@
     "text" : " ",
     "placeholder" : "? ",
     "range" : {
-      "start" : 1904,
-      "end" : 1905,
+      "start" : 1914,
+      "end" : 1915,
       "size" : 1
     },
     "group" : "NullAnnotationExpression",
@@ -610,8 +610,8 @@
     "text" : " ",
     "placeholder" : "",
     "range" : {
-      "start" : 1897,
-      "end" : 1898,
+      "start" : 1907,
+      "end" : 1908,
       "size" : 1
     },
     "group" : "NullAnnotationExpression",
@@ -621,8 +621,8 @@
     "text" : "@Nullable",
     "placeholder" : "",
     "range" : {
-      "start" : 1888,
-      "end" : 1897,
+      "start" : 1898,
+      "end" : 1907,
       "size" : 9
     },
     "group" : "NullAnnotationExpression",
@@ -632,8 +632,8 @@
     "text" : " ",
     "placeholder" : "!! ",
     "range" : {
-      "start" : 2002,
-      "end" : 2003,
+      "start" : 2012,
+      "end" : 2013,
       "size" : 1
     },
     "group" : "NullAnnotationExpression",
@@ -643,8 +643,8 @@
     "text" : " ",
     "placeholder" : "",
     "range" : {
-      "start" : 1995,
-      "end" : 1996,
+      "start" : 2005,
+      "end" : 2006,
       "size" : 1
     },
     "group" : "NullAnnotationExpression",
@@ -654,8 +654,8 @@
     "text" : "@NotNull",
     "placeholder" : "",
     "range" : {
-      "start" : 1987,
-      "end" : 1995,
+      "start" : 1997,
+      "end" : 2005,
       "size" : 8
     },
     "group" : "NullAnnotationExpression",
@@ -665,8 +665,8 @@
     "text" : " ",
     "placeholder" : "!! ",
     "range" : {
-      "start" : 2057,
-      "end" : 2058,
+      "start" : 2067,
+      "end" : 2068,
       "size" : 1
     },
     "group" : "NullAnnotationExpression",
@@ -676,8 +676,8 @@
     "text" : " ",
     "placeholder" : "",
     "range" : {
-      "start" : 2047,
-      "end" : 2048,
+      "start" : 2057,
+      "end" : 2058,
       "size" : 1
     },
     "group" : "NullAnnotationExpression",
@@ -687,8 +687,8 @@
     "text" : "@Nonnull",
     "placeholder" : "",
     "range" : {
-      "start" : 2039,
-      "end" : 2047,
+      "start" : 2049,
+      "end" : 2057,
       "size" : 8
     },
     "group" : "NullAnnotationExpression",
@@ -698,8 +698,8 @@
     "text" : " ",
     "placeholder" : "!! ",
     "range" : {
-      "start" : 2163,
-      "end" : 2164,
+      "start" : 2173,
+      "end" : 2174,
       "size" : 1
     },
     "group" : "NullAnnotationExpression",
@@ -709,8 +709,8 @@
     "text" : " ",
     "placeholder" : "",
     "range" : {
-      "start" : 2156,
-      "end" : 2157,
+      "start" : 2166,
+      "end" : 2167,
       "size" : 1
     },
     "group" : "NullAnnotationExpression",
@@ -720,8 +720,8 @@
     "text" : "@Nonnull",
     "placeholder" : "",
     "range" : {
-      "start" : 2148,
-      "end" : 2156,
+      "start" : 2158,
+      "end" : 2166,
       "size" : 8
     },
     "group" : "NullAnnotationExpression",
@@ -731,8 +731,8 @@
     "text" : " ",
     "placeholder" : "? ",
     "range" : {
-      "start" : 2206,
-      "end" : 2207,
+      "start" : 2216,
+      "end" : 2217,
       "size" : 1
     },
     "group" : "NullAnnotationExpression",
@@ -742,8 +742,8 @@
     "text" : " ",
     "placeholder" : "",
     "range" : {
-      "start" : 2199,
-      "end" : 2200,
+      "start" : 2209,
+      "end" : 2210,
       "size" : 1
     },
     "group" : "NullAnnotationExpression",
@@ -753,8 +753,8 @@
     "text" : "@Nullable",
     "placeholder" : "",
     "range" : {
-      "start" : 2190,
-      "end" : 2199,
+      "start" : 2200,
+      "end" : 2209,
       "size" : 9
     },
     "group" : "NullAnnotationExpression",
@@ -764,8 +764,8 @@
     "text" : " ",
     "placeholder" : "!! ",
     "range" : {
-      "start" : 2238,
-      "end" : 2239,
+      "start" : 2248,
+      "end" : 2249,
       "size" : 1
     },
     "group" : "NullAnnotationExpression",
@@ -775,8 +775,8 @@
     "text" : " ",
     "placeholder" : "",
     "range" : {
-      "start" : 2231,
-      "end" : 2232,
+      "start" : 2241,
+      "end" : 2242,
       "size" : 1
     },
     "group" : "NullAnnotationExpression",
@@ -786,8 +786,8 @@
     "text" : "@NotNull",
     "placeholder" : "",
     "range" : {
-      "start" : 2223,
-      "end" : 2231,
+      "start" : 2233,
+      "end" : 2241,
       "size" : 8
     },
     "group" : "NullAnnotationExpression",
@@ -797,8 +797,8 @@
     "text" : "\n\n        ",
     "placeholder" : "",
     "range" : {
-      "start" : 2336,
-      "end" : 2346,
+      "start" : 2346,
+      "end" : 2356,
       "size" : 10
     },
     "group" : "ClassAnnotationExpression",
@@ -808,8 +808,8 @@
     "text" : "@Nullable\n        public NullableAnnotationTestData getGetterNullable() {\n            return getterNullable;\n        }",
     "placeholder" : "",
     "range" : {
-      "start" : 2346,
-      "end" : 2464,
+      "start" : 2356,
+      "end" : 2474,
       "size" : 118
     },
     "group" : "ClassAnnotationExpression",
@@ -819,8 +819,8 @@
     "text" : "c",
     "placeholder" : "@Getter c",
     "range" : {
-      "start" : 2263,
-      "end" : 2264,
+      "start" : 2273,
+      "end" : 2274,
       "size" : 1
     },
     "group" : "ClassAnnotationExpression",
@@ -830,8 +830,8 @@
     "text" : " ",
     "placeholder" : "? ",
     "range" : {
-      "start" : 2320,
-      "end" : 2321,
+      "start" : 2330,
+      "end" : 2331,
       "size" : 1
     },
     "group" : "NullAnnotationExpression",
@@ -841,8 +841,8 @@
     "text" : "\n\n        ",
     "placeholder" : "",
     "range" : {
-      "start" : 2549,
-      "end" : 2559,
+      "start" : 2559,
+      "end" : 2569,
       "size" : 10
     },
     "group" : "ClassAnnotationExpression",
@@ -852,8 +852,8 @@
     "text" : "public void setSetterNullable(@Nonnull NullableAnnotationTestData setterNullable) {\n            this.setterNullable = setterNullable;\n        }",
     "placeholder" : "",
     "range" : {
-      "start" : 2559,
-      "end" : 2702,
+      "start" : 2569,
+      "end" : 2712,
       "size" : 143
     },
     "group" : "ClassAnnotationExpression",
@@ -863,8 +863,8 @@
     "text" : "c",
     "placeholder" : "@Setter c",
     "range" : {
-      "start" : 2476,
-      "end" : 2477,
+      "start" : 2486,
+      "end" : 2487,
       "size" : 1
     },
     "group" : "ClassAnnotationExpression",
@@ -874,8 +874,8 @@
     "text" : " ",
     "placeholder" : "!! ",
     "range" : {
-      "start" : 2533,
-      "end" : 2534,
+      "start" : 2543,
+      "end" : 2544,
       "size" : 1
     },
     "group" : "NullAnnotationExpression",
@@ -885,8 +885,8 @@
     "text" : " ",
     "placeholder" : "!! ",
     "range" : {
-      "start" : 2624,
-      "end" : 2625,
+      "start" : 2634,
+      "end" : 2635,
       "size" : 1
     },
     "group" : "NullAnnotationExpression",
@@ -896,8 +896,8 @@
     "text" : " ",
     "placeholder" : "",
     "range" : {
-      "start" : 2597,
-      "end" : 2598,
+      "start" : 2607,
+      "end" : 2608,
       "size" : 1
     },
     "group" : "NullAnnotationExpression",
@@ -907,8 +907,8 @@
     "text" : "@Nonnull",
     "placeholder" : "",
     "range" : {
-      "start" : 2589,
-      "end" : 2597,
+      "start" : 2599,
+      "end" : 2607,
       "size" : 8
     },
     "group" : "NullAnnotationExpression",
@@ -918,8 +918,8 @@
     "text" : "setterNullable",
     "placeholder" : "<<",
     "range" : {
-      "start" : 2677,
-      "end" : 2691,
+      "start" : 2687,
+      "end" : 2701,
       "size" : 14
     },
     "group" : "BuilderShiftExpression",

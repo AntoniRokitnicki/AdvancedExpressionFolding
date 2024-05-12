@@ -9,7 +9,8 @@
       "end" : 304,
       "size" : 8
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Equal"
+    "group" : "Equal",
+    "groupReference" : 0
   }, {
     "id" : 1,
     "text" : ")",
@@ -19,7 +20,8 @@
       "end" : 306,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Equal"
+    "group" : "Equal",
+    "groupReference" : 0
   }, {
     "id" : 2,
     "text" : "!",
@@ -29,7 +31,8 @@
       "end" : 337,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.NotEqual"
+    "group" : "NotEqual",
+    "groupReference" : 1
   }, {
     "id" : 3,
     "text" : ".equals(",
@@ -39,7 +42,8 @@
       "end" : 346,
       "size" : 8
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.NotEqual"
+    "group" : "NotEqual",
+    "groupReference" : 1
   }, {
     "id" : 4,
     "text" : ")",
@@ -49,7 +53,8 @@
       "end" : 348,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.NotEqual"
+    "group" : "NotEqual",
+    "groupReference" : 1
   }, {
     "id" : 5,
     "text" : ".compareTo(",
@@ -59,7 +64,8 @@
       "end" : 390,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Equal"
+    "group" : "Equal",
+    "groupReference" : 2
   }, {
     "id" : 6,
     "text" : ") == 0",
@@ -69,7 +75,8 @@
       "end" : 397,
       "size" : 6
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Equal"
+    "group" : "Equal",
+    "groupReference" : 2
   }, {
     "id" : 7,
     "text" : ".compareTo(",
@@ -79,7 +86,8 @@
       "end" : 439,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.NotEqual"
+    "group" : "NotEqual",
+    "groupReference" : 3
   }, {
     "id" : 8,
     "text" : ") != 0",
@@ -89,7 +97,8 @@
       "end" : 446,
       "size" : 6
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.NotEqual"
+    "group" : "NotEqual",
+    "groupReference" : 3
   }, {
     "id" : 9,
     "text" : ".compareTo(",
@@ -99,7 +108,8 @@
       "end" : 489,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Greater"
+    "group" : "Greater",
+    "groupReference" : 4
   }, {
     "id" : 10,
     "text" : ") > 0",
@@ -109,7 +119,8 @@
       "end" : 495,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Greater"
+    "group" : "Greater",
+    "groupReference" : 4
   }, {
     "id" : 11,
     "text" : ".compareTo(",
@@ -119,7 +130,8 @@
       "end" : 537,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Greater"
+    "group" : "Greater",
+    "groupReference" : 5
   }, {
     "id" : 12,
     "text" : ") == 1",
@@ -129,7 +141,8 @@
       "end" : 544,
       "size" : 6
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Greater"
+    "group" : "Greater",
+    "groupReference" : 5
   }, {
     "id" : 13,
     "text" : ".compareTo(",
@@ -139,7 +152,8 @@
       "end" : 586,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.GreaterEqual"
+    "group" : "GreaterEqual",
+    "groupReference" : 6
   }, {
     "id" : 14,
     "text" : ") > -1",
@@ -149,7 +163,8 @@
       "end" : 593,
       "size" : 6
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.GreaterEqual"
+    "group" : "GreaterEqual",
+    "groupReference" : 6
   }, {
     "id" : 15,
     "text" : ".compareTo(",
@@ -159,7 +174,8 @@
       "end" : 635,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.GreaterEqual"
+    "group" : "GreaterEqual",
+    "groupReference" : 7
   }, {
     "id" : 16,
     "text" : ") >= 0",
@@ -169,7 +185,8 @@
       "end" : 642,
       "size" : 6
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.GreaterEqual"
+    "group" : "GreaterEqual",
+    "groupReference" : 7
   }, {
     "id" : 17,
     "text" : ".compareTo(",
@@ -179,7 +196,8 @@
       "end" : 705,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Less"
+    "group" : "Less",
+    "groupReference" : 8
   }, {
     "id" : 18,
     "text" : ") < 0",
@@ -189,7 +207,8 @@
       "end" : 711,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Less"
+    "group" : "Less",
+    "groupReference" : 8
   }, {
     "id" : 19,
     "text" : ".compareTo(",
@@ -199,7 +218,8 @@
       "end" : 753,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Less"
+    "group" : "Less",
+    "groupReference" : 9
   }, {
     "id" : 20,
     "text" : ") == -1",
@@ -209,7 +229,8 @@
       "end" : 761,
       "size" : 7
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Less"
+    "group" : "Less",
+    "groupReference" : 9
   }, {
     "id" : 21,
     "text" : ".compareTo(",
@@ -219,7 +240,8 @@
       "end" : 803,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.LessEqual"
+    "group" : "LessEqual",
+    "groupReference" : 10
   }, {
     "id" : 22,
     "text" : ") < 1",
@@ -229,7 +251,8 @@
       "end" : 809,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.LessEqual"
+    "group" : "LessEqual",
+    "groupReference" : 10
   }, {
     "id" : 23,
     "text" : ".compareTo(",
@@ -239,7 +262,8 @@
       "end" : 851,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.LessEqual"
+    "group" : "LessEqual",
+    "groupReference" : 11
   }, {
     "id" : 24,
     "text" : ") <= 0",
@@ -249,6 +273,7 @@
       "end" : 858,
       "size" : 6
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.LessEqual"
+    "group" : "LessEqual",
+    "groupReference" : 11
   } ]
 }

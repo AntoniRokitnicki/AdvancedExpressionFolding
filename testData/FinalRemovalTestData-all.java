@@ -1,18 +1,17 @@
 package data;
 
-<fold text='@ToStringˣ p' expand='false'>p</fold>ublic class FinalRemovalTestData {
+public class FinalRemovalTestData {
 
     <fold text='const' expand='false'>public static final </fold><fold text='' expand='false'>String</fold> PUBLIC_STATIC_FINAL_VAR = "";
     <fold text='const' expand='false'>final private static </fold><fold text='' expand='false'>String</fold> FINAL_FIRST_MANY = "";
-    final String ONLY_FINAL = "";<fold text='' expand='false'>
+    final String ONLY_FINAL = "";
 
-    </fold><fold text='' expand='false'>@Override
-    public <fold text='' expand='false'>final</fold> String toString() <fold text='{...}' expand='true'>{
+    public <fold text='' expand='false'>final</fold> String m() <fold text='{...}' expand='true'>{
         <fold text='' expand='false'><fold text='val' expand='false'>final</fold> String</fold> s = "1";
         <fold text='' expand='false'><fold text='val' expand='false'>final</fold> var</fold> s2 = "2";
         <fold text='val' expand='false'>var</fold> s3 = "3";
         return s + s2 + s3;
-    }</fold></fold>
+    }</fold>
 
     interface A <fold text='{...}' expand='true'>{
         void main(<fold text='' expand='false'>final</fold> String arg, <fold text='' expand='false'>final</fold> int i, <fold text='' expand='false'>final</fold> Object o, Data data);

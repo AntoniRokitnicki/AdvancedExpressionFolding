@@ -5,8 +5,8 @@
     "text" : "Data",
     "placeholder" : "val",
     "range" : {
-      "start" : 168,
-      "end" : 172,
+      "start" : 173,
+      "end" : 177,
       "size" : 4
     },
     "group" : "VariableDeclarationImpl",
@@ -16,8 +16,8 @@
     "text" : "Data ",
     "placeholder" : "val (",
     "range" : {
-      "start" : 203,
-      "end" : 208,
+      "start" : 208,
+      "end" : 213,
       "size" : 5
     },
     "group" : "WrapperExpression",
@@ -27,8 +27,8 @@
     "text" : " = array[0];",
     "placeholder" : ", ",
     "range" : {
-      "start" : 213,
-      "end" : 225,
+      "start" : 218,
+      "end" : 230,
       "size" : 12
     },
     "group" : "WrapperExpression",
@@ -38,8 +38,8 @@
     "text" : "\n\n        Data ",
     "placeholder" : "",
     "range" : {
-      "start" : 225,
-      "end" : 240,
+      "start" : 230,
+      "end" : 245,
       "size" : 15
     },
     "group" : "WrapperExpression",
@@ -49,8 +49,8 @@
     "text" : " = array[1];",
     "placeholder" : ", ",
     "range" : {
-      "start" : 246,
-      "end" : 258,
+      "start" : 251,
+      "end" : 263,
       "size" : 12
     },
     "group" : "WrapperExpression",
@@ -60,8 +60,8 @@
     "text" : "\n        Data ",
     "placeholder" : "",
     "range" : {
-      "start" : 258,
-      "end" : 272,
+      "start" : 263,
+      "end" : 277,
       "size" : 14
     },
     "group" : "WrapperExpression",
@@ -71,8 +71,8 @@
     "text" : " = array[2];",
     "placeholder" : ", ",
     "range" : {
-      "start" : 277,
-      "end" : 289,
+      "start" : 282,
+      "end" : 294,
       "size" : 12
     },
     "group" : "WrapperExpression",
@@ -82,8 +82,8 @@
     "text" : "\n        Data ",
     "placeholder" : "",
     "range" : {
-      "start" : 289,
-      "end" : 303,
+      "start" : 294,
+      "end" : 308,
       "size" : 14
     },
     "group" : "WrapperExpression",
@@ -93,8 +93,8 @@
     "text" : " ",
     "placeholder" : ") ",
     "range" : {
-      "start" : 309,
-      "end" : 310,
+      "start" : 314,
+      "end" : 315,
       "size" : 1
     },
     "group" : "WrapperExpression",
@@ -104,8 +104,8 @@
     "text" : "[3]",
     "placeholder" : "",
     "range" : {
-      "start" : 317,
-      "end" : 320,
+      "start" : 322,
+      "end" : 325,
       "size" : 3
     },
     "group" : "WrapperExpression",
@@ -115,8 +115,8 @@
     "text" : "Data",
     "placeholder" : "val",
     "range" : {
-      "start" : 235,
-      "end" : 239,
+      "start" : 240,
+      "end" : 244,
       "size" : 4
     },
     "group" : "VariableDeclarationImpl",
@@ -126,8 +126,8 @@
     "text" : "Data",
     "placeholder" : "val",
     "range" : {
-      "start" : 267,
-      "end" : 271,
+      "start" : 272,
+      "end" : 276,
       "size" : 4
     },
     "group" : "VariableDeclarationImpl",
@@ -137,8 +137,8 @@
     "text" : "Data",
     "placeholder" : "val",
     "range" : {
-      "start" : 298,
-      "end" : 302,
+      "start" : 303,
+      "end" : 307,
       "size" : 4
     },
     "group" : "VariableDeclarationImpl",
@@ -148,8 +148,8 @@
     "text" : "Data",
     "placeholder" : "val",
     "range" : {
-      "start" : 331,
-      "end" : 335,
+      "start" : 336,
+      "end" : 340,
       "size" : 4
     },
     "group" : "VariableDeclarationImpl",
@@ -159,8 +159,8 @@
     "text" : "getArray()",
     "placeholder" : "array",
     "range" : {
-      "start" : 353,
-      "end" : 363,
+      "start" : 358,
+      "end" : 368,
       "size" : 10
     },
     "group" : "Getter",
@@ -170,8 +170,8 @@
     "text" : "Data",
     "placeholder" : "val",
     "range" : {
-      "start" : 376,
-      "end" : 380,
+      "start" : 381,
+      "end" : 385,
       "size" : 4
     },
     "group" : "VariableDeclarationImpl",
@@ -181,8 +181,8 @@
     "text" : "getArray()",
     "placeholder" : "array",
     "range" : {
-      "start" : 398,
-      "end" : 408,
+      "start" : 403,
+      "end" : 413,
       "size" : 10
     },
     "group" : "Getter",
@@ -192,8 +192,8 @@
     "text" : "Data ",
     "placeholder" : "var (",
     "range" : {
-      "start" : 422,
-      "end" : 427,
+      "start" : 427,
+      "end" : 432,
       "size" : 5
     },
     "group" : "WrapperExpression",
@@ -203,8 +203,8 @@
     "text" : " = data.getArray()[0];",
     "placeholder" : ", ",
     "range" : {
-      "start" : 434,
-      "end" : 456,
+      "start" : 439,
+      "end" : 461,
       "size" : 22
     },
     "group" : "WrapperExpression",
@@ -214,8 +214,8 @@
     "text" : "\n        Data ",
     "placeholder" : "",
     "range" : {
-      "start" : 456,
-      "end" : 470,
+      "start" : 461,
+      "end" : 475,
       "size" : 14
     },
     "group" : "WrapperExpression",
@@ -225,8 +225,8 @@
     "text" : " = data.getArray()[1];",
     "placeholder" : ", ",
     "range" : {
-      "start" : 477,
-      "end" : 499,
+      "start" : 482,
+      "end" : 504,
       "size" : 22
     },
     "group" : "WrapperExpression",
@@ -236,8 +236,8 @@
     "text" : "\n        Data ",
     "placeholder" : "",
     "range" : {
-      "start" : 499,
-      "end" : 513,
+      "start" : 504,
+      "end" : 518,
       "size" : 14
     },
     "group" : "WrapperExpression",
@@ -247,8 +247,8 @@
     "text" : " ",
     "placeholder" : ") ",
     "range" : {
-      "start" : 520,
-      "end" : 521,
+      "start" : 525,
+      "end" : 526,
       "size" : 1
     },
     "group" : "WrapperExpression",
@@ -258,8 +258,8 @@
     "text" : "[2]",
     "placeholder" : "",
     "range" : {
-      "start" : 538,
-      "end" : 541,
+      "start" : 543,
+      "end" : 546,
       "size" : 3
     },
     "group" : "WrapperExpression",
@@ -269,8 +269,8 @@
     "text" : "Data",
     "placeholder" : "val",
     "range" : {
-      "start" : 465,
-      "end" : 469,
+      "start" : 470,
+      "end" : 474,
       "size" : 4
     },
     "group" : "VariableDeclarationImpl",
@@ -280,8 +280,8 @@
     "text" : "getArray()",
     "placeholder" : "array",
     "range" : {
-      "start" : 485,
-      "end" : 495,
+      "start" : 490,
+      "end" : 500,
       "size" : 10
     },
     "group" : "Getter",
@@ -291,8 +291,8 @@
     "text" : "Data",
     "placeholder" : "val",
     "range" : {
-      "start" : 508,
-      "end" : 512,
+      "start" : 513,
+      "end" : 517,
       "size" : 4
     },
     "group" : "VariableDeclarationImpl",
@@ -302,8 +302,8 @@
     "text" : "getArray()",
     "placeholder" : "array",
     "range" : {
-      "start" : 528,
-      "end" : 538,
+      "start" : 533,
+      "end" : 543,
       "size" : 10
     },
     "group" : "Getter",
@@ -313,8 +313,8 @@
     "text" : "Data ",
     "placeholder" : "var (",
     "range" : {
-      "start" : 576,
-      "end" : 581,
+      "start" : 581,
+      "end" : 586,
       "size" : 5
     },
     "group" : "WrapperExpression",
@@ -324,8 +324,8 @@
     "text" : " = data.getData().getArray()[0];",
     "placeholder" : ", ",
     "range" : {
-      "start" : 592,
-      "end" : 624,
+      "start" : 597,
+      "end" : 629,
       "size" : 32
     },
     "group" : "WrapperExpression",
@@ -335,8 +335,8 @@
     "text" : "\n        Data ",
     "placeholder" : "",
     "range" : {
-      "start" : 624,
-      "end" : 638,
+      "start" : 629,
+      "end" : 643,
       "size" : 14
     },
     "group" : "WrapperExpression",
@@ -346,8 +346,8 @@
     "text" : " ",
     "placeholder" : ") ",
     "range" : {
-      "start" : 649,
-      "end" : 650,
+      "start" : 654,
+      "end" : 655,
       "size" : 1
     },
     "group" : "WrapperExpression",
@@ -357,8 +357,8 @@
     "text" : "[1]",
     "placeholder" : "",
     "range" : {
-      "start" : 677,
-      "end" : 680,
+      "start" : 682,
+      "end" : 685,
       "size" : 3
     },
     "group" : "WrapperExpression",
@@ -368,8 +368,8 @@
     "text" : "Data",
     "placeholder" : "var",
     "range" : {
-      "start" : 633,
-      "end" : 637,
+      "start" : 638,
+      "end" : 642,
       "size" : 4
     },
     "group" : "VariableDeclarationImpl",
@@ -379,8 +379,8 @@
     "text" : "getArray()",
     "placeholder" : "array",
     "range" : {
-      "start" : 667,
-      "end" : 677,
+      "start" : 672,
+      "end" : 682,
       "size" : 10
     },
     "group" : "Getter",
@@ -390,8 +390,8 @@
     "text" : "getData()",
     "placeholder" : "data",
     "range" : {
-      "start" : 657,
-      "end" : 666,
+      "start" : 662,
+      "end" : 671,
       "size" : 9
     },
     "group" : "Getter",
@@ -401,8 +401,8 @@
     "text" : "Data",
     "placeholder" : "val",
     "range" : {
-      "start" : 719,
-      "end" : 723,
+      "start" : 732,
+      "end" : 736,
       "size" : 4
     },
     "group" : "VariableDeclarationImpl",
@@ -412,8 +412,8 @@
     "text" : "getArray()",
     "placeholder" : "array",
     "range" : {
-      "start" : 744,
-      "end" : 754,
+      "start" : 757,
+      "end" : 767,
       "size" : 10
     },
     "group" : "Getter",
@@ -423,8 +423,8 @@
     "text" : "Data",
     "placeholder" : "val",
     "range" : {
-      "start" : 767,
-      "end" : 771,
+      "start" : 780,
+      "end" : 784,
       "size" : 4
     },
     "group" : "VariableDeclarationImpl",
@@ -434,8 +434,8 @@
     "text" : "getArray()",
     "placeholder" : "array",
     "range" : {
-      "start" : 802,
-      "end" : 812,
+      "start" : 815,
+      "end" : 825,
       "size" : 10
     },
     "group" : "Getter",
@@ -445,8 +445,8 @@
     "text" : "getData()",
     "placeholder" : "data",
     "range" : {
-      "start" : 792,
-      "end" : 801,
+      "start" : 805,
+      "end" : 814,
       "size" : 9
     },
     "group" : "Getter",

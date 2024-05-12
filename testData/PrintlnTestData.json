@@ -9,7 +9,8 @@
       "end" : 540,
       "size" : 19
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Add"
+    "group" : "Add",
+    "groupReference" : 0
   }, {
     "id" : 1,
     "text" : " +\n                ",
@@ -19,26 +20,29 @@
       "end" : 565,
       "size" : 19
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Add"
+    "group" : "Add",
+    "groupReference" : 0
   }, {
     "id" : 2,
-    "text" : " +\n                ",
+    "text" : " +\n",
     "placeholder" : " + ",
     "range" : {
       "start" : 709,
-      "end" : 728,
-      "size" : 19
+      "end" : 712,
+      "size" : 3
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Add"
+    "group" : "Add",
+    "groupReference" : 1
   }, {
     "id" : 3,
     "text" : "\"\"\"\n                text\n                block\n                \"\"\"",
     "placeholder" : "\"text\nblock\n\"",
     "range" : {
-      "start" : 773,
-      "end" : 839,
+      "start" : 757,
+      "end" : 823,
       "size" : 66
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+    "group" : "StringLiteral",
+    "groupReference" : 2
   } ]
 }

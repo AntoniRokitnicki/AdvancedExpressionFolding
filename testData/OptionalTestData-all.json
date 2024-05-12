@@ -9,7 +9,8 @@
       "end" : 279,
       "size" : 6
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+    "group" : "VariableDeclarationImpl",
+    "groupReference" : 0
   }, {
     "id" : 1,
     "text" : "(",
@@ -19,7 +20,8 @@
       "end" : 302,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+    "group" : "IfExpression:highlighting",
+    "groupReference" : 1
   }, {
     "id" : 2,
     "text" : ")",
@@ -29,7 +31,8 @@
       "end" : 318,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+    "group" : "IfExpression:highlighting",
+    "groupReference" : 1
   }, {
     "id" : 3,
     "text" : "isPresent()",
@@ -39,7 +42,8 @@
       "end" : 317,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "Getter",
+    "groupReference" : 2
   }, {
     "id" : 4,
     "text" : ".get()",
@@ -49,7 +53,8 @@
       "end" : 346,
       "size" : 6
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "Getter",
+    "groupReference" : 3
   }, {
     "id" : 5,
     "text" : ".orElseThrow()",
@@ -59,7 +64,8 @@
       "end" : 387,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "Getter",
+    "groupReference" : 4
   }, {
     "id" : 6,
     "text" : "Optional.ofNullable(",
@@ -69,7 +75,8 @@
       "end" : 422,
       "size" : 20
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOfNullable"
+    "group" : "OptionalOfNullable",
+    "groupReference" : 5
   }, {
     "id" : 7,
     "text" : ")",
@@ -79,7 +86,8 @@
       "end" : 431,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOfNullable"
+    "group" : "OptionalOfNullable",
+    "groupReference" : 5
   }, {
     "id" : 8,
     "text" : "Optional.of(",
@@ -89,7 +97,8 @@
       "end" : 457,
       "size" : 12
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOf"
+    "group" : "OptionalOf",
+    "groupReference" : 6
   }, {
     "id" : 9,
     "text" : ")",
@@ -99,7 +108,8 @@
       "end" : 462,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOf"
+    "group" : "OptionalOf",
+    "groupReference" : 6
   }, {
     "id" : 10,
     "text" : ".orElseGet(",
@@ -109,7 +119,8 @@
       "end" : 517,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOrElseElvis"
+    "group" : "OptionalOrElseElvis",
+    "groupReference" : 7
   }, {
     "id" : 11,
     "text" : ")",
@@ -119,7 +130,8 @@
       "end" : 539,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOrElseElvis"
+    "group" : "OptionalOrElseElvis",
+    "groupReference" : 7
   }, {
     "id" : 12,
     "text" : "Optional.ofNullable(",
@@ -129,7 +141,8 @@
       "end" : 497,
       "size" : 20
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOfNullable"
+    "group" : "OptionalOfNullable",
+    "groupReference" : 8
   }, {
     "id" : 13,
     "text" : ")",
@@ -139,7 +152,8 @@
       "end" : 506,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOfNullable"
+    "group" : "OptionalOfNullable",
+    "groupReference" : 8
   }, {
     "id" : 14,
     "text" : ".orElseGet(",
@@ -149,7 +163,8 @@
       "end" : 593,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOrElseElvis"
+    "group" : "OptionalOrElseElvis",
+    "groupReference" : 9
   }, {
     "id" : 15,
     "text" : ")",
@@ -159,7 +174,8 @@
       "end" : 624,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOrElseElvis"
+    "group" : "OptionalOrElseElvis",
+    "groupReference" : 9
   }, {
     "id" : 16,
     "text" : "Optional.ofNullable(",
@@ -169,7 +185,8 @@
       "end" : 573,
       "size" : 20
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOfNullable"
+    "group" : "OptionalOfNullable",
+    "groupReference" : 10
   }, {
     "id" : 17,
     "text" : ")",
@@ -179,7 +196,8 @@
       "end" : 582,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOfNullable"
+    "group" : "OptionalOfNullable",
+    "groupReference" : 10
   }, {
     "id" : 18,
     "text" : "getData()",
@@ -189,7 +207,8 @@
       "end" : 623,
       "size" : 9
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "Getter",
+    "groupReference" : 11
   }, {
     "id" : 19,
     "text" : "getData()",
@@ -199,7 +218,8 @@
       "end" : 613,
       "size" : 9
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "Getter",
+    "groupReference" : 12
   }, {
     "id" : 20,
     "text" : ".orElse(",
@@ -209,7 +229,8 @@
       "end" : 683,
       "size" : 8
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOrElseElvis"
+    "group" : "OptionalOrElseElvis",
+    "groupReference" : 13
   }, {
     "id" : 21,
     "text" : ")",
@@ -219,7 +240,8 @@
       "end" : 688,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOrElseElvis"
+    "group" : "OptionalOrElseElvis",
+    "groupReference" : 13
   }, {
     "id" : 22,
     "text" : ".map(",
@@ -229,7 +251,8 @@
       "end" : 661,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapCall"
+    "group" : "OptionalMapCall",
+    "groupReference" : 14
   }, {
     "id" : 23,
     "text" : ")",
@@ -239,7 +262,8 @@
       "end" : 675,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapCall"
+    "group" : "OptionalMapCall",
+    "groupReference" : 14
   }, {
     "id" : 24,
     "text" : "Optional.of(",
@@ -249,7 +273,8 @@
       "end" : 651,
       "size" : 12
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOf"
+    "group" : "OptionalOf",
+    "groupReference" : 15
   }, {
     "id" : 25,
     "text" : ")",
@@ -259,7 +284,8 @@
       "end" : 656,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOf"
+    "group" : "OptionalOf",
+    "groupReference" : 15
   }, {
     "id" : 26,
     "text" : "Data::getData",
@@ -269,7 +295,8 @@
       "end" : 674,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+    "group" : "StringLiteral",
+    "groupReference" : 16
   }, {
     "id" : 27,
     "text" : ".get()",
@@ -279,7 +306,8 @@
       "end" : 775,
       "size" : 6
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "Getter",
+    "groupReference" : 17
   }, {
     "id" : 28,
     "text" : "Optional.ofNullable(",
@@ -289,7 +317,8 @@
       "end" : 722,
       "size" : 20
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOfNullable"
+    "group" : "OptionalOfNullable",
+    "groupReference" : 18
   }, {
     "id" : 29,
     "text" : ")",
@@ -299,7 +328,8 @@
       "end" : 731,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOfNullable"
+    "group" : "OptionalOfNullable",
+    "groupReference" : 18
   }, {
     "id" : 30,
     "text" : "Optional.ofNullable(",
@@ -309,7 +339,8 @@
       "end" : 722,
       "size" : 20
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOfNullable"
+    "group" : "OptionalOfNullable",
+    "groupReference" : 19
   }, {
     "id" : 31,
     "text" : ")",
@@ -319,7 +350,8 @@
       "end" : 731,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOfNullable"
+    "group" : "OptionalOfNullable",
+    "groupReference" : 19
   }, {
     "id" : 32,
     "text" : ".orElse(",
@@ -329,7 +361,8 @@
       "end" : 1204,
       "size" : 8
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOrElseElvis"
+    "group" : "OptionalOrElseElvis",
+    "groupReference" : 20
   }, {
     "id" : 33,
     "text" : ")",
@@ -339,7 +372,8 @@
       "end" : 1209,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOrElseElvis"
+    "group" : "OptionalOrElseElvis",
+    "groupReference" : 20
   }, {
     "id" : 34,
     "text" : "\n                .map(",
@@ -349,7 +383,8 @@
       "end" : 1049,
       "size" : 22
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
+    "group" : "OptionalMapSafeCall",
+    "groupReference" : 21
   }, {
     "id" : 35,
     "text" : ")",
@@ -359,7 +394,8 @@
       "end" : 1060,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
+    "group" : "OptionalMapSafeCall",
+    "groupReference" : 21
   }, {
     "id" : 36,
     "text" : "\n                .map(",
@@ -369,7 +405,8 @@
       "end" : 934,
       "size" : 22
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
+    "group" : "OptionalMapSafeCall",
+    "groupReference" : 22
   }, {
     "id" : 37,
     "text" : ")",
@@ -379,7 +416,8 @@
       "end" : 948,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
+    "group" : "OptionalMapSafeCall",
+    "groupReference" : 22
   }, {
     "id" : 38,
     "text" : ".map(",
@@ -389,7 +427,8 @@
       "end" : 898,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapCall"
+    "group" : "OptionalMapCall",
+    "groupReference" : 23
   }, {
     "id" : 39,
     "text" : ")",
@@ -399,7 +438,8 @@
       "end" : 912,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapCall"
+    "group" : "OptionalMapCall",
+    "groupReference" : 23
   }, {
     "id" : 40,
     "text" : "Optional.of(",
@@ -409,7 +449,8 @@
       "end" : 888,
       "size" : 12
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOf"
+    "group" : "OptionalOf",
+    "groupReference" : 24
   }, {
     "id" : 41,
     "text" : ")",
@@ -419,7 +460,8 @@
       "end" : 893,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOf"
+    "group" : "OptionalOf",
+    "groupReference" : 24
   }, {
     "id" : 42,
     "text" : "Data::getData",
@@ -429,7 +471,8 @@
       "end" : 911,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+    "group" : "StringLiteral",
+    "groupReference" : 25
   }, {
     "id" : 43,
     "text" : "Data::getData",
@@ -439,7 +482,8 @@
       "end" : 947,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+    "group" : "StringLiteral",
+    "groupReference" : 26
   }, {
     "id" : 44,
     "text" : "Data::isOk",
@@ -449,7 +493,8 @@
       "end" : 1059,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+    "group" : "StringLiteral",
+    "groupReference" : 27
   }, {
     "id" : 45,
     "text" : "var",
@@ -459,7 +504,8 @@
       "end" : 1124,
       "size" : 3
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+    "group" : "VariableDeclarationImpl",
+    "groupReference" : 28
   }, {
     "id" : 46,
     "text" : ".equals(",
@@ -469,7 +515,8 @@
       "end" : 1168,
       "size" : 8
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Equal"
+    "group" : "Equal",
+    "groupReference" : 29
   }, {
     "id" : 47,
     "text" : ")",
@@ -479,7 +526,8 @@
       "end" : 1176,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Equal"
+    "group" : "Equal",
+    "groupReference" : 29
   }, {
     "id" : 48,
     "text" : ".orElse(",
@@ -489,7 +537,8 @@
       "end" : 1318,
       "size" : 8
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOrElseElvis"
+    "group" : "OptionalOrElseElvis",
+    "groupReference" : 30
   }, {
     "id" : 49,
     "text" : ")",
@@ -499,7 +548,8 @@
       "end" : 1335,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOrElseElvis"
+    "group" : "OptionalOrElseElvis",
+    "groupReference" : 30
   }, {
     "id" : 50,
     "text" : ".map(",
@@ -509,7 +559,8 @@
       "end" : 1294,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
+    "group" : "OptionalMapSafeCall",
+    "groupReference" : 31
   }, {
     "id" : 51,
     "text" : ")",
@@ -519,7 +570,8 @@
       "end" : 1310,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
+    "group" : "OptionalMapSafeCall",
+    "groupReference" : 31
   }, {
     "id" : 52,
     "text" : "Optional.of(",
@@ -529,7 +581,8 @@
       "end" : 1236,
       "size" : 12
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOf"
+    "group" : "OptionalOf",
+    "groupReference" : 32
   }, {
     "id" : 53,
     "text" : ")",
@@ -539,7 +592,8 @@
       "end" : 1251,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOf"
+    "group" : "OptionalOf",
+    "groupReference" : 32
   }, {
     "id" : 54,
     "text" : "getData()",
@@ -549,7 +603,8 @@
       "end" : 1250,
       "size" : 9
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "Getter",
+    "groupReference" : 33
   }, {
     "id" : 55,
     "text" : "Data::getString",
@@ -559,7 +614,8 @@
       "end" : 1309,
       "size" : 15
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+    "group" : "StringLiteral",
+    "groupReference" : 34
   }, {
     "id" : 56,
     "text" : "getString()",
@@ -569,7 +625,8 @@
       "end" : 1334,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "Getter",
+    "groupReference" : 35
   }, {
     "id" : 57,
     "text" : ".orElseGet(",
@@ -579,7 +636,8 @@
       "end" : 1425,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOrElseElvis"
+    "group" : "OptionalOrElseElvis",
+    "groupReference" : 36
   }, {
     "id" : 58,
     "text" : ")",
@@ -589,7 +647,8 @@
       "end" : 1452,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOrElseElvis"
+    "group" : "OptionalOrElseElvis",
+    "groupReference" : 36
   }, {
     "id" : 59,
     "text" : "Optional.of(",
@@ -599,7 +658,8 @@
       "end" : 1358,
       "size" : 12
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOf"
+    "group" : "OptionalOf",
+    "groupReference" : 37
   }, {
     "id" : 60,
     "text" : ")",
@@ -609,7 +669,8 @@
       "end" : 1363,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOf"
+    "group" : "OptionalOf",
+    "groupReference" : 37
   }, {
     "id" : 61,
     "text" : ".get()",
@@ -619,7 +680,8 @@
       "end" : 1598,
       "size" : 6
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "Getter",
+    "groupReference" : 38
   }, {
     "id" : 62,
     "text" : ".map(",
@@ -629,7 +691,8 @@
       "end" : 1576,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
+    "group" : "OptionalMapSafeCall",
+    "groupReference" : 39
   }, {
     "id" : 63,
     "text" : ")",
@@ -639,7 +702,8 @@
       "end" : 1592,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
+    "group" : "OptionalMapSafeCall",
+    "groupReference" : 39
   }, {
     "id" : 64,
     "text" : ".filter(Objects::nonNull",
@@ -649,7 +713,8 @@
       "end" : 1560,
       "size" : 24
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamFilterNotNull"
+    "group" : "StreamFilterNotNull",
+    "groupReference" : 40
   }, {
     "id" : 65,
     "text" : ")",
@@ -659,7 +724,8 @@
       "end" : 1561,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamFilterNotNull"
+    "group" : "StreamFilterNotNull",
+    "groupReference" : 40
   }, {
     "id" : 66,
     "text" : ".map(",
@@ -669,7 +735,8 @@
       "end" : 1522,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+    "group" : "StreamMapCall",
+    "groupReference" : 41
   }, {
     "id" : 67,
     "text" : ")",
@@ -679,7 +746,8 @@
       "end" : 1536,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+    "group" : "StreamMapCall",
+    "groupReference" : 41
   }, {
     "id" : 68,
     "text" : ".map(",
@@ -689,7 +757,8 @@
       "end" : 1494,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
+    "group" : "OptionalMapSafeCall",
+    "groupReference" : 42
   }, {
     "id" : 69,
     "text" : ")",
@@ -699,7 +768,8 @@
       "end" : 1508,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
+    "group" : "OptionalMapSafeCall",
+    "groupReference" : 42
   }, {
     "id" : 70,
     "text" : "Data::getData",
@@ -709,7 +779,8 @@
       "end" : 1507,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+    "group" : "StringLiteral",
+    "groupReference" : 43
   }, {
     "id" : 71,
     "text" : "Data::getData",
@@ -719,7 +790,8 @@
       "end" : 1535,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+    "group" : "StringLiteral",
+    "groupReference" : 44
   }, {
     "id" : 72,
     "text" : ".map(",
@@ -729,7 +801,8 @@
       "end" : 1522,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+    "group" : "StreamMapCall",
+    "groupReference" : 45
   }, {
     "id" : 73,
     "text" : ")",
@@ -739,7 +812,8 @@
       "end" : 1536,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+    "group" : "StreamMapCall",
+    "groupReference" : 45
   }, {
     "id" : 74,
     "text" : ".map(",
@@ -749,7 +823,8 @@
       "end" : 1494,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
+    "group" : "OptionalMapSafeCall",
+    "groupReference" : 46
   }, {
     "id" : 75,
     "text" : ")",
@@ -759,7 +834,8 @@
       "end" : 1508,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
+    "group" : "OptionalMapSafeCall",
+    "groupReference" : 46
   }, {
     "id" : 76,
     "text" : "Data::getData",
@@ -769,7 +845,8 @@
       "end" : 1507,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+    "group" : "StringLiteral",
+    "groupReference" : 47
   }, {
     "id" : 77,
     "text" : "Data::getData",
@@ -779,7 +856,8 @@
       "end" : 1535,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+    "group" : "StringLiteral",
+    "groupReference" : 48
   }, {
     "id" : 78,
     "text" : ".map(",
@@ -789,7 +867,8 @@
       "end" : 1494,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
+    "group" : "OptionalMapSafeCall",
+    "groupReference" : 49
   }, {
     "id" : 79,
     "text" : ")",
@@ -799,7 +878,8 @@
       "end" : 1508,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
+    "group" : "OptionalMapSafeCall",
+    "groupReference" : 49
   }, {
     "id" : 80,
     "text" : "Data::getData",
@@ -809,7 +889,8 @@
       "end" : 1507,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+    "group" : "StringLiteral",
+    "groupReference" : 50
   }, {
     "id" : 81,
     "text" : "Data::getData",
@@ -819,7 +900,8 @@
       "end" : 1535,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+    "group" : "StringLiteral",
+    "groupReference" : 51
   }, {
     "id" : 82,
     "text" : "Data::getString",
@@ -829,7 +911,8 @@
       "end" : 1591,
       "size" : 15
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+    "group" : "StringLiteral",
+    "groupReference" : 52
   }, {
     "id" : 83,
     "text" : ".map(",
@@ -839,7 +922,8 @@
       "end" : 1576,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
+    "group" : "OptionalMapSafeCall",
+    "groupReference" : 53
   }, {
     "id" : 84,
     "text" : ")",
@@ -849,7 +933,8 @@
       "end" : 1592,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
+    "group" : "OptionalMapSafeCall",
+    "groupReference" : 53
   }, {
     "id" : 85,
     "text" : ".filter(Objects::nonNull",
@@ -859,7 +944,8 @@
       "end" : 1560,
       "size" : 24
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamFilterNotNull"
+    "group" : "StreamFilterNotNull",
+    "groupReference" : 54
   }, {
     "id" : 86,
     "text" : ")",
@@ -869,7 +955,8 @@
       "end" : 1561,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamFilterNotNull"
+    "group" : "StreamFilterNotNull",
+    "groupReference" : 54
   }, {
     "id" : 87,
     "text" : ".map(",
@@ -879,7 +966,8 @@
       "end" : 1522,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+    "group" : "StreamMapCall",
+    "groupReference" : 55
   }, {
     "id" : 88,
     "text" : ")",
@@ -889,7 +977,8 @@
       "end" : 1536,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+    "group" : "StreamMapCall",
+    "groupReference" : 55
   }, {
     "id" : 89,
     "text" : ".map(",
@@ -899,7 +988,8 @@
       "end" : 1494,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
+    "group" : "OptionalMapSafeCall",
+    "groupReference" : 56
   }, {
     "id" : 90,
     "text" : ")",
@@ -909,7 +999,8 @@
       "end" : 1508,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
+    "group" : "OptionalMapSafeCall",
+    "groupReference" : 56
   }, {
     "id" : 91,
     "text" : "Data::getData",
@@ -919,7 +1010,8 @@
       "end" : 1507,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+    "group" : "StringLiteral",
+    "groupReference" : 57
   }, {
     "id" : 92,
     "text" : "Data::getData",
@@ -929,7 +1021,8 @@
       "end" : 1535,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+    "group" : "StringLiteral",
+    "groupReference" : 58
   }, {
     "id" : 93,
     "text" : ".map(",
@@ -939,7 +1032,8 @@
       "end" : 1522,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+    "group" : "StreamMapCall",
+    "groupReference" : 59
   }, {
     "id" : 94,
     "text" : ")",
@@ -949,7 +1043,8 @@
       "end" : 1536,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+    "group" : "StreamMapCall",
+    "groupReference" : 59
   }, {
     "id" : 95,
     "text" : ".map(",
@@ -959,7 +1054,8 @@
       "end" : 1494,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
+    "group" : "OptionalMapSafeCall",
+    "groupReference" : 60
   }, {
     "id" : 96,
     "text" : ")",
@@ -969,7 +1065,8 @@
       "end" : 1508,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
+    "group" : "OptionalMapSafeCall",
+    "groupReference" : 60
   }, {
     "id" : 97,
     "text" : "Data::getData",
@@ -979,7 +1076,8 @@
       "end" : 1507,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+    "group" : "StringLiteral",
+    "groupReference" : 61
   }, {
     "id" : 98,
     "text" : "Data::getData",
@@ -989,7 +1087,8 @@
       "end" : 1535,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+    "group" : "StringLiteral",
+    "groupReference" : 62
   }, {
     "id" : 99,
     "text" : ".map(",
@@ -999,7 +1098,8 @@
       "end" : 1494,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
+    "group" : "OptionalMapSafeCall",
+    "groupReference" : 63
   }, {
     "id" : 100,
     "text" : ")",
@@ -1009,7 +1109,8 @@
       "end" : 1508,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
+    "group" : "OptionalMapSafeCall",
+    "groupReference" : 63
   }, {
     "id" : 101,
     "text" : "Data::getData",
@@ -1019,7 +1120,8 @@
       "end" : 1507,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+    "group" : "StringLiteral",
+    "groupReference" : 64
   }, {
     "id" : 102,
     "text" : "Data::getData",
@@ -1029,7 +1131,8 @@
       "end" : 1535,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+    "group" : "StringLiteral",
+    "groupReference" : 65
   }, {
     "id" : 103,
     "text" : "Data::getString",
@@ -1039,7 +1142,8 @@
       "end" : 1591,
       "size" : 15
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+    "group" : "StringLiteral",
+    "groupReference" : 66
   }, {
     "id" : 104,
     "text" : ".orElse(",
@@ -1049,7 +1153,8 @@
       "end" : 1643,
       "size" : 8
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOrElseElvis"
+    "group" : "OptionalOrElseElvis",
+    "groupReference" : 67
   }, {
     "id" : 105,
     "text" : ")",
@@ -1059,7 +1164,8 @@
       "end" : 1648,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalOrElseElvis"
+    "group" : "OptionalOrElseElvis",
+    "groupReference" : 67
   }, {
     "id" : 106,
     "text" : ".map(",
@@ -1069,7 +1175,8 @@
       "end" : 1621,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
+    "group" : "OptionalMapSafeCall",
+    "groupReference" : 68
   }, {
     "id" : 107,
     "text" : ")",
@@ -1079,7 +1186,8 @@
       "end" : 1635,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
+    "group" : "OptionalMapSafeCall",
+    "groupReference" : 68
   }, {
     "id" : 108,
     "text" : "Data::getData",
@@ -1089,7 +1197,8 @@
       "end" : 1634,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+    "group" : "StringLiteral",
+    "groupReference" : 69
   }, {
     "id" : 109,
     "text" : ".get()",
@@ -1099,7 +1208,8 @@
       "end" : 1795,
       "size" : 6
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "Getter",
+    "groupReference" : 70
   }, {
     "id" : 110,
     "text" : ".map(",
@@ -1109,7 +1219,8 @@
       "end" : 1773,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
+    "group" : "OptionalMapSafeCall",
+    "groupReference" : 71
   }, {
     "id" : 111,
     "text" : ")",
@@ -1119,7 +1230,8 @@
       "end" : 1789,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
+    "group" : "OptionalMapSafeCall",
+    "groupReference" : 71
   }, {
     "id" : 112,
     "text" : " .filter(Objects::nonNull",
@@ -1129,7 +1241,8 @@
       "end" : 1757,
       "size" : 25
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamFilterNotNull"
+    "group" : "StreamFilterNotNull",
+    "groupReference" : 72
   }, {
     "id" : 113,
     "text" : ")",
@@ -1139,7 +1252,8 @@
       "end" : 1758,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamFilterNotNull"
+    "group" : "StreamFilterNotNull",
+    "groupReference" : 72
   }, {
     "id" : 114,
     "text" : ".map(",
@@ -1149,7 +1263,8 @@
       "end" : 1718,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+    "group" : "StreamMapCall",
+    "groupReference" : 73
   }, {
     "id" : 115,
     "text" : ")",
@@ -1159,7 +1274,8 @@
       "end" : 1732,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+    "group" : "StreamMapCall",
+    "groupReference" : 73
   }, {
     "id" : 116,
     "text" : ".map(",
@@ -1169,7 +1285,8 @@
       "end" : 1690,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
+    "group" : "OptionalMapSafeCall",
+    "groupReference" : 74
   }, {
     "id" : 117,
     "text" : ")",
@@ -1179,7 +1296,8 @@
       "end" : 1704,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
+    "group" : "OptionalMapSafeCall",
+    "groupReference" : 74
   }, {
     "id" : 118,
     "text" : "Data::getData",
@@ -1189,7 +1307,8 @@
       "end" : 1703,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+    "group" : "StringLiteral",
+    "groupReference" : 75
   }, {
     "id" : 119,
     "text" : "Data::getData",
@@ -1199,7 +1318,8 @@
       "end" : 1731,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+    "group" : "StringLiteral",
+    "groupReference" : 76
   }, {
     "id" : 120,
     "text" : ".map(",
@@ -1209,7 +1329,8 @@
       "end" : 1718,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+    "group" : "StreamMapCall",
+    "groupReference" : 77
   }, {
     "id" : 121,
     "text" : ")",
@@ -1219,7 +1340,8 @@
       "end" : 1732,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+    "group" : "StreamMapCall",
+    "groupReference" : 77
   }, {
     "id" : 122,
     "text" : ".map(",
@@ -1229,7 +1351,8 @@
       "end" : 1690,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
+    "group" : "OptionalMapSafeCall",
+    "groupReference" : 78
   }, {
     "id" : 123,
     "text" : ")",
@@ -1239,7 +1362,8 @@
       "end" : 1704,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
+    "group" : "OptionalMapSafeCall",
+    "groupReference" : 78
   }, {
     "id" : 124,
     "text" : "Data::getData",
@@ -1249,7 +1373,8 @@
       "end" : 1703,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+    "group" : "StringLiteral",
+    "groupReference" : 79
   }, {
     "id" : 125,
     "text" : "Data::getData",
@@ -1259,7 +1384,8 @@
       "end" : 1731,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+    "group" : "StringLiteral",
+    "groupReference" : 80
   }, {
     "id" : 126,
     "text" : ".map(",
@@ -1269,7 +1395,8 @@
       "end" : 1690,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
+    "group" : "OptionalMapSafeCall",
+    "groupReference" : 81
   }, {
     "id" : 127,
     "text" : ")",
@@ -1279,7 +1406,8 @@
       "end" : 1704,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
+    "group" : "OptionalMapSafeCall",
+    "groupReference" : 81
   }, {
     "id" : 128,
     "text" : "Data::getData",
@@ -1289,7 +1417,8 @@
       "end" : 1703,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+    "group" : "StringLiteral",
+    "groupReference" : 82
   }, {
     "id" : 129,
     "text" : "Data::getData",
@@ -1299,7 +1428,8 @@
       "end" : 1731,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+    "group" : "StringLiteral",
+    "groupReference" : 83
   }, {
     "id" : 130,
     "text" : "Data::getString",
@@ -1309,7 +1439,8 @@
       "end" : 1788,
       "size" : 15
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+    "group" : "StringLiteral",
+    "groupReference" : 84
   }, {
     "id" : 131,
     "text" : ".map(",
@@ -1319,7 +1450,8 @@
       "end" : 1773,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
+    "group" : "OptionalMapSafeCall",
+    "groupReference" : 85
   }, {
     "id" : 132,
     "text" : ")",
@@ -1329,7 +1461,8 @@
       "end" : 1789,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
+    "group" : "OptionalMapSafeCall",
+    "groupReference" : 85
   }, {
     "id" : 133,
     "text" : " .filter(Objects::nonNull",
@@ -1339,7 +1472,8 @@
       "end" : 1757,
       "size" : 25
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamFilterNotNull"
+    "group" : "StreamFilterNotNull",
+    "groupReference" : 86
   }, {
     "id" : 134,
     "text" : ")",
@@ -1349,7 +1483,8 @@
       "end" : 1758,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamFilterNotNull"
+    "group" : "StreamFilterNotNull",
+    "groupReference" : 86
   }, {
     "id" : 135,
     "text" : ".map(",
@@ -1359,7 +1494,8 @@
       "end" : 1718,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+    "group" : "StreamMapCall",
+    "groupReference" : 87
   }, {
     "id" : 136,
     "text" : ")",
@@ -1369,7 +1505,8 @@
       "end" : 1732,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+    "group" : "StreamMapCall",
+    "groupReference" : 87
   }, {
     "id" : 137,
     "text" : ".map(",
@@ -1379,7 +1516,8 @@
       "end" : 1690,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
+    "group" : "OptionalMapSafeCall",
+    "groupReference" : 88
   }, {
     "id" : 138,
     "text" : ")",
@@ -1389,7 +1527,8 @@
       "end" : 1704,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
+    "group" : "OptionalMapSafeCall",
+    "groupReference" : 88
   }, {
     "id" : 139,
     "text" : "Data::getData",
@@ -1399,7 +1538,8 @@
       "end" : 1703,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+    "group" : "StringLiteral",
+    "groupReference" : 89
   }, {
     "id" : 140,
     "text" : "Data::getData",
@@ -1409,7 +1549,8 @@
       "end" : 1731,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+    "group" : "StringLiteral",
+    "groupReference" : 90
   }, {
     "id" : 141,
     "text" : ".map(",
@@ -1419,7 +1560,8 @@
       "end" : 1718,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+    "group" : "StreamMapCall",
+    "groupReference" : 91
   }, {
     "id" : 142,
     "text" : ")",
@@ -1429,7 +1571,8 @@
       "end" : 1732,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+    "group" : "StreamMapCall",
+    "groupReference" : 91
   }, {
     "id" : 143,
     "text" : ".map(",
@@ -1439,7 +1582,8 @@
       "end" : 1690,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
+    "group" : "OptionalMapSafeCall",
+    "groupReference" : 92
   }, {
     "id" : 144,
     "text" : ")",
@@ -1449,7 +1593,8 @@
       "end" : 1704,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
+    "group" : "OptionalMapSafeCall",
+    "groupReference" : 92
   }, {
     "id" : 145,
     "text" : "Data::getData",
@@ -1459,7 +1604,8 @@
       "end" : 1703,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+    "group" : "StringLiteral",
+    "groupReference" : 93
   }, {
     "id" : 146,
     "text" : "Data::getData",
@@ -1469,7 +1615,8 @@
       "end" : 1731,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+    "group" : "StringLiteral",
+    "groupReference" : 94
   }, {
     "id" : 147,
     "text" : ".map(",
@@ -1479,7 +1626,8 @@
       "end" : 1690,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
+    "group" : "OptionalMapSafeCall",
+    "groupReference" : 95
   }, {
     "id" : 148,
     "text" : ")",
@@ -1489,7 +1637,8 @@
       "end" : 1704,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall"
+    "group" : "OptionalMapSafeCall",
+    "groupReference" : 95
   }, {
     "id" : 149,
     "text" : "Data::getData",
@@ -1499,7 +1648,8 @@
       "end" : 1703,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+    "group" : "StringLiteral",
+    "groupReference" : 96
   }, {
     "id" : 150,
     "text" : "Data::getData",
@@ -1509,7 +1659,8 @@
       "end" : 1731,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+    "group" : "StringLiteral",
+    "groupReference" : 97
   }, {
     "id" : 151,
     "text" : "Data::getString",
@@ -1519,7 +1670,8 @@
       "end" : 1788,
       "size" : 15
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+    "group" : "StringLiteral",
+    "groupReference" : 98
   }, {
     "id" : 152,
     "text" : ".filter(Objects::nonNull",
@@ -1529,7 +1681,8 @@
       "end" : 1864,
       "size" : 24
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamFilterNotNull"
+    "group" : "StreamFilterNotNull",
+    "groupReference" : 99
   }, {
     "id" : 153,
     "text" : ")",
@@ -1539,7 +1692,8 @@
       "end" : 1865,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamFilterNotNull"
+    "group" : "StreamFilterNotNull",
+    "groupReference" : 99
   }, {
     "id" : 154,
     "text" : ".map(",
@@ -1549,7 +1703,8 @@
       "end" : 1826,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+    "group" : "StreamMapCall",
+    "groupReference" : 100
   }, {
     "id" : 155,
     "text" : ")",
@@ -1559,7 +1714,8 @@
       "end" : 1840,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+    "group" : "StreamMapCall",
+    "groupReference" : 100
   }, {
     "id" : 156,
     "text" : "Data::getData",
@@ -1569,7 +1725,8 @@
       "end" : 1839,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+    "group" : "StringLiteral",
+    "groupReference" : 101
   }, {
     "id" : 157,
     "text" : ".map(",
@@ -1579,7 +1736,8 @@
       "end" : 1826,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+    "group" : "StreamMapCall",
+    "groupReference" : 102
   }, {
     "id" : 158,
     "text" : ")",
@@ -1589,7 +1747,8 @@
       "end" : 1840,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+    "group" : "StreamMapCall",
+    "groupReference" : 102
   }, {
     "id" : 159,
     "text" : "Data::getData",
@@ -1599,7 +1758,8 @@
       "end" : 1839,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+    "group" : "StringLiteral",
+    "groupReference" : 103
   }, {
     "id" : 160,
     "text" : "Data::getData",
@@ -1609,7 +1769,8 @@
       "end" : 1839,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+    "group" : "StringLiteral",
+    "groupReference" : 104
   }, {
     "id" : 161,
     "text" : ".orElseThrow()",
@@ -1619,7 +1780,8 @@
       "end" : 1980,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "Getter",
+    "groupReference" : 105
   }, {
     "id" : 162,
     "text" : ".map(",
@@ -1629,7 +1791,8 @@
       "end" : 1940,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+    "group" : "StreamMapCall",
+    "groupReference" : 106
   }, {
     "id" : 163,
     "text" : ")",
@@ -1639,7 +1802,8 @@
       "end" : 1954,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+    "group" : "StreamMapCall",
+    "groupReference" : 106
   }, {
     "id" : 164,
     "text" : " .filter(Objects::nonNull",
@@ -1649,7 +1813,8 @@
       "end" : 1934,
       "size" : 25
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamFilterNotNull"
+    "group" : "StreamFilterNotNull",
+    "groupReference" : 107
   }, {
     "id" : 165,
     "text" : ")",
@@ -1659,7 +1824,8 @@
       "end" : 1935,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamFilterNotNull"
+    "group" : "StreamFilterNotNull",
+    "groupReference" : 107
   }, {
     "id" : 166,
     "text" : ".map(",
@@ -1669,7 +1835,8 @@
       "end" : 1895,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+    "group" : "StreamMapCall",
+    "groupReference" : 108
   }, {
     "id" : 167,
     "text" : ")",
@@ -1679,7 +1846,8 @@
       "end" : 1909,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+    "group" : "StreamMapCall",
+    "groupReference" : 108
   }, {
     "id" : 168,
     "text" : "Data::getData",
@@ -1689,7 +1857,8 @@
       "end" : 1908,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+    "group" : "StringLiteral",
+    "groupReference" : 109
   }, {
     "id" : 169,
     "text" : "Data::getData",
@@ -1699,7 +1868,8 @@
       "end" : 1953,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+    "group" : "StringLiteral",
+    "groupReference" : 110
   }, {
     "id" : 170,
     "text" : " .filter(Objects::nonNull",
@@ -1709,7 +1879,8 @@
       "end" : 1934,
       "size" : 25
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamFilterNotNull"
+    "group" : "StreamFilterNotNull",
+    "groupReference" : 111
   }, {
     "id" : 171,
     "text" : ")",
@@ -1719,7 +1890,8 @@
       "end" : 1935,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamFilterNotNull"
+    "group" : "StreamFilterNotNull",
+    "groupReference" : 111
   }, {
     "id" : 172,
     "text" : ".map(",
@@ -1729,7 +1901,8 @@
       "end" : 1895,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+    "group" : "StreamMapCall",
+    "groupReference" : 112
   }, {
     "id" : 173,
     "text" : ")",
@@ -1739,7 +1912,8 @@
       "end" : 1909,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+    "group" : "StreamMapCall",
+    "groupReference" : 112
   }, {
     "id" : 174,
     "text" : "Data::getData",
@@ -1749,7 +1923,8 @@
       "end" : 1908,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+    "group" : "StringLiteral",
+    "groupReference" : 113
   }, {
     "id" : 175,
     "text" : ".map(",
@@ -1759,7 +1934,8 @@
       "end" : 1895,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+    "group" : "StreamMapCall",
+    "groupReference" : 114
   }, {
     "id" : 176,
     "text" : ")",
@@ -1769,7 +1945,8 @@
       "end" : 1909,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+    "group" : "StreamMapCall",
+    "groupReference" : 114
   }, {
     "id" : 177,
     "text" : "Data::getData",
@@ -1779,7 +1956,8 @@
       "end" : 1908,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+    "group" : "StringLiteral",
+    "groupReference" : 115
   }, {
     "id" : 178,
     "text" : "Data::getData",
@@ -1789,7 +1967,8 @@
       "end" : 1908,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+    "group" : "StringLiteral",
+    "groupReference" : 116
   }, {
     "id" : 179,
     "text" : "Data::getData",
@@ -1799,7 +1978,8 @@
       "end" : 1953,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+    "group" : "StringLiteral",
+    "groupReference" : 117
   }, {
     "id" : 180,
     "text" : ".map(",
@@ -1809,7 +1989,8 @@
       "end" : 1940,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+    "group" : "StreamMapCall",
+    "groupReference" : 118
   }, {
     "id" : 181,
     "text" : ")",
@@ -1819,7 +2000,8 @@
       "end" : 1954,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+    "group" : "StreamMapCall",
+    "groupReference" : 118
   }, {
     "id" : 182,
     "text" : " .filter(Objects::nonNull",
@@ -1829,7 +2011,8 @@
       "end" : 1934,
       "size" : 25
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamFilterNotNull"
+    "group" : "StreamFilterNotNull",
+    "groupReference" : 119
   }, {
     "id" : 183,
     "text" : ")",
@@ -1839,7 +2022,8 @@
       "end" : 1935,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamFilterNotNull"
+    "group" : "StreamFilterNotNull",
+    "groupReference" : 119
   }, {
     "id" : 184,
     "text" : ".map(",
@@ -1849,7 +2033,8 @@
       "end" : 1895,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+    "group" : "StreamMapCall",
+    "groupReference" : 120
   }, {
     "id" : 185,
     "text" : ")",
@@ -1859,7 +2044,8 @@
       "end" : 1909,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+    "group" : "StreamMapCall",
+    "groupReference" : 120
   }, {
     "id" : 186,
     "text" : "Data::getData",
@@ -1869,7 +2055,8 @@
       "end" : 1908,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+    "group" : "StringLiteral",
+    "groupReference" : 121
   }, {
     "id" : 187,
     "text" : "Data::getData",
@@ -1879,7 +2066,8 @@
       "end" : 1953,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+    "group" : "StringLiteral",
+    "groupReference" : 122
   }, {
     "id" : 188,
     "text" : " .filter(Objects::nonNull",
@@ -1889,7 +2077,8 @@
       "end" : 1934,
       "size" : 25
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamFilterNotNull"
+    "group" : "StreamFilterNotNull",
+    "groupReference" : 123
   }, {
     "id" : 189,
     "text" : ")",
@@ -1899,7 +2088,8 @@
       "end" : 1935,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamFilterNotNull"
+    "group" : "StreamFilterNotNull",
+    "groupReference" : 123
   }, {
     "id" : 190,
     "text" : ".map(",
@@ -1909,7 +2099,8 @@
       "end" : 1895,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+    "group" : "StreamMapCall",
+    "groupReference" : 124
   }, {
     "id" : 191,
     "text" : ")",
@@ -1919,7 +2110,8 @@
       "end" : 1909,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+    "group" : "StreamMapCall",
+    "groupReference" : 124
   }, {
     "id" : 192,
     "text" : "Data::getData",
@@ -1929,7 +2121,8 @@
       "end" : 1908,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+    "group" : "StringLiteral",
+    "groupReference" : 125
   }, {
     "id" : 193,
     "text" : ".map(",
@@ -1939,7 +2132,8 @@
       "end" : 1895,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+    "group" : "StreamMapCall",
+    "groupReference" : 126
   }, {
     "id" : 194,
     "text" : ")",
@@ -1949,7 +2143,8 @@
       "end" : 1909,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall"
+    "group" : "StreamMapCall",
+    "groupReference" : 126
   }, {
     "id" : 195,
     "text" : "Data::getData",
@@ -1959,7 +2154,8 @@
       "end" : 1908,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+    "group" : "StringLiteral",
+    "groupReference" : 127
   }, {
     "id" : 196,
     "text" : "Data::getData",
@@ -1969,7 +2165,8 @@
       "end" : 1908,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+    "group" : "StringLiteral",
+    "groupReference" : 128
   }, {
     "id" : 197,
     "text" : "Data::getData",
@@ -1979,7 +2176,8 @@
       "end" : 1953,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.StringLiteral"
+    "group" : "StringLiteral",
+    "groupReference" : 129
   }, {
     "id" : 198,
     "text" : "\n\n        ",
@@ -1989,7 +2187,8 @@
       "end" : 2395,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 130
   }, {
     "id" : 199,
     "text" : "\n\n        ",
@@ -1999,7 +2198,8 @@
       "end" : 2467,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 130
   }, {
     "id" : 200,
     "text" : "\n\n        ",
@@ -2009,7 +2209,8 @@
       "end" : 2704,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 130
   }, {
     "id" : 201,
     "text" : "\n\n        ",
@@ -2019,7 +2220,8 @@
       "end" : 2537,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 130
   }, {
     "id" : 202,
     "text" : "\n\n        ",
@@ -2029,7 +2231,8 @@
       "end" : 2623,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 130
   }, {
     "id" : 203,
     "text" : "\n\n        ",
@@ -2039,7 +2242,8 @@
       "end" : 2782,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 130
   }, {
     "id" : 204,
     "text" : "public Data getData() {\n                return data;\n        }",
@@ -2049,7 +2253,8 @@
       "end" : 2457,
       "size" : 62
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 130
   }, {
     "id" : 205,
     "text" : "public boolean isOk() {\n                return ok;\n        }",
@@ -2059,7 +2264,8 @@
       "end" : 2527,
       "size" : 60
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 130
   }, {
     "id" : 206,
     "text" : "public String getString() {\n                return string;\n        }",
@@ -2069,7 +2275,8 @@
       "end" : 2772,
       "size" : 68
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 130
   }, {
     "id" : 207,
     "text" : "public void setData(Data data) {\n                this.data = data;\n        }",
@@ -2079,7 +2286,8 @@
       "end" : 2613,
       "size" : 76
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 130
   }, {
     "id" : 208,
     "text" : "public void setOk(boolean ok) {\n                this.ok = ok;\n        }",
@@ -2089,7 +2297,8 @@
       "end" : 2694,
       "size" : 71
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 130
   }, {
     "id" : 209,
     "text" : "public void setString(String string) {\n                this.string = string;\n        }",
@@ -2099,7 +2308,8 @@
       "end" : 2868,
       "size" : 86
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 130
   }, {
     "id" : 210,
     "text" : "s",
@@ -2109,7 +2319,8 @@
       "end" : 2230,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 130
   }, {
     "id" : 211,
     "text" : "data",
@@ -2119,7 +2330,8 @@
       "end" : 2374,
       "size" : 4
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+    "group" : "BuilderShiftExpression",
+    "groupReference" : 131
   }, {
     "id" : 212,
     "text" : "data",
@@ -2129,7 +2341,8 @@
       "end" : 2602,
       "size" : 4
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+    "group" : "BuilderShiftExpression",
+    "groupReference" : 132
   }, {
     "id" : 213,
     "text" : "ok",
@@ -2139,7 +2352,8 @@
       "end" : 2683,
       "size" : 2
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+    "group" : "BuilderShiftExpression",
+    "groupReference" : 133
   }, {
     "id" : 214,
     "text" : "string",
@@ -2149,6 +2363,7 @@
       "end" : 2857,
       "size" : 6
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+    "group" : "BuilderShiftExpression",
+    "groupReference" : 134
   } ]
 }

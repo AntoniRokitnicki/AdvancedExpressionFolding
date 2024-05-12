@@ -9,7 +9,8 @@
       "end" : 13,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+    "group" : "SemicolonExpression",
+    "groupReference" : 0
   }, {
     "id" : 1,
     "text" : ";",
@@ -19,7 +20,8 @@
       "end" : 39,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+    "group" : "SemicolonExpression",
+    "groupReference" : 1
   }, {
     "id" : 2,
     "text" : ";",
@@ -29,7 +31,8 @@
       "end" : 224,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+    "group" : "SemicolonExpression",
+    "groupReference" : 2
   }, {
     "id" : 3,
     "text" : ";",
@@ -39,6 +42,7 @@
       "end" : 314,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+    "group" : "SemicolonExpression",
+    "groupReference" : 3
   } ]
 }

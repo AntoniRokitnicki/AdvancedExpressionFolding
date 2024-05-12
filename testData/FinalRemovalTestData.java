@@ -6,8 +6,7 @@ public class FinalRemovalTestData {
     final private static String FINAL_FIRST_MANY = "";
     final String ONLY_FINAL = "";
 
-    @Override
-    public <fold text='' expand='false'>final</fold> String toString() <fold text='{...}' expand='true'>{
+    public <fold text='' expand='false'>final</fold> String m() <fold text='{...}' expand='true'>{
         <fold text='' expand='false'>final</fold> String s = "1";
         <fold text='' expand='false'>final</fold> var s2 = "2";
         var s3 = "3";

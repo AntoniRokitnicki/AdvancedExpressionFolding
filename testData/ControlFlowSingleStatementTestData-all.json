@@ -9,7 +9,8 @@
       "end" : 13,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+    "group" : "SemicolonExpression",
+    "groupReference" : 0
   }, {
     "id" : 1,
     "text" : ";",
@@ -19,7 +20,8 @@
       "end" : 39,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+    "group" : "SemicolonExpression",
+    "groupReference" : 1
   }, {
     "id" : 2,
     "text" : "(",
@@ -29,7 +31,8 @@
       "end" : 148,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+    "group" : "IfExpression:highlighting",
+    "groupReference" : 2
   }, {
     "id" : 3,
     "text" : ")",
@@ -39,7 +42,8 @@
       "end" : 164,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+    "group" : "IfExpression:highlighting",
+    "groupReference" : 2
   }, {
     "id" : 4,
     "text" : "{",
@@ -49,7 +53,8 @@
       "end" : 166,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+    "group" : "AbstractControlFlowCodeBlock",
+    "groupReference" : 3
   }, {
     "id" : 5,
     "text" : "        }\n",
@@ -59,7 +64,8 @@
       "end" : 234,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+    "group" : "AbstractControlFlowCodeBlock",
+    "groupReference" : 3
   }, {
     "id" : 6,
     "text" : "System.out.",
@@ -69,7 +75,8 @@
       "end" : 194,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+    "group" : "PrintlnExpression",
+    "groupReference" : 4
   }, {
     "id" : 7,
     "text" : ";",
@@ -79,7 +86,8 @@
       "end" : 223,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+    "group" : "SemicolonExpression",
+    "groupReference" : 5
   }, {
     "id" : 8,
     "text" : "(",
@@ -89,7 +97,8 @@
       "end" : 246,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+    "group" : "IfExpression:highlighting",
+    "groupReference" : 6
   }, {
     "id" : 9,
     "text" : ")",
@@ -99,7 +108,8 @@
       "end" : 263,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+    "group" : "IfExpression:highlighting",
+    "groupReference" : 6
   }, {
     "id" : 10,
     "text" : "{",
@@ -109,7 +119,8 @@
       "end" : 265,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+    "group" : "AbstractControlFlowCodeBlock",
+    "groupReference" : 7
   }, {
     "id" : 11,
     "text" : "} ",
@@ -119,7 +130,8 @@
       "end" : 319,
       "size" : 2
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+    "group" : "AbstractControlFlowCodeBlock",
+    "groupReference" : 7
   }, {
     "id" : 12,
     "text" : "System.out.",
@@ -129,7 +141,8 @@
       "end" : 293,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+    "group" : "PrintlnExpression",
+    "groupReference" : 8
   }, {
     "id" : 13,
     "text" : ";",
@@ -139,7 +152,8 @@
       "end" : 308,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+    "group" : "SemicolonExpression",
+    "groupReference" : 9
   }, {
     "id" : 14,
     "text" : "{",
@@ -149,7 +163,8 @@
       "end" : 325,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+    "group" : "AbstractControlFlowCodeBlock",
+    "groupReference" : 10
   }, {
     "id" : 15,
     "text" : "        }\n",
@@ -159,7 +174,8 @@
       "end" : 379,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+    "group" : "AbstractControlFlowCodeBlock",
+    "groupReference" : 10
   }, {
     "id" : 16,
     "text" : "System.out.",
@@ -169,7 +185,8 @@
       "end" : 353,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+    "group" : "PrintlnExpression",
+    "groupReference" : 11
   }, {
     "id" : 17,
     "text" : ";",
@@ -179,7 +196,8 @@
       "end" : 368,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+    "group" : "SemicolonExpression",
+    "groupReference" : 12
   }, {
     "id" : 18,
     "text" : "(",
@@ -189,7 +207,8 @@
       "end" : 391,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+    "group" : "IfExpression:highlighting",
+    "groupReference" : 13
   }, {
     "id" : 19,
     "text" : ")",
@@ -199,7 +218,8 @@
       "end" : 408,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+    "group" : "IfExpression:highlighting",
+    "groupReference" : 13
   }, {
     "id" : 20,
     "text" : "{",
@@ -209,7 +229,8 @@
       "end" : 410,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+    "group" : "AbstractControlFlowCodeBlock",
+    "groupReference" : 14
   }, {
     "id" : 21,
     "text" : "} ",
@@ -219,7 +240,8 @@
       "end" : 499,
       "size" : 2
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+    "group" : "AbstractControlFlowCodeBlock",
+    "groupReference" : 14
   }, {
     "id" : 22,
     "text" : "System.out.",
@@ -229,7 +251,8 @@
       "end" : 438,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+    "group" : "PrintlnExpression",
+    "groupReference" : 15
   }, {
     "id" : 23,
     "text" : ";",
@@ -239,7 +262,8 @@
       "end" : 453,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+    "group" : "SemicolonExpression",
+    "groupReference" : 16
   }, {
     "id" : 24,
     "text" : "System.out.",
@@ -249,7 +273,8 @@
       "end" : 473,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+    "group" : "PrintlnExpression",
+    "groupReference" : 17
   }, {
     "id" : 25,
     "text" : ";",
@@ -259,7 +284,8 @@
       "end" : 488,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+    "group" : "SemicolonExpression",
+    "groupReference" : 18
   }, {
     "id" : 26,
     "text" : "{",
@@ -269,7 +295,8 @@
       "end" : 505,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+    "group" : "AbstractControlFlowCodeBlock",
+    "groupReference" : 19
   }, {
     "id" : 27,
     "text" : "        }\n",
@@ -279,7 +306,8 @@
       "end" : 559,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+    "group" : "AbstractControlFlowCodeBlock",
+    "groupReference" : 19
   }, {
     "id" : 28,
     "text" : "System.out.",
@@ -289,7 +317,8 @@
       "end" : 533,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+    "group" : "PrintlnExpression",
+    "groupReference" : 20
   }, {
     "id" : 29,
     "text" : ";",
@@ -299,7 +328,8 @@
       "end" : 548,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+    "group" : "SemicolonExpression",
+    "groupReference" : 21
   }, {
     "id" : 30,
     "text" : "(",
@@ -309,7 +339,8 @@
       "end" : 571,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+    "group" : "IfExpression:highlighting",
+    "groupReference" : 22
   }, {
     "id" : 31,
     "text" : ")",
@@ -319,7 +350,8 @@
       "end" : 587,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+    "group" : "IfExpression:highlighting",
+    "groupReference" : 22
   }, {
     "id" : 32,
     "text" : "{",
@@ -329,7 +361,8 @@
       "end" : 589,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+    "group" : "AbstractControlFlowCodeBlock",
+    "groupReference" : 23
   }, {
     "id" : 33,
     "text" : "} ",
@@ -339,7 +372,8 @@
       "end" : 643,
       "size" : 2
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+    "group" : "AbstractControlFlowCodeBlock",
+    "groupReference" : 23
   }, {
     "id" : 34,
     "text" : "System.out.",
@@ -349,7 +383,8 @@
       "end" : 617,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+    "group" : "PrintlnExpression",
+    "groupReference" : 24
   }, {
     "id" : 35,
     "text" : ";",
@@ -359,7 +394,8 @@
       "end" : 632,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+    "group" : "SemicolonExpression",
+    "groupReference" : 25
   }, {
     "id" : 36,
     "text" : "{",
@@ -369,7 +405,8 @@
       "end" : 649,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+    "group" : "AbstractControlFlowCodeBlock",
+    "groupReference" : 26
   }, {
     "id" : 37,
     "text" : "        }\n",
@@ -379,7 +416,8 @@
       "end" : 738,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+    "group" : "AbstractControlFlowCodeBlock",
+    "groupReference" : 26
   }, {
     "id" : 38,
     "text" : "System.out.",
@@ -389,7 +427,8 @@
       "end" : 677,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+    "group" : "PrintlnExpression",
+    "groupReference" : 27
   }, {
     "id" : 39,
     "text" : ";",
@@ -399,7 +438,8 @@
       "end" : 692,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+    "group" : "SemicolonExpression",
+    "groupReference" : 28
   }, {
     "id" : 40,
     "text" : "System.out.",
@@ -409,7 +449,8 @@
       "end" : 712,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+    "group" : "PrintlnExpression",
+    "groupReference" : 29
   }, {
     "id" : 41,
     "text" : ";",
@@ -419,7 +460,8 @@
       "end" : 727,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+    "group" : "SemicolonExpression",
+    "groupReference" : 30
   }, {
     "id" : 42,
     "text" : "(",
@@ -429,7 +471,8 @@
       "end" : 751,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+    "group" : "CompactControlFlowExpression:highlighting",
+    "groupReference" : 31
   }, {
     "id" : 43,
     "text" : ")",
@@ -439,7 +482,8 @@
       "end" : 769,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+    "group" : "CompactControlFlowExpression:highlighting",
+    "groupReference" : 31
   }, {
     "id" : 44,
     "text" : "String",
@@ -449,7 +493,8 @@
       "end" : 757,
       "size" : 6
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+    "group" : "VariableDeclarationImpl",
+    "groupReference" : 32
   }, {
     "id" : 45,
     "text" : "{",
@@ -459,7 +504,8 @@
       "end" : 771,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+    "group" : "AbstractControlFlowCodeBlock",
+    "groupReference" : 33
   }, {
     "id" : 46,
     "text" : "        }\n",
@@ -469,7 +515,8 @@
       "end" : 823,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+    "group" : "AbstractControlFlowCodeBlock",
+    "groupReference" : 33
   }, {
     "id" : 47,
     "text" : "System.out.",
@@ -479,7 +526,8 @@
       "end" : 799,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+    "group" : "PrintlnExpression",
+    "groupReference" : 34
   }, {
     "id" : 48,
     "text" : ";",
@@ -489,7 +537,8 @@
       "end" : 812,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+    "group" : "SemicolonExpression",
+    "groupReference" : 35
   }, {
     "id" : 49,
     "text" : " = ",
@@ -499,7 +548,8 @@
       "end" : 844,
       "size" : 3
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ForStatement"
+    "group" : "ForStatement",
+    "groupReference" : 36
   }, {
     "id" : 50,
     "text" : "; i < ",
@@ -509,7 +559,8 @@
       "end" : 851,
       "size" : 6
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ForStatement"
+    "group" : "ForStatement",
+    "groupReference" : 36
   }, {
     "id" : 51,
     "text" : "; i++",
@@ -519,7 +570,8 @@
       "end" : 867,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ForStatement"
+    "group" : "ForStatement",
+    "groupReference" : 36
   }, {
     "id" : 52,
     "text" : "(",
@@ -529,7 +581,8 @@
       "end" : 836,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ForStatement"
+    "group" : "ForStatement",
+    "groupReference" : 36
   }, {
     "id" : 53,
     "text" : ")",
@@ -539,7 +592,8 @@
       "end" : 868,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ForStatement"
+    "group" : "ForStatement",
+    "groupReference" : 36
   }, {
     "id" : 54,
     "text" : "int",
@@ -549,7 +603,8 @@
       "end" : 839,
       "size" : 3
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+    "group" : "VariableDeclarationImpl",
+    "groupReference" : 37
   }, {
     "id" : 55,
     "text" : ";",
@@ -559,7 +614,8 @@
       "end" : 846,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+    "group" : "SemicolonExpression",
+    "groupReference" : 38
   }, {
     "id" : 56,
     "text" : ";",
@@ -569,7 +625,8 @@
       "end" : 863,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+    "group" : "SemicolonExpression",
+    "groupReference" : 39
   }, {
     "id" : 57,
     "text" : "{",
@@ -579,7 +636,8 @@
       "end" : 870,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+    "group" : "AbstractControlFlowCodeBlock",
+    "groupReference" : 40
   }, {
     "id" : 58,
     "text" : "        }\n",
@@ -589,7 +647,8 @@
       "end" : 926,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+    "group" : "AbstractControlFlowCodeBlock",
+    "groupReference" : 40
   }, {
     "id" : 59,
     "text" : "System.out.",
@@ -599,7 +658,8 @@
       "end" : 898,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+    "group" : "PrintlnExpression",
+    "groupReference" : 41
   }, {
     "id" : 60,
     "text" : ";",
@@ -609,7 +669,8 @@
       "end" : 915,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+    "group" : "SemicolonExpression",
+    "groupReference" : 42
   }, {
     "id" : 61,
     "text" : " = ",
@@ -619,7 +680,8 @@
       "end" : 947,
       "size" : 3
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ForStatement"
+    "group" : "ForStatement",
+    "groupReference" : 43
   }, {
     "id" : 62,
     "text" : "; i < ",
@@ -629,7 +691,8 @@
       "end" : 954,
       "size" : 6
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ForStatement"
+    "group" : "ForStatement",
+    "groupReference" : 43
   }, {
     "id" : 63,
     "text" : "; i++",
@@ -639,7 +702,8 @@
       "end" : 970,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ForStatement"
+    "group" : "ForStatement",
+    "groupReference" : 43
   }, {
     "id" : 64,
     "text" : "(",
@@ -649,7 +713,8 @@
       "end" : 939,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ForStatement"
+    "group" : "ForStatement",
+    "groupReference" : 43
   }, {
     "id" : 65,
     "text" : ")",
@@ -659,7 +724,8 @@
       "end" : 971,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ForStatement"
+    "group" : "ForStatement",
+    "groupReference" : 43
   }, {
     "id" : 66,
     "text" : "int",
@@ -669,7 +735,8 @@
       "end" : 942,
       "size" : 3
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+    "group" : "VariableDeclarationImpl",
+    "groupReference" : 44
   }, {
     "id" : 67,
     "text" : ";",
@@ -679,7 +746,8 @@
       "end" : 949,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+    "group" : "SemicolonExpression",
+    "groupReference" : 45
   }, {
     "id" : 68,
     "text" : ";",
@@ -689,7 +757,8 @@
       "end" : 966,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+    "group" : "SemicolonExpression",
+    "groupReference" : 46
   }, {
     "id" : 69,
     "text" : "{",
@@ -699,7 +768,8 @@
       "end" : 973,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+    "group" : "AbstractControlFlowCodeBlock",
+    "groupReference" : 47
   }, {
     "id" : 70,
     "text" : "        }\n",
@@ -709,7 +779,8 @@
       "end" : 1060,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+    "group" : "AbstractControlFlowCodeBlock",
+    "groupReference" : 47
   }, {
     "id" : 71,
     "text" : "System.out.",
@@ -719,7 +790,8 @@
       "end" : 1001,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+    "group" : "PrintlnExpression",
+    "groupReference" : 48
   }, {
     "id" : 72,
     "text" : ";",
@@ -729,7 +801,8 @@
       "end" : 1012,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+    "group" : "SemicolonExpression",
+    "groupReference" : 49
   }, {
     "id" : 73,
     "text" : "System.out.",
@@ -739,7 +812,8 @@
       "end" : 1032,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+    "group" : "PrintlnExpression",
+    "groupReference" : 50
   }, {
     "id" : 74,
     "text" : ";",
@@ -749,7 +823,8 @@
       "end" : 1049,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+    "group" : "SemicolonExpression",
+    "groupReference" : 51
   }, {
     "id" : 75,
     "text" : "(",
@@ -759,7 +834,8 @@
       "end" : 1075,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+    "group" : "CompactControlFlowExpression:highlighting",
+    "groupReference" : 52
   }, {
     "id" : 76,
     "text" : ")",
@@ -769,7 +845,8 @@
       "end" : 1080,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+    "group" : "CompactControlFlowExpression:highlighting",
+    "groupReference" : 52
   }, {
     "id" : 77,
     "text" : "{",
@@ -779,7 +856,8 @@
       "end" : 1082,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+    "group" : "AbstractControlFlowCodeBlock",
+    "groupReference" : 53
   }, {
     "id" : 78,
     "text" : "        }\n",
@@ -789,7 +867,8 @@
       "end" : 1108,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+    "group" : "AbstractControlFlowCodeBlock",
+    "groupReference" : 53
   }, {
     "id" : 79,
     "text" : ";",
@@ -799,7 +878,8 @@
       "end" : 1097,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+    "group" : "SemicolonExpression",
+    "groupReference" : 54
   }, {
     "id" : 80,
     "text" : "(",
@@ -809,7 +889,8 @@
       "end" : 1123,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+    "group" : "CompactControlFlowExpression:highlighting",
+    "groupReference" : 55
   }, {
     "id" : 81,
     "text" : ")",
@@ -819,7 +900,8 @@
       "end" : 1128,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+    "group" : "CompactControlFlowExpression:highlighting",
+    "groupReference" : 55
   }, {
     "id" : 82,
     "text" : "{",
@@ -829,7 +911,8 @@
       "end" : 1130,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+    "group" : "AbstractControlFlowCodeBlock",
+    "groupReference" : 56
   }, {
     "id" : 83,
     "text" : "        }\n",
@@ -839,7 +922,8 @@
       "end" : 1199,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+    "group" : "AbstractControlFlowCodeBlock",
+    "groupReference" : 56
   }, {
     "id" : 84,
     "text" : "System.out.",
@@ -849,7 +933,8 @@
       "end" : 1158,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+    "group" : "PrintlnExpression",
+    "groupReference" : 57
   }, {
     "id" : 85,
     "text" : ";",
@@ -859,7 +944,8 @@
       "end" : 1173,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+    "group" : "SemicolonExpression",
+    "groupReference" : 58
   }, {
     "id" : 86,
     "text" : ";",
@@ -869,7 +955,8 @@
       "end" : 1188,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+    "group" : "SemicolonExpression",
+    "groupReference" : 59
   }, {
     "id" : 87,
     "text" : "(",
@@ -879,7 +966,8 @@
       "end" : 1244,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+    "group" : "CompactControlFlowExpression:highlighting",
+    "groupReference" : 60
   }, {
     "id" : 88,
     "text" : ")",
@@ -889,7 +977,8 @@
       "end" : 1249,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+    "group" : "CompactControlFlowExpression:highlighting",
+    "groupReference" : 60
   }, {
     "id" : 89,
     "text" : "{",
@@ -899,7 +988,8 @@
       "end" : 1211,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+    "group" : "AbstractControlFlowCodeBlock",
+    "groupReference" : 61
   }, {
     "id" : 90,
     "text" : "} ",
@@ -909,7 +999,8 @@
       "end" : 1237,
       "size" : 2
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+    "group" : "AbstractControlFlowCodeBlock",
+    "groupReference" : 61
   }, {
     "id" : 91,
     "text" : ";",
@@ -919,7 +1010,8 @@
       "end" : 1226,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+    "group" : "SemicolonExpression",
+    "groupReference" : 62
   }, {
     "id" : 92,
     "text" : ";",
@@ -929,7 +1021,8 @@
       "end" : 1250,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+    "group" : "SemicolonExpression",
+    "groupReference" : 63
   }, {
     "id" : 93,
     "text" : "(",
@@ -939,7 +1032,8 @@
       "end" : 1339,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+    "group" : "CompactControlFlowExpression:highlighting",
+    "groupReference" : 64
   }, {
     "id" : 94,
     "text" : ")",
@@ -949,7 +1043,8 @@
       "end" : 1344,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+    "group" : "CompactControlFlowExpression:highlighting",
+    "groupReference" : 64
   }, {
     "id" : 95,
     "text" : "{",
@@ -959,7 +1054,8 @@
       "end" : 1263,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+    "group" : "AbstractControlFlowCodeBlock",
+    "groupReference" : 65
   }, {
     "id" : 96,
     "text" : "} ",
@@ -969,7 +1065,8 @@
       "end" : 1332,
       "size" : 2
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+    "group" : "AbstractControlFlowCodeBlock",
+    "groupReference" : 65
   }, {
     "id" : 97,
     "text" : "System.out.",
@@ -979,7 +1076,8 @@
       "end" : 1291,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+    "group" : "PrintlnExpression",
+    "groupReference" : 66
   }, {
     "id" : 98,
     "text" : ";",
@@ -989,7 +1087,8 @@
       "end" : 1306,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+    "group" : "SemicolonExpression",
+    "groupReference" : 67
   }, {
     "id" : 99,
     "text" : ";",
@@ -999,7 +1098,8 @@
       "end" : 1321,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+    "group" : "SemicolonExpression",
+    "groupReference" : 68
   }, {
     "id" : 100,
     "text" : ";",
@@ -1009,7 +1109,8 @@
       "end" : 1345,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+    "group" : "SemicolonExpression",
+    "groupReference" : 69
   }, {
     "id" : 101,
     "text" : "{",
@@ -1019,7 +1120,8 @@
       "end" : 1359,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+    "group" : "AbstractControlFlowCodeBlock",
+    "groupReference" : 70
   }, {
     "id" : 102,
     "text" : "} ",
@@ -1029,7 +1131,8 @@
       "end" : 1413,
       "size" : 2
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+    "group" : "AbstractControlFlowCodeBlock",
+    "groupReference" : 70
   }, {
     "id" : 103,
     "text" : "System.out.",
@@ -1039,7 +1142,8 @@
       "end" : 1387,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+    "group" : "PrintlnExpression",
+    "groupReference" : 71
   }, {
     "id" : 104,
     "text" : ";",
@@ -1049,7 +1153,8 @@
       "end" : 1402,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+    "group" : "SemicolonExpression",
+    "groupReference" : 72
   }, {
     "id" : 105,
     "text" : "(",
@@ -1059,7 +1164,8 @@
       "end" : 1420,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+    "group" : "CompactControlFlowExpression:highlighting",
+    "groupReference" : 73
   }, {
     "id" : 106,
     "text" : ")",
@@ -1069,7 +1175,8 @@
       "end" : 1432,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+    "group" : "CompactControlFlowExpression:highlighting",
+    "groupReference" : 73
   }, {
     "id" : 107,
     "text" : "{",
@@ -1079,7 +1186,8 @@
       "end" : 1434,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+    "group" : "AbstractControlFlowCodeBlock",
+    "groupReference" : 74
   }, {
     "id" : 108,
     "text" : "        }\n",
@@ -1089,7 +1197,8 @@
       "end" : 1488,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+    "group" : "AbstractControlFlowCodeBlock",
+    "groupReference" : 74
   }, {
     "id" : 109,
     "text" : "System.out.",
@@ -1099,7 +1208,8 @@
       "end" : 1462,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+    "group" : "PrintlnExpression",
+    "groupReference" : 75
   }, {
     "id" : 110,
     "text" : ";",
@@ -1109,7 +1219,8 @@
       "end" : 1477,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+    "group" : "SemicolonExpression",
+    "groupReference" : 76
   }, {
     "id" : 111,
     "text" : "{",
@@ -1119,7 +1230,8 @@
       "end" : 1501,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+    "group" : "AbstractControlFlowCodeBlock",
+    "groupReference" : 77
   }, {
     "id" : 112,
     "text" : "} ",
@@ -1129,7 +1241,8 @@
       "end" : 1590,
       "size" : 2
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+    "group" : "AbstractControlFlowCodeBlock",
+    "groupReference" : 77
   }, {
     "id" : 113,
     "text" : "System.out.",
@@ -1139,7 +1252,8 @@
       "end" : 1529,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+    "group" : "PrintlnExpression",
+    "groupReference" : 78
   }, {
     "id" : 114,
     "text" : ";",
@@ -1149,7 +1263,8 @@
       "end" : 1544,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+    "group" : "SemicolonExpression",
+    "groupReference" : 79
   }, {
     "id" : 115,
     "text" : "System.out.",
@@ -1159,7 +1274,8 @@
       "end" : 1564,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+    "group" : "PrintlnExpression",
+    "groupReference" : 80
   }, {
     "id" : 116,
     "text" : ";",
@@ -1169,7 +1285,8 @@
       "end" : 1579,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+    "group" : "SemicolonExpression",
+    "groupReference" : 81
   }, {
     "id" : 117,
     "text" : "(",
@@ -1179,7 +1296,8 @@
       "end" : 1597,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+    "group" : "CompactControlFlowExpression:highlighting",
+    "groupReference" : 82
   }, {
     "id" : 118,
     "text" : ")",
@@ -1189,7 +1307,8 @@
       "end" : 1609,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+    "group" : "CompactControlFlowExpression:highlighting",
+    "groupReference" : 82
   }, {
     "id" : 119,
     "text" : "{",
@@ -1199,7 +1318,8 @@
       "end" : 1611,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+    "group" : "AbstractControlFlowCodeBlock",
+    "groupReference" : 83
   }, {
     "id" : 120,
     "text" : "        }\n",
@@ -1209,7 +1329,8 @@
       "end" : 1665,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+    "group" : "AbstractControlFlowCodeBlock",
+    "groupReference" : 83
   }, {
     "id" : 121,
     "text" : "System.out.",
@@ -1219,7 +1340,8 @@
       "end" : 1639,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+    "group" : "PrintlnExpression",
+    "groupReference" : 84
   }, {
     "id" : 122,
     "text" : ";",
@@ -1229,7 +1351,8 @@
       "end" : 1654,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+    "group" : "SemicolonExpression",
+    "groupReference" : 85
   }, {
     "id" : 123,
     "text" : "{",
@@ -1239,7 +1362,8 @@
       "end" : 1678,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+    "group" : "AbstractControlFlowCodeBlock",
+    "groupReference" : 86
   }, {
     "id" : 124,
     "text" : "} ",
@@ -1249,7 +1373,8 @@
       "end" : 1732,
       "size" : 2
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+    "group" : "AbstractControlFlowCodeBlock",
+    "groupReference" : 86
   }, {
     "id" : 125,
     "text" : "System.out.",
@@ -1259,7 +1384,8 @@
       "end" : 1706,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+    "group" : "PrintlnExpression",
+    "groupReference" : 87
   }, {
     "id" : 126,
     "text" : ";",
@@ -1269,7 +1395,8 @@
       "end" : 1721,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+    "group" : "SemicolonExpression",
+    "groupReference" : 88
   }, {
     "id" : 127,
     "text" : "(",
@@ -1279,7 +1406,8 @@
       "end" : 1739,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+    "group" : "CompactControlFlowExpression:highlighting",
+    "groupReference" : 89
   }, {
     "id" : 128,
     "text" : ")",
@@ -1289,7 +1417,8 @@
       "end" : 1751,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression:highlighting"
+    "group" : "CompactControlFlowExpression:highlighting",
+    "groupReference" : 89
   }, {
     "id" : 129,
     "text" : "{",
@@ -1299,7 +1428,8 @@
       "end" : 1753,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+    "group" : "AbstractControlFlowCodeBlock",
+    "groupReference" : 90
   }, {
     "id" : 130,
     "text" : "        }\n",
@@ -1309,7 +1439,8 @@
       "end" : 1842,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+    "group" : "AbstractControlFlowCodeBlock",
+    "groupReference" : 90
   }, {
     "id" : 131,
     "text" : "System.out.",
@@ -1319,7 +1450,8 @@
       "end" : 1781,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+    "group" : "PrintlnExpression",
+    "groupReference" : 91
   }, {
     "id" : 132,
     "text" : ";",
@@ -1329,7 +1461,8 @@
       "end" : 1796,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+    "group" : "SemicolonExpression",
+    "groupReference" : 92
   }, {
     "id" : 133,
     "text" : "System.out.",
@@ -1339,7 +1472,8 @@
       "end" : 1816,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+    "group" : "PrintlnExpression",
+    "groupReference" : 93
   }, {
     "id" : 134,
     "text" : ";",
@@ -1349,6 +1483,7 @@
       "end" : 1831,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.SemicolonExpression"
+    "group" : "SemicolonExpression",
+    "groupReference" : 94
   } ]
 }

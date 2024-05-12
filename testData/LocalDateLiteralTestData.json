@@ -9,7 +9,8 @@
       "end" : 165,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+    "group" : "ListLiteral",
+    "groupReference" : 0
   }, {
     "id" : 1,
     "text" : ", ",
@@ -19,7 +20,8 @@
       "end" : 171,
       "size" : 2
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+    "group" : "ListLiteral",
+    "groupReference" : 0
   }, {
     "id" : 2,
     "text" : ", ",
@@ -29,7 +31,8 @@
       "end" : 175,
       "size" : 2
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+    "group" : "ListLiteral",
+    "groupReference" : 0
   }, {
     "id" : 3,
     "text" : ")",
@@ -39,7 +42,8 @@
       "end" : 178,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+    "group" : "ListLiteral",
+    "groupReference" : 0
   }, {
     "id" : 4,
     "text" : "LocalDate.of(",
@@ -49,7 +53,8 @@
       "end" : 216,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+    "group" : "ListLiteral",
+    "groupReference" : 1
   }, {
     "id" : 5,
     "text" : ", ",
@@ -59,7 +64,8 @@
       "end" : 222,
       "size" : 2
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+    "group" : "ListLiteral",
+    "groupReference" : 1
   }, {
     "id" : 6,
     "text" : ", ",
@@ -69,7 +75,8 @@
       "end" : 226,
       "size" : 2
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+    "group" : "ListLiteral",
+    "groupReference" : 1
   }, {
     "id" : 7,
     "text" : ")",
@@ -79,7 +86,8 @@
       "end" : 229,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+    "group" : "ListLiteral",
+    "groupReference" : 1
   }, {
     "id" : 8,
     "text" : "LocalDate.of(",
@@ -89,7 +97,8 @@
       "end" : 267,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+    "group" : "ListLiteral",
+    "groupReference" : 2
   }, {
     "id" : 9,
     "text" : ", ",
@@ -99,7 +108,8 @@
       "end" : 273,
       "size" : 2
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+    "group" : "ListLiteral",
+    "groupReference" : 2
   }, {
     "id" : 10,
     "text" : ", ",
@@ -109,7 +119,8 @@
       "end" : 277,
       "size" : 2
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+    "group" : "ListLiteral",
+    "groupReference" : 2
   }, {
     "id" : 11,
     "text" : ")",
@@ -119,7 +130,8 @@
       "end" : 280,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+    "group" : "ListLiteral",
+    "groupReference" : 2
   }, {
     "id" : 12,
     "text" : "LocalDate.of(",
@@ -129,7 +141,8 @@
       "end" : 318,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+    "group" : "ListLiteral",
+    "groupReference" : 3
   }, {
     "id" : 13,
     "text" : ",  ",
@@ -139,7 +152,8 @@
       "end" : 325,
       "size" : 3
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+    "group" : "ListLiteral",
+    "groupReference" : 3
   }, {
     "id" : 14,
     "text" : " ,  ",
@@ -149,7 +163,8 @@
       "end" : 330,
       "size" : 4
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+    "group" : "ListLiteral",
+    "groupReference" : 3
   }, {
     "id" : 15,
     "text" : "   )",
@@ -159,7 +174,8 @@
       "end" : 335,
       "size" : 4
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+    "group" : "ListLiteral",
+    "groupReference" : 3
   }, {
     "id" : 16,
     "text" : "LocalDate.of(",
@@ -169,7 +185,8 @@
       "end" : 540,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+    "group" : "ListLiteral",
+    "groupReference" : 4
   }, {
     "id" : 17,
     "text" : ", ",
@@ -179,7 +196,8 @@
       "end" : 546,
       "size" : 2
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+    "group" : "ListLiteral",
+    "groupReference" : 4
   }, {
     "id" : 18,
     "text" : ", ",
@@ -189,7 +207,8 @@
       "end" : 549,
       "size" : 2
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+    "group" : "ListLiteral",
+    "groupReference" : 4
   }, {
     "id" : 19,
     "text" : ")",
@@ -199,6 +218,7 @@
       "end" : 552,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ListLiteral"
+    "group" : "ListLiteral",
+    "groupReference" : 4
   } ]
 }

@@ -9,7 +9,8 @@
       "end" : 177,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 0
   }, {
     "id" : 1,
     "text" : ")",
@@ -19,7 +20,8 @@
       "end" : 179,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 0
   }, {
     "id" : 2,
     "text" : "setName(",
@@ -29,7 +31,8 @@
       "end" : 199,
       "size" : 8
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 1
   }, {
     "id" : 3,
     "text" : ")",
@@ -39,7 +42,8 @@
       "end" : 207,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 1
   }, {
     "id" : 4,
     "text" : "setName(",
@@ -49,7 +53,8 @@
       "end" : 239,
       "size" : 8
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 2
   }, {
     "id" : 5,
     "text" : ")",
@@ -59,7 +64,8 @@
       "end" : 246,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 2
   }, {
     "id" : 6,
     "text" : "getParent()",
@@ -69,7 +75,8 @@
       "end" : 230,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "Getter",
+    "groupReference" : 3
   }, {
     "id" : 7,
     "text" : "getName()",
@@ -79,7 +86,8 @@
       "end" : 298,
       "size" : 9
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "Getter",
+    "groupReference" : 4
   }, {
     "id" : 8,
     "text" : "getParent()",
@@ -89,6 +97,7 @@
       "end" : 288,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "Getter",
+    "groupReference" : 5
   } ]
 }

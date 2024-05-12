@@ -21,7 +21,7 @@ class PrintlnTestData {
                 "</fold> multiple<fold text='' expand='false'>" + "</fold> <fold text='' expand='false'>" + "</fold>strings");
         <fold text='' expand='false'>System.out.</fold>println("Passed as parameter: <fold text='$' expand='false'>" + </fold>string<fold text='")' expand='false'>)</fold>;
         <fold text='' expand='false'>System.out.</fold>println("Passed as parameter: <fold text='${' expand='false'>" +
-                </fold>this.<fold text='class' expand='false'>getClass()</fold><fold text='}")' expand='false'>)</fold>;
+</fold>this.<fold text='class' expand='false'>getClass()</fold><fold text='}")' expand='false'>)</fold>;
         <fold text='' expand='false'>System.out.</fold>println(<fold text='"text
 block
 "' expand='false'>"""

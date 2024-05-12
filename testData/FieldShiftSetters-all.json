@@ -9,7 +9,8 @@
       "end" : 3156,
       "size" : 8
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 0
   }, {
     "id" : 1,
     "text" : "\n\n    ",
@@ -19,7 +20,8 @@
       "end" : 3227,
       "size" : 6
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 0
   }, {
     "id" : 2,
     "text" : "\n\n    ",
@@ -29,7 +31,8 @@
       "end" : 3294,
       "size" : 6
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 0
   }, {
     "id" : 3,
     "text" : "\n\n    ",
@@ -39,7 +42,8 @@
       "end" : 3377,
       "size" : 6
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 0
   }, {
     "id" : 4,
     "text" : "\n\n    ",
@@ -49,7 +53,8 @@
       "end" : 222,
       "size" : 6
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 0
   }, {
     "id" : 5,
     "text" : "\n\n    ",
@@ -59,7 +64,8 @@
       "end" : 310,
       "size" : 6
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 0
   }, {
     "id" : 6,
     "text" : "\n\n    ",
@@ -69,7 +75,8 @@
       "end" : 391,
       "size" : 6
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 0
   }, {
     "id" : 7,
     "text" : "\n\n    ",
@@ -79,7 +86,8 @@
       "end" : 503,
       "size" : 6
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 0
   }, {
     "id" : 8,
     "text" : "public String getUsername() {\n        return this.username;\n    }",
@@ -89,7 +97,8 @@
       "end" : 3221,
       "size" : 65
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 0
   }, {
     "id" : 9,
     "text" : "public boolean isActive() {\n        return this.active;\n    }",
@@ -99,7 +108,8 @@
       "end" : 3288,
       "size" : 61
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 0
   }, {
     "id" : 10,
     "text" : "public String getUserIdentifier() {\n        return this.userIdentifier;\n    }",
@@ -109,7 +119,8 @@
       "end" : 3371,
       "size" : 77
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 0
   }, {
     "id" : 11,
     "text" : "public FieldShiftSetters getChild() {\n        return this.child;\n    }",
@@ -119,7 +130,8 @@
       "end" : 3447,
       "size" : 70
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 0
   }, {
     "id" : 12,
     "text" : "public void setUsername(String username) {\n        this.username = username;\n    }",
@@ -129,7 +141,8 @@
       "end" : 304,
       "size" : 82
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 0
   }, {
     "id" : 13,
     "text" : "public void setActive(boolean active) {\n        this.active = active;\n    }",
@@ -139,7 +152,8 @@
       "end" : 385,
       "size" : 75
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 0
   }, {
     "id" : 14,
     "text" : "public void setUserIdentifier(String userIdentifier) {\n        this.userIdentifier = userIdentifier;\n    }",
@@ -149,7 +163,8 @@
       "end" : 497,
       "size" : 106
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 0
   }, {
     "id" : 15,
     "text" : "public void setChild(FieldShiftSetters child) {\n        this.child = child;\n    }",
@@ -159,7 +174,8 @@
       "end" : 584,
       "size" : 81
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 0
   }, {
     "id" : 16,
     "text" : "p",
@@ -169,7 +185,8 @@
       "end" : 16,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 0
   }, {
     "id" : 17,
     "text" : "username",
@@ -179,7 +196,8 @@
       "end" : 297,
       "size" : 8
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+    "group" : "BuilderShiftExpression",
+    "groupReference" : 1
   }, {
     "id" : 18,
     "text" : "active",
@@ -189,7 +207,8 @@
       "end" : 378,
       "size" : 6
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+    "group" : "BuilderShiftExpression",
+    "groupReference" : 2
   }, {
     "id" : 19,
     "text" : "userIdentifier",
@@ -199,7 +218,8 @@
       "end" : 490,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+    "group" : "BuilderShiftExpression",
+    "groupReference" : 3
   }, {
     "id" : 20,
     "text" : "child",
@@ -209,7 +229,8 @@
       "end" : 577,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+    "group" : "BuilderShiftExpression",
+    "groupReference" : 4
   }, {
     "id" : 21,
     "text" : "FieldShiftSetters",
@@ -219,7 +240,8 @@
       "end" : 688,
       "size" : 17
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+    "group" : "VariableDeclarationImpl",
+    "groupReference" : 5
   }, {
     "id" : 22,
     "text" : "setUsername(",
@@ -229,7 +251,8 @@
       "end" : 750,
       "size" : 12
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 6
   }, {
     "id" : 23,
     "text" : ")",
@@ -239,7 +262,8 @@
       "end" : 782,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 6
   }, {
     "id" : 24,
     "text" : ".getUsername()",
@@ -249,7 +273,8 @@
       "end" : 781,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod"
+    "group" : "FieldShiftMethod",
+    "groupReference" : 7
   }, {
     "id" : 25,
     "text" : "getChild()",
@@ -259,7 +284,8 @@
       "end" : 767,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "Getter",
+    "groupReference" : 8
   }, {
     "id" : 26,
     "text" : "setUserIdentifier(",
@@ -269,7 +295,8 @@
       "end" : 817,
       "size" : 18
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 9
   }, {
     "id" : 27,
     "text" : ")",
@@ -279,7 +306,8 @@
       "end" : 877,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 9
   }, {
     "id" : 28,
     "text" : ".getUserIdentifier()",
@@ -289,7 +317,8 @@
       "end" : 876,
       "size" : 20
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod"
+    "group" : "FieldShiftMethod",
+    "groupReference" : 10
   }, {
     "id" : 29,
     "text" : "getChild()",
@@ -299,7 +328,8 @@
       "end" : 856,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "Getter",
+    "groupReference" : 11
   }, {
     "id" : 30,
     "text" : "getChild()",
@@ -309,7 +339,8 @@
       "end" : 845,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "Getter",
+    "groupReference" : 12
   }, {
     "id" : 31,
     "text" : "getChild()",
@@ -319,7 +350,8 @@
       "end" : 834,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "Getter",
+    "groupReference" : 13
   }, {
     "id" : 32,
     "text" : "setActive(",
@@ -329,7 +361,8 @@
       "end" : 904,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 14
   }, {
     "id" : 33,
     "text" : ")",
@@ -339,7 +372,8 @@
       "end" : 933,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 14
   }, {
     "id" : 34,
     "text" : ".isActive()",
@@ -349,7 +383,8 @@
       "end" : 932,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod"
+    "group" : "FieldShiftMethod",
+    "groupReference" : 15
   }, {
     "id" : 35,
     "text" : "getChild()",
@@ -359,7 +394,8 @@
       "end" : 921,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "Getter",
+    "groupReference" : 16
   }, {
     "id" : 36,
     "text" : "FieldShiftSetters",
@@ -369,7 +405,8 @@
       "end" : 1062,
       "size" : 17
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+    "group" : "VariableDeclarationImpl",
+    "groupReference" : 17
   }, {
     "id" : 37,
     "text" : "setUsername(",
@@ -379,7 +416,8 @@
       "end" : 1124,
       "size" : 12
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 18
   }, {
     "id" : 38,
     "text" : ")",
@@ -389,7 +427,8 @@
       "end" : 1145,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 18
   }, {
     "id" : 39,
     "text" : ".getUsername()",
@@ -399,7 +438,8 @@
       "end" : 1144,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod"
+    "group" : "FieldShiftMethod",
+    "groupReference" : 19
   }, {
     "id" : 40,
     "text" : "setUserIdentifier(",
@@ -409,7 +449,8 @@
       "end" : 1180,
       "size" : 18
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 20
   }, {
     "id" : 41,
     "text" : ")",
@@ -419,7 +460,8 @@
       "end" : 1207,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 20
   }, {
     "id" : 42,
     "text" : ".getUserIdentifier()",
@@ -429,7 +471,8 @@
       "end" : 1206,
       "size" : 20
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod"
+    "group" : "FieldShiftMethod",
+    "groupReference" : 21
   }, {
     "id" : 43,
     "text" : "setActive(",
@@ -439,7 +482,8 @@
       "end" : 1234,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 22
   }, {
     "id" : 44,
     "text" : ")",
@@ -449,7 +493,8 @@
       "end" : 1252,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 22
   }, {
     "id" : 45,
     "text" : ".isActive()",
@@ -459,7 +504,8 @@
       "end" : 1251,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod"
+    "group" : "FieldShiftMethod",
+    "groupReference" : 23
   }, {
     "id" : 46,
     "text" : "FieldShiftSetters",
@@ -469,7 +515,8 @@
       "end" : 1380,
       "size" : 17
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+    "group" : "VariableDeclarationImpl",
+    "groupReference" : 24
   }, {
     "id" : 47,
     "text" : "setUsername(",
@@ -479,7 +526,8 @@
       "end" : 1442,
       "size" : 12
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 25
   }, {
     "id" : 48,
     "text" : ")",
@@ -489,7 +537,8 @@
       "end" : 1460,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 25
   }, {
     "id" : 49,
     "text" : ".username()",
@@ -499,7 +548,8 @@
       "end" : 1459,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod"
+    "group" : "FieldShiftMethod",
+    "groupReference" : 26
   }, {
     "id" : 50,
     "text" : "setActive(",
@@ -509,7 +559,8 @@
       "end" : 1487,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 27
   }, {
     "id" : 51,
     "text" : ")",
@@ -519,7 +570,8 @@
       "end" : 1503,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 27
   }, {
     "id" : 52,
     "text" : ".active()",
@@ -529,7 +581,8 @@
       "end" : 1502,
       "size" : 9
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod"
+    "group" : "FieldShiftMethod",
+    "groupReference" : 28
   }, {
     "id" : 53,
     "text" : "setUserIdentifier(",
@@ -539,7 +592,8 @@
       "end" : 1538,
       "size" : 18
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 29
   }, {
     "id" : 54,
     "text" : ")",
@@ -549,7 +603,8 @@
       "end" : 1562,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 29
   }, {
     "id" : 55,
     "text" : ".userIdentifier()",
@@ -559,7 +614,8 @@
       "end" : 1561,
       "size" : 17
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod"
+    "group" : "FieldShiftMethod",
+    "groupReference" : 30
   }, {
     "id" : 56,
     "text" : "FieldShiftSetters",
@@ -569,7 +625,8 @@
       "end" : 1729,
       "size" : 17
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+    "group" : "VariableDeclarationImpl",
+    "groupReference" : 31
   }, {
     "id" : 57,
     "text" : "setUsername(",
@@ -579,7 +636,8 @@
       "end" : 1771,
       "size" : 12
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 32
   }, {
     "id" : 58,
     "text" : ")",
@@ -589,7 +647,8 @@
       "end" : 1789,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 32
   }, {
     "id" : 59,
     "text" : ".username()",
@@ -599,7 +658,8 @@
       "end" : 1788,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod"
+    "group" : "FieldShiftMethod",
+    "groupReference" : 33
   }, {
     "id" : 60,
     "text" : "FieldShiftSetters",
@@ -609,7 +669,8 @@
       "end" : 1816,
       "size" : 17
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+    "group" : "VariableDeclarationImpl",
+    "groupReference" : 34
   }, {
     "id" : 61,
     "text" : "setActive(",
@@ -619,7 +680,8 @@
       "end" : 1853,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 35
   }, {
     "id" : 62,
     "text" : ")",
@@ -629,7 +691,8 @@
       "end" : 1871,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 35
   }, {
     "id" : 63,
     "text" : ".isActive()",
@@ -639,7 +702,8 @@
       "end" : 1870,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod"
+    "group" : "FieldShiftMethod",
+    "groupReference" : 36
   }, {
     "id" : 64,
     "text" : "FieldShiftSetters",
@@ -649,7 +713,8 @@
       "end" : 1898,
       "size" : 17
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+    "group" : "VariableDeclarationImpl",
+    "groupReference" : 37
   }, {
     "id" : 65,
     "text" : "setUsername(",
@@ -659,7 +724,8 @@
       "end" : 1960,
       "size" : 12
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 38
   }, {
     "id" : 66,
     "text" : ")",
@@ -669,7 +735,8 @@
       "end" : 1984,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 38
   }, {
     "id" : 67,
     "text" : "userIdentifier()",
@@ -679,7 +746,8 @@
       "end" : 1983,
       "size" : 16
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.GetterRecord"
+    "group" : "GetterRecord",
+    "groupReference" : 39
   }, {
     "id" : 68,
     "text" : "setUsername(",
@@ -689,7 +757,8 @@
       "end" : 2013,
       "size" : 12
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 40
   }, {
     "id" : 69,
     "text" : ")",
@@ -699,7 +768,8 @@
       "end" : 2040,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 40
   }, {
     "id" : 70,
     "text" : "username()",
@@ -709,7 +779,8 @@
       "end" : 2038,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.GetterRecord"
+    "group" : "GetterRecord",
+    "groupReference" : 41
   }, {
     "id" : 71,
     "text" : "setUsername(",
@@ -719,7 +790,8 @@
       "end" : 2069,
       "size" : 12
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 42
   }, {
     "id" : 72,
     "text" : ")",
@@ -729,7 +801,8 @@
       "end" : 2090,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 42
   }, {
     "id" : 73,
     "text" : ".getUsername()",
@@ -739,7 +812,8 @@
       "end" : 2089,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod"
+    "group" : "FieldShiftMethod",
+    "groupReference" : 43
   }, {
     "id" : 74,
     "text" : "setUsername(",
@@ -749,7 +823,8 @@
       "end" : 2119,
       "size" : 12
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 44
   }, {
     "id" : 75,
     "text" : ")",
@@ -759,7 +834,8 @@
       "end" : 2149,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 44
   }, {
     "id" : 76,
     "text" : ".getUsername()",
@@ -769,7 +845,8 @@
       "end" : 2148,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod"
+    "group" : "FieldShiftMethod",
+    "groupReference" : 45
   }, {
     "id" : 77,
     "text" : "getChild()",
@@ -779,7 +856,8 @@
       "end" : 2134,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "Getter",
+    "groupReference" : 46
   }, {
     "id" : 78,
     "text" : "setUsername",
@@ -789,7 +867,8 @@
       "end" : 2177,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 47
   }, {
     "id" : 79,
     "text" : ")",
@@ -799,7 +878,8 @@
       "end" : 2205,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 47
   }, {
     "id" : 80,
     "text" : "(",
@@ -809,7 +889,8 @@
       "end" : 2178,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 47
   }, {
     "id" : 81,
     "text" : " + \"",
@@ -819,7 +900,8 @@
       "end" : 2202,
       "size" : 4
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 47
   }, {
     "id" : 82,
     "text" : "getUsername()",
@@ -829,7 +911,8 @@
       "end" : 2198,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "Getter",
+    "groupReference" : 48
   }, {
     "id" : 83,
     "text" : "setUsername(",
@@ -839,7 +922,8 @@
       "end" : 2234,
       "size" : 12
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 49
   }, {
     "id" : 84,
     "text" : ")",
@@ -849,7 +933,8 @@
       "end" : 2284,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 49
   }, {
     "id" : 85,
     "text" : "getUsername()",
@@ -859,7 +944,8 @@
       "end" : 2254,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "Getter",
+    "groupReference" : 50
   }, {
     "id" : 86,
     "text" : "getUserIdentifier()",
@@ -869,7 +955,8 @@
       "end" : 2283,
       "size" : 19
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "Getter",
+    "groupReference" : 51
   }, {
     "id" : 87,
     "text" : "setActive(",
@@ -879,7 +966,8 @@
       "end" : 2311,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 52
   }, {
     "id" : 88,
     "text" : ")",
@@ -889,7 +977,8 @@
       "end" : 2329,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 52
   }, {
     "id" : 89,
     "text" : ".isActive()",
@@ -899,7 +988,8 @@
       "end" : 2328,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod"
+    "group" : "FieldShiftMethod",
+    "groupReference" : 53
   }, {
     "id" : 90,
     "text" : "setUserIdentifier(",
@@ -909,7 +999,8 @@
       "end" : 2364,
       "size" : 18
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 54
   }, {
     "id" : 91,
     "text" : ")",
@@ -919,7 +1010,8 @@
       "end" : 2391,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 54
   }, {
     "id" : 92,
     "text" : ".getUserIdentifier()",
@@ -929,7 +1021,8 @@
       "end" : 2390,
       "size" : 20
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod"
+    "group" : "FieldShiftMethod",
+    "groupReference" : 55
   }, {
     "id" : 93,
     "text" : "FieldShiftSetters",
@@ -939,7 +1032,8 @@
       "end" : 2418,
       "size" : 17
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+    "group" : "VariableDeclarationImpl",
+    "groupReference" : 56
   }, {
     "id" : 94,
     "text" : "setChild(",
@@ -949,7 +1043,8 @@
       "end" : 2481,
       "size" : 9
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 57
   }, {
     "id" : 95,
     "text" : ")",
@@ -959,7 +1054,8 @@
       "end" : 2497,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 57
   }, {
     "id" : 96,
     "text" : ".getChild()",
@@ -969,7 +1065,8 @@
       "end" : 2496,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod"
+    "group" : "FieldShiftMethod",
+    "groupReference" : 58
   }, {
     "id" : 97,
     "text" : "setUserIdentifier(",
@@ -979,7 +1076,8 @@
       "end" : 2530,
       "size" : 18
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 59
   }, {
     "id" : 98,
     "text" : ")",
@@ -989,7 +1087,8 @@
       "end" : 2551,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 59
   }, {
     "id" : 99,
     "text" : "getUsername()",
@@ -999,7 +1098,8 @@
       "end" : 2550,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "Getter",
+    "groupReference" : 60
   }, {
     "id" : 100,
     "text" : "setUsername(",
@@ -1009,7 +1109,8 @@
       "end" : 2578,
       "size" : 12
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 61
   }, {
     "id" : 101,
     "text" : ")",
@@ -1019,7 +1120,8 @@
       "end" : 2599,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 61
   }, {
     "id" : 102,
     "text" : ".getUsername()",
@@ -1029,7 +1131,8 @@
       "end" : 2598,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod"
+    "group" : "FieldShiftMethod",
+    "groupReference" : 62
   }, {
     "id" : 103,
     "text" : "getChild()",
@@ -1039,7 +1142,8 @@
       "end" : 2628,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "Getter",
+    "groupReference" : 63
   }, {
     "id" : 104,
     "text" : "setActive(",
@@ -1049,7 +1153,8 @@
       "end" : 2657,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 64
   }, {
     "id" : 105,
     "text" : ")",
@@ -1059,7 +1164,8 @@
       "end" : 2676,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 64
   }, {
     "id" : 106,
     "text" : ".isActive()",
@@ -1069,7 +1175,8 @@
       "end" : 2675,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod"
+    "group" : "FieldShiftMethod",
+    "groupReference" : 65
   }, {
     "id" : 107,
     "text" : "setUsername(",
@@ -1079,7 +1186,8 @@
       "end" : 2707,
       "size" : 12
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 66
   }, {
     "id" : 108,
     "text" : ")",
@@ -1089,7 +1197,8 @@
       "end" : 2729,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 66
   }, {
     "id" : 109,
     "text" : ".getUsername()",
@@ -1099,7 +1208,8 @@
       "end" : 2728,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod"
+    "group" : "FieldShiftMethod",
+    "groupReference" : 67
   }, {
     "id" : 110,
     "text" : "setUserIdentifier(",
@@ -1109,7 +1219,8 @@
       "end" : 2766,
       "size" : 18
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 68
   }, {
     "id" : 111,
     "text" : ")",
@@ -1119,7 +1230,8 @@
       "end" : 2790,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 68
   }, {
     "id" : 112,
     "text" : ".userIdentifier()",
@@ -1129,7 +1241,8 @@
       "end" : 2789,
       "size" : 17
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod"
+    "group" : "FieldShiftMethod",
+    "groupReference" : 69
   }, {
     "id" : 113,
     "text" : "setChild(",
@@ -1139,7 +1252,8 @@
       "end" : 2816,
       "size" : 9
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 70
   }, {
     "id" : 114,
     "text" : ")",
@@ -1149,7 +1263,8 @@
       "end" : 2825,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 70
   }, {
     "id" : 115,
     "text" : "FieldShiftSetters",
@@ -1159,7 +1274,8 @@
       "end" : 2852,
       "size" : 17
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+    "group" : "VariableDeclarationImpl",
+    "groupReference" : 71
   }, {
     "id" : 116,
     "text" : "setUsername(",
@@ -1169,7 +1285,8 @@
       "end" : 2928,
       "size" : 12
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 72
   }, {
     "id" : 117,
     "text" : ")",
@@ -1179,7 +1296,8 @@
       "end" : 2949,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 72
   }, {
     "id" : 118,
     "text" : ".getUsername()",
@@ -1189,7 +1307,8 @@
       "end" : 2948,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod"
+    "group" : "FieldShiftMethod",
+    "groupReference" : 73
   }, {
     "id" : 119,
     "text" : "setChild(",
@@ -1199,7 +1318,8 @@
       "end" : 2975,
       "size" : 9
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 74
   }, {
     "id" : 120,
     "text" : ")",
@@ -1209,7 +1329,8 @@
       "end" : 3033,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Setter"
+    "group" : "Setter",
+    "groupReference" : 74
   }, {
     "id" : 121,
     "text" : ".getChild()",
@@ -1219,7 +1340,8 @@
       "end" : 3032,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod"
+    "group" : "FieldShiftMethod",
+    "groupReference" : 75
   }, {
     "id" : 122,
     "text" : "getChild()",
@@ -1229,7 +1351,8 @@
       "end" : 3021,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "Getter",
+    "groupReference" : 76
   }, {
     "id" : 123,
     "text" : "getChild()",
@@ -1239,7 +1362,8 @@
       "end" : 3010,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "Getter",
+    "groupReference" : 77
   }, {
     "id" : 124,
     "text" : "getChild()",
@@ -1249,7 +1373,8 @@
       "end" : 2999,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Getter"
+    "group" : "Getter",
+    "groupReference" : 78
   }, {
     "id" : 125,
     "text" : "\n\n        ",
@@ -1259,7 +1384,8 @@
       "end" : 3955,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 79
   }, {
     "id" : 126,
     "text" : "\n\n        ",
@@ -1269,7 +1395,8 @@
       "end" : 4038,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 79
   }, {
     "id" : 127,
     "text" : "\n\n        ",
@@ -1279,7 +1406,8 @@
       "end" : 4117,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 79
   }, {
     "id" : 128,
     "text" : "\n\n        ",
@@ -1289,7 +1417,8 @@
       "end" : 3638,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 79
   }, {
     "id" : 129,
     "text" : "\n\n        ",
@@ -1299,7 +1428,8 @@
       "end" : 3738,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 79
   }, {
     "id" : 130,
     "text" : "\n\n        ",
@@ -1309,7 +1439,8 @@
       "end" : 3831,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 79
   }, {
     "id" : 131,
     "text" : "public String getUsername() {\n            return this.username;\n        }",
@@ -1319,7 +1450,8 @@
       "end" : 4028,
       "size" : 73
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 79
   }, {
     "id" : 132,
     "text" : "public boolean isActive() {\n            return this.active;\n        }",
@@ -1329,7 +1461,8 @@
       "end" : 4107,
       "size" : 69
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 79
   }, {
     "id" : 133,
     "text" : "public String getUserIdentifier() {\n            return this.userIdentifier;\n        }",
@@ -1339,7 +1472,8 @@
       "end" : 4202,
       "size" : 85
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 79
   }, {
     "id" : 134,
     "text" : "public void setUsername(String username) {\n            this.username = username;\n        }",
@@ -1349,7 +1483,8 @@
       "end" : 3728,
       "size" : 90
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 79
   }, {
     "id" : 135,
     "text" : "public void setActive(boolean active) {\n            this.active = active;\n        }",
@@ -1359,7 +1494,8 @@
       "end" : 3821,
       "size" : 83
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 79
   }, {
     "id" : 136,
     "text" : "public void setUserIdentifier(String userIdentifier) {\n            this.userIdentifier = userIdentifier;\n        }",
@@ -1369,7 +1505,8 @@
       "end" : 3945,
       "size" : 114
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 79
   }, {
     "id" : 137,
     "text" : "p",
@@ -1379,7 +1516,8 @@
       "end" : 3454,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 79
   }, {
     "id" : 138,
     "text" : "username",
@@ -1389,7 +1527,8 @@
       "end" : 3717,
       "size" : 8
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+    "group" : "BuilderShiftExpression",
+    "groupReference" : 80
   }, {
     "id" : 139,
     "text" : "active",
@@ -1399,7 +1538,8 @@
       "end" : 3810,
       "size" : 6
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+    "group" : "BuilderShiftExpression",
+    "groupReference" : 81
   }, {
     "id" : 140,
     "text" : "userIdentifier",
@@ -1409,6 +1549,7 @@
       "end" : 3934,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression"
+    "group" : "BuilderShiftExpression",
+    "groupReference" : 82
   } ]
 }

@@ -9,7 +9,8 @@
       "end" : 139,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+    "group" : "AbstractControlFlowCodeBlock",
+    "groupReference" : 0
   }, {
     "id" : 1,
     "text" : "        }\n",
@@ -19,7 +20,8 @@
       "end" : 228,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+    "group" : "AbstractControlFlowCodeBlock",
+    "groupReference" : 0
   }, {
     "id" : 2,
     "text" : "{",
@@ -29,7 +31,8 @@
       "end" : 259,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+    "group" : "AbstractControlFlowCodeBlock",
+    "groupReference" : 1
   }, {
     "id" : 3,
     "text" : "} ",
@@ -39,7 +42,8 @@
       "end" : 348,
       "size" : 2
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+    "group" : "AbstractControlFlowCodeBlock",
+    "groupReference" : 1
   }, {
     "id" : 4,
     "text" : "{",
@@ -49,7 +53,8 @@
       "end" : 510,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+    "group" : "AbstractControlFlowCodeBlock",
+    "groupReference" : 2
   }, {
     "id" : 5,
     "text" : "        }\n",
@@ -59,7 +64,8 @@
       "end" : 607,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+    "group" : "AbstractControlFlowCodeBlock",
+    "groupReference" : 2
   }, {
     "id" : 6,
     "text" : "{",
@@ -69,7 +75,8 @@
       "end" : 744,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+    "group" : "AbstractControlFlowCodeBlock",
+    "groupReference" : 3
   }, {
     "id" : 7,
     "text" : "        }\n",
@@ -79,7 +86,8 @@
       "end" : 829,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+    "group" : "AbstractControlFlowCodeBlock",
+    "groupReference" : 3
   }, {
     "id" : 8,
     "text" : "{",
@@ -89,7 +97,8 @@
       "end" : 851,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+    "group" : "AbstractControlFlowCodeBlock",
+    "groupReference" : 4
   }, {
     "id" : 9,
     "text" : "        }\n",
@@ -99,7 +108,8 @@
       "end" : 920,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+    "group" : "AbstractControlFlowCodeBlock",
+    "groupReference" : 4
   }, {
     "id" : 10,
     "text" : "{",
@@ -109,7 +119,8 @@
       "end" : 1117,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+    "group" : "AbstractControlFlowCodeBlock",
+    "groupReference" : 5
   }, {
     "id" : 11,
     "text" : "} ",
@@ -119,7 +130,8 @@
       "end" : 1206,
       "size" : 2
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+    "group" : "AbstractControlFlowCodeBlock",
+    "groupReference" : 5
   }, {
     "id" : 12,
     "text" : "{",
@@ -129,7 +141,8 @@
       "end" : 1227,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+    "group" : "AbstractControlFlowCodeBlock",
+    "groupReference" : 6
   }, {
     "id" : 13,
     "text" : "        }\n",
@@ -139,7 +152,8 @@
       "end" : 1310,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+    "group" : "AbstractControlFlowCodeBlock",
+    "groupReference" : 6
   }, {
     "id" : 14,
     "text" : "{",
@@ -149,7 +163,8 @@
       "end" : 1322,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+    "group" : "AbstractControlFlowCodeBlock",
+    "groupReference" : 7
   }, {
     "id" : 15,
     "text" : "} ",
@@ -159,6 +174,7 @@
       "end" : 1391,
       "size" : 2
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.AbstractControlFlowCodeBlock"
+    "group" : "AbstractControlFlowCodeBlock",
+    "groupReference" : 7
   } ]
 }

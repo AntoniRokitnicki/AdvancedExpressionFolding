@@ -9,7 +9,8 @@
       "end" : 169,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ForEachIndexedStatement"
+    "group" : "ForEachIndexedStatement",
+    "groupReference" : 0
   }, {
     "id" : 1,
     "text" : " = 0; i < args.length; i++) {\n                        ",
@@ -19,7 +20,8 @@
       "end" : 228,
       "size" : 54
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ForEachIndexedStatement"
+    "group" : "ForEachIndexedStatement",
+    "groupReference" : 0
   }, {
     "id" : 2,
     "text" : " = ",
@@ -29,7 +31,8 @@
       "end" : 241,
       "size" : 3
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ForEachIndexedStatement"
+    "group" : "ForEachIndexedStatement",
+    "groupReference" : 0
   }, {
     "id" : 3,
     "text" : "\n                                [i];",
@@ -39,7 +42,8 @@
       "end" : 282,
       "size" : 37
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ForEachIndexedStatement"
+    "group" : "ForEachIndexedStatement",
+    "groupReference" : 0
   }, {
     "id" : 4,
     "text" : "int i = 0; i < args.length; i++) {\n                        ",
@@ -49,7 +53,8 @@
       "end" : 453,
       "size" : 59
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ForEachStatement"
+    "group" : "ForEachStatement",
+    "groupReference" : 1
   }, {
     "id" : 5,
     "text" : " = ",
@@ -59,7 +64,8 @@
       "end" : 466,
       "size" : 3
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ForEachStatement"
+    "group" : "ForEachStatement",
+    "groupReference" : 1
   }, {
     "id" : 6,
     "text" : "\n                                [i];",
@@ -69,7 +75,8 @@
       "end" : 507,
       "size" : 37
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ForEachStatement"
+    "group" : "ForEachStatement",
+    "groupReference" : 1
   }, {
     "id" : 7,
     "text" : " = ",
@@ -79,7 +86,8 @@
       "end" : 588,
       "size" : 3
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ForStatement"
+    "group" : "ForStatement",
+    "groupReference" : 2
   }, {
     "id" : 8,
     "text" : "; i < ",
@@ -89,7 +97,8 @@
       "end" : 595,
       "size" : 6
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ForStatement"
+    "group" : "ForStatement",
+    "groupReference" : 2
   }, {
     "id" : 9,
     "text" : "; i++",
@@ -99,7 +108,8 @@
       "end" : 611,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ForStatement"
+    "group" : "ForStatement",
+    "groupReference" : 2
   }, {
     "id" : 10,
     "text" : " = ",
@@ -109,7 +119,8 @@
       "end" : 701,
       "size" : 3
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ForStatement"
+    "group" : "ForStatement",
+    "groupReference" : 3
   }, {
     "id" : 11,
     "text" : "; i <= ",
@@ -119,7 +130,8 @@
       "end" : 709,
       "size" : 7
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ForStatement"
+    "group" : "ForStatement",
+    "groupReference" : 3
   }, {
     "id" : 12,
     "text" : "; i++",
@@ -129,7 +141,8 @@
       "end" : 729,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ForStatement"
+    "group" : "ForStatement",
+    "groupReference" : 3
   }, {
     "id" : 13,
     "text" : "int i = 0; i < list.size(); i++) {\n                        ",
@@ -139,7 +152,8 @@
       "end" : 933,
       "size" : 59
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ForEachStatement"
+    "group" : "ForEachStatement",
+    "groupReference" : 4
   }, {
     "id" : 14,
     "text" : " = ",
@@ -149,7 +163,8 @@
       "end" : 944,
       "size" : 3
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ForEachStatement"
+    "group" : "ForEachStatement",
+    "groupReference" : 4
   }, {
     "id" : 15,
     "text" : "\n                                .get(i);",
@@ -159,7 +174,8 @@
       "end" : 989,
       "size" : 41
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ForEachStatement"
+    "group" : "ForEachStatement",
+    "groupReference" : 4
   }, {
     "id" : 16,
     "text" : "(",
@@ -169,7 +185,8 @@
       "end" : 1060,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ForEachIndexedStatement"
+    "group" : "ForEachIndexedStatement",
+    "groupReference" : 5
   }, {
     "id" : 17,
     "text" : " = 0; i < list.size(); i++) {\n                        ",
@@ -179,7 +196,8 @@
       "end" : 1119,
       "size" : 54
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ForEachIndexedStatement"
+    "group" : "ForEachIndexedStatement",
+    "groupReference" : 5
   }, {
     "id" : 18,
     "text" : " = ",
@@ -189,7 +207,8 @@
       "end" : 1130,
       "size" : 3
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ForEachIndexedStatement"
+    "group" : "ForEachIndexedStatement",
+    "groupReference" : 5
   }, {
     "id" : 19,
     "text" : "\n                                .get(i);",
@@ -199,7 +218,8 @@
       "end" : 1175,
       "size" : 41
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ForEachIndexedStatement"
+    "group" : "ForEachIndexedStatement",
+    "groupReference" : 5
   }, {
     "id" : 20,
     "text" : " > ",
@@ -209,7 +229,8 @@
       "end" : 1298,
       "size" : 3
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Range"
+    "group" : "Range",
+    "groupReference" : 6
   }, {
     "id" : 21,
     "text" : " && args.length < ",
@@ -219,7 +240,8 @@
       "end" : 1317,
       "size" : 18
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Range"
+    "group" : "Range",
+    "groupReference" : 6
   }, {
     "id" : 22,
     "text" : ")",
@@ -229,6 +251,7 @@
       "end" : 1319,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Range"
+    "group" : "Range",
+    "groupReference" : 6
   } ]
 }

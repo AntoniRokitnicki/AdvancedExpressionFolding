@@ -9,7 +9,8 @@
       "end" : 121,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+    "group" : "PrintlnExpression",
+    "groupReference" : 0
   }, {
     "id" : 1,
     "text" : "\" + ",
@@ -19,7 +20,8 @@
       "end" : 141,
       "size" : 4
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+    "group" : "InterpolatedString",
+    "groupReference" : 1
   }, {
     "id" : 2,
     "text" : "\" + ",
@@ -29,7 +31,8 @@
       "end" : 141,
       "size" : 4
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+    "group" : "InterpolatedString",
+    "groupReference" : 1
   }, {
     "id" : 3,
     "text" : ")",
@@ -39,7 +42,8 @@
       "end" : 149,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+    "group" : "InterpolatedString",
+    "groupReference" : 1
   }, {
     "id" : 4,
     "text" : "\" + ",
@@ -49,7 +53,8 @@
       "end" : 141,
       "size" : 4
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+    "group" : "InterpolatedString",
+    "groupReference" : 2
   }, {
     "id" : 5,
     "text" : "\" + ",
@@ -59,7 +64,8 @@
       "end" : 141,
       "size" : 4
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+    "group" : "InterpolatedString",
+    "groupReference" : 2
   }, {
     "id" : 6,
     "text" : ")",
@@ -69,7 +75,8 @@
       "end" : 149,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+    "group" : "InterpolatedString",
+    "groupReference" : 2
   }, {
     "id" : 7,
     "text" : "System.out.",
@@ -79,7 +86,8 @@
       "end" : 170,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+    "group" : "PrintlnExpression",
+    "groupReference" : 3
   }, {
     "id" : 8,
     "text" : "\" + ",
@@ -89,7 +97,8 @@
       "end" : 190,
       "size" : 4
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+    "group" : "InterpolatedString",
+    "groupReference" : 4
   }, {
     "id" : 9,
     "text" : " + \"",
@@ -99,7 +108,8 @@
       "end" : 201,
       "size" : 4
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+    "group" : "InterpolatedString",
+    "groupReference" : 4
   }, {
     "id" : 10,
     "text" : "\" + ",
@@ -109,7 +119,8 @@
       "end" : 190,
       "size" : 4
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+    "group" : "InterpolatedString",
+    "groupReference" : 5
   }, {
     "id" : 11,
     "text" : " + \"",
@@ -119,7 +130,8 @@
       "end" : 201,
       "size" : 4
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+    "group" : "InterpolatedString",
+    "groupReference" : 5
   }, {
     "id" : 12,
     "text" : "System.out.",
@@ -129,7 +141,8 @@
       "end" : 225,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+    "group" : "PrintlnExpression",
+    "groupReference" : 6
   }, {
     "id" : 13,
     "text" : "(",
@@ -139,7 +152,8 @@
       "end" : 233,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+    "group" : "InterpolatedString",
+    "groupReference" : 7
   }, {
     "id" : 14,
     "text" : " + \"",
@@ -149,7 +163,8 @@
       "end" : 244,
       "size" : 4
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+    "group" : "InterpolatedString",
+    "groupReference" : 7
   }, {
     "id" : 15,
     "text" : "(",
@@ -159,7 +174,8 @@
       "end" : 233,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+    "group" : "InterpolatedString",
+    "groupReference" : 8
   }, {
     "id" : 16,
     "text" : " + \"",
@@ -169,7 +185,8 @@
       "end" : 244,
       "size" : 4
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+    "group" : "InterpolatedString",
+    "groupReference" : 8
   }, {
     "id" : 17,
     "text" : "System.out.",
@@ -179,7 +196,8 @@
       "end" : 275,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+    "group" : "PrintlnExpression",
+    "groupReference" : 9
   }, {
     "id" : 18,
     "text" : "(",
@@ -189,7 +207,8 @@
       "end" : 283,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+    "group" : "InterpolatedString",
+    "groupReference" : 10
   }, {
     "id" : 19,
     "text" : " + \"",
@@ -199,7 +218,8 @@
       "end" : 294,
       "size" : 4
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+    "group" : "InterpolatedString",
+    "groupReference" : 10
   }, {
     "id" : 20,
     "text" : "\" + ",
@@ -209,7 +229,8 @@
       "end" : 300,
       "size" : 4
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+    "group" : "InterpolatedString",
+    "groupReference" : 10
   }, {
     "id" : 21,
     "text" : "\" + ",
@@ -219,7 +240,8 @@
       "end" : 300,
       "size" : 4
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+    "group" : "InterpolatedString",
+    "groupReference" : 10
   }, {
     "id" : 22,
     "text" : ")",
@@ -229,7 +251,8 @@
       "end" : 308,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+    "group" : "InterpolatedString",
+    "groupReference" : 10
   }, {
     "id" : 23,
     "text" : "(",
@@ -239,7 +262,8 @@
       "end" : 283,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+    "group" : "InterpolatedString",
+    "groupReference" : 11
   }, {
     "id" : 24,
     "text" : " + \"",
@@ -249,7 +273,8 @@
       "end" : 294,
       "size" : 4
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+    "group" : "InterpolatedString",
+    "groupReference" : 11
   }, {
     "id" : 25,
     "text" : "\" + ",
@@ -259,7 +284,8 @@
       "end" : 300,
       "size" : 4
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+    "group" : "InterpolatedString",
+    "groupReference" : 11
   }, {
     "id" : 26,
     "text" : "\" + ",
@@ -269,7 +295,8 @@
       "end" : 300,
       "size" : 4
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+    "group" : "InterpolatedString",
+    "groupReference" : 11
   }, {
     "id" : 27,
     "text" : ")",
@@ -279,7 +306,8 @@
       "end" : 308,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+    "group" : "InterpolatedString",
+    "groupReference" : 11
   }, {
     "id" : 28,
     "text" : "String",
@@ -289,7 +317,8 @@
       "end" : 324,
       "size" : 6
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+    "group" : "VariableDeclarationImpl",
+    "groupReference" : 12
   }, {
     "id" : 29,
     "text" : "System.out.",
@@ -299,7 +328,8 @@
       "end" : 360,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+    "group" : "PrintlnExpression",
+    "groupReference" : 13
   }, {
     "id" : 30,
     "text" : "\" + ",
@@ -309,7 +339,8 @@
       "end" : 380,
       "size" : 4
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+    "group" : "InterpolatedString",
+    "groupReference" : 14
   }, {
     "id" : 31,
     "text" : "\" + ",
@@ -319,7 +350,8 @@
       "end" : 380,
       "size" : 4
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+    "group" : "InterpolatedString",
+    "groupReference" : 14
   }, {
     "id" : 32,
     "text" : ")",
@@ -329,7 +361,8 @@
       "end" : 385,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+    "group" : "InterpolatedString",
+    "groupReference" : 14
   }, {
     "id" : 33,
     "text" : "\" + ",
@@ -339,7 +372,8 @@
       "end" : 380,
       "size" : 4
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+    "group" : "InterpolatedString",
+    "groupReference" : 15
   }, {
     "id" : 34,
     "text" : "\" + ",
@@ -349,7 +383,8 @@
       "end" : 380,
       "size" : 4
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+    "group" : "InterpolatedString",
+    "groupReference" : 15
   }, {
     "id" : 35,
     "text" : ")",
@@ -359,7 +394,8 @@
       "end" : 385,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+    "group" : "InterpolatedString",
+    "groupReference" : 15
   }, {
     "id" : 36,
     "text" : "System.out.",
@@ -369,7 +405,8 @@
       "end" : 406,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+    "group" : "PrintlnExpression",
+    "groupReference" : 16
   }, {
     "id" : 37,
     "text" : "\" + ",
@@ -379,7 +416,8 @@
       "end" : 426,
       "size" : 4
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+    "group" : "InterpolatedString",
+    "groupReference" : 17
   }, {
     "id" : 38,
     "text" : " + \"",
@@ -389,7 +427,8 @@
       "end" : 434,
       "size" : 4
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+    "group" : "InterpolatedString",
+    "groupReference" : 17
   }, {
     "id" : 39,
     "text" : "\" + ",
@@ -399,7 +438,8 @@
       "end" : 426,
       "size" : 4
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+    "group" : "InterpolatedString",
+    "groupReference" : 18
   }, {
     "id" : 40,
     "text" : " + \"",
@@ -409,7 +449,8 @@
       "end" : 434,
       "size" : 4
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+    "group" : "InterpolatedString",
+    "groupReference" : 18
   }, {
     "id" : 41,
     "text" : "System.out.",
@@ -419,7 +460,8 @@
       "end" : 458,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+    "group" : "PrintlnExpression",
+    "groupReference" : 19
   }, {
     "id" : 42,
     "text" : "(",
@@ -429,7 +471,8 @@
       "end" : 466,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+    "group" : "InterpolatedString",
+    "groupReference" : 20
   }, {
     "id" : 43,
     "text" : " + \"",
@@ -439,7 +482,8 @@
       "end" : 474,
       "size" : 4
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+    "group" : "InterpolatedString",
+    "groupReference" : 20
   }, {
     "id" : 44,
     "text" : "(",
@@ -449,7 +493,8 @@
       "end" : 466,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+    "group" : "InterpolatedString",
+    "groupReference" : 21
   }, {
     "id" : 45,
     "text" : " + \"",
@@ -459,7 +504,8 @@
       "end" : 474,
       "size" : 4
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+    "group" : "InterpolatedString",
+    "groupReference" : 21
   }, {
     "id" : 46,
     "text" : "System.out.",
@@ -469,7 +515,8 @@
       "end" : 505,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+    "group" : "PrintlnExpression",
+    "groupReference" : 22
   }, {
     "id" : 47,
     "text" : "(",
@@ -479,7 +526,8 @@
       "end" : 513,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+    "group" : "InterpolatedString",
+    "groupReference" : 23
   }, {
     "id" : 48,
     "text" : " + \"",
@@ -489,7 +537,8 @@
       "end" : 521,
       "size" : 4
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+    "group" : "InterpolatedString",
+    "groupReference" : 23
   }, {
     "id" : 49,
     "text" : "\" + ",
@@ -499,7 +548,8 @@
       "end" : 527,
       "size" : 4
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+    "group" : "InterpolatedString",
+    "groupReference" : 23
   }, {
     "id" : 50,
     "text" : "\" + ",
@@ -509,7 +559,8 @@
       "end" : 527,
       "size" : 4
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+    "group" : "InterpolatedString",
+    "groupReference" : 23
   }, {
     "id" : 51,
     "text" : ")",
@@ -519,7 +570,8 @@
       "end" : 532,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+    "group" : "InterpolatedString",
+    "groupReference" : 23
   }, {
     "id" : 52,
     "text" : "(",
@@ -529,7 +581,8 @@
       "end" : 513,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+    "group" : "InterpolatedString",
+    "groupReference" : 24
   }, {
     "id" : 53,
     "text" : " + \"",
@@ -539,7 +592,8 @@
       "end" : 521,
       "size" : 4
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+    "group" : "InterpolatedString",
+    "groupReference" : 24
   }, {
     "id" : 54,
     "text" : "\" + ",
@@ -549,7 +603,8 @@
       "end" : 527,
       "size" : 4
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+    "group" : "InterpolatedString",
+    "groupReference" : 24
   }, {
     "id" : 55,
     "text" : "\" + ",
@@ -559,7 +614,8 @@
       "end" : 527,
       "size" : 4
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+    "group" : "InterpolatedString",
+    "groupReference" : 24
   }, {
     "id" : 56,
     "text" : ")",
@@ -569,6 +625,7 @@
       "end" : 532,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.InterpolatedString"
+    "group" : "InterpolatedString",
+    "groupReference" : 24
   } ]
 }

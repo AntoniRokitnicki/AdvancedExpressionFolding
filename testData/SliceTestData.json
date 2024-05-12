@@ -9,7 +9,8 @@
       "end" : 227,
       "size" : 9
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+    "group" : "Slice",
+    "groupReference" : 0
   }, {
     "id" : 1,
     "text" : ", list.size())",
@@ -19,7 +20,8 @@
       "end" : 242,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+    "group" : "Slice",
+    "groupReference" : 0
   }, {
     "id" : 2,
     "text" : ".subList(",
@@ -29,7 +31,8 @@
       "end" : 285,
       "size" : 9
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+    "group" : "Slice",
+    "groupReference" : 1
   }, {
     "id" : 3,
     "text" : ", ",
@@ -39,7 +42,8 @@
       "end" : 288,
       "size" : 2
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+    "group" : "Slice",
+    "groupReference" : 1
   }, {
     "id" : 4,
     "text" : ")",
@@ -49,7 +53,8 @@
       "end" : 290,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+    "group" : "Slice",
+    "groupReference" : 1
   }, {
     "id" : 5,
     "text" : ".subList(",
@@ -59,7 +64,8 @@
       "end" : 333,
       "size" : 9
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+    "group" : "Slice",
+    "groupReference" : 2
   }, {
     "id" : 6,
     "text" : ", list.size())",
@@ -69,7 +75,8 @@
       "end" : 348,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+    "group" : "Slice",
+    "groupReference" : 2
   }, {
     "id" : 7,
     "text" : ".subList(0",
@@ -79,7 +86,8 @@
       "end" : 392,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+    "group" : "Slice",
+    "groupReference" : 3
   }, {
     "id" : 8,
     "text" : ", ",
@@ -89,7 +97,8 @@
       "end" : 394,
       "size" : 2
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+    "group" : "Slice",
+    "groupReference" : 3
   }, {
     "id" : 9,
     "text" : ")",
@@ -99,7 +108,8 @@
       "end" : 396,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+    "group" : "Slice",
+    "groupReference" : 3
   }, {
     "id" : 10,
     "text" : ".subList(",
@@ -109,7 +119,8 @@
       "end" : 439,
       "size" : 9
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+    "group" : "Slice",
+    "groupReference" : 4
   }, {
     "id" : 11,
     "text" : ", list.size() ",
@@ -119,7 +130,8 @@
       "end" : 454,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+    "group" : "Slice",
+    "groupReference" : 4
   }, {
     "id" : 12,
     "text" : " ",
@@ -129,7 +141,8 @@
       "end" : 456,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+    "group" : "Slice",
+    "groupReference" : 4
   }, {
     "id" : 13,
     "text" : ")",
@@ -139,7 +152,8 @@
       "end" : 458,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+    "group" : "Slice",
+    "groupReference" : 4
   }, {
     "id" : 14,
     "text" : ".subList(0",
@@ -149,7 +163,8 @@
       "end" : 502,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+    "group" : "Slice",
+    "groupReference" : 5
   }, {
     "id" : 15,
     "text" : ", list.size() ",
@@ -159,7 +174,8 @@
       "end" : 516,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+    "group" : "Slice",
+    "groupReference" : 5
   }, {
     "id" : 16,
     "text" : " ",
@@ -169,7 +185,8 @@
       "end" : 518,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+    "group" : "Slice",
+    "groupReference" : 5
   }, {
     "id" : 17,
     "text" : ")",
@@ -179,7 +196,8 @@
       "end" : 520,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+    "group" : "Slice",
+    "groupReference" : 5
   }, {
     "id" : 18,
     "text" : ".substring(",
@@ -189,7 +207,8 @@
       "end" : 590,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+    "group" : "Slice",
+    "groupReference" : 6
   }, {
     "id" : 19,
     "text" : ")",
@@ -199,7 +218,8 @@
       "end" : 592,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+    "group" : "Slice",
+    "groupReference" : 6
   }, {
     "id" : 20,
     "text" : ".substring(",
@@ -209,7 +229,8 @@
       "end" : 634,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+    "group" : "Slice",
+    "groupReference" : 7
   }, {
     "id" : 21,
     "text" : ", ",
@@ -219,7 +240,8 @@
       "end" : 637,
       "size" : 2
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+    "group" : "Slice",
+    "groupReference" : 7
   }, {
     "id" : 22,
     "text" : ")",
@@ -229,7 +251,8 @@
       "end" : 639,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+    "group" : "Slice",
+    "groupReference" : 7
   }, {
     "id" : 23,
     "text" : ".substring(",
@@ -239,7 +262,8 @@
       "end" : 681,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+    "group" : "Slice",
+    "groupReference" : 8
   }, {
     "id" : 24,
     "text" : ", f.length())",
@@ -249,7 +273,8 @@
       "end" : 695,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+    "group" : "Slice",
+    "groupReference" : 8
   }, {
     "id" : 25,
     "text" : ".substring(0",
@@ -259,7 +284,8 @@
       "end" : 738,
       "size" : 12
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+    "group" : "Slice",
+    "groupReference" : 9
   }, {
     "id" : 26,
     "text" : ", ",
@@ -269,7 +295,8 @@
       "end" : 740,
       "size" : 2
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+    "group" : "Slice",
+    "groupReference" : 9
   }, {
     "id" : 27,
     "text" : ")",
@@ -279,7 +306,8 @@
       "end" : 742,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+    "group" : "Slice",
+    "groupReference" : 9
   }, {
     "id" : 28,
     "text" : ".substring(",
@@ -289,7 +317,8 @@
       "end" : 784,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+    "group" : "Slice",
+    "groupReference" : 10
   }, {
     "id" : 29,
     "text" : ", f.length() ",
@@ -299,7 +328,8 @@
       "end" : 798,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+    "group" : "Slice",
+    "groupReference" : 10
   }, {
     "id" : 30,
     "text" : " ",
@@ -309,7 +339,8 @@
       "end" : 800,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+    "group" : "Slice",
+    "groupReference" : 10
   }, {
     "id" : 31,
     "text" : ")",
@@ -319,7 +350,8 @@
       "end" : 802,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+    "group" : "Slice",
+    "groupReference" : 10
   }, {
     "id" : 32,
     "text" : ".substring(0",
@@ -329,7 +361,8 @@
       "end" : 845,
       "size" : 12
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+    "group" : "Slice",
+    "groupReference" : 11
   }, {
     "id" : 33,
     "text" : ", f.length() ",
@@ -339,7 +372,8 @@
       "end" : 858,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+    "group" : "Slice",
+    "groupReference" : 11
   }, {
     "id" : 34,
     "text" : " ",
@@ -349,7 +383,8 @@
       "end" : 860,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+    "group" : "Slice",
+    "groupReference" : 11
   }, {
     "id" : 35,
     "text" : ")",
@@ -359,6 +394,7 @@
       "end" : 862,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Slice"
+    "group" : "Slice",
+    "groupReference" : 11
   } ]
 }

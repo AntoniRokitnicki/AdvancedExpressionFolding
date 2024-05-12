@@ -3,7 +3,7 @@ package data;
 import java.util.List;
 
 @SuppressWarnings("ALL")
-public class DestructuringAssignmentWithoutValTestData {
+public class DestructuringAssignmentArrayWithoutValTestData {
     public void enter(Data data, Data[] array) <fold text='{...}' expand='true'>{
         Data ignored1 = array[0];
 

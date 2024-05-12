@@ -9,7 +9,8 @@
       "end" : 151,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl"
+    "group" : "VariableDeclarationImpl",
+    "groupReference" : 0
   }, {
     "id" : 1,
     "text" : "System.out.",
@@ -19,7 +20,8 @@
       "end" : 185,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+    "group" : "PrintlnExpression",
+    "groupReference" : 1
   }, {
     "id" : 2,
     "text" : "e != null ? ",
@@ -29,7 +31,8 @@
       "end" : 205,
       "size" : 12
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ElvisExpression"
+    "group" : "ElvisExpression",
+    "groupReference" : 2
   }, {
     "id" : 3,
     "text" : " : ",
@@ -39,7 +42,8 @@
       "end" : 209,
       "size" : 3
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ElvisExpression"
+    "group" : "ElvisExpression",
+    "groupReference" : 2
   }, {
     "id" : 4,
     "text" : "e != null ? ",
@@ -49,7 +53,8 @@
       "end" : 205,
       "size" : 12
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ElvisExpression"
+    "group" : "ElvisExpression",
+    "groupReference" : 3
   }, {
     "id" : 5,
     "text" : " : ",
@@ -59,7 +64,8 @@
       "end" : 209,
       "size" : 3
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ElvisExpression"
+    "group" : "ElvisExpression",
+    "groupReference" : 3
   }, {
     "id" : 6,
     "text" : "System.out.",
@@ -69,7 +75,8 @@
       "end" : 233,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+    "group" : "PrintlnExpression",
+    "groupReference" : 4
   }, {
     "id" : 7,
     "text" : "e != null ? ",
@@ -79,7 +86,8 @@
       "end" : 253,
       "size" : 12
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ElvisExpression"
+    "group" : "ElvisExpression",
+    "groupReference" : 5
   }, {
     "id" : 8,
     "text" : " : ",
@@ -89,7 +97,8 @@
       "end" : 268,
       "size" : 3
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ElvisExpression"
+    "group" : "ElvisExpression",
+    "groupReference" : 5
   }, {
     "id" : 9,
     "text" : ".",
@@ -99,7 +108,8 @@
       "end" : 255,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ElvisExpression"
+    "group" : "ElvisExpression",
+    "groupReference" : 5
   }, {
     "id" : 10,
     "text" : "e != null ? ",
@@ -109,7 +119,8 @@
       "end" : 253,
       "size" : 12
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ElvisExpression"
+    "group" : "ElvisExpression",
+    "groupReference" : 6
   }, {
     "id" : 11,
     "text" : " : ",
@@ -119,7 +130,8 @@
       "end" : 268,
       "size" : 3
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ElvisExpression"
+    "group" : "ElvisExpression",
+    "groupReference" : 6
   }, {
     "id" : 12,
     "text" : ".",
@@ -129,7 +141,8 @@
       "end" : 255,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ElvisExpression"
+    "group" : "ElvisExpression",
+    "groupReference" : 6
   }, {
     "id" : 13,
     "text" : "System.out.",
@@ -139,7 +152,8 @@
       "end" : 292,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+    "group" : "PrintlnExpression",
+    "groupReference" : 7
   }, {
     "id" : 14,
     "text" : "e != null && e.get() != null",
@@ -149,7 +163,8 @@
       "end" : 328,
       "size" : 28
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
+    "group" : "IfNullSafeExpression",
+    "groupReference" : 8
   }, {
     "id" : 15,
     "text" : "e != null && e.get() != null",
@@ -159,7 +174,8 @@
       "end" : 328,
       "size" : 28
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
+    "group" : "IfNullSafeExpression",
+    "groupReference" : 9
   }, {
     "id" : 16,
     "text" : "System.out.",
@@ -169,7 +185,8 @@
       "end" : 411,
       "size" : 11
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.PrintlnExpression"
+    "group" : "PrintlnExpression",
+    "groupReference" : 10
   }, {
     "id" : 17,
     "text" : "e != null && e.get() != null",
@@ -179,7 +196,8 @@
       "end" : 447,
       "size" : 28
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
+    "group" : "IfNullSafeExpression",
+    "groupReference" : 11
   }, {
     "id" : 18,
     "text" : "e != null && e.get() != null",
@@ -189,7 +207,8 @@
       "end" : 447,
       "size" : 28
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
+    "group" : "IfNullSafeExpression",
+    "groupReference" : 12
   }, {
     "id" : 19,
     "text" : "if (e != null) {\n                ",
@@ -199,7 +218,8 @@
       "end" : 575,
       "size" : 33
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ShortElvisExpression"
+    "group" : "ShortElvisExpression",
+    "groupReference" : 13
   }, {
     "id" : 20,
     "text" : "\n        }",
@@ -209,7 +229,8 @@
       "end" : 604,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ShortElvisExpression"
+    "group" : "ShortElvisExpression",
+    "groupReference" : 13
   }, {
     "id" : 21,
     "text" : ".",
@@ -219,7 +240,8 @@
       "end" : 577,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ShortElvisExpression"
+    "group" : "ShortElvisExpression",
+    "groupReference" : 13
   }, {
     "id" : 22,
     "text" : "if (e.get() != null) {\n                ",
@@ -229,7 +251,8 @@
       "end" : 652,
       "size" : 39
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ShortElvisExpression"
+    "group" : "ShortElvisExpression",
+    "groupReference" : 14
   }, {
     "id" : 23,
     "text" : "\n        }",
@@ -239,7 +262,8 @@
       "end" : 681,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ShortElvisExpression"
+    "group" : "ShortElvisExpression",
+    "groupReference" : 14
   }, {
     "id" : 24,
     "text" : ".",
@@ -249,7 +273,8 @@
       "end" : 660,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.ShortElvisExpression"
+    "group" : "ShortElvisExpression",
+    "groupReference" : 14
   }, {
     "id" : 25,
     "text" : "(",
@@ -259,7 +284,8 @@
       "end" : 694,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+    "group" : "IfExpression:highlighting",
+    "groupReference" : 15
   }, {
     "id" : 26,
     "text" : ")",
@@ -269,7 +295,8 @@
       "end" : 723,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+    "group" : "IfExpression:highlighting",
+    "groupReference" : 15
   }, {
     "id" : 27,
     "text" : "e != null && e.get() != null",
@@ -279,7 +306,8 @@
       "end" : 722,
       "size" : 28
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression"
+    "group" : "IfNullSafeExpression",
+    "groupReference" : 16
   }, {
     "id" : 28,
     "text" : "(",
@@ -289,7 +317,8 @@
       "end" : 898,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+    "group" : "IfExpression:highlighting",
+    "groupReference" : 17
   }, {
     "id" : 29,
     "text" : ")",
@@ -299,6 +328,7 @@
       "end" : 918,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.IfExpression:highlighting"
+    "group" : "IfExpression:highlighting",
+    "groupReference" : 17
   } ]
 }

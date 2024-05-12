@@ -3,7 +3,7 @@ package data;
 import java.util.List;
 
 @SuppressWarnings("ALL")
-public class DestructuringAssignmentTestData {
+public class DestructuringAssignmentArrayTestData {
     public void enter(Data data, Data[] array) <fold text='{...}' expand='true'>{
         <fold text='val' expand='false'>Data</fold> ignored1 = array[0];
 
@@ -24,7 +24,7 @@ public class DestructuringAssignmentTestData {
         <fold text='var (' expand='true'>Data </fold>deepGetter1<fold text=', ' expand='true'> = data.getData().getArray()[0];</fold><fold text='' expand='true'>
         <fold text='var' expand='false'>Data</fold> </fold>deepGetter2<fold text=') ' expand='true'> </fold>= data.<fold text='data' expand='false'>getData()</fold>.<fold text='array' expand='false'>getArray()</fold><fold text='' expand='true'>[1]</fold>;
         deepGetter2 = data;
-
+        
         <fold text='val' expand='false'>Data</fold> wrongParent1 = data.<fold text='array' expand='false'>getArray()</fold>[0];
         <fold text='val' expand='false'>Data</fold> wrongParent2 = data.<fold text='data' expand='false'>getData()</fold>.<fold text='array' expand='false'>getArray()</fold>[1];
 
