@@ -25,6 +25,7 @@ jobs:
           echo "Workflow Dispatch Triggered: ${{ github.event_name == 'workflow_dispatch' }}"
           echo "Push Event and PR Merged: ${{ github.event_name == 'pull_request' && github.event.pull_request.merged == true }}"
           echo "PR contains 'autorelease' label: ${{ contains(github.event.pull_request.labels.*.name, 'autorelease') }}"
+          echo "Release: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true && contains(github.event.pull_request.labels.*.name, 'autorelease')) }}"
 
 
   # Prepare and publish the plugin to JetBrains Marketplace repository
