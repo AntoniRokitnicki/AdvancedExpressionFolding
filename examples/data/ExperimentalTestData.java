@@ -15,9 +15,10 @@ public class ExperimentalTestData {
         };
 
         private static final List<String> LIST = new ArrayList<>();
+        private static final List<String> LIST2 = List.of("1");
 
         public static final ConstClass SELF_PARAM_1 = new ConstClass(true);
-        public static final ConstClass SELF_PARAM_2 = new ConstClass(false, LIST.get(0));
+        public static final ConstClass SELF_PARAM_2 = new ConstClass(false, LIST2.get(0));
 
         public static final ConstClass SELF_SUBCLASS_MORE_FIELD = new ConstClass() {
             int i = 1;
