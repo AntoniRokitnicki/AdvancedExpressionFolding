@@ -1,5 +1,5 @@
 {
-  "size" : 141,
+  "size" : 150,
   "list" : [ {
     "id" : 0,
     "text" : "\n    ",
@@ -9,7 +9,8 @@
       "end" : 393,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 0
   }, {
     "id" : 1,
     "text" : "\n    ",
@@ -19,7 +20,8 @@
       "end" : 537,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 0
   }, {
     "id" : 2,
     "text" : "\n    ",
@@ -29,7 +31,8 @@
       "end" : 654,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 0
   }, {
     "id" : 3,
     "text" : "\n    ",
@@ -39,7 +42,8 @@
       "end" : 458,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 0
   }, {
     "id" : 4,
     "text" : "\n    ",
@@ -49,7 +53,8 @@
       "end" : 590,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 0
   }, {
     "id" : 5,
     "text" : "\n    ",
@@ -59,7 +64,8 @@
       "end" : 715,
       "size" : 5
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 0
   }, {
     "id" : 6,
     "text" : "\n\n    ",
@@ -69,7 +75,8 @@
       "end" : 273,
       "size" : 6
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 0
   }, {
     "id" : 7,
     "text" : "public LombokTestData getData() {\n        return data;\n    }",
@@ -79,7 +86,8 @@
       "end" : 453,
       "size" : 60
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 0
   }, {
     "id" : 8,
     "text" : "public boolean isOk() {\n        return ok;\n    }",
@@ -89,7 +97,8 @@
       "end" : 585,
       "size" : 48
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 0
   }, {
     "id" : 9,
     "text" : "public String getString() {\n        return string;\n    }",
@@ -99,7 +108,8 @@
       "end" : 710,
       "size" : 56
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 0
   }, {
     "id" : 10,
     "text" : "public void setData(LombokTestData data) {\n        this.data = data;\n    }",
@@ -109,7 +119,8 @@
       "end" : 532,
       "size" : 74
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 0
   }, {
     "id" : 11,
     "text" : "public void setOk(boolean ok) {\n        this.ok = ok;\n    }",
@@ -119,7 +130,8 @@
       "end" : 649,
       "size" : 59
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 0
   }, {
     "id" : 12,
     "text" : "public void setString(String string) {\n        this.string = string;\n    }",
@@ -129,7 +141,8 @@
       "end" : 789,
       "size" : 74
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 0
   }, {
     "id" : 13,
     "text" : "private static final long serialVersionUID = 1234567L;",
@@ -139,17 +152,19 @@
       "end" : 327,
       "size" : 54
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 0
   }, {
     "id" : 14,
-    "text" : "@",
-    "placeholder" : "@Getter @Setter @Serial @",
+    "text" : "p",
+    "placeholder" : "@Getter @Setter @Serial p",
     "range" : {
-      "start" : 213,
-      "end" : 214,
+      "start" : 238,
+      "end" : 239,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 0
   }, {
     "id" : 15,
     "text" : "\n        ",
@@ -159,7 +174,8 @@
       "end" : 981,
       "size" : 9
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 1
   }, {
     "id" : 16,
     "text" : "\n        ",
@@ -169,7 +185,8 @@
       "end" : 1063,
       "size" : 9
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 1
   }, {
     "id" : 17,
     "text" : "public data.LombokTestData getData() {\n            return data;\n        }",
@@ -179,7 +196,8 @@
       "end" : 1054,
       "size" : 73
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 1
   }, {
     "id" : 18,
     "text" : "public boolean isOk() {\n            return ok;\n        }",
@@ -189,7 +207,8 @@
       "end" : 1119,
       "size" : 56
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 1
   }, {
     "id" : 19,
     "text" : "p",
@@ -199,7 +218,8 @@
       "end" : 896,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 1
   }, {
     "id" : 20,
     "text" : "\n            ",
@@ -209,7 +229,8 @@
       "end" : 1234,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 2
   }, {
     "id" : 21,
     "text" : "public boolean isOk() {\n                return ok;\n            }",
@@ -219,17 +240,19 @@
       "end" : 1298,
       "size" : 64
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 2
   }, {
     "id" : 22,
     "text" : "p",
-    "placeholder" : "@Getter* p",
+    "placeholder" : "@Getterˣ p",
     "range" : {
       "start" : 1129,
       "end" : 1130,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 2
   }, {
     "id" : 23,
     "text" : "\n        ",
@@ -239,7 +262,8 @@
       "end" : 1406,
       "size" : 9
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 3
   }, {
     "id" : 24,
     "text" : "\n        ",
@@ -249,7 +273,8 @@
       "end" : 1574,
       "size" : 9
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 3
   }, {
     "id" : 25,
     "text" : "\n        ",
@@ -259,7 +284,8 @@
       "end" : 1483,
       "size" : 9
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 3
   }, {
     "id" : 26,
     "text" : "\n        ",
@@ -269,7 +295,8 @@
       "end" : 1639,
       "size" : 9
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 3
   }, {
     "id" : 27,
     "text" : "public LombokTestData getData() {\n            return data;\n        }",
@@ -279,7 +306,8 @@
       "end" : 1474,
       "size" : 68
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 3
   }, {
     "id" : 28,
     "text" : "public boolean isOk() {\n            return ok;\n        }",
@@ -289,7 +317,8 @@
       "end" : 1630,
       "size" : 56
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 3
   }, {
     "id" : 29,
     "text" : "public void setData(LombokTestData data) {\n            this.data = data;\n        }",
@@ -299,7 +328,8 @@
       "end" : 1565,
       "size" : 82
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 3
   }, {
     "id" : 30,
     "text" : "public void setOk(boolean ok) {\n            this.ok = ok;\n        }",
@@ -309,7 +339,8 @@
       "end" : 1706,
       "size" : 67
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 3
   }, {
     "id" : 31,
     "text" : "p",
@@ -319,7 +350,8 @@
       "end" : 1321,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 3
   }, {
     "id" : 32,
     "text" : "\n            ",
@@ -329,7 +361,8 @@
       "end" : 1821,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 4
   }, {
     "id" : 33,
     "text" : "public void setData(LombokTestData data) {\n                this.data = data;\n            }",
@@ -339,17 +372,19 @@
       "end" : 1911,
       "size" : 90
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 4
   }, {
     "id" : 34,
     "text" : "p",
-    "placeholder" : "@Setter* p",
+    "placeholder" : "@Setterˣ p",
     "range" : {
       "start" : 1716,
       "end" : 1717,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 4
   }, {
     "id" : 35,
     "text" : "\n            ",
@@ -359,7 +394,8 @@
       "end" : 2052,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 5
   }, {
     "id" : 36,
     "text" : "public void setData(LombokTestData data) {\n                this.data = data;\n            }",
@@ -369,7 +405,8 @@
       "end" : 2142,
       "size" : 90
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 5
   }, {
     "id" : 37,
     "text" : "p",
@@ -379,7 +416,8 @@
       "end" : 1932,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 5
   }, {
     "id" : 38,
     "text" : "\n\n        ",
@@ -389,7 +427,8 @@
       "end" : 2250,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 6
   }, {
     "id" : 39,
     "text" : "@Override\n        public String toString() {\n            return \"ToStringFull{\" +\n                    \"data=\" + data +\n                    \", ok=\" + ok +\n                    '}';\n        }",
@@ -399,7 +438,8 @@
       "end" : 2438,
       "size" : 188
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 6
   }, {
     "id" : 40,
     "text" : "p",
@@ -409,7 +449,8 @@
       "end" : 2165,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 6
   }, {
     "id" : 41,
     "text" : " +\n                    ",
@@ -419,7 +460,8 @@
       "end" : 2352,
       "size" : 23
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Add"
+    "group" : "Add",
+    "groupReference" : 7
   }, {
     "id" : 42,
     "text" : " +\n                    ",
@@ -429,7 +471,8 @@
       "end" : 2389,
       "size" : 23
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Add"
+    "group" : "Add",
+    "groupReference" : 7
   }, {
     "id" : 43,
     "text" : " +\n                    ",
@@ -439,7 +482,8 @@
       "end" : 2424,
       "size" : 23
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Add"
+    "group" : "Add",
+    "groupReference" : 7
   }, {
     "id" : 44,
     "text" : "\n\n            ",
@@ -449,7 +493,8 @@
       "end" : 2549,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 8
   }, {
     "id" : 45,
     "text" : "@Override\n            public String toString() {\n                return \"ToStringPartial{\" +\n                        \"data=\" + data +\n                        '}';\n            }",
@@ -459,17 +504,19 @@
       "end" : 2725,
       "size" : 176
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 8
   }, {
     "id" : 46,
     "text" : "p",
-    "placeholder" : "@ToString* p",
+    "placeholder" : "@ToStringˣ p",
     "range" : {
       "start" : 2448,
       "end" : 2449,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 8
   }, {
     "id" : 47,
     "text" : " +\n                        ",
@@ -479,7 +526,8 @@
       "end" : 2666,
       "size" : 27
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Add"
+    "group" : "Add",
+    "groupReference" : 9
   }, {
     "id" : 48,
     "text" : " +\n                        ",
@@ -489,7 +537,8 @@
       "end" : 2707,
       "size" : 27
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Add"
+    "group" : "Add",
+    "groupReference" : 9
   }, {
     "id" : 49,
     "text" : "\n\n            ",
@@ -499,7 +548,8 @@
       "end" : 2874,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 10
   }, {
     "id" : 50,
     "text" : "@Override\n            public String toString() {\n                return \"ToStringPartial{\" +\n                        \"data=\" + data +\n                        '}';\n            }",
@@ -509,17 +559,19 @@
       "end" : 3050,
       "size" : 176
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 10
   }, {
     "id" : 51,
     "text" : "p",
-    "placeholder" : "@ToString* p",
+    "placeholder" : "@ToStringˣ p",
     "range" : {
       "start" : 2745,
       "end" : 2746,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 10
   }, {
     "id" : 52,
     "text" : " +\n                        ",
@@ -529,7 +581,8 @@
       "end" : 2991,
       "size" : 27
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Add"
+    "group" : "Add",
+    "groupReference" : 11
   }, {
     "id" : 53,
     "text" : " +\n                        ",
@@ -539,7 +592,8 @@
       "end" : 3032,
       "size" : 27
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.Add"
+    "group" : "Add",
+    "groupReference" : 11
   }, {
     "id" : 54,
     "text" : "\n\n        ",
@@ -549,7 +603,8 @@
       "end" : 3167,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 12
   }, {
     "id" : 55,
     "text" : "\n\n        ",
@@ -559,7 +614,8 @@
       "end" : 3514,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 12
   }, {
     "id" : 56,
     "text" : "@Override\n        public boolean equals(Object o) {\n            if (this == o) return true;\n            if (o == null || getClass() != o.getClass()) return false;\n            EqualsAndHashCodeFull that = (EqualsAndHashCodeFull) o;\n            return ok == that.ok && (data != null ? data.equals(that.data) : that.data == null);\n        }",
@@ -569,7 +625,8 @@
       "end" : 3504,
       "size" : 337
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 12
   }, {
     "id" : 57,
     "text" : "@Override\n        public int hashCode() {\n            int result = (data != null ? data.hashCode() : 0);\n            result = 31 * result + (ok ? 1 : 0);\n            return result;\n        }",
@@ -579,7 +636,8 @@
       "end" : 3704,
       "size" : 190
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 12
   }, {
     "id" : 58,
     "text" : "p",
@@ -589,7 +647,8 @@
       "end" : 3073,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 12
   }, {
     "id" : 59,
     "text" : "\n\n            ",
@@ -599,7 +658,8 @@
       "end" : 3824,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 13
   }, {
     "id" : 60,
     "text" : "\n\n            ",
@@ -609,7 +669,8 @@
       "end" : 4186,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 13
   }, {
     "id" : 61,
     "text" : "@Override\n            public boolean equals(Object o) {\n                if (this == o) return true;\n                if (o == null || getClass() != o.getClass()) return false;\n                EqualsAndHashCodePartial that = (EqualsAndHashCodePartial) o;\n                return data != null ? data.equals(that.data) : that.data == null;\n            }",
@@ -619,7 +680,8 @@
       "end" : 4172,
       "size" : 348
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 13
   }, {
     "id" : 62,
     "text" : "@Override\n            public int hashCode() {\n                return data != null ? data.hashCode() : 0;\n            }",
@@ -629,17 +691,19 @@
       "end" : 4304,
       "size" : 118
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 13
   }, {
     "id" : 63,
     "text" : "p",
-    "placeholder" : "@EqualsAndHashCode* p",
+    "placeholder" : "@EqualsAndHashCodeˣ p",
     "range" : {
       "start" : 3714,
       "end" : 3715,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 13
   }, {
     "id" : 64,
     "text" : "\n\n            ",
@@ -649,7 +713,8 @@
       "end" : 4464,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 14
   }, {
     "id" : 65,
     "text" : "\n\n            ",
@@ -659,7 +724,8 @@
       "end" : 4851,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 14
   }, {
     "id" : 66,
     "text" : "@Override\n            public boolean equals(Object o) {\n                if (this == o) return true;\n                if (o == null || getClass() != o.getClass()) return false;\n                EqualsAndHashCodePartialTwo that = (EqualsAndHashCodePartialTwo) o;\n                return ok == that.ok && (data != null ? data.equals(that.data) : that.data == null);\n            }",
@@ -669,7 +735,8 @@
       "end" : 4837,
       "size" : 373
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 14
   }, {
     "id" : 67,
     "text" : "@Override\n            public int hashCode() {\n                int result = (data != null ? data.hashCode() : 0);\n                result = 31 * result + (ok ? 1 : 0);\n                return result;\n            }",
@@ -679,17 +746,19 @@
       "end" : 5061,
       "size" : 210
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 14
   }, {
     "id" : 68,
     "text" : "p",
-    "placeholder" : "@EqualsAndHashCode* p",
+    "placeholder" : "@EqualsAndHashCodeˣ p",
     "range" : {
       "start" : 4324,
       "end" : 4325,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 14
   }, {
     "id" : 69,
     "text" : "\n\n        ",
@@ -699,7 +768,8 @@
       "end" : 5167,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 15
   }, {
     "id" : 70,
     "text" : "@Override\n        public boolean equals(Object o) {\n            if (this == o) return true;\n            if (o == null || getClass() != o.getClass()) return false;\n            EqualsFull that = (EqualsFull) o;\n            return ok == that.ok && (data != null ? data.equals(that.data) : that.data == null);\n        }",
@@ -709,7 +779,8 @@
       "end" : 5482,
       "size" : 315
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 15
   }, {
     "id" : 71,
     "text" : "p",
@@ -719,7 +790,8 @@
       "end" : 5084,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 15
   }, {
     "id" : 72,
     "text" : "\n\n            ",
@@ -729,7 +801,8 @@
       "end" : 5591,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 16
   }, {
     "id" : 73,
     "text" : "@Override\n            public boolean equals(Object o) {\n                if (this == o) return true;\n                if (o == null || getClass() != o.getClass()) return false;\n                EqualsPartial that = (EqualsPartial) o;\n                return data != null ? data.equals(that.data) : that.data == null;\n            }",
@@ -739,17 +812,19 @@
       "end" : 5917,
       "size" : 326
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 16
   }, {
     "id" : 74,
     "text" : "p",
-    "placeholder" : "@Equals* p",
+    "placeholder" : "@Equalsˣ p",
     "range" : {
       "start" : 5492,
       "end" : 5493,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 16
   }, {
     "id" : 75,
     "text" : "\n\n            ",
@@ -759,7 +834,8 @@
       "end" : 6066,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 17
   }, {
     "id" : 76,
     "text" : "@Override\n            public boolean equals(Object o) {\n                if (this == o) return true;\n                if (o == null || getClass() != o.getClass()) return false;\n                EqualsPartialTwo that = (EqualsPartialTwo) o;\n                return ok == that.ok && (data != null ? data.equals(that.data) : that.data == null);\n            }",
@@ -769,17 +845,19 @@
       "end" : 6417,
       "size" : 351
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 17
   }, {
     "id" : 77,
     "text" : "p",
-    "placeholder" : "@Equals* p",
+    "placeholder" : "@Equalsˣ p",
     "range" : {
       "start" : 5937,
       "end" : 5938,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 17
   }, {
     "id" : 78,
     "text" : "\n\n        ",
@@ -789,7 +867,8 @@
       "end" : 6525,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 18
   }, {
     "id" : 79,
     "text" : "@Override\n        public int hashCode() {\n            int result = (data != null ? data.hashCode() : 0);\n            result = 31 * result + (ok ? 1 : 0);\n            return result;\n        }",
@@ -799,7 +878,8 @@
       "end" : 6715,
       "size" : 190
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 18
   }, {
     "id" : 80,
     "text" : "p",
@@ -809,7 +889,8 @@
       "end" : 6440,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 18
   }, {
     "id" : 81,
     "text" : "\n\n            ",
@@ -819,7 +900,8 @@
       "end" : 6826,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 19
   }, {
     "id" : 82,
     "text" : "@Override\n            public int hashCode() {\n                return data != null ? data.hashCode() : 0;\n            }",
@@ -829,17 +911,19 @@
       "end" : 6944,
       "size" : 118
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 19
   }, {
     "id" : 83,
     "text" : "p",
-    "placeholder" : "@HashCode* p",
+    "placeholder" : "@HashCodeˣ p",
     "range" : {
       "start" : 6725,
       "end" : 6726,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 19
   }, {
     "id" : 84,
     "text" : "\n\n            ",
@@ -849,7 +933,8 @@
       "end" : 7095,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 20
   }, {
     "id" : 85,
     "text" : "@Override\n            public int hashCode() {\n                int result = (data != null ? data.hashCode() : 0);\n                result = 31 * result + (ok ? 1 : 0);\n                return result;\n            }",
@@ -859,17 +944,19 @@
       "end" : 7305,
       "size" : 210
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 20
   }, {
     "id" : 86,
     "text" : "p",
-    "placeholder" : "@HashCode* p",
+    "placeholder" : "@HashCodeˣ p",
     "range" : {
       "start" : 6964,
       "end" : 6965,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 20
   }, {
     "id" : 87,
     "text" : "\n\n        ",
@@ -879,7 +966,8 @@
       "end" : 7409,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 21
   }, {
     "id" : 88,
     "text" : "\n        ",
@@ -889,7 +977,8 @@
       "end" : 7577,
       "size" : 9
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 21
   }, {
     "id" : 89,
     "text" : "\n        ",
@@ -899,7 +988,8 @@
       "end" : 7486,
       "size" : 9
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 21
   }, {
     "id" : 90,
     "text" : "\n        ",
@@ -909,7 +999,8 @@
       "end" : 7642,
       "size" : 9
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 21
   }, {
     "id" : 91,
     "text" : "\n\n        ",
@@ -919,7 +1010,8 @@
       "end" : 8181,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 21
   }, {
     "id" : 92,
     "text" : "\n\n        ",
@@ -929,7 +1021,8 @@
       "end" : 7719,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 21
   }, {
     "id" : 93,
     "text" : "\n\n        ",
@@ -939,7 +1032,8 @@
       "end" : 8035,
       "size" : 10
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 21
   }, {
     "id" : 94,
     "text" : "public LombokTestData getData() {\n            return data;\n        }",
@@ -949,7 +1043,8 @@
       "end" : 7477,
       "size" : 68
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 21
   }, {
     "id" : 95,
     "text" : "public boolean isOk() {\n            return ok;\n        }",
@@ -959,7 +1054,8 @@
       "end" : 7633,
       "size" : 56
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 21
   }, {
     "id" : 96,
     "text" : "public void setData(LombokTestData data) {\n            this.data = data;\n        }",
@@ -969,7 +1065,8 @@
       "end" : 7568,
       "size" : 82
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 21
   }, {
     "id" : 97,
     "text" : "public void setOk(boolean ok) {\n            this.ok = ok;\n        }",
@@ -979,7 +1076,8 @@
       "end" : 7709,
       "size" : 67
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 21
   }, {
     "id" : 98,
     "text" : "@Override\n        public String toString() {\n            return new ToStringBuilder(this)\n                    .append(\"data\", data)\n                    .append(\"ok\", ok)\n                    .toString();\n        }",
@@ -989,7 +1087,8 @@
       "end" : 8393,
       "size" : 212
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 21
   }, {
     "id" : 99,
     "text" : "@Override\n        public boolean equals(Object o) {\n            if (this == o) return true;\n            if (!(o instanceof DataFull)) return false;\n            DataFull dataFull = (DataFull) o;\n            return new EqualsBuilder().append(ok, dataFull.ok).append(data, dataFull.data).isEquals();\n        }",
@@ -999,7 +1098,8 @@
       "end" : 8025,
       "size" : 306
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 21
   }, {
     "id" : 100,
     "text" : "@Override\n        public int hashCode() {\n            return new HashCodeBuilder(17, 37).append(data).append(ok).toHashCode();\n        }",
@@ -1009,7 +1109,8 @@
       "end" : 8171,
       "size" : 136
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 21
   }, {
     "id" : 101,
     "text" : "p",
@@ -1019,7 +1120,8 @@
       "end" : 7328,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 21
   }, {
     "id" : 102,
     "text" : "\n\n            ",
@@ -1029,7 +1131,8 @@
       "end" : 8508,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 22
   }, {
     "id" : 103,
     "text" : "\n            ",
@@ -1039,7 +1142,8 @@
       "end" : 8700,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 22
   }, {
     "id" : 104,
     "text" : "\n            ",
@@ -1049,7 +1153,8 @@
       "end" : 8597,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 22
   }, {
     "id" : 105,
     "text" : "\n            ",
@@ -1059,7 +1164,8 @@
       "end" : 8777,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 22
   }, {
     "id" : 106,
     "text" : "\n\n            ",
@@ -1069,7 +1175,8 @@
       "end" : 8866,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 22
   }, {
     "id" : 107,
     "text" : "\n\n            ",
@@ -1079,7 +1186,8 @@
       "end" : 9255,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 22
   }, {
     "id" : 108,
     "text" : "public LombokTestData getData() {\n                return data;\n            }",
@@ -1089,7 +1197,8 @@
       "end" : 8584,
       "size" : 76
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 22
   }, {
     "id" : 109,
     "text" : "public boolean isOk() {\n                return ok;\n            }",
@@ -1099,7 +1208,8 @@
       "end" : 8764,
       "size" : 64
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 22
   }, {
     "id" : 110,
     "text" : "public void setData(LombokTestData data) {\n                this.data = data;\n            }",
@@ -1109,7 +1219,8 @@
       "end" : 8687,
       "size" : 90
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 22
   }, {
     "id" : 111,
     "text" : "public void setOk(boolean ok) {\n                this.ok = ok;\n            }",
@@ -1119,7 +1230,8 @@
       "end" : 8852,
       "size" : 75
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 22
   }, {
     "id" : 112,
     "text" : "@Override\n            public boolean equals(Object o) {\n                if (this == o) return true;\n                if (!(o instanceof LombokTestData.DataFull)) return false;\n                LombokTestData.DataFull dataFull = (LombokTestData.DataFull) o;\n                return new EqualsBuilder().append(ok, dataFull.ok).append(data, dataFull.data).isEquals();\n            }",
@@ -1129,7 +1241,8 @@
       "end" : 9241,
       "size" : 375
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 22
   }, {
     "id" : 113,
     "text" : "@Override\n            public int hashCode() {\n                return new HashCodeBuilder(17, 37).append(data).append(ok).toHashCode();\n            }",
@@ -1139,7 +1252,8 @@
       "end" : 9403,
       "size" : 148
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 22
   }, {
     "id" : 114,
     "text" : "p",
@@ -1149,7 +1263,8 @@
       "end" : 8404,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 22
   }, {
     "id" : 115,
     "text" : "\n\n            ",
@@ -1159,7 +1274,8 @@
       "end" : 9532,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 23
   }, {
     "id" : 116,
     "text" : "\n            ",
@@ -1169,7 +1285,8 @@
       "end" : 9621,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 23
   }, {
     "id" : 117,
     "text" : "\n            ",
@@ -1179,7 +1296,8 @@
       "end" : 9724,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 23
   }, {
     "id" : 118,
     "text" : "\n\n            ",
@@ -1189,7 +1307,8 @@
       "end" : 10364,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 23
   }, {
     "id" : 119,
     "text" : "\n\n            ",
@@ -1199,7 +1318,8 @@
       "end" : 9813,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 23
   }, {
     "id" : 120,
     "text" : "\n\n            ",
@@ -1209,7 +1329,8 @@
       "end" : 10202,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 23
   }, {
     "id" : 121,
     "text" : "public LombokTestData getData() {\n                return data;\n            }",
@@ -1219,7 +1340,8 @@
       "end" : 9608,
       "size" : 76
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 23
   }, {
     "id" : 122,
     "text" : "public void setData(LombokTestData data) {\n                this.data = data;\n            }",
@@ -1229,7 +1351,8 @@
       "end" : 9711,
       "size" : 90
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 23
   }, {
     "id" : 123,
     "text" : "public void setOk(boolean ok) {\n                this.ok = ok;\n            }",
@@ -1239,7 +1362,8 @@
       "end" : 9799,
       "size" : 75
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 23
   }, {
     "id" : 124,
     "text" : "@Override\n            public String toString() {\n                return new ToStringBuilder(this)\n                        .append(\"data\", data)\n                        .append(\"ok\", ok)\n                        .toString();\n            }",
@@ -1249,7 +1373,8 @@
       "end" : 10600,
       "size" : 236
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 23
   }, {
     "id" : 125,
     "text" : "@Override\n            public boolean equals(Object o) {\n                if (this == o) return true;\n                if (!(o instanceof LombokTestData.DataFull)) return false;\n                LombokTestData.DataFull dataFull = (LombokTestData.DataFull) o;\n                return new EqualsBuilder().append(ok, dataFull.ok).append(data, dataFull.data).isEquals();\n            }",
@@ -1259,7 +1384,8 @@
       "end" : 10188,
       "size" : 375
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 23
   }, {
     "id" : 126,
     "text" : "@Override\n            public int hashCode() {\n                return new HashCodeBuilder(17, 37).append(data).append(ok).toHashCode();\n            }",
@@ -1269,17 +1395,19 @@
       "end" : 10350,
       "size" : 148
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 23
   }, {
     "id" : 127,
     "text" : "p",
-    "placeholder" : "@Data* p",
+    "placeholder" : "@Dataˣ p",
     "range" : {
       "start" : 9424,
       "end" : 9425,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 23
   }, {
     "id" : 128,
     "text" : "\n\n            ",
@@ -1289,7 +1417,8 @@
       "end" : 10728,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 24
   }, {
     "id" : 129,
     "text" : "\n            ",
@@ -1299,7 +1428,8 @@
       "end" : 10920,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 24
   }, {
     "id" : 130,
     "text" : "\n            ",
@@ -1309,7 +1439,8 @@
       "end" : 10817,
       "size" : 13
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 24
   }, {
     "id" : 131,
     "text" : "\n\n            ",
@@ -1319,7 +1450,8 @@
       "end" : 11549,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 24
   }, {
     "id" : 132,
     "text" : "\n\n            ",
@@ -1329,7 +1461,8 @@
       "end" : 10998,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 24
   }, {
     "id" : 133,
     "text" : "\n\n            ",
@@ -1339,7 +1472,8 @@
       "end" : 11387,
       "size" : 14
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 24
   }, {
     "id" : 134,
     "text" : "public LombokTestData getData() {\n                return data;\n            }",
@@ -1349,7 +1483,8 @@
       "end" : 10804,
       "size" : 76
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 24
   }, {
     "id" : 135,
     "text" : "public boolean isOk() {\n                return ok;\n            }",
@@ -1359,7 +1494,8 @@
       "end" : 10984,
       "size" : 64
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 24
   }, {
     "id" : 136,
     "text" : "public void setData(LombokTestData data) {\n                this.data = data;\n            }",
@@ -1369,7 +1505,8 @@
       "end" : 10907,
       "size" : 90
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 24
   }, {
     "id" : 137,
     "text" : "@Override\n            public String toString() {\n                return new ToStringBuilder(this)\n                        .append(\"data\", data)\n                        .append(\"ok\", ok)\n                        .toString();\n            }",
@@ -1379,7 +1516,8 @@
       "end" : 11785,
       "size" : 236
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 24
   }, {
     "id" : 138,
     "text" : "@Override\n            public boolean equals(Object o) {\n                if (this == o) return true;\n                if (!(o instanceof LombokTestData.DataFull)) return false;\n                LombokTestData.DataFull dataFull = (LombokTestData.DataFull) o;\n                return new EqualsBuilder().append(ok, dataFull.ok).append(data, dataFull.data).isEquals();\n            }",
@@ -1389,7 +1527,8 @@
       "end" : 11373,
       "size" : 375
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 24
   }, {
     "id" : 139,
     "text" : "@Override\n            public int hashCode() {\n                return new HashCodeBuilder(17, 37).append(data).append(ok).toHashCode();\n            }",
@@ -1399,16 +1538,117 @@
       "end" : 11535,
       "size" : 148
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 24
   }, {
     "id" : 140,
     "text" : "p",
-    "placeholder" : "@Data* p",
+    "placeholder" : "@Dataˣ p",
     "range" : {
       "start" : 10620,
       "end" : 10621,
       "size" : 1
     },
-    "group" : "com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression"
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 24
+  }, {
+    "id" : 141,
+    "text" : "\n            ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 11887,
+      "end" : 11900,
+      "size" : 13
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 25
+  }, {
+    "id" : 142,
+    "text" : "public boolean isOk() {\n                return ok;\n            }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 11900,
+      "end" : 11964,
+      "size" : 64
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 25
+  }, {
+    "id" : 143,
+    "text" : "p",
+    "placeholder" : "@Getter p",
+    "range" : {
+      "start" : 11837,
+      "end" : 11838,
+      "size" : 1
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 25
+  }, {
+    "id" : 144,
+    "text" : "\n            ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 12026,
+      "end" : 12039,
+      "size" : 13
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 26
+  }, {
+    "id" : 145,
+    "text" : "public boolean isOk() {\n                return ok;\n            }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 12039,
+      "end" : 12103,
+      "size" : 64
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 26
+  }, {
+    "id" : 146,
+    "text" : "c",
+    "placeholder" : "@Getter c",
+    "range" : {
+      "start" : 11984,
+      "end" : 11985,
+      "size" : 1
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 26
+  }, {
+    "id" : 147,
+    "text" : "\n            ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 12208,
+      "end" : 12221,
+      "size" : 13
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 27
+  }, {
+    "id" : 148,
+    "text" : "public boolean isOk() {\n                return ok;\n            }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 12221,
+      "end" : 12285,
+      "size" : 64
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 27
+  }, {
+    "id" : 149,
+    "text" : "c",
+    "placeholder" : "@Getter c",
+    "range" : {
+      "start" : 12156,
+      "end" : 12157,
+      "size" : 1
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 27
   } ]
 }

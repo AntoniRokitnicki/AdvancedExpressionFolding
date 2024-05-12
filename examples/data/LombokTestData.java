@@ -404,4 +404,28 @@ public class LombokTestData {
         }
     }
 
+    public class FoldOn {
+        public class FoldOnPublic{
+            boolean ok;
+            public boolean isOk() {
+                return ok;
+            }
+        }
+
+        class FoldOnClass{
+            boolean ok;
+            public boolean isOk() {
+                return ok;
+            }
+        }
+
+        @SuppressWarnings("ALL")
+        class FoldOnWithAnnotation {
+            boolean ok;
+            public boolean isOk() {
+                return ok;
+            }
+        }
+    }
+
 }
