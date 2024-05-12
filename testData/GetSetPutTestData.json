@@ -1,5 +1,5 @@
 {
-  "size" : 47,
+  "size" : 51,
   "list" : [ {
     "id" : 0,
     "text" : "Arrays.asList(",
@@ -517,5 +517,49 @@
     },
     "group" : "ArrayLiteral",
     "groupReference" : 21
+  }, {
+    "id" : 47,
+    "text" : ".getProperty(",
+    "placeholder" : "[",
+    "range" : {
+      "start" : 1430,
+      "end" : 1443,
+      "size" : 13
+    },
+    "group" : "Get",
+    "groupReference" : 22
+  }, {
+    "id" : 48,
+    "text" : ")",
+    "placeholder" : "]",
+    "range" : {
+      "start" : 1453,
+      "end" : 1454,
+      "size" : 1
+    },
+    "group" : "Get",
+    "groupReference" : 22
+  }, {
+    "id" : 49,
+    "text" : ".get(",
+    "placeholder" : "[",
+    "range" : {
+      "start" : 1628,
+      "end" : 1633,
+      "size" : 5
+    },
+    "group" : "Get",
+    "groupReference" : 23
+  }, {
+    "id" : 50,
+    "text" : ")",
+    "placeholder" : "]",
+    "range" : {
+      "start" : 1643,
+      "end" : 1644,
+      "size" : 1
+    },
+    "group" : "Get",
+    "groupReference" : 23
   } ]
 }
