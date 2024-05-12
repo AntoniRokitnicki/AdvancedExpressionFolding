@@ -2,8 +2,8 @@ package data;
 
 import org.jetbrains.annotations.Nullable;
 
-<fold text='@Getter @' expand='false'>@</fold>SuppressWarnings("ALL")
-public class NullableAnnotationCheckNotNullTestData {
+@SuppressWarnings("ALL")
+<fold text='@Getter p' expand='false'>p</fold>ublic class NullableAnnotationCheckNotNullTestData {
 
     private String saaa;<fold text='' expand='false'>
 

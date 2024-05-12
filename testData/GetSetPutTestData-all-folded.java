@@ -25,5 +25,9 @@ public class GetSetPutTestData {
         println(copyOfSet);
         val strings = ["one", "two"];
         println(Arrays.toString(strings));
+        println(System["user.dir"]);
+        println(System.getProperty("user.dir", "c:/windows"));
+        println(System.getenv("user.dir"));
+        println(System.getenv()["user.dir"]);
     }
 }

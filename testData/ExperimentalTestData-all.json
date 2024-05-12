@@ -1,5 +1,5 @@
 {
-  "size" : 42,
+  "size" : 54,
   "list" : [ {
     "id" : 0,
     "text" : " ",
@@ -277,190 +277,322 @@
     "groupReference" : 13
   }, {
     "id" : 25,
-    "text" : "\n\n        ",
-    "placeholder" : "",
+    "text" : "var",
+    "placeholder" : "val",
     "range" : {
-      "start" : 1295,
-      "end" : 1305,
-      "size" : 10
+      "start" : 1004,
+      "end" : 1007,
+      "size" : 3
     },
-    "group" : "ClassAnnotationExpression",
+    "group" : "VariableDeclarationImpl",
     "groupReference" : 14
   }, {
     "id" : 26,
-    "text" : "@Override\n        public String toString() {\n            return new StringJoiner(\", \", ConstClass.class.getSimpleName() + \"[\", \"]\")\n                    .add(\"string='\" + string + \"'\")\n                    .toString();\n        }",
-    "placeholder" : "",
+    "text" : "INSTANCE",
+    "placeholder" : "\uD83E\uDDCD",
     "range" : {
-      "start" : 1305,
-      "end" : 1531,
-      "size" : 226
+      "start" : 1022,
+      "end" : 1030,
+      "size" : 8
     },
-    "group" : "ClassAnnotationExpression",
-    "groupReference" : 14
-  }, {
-    "id" : 27,
-    "text" : "s",
-    "placeholder" : "@ToString* s",
-    "range" : {
-      "start" : 983,
-      "end" : 984,
-      "size" : 1
-    },
-    "group" : "ClassAnnotationExpression",
-    "groupReference" : 14
-  }, {
-    "id" : 28,
-    "text" : "ok",
-    "placeholder" : "<<",
-    "range" : {
-      "start" : 1156,
-      "end" : 1158,
-      "size" : 2
-    },
-    "group" : "BuilderShiftExpression",
+    "group" : "WrapperExpression",
     "groupReference" : 15
   }, {
-    "id" : 29,
-    "text" : "ok",
-    "placeholder" : "<<",
+    "id" : 27,
+    "text" : "System.out.",
+    "placeholder" : "",
     "range" : {
-      "start" : 1248,
-      "end" : 1250,
-      "size" : 2
+      "start" : 1040,
+      "end" : 1051,
+      "size" : 11
     },
-    "group" : "BuilderShiftExpression",
+    "group" : "PrintlnExpression",
     "groupReference" : 16
   }, {
-    "id" : 30,
-    "text" : "string",
-    "placeholder" : "<<",
+    "id" : 28,
+    "text" : "isOk()",
+    "placeholder" : "ok",
     "range" : {
-      "start" : 1278,
-      "end" : 1284,
+      "start" : 1078,
+      "end" : 1084,
       "size" : 6
     },
-    "group" : "BuilderShiftExpression",
+    "group" : "Getter",
     "groupReference" : 17
   }, {
-    "id" : 31,
-    "text" : " ",
-    "placeholder" : " \"${",
+    "id" : 29,
+    "text" : "INSTANCE",
+    "placeholder" : "\uD83E\uDDCD",
     "range" : {
-      "start" : 1391,
-      "end" : 1392,
-      "size" : 1
+      "start" : 1069,
+      "end" : 1077,
+      "size" : 8
     },
-    "group" : "InterpolatedString",
+    "group" : "WrapperExpression",
     "groupReference" : 18
   }, {
-    "id" : 32,
-    "text" : " + \"",
-    "placeholder" : "}",
+    "id" : 30,
+    "text" : "isOk()",
+    "placeholder" : "ok",
     "range" : {
-      "start" : 1424,
-      "end" : 1428,
-      "size" : 4
-    },
-    "group" : "InterpolatedString",
-    "groupReference" : 18
-  }, {
-    "id" : 33,
-    "text" : "getSimpleName()",
-    "placeholder" : "simpleName",
-    "range" : {
-      "start" : 1409,
-      "end" : 1424,
-      "size" : 15
+      "start" : 1078,
+      "end" : 1084,
+      "size" : 6
     },
     "group" : "Getter",
     "groupReference" : 19
   }, {
-    "id" : 34,
-    "text" : "\" + ",
-    "placeholder" : "$",
+    "id" : 31,
+    "text" : "INSTANCE",
+    "placeholder" : "\uD83E\uDDCD",
     "range" : {
-      "start" : 1471,
-      "end" : 1475,
-      "size" : 4
+      "start" : 1069,
+      "end" : 1077,
+      "size" : 8
     },
-    "group" : "InterpolatedString",
-    "groupReference" : 20
+    "group" : "WrapperExpression",
+    "groupReference" : 19
   }, {
-    "id" : 35,
-    "text" : " + \"",
+    "id" : 32,
+    "text" : "System.out.",
     "placeholder" : "",
     "range" : {
-      "start" : 1481,
-      "end" : 1485,
-      "size" : 4
+      "start" : 1095,
+      "end" : 1106,
+      "size" : 11
     },
-    "group" : "InterpolatedString",
+    "group" : "PrintlnExpression",
     "groupReference" : 20
   }, {
-    "id" : 36,
-    "text" : "final",
-    "placeholder" : "",
+    "id" : 33,
+    "text" : "INSTANCE",
+    "placeholder" : "\uD83E\uDDCD",
     "range" : {
-      "start" : 1626,
-      "end" : 1631,
-      "size" : 5
+      "start" : 1124,
+      "end" : 1132,
+      "size" : 8
     },
     "group" : "WrapperExpression",
     "groupReference" : 21
   }, {
-    "id" : 37,
-    "text" : "final String",
-    "placeholder" : "val",
+    "id" : 34,
+    "text" : "INSTANCE",
+    "placeholder" : "\uD83E\uDDCD",
     "range" : {
-      "start" : 1664,
-      "end" : 1676,
-      "size" : 12
+      "start" : 1148,
+      "end" : 1156,
+      "size" : 8
     },
-    "group" : "VariableDeclarationImpl",
+    "group" : "WrapperExpression",
     "groupReference" : 22
   }, {
-    "id" : 38,
-    "text" : "final",
-    "placeholder" : "",
+    "id" : 35,
+    "text" : "getInstance()",
+    "placeholder" : "instance",
     "range" : {
-      "start" : 1664,
-      "end" : 1669,
-      "size" : 5
+      "start" : 1172,
+      "end" : 1185,
+      "size" : 13
+    },
+    "group" : "Getter",
+    "groupReference" : 23
+  }, {
+    "id" : 36,
+    "text" : "INSTANCE",
+    "placeholder" : "\uD83E\uDDCD",
+    "range" : {
+      "start" : 1124,
+      "end" : 1132,
+      "size" : 8
     },
     "group" : "WrapperExpression",
     "groupReference" : 23
   }, {
-    "id" : 39,
-    "text" : "final var",
-    "placeholder" : "val",
+    "id" : 37,
+    "text" : "INSTANCE",
+    "placeholder" : "\uD83E\uDDCD",
     "range" : {
-      "start" : 1698,
-      "end" : 1707,
-      "size" : 9
-    },
-    "group" : "VariableDeclarationImpl",
-    "groupReference" : 24
-  }, {
-    "id" : 40,
-    "text" : "final",
-    "placeholder" : "",
-    "range" : {
-      "start" : 1698,
-      "end" : 1703,
-      "size" : 5
+      "start" : 1148,
+      "end" : 1156,
+      "size" : 8
     },
     "group" : "WrapperExpression",
+    "groupReference" : 23
+  }, {
+    "id" : 38,
+    "text" : "getInstance()",
+    "placeholder" : "instance",
+    "range" : {
+      "start" : 1172,
+      "end" : 1185,
+      "size" : 13
+    },
+    "group" : "Getter",
+    "groupReference" : 24
+  }, {
+    "id" : 39,
+    "text" : "\n\n        ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1370,
+      "end" : 1380,
+      "size" : 10
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 25
+  }, {
+    "id" : 40,
+    "text" : "public boolean isOk() {\n            return ok;\n        }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1380,
+      "end" : 1436,
+      "size" : 56
+    },
+    "group" : "ClassAnnotationExpression",
     "groupReference" : 25
   }, {
     "id" : 41,
-    "text" : "var",
-    "placeholder" : "val",
+    "text" : "s",
+    "placeholder" : "@Getter s",
     "range" : {
-      "start" : 1729,
-      "end" : 1732,
-      "size" : 3
+      "start" : 1200,
+      "end" : 1201,
+      "size" : 1
     },
-    "group" : "VariableDeclarationImpl",
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 25
+  }, {
+    "id" : 42,
+    "text" : "\n\n        ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1848,
+      "end" : 1858,
+      "size" : 10
+    },
+    "group" : "ClassAnnotationExpression",
     "groupReference" : 26
+  }, {
+    "id" : 43,
+    "text" : "@Override\n        public String toString() {\n            return new StringJoiner(\", \", ConstClass.class.getSimpleName() + \"[\", \"]\")\n                    .add(\"string='\" + string + \"'\")\n                    .toString();\n        }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1858,
+      "end" : 2084,
+      "size" : 226
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 26
+  }, {
+    "id" : 44,
+    "text" : "s",
+    "placeholder" : "@ToStringˣ s",
+    "range" : {
+      "start" : 1536,
+      "end" : 1537,
+      "size" : 1
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 26
+  }, {
+    "id" : 45,
+    "text" : "ok",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 1709,
+      "end" : 1711,
+      "size" : 2
+    },
+    "group" : "BuilderShiftExpression",
+    "groupReference" : 27
+  }, {
+    "id" : 46,
+    "text" : "ok",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 1801,
+      "end" : 1803,
+      "size" : 2
+    },
+    "group" : "BuilderShiftExpression",
+    "groupReference" : 28
+  }, {
+    "id" : 47,
+    "text" : "string",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 1831,
+      "end" : 1837,
+      "size" : 6
+    },
+    "group" : "BuilderShiftExpression",
+    "groupReference" : 29
+  }, {
+    "id" : 48,
+    "text" : " ",
+    "placeholder" : " \"${",
+    "range" : {
+      "start" : 1944,
+      "end" : 1945,
+      "size" : 1
+    },
+    "group" : "InterpolatedString",
+    "groupReference" : 30
+  }, {
+    "id" : 49,
+    "text" : " + \"",
+    "placeholder" : "}",
+    "range" : {
+      "start" : 1977,
+      "end" : 1981,
+      "size" : 4
+    },
+    "group" : "InterpolatedString",
+    "groupReference" : 30
+  }, {
+    "id" : 50,
+    "text" : "getSimpleName()",
+    "placeholder" : "simpleName",
+    "range" : {
+      "start" : 1962,
+      "end" : 1977,
+      "size" : 15
+    },
+    "group" : "Getter",
+    "groupReference" : 31
+  }, {
+    "id" : 51,
+    "text" : "\" + ",
+    "placeholder" : "$",
+    "range" : {
+      "start" : 2024,
+      "end" : 2028,
+      "size" : 4
+    },
+    "group" : "InterpolatedString",
+    "groupReference" : 32
+  }, {
+    "id" : 52,
+    "text" : " + \"",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2034,
+      "end" : 2038,
+      "size" : 4
+    },
+    "group" : "InterpolatedString",
+    "groupReference" : 32
+  }, {
+    "id" : 53,
+    "text" : "final",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2164,
+      "end" : 2169,
+      "size" : 5
+    },
+    "group" : "WrapperExpression",
+    "groupReference" : 33
   } ]
 }

@@ -6,8 +6,8 @@ import org.jetbrains.annotations.Nullable;
 import javax.annotation.Nonnull;
 import java.time.LocalDate;
 
-@Getter @Setter* @Serial @SuppressWarnings("ALL")
-public class NullableAnnotationTestData {
+@SuppressWarnings("ALL")
+@Getter @Setterˣ @Serial public class NullableAnnotationTestData {
     
     NullableAnnotationTestData!! data;
     boolean ok;

@@ -24,11 +24,11 @@
     "groupReference" : 0
   }, {
     "id" : 2,
-    "text" : "@",
-    "placeholder" : "@Getter @",
+    "text" : "p",
+    "placeholder" : "@Getter p",
     "range" : {
-      "start" : 59,
-      "end" : 60,
+      "start" : 84,
+      "end" : 85,
       "size" : 1
     },
     "group" : "ClassAnnotationExpression",

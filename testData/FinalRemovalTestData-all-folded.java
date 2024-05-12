@@ -1,6 +1,6 @@
 package data;
 
-@ToString* public class FinalRemovalTestData {
+@ToStringˣ public class FinalRemovalTestData {
 
     const PUBLIC_STATIC_FINAL_VAR = "";
     const FINAL_FIRST_MANY = "";

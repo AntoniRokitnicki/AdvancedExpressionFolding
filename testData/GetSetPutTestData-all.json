@@ -1,5 +1,5 @@
 {
-  "size" : 71,
+  "size" : 83,
   "list" : [ {
     "id" : 0,
     "text" : "List<String>",
@@ -781,5 +781,137 @@
     },
     "group" : "PrintlnExpression",
     "groupReference" : 43
+  }, {
+    "id" : 71,
+    "text" : "System.out.",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1405,
+      "end" : 1416,
+      "size" : 11
+    },
+    "group" : "PrintlnExpression",
+    "groupReference" : 44
+  }, {
+    "id" : 72,
+    "text" : ".getProperty(",
+    "placeholder" : "[",
+    "range" : {
+      "start" : 1430,
+      "end" : 1443,
+      "size" : 13
+    },
+    "group" : "Get",
+    "groupReference" : 45
+  }, {
+    "id" : 73,
+    "text" : ")",
+    "placeholder" : "]",
+    "range" : {
+      "start" : 1453,
+      "end" : 1454,
+      "size" : 1
+    },
+    "group" : "Get",
+    "groupReference" : 45
+  }, {
+    "id" : 74,
+    "text" : ".getProperty(",
+    "placeholder" : "[",
+    "range" : {
+      "start" : 1430,
+      "end" : 1443,
+      "size" : 13
+    },
+    "group" : "Get",
+    "groupReference" : 46
+  }, {
+    "id" : 75,
+    "text" : ")",
+    "placeholder" : "]",
+    "range" : {
+      "start" : 1453,
+      "end" : 1454,
+      "size" : 1
+    },
+    "group" : "Get",
+    "groupReference" : 46
+  }, {
+    "id" : 76,
+    "text" : "System.out.",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1465,
+      "end" : 1476,
+      "size" : 11
+    },
+    "group" : "PrintlnExpression",
+    "groupReference" : 47
+  }, {
+    "id" : 77,
+    "text" : "System.out.",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1539,
+      "end" : 1550,
+      "size" : 11
+    },
+    "group" : "PrintlnExpression",
+    "groupReference" : 48
+  }, {
+    "id" : 78,
+    "text" : "System.out.",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1594,
+      "end" : 1605,
+      "size" : 11
+    },
+    "group" : "PrintlnExpression",
+    "groupReference" : 49
+  }, {
+    "id" : 79,
+    "text" : ".get(",
+    "placeholder" : "[",
+    "range" : {
+      "start" : 1628,
+      "end" : 1633,
+      "size" : 5
+    },
+    "group" : "Get",
+    "groupReference" : 50
+  }, {
+    "id" : 80,
+    "text" : ")",
+    "placeholder" : "]",
+    "range" : {
+      "start" : 1643,
+      "end" : 1644,
+      "size" : 1
+    },
+    "group" : "Get",
+    "groupReference" : 50
+  }, {
+    "id" : 81,
+    "text" : ".get(",
+    "placeholder" : "[",
+    "range" : {
+      "start" : 1628,
+      "end" : 1633,
+      "size" : 5
+    },
+    "group" : "Get",
+    "groupReference" : 51
+  }, {
+    "id" : 82,
+    "text" : ")",
+    "placeholder" : "]",
+    "range" : {
+      "start" : 1643,
+      "end" : 1644,
+      "size" : 1
+    },
+    "group" : "Get",
+    "groupReference" : 51
   } ]
 }
