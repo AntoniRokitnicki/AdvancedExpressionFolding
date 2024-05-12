@@ -4,6 +4,10 @@
 
 ## [Unreleased]
 
+## [1.0.48] - 2024-05-12
+
+New options: Boolean for simplifying public static final to const, simplifying @NotNull to Type!! and @Nullable to Type?, removing the 'final' modifier from all elements except fields, replacing the 'final' modifier with 🔒, and allowing to opt in to experimental features
+
 ## [1.0.47] - 2024-05-09
 
 Experimental memory improvements - disabled by default
@@ -215,7 +219,8 @@ Improved handling of multi-line log messages
 
 ## [0.0.1]
 
-[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.47...HEAD
+[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.48...HEAD
+[1.0.48]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.47...v1.0.48
 [1.0.47]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.46...v1.0.47
 [1.0.46]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.45...v1.0.46
 [1.0.45]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.44...v1.0.45
