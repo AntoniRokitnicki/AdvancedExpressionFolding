@@ -5,7 +5,7 @@ import java.util.List;
 @SuppressWarnings("ALL")
 public class DestructuringAssignmentListWithoutValTestData {
     public void enter(Data data, List<Data> list) {
-        Data ignored1 = list.getFirst();
+        Data ignored1 = list.get(0);
 
         Data (first, second, third, fourth) = list;
 
@@ -18,7 +18,7 @@ public class DestructuringAssignmentListWithoutValTestData {
         Data (deepGetter1, deepGetter2) = data.data.list;
         deepGetter2 = data;
 
-        Data wrongParent1 = data.list.getFirst();
+        Data wrongParent1 = data.list.get(0);
         Data wrongParent2 = data.data.list.get(1);
 
         blackhole(first, second, third, fourth, ignored21, ignored22, getter1, getter2, deepGetter1, deepGetter2, wrongParent1, wrongParent2);

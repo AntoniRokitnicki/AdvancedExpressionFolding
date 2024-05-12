@@ -343,13 +343,6 @@ public class MethodCallExpressionExt {
         @NotNull Expression a1Expression = BuildExpressionExt.getAnyExpression(a1, document);
         @NotNull Expression a2Expression = BuildExpressionExt.getAnyExpression(a2, document);
         switch (methodName) {
-            case "put":
-            case "set":
-                if (element.getParent() instanceof PsiStatement && settings.getState().getGetExpressionsCollapse()) {
-                    return new Put(element, element.getTextRange(), qualifierExpression, a1Expression, a2Expression);
-                } else {
-                    break;
-                }
             case "atan2":
                 return new Atan2(element, element.getTextRange(), Arrays.asList(qualifierExpression, a1Expression,
                         a2Expression));
@@ -620,27 +613,6 @@ public class MethodCallExpressionExt {
                     break;
                 }
             case "charAt":
-                if (settings.getState().getGetExpressionsCollapse()) {
-                    return new Get(element, element.getTextRange(), qualifierExpression,
-                            argumentExpression, Get.Style.NORMAL);
-                } else {
-                    break;
-                }
-            case "get":
-                if (argumentExpression instanceof NumberLiteral && ((NumberLiteral) argumentExpression).getNumber().equals(0)) {
-                    return new Get(element, element.getTextRange(), qualifierExpression,
-                            argumentExpression, Get.Style.FIRST);
-                } else if (argument instanceof PsiBinaryExpression a2b) {
-                    NumberLiteral position = Helper.getSlicePosition(element, qualifierExpression, a2b, document);
-                    if (position != null && position.getNumber().equals(-1)) {
-                        if (settings.getState().getGetExpressionsCollapse()) {
-                            return new Get(element, element.getTextRange(), qualifierExpression,
-                                    argumentExpression, Get.Style.LAST);
-                        } else {
-                            break;
-                        }
-                    }
-                }
                 if (settings.getState().getGetExpressionsCollapse()) {
                     return new Get(element, element.getTextRange(), qualifierExpression,
                             argumentExpression, Get.Style.NORMAL);

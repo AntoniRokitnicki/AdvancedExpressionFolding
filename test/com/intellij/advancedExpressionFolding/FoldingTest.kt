@@ -305,7 +305,7 @@ open class FoldingTest : BaseTest() {
      * [data.ExperimentalTestData]
      */
     fun testExperimentalTestData() {
-        doFoldingTest(state::experimental, state::nullable, state::const, state::lombok)
+        doFoldingTest(state::experimental, state::nullable, state::const, state::lombok, state::getExpressionsCollapse)
     }
 
 }

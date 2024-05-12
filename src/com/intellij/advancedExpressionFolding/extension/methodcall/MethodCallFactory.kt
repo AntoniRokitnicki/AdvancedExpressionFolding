@@ -1,6 +1,8 @@
 package com.intellij.advancedExpressionFolding.extension.methodcall
 
 import com.intellij.advancedExpressionFolding.extension.Consts
+import com.intellij.advancedExpressionFolding.extension.methodcall.collection.CollectionGetMethodCall
+import com.intellij.advancedExpressionFolding.extension.methodcall.collection.MapPutMethodCall
 import com.intellij.advancedExpressionFolding.extension.methodcall.date.CreateDateFactoryMethodCall
 import com.intellij.advancedExpressionFolding.extension.methodcall.date.IsAfterDateMethodCall
 import com.intellij.advancedExpressionFolding.extension.methodcall.date.IsBeforeDateMethodCall
@@ -33,7 +35,7 @@ object MethodCallFactory {
         //TODO: move to extension list when stable
         mutableListOf(
             IsBeforeDateMethodCall(), IsAfterDateMethodCall(), CreateDateFactoryMethodCall(),
-            CheckNotNullMethodCall()
+            CheckNotNullMethodCall(), MapPutMethodCall(), CollectionGetMethodCall()
         ).filter {
             it.permission()
         }.flatMap { methodCall ->

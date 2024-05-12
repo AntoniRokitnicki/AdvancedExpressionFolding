@@ -30,10 +30,14 @@ public class GetSetPutTestData {
             </fold><fold text='' expand='false'><fold text='{...}' expand='true'>{
                 add(</fold>"one"<fold text=', ' expand='false'>);
                 add(</fold>"two"<fold text='' expand='false'>);
-            }</fold><fold text='' expand='false'></fold>
+            }</fold></fold><fold text='' expand='false'>
         </fold><fold text=']' expand='false'>}</fold><fold text='' expand='false'></fold>)</fold>;
         System.out.println(copyOfSet);
         String[] strings = <fold text='[' expand='false'>new String[] {</fold>"one", "two"<fold text=']' expand='false'>}</fold>;
         System.out.println(Arrays.toString(strings));
+        System.out.println(System<fold text='[' expand='false'>.getProperty(</fold>"user.dir"<fold text=']' expand='false'>)</fold>);
+        System.out.println(System.getProperty("user.dir", "c:/windows"));
+        System.out.println(System.getenv("user.dir"));
+        System.out.println(System.getenv()<fold text='[' expand='false'>.get(</fold>"user.dir"<fold text=']' expand='false'>)</fold>);
     }</fold>
 }
