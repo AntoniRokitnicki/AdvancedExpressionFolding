@@ -1,7 +1,16 @@
 <plugin-repository>
     <ff>"Formatting"</ff>
     <category name="Formatting">
-        <idea-plugin downloads="201825" size="194153" date="1625903057047" updatedDate="1625903057047"><name>Advanced Java Folding 2 (Beta)</name>
+        <idea-plugin downloads="201826" size="194154" date="1625903057048" updatedDate="1625903057048"><name>Advanced Java Folding 2 (Beta)</name>
+            <id>com.github.bigdecimal-folding2</id>
+            <description />
+            <version>1.0.48</version>
+            <vendor email="android.rokitnicki@gmail.com" url="https://github.com/AntoniRokitnicki/AdvancedExpressionFolding">Antoni</vendor>
+            <rating>4.6</rating>
+            <change-notes>New options: Boolean for simplifying public static final to const, simplifying @NotNull to Type!! and @Nullable to Type?, removing the final modifier from all elements except fields, replacing the final modifier with &#128274;, and allowing to opt in to experimental features</change-notes>
+            <download-url>https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/releases/download/v1.0.48/AdvancedExpressionFolding-v1.0.48.jar</download-url>
+            <idea-version min="n/a" max="n/a" since-build="212.4638" />
+        </idea-plugin><idea-plugin downloads="201825" size="194153" date="1625903057047" updatedDate="1625903057047"><name>Advanced Java Folding 2 (Beta)</name>
             <id>com.github.bigdecimal-folding2</id>
             <description />
             <version>1.0.47</version>
