@@ -15,8 +15,7 @@ class CollectionGetMethodCall : AbstractMethodCall() {
 
     override fun permission(): Boolean = getExpressionsCollapse
 
-    //TODO: maybe support System.getenv("user.dir"), but it folds the same as System.getProperty("user.dir")
-    override val methodNames: List<String> by lazy { listOf("get", "getProperty") }
+    override val methodNames: List<String> by lazy { listOf("get", "getProperty", "getAttribute", "getValue") }
 
     override fun onSingleArgument(
         element: PsiMethodCallExpression,

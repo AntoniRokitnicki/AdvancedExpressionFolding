@@ -1,5 +1,5 @@
 {
-  "size" : 84,
+  "size" : 86,
   "list" : [ {
     "id" : 0,
     "text" : "\n    ",
@@ -167,6 +167,28 @@
     "groupReference" : 0
   }, {
     "id" : 15,
+    "text" : "private static final ",
+    "placeholder" : "const",
+    "range" : {
+      "start" : 235,
+      "end" : 256,
+      "size" : 21
+    },
+    "group" : "FieldConstExpression",
+    "groupReference" : 1
+  }, {
+    "id" : 16,
+    "text" : "long",
+    "placeholder" : "",
+    "range" : {
+      "start" : 256,
+      "end" : 260,
+      "size" : 4
+    },
+    "group" : "FieldConstExpression",
+    "groupReference" : 1
+  }, {
+    "id" : 17,
     "text" : " ",
     "placeholder" : "!! ",
     "range" : {
@@ -175,9 +197,9 @@
       "size" : 1
     },
     "group" : "NullAnnotationExpression",
-    "groupReference" : 1
+    "groupReference" : 2
   }, {
-    "id" : 16,
+    "id" : 18,
     "text" : "@NotNull",
     "placeholder" : "",
     "range" : {
@@ -186,9 +208,9 @@
       "size" : 8
     },
     "group" : "NullAnnotationExpression",
-    "groupReference" : 1
+    "groupReference" : 2
   }, {
-    "id" : 17,
+    "id" : 19,
     "text" : " ",
     "placeholder" : "? ",
     "range" : {
@@ -197,9 +219,9 @@
       "size" : 1
     },
     "group" : "NullAnnotationExpression",
-    "groupReference" : 2
+    "groupReference" : 3
   }, {
-    "id" : 18,
+    "id" : 20,
     "text" : "@Nullable",
     "placeholder" : "",
     "range" : {
@@ -208,9 +230,9 @@
       "size" : 9
     },
     "group" : "NullAnnotationExpression",
-    "groupReference" : 2
+    "groupReference" : 3
   }, {
-    "id" : 19,
+    "id" : 21,
     "text" : "data",
     "placeholder" : "<<",
     "range" : {
@@ -219,9 +241,9 @@
       "size" : 4
     },
     "group" : "BuilderShiftExpression",
-    "groupReference" : 3
+    "groupReference" : 4
   }, {
-    "id" : 20,
+    "id" : 22,
     "text" : "ok",
     "placeholder" : "<<",
     "range" : {
@@ -230,9 +252,9 @@
       "size" : 2
     },
     "group" : "BuilderShiftExpression",
-    "groupReference" : 4
+    "groupReference" : 5
   }, {
-    "id" : 21,
+    "id" : 23,
     "text" : "string",
     "placeholder" : "<<",
     "range" : {
@@ -241,9 +263,9 @@
       "size" : 6
     },
     "group" : "BuilderShiftExpression",
-    "groupReference" : 5
+    "groupReference" : 6
   }, {
-    "id" : 22,
+    "id" : 24,
     "text" : " ",
     "placeholder" : "!! ",
     "range" : {
@@ -252,9 +274,9 @@
       "size" : 1
     },
     "group" : "NullAnnotationExpression",
-    "groupReference" : 6
+    "groupReference" : 7
   }, {
-    "id" : 23,
+    "id" : 25,
     "text" : "@Nonnull",
     "placeholder" : "",
     "range" : {
@@ -263,9 +285,9 @@
       "size" : 8
     },
     "group" : "NullAnnotationExpression",
-    "groupReference" : 6
+    "groupReference" : 7
   }, {
-    "id" : 24,
+    "id" : 26,
     "text" : " ",
     "placeholder" : "? ",
     "range" : {
@@ -274,9 +296,9 @@
       "size" : 1
     },
     "group" : "NullAnnotationExpression",
-    "groupReference" : 7
+    "groupReference" : 8
   }, {
-    "id" : 25,
+    "id" : 27,
     "text" : "@Nullable",
     "placeholder" : "",
     "range" : {
@@ -285,9 +307,9 @@
       "size" : 9
     },
     "group" : "NullAnnotationExpression",
-    "groupReference" : 7
+    "groupReference" : 8
   }, {
-    "id" : 26,
+    "id" : 28,
     "text" : " ",
     "placeholder" : "? ",
     "range" : {
@@ -296,9 +318,9 @@
       "size" : 1
     },
     "group" : "NullAnnotationExpression",
-    "groupReference" : 8
+    "groupReference" : 9
   }, {
-    "id" : 27,
+    "id" : 29,
     "text" : " ",
     "placeholder" : "",
     "range" : {
@@ -307,9 +329,9 @@
       "size" : 1
     },
     "group" : "NullAnnotationExpression",
-    "groupReference" : 8
+    "groupReference" : 9
   }, {
-    "id" : 28,
+    "id" : 30,
     "text" : "@Nullable",
     "placeholder" : "",
     "range" : {
@@ -318,9 +340,9 @@
       "size" : 9
     },
     "group" : "NullAnnotationExpression",
-    "groupReference" : 8
+    "groupReference" : 9
   }, {
-    "id" : 29,
+    "id" : 31,
     "text" : " ",
     "placeholder" : "!! ",
     "range" : {
@@ -329,9 +351,9 @@
       "size" : 1
     },
     "group" : "NullAnnotationExpression",
-    "groupReference" : 9
+    "groupReference" : 10
   }, {
-    "id" : 30,
+    "id" : 32,
     "text" : " ",
     "placeholder" : "",
     "range" : {
@@ -340,9 +362,9 @@
       "size" : 1
     },
     "group" : "NullAnnotationExpression",
-    "groupReference" : 9
+    "groupReference" : 10
   }, {
-    "id" : 31,
+    "id" : 33,
     "text" : "@NotNull",
     "placeholder" : "",
     "range" : {
@@ -351,9 +373,9 @@
       "size" : 8
     },
     "group" : "NullAnnotationExpression",
-    "groupReference" : 9
+    "groupReference" : 10
   }, {
-    "id" : 32,
+    "id" : 34,
     "text" : " ",
     "placeholder" : "!! ",
     "range" : {
@@ -362,9 +384,9 @@
       "size" : 1
     },
     "group" : "NullAnnotationExpression",
-    "groupReference" : 10
+    "groupReference" : 11
   }, {
-    "id" : 33,
+    "id" : 35,
     "text" : " ",
     "placeholder" : "",
     "range" : {
@@ -373,36 +395,14 @@
       "size" : 1
     },
     "group" : "NullAnnotationExpression",
-    "groupReference" : 10
+    "groupReference" : 11
   }, {
-    "id" : 34,
+    "id" : 36,
     "text" : "@Nonnull",
     "placeholder" : "",
     "range" : {
       "start" : 1078,
       "end" : 1086,
-      "size" : 8
-    },
-    "group" : "NullAnnotationExpression",
-    "groupReference" : 10
-  }, {
-    "id" : 35,
-    "text" : " ",
-    "placeholder" : "!! ",
-    "range" : {
-      "start" : 1167,
-      "end" : 1168,
-      "size" : 1
-    },
-    "group" : "NullAnnotationExpression",
-    "groupReference" : 11
-  }, {
-    "id" : 36,
-    "text" : "@NotNull",
-    "placeholder" : "",
-    "range" : {
-      "start" : 1141,
-      "end" : 1149,
       "size" : 8
     },
     "group" : "NullAnnotationExpression",
@@ -412,14 +412,36 @@
     "text" : " ",
     "placeholder" : "!! ",
     "range" : {
-      "start" : 1249,
-      "end" : 1250,
+      "start" : 1167,
+      "end" : 1168,
       "size" : 1
     },
     "group" : "NullAnnotationExpression",
     "groupReference" : 12
   }, {
     "id" : 38,
+    "text" : "@NotNull",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1141,
+      "end" : 1149,
+      "size" : 8
+    },
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 12
+  }, {
+    "id" : 39,
+    "text" : " ",
+    "placeholder" : "!! ",
+    "range" : {
+      "start" : 1249,
+      "end" : 1250,
+      "size" : 1
+    },
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 13
+  }, {
+    "id" : 40,
     "text" : "@Nonnull",
     "placeholder" : "",
     "range" : {
@@ -428,36 +450,14 @@
       "size" : 8
     },
     "group" : "NullAnnotationExpression",
-    "groupReference" : 12
-  }, {
-    "id" : 39,
-    "text" : " ",
-    "placeholder" : "? ",
-    "range" : {
-      "start" : 1333,
-      "end" : 1334,
-      "size" : 1
-    },
-    "group" : "NullAnnotationExpression",
-    "groupReference" : 13
-  }, {
-    "id" : 40,
-    "text" : "@Nullable",
-    "placeholder" : "",
-    "range" : {
-      "start" : 1306,
-      "end" : 1315,
-      "size" : 9
-    },
-    "group" : "NullAnnotationExpression",
     "groupReference" : 13
   }, {
     "id" : 41,
     "text" : " ",
     "placeholder" : "? ",
     "range" : {
-      "start" : 1446,
-      "end" : 1447,
+      "start" : 1333,
+      "end" : 1334,
       "size" : 1
     },
     "group" : "NullAnnotationExpression",
@@ -467,8 +467,8 @@
     "text" : "@Nullable",
     "placeholder" : "",
     "range" : {
-      "start" : 1414,
-      "end" : 1423,
+      "start" : 1306,
+      "end" : 1315,
       "size" : 9
     },
     "group" : "NullAnnotationExpression",
@@ -478,14 +478,36 @@
     "text" : " ",
     "placeholder" : "? ",
     "range" : {
-      "start" : 1470,
-      "end" : 1471,
+      "start" : 1446,
+      "end" : 1447,
       "size" : 1
     },
     "group" : "NullAnnotationExpression",
     "groupReference" : 15
   }, {
     "id" : 44,
+    "text" : "@Nullable",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1414,
+      "end" : 1423,
+      "size" : 9
+    },
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 15
+  }, {
+    "id" : 45,
+    "text" : " ",
+    "placeholder" : "? ",
+    "range" : {
+      "start" : 1470,
+      "end" : 1471,
+      "size" : 1
+    },
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 16
+  }, {
+    "id" : 46,
     "text" : " ",
     "placeholder" : "",
     "range" : {
@@ -494,9 +516,9 @@
       "size" : 1
     },
     "group" : "NullAnnotationExpression",
-    "groupReference" : 15
+    "groupReference" : 16
   }, {
-    "id" : 45,
+    "id" : 47,
     "text" : "@Nullable",
     "placeholder" : "",
     "range" : {
@@ -505,9 +527,9 @@
       "size" : 9
     },
     "group" : "NullAnnotationExpression",
-    "groupReference" : 15
+    "groupReference" : 16
   }, {
-    "id" : 46,
+    "id" : 48,
     "text" : " ",
     "placeholder" : "!! ",
     "range" : {
@@ -516,9 +538,9 @@
       "size" : 1
     },
     "group" : "NullAnnotationExpression",
-    "groupReference" : 16
+    "groupReference" : 17
   }, {
-    "id" : 47,
+    "id" : 49,
     "text" : " ",
     "placeholder" : "",
     "range" : {
@@ -527,9 +549,9 @@
       "size" : 1
     },
     "group" : "NullAnnotationExpression",
-    "groupReference" : 16
+    "groupReference" : 17
   }, {
-    "id" : 48,
+    "id" : 50,
     "text" : "@NotNull",
     "placeholder" : "",
     "range" : {
@@ -538,9 +560,9 @@
       "size" : 8
     },
     "group" : "NullAnnotationExpression",
-    "groupReference" : 16
+    "groupReference" : 17
   }, {
-    "id" : 49,
+    "id" : 51,
     "text" : " ",
     "placeholder" : "!! ",
     "range" : {
@@ -549,36 +571,14 @@
       "size" : 1
     },
     "group" : "NullAnnotationExpression",
-    "groupReference" : 17
+    "groupReference" : 18
   }, {
-    "id" : 50,
+    "id" : 52,
     "text" : " ",
     "placeholder" : "",
     "range" : {
       "start" : 1595,
       "end" : 1596,
-      "size" : 1
-    },
-    "group" : "NullAnnotationExpression",
-    "groupReference" : 17
-  }, {
-    "id" : 51,
-    "text" : "@Nonnull",
-    "placeholder" : "",
-    "range" : {
-      "start" : 1587,
-      "end" : 1595,
-      "size" : 8
-    },
-    "group" : "NullAnnotationExpression",
-    "groupReference" : 17
-  }, {
-    "id" : 52,
-    "text" : " ",
-    "placeholder" : "!! ",
-    "range" : {
-      "start" : 1890,
-      "end" : 1891,
       "size" : 1
     },
     "group" : "NullAnnotationExpression",
@@ -588,14 +588,36 @@
     "text" : "@Nonnull",
     "placeholder" : "",
     "range" : {
-      "start" : 1856,
-      "end" : 1864,
+      "start" : 1587,
+      "end" : 1595,
       "size" : 8
     },
     "group" : "NullAnnotationExpression",
     "groupReference" : 18
   }, {
     "id" : 54,
+    "text" : " ",
+    "placeholder" : "!! ",
+    "range" : {
+      "start" : 1890,
+      "end" : 1891,
+      "size" : 1
+    },
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 19
+  }, {
+    "id" : 55,
+    "text" : "@Nonnull",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1856,
+      "end" : 1864,
+      "size" : 8
+    },
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 19
+  }, {
+    "id" : 56,
     "text" : " ",
     "placeholder" : "? ",
     "range" : {
@@ -604,9 +626,9 @@
       "size" : 1
     },
     "group" : "NullAnnotationExpression",
-    "groupReference" : 19
+    "groupReference" : 20
   }, {
-    "id" : 55,
+    "id" : 57,
     "text" : " ",
     "placeholder" : "",
     "range" : {
@@ -615,9 +637,9 @@
       "size" : 1
     },
     "group" : "NullAnnotationExpression",
-    "groupReference" : 19
+    "groupReference" : 20
   }, {
-    "id" : 56,
+    "id" : 58,
     "text" : "@Nullable",
     "placeholder" : "",
     "range" : {
@@ -626,9 +648,9 @@
       "size" : 9
     },
     "group" : "NullAnnotationExpression",
-    "groupReference" : 19
+    "groupReference" : 20
   }, {
-    "id" : 57,
+    "id" : 59,
     "text" : " ",
     "placeholder" : "!! ",
     "range" : {
@@ -637,9 +659,9 @@
       "size" : 1
     },
     "group" : "NullAnnotationExpression",
-    "groupReference" : 20
+    "groupReference" : 21
   }, {
-    "id" : 58,
+    "id" : 60,
     "text" : " ",
     "placeholder" : "",
     "range" : {
@@ -648,9 +670,9 @@
       "size" : 1
     },
     "group" : "NullAnnotationExpression",
-    "groupReference" : 20
+    "groupReference" : 21
   }, {
-    "id" : 59,
+    "id" : 61,
     "text" : "@NotNull",
     "placeholder" : "",
     "range" : {
@@ -659,9 +681,9 @@
       "size" : 8
     },
     "group" : "NullAnnotationExpression",
-    "groupReference" : 20
+    "groupReference" : 21
   }, {
-    "id" : 60,
+    "id" : 62,
     "text" : " ",
     "placeholder" : "!! ",
     "range" : {
@@ -670,9 +692,9 @@
       "size" : 1
     },
     "group" : "NullAnnotationExpression",
-    "groupReference" : 21
+    "groupReference" : 22
   }, {
-    "id" : 61,
+    "id" : 63,
     "text" : " ",
     "placeholder" : "",
     "range" : {
@@ -681,9 +703,9 @@
       "size" : 1
     },
     "group" : "NullAnnotationExpression",
-    "groupReference" : 21
+    "groupReference" : 22
   }, {
-    "id" : 62,
+    "id" : 64,
     "text" : "@Nonnull",
     "placeholder" : "",
     "range" : {
@@ -692,9 +714,9 @@
       "size" : 8
     },
     "group" : "NullAnnotationExpression",
-    "groupReference" : 21
+    "groupReference" : 22
   }, {
-    "id" : 63,
+    "id" : 65,
     "text" : " ",
     "placeholder" : "!! ",
     "range" : {
@@ -703,9 +725,9 @@
       "size" : 1
     },
     "group" : "NullAnnotationExpression",
-    "groupReference" : 22
+    "groupReference" : 23
   }, {
-    "id" : 64,
+    "id" : 66,
     "text" : " ",
     "placeholder" : "",
     "range" : {
@@ -714,9 +736,9 @@
       "size" : 1
     },
     "group" : "NullAnnotationExpression",
-    "groupReference" : 22
+    "groupReference" : 23
   }, {
-    "id" : 65,
+    "id" : 67,
     "text" : "@Nonnull",
     "placeholder" : "",
     "range" : {
@@ -725,9 +747,9 @@
       "size" : 8
     },
     "group" : "NullAnnotationExpression",
-    "groupReference" : 22
+    "groupReference" : 23
   }, {
-    "id" : 66,
+    "id" : 68,
     "text" : " ",
     "placeholder" : "? ",
     "range" : {
@@ -736,9 +758,9 @@
       "size" : 1
     },
     "group" : "NullAnnotationExpression",
-    "groupReference" : 23
+    "groupReference" : 24
   }, {
-    "id" : 67,
+    "id" : 69,
     "text" : " ",
     "placeholder" : "",
     "range" : {
@@ -747,9 +769,9 @@
       "size" : 1
     },
     "group" : "NullAnnotationExpression",
-    "groupReference" : 23
+    "groupReference" : 24
   }, {
-    "id" : 68,
+    "id" : 70,
     "text" : "@Nullable",
     "placeholder" : "",
     "range" : {
@@ -758,9 +780,9 @@
       "size" : 9
     },
     "group" : "NullAnnotationExpression",
-    "groupReference" : 23
+    "groupReference" : 24
   }, {
-    "id" : 69,
+    "id" : 71,
     "text" : " ",
     "placeholder" : "!! ",
     "range" : {
@@ -769,9 +791,9 @@
       "size" : 1
     },
     "group" : "NullAnnotationExpression",
-    "groupReference" : 24
+    "groupReference" : 25
   }, {
-    "id" : 70,
+    "id" : 72,
     "text" : " ",
     "placeholder" : "",
     "range" : {
@@ -780,9 +802,9 @@
       "size" : 1
     },
     "group" : "NullAnnotationExpression",
-    "groupReference" : 24
+    "groupReference" : 25
   }, {
-    "id" : 71,
+    "id" : 73,
     "text" : "@NotNull",
     "placeholder" : "",
     "range" : {
@@ -791,9 +813,9 @@
       "size" : 8
     },
     "group" : "NullAnnotationExpression",
-    "groupReference" : 24
+    "groupReference" : 25
   }, {
-    "id" : 72,
+    "id" : 74,
     "text" : "\n\n        ",
     "placeholder" : "",
     "range" : {
@@ -802,9 +824,9 @@
       "size" : 10
     },
     "group" : "ClassAnnotationExpression",
-    "groupReference" : 25
+    "groupReference" : 26
   }, {
-    "id" : 73,
+    "id" : 75,
     "text" : "@Nullable\n        public NullableAnnotationTestData getGetterNullable() {\n            return getterNullable;\n        }",
     "placeholder" : "",
     "range" : {
@@ -813,9 +835,9 @@
       "size" : 118
     },
     "group" : "ClassAnnotationExpression",
-    "groupReference" : 25
+    "groupReference" : 26
   }, {
-    "id" : 74,
+    "id" : 76,
     "text" : "c",
     "placeholder" : "@Getter c",
     "range" : {
@@ -824,20 +846,31 @@
       "size" : 1
     },
     "group" : "ClassAnnotationExpression",
-    "groupReference" : 25
+    "groupReference" : 26
   }, {
-    "id" : 75,
+    "id" : 77,
     "text" : " ",
     "placeholder" : "? ",
     "range" : {
-      "start" : 2330,
-      "end" : 2331,
+      "start" : 2407,
+      "end" : 2408,
       "size" : 1
     },
     "group" : "NullAnnotationExpression",
-    "groupReference" : 26
+    "groupReference" : 27
   }, {
-    "id" : 76,
+    "id" : 78,
+    "text" : "@Nullable",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2356,
+      "end" : 2365,
+      "size" : 9
+    },
+    "group" : "NullAnnotationExpression",
+    "groupReference" : 27
+  }, {
+    "id" : 79,
     "text" : "\n\n        ",
     "placeholder" : "",
     "range" : {
@@ -846,9 +879,9 @@
       "size" : 10
     },
     "group" : "ClassAnnotationExpression",
-    "groupReference" : 27
+    "groupReference" : 28
   }, {
-    "id" : 77,
+    "id" : 80,
     "text" : "public void setSetterNullable(@Nonnull NullableAnnotationTestData setterNullable) {\n            this.setterNullable = setterNullable;\n        }",
     "placeholder" : "",
     "range" : {
@@ -857,9 +890,9 @@
       "size" : 143
     },
     "group" : "ClassAnnotationExpression",
-    "groupReference" : 27
+    "groupReference" : 28
   }, {
-    "id" : 78,
+    "id" : 81,
     "text" : "c",
     "placeholder" : "@Setter c",
     "range" : {
@@ -868,20 +901,9 @@
       "size" : 1
     },
     "group" : "ClassAnnotationExpression",
-    "groupReference" : 27
-  }, {
-    "id" : 79,
-    "text" : " ",
-    "placeholder" : "!! ",
-    "range" : {
-      "start" : 2543,
-      "end" : 2544,
-      "size" : 1
-    },
-    "group" : "NullAnnotationExpression",
     "groupReference" : 28
   }, {
-    "id" : 80,
+    "id" : 82,
     "text" : " ",
     "placeholder" : "!! ",
     "range" : {
@@ -892,7 +914,7 @@
     "group" : "NullAnnotationExpression",
     "groupReference" : 29
   }, {
-    "id" : 81,
+    "id" : 83,
     "text" : " ",
     "placeholder" : "",
     "range" : {
@@ -903,7 +925,7 @@
     "group" : "NullAnnotationExpression",
     "groupReference" : 29
   }, {
-    "id" : 82,
+    "id" : 84,
     "text" : "@Nonnull",
     "placeholder" : "",
     "range" : {
@@ -914,7 +936,7 @@
     "group" : "NullAnnotationExpression",
     "groupReference" : 29
   }, {
-    "id" : 83,
+    "id" : 85,
     "text" : "setterNullable",
     "placeholder" : "<<",
     "range" : {

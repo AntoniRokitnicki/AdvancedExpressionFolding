@@ -9,7 +9,7 @@ import java.time.LocalDate;</fold>
 @SuppressWarnings("ALL")
 <fold text='@Getter @Setterˣ @Serial p' expand='false'>p</fold>ublic class NullableAnnotationTestData {<fold text='' expand='false'>
 
-    </fold><fold text='' expand='false'>private static final long serialVersionUID = 1234567L;</fold>
+    </fold><fold text='const' expand='false'><fold text='' expand='false'>private static final </fold><fold text='' expand='false'>long</fold> serialVersionUID = 1234567L;</fold>
     <fold text='' expand='false'>@NotNull</fold>
     NullableAnnotationTestData<fold text='!! ' expand='false'> </fold>data;
     boolean ok;
@@ -20,16 +20,16 @@ import java.time.LocalDate;</fold>
     }</fold></fold><fold text='' expand='false'>
     </fold><fold text='' expand='false'>public void setData(NullableAnnotationTestData data)<fold text=' { ' expand='false'> {
         </fold>this.data = <fold text='<<' expand='false'>data</fold>;<fold text=' }' expand='false'>
-    }</fold><fold text='' expand='false'></fold>
+    }</fold></fold><fold text='' expand='false'>
     </fold><fold text='' expand='false'>public boolean isOk()<fold text=' { ' expand='false'> {
         </fold>return ok;<fold text=' }' expand='false'>
     }</fold></fold><fold text='' expand='false'>
     </fold><fold text='' expand='false'>public void setOk(boolean ok)<fold text=' { ' expand='false'> {
         </fold>this.ok = <fold text='<<' expand='false'>ok</fold>;<fold text=' }' expand='false'>
     }</fold></fold><fold text='' expand='false'>
-    </fold><fold text='' expand='false'>public String getString()<fold text=' { ' expand='false'> {
+    <fold text='' expand='false'></fold>public String getString()<fold text=' { ' expand='false'> {
         </fold>return string;<fold text=' }' expand='false'>
-    }</fold><fold text='' expand='false'></fold>
+    }</fold></fold><fold text='' expand='false'>
     </fold><fold text='' expand='false'>public void setString(String string)<fold text=' { ' expand='false'> {
         </fold>this.string = <fold text='<<' expand='false'>string</fold>;<fold text=' }' expand='false'>
     }</fold></fold>
@@ -97,16 +97,16 @@ import java.time.LocalDate;</fold>
     }</fold>
 
     <fold text='@Getter c' expand='false'>c</fold>lass GetterNullable <fold text='{...}' expand='true'>{
-        NullableAnnotationTestData<fold text='? ' expand='false'> </fold>getterNullable;<fold text='' expand='false'>
+        NullableAnnotationTestData getterNullable;<fold text='' expand='false'>
 
-        </fold><fold text='' expand='false'>@Nullable
-        public NullableAnnotationTestData getGetterNullable()<fold text=' { ' expand='false'> {
+        </fold><fold text='' expand='false'><fold text='' expand='false'>@Nullable</fold>
+        public NullableAnnotationTestData<fold text='? ' expand='false'> </fold>getGetterNullable()<fold text=' { ' expand='false'> {
             </fold>return getterNullable;<fold text=' }' expand='false'>
         }</fold></fold>
     }</fold>
 
     <fold text='@Setter c' expand='false'>c</fold>lass SetterNullable <fold text='{...}' expand='true'>{
-        NullableAnnotationTestData<fold text='!! ' expand='false'> </fold>setterNullable;<fold text='' expand='false'>
+        NullableAnnotationTestData setterNullable;<fold text='' expand='false'>
 
         </fold><fold text='' expand='false'>public void setSetterNullable(<fold text='' expand='false'>@Nonnull</fold><fold text='' expand='false'> </fold>NullableAnnotationTestData<fold text='!! ' expand='false'> </fold>setterNullable) <fold text='{...}' expand='true'>{
             this.setterNullable = <fold text='<<' expand='false'>setterNullable</fold>;

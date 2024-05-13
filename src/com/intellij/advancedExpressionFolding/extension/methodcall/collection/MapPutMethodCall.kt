@@ -13,7 +13,7 @@ class MapPutMethodCall : AbstractMethodCall() {
 
     override fun permission(): Boolean = getExpressionsCollapse
 
-    override val methodNames: List<String> by lazy { listOf("set", "put") }
+    override val methodNames: List<String> by lazy { listOf("set", "put", "setProperty", "setAttribute", "setValue") }
 
     override fun onTwoArguments(
         element: PsiMethodCallExpression,
