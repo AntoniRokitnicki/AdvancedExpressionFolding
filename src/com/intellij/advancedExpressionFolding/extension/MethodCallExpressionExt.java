@@ -31,22 +31,7 @@ public class MethodCallExpressionExt {
     private static final MethodCallFactory FACTORY = MethodCallFactory.INSTANCE;
 
     @Nullable
-    static Expression getMethodCallExpression(PsiMethodCallExpression element, @NotNull Document document) {
-        @NotNull AdvancedExpressionFoldingSettings settings = AdvancedExpressionFoldingSettings.getInstance();
-        PsiReferenceExpression referenceExpression = element.getMethodExpression();
-        Optional<PsiElement> identifierOpt = Stream.of(referenceExpression.getChildren())
-                .filter(c -> c instanceof PsiIdentifier).findAny();
-        if (identifierOpt.isEmpty()) {
-            return null;
-        }
-        PsiElement identifier = identifierOpt.orElseThrow();
-        @Nullable PsiExpression qualifier = element.getMethodExpression().getQualifierExpression();
-
-        Expression shiftExpr = FieldShiftExt2.createExpression(element, document, qualifier);
-        if (shiftExpr != null) {
-            return shiftExpr;
-        }
-
+    private static Expression useMethodCallFactory(PsiElement identifier, PsiReferenceExpression referenceExpression, @NotNull Document document, @Nullable PsiExpression qualifier, @NotNull AdvancedExpressionFoldingSettings settings, PsiMethodCallExpression element) {
         if (FACTORY.getSupportedMethods().contains(identifier.getText())) {
             PsiMethod method = (PsiMethod) referenceExpression.resolve();
             if (method != null) {
@@ -64,6 +49,30 @@ public class MethodCallExpressionExt {
                 }
             }
         }
+        return null;
+    }
+
+    @Nullable
+    static Expression getMethodCallExpression(PsiMethodCallExpression element, @NotNull Document document) {
+        @NotNull AdvancedExpressionFoldingSettings settings = AdvancedExpressionFoldingSettings.getInstance();
+        PsiReferenceExpression referenceExpression = element.getMethodExpression();
+        Optional<PsiElement> identifierOpt = Stream.of(referenceExpression.getChildren())
+                .filter(c -> c instanceof PsiIdentifier).findAny();
+        if (identifierOpt.isEmpty()) {
+            return null;
+        }
+        PsiElement identifier = identifierOpt.orElseThrow();
+        @Nullable PsiExpression qualifier = element.getMethodExpression().getQualifierExpression();
+
+        Expression shiftExpr = FieldShiftExt2.createExpression(element, document, qualifier);
+        if (shiftExpr != null) {
+            return shiftExpr;
+        }
+
+        var factoryResult = useMethodCallFactory(identifier, referenceExpression, document, qualifier, settings, element);
+        if (factoryResult != null) {
+            return factoryResult;
+        }
 
         var result = onAnyArguments(element, settings, document, identifier, qualifier, referenceExpression);
         if (result != null) {
@@ -77,10 +86,9 @@ public class MethodCallExpressionExt {
         String methodName = identifier.getText();
         int argumentCount = element.getArgumentList().getExpressions().length;
 
-        var context = new Context(methodName, className, qualifierExpression, method, document, identifier);
-
         var methodCall = FACTORY.findByMethodName(methodName);
         if (methodCall != null) {
+            var context = new Context(methodName, className, qualifierExpression, method, document, identifier);
             var expression = methodCall.onAnyArguments(element, context);
             if (expression != null) {
                 return expression;

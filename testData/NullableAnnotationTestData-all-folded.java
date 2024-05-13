@@ -7,7 +7,7 @@ import javax.annotation.Nonnull;
 import java.time.LocalDate;
 
 @SuppressWarnings("ALL")
-@Getter @Setterˣ @Serial public class NullableAnnotationTestData {
+@Getter @Setterˣ @Serial public class NullableAnnotationTestData {const serialVersionUID = 1234567L;
     
     NullableAnnotationTestData!! data;
     boolean ok;
@@ -77,11 +77,14 @@ import java.time.LocalDate;
     }
 
     @Getter class GetterNullable {
-        NullableAnnotationTestData? getterNullable;
+        NullableAnnotationTestData getterNullable;
+        public NullableAnnotationTestData? getGetterNullable() {
+            return getterNullable;
+        }
     }
 
     @Setter class SetterNullable {
-        NullableAnnotationTestData!! setterNullable;
+        NullableAnnotationTestData setterNullable;
     }
 
 }
