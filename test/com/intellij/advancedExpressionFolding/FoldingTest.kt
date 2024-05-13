@@ -285,15 +285,12 @@ open class FoldingTest : BaseTest() {
     fun testConstTestData() {
         doFoldingTest(state::const)
     }
-
-
     /**
      * [data.FinalRemovalTestData]
      */
     fun testFinalRemovalTestData() {
         doFoldingTest(state::finalRemoval)
     }
-
     /**
      * [data.FinalEmojiTestData]
      */

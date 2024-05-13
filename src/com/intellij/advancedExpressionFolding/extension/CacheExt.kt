@@ -1,0 +1,70 @@
+package com.intellij.advancedExpressionFolding.extension
+
+import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings
+import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.advancedExpressionFolding.extension.BuildExpressionExt.buildExpression
+import com.intellij.advancedExpressionFolding.extension.Keys.getKey
+import com.intellij.advancedExpressionFolding.extension.Keys.getKeyOld
+import com.intellij.advancedExpressionFolding.extension.Keys.getVersionKey
+import com.intellij.openapi.editor.Document
+import com.intellij.psi.PsiElement
+import com.intellij.psi.util.CachedValueProvider
+import com.intellij.psi.util.CachedValuesManager
+import com.intellij.psi.util.PsiModificationTracker
+import org.jetbrains.annotations.Contract
+
+object CacheExt : AdvancedExpressionFoldingSettings.StateDelegate() {
+
+    private fun PsiElement.isExpired(document: Document, synthetic: Boolean): Boolean {
+        val versionKey = getVersionKey(synthetic)
+        val lastVersion = getUserData(versionKey)
+        val hashCode = document.text.hashCode()
+        val changed = lastVersion != hashCode
+        if (changed) {
+            Keys.clearAll(this)
+            putUserData(versionKey, hashCode)
+        }
+        return changed
+    }
+
+    // method is run from different threads
+    @JvmStatic
+    @Contract("_, _, true -> !null")
+    fun getExpression(element: PsiElement, document: Document, synthetic: Boolean): Expression? {
+        if (memoryImprovement) {
+            val key = getKey(synthetic)
+            val cachedExpression = if (element.isExpired(document, synthetic)) {
+                null
+            } else {
+                element.getUserData(key)
+            }
+            return when (cachedExpression) {
+                null -> {
+                    val newExpression = buildExpression(element, document, synthetic)
+                    element.putUserData(key, newExpression.ofNullable())
+                    newExpression
+                }
+                else -> cachedExpression.getOrNull()
+            }
+        } else {
+            val cachedValue = CachedValuesManager.getCachedValue(element, getKeyOld(synthetic)) {
+                val expression = buildExpression(element, document, synthetic)
+                CachedValueProvider.Result.create(
+                    expression.ofNullable(),
+                    PsiModificationTracker.MODIFICATION_COUNT
+                )
+            }
+            return cachedValue.getOrNull()
+        }
+    }
+
+    private val NULL_OBJECT: Expression = object : Expression() {
+        override fun toString(): String = "NULL_OBJECT"
+    }
+    private fun Expression?.ofNullable(): Expression = this ?: NULL_OBJECT
+    private fun Expression?.getOrNull(): Expression? = when {
+        this === NULL_OBJECT -> null
+        else -> this
+    }
+
+}

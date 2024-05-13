@@ -98,7 +98,7 @@ object NullableExt : BaseExtension() {
             return if (foldConstType(field)) {
                 FieldConstExpression(typeElement, field.modifierList!!, field.constText())
             } else {
-                foldConstructor(field, document)
+                foldFieldConstructor(field, document)
             }
         }
         return null
@@ -112,7 +112,7 @@ object NullableExt : BaseExtension() {
         }
     }
 
-    private fun foldConstructor(field: PsiField, document: Document): Expression? {
+    private fun foldFieldConstructor(field: PsiField, document: Document): Expression? {
         val constFolding = FieldConstExpression(null, field.modifierList!!, field.constText())
         experimental.on() ?: return constFolding
 
