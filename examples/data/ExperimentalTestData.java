@@ -1,9 +1,18 @@
 package data;
 
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringJoiner;
 
+/**
+ * {@link com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.IState#getExperimental()}
+ * <p>
+ * {@link com.intellij.advancedExpressionFolding.extension.ExperimentalExt#singletonField(com.intellij.psi.PsiReferenceExpression)}
+ * {@link com.intellij.advancedExpressionFolding.extension.NullableExt#foldFieldConstructor(com.intellij.psi.PsiField, com.intellij.openapi.editor.Document)}
+ * <p>
+ * {@link com.intellij.advancedExpressionFolding.FoldingTest#testExperimentalTestData()}
+ */
 public class ExperimentalTestData {
 
     static class Const {
@@ -30,14 +39,16 @@ public class ExperimentalTestData {
 
     }
 
-    void main(){
+    void main() {
         var s = Singleton.INSTANCE;
         System.out.println(Singleton.INSTANCE.isOk());
         System.out.println(Singleton.INSTANCE.main(Singleton.INSTANCE.main(Singleton.getInstance())));
     }
+
     static class Singleton {
         static Singleton INSTANCE = new Singleton();
         boolean ok;
+
         Singleton main(Singleton s) {
             return this;
         }

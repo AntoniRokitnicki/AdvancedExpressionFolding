@@ -193,7 +193,7 @@ class AdvancedExpressionFoldingOptionsProvider : AbstractExpressionFoldingOption
 
         checkBox(
             "Memory improvements(experimental)",
-            state::memoryImprovements
+            state::memoryImprovement
         )
         checkBox(
             "Experimental features",

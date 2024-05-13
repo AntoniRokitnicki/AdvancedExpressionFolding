@@ -6,6 +6,13 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.util.Optional;
 
+/**
+ * {@link com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.IState#getLombok()}
+ * <p>
+ *  {@link com.intellij.advancedExpressionFolding.extension.PsiClassExt#addLombokSupport(com.intellij.psi.PsiClass)}
+ * <p>
+ * {@link com.intellij.advancedExpressionFolding.FoldingTest#testLombokTestData()}
+ */
 @SuppressWarnings("ALL")
 public class LombokTestData {
 

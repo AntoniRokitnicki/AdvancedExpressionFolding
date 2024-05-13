@@ -1,11 +1,26 @@
 package data;
 
-import static data.ConstTestData.EOrder.SECOND;
+import com.intellij.openapi.editor.Document;
+import com.intellij.psi.PsiField;
+import com.intellij.psi.PsiTypeElement;
 
+import java.util.regex.Pattern;
+
+import static data.ConstTestData.EOrder.SECOND;
+import static java.util.regex.Pattern.compile;
+
+
+/**
+ * {@link com.intellij.advancedExpressionFolding.extension.NullableExt#fieldConstExpression(PsiField, PsiTypeElement, Document)} )}
+ * {@link com.intellij.advancedExpressionFolding.FoldingTest#testConstTestData}
+ */
 public class ConstTestData {
 
-    static final EOrder ORDER1 = EOrder.FIRST;
-    static final EOrder ORDER2 = SECOND;
+    static final EOrder ENUM = EOrder.FIRST;
+    static final EOrder ENUM_STATIC_IMPORT = SECOND;
+
+    static final Pattern PATTERN = Pattern.compile(".*");
+    static final Pattern PATTERN_STATIC_IMPORT = compile(".*");
 
     public static final String PUBLIC_STATIC_FINAL_VAR = "";
     private static final String PRIVATE_STATIC_FINAL_VAR = "";

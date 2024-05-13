@@ -29,7 +29,7 @@ val PsiField.singletonField: Boolean
 inline fun String.filter(predicate: (String) -> Boolean): String? = takeIf(predicate)
 
 fun PsiElement.isIgnored(): Boolean = getUserData(IGNORED) ?: false
-fun PsiElement.markIgnored() = putUserData(IGNORED, true)
+fun PsiElement.markIgnored(value: Boolean = true) = putUserData(IGNORED, value)
 
 operator fun TextRange.plus(string: String): TextRange =
     TextRange.create(startOffset+string.length, endOffset+string.length)

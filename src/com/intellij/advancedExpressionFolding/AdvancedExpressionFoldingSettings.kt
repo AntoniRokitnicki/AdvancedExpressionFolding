@@ -50,7 +50,7 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
         val logFolding: Boolean
         val destructuring: Boolean
         val println: Boolean
-        val memoryImprovements: Boolean
+        val memoryImprovement: Boolean
         val const: Boolean
         val nullable: Boolean
         val finalRemoval: Boolean
@@ -94,7 +94,7 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
         override var finalEmoji: Boolean = true,
         // NEW OPTION VAR
 
-        override var memoryImprovements: Boolean = false,
+        override var memoryImprovement: Boolean = true,
         override var experimental: Boolean = false,
 
         override var testDataFoldingDiff: Boolean = false,
