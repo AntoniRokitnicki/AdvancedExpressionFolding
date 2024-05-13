@@ -4,6 +4,10 @@
 
 ## [Unreleased]
 
+## [1.0.49] - 2024-05-13
+
+Implemented memory improvement feature bypassing CachedValuesManager and more methods for get and put folding
+
 ## [1.0.48] - 2024-05-12
 
 New options: Boolean for simplifying public static final to const, simplifying @NotNull to Type!! and @Nullable to Type?, removing the 'final' modifier from all elements except fields, replacing the 'final' modifier with 🔒, and allowing to opt in to experimental features
@@ -219,7 +223,8 @@ Improved handling of multi-line log messages
 
 ## [0.0.1]
 
-[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.48...HEAD
+[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.49...HEAD
+[1.0.49]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.48...v1.0.49
 [1.0.48]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.47...v1.0.48
 [1.0.47]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.46...v1.0.47
 [1.0.46]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.45...v1.0.46
