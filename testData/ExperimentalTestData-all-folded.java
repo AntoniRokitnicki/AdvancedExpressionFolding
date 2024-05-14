@@ -1,6 +1,9 @@
 package data;
 
 
+import com.google.common.collect.Maps;
+import org.apache.commons.compress.utils.Lists;
+
 import java.util.*;
 
 /**
@@ -23,12 +26,17 @@ public class ExperimentalTestData {
         const HashMap<String, String> MAP = ::new;
         const HashMap<String, String> MAP2 = ::new;
         const Map<String, String> MAP3 = new HashMap<>();
+        const Map<String, String> MAP_TREE = new TreeMap<>();
+        const Map<String, String> MAP4 = Maps.newHashMap();
 
         const List<String> LIST = new ArrayList<>();
-        const List<String> LIST2 = List.of("1");
+        const List<String> LIST2 = Lists.newArrayList();
+        const List<String> LIST_SINGLE = List.of("1");
+        const List<String> LIST_LINKED = new LinkedList<>();
+
 
         const ConstClass SELF_PARAM_1 = ::new(true);
-        const ConstClass SELF_PARAM_2 = ::new(false, LIST2.getFirst());
+        const ConstClass SELF_PARAM_2 = ::new(false, LIST_SINGLE.getFirst());
 
         const ConstClass SELF_SUBCLASS_MORE_FIELD = new ConstClass() {
             int i = 1;
@@ -74,10 +82,15 @@ public class ExperimentalTestData {
         val s = Singleton.🧍;
         println(Singleton.🧍.ok);
         println(Singleton.🧍.main(Singleton.🧍.main(Singleton.instance)));
+
+        val s2 = Singleton.🧍.LOCAL;
+        println(Singleton.🧍.LOCAL.ok);
+        println(Singleton.🧍.LOCAL.main(Singleton.🧍.LOCAL.main(Singleton.instance)));
     }
 
-    @Getter static class Singleton {
+    @Getterˣ static class Singleton {
         static Singleton INSTANCE = ::new;
+        Singleton LOCAL = ::new;
         boolean ok;
 
         Singleton main(Singleton s) {

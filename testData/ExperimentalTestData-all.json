@@ -1,12 +1,12 @@
 {
-  "size" : 97,
+  "size" : 119,
   "list" : [ {
     "id" : 0,
     "text" : " ",
     "placeholder" : "",
     "range" : {
-      "start" : 658,
-      "end" : 659,
+      "start" : 746,
+      "end" : 747,
       "size" : 1
     },
     "group" : "WrapperExpression",
@@ -16,8 +16,8 @@
     "text" : "ConstClass",
     "placeholder" : "",
     "range" : {
-      "start" : 659,
-      "end" : 669,
+      "start" : 747,
+      "end" : 757,
       "size" : 10
     },
     "group" : "WrapperExpression",
@@ -27,8 +27,8 @@
     "text" : " ",
     "placeholder" : " ::",
     "range" : {
-      "start" : 654,
-      "end" : 655,
+      "start" : 742,
+      "end" : 743,
       "size" : 1
     },
     "group" : "WrapperExpression",
@@ -38,8 +38,8 @@
     "text" : "()",
     "placeholder" : "",
     "range" : {
-      "start" : 669,
-      "end" : 671,
+      "start" : 757,
+      "end" : 759,
       "size" : 2
     },
     "group" : "WrapperExpression",
@@ -49,8 +49,8 @@
     "text" : "public static final",
     "placeholder" : "const",
     "range" : {
-      "start" : 617,
-      "end" : 636,
+      "start" : 705,
+      "end" : 724,
       "size" : 19
     },
     "group" : "FieldConstExpression",
@@ -60,8 +60,8 @@
     "text" : " ",
     "placeholder" : "",
     "range" : {
-      "start" : 726,
-      "end" : 727,
+      "start" : 814,
+      "end" : 815,
       "size" : 1
     },
     "group" : "WrapperExpression",
@@ -71,8 +71,8 @@
     "text" : "ConstClass() {\n        }",
     "placeholder" : "{}",
     "range" : {
-      "start" : 727,
-      "end" : 751,
+      "start" : 815,
+      "end" : 839,
       "size" : 24
     },
     "group" : "WrapperExpression",
@@ -82,8 +82,8 @@
     "text" : " ",
     "placeholder" : " ::",
     "range" : {
-      "start" : 722,
-      "end" : 723,
+      "start" : 810,
+      "end" : 811,
       "size" : 1
     },
     "group" : "WrapperExpression",
@@ -93,8 +93,8 @@
     "text" : "()",
     "placeholder" : "",
     "range" : {
-      "start" : 737,
-      "end" : 739,
+      "start" : 825,
+      "end" : 827,
       "size" : 2
     },
     "group" : "WrapperExpression",
@@ -104,8 +104,8 @@
     "text" : "public static final",
     "placeholder" : "const",
     "range" : {
-      "start" : 681,
-      "end" : 700,
+      "start" : 769,
+      "end" : 788,
       "size" : 19
     },
     "group" : "FieldConstExpression",
@@ -115,8 +115,8 @@
     "text" : "public static final",
     "placeholder" : "const",
     "range" : {
-      "start" : 761,
-      "end" : 780,
+      "start" : 849,
+      "end" : 868,
       "size" : 19
     },
     "group" : "FieldConstExpression",
@@ -126,8 +126,8 @@
     "text" : "public static final",
     "placeholder" : "const",
     "range" : {
-      "start" : 832,
-      "end" : 851,
+      "start" : 920,
+      "end" : 939,
       "size" : 19
     },
     "group" : "FieldConstExpression",
@@ -137,8 +137,8 @@
     "text" : " ",
     "placeholder" : "",
     "range" : {
-      "start" : 974,
-      "end" : 975,
+      "start" : 1062,
+      "end" : 1063,
       "size" : 1
     },
     "group" : "WrapperExpression",
@@ -148,8 +148,8 @@
     "text" : "HashMap<>",
     "placeholder" : "",
     "range" : {
-      "start" : 975,
-      "end" : 984,
+      "start" : 1063,
+      "end" : 1072,
       "size" : 9
     },
     "group" : "WrapperExpression",
@@ -159,8 +159,8 @@
     "text" : " ",
     "placeholder" : " ::",
     "range" : {
-      "start" : 970,
-      "end" : 971,
+      "start" : 1058,
+      "end" : 1059,
       "size" : 1
     },
     "group" : "WrapperExpression",
@@ -170,8 +170,8 @@
     "text" : "()",
     "placeholder" : "",
     "range" : {
-      "start" : 984,
-      "end" : 986,
+      "start" : 1072,
+      "end" : 1074,
       "size" : 2
     },
     "group" : "WrapperExpression",
@@ -181,8 +181,8 @@
     "text" : "private static final",
     "placeholder" : "const",
     "range" : {
-      "start" : 920,
-      "end" : 940,
+      "start" : 1008,
+      "end" : 1028,
       "size" : 20
     },
     "group" : "FieldConstExpression",
@@ -192,8 +192,8 @@
     "text" : " ",
     "placeholder" : "",
     "range" : {
-      "start" : 1051,
-      "end" : 1052,
+      "start" : 1139,
+      "end" : 1140,
       "size" : 1
     },
     "group" : "WrapperExpression",
@@ -203,8 +203,8 @@
     "text" : "HashMap<String, String>",
     "placeholder" : "",
     "range" : {
-      "start" : 1052,
-      "end" : 1075,
+      "start" : 1140,
+      "end" : 1163,
       "size" : 23
     },
     "group" : "WrapperExpression",
@@ -214,8 +214,8 @@
     "text" : " ",
     "placeholder" : " ::",
     "range" : {
-      "start" : 1047,
-      "end" : 1048,
+      "start" : 1135,
+      "end" : 1136,
       "size" : 1
     },
     "group" : "WrapperExpression",
@@ -225,8 +225,8 @@
     "text" : "()",
     "placeholder" : "",
     "range" : {
-      "start" : 1075,
-      "end" : 1077,
+      "start" : 1163,
+      "end" : 1165,
       "size" : 2
     },
     "group" : "WrapperExpression",
@@ -236,8 +236,8 @@
     "text" : "private static final",
     "placeholder" : "const",
     "range" : {
-      "start" : 996,
-      "end" : 1016,
+      "start" : 1084,
+      "end" : 1104,
       "size" : 20
     },
     "group" : "FieldConstExpression",
@@ -247,8 +247,8 @@
     "text" : "private static final",
     "placeholder" : "const",
     "range" : {
-      "start" : 1087,
-      "end" : 1107,
+      "start" : 1175,
+      "end" : 1195,
       "size" : 20
     },
     "group" : "FieldConstExpression",
@@ -258,8 +258,8 @@
     "text" : "private static final",
     "placeholder" : "const",
     "range" : {
-      "start" : 1161,
-      "end" : 1181,
+      "start" : 1248,
+      "end" : 1268,
       "size" : 20
     },
     "group" : "FieldConstExpression",
@@ -269,803 +269,1045 @@
     "text" : "private static final",
     "placeholder" : "const",
     "range" : {
-      "start" : 1229,
-      "end" : 1249,
+      "start" : 1325,
+      "end" : 1345,
       "size" : 20
     },
     "group" : "FieldConstExpression",
     "groupReference" : 12
   }, {
     "id" : 25,
-    "text" : " ",
-    "placeholder" : "",
+    "text" : "private static final",
+    "placeholder" : "const",
     "range" : {
-      "start" : 1343,
-      "end" : 1344,
-      "size" : 1
+      "start" : 1401,
+      "end" : 1421,
+      "size" : 20
     },
-    "group" : "WrapperExpression",
+    "group" : "FieldConstExpression",
     "groupReference" : 13
   }, {
     "id" : 26,
-    "text" : "ConstClass",
-    "placeholder" : "",
-    "range" : {
-      "start" : 1344,
-      "end" : 1354,
-      "size" : 10
-    },
-    "group" : "WrapperExpression",
-    "groupReference" : 13
-  }, {
-    "id" : 27,
-    "text" : " ",
-    "placeholder" : " ::",
-    "range" : {
-      "start" : 1339,
-      "end" : 1340,
-      "size" : 1
-    },
-    "group" : "WrapperExpression",
-    "groupReference" : 13
-  }, {
-    "id" : 28,
-    "text" : "public static final",
+    "text" : "private static final",
     "placeholder" : "const",
     "range" : {
-      "start" : 1294,
-      "end" : 1313,
-      "size" : 19
+      "start" : 1469,
+      "end" : 1489,
+      "size" : 20
     },
     "group" : "FieldConstExpression",
     "groupReference" : 14
+  }, {
+    "id" : 27,
+    "text" : "private static final",
+    "placeholder" : "const",
+    "range" : {
+      "start" : 1541,
+      "end" : 1561,
+      "size" : 20
+    },
+    "group" : "FieldConstExpression",
+    "groupReference" : 15
+  }, {
+    "id" : 28,
+    "text" : "private static final",
+    "placeholder" : "const",
+    "range" : {
+      "start" : 1611,
+      "end" : 1631,
+      "size" : 20
+    },
+    "group" : "FieldConstExpression",
+    "groupReference" : 16
   }, {
     "id" : 29,
     "text" : " ",
     "placeholder" : "",
     "range" : {
-      "start" : 1419,
-      "end" : 1420,
+      "start" : 1738,
+      "end" : 1739,
       "size" : 1
     },
     "group" : "WrapperExpression",
-    "groupReference" : 15
+    "groupReference" : 17
   }, {
     "id" : 30,
     "text" : "ConstClass",
     "placeholder" : "",
     "range" : {
-      "start" : 1420,
-      "end" : 1430,
+      "start" : 1739,
+      "end" : 1749,
       "size" : 10
     },
     "group" : "WrapperExpression",
-    "groupReference" : 15
+    "groupReference" : 17
   }, {
     "id" : 31,
     "text" : " ",
     "placeholder" : " ::",
     "range" : {
-      "start" : 1415,
-      "end" : 1416,
+      "start" : 1734,
+      "end" : 1735,
       "size" : 1
     },
     "group" : "WrapperExpression",
-    "groupReference" : 15
-  }, {
-    "id" : 32,
-    "text" : ".get",
-    "placeholder" : ".getFirst",
-    "range" : {
-      "start" : 1443,
-      "end" : 1447,
-      "size" : 4
-    },
-    "group" : "Get",
-    "groupReference" : 16
-  }, {
-    "id" : 33,
-    "text" : "0",
-    "placeholder" : "",
-    "range" : {
-      "start" : 1448,
-      "end" : 1449,
-      "size" : 1
-    },
-    "group" : "Get",
-    "groupReference" : 16
-  }, {
-    "id" : 34,
-    "text" : "public static final",
-    "placeholder" : "const",
-    "range" : {
-      "start" : 1370,
-      "end" : 1389,
-      "size" : 19
-    },
-    "group" : "FieldConstExpression",
     "groupReference" : 17
   }, {
-    "id" : 35,
+    "id" : 32,
     "text" : "public static final",
     "placeholder" : "const",
     "range" : {
-      "start" : 1462,
-      "end" : 1481,
+      "start" : 1689,
+      "end" : 1708,
       "size" : 19
     },
     "group" : "FieldConstExpression",
     "groupReference" : 18
   }, {
-    "id" : 36,
-    "text" : "public static final",
-    "placeholder" : "const",
-    "range" : {
-      "start" : 1581,
-      "end" : 1600,
-      "size" : 19
-    },
-    "group" : "FieldConstExpression",
-    "groupReference" : 19
-  }, {
-    "id" : 37,
+    "id" : 33,
     "text" : " ",
     "placeholder" : "",
     "range" : {
-      "start" : 1891,
-      "end" : 1892,
+      "start" : 1814,
+      "end" : 1815,
       "size" : 1
     },
     "group" : "WrapperExpression",
-    "groupReference" : 20
+    "groupReference" : 19
   }, {
-    "id" : 38,
+    "id" : 34,
     "text" : "ConstClass",
     "placeholder" : "",
     "range" : {
-      "start" : 1892,
-      "end" : 1902,
+      "start" : 1815,
+      "end" : 1825,
       "size" : 10
     },
     "group" : "WrapperExpression",
-    "groupReference" : 20
+    "groupReference" : 19
   }, {
-    "id" : 39,
+    "id" : 35,
     "text" : " ",
     "placeholder" : " ::",
     "range" : {
-      "start" : 1887,
-      "end" : 1888,
+      "start" : 1810,
+      "end" : 1811,
       "size" : 1
     },
     "group" : "WrapperExpression",
+    "groupReference" : 19
+  }, {
+    "id" : 36,
+    "text" : ".get",
+    "placeholder" : ".getFirst",
+    "range" : {
+      "start" : 1844,
+      "end" : 1848,
+      "size" : 4
+    },
+    "group" : "Get",
     "groupReference" : 20
   }, {
-    "id" : 40,
-    "text" : "()",
+    "id" : 37,
+    "text" : "0",
     "placeholder" : "",
     "range" : {
-      "start" : 1902,
-      "end" : 1904,
-      "size" : 2
+      "start" : 1849,
+      "end" : 1850,
+      "size" : 1
     },
-    "group" : "WrapperExpression",
+    "group" : "Get",
     "groupReference" : 20
+  }, {
+    "id" : 38,
+    "text" : "public static final",
+    "placeholder" : "const",
+    "range" : {
+      "start" : 1765,
+      "end" : 1784,
+      "size" : 19
+    },
+    "group" : "FieldConstExpression",
+    "groupReference" : 21
+  }, {
+    "id" : 39,
+    "text" : "public static final",
+    "placeholder" : "const",
+    "range" : {
+      "start" : 1863,
+      "end" : 1882,
+      "size" : 19
+    },
+    "group" : "FieldConstExpression",
+    "groupReference" : 22
+  }, {
+    "id" : 40,
+    "text" : "public static final",
+    "placeholder" : "const",
+    "range" : {
+      "start" : 1982,
+      "end" : 2001,
+      "size" : 19
+    },
+    "group" : "FieldConstExpression",
+    "groupReference" : 23
   }, {
     "id" : 41,
     "text" : " ",
     "placeholder" : "",
     "range" : {
-      "start" : 1939,
-      "end" : 1940,
+      "start" : 2292,
+      "end" : 2293,
       "size" : 1
     },
     "group" : "WrapperExpression",
-    "groupReference" : 21
+    "groupReference" : 24
   }, {
     "id" : 42,
-    "text" : "ConstClass() {\n        }",
-    "placeholder" : "{}",
+    "text" : "ConstClass",
+    "placeholder" : "",
     "range" : {
-      "start" : 1940,
-      "end" : 1964,
-      "size" : 24
+      "start" : 2293,
+      "end" : 2303,
+      "size" : 10
     },
     "group" : "WrapperExpression",
-    "groupReference" : 21
+    "groupReference" : 24
   }, {
     "id" : 43,
     "text" : " ",
     "placeholder" : " ::",
     "range" : {
-      "start" : 1935,
-      "end" : 1936,
+      "start" : 2288,
+      "end" : 2289,
       "size" : 1
     },
     "group" : "WrapperExpression",
-    "groupReference" : 21
+    "groupReference" : 24
   }, {
     "id" : 44,
     "text" : "()",
     "placeholder" : "",
     "range" : {
-      "start" : 1950,
-      "end" : 1952,
+      "start" : 2303,
+      "end" : 2305,
       "size" : 2
     },
     "group" : "WrapperExpression",
-    "groupReference" : 21
+    "groupReference" : 24
   }, {
     "id" : 45,
     "text" : " ",
     "placeholder" : "",
     "range" : {
-      "start" : 2166,
-      "end" : 2167,
+      "start" : 2340,
+      "end" : 2341,
       "size" : 1
     },
     "group" : "WrapperExpression",
-    "groupReference" : 22
+    "groupReference" : 25
   }, {
     "id" : 46,
-    "text" : "HashMap<>",
-    "placeholder" : "",
+    "text" : "ConstClass() {\n        }",
+    "placeholder" : "{}",
     "range" : {
-      "start" : 2167,
-      "end" : 2176,
-      "size" : 9
+      "start" : 2341,
+      "end" : 2365,
+      "size" : 24
     },
     "group" : "WrapperExpression",
-    "groupReference" : 22
+    "groupReference" : 25
   }, {
     "id" : 47,
     "text" : " ",
     "placeholder" : " ::",
     "range" : {
-      "start" : 2162,
-      "end" : 2163,
+      "start" : 2336,
+      "end" : 2337,
       "size" : 1
     },
     "group" : "WrapperExpression",
-    "groupReference" : 22
+    "groupReference" : 25
   }, {
     "id" : 48,
     "text" : "()",
     "placeholder" : "",
     "range" : {
-      "start" : 2176,
-      "end" : 2178,
+      "start" : 2351,
+      "end" : 2353,
       "size" : 2
     },
     "group" : "WrapperExpression",
-    "groupReference" : 22
+    "groupReference" : 25
   }, {
     "id" : 49,
     "text" : " ",
     "placeholder" : "",
     "range" : {
-      "start" : 2236,
-      "end" : 2237,
+      "start" : 2567,
+      "end" : 2568,
       "size" : 1
     },
     "group" : "WrapperExpression",
-    "groupReference" : 23
+    "groupReference" : 26
   }, {
     "id" : 50,
-    "text" : "HashMap<String, String>",
+    "text" : "HashMap<>",
     "placeholder" : "",
     "range" : {
-      "start" : 2237,
-      "end" : 2260,
-      "size" : 23
+      "start" : 2568,
+      "end" : 2577,
+      "size" : 9
     },
     "group" : "WrapperExpression",
-    "groupReference" : 23
+    "groupReference" : 26
   }, {
     "id" : 51,
     "text" : " ",
     "placeholder" : " ::",
     "range" : {
-      "start" : 2232,
-      "end" : 2233,
+      "start" : 2563,
+      "end" : 2564,
       "size" : 1
     },
     "group" : "WrapperExpression",
-    "groupReference" : 23
+    "groupReference" : 26
   }, {
     "id" : 52,
     "text" : "()",
     "placeholder" : "",
     "range" : {
-      "start" : 2260,
-      "end" : 2262,
+      "start" : 2577,
+      "end" : 2579,
       "size" : 2
     },
     "group" : "WrapperExpression",
-    "groupReference" : 23
+    "groupReference" : 26
   }, {
     "id" : 53,
+    "text" : " ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2637,
+      "end" : 2638,
+      "size" : 1
+    },
+    "group" : "WrapperExpression",
+    "groupReference" : 27
+  }, {
+    "id" : 54,
+    "text" : "HashMap<String, String>",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2638,
+      "end" : 2661,
+      "size" : 23
+    },
+    "group" : "WrapperExpression",
+    "groupReference" : 27
+  }, {
+    "id" : 55,
+    "text" : " ",
+    "placeholder" : " ::",
+    "range" : {
+      "start" : 2633,
+      "end" : 2634,
+      "size" : 1
+    },
+    "group" : "WrapperExpression",
+    "groupReference" : 27
+  }, {
+    "id" : 56,
+    "text" : "()",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2661,
+      "end" : 2663,
+      "size" : 2
+    },
+    "group" : "WrapperExpression",
+    "groupReference" : 27
+  }, {
+    "id" : 57,
     "text" : "new ArrayList<>()",
     "placeholder" : "[]",
     "range" : {
-      "start" : 2373,
-      "end" : 2390,
+      "start" : 2774,
+      "end" : 2791,
       "size" : 17
     },
     "group" : "ListLiteral",
-    "groupReference" : 24
-  }, {
-    "id" : 54,
-    "text" : " ",
-    "placeholder" : "",
-    "range" : {
-      "start" : 2500,
-      "end" : 2501,
-      "size" : 1
-    },
-    "group" : "WrapperExpression",
-    "groupReference" : 25
-  }, {
-    "id" : 55,
-    "text" : "ConstClass",
-    "placeholder" : "",
-    "range" : {
-      "start" : 2501,
-      "end" : 2511,
-      "size" : 10
-    },
-    "group" : "WrapperExpression",
-    "groupReference" : 25
-  }, {
-    "id" : 56,
-    "text" : " ",
-    "placeholder" : " ::",
-    "range" : {
-      "start" : 2496,
-      "end" : 2497,
-      "size" : 1
-    },
-    "group" : "WrapperExpression",
-    "groupReference" : 25
-  }, {
-    "id" : 57,
-    "text" : " ",
-    "placeholder" : "",
-    "range" : {
-      "start" : 2569,
-      "end" : 2570,
-      "size" : 1
-    },
-    "group" : "WrapperExpression",
-    "groupReference" : 26
-  }, {
-    "id" : 58,
-    "text" : "ConstClass",
-    "placeholder" : "",
-    "range" : {
-      "start" : 2570,
-      "end" : 2580,
-      "size" : 10
-    },
-    "group" : "WrapperExpression",
-    "groupReference" : 26
-  }, {
-    "id" : 59,
-    "text" : " ",
-    "placeholder" : " ::",
-    "range" : {
-      "start" : 2565,
-      "end" : 2566,
-      "size" : 1
-    },
-    "group" : "WrapperExpression",
-    "groupReference" : 26
-  }, {
-    "id" : 60,
-    "text" : ".get",
-    "placeholder" : ".getFirst",
-    "range" : {
-      "start" : 2593,
-      "end" : 2597,
-      "size" : 4
-    },
-    "group" : "Get",
-    "groupReference" : 27
-  }, {
-    "id" : 61,
-    "text" : "0",
-    "placeholder" : "",
-    "range" : {
-      "start" : 2598,
-      "end" : 2599,
-      "size" : 1
-    },
-    "group" : "Get",
-    "groupReference" : 27
-  }, {
-    "id" : 62,
-    "text" : "var",
-    "placeholder" : "val",
-    "range" : {
-      "start" : 2979,
-      "end" : 2982,
-      "size" : 3
-    },
-    "group" : "VariableDeclarationImpl",
     "groupReference" : 28
   }, {
-    "id" : 63,
-    "text" : "INSTANCE",
-    "placeholder" : "\uD83E\uDDCD",
+    "id" : 58,
+    "text" : " ",
+    "placeholder" : "",
     "range" : {
-      "start" : 2997,
-      "end" : 3005,
-      "size" : 8
+      "start" : 2901,
+      "end" : 2902,
+      "size" : 1
     },
     "group" : "WrapperExpression",
     "groupReference" : 29
   }, {
-    "id" : 64,
-    "text" : "System.out.",
+    "id" : 59,
+    "text" : "ConstClass",
     "placeholder" : "",
     "range" : {
-      "start" : 3015,
-      "end" : 3026,
-      "size" : 11
+      "start" : 2902,
+      "end" : 2912,
+      "size" : 10
     },
-    "group" : "PrintlnExpression",
+    "group" : "WrapperExpression",
+    "groupReference" : 29
+  }, {
+    "id" : 60,
+    "text" : " ",
+    "placeholder" : " ::",
+    "range" : {
+      "start" : 2897,
+      "end" : 2898,
+      "size" : 1
+    },
+    "group" : "WrapperExpression",
+    "groupReference" : 29
+  }, {
+    "id" : 61,
+    "text" : " ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2970,
+      "end" : 2971,
+      "size" : 1
+    },
+    "group" : "WrapperExpression",
     "groupReference" : 30
   }, {
-    "id" : 65,
-    "text" : "isOk()",
-    "placeholder" : "ok",
+    "id" : 62,
+    "text" : "ConstClass",
+    "placeholder" : "",
     "range" : {
-      "start" : 3053,
-      "end" : 3059,
-      "size" : 6
+      "start" : 2971,
+      "end" : 2981,
+      "size" : 10
     },
-    "group" : "Getter",
+    "group" : "WrapperExpression",
+    "groupReference" : 30
+  }, {
+    "id" : 63,
+    "text" : " ",
+    "placeholder" : " ::",
+    "range" : {
+      "start" : 2966,
+      "end" : 2967,
+      "size" : 1
+    },
+    "group" : "WrapperExpression",
+    "groupReference" : 30
+  }, {
+    "id" : 64,
+    "text" : ".get",
+    "placeholder" : ".getFirst",
+    "range" : {
+      "start" : 2994,
+      "end" : 2998,
+      "size" : 4
+    },
+    "group" : "Get",
+    "groupReference" : 31
+  }, {
+    "id" : 65,
+    "text" : "0",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2999,
+      "end" : 3000,
+      "size" : 1
+    },
+    "group" : "Get",
     "groupReference" : 31
   }, {
     "id" : 66,
-    "text" : "INSTANCE",
-    "placeholder" : "\uD83E\uDDCD",
+    "text" : "var",
+    "placeholder" : "val",
     "range" : {
-      "start" : 3044,
-      "end" : 3052,
-      "size" : 8
+      "start" : 3380,
+      "end" : 3383,
+      "size" : 3
     },
-    "group" : "WrapperExpression",
+    "group" : "VariableDeclarationImpl",
     "groupReference" : 32
   }, {
     "id" : 67,
-    "text" : "isOk()",
-    "placeholder" : "ok",
-    "range" : {
-      "start" : 3053,
-      "end" : 3059,
-      "size" : 6
-    },
-    "group" : "Getter",
-    "groupReference" : 33
-  }, {
-    "id" : 68,
     "text" : "INSTANCE",
     "placeholder" : "\uD83E\uDDCD",
     "range" : {
-      "start" : 3044,
-      "end" : 3052,
+      "start" : 3398,
+      "end" : 3406,
       "size" : 8
     },
     "group" : "WrapperExpression",
     "groupReference" : 33
   }, {
-    "id" : 69,
+    "id" : 68,
     "text" : "System.out.",
     "placeholder" : "",
     "range" : {
-      "start" : 3070,
-      "end" : 3081,
+      "start" : 3416,
+      "end" : 3427,
       "size" : 11
     },
     "group" : "PrintlnExpression",
     "groupReference" : 34
   }, {
+    "id" : 69,
+    "text" : "isOk()",
+    "placeholder" : "ok",
+    "range" : {
+      "start" : 3454,
+      "end" : 3460,
+      "size" : 6
+    },
+    "group" : "Getter",
+    "groupReference" : 35
+  }, {
     "id" : 70,
     "text" : "INSTANCE",
     "placeholder" : "\uD83E\uDDCD",
     "range" : {
-      "start" : 3099,
-      "end" : 3107,
-      "size" : 8
-    },
-    "group" : "WrapperExpression",
-    "groupReference" : 35
-  }, {
-    "id" : 71,
-    "text" : "INSTANCE",
-    "placeholder" : "\uD83E\uDDCD",
-    "range" : {
-      "start" : 3123,
-      "end" : 3131,
+      "start" : 3445,
+      "end" : 3453,
       "size" : 8
     },
     "group" : "WrapperExpression",
     "groupReference" : 36
   }, {
-    "id" : 72,
-    "text" : "getInstance()",
-    "placeholder" : "instance",
+    "id" : 71,
+    "text" : "isOk()",
+    "placeholder" : "ok",
     "range" : {
-      "start" : 3147,
-      "end" : 3160,
-      "size" : 13
+      "start" : 3454,
+      "end" : 3460,
+      "size" : 6
     },
     "group" : "Getter",
     "groupReference" : 37
   }, {
-    "id" : 73,
+    "id" : 72,
     "text" : "INSTANCE",
     "placeholder" : "\uD83E\uDDCD",
     "range" : {
-      "start" : 3099,
-      "end" : 3107,
+      "start" : 3445,
+      "end" : 3453,
       "size" : 8
     },
     "group" : "WrapperExpression",
     "groupReference" : 37
+  }, {
+    "id" : 73,
+    "text" : "System.out.",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3471,
+      "end" : 3482,
+      "size" : 11
+    },
+    "group" : "PrintlnExpression",
+    "groupReference" : 38
   }, {
     "id" : 74,
     "text" : "INSTANCE",
     "placeholder" : "\uD83E\uDDCD",
     "range" : {
-      "start" : 3123,
-      "end" : 3131,
+      "start" : 3500,
+      "end" : 3508,
       "size" : 8
     },
     "group" : "WrapperExpression",
-    "groupReference" : 37
+    "groupReference" : 39
   }, {
     "id" : 75,
+    "text" : "INSTANCE",
+    "placeholder" : "\uD83E\uDDCD",
+    "range" : {
+      "start" : 3524,
+      "end" : 3532,
+      "size" : 8
+    },
+    "group" : "WrapperExpression",
+    "groupReference" : 40
+  }, {
+    "id" : 76,
     "text" : "getInstance()",
     "placeholder" : "instance",
     "range" : {
-      "start" : 3147,
-      "end" : 3160,
+      "start" : 3548,
+      "end" : 3561,
       "size" : 13
     },
     "group" : "Getter",
-    "groupReference" : 38
-  }, {
-    "id" : 76,
-    "text" : "\n\n        ",
-    "placeholder" : "",
-    "range" : {
-      "start" : 3347,
-      "end" : 3357,
-      "size" : 10
-    },
-    "group" : "ClassAnnotationExpression",
-    "groupReference" : 39
+    "groupReference" : 41
   }, {
     "id" : 77,
-    "text" : "public boolean isOk() {\n            return ok;\n        }",
-    "placeholder" : "",
+    "text" : "INSTANCE",
+    "placeholder" : "\uD83E\uDDCD",
     "range" : {
-      "start" : 3357,
-      "end" : 3413,
-      "size" : 56
+      "start" : 3500,
+      "end" : 3508,
+      "size" : 8
     },
-    "group" : "ClassAnnotationExpression",
-    "groupReference" : 39
+    "group" : "WrapperExpression",
+    "groupReference" : 41
   }, {
     "id" : 78,
-    "text" : "s",
-    "placeholder" : "@Getter s",
+    "text" : "INSTANCE",
+    "placeholder" : "\uD83E\uDDCD",
     "range" : {
-      "start" : 3176,
-      "end" : 3177,
-      "size" : 1
+      "start" : 3524,
+      "end" : 3532,
+      "size" : 8
     },
-    "group" : "ClassAnnotationExpression",
-    "groupReference" : 39
+    "group" : "WrapperExpression",
+    "groupReference" : 41
   }, {
     "id" : 79,
-    "text" : " ",
-    "placeholder" : "",
+    "text" : "getInstance()",
+    "placeholder" : "instance",
     "range" : {
-      "start" : 3240,
-      "end" : 3241,
-      "size" : 1
+      "start" : 3548,
+      "end" : 3561,
+      "size" : 13
     },
-    "group" : "WrapperExpression",
-    "groupReference" : 40
-  }, {
-    "id" : 80,
-    "text" : "Singleton",
-    "placeholder" : "",
-    "range" : {
-      "start" : 3241,
-      "end" : 3250,
-      "size" : 9
-    },
-    "group" : "WrapperExpression",
-    "groupReference" : 40
-  }, {
-    "id" : 81,
-    "text" : " ",
-    "placeholder" : " ::",
-    "range" : {
-      "start" : 3236,
-      "end" : 3237,
-      "size" : 1
-    },
-    "group" : "WrapperExpression",
-    "groupReference" : 40
-  }, {
-    "id" : 82,
-    "text" : "()",
-    "placeholder" : "",
-    "range" : {
-      "start" : 3250,
-      "end" : 3252,
-      "size" : 2
-    },
-    "group" : "WrapperExpression",
-    "groupReference" : 40
-  }, {
-    "id" : 83,
-    "text" : "\n\n        ",
-    "placeholder" : "",
-    "range" : {
-      "start" : 3825,
-      "end" : 3835,
-      "size" : 10
-    },
-    "group" : "ClassAnnotationExpression",
-    "groupReference" : 41
-  }, {
-    "id" : 84,
-    "text" : "@Override\n        public String toString() {\n            return new StringJoiner(\", \", ConstClass.class.getSimpleName() + \"[\", \"]\")\n                    .add(\"string='\" + string + \"'\")\n                    .toString();\n        }",
-    "placeholder" : "",
-    "range" : {
-      "start" : 3835,
-      "end" : 4061,
-      "size" : 226
-    },
-    "group" : "ClassAnnotationExpression",
-    "groupReference" : 41
-  }, {
-    "id" : 85,
-    "text" : "s",
-    "placeholder" : "@ToStringˣ s",
-    "range" : {
-      "start" : 3513,
-      "end" : 3514,
-      "size" : 1
-    },
-    "group" : "ClassAnnotationExpression",
-    "groupReference" : 41
-  }, {
-    "id" : 86,
-    "text" : "ok",
-    "placeholder" : "<<",
-    "range" : {
-      "start" : 3686,
-      "end" : 3688,
-      "size" : 2
-    },
-    "group" : "BuilderShiftExpression",
+    "group" : "Getter",
     "groupReference" : 42
   }, {
-    "id" : 87,
-    "text" : "ok",
-    "placeholder" : "<<",
+    "id" : 80,
+    "text" : "var",
+    "placeholder" : "val",
     "range" : {
-      "start" : 3778,
-      "end" : 3780,
-      "size" : 2
+      "start" : 3575,
+      "end" : 3578,
+      "size" : 3
     },
-    "group" : "BuilderShiftExpression",
+    "group" : "VariableDeclarationImpl",
     "groupReference" : 43
   }, {
-    "id" : 88,
-    "text" : "string",
-    "placeholder" : "<<",
+    "id" : 81,
+    "text" : "INSTANCE",
+    "placeholder" : "\uD83E\uDDCD",
     "range" : {
-      "start" : 3808,
-      "end" : 3814,
-      "size" : 6
+      "start" : 3594,
+      "end" : 3602,
+      "size" : 8
     },
-    "group" : "BuilderShiftExpression",
+    "group" : "WrapperExpression",
     "groupReference" : 44
   }, {
-    "id" : 89,
-    "text" : " ",
-    "placeholder" : " \"${",
+    "id" : 82,
+    "text" : "System.out.",
+    "placeholder" : "",
     "range" : {
-      "start" : 3921,
-      "end" : 3922,
-      "size" : 1
+      "start" : 3618,
+      "end" : 3629,
+      "size" : 11
     },
-    "group" : "InterpolatedString",
+    "group" : "PrintlnExpression",
     "groupReference" : 45
   }, {
-    "id" : 90,
-    "text" : " + \"",
-    "placeholder" : "}",
+    "id" : 83,
+    "text" : "isOk()",
+    "placeholder" : "ok",
     "range" : {
-      "start" : 3954,
-      "end" : 3958,
-      "size" : 4
-    },
-    "group" : "InterpolatedString",
-    "groupReference" : 45
-  }, {
-    "id" : 91,
-    "text" : "getSimpleName()",
-    "placeholder" : "simpleName",
-    "range" : {
-      "start" : 3939,
-      "end" : 3954,
-      "size" : 15
+      "start" : 3662,
+      "end" : 3668,
+      "size" : 6
     },
     "group" : "Getter",
     "groupReference" : 46
   }, {
-    "id" : 92,
-    "text" : "\" + ",
-    "placeholder" : "$",
+    "id" : 84,
+    "text" : "INSTANCE",
+    "placeholder" : "\uD83E\uDDCD",
     "range" : {
-      "start" : 4001,
-      "end" : 4005,
-      "size" : 4
+      "start" : 3647,
+      "end" : 3655,
+      "size" : 8
     },
-    "group" : "InterpolatedString",
+    "group" : "WrapperExpression",
     "groupReference" : 47
   }, {
-    "id" : 93,
-    "text" : " + \"",
-    "placeholder" : "",
+    "id" : 85,
+    "text" : "isOk()",
+    "placeholder" : "ok",
     "range" : {
-      "start" : 4011,
-      "end" : 4015,
-      "size" : 4
+      "start" : 3662,
+      "end" : 3668,
+      "size" : 6
     },
-    "group" : "InterpolatedString",
-    "groupReference" : 47
+    "group" : "Getter",
+    "groupReference" : 48
   }, {
-    "id" : 94,
-    "text" : "final",
-    "placeholder" : "",
+    "id" : 86,
+    "text" : "INSTANCE",
+    "placeholder" : "\uD83E\uDDCD",
     "range" : {
-      "start" : 4140,
-      "end" : 4145,
-      "size" : 5
+      "start" : 3647,
+      "end" : 3655,
+      "size" : 8
     },
     "group" : "WrapperExpression",
     "groupReference" : 48
   }, {
-    "id" : 95,
-    "text" : "s",
-    "placeholder" : "<<",
-    "range" : {
-      "start" : 4366,
-      "end" : 4367,
-      "size" : 1
-    },
-    "group" : "BuilderShiftExpression",
-    "groupReference" : 49
-  }, {
-    "id" : 96,
+    "id" : 87,
     "text" : "System.out.",
     "placeholder" : "",
     "range" : {
-      "start" : 4428,
-      "end" : 4439,
+      "start" : 3679,
+      "end" : 3690,
       "size" : 11
     },
     "group" : "PrintlnExpression",
+    "groupReference" : 49
+  }, {
+    "id" : 88,
+    "text" : "INSTANCE",
+    "placeholder" : "\uD83E\uDDCD",
+    "range" : {
+      "start" : 3708,
+      "end" : 3716,
+      "size" : 8
+    },
+    "group" : "WrapperExpression",
     "groupReference" : 50
+  }, {
+    "id" : 89,
+    "text" : "INSTANCE",
+    "placeholder" : "\uD83E\uDDCD",
+    "range" : {
+      "start" : 3738,
+      "end" : 3746,
+      "size" : 8
+    },
+    "group" : "WrapperExpression",
+    "groupReference" : 51
+  }, {
+    "id" : 90,
+    "text" : "getInstance()",
+    "placeholder" : "instance",
+    "range" : {
+      "start" : 3768,
+      "end" : 3781,
+      "size" : 13
+    },
+    "group" : "Getter",
+    "groupReference" : 52
+  }, {
+    "id" : 91,
+    "text" : "INSTANCE",
+    "placeholder" : "\uD83E\uDDCD",
+    "range" : {
+      "start" : 3708,
+      "end" : 3716,
+      "size" : 8
+    },
+    "group" : "WrapperExpression",
+    "groupReference" : 52
+  }, {
+    "id" : 92,
+    "text" : "INSTANCE",
+    "placeholder" : "\uD83E\uDDCD",
+    "range" : {
+      "start" : 3738,
+      "end" : 3746,
+      "size" : 8
+    },
+    "group" : "WrapperExpression",
+    "groupReference" : 52
+  }, {
+    "id" : 93,
+    "text" : "getInstance()",
+    "placeholder" : "instance",
+    "range" : {
+      "start" : 3768,
+      "end" : 3781,
+      "size" : 13
+    },
+    "group" : "Getter",
+    "groupReference" : 53
+  }, {
+    "id" : 94,
+    "text" : "\n\n        ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 4011,
+      "end" : 4021,
+      "size" : 10
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 54
+  }, {
+    "id" : 95,
+    "text" : "public boolean isOk() {\n            return ok;\n        }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 4021,
+      "end" : 4077,
+      "size" : 56
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 54
+  }, {
+    "id" : 96,
+    "text" : "s",
+    "placeholder" : "@Getterˣ s",
+    "range" : {
+      "start" : 3797,
+      "end" : 3798,
+      "size" : 1
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 54
+  }, {
+    "id" : 97,
+    "text" : " ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3861,
+      "end" : 3862,
+      "size" : 1
+    },
+    "group" : "WrapperExpression",
+    "groupReference" : 55
+  }, {
+    "id" : 98,
+    "text" : "Singleton",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3862,
+      "end" : 3871,
+      "size" : 9
+    },
+    "group" : "WrapperExpression",
+    "groupReference" : 55
+  }, {
+    "id" : 99,
+    "text" : " ",
+    "placeholder" : " ::",
+    "range" : {
+      "start" : 3857,
+      "end" : 3858,
+      "size" : 1
+    },
+    "group" : "WrapperExpression",
+    "groupReference" : 55
+  }, {
+    "id" : 100,
+    "text" : "()",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3871,
+      "end" : 3873,
+      "size" : 2
+    },
+    "group" : "WrapperExpression",
+    "groupReference" : 55
+  }, {
+    "id" : 101,
+    "text" : " ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3904,
+      "end" : 3905,
+      "size" : 1
+    },
+    "group" : "WrapperExpression",
+    "groupReference" : 56
+  }, {
+    "id" : 102,
+    "text" : "Singleton",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3905,
+      "end" : 3914,
+      "size" : 9
+    },
+    "group" : "WrapperExpression",
+    "groupReference" : 56
+  }, {
+    "id" : 103,
+    "text" : " ",
+    "placeholder" : " ::",
+    "range" : {
+      "start" : 3900,
+      "end" : 3901,
+      "size" : 1
+    },
+    "group" : "WrapperExpression",
+    "groupReference" : 56
+  }, {
+    "id" : 104,
+    "text" : "()",
+    "placeholder" : "",
+    "range" : {
+      "start" : 3914,
+      "end" : 3916,
+      "size" : 2
+    },
+    "group" : "WrapperExpression",
+    "groupReference" : 56
+  }, {
+    "id" : 105,
+    "text" : "\n\n        ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 4489,
+      "end" : 4499,
+      "size" : 10
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 57
+  }, {
+    "id" : 106,
+    "text" : "@Override\n        public String toString() {\n            return new StringJoiner(\", \", ConstClass.class.getSimpleName() + \"[\", \"]\")\n                    .add(\"string='\" + string + \"'\")\n                    .toString();\n        }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 4499,
+      "end" : 4725,
+      "size" : 226
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 57
+  }, {
+    "id" : 107,
+    "text" : "s",
+    "placeholder" : "@ToStringˣ s",
+    "range" : {
+      "start" : 4177,
+      "end" : 4178,
+      "size" : 1
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 57
+  }, {
+    "id" : 108,
+    "text" : "ok",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 4350,
+      "end" : 4352,
+      "size" : 2
+    },
+    "group" : "BuilderShiftExpression",
+    "groupReference" : 58
+  }, {
+    "id" : 109,
+    "text" : "ok",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 4442,
+      "end" : 4444,
+      "size" : 2
+    },
+    "group" : "BuilderShiftExpression",
+    "groupReference" : 59
+  }, {
+    "id" : 110,
+    "text" : "string",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 4472,
+      "end" : 4478,
+      "size" : 6
+    },
+    "group" : "BuilderShiftExpression",
+    "groupReference" : 60
+  }, {
+    "id" : 111,
+    "text" : " ",
+    "placeholder" : " \"${",
+    "range" : {
+      "start" : 4585,
+      "end" : 4586,
+      "size" : 1
+    },
+    "group" : "InterpolatedString",
+    "groupReference" : 61
+  }, {
+    "id" : 112,
+    "text" : " + \"",
+    "placeholder" : "}",
+    "range" : {
+      "start" : 4618,
+      "end" : 4622,
+      "size" : 4
+    },
+    "group" : "InterpolatedString",
+    "groupReference" : 61
+  }, {
+    "id" : 113,
+    "text" : "getSimpleName()",
+    "placeholder" : "simpleName",
+    "range" : {
+      "start" : 4603,
+      "end" : 4618,
+      "size" : 15
+    },
+    "group" : "Getter",
+    "groupReference" : 62
+  }, {
+    "id" : 114,
+    "text" : "\" + ",
+    "placeholder" : "$",
+    "range" : {
+      "start" : 4665,
+      "end" : 4669,
+      "size" : 4
+    },
+    "group" : "InterpolatedString",
+    "groupReference" : 63
+  }, {
+    "id" : 115,
+    "text" : " + \"",
+    "placeholder" : "",
+    "range" : {
+      "start" : 4675,
+      "end" : 4679,
+      "size" : 4
+    },
+    "group" : "InterpolatedString",
+    "groupReference" : 63
+  }, {
+    "id" : 116,
+    "text" : "final",
+    "placeholder" : "",
+    "range" : {
+      "start" : 4804,
+      "end" : 4809,
+      "size" : 5
+    },
+    "group" : "WrapperExpression",
+    "groupReference" : 64
+  }, {
+    "id" : 117,
+    "text" : "s",
+    "placeholder" : "<<",
+    "range" : {
+      "start" : 5030,
+      "end" : 5031,
+      "size" : 1
+    },
+    "group" : "BuilderShiftExpression",
+    "groupReference" : 65
+  }, {
+    "id" : 118,
+    "text" : "System.out.",
+    "placeholder" : "",
+    "range" : {
+      "start" : 5092,
+      "end" : 5103,
+      "size" : 11
+    },
+    "group" : "PrintlnExpression",
+    "groupReference" : 66
   } ]
 }

@@ -59,7 +59,7 @@ public class ExperimentalTestData {
         }</fold>;
 
         private final HashMap<String, String> MAP =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> </fold><fold text='' expand='true'>HashMap<></fold><fold text='' expand='true'>()</fold>;
-        private final HashMap<String, String> MAP2 =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> </fold><fold text='' expand='true'>HashMap<fold text='<~>' expand='false'><String, String></fold></fold><fold text='' expand='true'>()</fold>;
+        private final HashMap<String, String> MAP2 =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> </fold><fold text='' expand='true'>HashMap<fold text='<~>' expand='false'><String, String></fold><fold text='' expand='true'></fold>()</fold>;
         private final Map<String, String> MAP3 = new HashMap<>();
 
         private final List<String> LIST = <fold text='[]' expand='false'>new ArrayList<>()</fold>;
@@ -81,13 +81,13 @@ public class ExperimentalTestData {
     }</fold>
 
     void main() <fold text='{...}' expand='true'>{
-        var s = Singleton.<fold text='🧍' expand='true'>INSTANCE</fold>;
-        System.out.println(Singleton.<fold text='🧍' expand='true'>INSTANCE</fold>.isOk());
-        System.out.println(Singleton.<fold text='🧍' expand='true'>INSTANCE</fold>.main(Singleton.<fold text='🧍' expand='true'>INSTANCE</fold>.main(Singleton.getInstance())));
+        <fold text='val' expand='false'>var</fold> s = Singleton.<fold text='🧍' expand='true'>INSTANCE</fold>;
+        <fold text='' expand='false'>System.out.</fold>println(Singleton.<fold text='🧍' expand='true'>INSTANCE</fold>.<fold text='ok' expand='false'>isOk()</fold>);
+        <fold text='' expand='false'>System.out.</fold>println(Singleton.<fold text='🧍' expand='true'>INSTANCE</fold>.main(Singleton.<fold text='🧍' expand='true'>INSTANCE</fold>.main(Singleton.<fold text='instance' expand='false'>getInstance()</fold>)));
 
-        var s2 = Singleton.<fold text='🧍' expand='true'>INSTANCE</fold>.LOCAL;
-        System.out.println(Singleton.<fold text='🧍' expand='true'>INSTANCE</fold>.LOCAL.isOk());
-        System.out.println(Singleton.<fold text='🧍' expand='true'>INSTANCE</fold>.LOCAL.main(Singleton.<fold text='🧍' expand='true'>INSTANCE</fold>.LOCAL.main(Singleton.getInstance())));
+        <fold text='val' expand='false'>var</fold> s2 = Singleton.<fold text='🧍' expand='true'>INSTANCE</fold>.LOCAL;
+        <fold text='' expand='false'>System.out.</fold>println(Singleton.<fold text='🧍' expand='true'>INSTANCE</fold>.LOCAL.<fold text='ok' expand='false'>isOk()</fold>);
+        <fold text='' expand='false'>System.out.</fold>println(Singleton.<fold text='🧍' expand='true'>INSTANCE</fold>.LOCAL.main(Singleton.<fold text='🧍' expand='true'>INSTANCE</fold>.LOCAL.main(Singleton.<fold text='instance' expand='false'>getInstance()</fold>)));
     }</fold>
 
     <fold text='@Getterˣ s' expand='false'>s</fold>tatic class Singleton <fold text='{...}' expand='true'>{
@@ -116,18 +116,18 @@ public class ExperimentalTestData {
         }</fold>
 
         public ConstClass(boolean ok)<fold text=' { ' expand='false'> {
-            </fold>this.ok = ok;<fold text=' }' expand='false'>
+            </fold>this.ok = <fold text='<<' expand='false'>ok</fold>;<fold text=' }' expand='false'>
         }</fold>
 
         public ConstClass(boolean ok, String string) <fold text='{...}' expand='true'>{
-            this.ok = ok;
-            this.string = string;
+            this.ok = <fold text='<<' expand='false'>ok</fold>;
+            this.string = <fold text='<<' expand='false'>string</fold>;
         }</fold><fold text='' expand='false'>
 
         </fold><fold text='' expand='false'>@Override
         public String toString() <fold text='{...}' expand='true'>{
-            return new StringJoiner(", ", ConstClass.class.getSimpleName() + "[", "]")
-                    .add("string='" + string + "'")
+            return new StringJoiner(", ",<fold text=' "${' expand='false'> </fold>ConstClass.class.<fold text='simpleName' expand='false'>getSimpleName()</fold><fold text='}' expand='false'> + "</fold>[", "]")
+                    .add("string='<fold text='$' expand='false'>" + </fold>string<fold text='' expand='false'> + "</fold>'")
                     .toString();
         }</fold></fold>
     }</fold>
@@ -136,7 +136,7 @@ public class ExperimentalTestData {
     static class SubConstClass extends ConstClass <fold text='{...}' expand='true'>{
     }</fold>
 
-    static final class SubConstClass2 extends ConstClass <fold text='{...}' expand='true'>{
+    static <fold text='' expand='false'>final</fold> class SubConstClass2 extends ConstClass <fold text='{...}' expand='true'>{
     }</fold>
 
     class SimpleGetSet<fold text='{...}' expand='true'>{
@@ -147,11 +147,11 @@ public class ExperimentalTestData {
         }</fold>
 
         public void set(String s)<fold text=' { ' expand='false'> {
-            </fold>this.s = s;<fold text=' }' expand='false'>
+            </fold>this.s = <fold text='<<' expand='false'>s</fold>;<fold text=' }' expand='false'>
         }</fold>
 
         void main(SimpleGetSet s) <fold text='{...}' expand='true'>{
-            System.out.println(s.get());
+            <fold text='' expand='false'>System.out.</fold>println(s.get());
             s.get();
             s.set("1");
             s.set(s.get());
