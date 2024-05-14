@@ -4,6 +4,7 @@ import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression
 import com.intellij.advancedExpressionFolding.expression.custom.FieldConstExpression
 import com.intellij.advancedExpressionFolding.expression.custom.NullAnnotationExpression
+import com.intellij.advancedExpressionFolding.expression.custom.WrapperExpression
 import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFoldingAnnotation.Companion.findByName
 import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFoldingAnnotation.NOT_NULL
 import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFoldingAnnotation.NULLABLE
@@ -94,14 +95,15 @@ object NullableExt : BaseExtension() {
         typeElement: PsiTypeElement?,
         document: Document
     ): Expression? {
-        if (!field.isNotStatic() && !field.isNotFinal()) {
-            return if (foldConstType(field)) {
+        return if (!field.isNotStatic() && !field.isNotFinal()) {
+             if (foldConstType(field)) {
                 FieldConstExpression(typeElement, field.modifierList!!, field.constText())
             } else {
-                foldFieldConstructor(field, document)
+                foldConstConstructor(field, document)
             }
+        } else {
+            foldFieldConstructor(field, document)
         }
-        return null
     }
     
     private fun PsiField.constText(): String {
@@ -112,10 +114,18 @@ object NullableExt : BaseExtension() {
         }
     }
 
-    private fun foldFieldConstructor(field: PsiField, document: Document): Expression? {
+    private fun foldConstConstructor(field: PsiField, document: Document): Expression {
         val constFolding = FieldConstExpression(null, field.modifierList!!, field.constText())
         experimental.on() ?: return constFolding
 
+        return foldFieldConstructor(field, document, constFolding) ?: constFolding
+    }
+
+    private fun foldFieldConstructor(
+        field: PsiField,
+        document: Document,
+        constFolding: FieldConstExpression? = null
+    ): WrapperExpression? {
         val initializer = field.initializer.asInstance<PsiNewExpression>()
         val noParams = initializer?.argumentList?.isEmpty == true
         val anonymousClass = initializer?.anonymousClass
@@ -149,10 +159,11 @@ object NullableExt : BaseExtension() {
             list += constFolding
             return list.exprWrap(field)
         }
-        return constFolding
+        return null
     }
 
 
+    //TODO: extract generic extension method
     private fun sameTypeOfFieldAndInitializer(initializer: PsiNewExpression?, field: PsiField) =
         initializer?.classOrAnonymousClassReference?.resolve() == field.type.asInstance<PsiClassReferenceType>()
             ?.resolve()
