@@ -4,6 +4,10 @@
 
 ## [Unreleased]
 
+## [1.0.50] - 2024-05-14
+
+clear cache on editor close and make experimental ::new work for all fields
+
 ## [1.0.49] - 2024-05-13
 
 Implemented memory improvement feature bypassing CachedValuesManager and more methods for get and put folding
@@ -223,7 +227,8 @@ Improved handling of multi-line log messages
 
 ## [0.0.1]
 
-[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.49...HEAD
+[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.50...HEAD
+[1.0.50]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.49...v1.0.50
 [1.0.49]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.48...v1.0.49
 [1.0.48]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.47...v1.0.48
 [1.0.47]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.46...v1.0.47
