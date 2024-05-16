@@ -1,7 +1,16 @@
 <plugin-repository>
     <ff>"Formatting"</ff>
     <category name="Formatting">
-        <idea-plugin downloads="201828" size="194156" date="1625903057050" updatedDate="1625903057050"><name>Advanced Java Folding 2 (Beta)</name>
+        <idea-plugin downloads="201829" size="194157" date="1625903057051" updatedDate="1625903057051"><name>Advanced Java Folding 2 (Beta)</name>
+            <id>com.github.bigdecimal-folding2</id>
+            <description />
+            <version>1.0.51</version>
+            <vendor email="android.rokitnicki@gmail.com" url="https://github.com/AntoniRokitnicki/AdvancedExpressionFolding">Antoni</vendor>
+            <rating>4.6</rating>
+            <change-notes>@Getter dirty for Lomboks getters that do something other than getting the value of their field, and a new option to prevent folding those getters</change-notes>
+            <download-url>https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/releases/download/v1.0.51/AdvancedExpressionFolding-v1.0.51.jar</download-url>
+            <idea-version min="n/a" max="n/a" since-build="212.4638" />
+        </idea-plugin><idea-plugin downloads="201828" size="194156" date="1625903057050" updatedDate="1625903057050"><name>Advanced Java Folding 2 (Beta)</name>
             <id>com.github.bigdecimal-folding2</id>
             <description />
             <version>1.0.50</version>
