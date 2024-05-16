@@ -4,6 +4,10 @@
 
 ## [Unreleased]
 
+## [1.0.51] - 2024-05-16
+
+@Getter dirty for Lomboks getters that do something other than getting the value of their field, and a new option to prevent folding those getters
+
 ## [1.0.50] - 2024-05-14
 
 clear cache on editor close and make experimental ::new work for all fields
@@ -227,7 +231,8 @@ Improved handling of multi-line log messages
 
 ## [0.0.1]
 
-[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.50...HEAD
+[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.51...HEAD
+[1.0.51]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.50...v1.0.51
 [1.0.50]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.49...v1.0.50
 [1.0.49]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.48...v1.0.49
 [1.0.48]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.47...v1.0.48
