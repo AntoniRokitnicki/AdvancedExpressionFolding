@@ -89,7 +89,7 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
         override var destructuring: Boolean = false,
         override var println: Boolean = true,
         override var const: Boolean = true,
-        override var nullable: Boolean = true,
+        override var nullable: Boolean = false,
         override var finalRemoval: Boolean = false,
         override var finalEmoji: Boolean = true,
         // NEW OPTION VAR

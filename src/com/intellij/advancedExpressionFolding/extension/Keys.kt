@@ -3,6 +3,7 @@ package com.intellij.advancedExpressionFolding.extension
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.openapi.util.Key
 import com.intellij.psi.PsiElement
+import com.intellij.psi.PsiField
 import com.intellij.psi.PsiMethod
 import com.intellij.psi.util.CachedValue
 
@@ -11,8 +12,15 @@ object Keys {
     val BUILDER = Key<Boolean>("${PREFIX}builder")
     val CLASS_TYPE_KEY = Key<PsiClassExt.ClassType>("${PREFIX}classType")
 
-    val GETTER_KEY = Key<PsiMethod>("${PREFIX}getter")
-    val SETTER_KEY = Key<PsiMethod>("${PREFIX}setter")
+    val FIELD_KEY = Key<PsiField>("${PREFIX}field")
+    val FIELD_META_DATA_KEY = Key<FieldMetaData>("${PREFIX}field-metadata")
+    data class FieldMetaData(
+        var dirty: Boolean = false,
+        var foldGetter: Boolean = false,
+        var getter: PsiMethod? = null,
+        var setter: PsiMethod? = null,
+    )
+
 
     val IGNORED = Key<Boolean>("${PREFIX}ignored")
 
@@ -24,20 +32,25 @@ object Keys {
     private val NOT_SYNTHETIC_KEY_OLD: Key<CachedValue<Expression>> = Key.create("${PREFIX}!syn-old")
 
     //TODO: convert Keys to enum
-    private val values: List<Key<*>> by lazy {
-        listOf(
+    private val values: Set<Key<*>> by lazy {
+        setOf(
             BUILDER,
             CLASS_TYPE_KEY,
-            GETTER_KEY,
-            SETTER_KEY,
+            FIELD_META_DATA_KEY,
             IGNORED,
             SYNTHETIC_KEY,
             NOT_SYNTHETIC_KEY,
             VERSION_SYNTHETIC_KEY,
             VERSION_NOT_SYNTHETIC_KEY,
             SYNTHETIC_KEY_OLD,
-            NOT_SYNTHETIC_KEY_OLD
+            NOT_SYNTHETIC_KEY_OLD,
+            FIELD_KEY,
         )
+    }
+    fun clearAllOnExpire(psiElement: PsiElement) {
+        (values - FIELD_META_DATA_KEY).forEach {
+            psiElement.putUserData(it, null)
+        }
     }
     fun clearAll(psiElement: PsiElement) {
         values.forEach {

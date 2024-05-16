@@ -46,10 +46,10 @@ public class SpreadTestData {
         return Stream.of(data);
     }
 
-    @Getterˣ @Setter static class Data {
-        Data data;
-        boolean ok;
-        String string;
+    @Setter static class Data {
+        @Getter Data data;
+        @Getter boolean ok;
+        @Getter String string;
 
         public Data(Data data) {
             this.data = <<;

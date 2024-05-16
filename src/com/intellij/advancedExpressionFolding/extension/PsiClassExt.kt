@@ -53,13 +53,13 @@ object PsiClassExt : BaseExtension() {
 
     enum class ClassType {
         BUILDER,
-        NOT_NULL,
     }
 
     data class HidingAnnotation(
         val classAnnotation: FoldingAnnotation,
         val elementsToHide: List<PsiElement>,
-        val pure: Boolean = true
+        val pure: Boolean = true,
+        val dirtyGetter: Boolean = false,
     )
 
     @JvmStatic
@@ -108,7 +108,13 @@ object PsiClassExt : BaseExtension() {
     private fun addLombokSupport(
         clazz: PsiClass
     ): List<HidingAnnotation> {
+
+        // TODO: find better way of doing that - clean up this solution
+        clazz.methods.forEach {
+            Keys.clearAll(it)
+        }
         val fieldsMap = clazz.fields.filter {
+            Keys.clearAll(it)
             it.isNotStatic()
         }.associateBy {
             it.name
@@ -131,24 +137,59 @@ object PsiClassExt : BaseExtension() {
         ).forEach { (methodType, annotation) ->
             val methods = methodTypeToMethodsMap.getMethodsOfType(methodType)
             methods.filter { method ->
-                val psiField = fieldsMap[method.guessPropertyName()]
+                val field = fieldsMap[method.guessPropertyName()]
                 when (methodType) {
-                    GETTER -> psiField?.setProperty(method, null)
-                    SETTER -> psiField?.setProperty(null, method)
+                    GETTER -> field?.metadata?.getter = method
+                    SETTER -> field?.metadata?.setter = method
                     else -> {}
                 }
-                psiField != null
+                field?.let {
+                    method.propertyField = it
+                }
+                field != null
             }.takeIf {
                 it.isNotEmpty()
             }?.let { properties ->
-                val pure = methods.size == fieldsMap.values.filter {
+                var pure = methods.size == fieldsMap.values.filter {
                     if (methodType.isSetter()) {
                         it.isNotFinal()
                     } else {
                         true
                     }
                 }.size
-                hidingAnnotations += HidingAnnotation(annotation, properties, pure)
+
+                val props = when (methodType) {
+                    GETTER -> {
+                        fun PsiMethod.isDirtyGetter(): Boolean {
+                            val field = this.propertyField ?: return false
+                            val method = this
+                            val dirtyGetterMethod = method.body?.statements?.takeIf {
+                                it.size == 1
+                            }?.firstOrNull().asInstance<PsiReturnStatement>()?.returnValue
+                                .asInstance<PsiReferenceExpression>()?.resolve() != field
+                            field.metadata.dirty = dirtyGetterMethod
+                            return dirtyGetterMethod
+                        }
+
+                        if (methods.filter {
+                                !it.isDirtyGetter()
+                            }.size == fieldsMap.size) {
+                            pure = true
+                            properties
+                        } else {
+                            fieldsMap.values.forEach {
+                                it.metadata.foldGetter = true
+                            }
+                            null
+                        }
+                    }
+
+                    SETTER -> properties
+                    else -> null
+                }
+                props?.let {
+                    hidingAnnotations += HidingAnnotation(annotation, it, pure, false)
+                }
             }
         }
 
@@ -236,3 +277,9 @@ object PsiClassExt : BaseExtension() {
     fun PsiElement.prevWhiteSpace(): PsiWhiteSpace? = prevSibling as? PsiWhiteSpace
     fun PsiElement.nextWhiteSpace(): PsiWhiteSpace? = nextSibling as? PsiWhiteSpace
 }
+
+
+
+
+
+

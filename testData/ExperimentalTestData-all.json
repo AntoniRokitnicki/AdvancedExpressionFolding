@@ -1036,39 +1036,6 @@
     "groupReference" : 53
   }, {
     "id" : 94,
-    "text" : "\n\n        ",
-    "placeholder" : "",
-    "range" : {
-      "start" : 4011,
-      "end" : 4021,
-      "size" : 10
-    },
-    "group" : "ClassAnnotationExpression",
-    "groupReference" : 54
-  }, {
-    "id" : 95,
-    "text" : "public boolean isOk() {\n            return ok;\n        }",
-    "placeholder" : "",
-    "range" : {
-      "start" : 4021,
-      "end" : 4077,
-      "size" : 56
-    },
-    "group" : "ClassAnnotationExpression",
-    "groupReference" : 54
-  }, {
-    "id" : 96,
-    "text" : "s",
-    "placeholder" : "@Getterˣ s",
-    "range" : {
-      "start" : 3797,
-      "end" : 3798,
-      "size" : 1
-    },
-    "group" : "ClassAnnotationExpression",
-    "groupReference" : 54
-  }, {
-    "id" : 97,
     "text" : " ",
     "placeholder" : "",
     "range" : {
@@ -1077,9 +1044,9 @@
       "size" : 1
     },
     "group" : "WrapperExpression",
-    "groupReference" : 55
+    "groupReference" : 54
   }, {
-    "id" : 98,
+    "id" : 95,
     "text" : "Singleton",
     "placeholder" : "",
     "range" : {
@@ -1088,9 +1055,9 @@
       "size" : 9
     },
     "group" : "WrapperExpression",
-    "groupReference" : 55
+    "groupReference" : 54
   }, {
-    "id" : 99,
+    "id" : 96,
     "text" : " ",
     "placeholder" : " ::",
     "range" : {
@@ -1099,9 +1066,9 @@
       "size" : 1
     },
     "group" : "WrapperExpression",
-    "groupReference" : 55
+    "groupReference" : 54
   }, {
-    "id" : 100,
+    "id" : 97,
     "text" : "()",
     "placeholder" : "",
     "range" : {
@@ -1110,9 +1077,9 @@
       "size" : 2
     },
     "group" : "WrapperExpression",
-    "groupReference" : 55
+    "groupReference" : 54
   }, {
-    "id" : 101,
+    "id" : 98,
     "text" : " ",
     "placeholder" : "",
     "range" : {
@@ -1121,9 +1088,9 @@
       "size" : 1
     },
     "group" : "WrapperExpression",
-    "groupReference" : 56
+    "groupReference" : 55
   }, {
-    "id" : 102,
+    "id" : 99,
     "text" : "Singleton",
     "placeholder" : "",
     "range" : {
@@ -1132,9 +1099,9 @@
       "size" : 9
     },
     "group" : "WrapperExpression",
-    "groupReference" : 56
+    "groupReference" : 55
   }, {
-    "id" : 103,
+    "id" : 100,
     "text" : " ",
     "placeholder" : " ::",
     "range" : {
@@ -1143,9 +1110,9 @@
       "size" : 1
     },
     "group" : "WrapperExpression",
-    "groupReference" : 56
+    "groupReference" : 55
   }, {
-    "id" : 104,
+    "id" : 101,
     "text" : "()",
     "placeholder" : "",
     "range" : {
@@ -1154,6 +1121,39 @@
       "size" : 2
     },
     "group" : "WrapperExpression",
+    "groupReference" : 55
+  }, {
+    "id" : 102,
+    "text" : "public boolean isOk() {\n            return ok;\n        }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 4021,
+      "end" : 4077,
+      "size" : 56
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 56
+  }, {
+    "id" : 103,
+    "text" : "\n\n        ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 4011,
+      "end" : 4021,
+      "size" : 10
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 56
+  }, {
+    "id" : 104,
+    "text" : "b",
+    "placeholder" : "@Getter b",
+    "range" : {
+      "start" : 3926,
+      "end" : 3927,
+      "size" : 1
+    },
+    "group" : "ClassAnnotationExpression",
     "groupReference" : 56
   }, {
     "id" : 105,

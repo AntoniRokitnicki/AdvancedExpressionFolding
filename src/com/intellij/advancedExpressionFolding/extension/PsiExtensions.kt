@@ -119,16 +119,20 @@ fun PsiElement.findLocalReference(element: PsiElement): PsiReference? = Referenc
 
 fun KClass<*>.group(): FoldingGroup = FoldingGroup.newGroup(qualifiedName)
 
-fun PsiField.setProperty(getter: PsiMethod?,setter: PsiMethod?) {
-    getter?.let {
-        putUserData(Keys.GETTER_KEY, it)
+var PsiMethod.propertyField: PsiField?
+    get() = getUserData(Keys.FIELD_KEY)
+    set(value) = putUserData(Keys.FIELD_KEY, value)
+
+
+val PsiField.metadata: Keys.FieldMetaData
+    get() {
+        var userData = getUserData(Keys.FIELD_META_DATA_KEY)
+        if (userData == null){
+            userData = Keys.FieldMetaData()
+            putUserData(Keys.FIELD_META_DATA_KEY, userData)
+        }
+        return userData
     }
-    setter?.let {
-        putUserData(Keys.SETTER_KEY, it)
-    }
-}
-fun PsiField.getter(): PsiMethod? = getUserData(Keys.GETTER_KEY)
-fun PsiField.setter(): PsiMethod? = getUserData(Keys.SETTER_KEY)
 
 fun PsiMethod.isBuilder(): Boolean = containingClass?.isBuilder() == true
 

@@ -1,5 +1,5 @@
 {
-  "size" : 338,
+  "size" : 341,
   "list" : [ {
     "id" : 0,
     "text" : "String",
@@ -3467,39 +3467,6 @@
     "groupReference" : 220
   }, {
     "id" : 315,
-    "text" : "\n\n        ",
-    "placeholder" : "",
-    "range" : {
-      "start" : 2256,
-      "end" : 2266,
-      "size" : 10
-    },
-    "group" : "ClassAnnotationExpression",
-    "groupReference" : 221
-  }, {
-    "id" : 316,
-    "text" : "\n        ",
-    "placeholder" : "",
-    "range" : {
-      "start" : 2328,
-      "end" : 2337,
-      "size" : 9
-    },
-    "group" : "ClassAnnotationExpression",
-    "groupReference" : 221
-  }, {
-    "id" : 317,
-    "text" : "\n        ",
-    "placeholder" : "",
-    "range" : {
-      "start" : 2562,
-      "end" : 2571,
-      "size" : 9
-    },
-    "group" : "ClassAnnotationExpression",
-    "groupReference" : 221
-  }, {
-    "id" : 318,
     "text" : "\n        ",
     "placeholder" : "",
     "range" : {
@@ -3510,7 +3477,7 @@
     "group" : "ClassAnnotationExpression",
     "groupReference" : 221
   }, {
-    "id" : 319,
+    "id" : 316,
     "text" : "\n        ",
     "placeholder" : "",
     "range" : {
@@ -3521,7 +3488,7 @@
     "group" : "ClassAnnotationExpression",
     "groupReference" : 221
   }, {
-    "id" : 320,
+    "id" : 317,
     "text" : "\n        ",
     "placeholder" : "",
     "range" : {
@@ -3532,40 +3499,7 @@
     "group" : "ClassAnnotationExpression",
     "groupReference" : 221
   }, {
-    "id" : 321,
-    "text" : "public Data getData() {\n                return data;\n        }",
-    "placeholder" : "",
-    "range" : {
-      "start" : 2266,
-      "end" : 2328,
-      "size" : 62
-    },
-    "group" : "ClassAnnotationExpression",
-    "groupReference" : 221
-  }, {
-    "id" : 322,
-    "text" : "public boolean isOk() {\n                return ok;\n        }",
-    "placeholder" : "",
-    "range" : {
-      "start" : 2337,
-      "end" : 2397,
-      "size" : 60
-    },
-    "group" : "ClassAnnotationExpression",
-    "groupReference" : 221
-  }, {
-    "id" : 323,
-    "text" : "public String getString() {\n                return string;\n        }",
-    "placeholder" : "",
-    "range" : {
-      "start" : 2571,
-      "end" : 2639,
-      "size" : 68
-    },
-    "group" : "ClassAnnotationExpression",
-    "groupReference" : 221
-  }, {
-    "id" : 324,
+    "id" : 318,
     "text" : "public void setData(Data data) {\n                this.data = data;\n        }",
     "placeholder" : "",
     "range" : {
@@ -3576,7 +3510,7 @@
     "group" : "ClassAnnotationExpression",
     "groupReference" : 221
   }, {
-    "id" : 325,
+    "id" : 319,
     "text" : "public void setOk(boolean ok) {\n                this.ok = ok;\n        }",
     "placeholder" : "",
     "range" : {
@@ -3587,7 +3521,7 @@
     "group" : "ClassAnnotationExpression",
     "groupReference" : 221
   }, {
-    "id" : 326,
+    "id" : 320,
     "text" : "public void setString(String string) {\n                this.string = string;\n        }",
     "placeholder" : "",
     "range" : {
@@ -3598,9 +3532,9 @@
     "group" : "ClassAnnotationExpression",
     "groupReference" : 221
   }, {
-    "id" : 327,
+    "id" : 321,
     "text" : "s",
-    "placeholder" : "@Getterˣ @Setter s",
+    "placeholder" : "@Setter s",
     "range" : {
       "start" : 2101,
       "end" : 2102,
@@ -3609,7 +3543,106 @@
     "group" : "ClassAnnotationExpression",
     "groupReference" : 221
   }, {
+    "id" : 322,
+    "text" : "public Data getData() {\n                return data;\n        }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2266,
+      "end" : 2328,
+      "size" : 62
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 222
+  }, {
+    "id" : 323,
+    "text" : "\n\n        ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2256,
+      "end" : 2266,
+      "size" : 10
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 222
+  }, {
+    "id" : 324,
+    "text" : "D",
+    "placeholder" : "@Getter D",
+    "range" : {
+      "start" : 2129,
+      "end" : 2130,
+      "size" : 1
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 222
+  }, {
+    "id" : 325,
+    "text" : "public boolean isOk() {\n                return ok;\n        }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2337,
+      "end" : 2397,
+      "size" : 60
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 223
+  }, {
+    "id" : 326,
+    "text" : "\n        ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2328,
+      "end" : 2337,
+      "size" : 9
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 223
+  }, {
+    "id" : 327,
+    "text" : "b",
+    "placeholder" : "@Getter b",
+    "range" : {
+      "start" : 2148,
+      "end" : 2149,
+      "size" : 1
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 223
+  }, {
     "id" : 328,
+    "text" : "public String getString() {\n                return string;\n        }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2571,
+      "end" : 2639,
+      "size" : 68
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 224
+  }, {
+    "id" : 329,
+    "text" : "\n        ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 2562,
+      "end" : 2571,
+      "size" : 9
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 224
+  }, {
+    "id" : 330,
+    "text" : "S",
+    "placeholder" : "@Getter S",
+    "range" : {
+      "start" : 2168,
+      "end" : 2169,
+      "size" : 1
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 224
+  }, {
+    "id" : 331,
     "text" : "data",
     "placeholder" : "<<",
     "range" : {
@@ -3618,9 +3651,9 @@
       "size" : 4
     },
     "group" : "BuilderShiftExpression",
-    "groupReference" : 222
+    "groupReference" : 225
   }, {
-    "id" : 329,
+    "id" : 332,
     "text" : "data",
     "placeholder" : "<<",
     "range" : {
@@ -3629,9 +3662,9 @@
       "size" : 4
     },
     "group" : "BuilderShiftExpression",
-    "groupReference" : 223
+    "groupReference" : 226
   }, {
-    "id" : 330,
+    "id" : 333,
     "text" : "ok",
     "placeholder" : "<<",
     "range" : {
@@ -3640,9 +3673,9 @@
       "size" : 2
     },
     "group" : "BuilderShiftExpression",
-    "groupReference" : 224
+    "groupReference" : 227
   }, {
-    "id" : 331,
+    "id" : 334,
     "text" : "string",
     "placeholder" : "<<",
     "range" : {
@@ -3651,9 +3684,9 @@
       "size" : 6
     },
     "group" : "BuilderShiftExpression",
-    "groupReference" : 225
+    "groupReference" : 228
   }, {
-    "id" : 332,
+    "id" : 335,
     "text" : "Optional.ofNullable(",
     "placeholder" : "",
     "range" : {
@@ -3662,9 +3695,9 @@
       "size" : 20
     },
     "group" : "OptionalOfNullable",
-    "groupReference" : 226
+    "groupReference" : 229
   }, {
-    "id" : 333,
+    "id" : 336,
     "text" : ")",
     "placeholder" : "",
     "range" : {
@@ -3673,9 +3706,9 @@
       "size" : 1
     },
     "group" : "OptionalOfNullable",
-    "groupReference" : 226
+    "groupReference" : 229
   }, {
-    "id" : 334,
+    "id" : 337,
     "text" : "Optional.ofNullable(",
     "placeholder" : "",
     "range" : {
@@ -3684,9 +3717,9 @@
       "size" : 20
     },
     "group" : "OptionalOfNullable",
-    "groupReference" : 227
+    "groupReference" : 230
   }, {
-    "id" : 335,
+    "id" : 338,
     "text" : ")",
     "placeholder" : "",
     "range" : {
@@ -3695,9 +3728,9 @@
       "size" : 1
     },
     "group" : "OptionalOfNullable",
-    "groupReference" : 227
+    "groupReference" : 230
   }, {
-    "id" : 336,
+    "id" : 339,
     "text" : "Optional.ofNullable(",
     "placeholder" : "",
     "range" : {
@@ -3706,9 +3739,9 @@
       "size" : 20
     },
     "group" : "OptionalOfNullable",
-    "groupReference" : 228
+    "groupReference" : 231
   }, {
-    "id" : 337,
+    "id" : 340,
     "text" : ")",
     "placeholder" : "",
     "range" : {
@@ -3717,6 +3750,6 @@
       "size" : 1
     },
     "group" : "OptionalOfNullable",
-    "groupReference" : 228
+    "groupReference" : 231
   } ]
 }

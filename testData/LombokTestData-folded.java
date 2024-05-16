@@ -28,9 +28,9 @@ import java.util.Optional;
         LombokTestData data;
         boolean ok;
 
-        @Getterˣ public class LombokGettersPartial {
+        public class LombokGettersPartial {
             LombokTestData data;
-            boolean ok;
+            @Getter boolean ok;
         }
     }
 
@@ -123,8 +123,8 @@ import java.util.Optional;
 
         }
 
-        @Dataˣ public class DataWithPartialGetters {
-            LombokTestData data;
+        @Setter @ToString @EqualsAndHashCode public class DataWithPartialGetters {
+            @Getter LombokTestData data;
             boolean ok;
         }
 
@@ -145,6 +145,36 @@ import java.util.Optional;
 
         @SuppressWarnings("ALL")
         @Getter class FoldOnWithAnnotation {
+            boolean ok;
+        }
+    }
+    
+    public class DirtyLombokGetters {
+        @Getter(dirty) boolean dirty;
+        @Getter(dirty) private boolean dirty2;
+
+        @EqualsAndHashCode public class DirtyData {
+            @Getter(dirty) boolean dirty;
+            @Getter private boolean ok;
+        }
+
+        public class DirtySingle {
+            @Getter(dirty) boolean dirty;
+            @Getter boolean ok;
+        }
+    }
+
+    @Setter public class DirtyLombokSetters {
+        boolean dirty;
+        private boolean dirty2;
+
+        @Data public class DirtyData {
+            boolean dirty;
+            private boolean ok;
+        }
+
+        @Setter public class DirtySingle {
+            boolean dirty;
             boolean ok;
         }
     }

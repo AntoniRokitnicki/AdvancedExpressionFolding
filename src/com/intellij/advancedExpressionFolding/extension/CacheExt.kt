@@ -21,7 +21,7 @@ object CacheExt : AdvancedExpressionFoldingSettings.StateDelegate() {
         val hashCode = document.text.hashCode()
         val changed = lastVersion != hashCode
         if (changed) {
-            Keys.clearAll(this)
+            Keys.clearAllOnExpire(this)
             putUserData(versionKey, hashCode)
         }
         return changed
