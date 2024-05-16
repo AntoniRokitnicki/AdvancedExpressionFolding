@@ -150,17 +150,32 @@ import java.util.Optional;
     }
     
     public class DirtyLombokGetters {
-        @Getter(dirty) boolean dirty;
-        @Getter(dirty) private boolean dirty2;
+        boolean dirty;
+        private boolean dirty2;
+
+        public boolean isDirty() {
+            return dirty2;
+        }
+
+        public boolean isDirty2() {
+            return dirty;
+        }
 
         @EqualsAndHashCode public class DirtyData {
-            @Getter(dirty) boolean dirty;
+            boolean dirty;
             @Getter private boolean ok;
+
+            public boolean isDirty() {
+                return !dirty;
+            }
         }
 
         public class DirtySingle {
-            @Getter(dirty) boolean dirty;
+            boolean dirty;
             @Getter boolean ok;
+            public boolean isDirty() {
+                return dirty2;
+            }
         }
     }
 
