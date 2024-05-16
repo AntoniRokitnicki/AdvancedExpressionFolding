@@ -297,6 +297,13 @@ open class FoldingTest : BaseTest() {
     fun testFinalEmojiTestData() {
         doFoldingTest(state::finalEmoji)
     }
+
+    /**
+     * [data.LombokDirtyOffTestData]
+     */
+    fun testLombokDirtyOffTestData() {
+        doFoldingTest(state::lombok, state::lombokDirtyOff)
+    }
     // NEW OPTION
     /**
      * [data.ExperimentalTestData]

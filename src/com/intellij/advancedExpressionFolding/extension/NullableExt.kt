@@ -52,11 +52,17 @@ object NullableExt : BaseExtension() {
         }?.let { getter ->
             val (dirty) = field.metadata
             val getterAnnotation = if (dirty) {
-                "@Getter(dirty)"
+                if (lombokDirtyOff) {
+                    null
+                } else {
+                    "@Getter(dirty)"
+                }
             } else {
                 "@Getter"
             }
-            FieldAnnotationExpression(field, listOf(getterAnnotation), listOf(getter, getter.prevWhiteSpace()))
+            getterAnnotation?.let {
+                FieldAnnotationExpression(field, listOf(getterAnnotation), listOf(getter, getter.prevWhiteSpace()))
+            }
         }
 
         list += nullable.on()?.let {
