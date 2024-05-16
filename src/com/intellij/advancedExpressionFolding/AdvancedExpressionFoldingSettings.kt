@@ -55,6 +55,7 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
         val nullable: Boolean
         val finalRemoval: Boolean
         val finalEmoji: Boolean
+        val lombokDirtyOff: Boolean
         // NEW OPTION VAL
 
         var experimental: Boolean
@@ -92,6 +93,7 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
         override var nullable: Boolean = false,
         override var finalRemoval: Boolean = false,
         override var finalEmoji: Boolean = true,
+        override var lombokDirtyOff: Boolean = true,
         // NEW OPTION VAR
 
         override var memoryImprovement: Boolean = true,
