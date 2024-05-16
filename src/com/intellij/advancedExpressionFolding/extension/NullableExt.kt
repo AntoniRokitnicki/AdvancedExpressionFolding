@@ -1,10 +1,7 @@
 package com.intellij.advancedExpressionFolding.extension
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression
-import com.intellij.advancedExpressionFolding.expression.custom.FieldConstExpression
-import com.intellij.advancedExpressionFolding.expression.custom.NullAnnotationExpression
-import com.intellij.advancedExpressionFolding.expression.custom.WrapperExpression
+import com.intellij.advancedExpressionFolding.expression.custom.*
 import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFoldingAnnotation.Companion.findByName
 import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFoldingAnnotation.NOT_NULL
 import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFoldingAnnotation.NULLABLE
@@ -16,7 +13,7 @@ import com.intellij.psi.impl.source.PsiClassReferenceType
 /**
  * [data.NullableAnnotationTestData]
  * [data.NullableAnnotationCheckNotNullTestData]
-*/
+ */
 object NullableExt : BaseExtension() {
 
     @JvmStatic
@@ -34,7 +31,11 @@ object NullableExt : BaseExtension() {
 
     @JvmStatic
     fun createExpression(psiParameter: PsiParameter, document: Document): Expression? {
-        return readCheckNotNullMethods(psiParameter, document) ?: fieldAnnotationExpression(psiParameter.annotations, psiParameter.typeElement, true)
+        return readCheckNotNullMethods(psiParameter, document) ?: fieldAnnotationExpression(
+            psiParameter.annotations,
+            psiParameter.typeElement,
+            true
+        )
     }
 
     @JvmStatic
@@ -45,6 +46,19 @@ object NullableExt : BaseExtension() {
         }
 
         val list = exprList()
+
+        list += (lombok && field.metadata.foldGetter).on()?.let {
+            field.metadata.getter
+        }?.let { getter ->
+            val (dirty) = field.metadata
+            val getterAnnotation = if (dirty) {
+                "@Getter(dirty)"
+            } else {
+                "@Getter"
+            }
+            FieldAnnotationExpression(field, listOf(getterAnnotation), listOf(getter, getter.prevWhiteSpace()))
+        }
+
         list += nullable.on()?.let {
             val typeExpression = fieldAnnotationExpression(field.annotations, typeElement, false)
             typeExpression ?: findPropertyAnnotation(field, typeElement)
@@ -96,7 +110,7 @@ object NullableExt : BaseExtension() {
         document: Document
     ): Expression? {
         return if (!field.isNotStatic() && !field.isNotFinal()) {
-             if (foldConstType(field)) {
+            if (foldConstType(field)) {
                 FieldConstExpression(typeElement, field.modifierList!!, field.constText())
             } else {
                 foldConstConstructor(field, document)
@@ -105,10 +119,10 @@ object NullableExt : BaseExtension() {
             foldFieldConstructor(field, document)
         }
     }
-    
+
     private fun PsiField.constText(): String {
         @Suppress("SpellCheckingInspection")
-        return when (this.enum){
+        return when (this.enum) {
             true -> "econst"
             false -> "const"
         }
@@ -172,22 +186,23 @@ object NullableExt : BaseExtension() {
         (field.type.isString() || field.type.isPrimitive()) && field.initializer is PsiLiteralExpression
 
     private fun findPropertyAnnotation(field: PsiField, typeElement: PsiTypeElement?): Expression? {
-        return field.getter()
+        return field.metadata.getter
             ?.takeIf {
                 it.annotations.firstOrNull() != null
             }?.let { method ->
-                fieldAnnotationExpression(method.annotations, method.returnTypeElement)?.let {
+                fieldAnnotationExpression(method.annotations, method.returnTypeElement!!)?.let {
                     method.markIgnored()
                     NullAnnotationExpression(typeElement!!, null, it.typeSuffix)
                 }
             }
-            ?: field.setter()?.let { method ->
-                val second = method.parameterList.parameters.firstOrNull()?.annotations.asInstance<Array<out PsiAnnotation>>()
+            ?: field.metadata.setter?.let { method ->
+                val second =
+                    method.parameterList.parameters.firstOrNull()?.annotations.asInstance<Array<out PsiAnnotation>>()
                 second?.firstOrNull()?.let {
                     Pair(method, second)
                 }
             }?.let { (method, ann) ->
-                fieldAnnotationExpression(ann, method.returnTypeElement)?.let {
+                fieldAnnotationExpression(ann, method.returnTypeElement!!)?.let {
                     method.markIgnored()
                     NullAnnotationExpression(typeElement!!, null, it.typeSuffix)
                 }
@@ -222,7 +237,6 @@ object NullableExt : BaseExtension() {
             }
         }
     }
-
 
     private fun fieldAnnotationExpression(
         annotations: Array<out PsiAnnotation>,

@@ -88,10 +88,10 @@ public class ExperimentalTestData {
         println(Singleton.🧍.LOCAL.main(Singleton.🧍.LOCAL.main(Singleton.instance)));
     }
 
-    @Getterˣ static class Singleton {
+    static class Singleton {
         static Singleton INSTANCE = ::new;
         Singleton LOCAL = ::new;
-        boolean ok;
+        @Getter boolean ok;
 
         Singleton main(Singleton s) {
             return this;

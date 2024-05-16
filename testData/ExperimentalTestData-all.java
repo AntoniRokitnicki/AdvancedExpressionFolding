@@ -90,10 +90,10 @@ public class ExperimentalTestData {
         <fold text='' expand='false'>System.out.</fold>println(Singleton.<fold text='🧍' expand='true'>INSTANCE</fold>.LOCAL.main(Singleton.<fold text='🧍' expand='true'>INSTANCE</fold>.LOCAL.main(Singleton.<fold text='instance' expand='false'>getInstance()</fold>)));
     }</fold>
 
-    <fold text='@Getterˣ s' expand='false'>s</fold>tatic class Singleton <fold text='{...}' expand='true'>{
+    static class Singleton <fold text='{...}' expand='true'>{
         static Singleton INSTANCE =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> </fold><fold text='' expand='true'>Singleton</fold><fold text='' expand='true'>()</fold>;
         Singleton LOCAL =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> </fold><fold text='' expand='true'>Singleton</fold><fold text='' expand='true'>()</fold>;
-        boolean ok;
+        <fold text='@Getter b' expand='false'>b</fold>oolean ok;
 
         Singleton main(Singleton s)<fold text=' { ' expand='false'> {
             </fold>return this;<fold text=' }' expand='false'>

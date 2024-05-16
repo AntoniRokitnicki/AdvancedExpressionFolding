@@ -1,5 +1,5 @@
 {
-  "size" : 150,
+  "size" : 197,
   "list" : [ {
     "id" : 0,
     "text" : "\n    ",
@@ -181,20 +181,20 @@
     "text" : "\n        ",
     "placeholder" : "",
     "range" : {
-      "start" : 1379,
-      "end" : 1388,
+      "start" : 1374,
+      "end" : 1383,
       "size" : 9
     },
     "group" : "ClassAnnotationExpression",
     "groupReference" : 1
   }, {
     "id" : 17,
-    "text" : "public data.LombokTestData getData() {\n            return data;\n        }",
+    "text" : "public LombokTestData getData() {\n            return data;\n        }",
     "placeholder" : "",
     "range" : {
       "start" : 1306,
-      "end" : 1379,
-      "size" : 73
+      "end" : 1374,
+      "size" : 68
     },
     "group" : "ClassAnnotationExpression",
     "groupReference" : 1
@@ -203,8 +203,8 @@
     "text" : "public boolean isOk() {\n            return ok;\n        }",
     "placeholder" : "",
     "range" : {
-      "start" : 1388,
-      "end" : 1444,
+      "start" : 1383,
+      "end" : 1439,
       "size" : 56
     },
     "group" : "ClassAnnotationExpression",
@@ -222,33 +222,33 @@
     "groupReference" : 1
   }, {
     "id" : 20,
-    "text" : "\n            ",
-    "placeholder" : "",
-    "range" : {
-      "start" : 1546,
-      "end" : 1559,
-      "size" : 13
-    },
-    "group" : "ClassAnnotationExpression",
-    "groupReference" : 2
-  }, {
-    "id" : 21,
     "text" : "public boolean isOk() {\n                return ok;\n            }",
     "placeholder" : "",
     "range" : {
-      "start" : 1559,
-      "end" : 1623,
+      "start" : 1554,
+      "end" : 1618,
       "size" : 64
     },
     "group" : "ClassAnnotationExpression",
     "groupReference" : 2
   }, {
-    "id" : 22,
-    "text" : "p",
-    "placeholder" : "@Getterˣ p",
+    "id" : 21,
+    "text" : "\n            ",
+    "placeholder" : "",
     "range" : {
-      "start" : 1454,
-      "end" : 1455,
+      "start" : 1541,
+      "end" : 1554,
+      "size" : 13
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 2
+  }, {
+    "id" : 22,
+    "text" : "b",
+    "placeholder" : "@Getter b",
+    "range" : {
+      "start" : 1530,
+      "end" : 1531,
       "size" : 1
     },
     "group" : "ClassAnnotationExpression",
@@ -258,8 +258,8 @@
     "text" : "\n        ",
     "placeholder" : "",
     "range" : {
-      "start" : 1722,
-      "end" : 1731,
+      "start" : 1717,
+      "end" : 1726,
       "size" : 9
     },
     "group" : "ClassAnnotationExpression",
@@ -269,8 +269,8 @@
     "text" : "\n        ",
     "placeholder" : "",
     "range" : {
-      "start" : 1890,
-      "end" : 1899,
+      "start" : 1885,
+      "end" : 1894,
       "size" : 9
     },
     "group" : "ClassAnnotationExpression",
@@ -280,8 +280,8 @@
     "text" : "\n        ",
     "placeholder" : "",
     "range" : {
-      "start" : 1799,
-      "end" : 1808,
+      "start" : 1794,
+      "end" : 1803,
       "size" : 9
     },
     "group" : "ClassAnnotationExpression",
@@ -291,8 +291,8 @@
     "text" : "\n        ",
     "placeholder" : "",
     "range" : {
-      "start" : 1955,
-      "end" : 1964,
+      "start" : 1950,
+      "end" : 1959,
       "size" : 9
     },
     "group" : "ClassAnnotationExpression",
@@ -302,8 +302,8 @@
     "text" : "public LombokTestData getData() {\n            return data;\n        }",
     "placeholder" : "",
     "range" : {
-      "start" : 1731,
-      "end" : 1799,
+      "start" : 1726,
+      "end" : 1794,
       "size" : 68
     },
     "group" : "ClassAnnotationExpression",
@@ -313,8 +313,8 @@
     "text" : "public boolean isOk() {\n            return ok;\n        }",
     "placeholder" : "",
     "range" : {
-      "start" : 1899,
-      "end" : 1955,
+      "start" : 1894,
+      "end" : 1950,
       "size" : 56
     },
     "group" : "ClassAnnotationExpression",
@@ -324,8 +324,8 @@
     "text" : "public void setData(LombokTestData data) {\n            this.data = data;\n        }",
     "placeholder" : "",
     "range" : {
-      "start" : 1808,
-      "end" : 1890,
+      "start" : 1803,
+      "end" : 1885,
       "size" : 82
     },
     "group" : "ClassAnnotationExpression",
@@ -335,8 +335,8 @@
     "text" : "public void setOk(boolean ok) {\n            this.ok = ok;\n        }",
     "placeholder" : "",
     "range" : {
-      "start" : 1964,
-      "end" : 2031,
+      "start" : 1959,
+      "end" : 2026,
       "size" : 67
     },
     "group" : "ClassAnnotationExpression",
@@ -346,8 +346,8 @@
     "text" : "p",
     "placeholder" : "@Getter @Setter p",
     "range" : {
-      "start" : 1645,
-      "end" : 1646,
+      "start" : 1640,
+      "end" : 1641,
       "size" : 1
     },
     "group" : "ClassAnnotationExpression",
@@ -357,8 +357,8 @@
     "text" : "\n            ",
     "placeholder" : "",
     "range" : {
-      "start" : 2133,
-      "end" : 2146,
+      "start" : 2128,
+      "end" : 2141,
       "size" : 13
     },
     "group" : "ClassAnnotationExpression",
@@ -368,8 +368,8 @@
     "text" : "public void setData(LombokTestData data) {\n                this.data = data;\n            }",
     "placeholder" : "",
     "range" : {
-      "start" : 2146,
-      "end" : 2236,
+      "start" : 2141,
+      "end" : 2231,
       "size" : 90
     },
     "group" : "ClassAnnotationExpression",
@@ -379,8 +379,8 @@
     "text" : "p",
     "placeholder" : "@Setterˣ p",
     "range" : {
-      "start" : 2041,
-      "end" : 2042,
+      "start" : 2036,
+      "end" : 2037,
       "size" : 1
     },
     "group" : "ClassAnnotationExpression",
@@ -390,8 +390,8 @@
     "text" : "\n            ",
     "placeholder" : "",
     "range" : {
-      "start" : 2364,
-      "end" : 2377,
+      "start" : 2359,
+      "end" : 2372,
       "size" : 13
     },
     "group" : "ClassAnnotationExpression",
@@ -401,8 +401,8 @@
     "text" : "public void setData(LombokTestData data) {\n                this.data = data;\n            }",
     "placeholder" : "",
     "range" : {
-      "start" : 2377,
-      "end" : 2467,
+      "start" : 2372,
+      "end" : 2462,
       "size" : 90
     },
     "group" : "ClassAnnotationExpression",
@@ -412,8 +412,8 @@
     "text" : "p",
     "placeholder" : "@Setter p",
     "range" : {
-      "start" : 2256,
-      "end" : 2257,
+      "start" : 2251,
+      "end" : 2252,
       "size" : 1
     },
     "group" : "ClassAnnotationExpression",
@@ -423,8 +423,8 @@
     "text" : "\n\n        ",
     "placeholder" : "",
     "range" : {
-      "start" : 2565,
-      "end" : 2575,
+      "start" : 2560,
+      "end" : 2570,
       "size" : 10
     },
     "group" : "ClassAnnotationExpression",
@@ -434,8 +434,8 @@
     "text" : "@Override\n        public String toString() {\n            return \"ToStringFull{\" +\n                    \"data=\" + data +\n                    \", ok=\" + ok +\n                    '}';\n        }",
     "placeholder" : "",
     "range" : {
-      "start" : 2575,
-      "end" : 2763,
+      "start" : 2570,
+      "end" : 2758,
       "size" : 188
     },
     "group" : "ClassAnnotationExpression",
@@ -445,8 +445,8 @@
     "text" : "p",
     "placeholder" : "@ToString p",
     "range" : {
-      "start" : 2489,
-      "end" : 2490,
+      "start" : 2484,
+      "end" : 2485,
       "size" : 1
     },
     "group" : "ClassAnnotationExpression",
@@ -456,8 +456,8 @@
     "text" : " +\n                    ",
     "placeholder" : " + ",
     "range" : {
-      "start" : 2654,
-      "end" : 2677,
+      "start" : 2649,
+      "end" : 2672,
       "size" : 23
     },
     "group" : "Add",
@@ -467,8 +467,8 @@
     "text" : " +\n                    ",
     "placeholder" : " + ",
     "range" : {
-      "start" : 2691,
-      "end" : 2714,
+      "start" : 2686,
+      "end" : 2709,
       "size" : 23
     },
     "group" : "Add",
@@ -478,8 +478,8 @@
     "text" : " +\n                    ",
     "placeholder" : " + ",
     "range" : {
-      "start" : 2726,
-      "end" : 2749,
+      "start" : 2721,
+      "end" : 2744,
       "size" : 23
     },
     "group" : "Add",
@@ -489,8 +489,8 @@
     "text" : "\n\n            ",
     "placeholder" : "",
     "range" : {
-      "start" : 2860,
-      "end" : 2874,
+      "start" : 2855,
+      "end" : 2869,
       "size" : 14
     },
     "group" : "ClassAnnotationExpression",
@@ -500,8 +500,8 @@
     "text" : "@Override\n            public String toString() {\n                return \"ToStringPartial{\" +\n                        \"data=\" + data +\n                        '}';\n            }",
     "placeholder" : "",
     "range" : {
-      "start" : 2874,
-      "end" : 3050,
+      "start" : 2869,
+      "end" : 3045,
       "size" : 176
     },
     "group" : "ClassAnnotationExpression",
@@ -511,8 +511,8 @@
     "text" : "p",
     "placeholder" : "@ToStringˣ p",
     "range" : {
-      "start" : 2773,
-      "end" : 2774,
+      "start" : 2768,
+      "end" : 2769,
       "size" : 1
     },
     "group" : "ClassAnnotationExpression",
@@ -522,8 +522,8 @@
     "text" : " +\n                        ",
     "placeholder" : " + ",
     "range" : {
-      "start" : 2964,
-      "end" : 2991,
+      "start" : 2959,
+      "end" : 2986,
       "size" : 27
     },
     "group" : "Add",
@@ -533,8 +533,8 @@
     "text" : " +\n                        ",
     "placeholder" : " + ",
     "range" : {
-      "start" : 3005,
-      "end" : 3032,
+      "start" : 3000,
+      "end" : 3027,
       "size" : 27
     },
     "group" : "Add",
@@ -544,8 +544,8 @@
     "text" : "\n\n            ",
     "placeholder" : "",
     "range" : {
-      "start" : 3185,
-      "end" : 3199,
+      "start" : 3180,
+      "end" : 3194,
       "size" : 14
     },
     "group" : "ClassAnnotationExpression",
@@ -555,8 +555,8 @@
     "text" : "@Override\n            public String toString() {\n                return \"ToStringPartial{\" +\n                        \"data=\" + data +\n                        '}';\n            }",
     "placeholder" : "",
     "range" : {
-      "start" : 3199,
-      "end" : 3375,
+      "start" : 3194,
+      "end" : 3370,
       "size" : 176
     },
     "group" : "ClassAnnotationExpression",
@@ -566,8 +566,8 @@
     "text" : "p",
     "placeholder" : "@ToStringˣ p",
     "range" : {
-      "start" : 3070,
-      "end" : 3071,
+      "start" : 3065,
+      "end" : 3066,
       "size" : 1
     },
     "group" : "ClassAnnotationExpression",
@@ -577,8 +577,8 @@
     "text" : " +\n                        ",
     "placeholder" : " + ",
     "range" : {
-      "start" : 3289,
-      "end" : 3316,
+      "start" : 3284,
+      "end" : 3311,
       "size" : 27
     },
     "group" : "Add",
@@ -588,8 +588,8 @@
     "text" : " +\n                        ",
     "placeholder" : " + ",
     "range" : {
-      "start" : 3330,
-      "end" : 3357,
+      "start" : 3325,
+      "end" : 3352,
       "size" : 27
     },
     "group" : "Add",
@@ -599,8 +599,8 @@
     "text" : "\n\n        ",
     "placeholder" : "",
     "range" : {
-      "start" : 3482,
-      "end" : 3492,
+      "start" : 3477,
+      "end" : 3487,
       "size" : 10
     },
     "group" : "ClassAnnotationExpression",
@@ -610,8 +610,8 @@
     "text" : "\n\n        ",
     "placeholder" : "",
     "range" : {
-      "start" : 3829,
-      "end" : 3839,
+      "start" : 3824,
+      "end" : 3834,
       "size" : 10
     },
     "group" : "ClassAnnotationExpression",
@@ -621,8 +621,8 @@
     "text" : "@Override\n        public boolean equals(Object o) {\n            if (this == o) return true;\n            if (o == null || getClass() != o.getClass()) return false;\n            EqualsAndHashCodeFull that = (EqualsAndHashCodeFull) o;\n            return ok == that.ok && (data != null ? data.equals(that.data) : that.data == null);\n        }",
     "placeholder" : "",
     "range" : {
-      "start" : 3492,
-      "end" : 3829,
+      "start" : 3487,
+      "end" : 3824,
       "size" : 337
     },
     "group" : "ClassAnnotationExpression",
@@ -632,8 +632,8 @@
     "text" : "@Override\n        public int hashCode() {\n            int result = (data != null ? data.hashCode() : 0);\n            result = 31 * result + (ok ? 1 : 0);\n            return result;\n        }",
     "placeholder" : "",
     "range" : {
-      "start" : 3839,
-      "end" : 4029,
+      "start" : 3834,
+      "end" : 4024,
       "size" : 190
     },
     "group" : "ClassAnnotationExpression",
@@ -643,8 +643,8 @@
     "text" : "p",
     "placeholder" : "@EqualsAndHashCode p",
     "range" : {
-      "start" : 3397,
-      "end" : 3398,
+      "start" : 3392,
+      "end" : 3393,
       "size" : 1
     },
     "group" : "ClassAnnotationExpression",
@@ -654,8 +654,8 @@
     "text" : "\n\n            ",
     "placeholder" : "",
     "range" : {
-      "start" : 4135,
-      "end" : 4149,
+      "start" : 4130,
+      "end" : 4144,
       "size" : 14
     },
     "group" : "ClassAnnotationExpression",
@@ -665,8 +665,8 @@
     "text" : "\n\n            ",
     "placeholder" : "",
     "range" : {
-      "start" : 4497,
-      "end" : 4511,
+      "start" : 4492,
+      "end" : 4506,
       "size" : 14
     },
     "group" : "ClassAnnotationExpression",
@@ -676,8 +676,8 @@
     "text" : "@Override\n            public boolean equals(Object o) {\n                if (this == o) return true;\n                if (o == null || getClass() != o.getClass()) return false;\n                EqualsAndHashCodePartial that = (EqualsAndHashCodePartial) o;\n                return data != null ? data.equals(that.data) : that.data == null;\n            }",
     "placeholder" : "",
     "range" : {
-      "start" : 4149,
-      "end" : 4497,
+      "start" : 4144,
+      "end" : 4492,
       "size" : 348
     },
     "group" : "ClassAnnotationExpression",
@@ -687,8 +687,8 @@
     "text" : "@Override\n            public int hashCode() {\n                return data != null ? data.hashCode() : 0;\n            }",
     "placeholder" : "",
     "range" : {
-      "start" : 4511,
-      "end" : 4629,
+      "start" : 4506,
+      "end" : 4624,
       "size" : 118
     },
     "group" : "ClassAnnotationExpression",
@@ -698,8 +698,8 @@
     "text" : "p",
     "placeholder" : "@EqualsAndHashCodeˣ p",
     "range" : {
-      "start" : 4039,
-      "end" : 4040,
+      "start" : 4034,
+      "end" : 4035,
       "size" : 1
     },
     "group" : "ClassAnnotationExpression",
@@ -709,8 +709,8 @@
     "text" : "\n\n            ",
     "placeholder" : "",
     "range" : {
-      "start" : 4775,
-      "end" : 4789,
+      "start" : 4770,
+      "end" : 4784,
       "size" : 14
     },
     "group" : "ClassAnnotationExpression",
@@ -720,8 +720,8 @@
     "text" : "\n\n            ",
     "placeholder" : "",
     "range" : {
-      "start" : 5162,
-      "end" : 5176,
+      "start" : 5157,
+      "end" : 5171,
       "size" : 14
     },
     "group" : "ClassAnnotationExpression",
@@ -731,8 +731,8 @@
     "text" : "@Override\n            public boolean equals(Object o) {\n                if (this == o) return true;\n                if (o == null || getClass() != o.getClass()) return false;\n                EqualsAndHashCodePartialTwo that = (EqualsAndHashCodePartialTwo) o;\n                return ok == that.ok && (data != null ? data.equals(that.data) : that.data == null);\n            }",
     "placeholder" : "",
     "range" : {
-      "start" : 4789,
-      "end" : 5162,
+      "start" : 4784,
+      "end" : 5157,
       "size" : 373
     },
     "group" : "ClassAnnotationExpression",
@@ -742,8 +742,8 @@
     "text" : "@Override\n            public int hashCode() {\n                int result = (data != null ? data.hashCode() : 0);\n                result = 31 * result + (ok ? 1 : 0);\n                return result;\n            }",
     "placeholder" : "",
     "range" : {
-      "start" : 5176,
-      "end" : 5386,
+      "start" : 5171,
+      "end" : 5381,
       "size" : 210
     },
     "group" : "ClassAnnotationExpression",
@@ -753,8 +753,8 @@
     "text" : "p",
     "placeholder" : "@EqualsAndHashCodeˣ p",
     "range" : {
-      "start" : 4649,
-      "end" : 4650,
+      "start" : 4644,
+      "end" : 4645,
       "size" : 1
     },
     "group" : "ClassAnnotationExpression",
@@ -764,8 +764,8 @@
     "text" : "\n\n        ",
     "placeholder" : "",
     "range" : {
-      "start" : 5482,
-      "end" : 5492,
+      "start" : 5477,
+      "end" : 5487,
       "size" : 10
     },
     "group" : "ClassAnnotationExpression",
@@ -775,8 +775,8 @@
     "text" : "@Override\n        public boolean equals(Object o) {\n            if (this == o) return true;\n            if (o == null || getClass() != o.getClass()) return false;\n            EqualsFull that = (EqualsFull) o;\n            return ok == that.ok && (data != null ? data.equals(that.data) : that.data == null);\n        }",
     "placeholder" : "",
     "range" : {
-      "start" : 5492,
-      "end" : 5807,
+      "start" : 5487,
+      "end" : 5802,
       "size" : 315
     },
     "group" : "ClassAnnotationExpression",
@@ -786,8 +786,8 @@
     "text" : "p",
     "placeholder" : "@Equals p",
     "range" : {
-      "start" : 5408,
-      "end" : 5409,
+      "start" : 5403,
+      "end" : 5404,
       "size" : 1
     },
     "group" : "ClassAnnotationExpression",
@@ -797,8 +797,8 @@
     "text" : "\n\n            ",
     "placeholder" : "",
     "range" : {
-      "start" : 5902,
-      "end" : 5916,
+      "start" : 5897,
+      "end" : 5911,
       "size" : 14
     },
     "group" : "ClassAnnotationExpression",
@@ -808,8 +808,8 @@
     "text" : "@Override\n            public boolean equals(Object o) {\n                if (this == o) return true;\n                if (o == null || getClass() != o.getClass()) return false;\n                EqualsPartial that = (EqualsPartial) o;\n                return data != null ? data.equals(that.data) : that.data == null;\n            }",
     "placeholder" : "",
     "range" : {
-      "start" : 5916,
-      "end" : 6242,
+      "start" : 5911,
+      "end" : 6237,
       "size" : 326
     },
     "group" : "ClassAnnotationExpression",
@@ -819,8 +819,8 @@
     "text" : "p",
     "placeholder" : "@Equalsˣ p",
     "range" : {
-      "start" : 5817,
-      "end" : 5818,
+      "start" : 5812,
+      "end" : 5813,
       "size" : 1
     },
     "group" : "ClassAnnotationExpression",
@@ -830,8 +830,8 @@
     "text" : "\n\n            ",
     "placeholder" : "",
     "range" : {
-      "start" : 6377,
-      "end" : 6391,
+      "start" : 6372,
+      "end" : 6386,
       "size" : 14
     },
     "group" : "ClassAnnotationExpression",
@@ -841,8 +841,8 @@
     "text" : "@Override\n            public boolean equals(Object o) {\n                if (this == o) return true;\n                if (o == null || getClass() != o.getClass()) return false;\n                EqualsPartialTwo that = (EqualsPartialTwo) o;\n                return ok == that.ok && (data != null ? data.equals(that.data) : that.data == null);\n            }",
     "placeholder" : "",
     "range" : {
-      "start" : 6391,
-      "end" : 6742,
+      "start" : 6386,
+      "end" : 6737,
       "size" : 351
     },
     "group" : "ClassAnnotationExpression",
@@ -852,8 +852,8 @@
     "text" : "p",
     "placeholder" : "@Equalsˣ p",
     "range" : {
-      "start" : 6262,
-      "end" : 6263,
+      "start" : 6257,
+      "end" : 6258,
       "size" : 1
     },
     "group" : "ClassAnnotationExpression",
@@ -863,8 +863,8 @@
     "text" : "\n\n        ",
     "placeholder" : "",
     "range" : {
-      "start" : 6840,
-      "end" : 6850,
+      "start" : 6835,
+      "end" : 6845,
       "size" : 10
     },
     "group" : "ClassAnnotationExpression",
@@ -874,8 +874,8 @@
     "text" : "@Override\n        public int hashCode() {\n            int result = (data != null ? data.hashCode() : 0);\n            result = 31 * result + (ok ? 1 : 0);\n            return result;\n        }",
     "placeholder" : "",
     "range" : {
-      "start" : 6850,
-      "end" : 7040,
+      "start" : 6845,
+      "end" : 7035,
       "size" : 190
     },
     "group" : "ClassAnnotationExpression",
@@ -885,8 +885,8 @@
     "text" : "p",
     "placeholder" : "@HashCode p",
     "range" : {
-      "start" : 6764,
-      "end" : 6765,
+      "start" : 6759,
+      "end" : 6760,
       "size" : 1
     },
     "group" : "ClassAnnotationExpression",
@@ -896,8 +896,8 @@
     "text" : "\n\n            ",
     "placeholder" : "",
     "range" : {
-      "start" : 7137,
-      "end" : 7151,
+      "start" : 7132,
+      "end" : 7146,
       "size" : 14
     },
     "group" : "ClassAnnotationExpression",
@@ -907,8 +907,8 @@
     "text" : "@Override\n            public int hashCode() {\n                return data != null ? data.hashCode() : 0;\n            }",
     "placeholder" : "",
     "range" : {
-      "start" : 7151,
-      "end" : 7269,
+      "start" : 7146,
+      "end" : 7264,
       "size" : 118
     },
     "group" : "ClassAnnotationExpression",
@@ -918,8 +918,8 @@
     "text" : "p",
     "placeholder" : "@HashCodeˣ p",
     "range" : {
-      "start" : 7050,
-      "end" : 7051,
+      "start" : 7045,
+      "end" : 7046,
       "size" : 1
     },
     "group" : "ClassAnnotationExpression",
@@ -929,8 +929,8 @@
     "text" : "\n\n            ",
     "placeholder" : "",
     "range" : {
-      "start" : 7406,
-      "end" : 7420,
+      "start" : 7401,
+      "end" : 7415,
       "size" : 14
     },
     "group" : "ClassAnnotationExpression",
@@ -940,8 +940,8 @@
     "text" : "@Override\n            public int hashCode() {\n                int result = (data != null ? data.hashCode() : 0);\n                result = 31 * result + (ok ? 1 : 0);\n                return result;\n            }",
     "placeholder" : "",
     "range" : {
-      "start" : 7420,
-      "end" : 7630,
+      "start" : 7415,
+      "end" : 7625,
       "size" : 210
     },
     "group" : "ClassAnnotationExpression",
@@ -951,8 +951,8 @@
     "text" : "p",
     "placeholder" : "@HashCodeˣ p",
     "range" : {
-      "start" : 7289,
-      "end" : 7290,
+      "start" : 7284,
+      "end" : 7285,
       "size" : 1
     },
     "group" : "ClassAnnotationExpression",
@@ -962,8 +962,8 @@
     "text" : "\n\n        ",
     "placeholder" : "",
     "range" : {
-      "start" : 7724,
-      "end" : 7734,
+      "start" : 7719,
+      "end" : 7729,
       "size" : 10
     },
     "group" : "ClassAnnotationExpression",
@@ -973,8 +973,8 @@
     "text" : "\n        ",
     "placeholder" : "",
     "range" : {
-      "start" : 7893,
-      "end" : 7902,
+      "start" : 7888,
+      "end" : 7897,
       "size" : 9
     },
     "group" : "ClassAnnotationExpression",
@@ -984,8 +984,8 @@
     "text" : "\n        ",
     "placeholder" : "",
     "range" : {
-      "start" : 7802,
-      "end" : 7811,
+      "start" : 7797,
+      "end" : 7806,
       "size" : 9
     },
     "group" : "ClassAnnotationExpression",
@@ -995,8 +995,8 @@
     "text" : "\n        ",
     "placeholder" : "",
     "range" : {
-      "start" : 7958,
-      "end" : 7967,
+      "start" : 7953,
+      "end" : 7962,
       "size" : 9
     },
     "group" : "ClassAnnotationExpression",
@@ -1006,8 +1006,8 @@
     "text" : "\n\n        ",
     "placeholder" : "",
     "range" : {
-      "start" : 8496,
-      "end" : 8506,
+      "start" : 8491,
+      "end" : 8501,
       "size" : 10
     },
     "group" : "ClassAnnotationExpression",
@@ -1017,8 +1017,8 @@
     "text" : "\n\n        ",
     "placeholder" : "",
     "range" : {
-      "start" : 8034,
-      "end" : 8044,
+      "start" : 8029,
+      "end" : 8039,
       "size" : 10
     },
     "group" : "ClassAnnotationExpression",
@@ -1028,8 +1028,8 @@
     "text" : "\n\n        ",
     "placeholder" : "",
     "range" : {
-      "start" : 8350,
-      "end" : 8360,
+      "start" : 8345,
+      "end" : 8355,
       "size" : 10
     },
     "group" : "ClassAnnotationExpression",
@@ -1039,8 +1039,8 @@
     "text" : "public LombokTestData getData() {\n            return data;\n        }",
     "placeholder" : "",
     "range" : {
-      "start" : 7734,
-      "end" : 7802,
+      "start" : 7729,
+      "end" : 7797,
       "size" : 68
     },
     "group" : "ClassAnnotationExpression",
@@ -1050,8 +1050,8 @@
     "text" : "public boolean isOk() {\n            return ok;\n        }",
     "placeholder" : "",
     "range" : {
-      "start" : 7902,
-      "end" : 7958,
+      "start" : 7897,
+      "end" : 7953,
       "size" : 56
     },
     "group" : "ClassAnnotationExpression",
@@ -1061,8 +1061,8 @@
     "text" : "public void setData(LombokTestData data) {\n            this.data = data;\n        }",
     "placeholder" : "",
     "range" : {
-      "start" : 7811,
-      "end" : 7893,
+      "start" : 7806,
+      "end" : 7888,
       "size" : 82
     },
     "group" : "ClassAnnotationExpression",
@@ -1072,8 +1072,8 @@
     "text" : "public void setOk(boolean ok) {\n            this.ok = ok;\n        }",
     "placeholder" : "",
     "range" : {
-      "start" : 7967,
-      "end" : 8034,
+      "start" : 7962,
+      "end" : 8029,
       "size" : 67
     },
     "group" : "ClassAnnotationExpression",
@@ -1083,8 +1083,8 @@
     "text" : "@Override\n        public String toString() {\n            return new ToStringBuilder(this)\n                    .append(\"data\", data)\n                    .append(\"ok\", ok)\n                    .toString();\n        }",
     "placeholder" : "",
     "range" : {
-      "start" : 8506,
-      "end" : 8718,
+      "start" : 8501,
+      "end" : 8713,
       "size" : 212
     },
     "group" : "ClassAnnotationExpression",
@@ -1094,8 +1094,8 @@
     "text" : "@Override\n        public boolean equals(Object o) {\n            if (this == o) return true;\n            if (!(o instanceof DataFull)) return false;\n            DataFull dataFull = (DataFull) o;\n            return new EqualsBuilder().append(ok, dataFull.ok).append(data, dataFull.data).isEquals();\n        }",
     "placeholder" : "",
     "range" : {
-      "start" : 8044,
-      "end" : 8350,
+      "start" : 8039,
+      "end" : 8345,
       "size" : 306
     },
     "group" : "ClassAnnotationExpression",
@@ -1105,8 +1105,8 @@
     "text" : "@Override\n        public int hashCode() {\n            return new HashCodeBuilder(17, 37).append(data).append(ok).toHashCode();\n        }",
     "placeholder" : "",
     "range" : {
-      "start" : 8360,
-      "end" : 8496,
+      "start" : 8355,
+      "end" : 8491,
       "size" : 136
     },
     "group" : "ClassAnnotationExpression",
@@ -1116,8 +1116,8 @@
     "text" : "p",
     "placeholder" : "@Data p",
     "range" : {
-      "start" : 7652,
-      "end" : 7653,
+      "start" : 7647,
+      "end" : 7648,
       "size" : 1
     },
     "group" : "ClassAnnotationExpression",
@@ -1127,8 +1127,8 @@
     "text" : "\n\n            ",
     "placeholder" : "",
     "range" : {
-      "start" : 8819,
-      "end" : 8833,
+      "start" : 8814,
+      "end" : 8828,
       "size" : 14
     },
     "group" : "ClassAnnotationExpression",
@@ -1138,8 +1138,8 @@
     "text" : "\n            ",
     "placeholder" : "",
     "range" : {
-      "start" : 9012,
-      "end" : 9025,
+      "start" : 9007,
+      "end" : 9020,
       "size" : 13
     },
     "group" : "ClassAnnotationExpression",
@@ -1149,8 +1149,8 @@
     "text" : "\n            ",
     "placeholder" : "",
     "range" : {
-      "start" : 8909,
-      "end" : 8922,
+      "start" : 8904,
+      "end" : 8917,
       "size" : 13
     },
     "group" : "ClassAnnotationExpression",
@@ -1160,8 +1160,8 @@
     "text" : "\n            ",
     "placeholder" : "",
     "range" : {
-      "start" : 9089,
-      "end" : 9102,
+      "start" : 9084,
+      "end" : 9097,
       "size" : 13
     },
     "group" : "ClassAnnotationExpression",
@@ -1171,8 +1171,8 @@
     "text" : "\n\n            ",
     "placeholder" : "",
     "range" : {
-      "start" : 9177,
-      "end" : 9191,
+      "start" : 9172,
+      "end" : 9186,
       "size" : 14
     },
     "group" : "ClassAnnotationExpression",
@@ -1182,8 +1182,8 @@
     "text" : "\n\n            ",
     "placeholder" : "",
     "range" : {
-      "start" : 9566,
-      "end" : 9580,
+      "start" : 9561,
+      "end" : 9575,
       "size" : 14
     },
     "group" : "ClassAnnotationExpression",
@@ -1193,8 +1193,8 @@
     "text" : "public LombokTestData getData() {\n                return data;\n            }",
     "placeholder" : "",
     "range" : {
-      "start" : 8833,
-      "end" : 8909,
+      "start" : 8828,
+      "end" : 8904,
       "size" : 76
     },
     "group" : "ClassAnnotationExpression",
@@ -1204,8 +1204,8 @@
     "text" : "public boolean isOk() {\n                return ok;\n            }",
     "placeholder" : "",
     "range" : {
-      "start" : 9025,
-      "end" : 9089,
+      "start" : 9020,
+      "end" : 9084,
       "size" : 64
     },
     "group" : "ClassAnnotationExpression",
@@ -1215,8 +1215,8 @@
     "text" : "public void setData(LombokTestData data) {\n                this.data = data;\n            }",
     "placeholder" : "",
     "range" : {
-      "start" : 8922,
-      "end" : 9012,
+      "start" : 8917,
+      "end" : 9007,
       "size" : 90
     },
     "group" : "ClassAnnotationExpression",
@@ -1226,8 +1226,8 @@
     "text" : "public void setOk(boolean ok) {\n                this.ok = ok;\n            }",
     "placeholder" : "",
     "range" : {
-      "start" : 9102,
-      "end" : 9177,
+      "start" : 9097,
+      "end" : 9172,
       "size" : 75
     },
     "group" : "ClassAnnotationExpression",
@@ -1237,8 +1237,8 @@
     "text" : "@Override\n            public boolean equals(Object o) {\n                if (this == o) return true;\n                if (!(o instanceof LombokTestData.DataFull)) return false;\n                LombokTestData.DataFull dataFull = (LombokTestData.DataFull) o;\n                return new EqualsBuilder().append(ok, dataFull.ok).append(data, dataFull.data).isEquals();\n            }",
     "placeholder" : "",
     "range" : {
-      "start" : 9191,
-      "end" : 9566,
+      "start" : 9186,
+      "end" : 9561,
       "size" : 375
     },
     "group" : "ClassAnnotationExpression",
@@ -1248,8 +1248,8 @@
     "text" : "@Override\n            public int hashCode() {\n                return new HashCodeBuilder(17, 37).append(data).append(ok).toHashCode();\n            }",
     "placeholder" : "",
     "range" : {
-      "start" : 9580,
-      "end" : 9728,
+      "start" : 9575,
+      "end" : 9723,
       "size" : 148
     },
     "group" : "ClassAnnotationExpression",
@@ -1259,20 +1259,20 @@
     "text" : "p",
     "placeholder" : "@Data p",
     "range" : {
-      "start" : 8728,
-      "end" : 8729,
+      "start" : 8723,
+      "end" : 8724,
       "size" : 1
     },
     "group" : "ClassAnnotationExpression",
     "groupReference" : 22
   }, {
     "id" : 115,
-    "text" : "\n\n            ",
+    "text" : "\n            ",
     "placeholder" : "",
     "range" : {
-      "start" : 9843,
-      "end" : 9857,
-      "size" : 14
+      "start" : 9928,
+      "end" : 9941,
+      "size" : 13
     },
     "group" : "ClassAnnotationExpression",
     "groupReference" : 23
@@ -1281,20 +1281,20 @@
     "text" : "\n            ",
     "placeholder" : "",
     "range" : {
-      "start" : 9933,
-      "end" : 9946,
+      "start" : 10031,
+      "end" : 10044,
       "size" : 13
     },
     "group" : "ClassAnnotationExpression",
     "groupReference" : 23
   }, {
     "id" : 117,
-    "text" : "\n            ",
+    "text" : "\n\n            ",
     "placeholder" : "",
     "range" : {
-      "start" : 10036,
-      "end" : 10049,
-      "size" : 13
+      "start" : 10670,
+      "end" : 10684,
+      "size" : 14
     },
     "group" : "ClassAnnotationExpression",
     "groupReference" : 23
@@ -1303,8 +1303,8 @@
     "text" : "\n\n            ",
     "placeholder" : "",
     "range" : {
-      "start" : 10675,
-      "end" : 10689,
+      "start" : 10119,
+      "end" : 10133,
       "size" : 14
     },
     "group" : "ClassAnnotationExpression",
@@ -1314,341 +1314,858 @@
     "text" : "\n\n            ",
     "placeholder" : "",
     "range" : {
-      "start" : 10124,
-      "end" : 10138,
+      "start" : 10508,
+      "end" : 10522,
       "size" : 14
     },
     "group" : "ClassAnnotationExpression",
     "groupReference" : 23
   }, {
     "id" : 120,
-    "text" : "\n\n            ",
+    "text" : "public void setData(LombokTestData data) {\n                this.data = data;\n            }",
     "placeholder" : "",
     "range" : {
-      "start" : 10513,
-      "end" : 10527,
-      "size" : 14
+      "start" : 9941,
+      "end" : 10031,
+      "size" : 90
     },
     "group" : "ClassAnnotationExpression",
     "groupReference" : 23
   }, {
     "id" : 121,
-    "text" : "public LombokTestData getData() {\n                return data;\n            }",
-    "placeholder" : "",
-    "range" : {
-      "start" : 9857,
-      "end" : 9933,
-      "size" : 76
-    },
-    "group" : "ClassAnnotationExpression",
-    "groupReference" : 23
-  }, {
-    "id" : 122,
-    "text" : "public void setData(LombokTestData data) {\n                this.data = data;\n            }",
-    "placeholder" : "",
-    "range" : {
-      "start" : 9946,
-      "end" : 10036,
-      "size" : 90
-    },
-    "group" : "ClassAnnotationExpression",
-    "groupReference" : 23
-  }, {
-    "id" : 123,
     "text" : "public void setOk(boolean ok) {\n                this.ok = ok;\n            }",
     "placeholder" : "",
     "range" : {
-      "start" : 10049,
-      "end" : 10124,
+      "start" : 10044,
+      "end" : 10119,
       "size" : 75
     },
     "group" : "ClassAnnotationExpression",
     "groupReference" : 23
   }, {
-    "id" : 124,
+    "id" : 122,
     "text" : "@Override\n            public String toString() {\n                return new ToStringBuilder(this)\n                        .append(\"data\", data)\n                        .append(\"ok\", ok)\n                        .toString();\n            }",
     "placeholder" : "",
     "range" : {
-      "start" : 10689,
-      "end" : 10925,
+      "start" : 10684,
+      "end" : 10920,
       "size" : 236
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 23
+  }, {
+    "id" : 123,
+    "text" : "@Override\n            public boolean equals(Object o) {\n                if (this == o) return true;\n                if (!(o instanceof LombokTestData.DataFull)) return false;\n                LombokTestData.DataFull dataFull = (LombokTestData.DataFull) o;\n                return new EqualsBuilder().append(ok, dataFull.ok).append(data, dataFull.data).isEquals();\n            }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 10133,
+      "end" : 10508,
+      "size" : 375
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 23
+  }, {
+    "id" : 124,
+    "text" : "@Override\n            public int hashCode() {\n                return new HashCodeBuilder(17, 37).append(data).append(ok).toHashCode();\n            }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 10522,
+      "end" : 10670,
+      "size" : 148
     },
     "group" : "ClassAnnotationExpression",
     "groupReference" : 23
   }, {
     "id" : 125,
-    "text" : "@Override\n            public boolean equals(Object o) {\n                if (this == o) return true;\n                if (!(o instanceof LombokTestData.DataFull)) return false;\n                LombokTestData.DataFull dataFull = (LombokTestData.DataFull) o;\n                return new EqualsBuilder().append(ok, dataFull.ok).append(data, dataFull.data).isEquals();\n            }",
-    "placeholder" : "",
+    "text" : "p",
+    "placeholder" : "@Setter @ToString @EqualsAndHashCode p",
     "range" : {
-      "start" : 10138,
-      "end" : 10513,
-      "size" : 375
+      "start" : 9744,
+      "end" : 9745,
+      "size" : 1
     },
     "group" : "ClassAnnotationExpression",
     "groupReference" : 23
   }, {
     "id" : 126,
-    "text" : "@Override\n            public int hashCode() {\n                return new HashCodeBuilder(17, 37).append(data).append(ok).toHashCode();\n            }",
-    "placeholder" : "",
-    "range" : {
-      "start" : 10527,
-      "end" : 10675,
-      "size" : 148
-    },
-    "group" : "ClassAnnotationExpression",
-    "groupReference" : 23
-  }, {
-    "id" : 127,
-    "text" : "p",
-    "placeholder" : "@Dataˣ p",
-    "range" : {
-      "start" : 9749,
-      "end" : 9750,
-      "size" : 1
-    },
-    "group" : "ClassAnnotationExpression",
-    "groupReference" : 23
-  }, {
-    "id" : 128,
-    "text" : "\n\n            ",
-    "placeholder" : "",
-    "range" : {
-      "start" : 11039,
-      "end" : 11053,
-      "size" : 14
-    },
-    "group" : "ClassAnnotationExpression",
-    "groupReference" : 24
-  }, {
-    "id" : 129,
-    "text" : "\n            ",
-    "placeholder" : "",
-    "range" : {
-      "start" : 11232,
-      "end" : 11245,
-      "size" : 13
-    },
-    "group" : "ClassAnnotationExpression",
-    "groupReference" : 24
-  }, {
-    "id" : 130,
-    "text" : "\n            ",
-    "placeholder" : "",
-    "range" : {
-      "start" : 11129,
-      "end" : 11142,
-      "size" : 13
-    },
-    "group" : "ClassAnnotationExpression",
-    "groupReference" : 24
-  }, {
-    "id" : 131,
-    "text" : "\n\n            ",
-    "placeholder" : "",
-    "range" : {
-      "start" : 11860,
-      "end" : 11874,
-      "size" : 14
-    },
-    "group" : "ClassAnnotationExpression",
-    "groupReference" : 24
-  }, {
-    "id" : 132,
-    "text" : "\n\n            ",
-    "placeholder" : "",
-    "range" : {
-      "start" : 11309,
-      "end" : 11323,
-      "size" : 14
-    },
-    "group" : "ClassAnnotationExpression",
-    "groupReference" : 24
-  }, {
-    "id" : 133,
-    "text" : "\n\n            ",
-    "placeholder" : "",
-    "range" : {
-      "start" : 11698,
-      "end" : 11712,
-      "size" : 14
-    },
-    "group" : "ClassAnnotationExpression",
-    "groupReference" : 24
-  }, {
-    "id" : 134,
     "text" : "public LombokTestData getData() {\n                return data;\n            }",
     "placeholder" : "",
     "range" : {
-      "start" : 11053,
-      "end" : 11129,
+      "start" : 9852,
+      "end" : 9928,
       "size" : 76
     },
     "group" : "ClassAnnotationExpression",
     "groupReference" : 24
   }, {
-    "id" : 135,
-    "text" : "public boolean isOk() {\n                return ok;\n            }",
+    "id" : 127,
+    "text" : "\n\n            ",
     "placeholder" : "",
     "range" : {
-      "start" : 11245,
-      "end" : 11309,
-      "size" : 64
+      "start" : 9838,
+      "end" : 9852,
+      "size" : 14
     },
     "group" : "ClassAnnotationExpression",
     "groupReference" : 24
   }, {
-    "id" : 136,
-    "text" : "public void setData(LombokTestData data) {\n                this.data = data;\n            }",
-    "placeholder" : "",
+    "id" : 128,
+    "text" : "L",
+    "placeholder" : "@Getter L",
     "range" : {
-      "start" : 11142,
-      "end" : 11232,
-      "size" : 90
-    },
-    "group" : "ClassAnnotationExpression",
-    "groupReference" : 24
-  }, {
-    "id" : 137,
-    "text" : "@Override\n            public String toString() {\n                return new ToStringBuilder(this)\n                        .append(\"data\", data)\n                        .append(\"ok\", ok)\n                        .toString();\n            }",
-    "placeholder" : "",
-    "range" : {
-      "start" : 11874,
-      "end" : 12110,
-      "size" : 236
-    },
-    "group" : "ClassAnnotationExpression",
-    "groupReference" : 24
-  }, {
-    "id" : 138,
-    "text" : "@Override\n            public boolean equals(Object o) {\n                if (this == o) return true;\n                if (!(o instanceof LombokTestData.DataFull)) return false;\n                LombokTestData.DataFull dataFull = (LombokTestData.DataFull) o;\n                return new EqualsBuilder().append(ok, dataFull.ok).append(data, dataFull.data).isEquals();\n            }",
-    "placeholder" : "",
-    "range" : {
-      "start" : 11323,
-      "end" : 11698,
-      "size" : 375
-    },
-    "group" : "ClassAnnotationExpression",
-    "groupReference" : 24
-  }, {
-    "id" : 139,
-    "text" : "@Override\n            public int hashCode() {\n                return new HashCodeBuilder(17, 37).append(data).append(ok).toHashCode();\n            }",
-    "placeholder" : "",
-    "range" : {
-      "start" : 11712,
-      "end" : 11860,
-      "size" : 148
-    },
-    "group" : "ClassAnnotationExpression",
-    "groupReference" : 24
-  }, {
-    "id" : 140,
-    "text" : "p",
-    "placeholder" : "@Dataˣ p",
-    "range" : {
-      "start" : 10945,
-      "end" : 10946,
+      "start" : 9794,
+      "end" : 9795,
       "size" : 1
     },
     "group" : "ClassAnnotationExpression",
     "groupReference" : 24
   }, {
-    "id" : 141,
+    "id" : 129,
+    "text" : "\n\n            ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 11034,
+      "end" : 11048,
+      "size" : 14
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 25
+  }, {
+    "id" : 130,
     "text" : "\n            ",
     "placeholder" : "",
     "range" : {
-      "start" : 12212,
-      "end" : 12225,
+      "start" : 11227,
+      "end" : 11240,
       "size" : 13
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 25
+  }, {
+    "id" : 131,
+    "text" : "\n            ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 11124,
+      "end" : 11137,
+      "size" : 13
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 25
+  }, {
+    "id" : 132,
+    "text" : "\n\n            ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 11855,
+      "end" : 11869,
+      "size" : 14
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 25
+  }, {
+    "id" : 133,
+    "text" : "\n\n            ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 11304,
+      "end" : 11318,
+      "size" : 14
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 25
+  }, {
+    "id" : 134,
+    "text" : "\n\n            ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 11693,
+      "end" : 11707,
+      "size" : 14
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 25
+  }, {
+    "id" : 135,
+    "text" : "public LombokTestData getData() {\n                return data;\n            }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 11048,
+      "end" : 11124,
+      "size" : 76
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 25
+  }, {
+    "id" : 136,
+    "text" : "public boolean isOk() {\n                return ok;\n            }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 11240,
+      "end" : 11304,
+      "size" : 64
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 25
+  }, {
+    "id" : 137,
+    "text" : "public void setData(LombokTestData data) {\n                this.data = data;\n            }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 11137,
+      "end" : 11227,
+      "size" : 90
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 25
+  }, {
+    "id" : 138,
+    "text" : "@Override\n            public String toString() {\n                return new ToStringBuilder(this)\n                        .append(\"data\", data)\n                        .append(\"ok\", ok)\n                        .toString();\n            }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 11869,
+      "end" : 12105,
+      "size" : 236
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 25
+  }, {
+    "id" : 139,
+    "text" : "@Override\n            public boolean equals(Object o) {\n                if (this == o) return true;\n                if (!(o instanceof LombokTestData.DataFull)) return false;\n                LombokTestData.DataFull dataFull = (LombokTestData.DataFull) o;\n                return new EqualsBuilder().append(ok, dataFull.ok).append(data, dataFull.data).isEquals();\n            }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 11318,
+      "end" : 11693,
+      "size" : 375
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 25
+  }, {
+    "id" : 140,
+    "text" : "@Override\n            public int hashCode() {\n                return new HashCodeBuilder(17, 37).append(data).append(ok).toHashCode();\n            }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 11707,
+      "end" : 11855,
+      "size" : 148
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 25
+  }, {
+    "id" : 141,
+    "text" : "p",
+    "placeholder" : "@Dataˣ p",
+    "range" : {
+      "start" : 10940,
+      "end" : 10941,
+      "size" : 1
     },
     "group" : "ClassAnnotationExpression",
     "groupReference" : 25
   }, {
     "id" : 142,
-    "text" : "public boolean isOk() {\n                return ok;\n            }",
-    "placeholder" : "",
-    "range" : {
-      "start" : 12225,
-      "end" : 12289,
-      "size" : 64
-    },
-    "group" : "ClassAnnotationExpression",
-    "groupReference" : 25
-  }, {
-    "id" : 143,
-    "text" : "p",
-    "placeholder" : "@Getter p",
-    "range" : {
-      "start" : 12162,
-      "end" : 12163,
-      "size" : 1
-    },
-    "group" : "ClassAnnotationExpression",
-    "groupReference" : 25
-  }, {
-    "id" : 144,
     "text" : "\n            ",
     "placeholder" : "",
     "range" : {
-      "start" : 12351,
-      "end" : 12364,
+      "start" : 12207,
+      "end" : 12220,
       "size" : 13
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 26
+  }, {
+    "id" : 143,
+    "text" : "public boolean isOk() {\n                return ok;\n            }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 12220,
+      "end" : 12284,
+      "size" : 64
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 26
+  }, {
+    "id" : 144,
+    "text" : "p",
+    "placeholder" : "@Getter p",
+    "range" : {
+      "start" : 12157,
+      "end" : 12158,
+      "size" : 1
     },
     "group" : "ClassAnnotationExpression",
     "groupReference" : 26
   }, {
     "id" : 145,
-    "text" : "public boolean isOk() {\n                return ok;\n            }",
-    "placeholder" : "",
-    "range" : {
-      "start" : 12364,
-      "end" : 12428,
-      "size" : 64
-    },
-    "group" : "ClassAnnotationExpression",
-    "groupReference" : 26
-  }, {
-    "id" : 146,
-    "text" : "c",
-    "placeholder" : "@Getter c",
-    "range" : {
-      "start" : 12309,
-      "end" : 12310,
-      "size" : 1
-    },
-    "group" : "ClassAnnotationExpression",
-    "groupReference" : 26
-  }, {
-    "id" : 147,
     "text" : "\n            ",
     "placeholder" : "",
     "range" : {
-      "start" : 12533,
-      "end" : 12546,
+      "start" : 12346,
+      "end" : 12359,
       "size" : 13
     },
     "group" : "ClassAnnotationExpression",
     "groupReference" : 27
   }, {
-    "id" : 148,
+    "id" : 146,
     "text" : "public boolean isOk() {\n                return ok;\n            }",
     "placeholder" : "",
     "range" : {
-      "start" : 12546,
-      "end" : 12610,
+      "start" : 12359,
+      "end" : 12423,
       "size" : 64
     },
     "group" : "ClassAnnotationExpression",
     "groupReference" : 27
   }, {
-    "id" : 149,
+    "id" : 147,
     "text" : "c",
     "placeholder" : "@Getter c",
     "range" : {
-      "start" : 12481,
-      "end" : 12482,
+      "start" : 12304,
+      "end" : 12305,
       "size" : 1
     },
     "group" : "ClassAnnotationExpression",
     "groupReference" : 27
+  }, {
+    "id" : 148,
+    "text" : "\n            ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 12528,
+      "end" : 12541,
+      "size" : 13
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 28
+  }, {
+    "id" : 149,
+    "text" : "public boolean isOk() {\n                return ok;\n            }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 12541,
+      "end" : 12605,
+      "size" : 64
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 28
+  }, {
+    "id" : 150,
+    "text" : "c",
+    "placeholder" : "@Getter c",
+    "range" : {
+      "start" : 12476,
+      "end" : 12477,
+      "size" : 1
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 28
+  }, {
+    "id" : 151,
+    "text" : "public boolean isDirty() {\n            return dirty2;\n        }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 12729,
+      "end" : 12792,
+      "size" : 63
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 29
+  }, {
+    "id" : 152,
+    "text" : "\n\n        ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 12719,
+      "end" : 12729,
+      "size" : 10
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 29
+  }, {
+    "id" : 153,
+    "text" : "b",
+    "placeholder" : "@Getter(dirty) b",
+    "range" : {
+      "start" : 12673,
+      "end" : 12674,
+      "size" : 1
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 29
+  }, {
+    "id" : 154,
+    "text" : "public boolean isDirty2() {\n            return dirty;\n        }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 12802,
+      "end" : 12865,
+      "size" : 63
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 30
+  }, {
+    "id" : 155,
+    "text" : "\n\n        ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 12792,
+      "end" : 12802,
+      "size" : 10
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 30
+  }, {
+    "id" : 156,
+    "text" : "p",
+    "placeholder" : "@Getter(dirty) p",
+    "range" : {
+      "start" : 12696,
+      "end" : 12697,
+      "size" : 1
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 30
+  }, {
+    "id" : 157,
+    "text" : "\n\n            ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 13121,
+      "end" : 13135,
+      "size" : 14
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 31
+  }, {
+    "id" : 158,
+    "text" : "\n\n            ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 13508,
+      "end" : 13522,
+      "size" : 14
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 31
+  }, {
+    "id" : 159,
+    "text" : "@Override\n            public boolean equals(Object o) {\n                if (this == o) return true;\n                if (!(o instanceof DirtyData)) return false;\n\n                DirtyData dirtyData = (DirtyData) o;\n\n                if (dirty != dirtyData.dirty) return false;\n                if (ok != dirtyData.ok) return false;\n\n                return true;\n            }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 13135,
+      "end" : 13508,
+      "size" : 373
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 31
+  }, {
+    "id" : 160,
+    "text" : "@Override\n            public int hashCode() {\n                int result = (dirty ? 1 : 0);\n                result = 31 * result + (ok ? 1 : 0);\n                return result;\n            }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 13522,
+      "end" : 13711,
+      "size" : 189
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 31
+  }, {
+    "id" : 161,
+    "text" : "p",
+    "placeholder" : "@EqualsAndHashCode p",
+    "range" : {
+      "start" : 12875,
+      "end" : 12876,
+      "size" : 1
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 31
+  }, {
+    "id" : 162,
+    "text" : "public boolean isDirty() {\n                return !dirty;\n            }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 12972,
+      "end" : 13043,
+      "size" : 71
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 32
+  }, {
+    "id" : 163,
+    "text" : "\n\n            ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 12958,
+      "end" : 12972,
+      "size" : 14
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 32
+  }, {
+    "id" : 164,
+    "text" : "b",
+    "placeholder" : "@Getter(dirty) b",
+    "range" : {
+      "start" : 12912,
+      "end" : 12913,
+      "size" : 1
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 32
+  }, {
+    "id" : 165,
+    "text" : "public boolean isOk() {\n                return ok;\n            }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 13057,
+      "end" : 13121,
+      "size" : 64
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 33
+  }, {
+    "id" : 166,
+    "text" : "\n\n            ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 13043,
+      "end" : 13057,
+      "size" : 14
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 33
+  }, {
+    "id" : 167,
+    "text" : "p",
+    "placeholder" : "@Getter p",
+    "range" : {
+      "start" : 12939,
+      "end" : 12940,
+      "size" : 1
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 33
+  }, {
+    "id" : 168,
+    "text" : "public boolean isDirty() {\n                return dirty2;\n            }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 13899,
+      "end" : 13970,
+      "size" : 71
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 34
+  }, {
+    "id" : 169,
+    "text" : "\n            ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 13886,
+      "end" : 13899,
+      "size" : 13
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 34
+  }, {
+    "id" : 170,
+    "text" : "b",
+    "placeholder" : "@Getter(dirty) b",
+    "range" : {
+      "start" : 13770,
+      "end" : 13771,
+      "size" : 1
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 34
+  }, {
+    "id" : 171,
+    "text" : "public boolean isOk() {\n                return ok;\n            }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 13822,
+      "end" : 13886,
+      "size" : 64
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 35
+  }, {
+    "id" : 172,
+    "text" : "\n\n            ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 13808,
+      "end" : 13822,
+      "size" : 14
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 35
+  }, {
+    "id" : 173,
+    "text" : "b",
+    "placeholder" : "@Getter b",
+    "range" : {
+      "start" : 13797,
+      "end" : 13798,
+      "size" : 1
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 35
+  }, {
+    "id" : 174,
+    "text" : "\n\n        ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 14080,
+      "end" : 14090,
+      "size" : 10
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 36
+  }, {
+    "id" : 175,
+    "text" : "\n\n        ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 14170,
+      "end" : 14180,
+      "size" : 10
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 36
+  }, {
+    "id" : 176,
+    "text" : "public void setDirty(boolean dirty) {\n            this.dirty2 = dirty;\n        }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 14090,
+      "end" : 14170,
+      "size" : 80
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 36
+  }, {
+    "id" : 177,
+    "text" : "public void setDirty2(boolean dirty2) {\n            this.dirty = dirty2;\n        }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 14180,
+      "end" : 14262,
+      "size" : 82
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 36
+  }, {
+    "id" : 178,
+    "text" : "p",
+    "placeholder" : "@Setter p",
+    "range" : {
+      "start" : 13992,
+      "end" : 13993,
+      "size" : 1
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 36
+  }, {
+    "id" : 179,
+    "text" : "\n\n            ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 14546,
+      "end" : 14560,
+      "size" : 14
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 37
+  }, {
+    "id" : 180,
+    "text" : "\n\n            ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 14630,
+      "end" : 14644,
+      "size" : 14
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 37
+  }, {
+    "id" : 181,
+    "text" : "\n\n            ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 14355,
+      "end" : 14369,
+      "size" : 14
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 37
+  }, {
+    "id" : 182,
+    "text" : "\n\n            ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 14457,
+      "end" : 14471,
+      "size" : 14
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 37
+  }, {
+    "id" : 183,
+    "text" : "\n\n            ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 14708,
+      "end" : 14722,
+      "size" : 14
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 37
+  }, {
+    "id" : 184,
+    "text" : "\n\n            ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 15095,
+      "end" : 15109,
+      "size" : 14
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 37
+  }, {
+    "id" : 185,
+    "text" : "public boolean isDirty() {\n                return dirty;\n            }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 14560,
+      "end" : 14630,
+      "size" : 70
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 37
+  }, {
+    "id" : 186,
+    "text" : "public boolean isOk() {\n                return ok;\n            }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 14644,
+      "end" : 14708,
+      "size" : 64
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 37
+  }, {
+    "id" : 187,
+    "text" : "public void setDirty(boolean dirty) {\n                this.dirty = !dirty;\n            }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 14369,
+      "end" : 14457,
+      "size" : 88
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 37
+  }, {
+    "id" : 188,
+    "text" : "public void setOk(boolean ok) {\n                this.ok = ok;\n            }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 14471,
+      "end" : 14546,
+      "size" : 75
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 37
+  }, {
+    "id" : 189,
+    "text" : "@Override\n            public boolean equals(Object o) {\n                if (this == o) return true;\n                if (!(o instanceof DirtyData)) return false;\n\n                DirtyData dirtyData = (DirtyData) o;\n\n                if (dirty != dirtyData.dirty) return false;\n                if (ok != dirtyData.ok) return false;\n\n                return true;\n            }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 14722,
+      "end" : 15095,
+      "size" : 373
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 37
+  }, {
+    "id" : 190,
+    "text" : "@Override\n            public int hashCode() {\n                int result = (dirty ? 1 : 0);\n                result = 31 * result + (ok ? 1 : 0);\n                return result;\n            }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 15109,
+      "end" : 15298,
+      "size" : 189
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 37
+  }, {
+    "id" : 191,
+    "text" : "p",
+    "placeholder" : "@Data p",
+    "range" : {
+      "start" : 14272,
+      "end" : 14273,
+      "size" : 1
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 37
+  }, {
+    "id" : 192,
+    "text" : "\n\n            ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 15395,
+      "end" : 15409,
+      "size" : 14
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 38
+  }, {
+    "id" : 193,
+    "text" : "\n\n            ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 15484,
+      "end" : 15498,
+      "size" : 14
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 38
+  }, {
+    "id" : 194,
+    "text" : "public void setOk(boolean ok) {\n                this.ok = ok;\n            }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 15409,
+      "end" : 15484,
+      "size" : 75
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 38
+  }, {
+    "id" : 195,
+    "text" : "public void setDirty(boolean dirty) {\n                this.ok = dirty;\n            }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 15498,
+      "end" : 15582,
+      "size" : 84
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 38
+  }, {
+    "id" : 196,
+    "text" : "p",
+    "placeholder" : "@Setter p",
+    "range" : {
+      "start" : 15318,
+      "end" : 15319,
+      "size" : 1
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 38
   } ]
 }

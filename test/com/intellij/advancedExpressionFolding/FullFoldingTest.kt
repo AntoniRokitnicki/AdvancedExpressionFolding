@@ -34,7 +34,11 @@ class FullFoldingTest : FoldingTest() {
     }
 
     override fun testLombokTestData() {
+        super.testLombokTestData()
+    }
+
+    override fun testNullableAnnotationTestData() {
         //FIXME: java.lang.IllegalArgumentException: Comparison method violates its general contract!
-        //super.testLombokTestData()
+        //super.testNullableAnnotationTestData()
     }
 }

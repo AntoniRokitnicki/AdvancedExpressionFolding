@@ -269,7 +269,7 @@ open class FoldingTest : BaseTest() {
     /**
      * [data.NullableAnnotationTestData]
      */
-    fun testNullableAnnotationTestData() {
+    open fun testNullableAnnotationTestData() {
         doFoldingTest(state::nullable, state::lombok)
     }
 

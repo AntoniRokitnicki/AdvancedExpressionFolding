@@ -7,15 +7,14 @@ import com.intellij.lang.folding.FoldingDescriptor
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.editor.FoldingGroup
 import com.intellij.openapi.util.TextRange
-import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiKeyword
 import com.intellij.psi.PsiModifierList
 
-class ClassAnnotationExpression(
-        element: PsiClass,
+open class ClassAnnotationExpression(
+        element: PsiElement,
         private val customClassAnnotations: List<CustomClassAnnotation>,
-        private val elementsToFold: List<PsiElement>
+        private val elementsToFold: List<PsiElement?>,
 ) : Expression(element, element.textRange) {
     override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean {
         return true
@@ -24,6 +23,7 @@ class ClassAnnotationExpression(
     override fun buildFoldRegions(element: PsiElement, document: Document, parent: Expression?): Array<FoldingDescriptor> {
         val group = FoldingGroup.newGroup(ClassAnnotationExpression::class.java.name)
         return (elementsToFold
+            .filterNotNull()
             .filter {
                 !it.textRange.isEmpty
             }.filterNot {
