@@ -26,7 +26,6 @@ sourceSets {
     }
     named("test") {
         java.srcDir("test")
-        java.srcDir("examples")
         kotlin.srcDirs("test")
     }
 }
