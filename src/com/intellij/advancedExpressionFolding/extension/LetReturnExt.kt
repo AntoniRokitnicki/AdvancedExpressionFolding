@@ -4,8 +4,8 @@ import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.custom.ElvisReturnNull
 import com.intellij.advancedExpressionFolding.expression.custom.LetReturnIt
 import com.intellij.psi.*
-import com.intellij.refactoring.suggested.endOffset
-import com.intellij.refactoring.suggested.startOffset
+import com.intellij.psi.util.endOffset
+import com.intellij.psi.util.startOffset
 
 object LetReturnExt : BaseExtension() {
 

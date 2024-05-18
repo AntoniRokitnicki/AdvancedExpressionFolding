@@ -9,7 +9,7 @@ import com.intellij.openapi.editor.FoldingGroup
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiTypeElement
-import com.intellij.refactoring.suggested.endOffset
+import com.intellij.psi.util.endOffset
 
 class NullAnnotationExpression(
     private val typeToAppend: PsiTypeElement,
