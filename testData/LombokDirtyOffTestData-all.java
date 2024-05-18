@@ -24,7 +24,7 @@ public class LombokDirtyOffTestData {
 
             </fold><fold text='' expand='false'>public boolean isOk()<fold text=' { ' expand='false'> {
                 </fold>return ok;<fold text=' }' expand='false'>
-            }</fold><fold text='' expand='false'></fold>
+            }</fold></fold><fold text='' expand='false'>
 
             </fold><fold text='' expand='false'>@Override
             public boolean equals(Object o) <fold text='{...}' expand='true'>{
@@ -60,25 +60,25 @@ public class LombokDirtyOffTestData {
         }</fold>
     }</fold>
 
-    <fold text='@Setter p' expand='false'>p</fold>ublic class DirtyLombokSetters <fold text='{...}' expand='true'>{
+    public class DirtyLombokSetters <fold text='{...}' expand='true'>{
         boolean dirty;
-        private boolean dirty2;<fold text='' expand='false'>
+        private boolean dirty2;
 
-        </fold><fold text='' expand='false'>public void setDirty(boolean dirty)<fold text=' { ' expand='false'> {
+        public void setDirty(boolean dirty)<fold text=' { ' expand='false'> {
             </fold>this.dirty2 = dirty;<fold text=' }' expand='false'>
-        }</fold></fold><fold text='' expand='false'>
+        }</fold>
 
-        </fold><fold text='' expand='false'>public void setDirty2(boolean dirty2)<fold text=' { ' expand='false'> {
+        public void setDirty2(boolean dirty2)<fold text=' { ' expand='false'> {
             </fold>this.dirty = dirty2;<fold text=' }' expand='false'>
-        }</fold></fold>
+        }</fold>
 
-        <fold text='@Data p' expand='false'>p</fold>ublic class DirtyData <fold text='{...}' expand='true'>{
+        <fold text='@Getter @EqualsAndHashCode p' expand='false'>p</fold>ublic class DirtyData <fold text='{...}' expand='true'>{
             boolean dirty;
-            private boolean ok;<fold text='' expand='false'>
+            <fold text='@Setter p' expand='false'>p</fold>rivate boolean ok;
 
-            </fold><fold text='' expand='false'>public void setDirty(boolean dirty)<fold text=' { ' expand='false'> {
+            public void setDirty(boolean dirty)<fold text=' { ' expand='false'> {
                 </fold>this.dirty = !dirty;<fold text=' }' expand='false'>
-            }</fold></fold><fold text='' expand='false'>
+            }</fold><fold text='' expand='false'>
 
             </fold><fold text='' expand='false'>public void setOk(boolean ok)<fold text=' { ' expand='false'> {
                 </fold>this.ok = <fold text='<<' expand='false'>ok</fold>;<fold text=' }' expand='false'>
@@ -103,7 +103,7 @@ public class LombokDirtyOffTestData {
                 if <fold text='' expand='false'>(</fold>ok != dirtyData.ok<fold text='' expand='false'>)</fold> return false;
 
                 return true;
-            }</fold><fold text='' expand='false'></fold>
+            }</fold></fold><fold text='' expand='false'>
 
             </fold><fold text='' expand='false'>@Override
             public int hashCode() <fold text='{...}' expand='true'>{
@@ -113,17 +113,17 @@ public class LombokDirtyOffTestData {
             }</fold></fold>
         }</fold>
 
-        <fold text='@Setter p' expand='false'>p</fold>ublic class DirtySingle <fold text='{...}' expand='true'>{
+        public class DirtySingle <fold text='{...}' expand='true'>{
             boolean dirty;
-            boolean ok;<fold text='' expand='false'>
+            <fold text='@Setter b' expand='false'>b</fold>oolean ok;<fold text='' expand='false'>
 
             </fold><fold text='' expand='false'>public void setOk(boolean ok)<fold text=' { ' expand='false'> {
                 </fold>this.ok = <fold text='<<' expand='false'>ok</fold>;<fold text=' }' expand='false'>
-            }</fold></fold><fold text='' expand='false'>
-
-            </fold><fold text='' expand='false'>public void setDirty(boolean dirty)<fold text=' { ' expand='false'> {
-                </fold>this.ok = dirty;<fold text=' }' expand='false'>
             }</fold></fold>
+
+            public void setDirty(boolean dirty)<fold text=' { ' expand='false'> {
+                </fold>this.ok = dirty;<fold text=' }' expand='false'>
+            }</fold>
         }</fold>
     }</fold>
 }

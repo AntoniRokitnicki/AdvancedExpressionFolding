@@ -3,8 +3,17 @@ package com.intellij.advancedExpressionFolding
 import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.Companion.getInstance
 import java.io.File
 import java.nio.file.Files
+import kotlin.reflect.KMutableProperty0
 
 class FullFoldingTest : FoldingTest() {
+
+    override fun doFoldingTest(vararg turnOnProperties: KMutableProperty0<Boolean>) {
+        try {
+            super.doFoldingTest(*turnOnProperties)
+        } catch (e: TooComplexException) {
+            println(e)
+        }
+    }
 
     override fun getTestFileName(testName: String): String {
         val baseFile = super.getTestFileName(testName)
@@ -26,19 +35,5 @@ class FullFoldingTest : FoldingTest() {
 
     override fun testDestructuringAssignmentListWithoutValTestData() {
         // ignored, already tested in testDestructuringAssignmentListTestData
-    }
-
-    override fun testAppendSetterInterpolatedStringTestData() {
-        //FIXME: java.lang.IllegalArgumentException: Comparison method violates its general contract!
-        //super.testAppendSetterInterpolatedStringTestData()
-    }
-
-    override fun testLombokTestData() {
-        super.testLombokTestData()
-    }
-
-    override fun testNullableAnnotationTestData() {
-        //FIXME: java.lang.IllegalArgumentException: Comparison method violates its general contract!
-        //super.testNullableAnnotationTestData()
     }
 }

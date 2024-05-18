@@ -2,10 +2,10 @@ package com.intellij.advancedExpressionFolding.extension
 
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.custom.*
+import com.intellij.advancedExpressionFolding.extension.LombokExt.callback
 import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFoldingAnnotation.Companion.findByName
 import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFoldingAnnotation.NOT_NULL
 import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFoldingAnnotation.NULLABLE
-import com.intellij.advancedExpressionFolding.extension.PsiClassExt.prevWhiteSpace
 import com.intellij.openapi.editor.Document
 import com.intellij.psi.*
 import com.intellij.psi.impl.source.PsiClassReferenceType
@@ -13,14 +13,13 @@ import com.intellij.psi.impl.source.PsiClassReferenceType
 /**
  * [data.NullableAnnotationTestData]
  * [data.NullableAnnotationCheckNotNullTestData]
+ *
+ *
  */
 object NullableExt : BaseExtension() {
 
     @JvmStatic
     fun createExpression(psiMethod: PsiMethod): Expression? {
-        if (psiMethod.isIgnored()) {
-            return null
-        }
         return fieldAnnotationExpression(psiMethod.annotations, psiMethod.returnTypeElement)
     }
 
@@ -46,22 +45,13 @@ object NullableExt : BaseExtension() {
         }
 
         val list = exprList()
+        val newAnnotations = mutableListOf<FieldAnnotationExpression>()
 
-        list += (lombok && field.metadata.foldGetter).on()?.let {
-            field.metadata.getter
-        }?.let { getter ->
-            val (dirty) = field.metadata
-            val getterAnnotation = if (dirty) {
-                if (lombokDirtyOff) {
-                    null
-                } else {
-                    "@Getter(dirty)"
-                }
-            } else {
-                "@Getter"
-            }
+        field.callback?.let {
+            val (getter, getterAnnotation) = it()
             getterAnnotation?.let {
-                FieldAnnotationExpression(field, listOf(getterAnnotation), listOf(getter, getter.prevWhiteSpace()))
+                getter.markIgnored()
+                newAnnotations += FieldAnnotationExpression(field, listOf(getterAnnotation), listOf(getter, getter.prevWhiteSpace()))
             }
         }
 
@@ -74,6 +64,7 @@ object NullableExt : BaseExtension() {
             fieldConstExpression(field, typeElement, document)
         }
 
+        list += newAnnotations
         return list.exprWrap(field)
     }
 

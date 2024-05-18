@@ -1,3 +1,5 @@
+@file:Suppress("NOTHING_TO_INLINE", "unused")
+
 package com.intellij.advancedExpressionFolding.extension
 
 import com.intellij.advancedExpressionFolding.expression.Expression
@@ -32,9 +34,11 @@ fun PsiElement.isIgnored(): Boolean = getUserData(IGNORED) ?: false
 fun PsiElement.markIgnored(value: Boolean = true) = putUserData(IGNORED, value)
 
 operator fun TextRange.plus(string: String): TextRange =
-    TextRange.create(startOffset+string.length, endOffset+string.length)
+    TextRange.create(startOffset + string.length, endOffset + string.length)
+
 operator fun TextRange.plus(addon: IntRange): TextRange =
     TextRange.create(startOffset + addon.first, endOffset + addon.last)
+
 fun PsiElement.start(): Int = textRange.startOffset
 fun PsiElement.end(): Int = textRange.endOffset
 
@@ -94,7 +98,7 @@ fun PsiMethod.isHashCode() = name == "hashCode"
         && returnType.isInt()
         && !hasParameters()
 
-fun PsiClass?.isBuilder() : Boolean {
+fun PsiClass?.isBuilder(): Boolean {
     if (this == null) {
         return false
     }
@@ -109,13 +113,25 @@ fun PsiClass?.isBuilder() : Boolean {
     }
     return userData == PsiClassExt.ClassType.BUILDER
 }
+
+val PsiClass.fieldsNotStatic: List<PsiField>
+    get() = fields.filter {
+        it.isNotStatic()
+    }
+val PsiClass.methodsNotStatic: List<PsiMethod>
+    get() = methods.filter {
+        it.isNotStatic()
+    }
+
 fun PsiElement.setClassType(type: PsiClassExt.ClassType) {
     putUserData(Keys.CLASS_TYPE_KEY, type)
     putCopyableUserData(Keys.CLASS_TYPE_KEY, type)
 }
-fun PsiElement.getClassType() : PsiClassExt.ClassType? = getUserData(Keys.CLASS_TYPE_KEY)
 
-fun PsiElement.findLocalReference(element: PsiElement): PsiReference? = ReferencesSearch.search(this, LocalSearchScope(element)).findFirst()
+fun PsiElement.getClassType(): PsiClassExt.ClassType? = getUserData(Keys.CLASS_TYPE_KEY)
+
+fun PsiElement.findLocalReference(element: PsiElement): PsiReference? =
+    ReferencesSearch.search(this, LocalSearchScope(element)).findFirst()
 
 fun KClass<*>.group(): FoldingGroup = FoldingGroup.newGroup(qualifiedName)
 
@@ -123,11 +139,10 @@ var PsiMethod.propertyField: PsiField?
     get() = getUserData(Keys.FIELD_KEY)
     set(value) = putUserData(Keys.FIELD_KEY, value)
 
-
 val PsiField.metadata: Keys.FieldMetaData
     get() {
         var userData = getUserData(Keys.FIELD_META_DATA_KEY)
-        if (userData == null){
+        if (userData == null) {
             userData = Keys.FieldMetaData()
             putUserData(Keys.FIELD_META_DATA_KEY, userData)
         }
@@ -163,14 +178,27 @@ fun <T : PsiElement> PsiElement.findParents(
 fun IntRange.toTextRange() = TextRange(this.first, this.last)
 fun Pair<Int, Int>.toTextRange() = TextRange(first, second)
 
+
+fun PsiElement.prevWhiteSpace(): PsiWhiteSpace? = prevSibling as? PsiWhiteSpace
+fun PsiElement.nextWhiteSpace(): PsiWhiteSpace? = nextSibling as? PsiWhiteSpace
+
 inline fun <reified T> Any?.asInstance(): T? = if (T::class.isInstance(this)) {
     this as T
 } else {
     null
 }
 
+inline fun <reified T> Any?.isInstance(): Boolean = this is T
 
-fun <T> Array<T>.firstOrNullIfNotEmpty(): T? {
+inline fun <E, T : Collection<E>?> T.takeIfSize(size: Int): T? = this.takeIf {
+    it?.size == size
+}
+
+inline fun <T> Array<T>?.takeIfSize(size: Int): Array<T>? = this.takeIf {
+    it?.size == size
+}
+
+inline fun <T> Array<T>.firstOrNullIfNotEmpty(): T? {
     return if (isEmpty() || size > 1) {
         null
     } else {
@@ -194,20 +222,34 @@ fun Array<out PsiElement>.asInstance(vararg elements: Class<out PsiElement>): Ar
 }
 
 
-fun String.equalsIgnoreSpaces(second: String): Boolean = filterNot(Char::isWhitespace) == second.filterNot(Char::isWhitespace)
+fun String.equalsIgnoreSpaces(second: String): Boolean =
+    filterNot(Char::isWhitespace) == second.filterNot(Char::isWhitespace)
 
 
-fun Boolean.on() : Any? = if (this) {
+inline fun Boolean.on(): Any? = if (this) {
     on(true)
 } else {
     null
 }
 
-fun <T> Boolean.on(element: T) : T? = if (this) {
+inline fun <T> Boolean.on(element: T?): T? = if (this) {
     element
 } else {
     null
 }
+
+inline fun Boolean.off(): Any? = if (this) {
+    null
+} else {
+    true
+}
+
+inline fun <T> Boolean.off(element: T?): T? = if (this) {
+    null
+} else {
+    element
+}
+
 
 fun PsiElement.expr(
     text: String,
@@ -225,8 +267,10 @@ fun PsiElement.expr(
         text = text,
         textRange = textRange,
         group = group,
-        foldPrevWhiteSpace = foldPrevWhiteSpace)
+        foldPrevWhiteSpace = foldPrevWhiteSpace
+    )
 }
+
 fun PsiElement.exprHide(
     vararg children: Expression?,
     group: FoldingGroup? = null,
@@ -241,7 +285,8 @@ fun PsiElement.exprHide(
         textRange,
         *children,
         group = group,
-        foldPrevWhiteSpace = foldPrevWhiteSpace)
+        foldPrevWhiteSpace = foldPrevWhiteSpace
+    )
 }
 
 fun PsiElement.exprWrapAround(
@@ -273,9 +318,30 @@ fun Collection<Expression?>.exprWrap(
     }
     return WrapperExpression(parent, chain = chain)
 }
+
 fun exprList(vararg elements: Expression?) = mutableListOf(*elements)
 fun foldingList(vararg elements: FoldingDescriptor) = mutableListOf(*elements)
 
+
+fun <T> Iterable<T>.distinctNot(): List<T> {
+    return groupBy {
+        it
+    }.filter {
+        it.value.size > 1
+    }.flatMap {
+        it.value
+    }
+}
+
+fun <T> Array<T>.distinctNot(): List<T> {
+    return groupBy {
+        it
+    }.filter {
+        it.value.size > 1
+    }.flatMap {
+        it.value
+    }
+}
 
 val PsiElement.identifier: PsiIdentifier?
     get() = this.children.firstOrNull {

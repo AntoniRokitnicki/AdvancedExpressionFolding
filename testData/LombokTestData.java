@@ -9,7 +9,7 @@ import java.util.Optional;</fold>
 <fold text='/** {@link com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.IState#getLombok()} ...*/' expand='true'>/**
  * {@link com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.IState#getLombok()}
  * <p>
- *  {@link com.intellij.advancedExpressionFolding.extension.PsiClassExt#addLombokSupport(com.intellij.psi.PsiClass)}
+ *  {@link com.intellij.advancedExpressionFolding.extension.LombokExt#addLombokSupport(com.intellij.psi.PsiClass)}
  * <p>
  * {@link com.intellij.advancedExpressionFolding.FoldingTest#testLombokTestData()}
  */</fold>
@@ -79,16 +79,16 @@ import java.util.Optional;</fold>
             </fold>this.ok = ok;<fold text=' }' expand='false'>
         }</fold></fold>
 
-        <fold text='@Setterˣ p' expand='false'>p</fold>ublic class LombokSettersPartial <fold text='{...}' expand='true'>{
-            LombokTestData data;
+        public class LombokSettersPartial <fold text='{...}' expand='true'>{
+            <fold text='@Setter L' expand='false'>L</fold>ombokTestData data;
             boolean ok;<fold text='' expand='false'>
             </fold><fold text='' expand='false'>public void setData(LombokTestData data)<fold text=' { ' expand='false'> {
                 </fold>this.data = data;<fold text=' }' expand='false'>
             }</fold></fold>
         }</fold>
 
-        <fold text='@Setter p' expand='false'>p</fold>ublic class LombokSettersFinalField <fold text='{...}' expand='true'>{
-            LombokTestData data;
+        public class LombokSettersFinalField <fold text='{...}' expand='true'>{
+            <fold text='@Setter L' expand='false'>L</fold>ombokTestData data;
             final boolean ok = true;<fold text='' expand='false'>
             </fold><fold text='' expand='false'>public void setData(LombokTestData data)<fold text=' { ' expand='false'> {
                 </fold>this.data = data;<fold text=' }' expand='false'>
@@ -374,8 +374,8 @@ import java.util.Optional;</fold>
             }</fold></fold>
         }</fold>
 
-        <fold text='@Dataˣ p' expand='false'>p</fold>ublic class DataWithPartialSetters <fold text='{...}' expand='true'>{
-            LombokTestData data;
+        <fold text='@Getter @ToString @EqualsAndHashCode p' expand='false'>p</fold>ublic class DataWithPartialSetters <fold text='{...}' expand='true'>{
+            <fold text='@Setter L' expand='false'>L</fold>ombokTestData data;
             boolean ok;<fold text='' expand='false'>
 
             </fold><fold text='' expand='false'>public LombokTestData getData()<fold text=' { ' expand='false'> {
@@ -383,7 +383,7 @@ import java.util.Optional;</fold>
             }</fold></fold><fold text='' expand='false'>
             </fold><fold text='' expand='false'>public void setData(LombokTestData data)<fold text=' { ' expand='false'> {
                 </fold>this.data = data;<fold text=' }' expand='false'>
-            }</fold><fold text='' expand='false'></fold>
+            }</fold></fold><fold text='' expand='false'>
             </fold><fold text='' expand='false'>public boolean isOk()<fold text=' { ' expand='false'> {
                 </fold>return ok;<fold text=' }' expand='false'>
             }</fold></fold><fold text='' expand='false'>
@@ -486,28 +486,28 @@ import java.util.Optional;</fold>
 
             </fold><fold text='' expand='false'>public boolean isOk()<fold text=' { ' expand='false'> {
                 </fold>return ok;<fold text=' }' expand='false'>
-            }</fold><fold text='' expand='false'></fold>
+            }</fold></fold><fold text='' expand='false'>
             </fold><fold text='' expand='false'>public boolean isDirty()<fold text=' { ' expand='false'> {
                 </fold>return dirty2;<fold text=' }' expand='false'>
             }</fold></fold>
         }</fold>
     }</fold>
 
-    <fold text='@Setter p' expand='false'>p</fold>ublic class DirtyLombokSetters <fold text='{...}' expand='true'>{
-        boolean dirty;
-        private boolean dirty2;<fold text='' expand='false'>
+    public class DirtyLombokSetters <fold text='{...}' expand='true'>{
+        <fold text='@Setter(dirty) b' expand='false'>b</fold>oolean dirty;
+        <fold text='@Setter(dirty) p' expand='false'>p</fold>rivate boolean dirty2;<fold text='' expand='false'>
 
         </fold><fold text='' expand='false'>public void setDirty(boolean dirty)<fold text=' { ' expand='false'> {
             </fold>this.dirty2 = dirty;<fold text=' }' expand='false'>
-        }</fold></fold><fold text='' expand='false'>
+        }</fold><fold text='' expand='false'></fold>
 
         </fold><fold text='' expand='false'>public void setDirty2(boolean dirty2)<fold text=' { ' expand='false'> {
             </fold>this.dirty = dirty2;<fold text=' }' expand='false'>
         }</fold></fold>
 
-        <fold text='@Data p' expand='false'>p</fold>ublic class DirtyData <fold text='{...}' expand='true'>{
-            boolean dirty;
-            private boolean ok;<fold text='' expand='false'>
+        <fold text='@Getter @EqualsAndHashCode p' expand='false'>p</fold>ublic class DirtyData <fold text='{...}' expand='true'>{
+            <fold text='@Setter(dirty) b' expand='false'>b</fold>oolean dirty;
+            <fold text='@Setter p' expand='false'>p</fold>rivate boolean ok;<fold text='' expand='false'>
 
             </fold><fold text='' expand='false'>public void setDirty(boolean dirty)<fold text=' { ' expand='false'> {
                 </fold>this.dirty = !dirty;<fold text=' }' expand='false'>
@@ -546,9 +546,9 @@ import java.util.Optional;</fold>
             }</fold></fold>
         }</fold>
 
-        <fold text='@Setter p' expand='false'>p</fold>ublic class DirtySingle <fold text='{...}' expand='true'>{
-            boolean dirty;
-            boolean ok;<fold text='' expand='false'>
+        public class DirtySingle <fold text='{...}' expand='true'>{
+            <fold text='@Setter(dirty) b' expand='false'>b</fold>oolean dirty;
+            <fold text='@Setter b' expand='false'>b</fold>oolean ok;<fold text='' expand='false'>
 
             </fold><fold text='' expand='false'>public void setOk(boolean ok)<fold text=' { ' expand='false'> {
                 </fold>this.ok = ok;<fold text=' }' expand='false'>

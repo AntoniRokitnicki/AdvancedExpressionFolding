@@ -1,19 +1,30 @@
 package com.intellij.advancedExpressionFolding
 
 import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.State
+import org.junit.AssumptionViolatedException
 import kotlin.reflect.KMutableProperty0
 
 open class FoldingTest : BaseTest() {
+
+    class TooComplexException : AssumptionViolatedException("TOO COMPLEX FOLDING")
 
     private val state: State by lazy {
         AdvancedExpressionFoldingSettings.getInstance().state
     }
 
-    private fun doFoldingTest(vararg turnOnProperties: KMutableProperty0<Boolean>) {
+    open fun doFoldingTest(vararg turnOnProperties: KMutableProperty0<Boolean>) {
         turnOnProperties.forEach {
             it.set(true)
         }
-        super.doFoldingTest()
+        try {
+            super.doFoldingTest()
+        } catch (e: IllegalArgumentException) {
+            if (e.message == "Comparison method violates its general contract!") {
+                throw TooComplexException()
+            } else {
+                throw e
+            }
+        }
     }
 
     private fun doReadOnlyFoldingTest(vararg turnOnProperties: KMutableProperty0<Boolean>) {

@@ -32,18 +32,34 @@ public class LombokDirtyOffTestData {
         }
     }
 
-    @Setter public class DirtyLombokSetters {
+    public class DirtyLombokSetters {
         boolean dirty;
         private boolean dirty2;
 
-        @Data public class DirtyData {
-            boolean dirty;
-            private boolean ok;
+        public void setDirty(boolean dirty) {
+            this.dirty2 = dirty;
         }
 
-        @Setter public class DirtySingle {
+        public void setDirty2(boolean dirty2) {
+            this.dirty = dirty2;
+        }
+
+        @Getter @EqualsAndHashCode public class DirtyData {
             boolean dirty;
-            boolean ok;
+            @Setter private boolean ok;
+
+            public void setDirty(boolean dirty) {
+                this.dirty = !dirty;
+            }
+        }
+
+        public class DirtySingle {
+            boolean dirty;
+            @Setter boolean ok;
+
+            public void setDirty(boolean dirty) {
+                this.ok = dirty;
+            }
         }
     }
 }

@@ -1,8 +1,8 @@
 package com.intellij.advancedExpressionFolding.expression.custom
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.extension.PsiClassExt.prevWhiteSpace
 import com.intellij.advancedExpressionFolding.extension.foldingList
+import com.intellij.advancedExpressionFolding.extension.prevWhiteSpace
 import com.intellij.lang.folding.FoldingDescriptor
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.editor.FoldingGroup

@@ -272,7 +272,7 @@ public class BuildExpressionExt {
                     }
                 }
             }
-        } catch (IndexNotReadyException | ProcessCanceledException ignore) {
+        } catch (IndexNotReadyException | ProcessCanceledException | PsiInvalidElementAccessException ignore) {
         } catch (UnexpectedException e) {
             throw e;
         } catch (Exception e) {
