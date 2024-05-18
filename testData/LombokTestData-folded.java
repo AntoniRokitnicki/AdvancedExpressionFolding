@@ -9,7 +9,7 @@ import java.util.Optional;
 /**
  * {@link com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.IState#getLombok()}
  * <p>
- *  {@link com.intellij.advancedExpressionFolding.extension.PsiClassExt#addLombokSupport(com.intellij.psi.PsiClass)}
+ *  {@link com.intellij.advancedExpressionFolding.extension.LombokExt#addLombokSupport(com.intellij.psi.PsiClass)}
  * <p>
  * {@link com.intellij.advancedExpressionFolding.FoldingTest#testLombokTestData()}
  */
@@ -38,13 +38,13 @@ import java.util.Optional;
         LombokTestData data;
         boolean ok;
 
-        @Setterˣ public class LombokSettersPartial {
-            LombokTestData data;
+        public class LombokSettersPartial {
+            @Setter LombokTestData data;
             boolean ok;
         }
 
-        @Setter public class LombokSettersFinalField {
-            LombokTestData data;
+        public class LombokSettersFinalField {
+            @Setter LombokTestData data;
             final boolean ok = true;
         }
     }
@@ -128,8 +128,8 @@ import java.util.Optional;
             boolean ok;
         }
 
-        @Dataˣ public class DataWithPartialSetters {
-            LombokTestData data;
+        @Getter @ToString @EqualsAndHashCode public class DataWithPartialSetters {
+            @Setter LombokTestData data;
             boolean ok;
         }
     }
@@ -164,18 +164,18 @@ import java.util.Optional;
         }
     }
 
-    @Setter public class DirtyLombokSetters {
-        boolean dirty;
-        private boolean dirty2;
+    public class DirtyLombokSetters {
+        @Setter(dirty) boolean dirty;
+        @Setter(dirty) private boolean dirty2;
 
-        @Data public class DirtyData {
-            boolean dirty;
-            private boolean ok;
+        @Getter @EqualsAndHashCode public class DirtyData {
+            @Setter(dirty) boolean dirty;
+            @Setter private boolean ok;
         }
 
-        @Setter public class DirtySingle {
-            boolean dirty;
-            boolean ok;
+        public class DirtySingle {
+            @Setter(dirty) boolean dirty;
+            @Setter boolean ok;
         }
     }
 

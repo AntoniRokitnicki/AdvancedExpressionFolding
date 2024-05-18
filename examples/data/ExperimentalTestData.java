@@ -1,9 +1,6 @@
 package data;
 
 
-import com.google.common.collect.Maps;
-import org.apache.commons.compress.utils.Lists;
-
 import java.util.*;
 
 /**
@@ -28,10 +25,10 @@ public class ExperimentalTestData {
         private static final HashMap<String, String> MAP2 = new HashMap<String, String>();
         private static final Map<String, String> MAP3 = new HashMap<>();
         private static final Map<String, String> MAP_TREE = new TreeMap<>();
-        private static final Map<String, String> MAP4 = Maps.newHashMap();
+        private static final Map<String, String> MAP4 = Map.of();
 
         private static final List<String> LIST = new ArrayList<>();
-        private static final List<String> LIST2 = Lists.newArrayList();
+        private static final List<String> LIST2 = List.of();
         private static final List<String> LIST_SINGLE = List.of("1");
         private static final List<String> LIST_LINKED = new LinkedList<>();
 

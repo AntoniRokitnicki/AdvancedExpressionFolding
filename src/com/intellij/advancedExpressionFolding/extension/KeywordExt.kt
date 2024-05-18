@@ -3,8 +3,6 @@ package com.intellij.advancedExpressionFolding.extension
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.custom.WrapperExpression
 import com.intellij.advancedExpressionFolding.extension.Consts.Emoji
-import com.intellij.advancedExpressionFolding.extension.PsiClassExt.nextWhiteSpace
-import com.intellij.advancedExpressionFolding.extension.PsiClassExt.prevWhiteSpace
 import com.intellij.psi.*
 
 object KeywordExt : BaseExtension() {

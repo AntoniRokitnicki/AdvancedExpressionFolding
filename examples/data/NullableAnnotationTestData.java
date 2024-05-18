@@ -6,6 +6,13 @@ import org.jetbrains.annotations.Nullable;
 import javax.annotation.Nonnull;
 import java.time.LocalDate;
 
+/**
+ * {@link com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.IState#getNullable()}
+ * <p>
+ *  {@link com.intellij.advancedExpressionFolding.extension.NullableExt#createExpression(com.intellij.psi.PsiMethod)}
+ * <p>
+ * {@link com.intellij.advancedExpressionFolding.FoldingTest#testNullableAnnotationTestData()}
+ */
 @SuppressWarnings("ALL")
 public class NullableAnnotationTestData {
 
@@ -112,5 +119,78 @@ public class NullableAnnotationTestData {
             this.setterNullable = setterNullable;
         }
     }
+
+    public class LombokFieldLevelIntegration {
+        public class HasGetter {
+            @Nullable
+            private String field;
+            private String bla;
+
+            public @Nullable String getField() {
+                return field;
+            }
+        }
+
+        public class HasSetter {
+            @Nullable
+            private String field;
+            private String bla;
+
+            public void setField(@Nullable String field) {
+                this.field = field;
+            }
+        }
+
+        public class HasGetterSetter {
+            @Nullable
+            private String field;
+            private String bla;
+
+            public @Nullable String getField() {
+                return field;
+            }
+
+            public void setField(@Nullable String field) {
+                this.field = field;
+            }
+        }
+    }
+
+    public class LombokFieldLevelNotPrivateIntegration {
+        public class HasGetter {
+            @Nullable
+            String field;
+            String bla;
+
+            public @Nullable String getField() {
+                return field;
+            }
+        }
+
+        public class HasSetter {
+            @Nullable
+            String field;
+            String bla;
+
+            public void setField(@Nullable String field) {
+                this.field = field;
+            }
+        }
+
+        public class HasGetterSetter {
+            @Nullable
+            String field;
+            String bla;
+
+            public @Nullable String getField() {
+                return field;
+            }
+
+            public void setField(@Nullable String field) {
+                this.field = field;
+            }
+        }
+    }
+
 
 }

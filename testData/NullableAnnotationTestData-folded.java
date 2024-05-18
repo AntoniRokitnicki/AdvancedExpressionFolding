@@ -6,13 +6,20 @@ import org.jetbrains.annotations.Nullable;
 import javax.annotation.Nonnull;
 import java.time.LocalDate;
 
+/**
+ * {@link com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.IState#getNullable()}
+ * <p>
+ *  {@link com.intellij.advancedExpressionFolding.extension.NullableExt#createExpression(com.intellij.psi.PsiMethod)}
+ * <p>
+ * {@link com.intellij.advancedExpressionFolding.FoldingTest#testNullableAnnotationTestData()}
+ */
 @SuppressWarnings("ALL")
-@Getter @Setterˣ @Serial public class NullableAnnotationTestData {
+@Getter @Serial public class NullableAnnotationTestData {
     
-    NullableAnnotationTestData!! data;
-    boolean ok;
+    @Setter NullableAnnotationTestData!! data;
+    @Setter boolean ok;
     
-    String? string;
+    @Setter String? string;
 
     
     private NullableAnnotationTestData!! data2;
@@ -78,10 +85,54 @@ import java.time.LocalDate;
 
     @Getter class GetterNullable {
         NullableAnnotationTestData? getterNullable;
+        public NullableAnnotationTestData? getGetterNullable() {
+            return getterNullable;
+        }
     }
 
     @Setter class SetterNullable {
         NullableAnnotationTestData!! setterNullable;
     }
+
+    public class LombokFieldLevelIntegration {
+        public class HasGetter {
+            
+            @Getter private String? field;
+            private String bla;
+        }
+
+        public class HasSetter {
+            
+            @Setter private String? field;
+            private String bla;
+        }
+
+        public class HasGetterSetter {
+            
+            @Getter @Setter private String? field;
+            private String bla;
+        }
+    }
+
+    public class LombokFieldLevelNotPrivateIntegration {
+        public class HasGetter {
+            
+            @Getter String? field;
+            String bla;
+        }
+
+        public class HasSetter {
+            
+            @Setter String? field;
+            String bla;
+        }
+
+        public class HasGetterSetter {
+            
+            @Getter @Setter String? field;
+            String bla;
+        }
+    }
+
 
 }

@@ -93,7 +93,7 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
         override var nullable: Boolean = false,
         override var finalRemoval: Boolean = false,
         override var finalEmoji: Boolean = true,
-        override var lombokDirtyOff: Boolean = true,
+        override var lombokDirtyOff: Boolean = false,
         // NEW OPTION VAR
 
         override var memoryImprovement: Boolean = true,

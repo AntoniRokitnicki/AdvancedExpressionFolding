@@ -32,6 +32,10 @@ abstract class BaseExtension : AdvancedExpressionFoldingSettings.StateDelegate()
     fun getAnyExpression(element: PsiElement, document: Document = element.containingFile.viewProvider.document): Expression =
         BuildExpressionExt.getAnyExpression(element, document)
 
+    fun getNonSyntheticExpression(element: PsiElement, document: Document = element.containingFile.viewProvider.document): Expression? =
+        BuildExpressionExt.getNonSyntheticExpression(element, document)
+
+
     fun getAnyExpressions(
         expressions: Array<out PsiExpression>,
         context: Context

@@ -1,5 +1,5 @@
 {
-  "size" : 34,
+  "size" : 26,
   "list" : [ {
     "id" : 0,
     "text" : "\n\n            ",
@@ -64,7 +64,7 @@
       "end" : 548,
       "size" : 64
     },
-    "group" : "ClassAnnotationExpression",
+    "group" : "FieldAnnotationExpression",
     "groupReference" : 1
   }, {
     "id" : 6,
@@ -75,7 +75,7 @@
       "end" : 484,
       "size" : 14
     },
-    "group" : "ClassAnnotationExpression",
+    "group" : "FieldAnnotationExpression",
     "groupReference" : 1
   }, {
     "id" : 7,
@@ -86,7 +86,7 @@
       "end" : 367,
       "size" : 1
     },
-    "group" : "ClassAnnotationExpression",
+    "group" : "FieldAnnotationExpression",
     "groupReference" : 1
   }, {
     "id" : 8,
@@ -97,7 +97,7 @@
       "end" : 1313,
       "size" : 64
     },
-    "group" : "ClassAnnotationExpression",
+    "group" : "FieldAnnotationExpression",
     "groupReference" : 2
   }, {
     "id" : 9,
@@ -108,7 +108,7 @@
       "end" : 1249,
       "size" : 14
     },
-    "group" : "ClassAnnotationExpression",
+    "group" : "FieldAnnotationExpression",
     "groupReference" : 2
   }, {
     "id" : 10,
@@ -119,65 +119,10 @@
       "end" : 1225,
       "size" : 1
     },
-    "group" : "ClassAnnotationExpression",
+    "group" : "FieldAnnotationExpression",
     "groupReference" : 2
   }, {
     "id" : 11,
-    "text" : "\n\n        ",
-    "placeholder" : "",
-    "range" : {
-      "start" : 1507,
-      "end" : 1517,
-      "size" : 10
-    },
-    "group" : "ClassAnnotationExpression",
-    "groupReference" : 3
-  }, {
-    "id" : 12,
-    "text" : "\n\n        ",
-    "placeholder" : "",
-    "range" : {
-      "start" : 1597,
-      "end" : 1607,
-      "size" : 10
-    },
-    "group" : "ClassAnnotationExpression",
-    "groupReference" : 3
-  }, {
-    "id" : 13,
-    "text" : "public void setDirty(boolean dirty) {\n            this.dirty2 = dirty;\n        }",
-    "placeholder" : "",
-    "range" : {
-      "start" : 1517,
-      "end" : 1597,
-      "size" : 80
-    },
-    "group" : "ClassAnnotationExpression",
-    "groupReference" : 3
-  }, {
-    "id" : 14,
-    "text" : "public void setDirty2(boolean dirty2) {\n            this.dirty = dirty2;\n        }",
-    "placeholder" : "",
-    "range" : {
-      "start" : 1607,
-      "end" : 1689,
-      "size" : 82
-    },
-    "group" : "ClassAnnotationExpression",
-    "groupReference" : 3
-  }, {
-    "id" : 15,
-    "text" : "p",
-    "placeholder" : "@Setter p",
-    "range" : {
-      "start" : 1419,
-      "end" : 1420,
-      "size" : 1
-    },
-    "group" : "ClassAnnotationExpression",
-    "groupReference" : 3
-  }, {
-    "id" : 16,
     "text" : "\n\n            ",
     "placeholder" : "",
     "range" : {
@@ -186,9 +131,9 @@
       "size" : 14
     },
     "group" : "ClassAnnotationExpression",
-    "groupReference" : 4
+    "groupReference" : 3
   }, {
-    "id" : 17,
+    "id" : 12,
     "text" : "\n\n            ",
     "placeholder" : "",
     "range" : {
@@ -197,31 +142,9 @@
       "size" : 14
     },
     "group" : "ClassAnnotationExpression",
-    "groupReference" : 4
+    "groupReference" : 3
   }, {
-    "id" : 18,
-    "text" : "\n\n            ",
-    "placeholder" : "",
-    "range" : {
-      "start" : 1782,
-      "end" : 1796,
-      "size" : 14
-    },
-    "group" : "ClassAnnotationExpression",
-    "groupReference" : 4
-  }, {
-    "id" : 19,
-    "text" : "\n\n            ",
-    "placeholder" : "",
-    "range" : {
-      "start" : 1884,
-      "end" : 1898,
-      "size" : 14
-    },
-    "group" : "ClassAnnotationExpression",
-    "groupReference" : 4
-  }, {
-    "id" : 20,
+    "id" : 13,
     "text" : "\n\n            ",
     "placeholder" : "",
     "range" : {
@@ -230,9 +153,9 @@
       "size" : 14
     },
     "group" : "ClassAnnotationExpression",
-    "groupReference" : 4
+    "groupReference" : 3
   }, {
-    "id" : 21,
+    "id" : 14,
     "text" : "\n\n            ",
     "placeholder" : "",
     "range" : {
@@ -241,9 +164,9 @@
       "size" : 14
     },
     "group" : "ClassAnnotationExpression",
-    "groupReference" : 4
+    "groupReference" : 3
   }, {
-    "id" : 22,
+    "id" : 15,
     "text" : "public boolean isDirty() {\n                return dirty;\n            }",
     "placeholder" : "",
     "range" : {
@@ -252,9 +175,9 @@
       "size" : 70
     },
     "group" : "ClassAnnotationExpression",
-    "groupReference" : 4
+    "groupReference" : 3
   }, {
-    "id" : 23,
+    "id" : 16,
     "text" : "public boolean isOk() {\n                return ok;\n            }",
     "placeholder" : "",
     "range" : {
@@ -263,31 +186,9 @@
       "size" : 64
     },
     "group" : "ClassAnnotationExpression",
-    "groupReference" : 4
+    "groupReference" : 3
   }, {
-    "id" : 24,
-    "text" : "public void setDirty(boolean dirty) {\n                this.dirty = !dirty;\n            }",
-    "placeholder" : "",
-    "range" : {
-      "start" : 1796,
-      "end" : 1884,
-      "size" : 88
-    },
-    "group" : "ClassAnnotationExpression",
-    "groupReference" : 4
-  }, {
-    "id" : 25,
-    "text" : "public void setOk(boolean ok) {\n                this.ok = ok;\n            }",
-    "placeholder" : "",
-    "range" : {
-      "start" : 1898,
-      "end" : 1973,
-      "size" : 75
-    },
-    "group" : "ClassAnnotationExpression",
-    "groupReference" : 4
-  }, {
-    "id" : 26,
+    "id" : 17,
     "text" : "@Override\n            public boolean equals(Object o) {\n                if (this == o) return true;\n                if (!(o instanceof DirtyData)) return false;\n\n                DirtyData dirtyData = (DirtyData) o;\n\n                if (dirty != dirtyData.dirty) return false;\n                if (ok != dirtyData.ok) return false;\n\n                return true;\n            }",
     "placeholder" : "",
     "range" : {
@@ -296,9 +197,9 @@
       "size" : 373
     },
     "group" : "ClassAnnotationExpression",
-    "groupReference" : 4
+    "groupReference" : 3
   }, {
-    "id" : 27,
+    "id" : 18,
     "text" : "@Override\n            public int hashCode() {\n                int result = (dirty ? 1 : 0);\n                result = 31 * result + (ok ? 1 : 0);\n                return result;\n            }",
     "placeholder" : "",
     "range" : {
@@ -307,42 +208,53 @@
       "size" : 189
     },
     "group" : "ClassAnnotationExpression",
-    "groupReference" : 4
+    "groupReference" : 3
   }, {
-    "id" : 28,
+    "id" : 19,
     "text" : "p",
-    "placeholder" : "@Data p",
+    "placeholder" : "@Getter @EqualsAndHashCode p",
     "range" : {
       "start" : 1699,
       "end" : 1700,
       "size" : 1
     },
     "group" : "ClassAnnotationExpression",
+    "groupReference" : 3
+  }, {
+    "id" : 20,
+    "text" : "public void setOk(boolean ok) {\n                this.ok = ok;\n            }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 1898,
+      "end" : 1973,
+      "size" : 75
+    },
+    "group" : "FieldAnnotationExpression",
     "groupReference" : 4
   }, {
-    "id" : 29,
+    "id" : 21,
     "text" : "\n\n            ",
     "placeholder" : "",
     "range" : {
-      "start" : 2822,
-      "end" : 2836,
+      "start" : 1884,
+      "end" : 1898,
       "size" : 14
     },
-    "group" : "ClassAnnotationExpression",
-    "groupReference" : 5
+    "group" : "FieldAnnotationExpression",
+    "groupReference" : 4
   }, {
-    "id" : 30,
-    "text" : "\n\n            ",
-    "placeholder" : "",
+    "id" : 22,
+    "text" : "p",
+    "placeholder" : "@Setter p",
     "range" : {
-      "start" : 2911,
-      "end" : 2925,
-      "size" : 14
+      "start" : 1763,
+      "end" : 1764,
+      "size" : 1
     },
-    "group" : "ClassAnnotationExpression",
-    "groupReference" : 5
+    "group" : "FieldAnnotationExpression",
+    "groupReference" : 4
   }, {
-    "id" : 31,
+    "id" : 23,
     "text" : "public void setOk(boolean ok) {\n                this.ok = ok;\n            }",
     "placeholder" : "",
     "range" : {
@@ -350,29 +262,29 @@
       "end" : 2911,
       "size" : 75
     },
-    "group" : "ClassAnnotationExpression",
+    "group" : "FieldAnnotationExpression",
     "groupReference" : 5
   }, {
-    "id" : 32,
-    "text" : "public void setDirty(boolean dirty) {\n                this.ok = dirty;\n            }",
+    "id" : 24,
+    "text" : "\n\n            ",
     "placeholder" : "",
     "range" : {
-      "start" : 2925,
-      "end" : 3009,
-      "size" : 84
+      "start" : 2822,
+      "end" : 2836,
+      "size" : 14
     },
-    "group" : "ClassAnnotationExpression",
+    "group" : "FieldAnnotationExpression",
     "groupReference" : 5
   }, {
-    "id" : 33,
-    "text" : "p",
-    "placeholder" : "@Setter p",
+    "id" : 25,
+    "text" : "b",
+    "placeholder" : "@Setter b",
     "range" : {
-      "start" : 2745,
-      "end" : 2746,
+      "start" : 2811,
+      "end" : 2812,
       "size" : 1
     },
-    "group" : "ClassAnnotationExpression",
+    "group" : "FieldAnnotationExpression",
     "groupReference" : 5
   } ]
 }

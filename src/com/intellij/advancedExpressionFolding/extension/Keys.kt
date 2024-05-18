@@ -15,12 +15,9 @@ object Keys {
     val FIELD_KEY = Key<PsiField>("${PREFIX}field")
     val FIELD_META_DATA_KEY = Key<FieldMetaData>("${PREFIX}field-metadata")
     data class FieldMetaData(
-        var dirty: Boolean = false,
-        var foldGetter: Boolean = false,
         var getter: PsiMethod? = null,
         var setter: PsiMethod? = null,
     )
-
 
     val IGNORED = Key<Boolean>("${PREFIX}ignored")
 
@@ -48,7 +45,7 @@ object Keys {
         )
     }
     fun clearAllOnExpire(psiElement: PsiElement) {
-        (values - FIELD_META_DATA_KEY).forEach {
+        values.forEach {
             psiElement.putUserData(it, null)
         }
     }
