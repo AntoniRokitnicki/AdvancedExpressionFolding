@@ -41,7 +41,7 @@
 
 ## New features:
 - [**Lombok Emulator**: `@Data`, `@Getter`, `@Setter`, `@EqualsAndHashCode`, `@ToString`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/Lombok)
-- [2024.2 EAP installation](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/edit/master/README.md#20242-eap-installation)
+- [2024.2 EAP installation](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/master/README.md#20242-eap-installation)
 - [java.time.* isBefore/isAfter folding and LocalDate literals](https://github.com/cheptsov/AdvancedExpressionFolding/pull/132)
 - [Extended java time folding](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/Extended-java-time-folding)
 - [**Logger Brackets Folding**: For Slf4j and other logging framework](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/Log-brackets-folding)
