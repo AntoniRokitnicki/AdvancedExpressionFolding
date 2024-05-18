@@ -49,7 +49,8 @@ jobs:
       - name: Run Python script to increment version
         id: increment_version
         run: |
-          VERSION=$(python3 _increment_plugin_version.py ${{ github.event.inputs.release_msg }})
+          ESCAPED_RELEASE_MSG=$(echo "${{ github.event.inputs.release_msg }}" | sed 's/(/\\(/g' | sed 's/)/\\)/g')
+          VERSION=$(python3 _increment_plugin_version.py "$ESCAPED_RELEASE_MSG")
           echo "::set-output name=version::$VERSION"
 
       # Update Unreleased section with the current release note
