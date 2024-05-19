@@ -6,6 +6,7 @@ on:
       - '.github/**'
       - 'wiki/**'
       - 'build-version.gradle.kts'
+      - '*.md'
 jobs:
   generate_badge_job:
     runs-on: ubuntu-latest

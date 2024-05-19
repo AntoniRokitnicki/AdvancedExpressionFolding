@@ -21,6 +21,7 @@ on:
       - '.github/**'
       - 'wiki/**'
       - 'build-version.gradle.kts'
+      - '*.md'
   # Trigger the workflow on any pull request
   pull_request:
 
