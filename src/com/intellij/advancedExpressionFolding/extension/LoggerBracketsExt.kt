@@ -10,8 +10,7 @@ import com.intellij.psi.PsiLiteralExpression
 import com.intellij.psi.PsiMethodCallExpression
 import com.intellij.psi.PsiReferenceExpression
 import com.intellij.psi.impl.source.PsiClassReferenceType
-import com.intellij.refactoring.suggested.endOffset
-import com.intellij.refactoring.suggested.startOffset
+
 
 object LoggerBracketsExt : BaseExtension() {
 
@@ -89,11 +88,11 @@ object LoggerBracketsExt : BaseExtension() {
                     "\${"
                 }
                 if (index == 0) {
-                    val countChars = literal.startOffset + nextString.length
-                    val textRange = (countChars..argument.prevSibling.endOffset).toTextRange()
+                    val countChars = literal.start() + nextString.length
+                    val textRange = (countChars..argument.prevSibling.end()).toTextRange()
                     LoggerBracketExpression(element, textRange, text, expression)
                 } else {
-                    val textRange = (argument.prevSibling.prevSibling.startOffset..argument.prevSibling.endOffset).toTextRange()
+                    val textRange = (argument.prevSibling.prevSibling.start()..argument.prevSibling.end()).toTextRange()
                     LoggerBracketExpression(element, textRange, nextString + text, expression)
                 }
             }

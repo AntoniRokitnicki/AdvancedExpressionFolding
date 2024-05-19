@@ -4,8 +4,7 @@ import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.custom.ElvisReturnNull
 import com.intellij.advancedExpressionFolding.expression.custom.LetReturnIt
 import com.intellij.psi.*
-import com.intellij.refactoring.suggested.endOffset
-import com.intellij.refactoring.suggested.startOffset
+
 
 object LetReturnExt : BaseExtension() {
 
@@ -99,8 +98,8 @@ object LetReturnExt : BaseExtension() {
         val ifParent = element.parent
         val methodCallComma = methodCall.nextSibling
 
-        val declarationRange = (declaration.startOffset..methodCall.startOffset).toTextRange()
-        val letRange = (methodCallComma.startOffset..element.endOffset).toTextRange()
+        val declarationRange = (declaration.start()..methodCall.start()).toTextRange()
+        val letRange = (methodCallComma.start()..element.end()).toTextRange()
         return if (notEquals) {
             LetReturnIt(
                 element, element.textRange,
