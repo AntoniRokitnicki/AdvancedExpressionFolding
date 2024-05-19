@@ -59,24 +59,54 @@ jobs:
         run: |
           ./gradlew patchChangelog --release-note="$CHANGELOG"
 
+
+
+
       - name: Canary Version Change
         run: ./gradlew canaryRelease
 
-      - name: Show new version
+      - name: Canary show version
         shell: bash
         run: |
           pwd
           ls
           cat gradle.properties
+          git status
 
       # Publish the plugin to JetBrains Marketplace
-      - name: Publish Plugin
+      - name: Publish Plugin Canary
         env:
           PUBLISH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
           CERTIFICATE_CHAIN: ${{ secrets.CERTIFICATE_CHAIN }}
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
           PRIVATE_KEY_PASSWORD: ${{ secrets.PRIVATE_KEY_PASSWORD }}
         run: ./gradlew publishPlugin
+
+
+
+
+      - name: EAP Canary Version Change
+        run: ./gradlew canaryEapRelease
+
+      - name: EAP Canary show version
+        shell: bash
+        run: |
+          pwd
+          ls
+          cat gradle.properties
+          git status
+
+      # Publish the plugin to JetBrains Marketplace
+      - name: EAP Publish Plugin Canary
+        env:
+          PUBLISH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
+          CERTIFICATE_CHAIN: ${{ secrets.CERTIFICATE_CHAIN }}
+          PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+          PRIVATE_KEY_PASSWORD: ${{ secrets.PRIVATE_KEY_PASSWORD }}
+        run: ./gradlew publishPlugin
+
+
+
 
       # Upload artifact as a release asset
       - name: Upload Release Asset

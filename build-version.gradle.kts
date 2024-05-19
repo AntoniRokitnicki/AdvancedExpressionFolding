@@ -29,11 +29,6 @@ fun incrementMinorVersion(version: String): String {
     return versionParts.joinToString(".")
 }
 
-fun addTimestampSuffix(version: String): String {
-    val timestamp = Instant.now().toEpochMilli()
-    return "$version-$timestamp-canary"
-}
-
 fun saveProperties(file: File, properties: Properties) {
     file.writer().use { writer: Writer ->
         properties.store(writer, null)
@@ -61,7 +56,23 @@ tasks.register("canaryRelease") {
         val properties = readProperties(propertiesFile)
 
         val version = readVersion(properties)
-        val newVersion = addTimestampSuffix(version)
+        val timestamp = Instant.now().toEpochMilli()
+        val newVersion = "$version-$timestamp-canary"
+
+        properties.setProperty("pluginVersion", newVersion)
+        saveProperties(propertiesFile, properties)
+
+        println("Updated pluginVersion to $newVersion")
+    }
+}
+
+tasks.register("canaryEapRelease") {
+    doLast {
+        val propertiesFile = getPropertiesFile()
+        val properties = readProperties(propertiesFile)
+
+        val version = readVersion(properties)
+        val newVersion = "$version".replace("-canary", "-eap-canary")
 
         properties.setProperty("pluginVersion", newVersion)
         saveProperties(propertiesFile, properties)
