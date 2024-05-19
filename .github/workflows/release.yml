@@ -4,6 +4,11 @@
 
 name: Release
 on:
+  workflow_dispatch:
+    inputs:
+      release_msg:
+        description: 'Release message'
+        required: true
   push:
     branches: [ master ]
     paths-ignore:

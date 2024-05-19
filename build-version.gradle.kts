@@ -76,7 +76,7 @@ tasks.register("canaryEapRelease") {
 
         properties.setProperty("pluginVersion", newVersion)
         properties.setProperty("pluginSinceBuild", "242.10180.25")
-        properties.setProperty("pluginUntilBuild", "242.10180.25")
+        properties.setProperty("pluginUntilBuild", "242.*")
         saveProperties(propertiesFile, properties)
 
         println("Updated pluginVersion to $newVersion")
