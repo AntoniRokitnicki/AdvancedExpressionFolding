@@ -10,7 +10,7 @@
 
 ## [1.0.51] - 2024-05-16
 
-@Getter(dirty) for Lomboks getters that do something other than getting the value of their field, and a new option to prevent folding those getters
+@Getter(dirty) for Lombok getters that do something other than getting the value of their field, and a new option to prevent folding those getters
 
 ## [1.0.50] - 2024-05-14
 
