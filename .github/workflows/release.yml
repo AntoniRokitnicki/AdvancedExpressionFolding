@@ -51,15 +51,11 @@ jobs:
           echo "$CHANGELOG" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
 
-      - name: Get last commit message
-        id: get_last_commit_message
-        run: echo "$CHANGELOG=$(git log -1 --pretty=%B)" >> $GITHUB_ENV
-
       # Update Unreleased section with the current release note
       - name: Patch Changelog
         run: |
+          CHANGELOG=$(git log -1 --pretty=%B)
           ./gradlew patchChangelog --release-note="$CHANGELOG"
-
 
 
 
