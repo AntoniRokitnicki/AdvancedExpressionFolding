@@ -5,6 +5,7 @@ on:
     paths-ignore:
       - '.github/**'
       - 'wiki/**'
+      - 'build-version.gradle.kts'
 jobs:
   generate_badge_job:
     runs-on: ubuntu-latest

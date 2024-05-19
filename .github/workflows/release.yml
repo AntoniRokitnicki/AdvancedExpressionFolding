@@ -51,11 +51,12 @@ jobs:
           echo "$CHANGELOG" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
 
+      - name: Get last commit message
+        id: get_last_commit_message
+        run: echo "$CHANGELOG=$(git log -1 --pretty=%B)" >> $GITHUB_ENV
+
       # Update Unreleased section with the current release note
       - name: Patch Changelog
-        if: ${{ steps.properties.outputs.changelog != '' }}
-        env:
-          CHANGELOG: ${{ steps.properties.outputs.changelog }}
         run: |
           ./gradlew patchChangelog --release-note="$CHANGELOG"
 
@@ -68,8 +69,6 @@ jobs:
       - name: Canary show version
         shell: bash
         run: |
-          pwd
-          ls
           cat gradle.properties
           git status
 
@@ -91,8 +90,6 @@ jobs:
       - name: EAP Canary show version
         shell: bash
         run: |
-          pwd
-          ls
           cat gradle.properties
           git status
 
