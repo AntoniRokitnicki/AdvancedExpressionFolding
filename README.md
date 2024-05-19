@@ -41,7 +41,6 @@
 
 ## New features:
 - [**Lombok Emulator**: `@Data`, `@Getter`, `@Setter`, `@EqualsAndHashCode`, `@ToString`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/Lombok)
-- [2024.2 EAP installation](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/master/README.md#20242-eap-installation)
 - [java.time.* isBefore/isAfter folding and LocalDate literals](https://github.com/cheptsov/AdvancedExpressionFolding/pull/132)
 - [Extended java time folding](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/Extended-java-time-folding)
 - [**Logger Brackets Folding**: For Slf4j and other logging framework](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/Log-brackets-folding)
@@ -67,17 +66,6 @@ uncheck the <strong>Background</strong> color, and change the
 To disable certain types of folding, go to <strong>Settings</strong> | <strong>Editor</strong> |
 <strong>General</strong> | <strong>Code Folding</strong>.
 <!-- Plugin description end -->
-
-## 2024.2 EAP installation
-
-- Using the Custom plugin repository:
-
-  <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>⚙️</kbd> > <kbd>Manager Plugin Repositories</kbd>
-
-  - add
-  - https://plugins.jetbrains.com/plugins/list?channel=EAP&pluginId=23659
-  - goto <kbd>Marketplace</kbd>
-  - search for <kbd>Beta</kbd>
 
 
 ## Beta installation
