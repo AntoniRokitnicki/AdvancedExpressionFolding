@@ -67,20 +67,20 @@ To disable certain types of folding, go to <strong>Settings</strong> | <strong>E
 <!-- Plugin description end -->
 
 
-## Beta installation
+## Canary installation
 
 - Using the Custom plugin repository:
 
   <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>⚙️</kbd> > <kbd>Manager Plugin Repositories</kbd>
 
   - add
-  - https://antonirokitnicki.github.io/AdvancedExpressionFolding/plugin_repository.xml
+  - [https://antonirokitnicki.github.io/AdvancedExpressionFolding/plugin_repository.xml](https://plugins.jetbrains.com/plugins/list?channel=canary&pluginId=23659)
   - goto <kbd>Marketplace</kbd>
   - search for <kbd>Beta</kbd>
 
 - Manually:
 
-  Download the [latest release](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/releases/latest) and install it manually using
+  Download the [latest release](https://plugins.jetbrains.com/plugin/23659-advanced-java-folding-2-fork-/versions/canary?noRedirect=true) and install it manually using
   <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>⚙️</kbd> > <kbd>Install plugin from disk...</kbd>
 
 
