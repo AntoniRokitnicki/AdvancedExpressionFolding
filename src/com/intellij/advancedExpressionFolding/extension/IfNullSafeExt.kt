@@ -8,8 +8,7 @@ import com.intellij.advancedExpressionFolding.expression.custom.WrapperExpressio
 import com.intellij.openapi.editor.Document
 import com.intellij.psi.*
 import com.intellij.psi.util.elementType
-import com.intellij.refactoring.suggested.endOffset
-import com.intellij.refactoring.suggested.startOffset
+
 
 object IfNullSafeExt : BaseExtension() {
 
@@ -179,8 +178,8 @@ object IfNullSafeExt : BaseExtension() {
             " != null"
         }
 
-        val startOffset = currentList.first().startOffset
-        val endOffset = currentList.last().endOffset
+        val startOffset = currentList.first().start()
+        val endOffset = currentList.last().end()
 
         return IfNullSafeExpression(element, (startOffset to endOffset).toTextRange(), replacementText)
     }
