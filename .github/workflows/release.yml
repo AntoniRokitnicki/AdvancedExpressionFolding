@@ -80,6 +80,12 @@ jobs:
       - name: EAP Canary Version Change
         run: ./gradlew canaryEapRelease
 
+      # Update Unreleased section with the current release note
+      - name: Patch Changelog
+        run: |
+          CHANGELOG=$(git log -1 --pretty=%B)
+          ./gradlew patchChangelog --release-note="$CHANGELOG"
+
       - name: EAP Canary show version
         shell: bash
         run: |
