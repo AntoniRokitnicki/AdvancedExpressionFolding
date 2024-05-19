@@ -6,6 +6,11 @@ name: Release
 on:
   push:
     branches: [ master ]
+    paths-ignore:
+      - '.github/**'
+      - 'wiki/**'
+      - 'build-version.gradle.kts'
+      - '*.md'
 
 jobs:
 
