@@ -14,32 +14,20 @@
 
 name: Build
 on:
-  # Trigger the workflow on pushes to only the 'master' branch (this avoids duplicate checks being run e.g., for dependabot pull requests)
+  # Trigger the workflow on pushes to only the 'main' branch (this avoids duplicate checks being run e.g., for dependabot pull requests)
   push:
-    branches: [ master ]
-    paths-ignore:
-      - '.github/**'
+    branches: [ main ]
   # Trigger the workflow on any pull request
   pull_request:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+  
 jobs:
-
-  debug:
-    name: Debug Information
-    runs-on: ubuntu-latest
-    steps:
-      - name: Print Debug Information
-        run: |
-          echo "Event Name: ${{ github.event_name }}"
-          echo "Is PR Merged?: ${{ github.event.pull_request.merged }}"
-          echo "PR Labels: ${{ toJson(github.event.pull_request.labels.*.name) }}"
-          echo "Workflow Dispatch Triggered: ${{ github.event_name == 'workflow_dispatch' }}"
-          echo "Push Event and PR Merged: ${{ github.event_name == 'push' && github.event.pull_request.merged == true }}"
-          echo "PR contains 'autorelease' label: ${{ contains(github.event.pull_request.labels.*.name, 'autorelease') }}"
 
   # Prepare environment and build the plugin
   build:
-    if: "!contains(github.event.pull_request.labels.*.name, 'changelog')"
     name: Build
     runs-on: ubuntu-latest
     outputs:
@@ -54,7 +42,7 @@ jobs:
 
       # Validate wrapper
       - name: Gradle Wrapper Validation
-        uses: gradle/wrapper-validation-action@v3.3.2
+        uses: gradle/wrapper-validation-action@v3
 
       # Set up Java environment for the next steps
       - name: Setup Java
@@ -65,7 +53,7 @@ jobs:
 
       # Setup Gradle
       - name: Setup Gradle
-        uses: gradle/gradle-build-action@v3
+        uses: gradle/actions/setup-gradle@v3
         with:
           gradle-home-cache-cleanup: true
 
@@ -111,7 +99,6 @@ jobs:
 
   # Run tests and upload a code coverage report
   test:
-    if: "!contains(github.event.pull_request.labels.*.name, 'release changelog')"
     name: Test
     needs: [ build ]
     runs-on: ubuntu-latest
@@ -130,7 +117,7 @@ jobs:
 
       # Setup Gradle
       - name: Setup Gradle
-        uses: gradle/gradle-build-action@v3
+        uses: gradle/actions/setup-gradle@v3
         with:
           gradle-home-cache-cleanup: true
 
@@ -154,7 +141,6 @@ jobs:
 
   # Run Qodana inspections and provide report
   inspectCode:
-    if: "!contains(github.event.pull_request.labels.*.name, 'release changelog')"
     name: Inspect code
     needs: [ build ]
     runs-on: ubuntu-latest
@@ -184,13 +170,12 @@ jobs:
 
       # Run Qodana inspections
       - name: Qodana - Code Inspection
-        uses: JetBrains/qodana-action@v2023.3.2
+        uses: JetBrains/qodana-action@v2024.1.5
         with:
           cache-default-branch-only: true
 
   # Run plugin structure verification along with IntelliJ Plugin Verifier
   verify:
-    if: "!contains(github.event.pull_request.labels.*.name, 'release changelog')"
     name: Verify plugin
     needs: [ build ]
     runs-on: ubuntu-latest
@@ -216,7 +201,7 @@ jobs:
 
       # Setup Gradle
       - name: Setup Gradle
-        uses: gradle/gradle-build-action@v3
+        uses: gradle/actions/setup-gradle@v3
         with:
           gradle-home-cache-cleanup: true
 
@@ -242,8 +227,8 @@ jobs:
   # Prepare a draft release for GitHub Releases page for the manual verification
   # If accepted and published, release workflow would be triggered
   releaseDraft:
-    if: "!contains(github.event.pull_request.labels.*.name, 'release changelog') && github.event_name != 'pull_request'"
     name: Release draft
+    if: github.event_name != 'pull_request'
     needs: [ build, test, inspectCode, verify ]
     runs-on: ubuntu-latest
     permissions:
@@ -253,13 +238,6 @@ jobs:
       # Check out current repository
       - name: Fetch Sources
         uses: actions/checkout@v4
-
-      # Set up Java environment for the next steps
-      - name: Setup Java
-        uses: actions/setup-java@v4
-        with:
-          distribution: zulu
-          java-version: 17
 
       # Remove old release drafts by using the curl request for the available releases with a draft flag
       - name: Remove Old Release Drafts
@@ -275,7 +253,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release create v${{ needs.build.outputs.version }} \
+          gh release create "v${{ needs.build.outputs.version }}" \
             --draft \
             --title "v${{ needs.build.outputs.version }}" \
             --notes "$(cat << 'EOM'
