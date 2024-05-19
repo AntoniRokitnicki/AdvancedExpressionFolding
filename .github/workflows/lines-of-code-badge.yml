@@ -1,8 +1,10 @@
 name: Lines of Code Badge Generator
 on:
   push:
-    branches:
-      - master
+    branches: [ master ]
+    paths-ignore:
+      - '.github/**'
+      - 'wiki/**'
 jobs:
   generate_badge_job:
     runs-on: ubuntu-latest
