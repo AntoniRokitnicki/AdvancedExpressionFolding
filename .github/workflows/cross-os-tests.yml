@@ -1,4 +1,4 @@
-name: Build and Test on Multiple Operating Systems
+name: Build and Test on Multiple OS
 on:
   push:
     branches-ignore:
