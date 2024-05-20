@@ -31,6 +31,7 @@ class FullFoldingTest : FoldingTest() {
 
     override fun testDestructuringAssignmentArrayWithoutValTestData() {
         // ignored, already tested in testDestructuringAssignmentArrayTestData
+        super.testDestructuringAssignmentArrayWithoutValTestData()
     }
 
     override fun testDestructuringAssignmentListWithoutValTestData() {
