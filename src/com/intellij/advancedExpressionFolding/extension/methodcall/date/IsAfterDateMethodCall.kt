@@ -17,6 +17,6 @@ class IsAfterDateMethodCall : AbstractDateMethodCall() {
         argument: PsiExpression,
         argumentExpression: Expression
     ): Expression =
-        Greater(element, element.textRange, context.getOperands(argumentExpression))
+        Greater(element, element.textRange, context.getOperands())
 
 }

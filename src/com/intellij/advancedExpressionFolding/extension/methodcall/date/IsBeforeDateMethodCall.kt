@@ -17,5 +17,5 @@ class IsBeforeDateMethodCall : AbstractDateMethodCall() {
         argument: PsiExpression,
         argumentExpression: Expression
     ): Expression =
-        Less(element, element.textRange, context.getOperands(argumentExpression))
+        Less(element, element.textRange, context.getOperands())
 }

@@ -21,13 +21,14 @@ abstract class AbstractMethodCall : BaseExtension() {
         if (classNames.isNotEmpty() && !classNames.contains(context.className)) {
             return null
         }
-
+        context.argumentExpressions = emptyList()
         val expressions = element.argumentList.expressions
         return when (expressions.size) {
             0 -> onNoArguments(element, context)
             1 -> {
                 val (argument) = expressions
                 val (argumentExpression) = getAnyExpressions(expressions, context)
+                context.argumentExpressions = listOf(argumentExpression)
                 onSingleArgument(element, context, argument, argumentExpression)
             }
 
@@ -35,6 +36,7 @@ abstract class AbstractMethodCall : BaseExtension() {
                 //TODO: rename vars after extraction
                 val (a1, a2) = expressions
                 val (a1Expression, a2Expression) = getAnyExpressions(expressions, context)
+                context.argumentExpressions = listOf(a1Expression, a2Expression)
                 onTwoArguments(element, context, a1, a2, a1Expression, a2Expression)
             }
 
