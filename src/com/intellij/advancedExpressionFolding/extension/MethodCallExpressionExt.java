@@ -88,7 +88,7 @@ public class MethodCallExpressionExt {
 
         var methodCall = FACTORY.findByMethodName(methodName);
         if (methodCall != null) {
-            var context = new Context(methodName, className, qualifierExpression, method, document, identifier);
+            var context = new Context(methodName, className, qualifierExpression, method, document, identifier, Collections.emptyList());
             var expression = methodCall.onAnyArguments(element, context);
             if (expression != null) {
                 return expression;
@@ -414,15 +414,6 @@ public class MethodCallExpressionExt {
 
     private static @Nullable Expression onNoArguments(PsiMethodCallExpression element, String methodName, String className, Expression qualifierExpression, @NotNull AdvancedExpressionFoldingSettings settings, PsiMethod method, @NotNull Document document, PsiElement identifier) {
         switch (methodName) {
-            case "get":
-            case "orElseThrow":
-                switch (className) {
-                    case "java.util.Optional":
-                        if (settings.getState().getOptional()) {
-                            return new OptionalNotNullAssertionGet(element, identifier.getTextRange(), qualifierExpression);
-                        }
-                }
-                return null;
             case "plus":
                 return qualifierExpression;
             case "negate":

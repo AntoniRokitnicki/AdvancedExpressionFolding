@@ -12,9 +12,10 @@ data class Context(
     val qualifierExpression: Expression,
     val method: PsiMethod,
     val document: Document,
-    val identifier: PsiElement
+    val identifier: PsiElement,
+    var argumentExpressions: List<Expression> = emptyList(),
 ) {
-    fun getOperands(vararg argumentExpressions: Expression): List<Expression> {
-        return mutableListOf(qualifierExpression) + argumentExpressions
+    fun getOperands(vararg extraArgumentExpressions: Expression): List<Expression> {
+        return mutableListOf(qualifierExpression) + argumentExpressions + extraArgumentExpressions
     }
 }
