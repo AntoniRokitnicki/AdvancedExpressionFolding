@@ -1,9 +1,6 @@
 package data;
 
 
-import com.google.common.collect.Maps;
-import org.apache.commons.compress.utils.Lists;
-
 import java.util.*;
 
 /**
@@ -27,10 +24,10 @@ public class ExperimentalTestData {
         const HashMap<String, String> MAP2 = ::new;
         const Map<String, String> MAP3 = new HashMap<>();
         const Map<String, String> MAP_TREE = new TreeMap<>();
-        const Map<String, String> MAP4 = Maps.newHashMap();
+        const Map<String, String> MAP4 = Map.of();
 
         const List<String> LIST = new ArrayList<>();
-        const List<String> LIST2 = Lists.newArrayList();
+        const List<String> LIST2 = List.of();
         const List<String> LIST_SINGLE = List.of("1");
         const List<String> LIST_LINKED = new LinkedList<>();
 
@@ -126,23 +123,36 @@ public class ExperimentalTestData {
     static final class SubConstClass2 extends ConstClass {
     }
 
-    class SimpleGetSet{
-        private String s;
+    @Getter @Setter class NamelessProperty {
+        private NamelessProperty prop;
 
-        public String get() {
-            return s;
+        public NamelessProperty get() {
+            return prop;
         }
 
-        public void set(String s) {
-            this.s = s;
+        public void set(NamelessProperty s) {
+            this.prop = s;
         }
 
-        void main(SimpleGetSet s) {
+        NamelessProperty main(NamelessProperty s, NamelessProperty namelessProperty) {
+            s.set(namelessProperty.getProp().get());
+            s.set(namelessProperty.getProp());
+            s.setProp(namelessProperty.getProp().get());
+            s.setProp(namelessProperty.getProp());
+
+
+            s.set(namelessProperty.get());
+            s.set(namelessProperty.get().get()); //TODO:
+
             System.out.println(s.get());
             s.get();
-            s.set("1");
+            s.set(namelessProperty);
             s.set(s.get());
+            s.set(namelessProperty.get().get().get());
+            s.set(main(s.get(), namelessProperty.get()));
+            return namelessProperty.get();
         }
     }
+
 
 }

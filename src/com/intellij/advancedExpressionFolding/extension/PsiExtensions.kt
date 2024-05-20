@@ -33,12 +33,13 @@ inline fun String.filter(predicate: (String) -> Boolean): String? = takeIf(predi
 fun PsiElement.isIgnored(): Boolean = getUserData(IGNORED) ?: false
 fun PsiElement.markIgnored(value: Boolean = true) = putUserData(IGNORED, value)
 
+
+fun Pair<Int, Int>.toTextRange() = TextRange(first, second)
+fun IntRange.toTextRange() = TextRange(this.first, this.last)
 operator fun TextRange.plus(string: String): TextRange =
     TextRange.create(startOffset + string.length, endOffset + string.length)
-
 operator fun TextRange.plus(addon: IntRange): TextRange =
     TextRange.create(startOffset + addon.first, endOffset + addon.last)
-
 fun PsiElement.start(): Int = textRange.startOffset
 fun PsiElement.end(): Int = textRange.endOffset
 
@@ -175,8 +176,6 @@ fun <T : PsiElement> PsiElement.findParents(
     return null
 }
 
-fun IntRange.toTextRange() = TextRange(this.first, this.last)
-fun Pair<Int, Int>.toTextRange() = TextRange(first, second)
 
 
 fun PsiElement.prevWhiteSpace(): PsiWhiteSpace? = prevSibling as? PsiWhiteSpace
