@@ -1,5 +1,6 @@
 package com.intellij.advancedExpressionFolding;
 
+import com.intellij.advancedExpressionFolding.diff.FoldingDescriptorExWrapper;
 import com.intellij.advancedExpressionFolding.extension.methodcall.MethodCallFactory;
 import com.intellij.openapi.application.WriteAction;
 import com.intellij.openapi.fileTypes.FileTypeManager;
@@ -58,16 +59,30 @@ public abstract class BaseTest extends LightJavaCodeInsightFixtureTestCase {
             try {
                 String actual = e.getActual();
                 Files.writeString(testDataFile.toPath(), actual);
-                if (!fileName.contains("-all")) {
-                    Files.writeString(getAllTestFileName(fileName).toPath(), actual);
-                }
+
                 var wrapper = store.saveFolding(createOutputFile(fileName, ".json"));
-                Files.writeString(createOutputFile(fileName, "-folded.java").toPath(), FoldingTemporaryTestEditor.INSTANCE.getFoldedText(actual, wrapper));
+
+                boolean all = fileName.contains("-all");
+                if (!all) {
+                    replaceAllTestData(fileName, actual);
+                    var foldingFile = fileName.replace("testData/", "folded/");
+                    createFoldedFile(foldingFile, actual, wrapper);
+                }
+
+
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
             throw e;
         }
+    }
+
+    private static void createFoldedFile(String foldingFile, String actual, FoldingDescriptorExWrapper wrapper) throws IOException {
+        Files.writeString(createOutputFile(foldingFile, "-folded.java").toPath(), FoldingTemporaryTestEditor.INSTANCE.getFoldedText(actual, wrapper));
+    }
+
+    private static void replaceAllTestData(String fileName, String actual) throws IOException {
+        Files.writeString(getAllTestFileName(fileName).toPath(), actual);
     }
 
     private static boolean devMode() {

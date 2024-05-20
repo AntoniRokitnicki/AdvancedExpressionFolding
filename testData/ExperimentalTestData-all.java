@@ -22,7 +22,7 @@ public class ExperimentalTestData {
         }</fold>;
 
         <fold text='const' expand='false'>private static final</fold> HashMap<String, String> MAP =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> </fold><fold text='' expand='true'>HashMap<></fold><fold text='' expand='true'>()</fold>;
-        <fold text='const' expand='false'>private static final</fold> HashMap<String, String> MAP2 =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> </fold><fold text='' expand='true'>HashMap<fold text='<~>' expand='false'><String, String></fold><fold text='' expand='true'></fold>()</fold>;
+        <fold text='const' expand='false'>private static final</fold> HashMap<String, String> MAP2 =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> </fold><fold text='' expand='true'>HashMap<fold text='<~>' expand='false'><String, String></fold></fold><fold text='' expand='true'>()</fold>;
         <fold text='const' expand='false'>private static final</fold> Map<String, String> MAP3 = new HashMap<>();
         <fold text='const' expand='false'>private static final</fold> Map<String, String> MAP_TREE = new TreeMap<>();
         <fold text='const' expand='false'>private static final</fold> Map<String, String> MAP4 = Map.of();
@@ -78,13 +78,13 @@ public class ExperimentalTestData {
     }</fold>
 
     void main() <fold text='{...}' expand='true'>{
-        var s = Singleton.<fold text='🧍' expand='true'>INSTANCE</fold>;
-        System.out.println(Singleton.<fold text='🧍' expand='true'>INSTANCE</fold>.isOk());
-        System.out.println(Singleton.<fold text='🧍' expand='true'>INSTANCE</fold>.main(Singleton.<fold text='🧍' expand='true'>INSTANCE</fold>.main(Singleton.getInstance())));
+        <fold text='val' expand='false'>var</fold> s = Singleton.<fold text='🧍' expand='true'>INSTANCE</fold>;
+        <fold text='' expand='false'>System.out.</fold>println(Singleton.<fold text='🧍' expand='true'>INSTANCE</fold>.<fold text='ok' expand='false'>isOk()</fold>);
+        <fold text='' expand='false'>System.out.</fold>println(Singleton.<fold text='🧍' expand='true'>INSTANCE</fold>.main(Singleton.<fold text='🧍' expand='true'>INSTANCE</fold>.main(Singleton.<fold text='instance' expand='false'>getInstance()</fold>)));
 
-        var s2 = Singleton.<fold text='🧍' expand='true'>INSTANCE</fold>.LOCAL;
-        System.out.println(Singleton.<fold text='🧍' expand='true'>INSTANCE</fold>.LOCAL.isOk());
-        System.out.println(Singleton.<fold text='🧍' expand='true'>INSTANCE</fold>.LOCAL.main(Singleton.<fold text='🧍' expand='true'>INSTANCE</fold>.LOCAL.main(Singleton.getInstance())));
+        <fold text='val' expand='false'>var</fold> s2 = Singleton.<fold text='🧍' expand='true'>INSTANCE</fold>.LOCAL;
+        <fold text='' expand='false'>System.out.</fold>println(Singleton.<fold text='🧍' expand='true'>INSTANCE</fold>.LOCAL.<fold text='ok' expand='false'>isOk()</fold>);
+        <fold text='' expand='false'>System.out.</fold>println(Singleton.<fold text='🧍' expand='true'>INSTANCE</fold>.LOCAL.main(Singleton.<fold text='🧍' expand='true'>INSTANCE</fold>.LOCAL.main(Singleton.<fold text='instance' expand='false'>getInstance()</fold>)));
     }</fold>
 
     static class Singleton <fold text='{...}' expand='true'>{
@@ -113,18 +113,18 @@ public class ExperimentalTestData {
         }</fold>
 
         public ConstClass(boolean ok)<fold text=' { ' expand='false'> {
-            </fold>this.ok = ok;<fold text=' }' expand='false'>
+            </fold>this.ok = <fold text='<<' expand='false'>ok</fold>;<fold text=' }' expand='false'>
         }</fold>
 
         public ConstClass(boolean ok, String string) <fold text='{...}' expand='true'>{
-            this.ok = ok;
-            this.string = string;
+            this.ok = <fold text='<<' expand='false'>ok</fold>;
+            this.string = <fold text='<<' expand='false'>string</fold>;
         }</fold><fold text='' expand='false'>
 
         </fold><fold text='' expand='false'>@Override
         public String toString() <fold text='{...}' expand='true'>{
-            return new StringJoiner(", ", ConstClass.class.getSimpleName() + "[", "]")
-                    .add("string='" + string + "'")
+            return new StringJoiner(", ",<fold text=' "${' expand='false'> </fold>ConstClass.class.<fold text='simpleName' expand='false'>getSimpleName()</fold><fold text='}' expand='false'> + "</fold>[", "]")
+                    .add("string='<fold text='$' expand='false'>" + </fold>string<fold text='' expand='false'> + "</fold>'")
                     .toString();
         }</fold></fold>
     }</fold>
@@ -133,7 +133,7 @@ public class ExperimentalTestData {
     static class SubConstClass extends ConstClass <fold text='{...}' expand='true'>{
     }</fold>
 
-    static final class SubConstClass2 extends ConstClass <fold text='{...}' expand='true'>{
+    static <fold text='' expand='false'>final</fold> class SubConstClass2 extends ConstClass <fold text='{...}' expand='true'>{
     }</fold>
 
     <fold text='@Getter @Setter c' expand='false'>c</fold>lass NamelessProperty <fold text='{...}' expand='true'>{
@@ -145,10 +145,10 @@ public class ExperimentalTestData {
 
         </fold><fold text='' expand='false'>public data.ExperimentalTestData.NamelessProperty getProp()<fold text=' { ' expand='false'> {
             </fold>return prop;<fold text=' }' expand='false'>
-        }</fold></fold><fold text='' expand='false'>
+        }</fold><fold text='' expand='false'></fold>
 
         </fold><fold text='' expand='false'>public void setProp(NamelessProperty prop)<fold text=' { ' expand='false'> {
-            </fold>this.prop = prop;<fold text=' }' expand='false'>
+            </fold>this.prop = <fold text='<<' expand='false'>prop</fold>;<fold text=' }' expand='false'>
         }</fold></fold>
 
         public void set(NamelessProperty s)<fold text=' { ' expand='false'> {
@@ -156,16 +156,16 @@ public class ExperimentalTestData {
         }</fold>
 
         NamelessProperty main(NamelessProperty s, NamelessProperty namelessProperty) <fold text='{...}' expand='true'>{
-            s.set(namelessProperty.getProp().get());
-            s.set(namelessProperty.getProp());
-            s.setProp(namelessProperty.getProp().get());
-            s.setProp(namelessProperty.getProp());
+            s.set(namelessProperty.<fold text='prop' expand='false'>getProp()</fold>.get());
+            s.set(namelessProperty.<fold text='prop' expand='false'>getProp()</fold>);
+            s.<fold text='prop = ' expand='false'>setProp(</fold>namelessProperty.<fold text='prop' expand='false'>getProp()</fold>.get()<fold text='' expand='false'>)</fold>;
+            s.<fold text='prop = ' expand='false'>setProp(</fold>namelessProperty<fold text='<<' expand='false'>.getProp()</fold><fold text='' expand='false'>)</fold>;
 
 
             s.set(namelessProperty.get());
             s.set(namelessProperty.get().get()); //TODO:
 
-            System.out.println(s.get());
+            <fold text='' expand='false'>System.out.</fold>println(s.get());
             s.get();
             s.set(namelessProperty);
             s.set(s.get());

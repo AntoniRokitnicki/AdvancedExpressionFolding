@@ -6,12 +6,15 @@ import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import com.intellij.advancedExpressionFolding.diff.FoldingDescriptorEx
 import com.intellij.advancedExpressionFolding.diff.FoldingDescriptorExWrapper
 import com.intellij.advancedExpressionFolding.diff.Range
+import com.intellij.advancedExpressionFolding.extension.off
 import com.intellij.lang.folding.FoldingDescriptor
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.editor.FoldingGroup
 import java.io.File
 
 class FoldingDataStorage : EmptyStorage() {
+    private val saveJson = false
+
     private lateinit var descriptors: Array<FoldingDescriptor>
     private lateinit var document: Document
 
@@ -37,11 +40,11 @@ class FoldingDataStorage : EmptyStorage() {
             printoutTextRangeIntersects(uniqueElements)
         }
 
-        throwIfThereIsFoldingDuplicate(uniqueElements)
+        printWarningIfThereIsFoldingDuplicate(uniqueElements)
 
         val foldingGroupSet = mutableSetOf<FoldingGroup>()
         val text = document.text
-        val mapper = ObjectMapper().registerKotlinModule().enable(SerializationFeature.INDENT_OUTPUT);
+
         val list = descriptors.mapIndexed { index, foldingDescriptor ->
             foldingDescriptor.group?.let {
                 foldingGroupSet += it
@@ -61,8 +64,18 @@ class FoldingDataStorage : EmptyStorage() {
             )
         }
         val foldingDescriptorExWrapper = FoldingDescriptorExWrapper(list.size, list)
-        mapper.writeValue(file, foldingDescriptorExWrapper)
+
+        saveJson.off() ?: saveToJsonFile(file, foldingDescriptorExWrapper)
+
         return foldingDescriptorExWrapper
+    }
+
+    private fun saveToJsonFile(
+        file: File,
+        foldingDescriptorExWrapper: FoldingDescriptorExWrapper
+    ) {
+        val mapper = ObjectMapper().registerKotlinModule().enable(SerializationFeature.INDENT_OUTPUT);
+        mapper.writeValue(file, foldingDescriptorExWrapper)
     }
 
     private fun printoutTextRangeIntersects(uniqueElements: List<FoldingDescriptor>) {
@@ -146,7 +159,7 @@ class FoldingDataStorage : EmptyStorage() {
         return elementsWithSharedRange
     }
 
-    private fun throwIfThereIsFoldingDuplicate(uniqueElements: List<FoldingDescriptor>) {
+    private fun printWarningIfThereIsFoldingDuplicate(uniqueElements: List<FoldingDescriptor>) {
         if (uniqueElements.size != descriptors.size) {
             val duplicatedFoldings = descriptors.toSet() - uniqueElements.toSet()
 
@@ -165,5 +178,3 @@ class FoldingDataStorage : EmptyStorage() {
     }
 
 }
-
-
