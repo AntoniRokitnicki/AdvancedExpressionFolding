@@ -1,174 +1,167 @@
-package com.intellij.advancedExpressionFolding;
+package com.intellij.advancedExpressionFolding
 
-import com.intellij.advancedExpressionFolding.diff.FoldingDescriptorExWrapper;
-import com.intellij.advancedExpressionFolding.extension.methodcall.MethodCallFactory;
-import com.intellij.openapi.application.WriteAction;
-import com.intellij.openapi.fileTypes.FileTypeManager;
-import com.intellij.openapi.projectRoots.JavaSdk;
-import com.intellij.openapi.projectRoots.Sdk;
-import com.intellij.openapi.util.io.FileUtil;
-import com.intellij.openapi.util.text.StringUtil;
-import com.intellij.openapi.vfs.LocalFileSystem;
-import com.intellij.openapi.vfs.VirtualFile;
-import com.intellij.rt.execution.junit.FileComparisonFailure;
-import com.intellij.testFramework.LightProjectDescriptor;
-import com.intellij.testFramework.fixtures.DefaultLightProjectDescriptor;
-import com.intellij.testFramework.fixtures.LightJavaCodeInsightFixtureTestCase;
-import com.intellij.testFramework.fixtures.impl.CodeInsightTestFixtureImpl;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import com.intellij.advancedExpressionFolding.FoldingTemporaryTestEditor.getFoldedText
+import com.intellij.advancedExpressionFolding.diff.FoldingDescriptorExWrapper
+import com.intellij.advancedExpressionFolding.extension.methodcall.MethodCallFactory.clear
+import com.intellij.openapi.application.WriteAction
+import com.intellij.openapi.fileTypes.FileTypeManager
+import com.intellij.openapi.projectRoots.JavaSdk
+import com.intellij.openapi.projectRoots.Sdk
+import com.intellij.openapi.util.io.FileUtil
+import com.intellij.openapi.util.text.StringUtil
+import com.intellij.openapi.vfs.LocalFileSystem
+import com.intellij.rt.execution.junit.FileComparisonFailure
+import com.intellij.testFramework.fixtures.DefaultLightProjectDescriptor
+import com.intellij.testFramework.fixtures.LightJavaCodeInsightFixtureTestCase5
+import com.intellij.testFramework.fixtures.impl.CodeInsightTestFixtureImpl
+import junit.framework.Assert
+import java.io.File
+import java.io.IOException
+import java.nio.file.Files
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
+abstract class BaseTest : LightJavaCodeInsightFixtureTestCase5(TEST_JDK) {
+    override fun getTestDataPath(): String = "testData"
 
-public abstract class BaseTest extends LightJavaCodeInsightFixtureTestCase {
-
-    private static final String FOLD = "fold";
-
-    private static final DefaultLightProjectDescriptor TEST_JDK = new DefaultLightProjectDescriptor() {
-        public Sdk getSdk() {
-            return JavaSdk.getInstance()
-                    .createJdk("Test JDK", System.getProperty("java.home"), true);
-        }
-    };
-
-
-    @Override
-    protected String getTestDataPath() {
-        return "testData";
+    protected fun doFoldingTest() {
+        val testName = getTestName(false)
+        val fileName = getTestFileName(testName)
+        rewriteFileOnFailure(fileName, testName) { fixture.testFoldingWithCollapseStatus(fileName) }
     }
 
-    @NotNull
-    protected LightProjectDescriptor getProjectDescriptor() {
-        return TEST_JDK;
-    }
-
-    private static void rewriteFileOnFailure(String fileName, String testName, Runnable action) {
-        File testDataFile = new File(fileName);
-        if (devMode()) {
-            replaceTestDataWithExample(testName, testDataFile);
-        }
-
-        MethodCallFactory.INSTANCE.clear();
-        var store = new FoldingDataStorage();
-        AdvancedExpressionFoldingBuilder.setStore(store);
-        try {
-            action.run();
-        } catch (FileComparisonFailure e) {
-            try {
-                String actual = e.getActual();
-                Files.writeString(testDataFile.toPath(), actual);
-
-                var wrapper = store.saveFolding(createOutputFile(fileName, ".json"));
-
-                boolean all = fileName.contains("-all");
-                if (!all) {
-                    replaceAllTestData(fileName, actual);
-                    var foldingFile = fileName.replace("testData/", "folded/");
-                    createFoldedFile(foldingFile, actual, wrapper);
-                }
-
-
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
-            throw e;
+    protected fun doReadOnlyFoldingTest() {
+        val testName = getTestName(false)
+        val fileName = getTestFileName(testName)
+        rewriteFileOnFailure(fileName, testName) {
+            testReadOnlyFoldingRegions(
+                fileName,
+                null, true
+            )
         }
     }
 
-    private static void createFoldedFile(String foldingFile, String actual, FoldingDescriptorExWrapper wrapper) throws IOException {
-        Files.writeString(createOutputFile(foldingFile, "-folded.java").toPath(), FoldingTemporaryTestEditor.INSTANCE.getFoldedText(actual, wrapper));
+    protected open fun getTestFileName(testName: String): String {
+        return "testData/$testName.java"
     }
-
-    private static void replaceAllTestData(String fileName, String actual) throws IOException {
-        Files.writeString(getAllTestFileName(fileName).toPath(), actual);
-    }
-
-    private static boolean devMode() {
-        return System.getenv("dev-mode") != null;
-    }
-
-    private static void replaceTestDataWithExample(String testName, File testDataFile) {
-        var exampleFile = new File(".", "/examples/data/" + testName + ".java");
-        try {
-            com.google.common.io.Files.copy(exampleFile, testDataFile);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    private static File createOutputFile(String fileName, String extension) {
-        return new File(fileName.replace(".java", extension));
-    }
-
-    protected void doFoldingTest() {
-        String testName = getTestName(false);
-        String fileName = getTestFileName(testName);
-        rewriteFileOnFailure(fileName, testName, () -> myFixture.testFoldingWithCollapseStatus(fileName));
-    }
-
-    protected void doReadOnlyFoldingTest() {
-        String testName = getTestName(false);
-        String fileName = getTestFileName(testName);
-        rewriteFileOnFailure(fileName, testName, () -> testReadOnlyFoldingRegions(fileName,
-                null, true));
-    }
-
-    protected @NotNull String getTestFileName(String testName) {
-        return getTestDataPath() + "/" + testName + ".java";
-    }
-
-    protected static File getAllTestFileName(String testName) {
-        return createOutputFile(testName, "-all.java");
-    }
-
 
     // TODO: Refactor this mess
-    private void testReadOnlyFoldingRegions(@NotNull String verificationFileName,
-                                            @Nullable String destinationFileName,
-                                            boolean doCheckCollapseStatus) {
-        String expectedContent;
-        final File verificationFile;
+    private fun testReadOnlyFoldingRegions(
+        verificationFileName: String,
+        destinationFileName: String?,
+        doCheckCollapseStatus: Boolean
+    ) {
+        var expectedContent: String
+        val verificationFile: File
         try {
-            verificationFile = new File(verificationFileName);
-            expectedContent = FileUtil.loadFile(verificationFile);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+            verificationFile = File(verificationFileName)
+            expectedContent = FileUtil.loadFile(verificationFile)
+        } catch (e: IOException) {
+            throw RuntimeException(e)
         }
-        assertNotNull(expectedContent);
+        Assert.assertNotNull(expectedContent)
 
-        expectedContent = StringUtil.replace(expectedContent, "\r", "");
-        final String cleanContent = expectedContent.replaceAll("<" + FOLD + "\\stext=\'[^\']*\'(\\sexpand=\'[^\']*\')*>", "")
-                .replace("</" + FOLD + ">", "");
+        expectedContent = StringUtil.replace(expectedContent, "\r", "")
+        val cleanContent =
+            expectedContent.replace(("<$FOLD\\stext=\'[^\']*\'(\\sexpand=\'[^\']*\')*>").toRegex(), "")
+                .replace("</$FOLD>", "")
         if (destinationFileName == null) {
-            myFixture.configureByText(FileTypeManager.getInstance().getFileTypeByFileName(verificationFileName), cleanContent);
+            fixture.configureByText(
+                FileTypeManager.getInstance().getFileTypeByFileName(verificationFileName),
+                cleanContent
+            )
         } else {
             try {
-                FileUtil.writeToFile(new File(destinationFileName), cleanContent);
-                VirtualFile file = LocalFileSystem.getInstance().refreshAndFindFileByPath(destinationFileName);
-                assertNotNull(file);
-                myFixture.configureFromExistingVirtualFile(file);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+                FileUtil.writeToFile(File(destinationFileName), cleanContent)
+                val file = LocalFileSystem.getInstance().refreshAndFindFileByPath(destinationFileName)
+                Assert.assertNotNull(file)
+                fixture.configureFromExistingVirtualFile(file!!)
+            } catch (e: IOException) {
+                throw RuntimeException(e)
             }
         }
         try {
-            WriteAction.run(() -> myFixture.getFile().getVirtualFile().setWritable(false));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+            WriteAction.run<IOException> { fixture.file.virtualFile.isWritable = false }
+        } catch (e: IOException) {
+            throw RuntimeException(e)
         }
-        final String actual = ((CodeInsightTestFixtureImpl) myFixture).getFoldingDescription(doCheckCollapseStatus);
-        if (!expectedContent.equals(actual)) {
-            throw new FileComparisonFailure(verificationFile.getName(), expectedContent, actual, verificationFile.getPath());
+        val actual = (fixture as CodeInsightTestFixtureImpl).getFoldingDescription(doCheckCollapseStatus)
+        if (expectedContent != actual) {
+            throw FileComparisonFailure(verificationFile.name, expectedContent, actual, verificationFile.path)
         }
     }
 
+    companion object {
+        private const val FOLD = "fold"
 
-    @Override
-    public void setUp() throws Exception {
-        super.setUp();
-        AdvancedExpressionFoldingSettings.getInstance().disableAll();
+        private val TEST_JDK: DefaultLightProjectDescriptor = object : DefaultLightProjectDescriptor() {
+            override fun getSdk(): Sdk {
+                return JavaSdk.getInstance()
+                    .createJdk("Test JDK", System.getProperty("java.home"), true)
+            }
+        }
+
+
+        private fun rewriteFileOnFailure(fileName: String, testName: String, action: Runnable) {
+            val testDataFile = File(fileName)
+            if (devMode()) {
+                replaceTestDataWithExample(testName, testDataFile)
+            }
+
+            clear()
+            val store = FoldingDataStorage()
+            AdvancedExpressionFoldingBuilder.setStore(store)
+            try {
+                action.run()
+            } catch (e: FileComparisonFailure) {
+                try {
+                    val actual = e.actual
+                    Files.writeString(testDataFile.toPath(), actual)
+
+                    val wrapper = store.saveFolding(createOutputFile(fileName, ".json"))
+
+                    val all = fileName.contains("-all")
+                    if (!all) {
+                        replaceAllTestData(fileName, actual)
+                        val foldingFile = fileName.replace("testData/", "folded/")
+                        createFoldedFile(foldingFile, actual, wrapper)
+                    }
+                } catch (ex: IOException) {
+                    throw RuntimeException(ex)
+                }
+                throw e
+            }
+        }
+
+        @Throws(IOException::class)
+        private fun createFoldedFile(foldingFile: String, actual: String, wrapper: FoldingDescriptorExWrapper) {
+            Files.writeString(createOutputFile(foldingFile, "-folded.java").toPath(), getFoldedText(actual, wrapper))
+        }
+
+        @Throws(IOException::class)
+        private fun replaceAllTestData(fileName: String, actual: String) {
+            Files.writeString(getAllTestFileName(fileName).toPath(), actual)
+        }
+
+        private fun devMode(): Boolean {
+            return System.getenv("dev-mode") != null
+        }
+
+        private fun replaceTestDataWithExample(testName: String, testDataFile: File) {
+            val exampleFile = File(".", "/examples/data/$testName.java")
+            try {
+                com.google.common.io.Files.copy(exampleFile, testDataFile)
+            } catch (e: IOException) {
+                throw RuntimeException(e)
+            }
+        }
+
+        private fun createOutputFile(fileName: String, extension: String): File {
+            return File(fileName.replace(".java", extension))
+        }
+
+        @JvmStatic
+        open fun getAllTestFileName(testName: String): File {
+            return createOutputFile(testName, "-all.java")
+        }
     }
 }
 

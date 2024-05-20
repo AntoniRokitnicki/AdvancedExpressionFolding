@@ -1,7 +1,10 @@
 package com.intellij.advancedExpressionFolding
 
+import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.Companion.getInstance
 import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.State
+import com.intellij.openapi.application.runInEdt
 import org.junit.AssumptionViolatedException
+import org.junit.jupiter.api.Test
 import kotlin.reflect.KMutableProperty0
 
 open class FoldingTest : BaseTest() {
@@ -9,10 +12,11 @@ open class FoldingTest : BaseTest() {
     class TooComplexException : AssumptionViolatedException("TOO COMPLEX FOLDING")
 
     private val state: State by lazy {
-        AdvancedExpressionFoldingSettings.getInstance().state
+        getInstance().state
     }
 
     open fun doFoldingTest(vararg turnOnProperties: KMutableProperty0<Boolean>) {
+        getInstance().disableAll()
         turnOnProperties.forEach {
             it.set(true)
         }
@@ -28,93 +32,96 @@ open class FoldingTest : BaseTest() {
     }
 
     private fun doReadOnlyFoldingTest(vararg turnOnProperties: KMutableProperty0<Boolean>) {
+        getInstance().disableAll()
         turnOnProperties.forEach {
             it.set(true)
         }
-        super.doReadOnlyFoldingTest()
+        runInEdt {
+            super.doReadOnlyFoldingTest()
+        }
     }
 
     /**
      * [data.ElvisTestData]
      */
-    fun testElvisTestData() {
+    @Test fun testElvisTestData() {
         doFoldingTest(state::checkExpressionsCollapse)
     }
 
     /**
      * [data.ForRangeTestData]
      */
-    fun testForRangeTestData() {
+    @Test fun testForRangeTestData() {
         doFoldingTest(state::rangeExpressionsCollapse)
     }
 
     /**
      * [data.StringBuilderTestData]
      */
-    fun testStringBuilderTestData() {
+    @Test fun testStringBuilderTestData() {
         doFoldingTest(state::concatenationExpressionsCollapse)
     }
 
     /**
      * [data.InterpolatedStringTestData]
      */
-    fun testInterpolatedStringTestData() {
+    @Test fun testInterpolatedStringTestData() {
         doFoldingTest(state::concatenationExpressionsCollapse)
     }
 
     /**
      * [data.GetSetPutTestData]
      */
-    fun testGetSetPutTestData() {
+    @Test fun testGetSetPutTestData() {
         doFoldingTest(state::getExpressionsCollapse)
     }
 
     /**
      * [data.SliceTestData]
      */
-    fun testSliceTestData() {
+    @Test fun testSliceTestData() {
         doFoldingTest(state::slicingExpressionsCollapse)
     }
 
     /**
      * [data.AppendSetterInterpolatedStringTestData]
      */
-    open fun testAppendSetterInterpolatedStringTestData() {
+    open @Test fun testAppendSetterInterpolatedStringTestData() {
         doFoldingTest(state::concatenationExpressionsCollapse, state::getSetExpressionsCollapse)
     }
 
     /**
      * [data.EqualsCompareTestData]
      */
-    fun testEqualsCompareTestData() {
+    @Test fun testEqualsCompareTestData() {
         doFoldingTest(state::comparingExpressionsCollapse)
     }
 
     /**
      * [data.TypeCastTestData]
      */
-    fun testTypeCastTestData() {
+    @Test fun testTypeCastTestData() {
         doFoldingTest(state::castExpressionsCollapse)
     }
 
     /**
      * [data.VarTestData]
      */
-    fun testVarTestData() {
+    @Test fun testVarTestData() {
         doFoldingTest(state::varExpressionsCollapse)
     }
 
     /**
      * [data.GetterSetterTestData]
      */
-    fun testGetterSetterTestData() {
+    @Test fun testGetterSetterTestData() {
         doFoldingTest(state::getSetExpressionsCollapse)
     }
 
     /**
      * [data.ControlFlowSingleStatementTestData]
      */
-    fun testControlFlowSingleStatementTestData() {
+    @Test fun testControlFlowSingleStatementTestData() {
         // TODO: Test with different indentation settings
         doReadOnlyFoldingTest(state::controlFlowSingleStatementCodeBlockCollapse)
     }
@@ -122,7 +129,7 @@ open class FoldingTest : BaseTest() {
     /**
      * [data.ControlFlowMultiStatementTestData]
      */
-    fun testControlFlowMultiStatementTestData() {
+    @Test fun testControlFlowMultiStatementTestData() {
         // TODO: Test with different indentation settings
         doReadOnlyFoldingTest(state::controlFlowMultiStatementCodeBlockCollapse)
     }
@@ -130,196 +137,196 @@ open class FoldingTest : BaseTest() {
     /**
      * [data.LocalDateTestData]
      */
-    fun testLocalDateTestData() {
+    @Test fun testLocalDateTestData() {
         doReadOnlyFoldingTest(state::comparingLocalDatesCollapse)
     }
 
     /**
      * [data.LocalDateLiteralTestData]
      */
-    fun testLocalDateLiteralTestData() {
+    @Test fun testLocalDateLiteralTestData() {
         doReadOnlyFoldingTest(state::localDateLiteralCollapse)
     }
 
     /**
      * [data.LocalDateLiteralPostfixTestData]
      */
-    fun testLocalDateLiteralPostfixTestData() {
+    @Test fun testLocalDateLiteralPostfixTestData() {
         doReadOnlyFoldingTest(state::localDateLiteralCollapse, state::localDateLiteralPostfixCollapse)
     }
 
     /**
      * [data.CompactControlFlowTestData]
      */
-    fun testCompactControlFlowTestData() {
+    @Test fun testCompactControlFlowTestData() {
         doFoldingTest(state::compactControlFlowSyntaxCollapse)
     }
 
     /**
      * [data.SemicolonTestData]
      */
-    fun testSemicolonTestData() {
+    @Test fun testSemicolonTestData() {
         doReadOnlyFoldingTest(state::semicolonsCollapse)
     }
 
     /**
      * [data.AssertTestData]
      */
-    fun testAssertTestData() {
+    @Test fun testAssertTestData() {
         doReadOnlyFoldingTest(state::assertsCollapse)
     }
 
     /**
      * [data.ConcatenationTestData]
      */
-    fun testConcatenationTestData() {
+    @Test fun testConcatenationTestData() {
         doFoldingTest(state::concatenationExpressionsCollapse, state::optional, state::streamSpread)
     }
 
     /**
      * [data.OptionalTestData]
      */
-    fun testOptionalTestData() {
+    @Test fun testOptionalTestData() {
         doFoldingTest(state::concatenationExpressionsCollapse, state::optional, state::streamSpread)
     }
 
     /**
      * [data.SpreadTestData]
      */
-    fun testSpreadTestData() {
+    @Test fun testSpreadTestData() {
         doFoldingTest(state::concatenationExpressionsCollapse, state::optional, state::streamSpread)
     }
 
     /**
      * [data.LombokTestData]
      */
-    open fun testLombokTestData() {
+    open @Test fun testLombokTestData() {
         doFoldingTest(state::lombok)
     }
 
-    fun testLombokUsageTestData() {
+    @Test fun testLombokUsageTestData() {
         doFoldingTest(state::lombok)
     }
 
     /**
      * [data.FieldShiftBuilder]
      */
-    fun testFieldShiftBuilder() {
+    @Test fun testFieldShiftBuilder() {
         doFoldingTest(state::fieldShift, state::getSetExpressionsCollapse)
     }
 
     /**
      * [data.FieldShiftSetters]
      */
-    fun testFieldShiftSetters() {
+    @Test fun testFieldShiftSetters() {
         doFoldingTest(state::fieldShift, state::getSetExpressionsCollapse)
     }
 
     /**
      * [data.LetReturnIt]
      */
-    fun testLetReturnIt() {
+    @Test fun testLetReturnIt() {
         doFoldingTest(state::varExpressionsCollapse, state::kotlinQuickReturn)
     }
 
     /**
      * [data.IfNullSafeData]
      */
-    fun testIfNullSafeData() {
+    @Test fun testIfNullSafeData() {
         doFoldingTest(state::checkExpressionsCollapse, state::getSetExpressionsCollapse, state::ifNullSafe)
     }
 
     /**
      * [data.LogBrackets]
      */
-    fun testLogBrackets() {
+    @Test fun testLogBrackets() {
         doFoldingTest(state::getSetExpressionsCollapse, state::logFolding)
     }
 
     /**
      * [data.FieldShiftFields]
      */
-    fun testFieldShiftFields() {
+    @Test fun testFieldShiftFields() {
         doFoldingTest(state::getSetExpressionsCollapse, state::fieldShift)
     }
 
     /**
      * [data.DestructuringAssignmentArrayTestData]
      */
-    fun testDestructuringAssignmentArrayTestData() {
+    @Test fun testDestructuringAssignmentArrayTestData() {
         doFoldingTest(state::destructuring, state::getSetExpressionsCollapse, state::varExpressionsCollapse)
     }
 
     /**
      * [data.DestructuringAssignmentArrayWithoutValTestData]
      */
-    open fun testDestructuringAssignmentArrayWithoutValTestData() {
+    open @Test fun testDestructuringAssignmentArrayWithoutValTestData() {
         doFoldingTest(state::destructuring, state::getSetExpressionsCollapse)
     }
 
     /**
      * [data.DestructuringAssignmentListTestData]
      */
-    fun testDestructuringAssignmentListTestData() {
+    @Test fun testDestructuringAssignmentListTestData() {
         doFoldingTest(state::destructuring, state::getSetExpressionsCollapse, state::varExpressionsCollapse)
     }
 
     /**
      * [data.DestructuringAssignmentListWithoutValTestData]
      */
-    open fun testDestructuringAssignmentListWithoutValTestData() {
+    open @Test fun testDestructuringAssignmentListWithoutValTestData() {
         doFoldingTest(state::destructuring, state::getSetExpressionsCollapse)
     }
 
     /**
      * [data.PrintlnTestData]
      */
-    fun testPrintlnTestData() {
+    @Test fun testPrintlnTestData() {
         doFoldingTest()
     }
     /**
      * [data.NullableAnnotationTestData]
      */
-    open fun testNullableAnnotationTestData() {
+    open @Test fun testNullableAnnotationTestData() {
         doFoldingTest(state::nullable, state::lombok)
     }
 
     /**
      * [data.NullableAnnotationCheckNotNullTestData]
      */
-    fun testNullableAnnotationCheckNotNullTestData() {
+    @Test fun testNullableAnnotationCheckNotNullTestData() {
         doFoldingTest(state::nullable, state::lombok)
     }
     /**
      * [data.ConstTestData]
      */
-    fun testConstTestData() {
+    @Test fun testConstTestData() {
         doFoldingTest(state::const)
     }
     /**
      * [data.FinalRemovalTestData]
      */
-    fun testFinalRemovalTestData() {
+    @Test fun testFinalRemovalTestData() {
         doFoldingTest(state::finalRemoval)
     }
     /**
      * [data.FinalEmojiTestData]
      */
-    fun testFinalEmojiTestData() {
+    @Test fun testFinalEmojiTestData() {
         doFoldingTest(state::finalEmoji)
     }
 
     /**
      * [data.LombokDirtyOffTestData]
      */
-    fun testLombokDirtyOffTestData() {
+    @Test fun testLombokDirtyOffTestData() {
         doFoldingTest(state::lombok, state::lombokDirtyOff)
     }
     // NEW OPTION
     /**
      * [data.ExperimentalTestData]
      */
-    fun testExperimentalTestData() {
+    @Test fun testExperimentalTestData() {
         doFoldingTest(state::experimental, state::nullable, state::const, state::lombok, state::getExpressionsCollapse)
     }
 
