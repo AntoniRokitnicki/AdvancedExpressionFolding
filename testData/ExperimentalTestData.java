@@ -1,10 +1,7 @@
 package data;
 
 
-import <fold text='...' expand='false'>com.google.common.collect.Maps;
-import org.apache.commons.compress.utils.Lists;
-
-import java.util.*;</fold>
+import java.util.*;
 
 <fold text='/** {@link com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.IState#getExperimental()} ...*/' expand='true'>/**
  * {@link com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.IState#getExperimental()}
@@ -25,13 +22,13 @@ public class ExperimentalTestData {
         }</fold>;
 
         <fold text='const' expand='false'>private static final</fold> HashMap<String, String> MAP =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> </fold><fold text='' expand='true'>HashMap<></fold><fold text='' expand='true'>()</fold>;
-        <fold text='const' expand='false'>private static final</fold> HashMap<String, String> MAP2 =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> </fold><fold text='' expand='true'>HashMap<fold text='<~>' expand='false'><String, String></fold></fold><fold text='' expand='true'>()</fold>;
+        <fold text='const' expand='false'>private static final</fold> HashMap<String, String> MAP2 =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> </fold><fold text='' expand='true'>HashMap<fold text='<~>' expand='false'><String, String></fold><fold text='' expand='true'></fold>()</fold>;
         <fold text='const' expand='false'>private static final</fold> Map<String, String> MAP3 = new HashMap<>();
         <fold text='const' expand='false'>private static final</fold> Map<String, String> MAP_TREE = new TreeMap<>();
-        <fold text='const' expand='false'>private static final</fold> Map<String, String> MAP4 = Maps.newHashMap();
+        <fold text='const' expand='false'>private static final</fold> Map<String, String> MAP4 = Map.of();
 
         <fold text='const' expand='false'>private static final</fold> List<String> LIST = new ArrayList<>();
-        <fold text='const' expand='false'>private static final</fold> List<String> LIST2 = Lists.newArrayList();
+        <fold text='const' expand='false'>private static final</fold> List<String> LIST2 = List.of();
         <fold text='const' expand='false'>private static final</fold> List<String> LIST_SINGLE = List.of("1");
         <fold text='const' expand='false'>private static final</fold> List<String> LIST_LINKED = new LinkedList<>();
 
@@ -139,23 +136,44 @@ public class ExperimentalTestData {
     static final class SubConstClass2 extends ConstClass <fold text='{...}' expand='true'>{
     }</fold>
 
-    class SimpleGetSet<fold text='{...}' expand='true'>{
-        private String s;
+    <fold text='@Getter @Setter c' expand='false'>c</fold>lass NamelessProperty <fold text='{...}' expand='true'>{
+        private NamelessProperty prop;
 
-        public String get()<fold text=' { ' expand='false'> {
-            </fold>return s;<fold text=' }' expand='false'>
+        public NamelessProperty get()<fold text=' { ' expand='false'> {
+            </fold>return prop;<fold text=' }' expand='false'>
+        }</fold><fold text='' expand='false'>
+
+        </fold><fold text='' expand='false'>public data.ExperimentalTestData.NamelessProperty getProp()<fold text=' { ' expand='false'> {
+            </fold>return prop;<fold text=' }' expand='false'>
+        }</fold></fold><fold text='' expand='false'>
+
+        </fold><fold text='' expand='false'>public void setProp(NamelessProperty prop)<fold text=' { ' expand='false'> {
+            </fold>this.prop = prop;<fold text=' }' expand='false'>
+        }</fold></fold>
+
+        public void set(NamelessProperty s)<fold text=' { ' expand='false'> {
+            </fold>this.prop = s;<fold text=' }' expand='false'>
         }</fold>
 
-        public void set(String s)<fold text=' { ' expand='false'> {
-            </fold>this.s = s;<fold text=' }' expand='false'>
-        }</fold>
+        NamelessProperty main(NamelessProperty s, NamelessProperty namelessProperty) <fold text='{...}' expand='true'>{
+            s.set(namelessProperty.getProp().get());
+            s.set(namelessProperty.getProp());
+            s.setProp(namelessProperty.getProp().get());
+            s.setProp(namelessProperty.getProp());
 
-        void main(SimpleGetSet s) <fold text='{...}' expand='true'>{
+
+            s.set(namelessProperty.get());
+            s.set(namelessProperty.get().get()); //TODO:
+
             System.out.println(s.get());
             s.get();
-            s.set("1");
+            s.set(namelessProperty);
             s.set(s.get());
+            s.set(namelessProperty.get().get().get());
+            s.set(main(s.get(), namelessProperty.get()));
+            return namelessProperty.get();
         }</fold>
     }</fold>
+
 
 }

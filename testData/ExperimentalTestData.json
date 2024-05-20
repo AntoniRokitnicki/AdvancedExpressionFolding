@@ -1,12 +1,12 @@
 {
-  "size" : 88,
+  "size" : 93,
   "list" : [ {
     "id" : 0,
     "text" : " ",
     "placeholder" : "",
     "range" : {
-      "start" : 746,
-      "end" : 747,
+      "start" : 658,
+      "end" : 659,
       "size" : 1
     },
     "group" : "WrapperExpression",
@@ -16,8 +16,8 @@
     "text" : "ConstClass",
     "placeholder" : "",
     "range" : {
-      "start" : 747,
-      "end" : 757,
+      "start" : 659,
+      "end" : 669,
       "size" : 10
     },
     "group" : "WrapperExpression",
@@ -27,8 +27,8 @@
     "text" : " ",
     "placeholder" : " ::",
     "range" : {
-      "start" : 742,
-      "end" : 743,
+      "start" : 654,
+      "end" : 655,
       "size" : 1
     },
     "group" : "WrapperExpression",
@@ -38,8 +38,8 @@
     "text" : "()",
     "placeholder" : "",
     "range" : {
-      "start" : 757,
-      "end" : 759,
+      "start" : 669,
+      "end" : 671,
       "size" : 2
     },
     "group" : "WrapperExpression",
@@ -49,8 +49,8 @@
     "text" : "public static final",
     "placeholder" : "const",
     "range" : {
-      "start" : 705,
-      "end" : 724,
+      "start" : 617,
+      "end" : 636,
       "size" : 19
     },
     "group" : "FieldConstExpression",
@@ -60,8 +60,8 @@
     "text" : " ",
     "placeholder" : "",
     "range" : {
-      "start" : 814,
-      "end" : 815,
+      "start" : 726,
+      "end" : 727,
       "size" : 1
     },
     "group" : "WrapperExpression",
@@ -71,8 +71,8 @@
     "text" : "ConstClass() {\n        }",
     "placeholder" : "{}",
     "range" : {
-      "start" : 815,
-      "end" : 839,
+      "start" : 727,
+      "end" : 751,
       "size" : 24
     },
     "group" : "WrapperExpression",
@@ -82,8 +82,8 @@
     "text" : " ",
     "placeholder" : " ::",
     "range" : {
-      "start" : 810,
-      "end" : 811,
+      "start" : 722,
+      "end" : 723,
       "size" : 1
     },
     "group" : "WrapperExpression",
@@ -93,8 +93,8 @@
     "text" : "()",
     "placeholder" : "",
     "range" : {
-      "start" : 825,
-      "end" : 827,
+      "start" : 737,
+      "end" : 739,
       "size" : 2
     },
     "group" : "WrapperExpression",
@@ -104,8 +104,8 @@
     "text" : "public static final",
     "placeholder" : "const",
     "range" : {
-      "start" : 769,
-      "end" : 788,
+      "start" : 681,
+      "end" : 700,
       "size" : 19
     },
     "group" : "FieldConstExpression",
@@ -115,8 +115,8 @@
     "text" : "public static final",
     "placeholder" : "const",
     "range" : {
-      "start" : 849,
-      "end" : 868,
+      "start" : 761,
+      "end" : 780,
       "size" : 19
     },
     "group" : "FieldConstExpression",
@@ -126,8 +126,8 @@
     "text" : "public static final",
     "placeholder" : "const",
     "range" : {
-      "start" : 920,
-      "end" : 939,
+      "start" : 832,
+      "end" : 851,
       "size" : 19
     },
     "group" : "FieldConstExpression",
@@ -137,8 +137,8 @@
     "text" : " ",
     "placeholder" : "",
     "range" : {
-      "start" : 1062,
-      "end" : 1063,
+      "start" : 974,
+      "end" : 975,
       "size" : 1
     },
     "group" : "WrapperExpression",
@@ -148,8 +148,8 @@
     "text" : "HashMap<>",
     "placeholder" : "",
     "range" : {
-      "start" : 1063,
-      "end" : 1072,
+      "start" : 975,
+      "end" : 984,
       "size" : 9
     },
     "group" : "WrapperExpression",
@@ -159,8 +159,8 @@
     "text" : " ",
     "placeholder" : " ::",
     "range" : {
-      "start" : 1058,
-      "end" : 1059,
+      "start" : 970,
+      "end" : 971,
       "size" : 1
     },
     "group" : "WrapperExpression",
@@ -170,8 +170,8 @@
     "text" : "()",
     "placeholder" : "",
     "range" : {
-      "start" : 1072,
-      "end" : 1074,
+      "start" : 984,
+      "end" : 986,
       "size" : 2
     },
     "group" : "WrapperExpression",
@@ -181,8 +181,8 @@
     "text" : "private static final",
     "placeholder" : "const",
     "range" : {
-      "start" : 1008,
-      "end" : 1028,
+      "start" : 920,
+      "end" : 940,
       "size" : 20
     },
     "group" : "FieldConstExpression",
@@ -192,8 +192,8 @@
     "text" : " ",
     "placeholder" : "",
     "range" : {
-      "start" : 1139,
-      "end" : 1140,
+      "start" : 1051,
+      "end" : 1052,
       "size" : 1
     },
     "group" : "WrapperExpression",
@@ -203,8 +203,8 @@
     "text" : "HashMap<String, String>",
     "placeholder" : "",
     "range" : {
-      "start" : 1140,
-      "end" : 1163,
+      "start" : 1052,
+      "end" : 1075,
       "size" : 23
     },
     "group" : "WrapperExpression",
@@ -214,8 +214,8 @@
     "text" : " ",
     "placeholder" : " ::",
     "range" : {
-      "start" : 1135,
-      "end" : 1136,
+      "start" : 1047,
+      "end" : 1048,
       "size" : 1
     },
     "group" : "WrapperExpression",
@@ -225,8 +225,8 @@
     "text" : "()",
     "placeholder" : "",
     "range" : {
-      "start" : 1163,
-      "end" : 1165,
+      "start" : 1075,
+      "end" : 1077,
       "size" : 2
     },
     "group" : "WrapperExpression",
@@ -236,8 +236,8 @@
     "text" : "private static final",
     "placeholder" : "const",
     "range" : {
-      "start" : 1084,
-      "end" : 1104,
+      "start" : 996,
+      "end" : 1016,
       "size" : 20
     },
     "group" : "FieldConstExpression",
@@ -247,8 +247,8 @@
     "text" : "private static final",
     "placeholder" : "const",
     "range" : {
-      "start" : 1175,
-      "end" : 1195,
+      "start" : 1087,
+      "end" : 1107,
       "size" : 20
     },
     "group" : "FieldConstExpression",
@@ -258,8 +258,8 @@
     "text" : "private static final",
     "placeholder" : "const",
     "range" : {
-      "start" : 1248,
-      "end" : 1268,
+      "start" : 1160,
+      "end" : 1180,
       "size" : 20
     },
     "group" : "FieldConstExpression",
@@ -269,8 +269,8 @@
     "text" : "private static final",
     "placeholder" : "const",
     "range" : {
-      "start" : 1325,
-      "end" : 1345,
+      "start" : 1237,
+      "end" : 1257,
       "size" : 20
     },
     "group" : "FieldConstExpression",
@@ -280,8 +280,8 @@
     "text" : "private static final",
     "placeholder" : "const",
     "range" : {
-      "start" : 1401,
-      "end" : 1421,
+      "start" : 1304,
+      "end" : 1324,
       "size" : 20
     },
     "group" : "FieldConstExpression",
@@ -291,8 +291,8 @@
     "text" : "private static final",
     "placeholder" : "const",
     "range" : {
-      "start" : 1469,
-      "end" : 1489,
+      "start" : 1372,
+      "end" : 1392,
       "size" : 20
     },
     "group" : "FieldConstExpression",
@@ -302,8 +302,8 @@
     "text" : "private static final",
     "placeholder" : "const",
     "range" : {
-      "start" : 1541,
-      "end" : 1561,
+      "start" : 1433,
+      "end" : 1453,
       "size" : 20
     },
     "group" : "FieldConstExpression",
@@ -313,8 +313,8 @@
     "text" : "private static final",
     "placeholder" : "const",
     "range" : {
-      "start" : 1611,
-      "end" : 1631,
+      "start" : 1503,
+      "end" : 1523,
       "size" : 20
     },
     "group" : "FieldConstExpression",
@@ -324,8 +324,8 @@
     "text" : " ",
     "placeholder" : "",
     "range" : {
-      "start" : 1738,
-      "end" : 1739,
+      "start" : 1630,
+      "end" : 1631,
       "size" : 1
     },
     "group" : "WrapperExpression",
@@ -335,8 +335,8 @@
     "text" : "ConstClass",
     "placeholder" : "",
     "range" : {
-      "start" : 1739,
-      "end" : 1749,
+      "start" : 1631,
+      "end" : 1641,
       "size" : 10
     },
     "group" : "WrapperExpression",
@@ -346,8 +346,8 @@
     "text" : " ",
     "placeholder" : " ::",
     "range" : {
-      "start" : 1734,
-      "end" : 1735,
+      "start" : 1626,
+      "end" : 1627,
       "size" : 1
     },
     "group" : "WrapperExpression",
@@ -357,8 +357,8 @@
     "text" : "public static final",
     "placeholder" : "const",
     "range" : {
-      "start" : 1689,
-      "end" : 1708,
+      "start" : 1581,
+      "end" : 1600,
       "size" : 19
     },
     "group" : "FieldConstExpression",
@@ -368,8 +368,8 @@
     "text" : " ",
     "placeholder" : "",
     "range" : {
-      "start" : 1814,
-      "end" : 1815,
+      "start" : 1706,
+      "end" : 1707,
       "size" : 1
     },
     "group" : "WrapperExpression",
@@ -379,8 +379,8 @@
     "text" : "ConstClass",
     "placeholder" : "",
     "range" : {
-      "start" : 1815,
-      "end" : 1825,
+      "start" : 1707,
+      "end" : 1717,
       "size" : 10
     },
     "group" : "WrapperExpression",
@@ -390,8 +390,8 @@
     "text" : " ",
     "placeholder" : " ::",
     "range" : {
-      "start" : 1810,
-      "end" : 1811,
+      "start" : 1702,
+      "end" : 1703,
       "size" : 1
     },
     "group" : "WrapperExpression",
@@ -401,8 +401,8 @@
     "text" : ".get",
     "placeholder" : ".getFirst",
     "range" : {
-      "start" : 1844,
-      "end" : 1848,
+      "start" : 1736,
+      "end" : 1740,
       "size" : 4
     },
     "group" : "Get",
@@ -412,8 +412,8 @@
     "text" : "0",
     "placeholder" : "",
     "range" : {
-      "start" : 1849,
-      "end" : 1850,
+      "start" : 1741,
+      "end" : 1742,
       "size" : 1
     },
     "group" : "Get",
@@ -423,8 +423,8 @@
     "text" : "public static final",
     "placeholder" : "const",
     "range" : {
-      "start" : 1765,
-      "end" : 1784,
+      "start" : 1657,
+      "end" : 1676,
       "size" : 19
     },
     "group" : "FieldConstExpression",
@@ -434,8 +434,8 @@
     "text" : "public static final",
     "placeholder" : "const",
     "range" : {
-      "start" : 1863,
-      "end" : 1882,
+      "start" : 1755,
+      "end" : 1774,
       "size" : 19
     },
     "group" : "FieldConstExpression",
@@ -445,8 +445,8 @@
     "text" : "public static final",
     "placeholder" : "const",
     "range" : {
-      "start" : 1982,
-      "end" : 2001,
+      "start" : 1874,
+      "end" : 1893,
       "size" : 19
     },
     "group" : "FieldConstExpression",
@@ -456,8 +456,8 @@
     "text" : " ",
     "placeholder" : "",
     "range" : {
-      "start" : 2292,
-      "end" : 2293,
+      "start" : 2184,
+      "end" : 2185,
       "size" : 1
     },
     "group" : "WrapperExpression",
@@ -467,8 +467,8 @@
     "text" : "ConstClass",
     "placeholder" : "",
     "range" : {
-      "start" : 2293,
-      "end" : 2303,
+      "start" : 2185,
+      "end" : 2195,
       "size" : 10
     },
     "group" : "WrapperExpression",
@@ -478,8 +478,8 @@
     "text" : " ",
     "placeholder" : " ::",
     "range" : {
-      "start" : 2288,
-      "end" : 2289,
+      "start" : 2180,
+      "end" : 2181,
       "size" : 1
     },
     "group" : "WrapperExpression",
@@ -489,8 +489,8 @@
     "text" : "()",
     "placeholder" : "",
     "range" : {
-      "start" : 2303,
-      "end" : 2305,
+      "start" : 2195,
+      "end" : 2197,
       "size" : 2
     },
     "group" : "WrapperExpression",
@@ -500,8 +500,8 @@
     "text" : " ",
     "placeholder" : "",
     "range" : {
-      "start" : 2340,
-      "end" : 2341,
+      "start" : 2232,
+      "end" : 2233,
       "size" : 1
     },
     "group" : "WrapperExpression",
@@ -511,8 +511,8 @@
     "text" : "ConstClass() {\n        }",
     "placeholder" : "{}",
     "range" : {
-      "start" : 2341,
-      "end" : 2365,
+      "start" : 2233,
+      "end" : 2257,
       "size" : 24
     },
     "group" : "WrapperExpression",
@@ -522,8 +522,8 @@
     "text" : " ",
     "placeholder" : " ::",
     "range" : {
-      "start" : 2336,
-      "end" : 2337,
+      "start" : 2228,
+      "end" : 2229,
       "size" : 1
     },
     "group" : "WrapperExpression",
@@ -533,8 +533,8 @@
     "text" : "()",
     "placeholder" : "",
     "range" : {
-      "start" : 2351,
-      "end" : 2353,
+      "start" : 2243,
+      "end" : 2245,
       "size" : 2
     },
     "group" : "WrapperExpression",
@@ -544,8 +544,8 @@
     "text" : " ",
     "placeholder" : "",
     "range" : {
-      "start" : 2567,
-      "end" : 2568,
+      "start" : 2459,
+      "end" : 2460,
       "size" : 1
     },
     "group" : "WrapperExpression",
@@ -555,8 +555,8 @@
     "text" : "HashMap<>",
     "placeholder" : "",
     "range" : {
-      "start" : 2568,
-      "end" : 2577,
+      "start" : 2460,
+      "end" : 2469,
       "size" : 9
     },
     "group" : "WrapperExpression",
@@ -566,8 +566,8 @@
     "text" : " ",
     "placeholder" : " ::",
     "range" : {
-      "start" : 2563,
-      "end" : 2564,
+      "start" : 2455,
+      "end" : 2456,
       "size" : 1
     },
     "group" : "WrapperExpression",
@@ -577,8 +577,8 @@
     "text" : "()",
     "placeholder" : "",
     "range" : {
-      "start" : 2577,
-      "end" : 2579,
+      "start" : 2469,
+      "end" : 2471,
       "size" : 2
     },
     "group" : "WrapperExpression",
@@ -588,8 +588,8 @@
     "text" : " ",
     "placeholder" : "",
     "range" : {
-      "start" : 2637,
-      "end" : 2638,
+      "start" : 2529,
+      "end" : 2530,
       "size" : 1
     },
     "group" : "WrapperExpression",
@@ -599,8 +599,8 @@
     "text" : "HashMap<String, String>",
     "placeholder" : "",
     "range" : {
-      "start" : 2638,
-      "end" : 2661,
+      "start" : 2530,
+      "end" : 2553,
       "size" : 23
     },
     "group" : "WrapperExpression",
@@ -610,8 +610,8 @@
     "text" : " ",
     "placeholder" : " ::",
     "range" : {
-      "start" : 2633,
-      "end" : 2634,
+      "start" : 2525,
+      "end" : 2526,
       "size" : 1
     },
     "group" : "WrapperExpression",
@@ -621,8 +621,8 @@
     "text" : "()",
     "placeholder" : "",
     "range" : {
-      "start" : 2661,
-      "end" : 2663,
+      "start" : 2553,
+      "end" : 2555,
       "size" : 2
     },
     "group" : "WrapperExpression",
@@ -632,8 +632,8 @@
     "text" : "new ArrayList<>()",
     "placeholder" : "[]",
     "range" : {
-      "start" : 2774,
-      "end" : 2791,
+      "start" : 2666,
+      "end" : 2683,
       "size" : 17
     },
     "group" : "ListLiteral",
@@ -643,8 +643,8 @@
     "text" : " ",
     "placeholder" : "",
     "range" : {
-      "start" : 2901,
-      "end" : 2902,
+      "start" : 2793,
+      "end" : 2794,
       "size" : 1
     },
     "group" : "WrapperExpression",
@@ -654,8 +654,8 @@
     "text" : "ConstClass",
     "placeholder" : "",
     "range" : {
-      "start" : 2902,
-      "end" : 2912,
+      "start" : 2794,
+      "end" : 2804,
       "size" : 10
     },
     "group" : "WrapperExpression",
@@ -665,8 +665,8 @@
     "text" : " ",
     "placeholder" : " ::",
     "range" : {
-      "start" : 2897,
-      "end" : 2898,
+      "start" : 2789,
+      "end" : 2790,
       "size" : 1
     },
     "group" : "WrapperExpression",
@@ -676,8 +676,8 @@
     "text" : " ",
     "placeholder" : "",
     "range" : {
-      "start" : 2970,
-      "end" : 2971,
+      "start" : 2862,
+      "end" : 2863,
       "size" : 1
     },
     "group" : "WrapperExpression",
@@ -687,8 +687,8 @@
     "text" : "ConstClass",
     "placeholder" : "",
     "range" : {
-      "start" : 2971,
-      "end" : 2981,
+      "start" : 2863,
+      "end" : 2873,
       "size" : 10
     },
     "group" : "WrapperExpression",
@@ -698,8 +698,8 @@
     "text" : " ",
     "placeholder" : " ::",
     "range" : {
-      "start" : 2966,
-      "end" : 2967,
+      "start" : 2858,
+      "end" : 2859,
       "size" : 1
     },
     "group" : "WrapperExpression",
@@ -709,8 +709,8 @@
     "text" : ".get",
     "placeholder" : ".getFirst",
     "range" : {
-      "start" : 2994,
-      "end" : 2998,
+      "start" : 2886,
+      "end" : 2890,
       "size" : 4
     },
     "group" : "Get",
@@ -720,8 +720,8 @@
     "text" : "0",
     "placeholder" : "",
     "range" : {
-      "start" : 2999,
-      "end" : 3000,
+      "start" : 2891,
+      "end" : 2892,
       "size" : 1
     },
     "group" : "Get",
@@ -731,8 +731,8 @@
     "text" : "INSTANCE",
     "placeholder" : "\uD83E\uDDCD",
     "range" : {
-      "start" : 3398,
-      "end" : 3406,
+      "start" : 3290,
+      "end" : 3298,
       "size" : 8
     },
     "group" : "WrapperExpression",
@@ -742,8 +742,8 @@
     "text" : "INSTANCE",
     "placeholder" : "\uD83E\uDDCD",
     "range" : {
-      "start" : 3445,
-      "end" : 3453,
+      "start" : 3337,
+      "end" : 3345,
       "size" : 8
     },
     "group" : "WrapperExpression",
@@ -753,8 +753,8 @@
     "text" : "INSTANCE",
     "placeholder" : "\uD83E\uDDCD",
     "range" : {
-      "start" : 3500,
-      "end" : 3508,
+      "start" : 3392,
+      "end" : 3400,
       "size" : 8
     },
     "group" : "WrapperExpression",
@@ -764,8 +764,8 @@
     "text" : "INSTANCE",
     "placeholder" : "\uD83E\uDDCD",
     "range" : {
-      "start" : 3524,
-      "end" : 3532,
+      "start" : 3416,
+      "end" : 3424,
       "size" : 8
     },
     "group" : "WrapperExpression",
@@ -775,8 +775,8 @@
     "text" : "INSTANCE",
     "placeholder" : "\uD83E\uDDCD",
     "range" : {
-      "start" : 3594,
-      "end" : 3602,
+      "start" : 3486,
+      "end" : 3494,
       "size" : 8
     },
     "group" : "WrapperExpression",
@@ -786,8 +786,8 @@
     "text" : "INSTANCE",
     "placeholder" : "\uD83E\uDDCD",
     "range" : {
-      "start" : 3647,
-      "end" : 3655,
+      "start" : 3539,
+      "end" : 3547,
       "size" : 8
     },
     "group" : "WrapperExpression",
@@ -797,8 +797,8 @@
     "text" : "INSTANCE",
     "placeholder" : "\uD83E\uDDCD",
     "range" : {
-      "start" : 3708,
-      "end" : 3716,
+      "start" : 3600,
+      "end" : 3608,
       "size" : 8
     },
     "group" : "WrapperExpression",
@@ -808,8 +808,8 @@
     "text" : "INSTANCE",
     "placeholder" : "\uD83E\uDDCD",
     "range" : {
-      "start" : 3738,
-      "end" : 3746,
+      "start" : 3630,
+      "end" : 3638,
       "size" : 8
     },
     "group" : "WrapperExpression",
@@ -819,8 +819,8 @@
     "text" : " ",
     "placeholder" : "",
     "range" : {
-      "start" : 3861,
-      "end" : 3862,
+      "start" : 3753,
+      "end" : 3754,
       "size" : 1
     },
     "group" : "WrapperExpression",
@@ -830,8 +830,8 @@
     "text" : "Singleton",
     "placeholder" : "",
     "range" : {
-      "start" : 3862,
-      "end" : 3871,
+      "start" : 3754,
+      "end" : 3763,
       "size" : 9
     },
     "group" : "WrapperExpression",
@@ -841,8 +841,8 @@
     "text" : " ",
     "placeholder" : " ::",
     "range" : {
-      "start" : 3857,
-      "end" : 3858,
+      "start" : 3749,
+      "end" : 3750,
       "size" : 1
     },
     "group" : "WrapperExpression",
@@ -852,8 +852,8 @@
     "text" : "()",
     "placeholder" : "",
     "range" : {
-      "start" : 3871,
-      "end" : 3873,
+      "start" : 3763,
+      "end" : 3765,
       "size" : 2
     },
     "group" : "WrapperExpression",
@@ -863,8 +863,8 @@
     "text" : " ",
     "placeholder" : "",
     "range" : {
-      "start" : 3904,
-      "end" : 3905,
+      "start" : 3796,
+      "end" : 3797,
       "size" : 1
     },
     "group" : "WrapperExpression",
@@ -874,8 +874,8 @@
     "text" : "Singleton",
     "placeholder" : "",
     "range" : {
-      "start" : 3905,
-      "end" : 3914,
+      "start" : 3797,
+      "end" : 3806,
       "size" : 9
     },
     "group" : "WrapperExpression",
@@ -885,8 +885,8 @@
     "text" : " ",
     "placeholder" : " ::",
     "range" : {
-      "start" : 3900,
-      "end" : 3901,
+      "start" : 3792,
+      "end" : 3793,
       "size" : 1
     },
     "group" : "WrapperExpression",
@@ -896,8 +896,8 @@
     "text" : "()",
     "placeholder" : "",
     "range" : {
-      "start" : 3914,
-      "end" : 3916,
+      "start" : 3806,
+      "end" : 3808,
       "size" : 2
     },
     "group" : "WrapperExpression",
@@ -907,41 +907,41 @@
     "text" : "public boolean isOk() {\n            return ok;\n        }",
     "placeholder" : "",
     "range" : {
-      "start" : 4021,
-      "end" : 4077,
+      "start" : 3913,
+      "end" : 3969,
       "size" : 56
     },
-    "group" : "ClassAnnotationExpression",
+    "group" : "FieldAnnotationExpression",
     "groupReference" : 42
   }, {
     "id" : 83,
     "text" : "\n\n        ",
     "placeholder" : "",
     "range" : {
-      "start" : 4011,
-      "end" : 4021,
+      "start" : 3903,
+      "end" : 3913,
       "size" : 10
     },
-    "group" : "ClassAnnotationExpression",
+    "group" : "FieldAnnotationExpression",
     "groupReference" : 42
   }, {
     "id" : 84,
     "text" : "b",
     "placeholder" : "@Getter b",
     "range" : {
-      "start" : 3926,
-      "end" : 3927,
+      "start" : 3818,
+      "end" : 3819,
       "size" : 1
     },
-    "group" : "ClassAnnotationExpression",
+    "group" : "FieldAnnotationExpression",
     "groupReference" : 42
   }, {
     "id" : 85,
     "text" : "\n\n        ",
     "placeholder" : "",
     "range" : {
-      "start" : 4489,
-      "end" : 4499,
+      "start" : 4381,
+      "end" : 4391,
       "size" : 10
     },
     "group" : "ClassAnnotationExpression",
@@ -951,8 +951,8 @@
     "text" : "@Override\n        public String toString() {\n            return new StringJoiner(\", \", ConstClass.class.getSimpleName() + \"[\", \"]\")\n                    .add(\"string='\" + string + \"'\")\n                    .toString();\n        }",
     "placeholder" : "",
     "range" : {
-      "start" : 4499,
-      "end" : 4725,
+      "start" : 4391,
+      "end" : 4617,
       "size" : 226
     },
     "group" : "ClassAnnotationExpression",
@@ -962,11 +962,66 @@
     "text" : "s",
     "placeholder" : "@ToStringˣ s",
     "range" : {
-      "start" : 4177,
-      "end" : 4178,
+      "start" : 4069,
+      "end" : 4070,
       "size" : 1
     },
     "group" : "ClassAnnotationExpression",
     "groupReference" : 43
+  }, {
+    "id" : 88,
+    "text" : "\n\n        ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 4894,
+      "end" : 4904,
+      "size" : 10
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 44
+  }, {
+    "id" : 89,
+    "text" : "\n\n        ",
+    "placeholder" : "",
+    "range" : {
+      "start" : 5000,
+      "end" : 5010,
+      "size" : 10
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 44
+  }, {
+    "id" : 90,
+    "text" : "public data.ExperimentalTestData.NamelessProperty getProp() {\n            return prop;\n        }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 4904,
+      "end" : 5000,
+      "size" : 96
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 44
+  }, {
+    "id" : 91,
+    "text" : "public void setProp(NamelessProperty prop) {\n            this.prop = prop;\n        }",
+    "placeholder" : "",
+    "range" : {
+      "start" : 5010,
+      "end" : 5094,
+      "size" : 84
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 44
+  }, {
+    "id" : 92,
+    "text" : "c",
+    "placeholder" : "@Getter @Setter c",
+    "range" : {
+      "start" : 4755,
+      "end" : 4756,
+      "size" : 1
+    },
+    "group" : "ClassAnnotationExpression",
+    "groupReference" : 44
   } ]
 }

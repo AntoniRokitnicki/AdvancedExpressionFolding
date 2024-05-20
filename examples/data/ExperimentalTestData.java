@@ -136,23 +136,44 @@ public class ExperimentalTestData {
     static final class SubConstClass2 extends ConstClass {
     }
 
-    class SimpleGetSet{
-        private String s;
+    class NamelessProperty {
+        private NamelessProperty prop;
 
-        public String get() {
-            return s;
+        public NamelessProperty get() {
+            return prop;
         }
 
-        public void set(String s) {
-            this.s = s;
+        public data.ExperimentalTestData.NamelessProperty getProp() {
+            return prop;
         }
 
-        void main(SimpleGetSet s) {
+        public void setProp(NamelessProperty prop) {
+            this.prop = prop;
+        }
+
+        public void set(NamelessProperty s) {
+            this.prop = s;
+        }
+
+        NamelessProperty main(NamelessProperty s, NamelessProperty namelessProperty) {
+            s.set(namelessProperty.getProp().get());
+            s.set(namelessProperty.getProp());
+            s.setProp(namelessProperty.getProp().get());
+            s.setProp(namelessProperty.getProp());
+
+
+            s.set(namelessProperty.get());
+            s.set(namelessProperty.get().get()); //TODO:
+
             System.out.println(s.get());
             s.get();
-            s.set("1");
+            s.set(namelessProperty);
             s.set(s.get());
+            s.set(namelessProperty.get().get().get());
+            s.set(main(s.get(), namelessProperty.get()));
+            return namelessProperty.get();
         }
     }
+
 
 }
