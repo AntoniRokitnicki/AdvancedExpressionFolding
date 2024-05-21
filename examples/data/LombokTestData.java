@@ -5,6 +5,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.util.Optional;
+import java.util.logging.Logger;
 
 /**
  * {@link com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.IState#getLombok()}
@@ -434,7 +435,7 @@ public class LombokTestData {
             }
         }
     }
-    
+
     public class DirtyLombokGetters {
         boolean dirty;
         private boolean dirty2;
@@ -557,6 +558,22 @@ public class LombokTestData {
             public void setDirty(boolean dirty) {
                 this.ok = dirty;
             }
+        }
+    }
+
+    public class LogAnnotation {
+        public class LogJava {
+            Logger log = Logger.getLogger("LogAnnotation.class");
+        }
+        public class LogJava2 {
+            Logger log = Logger.getLogger("LogAnnotation.class");
+        }
+        public class LogDiffrentFieldName {
+            public static final Logger logger = Logger.getLogger("LogAnnotation.class");
+        }
+        public class LogCustomNameDeprecated {
+            @Deprecated
+            static final Logger xlogger = Logger.getLogger("LogAnnotation.class");
         }
     }
 

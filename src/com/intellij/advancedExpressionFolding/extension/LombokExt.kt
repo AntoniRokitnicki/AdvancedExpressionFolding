@@ -14,20 +14,38 @@ import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiField
 import com.intellij.psi.PsiJavaFile
 import com.intellij.psi.PsiMethod
+import com.intellij.psi.impl.source.PsiClassReferenceType
 import java.util.*
 import java.util.EnumSet.of
 
 object LombokExt : BaseExtension(), GenericCallback<PsiField, Pair<PsiMethod, String?>> {
 
     fun PsiClass.addLombokSupport(): List<HidingAnnotation> {
-        val fieldsMap = createFieldMap(this) ?: return emptyList()
+        val hidingAnnotations = mutableListOf<HidingAnnotation>()
+        hidingAnnotations += foldLog(this.fields)
+        val fieldsMap = createFieldMap(this) ?: return hidingAnnotations
         val methodTypeToMethodsMap: Map<MethodType, List<PsiMethod>> = groupMethodsByMethodType(this)
 
-        val hidingAnnotations = mutableListOf<HidingAnnotation>()
         hidingAnnotations += foldProperties(methodTypeToMethodsMap, fieldsMap)
         hidingAnnotations += foldData(methodTypeToMethodsMap, fieldsMap)
+
         optimizations(hidingAnnotations)
         return hidingAnnotations
+    }
+
+    private fun foldLog(
+        fields: Array<PsiField>
+    ): List<HidingAnnotation> {
+        return fields.firstOrNull {
+            (it.type as? PsiClassReferenceType)?.name?.contains("Logger") == true
+        }?.let { logField ->
+            val dirty = logField.name != "log"
+            logField.markIgnored()
+            val arguments = dirty.on(logField.name)?.let {
+                listOf(it)
+            } ?: emptyList()
+            listOf(HidingAnnotation(LOG, listOf(logField), arguments = arguments))
+        } ?:emptyList()
     }
 
     private fun foldProperties(
@@ -260,6 +278,7 @@ enum class LombokFoldingAnnotation(val annotation: String) {
     },
 
     SERIAL("@Serial"),
+    LOG("@Log"),
 
     ;
 
