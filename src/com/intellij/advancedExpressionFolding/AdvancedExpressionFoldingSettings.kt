@@ -5,6 +5,7 @@ import com.intellij.openapi.components.PersistentStateComponent
 import com.intellij.openapi.components.State
 import com.intellij.openapi.components.Storage
 import org.jetbrains.annotations.NotNull
+import kotlin.reflect.KClass
 import kotlin.reflect.KMutableProperty
 import kotlin.reflect.full.memberProperties
 
@@ -20,45 +21,51 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
     interface IConfig {
         val testDataFoldingDiff: Boolean
         var globalOn: Boolean
+        val memoryImprovement: Boolean
     }
 
-    interface IState {
+    interface ILessImportantState {
+        val localDateLiteralCollapse: Boolean
+        val localDateLiteralPostfixCollapse: Boolean
+        val controlFlowSingleStatementCodeBlockCollapse: Boolean
+        val controlFlowMultiStatementCodeBlockCollapse: Boolean
+        val semicolonsCollapse: Boolean
+        val fieldShiftOld: Boolean
+        val finalRemoval: Boolean
+        val finalEmoji: Boolean
+        val lombokDirtyOff: Boolean
+        val destructuring: Boolean
+
+        // NEW OPTION VAL
+
+        var experimental: Boolean
+    }
+
+    interface IState : ILessImportantState {
         val concatenationExpressionsCollapse: Boolean
         val slicingExpressionsCollapse: Boolean
         val comparingExpressionsCollapse: Boolean
         val comparingLocalDatesCollapse: Boolean
-        val localDateLiteralCollapse: Boolean
-        val localDateLiteralPostfixCollapse: Boolean
         val getExpressionsCollapse: Boolean
         val rangeExpressionsCollapse: Boolean
         val checkExpressionsCollapse: Boolean
         val castExpressionsCollapse: Boolean
         val varExpressionsCollapse: Boolean
         val getSetExpressionsCollapse: Boolean
-        val controlFlowSingleStatementCodeBlockCollapse: Boolean
         val compactControlFlowSyntaxCollapse: Boolean
-        val controlFlowMultiStatementCodeBlockCollapse: Boolean
-        val semicolonsCollapse: Boolean
         val assertsCollapse: Boolean
+
         val optional: Boolean
         val streamSpread: Boolean
         val lombok: Boolean
         val fieldShift: Boolean
-        val fieldShiftOld: Boolean
         val kotlinQuickReturn: Boolean
         val ifNullSafe: Boolean
         val logFolding: Boolean
-        val destructuring: Boolean
         val println: Boolean
-        val memoryImprovement: Boolean
         val const: Boolean
         val nullable: Boolean
-        val finalRemoval: Boolean
-        val finalEmoji: Boolean
-        val lombokDirtyOff: Boolean
-        // NEW OPTION VAL
 
-        var experimental: Boolean
     }
 
     data class State(
@@ -109,14 +116,14 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
 
     private fun updateAllState(value: Boolean) {
         with(myState) {
-            state::class.memberProperties
-                .filterIsInstance<KMutableProperty<*>>()
-                .filter { property -> !IConfig::class.memberProperties.map { it.name }.contains(property.name) }
+            allProperties()
                 .forEach {
                     it.setter.call(this, value)
                 }
         }
     }
+
+
 
     fun disableAll() = updateAllState(false)
     fun enableAll() = updateAllState(true)
@@ -127,5 +134,19 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
         fun getInstance(): AdvancedExpressionFoldingSettings =
             ApplicationManager.getApplication().getService(AdvancedExpressionFoldingSettings::class.java)
 
+        fun allProperties() = State::class.memberProperties
+            .filterIsInstance<KMutableProperty<*>>()
+            .filter { property ->
+                exclude(IConfig::class, property)
+            }
+
+        fun allMainProperties() = allProperties().filter { property ->
+            exclude(ILessImportantState::class, property)
+        }
+
+        private fun exclude(
+            kClass: KClass<*>,
+            property: KMutableProperty<*>
+        ) = !kClass.memberProperties.map { it.name }.contains(property.name)
     }
 }
