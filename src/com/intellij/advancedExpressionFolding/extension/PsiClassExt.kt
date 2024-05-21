@@ -19,6 +19,7 @@ object PsiClassExt : BaseExtension() {
         val classAnnotation: LombokFoldingAnnotation,
         val elementsToHide: List<PsiElement>,
         val pure: Boolean = true,
+        val arguments: List<String> = emptyList(),
     )
 
     @JvmStatic
@@ -49,7 +50,14 @@ object PsiClassExt : BaseExtension() {
             }?.let {
                 SUPERSCRIPT_MAPPING['*']
             } ?: ""
-            hidingAnnotation.classAnnotation.annotation + notPureSuffix
+            val args = hidingAnnotation.arguments.takeIf {
+                it.isNotEmpty()
+            }?.joinToString(separator = ",")
+                ?.let {
+                    "($it)"
+                } ?: ""
+
+            hidingAnnotation.classAnnotation.annotation + notPureSuffix + args
         }, elementsToFold)
     }
 
@@ -57,7 +65,7 @@ object PsiClassExt : BaseExtension() {
         serialField: PsiField?
     ): List<HidingAnnotation> {
         return serialField?.let {
-            serialField.markIgnored()
+            it.markIgnored()
             listOf(HidingAnnotation(SERIAL, listOf(it)))
         } ?: emptyList()
     }

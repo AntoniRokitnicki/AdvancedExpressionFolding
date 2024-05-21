@@ -5,6 +5,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.util.Optional;
+import java.util.logging.Logger;
 
 /**
  * {@link com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.IState#getLombok()}
@@ -148,7 +149,7 @@ import java.util.Optional;
             boolean ok;
         }
     }
-    
+
     public class DirtyLombokGetters {
         @Getter(dirty) boolean dirty;
         @Getter(dirty) private boolean dirty2;
@@ -176,6 +177,17 @@ import java.util.Optional;
         public class DirtySingle {
             @Setter(dirty) boolean dirty;
             @Setter boolean ok;
+        }
+    }
+
+    public class LogAnnotation {
+        @Log public class LogJava {
+        }
+        @Log public class LogJava2 {
+        }
+        @Log(logger) public class LogDiffrentFieldName {
+        }
+        @Log(xlogger) public class LogCustomNameDeprecated {
         }
     }
 
