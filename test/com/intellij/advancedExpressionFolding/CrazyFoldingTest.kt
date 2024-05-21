@@ -13,7 +13,7 @@ import java.util.stream.Stream
 import kotlin.math.pow
 
 @Disabled("very long execution time")
-open class CrazyFoldingTest : BaseTest() {
+class CrazyFoldingTest : BaseTest() {
 
     class TooComplexException : AssumptionViolatedException("TOO COMPLEX FOLDING")
 
@@ -21,9 +21,14 @@ open class CrazyFoldingTest : BaseTest() {
         getInstance().state
     }
 
+    private var counter = 0
+
     override fun doFoldingTest() {
+        counter += 1
         try {
             super.doFoldingTest()
+        } catch (e: com.intellij.rt.execution.junit.FileComparisonFailure) {
+            println("counter = $counter")
         } catch (e: IllegalArgumentException) {
             if (e.message == "Comparison method violates its general contract!") {
                 throw TooComplexException()
@@ -37,7 +42,7 @@ open class CrazyFoldingTest : BaseTest() {
      * [data.ElvisTestData]
      */
     @ParameterizedTest
-    @MethodSource("generateBooleanCombinations")
+    @MethodSource("permutations")
     fun testElvisTestData(booleans: BooleanArray) {
         allMainProperties().zip(booleans.toList()).forEach { (prop, value) ->
             prop.setter.call(state, value)
@@ -47,7 +52,7 @@ open class CrazyFoldingTest : BaseTest() {
 
     companion object {
         @JvmStatic
-        fun generateBooleanCombinations(): Stream<Arguments> {
+        fun permutations(): Stream<Arguments> {
             val numBooleans = allMainProperties().size
             return Stream.iterate(BooleanArray(numBooleans)) { prev ->
                 val next = prev.clone()
