@@ -22,7 +22,7 @@ import java.nio.file.Files
 abstract class BaseTest : LightJavaCodeInsightFixtureTestCase5(TEST_JDK) {
     override fun getTestDataPath(): String = "testData"
 
-    protected fun doFoldingTest() {
+    protected open fun doFoldingTest() {
         val testName = getTestName(false)
         val fileName = getTestFileName(testName)
         rewriteFileOnFailure(fileName, testName) {
