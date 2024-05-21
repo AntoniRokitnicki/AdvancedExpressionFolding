@@ -15,11 +15,15 @@ open class FoldingTest : BaseTest() {
         getInstance().state
     }
 
-    open fun doFoldingTest(vararg turnOnProperties: KMutableProperty0<Boolean>) {
+    open fun assignState(turnOnProperties: Array<out KMutableProperty0<Boolean>>) {
         getInstance().disableAll()
         turnOnProperties.forEach {
             it.set(true)
         }
+    }
+
+    open fun doFoldingTest(vararg turnOnProperties: KMutableProperty0<Boolean>) {
+        assignState(turnOnProperties)
         try {
             super.doFoldingTest()
         } catch (e: IllegalArgumentException) {
@@ -32,10 +36,7 @@ open class FoldingTest : BaseTest() {
     }
 
     private fun doReadOnlyFoldingTest(vararg turnOnProperties: KMutableProperty0<Boolean>) {
-        getInstance().disableAll()
-        turnOnProperties.forEach {
-            it.set(true)
-        }
+        assignState(turnOnProperties)
         runInEdt {
             super.doReadOnlyFoldingTest()
         }
@@ -86,7 +87,7 @@ open class FoldingTest : BaseTest() {
     /**
      * [data.AppendSetterInterpolatedStringTestData]
      */
-    open @Test fun testAppendSetterInterpolatedStringTestData() {
+    @Test fun testAppendSetterInterpolatedStringTestData() {
         doFoldingTest(state::concatenationExpressionsCollapse, state::getSetExpressionsCollapse)
     }
 
@@ -287,7 +288,7 @@ open class FoldingTest : BaseTest() {
     /**
      * [data.NullableAnnotationTestData]
      */
-    open @Test fun testNullableAnnotationTestData() {
+    @Test fun testNullableAnnotationTestData() {
         doFoldingTest(state::nullable, state::lombok)
     }
 
