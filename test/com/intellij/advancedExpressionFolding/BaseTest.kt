@@ -25,7 +25,9 @@ abstract class BaseTest : LightJavaCodeInsightFixtureTestCase5(TEST_JDK) {
     protected fun doFoldingTest() {
         val testName = getTestName(false)
         val fileName = getTestFileName(testName)
-        rewriteFileOnFailure(fileName, testName) { fixture.testFoldingWithCollapseStatus(fileName) }
+        rewriteFileOnFailure(fileName, testName) {
+            fixture.testFoldingWithCollapseStatus(fileName)
+        }
     }
 
     protected fun doReadOnlyFoldingTest() {
