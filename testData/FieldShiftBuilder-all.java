@@ -68,7 +68,7 @@ package data;
 
     </fold><fold text='' expand='false'>public boolean isActive()<fold text=' { ' expand='false'> {
         </fold>return this.active;<fold text=' }' expand='false'>
-    }</fold><fold text='' expand='false'></fold>
+    }</fold></fold><fold text='' expand='false'>
 
     </fold><fold text='' expand='false'>public String getUserIdentifier()<fold text=' { ' expand='false'> {
         </fold>return this.userIdentifier;<fold text=' }' expand='false'>
@@ -105,13 +105,13 @@ package data;
             </fold>return this.userIdentifier;<fold text=' }' expand='false'>
         }</fold></fold>
 
-        <fold text='@ToString p' expand='false'>p</fold>ublic static class UserData2Builder <fold text='{...}' expand='true'>{
+        <fold text='@NoArgsConstructor @ToString p' expand='false'>p</fold>ublic static class UserData2Builder <fold text='{...}' expand='true'>{
             private String username;
             private boolean active;
-            private String userIdentifier;
+            private String userIdentifier;<fold text='' expand='false'>
 
-            UserData2Builder() <fold text='{}' expand='true'>{
-            }</fold>
+            </fold><fold text='' expand='false'>UserData2Builder() <fold text='{}' expand='true'>{
+            }</fold></fold>
 
             public UserData2Builder username(String username) <fold text='{...}' expand='true'>{
                 this.username = <fold text='<<' expand='false'>username</fold>;
@@ -141,14 +141,14 @@ package data;
     public record UserDataRecord(String username, boolean active, String userIdentifier) <fold text='{...}' expand='true'>{
     }</fold>
 
-    <fold text='@ToString p' expand='false'>p</fold>ublic static class BuilderFieldShiftBuilder <fold text='{...}' expand='true'>{
+    <fold text='@NoArgsConstructor @ToString p' expand='false'>p</fold>ublic static class BuilderFieldShiftBuilder <fold text='{...}' expand='true'>{
         private String username;
         private boolean active;
         private String userIdentifier;
-        private FieldShiftBuilder child;
+        private FieldShiftBuilder child;<fold text='' expand='false'>
 
-        BuilderFieldShiftBuilder() <fold text='{}' expand='true'>{
-        }</fold>
+        </fold><fold text='' expand='false'>BuilderFieldShiftBuilder() <fold text='{}' expand='true'>{
+        }</fold></fold>
 
         public BuilderFieldShiftBuilder username(String username) <fold text='{...}' expand='true'>{
             this.username = <fold text='<<' expand='false'>username</fold>;

@@ -99,12 +99,9 @@ public class ExperimentalTestData {
         }
     }
 
-    @ToStringˣ static class ConstClass {
+    @NoArgsConstructor @ToStringˣ static class ConstClass {
         boolean ok;
         String string;
-
-        public ConstClass() {
-        }
 
         public ConstClass(boolean ok) {
             this.ok = ok;

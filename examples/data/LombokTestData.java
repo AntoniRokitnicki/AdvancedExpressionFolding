@@ -577,4 +577,19 @@ public class LombokTestData {
         }
     }
 
+
+    public class NoArgsConstructorAnnotation {
+        public class NoArgsConstructor {
+            private String field1;
+            public NoArgsConstructor() {
+            }
+        }
+        public class NoArgsConstructorSuper {
+            private String field1;
+            public NoArgsConstructorSuper() {
+                super();
+            }
+        }
+    }
+
 }

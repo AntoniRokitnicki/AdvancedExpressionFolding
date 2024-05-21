@@ -191,4 +191,14 @@ import java.util.logging.Logger;
         }
     }
 
+
+    public class NoArgsConstructorAnnotation {
+        @NoArgsConstructor public class NoArgsConstructor {
+            private String field1;
+        }
+        @NoArgsConstructor public class NoArgsConstructorSuper {
+            private String field1;
+        }
+    }
+
 }

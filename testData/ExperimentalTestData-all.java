@@ -105,12 +105,12 @@ public class ExperimentalTestData {
         }</fold>
     }</fold>
 
-    <fold text='@ToStringˣ s' expand='false'>s</fold>tatic class ConstClass <fold text='{...}' expand='true'>{
+    <fold text='@NoArgsConstructor @ToStringˣ s' expand='false'>s</fold>tatic class ConstClass <fold text='{...}' expand='true'>{
         boolean ok;
-        String string;
+        String string;<fold text='' expand='false'>
 
-        public ConstClass() <fold text='{}' expand='true'>{
-        }</fold>
+        </fold><fold text='' expand='false'>public ConstClass() <fold text='{}' expand='true'>{
+        }</fold></fold>
 
         public ConstClass(boolean ok)<fold text=' { ' expand='false'> {
             </fold>this.ok = <fold text='<<' expand='false'>ok</fold>;<fold text=' }' expand='false'>
@@ -145,7 +145,7 @@ public class ExperimentalTestData {
 
         </fold><fold text='' expand='false'>public data.ExperimentalTestData.NamelessProperty getProp()<fold text=' { ' expand='false'> {
             </fold>return prop;<fold text=' }' expand='false'>
-        }</fold><fold text='' expand='false'></fold>
+        }</fold></fold><fold text='' expand='false'>
 
         </fold><fold text='' expand='false'>public void setProp(NamelessProperty prop)<fold text=' { ' expand='false'> {
             </fold>this.prop = <fold text='<<' expand='false'>prop</fold>;<fold text=' }' expand='false'>

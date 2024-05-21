@@ -40,4 +40,19 @@ object MethodBodyInspector {
 
         return false
     }
+
+    fun isPureNoArgsConstructor(method: PsiMethod): Boolean {
+        val body = method.body ?: return false
+        return (body.statementCount == 0) || isSuperNoArgsConstructor(body)
+    }
+
+    private fun isSuperNoArgsConstructor(body: PsiCodeBlock): Boolean {
+        val first = body.statements
+            .takeIfSize(1)
+            ?.firstOrNull()
+        return first.asInstance<PsiExpressionStatement>()
+            ?.expression.asInstance<PsiMethodCallExpression>()
+            ?.methodExpression.asInstance<PsiReferenceExpression>()
+            ?.text == "super"
+    }
 }
