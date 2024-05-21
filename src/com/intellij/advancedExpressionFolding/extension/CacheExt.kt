@@ -4,13 +4,9 @@ import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.extension.BuildExpressionExt.buildExpression
 import com.intellij.advancedExpressionFolding.extension.Keys.getKey
-import com.intellij.advancedExpressionFolding.extension.Keys.getKeyOld
 import com.intellij.advancedExpressionFolding.extension.Keys.getVersionKey
 import com.intellij.openapi.editor.Document
 import com.intellij.psi.PsiElement
-import com.intellij.psi.util.CachedValueProvider
-import com.intellij.psi.util.CachedValuesManager
-import com.intellij.psi.util.PsiModificationTracker
 import org.jetbrains.annotations.Contract
 
 object CacheExt : AdvancedExpressionFoldingSettings.StateDelegate() {
@@ -31,7 +27,6 @@ object CacheExt : AdvancedExpressionFoldingSettings.StateDelegate() {
     @JvmStatic
     @Contract("_, _, true -> !null")
     fun getExpression(element: PsiElement, document: Document, synthetic: Boolean): Expression? {
-        if (memoryImprovement) {
             val key = getKey(synthetic)
             val cachedExpression = if (element.isExpired(document, synthetic)) {
                 null
@@ -46,16 +41,6 @@ object CacheExt : AdvancedExpressionFoldingSettings.StateDelegate() {
                 }
                 else -> cachedExpression.getOrNull()
             }
-        } else {
-            val cachedValue = CachedValuesManager.getCachedValue(element, getKeyOld(synthetic)) {
-                val expression = buildExpression(element, document, synthetic)
-                CachedValueProvider.Result.create(
-                    expression.ofNullable(),
-                    PsiModificationTracker.MODIFICATION_COUNT
-                )
-            }
-            return cachedValue.getOrNull()
-        }
     }
 
     private val NULL_OBJECT: Expression = object : Expression() {
