@@ -23,14 +23,29 @@ object LombokExt : BaseExtension(), GenericCallback<PsiField, Pair<PsiMethod, St
     fun PsiClass.addLombokSupport(): List<HidingAnnotation> {
         val hidingAnnotations = mutableListOf<HidingAnnotation>()
         hidingAnnotations += foldLog(this.fields)
-        val fieldsMap = createFieldMap(this) ?: return hidingAnnotations
-        val methodTypeToMethodsMap: Map<MethodType, List<PsiMethod>> = groupMethodsByMethodType(this)
+        hidingAnnotations += foldConstructors(this.constructors)
 
-        hidingAnnotations += foldProperties(methodTypeToMethodsMap, fieldsMap)
-        hidingAnnotations += foldData(methodTypeToMethodsMap, fieldsMap)
-
+        createFieldMap(this)?.let { fieldsMap ->
+            val methodTypeToMethodsMap: Map<MethodType, List<PsiMethod>> = groupMethodsByMethodType(this)
+            hidingAnnotations += foldProperties(methodTypeToMethodsMap, fieldsMap)
+            hidingAnnotations += foldData(methodTypeToMethodsMap, fieldsMap)
+        }
         optimizations(hidingAnnotations)
         return hidingAnnotations
+    }
+
+    private fun foldConstructors(constructors: Array<PsiMethod>)    : List<HidingAnnotation> {
+        return constructors.mapNotNull {
+            if (isNoArgsConstructor(it)) {
+                HidingAnnotation(NO_ARGS_CONSTRUCTOR, listOf(it))
+            } else {
+                null
+            }
+        }
+    }
+
+    private fun isNoArgsConstructor(method: PsiMethod): Boolean {
+        return !method.hasParameters() && MethodBodyInspector.isPureNoArgsConstructor(method)
     }
 
     private fun foldLog(
@@ -279,6 +294,7 @@ enum class LombokFoldingAnnotation(val annotation: String) {
 
     SERIAL("@Serial"),
     LOG("@Log"),
+    NO_ARGS_CONSTRUCTOR("@NoArgsConstructor"),
 
     ;
 

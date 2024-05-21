@@ -1,15 +1,15 @@
 package data;
 
-<fold text='@Getter p' expand='false'>p</fold>ublic class FieldShiftFields {
+<fold text='@NoArgsConstructor @Getter p' expand='false'>p</fold>ublic class FieldShiftFields {
     public String username;
     public boolean active;
     public String userIdentifier;
-    public FieldShiftFields child;
+    public FieldShiftFields child;<fold text='' expand='false'>
 
 
-    public FieldShiftFields() <fold text='{}' expand='true'>{
+    </fold><fold text='' expand='false'>public FieldShiftFields() <fold text='{}' expand='true'>{
 
-    }</fold>
+    }</fold></fold>
 
     public FieldShiftFields(String username, boolean active, String userIdentifier, FieldShiftFields child) <fold text='{...}' expand='true'>{
         this.username = <fold text='<<' expand='false'>username</fold>;

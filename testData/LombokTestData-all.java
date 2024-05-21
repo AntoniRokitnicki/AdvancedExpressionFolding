@@ -573,7 +573,22 @@ import java.util.logging.Logger;</fold>
         }</fold>
         <fold text='@Log(xlogger) p' expand='false'>p</fold>ublic class LogCustomNameDeprecated <fold text='{...}' expand='true'>{<fold text='' expand='false'>
             </fold><fold text='const' expand='false'><fold text='' expand='false'>@Deprecated
-            public static final</fold> Logger xlogger = Logger.getLogger("LogAnnotation.class");</fold>
+            static final</fold> Logger xlogger = Logger.getLogger("LogAnnotation.class");</fold>
+        }</fold>
+    }</fold>
+
+
+    public class NoArgsConstructorAnnotation <fold text='{...}' expand='true'>{
+        <fold text='@NoArgsConstructor p' expand='false'>p</fold>ublic class NoArgsConstructor <fold text='{...}' expand='true'>{
+            private String field1;<fold text='' expand='false'>
+            </fold><fold text='' expand='false'>public NoArgsConstructor() <fold text='{}' expand='true'>{
+            }</fold></fold>
+        }</fold>
+        <fold text='@NoArgsConstructor p' expand='false'>p</fold>ublic class NoArgsConstructorSuper <fold text='{...}' expand='true'>{
+            private String field1;<fold text='' expand='false'>
+            </fold><fold text='' expand='false'>public NoArgsConstructorSuper()<fold text=' { ' expand='false'> {
+                </fold>super();<fold text=' }' expand='false'>
+            }</fold></fold>
         }</fold>
     }</fold>
 

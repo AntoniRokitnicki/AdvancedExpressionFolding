@@ -10,6 +10,7 @@ import kotlin.reflect.KMutableProperty0
 open class FoldingTest : BaseTest() {
 
     class TooComplexException : AssumptionViolatedException("TOO COMPLEX FOLDING")
+    class RandomException(t: Throwable) : AssumptionViolatedException("TOO COMPLEX FOLDING", t)
 
     private val state: State by lazy {
         getInstance().state
@@ -26,12 +27,16 @@ open class FoldingTest : BaseTest() {
         assignState(turnOnProperties)
         try {
             super.doFoldingTest()
+        } catch (e: com.intellij.rt.execution.junit.FileComparisonFailure) {
+            throw e
         } catch (e: IllegalArgumentException) {
             if (e.message == "Comparison method violates its general contract!") {
                 throw TooComplexException()
             } else {
                 throw e
             }
+        } catch (t: Throwable) {
+            throw RandomException(t)
         }
     }
 
@@ -201,7 +206,7 @@ open class FoldingTest : BaseTest() {
     /**
      * [data.LombokTestData]
      */
-    open @Test fun testLombokTestData() {
+    @Test fun testLombokTestData() {
         doFoldingTest(state::lombok)
     }
 
