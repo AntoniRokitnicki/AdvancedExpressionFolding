@@ -84,14 +84,14 @@ import java.time.LocalDate;
     }
 
     @Getter class GetterNullable {
-        NullableAnnotationTestData? getterNullable;
+        NullableAnnotationTestData getterNullable;
         public NullableAnnotationTestData? getGetterNullable() {
             return getterNullable;
         }
     }
 
     @Setter class SetterNullable {
-        NullableAnnotationTestData!! setterNullable;
+        NullableAnnotationTestData setterNullable;
     }
 
     public class LombokFieldLevelIntegration {
