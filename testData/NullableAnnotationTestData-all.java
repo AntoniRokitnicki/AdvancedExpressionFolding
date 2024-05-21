@@ -104,7 +104,7 @@ import java.time.LocalDate;</fold>
     }</fold>
 
     <fold text='@Getter c' expand='false'>c</fold>lass GetterNullable <fold text='{...}' expand='true'>{
-        NullableAnnotationTestData<fold text='? ' expand='false'> </fold>getterNullable;<fold text='' expand='false'>
+        NullableAnnotationTestData getterNullable;<fold text='' expand='false'>
 
         </fold><fold text='' expand='false'><fold text='' expand='false'>@Nullable</fold>
         public NullableAnnotationTestData<fold text='? ' expand='false'> </fold>getGetterNullable()<fold text=' { ' expand='false'> {
@@ -113,7 +113,7 @@ import java.time.LocalDate;</fold>
     }</fold>
 
     <fold text='@Setter c' expand='false'>c</fold>lass SetterNullable <fold text='{...}' expand='true'>{
-        NullableAnnotationTestData<fold text='!! ' expand='false'> </fold>setterNullable;<fold text='' expand='false'>
+        NullableAnnotationTestData setterNullable;<fold text='' expand='false'>
 
         </fold><fold text='' expand='false'>public void setSetterNullable(<fold text='' expand='false'>@Nonnull</fold><fold text='' expand='false'> </fold>NullableAnnotationTestData<fold text='!! ' expand='false'> </fold>setterNullable) <fold text='{...}' expand='true'>{
             this.setterNullable = setterNullable;
@@ -184,7 +184,7 @@ import java.time.LocalDate;</fold>
 
             </fold><fold text='' expand='false'>public <fold text='' expand='false'>@Nullable</fold> String<fold text='? ' expand='false'> </fold>getField()<fold text=' { ' expand='false'> {
                 </fold>return field;<fold text=' }' expand='false'>
-            }</fold></fold><fold text='' expand='false'>
+            }</fold><fold text='' expand='false'></fold>
 
             </fold><fold text='' expand='false'>public void setField(<fold text='' expand='false'>@Nullable</fold><fold text='' expand='false'> </fold>String<fold text='? ' expand='false'> </fold>field)<fold text=' { ' expand='false'> {
                 </fold>this.field = field;<fold text=' }' expand='false'>

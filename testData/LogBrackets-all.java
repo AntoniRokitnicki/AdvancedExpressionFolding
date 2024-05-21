@@ -6,9 +6,9 @@ import org.slf4j.Marker;
 import org.slf4j.MarkerFactory;</fold>
 
 @SuppressWarnings("ALL")
-public class LogBrackets {
+<fold text='@Log p' expand='false'>p</fold>ublic class LogBrackets {<fold text='' expand='false'>
 
-    <fold text='const' expand='false'>private static final</fold> Logger log = LoggerFactory.getLogger(LogBrackets.class);
+    </fold><fold text='const' expand='false'><fold text='' expand='false'>private static final</fold> Logger log = LoggerFactory.getLogger(LogBrackets.class);</fold>
     <fold text='const' expand='false'>private static final</fold> Marker MY_MARKER = MarkerFactory.getMarker("MY_MARKER");
 
 
