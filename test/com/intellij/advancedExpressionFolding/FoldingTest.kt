@@ -28,12 +28,12 @@ open class FoldingTest : BaseTest() {
         try {
             super.doFoldingTest()
         } catch (e: com.intellij.rt.execution.junit.FileComparisonFailure) {
-            throw e
+            throw RuntimeException("FileComparisonFailure")
         } catch (e: IllegalArgumentException) {
             if (e.message == "Comparison method violates its general contract!") {
                 throw TooComplexException()
             } else {
-                throw e
+                throw RandomException(e)
             }
         } catch (t: Throwable) {
             throw RandomException(t)

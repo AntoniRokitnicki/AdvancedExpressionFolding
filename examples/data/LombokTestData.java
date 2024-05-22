@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 /**
  * {@link com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.IState#getLombok()}
  * <p>
- *  {@link com.intellij.advancedExpressionFolding.extension.LombokExt#addLombokSupport(com.intellij.psi.PsiClass)}
+ * {@link com.intellij.advancedExpressionFolding.extension.LombokExt#addLombokSupport(com.intellij.psi.PsiClass)}
  * <p>
  * {@link com.intellij.advancedExpressionFolding.FoldingTest#testLombokTestData()}
  */
@@ -22,21 +22,27 @@ public class LombokTestData {
     LombokTestData data;
     boolean ok;
     String string;
+
     public LombokTestData getData() {
         return data;
     }
+
     public void setData(LombokTestData data) {
         this.data = data;
     }
+
     public boolean isOk() {
         return ok;
     }
+
     public void setOk(boolean ok) {
         this.ok = ok;
     }
+
     public String getString() {
         return string;
     }
+
     public void setString(String string) {
         this.string = string;
     }
@@ -48,9 +54,11 @@ public class LombokTestData {
     public class LombokGetters {
         LombokTestData data;
         boolean ok;
+
         public LombokTestData getData() {
             return data;
         }
+
         public boolean isOk() {
             return ok;
         }
@@ -58,6 +66,7 @@ public class LombokTestData {
         public class LombokGettersPartial {
             LombokTestData data;
             boolean ok;
+
             public boolean isOk() {
                 return ok;
             }
@@ -67,15 +76,19 @@ public class LombokTestData {
     public class LombokSetters {
         LombokTestData data;
         boolean ok;
+
         public LombokTestData getData() {
             return data;
         }
+
         public void setData(LombokTestData data) {
             this.data = data;
         }
+
         public boolean isOk() {
             return ok;
         }
+
         public void setOk(boolean ok) {
             this.ok = ok;
         }
@@ -83,6 +96,7 @@ public class LombokTestData {
         public class LombokSettersPartial {
             LombokTestData data;
             boolean ok;
+
             public void setData(LombokTestData data) {
                 this.data = data;
             }
@@ -91,6 +105,7 @@ public class LombokTestData {
         public class LombokSettersFinalField {
             LombokTestData data;
             final boolean ok = true;
+
             public void setData(LombokTestData data) {
                 this.data = data;
             }
@@ -276,12 +291,15 @@ public class LombokTestData {
         public LombokTestData getData() {
             return data;
         }
+
         public void setData(LombokTestData data) {
             this.data = data;
         }
+
         public boolean isOk() {
             return ok;
         }
+
         public void setOk(boolean ok) {
             this.ok = ok;
         }
@@ -314,12 +332,15 @@ public class LombokTestData {
             public LombokTestData getData() {
                 return data;
             }
+
             public void setData(LombokTestData data) {
                 this.data = data;
             }
+
             public boolean isOk() {
                 return ok;
             }
+
             public void setOk(boolean ok) {
                 this.ok = ok;
             }
@@ -346,9 +367,11 @@ public class LombokTestData {
             public LombokTestData getData() {
                 return data;
             }
+
             public void setData(LombokTestData data) {
                 this.data = data;
             }
+
             public void setOk(boolean ok) {
                 this.ok = ok;
             }
@@ -382,9 +405,11 @@ public class LombokTestData {
             public LombokTestData getData() {
                 return data;
             }
+
             public void setData(LombokTestData data) {
                 this.data = data;
             }
+
             public boolean isOk() {
                 return ok;
             }
@@ -413,15 +438,17 @@ public class LombokTestData {
     }
 
     public class FoldOn {
-        public class FoldOnPublic{
+        public class FoldOnPublic {
             boolean ok;
+
             public boolean isOk() {
                 return ok;
             }
         }
 
-        class FoldOnClass{
+        class FoldOnClass {
             boolean ok;
+
             public boolean isOk() {
                 return ok;
             }
@@ -430,6 +457,7 @@ public class LombokTestData {
         @SuppressWarnings("ALL")
         class FoldOnWithAnnotation {
             boolean ok;
+
             public boolean isOk() {
                 return ok;
             }
@@ -488,6 +516,7 @@ public class LombokTestData {
             public boolean isOk() {
                 return ok;
             }
+
             public boolean isDirty() {
                 return dirty2;
             }
@@ -565,12 +594,15 @@ public class LombokTestData {
         public class LogJava {
             Logger log = Logger.getLogger("LogAnnotation.class");
         }
+
         public class LogJava2 {
             Logger log = Logger.getLogger("LogAnnotation.class");
         }
+
         public class LogDiffrentFieldName {
             public static final Logger logger = Logger.getLogger("LogAnnotation.class");
         }
+
         public class LogCustomNameDeprecated {
             @Deprecated
             static final Logger xlogger = Logger.getLogger("LogAnnotation.class");
@@ -578,10 +610,26 @@ public class LombokTestData {
     }
 
 
+    public class Parent {
+        public Parent(String child) {
+        }
+    }
+
     public class NoArgsConstructorAnnotation {
         public class NoArgsConstructor {
-            private String field1;
             public NoArgsConstructor() {
+            }
+        }
+        public class NoArgsConstructorSuperBefore {
+            public NoArgsConstructorSuperBefore() {
+                // comment
+                super();
+            }
+        }
+        public class NoArgsConstructorSuperAfter {
+            public NoArgsConstructorSuperAfter() {
+                super();
+                // comment
             }
         }
         public class NoArgsConstructorSuper {
@@ -590,6 +638,94 @@ public class LombokTestData {
                 super();
             }
         }
+        public class NoArgsConstructorSuperParent extends Parent {
+            public NoArgsConstructorSuperParent() {
+                super(null);
+            }
+        }
+
     }
+
+    public class AllArgsConstructorAnnotation {
+        public static class AllArgs {
+            private String field1;
+            private int field2;
+            private boolean field3;
+            public AllArgs(String field1, int field2, boolean field3) {
+                this.field1 = field1;
+                this.field2 = field2;
+                this.field3 = field3;
+            }
+        }
+        public static class AllArgsNoArgsConstructorSuperBefore {
+            private String field1;
+            private int field2;
+            private boolean field3;
+
+            public AllArgsNoArgsConstructorSuperBefore(String field1, int field2, boolean field3) {
+                // comment
+                super();
+                this.field1 = field1;
+                this.field2 = field2;
+                this.field3 = field3;
+            }
+        }
+        public static class AllArgsNoArgsConstructorSuperAfter {
+            private String field1;
+            private int field2;
+            private boolean field3;
+
+            public AllArgsNoArgsConstructorSuperAfter(String field1, int field2, boolean field3) {
+                super();
+                this.field1 = field1;
+                this.field2 = field2;
+                this.field3 = field3;
+                // comment
+            }
+        }
+
+
+        public static class AllArgsSuper {
+            private String field1;
+            private int field2;
+            private boolean field3;
+
+            public AllArgsSuper(String field1, int field2, boolean field3) {
+                super();
+                this.field1 = field1;
+                this.field2 = field2;
+                this.field3 = field3;
+            }
+        }
+
+        public static class StaticNameArgs {
+            private String field1;
+            private int field2;
+            private boolean field3;
+
+            private StaticNameArgs(String field1, int field2, boolean field3) {
+                this.field1 = field1;
+                this.field2 = field2;
+                this.field3 = field3;
+            }
+
+            public static StaticNameArgs of(String field1, int field2, boolean field3) {
+                return new StaticNameArgs(field1, field2, field3);
+            }
+        }
+
+        public static class ProtectedArgs {
+            private String field1;
+            private int field2;
+            private boolean field3;
+
+            protected ProtectedArgs(String field1, int field2, boolean field3) {
+                this.field1 = field1;
+                this.field2 = field2;
+                this.field3 = field3;
+            }
+        }
+    }
+
 
 }
