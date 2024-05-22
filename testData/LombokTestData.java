@@ -608,6 +608,12 @@ import java.util.logging.Logger;</fold>
             </fold><fold text='' expand='false'>@Deprecated
             static final Logger xlogger = Logger.getLogger("LogAnnotation.class");</fold>
         }</fold>
+
+        <fold text='@Log @Log(log2) @Log(log3) p' expand='false'>p</fold>ublic class TripleLogJava <fold text='{...}' expand='true'>{<fold text='' expand='false'>
+            </fold><fold text='' expand='false'>Logger log = Logger.getLogger("LogAnnotation.class");</fold><fold text='' expand='false'>
+            </fold><fold text='' expand='false'>public static final Logger log2 = Logger.getLogger("LogAnnotation.class");</fold><fold text='' expand='false'>
+            </fold><fold text='' expand='false'>static Logger log3 = Logger.getLogger("LogAnnotation.class");</fold>
+        }</fold>
     }</fold>
 
 
@@ -689,7 +695,7 @@ import java.util.logging.Logger;</fold>
             private String field1;
             private int field2;
             private boolean field3;<fold text='' expand='false'>
-            <fold text='' expand='false'></fold>public AllArgsSuper(String field1, int field2, boolean field3) <fold text='{...}' expand='true'>{
+            </fold><fold text='' expand='false'>public AllArgsSuper(String field1, int field2, boolean field3) <fold text='{...}' expand='true'>{
                 super();
                 this.field1 = field1;
                 this.field2 = field2;
@@ -816,13 +822,13 @@ import java.util.logging.Logger;</fold>
                 this.field1 = field1;
                 this.field2 = field2;
                 this.field3 = field3;
-            }</fold><fold text='' expand='false'></fold>
+            }</fold></fold><fold text='' expand='false'>
             </fold><fold text='' expand='false'>public String getField1()<fold text=' { ' expand='false'> {
                 </fold>return field1;<fold text=' }' expand='false'>
             }</fold></fold><fold text='' expand='false'>
             </fold><fold text='' expand='false'>public int getField2()<fold text=' { ' expand='false'> {
                 </fold>return field2;<fold text=' }' expand='false'>
-            }</fold></fold><fold text='' expand='false'>
+            }</fold><fold text='' expand='false'></fold>
             </fold><fold text='' expand='false'>public boolean isField3()<fold text=' { ' expand='false'> {
                 </fold>return field3;<fold text=' }' expand='false'>
             }</fold></fold><fold text='' expand='false'>
@@ -834,7 +840,7 @@ import java.util.logging.Logger;</fold>
                 if (field2 != valueArgs.field2) return false;
                 if (field3 != valueArgs.field3) return false;
                 return field1 != null ? field1.equals(valueArgs.field1) : valueArgs.field1 == null;
-            }</fold><fold text='' expand='false'></fold>
+            }</fold></fold><fold text='' expand='false'>
             </fold><fold text='' expand='false'>@Override
             public int hashCode() <fold text='{...}' expand='true'>{
                 int result = field1 != null ? field1.hashCode() : 0;

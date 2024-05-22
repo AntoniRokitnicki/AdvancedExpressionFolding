@@ -80,16 +80,16 @@ object LombokExt : BaseExtension(), GenericCallback<PsiField, Pair<PsiMethod, St
     private fun foldLog(
         fields: Array<PsiField>
     ): List<HidingAnnotation> {
-        return fields.firstOrNull {
+        return fields.filter {
             (it.type as? PsiClassReferenceType)?.name?.contains("Logger") == true
-        }?.let { logField ->
+        }.map { logField ->
             val dirty = logField.name != "log"
             logField.markIgnored()
             val arguments = dirty.on(logField.name)?.let {
                 listOf(it)
             } ?: emptyList()
-            listOf(HidingAnnotation(LOG, listOf(logField), arguments = arguments))
-        } ?: emptyList()
+            HidingAnnotation(LOG, listOf(logField), arguments = arguments)
+        }
     }
 
     private fun foldProperties(

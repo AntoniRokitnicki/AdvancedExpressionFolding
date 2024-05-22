@@ -608,6 +608,12 @@ public class LombokTestData {
             @Deprecated
             static final Logger xlogger = Logger.getLogger("LogAnnotation.class");
         }
+
+        public class TripleLogJava {
+            Logger log = Logger.getLogger("LogAnnotation.class");
+            public static final Logger log2 = Logger.getLogger("LogAnnotation.class");
+            static Logger log3 = Logger.getLogger("LogAnnotation.class");
+        }
     }
 
 
