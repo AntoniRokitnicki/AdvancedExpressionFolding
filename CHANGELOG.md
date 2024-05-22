@@ -6,9 +6,9 @@
 
 - [lombok] - @NoArgsConstructor
 - [lombok] - @AllArgsConstructor
-- [lombok] - @Value
+- [lombok] - @Value and @Value(without=@EqualsAndHashCode)
 - [lombok] - @RequiredArgsConstructor
-- [lombok] - @Log
+- [lombok] - @Log and @Log(logger) - can be present many times for every field
 
 ## [1.0.52] - 2024-05-18
 

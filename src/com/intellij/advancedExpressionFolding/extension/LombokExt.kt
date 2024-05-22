@@ -309,11 +309,18 @@ enum class MethodType {
 }
 
 enum class LombokFoldingAnnotation(val annotation: String) {
+    LOG("@Log"),
+
     LOMBOK_GETTER("@Getter"),
     LOMBOK_SETTER("@Setter"),
     LOMBOK_TO_STRING("@ToString"),
     LOMBOK_EQUALS("@Equals"),
     LOMBOK_HASHCODE("@HashCode"),
+
+    SERIAL("@Serial"),
+    NO_ARGS_CONSTRUCTOR("@NoArgsConstructor"),
+    ALL_ARGS_CONSTRUCTOR("@AllArgsConstructor"),
+    REQUIRED_ARGS_CONSTRUCTOR("@RequiredArgsConstructor"),
 
     LOMBOK_DATA("@Data") {
         override fun children(): EnumSet<LombokFoldingAnnotation> =
@@ -323,15 +330,15 @@ enum class LombokFoldingAnnotation(val annotation: String) {
         override fun children(): EnumSet<LombokFoldingAnnotation> =
             of(LOMBOK_GETTER, REQUIRED_ARGS_CONSTRUCTOR, LOMBOK_EQUALS, LOMBOK_HASHCODE)
     },
+    LOMBOK_VALUE_SIMPLE("@Value(without=@EqualsAndHashCode)") {
+        override fun children(): EnumSet<LombokFoldingAnnotation> =
+            of(LOMBOK_GETTER, REQUIRED_ARGS_CONSTRUCTOR)
+    },
     LOMBOK_EQUALS_AND_HASHCODE("@EqualsAndHashCode") {
         override fun children(): EnumSet<LombokFoldingAnnotation> = of(LOMBOK_EQUALS, LOMBOK_HASHCODE)
     },
 
-    SERIAL("@Serial"),
-    LOG("@Log"),
-    NO_ARGS_CONSTRUCTOR("@NoArgsConstructor"),
-    ALL_ARGS_CONSTRUCTOR("@AllArgsConstructor"),
-    REQUIRED_ARGS_CONSTRUCTOR("@RequiredArgsConstructor"),
+
 
     ;
 
