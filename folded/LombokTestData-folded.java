@@ -377,6 +377,11 @@ import java.util.logging.Logger;
             private final int field2;
             private final boolean field3;
         }
+        @Value(without=@EqualsAndHashCode) public static class ValueWihhoutEqualsAndHashcode {
+            private final String field1;
+            private final int field2;
+            private final boolean field3;
+        }
     }
 
 

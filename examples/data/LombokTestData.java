@@ -894,6 +894,25 @@ public class LombokTestData {
                 return result;
             }
         }
+        public static class ValueWihhoutEqualsAndHashcode {
+            private final String field1;
+            private final int field2;
+            private final boolean field3;
+            public ValueWihhoutEqualsAndHashcode(String field1, int field2, boolean field3) {
+                this.field1 = field1;
+                this.field2 = field2;
+                this.field3 = field3;
+            }
+            public String getField1() {
+                return field1;
+            }
+            public int getField2() {
+                return field2;
+            }
+            public boolean isField3() {
+                return field3;
+            }
+        }
     }
 
 
