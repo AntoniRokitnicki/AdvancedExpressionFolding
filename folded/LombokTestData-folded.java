@@ -259,7 +259,6 @@ import java.util.logging.Logger;
             }
         }
 
-
         @AllArgsConstructor public static class AllArgsSuper {
             private String field1;
             private int field2;
@@ -270,6 +269,74 @@ import java.util.logging.Logger;
             private String field1;
             private int field2;
             private boolean field3;
+            private StaticNameArgs(String field1, int field2, boolean field3) {
+                this.field1 = field1;
+                this.field2 = field2;
+                this.field3 = field3;
+            }
+            public static StaticNameArgs of(String field1, int field2, boolean field3) {
+                return new StaticNameArgs(field1, field2, field3);
+            }
+        }
+
+        public static class ProtectedArgs {
+            private String field1;
+            private int field2;
+            private boolean field3;
+            protected ProtectedArgs(String field1, int field2, boolean field3) {
+                this.field1 = field1;
+                this.field2 = field2;
+                this.field3 = field3;
+            }
+        }
+    }
+
+
+    public class RequiredArgsConstructorAnnotation {
+        @RequiredArgsConstructor public static class RequiredArgs {
+            private final String field1;
+            private final int field2;
+            private final boolean field3;
+        }
+
+        public static class RequiredArgsNoArgsConstructorSuperBefore {
+            private final String field1;
+            private final int field2;
+            private final boolean field3;
+
+            public RequiredArgsNoArgsConstructorSuperBefore(String field1, int field2, boolean field3) {
+                // comment
+                super();
+                this.field1 = field1;
+                this.field2 = field2;
+                this.field3 = field3;
+            }
+        }
+
+        public static class RequiredArgsNoArgsConstructorSuperAfter {
+            private final String field1;
+            private final int field2;
+            private final boolean field3;
+
+            public RequiredArgsNoArgsConstructorSuperAfter(String field1, int field2, boolean field3) {
+                super();
+                this.field1 = field1;
+                this.field2 = field2;
+                this.field3 = field3;
+                // comment
+            }
+        }
+
+        @RequiredArgsConstructor public static class RequiredArgsSuper {
+            private final String field1;
+            private final int field2;
+            private final boolean field3;
+        }
+
+        public static class StaticNameArgs {
+            private final String field1;
+            private final int field2;
+            private final boolean field3;
 
             private StaticNameArgs(String field1, int field2, boolean field3) {
                 this.field1 = field1;
@@ -283,9 +350,9 @@ import java.util.logging.Logger;
         }
 
         public static class ProtectedArgs {
-            private String field1;
-            private int field2;
-            private boolean field3;
+            private final String field1;
+            private final int field2;
+            private final boolean field3;
 
             protected ProtectedArgs(String field1, int field2, boolean field3) {
                 this.field1 = field1;
@@ -294,6 +361,5 @@ import java.util.logging.Logger;
             }
         }
     }
-
 
 }

@@ -40,15 +40,17 @@ object LombokExt : BaseExtension(), GenericCallback<PsiField, Pair<PsiMethod, St
         constructors: Array<PsiMethod>,
         fields: Collection<PsiField>
     ): List<HidingAnnotation> {
-        return constructors.firstNotNullOfOrNull {
-            if (isAllArgsConstructor(it, fields)) {
-                HidingAnnotation(ALL_ARGS_CONSTRUCTOR, listOf(it))
-            } else {
-                null
+        return constructors.flatMap { constructor ->
+            val list = mutableListOf<HidingAnnotation>()
+            if (fields.all {
+                    it.isFinal()
+                } && isAllArgsConstructor(constructor, fields)) {
+                list.add(HidingAnnotation(REQUIRED_ARGS_CONSTRUCTOR, listOf(constructor)))
+            } else  if (isAllArgsConstructor(constructor, fields)) {
+                list.add(HidingAnnotation(ALL_ARGS_CONSTRUCTOR, listOf(constructor)))
             }
-        }?.let {
-            listOf(it)
-        } ?: emptyList()
+            list
+        }
     }
 
     private fun foldNoArgsConstructor(constructors: Array<PsiMethod>): List<HidingAnnotation> {
@@ -325,6 +327,7 @@ enum class LombokFoldingAnnotation(val annotation: String) {
     LOG("@Log"),
     NO_ARGS_CONSTRUCTOR("@NoArgsConstructor"),
     ALL_ARGS_CONSTRUCTOR("@AllArgsConstructor"),
+    REQUIRED_ARGS_CONSTRUCTOR("@RequiredArgsConstructor"),
 
     ;
 
