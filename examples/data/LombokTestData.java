@@ -4,6 +4,7 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import java.util.Objects;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -805,5 +806,89 @@ public class LombokTestData {
             }
         }
     }
+
+    public class ValueAnnotation {
+        public static class ValueArgs {
+            private final String field1;
+            private final int field2;
+            private final boolean field3;
+            public ValueArgs(String field1, int field2, boolean field3) {
+                this.field1 = field1;
+                this.field2 = field2;
+                this.field3 = field3;
+            }
+            public String getField1() {
+                return field1;
+            }
+            public int getField2() {
+                return field2;
+            }
+            public boolean isField3() {
+                return field3;
+            }
+            @Override
+            public boolean equals(Object o) {
+                if (this == o) return true;
+                if (o == null || getClass() != o.getClass()) return false;
+                ValueArgs valueArgs = (ValueArgs) o;
+                if (field2 != valueArgs.field2) return false;
+                if (field3 != valueArgs.field3) return false;
+                return field1 != null ? field1.equals(valueArgs.field1) : valueArgs.field1 == null;
+            }
+            @Override
+            public int hashCode() {
+                int result = field1 != null ? field1.hashCode() : 0;
+                result = 31 * result + field2;
+                result = 31 * result + (field3 ? 1 : 0);
+                return result;
+            }
+
+            @Override
+            public String toString() {
+                return "ValueArgs{" +
+                        "field1='" + field1 + '\'' +
+                        ", field2=" + field2 +
+                        ", field3=" + field3 +
+                        '}';
+            }
+        }
+        public static class ValueArgsSuper {
+            private final String field1;
+            private final int field2;
+            private final boolean field3;
+            public ValueArgsSuper(String field1, int field2, boolean field3) {
+                super();
+                this.field1 = field1;
+                this.field2 = field2;
+                this.field3 = field3;
+            }
+            public String getField1() {
+                return field1;
+            }
+            public int getField2() {
+                return field2;
+            }
+            public boolean isField3() {
+                return field3;
+            }
+            @Override
+            public final boolean equals(Object o) {
+                if (this == o) return true;
+                if (!(o instanceof ValueArgsSuper)) return false;
+
+                ValueArgsSuper that = (ValueArgsSuper) o;
+                return field2 == that.field2 && field3 == that.field3 && Objects.equals(field1, that.field1);
+            }
+
+            @Override
+            public int hashCode() {
+                int result = Objects.hashCode(field1);
+                result = 31 * result + field2;
+                result = 31 * result + Boolean.hashCode(field3);
+                return result;
+            }
+        }
+    }
+
 
 }

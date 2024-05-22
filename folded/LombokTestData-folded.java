@@ -4,6 +4,7 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import java.util.Objects;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -361,5 +362,19 @@ import java.util.logging.Logger;
             }
         }
     }
+
+    public class ValueAnnotation {
+        @Value public static class ValueArgs {
+            private final String field1;
+            private final int field2;
+            private final boolean field3;
+        }
+        @Value public static class ValueArgsSuper {
+            private final String field1;
+            private final int field2;
+            private final boolean field3;
+        }
+    }
+
 
 }

@@ -105,7 +105,7 @@ public class ExperimentalTestData {
         }</fold>
     }</fold>
 
-    <fold text='@NoArgsConstructor @ToStringˣ s' expand='false'>s</fold>tatic class ConstClass <fold text='{...}' expand='true'>{
+    <fold text='@NoArgsConstructor @AllArgsConstructor @ToStringˣ s' expand='false'>s</fold>tatic class ConstClass <fold text='{...}' expand='true'>{
         boolean ok;
         String string;<fold text='' expand='false'>
 
@@ -114,12 +114,12 @@ public class ExperimentalTestData {
 
         public ConstClass(boolean ok)<fold text=' { ' expand='false'> {
             </fold>this.ok = <fold text='<<' expand='false'>ok</fold>;<fold text=' }' expand='false'>
-        }</fold>
+        }</fold><fold text='' expand='false'>
 
-        public ConstClass(boolean ok, String string) <fold text='{...}' expand='true'>{
+        </fold><fold text='' expand='false'>public ConstClass(boolean ok, String string) <fold text='{...}' expand='true'>{
             this.ok = <fold text='<<' expand='false'>ok</fold>;
             this.string = <fold text='<<' expand='false'>string</fold>;
-        }</fold><fold text='' expand='false'>
+        }</fold></fold><fold text='' expand='false'>
 
         </fold><fold text='' expand='false'>@Override
         public String toString() <fold text='{...}' expand='true'>{
