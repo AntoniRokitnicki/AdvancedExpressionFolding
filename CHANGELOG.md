@@ -4,6 +4,12 @@
 
 ## [Unreleased]
 
+- [lombok] - @NoArgsConstructor
+- [lombok] - @AllArgsConstructor
+- [lombok] - @Value
+- [lombok] - @RequiredArgsConstructor
+- [lombok] - @Log
+
 ## [1.0.52] - 2024-05-18
 
 @Setter(dirty) folded only on field level

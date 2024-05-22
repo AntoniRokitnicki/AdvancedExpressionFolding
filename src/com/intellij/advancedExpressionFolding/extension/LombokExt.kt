@@ -207,7 +207,7 @@ object LombokExt : BaseExtension(), GenericCallback<PsiField, Pair<PsiMethod, St
         LombokFoldingAnnotation.values().forEach { groupingAnnotation ->
             groupingAnnotation.children()?.let { neededKids ->
                 if (usedAnnotations.containsAll(neededKids)) {
-                    if (groupingAnnotation == LOMBOK_DATA) {
+                    if (groupingAnnotation == LOMBOK_DATA || groupingAnnotation == LOMBOK_VALUE) {
                         neededKids.add(LOMBOK_TO_STRING)
                     }
 
@@ -318,6 +318,10 @@ enum class LombokFoldingAnnotation(val annotation: String) {
     LOMBOK_DATA("@Data") {
         override fun children(): EnumSet<LombokFoldingAnnotation> =
             of(LOMBOK_GETTER, LOMBOK_SETTER, LOMBOK_EQUALS, LOMBOK_HASHCODE)
+    },
+    LOMBOK_VALUE("@Value") {
+        override fun children(): EnumSet<LombokFoldingAnnotation> =
+            of(LOMBOK_GETTER, REQUIRED_ARGS_CONSTRUCTOR, LOMBOK_EQUALS, LOMBOK_HASHCODE)
     },
     LOMBOK_EQUALS_AND_HASHCODE("@EqualsAndHashCode") {
         override fun children(): EnumSet<LombokFoldingAnnotation> = of(LOMBOK_EQUALS, LOMBOK_HASHCODE)

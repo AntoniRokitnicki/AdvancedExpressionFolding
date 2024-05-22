@@ -22,7 +22,7 @@ public class ExperimentalTestData {
         }</fold>;
 
         <fold text='const' expand='false'>private static final</fold> HashMap<String, String> MAP =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> </fold><fold text='' expand='true'>HashMap<></fold><fold text='' expand='true'>()</fold>;
-        <fold text='const' expand='false'>private static final</fold> HashMap<String, String> MAP2 =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> </fold><fold text='' expand='true'>HashMap<fold text='<~>' expand='false'><String, String></fold><fold text='' expand='true'></fold>()</fold>;
+        <fold text='const' expand='false'>private static final</fold> HashMap<String, String> MAP2 =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> </fold><fold text='' expand='true'>HashMap<fold text='<~>' expand='false'><String, String></fold></fold><fold text='' expand='true'>()</fold>;
         <fold text='const' expand='false'>private static final</fold> Map<String, String> MAP3 = new HashMap<>();
         <fold text='const' expand='false'>private static final</fold> Map<String, String> MAP_TREE = new TreeMap<>();
         <fold text='const' expand='false'>private static final</fold> Map<String, String> MAP4 = Map.of();
@@ -56,7 +56,7 @@ public class ExperimentalTestData {
         }</fold>;
 
         private final HashMap<String, String> MAP =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> </fold><fold text='' expand='true'>HashMap<></fold><fold text='' expand='true'>()</fold>;
-        private final HashMap<String, String> MAP2 =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> </fold><fold text='' expand='true'>HashMap<fold text='<~>' expand='false'><String, String></fold></fold><fold text='' expand='true'>()</fold>;
+        private final HashMap<String, String> MAP2 =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> </fold><fold text='' expand='true'>HashMap<fold text='<~>' expand='false'><String, String></fold><fold text='' expand='true'></fold>()</fold>;
         private final Map<String, String> MAP3 = new HashMap<>();
 
         private final List<String> LIST = <fold text='[]' expand='false'>new ArrayList<>()</fold>;
@@ -105,21 +105,21 @@ public class ExperimentalTestData {
         }</fold>
     }</fold>
 
-    <fold text='@ToStringˣ s' expand='false'>s</fold>tatic class ConstClass <fold text='{...}' expand='true'>{
+    <fold text='@NoArgsConstructor @AllArgsConstructor @ToStringˣ s' expand='false'>s</fold>tatic class ConstClass <fold text='{...}' expand='true'>{
         boolean ok;
-        String string;
+        String string;<fold text='' expand='false'>
 
-        public ConstClass() <fold text='{}' expand='true'>{
-        }</fold>
+        </fold><fold text='' expand='false'>public ConstClass() <fold text='{}' expand='true'>{
+        }</fold></fold>
 
         public ConstClass(boolean ok)<fold text=' { ' expand='false'> {
             </fold>this.ok = ok;<fold text=' }' expand='false'>
-        }</fold>
+        }</fold><fold text='' expand='false'>
 
-        public ConstClass(boolean ok, String string) <fold text='{...}' expand='true'>{
+        </fold><fold text='' expand='false'>public ConstClass(boolean ok, String string) <fold text='{...}' expand='true'>{
             this.ok = ok;
             this.string = string;
-        }</fold><fold text='' expand='false'>
+        }</fold></fold><fold text='' expand='false'>
 
         </fold><fold text='' expand='false'>@Override
         public String toString() <fold text='{...}' expand='true'>{
