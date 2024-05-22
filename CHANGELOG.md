@@ -4,11 +4,13 @@
 
 ## [Unreleased]
 
+### Added
+
 - [lombok] - @NoArgsConstructor
 - [lombok] - @AllArgsConstructor
 - [lombok] - @Value and @Value(without=@EqualsAndHashCode)
 - [lombok] - @RequiredArgsConstructor
-- [lombok] - @Log and @Log(logger) - can be present many times for every field
+- [lombok] - @Log and @Log(logger) - present for every Logger field
 
 ## [1.0.52] - 2024-05-18
 
