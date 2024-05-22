@@ -82,37 +82,46 @@ object MethodBodyInspector {
         } ?: return false
         val statements = body.statements.toMutableList()
 
-        val psiFieldPsiStatementMutableMap = mutableMapOf<PsiField, PsiStatement>()
-        val psiStatementPsiParameterMutableMap = mutableMapOf<PsiStatement, PsiParameter>()
+        val fieldToStatementMap = mutableMapOf<PsiField, PsiStatement>()
+        val statementToParameterMap = mutableMapOf<PsiStatement, PsiParameter>()
 
         statements.forEach { statement ->
             fields.forEach { field ->
                 val reference = field.findLocalReference(statement)
                 if (reference != null) {
-                    psiFieldPsiStatementMutableMap[field] = statement
+                    fieldToStatementMap[field] = statement
                 }
             }
             method.parameterList.parameters.forEach { parameter ->
                 val reference = parameter.findLocalReference(statement)
                 if (reference != null) {
-                    psiStatementPsiParameterMutableMap[statement] = parameter
+                    statementToParameterMap[statement] = parameter
                 }
             }
         }
-        if (statements.size == psiFieldPsiStatementMutableMap.size + 1) {
-            (body.statements.toList() - psiStatementPsiParameterMutableMap.keys).singleOrNull()?.takeIf {
+        if (statements.size == fieldToStatementMap.size + 1) {
+            (body.statements.toList() - statementToParameterMap.keys).singleOrNull()?.takeIf {
                 isEmptySuperCall(it)
             }?: return false
         } else {
-            (statements.size == psiFieldPsiStatementMutableMap.size).on() ?: return false
+            (statements.size == fieldToStatementMap.size).on() ?: return false
         }
 
-        psiFieldPsiStatementMutableMap.all { (field, statement) ->
-            val param = psiStatementPsiParameterMutableMap[statement] ?: return@all false
+        if (fieldToStatementMap.sameSize(statementToParameterMap) &&
+            !(fieldToStatementMap.isUnique() && statementToParameterMap.isUnique())) {
+            return false
+        }
+
+        fieldToStatementMap.all { (field, statement) ->
+            val param = statementToParameterMap[statement] ?: return@all false
             !method.isDirtyAssignment(statement, field, param)
         }.on() ?: return false
         return true
     }
 }
+
+
+
+
 
 
