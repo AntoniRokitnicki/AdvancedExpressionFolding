@@ -70,8 +70,11 @@ fun PsiModifierListOwner.isProtected() = hasModifierProperty(PsiModifier.PROTECT
 fun PsiModifierListOwner.isPrivate() = hasModifierProperty(PsiModifier.PRIVATE)
 fun PsiModifierListOwner.isDefault() = hasModifierProperty(PsiModifier.DEFAULT)
 fun PsiModifierListOwner.isStatic() = hasModifierProperty(PsiModifier.STATIC)
+fun PsiModifierListOwner.isFinal() = hasModifierProperty(PsiModifier.FINAL)
+
 fun PsiModifierListOwner.isNotStatic() = !isStatic()
-fun PsiModifierListOwner.isNotFinal() = !hasModifierProperty(PsiModifier.FINAL)
+fun PsiModifierListOwner.isNotFinal() = !isFinal()
+
 
 fun PsiMethod.isSetterOrBuilder(): Boolean = isSetter() || isBuilder()
 

@@ -80,36 +80,35 @@ object MethodBodyInspector {
         val body = method.body?.takeIf {
             !it.hasComments()
         } ?: return false
-        val st = body.statements.toMutableList()
+        val statements = body.statements.toMutableList()
 
+        val psiFieldPsiStatementMutableMap = mutableMapOf<PsiField, PsiStatement>()
+        val psiStatementPsiParameterMutableMap = mutableMapOf<PsiStatement, PsiParameter>()
 
-        val m = mutableMapOf<PsiField, PsiStatement>()
-        val m2 = mutableMapOf<PsiStatement, PsiParameter>()
-
-        st.forEach { statement ->
+        statements.forEach { statement ->
             fields.forEach { field ->
                 val reference = field.findLocalReference(statement)
                 if (reference != null) {
-                    m[field] = statement
+                    psiFieldPsiStatementMutableMap[field] = statement
                 }
             }
             method.parameterList.parameters.forEach { parameter ->
                 val reference = parameter.findLocalReference(statement)
                 if (reference != null) {
-                    m2[statement] = parameter
+                    psiStatementPsiParameterMutableMap[statement] = parameter
                 }
             }
         }
-        if (st.size == m.size + 1) {
-            (body.statements.toList() - m2.keys).singleOrNull()?.takeIf {
+        if (statements.size == psiFieldPsiStatementMutableMap.size + 1) {
+            (body.statements.toList() - psiStatementPsiParameterMutableMap.keys).singleOrNull()?.takeIf {
                 isEmptySuperCall(it)
             }?: return false
         } else {
-            (st.size == m.size).on() ?: return false
+            (statements.size == psiFieldPsiStatementMutableMap.size).on() ?: return false
         }
 
-        m.all { (field, statement) ->
-            val param = m2[statement] ?: return@all false
+        psiFieldPsiStatementMutableMap.all { (field, statement) ->
+            val param = psiStatementPsiParameterMutableMap[statement] ?: return@all false
             !method.isDirtyAssignment(statement, field, param)
         }.on() ?: return false
         return true
