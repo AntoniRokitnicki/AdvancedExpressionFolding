@@ -664,11 +664,31 @@ public class LombokTestData {
                 this.field3 = field3;
             }
         }
+        public static class AllArgsBrokenFieldAssigmentLeft {
+            private int field1;
+            private int field2;
+            private boolean field3;
+            public AllArgsBrokenFieldAssigmentLeft(int field1, int field2, boolean field3) {
+                this.field1 = field1;
+                this.field2 = field1;
+                this.field3 = field3;
+            }
+        }
+        public static class AllArgsBrokenFieldAssigmentRight {
+            private int field1;
+            private int field2;
+            private boolean field3;
+            public AllArgsBrokenFieldAssigmentRight(int field1, int field2, boolean field3) {
+                this.field1 = field1;
+                this.field1 = field2;
+                this.field3 = field3;
+            }
+        }
+
         public static class AllArgsNoArgsConstructorSuperBefore {
             private String field1;
             private int field2;
             private boolean field3;
-
             public AllArgsNoArgsConstructorSuperBefore(String field1, int field2, boolean field3) {
                 // comment
                 super();
@@ -681,7 +701,6 @@ public class LombokTestData {
             private String field1;
             private int field2;
             private boolean field3;
-
             public AllArgsNoArgsConstructorSuperAfter(String field1, int field2, boolean field3) {
                 super();
                 this.field1 = field1;
@@ -911,6 +930,50 @@ public class LombokTestData {
             }
             public boolean isField3() {
                 return field3;
+            }
+        }
+    }
+    class SingleField {
+        public static class AllArgs {
+            private String field1;
+            public AllArgs(String field1) {
+                this.field1 = field1;
+            }
+        }
+        public static class ReqArgs {
+            private final String field1;
+            public ReqArgs(String field1) {
+                this.field1 = field1;
+            }
+        }
+        public static class Value {
+            private final String field1;
+            public Value(String field1) {
+                this.field1 = field1;
+            }
+            public String getField1() {
+                return field1;
+            }
+            @Override
+            public final boolean equals(Object o) {
+                if (this == o) return true;
+                if (!(o instanceof Value)) return false;
+
+                Value value = (Value) o;
+                return Objects.equals(field1, value.field1);
+            }
+            @Override
+            public int hashCode() {
+                return Objects.hashCode(field1);
+            }
+        }
+        public static class ValueWithoutEqualsAndHashCode {
+            private final String field1;
+            public ValueWithoutEqualsAndHashCode(String field1) {
+                this.field1 = field1;
+            }
+            public String getField1() {
+                return field1;
             }
         }
     }

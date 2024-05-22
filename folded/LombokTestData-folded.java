@@ -236,11 +236,31 @@ import java.util.logging.Logger;
             private int field2;
             private boolean field3;
         }
+        public static class AllArgsBrokenFieldAssigmentLeft {
+            private int field1;
+            private int field2;
+            private boolean field3;
+            public AllArgsBrokenFieldAssigmentLeft(int field1, int field2, boolean field3) {
+                this.field1 = field1;
+                this.field2 = field1;
+                this.field3 = field3;
+            }
+        }
+        public static class AllArgsBrokenFieldAssigmentRight {
+            private int field1;
+            private int field2;
+            private boolean field3;
+            public AllArgsBrokenFieldAssigmentRight(int field1, int field2, boolean field3) {
+                this.field1 = field1;
+                this.field1 = field2;
+                this.field3 = field3;
+            }
+        }
+
         public static class AllArgsNoArgsConstructorSuperBefore {
             private String field1;
             private int field2;
             private boolean field3;
-
             public AllArgsNoArgsConstructorSuperBefore(String field1, int field2, boolean field3) {
                 // comment
                 super();
@@ -253,7 +273,6 @@ import java.util.logging.Logger;
             private String field1;
             private int field2;
             private boolean field3;
-
             public AllArgsNoArgsConstructorSuperAfter(String field1, int field2, boolean field3) {
                 super();
                 this.field1 = field1;
@@ -381,6 +400,20 @@ import java.util.logging.Logger;
             private final String field1;
             private final int field2;
             private final boolean field3;
+        }
+    }
+    class SingleField {
+        @AllArgsConstructor public static class AllArgs {
+            private String field1;
+        }
+        @RequiredArgsConstructor public static class ReqArgs {
+            private final String field1;
+        }
+        @Value public static class Value {
+            private final String field1;
+        }
+        @Value(without=@EqualsAndHashCode) public static class ValueWithoutEqualsAndHashCode {
+            private final String field1;
         }
     }
 

@@ -358,3 +358,9 @@ val PsiElement.identifier: PsiIdentifier?
 fun PsiCodeBlock.hasComments(): Boolean = children.any {
     it is PsiComment
 }
+
+fun <K, V> Map<K, V>.isUnique(): Boolean =
+    keys.sameSize(keys.distinct()) && values.sameSize(values.distinct())
+
+fun <K, V, K2, V2> Map<K, V>?.sameSize(otherMap: Map<K2, V2>?) = this?.size == otherMap?.size
+fun <E, E2> Collection<E>?.sameSize(otherCollection: Collection<E2>?) = this?.size == otherCollection?.size
