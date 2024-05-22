@@ -193,6 +193,9 @@ import java.util.logging.Logger;
 
         @Log(xlogger) public class LogCustomNameDeprecated {
         }
+
+        @Log @Log(log2) @Log(log3) public class TripleLogJava {
+        }
     }
 
 
