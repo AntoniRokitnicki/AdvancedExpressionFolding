@@ -23,9 +23,11 @@ object LombokExt : BaseExtension(), GenericCallback<PsiField, Pair<PsiMethod, St
     fun PsiClass.addLombokSupport(): List<HidingAnnotation> {
         val hidingAnnotations = mutableListOf<HidingAnnotation>()
         hidingAnnotations += foldLog(this.fields)
-        hidingAnnotations += foldConstructors(this.constructors)
+        hidingAnnotations += foldNoArgsConstructor(this.constructors)
 
         createFieldMap(this)?.let { fieldsMap ->
+            hidingAnnotations += foldArgsConstructor(this.constructors, fieldsMap.values)
+
             val methodTypeToMethodsMap: Map<MethodType, List<PsiMethod>> = groupMethodsByMethodType(this)
             hidingAnnotations += foldProperties(methodTypeToMethodsMap, fieldsMap)
             hidingAnnotations += foldData(methodTypeToMethodsMap, fieldsMap)
@@ -34,14 +36,39 @@ object LombokExt : BaseExtension(), GenericCallback<PsiField, Pair<PsiMethod, St
         return hidingAnnotations
     }
 
-    private fun foldConstructors(constructors: Array<PsiMethod>)    : List<HidingAnnotation> {
-        return constructors.mapNotNull {
+    private fun foldArgsConstructor(
+        constructors: Array<PsiMethod>,
+        fields: Collection<PsiField>
+    ): List<HidingAnnotation> {
+        return constructors.firstNotNullOfOrNull {
+            if (isAllArgsConstructor(it, fields)) {
+                HidingAnnotation(ALL_ARGS_CONSTRUCTOR, listOf(it))
+            } else {
+                null
+            }
+        }?.let {
+            listOf(it)
+        } ?: emptyList()
+    }
+
+    private fun foldNoArgsConstructor(constructors: Array<PsiMethod>): List<HidingAnnotation> {
+        return constructors.firstNotNullOfOrNull {
             if (isNoArgsConstructor(it)) {
                 HidingAnnotation(NO_ARGS_CONSTRUCTOR, listOf(it))
             } else {
                 null
             }
-        }
+        }?.let {
+            listOf(it)
+        } ?: emptyList()
+    }
+
+    private fun isAllArgsConstructor(method: PsiMethod, fields: Collection<PsiField>): Boolean {
+        return method.isPublic()
+                && method.hasParameters()
+                && fields.isNotEmpty()
+                && method.parameterList.parametersCount == fields.size
+                && MethodBodyInspector.isAllArgsConstructor(method, fields)
     }
 
     private fun isNoArgsConstructor(method: PsiMethod): Boolean {
@@ -60,7 +87,7 @@ object LombokExt : BaseExtension(), GenericCallback<PsiField, Pair<PsiMethod, St
                 listOf(it)
             } ?: emptyList()
             listOf(HidingAnnotation(LOG, listOf(logField), arguments = arguments))
-        } ?:emptyList()
+        } ?: emptyList()
     }
 
     private fun foldProperties(
@@ -159,11 +186,13 @@ object LombokExt : BaseExtension(), GenericCallback<PsiField, Pair<PsiMethod, St
         val (getter2, getterAnnotation) = callback()
         getterAnnotation?.let {
             getter2.markIgnored()
-            multiplexer.addChild(FieldAnnotationExpression(
-                field,
-                listOf(getterAnnotation),
-                listOf(getter2, getter2.prevWhiteSpace())
-            ))
+            multiplexer.addChild(
+                FieldAnnotationExpression(
+                    field,
+                    listOf(getterAnnotation),
+                    listOf(getter2, getter2.prevWhiteSpace())
+                )
+            )
         }
     }
 
@@ -274,7 +303,7 @@ enum class MethodType {
     ;
 
     open fun isDirty(method: PsiMethod): Boolean = false
-    open fun createFieldLevelAnnotation(dirty: Boolean): String?  = null
+    open fun createFieldLevelAnnotation(dirty: Boolean): String? = null
 }
 
 enum class LombokFoldingAnnotation(val annotation: String) {
@@ -295,6 +324,7 @@ enum class LombokFoldingAnnotation(val annotation: String) {
     SERIAL("@Serial"),
     LOG("@Log"),
     NO_ARGS_CONSTRUCTOR("@NoArgsConstructor"),
+    ALL_ARGS_CONSTRUCTOR("@AllArgsConstructor"),
 
     ;
 

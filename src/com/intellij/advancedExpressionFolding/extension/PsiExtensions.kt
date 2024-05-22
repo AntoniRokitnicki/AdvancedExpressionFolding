@@ -65,7 +65,10 @@ fun PsiElement.realNextSibling(): PsiElement? {
     return sibling
 }
 
-
+fun PsiModifierListOwner.isPublic() = hasModifierProperty(PsiModifier.PUBLIC)
+fun PsiModifierListOwner.isProtected() = hasModifierProperty(PsiModifier.PROTECTED)
+fun PsiModifierListOwner.isPrivate() = hasModifierProperty(PsiModifier.PRIVATE)
+fun PsiModifierListOwner.isDefault() = hasModifierProperty(PsiModifier.DEFAULT)
 fun PsiModifierListOwner.isStatic() = hasModifierProperty(PsiModifier.STATIC)
 fun PsiModifierListOwner.isNotStatic() = !isStatic()
 fun PsiModifierListOwner.isNotFinal() = !hasModifierProperty(PsiModifier.FINAL)
@@ -347,3 +350,8 @@ val PsiElement.identifier: PsiIdentifier?
         it is PsiIdentifier
     } as? PsiIdentifier
 
+
+
+fun PsiCodeBlock.hasComments(): Boolean = children.any {
+    it is PsiComment
+}
