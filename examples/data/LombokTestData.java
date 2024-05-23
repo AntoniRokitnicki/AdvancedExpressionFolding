@@ -976,6 +976,26 @@ public class LombokTestData {
                 return field1;
             }
         }
+        class Modifers {
+            static class AllArgsDefault {
+                private String field1;
+                AllArgsDefault(String field1) {
+                    this.field1 = field1;
+                }
+            }
+            static class AllArgsPrivate {
+                private String field1;
+                private AllArgsPrivate(String field1) {
+                    this.field1 = field1;
+                }
+            }
+            static class AllArgsProteced {
+                private String field1;
+                protected AllArgsProteced(String field1) {
+                    this.field1 = field1;
+                }
+            }
+        }
     }
 
 

@@ -288,29 +288,19 @@ import java.util.logging.Logger;
             private boolean field3;
         }
 
-        public static class StaticNameArgs {
+        @AllArgsConstructor(private) public static class StaticNameArgs {
             private String field1;
             private int field2;
             private boolean field3;
-            private StaticNameArgs(String field1, int field2, boolean field3) {
-                this.field1 = field1;
-                this.field2 = field2;
-                this.field3 = field3;
-            }
             public static StaticNameArgs of(String field1, int field2, boolean field3) {
                 return new StaticNameArgs(field1, field2, field3);
             }
         }
 
-        public static class ProtectedArgs {
+        @AllArgsConstructor(protected) public static class ProtectedArgs {
             private String field1;
             private int field2;
             private boolean field3;
-            protected ProtectedArgs(String field1, int field2, boolean field3) {
-                this.field1 = field1;
-                this.field2 = field2;
-                this.field3 = field3;
-            }
         }
     }
 
@@ -356,32 +346,20 @@ import java.util.logging.Logger;
             private final boolean field3;
         }
 
-        public static class StaticNameArgs {
+        @RequiredArgsConstructor(private) public static class StaticNameArgs {
             private final String field1;
             private final int field2;
             private final boolean field3;
-
-            private StaticNameArgs(String field1, int field2, boolean field3) {
-                this.field1 = field1;
-                this.field2 = field2;
-                this.field3 = field3;
-            }
 
             public static StaticNameArgs of(String field1, int field2, boolean field3) {
                 return new StaticNameArgs(field1, field2, field3);
             }
         }
 
-        public static class ProtectedArgs {
+        @RequiredArgsConstructor(protected) public static class ProtectedArgs {
             private final String field1;
             private final int field2;
             private final boolean field3;
-
-            protected ProtectedArgs(String field1, int field2, boolean field3) {
-                this.field1 = field1;
-                this.field2 = field2;
-                this.field3 = field3;
-            }
         }
     }
 
@@ -414,6 +392,17 @@ import java.util.logging.Logger;
         }
         @Value(without=@EqualsAndHashCode) public static class ValueWithoutEqualsAndHashCode {
             private final String field1;
+        }
+        class Modifers {
+            @AllArgsConstructor(default) static class AllArgsDefault {
+                private String field1;
+            }
+            @AllArgsConstructor(private) static class AllArgsPrivate {
+                private String field1;
+            }
+            @AllArgsConstructor(protected) static class AllArgsProteced {
+                private String field1;
+            }
         }
     }
 

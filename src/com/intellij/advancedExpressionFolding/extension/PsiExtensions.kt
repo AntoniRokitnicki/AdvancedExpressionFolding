@@ -12,6 +12,7 @@ import com.intellij.advancedExpressionFolding.extension.BaseExtension.Companion.
 import com.intellij.advancedExpressionFolding.extension.BaseExtension.Companion.isObject
 import com.intellij.advancedExpressionFolding.extension.BaseExtension.Companion.isString
 import com.intellij.advancedExpressionFolding.extension.BaseExtension.Companion.isVoid
+import com.intellij.advancedExpressionFolding.extension.EModifier.*
 import com.intellij.advancedExpressionFolding.extension.Keys.IGNORED
 import com.intellij.lang.folding.FoldingDescriptor
 import com.intellij.openapi.editor.FoldingGroup
@@ -65,13 +66,30 @@ fun PsiElement.realNextSibling(): PsiElement? {
     return sibling
 }
 
+enum class EModifier(val modifier: String) {
+    PUBLIC("public"),
+    PRIVATE("private"),
+    PROTECTED("protected"),
+    DEFAULT("default");
+    fun isPublic() = this == PUBLIC
+    fun isProtected() = this == PROTECTED
+    fun isPrivate() = this == PRIVATE
+    fun isDefault() = this == DEFAULT
+}
+fun PsiModifierListOwner.modifier(): EModifier {
+    return when {
+        isPublic() -> PUBLIC
+        isPrivate() -> PRIVATE
+        isProtected() -> PROTECTED
+        else -> DEFAULT
+    }
+}
 fun PsiModifierListOwner.isPublic() = hasModifierProperty(PsiModifier.PUBLIC)
 fun PsiModifierListOwner.isProtected() = hasModifierProperty(PsiModifier.PROTECTED)
 fun PsiModifierListOwner.isPrivate() = hasModifierProperty(PsiModifier.PRIVATE)
-fun PsiModifierListOwner.isDefault() = hasModifierProperty(PsiModifier.DEFAULT)
+fun PsiModifierListOwner.isDefault() = !isPublic() && !isProtected() && !isPrivate()
 fun PsiModifierListOwner.isStatic() = hasModifierProperty(PsiModifier.STATIC)
 fun PsiModifierListOwner.isFinal() = hasModifierProperty(PsiModifier.FINAL)
-
 fun PsiModifierListOwner.isNotStatic() = !isStatic()
 fun PsiModifierListOwner.isNotFinal() = !isFinal()
 
