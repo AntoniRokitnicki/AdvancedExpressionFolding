@@ -12,7 +12,7 @@ public class ExpressionFuncTestData {
     </fold>}</fold>
 
     public long findNinjaId()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-        </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>1L<fold text=' ' expand='true'>;<fold text='' expand='true'><fold text=' }' expand='false'></fold>
+        </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>1L<fold text=' ' expand='true'>;</fold><fold text=' }' expand='false'><fold text='' expand='true'>
     </fold>}</fold>
 
     public String tableName()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
@@ -28,7 +28,7 @@ public class ExpressionFuncTestData {
     </fold>}</fold>
 
     public String methodCall(String field)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-        </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>assignFieldAndReturn(field)<fold text=' ' expand='true'>;<fold text='' expand='true'><fold text=' }' expand='false'></fold>
+        </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>assignFieldAndReturn(field)<fold text=' ' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
     </fold>}</fold>
 
     public void methodCall2(String field)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
@@ -40,7 +40,7 @@ public class ExpressionFuncTestData {
     </fold>}</fold>
 
     public void stream(List<String> list) <fold text='{...}' expand='true'>{
-        list.stream().map(Function.identity()).map(Function.identity()).map(Function.identity()).map(Function.identity()).map(Function.identity()).map(Function.identity());
+        list<fold text='.' expand='false'>.stream().</fold>map(Function.identity()).map(Function.identity()).map(Function.identity()).map(Function.identity()).map(Function.identity()).map(Function.identity());
     }</fold>
 
 }

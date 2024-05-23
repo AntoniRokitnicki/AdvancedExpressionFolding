@@ -10,11 +10,11 @@ public class TypeCastTestData {
         }</fold>
     }</fold>
 
-    private Object getObject()<fold text=' { ' expand='false'> {
-        </fold>return this;<fold text=' }' expand='false'>
-    }</fold>
+    private Object getObject()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+        </fold></fold><fold text='' expand='true'>return<fold text='' expand='true'></fold> </fold>this<fold text=' ' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+    </fold>}</fold>
 
-    private static void handle(TypeCastTestData t)<fold text=' { ' expand='false'> {
-        </fold><fold text='' expand='false'>System.out.</fold>println(t);<fold text=' }' expand='false'>
-    }</fold>
+    private static void handle(TypeCastTestData t)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+        </fold></fold>System.out.println(t)<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+    </fold>}</fold>
 }

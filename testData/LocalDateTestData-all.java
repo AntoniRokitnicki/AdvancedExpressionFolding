@@ -116,33 +116,33 @@ public class LocalDateTestData {
     public static class CustomClass <fold text='{...}' expand='true'>{
         private final long timestamp<fold text='' expand='false'>;</fold>
 
-        public CustomClass()<fold text=' { ' expand='false'> {
-            </fold>this.timestamp = System.currentTimeMillis()<fold text='' expand='false'>;</fold><fold text=' }' expand='false'>
-        }</fold>
+        public CustomClass()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+            </fold></fold>this.timestamp = System.currentTimeMillis()<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+        </fold>}</fold>
 
-        public boolean before(CustomClass other)<fold text=' { ' expand='false'> {
-            </fold>return this.timestamp < other.timestamp<fold text='' expand='false'>;</fold><fold text=' }' expand='false'>
-        }</fold>
+        public boolean before(CustomClass other)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>this.timestamp < other.timestamp<fold text=' ' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+        </fold>}</fold>
 
-        public boolean after(CustomClass other)<fold text=' { ' expand='false'> {
-            </fold>return this.timestamp > other.timestamp<fold text='' expand='false'>;</fold><fold text=' }' expand='false'>
-        }</fold>
+        public boolean after(CustomClass other)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>this.timestamp > other.timestamp<fold text=' ' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+        </fold>}</fold>
     }</fold>
 
     public class CustomClass2  <fold text='{...}' expand='true'>{
         private final java.time.chrono.MinguoDate minguoDate<fold text='' expand='false'>;</fold>
 
-        public CustomClass2()<fold text=' { ' expand='false'> {
-            </fold>this.minguoDate = java.time.chrono.MinguoDate.now()<fold text='' expand='false'>;</fold><fold text=' }' expand='false'>
-        }</fold>
+        public CustomClass2()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+            </fold></fold>this.minguoDate = java.time.chrono.MinguoDate.now()<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+        </fold>}</fold>
 
-        public boolean isBefore(CustomClass2 other)<fold text=' { ' expand='false'> {
-            </fold>return this.minguoDate<fold text=' < ' expand='false'>.isBefore(</fold>other.minguoDate<fold text='' expand='false'>)</fold><fold text='' expand='false'>;</fold><fold text=' }' expand='false'>
-        }</fold>
+        public boolean isBefore(CustomClass2 other)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+            </fold><fold text='' expand='true'></fold>return</fold><fold text='' expand='true'> </fold>this.minguoDate.isBefore(other.minguoDate)<fold text=' ' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+        </fold>}</fold>
 
-        public boolean isAfter(CustomClass2 other)<fold text=' { ' expand='false'> {
-            </fold>return this.minguoDate<fold text=' > ' expand='false'>.isAfter(</fold>other.minguoDate<fold text='' expand='false'>)</fold><fold text='' expand='false'>;</fold><fold text=' }' expand='false'>
-        }</fold>
+        public boolean isAfter(CustomClass2 other)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>this.minguoDate.isAfter(other.minguoDate)<fold text=' ' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+        </fold>}</fold>
     }</fold>
 
 

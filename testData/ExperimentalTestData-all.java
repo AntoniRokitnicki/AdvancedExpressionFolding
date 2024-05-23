@@ -22,7 +22,7 @@ public class ExperimentalTestData {
         }</fold>;
 
         <fold text='const' expand='false'>private static final</fold> HashMap<String, String> MAP =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> </fold><fold text='' expand='true'>HashMap<></fold><fold text='' expand='true'>()</fold>;
-        <fold text='const' expand='false'>private static final</fold> HashMap<String, String> MAP2 =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> </fold><fold text='' expand='true'>HashMap<fold text='<~>' expand='false'><String, String></fold></fold><fold text='' expand='true'>()</fold>;
+        <fold text='const' expand='false'>private static final</fold> HashMap<String, String> MAP2 =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> </fold><fold text='' expand='true'>HashMap<fold text='<~>' expand='false'><String, String></fold><fold text='' expand='true'></fold>()</fold>;
         <fold text='const' expand='false'>private static final</fold> Map<String, String> MAP3 = new HashMap<>();
         <fold text='const' expand='false'>private static final</fold> Map<String, String> MAP_TREE = new TreeMap<>();
         <fold text='const' expand='false'>private static final</fold> Map<String, String> MAP4 = Map.of();
@@ -92,17 +92,17 @@ public class ExperimentalTestData {
         Singleton LOCAL =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> </fold><fold text='' expand='true'>Singleton</fold><fold text='' expand='true'>()</fold>;
         <fold text='@Getter b' expand='false'>b</fold>oolean ok;
 
-        Singleton main(Singleton s)<fold text=' { ' expand='false'> {
-            </fold>return this;<fold text=' }' expand='false'>
-        }</fold><fold text='' expand='false'>
+        Singleton main(Singleton s)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>this<fold text=' ' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+        </fold>}</fold><fold text='' expand='false'>
 
-        </fold><fold text='' expand='false'>public boolean isOk()<fold text=' { ' expand='false'> {
-            </fold>return ok;<fold text=' }' expand='false'>
-        }</fold></fold>
+        </fold><fold text='' expand='false'>public boolean isOk()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>ok<fold text=' ' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+        </fold>}</fold></fold>
 
-        public static Singleton getInstance()<fold text=' { ' expand='false'> {
-            </fold>return INSTANCE;<fold text=' }' expand='false'>
-        }</fold>
+        public static Singleton getInstance()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>INSTANCE<fold text=' ' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+        </fold>}</fold>
     }</fold>
 
     <fold text='@NoArgsConstructor @AllArgsConstructor @ToStringˣ s' expand='false'>s</fold>tatic class ConstClass <fold text='{...}' expand='true'>{
@@ -112,9 +112,9 @@ public class ExperimentalTestData {
         </fold><fold text='' expand='false'>public ConstClass() <fold text='{}' expand='true'>{
         }</fold></fold>
 
-        public ConstClass(boolean ok)<fold text=' { ' expand='false'> {
-            </fold>this.ok = <fold text='<<' expand='false'>ok</fold>;<fold text=' }' expand='false'>
-        }</fold><fold text='' expand='false'>
+        public ConstClass(boolean ok)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+            </fold></fold>this.ok = ok<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+        </fold>}</fold><fold text='' expand='false'>
 
         </fold><fold text='' expand='false'>public ConstClass(boolean ok, String string) <fold text='{...}' expand='true'>{
             this.ok = <fold text='<<' expand='false'>ok</fold>;
@@ -139,21 +139,21 @@ public class ExperimentalTestData {
     <fold text='@Getter @Setter c' expand='false'>c</fold>lass NamelessProperty <fold text='{...}' expand='true'>{
         private NamelessProperty prop;
 
-        public NamelessProperty get()<fold text=' { ' expand='false'> {
-            </fold>return prop;<fold text=' }' expand='false'>
-        }</fold><fold text='' expand='false'>
+        public NamelessProperty get()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>prop<fold text=' ' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+        </fold>}</fold><fold text='' expand='false'>
 
-        </fold><fold text='' expand='false'>public data.ExperimentalTestData.NamelessProperty getProp()<fold text=' { ' expand='false'> {
-            </fold>return prop;<fold text=' }' expand='false'>
-        }</fold></fold><fold text='' expand='false'>
+        </fold><fold text='' expand='false'>public data.ExperimentalTestData.NamelessProperty getProp()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>prop<fold text=' ' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+        </fold>}</fold></fold><fold text='' expand='false'>
 
-        </fold><fold text='' expand='false'>public void setProp(NamelessProperty prop)<fold text=' { ' expand='false'> {
-            </fold>this.prop = <fold text='<<' expand='false'>prop</fold>;<fold text=' }' expand='false'>
-        }</fold></fold>
+        </fold><fold text='' expand='false'>public void setProp(NamelessProperty prop)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+            </fold></fold>this.prop = prop<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+        </fold>}</fold></fold>
 
-        public void set(NamelessProperty s)<fold text=' { ' expand='false'> {
-            </fold>this.prop = s;<fold text=' }' expand='false'>
-        }</fold>
+        public void set(NamelessProperty s)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+            </fold></fold>this.prop = s<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+        </fold>}</fold>
 
         NamelessProperty main(NamelessProperty s, NamelessProperty namelessProperty) <fold text='{...}' expand='true'>{
             s.set(namelessProperty.<fold text='prop' expand='false'>getProp()</fold>.get());
