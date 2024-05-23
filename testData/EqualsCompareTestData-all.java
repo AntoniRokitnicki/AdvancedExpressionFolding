@@ -21,7 +21,7 @@ public class EqualsCompareTestData implements Comparable<EqualsCompareTestData> 
     }</fold>
 
     @Override
-    public int compareTo(EqualsCompareTestData o)<fold text=' { ' expand='false'> {
-        </fold>return 0;<fold text=' }' expand='false'>
-    }</fold>
+    public int compareTo(EqualsCompareTestData o)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+        </fold><fold text='' expand='true'></fold>return</fold><fold text='' expand='true'> </fold>0<fold text=' ' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+    </fold>}</fold>
 }

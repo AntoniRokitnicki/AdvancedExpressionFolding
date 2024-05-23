@@ -15,14 +15,14 @@ public class ElvisTestData {
         if (e.get() != null) <fold text='{...}' expand='true'>{
                 e.get()<fold text='?.' expand='false'>.</fold>sayHello();<fold text='' expand='false'>
         }</fold></fold>
-        if <fold text='' expand='false'>(</fold><fold text='e?.get != null' expand='false'>e != null && e.get() != null</fold><fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
+        if <fold text='' expand='false'>(</fold><fold text='e?.get != null' expand='false'>e != null && e.get() != null<fold text='' expand='false'></fold>)</fold> <fold text='{...}' expand='true'>{
                 e.get().sayHello();
         }</fold>
     }</fold>
 
-    private String sayHello()<fold text=' { ' expand='false'> {
-        </fold>return "Hello";<fold text=' }' expand='false'>
-    }</fold>
+    private String sayHello()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+        </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>"Hello"<fold text=' ' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+    </fold>}</fold>
 
     private static ElvisTestData create() <fold text='{...}' expand='true'>{
         if <fold text='' expand='false'>(</fold>Math.random() > 0.5<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
@@ -32,7 +32,7 @@ public class ElvisTestData {
         }</fold>
     }</fold>
 
-    private ElvisTestData get()<fold text=' { ' expand='false'> {
-        </fold>return e;<fold text=' }' expand='false'>
-    }</fold>
+    private ElvisTestData get()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+        </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>e<fold text=' ' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+    </fold>}</fold>
 }
