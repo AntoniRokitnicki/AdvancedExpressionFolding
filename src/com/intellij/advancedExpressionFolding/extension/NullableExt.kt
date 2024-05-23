@@ -20,7 +20,11 @@ object NullableExt : BaseExtension() {
 
     @JvmStatic
     fun createExpression(psiMethod: PsiMethod): Expression? {
-        return fieldAnnotationExpression(psiMethod.annotations, psiMethod.returnTypeElement)
+        val nullAnnotationExpression = fieldAnnotationExpression(psiMethod.annotations, psiMethod.returnTypeElement)
+        if (expressionFunc) {
+            return ExperimentalExt.createSingleExpressionFunctions(psiMethod, nullAnnotationExpression)
+        }
+        return nullAnnotationExpression
     }
 
     @JvmStatic

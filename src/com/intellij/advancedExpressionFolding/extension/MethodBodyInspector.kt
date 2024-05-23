@@ -3,6 +3,7 @@ package com.intellij.advancedExpressionFolding.extension
 import com.intellij.psi.*
 
 object MethodBodyInspector {
+
     fun PsiMethod.isDirtyGetter(): Boolean {
         val field = this.propertyField ?: return false
         return body
@@ -43,7 +44,6 @@ object MethodBodyInspector {
             } ?: return true
 
         // check `this.data = *data*;` is same as method param
-
         assignment.rExpression.asInstance<PsiReferenceExpression>()?.takeIf {
             it.resolve() == param
         } ?: return true

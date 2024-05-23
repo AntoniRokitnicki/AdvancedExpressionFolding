@@ -328,6 +328,13 @@ open class FoldingTest : BaseTest() {
     @Test fun testLombokDirtyOffTestData() {
         doFoldingTest(state::lombok, state::lombokDirtyOff)
     }
+
+    /**
+     * [data.ExpressionFuncTestData]
+     */
+    @Test fun testExpressionFuncTestData() {
+        doFoldingTest(state::expressionFunc)
+    }
     // NEW OPTION
     /**
      * [data.ExperimentalTestData]
