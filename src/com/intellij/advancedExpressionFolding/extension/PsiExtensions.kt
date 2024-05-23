@@ -294,12 +294,12 @@ fun PsiElement.expr(
     )
 }
 
-fun PsiElement.exprHide(
+fun PsiElement?.exprHide(
     vararg children: Expression?,
     group: FoldingGroup? = null,
     foldPrevWhiteSpace: Boolean = false
 ): HideExpression? {
-    textRange.isEmpty.takeIf {
+    this?.textRange?.isEmpty?.takeIf {
         !it
     } ?: return null
 
@@ -341,6 +341,10 @@ fun Collection<Expression?>.exprWrap(
     }
     return WrapperExpression(parent, chain = chain)
 }
+
+fun elemList(vararg elements: PsiElement?) : MutableList<Expression?> = elements.mapNotNull {
+    it.exprHide()
+}.toMutableList()
 
 fun exprList(vararg elements: Expression?) = mutableListOf(*elements)
 fun foldingList(vararg elements: FoldingDescriptor) = mutableListOf(*elements)

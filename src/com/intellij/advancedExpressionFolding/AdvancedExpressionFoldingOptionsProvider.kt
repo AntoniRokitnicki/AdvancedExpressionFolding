@@ -169,7 +169,7 @@ class AdvancedExpressionFoldingOptionsProvider : AbstractExpressionFoldingOption
             docLink = "/Folding-of-testData-in-diff"
         )
         checkBox(
-            "Simplify public static final to const",
+            "Simplify * static final to const",
             state::const,
             mapOf("ConstTestData.java" to null),
         )
@@ -192,6 +192,11 @@ class AdvancedExpressionFoldingOptionsProvider : AbstractExpressionFoldingOption
         checkBox("Don't fold lombok dirty getters",
             state::lombokDirtyOff,
             mapOf("LombokDirtyOffTestData.java" to null),
+        )
+        
+        checkBox("Single-Expression Function",
+            state::expressionFunc,
+            mapOf("ExpressionFuncTestData.java" to null),
         )
         
         // NEW OPTION

@@ -74,6 +74,7 @@ public class $exampleFileName {
     /**
      * [data.$exampleFileName]
      */
+    @Test
     fun test${exampleFileName}() {
         doFoldingTest(state::$varName)
     }""")
