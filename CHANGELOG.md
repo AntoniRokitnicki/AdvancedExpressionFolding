@@ -5,12 +5,12 @@
 ## [Unreleased]
 
 ### Added
-
 - [lombok] - @NoArgsConstructor
-- [lombok] - @AllArgsConstructor
+- [lombok] - @AllArgsConstructor, @AllArgsConstructor(protected)
 - [lombok] - @Value and @Value(without=@EqualsAndHashCode)
 - [lombok] - @RequiredArgsConstructor
 - [lombok] - @Log and @Log(logger) - present for every Logger field
+- [expressionFunc] - Single-Expression Function
 
 ## [1.0.52] - 2024-05-18
 
