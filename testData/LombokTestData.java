@@ -26,7 +26,7 @@ import java.util.logging.Logger;</fold>
 
     </fold><fold text='' expand='false'>public LombokTestData getData()<fold text=' { ' expand='false'> {
         </fold>return data;<fold text=' }' expand='false'>
-    }</fold><fold text='' expand='false'></fold>
+    }</fold></fold><fold text='' expand='false'>
 
     </fold><fold text='' expand='false'>public void setData(LombokTestData data)<fold text=' { ' expand='false'> {
         </fold>this.data = data;<fold text=' }' expand='false'>
@@ -36,9 +36,9 @@ import java.util.logging.Logger;</fold>
         </fold>return ok;<fold text=' }' expand='false'>
     }</fold></fold><fold text='' expand='false'>
 
-    <fold text='' expand='false'></fold>public void setOk(boolean ok)<fold text=' { ' expand='false'> {
+    </fold><fold text='' expand='false'>public void setOk(boolean ok)<fold text=' { ' expand='false'> {
         </fold>this.ok = ok;<fold text=' }' expand='false'>
-    }</fold></fold><fold text='' expand='false'>
+    }</fold><fold text='' expand='false'></fold>
 
     </fold><fold text='' expand='false'>public String getString()<fold text=' { ' expand='false'> {
         </fold>return string;<fold text=' }' expand='false'>
@@ -58,9 +58,9 @@ import java.util.logging.Logger;</fold>
 
         </fold><fold text='' expand='false'>public LombokTestData getData()<fold text=' { ' expand='false'> {
             </fold>return data;<fold text=' }' expand='false'>
-        }</fold><fold text='' expand='false'></fold>
+        }</fold></fold><fold text='' expand='false'>
 
-        </fold><fold text='' expand='false'>public boolean isOk()<fold text=' { ' expand='false'> {
+        <fold text='' expand='false'></fold>public boolean isOk()<fold text=' { ' expand='false'> {
             </fold>return ok;<fold text=' }' expand='false'>
         }</fold></fold>
 
@@ -82,9 +82,9 @@ import java.util.logging.Logger;</fold>
             </fold>return data;<fold text=' }' expand='false'>
         }</fold></fold><fold text='' expand='false'>
 
-        <fold text='' expand='false'></fold>public void setData(LombokTestData data)<fold text=' { ' expand='false'> {
+        </fold><fold text='' expand='false'>public void setData(LombokTestData data)<fold text=' { ' expand='false'> {
             </fold>this.data = data;<fold text=' }' expand='false'>
-        }</fold></fold><fold text='' expand='false'>
+        }</fold><fold text='' expand='false'></fold>
 
         </fold><fold text='' expand='false'>public boolean isOk()<fold text=' { ' expand='false'> {
             </fold>return ok;<fold text=' }' expand='false'>
@@ -142,7 +142,7 @@ import java.util.logging.Logger;</fold>
             boolean ok;
             String string;<fold text='' expand='false'>
 
-            </fold><fold text='' expand='false'>@Override
+            <fold text='' expand='false'></fold>@Override
             public String toString() <fold text='{...}' expand='true'>{
                 return "ToStringPartial{"<fold text=' + ' expand='false'> +
                         </fold>"data=" + data<fold text=' + ' expand='false'> +
@@ -276,7 +276,7 @@ import java.util.logging.Logger;</fold>
             boolean ok;
             String string;<fold text='' expand='false'>
 
-            <fold text='' expand='false'></fold>@Override
+            </fold><fold text='' expand='false'>@Override
             public int hashCode() <fold text='{...}' expand='true'>{
                 int result = (data != null ? data.hashCode() : 0);
                 result = 31 * result + (ok ? 1 : 0);
@@ -293,7 +293,7 @@ import java.util.logging.Logger;</fold>
             </fold>return data;<fold text=' }' expand='false'>
         }</fold></fold><fold text='' expand='false'>
 
-        <fold text='' expand='false'></fold>public void setData(LombokTestData data)<fold text=' { ' expand='false'> {
+        </fold><fold text='' expand='false'>public void setData(LombokTestData data)<fold text=' { ' expand='false'> {
             </fold>this.data = data;<fold text=' }' expand='false'>
         }</fold></fold><fold text='' expand='false'>
 
@@ -316,7 +316,7 @@ import java.util.logging.Logger;</fold>
         </fold><fold text='' expand='false'>@Override
         public int hashCode()<fold text=' { ' expand='false'> {
             </fold>return new HashCodeBuilder(17, 37).append(data).append(ok).toHashCode();<fold text=' }' expand='false'>
-        }</fold><fold text='' expand='false'></fold>
+        }</fold></fold><fold text='' expand='false'>
 
         </fold><fold text='' expand='false'>@Override
         public String toString() <fold text='{...}' expand='true'>{
@@ -332,9 +332,9 @@ import java.util.logging.Logger;</fold>
 
             </fold><fold text='' expand='false'>public LombokTestData getData()<fold text=' { ' expand='false'> {
                 </fold>return data;<fold text=' }' expand='false'>
-            }</fold><fold text='' expand='false'></fold>
+            }</fold></fold><fold text='' expand='false'>
 
-            </fold><fold text='' expand='false'>public void setData(LombokTestData data)<fold text=' { ' expand='false'> {
+            <fold text='' expand='false'></fold>public void setData(LombokTestData data)<fold text=' { ' expand='false'> {
                 </fold>this.data = data;<fold text=' }' expand='false'>
             }</fold></fold><fold text='' expand='false'>
 
@@ -342,9 +342,9 @@ import java.util.logging.Logger;</fold>
                 </fold>return ok;<fold text=' }' expand='false'>
             }</fold></fold><fold text='' expand='false'>
 
-            <fold text='' expand='false'></fold>public void setOk(boolean ok)<fold text=' { ' expand='false'> {
+            </fold><fold text='' expand='false'>public void setOk(boolean ok)<fold text=' { ' expand='false'> {
                 </fold>this.ok = ok;<fold text=' }' expand='false'>
-            }</fold></fold><fold text='' expand='false'>
+            }</fold><fold text='' expand='false'></fold>
 
             </fold><fold text='' expand='false'>@Override
             public boolean equals(Object o) <fold text='{...}' expand='true'>{
@@ -369,9 +369,9 @@ import java.util.logging.Logger;</fold>
                 </fold>return data;<fold text=' }' expand='false'>
             }</fold></fold><fold text='' expand='false'>
 
-            <fold text='' expand='false'></fold>public void setData(LombokTestData data)<fold text=' { ' expand='false'> {
+            </fold><fold text='' expand='false'>public void setData(LombokTestData data)<fold text=' { ' expand='false'> {
                 </fold>this.data = data;<fold text=' }' expand='false'>
-            }</fold></fold><fold text='' expand='false'>
+            }</fold><fold text='' expand='false'></fold>
 
             </fold><fold text='' expand='false'>public void setOk(boolean ok)<fold text=' { ' expand='false'> {
                 </fold>this.ok = ok;<fold text=' }' expand='false'>
@@ -383,12 +383,12 @@ import java.util.logging.Logger;</fold>
                 if (!(o instanceof LombokTestData.DataFull)) return false;
                 LombokTestData.DataFull dataFull = (LombokTestData.DataFull) o;
                 return new EqualsBuilder().append(ok, dataFull.ok).append(data, dataFull.data).isEquals();
-            }</fold><fold text='' expand='false'></fold>
+            }</fold></fold><fold text='' expand='false'>
 
             </fold><fold text='' expand='false'>@Override
             public int hashCode()<fold text=' { ' expand='false'> {
                 </fold>return new HashCodeBuilder(17, 37).append(data).append(ok).toHashCode();<fold text=' }' expand='false'>
-            }</fold></fold><fold text='' expand='false'>
+            }</fold><fold text='' expand='false'></fold>
 
             </fold><fold text='' expand='false'>@Override
             public String toString() <fold text='{...}' expand='true'>{
@@ -409,11 +409,11 @@ import java.util.logging.Logger;</fold>
 
             </fold><fold text='' expand='false'>public void setData(LombokTestData data)<fold text=' { ' expand='false'> {
                 </fold>this.data = data;<fold text=' }' expand='false'>
-            }</fold><fold text='' expand='false'></fold>
+            }</fold></fold><fold text='' expand='false'>
 
             </fold><fold text='' expand='false'>public boolean isOk()<fold text=' { ' expand='false'> {
                 </fold>return ok;<fold text=' }' expand='false'>
-            }</fold></fold><fold text='' expand='false'>
+            }</fold><fold text='' expand='false'></fold>
 
             </fold><fold text='' expand='false'>@Override
             public boolean equals(Object o) <fold text='{...}' expand='true'>{
@@ -423,7 +423,7 @@ import java.util.logging.Logger;</fold>
                 return new EqualsBuilder().append(ok, dataFull.ok).append(data, dataFull.data).isEquals();
             }</fold></fold><fold text='' expand='false'>
 
-            <fold text='' expand='false'></fold>@Override
+            </fold><fold text='' expand='false'>@Override
             public int hashCode()<fold text=' { ' expand='false'> {
                 </fold>return new HashCodeBuilder(17, 37).append(data).append(ok).toHashCode();<fold text=' }' expand='false'>
             }</fold></fold><fold text='' expand='false'>
@@ -473,7 +473,7 @@ import java.util.logging.Logger;</fold>
             </fold>return dirty2;<fold text=' }' expand='false'>
         }</fold></fold><fold text='' expand='false'>
 
-        </fold><fold text='' expand='false'>public boolean isDirty2()<fold text=' { ' expand='false'> {
+        <fold text='' expand='false'></fold>public boolean isDirty2()<fold text=' { ' expand='false'> {
             </fold>return dirty;<fold text=' }' expand='false'>
         }</fold></fold>
 
@@ -483,9 +483,9 @@ import java.util.logging.Logger;</fold>
 
             </fold><fold text='' expand='false'>public boolean isDirty()<fold text=' { ' expand='false'> {
                 </fold>return !dirty;<fold text=' }' expand='false'>
-            }</fold></fold><fold text='' expand='false'>
+            }</fold><fold text='' expand='false'></fold>
 
-            <fold text='' expand='false'></fold>public boolean isOk()<fold text=' { ' expand='false'> {
+            </fold><fold text='' expand='false'>public boolean isOk()<fold text=' { ' expand='false'> {
                 </fold>return ok;<fold text=' }' expand='false'>
             }</fold></fold><fold text='' expand='false'>
 
@@ -540,7 +540,7 @@ import java.util.logging.Logger;</fold>
             <fold text='@Setter(dirty) b' expand='false'>b</fold>oolean dirty;
             <fold text='@Setter p' expand='false'>p</fold>rivate boolean ok;<fold text='' expand='false'>
 
-            <fold text='' expand='false'></fold>public void setDirty(boolean dirty)<fold text=' { ' expand='false'> {
+            </fold><fold text='' expand='false'>public void setDirty(boolean dirty)<fold text=' { ' expand='false'> {
                 </fold>this.dirty = !dirty;<fold text=' }' expand='false'>
             }</fold></fold><fold text='' expand='false'>
 
@@ -567,7 +567,7 @@ import java.util.logging.Logger;</fold>
                 if (ok != dirtyData.ok) return false;
 
                 return true;
-            }</fold><fold text='' expand='false'></fold>
+            }</fold></fold><fold text='' expand='false'>
 
             </fold><fold text='' expand='false'>@Override
             public int hashCode() <fold text='{...}' expand='true'>{
@@ -593,7 +593,7 @@ import java.util.logging.Logger;</fold>
 
     public class LogAnnotation <fold text='{...}' expand='true'>{
         <fold text='@Log p' expand='false'>p</fold>ublic class LogJava <fold text='{...}' expand='true'>{<fold text='' expand='false'>
-            <fold text='' expand='false'></fold>Logger log = Logger.getLogger("LogAnnotation.class");</fold>
+            </fold><fold text='' expand='false'>Logger log = Logger.getLogger("LogAnnotation.class");</fold>
         }</fold>
 
         <fold text='@Log p' expand='false'>p</fold>ublic class LogJava2 <fold text='{...}' expand='true'>{<fold text='' expand='false'>
@@ -611,7 +611,7 @@ import java.util.logging.Logger;</fold>
 
         <fold text='@Log @Log(log2) @Log(log3) p' expand='false'>p</fold>ublic class TripleLogJava <fold text='{...}' expand='true'>{<fold text='' expand='false'>
             </fold><fold text='' expand='false'>Logger log = Logger.getLogger("LogAnnotation.class");</fold><fold text='' expand='false'>
-            <fold text='' expand='false'></fold>public static final Logger log2 = Logger.getLogger("LogAnnotation.class");</fold><fold text='' expand='false'>
+            </fold><fold text='' expand='false'>public static final Logger log2 = Logger.getLogger("LogAnnotation.class");</fold><fold text='' expand='false'>
             </fold><fold text='' expand='false'>static Logger log3 = Logger.getLogger("LogAnnotation.class");</fold>
         }</fold>
     }</fold>
@@ -624,7 +624,7 @@ import java.util.logging.Logger;</fold>
 
     public class NoArgsConstructorAnnotation <fold text='{...}' expand='true'>{
         <fold text='@NoArgsConstructor p' expand='false'>p</fold>ublic class NoArgsConstructor <fold text='{...}' expand='true'>{<fold text='' expand='false'>
-            <fold text='' expand='false'></fold>public NoArgsConstructor() <fold text='{}' expand='true'>{
+            </fold><fold text='' expand='false'>public NoArgsConstructor() <fold text='{}' expand='true'>{
             }</fold></fold>
         }</fold>
         public class NoArgsConstructorSuperBefore <fold text='{...}' expand='true'>{
@@ -641,7 +641,7 @@ import java.util.logging.Logger;</fold>
         }</fold>
         <fold text='@NoArgsConstructor p' expand='false'>p</fold>ublic class NoArgsConstructorSuper <fold text='{...}' expand='true'>{
             private String field1;<fold text='' expand='false'>
-            <fold text='' expand='false'></fold>public NoArgsConstructorSuper()<fold text=' { ' expand='false'> {
+            </fold><fold text='' expand='false'>public NoArgsConstructorSuper()<fold text=' { ' expand='false'> {
                 </fold>super();<fold text=' }' expand='false'>
             }</fold></fold>
         }</fold>
@@ -722,29 +722,29 @@ import java.util.logging.Logger;</fold>
             }</fold></fold>
         }</fold>
 
-        public static class StaticNameArgs <fold text='{...}' expand='true'>{
+        <fold text='@AllArgsConstructor(private) p' expand='false'>p</fold>ublic static class StaticNameArgs <fold text='{...}' expand='true'>{
             private String field1;
             private int field2;
-            private boolean field3;
-            private StaticNameArgs(String field1, int field2, boolean field3) <fold text='{...}' expand='true'>{
+            private boolean field3;<fold text='' expand='false'>
+            </fold><fold text='' expand='false'>private StaticNameArgs(String field1, int field2, boolean field3) <fold text='{...}' expand='true'>{
                 this.field1 = field1;
                 this.field2 = field2;
                 this.field3 = field3;
-            }</fold>
+            }</fold></fold>
             public static StaticNameArgs of(String field1, int field2, boolean field3) <fold text='{...}' expand='true'>{
                 return new StaticNameArgs(field1, field2, field3);
             }</fold>
         }</fold>
 
-        public static class ProtectedArgs <fold text='{...}' expand='true'>{
+        <fold text='@AllArgsConstructor(protected) p' expand='false'>p</fold>ublic static class ProtectedArgs <fold text='{...}' expand='true'>{
             private String field1;
             private int field2;
-            private boolean field3;
-            protected ProtectedArgs(String field1, int field2, boolean field3) <fold text='{...}' expand='true'>{
+            private boolean field3;<fold text='' expand='false'>
+            </fold><fold text='' expand='false'>protected ProtectedArgs(String field1, int field2, boolean field3) <fold text='{...}' expand='true'>{
                 this.field1 = field1;
                 this.field2 = field2;
                 this.field3 = field3;
-            }</fold>
+            }</fold></fold>
         }</fold>
     }</fold>
 
@@ -803,32 +803,32 @@ import java.util.logging.Logger;</fold>
             }</fold></fold>
         }</fold>
 
-        public static class StaticNameArgs <fold text='{...}' expand='true'>{
+        <fold text='@RequiredArgsConstructor(private) p' expand='false'>p</fold>ublic static class StaticNameArgs <fold text='{...}' expand='true'>{
             private final String field1;
             private final int field2;
-            private final boolean field3;
+            private final boolean field3;<fold text='' expand='false'>
 
-            private StaticNameArgs(String field1, int field2, boolean field3) <fold text='{...}' expand='true'>{
+            </fold><fold text='' expand='false'>private StaticNameArgs(String field1, int field2, boolean field3) <fold text='{...}' expand='true'>{
                 this.field1 = field1;
                 this.field2 = field2;
                 this.field3 = field3;
-            }</fold>
+            }</fold></fold>
 
             public static StaticNameArgs of(String field1, int field2, boolean field3) <fold text='{...}' expand='true'>{
                 return new StaticNameArgs(field1, field2, field3);
             }</fold>
         }</fold>
 
-        public static class ProtectedArgs <fold text='{...}' expand='true'>{
+        <fold text='@RequiredArgsConstructor(protected) p' expand='false'>p</fold>ublic static class ProtectedArgs <fold text='{...}' expand='true'>{
             private final String field1;
             private final int field2;
-            private final boolean field3;
+            private final boolean field3;<fold text='' expand='false'>
 
-            protected ProtectedArgs(String field1, int field2, boolean field3) <fold text='{...}' expand='true'>{
+            </fold><fold text='' expand='false'>protected ProtectedArgs(String field1, int field2, boolean field3) <fold text='{...}' expand='true'>{
                 this.field1 = field1;
                 this.field2 = field2;
                 this.field3 = field3;
-            }</fold>
+            }</fold></fold>
         }</fold>
     }</fold>
 
@@ -837,20 +837,20 @@ import java.util.logging.Logger;</fold>
             private final String field1;
             private final int field2;
             private final boolean field3;<fold text='' expand='false'>
-            <fold text='' expand='false'></fold>public ValueArgs(String field1, int field2, boolean field3) <fold text='{...}' expand='true'>{
+            </fold><fold text='' expand='false'>public ValueArgs(String field1, int field2, boolean field3) <fold text='{...}' expand='true'>{
                 this.field1 = field1;
                 this.field2 = field2;
                 this.field3 = field3;
             }</fold></fold><fold text='' expand='false'>
             </fold><fold text='' expand='false'>public String getField1()<fold text=' { ' expand='false'> {
                 </fold>return field1;<fold text=' }' expand='false'>
-            }</fold></fold><fold text='' expand='false'>
+            }</fold><fold text='' expand='false'></fold>
             </fold><fold text='' expand='false'>public int getField2()<fold text=' { ' expand='false'> {
                 </fold>return field2;<fold text=' }' expand='false'>
-            }</fold><fold text='' expand='false'></fold>
+            }</fold></fold><fold text='' expand='false'>
             </fold><fold text='' expand='false'>public boolean isField3()<fold text=' { ' expand='false'> {
                 </fold>return field3;<fold text=' }' expand='false'>
-            }</fold></fold><fold text='' expand='false'>
+            }</fold><fold text='' expand='false'></fold>
             </fold><fold text='' expand='false'>@Override
             public boolean equals(Object o) <fold text='{...}' expand='true'>{
                 if (this == o) return true;
@@ -860,7 +860,7 @@ import java.util.logging.Logger;</fold>
                 if (field3 != valueArgs.field3) return false;
                 return field1 != null ? field1.equals(valueArgs.field1) : valueArgs.field1 == null;
             }</fold></fold><fold text='' expand='false'>
-            <fold text='' expand='false'></fold>@Override
+            </fold><fold text='' expand='false'>@Override
             public int hashCode() <fold text='{...}' expand='true'>{
                 int result = field1 != null ? field1.hashCode() : 0;
                 result = 31 * result + field2;
@@ -889,13 +889,13 @@ import java.util.logging.Logger;</fold>
             }</fold></fold><fold text='' expand='false'>
             </fold><fold text='' expand='false'>public String getField1()<fold text=' { ' expand='false'> {
                 </fold>return field1;<fold text=' }' expand='false'>
-            }</fold><fold text='' expand='false'></fold>
+            }</fold></fold><fold text='' expand='false'>
             </fold><fold text='' expand='false'>public int getField2()<fold text=' { ' expand='false'> {
                 </fold>return field2;<fold text=' }' expand='false'>
             }</fold></fold><fold text='' expand='false'>
             </fold><fold text='' expand='false'>public boolean isField3()<fold text=' { ' expand='false'> {
                 </fold>return field3;<fold text=' }' expand='false'>
-            }</fold></fold><fold text='' expand='false'>
+            }</fold><fold text='' expand='false'></fold>
             </fold><fold text='' expand='false'>@Override
             public final boolean equals(Object o) <fold text='{...}' expand='true'>{
                 if (this == o) return true;
@@ -921,7 +921,7 @@ import java.util.logging.Logger;</fold>
                 this.field1 = field1;
                 this.field2 = field2;
                 this.field3 = field3;
-            }</fold><fold text='' expand='false'></fold>
+            }</fold></fold><fold text='' expand='false'>
             </fold><fold text='' expand='false'>public String getField1()<fold text=' { ' expand='false'> {
                 </fold>return field1;<fold text=' }' expand='false'>
             }</fold></fold><fold text='' expand='false'>
@@ -975,6 +975,26 @@ import java.util.logging.Logger;</fold>
             </fold><fold text='' expand='false'>public String getField1()<fold text=' { ' expand='false'> {
                 </fold>return field1;<fold text=' }' expand='false'>
             }</fold></fold>
+        }</fold>
+        class Modifers <fold text='{...}' expand='true'>{
+            <fold text='@AllArgsConstructor(default) s' expand='false'>s</fold>tatic class AllArgsDefault <fold text='{...}' expand='true'>{
+                private String field1;<fold text='' expand='false'>
+                </fold><fold text='' expand='false'>AllArgsDefault(String field1)<fold text=' { ' expand='false'> {
+                    </fold>this.field1 = field1;<fold text=' }' expand='false'>
+                }</fold></fold>
+            }</fold>
+            <fold text='@AllArgsConstructor(private) s' expand='false'>s</fold>tatic class AllArgsPrivate <fold text='{...}' expand='true'>{
+                private String field1;<fold text='' expand='false'>
+                </fold><fold text='' expand='false'>private AllArgsPrivate(String field1)<fold text=' { ' expand='false'> {
+                    </fold>this.field1 = field1;<fold text=' }' expand='false'>
+                }</fold></fold>
+            }</fold>
+            <fold text='@AllArgsConstructor(protected) s' expand='false'>s</fold>tatic class AllArgsProteced <fold text='{...}' expand='true'>{
+                private String field1;<fold text='' expand='false'>
+                </fold><fold text='' expand='false'>protected AllArgsProteced(String field1)<fold text=' { ' expand='false'> {
+                    </fold>this.field1 = field1;<fold text=' }' expand='false'>
+                }</fold></fold>
+            }</fold>
         }</fold>
     }</fold>
 

@@ -40,17 +40,33 @@ object LombokExt : BaseExtension(), GenericCallback<PsiField, Pair<PsiMethod, St
         constructors: Array<PsiMethod>,
         fields: Collection<PsiField>
     ): List<HidingAnnotation> {
-        return constructors.flatMap { constructor ->
-            val list = mutableListOf<HidingAnnotation>()
-            if (fields.all {
-                    it.isFinal()
-                } && isAllArgsConstructor(constructor, fields)) {
-                list.add(HidingAnnotation(REQUIRED_ARGS_CONSTRUCTOR, listOf(constructor)))
-            } else  if (isAllArgsConstructor(constructor, fields)) {
-                list.add(HidingAnnotation(ALL_ARGS_CONSTRUCTOR, listOf(constructor)))
-            }
-            list
+        return constructors.flatMap {
+            it.foldArgsConstructor(fields)
         }
+    }
+
+    private fun PsiMethod.foldArgsConstructor(
+        fields: Collection<PsiField>
+    ): MutableList<HidingAnnotation> {
+        val list = mutableListOf<HidingAnnotation>()
+        if (fields.all {
+                it.isFinal()
+            } && isAllArgsConstructor(this, fields)) {
+            list.add(HidingAnnotation(REQUIRED_ARGS_CONSTRUCTOR, listOf(this), arguments = detectModifier()))
+        } else if (isAllArgsConstructor(this, fields)) {
+            list.add(HidingAnnotation(ALL_ARGS_CONSTRUCTOR, listOf(this), arguments = detectModifier()))
+        }
+        return list
+    }
+
+    private fun PsiMethod.detectModifier(): List<String> {
+        val modifier = this.modifier()
+        val arguments = if (!modifier.isPublic()) {
+            listOf(modifier.modifier)
+        } else {
+            emptyList()
+        }
+        return arguments
     }
 
     private fun foldNoArgsConstructor(constructors: Array<PsiMethod>): List<HidingAnnotation> {
@@ -66,8 +82,7 @@ object LombokExt : BaseExtension(), GenericCallback<PsiField, Pair<PsiMethod, St
     }
 
     private fun isAllArgsConstructor(method: PsiMethod, fields: Collection<PsiField>): Boolean {
-        return method.isPublic()
-                && method.hasParameters()
+        return method.hasParameters()
                 && fields.isNotEmpty()
                 && method.parameterList.parametersCount == fields.size
                 && MethodBodyInspector.isAllArgsConstructor(method, fields)
@@ -309,6 +324,7 @@ enum class MethodType {
 }
 
 enum class LombokFoldingAnnotation(val annotation: String) {
+    SERIAL("@Serial"),
     LOG("@Log"),
 
     LOMBOK_GETTER("@Getter"),
@@ -317,7 +333,6 @@ enum class LombokFoldingAnnotation(val annotation: String) {
     LOMBOK_EQUALS("@Equals"),
     LOMBOK_HASHCODE("@HashCode"),
 
-    SERIAL("@Serial"),
     NO_ARGS_CONSTRUCTOR("@NoArgsConstructor"),
     ALL_ARGS_CONSTRUCTOR("@AllArgsConstructor"),
     REQUIRED_ARGS_CONSTRUCTOR("@RequiredArgsConstructor"),
@@ -337,11 +352,7 @@ enum class LombokFoldingAnnotation(val annotation: String) {
     LOMBOK_EQUALS_AND_HASHCODE("@EqualsAndHashCode") {
         override fun children(): EnumSet<LombokFoldingAnnotation> = of(LOMBOK_EQUALS, LOMBOK_HASHCODE)
     },
-
-
-
     ;
-
     open fun children(): EnumSet<LombokFoldingAnnotation>? = null
 }
 
