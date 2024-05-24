@@ -3,22 +3,25 @@ package com.intellij.advancedExpressionFolding.extension.methodcall
 import com.intellij.advancedExpressionFolding.extension.Consts
 import com.intellij.advancedExpressionFolding.extension.methodcall.collection.CollectionGetMethodCall
 import com.intellij.advancedExpressionFolding.extension.methodcall.collection.MapPutMethodCall
+import com.intellij.advancedExpressionFolding.extension.methodcall.collection.OptionalGetMethodCall
 import com.intellij.advancedExpressionFolding.extension.methodcall.date.CreateDateFactoryMethodCall
 import com.intellij.advancedExpressionFolding.extension.methodcall.date.IsAfterDateMethodCall
 import com.intellij.advancedExpressionFolding.extension.methodcall.date.IsBeforeDateMethodCall
 import com.intellij.advancedExpressionFolding.extension.methodcall.nullable.CheckNotNullMethodCall
 
-//TODO: move to extension-point
+typealias MethodName = String
+typealias ClassName = String
+
 object MethodCallFactory {
-    private lateinit var methodCallMap: Map<String?, AbstractMethodCall>
+    private lateinit var methodCallMap: Map<MethodName?, List<AbstractMethodCall>>
 
-    lateinit var supportedClasses: Collection<String>
-    lateinit var supportedMethods: Collection<String>
+    lateinit var supportedClasses: Collection<ClassName>
+    lateinit var supportedMethods: Collection<MethodName>
 
-    lateinit var classlessMethods: Collection<String>
+    lateinit var classlessMethods: Collection<MethodName>
 
 
-    fun clear() {
+    fun refreshMethodCallMappings() {
         methodCallMap = createMethodCalls()
 
         supportedClasses = createSupportedClasses()
@@ -28,43 +31,59 @@ object MethodCallFactory {
     }
 
     init {
-        clear()
+        refreshMethodCallMappings()
     }
 
-    private fun createMethodCalls(): Map<String?, AbstractMethodCall> =
-        //TODO: move to extension list when stable
-        mutableListOf(
-            IsBeforeDateMethodCall(), IsAfterDateMethodCall(), CreateDateFactoryMethodCall(),
-            CheckNotNullMethodCall(), MapPutMethodCall(), CollectionGetMethodCall()
-        ).filter {
+    private fun createMethodCalls(): Map<MethodName?, List<AbstractMethodCall>> =
+        getAllMethodCalls().filter {
             it.permission()
         }.flatMap { methodCall ->
             methodCall.methodNames.map { methodName ->
                 methodName to methodCall
             }
-        }.toMap()
+        }.groupBy(
+            { it.first },
+            { it.second }
+        ).mapValues { entry ->
+            entry.value.sortedWith(compareBy {
+                it.classNames.isEmpty()
+            })
+        }
 
-    private fun createSupportedClasses(): Collection<String> =
+    //TODO: move to extension list when API is stable
+    private fun getAllMethodCalls() = listOf(
+        IsBeforeDateMethodCall(), IsAfterDateMethodCall(), CreateDateFactoryMethodCall(),
+        CheckNotNullMethodCall(), MapPutMethodCall(), CollectionGetMethodCall(),
+        OptionalGetMethodCall(),
+    )
+
+    private fun createSupportedClasses(): Collection<ClassName> =
         methodCallMap.values
+            .asSequence()
+            .flatten()
             .filter {
                 it.classNames.isNotEmpty()
             }.map {
                 it.classNames
-            }.distinct().flatten() + Consts.SUPPORTED_CLASSES
+            }.distinct().flatten()
+            .toList() + Consts.SUPPORTED_CLASSES
 
-    private fun createSupportedMethods(): List<String> =
+    private fun createSupportedMethods(): List<MethodName> =
         methodCallMap.values
+            .flatten()
             .mapNotNull {
                 it.methodNames
             }.flatten() + Consts.SUPPORTED_METHODS
 
-    private fun createClasslessMethods(): List<String> =
+    private fun createClasslessMethods(): List<MethodName> =
         methodCallMap.values
+            .flatten()
             .filter {
                 it.classNames.isEmpty()
             }.mapNotNull {
                 it.methodNames
             }.flatten() + Consts.UNSUPPORTED_CLASSES_METHODS_EXCEPTIONS
 
-    fun findByMethodName(methodName: String?): AbstractMethodCall? = methodCallMap[methodName]
+    fun findByMethodName(methodName: MethodName?): List<AbstractMethodCall>? =
+        methodCallMap[methodName]
 }

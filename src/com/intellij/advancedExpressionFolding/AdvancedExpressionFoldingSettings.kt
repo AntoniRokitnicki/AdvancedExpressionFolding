@@ -125,8 +125,6 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
         }
     }
 
-
-
     fun disableAll() = updateAllState(false)
     fun enableAll() = updateAllState(true)
 

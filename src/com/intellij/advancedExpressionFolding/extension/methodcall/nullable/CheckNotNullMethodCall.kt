@@ -15,9 +15,9 @@ import com.intellij.psi.*
 
 class CheckNotNullMethodCall : AbstractMethodCall() {
 
-    override fun permission(): Boolean = lombok
+    override fun permission() = lombok
 
-    override val methodNames: List<String> by lazy { listOf("checkNotNull") }
+    override val methodNames by lazy { listOf("checkNotNull") }
 
     override fun onTwoArguments(
         element: PsiMethodCallExpression,

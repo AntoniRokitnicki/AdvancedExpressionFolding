@@ -16,7 +16,7 @@ on:
       - 'wiki/**'
       - 'build-version.gradle.kts'
       - '*.md'
-
+      - 'pages/**'
 jobs:
 
   # Prepare and publish the plugin to JetBrains Marketplace repository

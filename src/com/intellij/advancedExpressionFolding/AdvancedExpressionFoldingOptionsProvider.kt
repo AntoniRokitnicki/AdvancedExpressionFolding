@@ -213,7 +213,7 @@ class AdvancedExpressionFoldingOptionsProvider : AbstractExpressionFoldingOption
 
     override fun apply() {
         super.apply()
-        MethodCallFactory.clear()
+        MethodCallFactory.refreshMethodCallMappings()
     }
 
 }

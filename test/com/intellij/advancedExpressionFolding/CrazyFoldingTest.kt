@@ -1,10 +1,10 @@
 package com.intellij.advancedExpressionFolding
 
-import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.Companion.allMainProperties
+import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.Companion.allProperties
 import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.Companion.getInstance
 import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.State
 import org.junit.AssumptionViolatedException
-import org.junit.jupiter.api.Disabled
+import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
@@ -12,7 +12,7 @@ import java.util.*
 import java.util.stream.Stream
 import kotlin.math.pow
 
-@Disabled("very long execution time")
+@EnabledIfEnvironmentVariable(named = "dev-mode", matches = "1")
 class CrazyFoldingTest : BaseTest() {
 
     class TooComplexException : AssumptionViolatedException("TOO COMPLEX FOLDING")
@@ -35,6 +35,8 @@ class CrazyFoldingTest : BaseTest() {
             } else {
                 throw e
             }
+        } finally {
+            GitUtils.commitAllChanges()
         }
     }
 
@@ -44,16 +46,17 @@ class CrazyFoldingTest : BaseTest() {
     @ParameterizedTest
     @MethodSource("permutations")
     fun testElvisTestData(booleans: BooleanArray) {
-        allMainProperties().zip(booleans.toList()).forEach { (prop, value) ->
+        allProperties().zip(booleans.toList()).forEach { (prop, value) ->
             prop.setter.call(state, value)
         }
+
         doFoldingTest()
     }
 
     companion object {
         @JvmStatic
         fun permutations(): Stream<Arguments> {
-            val numBooleans = allMainProperties().size
+            val numBooleans = allProperties().size
             return Stream.iterate(BooleanArray(numBooleans)) { prev ->
                 val next = prev.clone()
                 for (i in 0 until numBooleans) {
