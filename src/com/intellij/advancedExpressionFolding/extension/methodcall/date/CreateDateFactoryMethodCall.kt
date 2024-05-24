@@ -8,11 +8,11 @@ import com.intellij.psi.PsiLiteralExpression
 import com.intellij.psi.PsiMethodCallExpression
 
 class CreateDateFactoryMethodCall : AbstractDateMethodCall() {
-    override fun permission(): Boolean = localDateLiteralCollapse || localDateLiteralPostfixCollapse
+    override fun permission() = localDateLiteralCollapse || localDateLiteralPostfixCollapse
 
-    override val methodNames: List<String> by lazy { listOf("of") }
+    override val methodNames by lazy { listOf("of") }
 
-    override val classNames: List<String> by lazy { listOf("java.time.LocalDate") }
+    override val classNames by lazy { listOf("java.time.LocalDate") }
 
     override fun onManyArguments(
         element: PsiMethodCallExpression,

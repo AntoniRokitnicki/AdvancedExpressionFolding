@@ -2,7 +2,7 @@ package com.intellij.advancedExpressionFolding
 
 import com.intellij.advancedExpressionFolding.FoldingTemporaryTestEditor.getFoldedText
 import com.intellij.advancedExpressionFolding.diff.FoldingDescriptorExWrapper
-import com.intellij.advancedExpressionFolding.extension.methodcall.MethodCallFactory.clear
+import com.intellij.advancedExpressionFolding.extension.methodcall.MethodCallFactory.refreshMethodCallMappings
 import com.intellij.openapi.application.WriteAction
 import com.intellij.openapi.fileTypes.FileTypeManager
 import com.intellij.openapi.projectRoots.JavaSdk
@@ -108,7 +108,7 @@ abstract class BaseTest : LightJavaCodeInsightFixtureTestCase5(TEST_JDK) {
                 replaceTestDataWithExample(testName, testDataFile)
             }
 
-            clear()
+            refreshMethodCallMappings()
             val store = FoldingDataStorage()
             AdvancedExpressionFoldingBuilder.setStore(store)
             try {

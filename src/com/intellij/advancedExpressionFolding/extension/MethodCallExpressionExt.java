@@ -9,6 +9,7 @@ import com.intellij.advancedExpressionFolding.expression.stream.StreamExpression
 import com.intellij.advancedExpressionFolding.expression.stream.StreamFilterNotNull;
 import com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall;
 import com.intellij.advancedExpressionFolding.expression.stream.StreamMapCallParam;
+import com.intellij.advancedExpressionFolding.extension.methodcall.AbstractMethodCall;
 import com.intellij.advancedExpressionFolding.extension.methodcall.Context;
 import com.intellij.advancedExpressionFolding.extension.methodcall.MethodCallFactory;
 import com.intellij.openapi.editor.Document;
@@ -86,12 +87,14 @@ public class MethodCallExpressionExt {
         String methodName = identifier.getText();
         int argumentCount = element.getArgumentList().getExpressions().length;
 
-        var methodCall = FACTORY.findByMethodName(methodName);
-        if (methodCall != null) {
-            var context = new Context(methodName, className, qualifierExpression, method, document, identifier, Collections.emptyList());
-            var expression = methodCall.onAnyArguments(element, context);
-            if (expression != null) {
-                return expression;
+        var methodCalls = FACTORY.findByMethodName(methodName);
+        if (methodCalls != null) {
+            for (AbstractMethodCall methodCall : methodCalls) {
+                var context = new Context(methodName, className, qualifierExpression, method, document, identifier, Collections.emptyList());
+                var expression = methodCall.onAnyArguments(element, context);
+                if (expression != null) {
+                    return expression;
+                }
             }
         }
 

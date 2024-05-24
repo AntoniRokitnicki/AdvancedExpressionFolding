@@ -11,9 +11,9 @@ import com.intellij.psi.PsiStatement
 
 class MapPutMethodCall : AbstractMethodCall() {
 
-    override fun permission(): Boolean = getExpressionsCollapse
+    override fun permission() = getExpressionsCollapse
 
-    override val methodNames: List<String> by lazy { listOf("set", "put", "setProperty", "setAttribute", "setValue") }
+    override val methodNames by lazy { listOf("set", "put", "setProperty", "setAttribute", "setValue") }
 
     override fun onTwoArguments(
         element: PsiMethodCallExpression,
@@ -22,10 +22,8 @@ class MapPutMethodCall : AbstractMethodCall() {
         a2: PsiExpression,
         a1Expression: Expression,
         a2Expression: Expression
-    ): Expression? {
-        return (element.parent is PsiStatement).on()?.let {
-            Put(element, element.textRange, context.qualifierExpression, a1Expression, a2Expression)
-        }
+    ): Expression? = (element.parent is PsiStatement).on()?.let {
+        Put(element, element.textRange, context.qualifierExpression, a1Expression, a2Expression)
     }
 
 }

@@ -15,27 +15,16 @@ import com.intellij.psi.PsiMethodCallExpression
 
 class CollectionGetMethodCall : AbstractMethodCall() {
 
-    override fun permission(): Boolean = getExpressionsCollapse || optional
+    override fun permission() = getExpressionsCollapse
 
-    override val methodNames: List<String> by lazy { listOf("get", "getProperty", "getAttribute", "getValue", "orElseThrow") }
-
-
-    //TODO: extract to a new class when its possible to have two AbstractMethodCall using same methodName = get
-    override fun onNoArguments(element: PsiMethodCallExpression, context: Context): Expression? {
-        if (optional && context.className == "java.util.Optional") {
-            return OptionalNotNullAssertionGet(element, context.identifier.textRange, context.qualifierExpression)
-        }
-
-        return super.onNoArguments(element, context)
-    }
+    override val methodNames by lazy { listOf("get", "getProperty", "getAttribute", "getValue") }
 
     override fun onSingleArgument(
         element: PsiMethodCallExpression,
         context: Context,
         argument: PsiExpression,
         argumentExpression: Expression
-    ): Expression? {
-        getExpressionsCollapse.on() ?: return null
+    ): Expression {
         val qualifierExpression = context.qualifierExpression
         if (argumentExpression is NumberLiteral && argumentExpression.number == 0) {
             return Get(element, element.textRange, qualifierExpression, argumentExpression, Style.FIRST)

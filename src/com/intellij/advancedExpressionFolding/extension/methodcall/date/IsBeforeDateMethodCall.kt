@@ -7,9 +7,9 @@ import com.intellij.psi.PsiExpression
 import com.intellij.psi.PsiMethodCallExpression
 
 class IsBeforeDateMethodCall : AbstractDateMethodCall() {
-    override fun permission(): Boolean = comparingLocalDatesCollapse
+    override fun permission() = comparingLocalDatesCollapse
 
-    override val methodNames: List<String> by lazy { listOf("isBefore", "before") }
+    override val methodNames by lazy { listOf("isBefore", "before") }
 
     override fun onSingleArgument(
         element: PsiMethodCallExpression,
