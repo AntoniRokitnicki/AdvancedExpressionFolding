@@ -22,8 +22,8 @@ import java.nio.file.Files
 abstract class BaseTest : LightJavaCodeInsightFixtureTestCase5(TEST_JDK) {
     override fun getTestDataPath(): String = "testData"
 
-    protected open fun doFoldingTest() {
-        val testName = getTestName(false)
+    protected open fun doFoldingTest(testNameArg: String? = null) {
+        val testName = testNameArg ?: getTestName(false)
         val fileName = getTestFileName(testName)
         rewriteFileOnFailure(fileName, testName) {
             fixture.testFoldingWithCollapseStatus(fileName)
