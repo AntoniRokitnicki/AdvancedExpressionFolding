@@ -26,7 +26,7 @@ open class FoldingTest : BaseTest() {
     open fun doFoldingTest(vararg turnOnProperties: KMutableProperty0<Boolean>) {
         assignState(turnOnProperties)
         try {
-            super.doFoldingTest()
+            super.doFoldingTest(null)
         } catch (e: com.intellij.rt.execution.junit.FileComparisonFailure) {
             throw RuntimeException("FileComparisonFailure")
         } catch (e: IllegalArgumentException) {
