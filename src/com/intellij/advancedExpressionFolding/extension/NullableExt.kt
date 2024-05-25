@@ -2,10 +2,10 @@ package com.intellij.advancedExpressionFolding.extension
 
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.custom.*
-import com.intellij.advancedExpressionFolding.extension.LombokExt.callback
 import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFoldingAnnotation.Companion.findByName
 import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFoldingAnnotation.NOT_NULL
 import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFoldingAnnotation.NULLABLE
+import com.intellij.advancedExpressionFolding.extension.lombok.LombokExt.callback
 import com.intellij.openapi.editor.Document
 import com.intellij.psi.*
 import com.intellij.psi.impl.source.PsiClassReferenceType

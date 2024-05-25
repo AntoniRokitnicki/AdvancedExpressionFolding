@@ -11,12 +11,12 @@ import java.util.logging.Logger;
 /**
  * {@link com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.IState#getLombok()}
  * <p>
- * {@link com.intellij.advancedExpressionFolding.extension.LombokExt#addLombokSupport(com.intellij.psi.PsiClass)}
+ * {@link com.intellij.advancedExpressionFolding.extension.lombok.LombokExt#addLombokSupport(com.intellij.psi.PsiClass)}
  * <p>
  * {@link com.intellij.advancedExpressionFolding.FoldingTest#testLombokTestData()}
  */
 @SuppressWarnings("ALL")
-@Getter @Setter @Serial public class LombokTestData {
+@Builder @Getter @Setter @Serial public class LombokTestData {
 
     LombokTestData data;
     boolean ok;
@@ -207,6 +207,8 @@ import java.util.logging.Logger;
     public class NoArgsConstructorAnnotation {
         @NoArgsConstructor public class NoArgsConstructor {
         }
+        @NoArgsConstructor(private) class NoArgsConstructorPrivate {
+        }
         public class NoArgsConstructorSuperBefore {
             public NoArgsConstructorSuperBefore() {
                 // comment
@@ -374,7 +376,7 @@ import java.util.logging.Logger;
             private final int field2;
             private final boolean field3;
         }
-        @Value(without=@EqualsAndHashCode) public static class ValueWihhoutEqualsAndHashcode {
+        @LightValue public static class ValueWihhoutEqualsAndHashcode {
             private final String field1;
             private final int field2;
             private final boolean field3;
@@ -390,7 +392,7 @@ import java.util.logging.Logger;
         @Value public static class Value {
             private final String field1;
         }
-        @Value(without=@EqualsAndHashCode) public static class ValueWithoutEqualsAndHashCode {
+        @LightValue public static class ValueWithoutEqualsAndHashCode {
             private final String field1;
         }
         class Modifers {
@@ -406,5 +408,22 @@ import java.util.logging.Logger;
         }
     }
 
+
+    @Builder class ClassWithBuilder {
+        private String name;
+
+        class ClassWithBuilderBuilder {
+            private String name;
+
+            public ClassWithBuilderBuilder name(String name) {
+                this.name = name;
+                return this;
+            }
+
+            public ClassWithBuilder build() {
+                return new ClassWithBuilder();
+            }
+        }
+    }
 
 }

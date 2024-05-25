@@ -1,13 +1,14 @@
-package com.intellij.advancedExpressionFolding.extension
+package com.intellij.advancedExpressionFolding.extension.lombok
 
 import com.intellij.advancedExpressionFolding.expression.custom.AbstractMultiExpression
 import com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression
-import com.intellij.advancedExpressionFolding.extension.LombokExt.lombokDirtyOff
-import com.intellij.advancedExpressionFolding.extension.LombokFoldingAnnotation.*
+import com.intellij.advancedExpressionFolding.extension.*
 import com.intellij.advancedExpressionFolding.extension.MethodBodyInspector.isDirtyGetter
 import com.intellij.advancedExpressionFolding.extension.MethodBodyInspector.isDirtySetter
-import com.intellij.advancedExpressionFolding.extension.MethodType.*
 import com.intellij.advancedExpressionFolding.extension.PsiClassExt.HidingAnnotation
+import com.intellij.advancedExpressionFolding.extension.lombok.LombokExt.lombokDirtyOff
+import com.intellij.advancedExpressionFolding.extension.lombok.LombokFoldingAnnotation.*
+import com.intellij.advancedExpressionFolding.extension.lombok.MethodType.*
 import com.intellij.openapi.util.Key
 import com.intellij.openapi.util.NlsSafe
 import com.intellij.psi.PsiClass
@@ -15,14 +16,13 @@ import com.intellij.psi.PsiField
 import com.intellij.psi.PsiJavaFile
 import com.intellij.psi.PsiMethod
 import com.intellij.psi.impl.source.PsiClassReferenceType
-import java.util.*
-import java.util.EnumSet.of
 
 object LombokExt : BaseExtension(), GenericCallback<PsiField, Pair<PsiMethod, String?>> {
 
     fun PsiClass.addLombokSupport(): List<HidingAnnotation> {
         val hidingAnnotations = mutableListOf<HidingAnnotation>()
         hidingAnnotations += foldLog(this.fields)
+        hidingAnnotations += foldBuilder()
         hidingAnnotations += foldNoArgsConstructor(this.constructors)
 
         createFieldMap(this)?.let { fieldsMap ->
@@ -34,6 +34,14 @@ object LombokExt : BaseExtension(), GenericCallback<PsiField, Pair<PsiMethod, St
         }
         optimizations(hidingAnnotations)
         return hidingAnnotations
+    }
+
+    private fun PsiClass.foldBuilder(): List<HidingAnnotation> {
+        return allInnerClasses.filter {
+            it.name?.endsWith("Builder") == true
+        }.map {
+            HidingAnnotation(LOMBOK_BUILDER, emptyList())
+        }
     }
 
     private fun foldArgsConstructor(
@@ -52,9 +60,9 @@ object LombokExt : BaseExtension(), GenericCallback<PsiField, Pair<PsiMethod, St
         if (fields.all {
                 it.isFinal()
             } && isAllArgsConstructor(this, fields)) {
-            list.add(HidingAnnotation(REQUIRED_ARGS_CONSTRUCTOR, listOf(this), arguments = detectModifier()))
+            list.add(HidingAnnotation(LOMBOK_REQUIRED_ARGS_CONSTRUCTOR, listOf(this), arguments = detectModifier()))
         } else if (isAllArgsConstructor(this, fields)) {
-            list.add(HidingAnnotation(ALL_ARGS_CONSTRUCTOR, listOf(this), arguments = detectModifier()))
+            list.add(HidingAnnotation(LOMBOK_ALL_ARGS_CONSTRUCTOR, listOf(this), arguments = detectModifier()))
         }
         return list
     }
@@ -72,7 +80,7 @@ object LombokExt : BaseExtension(), GenericCallback<PsiField, Pair<PsiMethod, St
     private fun foldNoArgsConstructor(constructors: Array<PsiMethod>): List<HidingAnnotation> {
         return constructors.firstNotNullOfOrNull {
             if (isNoArgsConstructor(it)) {
-                HidingAnnotation(NO_ARGS_CONSTRUCTOR, listOf(it))
+                HidingAnnotation(LOMBOK_NO_ARGS_CONSTRUCTOR, listOf(it), arguments = it.detectModifier())
             } else {
                 null
             }
@@ -103,7 +111,7 @@ object LombokExt : BaseExtension(), GenericCallback<PsiField, Pair<PsiMethod, St
             val arguments = dirty.on(logField.name)?.let {
                 listOf(it)
             } ?: emptyList()
-            HidingAnnotation(LOG, listOf(logField), arguments = arguments)
+            HidingAnnotation(LOMBOK_LOG, listOf(logField), arguments = arguments)
         }
     }
 
@@ -275,13 +283,15 @@ object LombokExt : BaseExtension(), GenericCallback<PsiField, Pair<PsiMethod, St
 
     internal fun hasLombokImports(clazz: PsiClass) =
         clazz.containingFile.asInstance<PsiJavaFile>()?.importList?.importStatements?.any {
-            it.qualifiedName?.contains("lombok") ?: false
+            it.qualifiedName?.startsWith("lombok") ?: false
         } ?: false
 
     override val callbackKey: Key<() -> Pair<PsiMethod, String?>> by lazy {
         Key.create("lombok-callback")
     }
 }
+
+
 
 
 enum class MethodType {
@@ -321,39 +331,6 @@ enum class MethodType {
 
     open fun isDirty(method: PsiMethod): Boolean = false
     open fun createFieldLevelAnnotation(dirty: Boolean): String? = null
-}
-
-enum class LombokFoldingAnnotation(val annotation: String) {
-    SERIAL("@Serial"),
-    LOG("@Log"),
-
-    LOMBOK_GETTER("@Getter"),
-    LOMBOK_SETTER("@Setter"),
-    LOMBOK_TO_STRING("@ToString"),
-    LOMBOK_EQUALS("@Equals"),
-    LOMBOK_HASHCODE("@HashCode"),
-
-    NO_ARGS_CONSTRUCTOR("@NoArgsConstructor"),
-    ALL_ARGS_CONSTRUCTOR("@AllArgsConstructor"),
-    REQUIRED_ARGS_CONSTRUCTOR("@RequiredArgsConstructor"),
-
-    LOMBOK_DATA("@Data") {
-        override fun children(): EnumSet<LombokFoldingAnnotation> =
-            of(LOMBOK_GETTER, LOMBOK_SETTER, LOMBOK_EQUALS, LOMBOK_HASHCODE)
-    },
-    LOMBOK_VALUE("@Value") {
-        override fun children(): EnumSet<LombokFoldingAnnotation> =
-            of(LOMBOK_GETTER, REQUIRED_ARGS_CONSTRUCTOR, LOMBOK_EQUALS, LOMBOK_HASHCODE)
-    },
-    LOMBOK_VALUE_SIMPLE("@Value(without=@EqualsAndHashCode)") {
-        override fun children(): EnumSet<LombokFoldingAnnotation> =
-            of(LOMBOK_GETTER, REQUIRED_ARGS_CONSTRUCTOR)
-    },
-    LOMBOK_EQUALS_AND_HASHCODE("@EqualsAndHashCode") {
-        override fun children(): EnumSet<LombokFoldingAnnotation> = of(LOMBOK_EQUALS, LOMBOK_HASHCODE)
-    },
-    ;
-    open fun children(): EnumSet<LombokFoldingAnnotation>? = null
 }
 
 private fun PsiMethod.findMethodType(): MethodType =

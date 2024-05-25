@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 /**
  * {@link com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.IState#getLombok()}
  * <p>
- * {@link com.intellij.advancedExpressionFolding.extension.LombokExt#addLombokSupport(com.intellij.psi.PsiClass)}
+ * {@link com.intellij.advancedExpressionFolding.extension.lombok.LombokExt#addLombokSupport(com.intellij.psi.PsiClass)}
  * <p>
  * {@link com.intellij.advancedExpressionFolding.FoldingTest#testLombokTestData()}
  */
@@ -627,6 +627,10 @@ public class LombokTestData {
             public NoArgsConstructor() {
             }
         }
+        class NoArgsConstructorPrivate {
+            private NoArgsConstructorPrivate() {
+            }
+        }
         public class NoArgsConstructorSuperBefore {
             public NoArgsConstructorSuperBefore() {
                 // comment
@@ -998,5 +1002,22 @@ public class LombokTestData {
         }
     }
 
+
+    class ClassWithBuilder {
+        private String name;
+
+        class ClassWithBuilderBuilder {
+            private String name;
+
+            public ClassWithBuilderBuilder name(String name) {
+                this.name = name;
+                return this;
+            }
+
+            public ClassWithBuilder build() {
+                return new ClassWithBuilder();
+            }
+        }
+    }
 
 }

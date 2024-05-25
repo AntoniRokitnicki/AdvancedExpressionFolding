@@ -3,8 +3,10 @@ package com.intellij.advancedExpressionFolding.extension
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression
 import com.intellij.advancedExpressionFolding.extension.Consts.SUPERSCRIPT_MAPPING
-import com.intellij.advancedExpressionFolding.extension.LombokExt.addLombokSupport
-import com.intellij.advancedExpressionFolding.extension.LombokFoldingAnnotation.SERIAL
+import com.intellij.advancedExpressionFolding.extension.lombok.LombokExt
+import com.intellij.advancedExpressionFolding.extension.lombok.LombokExt.addLombokSupport
+import com.intellij.advancedExpressionFolding.extension.lombok.LombokFoldingAnnotation
+import com.intellij.advancedExpressionFolding.extension.lombok.LombokFoldingAnnotation.SERIAL
 import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiField
