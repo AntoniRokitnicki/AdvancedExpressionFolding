@@ -5,10 +5,11 @@
 ## [Unreleased]
 
 ### Added
-- [lombok] - @NoArgsConstructor
-- [lombok] - @AllArgsConstructor, @AllArgsConstructor(protected)
-- [lombok] - @Value and @Value(without=@EqualsAndHashCode)
-- [lombok] - @RequiredArgsConstructor
+- [lombok] - @Builder - marker annotation when class has inner class with name *Builder
+- [lombok] - @Value and @LightValue(without @EqualsAndHashCode)
+- [lombok] - @NoArgsConstructor, @NoArgsConstructor(protected), etc.
+- [lombok] - @AllArgsConstructor, @AllArgsConstructor(protected), etc.
+- [lombok] - @RequiredArgsConstructor, @RequiredArgsConstructor(protected), etc.
 - [lombok] - @Log and @Log(logger) - present for every Logger field
 - [expressionFunc] - Single-Expression Function
 

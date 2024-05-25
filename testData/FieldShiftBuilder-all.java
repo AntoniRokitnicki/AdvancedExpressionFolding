@@ -1,6 +1,6 @@
 package data;
 
-<fold text='@AllArgsConstructor(default) @Getter p' expand='false'>p</fold>ublic class FieldShiftBuilder {
+<fold text='@Builder @AllArgsConstructor(default) @Getter p' expand='false'>p</fold>ublic class FieldShiftBuilder {
     private String username;
     private boolean active;
     private String userIdentifier;
@@ -78,7 +78,7 @@ package data;
         </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>this.child<fold text=' ' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
     </fold>}</fold></fold>
 
-    <fold text='@AllArgsConstructor(default) @Getter p' expand='false'>p</fold>ublic static class UserData2 <fold text='{...}' expand='true'>{
+    <fold text='@Builder @AllArgsConstructor(default) @Getter p' expand='false'>p</fold>ublic static class UserData2 <fold text='{...}' expand='true'>{
         private String username;
         private boolean active;
         private String userIdentifier;<fold text='' expand='false'>
@@ -105,7 +105,7 @@ package data;
             </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>this.userIdentifier<fold text=' ' expand='true'>;<fold text='' expand='true'><fold text=' }' expand='false'></fold>
         </fold>}</fold></fold>
 
-        <fold text='@NoArgsConstructor @ToString p' expand='false'>p</fold>ublic static class UserData2Builder <fold text='{...}' expand='true'>{
+        <fold text='@NoArgsConstructor(default) @ToString p' expand='false'>p</fold>ublic static class UserData2Builder <fold text='{...}' expand='true'>{
             private String username;
             private boolean active;
             private String userIdentifier;<fold text='' expand='false'>
@@ -141,7 +141,7 @@ package data;
     public record UserDataRecord(String username, boolean active, String userIdentifier) <fold text='{...}' expand='true'>{
     }</fold>
 
-    <fold text='@NoArgsConstructor @ToString p' expand='false'>p</fold>ublic static class BuilderFieldShiftBuilder <fold text='{...}' expand='true'>{
+    <fold text='@NoArgsConstructor(default) @ToString p' expand='false'>p</fold>ublic static class BuilderFieldShiftBuilder <fold text='{...}' expand='true'>{
         private String username;
         private boolean active;
         private String userIdentifier;
