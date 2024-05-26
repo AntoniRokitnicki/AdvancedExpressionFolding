@@ -39,10 +39,9 @@ class CheckNotNullMethodCall : AbstractMethodCall() {
         argument: PsiExpression,
         argumentExpression: Expression
     ): Expression? {
-        if (argumentExpression is INameable) {
-            return wrapToNotNull(element, argumentExpression)
+        return argumentExpression.asInstance<INameable>()?.let {
+            wrapToNotNull(element, argumentExpression)
         }
-        return null
     }
 
     private fun wrapToNotNull(
