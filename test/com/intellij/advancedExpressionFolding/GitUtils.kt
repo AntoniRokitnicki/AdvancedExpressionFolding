@@ -26,13 +26,15 @@ object GitUtils {
         fun removeChangesInFolder(folder: String) = println(runCommand("git checkout -- $folder"))
     }
 
-    fun commitAllChanges(message: String = "test commit", dir: String = ".", cleanupDirs: String? = null) {
+    fun commitAllChanges(message: String? = null, dir: String = ".", cleanupDirs: String? = null) {
         GitWrapper(dir).run {
             cleanupDirs?.let {
                 removeChangesInFolder(it)
             }
             addAll()
-            commitMsgFile()
+            message?.let {
+                commit(it)
+            } ?: commitMsgFile()
         }
     }
 

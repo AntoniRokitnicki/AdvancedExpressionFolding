@@ -14,13 +14,13 @@ import com.intellij.rt.execution.junit.FileComparisonFailure
 import com.intellij.testFramework.fixtures.DefaultLightProjectDescriptor
 import com.intellij.testFramework.fixtures.LightJavaCodeInsightFixtureTestCase5
 import com.intellij.testFramework.fixtures.impl.CodeInsightTestFixtureImpl
-import junit.framework.Assert
+import org.junit.Assert
 import java.io.File
 import java.io.IOException
 import java.nio.file.Files
 
 abstract class BaseTest : LightJavaCodeInsightFixtureTestCase5(TEST_JDK) {
-    override fun getTestDataPath(): String = "testData"
+    override fun getTestDataPath() = "testData"
 
     protected open fun doFoldingTest(testNameArg: String? = null) {
         val testName = testNameArg ?: getTestName(false)
@@ -41,9 +41,7 @@ abstract class BaseTest : LightJavaCodeInsightFixtureTestCase5(TEST_JDK) {
         }
     }
 
-    protected open fun getTestFileName(testName: String): String {
-        return "testData/$testName.java"
-    }
+    protected open fun getTestFileName(testName: String) = "testData/$testName.java"
 
     // TODO: Refactor this mess
     private fun testReadOnlyFoldingRegions(
@@ -133,19 +131,15 @@ abstract class BaseTest : LightJavaCodeInsightFixtureTestCase5(TEST_JDK) {
             }
         }
 
-        @Throws(IOException::class)
         private fun createFoldedFile(foldingFile: String, actual: String, wrapper: FoldingDescriptorExWrapper) {
             Files.writeString(createOutputFile(foldingFile, "-folded.java").toPath(), getFoldedText(actual, wrapper))
         }
 
-        @Throws(IOException::class)
         private fun replaceAllTestData(fileName: String, actual: String) {
             Files.writeString(getAllTestFileName(fileName).toPath(), actual)
         }
 
-        private fun devMode(): Boolean {
-            return System.getenv("dev-mode") != null
-        }
+        private fun devMode(): Boolean = System.getenv("dev-mode") != null
 
         private fun replaceTestDataWithExample(testName: String, testDataFile: File) {
             val exampleFile = File(".", "/examples/data/$testName.java")
@@ -156,14 +150,9 @@ abstract class BaseTest : LightJavaCodeInsightFixtureTestCase5(TEST_JDK) {
             }
         }
 
-        private fun createOutputFile(fileName: String, extension: String): File {
-            return File(fileName.replace(".java", extension))
-        }
+        private fun createOutputFile(fileName: String, extension: String) = File(fileName.replace(".java", extension))
 
-        @JvmStatic
-        open fun getAllTestFileName(testName: String): File {
-            return createOutputFile(testName, "-all.java")
-        }
+        fun getAllTestFileName(testName: String): File = createOutputFile(testName, "-all.java")
     }
 }
 
