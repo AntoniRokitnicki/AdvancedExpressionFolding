@@ -21,6 +21,13 @@ abstract class AbstractMethodCall : BaseExtension() {
         if (classNames.isNotEmpty() && !classNames.contains(context.className)) {
             return null
         }
+        return onAnyArguments(context, element)
+    }
+
+    open fun onAnyArguments(
+        context: Context,
+        element: PsiMethodCallExpression
+    ): Expression? {
         context.argumentExpressions = emptyList()
         val expressions = element.argumentList.expressions
         return when (expressions.size) {
