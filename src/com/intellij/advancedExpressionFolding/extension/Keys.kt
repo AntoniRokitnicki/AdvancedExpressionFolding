@@ -1,6 +1,7 @@
 package com.intellij.advancedExpressionFolding.extension
 
 import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.lang.folding.FoldingDescriptor
 import com.intellij.openapi.util.Key
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiField
@@ -28,6 +29,8 @@ object Keys {
     private val SYNTHETIC_KEY_OLD: Key<CachedValue<Expression>> = Key.create("${PREFIX}syn-old")
     private val NOT_SYNTHETIC_KEY_OLD: Key<CachedValue<Expression>> = Key.create("${PREFIX}!syn-old")
 
+    val FULL_CACHE: Key<Array<FoldingDescriptor>> = Key.create("${PREFIX}-full")
+
     //TODO: convert Keys to enum
     private val values: Set<Key<*>> by lazy {
         setOf(
@@ -42,6 +45,7 @@ object Keys {
             SYNTHETIC_KEY_OLD,
             NOT_SYNTHETIC_KEY_OLD,
             FIELD_KEY,
+            FULL_CACHE,
         )
     }
     fun clearAllOnExpire(psiElement: PsiElement) {

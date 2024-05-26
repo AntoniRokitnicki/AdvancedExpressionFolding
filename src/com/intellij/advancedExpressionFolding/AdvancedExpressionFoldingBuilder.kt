@@ -1,8 +1,11 @@
 package com.intellij.advancedExpressionFolding
 
 import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.Companion.getInstance
+import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.IConfig
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.extension.BuildExpressionExt
+import com.intellij.advancedExpressionFolding.extension.CacheExt.isExpired
+import com.intellij.advancedExpressionFolding.extension.Keys
 import com.intellij.lang.ASTNode
 import com.intellij.lang.folding.FoldingBuilderEx
 import com.intellij.lang.folding.FoldingDescriptor
@@ -14,19 +17,32 @@ import com.intellij.psi.PsiJavaFile
 import java.util.*
 import java.util.stream.Collectors
 
-class AdvancedExpressionFoldingBuilder : FoldingBuilderEx() {
+class AdvancedExpressionFoldingBuilder(private val config: IConfig = getInstance().state) : FoldingBuilderEx(), IConfig by config {
     override fun buildFoldRegions(element: PsiElement, document: Document, quick: Boolean): Array<FoldingDescriptor> {
-        if (!getInstance().state.globalOn) {
+        if (!globalOn) {
             return Expression.EMPTY_ARRAY
         }
-
-        if (element is PsiJavaFile) {
-            document.hashCode()
-        }
-
-
         //preview(element, document, quick)
-        val foldingDescriptors = BuildExpressionExt.collectFoldRegionsRecursively(element, document, quick)
+
+        var descriptors: Array<FoldingDescriptor>? = null
+
+        if (memoryImprovement) {
+            val file  = element as? PsiJavaFile
+            if (file != null && !quick) {
+                if (file.isExpired(document, false)) {
+                    descriptors = BuildExpressionExt.collectFoldRegionsRecursively(element, document, quick)
+                    if (descriptors.isNotEmpty()) {
+                        file.putUserData(Keys.FULL_CACHE, descriptors)
+                    }
+                } else {
+                    descriptors = file.getUserData(Keys.FULL_CACHE)
+                }
+            }
+        }
+        val foldingDescriptors = descriptors ?: BuildExpressionExt.collectFoldRegionsRecursively(element, document, quick)
+        if (foldingDescriptors.isEmpty()) {
+            BuildExpressionExt.collectFoldRegionsRecursively(element, document, quick)
+        }
 
         return store.store(foldingDescriptors, document)
     }
