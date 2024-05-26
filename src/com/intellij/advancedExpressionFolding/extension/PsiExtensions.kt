@@ -249,7 +249,7 @@ fun String.equalsIgnoreSpaces(second: String): Boolean =
     filterNot(Char::isWhitespace) == second.filterNot(Char::isWhitespace)
 
 
-fun Boolean.on(): Any? = if (this) {
+fun Boolean?.on(): Any? = if (this == true) {
     on(true)
 } else {
     null

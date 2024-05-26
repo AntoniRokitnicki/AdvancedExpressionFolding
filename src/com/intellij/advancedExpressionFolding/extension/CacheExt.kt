@@ -11,7 +11,7 @@ import org.jetbrains.annotations.Contract
 
 object CacheExt : AdvancedExpressionFoldingSettings.StateDelegate() {
 
-    private fun PsiElement.isExpired(document: Document, synthetic: Boolean): Boolean {
+    fun PsiElement.isExpired(document: Document, synthetic: Boolean): Boolean {
         val versionKey = getVersionKey(synthetic)
         val lastVersion = getUserData(versionKey)
         val hashCode = document.text.hashCode()
