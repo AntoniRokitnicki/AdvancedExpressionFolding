@@ -3,6 +3,7 @@ package com.intellij.advancedExpressionFolding.extension;
 import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings;
 import com.intellij.advancedExpressionFolding.UnexpectedException;
 import com.intellij.advancedExpressionFolding.expression.*;
+import com.intellij.advancedExpressionFolding.extension.methodcall.MethodCallExpressionExt;
 import com.intellij.lang.folding.FoldingDescriptor;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.progress.ProcessCanceledException;

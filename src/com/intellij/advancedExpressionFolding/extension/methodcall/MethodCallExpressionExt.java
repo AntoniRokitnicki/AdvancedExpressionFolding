@@ -1,4 +1,4 @@
-package com.intellij.advancedExpressionFolding.extension;
+package com.intellij.advancedExpressionFolding.extension.methodcall;
 
 import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings;
 import com.intellij.advancedExpressionFolding.expression.Random;
@@ -9,9 +9,7 @@ import com.intellij.advancedExpressionFolding.expression.stream.StreamExpression
 import com.intellij.advancedExpressionFolding.expression.stream.StreamFilterNotNull;
 import com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall;
 import com.intellij.advancedExpressionFolding.expression.stream.StreamMapCallParam;
-import com.intellij.advancedExpressionFolding.extension.methodcall.AbstractMethodCall;
-import com.intellij.advancedExpressionFolding.extension.methodcall.Context;
-import com.intellij.advancedExpressionFolding.extension.methodcall.MethodCallFactory;
+import com.intellij.advancedExpressionFolding.extension.*;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.*;
@@ -54,7 +52,7 @@ public class MethodCallExpressionExt {
     }
 
     @Nullable
-    static Expression getMethodCallExpression(PsiMethodCallExpression element, @NotNull Document document) {
+    public static Expression getMethodCallExpression(PsiMethodCallExpression element, @NotNull Document document) {
         @NotNull AdvancedExpressionFoldingSettings settings = AdvancedExpressionFoldingSettings.getInstance();
         PsiReferenceExpression referenceExpression = element.getMethodExpression();
         Optional<PsiElement> identifierOpt = Stream.of(referenceExpression.getChildren())
@@ -272,8 +270,7 @@ public class MethodCallExpressionExt {
     private static @Nullable Expression onSingleArgumentAllClasses(PsiMethodCallExpression element, String methodName, String className, Expression qualifierExpression, @NotNull AdvancedExpressionFoldingSettings settings, PsiMethod method, @NotNull Document document, PsiElement identifier) {
         PsiExpression argument = element.getArgumentList().getExpressions()[0];
         if (method.getName().equals("valueOf") && argument instanceof PsiLiteralExpression) {
-            return NewExpressionExt.getConstructorExpression(element, (PsiLiteralExpression) argument,
-                    className);
+            return NewExpressionExt.getConstructorExpression(element, (PsiLiteralExpression) argument, className);
         } else if (method.getName().equals("valueOf") && argument instanceof PsiReferenceExpression) {
             Expression refExpr = getReferenceExpression((PsiReferenceExpression) argument);
             if (refExpr instanceof Variable) {
