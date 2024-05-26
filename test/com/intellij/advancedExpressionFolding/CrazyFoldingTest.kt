@@ -1,6 +1,6 @@
 package com.intellij.advancedExpressionFolding
 
-import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.Companion.allProperties
+import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.Companion.allMainProperties
 import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.Companion.getInstance
 import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.State
 import com.intellij.advancedExpressionFolding.extension.on
@@ -62,7 +62,7 @@ class CrazyFoldingTest : BaseTest() {
                 File("folded/$folded").copyTo(File(this, folded), overwrite = true)
             }
             CONFIG_FILE.saveCounterAndFilename(counter, testDataFileName)
-            File("commit_message.txt").writeText("$testDataFileName -> $message - $duration")
+            File("commit_message.txt").writeText("$testName -> $duration - $message")
             GitUtils.commitAllChanges(cleanupDirs = "testData folded")
         }
     }
@@ -92,7 +92,7 @@ class CrazyFoldingTest : BaseTest() {
             CONFIG_FILE.readCounterAndFilename()?.let { (count: Long, _: String) ->
                 counter = count
             }
-            val props: List<KMutableProperty<*>> = allProperties()
+            val props: List<KMutableProperty<*>> = allMainProperties()
             val numBooleans = props.size
             return Stream.iterate(BooleanArray(numBooleans)) { prev ->
                 val next = prev.clone()
