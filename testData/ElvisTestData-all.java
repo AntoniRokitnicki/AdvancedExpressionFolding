@@ -24,13 +24,13 @@ public class ElvisTestData {
         </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>"Hello"<fold text=' ' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
     </fold>}</fold>
 
-    private static ElvisTestData create() <fold text='{...}' expand='true'>{
-        if <fold text='' expand='false'>(</fold>Math.random() > 0.5<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
+    private static ElvisTestData create() <fold text='{...}' expand='true'>{<fold text=' ' expand='true'>
+        </fold>if (Math.random() > 0.5) <fold text='{...}' expand='true'>{
         return new ElvisTestData();
         }</fold> else <fold text='{...}' expand='true'>{
         return null;
-        }</fold>
-    }</fold>
+        }</fold><fold text=' ' expand='true'>
+    </fold>}</fold>
 
     private ElvisTestData get()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
         </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>e<fold text=' ' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>

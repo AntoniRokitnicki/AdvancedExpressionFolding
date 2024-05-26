@@ -90,13 +90,13 @@ import java.time.LocalDate;</fold>
         }</fold></fold>
 
         <fold text='' expand='false'>@Nonnull</fold>
-        public static int<fold text='!! ' expand='false'> </fold>select(<fold text='' expand='false'>@Nullable</fold><fold text='' expand='false'> </fold>String<fold text='? ' expand='false'> </fold>element,
+        public static int<fold text='!! ' expand='false'> </fold>select(@Nullable String element,
                                  int i,
-                                 <fold text='' expand='false'>@NotNull</fold><fold text='' expand='false'> </fold>Object<fold text='!! ' expand='false'> </fold>o,
-                                 <fold text='' expand='false'>@Nonnull</fold><fold text='' expand='false'> </fold>LocalDate<fold text='!! ' expand='false'> </fold>date
-        ) <fold text='{...}' expand='true'>{
-            return 1;
-        }</fold>
+                                 @NotNull Object o,
+                                 @Nonnull LocalDate date
+        ) <fold text='{...}' expand='true'>{<fold text=' ' expand='true'>
+            </fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>1<fold text=' ' expand='true'>;</fold><fold text='' expand='true'>
+        </fold>}</fold>
 
     }</fold>
 
