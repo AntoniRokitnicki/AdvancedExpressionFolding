@@ -108,7 +108,7 @@ abstract class BaseTest : LightJavaCodeInsightFixtureTestCase5(TEST_JDK) {
 
             refreshMethodCallMappings()
             val store = FoldingDataStorage()
-            AdvancedExpressionFoldingBuilder.setStore(store)
+            com.intellij.advancedExpressionFolding.store = store
             try {
                 action.run()
             } catch (e: FileComparisonFailure) {

@@ -1,70 +1,68 @@
-package com.intellij.advancedExpressionFolding;
+package com.intellij.advancedExpressionFolding
 
-import com.intellij.advancedExpressionFolding.expression.Expression;
-import com.intellij.advancedExpressionFolding.extension.BuildExpressionExt;
-import com.intellij.lang.ASTNode;
-import com.intellij.lang.folding.FoldingBuilderEx;
-import com.intellij.lang.folding.FoldingDescriptor;
-import com.intellij.openapi.editor.Document;
-import com.intellij.openapi.project.IndexNotReadyException;
-import com.intellij.psi.PsiDocumentManager;
-import com.intellij.psi.PsiElement;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.Companion.getInstance
+import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.advancedExpressionFolding.extension.BuildExpressionExt
+import com.intellij.lang.ASTNode
+import com.intellij.lang.folding.FoldingBuilderEx
+import com.intellij.lang.folding.FoldingDescriptor
+import com.intellij.openapi.editor.Document
+import com.intellij.openapi.project.IndexNotReadyException
+import com.intellij.psi.PsiDocumentManager
+import com.intellij.psi.PsiElement
+import com.intellij.psi.PsiJavaFile
+import java.util.*
+import java.util.stream.Collectors
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
-public class AdvancedExpressionFoldingBuilder extends FoldingBuilderEx {
-
-    private static EmptyStorage store = new EmptyStorage();
-
-    @NotNull
-    @Override
-    public FoldingDescriptor @NotNull [] buildFoldRegions(@NotNull PsiElement element, @NotNull Document document, boolean quick) {
-        if (!AdvancedExpressionFoldingSettings.getInstance().getState().getGlobalOn()) {
-            return Expression.EMPTY_ARRAY;
+class AdvancedExpressionFoldingBuilder : FoldingBuilderEx() {
+    override fun buildFoldRegions(element: PsiElement, document: Document, quick: Boolean): Array<FoldingDescriptor> {
+        if (!getInstance().state.globalOn) {
+            return Expression.EMPTY_ARRAY
         }
 
+        if (element is PsiJavaFile) {
+            document.hashCode()
+        }
+
+
         //preview(element, document, quick)
-        return store.store(BuildExpressionExt.collectFoldRegionsRecursively(element, document, quick), document);
+        val foldingDescriptors = BuildExpressionExt.collectFoldRegionsRecursively(element, document, quick)
+
+        return store.store(foldingDescriptors, document)
     }
 
-    public List<String> preview(@NotNull PsiElement element, @NotNull Document document, boolean quick) {
-        FoldingDescriptor[] foldingDescriptors = BuildExpressionExt.collectFoldRegionsRecursively(element, document, quick);
-        return Arrays.stream(foldingDescriptors).map(it -> it.getRange().substring(document.getText())
-                + " => "
-                + it.getPlaceholderText()
-                + "[" +
-                it.getGroup()
-                + "]").collect(Collectors.toList());
+    @Suppress("unused")
+    fun preview(element: PsiElement, document: Document, quick: Boolean): List<String> {
+        val foldingDescriptors = BuildExpressionExt.collectFoldRegionsRecursively(element, document, quick)
+        return Arrays.stream(foldingDescriptors).map { it: FoldingDescriptor ->
+            (it.range.substring(document.text)
+                    + " => "
+                    + it.placeholderText
+                    + "[" +
+                    it.group
+                    + "]")
+        }.collect(Collectors.toList())
     }
 
-    @Nullable
-    @Override
-    public String getPlaceholderText(@NotNull ASTNode astNode) {
-        return null;
+    override fun getPlaceholderText(astNode: ASTNode): String? {
+        return null
     }
 
     // TODO: Collapse everything by default but use these settings when actually building the folding descriptors
-    @SuppressWarnings("ConstantConditions")
-    @Override
-    public boolean isCollapsedByDefault(@NotNull ASTNode astNode) {
+    override fun isCollapsedByDefault(astNode: ASTNode): Boolean {
         try {
-            PsiElement element = astNode.getPsi();
-            @Nullable Document document = PsiDocumentManager.getInstance(astNode.getPsi().getProject()).getDocument(astNode.getPsi().getContainingFile());
+            val element = astNode.psi
+            val document = PsiDocumentManager.getInstance(astNode.psi.project).getDocument(astNode.psi.containingFile)
             if (document != null) {
-                @Nullable Expression expression = BuildExpressionExt.getNonSyntheticExpression(element, document);
-                return expression != null && expression.isCollapsedByDefault();
+                val expression = BuildExpressionExt.getNonSyntheticExpression(element, document)
+                return expression != null && expression.isCollapsedByDefault
             }
-        } catch (IndexNotReadyException e) {
-            return false;
+        } catch (e: IndexNotReadyException) {
+            return false
         }
-        return false;
+        return false
     }
 
-    public static void setStore(EmptyStorage store) {
-        AdvancedExpressionFoldingBuilder.store = store;
-    }
 }
+
+var store = EmptyStorage()
