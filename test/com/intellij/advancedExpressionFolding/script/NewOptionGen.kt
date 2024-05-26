@@ -7,8 +7,9 @@ import java.io.File
 // -DvarName="const" -DvarText="Simplify public static final to const"
 object NewOptionGen {
 
+
     @JvmStatic
-    fun main() {
+    fun main(args: Array<String>) {
         val basePath = System.getProperty("project.dir", "/Users/ant/h/AdvancedExpressionFolding")
         val varName = System.getProperty("varName") ?: TODO("Property varName not found")
         val varText = System.getProperty("varText") ?: TODO("Property varText not found")

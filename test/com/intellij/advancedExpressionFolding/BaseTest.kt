@@ -2,7 +2,6 @@ package com.intellij.advancedExpressionFolding
 
 import com.intellij.advancedExpressionFolding.FoldingTemporaryTestEditor.getFoldedText
 import com.intellij.advancedExpressionFolding.diff.FoldingDescriptorExWrapper
-import com.intellij.advancedExpressionFolding.extension.methodcall.MethodCallFactory.refreshMethodCallMappings
 import com.intellij.openapi.application.WriteAction
 import com.intellij.openapi.fileTypes.FileTypeManager
 import com.intellij.openapi.projectRoots.JavaSdk
@@ -99,14 +98,12 @@ abstract class BaseTest : LightJavaCodeInsightFixtureTestCase5(TEST_JDK) {
             }
         }
 
-
         private fun rewriteFileOnFailure(fileName: String, testName: String, action: Runnable) {
             val testDataFile = File(fileName)
             if (devMode()) {
                 replaceTestDataWithExample(testName, testDataFile)
             }
 
-            refreshMethodCallMappings()
             val store = FoldingDataStorage()
             com.intellij.advancedExpressionFolding.store = store
             try {
@@ -153,6 +150,9 @@ abstract class BaseTest : LightJavaCodeInsightFixtureTestCase5(TEST_JDK) {
         private fun createOutputFile(fileName: String, extension: String) = File(fileName.replace(".java", extension))
 
         fun getAllTestFileName(testName: String): File = createOutputFile(testName, "-all.java")
+
     }
+
+
 }
 

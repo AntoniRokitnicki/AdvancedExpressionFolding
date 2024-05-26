@@ -158,7 +158,7 @@ fun PsiElement.getClassType(): PsiClassExt.ClassType? = getUserData(Keys.CLASS_T
 fun PsiElement.findLocalReference(element: PsiElement): PsiReference? =
     ReferencesSearch.search(this, LocalSearchScope(element)).findFirst()
 
-fun KClass<*>.group(): FoldingGroup = FoldingGroup.newGroup(qualifiedName)
+fun KClass<*>.group(addon: String = ""): FoldingGroup = FoldingGroup.newGroup(qualifiedName + addon)
 
 var PsiMethod.propertyField: PsiField?
     get() = getUserData(Keys.FIELD_KEY)
@@ -334,10 +334,13 @@ fun PsiElement.exprWrapAround(
 
 fun Collection<Expression?>.exprWrap(
     parent: PsiElement,
-): WrapperExpression? {
+): Expression? {
     val chain = filterNotNull()
     if (chain.isEmpty()) {
         return null
+    }
+    chain.singleOrNull()?.run {
+        return this
     }
     return WrapperExpression(parent, chain = chain)
 }

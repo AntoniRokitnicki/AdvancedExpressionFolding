@@ -1,27 +1,24 @@
 package com.intellij.advancedExpressionFolding.extension
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.expression.custom.NullAnnotationExpression
-import com.intellij.advancedExpressionFolding.expression.custom.WrapperExpression
 import com.intellij.psi.*
 
 object ExperimentalExt : BaseExtension() {
 
-    fun createSingleExpressionFunctions(method: PsiMethod, other: NullAnnotationExpression?): Expression? {
+    fun createSingleExpressionFunctions(method: PsiMethod): Expression? {
         val statement = method.body?.statements?.singleOrNull()?.takeIf {
             method.body!!.text.length < 145
-        } ?: return other
+        } ?: return null
 
         return statement.asInstance<PsiReturnStatement>()?.let {
-            sefReturn(it, other, method)
-        } ?: sefNoReturn(statement, other, method) ?: other
+            sefReturn(it, method)
+        } ?: sefNoReturn(statement, method)
     }
 
     private fun sefNoReturn(
         statement: PsiStatement,
-        other: NullAnnotationExpression?,
         method: PsiMethod
-    ): WrapperExpression? {
+    ): Expression? {
         val body = method.body!!
         val whitespaces = body.children.filter {
             it.isWhitespace()
@@ -32,15 +29,14 @@ object ExperimentalExt : BaseExtension() {
         val exprList = elemList(endingSemicolon)
         exprList.addAll(whitespaces)
 
-        exprList.add(other)
+        exprList.add(getAnyExpression(body))
         return exprList.exprWrap(method)
     }
 
     private fun sefReturn(
         statement: PsiReturnStatement,
-        other: NullAnnotationExpression?,
-        method: PsiMethod
-    ): WrapperExpression? {
+        method: PsiMethod,
+    ): Expression? {
         val keyword = statement.children.firstOrNull().asInstance<PsiKeyword>()
         val keywordNextWhitespace = keyword?.nextWhiteSpace()
         val returnPrevSpace = statement.prevWhiteSpace()
@@ -59,7 +55,6 @@ object ExperimentalExt : BaseExtension() {
         exprList.add(returnPrevSpace?.expr(" "))
         exprList.add(endingSemicolon?.expr(" "))
 
-        exprList.add(other)
         return exprList.exprWrap(method)
     }
 

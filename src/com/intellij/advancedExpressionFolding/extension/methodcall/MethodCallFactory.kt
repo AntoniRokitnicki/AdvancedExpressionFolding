@@ -1,5 +1,6 @@
 package com.intellij.advancedExpressionFolding.extension.methodcall
 
+import com.intellij.advancedExpressionFolding.extension.BaseExtension
 import com.intellij.advancedExpressionFolding.extension.Consts
 import com.intellij.advancedExpressionFolding.extension.methodcall.collection.CollectionGetMethodCall
 import com.intellij.advancedExpressionFolding.extension.methodcall.collection.MapPutMethodCall
@@ -7,31 +8,50 @@ import com.intellij.advancedExpressionFolding.extension.methodcall.collection.Op
 import com.intellij.advancedExpressionFolding.extension.methodcall.date.CreateDateFactoryMethodCall
 import com.intellij.advancedExpressionFolding.extension.methodcall.date.IsAfterDateMethodCall
 import com.intellij.advancedExpressionFolding.extension.methodcall.date.IsBeforeDateMethodCall
+import com.intellij.advancedExpressionFolding.extension.methodcall.dynamic.ConfigurationParser
+import com.intellij.advancedExpressionFolding.extension.methodcall.dynamic.IDynamicDataProvider
 import com.intellij.advancedExpressionFolding.extension.methodcall.nullable.CheckNotNullMethodCall
+import com.intellij.advancedExpressionFolding.extension.on
 
 typealias MethodName = String
 typealias ClassName = String
 
-object MethodCallFactory {
-    private lateinit var methodCallMap: Map<MethodName?, List<AbstractMethodCall>>
+object MethodCallFactory : BaseExtension(){
 
+    @Volatile
+    private var dynamicProvider: IDynamicDataProvider? = null
+
+    @Volatile
+    private var methodCallMap: Map<MethodName?, List<AbstractMethodCall>> = emptyMap()
+    @Volatile
     lateinit var supportedClasses: Collection<ClassName>
+    @Volatile
     lateinit var supportedMethods: Collection<MethodName>
-
+    @Volatile
     lateinit var classlessMethods: Collection<MethodName>
 
+    fun refreshMethodCallMappings(dynamicProvider: IDynamicDataProvider? = null) {
+        synchronized(this) {
+            if (this.dynamicProvider == null) {
+                // for tests
+                this.dynamicProvider = dynamicProvider
+            }
 
-    fun refreshMethodCallMappings() {
-        methodCallMap = createMethodCalls()
+            methodCallMap = createMethodCalls()
 
-        supportedClasses = createSupportedClasses()
-        supportedMethods = createSupportedMethods()
+            supportedClasses = createSupportedClasses()
+            supportedMethods = createSupportedMethods()
 
-        classlessMethods = createClasslessMethods()
+            classlessMethods = createClasslessMethods()
+        }
     }
 
-    init {
-        refreshMethodCallMappings()
+    fun initialize(dynamicProvider: IDynamicDataProvider = ConfigurationParser): MethodCallFactory {
+        synchronized(this) {
+                this.dynamicProvider = dynamicProvider
+                refreshMethodCallMappings()
+        }
+        return this
     }
 
     private fun createMethodCalls(): Map<MethodName?, List<AbstractMethodCall>> =
@@ -55,7 +75,10 @@ object MethodCallFactory {
         IsBeforeDateMethodCall(), IsAfterDateMethodCall(), CreateDateFactoryMethodCall(),
         CheckNotNullMethodCall(), MapPutMethodCall(), CollectionGetMethodCall(),
         OptionalGetMethodCall(),
-    )
+
+    ) + (loadDynamicMethods() ?: emptyList())
+
+    private fun loadDynamicMethods() = dynamic.on(dynamicProvider?.parse())
 
     private fun createSupportedClasses(): Collection<ClassName> =
         methodCallMap.values

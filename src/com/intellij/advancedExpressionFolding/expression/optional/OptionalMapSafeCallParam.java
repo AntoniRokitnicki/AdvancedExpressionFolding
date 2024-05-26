@@ -1,7 +1,6 @@
 package com.intellij.advancedExpressionFolding.expression.optional;
 
 import com.intellij.advancedExpressionFolding.expression.Expression;
-import com.intellij.advancedExpressionFolding.expression.StringLiteral;
 import com.intellij.lang.folding.FoldingDescriptor;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.editor.FoldingGroup;
@@ -27,7 +26,7 @@ public class OptionalMapSafeCallParam extends Expression {
 
     @Override
     public FoldingDescriptor[] buildFoldRegions(@NotNull PsiElement element, @NotNull Document document, @Nullable Expression parent) {
-        FoldingGroup group = FoldingGroup.newGroup(StringLiteral.class.getName());
+        FoldingGroup group = FoldingGroup.newGroup(OptionalMapSafeCallParam.class.getName());
         ArrayList<FoldingDescriptor> descriptors = new ArrayList<>();
         descriptors.add(new FoldingDescriptor(element.getNode(), element.getTextRange(), group, string));
         return descriptors.toArray(EMPTY_ARRAY);

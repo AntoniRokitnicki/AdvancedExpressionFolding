@@ -40,10 +40,6 @@ class AdvancedExpressionFoldingBuilder(private val config: IConfig = getInstance
             }
         }
         val foldingDescriptors = descriptors ?: BuildExpressionExt.collectFoldRegionsRecursively(element, document, quick)
-        if (foldingDescriptors.isEmpty()) {
-            BuildExpressionExt.collectFoldRegionsRecursively(element, document, quick)
-        }
-
         return store.store(foldingDescriptors, document)
     }
 

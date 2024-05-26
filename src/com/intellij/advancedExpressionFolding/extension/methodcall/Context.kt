@@ -15,7 +15,10 @@ data class Context(
     val identifier: PsiElement,
     var argumentExpressions: List<Expression> = emptyList(),
 ) {
-    fun getOperands(vararg extraArgumentExpressions: Expression): List<Expression> {
-        return mutableListOf(qualifierExpression) + argumentExpressions + extraArgumentExpressions
-    }
+    fun getOperands(): List<Expression> =
+        mutableListOf(qualifierExpression) + argumentExpressions
+
+    fun getOperandsArray(): Array<Expression> =
+        arrayOf(qualifierExpression) + argumentExpressions.toTypedArray()
+
 }

@@ -27,7 +27,7 @@ public class ExperimentalTestData {
         <fold text='const' expand='false'>private static final</fold> Map<String, String> MAP_TREE = new TreeMap<>();
         <fold text='const' expand='false'>private static final</fold> Map<String, String> MAP4 = Map.of();
 
-        <fold text='const' expand='false'>private static final</fold> List<String> LIST = new ArrayList<>();
+        <fold text='const' expand='false'>private static final</fold> List<String> LIST = <fold text='[]' expand='false'>new ArrayList<>()</fold>;
         <fold text='const' expand='false'>private static final</fold> List<String> LIST2 = List.of();
         <fold text='const' expand='false'>private static final</fold> List<String> LIST_SINGLE = List.of("1");
         <fold text='const' expand='false'>private static final</fold> List<String> LIST_LINKED = new LinkedList<>();
@@ -101,7 +101,7 @@ public class ExperimentalTestData {
         </fold>}</fold></fold>
 
         public static Singleton getInstance()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>INSTANCE<fold text=' ' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+            </fold><fold text='' expand='true'></fold>return</fold><fold text='' expand='true'> </fold>INSTANCE<fold text=' ' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold>
     }</fold>
 
@@ -113,7 +113,7 @@ public class ExperimentalTestData {
         }</fold></fold>
 
         public ConstClass(boolean ok)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold>this.ok = ok<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+            </fold></fold>this.ok = <fold text='<<' expand='false'>ok</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold><fold text='' expand='false'>
 
         </fold><fold text='' expand='false'>public ConstClass(boolean ok, String string) <fold text='{...}' expand='true'>{
@@ -148,7 +148,7 @@ public class ExperimentalTestData {
         </fold>}</fold></fold><fold text='' expand='false'>
 
         </fold><fold text='' expand='false'>public void setProp(NamelessProperty prop)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold>this.prop = prop<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+            </fold></fold>this.prop = <fold text='<<' expand='false'>prop</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold></fold>
 
         public void set(NamelessProperty s)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>

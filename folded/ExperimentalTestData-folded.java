@@ -26,7 +26,7 @@ public class ExperimentalTestData {
         const Map<String, String> MAP_TREE = new TreeMap<>();
         const Map<String, String> MAP4 = Map.of();
 
-        const List<String> LIST = new ArrayList<>();
+        const List<String> LIST = [];
         const List<String> LIST2 = List.of();
         const List<String> LIST_SINGLE = List.of("1");
         const List<String> LIST_LINKED = new LinkedList<>();

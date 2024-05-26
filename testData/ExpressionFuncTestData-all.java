@@ -12,7 +12,7 @@ public class ExpressionFuncTestData {
     </fold>}</fold>
 
     public long findNinjaId()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-        </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>1L<fold text=' ' expand='true'>;</fold><fold text=' }' expand='false'><fold text='' expand='true'>
+        </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>1L<fold text=' ' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
     </fold>}</fold>
 
     public String tableName()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
@@ -20,7 +20,7 @@ public class ExpressionFuncTestData {
     </fold>}</fold>
 
     public void assignField(String field)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-        </fold></fold>this.field = field<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+        </fold></fold>this.field = <fold text='<<' expand='false'>field</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
     </fold>}</fold>
 
     public String assignFieldAndReturn(String field)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
@@ -36,7 +36,7 @@ public class ExpressionFuncTestData {
     </fold>}</fold>
 
     public void streamShort(List<String> list)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-        </fold></fold>list.stream().map(Function.identity()).map(Function.identity())<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+        </fold></fold>list<fold text='.' expand='false'>.stream().</fold>map(Function.identity()).map(Function.identity())<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
     </fold>}</fold>
 
     public void stream(List<String> list) <fold text='{...}' expand='true'>{

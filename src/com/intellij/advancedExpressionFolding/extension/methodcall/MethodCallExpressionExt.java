@@ -10,6 +10,7 @@ import com.intellij.advancedExpressionFolding.expression.stream.StreamFilterNotN
 import com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall;
 import com.intellij.advancedExpressionFolding.expression.stream.StreamMapCallParam;
 import com.intellij.advancedExpressionFolding.extension.*;
+import com.intellij.advancedExpressionFolding.extension.methodcall.dynamic.ConfigurationParser;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.*;
@@ -27,7 +28,7 @@ import static com.intellij.advancedExpressionFolding.extension.ReferenceExpressi
 @SuppressWarnings({"RedundantIfStatement", "SwitchStatementWithTooFewBranches", "unused", "EnhancedSwitchMigration", "RedundantSuppression"})
 public class MethodCallExpressionExt {
 
-    private static final MethodCallFactory FACTORY = MethodCallFactory.INSTANCE;
+    private static final MethodCallFactory FACTORY = MethodCallFactory.INSTANCE.initialize(ConfigurationParser.INSTANCE);
 
     @Nullable
     private static Expression useMethodCallFactory(PsiElement identifier, PsiReferenceExpression referenceExpression, @NotNull Document document, @Nullable PsiExpression qualifier, @NotNull AdvancedExpressionFoldingSettings settings, PsiMethodCallExpression element) {
@@ -89,7 +90,7 @@ public class MethodCallExpressionExt {
         if (methodCalls != null) {
             for (AbstractMethodCall methodCall : methodCalls) {
                 var context = new Context(methodName, className, qualifierExpression, method, document, identifier, Collections.emptyList());
-                var expression = methodCall.onAnyArguments(element, context);
+                var expression = methodCall.execute(element, context);
                 if (expression != null) {
                     return expression;
                 }

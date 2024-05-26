@@ -27,7 +27,7 @@ public class ExperimentalTestData {
         <fold text='const' expand='false'>private static final</fold> Map<String, String> MAP_TREE = new TreeMap<>();
         <fold text='const' expand='false'>private static final</fold> Map<String, String> MAP4 = Map.of();
 
-        <fold text='const' expand='false'>private static final</fold> List<String> LIST = new ArrayList<>();
+        <fold text='const' expand='false'>private static final</fold> List<String> LIST = <fold text='[]' expand='false'>new ArrayList<>()</fold>;
         <fold text='const' expand='false'>private static final</fold> List<String> LIST2 = List.of();
         <fold text='const' expand='false'>private static final</fold> List<String> LIST_SINGLE = List.of("1");
         <fold text='const' expand='false'>private static final</fold> List<String> LIST_LINKED = new LinkedList<>();

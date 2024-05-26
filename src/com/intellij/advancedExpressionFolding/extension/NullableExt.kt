@@ -6,6 +6,7 @@ import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFolding
 import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFoldingAnnotation.NOT_NULL
 import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFoldingAnnotation.NULLABLE
 import com.intellij.advancedExpressionFolding.extension.lombok.LombokExt.callback
+import com.intellij.advancedExpressionFolding.extension.methodcall.dynamic.DynamicExt
 import com.intellij.openapi.editor.Document
 import com.intellij.psi.*
 import com.intellij.psi.impl.source.PsiClassReferenceType
@@ -20,11 +21,14 @@ object NullableExt : BaseExtension() {
 
     @JvmStatic
     fun createExpression(psiMethod: PsiMethod): Expression? {
-        val nullAnnotationExpression = fieldAnnotationExpression(psiMethod.annotations, psiMethod.returnTypeElement)
+        val list = exprList(fieldAnnotationExpression(psiMethod.annotations, psiMethod.returnTypeElement))
         if (expressionFunc) {
-            return ExperimentalExt.createSingleExpressionFunctions(psiMethod, nullAnnotationExpression)
+            list.add(ExperimentalExt.createSingleExpressionFunctions(psiMethod))
         }
-        return nullAnnotationExpression
+        if (dynamic) {
+            list.add(DynamicExt.createExpression(psiMethod))
+        }
+        return list.exprWrap(psiMethod)
     }
 
     @JvmStatic
@@ -140,7 +144,7 @@ object NullableExt : BaseExtension() {
         field: PsiField,
         document: Document,
         constFolding: FieldConstExpression? = null
-    ): WrapperExpression? {
+    ): Expression? {
         val initializer = field.initializer.asInstance<PsiNewExpression>()
         val noParams = initializer?.argumentList?.isEmpty == true
         val anonymousClass = initializer?.anonymousClass
