@@ -16,7 +16,7 @@ public class SpreadTestData {
                 .map(</fold><fold text='string()' expand='false'>Data::getString</fold><fold text='' expand='false'>)</fold>
                 .collect(Collectors.joining(", "));
 
-        <fold text='val' expand='false'>var</fold> p1 = data.<fold text='dataList' expand='false'>getDataList()</fold>.stream()<fold text='*.' expand='false'>.map(</fold><fold text='data()' expand='false'>Data::getData<fold text='' expand='false'></fold>)</fold>.toList();
+        <fold text='val' expand='false'>var</fold> p1 = data.<fold text='dataList' expand='false'>getDataList()</fold>.stream()<fold text='*.' expand='false'>.map(</fold><fold text='data()' expand='false'>Data::getData</fold><fold text='' expand='false'>)</fold>.toList();
         <fold text='val' expand='false'>var</fold> p2 = data.<fold text='dataList' expand='false'>getDataList()</fold>
                 .stream()<fold text='*.' expand='false'>
                 .map(</fold><fold text='data()' expand='false'>Data::getData</fold><fold text='' expand='false'>)</fold>
@@ -53,10 +53,10 @@ public class SpreadTestData {
         </fold><fold text='' expand='true'></fold>return</fold><fold text='' expand='true'> </fold>Stream.of(data)<fold text=' ' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
     </fold>}</fold>
 
-    <fold text='@Setter s' expand='false'>s</fold>tatic class Data <fold text='{...}' expand='true'>{
-        <fold text='@Getter D' expand='false'>D</fold>ata data;
-        <fold text='@Getter b' expand='false'>b</fold>oolean ok;
-        <fold text='@Getter S' expand='false'>S</fold>tring string;
+    <fold text='@Getter @Setter s' expand='false'>s</fold>tatic class Data <fold text='{...}' expand='true'>{
+        Data data;
+        boolean ok;
+        String string;
 
         public Data(Data data)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
             </fold></fold>this.data = data<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
@@ -64,10 +64,10 @@ public class SpreadTestData {
 
         </fold><fold text='' expand='false'>public Data getData()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
                 </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>data<fold text=' ' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
-        </fold>}</fold><fold text='' expand='false'></fold>
+        </fold>}</fold></fold><fold text='' expand='false'>
         </fold><fold text='' expand='false'>public boolean isOk()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
                 </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>ok<fold text=' ' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
-        </fold>}</fold><fold text='' expand='false'></fold>
+        </fold>}</fold></fold><fold text='' expand='false'>
         </fold><fold text='' expand='false'>public void setData(Data data)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
                 </fold></fold>this.data = data<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold></fold><fold text='' expand='false'>
@@ -75,13 +75,13 @@ public class SpreadTestData {
                 </fold></fold>this.ok = ok<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold><fold text='' expand='false'></fold>
         </fold><fold text='' expand='false'>public String getString()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>string<fold text=' ' expand='true'>;<fold text='' expand='true'><fold text=' }' expand='false'></fold>
+                </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>string<fold text=' ' expand='true'>;</fold><fold text=' }' expand='false'><fold text='' expand='true'>
         </fold>}</fold><fold text='' expand='false'></fold>
         </fold><fold text='' expand='false'>public void setString(String string)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
                 </fold></fold>this.string = string<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold></fold>
         public Data getDataMethod(Data data)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>data<fold text=' ' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+                </fold><fold text='' expand='true'></fold>return</fold><fold text='' expand='true'> </fold>data<fold text=' ' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold>
         public Optional<Data> getDataOpt()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
                 </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>Optional.ofNullable(data)<fold text=' ' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
