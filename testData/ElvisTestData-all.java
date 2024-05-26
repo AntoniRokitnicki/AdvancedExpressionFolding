@@ -15,7 +15,7 @@ public class ElvisTestData {
         if (e.get() != null) <fold text='{...}' expand='true'>{
                 e.get()<fold text='?.' expand='false'>.</fold>sayHello();<fold text='' expand='false'>
         }</fold></fold>
-        if <fold text='' expand='false'>(</fold><fold text='e?.get != null' expand='false'>e != null && e.get() != null<fold text='' expand='false'></fold>)</fold> <fold text='{...}' expand='true'>{
+        if <fold text='' expand='false'>(</fold><fold text='e?.get != null' expand='false'>e != null && e.get() != null</fold><fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
                 e.get().sayHello();
         }</fold>
     }</fold>
@@ -25,7 +25,7 @@ public class ElvisTestData {
     </fold>}</fold>
 
     private static ElvisTestData create() <fold text='{...}' expand='true'>{<fold text=' ' expand='true'>
-        </fold>if (Math.random() > 0.5) <fold text='{...}' expand='true'>{
+        </fold>if <fold text='' expand='false'>(</fold>Math.random() > 0.5<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
         return new ElvisTestData();
         }</fold> else <fold text='{...}' expand='true'>{
         return null;

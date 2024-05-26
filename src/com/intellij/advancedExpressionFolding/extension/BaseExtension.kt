@@ -4,10 +4,8 @@ package com.intellij.advancedExpressionFolding.extension
 
 import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.extension.methodcall.Context
 import com.intellij.openapi.editor.Document
 import com.intellij.psi.PsiElement
-import com.intellij.psi.PsiExpression
 import com.intellij.psi.PsiPrimitiveType
 import com.intellij.psi.PsiType
 import com.intellij.psi.impl.source.PsiClassReferenceType
@@ -36,9 +34,15 @@ abstract class BaseExtension : AdvancedExpressionFoldingSettings.StateDelegate()
         BuildExpressionExt.getNonSyntheticExpression(element, document)
 
 
-    fun getAnyExpressions(
-        expressions: Array<out PsiExpression>,
-        context: Context
-    ) = expressions.map { getAnyExpression(it, context.document) }
+    fun <T : PsiElement> getAnyExpressions(
+        expressions: Array<T>
+    ): List<Expression> {
+        val doc = expressions.firstOrNull()?.run {
+            this.containingFile.viewProvider.document
+        }
+        return expressions.map {
+            getAnyExpression(it, doc!!)
+        }
+    }
 
 }

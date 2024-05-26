@@ -10,7 +10,7 @@ abstract class AbstractMethodCall : BaseExtension() {
 
     //TODO: support priority
 
-    open fun onAnyArguments(
+    open fun execute(
         element: PsiMethodCallExpression,
         context: Context
     ): Expression? {
@@ -21,29 +21,29 @@ abstract class AbstractMethodCall : BaseExtension() {
         if (classNames.isNotEmpty() && !classNames.contains(context.className)) {
             return null
         }
-        return onAnyArguments(context, element)
+        val expressions = element.argumentList.expressions
+        val anyExpressions = getAnyExpressions(expressions)
+        context.argumentExpressions = anyExpressions
+        return onAnyArguments(element, context, expressions)
     }
 
     open fun onAnyArguments(
+        element: PsiMethodCallExpression,
         context: Context,
-        element: PsiMethodCallExpression
+        expressions: Array<PsiExpression>,
     ): Expression? {
-        context.argumentExpressions = emptyList()
-        val expressions = element.argumentList.expressions
         return when (expressions.size) {
             0 -> onNoArguments(element, context)
             1 -> {
                 val (argument) = expressions
-                val (argumentExpression) = getAnyExpressions(expressions, context)
-                context.argumentExpressions = listOf(argumentExpression)
+                val (argumentExpression) = context.argumentExpressions
                 onSingleArgument(element, context, argument, argumentExpression)
             }
 
             2 -> {
                 //TODO: rename vars after extraction
                 val (a1, a2) = expressions
-                val (a1Expression, a2Expression) = getAnyExpressions(expressions, context)
-                context.argumentExpressions = listOf(a1Expression, a2Expression)
+                val (a1Expression, a2Expression) = context.argumentExpressions
                 onTwoArguments(element, context, a1, a2, a1Expression, a2Expression)
             }
 
@@ -74,6 +74,6 @@ abstract class AbstractMethodCall : BaseExtension() {
         expressions: Array<PsiExpression>
     ): Expression? = null
 
-    open val methodNames: List<String> by lazy { emptyList() }
-    open val classNames: List<String> by lazy { emptyList() }
+    open val methodNames: List<MethodName> by lazy { emptyList() }
+    open val classNames: List<ClassName> by lazy { emptyList() }
 }

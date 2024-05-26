@@ -199,6 +199,11 @@ class AdvancedExpressionFoldingOptionsProvider : AbstractExpressionFoldingOption
             mapOf("ExpressionFuncTestData.java" to null),
         )
         
+        checkBox("Dynamic names for methods based on \$user.home/dynamic-ajf2.toml",
+            state::dynamic,
+            mapOf("DynamicTestData.java" to null),
+        )
+        
         // NEW OPTION
 
         checkBox(

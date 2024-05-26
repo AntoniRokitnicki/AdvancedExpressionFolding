@@ -2,6 +2,9 @@ package com.intellij.advancedExpressionFolding
 
 import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.Companion.getInstance
 import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.State
+import com.intellij.advancedExpressionFolding.extension.methodcall.MethodCallFactory
+import com.intellij.advancedExpressionFolding.extension.methodcall.dynamic.DynamicMethodCall
+import com.intellij.advancedExpressionFolding.extension.methodcall.dynamic.IDynamicDataProvider
 import com.intellij.openapi.application.runInEdt
 import org.junit.AssumptionViolatedException
 import org.junit.jupiter.api.Test
@@ -23,8 +26,9 @@ open class FoldingTest : BaseTest() {
         }
     }
 
-    open fun doFoldingTest(vararg turnOnProperties: KMutableProperty0<Boolean>) {
+    open fun doFoldingTest(vararg turnOnProperties: KMutableProperty0<Boolean>,dynamic: IDynamicDataProvider = TestDynamicDataProvider(), ) {
         assignState(turnOnProperties)
+        MethodCallFactory.initialize(dynamic)
         try {
             super.doFoldingTest(null)
         } catch (e: com.intellij.rt.execution.junit.FileComparisonFailure) {
@@ -40,8 +44,9 @@ open class FoldingTest : BaseTest() {
         }
     }
 
-    private fun doReadOnlyFoldingTest(vararg turnOnProperties: KMutableProperty0<Boolean>) {
+    private fun doReadOnlyFoldingTest( vararg turnOnProperties: KMutableProperty0<Boolean>, dynamic: IDynamicDataProvider = TestDynamicDataProvider()) {
         assignState(turnOnProperties)
+        MethodCallFactory.initialize(dynamic)
         runInEdt {
             super.doReadOnlyFoldingTest()
         }
@@ -334,6 +339,38 @@ open class FoldingTest : BaseTest() {
      */
     @Test fun testExpressionFuncTestData() {
         doFoldingTest(state::expressionFunc)
+    }
+
+    /**
+     * [data.DynamicTestData]
+     */
+    @Test
+    fun testDynamicTestData() {
+        try {
+            val dynamicProvider = object : IDynamicDataProvider {
+                override fun parse(): List<DynamicMethodCall> {
+                    return parseToml(
+                        """
+[main1desc]
+method = "main"
+newName = "mainek1"
+
+[main2desc]
+method = "main2"
+newName = "mainek2"
+
+[main3desc]
+method = "main3"
+newName = "mainek3"
+                    """.trimIndent()
+                    )
+                }
+
+            }
+            doFoldingTest(state::dynamic, dynamic = dynamicProvider)
+        } finally {
+            MethodCallFactory.refreshMethodCallMappings(null)
+        }
     }
     // NEW OPTION
     /**

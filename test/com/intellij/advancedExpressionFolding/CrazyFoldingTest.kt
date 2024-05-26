@@ -89,7 +89,7 @@ class CrazyFoldingTest : BaseTest() {
 
         @JvmStatic
         fun permutations(): Stream<Arguments> {
-            CONFIG_FILE.readCounterAndFilename()?.let { (count: Long, filename: String) ->
+            CONFIG_FILE.readCounterAndFilename()?.let { (count: Long, _: String) ->
                 counter = count
             }
             val props: List<KMutableProperty<*>> = allProperties()

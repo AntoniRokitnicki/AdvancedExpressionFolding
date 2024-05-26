@@ -46,7 +46,7 @@ class LetReturnIt {
         new Thread(<fold text='run() → { ' expand='false'>new Runnable() {
             @Override
             public void run() {<fold text=' ' expand='true'>
-                </fold></fold>System.out.println(var7 + "1")<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+                </fold></fold><fold text='' expand='false'>System.out.</fold>println<fold text='("$' expand='false'>(</fold>var7<fold text='' expand='false'> + "</fold>1")<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
             </fold>}
         }</fold>);
         return null;

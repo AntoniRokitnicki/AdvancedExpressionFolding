@@ -1,7 +1,6 @@
 package com.intellij.advancedExpressionFolding.extension
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.expression.custom.WrapperExpression
 import com.intellij.advancedExpressionFolding.extension.Consts.Emoji
 import com.intellij.psi.*
 
@@ -16,7 +15,7 @@ object KeywordExt : BaseExtension() {
 
     private fun PsiKeyword.finalRemoval(): Expression? = foldFinalsExceptFields { exprHide() }
 
-    private inline fun PsiKeyword.foldFinalsExceptFields(foldSpaces: Boolean = false, folder: PsiElement.() -> Expression?): WrapperExpression? {
+    private inline fun PsiKeyword.foldFinalsExceptFields(foldSpaces: Boolean = false, folder: PsiElement.() -> Expression?): Expression? {
         if (text == PsiKeyword.FINAL) {
             val list = exprList()
             var ignore = false
