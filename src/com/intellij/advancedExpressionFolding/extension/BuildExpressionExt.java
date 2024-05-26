@@ -1,12 +1,10 @@
 package com.intellij.advancedExpressionFolding.extension;
 
 import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings;
-import com.intellij.advancedExpressionFolding.UnexpectedException;
 import com.intellij.advancedExpressionFolding.expression.*;
 import com.intellij.advancedExpressionFolding.extension.methodcall.MethodCallExpressionExt;
 import com.intellij.lang.folding.FoldingDescriptor;
 import com.intellij.openapi.editor.Document;
-import com.intellij.openapi.progress.ProcessCanceledException;
 import com.intellij.openapi.project.IndexNotReadyException;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.*;
@@ -201,7 +199,7 @@ public class BuildExpressionExt {
             }
         }
         if (element instanceof PsiParameter psiParameter) {
-            Expression expression = NullableExt.createExpression(psiParameter,document);
+            Expression expression = NullableExt.createExpression(psiParameter, document);
             if (expression != null) {
                 return expression;
             }
@@ -250,39 +248,28 @@ public class BuildExpressionExt {
         return getExpression(element, document, false);
     }
 
+    @SuppressWarnings({"unused", "UnusedAssignment"})
     @NotNull
     public static FoldingDescriptor @NotNull [] collectFoldRegionsRecursively(@NotNull PsiElement element, @NotNull Document document, boolean quick) {
         PsiElement lastElement = element;
         List<FoldingDescriptor> allDescriptors = null;
-        try {
-            @Nullable Expression expression = getNonSyntheticExpression(element, document);
-            if (expression != null && expression.supportsFoldRegions(document, null)) {
-                FoldingDescriptor[] descriptors = expression.buildFoldRegions(expression.getElement(), document, null);
-                allDescriptors = new ArrayList<>();
-                Collections.addAll(allDescriptors, descriptors);
-            }
-            if (expression == null || expression.isNested()) {
-                for (PsiElement child : element.getChildren()) {
-                    lastElement = child;
-                    FoldingDescriptor[] descriptors = collectFoldRegionsRecursively(child, document, quick);
-                    if (descriptors.length > 0) {
-                        if (allDescriptors == null) {
-                            allDescriptors = new ArrayList<>();
-                        }
-                        Collections.addAll(allDescriptors, descriptors);
+        @Nullable Expression expression = getNonSyntheticExpression(element, document);
+        if (expression != null && expression.supportsFoldRegions(document, null)) {
+            FoldingDescriptor[] descriptors = expression.buildFoldRegions(expression.getElement(), document, null);
+            allDescriptors = new ArrayList<>();
+            Collections.addAll(allDescriptors, descriptors);
+        }
+        if (expression == null || expression.isNested()) {
+            for (PsiElement child : element.getChildren()) {
+                lastElement = child;
+                FoldingDescriptor[] descriptors = collectFoldRegionsRecursively(child, document, quick);
+                if (descriptors.length > 0) {
+                    if (allDescriptors == null) {
+                        allDescriptors = new ArrayList<>();
                     }
+                    Collections.addAll(allDescriptors, descriptors);
                 }
             }
-        } catch (IndexNotReadyException | ProcessCanceledException | PsiInvalidElementAccessException ignore) {
-        } catch (UnexpectedException e) {
-            throw e;
-        } catch (Exception e) {
-            String fileName = null;
-            PsiFile containingFile = lastElement.getContainingFile();
-            if (containingFile != null) {
-                fileName = containingFile.getName();
-            }
-            throw new UnexpectedException(lastElement.getClass(), lastElement.getText(), lastElement.getTextRange(), fileName, e);
         }
         return allDescriptors != null ? allDescriptors.toArray(NO_DESCRIPTORS) : NO_DESCRIPTORS;
     }

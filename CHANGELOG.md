@@ -11,8 +11,11 @@
 - [lombok] - @AllArgsConstructor, @AllArgsConstructor(protected), etc.
 - [lombok] - @RequiredArgsConstructor, @RequiredArgsConstructor(protected), etc.
 - [lombok] - @Log and @Log(logger) - present for every Logger field
-- [expressionFunc] - Single-Expression Function
+- [expressionFunc] - Kotlin's Single-expression functions for with single statement body with size < 145 characters. {} used instead of =, because of default method folding. 
 
+### Fixed
+- [cache] - sometimes caching goes wrong when IDE throws ProcessCanceledException and friends
+ 
 ## [1.0.52] - 2024-05-18
 
 @Setter(dirty) folded only on field level
