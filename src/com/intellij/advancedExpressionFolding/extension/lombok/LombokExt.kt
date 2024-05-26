@@ -146,7 +146,7 @@ object LombokExt : BaseExtension(), GenericCallback<PsiField, Pair<PsiMethod, St
                 }.mapNotNull {
                     it.propertyField
                 }
-                if (methods.size == fields.size && dirtyFields.isEmpty()) {
+                if (properties.size == fields.size && dirtyFields.isEmpty()) {
                     properties
                 } else {
                     foldOnFieldLevel(fields, methodType, dirtyFields)
