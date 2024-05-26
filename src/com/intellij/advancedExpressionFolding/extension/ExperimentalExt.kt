@@ -9,7 +9,7 @@ object ExperimentalExt : BaseExtension() {
 
     fun createSingleExpressionFunctions(method: PsiMethod, other: NullAnnotationExpression?): Expression? {
         val statement = method.body?.statements?.singleOrNull()?.takeIf {
-            method.text.length < 145
+            method.body!!.text.length < 145
         } ?: return other
 
         return statement.asInstance<PsiReturnStatement>()?.let {
