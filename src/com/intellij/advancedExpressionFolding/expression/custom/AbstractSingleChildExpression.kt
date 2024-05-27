@@ -16,6 +16,14 @@ abstract class AbstractSingleChildExpression(
     private val child: Expression?,
 ) : Expression(element, textRange) {
 
+    /**
+     * some Expressions like
+     * [com.intellij.advancedExpressionFolding.expression.ArrayLiteral.supportsFoldRegions]
+     * [com.intellij.advancedExpressionFolding.expression.ArrayLiteral.buildFoldRegions]
+     * are using this offset
+     */
+    override fun getTextRange(): TextRange = element.textRange
+
     protected var group: FoldingGroup? = null
 
     //TODO: support that in "-folded.java"
