@@ -1,12 +1,9 @@
 package com.intellij.advancedExpressionFolding.extension.lombok
 
-import com.intellij.advancedExpressionFolding.expression.custom.AbstractMultiExpression
-import com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression
 import com.intellij.advancedExpressionFolding.extension.*
 import com.intellij.advancedExpressionFolding.extension.MethodBodyInspector.isDirtyGetter
 import com.intellij.advancedExpressionFolding.extension.MethodBodyInspector.isDirtySetter
-import com.intellij.advancedExpressionFolding.extension.PsiClassExt.HidingAnnotation
-import com.intellij.advancedExpressionFolding.extension.lombok.LombokExt.lombokDirtyOff
+import com.intellij.advancedExpressionFolding.extension.PsiClassExt.ClassLevelAnnotation
 import com.intellij.advancedExpressionFolding.extension.lombok.LombokFoldingAnnotation.*
 import com.intellij.advancedExpressionFolding.extension.lombok.MethodType.*
 import com.intellij.openapi.util.Key
@@ -17,37 +14,66 @@ import com.intellij.psi.PsiJavaFile
 import com.intellij.psi.PsiMethod
 import com.intellij.psi.impl.source.PsiClassReferenceType
 
-object LombokExt : BaseExtension(), GenericCallback<PsiField, Pair<PsiMethod, String?>> {
+data class FieldLevelAnnotation(
+    val classAnnotation: LombokFoldingAnnotation,
+    val field: PsiField,
+    val method: List<PsiMethod>,
+    //val pure: Boolean = true,
+    val arguments: List<String> = emptyList(),
+)
 
-    fun PsiClass.addLombokSupport(): List<HidingAnnotation> {
-        val hidingAnnotations = mutableListOf<HidingAnnotation>()
-        hidingAnnotations += foldLog(this.fields)
-        hidingAnnotations += foldBuilder()
-        hidingAnnotations += foldNoArgsConstructor(this.constructors)
-
-        createFieldMap(this)?.let { fieldsMap ->
-            hidingAnnotations += foldArgsConstructor(this.constructors, fieldsMap.values)
-
-            val methodTypeToMethodsMap: Map<MethodType, List<PsiMethod>> = groupMethodsByMethodType(this)
-            hidingAnnotations += foldProperties(methodTypeToMethodsMap, fieldsMap)
-            hidingAnnotations += foldData(methodTypeToMethodsMap, fieldsMap)
-        }
-        optimizations(hidingAnnotations)
-        return hidingAnnotations
+object LombokExt : BaseExtension(), GenericCallback<PsiField, List<FieldLevelAnnotation>> {
+    override val callbackKey: Key<() -> List<FieldLevelAnnotation>> by lazy {
+        Key.create("lombok-callback")
     }
 
-    private fun PsiClass.foldBuilder(): List<HidingAnnotation> {
+    fun PsiClass.addLombokSupport(): List<ClassLevelAnnotation> {
+        val classLevelAnnotations = mutableListOf<ClassLevelAnnotation>()
+        val fieldLevelAnnotations = mutableListOf<FieldLevelAnnotation>()
+
+        classLevelAnnotations += foldLog(this.fields)
+        classLevelAnnotations += foldBuilder()
+        classLevelAnnotations += foldNoArgsConstructor(this.constructors)
+
+        createFieldMap(this)?.let { fieldsMap ->
+            classLevelAnnotations += foldArgsConstructor(this.constructors, fieldsMap.values)
+
+            val methodTypeToMethodsMap: Map<MethodType, List<PsiMethod>> = groupMethodsByMethodType(this)
+            classLevelAnnotations += foldProperties(methodTypeToMethodsMap, fieldsMap, fieldLevelAnnotations)
+            classLevelAnnotations += foldData(methodTypeToMethodsMap, fieldsMap, fieldLevelAnnotations)
+        }
+        classOptimizations(classLevelAnnotations)
+
+        val fieldLevelMap = fieldLevelAnnotations.groupBy {
+            it.field
+        }.toMutableMap()
+
+        applyFieldLevel(fieldOptimizations(fieldLevelMap))
+        return classLevelAnnotations
+    }
+
+    private fun applyFieldLevel(fieldLevelMap: Map<PsiField, List<FieldLevelAnnotation>>) {
+        fieldLevelMap
+            .forEach {
+                it.key.callback = {
+                    it.value
+                }
+                getNonSyntheticExpression(it.key)
+            }
+    }
+
+    private fun PsiClass.foldBuilder(): List<ClassLevelAnnotation> {
         return allInnerClasses.filter {
             it.name?.endsWith("Builder") == true
         }.map {
-            HidingAnnotation(LOMBOK_BUILDER, emptyList())
+            ClassLevelAnnotation(LOMBOK_BUILDER, emptyList())
         }
     }
 
     private fun foldArgsConstructor(
         constructors: Array<PsiMethod>,
         fields: Collection<PsiField>
-    ): List<HidingAnnotation> {
+    ): List<ClassLevelAnnotation> {
         return constructors.flatMap {
             it.foldArgsConstructor(fields)
         }
@@ -55,14 +81,14 @@ object LombokExt : BaseExtension(), GenericCallback<PsiField, Pair<PsiMethod, St
 
     private fun PsiMethod.foldArgsConstructor(
         fields: Collection<PsiField>
-    ): MutableList<HidingAnnotation> {
-        val list = mutableListOf<HidingAnnotation>()
+    ): MutableList<ClassLevelAnnotation> {
+        val list = mutableListOf<ClassLevelAnnotation>()
         if (fields.all {
                 it.isFinal()
             } && isAllArgsConstructor(this, fields)) {
-            list.add(HidingAnnotation(LOMBOK_REQUIRED_ARGS_CONSTRUCTOR, listOf(this), arguments = detectModifier()))
+            list.add(ClassLevelAnnotation(LOMBOK_REQUIRED_ARGS_CONSTRUCTOR, listOf(this), arguments = detectModifier()))
         } else if (isAllArgsConstructor(this, fields)) {
-            list.add(HidingAnnotation(LOMBOK_ALL_ARGS_CONSTRUCTOR, listOf(this), arguments = detectModifier()))
+            list.add(ClassLevelAnnotation(LOMBOK_ALL_ARGS_CONSTRUCTOR, listOf(this), arguments = detectModifier()))
         }
         return list
     }
@@ -77,10 +103,10 @@ object LombokExt : BaseExtension(), GenericCallback<PsiField, Pair<PsiMethod, St
         return arguments
     }
 
-    private fun foldNoArgsConstructor(constructors: Array<PsiMethod>): List<HidingAnnotation> {
+    private fun foldNoArgsConstructor(constructors: Array<PsiMethod>): List<ClassLevelAnnotation> {
         return constructors.firstNotNullOfOrNull {
             if (isNoArgsConstructor(it)) {
-                HidingAnnotation(LOMBOK_NO_ARGS_CONSTRUCTOR, listOf(it), arguments = it.detectModifier())
+                ClassLevelAnnotation(LOMBOK_NO_ARGS_CONSTRUCTOR, listOf(it), arguments = it.detectModifier())
             } else {
                 null
             }
@@ -102,7 +128,7 @@ object LombokExt : BaseExtension(), GenericCallback<PsiField, Pair<PsiMethod, St
 
     private fun foldLog(
         fields: Array<PsiField>
-    ): List<HidingAnnotation> {
+    ): List<ClassLevelAnnotation> {
         return fields.filter {
             (it.type as? PsiClassReferenceType)?.name?.contains("Logger") == true
         }.map { logField ->
@@ -111,22 +137,21 @@ object LombokExt : BaseExtension(), GenericCallback<PsiField, Pair<PsiMethod, St
             val arguments = dirty.on(logField.name)?.let {
                 listOf(it)
             } ?: emptyList()
-            HidingAnnotation(LOMBOK_LOG, listOf(logField), arguments = arguments)
+            ClassLevelAnnotation(LOMBOK_LOG, listOf(logField), arguments = arguments)
         }
     }
 
     private fun foldProperties(
         methodTypeToMethodsMap: Map<MethodType, List<PsiMethod>>,
-        fieldsMap: Map<@NlsSafe String, PsiField>
-    ): List<HidingAnnotation> {
-
-
+        fieldsMap: Map<@NlsSafe String, PsiField>,
+        fieldLevelAnnotations: MutableList<FieldLevelAnnotation>
+    ): List<ClassLevelAnnotation> {
         return mapOf(
             GETTER to LOMBOK_GETTER,
             SETTER to LOMBOK_SETTER,
         ).mapNotNull { (methodType, annotation) ->
             val methods = methodTypeToMethodsMap.getMethodsOfType(methodType)
-            return@mapNotNull methods.filter { method ->
+            return@mapNotNull methods.mapNotNull { method ->
                 val field = fieldsMap[method.guessPropertyName()]
                 when (methodType) {
                     GETTER -> field?.metadata?.getter = method
@@ -135,33 +160,48 @@ object LombokExt : BaseExtension(), GenericCallback<PsiField, Pair<PsiMethod, St
                 field?.let {
                     method.propertyField = it
                 }
-                field != null
+                if (field != null) {
+                    field to method
+                } else {
+                    null
+                }
             }.takeIf {
                 it.isNotEmpty()
             }?.let { properties ->
-                val fields = fieldsMap.values
-
-                val dirtyFields = methods.filter {
-                    methodType.isDirty(it)
-                }.mapNotNull {
-                    it.propertyField
+                val dirtyFields = properties.associate {
+                    it.first to methodType.isDirty(it.second)
                 }
-                if (properties.size == fields.size && dirtyFields.isEmpty()) {
-                    properties
+
+                if (properties.size == fieldsMap.size && dirtyFields.values.all {
+                        !it
+                    }) {
+                    properties.map {
+                        it.second
+                    }
                 } else {
-                    foldOnFieldLevel(fields, methodType, dirtyFields)
+                    properties.mapNotNull { (field, method) ->
+                        val dirty = dirtyFields[field] ?: false
+                        if (dirty && lombokDirtyOff) {
+                            null
+                        } else {
+                            val arguments = methodType.createFieldArgument(dirty)?.let(::listOf) ?: emptyList()
+                            FieldLevelAnnotation(annotation, field, listOf(method), arguments)
+                        }
+                    }.forEach(fieldLevelAnnotations::add)
+
                     null
                 }
             }?.let {
-                HidingAnnotation(annotation, it, pure = true)
+                ClassLevelAnnotation(annotation, it, pure = true)
             }
         }
     }
 
     private fun foldData(
         methodTypeToMethodsMap: Map<MethodType, List<PsiMethod>>,
-        fieldsMap: Map<@NlsSafe String, PsiField>
-    ): List<HidingAnnotation> {
+        fieldsMap: Map<@NlsSafe String, PsiField>,
+        fieldLevelAnnotations: MutableList<FieldLevelAnnotation>
+    ): List<ClassLevelAnnotation> {
         return mapOf(
             TO_STRING to LOMBOK_TO_STRING,
             EQUALS to LOMBOK_EQUALS,
@@ -170,58 +210,66 @@ object LombokExt : BaseExtension(), GenericCallback<PsiField, Pair<PsiMethod, St
             val method = methodTypeToMethodsMap.getMethodsOfType(methodType).firstOrNull() ?: return@mapNotNull null
             val lombokFields = method.getFieldsUsed(fieldsMap.values)
             val pure = lombokFields.size == fieldsMap.size
-            HidingAnnotation(annotation, listOf(method), pure)
+            if (!pure) {
+                lombokFields.map {
+                    FieldLevelAnnotation(annotation, it, listOf(method))
+                }.forEach(fieldLevelAnnotations::add)
+                null
+            } else {
+                ClassLevelAnnotation(annotation, listOf(method), pure)
+            }
         }
     }
 
-    private fun foldOnFieldLevel(
-        fields: Collection<PsiField>,
-        methodType: MethodType,
-        dirtyFields: List<PsiField>
-    ) {
-        fields.forEach { field ->
-            val propertyMethod = when (methodType) {
-                GETTER -> field.metadata.getter
-                else -> field.metadata.setter
-            }
-            propertyMethod?.let { getter ->
-                val dirty = dirtyFields.contains(field)
 
-                var callbackCalled = false
-                val callback = {
-                    callbackCalled = true
-                    val fieldAnnotation = methodType.createFieldLevelAnnotation(dirty)
-                    getter to fieldAnnotation
-                }
-                field.useCallback(callback = callback, executeWithinCallback = {
-                    val expr = getNonSyntheticExpression(field).asInstance<AbstractMultiExpression>()
-                    callbackCalled.off(expr)?.let {
-                        simulateSecondCallback(callback, it, field)
+    private fun fieldOptimizations(fieldLevelMap: MutableMap<PsiField, List<FieldLevelAnnotation>>): Map<PsiField, List<FieldLevelAnnotation>> {
+        return fieldLevelMap.mapValues { (field, list) ->
+            if (list.size < 2 && list.none {
+                    it.arguments.isEmpty()
+                }) {
+                return@mapValues list
+            }
+
+            val outList = list.toMutableList()
+
+            val usedAnnotations = list.map {
+                it.classAnnotation
+            }.toMutableList()
+            val values = LombokFoldingAnnotation.values().toMutableList()
+            values.remove(LOMBOK_VALUE_SIMPLE)
+            values.forEach { groupingAnnotation ->
+                groupingAnnotation.children()?.let { neededKids ->
+                    if (groupingAnnotation == LOMBOK_VALUE && field.isFinal()) {
+                        neededKids.remove(LOMBOK_REQUIRED_ARGS_CONSTRUCTOR)
                     }
-                })
+
+                    if (usedAnnotations.containsAll(neededKids)) {
+                        if (groupingAnnotation == LOMBOK_DATA || groupingAnnotation == LOMBOK_VALUE) {
+                            neededKids.add(LOMBOK_TO_STRING)
+
+                        }
+                        val removable = outList.filter {
+                            neededKids.contains(it.classAnnotation)
+                        }
+                        if (removable.isNotEmpty()) {
+                            outList.removeAll(removable)
+                            outList.add(
+                                FieldLevelAnnotation(
+                                    groupingAnnotation,
+                                    field,
+                                    method = removable.flatMap {
+                                        it.method
+                                    })
+                            )
+                        }
+                    }
+                }
             }
+            outList
         }
     }
 
-    private fun simulateSecondCallback(
-        callback: () -> Pair<PsiMethod, String?>,
-        multiplexer: AbstractMultiExpression,
-        field: PsiField
-    ) {
-        val (getter2, getterAnnotation) = callback()
-        getterAnnotation?.let {
-            getter2.markIgnored()
-            multiplexer.addChild(
-                FieldAnnotationExpression(
-                    field,
-                    listOf(getterAnnotation),
-                    listOf(getter2, getter2.prevWhiteSpace())
-                )
-            )
-        }
-    }
-
-    private fun optimizations(allAnnotations: MutableList<HidingAnnotation>) {
+    private fun classOptimizations(allAnnotations: MutableList<ClassLevelAnnotation>) {
         val annotations = allAnnotations.groupBy {
             it.classAnnotation
         }
@@ -233,7 +281,6 @@ object LombokExt : BaseExtension(), GenericCallback<PsiField, Pair<PsiMethod, St
                     if (groupingAnnotation == LOMBOK_DATA || groupingAnnotation == LOMBOK_VALUE) {
                         neededKids.add(LOMBOK_TO_STRING)
                     }
-
                     val hidingAnnotations = neededKids.mapNotNull {
                         annotations[it]
                     }.flatten()
@@ -242,14 +289,13 @@ object LombokExt : BaseExtension(), GenericCallback<PsiField, Pair<PsiMethod, St
                         it.pure
                     }
 
-
                     allAnnotations.removeAll {
                         it.classAnnotation in neededKids
                     }
                     usedAnnotations.removeAll(neededKids)
 
-                    val elementsToHide = hidingAnnotations.flatMap(HidingAnnotation::elementsToHide)
-                    allAnnotations.add(HidingAnnotation(groupingAnnotation, elementsToHide, pure))
+                    val elementsToHide = hidingAnnotations.flatMap(ClassLevelAnnotation::elementsToHide)
+                    allAnnotations.add(ClassLevelAnnotation(groupingAnnotation, elementsToHide, pure))
                 }
             }
         }
@@ -286,40 +332,28 @@ object LombokExt : BaseExtension(), GenericCallback<PsiField, Pair<PsiMethod, St
             it.qualifiedName?.startsWith("lombok") ?: false
         } ?: false
 
-    override val callbackKey: Key<() -> Pair<PsiMethod, String?>> by lazy {
-        Key.create("lombok-callback")
-    }
+
 }
-
-
 
 
 enum class MethodType {
     GETTER {
         override fun isDirty(method: PsiMethod) = method.isDirtyGetter()
 
-        override fun createFieldLevelAnnotation(dirty: Boolean): String? = if (dirty) {
-            if (lombokDirtyOff) {
-                null
-            } else {
-                "@Getter(dirty)"
-            }
+        override fun createFieldArgument(dirty: Boolean): String? = if (dirty) {
+            "dirty"
         } else {
-            "@Getter"
+            null
         }
 
     },
     SETTER {
         override fun isDirty(method: PsiMethod) = method.isDirtySetter()
 
-        override fun createFieldLevelAnnotation(dirty: Boolean): String? = if (dirty) {
-            if (lombokDirtyOff) {
-                null
-            } else {
-                "@Setter(dirty)"
-            }
+        override fun createFieldArgument(dirty: Boolean): String? = if (dirty) {
+            "dirty"
         } else {
-            "@Setter"
+            null
         }
     },
     TO_STRING,
@@ -330,7 +364,7 @@ enum class MethodType {
     ;
 
     open fun isDirty(method: PsiMethod): Boolean = false
-    open fun createFieldLevelAnnotation(dirty: Boolean): String? = null
+    open fun createFieldArgument(dirty: Boolean): String? = null
 }
 
 private fun PsiMethod.findMethodType(): MethodType =

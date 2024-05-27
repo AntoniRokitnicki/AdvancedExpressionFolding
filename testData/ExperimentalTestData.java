@@ -105,9 +105,9 @@ public class ExperimentalTestData {
         }</fold>
     }</fold>
 
-    <fold text='@NoArgsConstructor @AllArgsConstructor @ToStringˣ s' expand='false'>s</fold>tatic class ConstClass <fold text='{...}' expand='true'>{
+    <fold text='@NoArgsConstructor @AllArgsConstructor s' expand='false'>s</fold>tatic class ConstClass <fold text='{...}' expand='true'>{
         boolean ok;
-        String string;<fold text='' expand='false'>
+        <fold text='@ToString S' expand='false'>S</fold>tring string;<fold text='' expand='false'>
 
         </fold><fold text='' expand='false'>public ConstClass() <fold text='{}' expand='true'>{
         }</fold></fold>

@@ -55,13 +55,13 @@ import java.util.logging.Logger;
         LombokTestData data;
         boolean ok;
 
-        @ToStringˣ public class ToStringPartial {
-            LombokTestData data;
+        public class ToStringPartial {
+            @ToString LombokTestData data;
             boolean ok;
         }
 
-        @ToStringˣ public class ToStringPartial2 {
-            LombokTestData data;
+        public class ToStringPartial2 {
+            @ToString LombokTestData data;
             boolean ok;
             String string;
         }
@@ -71,14 +71,14 @@ import java.util.logging.Logger;
         LombokTestData data;
         boolean ok;
 
-        @EqualsAndHashCodeˣ public class EqualsAndHashCodePartial {
-            LombokTestData data;
+        public class EqualsAndHashCodePartial {
+            @EqualsAndHashCode LombokTestData data;
             boolean ok;
         }
 
-        @EqualsAndHashCodeˣ public class EqualsAndHashCodePartialTwo {
-            LombokTestData data;
-            boolean ok;
+        public class EqualsAndHashCodePartialTwo {
+            @EqualsAndHashCode LombokTestData data;
+            @EqualsAndHashCode boolean ok;
             String string;
         }
     }
@@ -87,14 +87,14 @@ import java.util.logging.Logger;
         LombokTestData data;
         boolean ok;
 
-        @Equalsˣ public class EqualsPartial {
-            LombokTestData data;
+        public class EqualsPartial {
+            @Equals LombokTestData data;
             boolean ok;
         }
 
-        @Equalsˣ public class EqualsPartialTwo {
-            LombokTestData data;
-            boolean ok;
+        public class EqualsPartialTwo {
+            @Equals LombokTestData data;
+            @Equals boolean ok;
             String string;
         }
     }
@@ -103,14 +103,14 @@ import java.util.logging.Logger;
         LombokTestData data;
         boolean ok;
 
-        @HashCodeˣ public class HashCodePartial {
-            LombokTestData data;
+        public class HashCodePartial {
+            @HashCode LombokTestData data;
             boolean ok;
         }
 
-        @HashCodeˣ public class HashCodePartialTwo {
-            LombokTestData data;
-            boolean ok;
+        public class HashCodePartialTwo {
+            @HashCode LombokTestData data;
+            @HashCode boolean ok;
             String string;
         }
     }
@@ -408,6 +408,19 @@ import java.util.logging.Logger;
         }
     }
 
+    class FieldLevelData {
+        @Data private String name;
+        private String ignored;
+    }
+
+    class FieldLevelValue {
+        @Value private final String name = "1";
+        private String ignored;
+    }
+    class FieldLevelNotValue {
+        @Getter @EqualsAndHashCode private String name;
+        private String ignored;
+    }
 
     @Builder class ClassWithBuilder {
         private String name;

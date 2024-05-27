@@ -17,7 +17,7 @@ object PsiClassExt : BaseExtension() {
         BUILDER,
     }
 
-    data class HidingAnnotation(
+    data class ClassLevelAnnotation(
         val classAnnotation: LombokFoldingAnnotation,
         val elementsToHide: List<PsiElement>,
         val pure: Boolean = true,
@@ -65,10 +65,10 @@ object PsiClassExt : BaseExtension() {
 
     private fun addSerialVersionUID(
         serialField: PsiField?
-    ): List<HidingAnnotation> {
+    ): List<ClassLevelAnnotation> {
         return serialField?.let {
             it.markIgnored()
-            listOf(HidingAnnotation(SERIAL, listOf(it)))
+            listOf(ClassLevelAnnotation(SERIAL, listOf(it)))
         } ?: emptyList()
     }
 

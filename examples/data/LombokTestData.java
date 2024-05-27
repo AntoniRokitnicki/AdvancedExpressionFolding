@@ -1002,6 +1002,74 @@ public class LombokTestData {
         }
     }
 
+    class FieldLevelData {
+        private String name;
+        private String ignored;
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        @Override
+        public final boolean equals(Object o) {
+            if (this == o) return true;
+            if (!(o instanceof FieldLevelData)) return false;
+            FieldLevelData that = (FieldLevelData) o;
+            return Objects.equals(name, that.name);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hashCode(name);
+        }
+    }
+
+    class FieldLevelValue {
+        private final String name = "1";
+        private String ignored;
+
+        public String getName() {
+            return name;
+        }
+
+        @Override
+        public final boolean equals(Object o) {
+            if (this == o) return true;
+            if (!(o instanceof FieldLevelData)) return false;
+            FieldLevelData that = (FieldLevelData) o;
+            return Objects.equals(name, that.name);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hashCode(name);
+        }
+    }
+    class FieldLevelNotValue {
+        private String name;
+        private String ignored;
+
+        public String getName() {
+            return name;
+        }
+
+        @Override
+        public final boolean equals(Object o) {
+            if (this == o) return true;
+            if (!(o instanceof FieldLevelData)) return false;
+            FieldLevelData that = (FieldLevelData) o;
+            return Objects.equals(name, that.name);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hashCode(name);
+        }
+    }
 
     class ClassWithBuilder {
         private String name;

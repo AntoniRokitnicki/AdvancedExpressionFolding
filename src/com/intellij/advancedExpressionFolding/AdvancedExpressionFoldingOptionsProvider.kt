@@ -189,7 +189,7 @@ class AdvancedExpressionFoldingOptionsProvider : AbstractExpressionFoldingOption
             state::finalEmoji,
             mapOf("FinalEmojiTestData.java" to null),
         )
-        checkBox("Don't fold lombok dirty getters",
+        checkBox("Don't fold lombok dirty getters/setters",
             state::lombokDirtyOff,
             mapOf("LombokDirtyOffTestData.java" to null),
         )
