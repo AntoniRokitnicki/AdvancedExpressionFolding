@@ -216,9 +216,15 @@ inline fun <reified T> Any?.isInstance(): Boolean = this is T
 fun <E, T : Collection<E>?> T.takeIfSize(size: Int): T? = this.takeIf {
     it?.size == size
 }
+fun <E, T : Collection<E>?> T.takeIfSizeNot(size: Int): T? = this.takeIf {
+    it?.size != size
+}
 
 fun <T> Array<T>?.takeIfSize(size: Int): Array<T>? = this.takeIf {
     it?.size == size
+}
+fun <T> Array<T>?.takeIfSizeNot(size: Int): Array<T>? = this.takeIf {
+    it?.size != size
 }
 
 fun <T> Array<T>.firstOrNullIfNotEmpty(): T? {

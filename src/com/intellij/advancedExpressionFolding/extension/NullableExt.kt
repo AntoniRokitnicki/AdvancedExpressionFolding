@@ -1,7 +1,10 @@
 package com.intellij.advancedExpressionFolding.extension
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.expression.custom.*
+import com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression
+import com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression
+import com.intellij.advancedExpressionFolding.expression.custom.FieldConstExpression
+import com.intellij.advancedExpressionFolding.expression.custom.NullAnnotationExpression
 import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFoldingAnnotation.Companion.findByName
 import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFoldingAnnotation.NOT_NULL
 import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFoldingAnnotation.NULLABLE
@@ -47,20 +50,31 @@ object NullableExt : BaseExtension() {
 
     @JvmStatic
     fun createExpression(field: PsiField, document: Document): Expression? {
-        val typeElement = field.typeElement
-        if (typeElement == null || field.isIgnored()) {
-            return null
-        }
+        val typeElement = field.typeElement ?: return null
 
         val list = exprList()
-        val newAnnotations = mutableListOf<FieldAnnotationExpression>()
 
-        field.callback?.let {
-            val (getter, getterAnnotation) = it()
-            getterAnnotation?.let {
-                getter.markIgnored()
-                newAnnotations += FieldAnnotationExpression(field, listOf(getterAnnotation), listOf(getter, getter.prevWhiteSpace()))
+        val fieldAnnotations = mutableListOf<String>()
+        val elementsToHide = mutableListOf<PsiElement?>()
+
+        field.callback?.invoke()?.let { annotations ->
+            annotations.forEach { fieldLevelAnnotation ->
+                elementsToHide.addAll(fieldLevelAnnotation.method)
+                elementsToHide.addAll(fieldLevelAnnotation.method.mapNotNull {
+                    it.prevWhiteSpace()
+                })
+
+                val arguments = fieldLevelAnnotation.arguments.takeIf {
+                    it.isNotEmpty()
+                }?.joinToString(separator = ",")?.let {
+                    "($it)"
+                } ?: ""
+                fieldAnnotations += fieldLevelAnnotation.classAnnotation.annotation + arguments
             }
+        }
+
+        list += fieldAnnotations.takeIfSizeNot(0)?.let {
+            FieldAnnotationExpression(field, it, elementsToHide)
         }
 
         list += nullable.on()?.let {
@@ -72,7 +86,6 @@ object NullableExt : BaseExtension() {
             fieldConstExpression(field, typeElement, document)
         }
 
-        list += newAnnotations
         return list.exprWrap(field)
     }
 
