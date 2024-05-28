@@ -1,6 +1,7 @@
 package com.intellij.advancedExpressionFolding.expression.custom
 
 import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.advancedExpressionFolding.extension.group
 import com.intellij.advancedExpressionFolding.extension.plus
 import com.intellij.lang.folding.FoldingDescriptor
 import com.intellij.openapi.editor.Document
@@ -12,7 +13,8 @@ import com.intellij.psi.PsiTypeElement
 class FieldConstExpression(
     private val typeElement: PsiTypeElement?,
     private val annotationElement: PsiElement,
-    private val typeSuffix: String
+    private val typeSuffix: String,
+    vararg hideElements: PsiElement?,
 ) : Expression(annotationElement, annotationElement.textRange) {
     override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean {
         return true
@@ -23,7 +25,7 @@ class FieldConstExpression(
         document: Document,
         parent: Expression?
     ): Array<FoldingDescriptor> {
-        val group = FoldingGroup.newGroup(FieldConstExpression::class.java.name)
+        val group = FieldConstExpression::class.group()
 
         val textRange = if (typeElement == null) {
             annotationElement.textRange

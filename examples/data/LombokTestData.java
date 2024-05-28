@@ -1049,7 +1049,7 @@ public class LombokTestData {
             return Objects.hashCode(name);
         }
     }
-    class FieldLevelNotValue {
+    class FieldLevelNotFinalNotValue {
         private String name;
         private String ignored;
 
