@@ -3,13 +3,13 @@ package com.intellij.advancedExpressionFolding.extension
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression
 import com.intellij.advancedExpressionFolding.extension.Consts.SUPERSCRIPT_MAPPING
-import com.intellij.advancedExpressionFolding.extension.lombok.LombokExt
 import com.intellij.advancedExpressionFolding.extension.lombok.LombokExt.addLombokSupport
 import com.intellij.advancedExpressionFolding.extension.lombok.LombokFoldingAnnotation
 import com.intellij.advancedExpressionFolding.extension.lombok.LombokFoldingAnnotation.SERIAL
 import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiField
+import com.intellij.psi.PsiJavaFile
 
 object PsiClassExt : BaseExtension() {
 
@@ -29,7 +29,7 @@ object PsiClassExt : BaseExtension() {
         (clazz.isIgnored() || !lombok || clazz.isRecord || clazz.isInterface).off() ?: return null
 
         val serialField = isSerial(clazz)
-        if (LombokExt.hasLombokImports(clazz) && serialField == null) {
+        if (hasLombokImports(clazz) && serialField == null) {
             clazz.markIgnored()
             return null
         }
@@ -76,6 +76,12 @@ object PsiClassExt : BaseExtension() {
     private fun isSerial(clazz: PsiClass): PsiField? = clazz.fields.firstOrNull {
         it.name == "serialVersionUID"
     }
+
+    private fun hasLombokImports(clazz: PsiClass) =
+        clazz.containingFile.asInstance<PsiJavaFile>()?.importList?.importStatements?.any {
+            it.qualifiedName?.startsWith("lombok") ?: false
+        } ?: false
+
 
 }
 

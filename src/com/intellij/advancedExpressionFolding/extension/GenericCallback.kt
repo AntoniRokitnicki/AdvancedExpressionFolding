@@ -10,12 +10,4 @@ interface GenericCallback<CallbackOnType: PsiElement, CallbackReturn> {
         get() = getUserData(callbackKey)
         set(value) = putUserData(callbackKey, value)
 
-    fun CallbackOnType.useCallback(callback: () -> CallbackReturn, executeWithinCallback: () -> Unit) {
-        try {
-            this.callback = callback
-            executeWithinCallback()
-        } finally {
-            this.callback = null
-        }
-    }
 }

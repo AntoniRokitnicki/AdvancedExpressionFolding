@@ -1,8 +1,6 @@
 package com.intellij.advancedExpressionFolding.extension.lombok
 
 import com.intellij.advancedExpressionFolding.extension.*
-import com.intellij.advancedExpressionFolding.extension.MethodBodyInspector.isDirtyGetter
-import com.intellij.advancedExpressionFolding.extension.MethodBodyInspector.isDirtySetter
 import com.intellij.advancedExpressionFolding.extension.PsiClassExt.ClassLevelAnnotation
 import com.intellij.advancedExpressionFolding.extension.lombok.LombokFoldingAnnotation.*
 import com.intellij.advancedExpressionFolding.extension.lombok.MethodType.*
@@ -10,7 +8,6 @@ import com.intellij.openapi.util.Key
 import com.intellij.openapi.util.NlsSafe
 import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiField
-import com.intellij.psi.PsiJavaFile
 import com.intellij.psi.PsiMethod
 import com.intellij.psi.impl.source.PsiClassReferenceType
 
@@ -18,7 +15,6 @@ data class FieldLevelAnnotation(
     val classAnnotation: LombokFoldingAnnotation,
     val field: PsiField,
     val method: List<PsiMethod>,
-    //val pure: Boolean = true,
     val arguments: List<String> = emptyList(),
 )
 
@@ -54,12 +50,26 @@ object LombokExt : BaseExtension(), GenericCallback<PsiField, List<FieldLevelAnn
 
     private fun applyFieldLevel(fieldLevelMap: Map<PsiField, List<FieldLevelAnnotation>>) {
         fieldLevelMap
-            .forEach {
-                it.key.callback = {
-                    it.value
+            .forEach { (field, annotations) ->
+                try {
+                    field.callback = {
+                        annotations
+                    }
+                    getNonSyntheticExpression(field)
+                } finally {
+                    field.callback = null
                 }
-                getNonSyntheticExpression(it.key)
             }
+    }
+
+    fun createFieldLevelAnnotation(fieldLevelAnnotation: FieldLevelAnnotation): String {
+        val arguments = fieldLevelAnnotation.arguments.takeIf {
+            it.isNotEmpty()
+        }?.joinToString(separator = ",")?.let {
+            "($it)"
+        } ?: ""
+        val annotationAsString = fieldLevelAnnotation.classAnnotation.annotation + arguments
+        return annotationAsString
     }
 
     private fun PsiClass.foldBuilder(): List<ClassLevelAnnotation> {
@@ -326,53 +336,14 @@ object LombokExt : BaseExtension(), GenericCallback<PsiField, List<FieldLevelAnn
         methodType: MethodType
     ) = this[methodType] ?: emptyList()
 
-
-    internal fun hasLombokImports(clazz: PsiClass) =
-        clazz.containingFile.asInstance<PsiJavaFile>()?.importList?.importStatements?.any {
-            it.qualifiedName?.startsWith("lombok") ?: false
-        } ?: false
-
-
+    private fun PsiMethod.findMethodType(): MethodType =
+        when {
+            isGetter() -> GETTER
+            isSetter() -> SETTER
+            isToString() -> TO_STRING
+            isEquals() -> EQUALS
+            isHashCode() -> HASHCODE
+            else -> OTHER
+        }
 }
 
-
-enum class MethodType {
-    GETTER {
-        override fun isDirty(method: PsiMethod) = method.isDirtyGetter()
-
-        override fun createFieldArgument(dirty: Boolean): String? = if (dirty) {
-            "dirty"
-        } else {
-            null
-        }
-
-    },
-    SETTER {
-        override fun isDirty(method: PsiMethod) = method.isDirtySetter()
-
-        override fun createFieldArgument(dirty: Boolean): String? = if (dirty) {
-            "dirty"
-        } else {
-            null
-        }
-    },
-    TO_STRING,
-    EQUALS,
-    HASHCODE,
-    OTHER,
-
-    ;
-
-    open fun isDirty(method: PsiMethod): Boolean = false
-    open fun createFieldArgument(dirty: Boolean): String? = null
-}
-
-private fun PsiMethod.findMethodType(): MethodType =
-    when {
-        isGetter() -> GETTER
-        isSetter() -> SETTER
-        isToString() -> TO_STRING
-        isEquals() -> EQUALS
-        isHashCode() -> HASHCODE
-        else -> OTHER
-    }

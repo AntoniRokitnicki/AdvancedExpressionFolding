@@ -8,6 +8,7 @@ import com.intellij.advancedExpressionFolding.expression.custom.NullAnnotationEx
 import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFoldingAnnotation.Companion.findByName
 import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFoldingAnnotation.NOT_NULL
 import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFoldingAnnotation.NULLABLE
+import com.intellij.advancedExpressionFolding.extension.lombok.LombokExt
 import com.intellij.advancedExpressionFolding.extension.lombok.LombokExt.callback
 import com.intellij.advancedExpressionFolding.extension.methodcall.dynamic.DynamicExt
 import com.intellij.openapi.editor.Document
@@ -50,9 +51,9 @@ object NullableExt : BaseExtension() {
 
     @JvmStatic
     fun createExpression(field: PsiField, document: Document): Expression? {
-        val typeElement = field.typeElement ?: return null
-
-        val list = exprList()
+        val typeElement = field.typeElement.takeIf {
+            !field.isIgnored()
+        } ?: return null
 
         val fieldAnnotations = mutableListOf<String>()
         val elementsToHide = mutableListOf<PsiElement?>()
@@ -63,15 +64,11 @@ object NullableExt : BaseExtension() {
                 elementsToHide.addAll(fieldLevelAnnotation.method.mapNotNull {
                     it.prevWhiteSpace()
                 })
-
-                val arguments = fieldLevelAnnotation.arguments.takeIf {
-                    it.isNotEmpty()
-                }?.joinToString(separator = ",")?.let {
-                    "($it)"
-                } ?: ""
-                fieldAnnotations += fieldLevelAnnotation.classAnnotation.annotation + arguments
+                fieldAnnotations += LombokExt.createFieldLevelAnnotation(fieldLevelAnnotation)
             }
         }
+
+        val list = exprList()
 
         list += fieldAnnotations.takeIfSizeNot(0)?.let {
             FieldAnnotationExpression(field, it, elementsToHide)
@@ -89,7 +86,6 @@ object NullableExt : BaseExtension() {
         return list.exprWrap(field)
     }
 
-
     enum class FieldFoldingAnnotation(vararg var annotations: String) {
         NOT_NULL("NotNull", "NonNull"),
         NULLABLE("Nullable"),
@@ -101,11 +97,10 @@ object NullableExt : BaseExtension() {
             }.toTypedArray()
         }
 
-
         companion object {
             fun findByName(annotationName: String?): FieldFoldingAnnotation? {
-                val name = annotationName?.let {
-                    it.lowercase()
+                val name = annotationName?.run {
+                    lowercase()
                 }?.let { name ->
                     if (name.contains(".")) {
                         name.substringAfterLast(".")
@@ -127,9 +122,9 @@ object NullableExt : BaseExtension() {
         typeElement: PsiTypeElement?,
         document: Document
     ): Expression? {
-        return if (!field.isNotStatic() && !field.isNotFinal()) {
+        return if (field.isStatic() && field.isFinal()) {
             if (foldConstType(field)) {
-                FieldConstExpression(typeElement, field.modifierList!!, field.constText())
+                field.createConst(typeElement)
             } else {
                 foldConstConstructor(field, document)
             }
@@ -147,10 +142,17 @@ object NullableExt : BaseExtension() {
     }
 
     private fun foldConstConstructor(field: PsiField, document: Document): Expression {
-        val constFolding = FieldConstExpression(null, field.modifierList!!, field.constText())
+        val constFolding = field.createConst(null)
         experimental.on() ?: return constFolding
 
         return foldFieldConstructor(field, document, constFolding) ?: constFolding
+    }
+
+    private fun PsiField.createConst(
+        typeElement: PsiTypeElement?,
+    ): FieldConstExpression {
+
+        return FieldConstExpression(typeElement, modifierList!!, constText())
     }
 
     private fun foldFieldConstructor(
@@ -158,6 +160,8 @@ object NullableExt : BaseExtension() {
         document: Document,
         constFolding: FieldConstExpression? = null
     ): Expression? {
+        experimental.on() ?: return constFolding
+
         val initializer = field.initializer.asInstance<PsiNewExpression>()
         val noParams = initializer?.argumentList?.isEmpty == true
         val anonymousClass = initializer?.anonymousClass
