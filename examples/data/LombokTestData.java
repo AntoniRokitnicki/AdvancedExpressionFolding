@@ -1073,15 +1073,12 @@ public class LombokTestData {
 
     class ClassWithBuilder {
         private String name;
-
         class ClassWithBuilderBuilder {
             private String name;
-
             public ClassWithBuilderBuilder name(String name) {
                 this.name = name;
                 return this;
             }
-
             public ClassWithBuilder build() {
                 return new ClassWithBuilder();
             }

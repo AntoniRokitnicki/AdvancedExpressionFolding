@@ -14,31 +14,31 @@ import java.util.*;
 public class ExperimentalTestData {
 
     static class Const {
-        const ConstClass SELF = ::new;
-        const ConstClass SELF_ANN = ::new{};
-        const ConstClass SELF_SUB = new SubConstClass();
-        const ConstClass SELF_SUB_ANN = new SubConstClass() {
+        default const ConstClass SELF = ::new;
+        default const ConstClass SELF_ANN = ::new{};
+        default const ConstClass SELF_SUB = new SubConstClass();
+        default const ConstClass SELF_SUB_ANN = new SubConstClass() {
         };
 
-        const HashMap<String, String> MAP = ::new;
-        const HashMap<String, String> MAP2 = ::new;
-        const Map<String, String> MAP3 = new HashMap<>();
-        const Map<String, String> MAP_TREE = new TreeMap<>();
-        const Map<String, String> MAP4 = Map.of();
+        private default const HashMap<String, String> MAP = ::new;
+        private default const HashMap<String, String> MAP2 = ::new;
+        private default const Map<String, String> MAP3 = new HashMap<>();
+        private default const Map<String, String> MAP_TREE = new TreeMap<>();
+        private default const Map<String, String> MAP4 = Map.of();
 
-        const List<String> LIST = [];
-        const List<String> LIST2 = List.of();
-        const List<String> LIST_SINGLE = List.of("1");
-        const List<String> LIST_LINKED = new LinkedList<>();
+        private default const List<String> LIST = [];
+        private default const List<String> LIST2 = List.of();
+        private default const List<String> LIST_SINGLE = List.of("1");
+        private default const List<String> LIST_LINKED = new LinkedList<>();
 
 
-        const ConstClass SELF_PARAM_1 = ::new(true);
-        const ConstClass SELF_PARAM_2 = ::new(false, LIST_SINGLE.getFirst());
+        default const ConstClass SELF_PARAM_1 = ::new(true);
+        default const ConstClass SELF_PARAM_2 = ::new(false, LIST_SINGLE.getFirst());
 
-        const ConstClass SELF_SUBCLASS_MORE_FIELD = new ConstClass() {
+        default const ConstClass SELF_SUBCLASS_MORE_FIELD = new ConstClass() {
             int i = 1;
         };
-        const ConstClass SELF_SUBCLASS_MORE_FUNC = new ConstClass() {
+        default const ConstClass SELF_SUBCLASS_MORE_FUNC = new ConstClass() {
             public void setOk(boolean ok) {
             }
         };

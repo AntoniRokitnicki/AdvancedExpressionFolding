@@ -24,6 +24,7 @@ abstract class BaseExtension : AdvancedExpressionFoldingSettings.StateDelegate()
         fun PsiType?.isBoolean(): Boolean = (this as? PsiPrimitiveType)?.name == "boolean"
         fun PsiType?.isString() = asInstance<PsiClassReferenceType>()?.name == "String"
         fun PsiType?.isPrimitive() = asInstance<PsiPrimitiveType>() != null
+        fun PsiType?.isPrimitiveOrString() = isPrimitive() || isString()
         fun PsiType?.isObject() = this?.canonicalText == "java.lang.Object"
     }
 

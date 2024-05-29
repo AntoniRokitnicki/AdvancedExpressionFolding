@@ -26,8 +26,16 @@ import kotlin.reflect.KClass
 
 val PsiField.enum: Boolean
     get() = (type as? PsiClassType)?.resolve()?.isEnum == true
+val PsiField.typeResolved: PsiClass?
+    get() = type.typeResolved
+val PsiType.typeResolved: PsiClass?
+    get() = asInstance<PsiClassReferenceType>()?.resolve()
+
 val PsiField.singletonField: Boolean
     get() = type.asInstance<PsiClassReferenceType>()?.resolve() == containingClass
+val PsiField.initializerType: PsiClass?
+    get() = initializer.asInstance<PsiReferenceExpression>()?.qualifierExpression.asInstance<PsiReferenceExpression>()?.resolve().asInstance<PsiClass>()
+
 
 inline fun String.filter(predicate: (String) -> Boolean): String? = takeIf(predicate)
 
@@ -92,6 +100,10 @@ fun PsiModifierListOwner.isStatic() = hasModifierProperty(PsiModifier.STATIC)
 fun PsiModifierListOwner.isFinal() = hasModifierProperty(PsiModifier.FINAL)
 fun PsiModifierListOwner.isNotStatic() = !isStatic()
 fun PsiModifierListOwner.isNotFinal() = !isFinal()
+
+fun PsiKeyword.isPrivate() = tokenType == JavaTokenType.PRIVATE_KEYWORD
+fun PsiKeyword.isProtected() = tokenType == JavaTokenType.PROTECTED_KEYWORD
+fun PsiKeyword.isPublic() = tokenType == JavaTokenType.PUBLIC_KEYWORD
 
 
 fun PsiMethod.isSetterOrBuilder(): Boolean = isSetter() || isBuilder()
@@ -173,6 +185,7 @@ val PsiField.metadata: Keys.FieldMetaData
         }
         return userData
     }
+fun PsiField.hasLiteralConstInitializer() = initializer is PsiLiteralExpression
 
 fun PsiMethod.isBuilder(): Boolean = containingClass?.isBuilder() == true
 
@@ -279,7 +292,25 @@ fun <T> Boolean.off(element: T?): T? = if (this) {
     element
 }
 
-
+fun List<PsiElement>.expr(
+    text: String,
+    vararg children: Expression?,
+    group: FoldingGroup? = null,
+    foldPrevWhiteSpace: Boolean = false
+): Expression? {
+    if (this.isEmpty()) {
+        return null
+    }
+    val map = map { element ->
+        element.expr(
+            text = text,
+            children = children,
+            group = group,
+            foldPrevWhiteSpace = foldPrevWhiteSpace
+        )
+    }
+    return map.exprWrap(first().parent)
+}
 fun PsiElement.expr(
     text: String,
     vararg children: Expression?,
@@ -300,6 +331,23 @@ fun PsiElement.expr(
     )
 }
 
+fun List<PsiElement>.exprHide(
+    vararg children: Expression?,
+    group: FoldingGroup? = null,
+    foldPrevWhiteSpace: Boolean = false
+): Expression? {
+    if (this.isEmpty()) {
+        return null
+    }
+    val map = map { element ->
+        element.exprHide(
+            children = children,
+            group = group,
+            foldPrevWhiteSpace = foldPrevWhiteSpace
+        )
+    }
+    return map.exprWrap(first().parent)
+}
 fun PsiElement?.exprHide(
     vararg children: Expression?,
     group: FoldingGroup? = null,
