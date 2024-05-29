@@ -2,7 +2,7 @@ package data;
 
 @SuppressWarnings("unused")
 class PrintlnTestData {
-    <fold text='const' expand='false'>static final </fold><fold text='' expand='false'>int</fold> CONST_VALUE = 0;
+    <fold text='default const' expand='false'>static final </fold><fold text='' expand='false'>int</fold> CONST_VALUE = 0;
 
     void println(String string) <fold text='{...}' expand='true'>{
         <fold text='' expand='false'>System.out.</fold>println("Hello");

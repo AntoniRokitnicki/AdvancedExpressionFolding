@@ -123,7 +123,7 @@ object NullableExt : BaseExtension() {
         document: Document
     ): Expression? {
         return if (field.isStatic() && field.isFinal()) {
-            if (foldConstType(field)) {
+            if (field.hideConstType()) {
                 field.createConst(typeElement)
             } else {
                 foldConstConstructor(field, document)
@@ -151,8 +151,8 @@ object NullableExt : BaseExtension() {
     private fun PsiField.createConst(
         typeElement: PsiTypeElement?,
     ): FieldConstExpression {
-
-        return FieldConstExpression(typeElement, modifierList!!, constText())
+        val modifiers = modifierList!!
+        return FieldConstExpression(typeElement, modifiers, constText())
     }
 
     private fun foldFieldConstructor(
@@ -204,8 +204,23 @@ object NullableExt : BaseExtension() {
         initializer?.classOrAnonymousClassReference?.resolve() == field.type.asInstance<PsiClassReferenceType>()
             ?.resolve()
 
-    private fun foldConstType(field: PsiField) =
-        (field.type.isString() || field.type.isPrimitive()) && field.initializer is PsiLiteralExpression
+    private fun PsiField.hideConstType() = (type.isPrimitiveOrString() && hasLiteralConstInitializer()) || (enum && isNotStaticEnumInitializer()) || isFactoryMethod()
+
+    /**
+     * example: static final Pattern PATTERN = Pattern.compile(".*");
+     */
+    private fun PsiField.isFactoryMethod(): Boolean {
+        val methodCall = initializer.asInstance<PsiMethodCallExpression>()
+        val typeResolved = typeResolved
+        return methodCall?.type?.typeResolved == typeResolved &&
+                methodCall?.methodExpression
+                    .asInstance<PsiReferenceExpression>()
+                    ?.qualifierExpression
+                    .asInstance<PsiReferenceExpression>()
+                    ?.resolve() == typeResolved
+    }
+
+    private fun PsiField.isNotStaticEnumInitializer() = initializerType == typeResolved
 
     private fun findPropertyAnnotation(field: PsiField, typeElement: PsiTypeElement?): Expression? {
         return field.metadata.getter
@@ -286,4 +301,6 @@ object NullableExt : BaseExtension() {
     }
 
 }
+
+
 
