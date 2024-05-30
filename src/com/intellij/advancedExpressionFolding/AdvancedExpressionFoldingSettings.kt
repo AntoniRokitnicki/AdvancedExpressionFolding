@@ -38,6 +38,7 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
 
         val expressionFunc: Boolean
         val dynamic: Boolean
+        val arithmeticExpressions: Boolean
         // NEW OPTION VAL
 
         var experimental: Boolean
@@ -105,6 +106,7 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
         override var lombokDirtyOff: Boolean = false,
         override var expressionFunc: Boolean = true,
         override var dynamic: Boolean = true,
+        override var arithmeticExpressions: Boolean = true,
         // NEW OPTION VAR
 
         override var memoryImprovement: Boolean = true,

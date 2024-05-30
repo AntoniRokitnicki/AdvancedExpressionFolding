@@ -15,7 +15,6 @@ public interface Consts {
             add("divide");
             add("subtract");
             add("remainder");
-            /*add("scaleByPowerOfTen");*/
             add("pow");
             add("min");
             add("max");
@@ -34,8 +33,6 @@ public interface Consts {
             add("xor");
             add("andNot");
             add("mod");
-            /*add("modInverse");*/
-            /*add("modPow");*/
             add("acos");
             add("asin");
             add("atan");
@@ -47,7 +44,6 @@ public interface Consts {
             add("floor");
             add("log");
             add("log10");
-            /*add("log1p");*/
             add("random");
             add("rint");
             add("round");
@@ -59,9 +55,7 @@ public interface Consts {
             add("toDegrees");
             add("toRadians");
             add("ulp");
-            /*add("hypot");*/
             add("exp");
-            /*add("expm1");*/
             add("append");
             add("substring");
             add("subList");
