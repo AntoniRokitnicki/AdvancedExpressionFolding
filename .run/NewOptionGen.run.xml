@@ -1,0 +1,11 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="NewOptionGen" type="JetRunConfigurationType" nameIsGenerated="true">
+    <option name="MAIN_CLASS_NAME" value="com.intellij.advancedExpressionFolding.script.NewOptionGen" />
+    <module name="advanced-expression-folding.test" />
+    <shortenClasspath name="NONE" />
+    <option name="VM_PARAMETERS" value="-DvarName=&quot;arithmeticExpressions&quot; -DvarText=&quot;BigDecimal, BigInteger and Math&quot;" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

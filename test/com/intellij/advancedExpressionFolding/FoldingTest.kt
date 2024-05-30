@@ -372,6 +372,14 @@ newName = "mainek3"
             MethodCallFactory.refreshMethodCallMappings(null)
         }
     }
+
+    /**
+     * [data.ArithmeticExpressionsTestData]
+     */
+    @Test
+    fun testArithmeticExpressionsTestData() {
+        doFoldingTest(state::arithmeticExpressions)
+    }
     // NEW OPTION
     /**
      * [data.ExperimentalTestData]

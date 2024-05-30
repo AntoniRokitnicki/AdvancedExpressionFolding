@@ -204,6 +204,13 @@ class AdvancedExpressionFoldingOptionsProvider : AbstractExpressionFoldingOption
             mapOf("DynamicTestData.java" to null),
         )
         
+        if (false) {
+            checkBox("BigDecimal, BigInteger and Math",
+                state::arithmeticExpressions,
+                mapOf("ArithmeticExpressionsTestData.java" to null),
+            )
+        }
+        
         // NEW OPTION
 
         checkBox(
