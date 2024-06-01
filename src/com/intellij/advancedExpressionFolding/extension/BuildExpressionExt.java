@@ -211,7 +211,7 @@ public class BuildExpressionExt {
             }
         }
         if (element instanceof PsiMethod psiMethod) {
-            Expression expression = NullableExt.createExpression(psiMethod);
+            Expression expression = NullableExt.createExpression(psiMethod, document);
             if (expression != null) {
                 return expression;
             }

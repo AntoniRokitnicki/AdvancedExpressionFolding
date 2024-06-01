@@ -24,15 +24,20 @@ import com.intellij.psi.impl.source.PsiClassReferenceType
 object NullableExt : BaseExtension() {
 
     @JvmStatic
-    fun createExpression(psiMethod: PsiMethod): Expression? {
-        val list = exprList(fieldAnnotationExpression(psiMethod.annotations, psiMethod.returnTypeElement))
+    fun createExpression(element: PsiMethod, document: Document): Expression? {
+        val list = exprList(fieldAnnotationExpression(element.annotations, element.returnTypeElement))
         if (expressionFunc) {
-            list.add(ExperimentalExt.createSingleExpressionFunctions(psiMethod))
+            list.add(ExperimentalExt.createSingleExpressionFunctions(element))
         }
         if (dynamic) {
-            list.add(DynamicExt.createExpression(psiMethod))
+            list.add(DynamicExt.createExpression(element))
         }
-        return list.exprWrap(psiMethod)
+        if (list.isNotEmpty()) {
+            list.addAll(element.parameterList.parameters.map {
+                getNonSyntheticExpression(it, document)
+            })
+        }
+        return list.exprWrap(element)
     }
 
     @JvmStatic
@@ -246,10 +251,10 @@ object NullableExt : BaseExtension() {
             }
     }
 
-    private fun readCheckNotNullMethods(psiParameter: PsiParameter, document: Document): Expression? {
-        val typeToAppend = psiParameter.typeElement ?: return null
+    private fun readCheckNotNullMethods(element: PsiParameter, document: Document): Expression? {
+        val typeToAppend = element.typeElement ?: return null
 
-        return psiParameter.parent.parent.asInstance<PsiMethod>()?.let {
+        return element.parent.parent.asInstance<PsiMethod>()?.let {
             it.body?.statements
         }?.let { statements ->
             val methodCallFound = statements.map {
@@ -261,7 +266,7 @@ object NullableExt : BaseExtension() {
             }.takeWhile {
                 it != null && it.isMethodParameterWrappable
             }.firstOrNull {
-                psiParameter.findLocalReference(it!!.element) != null
+                element.findLocalReference(it!!.element) != null
             }
             methodCallFound?.let { checkNotNullExpression ->
                 checkNotNullExpression.ignored = true
