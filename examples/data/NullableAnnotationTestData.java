@@ -15,8 +15,6 @@ import java.time.LocalDate;
  */
 @SuppressWarnings("ALL")
 public class NullableAnnotationTestData {
-
-    private static final long serialVersionUID = 1234567L;
     @NotNull
     NullableAnnotationTestData data;
     boolean ok;

@@ -90,10 +90,10 @@ public class NullableAnnotationCheckNotNullTestData {
 
     class Preconditions {
         public static <T> T checkNotNull(T o, String s) {
-            return (T) o;
+            return o;
         }
         public static <T> T checkNotNull(T o) {
-            return (T) o;
+            return o;
         }
     }
 }

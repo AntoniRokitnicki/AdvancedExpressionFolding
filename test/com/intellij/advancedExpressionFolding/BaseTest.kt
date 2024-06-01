@@ -26,6 +26,7 @@ abstract class BaseTest : LightJavaCodeInsightFixtureTestCase5(TEST_JDK) {
         val fileName = getTestFileName(testName)
         rewriteFileOnFailure(fileName, testName) {
             fixture.testFoldingWithCollapseStatus(fileName)
+            println(1)
         }
     }
 
@@ -37,6 +38,39 @@ abstract class BaseTest : LightJavaCodeInsightFixtureTestCase5(TEST_JDK) {
                 fileName,
                 null, true
             )
+        }
+    }
+
+
+    private fun rewriteFileOnFailure(fileName: String, testName: String, action: Runnable) {
+        val testDataFile = File(fileName)
+        if (devMode()) {
+            replaceTestDataWithExample(testName, testDataFile)
+        }
+
+        val store = FoldingDataStorage()
+        com.intellij.advancedExpressionFolding.store = store
+        try {
+            action.run()
+        } catch (e: FileComparisonFailure) {
+            try {
+                //TODO: fixture.editor
+
+                val actual = e.actual
+                Files.writeString(testDataFile.toPath(), actual)
+
+                val wrapper = store.saveFolding(createOutputFile(fileName, ".json"))
+
+                val all = fileName.contains("-all")
+                if (!all) {
+                    replaceAllTestData(fileName, actual)
+                    val foldingFile = fileName.replace("testData/", "folded/")
+                    createFoldedFile(foldingFile, actual, wrapper)
+                }
+            } catch (ex: IOException) {
+                throw RuntimeException(ex)
+            }
+            throw e
         }
     }
 
@@ -98,36 +132,6 @@ abstract class BaseTest : LightJavaCodeInsightFixtureTestCase5(TEST_JDK) {
             }
         }
 
-        private fun rewriteFileOnFailure(fileName: String, testName: String, action: Runnable) {
-            val testDataFile = File(fileName)
-            if (devMode()) {
-                replaceTestDataWithExample(testName, testDataFile)
-            }
-
-            val store = FoldingDataStorage()
-            com.intellij.advancedExpressionFolding.store = store
-            try {
-                action.run()
-            } catch (e: FileComparisonFailure) {
-                try {
-                    val actual = e.actual
-                    Files.writeString(testDataFile.toPath(), actual)
-
-                    val wrapper = store.saveFolding(createOutputFile(fileName, ".json"))
-
-                    val all = fileName.contains("-all")
-                    if (!all) {
-                        replaceAllTestData(fileName, actual)
-                        val foldingFile = fileName.replace("testData/", "folded/")
-                        createFoldedFile(foldingFile, actual, wrapper)
-                    }
-                } catch (ex: IOException) {
-                    throw RuntimeException(ex)
-                }
-                throw e
-            }
-        }
-
         private fun createFoldedFile(foldingFile: String, actual: String, wrapper: FoldingDescriptorExWrapper) {
             Files.writeString(createOutputFile(foldingFile, "-folded.java").toPath(), getFoldedText(actual, wrapper))
         }
@@ -153,6 +157,4 @@ abstract class BaseTest : LightJavaCodeInsightFixtureTestCase5(TEST_JDK) {
 
     }
 
-
 }
-
