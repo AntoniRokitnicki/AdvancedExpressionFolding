@@ -78,10 +78,6 @@ To disable certain types of folding, go to <strong>Settings</strong> | <strong>E
   - goto <kbd>Marketplace</kbd>
   - search for <kbd>advanced</kbd>
 
-- Manually:
-
-  Download the [latest release](https://plugins.jetbrains.com/plugin/23659-advanced-java-folding-2-fork-/versions/canary?noRedirect=true) and install it manually using
-  <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>⚙️</kbd> > <kbd>Install plugin from disk...</kbd>
 
 
 ---
