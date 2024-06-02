@@ -14,8 +14,6 @@
 [![Kotlin](https://img.shields.io/badge/dynamic/toml?url=https%3A%2F%2Fraw.githubusercontent.com%2FAntoniRokitnicki%2FAdvancedExpressionFolding%2Fmaster%2Fgradle%2Flibs.versions.toml&query=%24.versions.kotlin&label=kotlin)](https://kotlinlang.org)
 [![Gradle](https://img.shields.io/badge/gradle-8.5-blue.svg)](https://gradle.org)
 
-
-![Dynamic XML Badge](https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fantonirokitnicki.github.io%2FAdvancedExpressionFolding%2Fplugin_repository.xml&query=%2Fplugin-repository%2Fcategory%2Fidea-plugin%5B1%5D%2Fversion&label=beta%20version)
 [![Version](https://img.shields.io/jetbrains/plugin/v/com.github.advanced-java-folding2.svg)](https://plugins.jetbrains.com/plugin/23659-advanced-java-folding-2-fork-)
 [![Downloads](https://img.shields.io/jetbrains/plugin/d/com.github.advanced-java-folding2.svg)](https://plugins.jetbrains.com/plugin/23659-advanced-java-folding-2-fork-)
 ![GitHub Release Date](https://img.shields.io/github/release-date/AntoniRokitnicki/AdvancedExpressionFolding)
