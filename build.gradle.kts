@@ -138,6 +138,8 @@ tasks {
 
     runIde {
         autoReloadPlugins = true
+        jvmArgs("-Didea.ProcessCanceledException=disabled")
+        jvmArgs("-Dide.show.tips.on.startup.default.value=false")
     }
 
     // Configure UI tests plugin

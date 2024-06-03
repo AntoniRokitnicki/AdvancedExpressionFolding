@@ -1,11 +1,20 @@
 package data;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.function.Function;
 
 public class ExpressionFuncTestData {
 
     private String field;
+
+    private void printStatus() {
+        new HashMap<String, String>().put("a", "b");
+    }
+
+    private String printStatusReturn() {
+        return new HashMap<String, String>().put("a", "b");
+    }
 
     public boolean isUser() {
         return false;

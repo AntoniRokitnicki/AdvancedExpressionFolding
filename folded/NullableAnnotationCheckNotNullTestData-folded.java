@@ -8,27 +8,23 @@ import org.jetbrains.annotations.Nullable;
     private String saaa;
 
     class PreconditionsCheck {
-        public void main(String!!! args, Object o, Long!!! l, NullableAnnotationCheckNotNullTestData z) {
-            Preconditions.checkNotNull(z.getSaaa());
-            Preconditions.checkNotNull(o);
+        public void main(String!!! args, Object!!! o, Long!!! l, NullableAnnotationCheckNotNullTestData z) {args!!;l!!;
+            Preconditions.checkNotNull(z.getSaaa());o!!;
             System.out.println();
         }
 
-        public void mainMsgs(String!!! args, Object o, Long!!! l, NullableAnnotationCheckNotNullTestData z) {
-            Preconditions.checkNotNull(z.getSaaa(), "o is null");
-            Preconditions.checkNotNull(o, "o is null");
+        public void mainMsgs(String!!! args, Object!!! o, Long!!! l, NullableAnnotationCheckNotNullTestData z) {args!!;l!!;
+            Preconditions.checkNotNull(z.getSaaa(), "o is null");o!!;
             System.out.println();
         }
 
-        public void mainConflictAnnotations(@Nullable String!!! args, Object? o, @Nullable Long!!! l, NullableAnnotationCheckNotNullTestData? z) {
-            Preconditions.checkNotNull(z.getSaaa());
-            Preconditions.checkNotNull(o);
+        public void mainConflictAnnotations(@Nullable String!!! args, @Nullable Object!!! o, @Nullable Long!!! l, @Nullable NullableAnnotationCheckNotNullTestData z) {args!!;l!!;
+            Preconditions.checkNotNull(z.getSaaa());o!!;
             System.out.println();
         }
 
-        public void mainConflictAnnotationsWithMsg(@Nullable String!!! args, Object? o, @Nullable Long!!! l, NullableAnnotationCheckNotNullTestData? z) {
-            Preconditions.checkNotNull(z.getSaaa(), "o is null");
-            Preconditions.checkNotNull(o, "o is null");
+        public void mainConflictAnnotationsWithMsg(@Nullable String!!! args, @Nullable Object!!! o, @Nullable Long!!! l, @Nullable NullableAnnotationCheckNotNullTestData z) {args!!;l!!;
+            Preconditions.checkNotNull(z.getSaaa(), "o is null");o!!;
             System.out.println();
         }
     }
@@ -56,18 +52,18 @@ import org.jetbrains.annotations.Nullable;
         }
 
         public void mainNullable(String? args, Object? o, Long? l, NullableAnnotationCheckNotNullTestData? z) {
-            this.args = Preconditions.checkNotNull(args);
-            this.l = Preconditions.checkNotNull(l);
+            this.args = args!!;
+            this.l = l!!;
             this.saaa = Preconditions.checkNotNull(z.getSaaa());
-            this.o = Preconditions.checkNotNull(o);
+            this.o = o!!;
             printStatus();
         }
 
         public void mainMsgsNullable(String? args, Object? o, Long? l, NullableAnnotationCheckNotNullTestData? z) {
-            this.args = Preconditions.checkNotNull(args, "args are null");
-            this.l = Preconditions.checkNotNull(l, "l is null");
+            this.args = args!!;
+            this.l = l!!;
             this.saaa = Preconditions.checkNotNull(z.getSaaa(), "saaa is null");
-            this.o = Preconditions.checkNotNull(o, "o is null");
+            this.o = o!!;
             printStatus();
         }
 

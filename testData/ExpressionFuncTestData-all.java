@@ -1,11 +1,20 @@
 package data;
 
-import <fold text='...' expand='false'>java.util.List;
+import <fold text='...' expand='false'>java.util.HashMap;
+import java.util.List;
 import java.util.function.Function;</fold>
 
 public class ExpressionFuncTestData {
 
     private String field;
+
+    private void printStatus()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+        </fold></fold>new HashMap<String, String>()<fold text='[' expand='false'>.put(</fold>"a"<fold text='] = ' expand='false'>, </fold>"b"<fold text='' expand='false'>)</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+    </fold>}</fold>
+
+    private String printStatusReturn()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+        </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>new HashMap<String, String>()<fold text='[' expand='false'>.put(</fold>"a"<fold text='] = ' expand='false'>, </fold>"b"<fold text='' expand='false'>)</fold><fold text=' ' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+    </fold>}</fold>
 
     public boolean isUser()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
         </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>false<fold text=' ' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
@@ -24,7 +33,7 @@ public class ExpressionFuncTestData {
     </fold>}</fold>
 
     public String assignFieldAndReturn(String field)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-        </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>this.field = field<fold text=' ' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+        </fold><fold text='' expand='true'></fold>return</fold><fold text='' expand='true'> </fold>this.field = <fold text='<<' expand='false'>field</fold><fold text=' ' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
     </fold>}</fold>
 
     public String methodCall(String field)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>

@@ -402,7 +402,7 @@ fun Collection<Expression?>.exprWrap(
 fun elemList(vararg elements: PsiElement?) : MutableList<Expression?> = elements.mapNotNull {
     it.exprHide()
 }.toMutableList()
-
+fun exprList(elements: Iterable<Expression?>) = mutableListOf(elements)
 fun exprList(vararg elements: Expression?) = mutableListOf(*elements)
 fun foldingList(vararg elements: FoldingDescriptor) = mutableListOf(*elements)
 

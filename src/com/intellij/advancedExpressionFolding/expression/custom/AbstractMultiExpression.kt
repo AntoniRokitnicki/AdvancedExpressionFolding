@@ -80,9 +80,9 @@ abstract class AbstractMultiExpression(
                 ?.let {
                     it.group = parentGroup
                 }
-            if (child.supportsFoldRegions(document, parent)) {
+            //if (child.supportsFoldRegions(document, parent)) {
                 list += child.buildFoldRegions(child.element, document, this)
-            }
+            //}
         }
         return list.toTypedArray()
     }
