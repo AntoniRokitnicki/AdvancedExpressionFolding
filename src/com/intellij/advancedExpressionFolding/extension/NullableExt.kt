@@ -26,6 +26,13 @@ object NullableExt : BaseExtension() {
     @JvmStatic
     fun createExpression(element: PsiMethod, document: Document): Expression? {
         val list = exprList(fieldAnnotationExpression(element.annotations, element.returnTypeElement))
+
+        if (experimental) {
+            list += element.annotations.filter {
+                it.textMatches("@Override")
+            }.exprHide(foldPrevWhiteSpace = true)
+        }
+
         if (expressionFunc) {
             list.add(ExperimentalExt.createSingleExpressionFunctions(element))
         }
