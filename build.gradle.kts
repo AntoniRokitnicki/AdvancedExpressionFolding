@@ -166,7 +166,12 @@ tasks {
                 it.substringAfterLast('-', "").substringBefore('.').ifEmpty { "default" })
         }
     }
-
     apply(from = "build-version.gradle.kts")
+}
 
+tasks.withType<Copy> {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+tasks.jar {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
