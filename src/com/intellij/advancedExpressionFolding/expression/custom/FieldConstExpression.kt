@@ -26,18 +26,19 @@ class FieldConstExpression(
     ): Array<FoldingDescriptor> {
         val group = FieldConstExpression::class.group()
 
-        var default = false
+
 
         val keywords = modifiers.children.filterIsInstance<PsiKeyword>()
+        
         val sortedKeywords = keywords.map {
             if (it.isPrivate() || it.isProtected()) {
                 null
             } else {
-                if (!it.isPublic()) {
-                    default = true
-                }
                 it
             }
+        }
+        val default = !sortedKeywords.any {
+            it == null || it.isPublic()
         }
 
         val baseTextRange = if (sortedKeywords.firstOrNull() == null) {

@@ -19,33 +19,33 @@ public class ConstTestData {
     default const Orderable ENUM_BY_INTERFACE = EOrder.FIRST;
     default econst EOrder ENUM_STATIC_IMPORT = SECOND;
 
-    default const PUBLIC_STATIC_FINAL_VAR = "";
-    private default const PRIVATE_STATIC_FINAL_VAR = "";
-    protected default const PROTECTED_STATIC_FINAL_VAR = "";
+    const PUBLIC_STATIC_FINAL_VAR = "";
+    private const PRIVATE_STATIC_FINAL_VAR = "";
+    protected const PROTECTED_STATIC_FINAL_VAR = "";
     default const DEFAULT_STATIC_FINAL_VAR = "";
 
-    default const String STRING_JOINER = "" + "1";
-    default const String STRING_JOINER2 = "" + DEFAULT_STATIC_FINAL_VAR;
-    default const String STRING_JOINER3 = DEFAULT_STATIC_FINAL_VAR + "";
-    default const String STRING_JOINER4 = DEFAULT_STATIC_FINAL_VAR + PROTECTED_STATIC_FINAL_VAR + PUBLIC_STATIC_FINAL_VAR;
+    const String STRING_JOINER = "" + "1";
+    const String STRING_JOINER2 = "" + DEFAULT_STATIC_FINAL_VAR;
+    const String STRING_JOINER3 = DEFAULT_STATIC_FINAL_VAR + "";
+    const String STRING_JOINER4 = DEFAULT_STATIC_FINAL_VAR + PROTECTED_STATIC_FINAL_VAR + PUBLIC_STATIC_FINAL_VAR;
 
-    default const PUBLIC_FINAL_STATIC_VAR = "";
-    private default const PRIVATE_FINAL_STATIC_VAR = "";
-    protected default const PROTECTED_FINAL_STATIC_VAR = "";
+    const PUBLIC_FINAL_STATIC_VAR = "";
+    private const PRIVATE_FINAL_STATIC_VAR = "";
+    protected const PROTECTED_FINAL_STATIC_VAR = "";
 
-    default const STATIC_PUBLIC_FINAL_VAR = "";
+    const STATIC_PUBLIC_FINAL_VAR = "";
     static private final String STATIC_PRIVATE_FINAL_VAR = "";
     static protected final String STATIC_PROTECTED_FINAL_VAR = "";
 
-    default const STATIC_FINAL_PUBLIC_VAR = "";
+    const STATIC_FINAL_PUBLIC_VAR = "";
     static final private String STATIC_FINAL_PRIVATE_VAR = "";
     static final protected String STATIC_FINAL_PROTECTED_VAR = "";
 
-    default const FINAL_PUBLIC_STATIC_VAR = "";
+    const FINAL_PUBLIC_STATIC_VAR = "";
     final private static String FINAL_PRIVATE_STATIC_VAR = "";
     final protected static String FINAL_PROTECTED_STATIC_VAR = "";
 
-    default const FINAL_STATIC_PUBLIC_VAR = "";
+    const FINAL_STATIC_PUBLIC_VAR = "";
     final static private String FINAL_STATIC_PRIVATE_VAR = "";
     final static protected String FINAL_STATIC_PROTECTED_VAR = "";
 
