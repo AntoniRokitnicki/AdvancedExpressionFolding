@@ -34,16 +34,11 @@ abstract class BaseExtension : AdvancedExpressionFoldingSettings.StateDelegate()
     fun getNonSyntheticExpression(element: PsiElement, document: Document = element.containingFile.viewProvider.document): Expression? =
         BuildExpressionExt.getNonSyntheticExpression(element, document)
 
-
-    fun <T : PsiElement> getAnyExpressions(
-        expressions: Array<T>
-    ): List<Expression> {
-        val doc = expressions.firstOrNull()?.run {
-            this.containingFile.viewProvider.document
-        }
-        return expressions.map {
-            getAnyExpression(it, doc!!)
-        }
-    }
+    fun <T : PsiElement?> getAnyExpressions(
+        expressions: Array<T?>?,
+        document: Document? = expressions?.firstOrNull()?.containingFile?.viewProvider?.document,
+    ): List<Expression> = expressions?.filterNotNull()?.map {
+        getAnyExpression(it, document!!)
+    } ?: emptyList()
 
 }

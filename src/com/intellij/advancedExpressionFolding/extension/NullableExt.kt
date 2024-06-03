@@ -34,15 +34,16 @@ object NullableExt : BaseExtension() {
         }
 
         if (expressionFunc) {
-            list.add(ExperimentalExt.createSingleExpressionFunctions(element))
+            list.add(ExperimentalExt.createSingleExpressionFunctions(element, document))
         }
         if (dynamic) {
             list.add(DynamicExt.createExpression(element))
         }
-        if (list.isNotEmpty()) {
-            list.addAll(element.parameterList.parameters.map {
-                getNonSyntheticExpression(it, document)
-            })
+
+        if (list.filterNotNull().isNotEmpty()) {
+            getAnyExpressions(element.modifierList.annotations).let(list::addAll)
+            getAnyExpressions(element.parameterList.parameters).let(list::addAll)
+            getAnyExpressions(element.body?.statements).let(list::addAll)
         }
         return list.exprWrap(element)
     }
@@ -216,7 +217,8 @@ object NullableExt : BaseExtension() {
         initializer?.classOrAnonymousClassReference?.resolve() == field.type.asInstance<PsiClassReferenceType>()
             ?.resolve()
 
-    private fun PsiField.hideConstType() = (type.isPrimitiveOrString() && hasLiteralConstInitializer()) || (enum && isNotStaticEnumInitializer()) || isFactoryMethod()
+    private fun PsiField.hideConstType() =
+        (type.isPrimitiveOrString() && hasLiteralConstInitializer()) || (enum && isNotStaticEnumInitializer()) || isFactoryMethod()
 
     /**
      * example: static final Pattern PATTERN = Pattern.compile(".*");
@@ -264,18 +266,23 @@ object NullableExt : BaseExtension() {
         return element.parent.parent.asInstance<PsiMethod>()?.let {
             it.body?.statements
         }?.let { statements ->
-            val methodCallFound = statements.map {
+            val expressionMutableList = statements.asSequence().map {
                 it.firstChild.asInstance<PsiMethodCallExpression>()
             }.takeWhile {
                 it != null
             }.map {
-                getAnyExpression(it!!, document).asInstance<CheckNotNullExpression>()
+                getAnyExpression(it!!, document)
+            }.toMutableList<Expression?>()
+
+            val methodCallFound = expressionMutableList.mapNotNull {
+                it.asInstance<CheckNotNullExpression>()
             }.takeWhile {
-                it != null && it.isMethodParameterWrappable
+                it.isMethodParameterWrappable
             }.firstOrNull {
-                element.findLocalReference(it!!.element) != null
+                element.findLocalReference(it.element) != null
             }
-            methodCallFound?.let { checkNotNullExpression ->
+
+            expressionMutableList += methodCallFound?.let { checkNotNullExpression ->
                 checkNotNullExpression.ignored = true
                 val methodCall = checkNotNullExpression.element
                 val typeSuffix = NullAnnotationExpression(typeToAppend, null, "!!!")
@@ -284,6 +291,7 @@ object NullableExt : BaseExtension() {
                 } ?: typeSuffix
                 CheckNotNullExpression(methodCall.parent, methodCall.parent.textRange, "", child)
             }
+            expressionMutableList.exprWrap(element)
         }
     }
 

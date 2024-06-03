@@ -56,7 +56,7 @@ class CheckNotNullMethodCall : AbstractMethodCall() {
         } != null
         val preFirstArgumentRange = TextRange(element.start(), element.argumentList.expressions.first().start())
         val postFirstArgumentRange = TextRange(element.argumentList.expressions.first().end(), element.end())
-        val postFirstArgumentSuffix = CheckNotNullExpression(element, postFirstArgumentRange, "!!", null)
+        val postFirstArgumentSuffix = CheckNotNullExpression(element, postFirstArgumentRange, "!!", argumentExpression)
         return CheckNotNullExpression(
             element,
             preFirstArgumentRange,

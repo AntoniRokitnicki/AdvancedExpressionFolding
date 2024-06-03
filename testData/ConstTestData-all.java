@@ -24,9 +24,9 @@ public class ConstTestData {
     protected <fold text='const' expand='false'>static final </fold><fold text='' expand='false'>String</fold> PROTECTED_STATIC_FINAL_VAR = "";
     <fold text='default const' expand='false'>static final </fold><fold text='' expand='false'>String</fold> DEFAULT_STATIC_FINAL_VAR = "";
 
-    <fold text='const' expand='false'>public static final</fold> String STRING_JOINER = "" + "1";
-    <fold text='const' expand='false'>public static final</fold> String STRING_JOINER2 = "" + DEFAULT_STATIC_FINAL_VAR;
-    <fold text='const' expand='false'>public static final</fold> String STRING_JOINER3 = DEFAULT_STATIC_FINAL_VAR + "";
+    <fold text='const' expand='false'>public static final</fold> String STRING_JOINER = "<fold text='' expand='false'>" + "</fold>1";
+    <fold text='const' expand='false'>public static final</fold> String STRING_JOINER2 = "<fold text='$' expand='false'>" + </fold>DEFAULT_STATIC_FINAL_VAR<fold text='";' expand='false'>;</fold>
+    <fold text='const' expand='false'>public static final</fold> String STRING_JOINER3 =<fold text=' "$' expand='false'> </fold>DEFAULT_STATIC_FINAL_VAR<fold text='' expand='false'> + "</fold>";
     <fold text='const' expand='false'>public static final</fold> String STRING_JOINER4 = DEFAULT_STATIC_FINAL_VAR + PROTECTED_STATIC_FINAL_VAR + PUBLIC_STATIC_FINAL_VAR;
 
     <fold text='const' expand='false'>public final static </fold><fold text='' expand='false'>String</fold> PUBLIC_FINAL_STATIC_VAR = "";

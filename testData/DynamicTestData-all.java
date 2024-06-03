@@ -11,7 +11,7 @@ public class DynamicTestData {
             </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>string<fold text=' ' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold></fold><fold text='' expand='false'>
 
-        <fold text='' expand='false'></fold>public Data getData()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+        </fold><fold text='' expand='false'>public Data getData()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
             </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>data<fold text=' ' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold></fold>
     }</fold>
@@ -44,7 +44,7 @@ public class DynamicTestData {
     </fold>}</fold>
 
     private static String <fold text='mainek3' expand='true'>main3</fold>(String args) <fold text='{...}' expand='true'>{
-        System.out.println("DynamicTestData.main3");
+        <fold text='' expand='true'>System.out.</fold>println(<fold text='"DynamicTestData.main3"' expand='false'>"DynamicTestData.main3"</fold>);
         return "";
     }</fold>
 

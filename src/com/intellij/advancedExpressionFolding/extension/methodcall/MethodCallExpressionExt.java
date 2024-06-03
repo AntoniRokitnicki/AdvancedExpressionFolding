@@ -31,28 +31,6 @@ public class MethodCallExpressionExt {
     private static final MethodCallFactory FACTORY = MethodCallFactory.INSTANCE.initialize(ConfigurationParser.INSTANCE);
 
     @Nullable
-    private static Expression useMethodCallFactory(PsiElement identifier, PsiReferenceExpression referenceExpression, @NotNull Document document, @Nullable PsiExpression qualifier, @NotNull AdvancedExpressionFoldingSettings settings, PsiMethodCallExpression element) {
-        if (FACTORY.getSupportedMethods().contains(identifier.getText())) {
-            PsiMethod method = (PsiMethod) referenceExpression.resolve();
-            if (method != null) {
-                PsiClass psiClass = method.getContainingClass();
-                if (psiClass != null && psiClass.getQualifiedName() != null) {
-                    String className = Helper.eraseGenerics(psiClass.getQualifiedName());
-                    BuilderShiftExt.markIfBuilder(element, psiClass);
-                    if ((FACTORY.getSupportedClasses().contains(className) || FACTORY.getClasslessMethods().contains(method.getName()))
-                            && qualifier != null) {
-                        Expression result = onAnyExpression(element, document, qualifier, identifier, settings, className, method);
-                        if (result != null) {
-                            return result;
-                        }
-                    }
-                }
-            }
-        }
-        return null;
-    }
-
-    @Nullable
     public static Expression getMethodCallExpression(PsiMethodCallExpression element, @NotNull Document document) {
         @NotNull AdvancedExpressionFoldingSettings settings = AdvancedExpressionFoldingSettings.getInstance();
         PsiReferenceExpression referenceExpression = element.getMethodExpression();
@@ -77,6 +55,28 @@ public class MethodCallExpressionExt {
         var result = onAnyArguments(element, settings, document, identifier, qualifier, referenceExpression);
         if (result != null) {
             return result;
+        }
+        return null;
+    }
+
+    @Nullable
+    private static Expression useMethodCallFactory(PsiElement identifier, PsiReferenceExpression referenceExpression, @NotNull Document document, @Nullable PsiExpression qualifier, @NotNull AdvancedExpressionFoldingSettings settings, PsiMethodCallExpression element) {
+        if (FACTORY.getSupportedMethods().contains(identifier.getText())) {
+            PsiMethod method = (PsiMethod) referenceExpression.resolve();
+            if (method != null) {
+                PsiClass psiClass = method.getContainingClass();
+                if (psiClass != null && psiClass.getQualifiedName() != null) {
+                    String className = Helper.eraseGenerics(psiClass.getQualifiedName());
+                    BuilderShiftExt.markIfBuilder(element, psiClass);
+                    if ((FACTORY.getSupportedClasses().contains(className) || FACTORY.getClasslessMethods().contains(method.getName()))
+                            && qualifier != null) {
+                        Expression result = onAnyExpression(element, document, qualifier, identifier, settings, className, method);
+                        if (result != null) {
+                            return result;
+                        }
+                    }
+                }
+            }
         }
         return null;
     }

@@ -5,6 +5,7 @@ import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
 import java.time.LocalDate;
+import java.util.HashMap;
 
 /**
  * {@link com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.IState#getNullable()}
@@ -50,6 +51,7 @@ public class NullableAnnotationTestData {
                        @NotNull Object o,
                        @Nonnull LocalDate date
                        ) {
+        new HashMap<String, String>().put("a", "b");
 
     }
 
@@ -145,6 +147,7 @@ public class NullableAnnotationTestData {
             private String bla;
 
             public @Nullable String getField() {
+                new HashMap<String, String>().put("a", "b");
                 return field;
             }
 
