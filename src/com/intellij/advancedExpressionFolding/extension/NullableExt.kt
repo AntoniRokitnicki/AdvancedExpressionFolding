@@ -41,9 +41,9 @@ object NullableExt : BaseExtension() {
         }
 
         if (list.filterNotNull().isNotEmpty()) {
-            getAnyExpressions(element.modifierList.annotations).let(list::addAll)
-            getAnyExpressions(element.parameterList.parameters).let(list::addAll)
-            getAnyExpressions(element.body?.statements).let(list::addAll)
+            getAnyExpressions(element.modifierList.annotations, document).let(list::addAll)
+            getAnyExpressions(element.body?.statements, document).let(list::addAll)
+            getAnyExpressions(element.parameterList.parameters, document).let(list::addAll)
         }
         return list.exprWrap(element)
     }
@@ -112,9 +112,7 @@ object NullableExt : BaseExtension() {
 
         companion object {
             fun findByName(annotationName: String?): FieldFoldingAnnotation? {
-                val name = annotationName?.run {
-                    lowercase()
-                }?.let { name ->
+                val name = annotationName?.run(String::lowercase)?.let { name ->
                     if (name.contains(".")) {
                         name.substringAfterLast(".")
                     } else {

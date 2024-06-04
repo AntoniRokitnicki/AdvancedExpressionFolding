@@ -44,7 +44,7 @@ public class DynamicTestData {
     </fold>}</fold>
 
     private static String <fold text='mainek3' expand='true'>main3</fold>(String args) <fold text='{...}' expand='true'>{
-        <fold text='' expand='true'>System.out.</fold>println(<fold text='"DynamicTestData.main3"' expand='false'>"DynamicTestData.main3"</fold>);
+        <fold text='' expand='false'>System.out.</fold>println(<fold text='"DynamicTestData.main3"' expand='false'>"DynamicTestData.main3"</fold>);
         return "";
     }</fold>
 
