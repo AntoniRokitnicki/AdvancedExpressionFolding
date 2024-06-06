@@ -67,15 +67,17 @@ object ExperimentalExt : BaseExtension() {
 
     @JvmStatic
     fun createExpression(element: PsiReferenceExpression): Expression? {
-        return experimental.on(element)?.singletonField()
+        return emojify.on(element)?.singletonField()
     }
 
     private fun PsiReferenceExpression.singletonField(): Expression? {
         return resolve().asInstance<PsiField>()?.takeIf {
             it.isStatic() && it.singletonField
         }?.let {
-            identifier?.let {
-                val exprList = exprList(it.expr(Consts.Emoji.MAN_STANDING.toString()))
+            identifier?.takeIf {
+                it.textMatches("INSTANCE")
+            }?.let {
+                val exprList = exprList(it.expr(Consts.Emoji.SINGLETON_MAN_STANDING.toString()))
                 exprList.exprWrap(this)
             }
         }

@@ -48,8 +48,8 @@ class FieldConstExpression(
                 //TODO: add folding for private, protected not being first
                 //TODO: fold when in the middle and when its last
                 null
-            }  else {
-                modifiers.textRange
+            }  else { // public
+                TextRange(keywords.first().start() , modifiers.end())
             }
 
         }

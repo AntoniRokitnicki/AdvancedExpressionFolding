@@ -1,7 +1,7 @@
-package data;
+<fold text='📦' expand='false'>package</fold> data;
 
 public class StringBuilderTestData {
-    public static void main(String[] args) <fold text='{...}' expand='true'>{
+    public <fold text='⚡' expand='false'>static</fold> <fold text='💀' expand='false'>void</fold> main(String[] args) <fold text='{...}' expand='true'>{
         <fold text='val' expand='false'>StringBuilder</fold> sb1 = <fold text='"["' expand='false'>new StringBuilder("[")</fold>;
         for <fold text='val (' expand='false'>(<fold text='val' expand='false'>int</fold> </fold>i = 0; i < args.length; i++) <fold text='{...}' expand='true'>{
                 <fold text='val' expand='false'>String</fold> arg<fold text=' : ' expand='false'> = </fold>args<fold text=') {

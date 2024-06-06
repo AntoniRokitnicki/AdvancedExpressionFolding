@@ -75,29 +75,7 @@ public class ExperimentalTestData {
         protected ConstClass EMPTY;
     }
 
-    void main() {
-        var s = Singleton.🧍;
-        System.out.println(Singleton.🧍.isOk());
-        System.out.println(Singleton.🧍.main(Singleton.🧍.main(Singleton.getInstance())));
 
-        var s2 = Singleton.🧍.LOCAL;
-        System.out.println(Singleton.🧍.LOCAL.isOk());
-        System.out.println(Singleton.🧍.LOCAL.main(Singleton.🧍.LOCAL.main(Singleton.getInstance())));
-    }
-
-    static class Singleton {
-        static Singleton INSTANCE = ::new;
-        Singleton LOCAL = ::new;
-        @Getter boolean ok;
-
-        Singleton main(Singleton s) {
-            return this;
-        }
-
-        public static Singleton getInstance() {
-            return INSTANCE;
-        }
-    }
 
     @NoArgsConstructor @AllArgsConstructor static class ConstClass {
         boolean ok;

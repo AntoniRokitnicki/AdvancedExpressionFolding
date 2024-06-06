@@ -185,7 +185,7 @@ class AdvancedExpressionFoldingOptionsProvider : AbstractExpressionFoldingOption
             state::finalRemoval,
             mapOf("FinalRemovalTestData.java" to null),
         )
-        checkBox("Replace the 'final' modifier with "+ Emoji.LOCK,
+        checkBox("Replace the 'final' modifier with "+ Emoji.FINAL_LOCK,
             state::finalEmoji,
             mapOf("FinalEmojiTestData.java" to null),
         )
@@ -210,6 +210,11 @@ class AdvancedExpressionFoldingOptionsProvider : AbstractExpressionFoldingOption
                 mapOf("ArithmeticExpressionsTestData.java" to null),
             )
         }
+        
+        checkBox("Emojify code",
+            state::emojify,
+            mapOf("EmojifyTestData.java" to null),
+        )
         
         // NEW OPTION
 

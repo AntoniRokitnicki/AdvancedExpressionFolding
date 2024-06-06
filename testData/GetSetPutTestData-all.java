@@ -1,9 +1,9 @@
-package data;
+<fold text='📦' expand='false'>package</fold> data;
 
-import java.util.*;
+<fold text='🚢' expand='false'>import</fold> java.util.*;
 
 public class GetSetPutTestData {
-    public static void main(String[] args) <fold text='{...}' expand='true'>{
+    public <fold text='⚡' expand='false'>static</fold> <fold text='💀' expand='false'>void</fold> main(String[] args) <fold text='{...}' expand='true'>{
         <fold text='val' expand='false'>List<String></fold> list = <fold text='[' expand='false'>Arrays.asList(</fold><fold text='"one"' expand='false'>"one"</fold>, <fold text='"two"' expand='false'>"two"</fold><fold text=']' expand='false'>)</fold>;
         list<fold text='[' expand='false'>.set(</fold>1<fold text='] = ' expand='false'>,</fold>"three"<fold text='' expand='false'> )</fold>;
         <fold text='' expand='false'>System.out.</fold>println(list<fold text='.getLast' expand='false'>.get</fold>(<fold text='' expand='false'>list.size() - 1</fold>));
@@ -26,7 +26,7 @@ public class GetSetPutTestData {
             }</fold></fold><fold text='' expand='false'>
         </fold><fold text=']' expand='false'>}</fold></fold>;
         <fold text='' expand='false'>System.out.</fold>println(set);
-        <fold text='val' expand='false'>Set<String></fold> copyOfSet = <fold text='[' expand='false'>Collections.unmodifiableSet(new HashSet<String>() <fold text='' expand='false'><fold text='{...}' expand='true'></fold>{
+        <fold text='val' expand='false'>Set<String></fold> copyOfSet = <fold text='[' expand='false'>Collections.unmodifiableSet(new HashSet<String>() </fold><fold text='{...}' expand='true'><fold text='' expand='false'>{
             </fold><fold text='' expand='false'><fold text='{...}' expand='true'>{
                 add(</fold>"one"<fold text=', ' expand='false'>);
                 add(</fold>"two"<fold text='' expand='false'>);

@@ -380,6 +380,14 @@ newName = "mainek3"
     fun testArithmeticExpressionsTestData() {
         doFoldingTest(state::arithmeticExpressions)
     }
+
+    /**
+     * [data.EmojifyTestData]
+     */
+    @Test
+    fun testEmojifyTestData() {
+        doFoldingTest(state::emojify)
+    }
     // NEW OPTION
     /**
      * [data.ExperimentalTestData]

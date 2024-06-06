@@ -249,19 +249,62 @@ public interface Consts {
 
 
     enum Emoji {
-        STONE_FACE("\uD83D\uDDFF"), // 🗿
-        LOCK("\uD83D\uDD12"), //🔒
         OVERRIDE1("⇡"),
         OVERRIDE2("↺"),
+
         EVENT("\uD83D\uDE80"), //🚀
         FIRE("\uD83D\uDD25"), //🔥
         RANDOM("\uD83C\uDFB2"), //🎲
         MAGIC("✨"),
         EYES("\uD83D\uDC40"), //👀
-        SHILD("\uD83D\uDEE1\uFE0F"), //🛡️
-        PIN("\uD83D\uDCCD"), //📍
-        MAN_STANDING("\uD83E\uDDCD")// 🧍
 
+        FINAL_LOCK("\uD83D\uDD12"), //🔒
+        FINAL_STONE_FACE("\uD83D\uDDFF"), // 🗿
+
+        SINGLETON_MAN_STANDING("\uD83E\uDDCD"),// 🧍
+
+        NULL_HOLE("🕳️"),
+        NULL_NEW_MOON("🌑"),
+
+        VOID_SKULL("💀"),
+
+        TRUE_CHECK_MARK("✅"),
+        TRUE_HEAVY_CHECK_MARK("✔️"),
+        TRUE_THUMBS_UP("👍"),
+        TRUE_GREEN_CIRCLE("🟢"),
+
+        FALSE_CROSS_MARK("❌"),
+        FALSE_NEGATIVE_SQUARED_CROSS_MARK("❎"),
+        FALSE_THUMBS_DOWN("👎"),
+        FALSE_RED_CIRCLE("🔴"),
+
+        NOT_EQUAL_SIGN("≠"),
+        NOT_EQUAL_NO_ENTRY("🛇"),
+        NOT_EQUAL_PROHIBITED("🚫"),
+        NOT_EQUAL_HEAVY_EQUALS_SIGN("🟰"),
+
+        GETTER_MAN_DETECTIVE("🕵️‍♂️"),
+        GETTER_WOMAN_DETECTIVE("🕵️‍♀️"),
+
+        THIS_ROUND_PUSHPIN("📍"),
+
+        PACKAGE_PACKAGE("📦"),
+
+        IMPORT_SHIP("🚢"),
+
+        THROWS_BOOMERANG("🪃"),
+
+        CATCH_FISHING_POLE("🎣"),
+
+        TRY_CROSSED_FINGERS("🤞"),
+
+        CONTINUE_SOON_ARROW("🔜"),
+
+        IF_QUESTION_MARK("❓"),
+
+        STATIC_HIGH_VOLTAGE("⚡"),
+
+        PROTECTED_SHIELD("🛡️");
         ;
 
         private final String unicode;
@@ -275,4 +318,5 @@ public interface Consts {
             return unicode;
         }
     }
+
 }
