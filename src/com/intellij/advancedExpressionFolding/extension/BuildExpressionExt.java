@@ -55,6 +55,12 @@ public class BuildExpressionExt {
                 && !element.isWritable()) {
             return new SemicolonExpression(element, element.getTextRange());
         }
+        if (element instanceof PsiJavaToken token) {
+            var expression = TokenExt.createExpression(token);
+            if (expression != null) {
+                return expression;
+            }
+        }
         if (element instanceof PsiCatchSection) {
             Expression expression = null;
             AdvancedExpressionFoldingSettings settings1 = AdvancedExpressionFoldingSettings.getInstance();

@@ -1049,7 +1049,7 @@ import java.util.logging.Logger;</fold>
             </fold>return Objects.hashCode(name);<fold text=' }' expand='false'>
         }</fold></fold>
     }</fold>
-    class FieldLevelNotValue <fold text='{...}' expand='true'>{
+    class FieldLevelNotFinalNotValue <fold text='{...}' expand='true'>{
         <fold text='@Getter @EqualsAndHashCode p' expand='false'>p</fold>rivate String name;
         private String ignored;<fold text='' expand='false'>
 
@@ -1073,15 +1073,12 @@ import java.util.logging.Logger;</fold>
 
     <fold text='@Builder c' expand='false'>c</fold>lass ClassWithBuilder <fold text='{...}' expand='true'>{
         private String name;
-
         class ClassWithBuilderBuilder <fold text='{...}' expand='true'>{
             private String name;
-
             public ClassWithBuilderBuilder name(String name) <fold text='{...}' expand='true'>{
                 this.name = name;
                 return this;
             }</fold>
-
             public ClassWithBuilder build()<fold text=' { ' expand='false'> {
                 </fold>return new ClassWithBuilder();<fold text=' }' expand='false'>
             }</fold>

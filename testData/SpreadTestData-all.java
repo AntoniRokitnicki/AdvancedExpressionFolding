@@ -1,17 +1,17 @@
-package data;
+<fold text='📦' expand='false'>package</fold> data;
 
-import <fold text='...' expand='false'>java.math.BigDecimal;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.function.Function;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;</fold>
+<fold text='🚢' expand='false'>import</fold> <fold text='...' expand='false'>java.math.BigDecimal;
+<fold text='🚢' expand='false'>import</fold> java.util.Comparator;
+<fold text='🚢' expand='false'>import</fold> java.util.List;
+<fold text='🚢' expand='false'>import</fold> java.util.Objects;
+<fold text='🚢' expand='false'>import</fold> java.util.Optional;
+<fold text='🚢' expand='false'>import</fold> java.util.function.Function;
+<fold text='🚢' expand='false'>import</fold> java.util.stream.Collectors;
+<fold text='🚢' expand='false'>import</fold> java.util.stream.Stream;</fold>
 
 @SuppressWarnings("ALL")
 public class SpreadTestData {
-    public static void main(Stream<Data> stream, Data data, List<Data> list) <fold text='{...}' expand='true'>{
+    public <fold text='⚡' expand='false'>static</fold> <fold text='💀' expand='false'>void</fold> main(Stream<Data> stream, Data data, List<Data> list) <fold text='{...}' expand='true'>{
         <fold text='val' expand='false'>String</fold> empNames = list<fold text='' expand='false'>.stream()</fold><fold text='*.' expand='false'>
                 .map(</fold><fold text='string()' expand='false'>Data::getString</fold><fold text='' expand='false'>)</fold>
                 .collect(Collectors.joining(", "));
@@ -53,13 +53,13 @@ public class SpreadTestData {
         </fold><fold text='' expand='true'></fold>return</fold><fold text='' expand='true'> </fold>Stream.of(data)<fold text=' ' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
     </fold>}</fold>
 
-    <fold text='@Getter @Setter s' expand='false'>s</fold>tatic class Data <fold text='{...}' expand='true'>{
+    <fold text='@Getter @Setter s' expand='false'><fold text='⚡' expand='false'>s</fold>tatic</fold> class Data <fold text='{...}' expand='true'>{
         Data data;
         boolean ok;
         String string;
 
         public Data(Data data)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold>this.data = <fold text='<<' expand='false'>data</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+            </fold></fold><fold text='📍' expand='false'>this</fold>.data = <fold text='<<' expand='false'>data</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold><fold text='' expand='false'>
 
         </fold><fold text='' expand='false'>public Data getData()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
@@ -69,19 +69,19 @@ public class SpreadTestData {
                 </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>ok<fold text=' ' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold></fold><fold text='' expand='false'>
         </fold><fold text='' expand='false'>public void setData(Data data)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold></fold>this.data = <fold text='<<' expand='false'>data</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+                </fold></fold><fold text='📍' expand='false'>this</fold>.data = <fold text='<<' expand='false'>data</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold><fold text='' expand='false'></fold>
         </fold><fold text='' expand='false'>public void setOk(boolean ok)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold></fold>this.ok = <fold text='<<' expand='false'>ok</fold><fold text='' expand='true'>;<fold text=' ' expand='true'><fold text=' }' expand='false'></fold>
+                </fold></fold><fold text='📍' expand='false'>this</fold>.ok = <fold text='<<' expand='false'>ok</fold><fold text='' expand='true'>;<fold text=' ' expand='true'><fold text=' }' expand='false'></fold>
         </fold>}</fold><fold text='' expand='false'></fold>
         </fold><fold text='' expand='false'>public String getString()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
                 </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>string<fold text=' ' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold></fold><fold text='' expand='false'>
         </fold><fold text='' expand='false'>public void setString(String string)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold></fold>this.string = <fold text='<<' expand='false'>string</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+                </fold></fold><fold text='📍' expand='false'>this</fold>.string = <fold text='<<' expand='false'>string</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold></fold>
         public Data getDataMethod(Data data)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>data<fold text=' ' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+                </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>data<fold text=' ' expand='true'>;<fold text='' expand='true'><fold text=' }' expand='false'></fold>
         </fold>}</fold>
         public Optional<Data> getDataOpt()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
                 </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold><fold text='' expand='false'>Optional.ofNullable(</fold>data<fold text='' expand='false'>)</fold><fold text=' ' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>

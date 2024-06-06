@@ -417,22 +417,19 @@ import java.util.logging.Logger;
         @Value private final String name = "1";
         private String ignored;
     }
-    class FieldLevelNotValue {
+    class FieldLevelNotFinalNotValue {
         @Getter @EqualsAndHashCode private String name;
         private String ignored;
     }
 
     @Builder class ClassWithBuilder {
         private String name;
-
         class ClassWithBuilderBuilder {
             private String name;
-
             public ClassWithBuilderBuilder name(String name) {
                 this.name = name;
                 return this;
             }
-
             public ClassWithBuilder build() {
                 return new ClassWithBuilder();
             }

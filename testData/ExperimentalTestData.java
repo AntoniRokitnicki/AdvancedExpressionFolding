@@ -56,7 +56,7 @@ public class ExperimentalTestData {
         }</fold>;
 
         private final HashMap<String, String> MAP =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> </fold><fold text='' expand='true'>HashMap<></fold><fold text='' expand='true'>()</fold>;
-        private final HashMap<String, String> MAP2 =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> </fold><fold text='' expand='true'>HashMap<fold text='<~>' expand='false'><String, String></fold><fold text='' expand='true'></fold>()</fold>;
+        private final HashMap<String, String> MAP2 =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> </fold><fold text='' expand='true'>HashMap<fold text='<~>' expand='false'><String, String></fold></fold><fold text='' expand='true'>()</fold>;
         private final Map<String, String> MAP3 = new HashMap<>();
 
         private final List<String> LIST = <fold text='[]' expand='false'>new ArrayList<>()</fold>;
@@ -77,33 +77,7 @@ public class ExperimentalTestData {
         protected ConstClass EMPTY;
     }</fold>
 
-    void main() <fold text='{...}' expand='true'>{
-        var s = Singleton.<fold text='🧍' expand='true'>INSTANCE</fold>;
-        System.out.println(Singleton.<fold text='🧍' expand='true'>INSTANCE</fold>.isOk());
-        System.out.println(Singleton.<fold text='🧍' expand='true'>INSTANCE</fold>.main(Singleton.<fold text='🧍' expand='true'>INSTANCE</fold>.main(Singleton.getInstance())));
 
-        var s2 = Singleton.<fold text='🧍' expand='true'>INSTANCE</fold>.LOCAL;
-        System.out.println(Singleton.<fold text='🧍' expand='true'>INSTANCE</fold>.LOCAL.isOk());
-        System.out.println(Singleton.<fold text='🧍' expand='true'>INSTANCE</fold>.LOCAL.main(Singleton.<fold text='🧍' expand='true'>INSTANCE</fold>.LOCAL.main(Singleton.getInstance())));
-    }</fold>
-
-    static class Singleton <fold text='{...}' expand='true'>{
-        static Singleton INSTANCE =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> </fold><fold text='' expand='true'>Singleton</fold><fold text='' expand='true'>()</fold>;
-        Singleton LOCAL =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> </fold><fold text='' expand='true'>Singleton</fold><fold text='' expand='true'>()</fold>;
-        <fold text='@Getter b' expand='false'>b</fold>oolean ok;
-
-        Singleton main(Singleton s)<fold text=' { ' expand='false'> {
-            </fold>return this;<fold text=' }' expand='false'>
-        }</fold><fold text='' expand='false'>
-
-        </fold><fold text='' expand='false'>public boolean isOk()<fold text=' { ' expand='false'> {
-            </fold>return ok;<fold text=' }' expand='false'>
-        }</fold></fold>
-
-        public static Singleton getInstance()<fold text=' { ' expand='false'> {
-            </fold>return INSTANCE;<fold text=' }' expand='false'>
-        }</fold>
-    }</fold>
 
     <fold text='@NoArgsConstructor @AllArgsConstructor s' expand='false'>s</fold>tatic class ConstClass <fold text='{...}' expand='true'>{
         boolean ok;

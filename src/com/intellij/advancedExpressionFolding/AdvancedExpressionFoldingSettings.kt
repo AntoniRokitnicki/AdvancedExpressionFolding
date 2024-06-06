@@ -39,6 +39,7 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
         val expressionFunc: Boolean
         val dynamic: Boolean
         val arithmeticExpressions: Boolean
+        val emojify: Boolean
         // NEW OPTION VAL
 
         var experimental: Boolean
@@ -102,11 +103,12 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
         override var const: Boolean = true,
         override var nullable: Boolean = false,
         override var finalRemoval: Boolean = false,
-        override var finalEmoji: Boolean = true,
+        override var finalEmoji: Boolean = false,
         override var lombokDirtyOff: Boolean = false,
         override var expressionFunc: Boolean = true,
         override var dynamic: Boolean = true,
         override var arithmeticExpressions: Boolean = true,
+        override var emojify: Boolean = true,
         // NEW OPTION VAR
 
         override var memoryImprovement: Boolean = true,

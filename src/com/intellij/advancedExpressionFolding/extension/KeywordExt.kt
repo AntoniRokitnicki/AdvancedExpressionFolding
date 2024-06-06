@@ -11,7 +11,7 @@ object KeywordExt : BaseExtension() {
         return finalRemoval.on(keyword)?.finalRemoval() ?: finalEmoji.on(keyword)?.finalEmoji()
     }
 
-    private fun PsiKeyword.finalEmoji(): Expression? = foldFinalsExceptFields { expr(Emoji.LOCK.toString()) }
+    private fun PsiKeyword.finalEmoji(): Expression? = foldFinalsExceptFields { expr(Emoji.FINAL_LOCK.toString()) }
 
     private fun PsiKeyword.finalRemoval(): Expression? = foldFinalsExceptFields { exprHide() }
 

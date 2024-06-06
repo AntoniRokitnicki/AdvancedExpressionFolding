@@ -1,9 +1,9 @@
-package data;
+<fold text='📦' expand='false'>package</fold> data;
 
 public class ElvisTestData {
     private ElvisTestData e = create();
 
-    public static void main(String[] args) <fold text='{...}' expand='true'>{
+    public <fold text='⚡' expand='false'>static</fold> <fold text='💀' expand='false'>void</fold> main(String[] args) <fold text='{...}' expand='true'>{
         <fold text='val' expand='false'>ElvisTestData</fold> e = create();
         <fold text='' expand='false'>System.out.</fold>println(<fold text='' expand='false'>e != null ? </fold>e<fold text=' ?: ' expand='false'> : </fold>"");
         <fold text='' expand='false'>System.out.</fold>println(<fold text='' expand='false'>e != null ? </fold>e<fold text='?.' expand='false'>.</fold>sayHello()<fold text=' ?: ' expand='false'> : </fold>"");

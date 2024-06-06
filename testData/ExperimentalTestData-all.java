@@ -1,7 +1,7 @@
-package data;
+<fold text='📦' expand='false'>package</fold> data;
 
 
-import java.util.*;
+<fold text='🚢' expand='false'>import</fold> java.util.*;
 
 <fold text='/** {@link com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.IState#getExperimental()} ...*/' expand='true'>/**
  * {@link com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.IState#getExperimental()}
@@ -13,99 +13,73 @@ import java.util.*;
  */</fold>
 public class ExperimentalTestData {
 
-    static class Const <fold text='{...}' expand='true'>{
+    <fold text='⚡' expand='false'>static</fold> class Const <fold text='{...}' expand='true'>{
         <fold text='const' expand='false'>public static final</fold> ConstClass SELF =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> </fold><fold text='' expand='true'>ConstClass</fold><fold text='' expand='true'>()</fold>;
-        <fold text='const' expand='false'>public static final</fold> ConstClass SELF_ANN =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> </fold><fold text='{}' expand='true'>ConstClass<fold text='' expand='true'>()</fold> <fold text='{...}' expand='true'>{
+        <fold text='const' expand='false'>public static final</fold> ConstClass SELF_ANN =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> <fold text='{}' expand='true'></fold>ConstClass<fold text='' expand='true'>()</fold> <fold text='{...}' expand='true'>{
         }</fold></fold>;
-        <fold text='const' expand='false'>public static final</fold> ConstClass SELF_SUB = new SubConstClass();
-        <fold text='const' expand='false'>public static final</fold> ConstClass SELF_SUB_ANN = new SubConstClass() <fold text='{...}' expand='true'>{
+        <fold text='const' expand='false'>public <fold text='⚡' expand='false'>static</fold> <fold text='🔒' expand='false'>final</fold></fold> ConstClass SELF_SUB = new SubConstClass();
+        <fold text='const' expand='false'>public <fold text='⚡' expand='false'>static</fold> <fold text='🔒' expand='false'>final</fold></fold> ConstClass SELF_SUB_ANN = new SubConstClass() <fold text='{...}' expand='true'>{
         }</fold>;
 
-        private <fold text='const' expand='false'>static final</fold> HashMap<String, String> MAP =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> </fold><fold text='' expand='true'>HashMap<></fold><fold text='' expand='true'>()</fold>;
-        private <fold text='const' expand='false'>static final</fold> HashMap<String, String> MAP2 =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> </fold><fold text='' expand='true'>HashMap<fold text='<~>' expand='false'><String, String></fold><fold text='' expand='true'></fold>()</fold>;
-        private <fold text='const' expand='false'>static final</fold> Map<String, String> MAP3 = new HashMap<>();
-        private <fold text='const' expand='false'>static final</fold> Map<String, String> MAP_TREE = new TreeMap<>();
-        private <fold text='const' expand='false'>static final</fold> Map<String, String> MAP4 = Map.of();
+        private <fold text='const' expand='false'>static final</fold> HashMap<String, String> MAP =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> <fold text='' expand='true'></fold>HashMap<></fold><fold text='' expand='true'>()</fold>;
+        private <fold text='const' expand='false'>static final</fold> HashMap<String, String> MAP2 =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> </fold><fold text='' expand='true'>HashMap<fold text='<~>' expand='false'><String, String></fold></fold><fold text='' expand='true'>()</fold>;
+        private <fold text='⚡' expand='false'><fold text='const' expand='false'>static</fold> <fold text='🔒' expand='false'>final</fold></fold> Map<String, String> MAP3 = new HashMap<>();
+        private <fold text='⚡' expand='false'><fold text='const' expand='false'>static</fold> <fold text='🔒' expand='false'>final</fold></fold> Map<String, String> MAP_TREE = new TreeMap<>();
+        private <fold text='⚡' expand='false'><fold text='const' expand='false'>static</fold> <fold text='🔒' expand='false'>final</fold></fold> Map<String, String> MAP4 = Map.of();
 
-        private <fold text='const' expand='false'>static final</fold> List<String> LIST = <fold text='[]' expand='false'>new ArrayList<>()</fold>;
-        private <fold text='const' expand='false'>static final</fold> List<String> LIST2 = List.of();
-        private <fold text='const' expand='false'>static final</fold> List<String> LIST_SINGLE = List.of("1");
-        private <fold text='const' expand='false'>static final</fold> List<String> LIST_LINKED = new LinkedList<>();
+        private <fold text='⚡' expand='false'><fold text='const' expand='false'>static</fold> <fold text='🔒' expand='false'>final</fold></fold> List<String> LIST = <fold text='[]' expand='false'>new ArrayList<>()</fold>;
+        private <fold text='⚡' expand='false'><fold text='const' expand='false'>static</fold> <fold text='🔒' expand='false'>final</fold></fold> List<String> LIST2 = List.of();
+        private <fold text='⚡' expand='false'><fold text='const' expand='false'>static</fold> <fold text='🔒' expand='false'>final</fold></fold> List<String> LIST_SINGLE = List.of("1");
+        private <fold text='⚡' expand='false'><fold text='const' expand='false'>static</fold> <fold text='🔒' expand='false'>final</fold></fold> List<String> LIST_LINKED = new LinkedList<>();
 
 
-        <fold text='const' expand='false'>public static final</fold> ConstClass SELF_PARAM_1 =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> </fold><fold text='' expand='true'>ConstClass</fold>(true);
-        <fold text='const' expand='false'>public static final</fold> ConstClass SELF_PARAM_2 =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> </fold><fold text='' expand='true'>ConstClass</fold>(false, LIST_SINGLE<fold text='.getFirst' expand='false'>.get</fold>(<fold text='' expand='false'>0</fold>));
+        <fold text='const' expand='false'>public static final</fold> ConstClass SELF_PARAM_1 =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> </fold><fold text='' expand='true'>ConstClass</fold>(<fold text='✅' expand='false'>true</fold>);
+        <fold text='const' expand='false'>public static final</fold> ConstClass SELF_PARAM_2 =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> </fold><fold text='' expand='true'>ConstClass</fold>(<fold text='❌' expand='false'>false</fold>, LIST_SINGLE<fold text='.getFirst' expand='false'>.get</fold>(<fold text='' expand='false'>0</fold>));
 
-        <fold text='const' expand='false'>public static final</fold> ConstClass SELF_SUBCLASS_MORE_FIELD = new ConstClass() <fold text='{...}' expand='true'>{
+        <fold text='const' expand='false'>public <fold text='⚡' expand='false'>static</fold> <fold text='🔒' expand='false'>final</fold></fold> ConstClass SELF_SUBCLASS_MORE_FIELD = new ConstClass() <fold text='{...}' expand='true'>{
             int i = 1;
         }</fold>;
-        <fold text='const' expand='false'>public static final</fold> ConstClass SELF_SUBCLASS_MORE_FUNC = new ConstClass() <fold text='{...}' expand='true'>{
-            public void setOk(boolean ok) <fold text='{}' expand='true'>{
+        <fold text='const' expand='false'>public <fold text='⚡' expand='false'>static</fold> <fold text='🔒' expand='false'>final</fold></fold> ConstClass SELF_SUBCLASS_MORE_FUNC = new ConstClass() <fold text='{...}' expand='true'>{
+            public <fold text='💀' expand='false'>void</fold> setOk(boolean ok) <fold text='{}' expand='true'>{
             }</fold>
         }</fold>;
 
-        protected static ConstClass SELF_NULL = null;
-        protected static ConstClass EMPTY;
+        <fold text='🛡️' expand='false'>protected</fold> <fold text='⚡' expand='false'>static</fold> ConstClass SELF_NULL = <fold text='🕳️' expand='false'>null</fold>;
+        <fold text='🛡️' expand='false'>protected</fold> <fold text='⚡' expand='false'>static</fold> ConstClass EMPTY;
     }</fold>
-    static class Fields <fold text='{...}' expand='true'>{
+    <fold text='⚡' expand='false'>static</fold> class Fields <fold text='{...}' expand='true'>{
         final ConstClass SELF =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> </fold><fold text='' expand='true'>ConstClass</fold><fold text='' expand='true'>()</fold>;
-        ConstClass SELF_ANN =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> </fold><fold text='{}' expand='true'>ConstClass<fold text='' expand='true'>()</fold> <fold text='{...}' expand='true'>{
+        ConstClass SELF_ANN =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> <fold text='{}' expand='true'></fold>ConstClass<fold text='' expand='true'>()</fold> <fold text='{...}' expand='true'>{
         }</fold></fold>;
-        public final ConstClass SELF_SUB = new SubConstClass();
-        public final ConstClass SELF_SUB_ANN = new SubConstClass() <fold text='{...}' expand='true'>{
+        public <fold text='🔒' expand='false'>final</fold> ConstClass SELF_SUB = new SubConstClass();
+        public <fold text='🔒' expand='false'>final</fold> ConstClass SELF_SUB_ANN = new SubConstClass() <fold text='{...}' expand='true'>{
         }</fold>;
 
         private final HashMap<String, String> MAP =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> </fold><fold text='' expand='true'>HashMap<></fold><fold text='' expand='true'>()</fold>;
-        private final HashMap<String, String> MAP2 =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> </fold><fold text='' expand='true'>HashMap<fold text='<~>' expand='false'><String, String></fold></fold><fold text='' expand='true'>()</fold>;
-        private final Map<String, String> MAP3 = new HashMap<>();
+        private final HashMap<String, String> MAP2 =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> </fold><fold text='' expand='true'>HashMap<fold text='<~>' expand='false'><String, String></fold><fold text='' expand='true'></fold>()</fold>;
+        private <fold text='🔒' expand='false'>final</fold> Map<String, String> MAP3 = new HashMap<>();
 
-        private final List<String> LIST = <fold text='[]' expand='false'>new ArrayList<>()</fold>;
-        private final List<String> LIST2 = List.of("1");
+        private <fold text='🔒' expand='false'>final</fold> List<String> LIST = <fold text='[]' expand='false'>new ArrayList<>()</fold>;
+        private <fold text='🔒' expand='false'>final</fold> List<String> LIST2 = List.of("1");
 
-        public final ConstClass SELF_PARAM_1 =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> </fold><fold text='' expand='true'>ConstClass</fold>(true);
-        public final ConstClass SELF_PARAM_2 =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> </fold><fold text='' expand='true'>ConstClass</fold>(false, LIST2<fold text='.getFirst' expand='false'>.get</fold>(<fold text='' expand='false'>0</fold>));
+        public final ConstClass SELF_PARAM_1 =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> </fold><fold text='' expand='true'>ConstClass</fold>(<fold text='✅' expand='false'>true</fold>);
+        public final ConstClass SELF_PARAM_2 =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> </fold><fold text='' expand='true'>ConstClass</fold>(<fold text='❌' expand='false'>false</fold>, LIST2<fold text='.getFirst' expand='false'>.get</fold>(<fold text='' expand='false'>0</fold>));
 
-        public final ConstClass SELF_SUBCLASS_MORE_FIELD = new ConstClass() <fold text='{...}' expand='true'>{
+        public <fold text='🔒' expand='false'>final</fold> ConstClass SELF_SUBCLASS_MORE_FIELD = new ConstClass() <fold text='{...}' expand='true'>{
             int i = 1;
         }</fold>;
-        public final ConstClass SELF_SUBCLASS_MORE_FUNC = new ConstClass() <fold text='{...}' expand='true'>{
-            public void setOk(boolean ok) <fold text='{}' expand='true'>{
+        public <fold text='🔒' expand='false'>final</fold> ConstClass SELF_SUBCLASS_MORE_FUNC = new ConstClass() <fold text='{...}' expand='true'>{
+            public <fold text='💀' expand='false'>void</fold> setOk(boolean ok) <fold text='{}' expand='true'>{
             }</fold>
         }</fold>;
 
-        protected ConstClass SELF_NULL = null;
-        protected ConstClass EMPTY;
+        <fold text='🛡️' expand='false'>protected</fold> ConstClass SELF_NULL = <fold text='🕳️' expand='false'>null</fold>;
+        <fold text='🛡️' expand='false'>protected</fold> ConstClass EMPTY;
     }</fold>
 
-    void main() <fold text='{...}' expand='true'>{
-        <fold text='val' expand='false'>var</fold> s = Singleton.<fold text='🧍' expand='true'>INSTANCE</fold>;
-        <fold text='' expand='false'>System.out.</fold>println(Singleton.<fold text='🧍' expand='true'>INSTANCE</fold>.<fold text='ok' expand='false'>isOk()</fold>);
-        <fold text='' expand='false'>System.out.</fold>println(Singleton.<fold text='🧍' expand='true'>INSTANCE</fold>.main(Singleton.<fold text='🧍' expand='true'>INSTANCE</fold>.main(Singleton.<fold text='instance' expand='false'>getInstance()</fold>)));
 
-        <fold text='val' expand='false'>var</fold> s2 = Singleton.<fold text='🧍' expand='true'>INSTANCE</fold>.LOCAL;
-        <fold text='' expand='false'>System.out.</fold>println(Singleton.<fold text='🧍' expand='true'>INSTANCE</fold>.LOCAL.<fold text='ok' expand='false'>isOk()</fold>);
-        <fold text='' expand='false'>System.out.</fold>println(Singleton.<fold text='🧍' expand='true'>INSTANCE</fold>.LOCAL.main(Singleton.<fold text='🧍' expand='true'>INSTANCE</fold>.LOCAL.main(Singleton.<fold text='instance' expand='false'>getInstance()</fold>)));
-    }</fold>
 
-    static class Singleton <fold text='{...}' expand='true'>{
-        static Singleton INSTANCE =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> </fold><fold text='' expand='true'>Singleton</fold><fold text='' expand='true'>()</fold>;
-        Singleton LOCAL =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> </fold><fold text='' expand='true'>Singleton</fold><fold text='' expand='true'>()</fold>;
-        <fold text='@Getter b' expand='false'>b</fold>oolean ok;
-
-        Singleton main(Singleton s)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>this<fold text=' ' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
-        </fold>}</fold><fold text='' expand='false'>
-
-        </fold><fold text='' expand='false'>public boolean isOk()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>ok<fold text=' ' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
-        </fold>}</fold></fold>
-
-        public static Singleton getInstance()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold><fold text='' expand='true'></fold>return</fold><fold text='' expand='true'> </fold>INSTANCE<fold text=' ' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
-        </fold>}</fold>
-    }</fold>
-
-    <fold text='@NoArgsConstructor @AllArgsConstructor s' expand='false'>s</fold>tatic class ConstClass <fold text='{...}' expand='true'>{
+    <fold text='@NoArgsConstructor @AllArgsConstructor s' expand='false'><fold text='⚡' expand='false'>s</fold>tatic</fold> class ConstClass <fold text='{...}' expand='true'>{
         boolean ok;
         <fold text='@ToString S' expand='false'>S</fold>tring string;<fold text='' expand='false'>
 
@@ -113,7 +87,7 @@ public class ExperimentalTestData {
         }</fold></fold>
 
         public ConstClass(boolean ok)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold>this.ok = <fold text='<<' expand='false'>ok</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+            </fold><fold text='📍' expand='false'></fold>this</fold>.ok = <fold text='<<' expand='false'>ok</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold><fold text='' expand='false'>
 
         </fold><fold text='' expand='false'>public ConstClass(boolean ok, String string) <fold text='{...}' expand='true'>{
@@ -130,29 +104,29 @@ public class ExperimentalTestData {
     }</fold>
 
 
-    static class SubConstClass extends ConstClass <fold text='{...}' expand='true'>{
+    <fold text='⚡' expand='false'>static</fold> class SubConstClass extends ConstClass <fold text='{...}' expand='true'>{
     }</fold>
 
-    static <fold text='' expand='false'>final</fold> class SubConstClass2 extends ConstClass <fold text='{...}' expand='true'>{
+    <fold text='⚡' expand='false'>static</fold> <fold text='🔒' expand='false'>final</fold> class SubConstClass2 extends ConstClass <fold text='{...}' expand='true'>{
     }</fold>
 
     <fold text='@Getter @Setter c' expand='false'>c</fold>lass NamelessProperty <fold text='{...}' expand='true'>{
         private NamelessProperty prop;
 
         public NamelessProperty get()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold><fold text='' expand='true'></fold>return</fold><fold text='' expand='true'> </fold>prop<fold text=' ' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>prop<fold text=' ' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold><fold text='' expand='false'>
 
         </fold><fold text='' expand='false'>public data.ExperimentalTestData.NamelessProperty getProp()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>prop<fold text=' ' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
-        </fold>}</fold></fold><fold text='' expand='false'>
+            </fold></fold><fold text='' expand='true'>return<fold text='' expand='true'></fold> </fold>prop<fold text=' ' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+        </fold>}</fold><fold text='' expand='false'></fold>
 
         </fold><fold text='' expand='false'>public void setProp(NamelessProperty prop)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold>this.prop = <fold text='<<' expand='false'>prop</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+            </fold></fold><fold text='📍' expand='false'>this</fold>.prop = <fold text='<<' expand='false'>prop</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold></fold>
 
         public void set(NamelessProperty s)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold>this.prop = s<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+            </fold></fold><fold text='📍' expand='false'>this</fold>.prop = s<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold>
 
         NamelessProperty main(NamelessProperty s, NamelessProperty namelessProperty) <fold text='{...}' expand='true'>{

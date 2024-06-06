@@ -1,7 +1,7 @@
-package data;
+<fold text='📦' expand='false'>package</fold> data;
 
 public class VarTestData {
-    public static void main(String[] args) <fold text='{...}' expand='true'>{
+    public <fold text='⚡' expand='false'>static</fold> <fold text='💀' expand='false'>void</fold> main(String[] args) <fold text='{...}' expand='true'>{
         <fold text='val' expand='false'>String</fold> string = "Hello, world";
         System.out.println();
         <fold text='var' expand='false'>int</fold> count = 0;

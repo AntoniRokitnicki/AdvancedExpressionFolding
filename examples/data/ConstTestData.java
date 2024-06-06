@@ -70,6 +70,139 @@ public class ConstTestData {
     static final int VERSION = 1;
     static final int VERSION_REF = VERSION;
 
+    @SuppressWarnings("ALL")
+    class ConstsWithAnnotaiton {
+        @Deprecated
+        static final Pattern PATTERN = Pattern.compile(".*");
+
+        @Deprecated
+        static final Pattern PATTERN_STATIC_IMPORT = compile(".*");
+
+        @Deprecated
+        static final EOrder ENUM = EOrder.FIRST;
+
+        @Deprecated
+        static final Orderable ENUM_BY_INTERFACE = EOrder.FIRST;
+
+        @Deprecated
+        static final EOrder ENUM_STATIC_IMPORT = SECOND;
+
+        @Deprecated
+        public static final String PUBLIC_STATIC_FINAL_VAR = "";
+
+        @Deprecated
+        private static final String PRIVATE_STATIC_FINAL_VAR = "";
+
+        @Deprecated
+        protected static final String PROTECTED_STATIC_FINAL_VAR = "";
+
+        @Deprecated
+        static final String DEFAULT_STATIC_FINAL_VAR = "";
+
+        @Deprecated
+        public static final String STRING_JOINER = "" + "1";
+
+        @Deprecated
+        public static final String STRING_JOINER2 = "" + DEFAULT_STATIC_FINAL_VAR;
+
+        @Deprecated
+        public static final String STRING_JOINER3 = DEFAULT_STATIC_FINAL_VAR + "";
+
+        @Deprecated
+        public static final String STRING_JOINER4 = DEFAULT_STATIC_FINAL_VAR + PROTECTED_STATIC_FINAL_VAR + PUBLIC_STATIC_FINAL_VAR;
+
+        @Deprecated
+        public final static String PUBLIC_FINAL_STATIC_VAR = "";
+
+        @Deprecated
+        private final static String PRIVATE_FINAL_STATIC_VAR = "";
+
+        @Deprecated
+        protected final static String PROTECTED_FINAL_STATIC_VAR = "";
+
+        @Deprecated
+        static public final String STATIC_PUBLIC_FINAL_VAR = "";
+
+        @Deprecated
+        static private final String STATIC_PRIVATE_FINAL_VAR = "";
+
+        @Deprecated
+        static protected final String STATIC_PROTECTED_FINAL_VAR = "";
+
+        @Deprecated
+        static final public String STATIC_FINAL_PUBLIC_VAR = "";
+
+        @Deprecated
+        static final private String STATIC_FINAL_PRIVATE_VAR = "";
+
+        @Deprecated
+        static final protected String STATIC_FINAL_PROTECTED_VAR = "";
+
+        @Deprecated
+        final public static String FINAL_PUBLIC_STATIC_VAR = "";
+
+        @Deprecated
+        final private static String FINAL_PRIVATE_STATIC_VAR = "";
+
+        @Deprecated
+        final protected static String FINAL_PROTECTED_STATIC_VAR = "";
+
+        @Deprecated
+        final static public String FINAL_STATIC_PUBLIC_VAR = "";
+
+        @Deprecated
+        final static private String FINAL_STATIC_PRIVATE_VAR = "";
+
+        @Deprecated
+        final static protected String FINAL_STATIC_PROTECTED_VAR = "";
+
+        @Deprecated
+        public static String PUBLIC_STATIC_VAR = "";
+
+        @Deprecated
+        private static String PRIVATE_STATIC_VAR = "";
+
+        @Deprecated
+        protected static String PROTECTED_STATIC_VAR = "";
+
+        @Deprecated
+        public final String PUBLIC_FINAL_VAR = "";
+
+        @Deprecated
+        private final String PRIVATE_FINAL_VAR = "";
+
+        @Deprecated
+        protected final String PROTECTED_FINAL_VAR = "";
+
+        @Deprecated
+        static public String STATIC_PUBLIC_VAR = "";
+
+        @Deprecated
+        static private String STATIC_PRIVATE_VAR = "";
+
+        @Deprecated
+        static protected String STATIC_PROTECTED_VAR = "";
+
+        @Deprecated
+        final public String FINAL_PUBLIC_VAR = "";
+
+        @Deprecated
+        final private String FINAL_PRIVATE_VAR = "";
+
+        @Deprecated
+        final protected String FINAL_PROTECTED_VAR = "";
+
+        @Deprecated
+        static final String DEFAULT_STATIC_FINAL_VAR_REF = DEFAULT_STATIC_FINAL_VAR;
+
+        @Deprecated
+        static final int VERSION = 1;
+
+        @Deprecated
+        static final int VERSION_REF = VERSION;
+    }
+
+
     public interface Orderable {}
     enum EOrder implements Orderable {
         FIRST,

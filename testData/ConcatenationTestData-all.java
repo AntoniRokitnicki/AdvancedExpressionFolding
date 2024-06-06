@@ -1,10 +1,10 @@
-package data;
+<fold text='📦' expand='false'>package</fold> data;
 
-import <fold text='...' expand='false'>java.util.*;
-import java.util.stream.Collectors;</fold>
+<fold text='🚢' expand='false'>import</fold> <fold text='...' expand='false'>java.util.*;
+<fold text='🚢' expand='false'>import</fold> java.util.stream.Collectors;</fold>
 
 public class ConcatenationTestData {
-    public static void main(String[] args) <fold text='{...}' expand='true'>{
+    public <fold text='⚡' expand='false'>static</fold> <fold text='💀' expand='false'>void</fold> main(String[] args) <fold text='{...}' expand='true'>{
         <fold text='val' expand='false'>List<String></fold> list = Arrays.asList(args);
         list<fold text=' += ' expand='false'>.add(</fold>"one"<fold text='' expand='false'>)</fold>;
         list<fold text=' -= ' expand='false'>.remove(</fold>"one"<fold text='' expand='false'>)</fold>;
