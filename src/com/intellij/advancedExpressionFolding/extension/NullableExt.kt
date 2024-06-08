@@ -41,9 +41,10 @@ object NullableExt : BaseExtension() {
         }
 
         if (list.filterNotNull().isNotEmpty()) {
-            getAnyExpressions(element.modifierList.annotations, document).let(list::addAll)
+            getAnyExpression(element.modifierList, document).let(list::add)
             getAnyExpressions(element.body?.statements, document).let(list::addAll)
             getAnyExpressions(element.parameterList.parameters, document).let(list::addAll)
+
         }
         return list.exprWrap(element)
     }
