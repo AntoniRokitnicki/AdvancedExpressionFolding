@@ -60,7 +60,7 @@ object ExperimentalExt : BaseExtension() {
         //exprList.add(braceLeft?.expr("= "))
         // hide them then:
         exprList.add(returnPrevSpace?.expr(" "))
-        exprList.add(endingSemicolon?.expr(" "))
+        exprList.add(endingSemicolon?.exprHide())
         exprList.add(singleExpression)
         return exprList.exprWrap(method)
     }
