@@ -3,18 +3,18 @@
 <fold text='🚢' expand='false'>import</fold> org.jetbrains.annotations.Nullable;
 
 @SuppressWarnings("ALL")
-<fold text='@Getter p' expand='false'>p</fold>ublic class NullableAnnotationCheckNotNullTestData {
+<fold text='@Getter p' expand='false'>p</fold>ublic <fold text='🏛️' expand='false'>class</fold> NullableAnnotationCheckNotNullTestData {
 
-    private String saaa;<fold text='' expand='false'>
+    <fold text='🚫' expand='false'>private</fold> String saaa;<fold text='' expand='false'>
 
     </fold><fold text='' expand='false'>public String getSaaa()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-        </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>saaa<fold text=' ' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+        </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>saaa<fold text=' ' expand='true'>;</fold><fold text=' }' expand='false'><fold text='' expand='true'>
     </fold>}</fold></fold>
 
-    class PreconditionsCheck <fold text='{...}' expand='true'>{
+    <fold text='🏛️' expand='false'>class</fold> PreconditionsCheck <fold text='{...}' expand='true'>{
         public <fold text='💀' expand='false'>void</fold> main(String<fold text='!!! ' expand='false'> </fold>args, Object o, Long<fold text='!!! ' expand='false'> </fold>l, NullableAnnotationCheckNotNullTestData z) <fold text='{...}' expand='true'>{<fold text='' expand='true'>
             </fold><fold text='' expand='false'><fold text='' expand='true'>Preconditions.checkNotNull(</fold>args<fold text='!!' expand='false'>)</fold>;</fold><fold text='' expand='true'>
-            </fold><fold text='' expand='false'><fold text='' expand='true'>Preconditions.checkNotNull(</fold>l<fold text='!!' expand='false'>)</fold>;</fold>
+            <fold text='' expand='false'><fold text='' expand='true'></fold>Preconditions.checkNotNull(</fold>l<fold text='!!' expand='false'>)</fold>;</fold>
             <fold text='' expand='false'>Preconditions.checkNotNull(</fold>z.<fold text='saaa' expand='false'>getSaaa()</fold><fold text='!!' expand='false'>)</fold>;
             <fold text='' expand='false'>Preconditions.checkNotNull(</fold>o<fold text='!!' expand='false'>)</fold>;
             System.out.println();
@@ -45,11 +45,11 @@
         }</fold>
     }</fold>
 
-    class PreconditionsCheckReturn <fold text='{...}' expand='true'>{
-        private String args;
-        private Object o;
-        private Long l;
-        private String saaa;
+    <fold text='🏛️' expand='false'>class</fold> PreconditionsCheckReturn <fold text='{...}' expand='true'>{
+        <fold text='🚫' expand='false'>private</fold> String args;
+        <fold text='🚫' expand='false'>private</fold> Object o;
+        <fold text='🚫' expand='false'>private</fold> Long l;
+        <fold text='🚫' expand='false'>private</fold> String saaa;
 
         public <fold text='💀' expand='false'>void</fold> main(String args, Object o, Long l, NullableAnnotationCheckNotNullTestData z) <fold text='{...}' expand='true'>{
             <fold text='📍' expand='false'>this</fold>.args = <fold text='' expand='false'>Preconditions.checkNotNull(</fold>args<fold text='!!' expand='false'>)</fold>;
@@ -83,12 +83,12 @@
             printStatus();
         }</fold>
 
-        private <fold text='💀' expand='false'>void</fold> printStatus() <fold text='{}' expand='true'>{
+        <fold text='🚫' expand='false'>private</fold> <fold text='💀' expand='false'>void</fold> printStatus() <fold text='{}' expand='true'>{
         }</fold>
     }</fold>
 
 
-    class Preconditions <fold text='{...}' expand='true'>{
+    <fold text='🏛️' expand='false'>class</fold> Preconditions <fold text='{...}' expand='true'>{
         public static <T> T checkNotNull(T o, String s)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
             </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold><fold text='' expand='false'>(T) </fold>o<fold text=' ' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold>

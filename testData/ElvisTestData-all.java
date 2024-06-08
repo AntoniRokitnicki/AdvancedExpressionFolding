@@ -1,7 +1,7 @@
 <fold text='📦' expand='false'>package</fold> data;
 
-public class ElvisTestData {
-    private ElvisTestData e = create();
+public <fold text='🏛️' expand='false'>class</fold> ElvisTestData {
+    <fold text='🚫' expand='false'>private</fold> ElvisTestData e = create();
 
     public <fold text='⚡' expand='false'>static</fold> <fold text='💀' expand='false'>void</fold> main(String[] args) <fold text='{...}' expand='true'>{
         <fold text='val' expand='false'>ElvisTestData</fold> e = create();

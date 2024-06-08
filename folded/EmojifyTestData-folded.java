@@ -3,30 +3,30 @@
 🚢 java.time.DayOfWeek;
 
 @SuppressWarnings("ALL")
-public class EmojifyTestData {
+public 🏛️ EmojifyTestData {
 
-    public 🔒 class FinalData {
-        private 🔒 int finalField = 10;
+    public 🔒 🏛️ FinalData {
+        🚫 🔒 🔢 finalField = 10;
 
         public 🔒 💀 finalMethod() {
-            🔒 int localFinalVariable = 5;
+            🔒 🔢 localFinalVariable = 5;
         }
 
-        public 💀 methodWithFinalParam(🔒 int param) {
+        public 💀 methodWithFinalParam(🔒 🔢 param) {
         }
 
         public 💀 anotherMethod() {
-            🔒 int anotherFinalVariable;
+            🔒 🔢 anotherFinalVariable;
             anotherFinalVariable = 20;
         }
 
         public FinalData() {
-            🔒 int constructorFinalVariable = 30;
+            🔒 🔢 constructorFinalVariable = 30;
         }
     }
 
-    public ⚡ class StaticData {
-        private ⚡ int staticField = 100;
+    public ⚡ 🏛️ StaticData {
+        🚫 ⚡ 🔢 staticField = 100;
 
         public ⚡ 💀 staticMethod() {
         }
@@ -40,40 +40,40 @@ public class EmojifyTestData {
         }
     }
 
-    public class GetterData {
-        private int field;
+    public 🏛️ GetterData {
+        🚫 🔢 field;
 
-        public int getField() {
-            return field;
+        public 🔢 getField() {
+            🔙 field;
         }
 
-        public 💀 setField(int field) {
+        public 💀 setField(🔢 field) {
             📍.field = field;
         }
 
         public 💀 printField() {
-            int value = getField();
+            🔢 value = getField();
         }
     }
 
-    public abstract class AbstractData {
-        public abstract 💀 abstractMethod();
+    public 🎨 🏛️ AbstractData {
+        public 🎨 💀 abstractMethod();
 
         public 💀 concreteMethod() {
         }
     }
 
-    public interface InterfaceData {
+    public 🖥️ InterfaceData {
         💀 interfaceMethod();
     }
 
-    public class InterfaceImplementation implements InterfaceData {
+    public 🏛️ InterfaceImplementation implements InterfaceData {
         @Override
         public 💀 interfaceMethod() {
         }
     }
 
-    public enum EnumData {
+    public 📊 EnumData {
         ENUM_CONSTANT_1 {
             @Override
             public 💀 abstractMethod() {
@@ -91,31 +91,31 @@ public class EmojifyTestData {
             }
         };
 
-        private int value;
+        🚫 🔢 value;
 
-        private EnumData() {
+        🚫 EnumData() {
             📍.value = 0;
         }
 
-        public 💀 setValue(int value) {
+        public 💀 setValue(🔢 value) {
             📍.value = value;
         }
 
-        public int getValue() {
-            return value;
+        public 🔢 getValue() {
+            🔙 value;
         }
 
-        public abstract 💀 abstractMethod();
+        public 🎨 💀 abstractMethod();
 
         public 💀 concreteMethod() {
         }
 
-        public interface InterfaceData {
+        public 🖥️ InterfaceData {
             💀 interfaceMethod();
         }
     }
-    public class SynchronizedData {
-        private int counter;
+    public 🏛️ SynchronizedData {
+        🚫 🔢 counter;
 
         public synchronized 💀 increment() {
             counter++;
@@ -128,329 +128,329 @@ public class EmojifyTestData {
         }
     }
 
-    public class TransientVolatileData implements java.io.Serializable {
-        private transient int transientField;
-        private volatile boolean volatileField;
+    public 🏛️ TransientVolatileData implements java.io.Serializable {
+        🚫 🚂 🔢 transientField;
+        🚫 ☢️ 🔘 volatileField;
 
-        public TransientVolatileData(int transientField, boolean volatileField) {
+        public TransientVolatileData(🔢 transientField, 🔘 volatileField) {
             📍.transientField = transientField;
             📍.volatileField = volatileField;
         }
 
-        public int getTransientField() {
-            return transientField;
+        public 🔢 getTransientField() {
+            🔙 transientField;
         }
 
-        public 💀 setTransientField(int transientField) {
+        public 💀 setTransientField(🔢 transientField) {
             📍.transientField = transientField;
         }
 
-        public boolean isVolatileField() {
-            return volatileField;
+        public 🔘 isVolatileField() {
+            🔙 volatileField;
         }
 
-        public 💀 setVolatileField(boolean volatileField) {
+        public 💀 setVolatileField(🔘 volatileField) {
             📍.volatileField = volatileField;
         }
     }
 
-    public strictfp class StrictfpData {
-        public strictfp double calculate(double a, double b) {
-            return a / b;
+    public strictfp 🏛️ StrictfpData {
+        public strictfp ⚖️ calculate(⚖️ a, ⚖️ b) {
+            🔙 a / b;
         }
     }
 
-    public class NativeData {
-        public native 💀 nativeMethod();
+    public 🏛️ NativeData {
+        public 🏕️ 💀 nativeMethod();
     }
 
-    public class InterfaceUsage implements Comparable<InterfaceUsage> {
-        private int value;
+    public 🏛️ InterfaceUsage implements Comparable<InterfaceUsage> {
+        🚫 🔢 value;
 
-        public InterfaceUsage(int value) {
+        public InterfaceUsage(🔢 value) {
             📍.value = value;
         }
 
         @Override
-        public int compareTo(InterfaceUsage other) {
-            return Integer.compare(📍.value, other.value);
+        public 🔢 compareTo(InterfaceUsage other) {
+            🔙 Integer.compare(📍.value, other.value);
         }
     }
 
-    public class AnonymousClassUsage {
+    public 🏛️ AnonymousClassUsage {
         public Runnable getRunnable() {
-            return new Runnable() {
+            🔙 ✨ Runnable() {
                 @Override
                 public 💀 run() {
-                    int x = 5;
+                    🔢 x = 5;
                 }
             };
         }
     }
 
-    public class LocalClassUsage {
+    public 🏛️ LocalClassUsage {
         public 💀 useLocalClass() {
-            class LocalClass {
-                private int localValue;
+            🏛️ LocalClass {
+                🚫 🔢 localValue;
 
-                public LocalClass(int localValue) {
+                public LocalClass(🔢 localValue) {
                     📍.localValue = localValue;
                 }
 
-                public int getLocalValue() {
-                    return localValue;
+                public 🔢 getLocalValue() {
+                    🔙 localValue;
                 }
             }
 
-            LocalClass localInstance = new LocalClass(10);
-            int value = localInstance.getLocalValue();
+            LocalClass localInstance = ✨ LocalClass(10);
+            🔢 value = localInstance.getLocalValue();
         }
     }
 
-    public class VarArgsUsage {
-        public int sum(int... numbers) {
-            int sum = 0;
-            for (int number : numbers) {
+    public 🏛️ VarArgsUsage {
+        public 🔢 sum(🔢... numbers) {
+            🔢 sum = 0;
+            🔁 (🔢 number : numbers) {
                 sum += number;
             }
-            return sum;
+            🔙 sum;
         }
     }
 
-    public class DiamondOperatorUsage {
+    public 🏛️ DiamondOperatorUsage {
         public 💀 useDiamondOperator() {
-            java.util.List<String> list = new java.util.ArrayList<>();
+            java.util.List<String> list = ✨ java.util.ArrayList<>();
             list.add("Example");
         }
     }
 
-    public class TryWithResourcesUsage {
+    public 🏛️ TryWithResourcesUsage {
         public 💀 readFile(String filePath) 🪃 java.io.IOException {
-            🤞 (java.io.BufferedReader reader = new java.io.BufferedReader(new java.io.FileReader(filePath))) {
+            🤞 (java.io.BufferedReader reader = ✨ java.io.BufferedReader(✨ java.io.FileReader(filePath))) {
                 String line = reader.readLine();
             }
         }
     }
 
-    public class EnhancedForLoopUsage {
+    public 🏛️ EnhancedForLoopUsage {
         public 💀 iterateList(java.util.List<String> list) {
-            for (String item : list) {
-                int length = item.length();
+            🔁 (String item : list) {
+                🔢 length = item.length();
             }
         }
     }
 
-    public class LambdaExpressionUsage {
+    public 🏛️ LambdaExpressionUsage {
         public java.util.function.IntBinaryOperator getAdder() {
-            return (a, b) -> a + b;
+            🔙 (a, b) -> a + b;
         }
     }
 
-    public class StreamAPIUsage {
-        public int sumList(java.util.List<Integer> list) {
-            return list.stream().mapToInt(Integer::intValue).sum();
+    public 🏛️ StreamAPIUsage {
+        public 🔢 sumList(java.util.List<Integer> list) {
+            🔙 list.stream().mapToInt(Integer::intValue).sum();
         }
     }
 
-    public class EnumSwitchUsage {
+    public 🏛️ EnumSwitchUsage {
         public String getDayType(DayOfWeek day) {
-            switch (day) {
-                case MONDAY:
-                case TUESDAY:
-                case WEDNESDAY:
-                case THURSDAY:
-                case FRIDAY:
-                    return "Weekday";
-                case SATURDAY:
-                case SUNDAY:
-                    return "Weekend";
+            🔀 (day) {
+                📦 MONDAY:
+                📦 TUESDAY:
+                📦 WEDNESDAY:
+                📦 THURSDAY:
+                📦 FRIDAY:
+                    🔙 "Weekday";
+                📦 SATURDAY:
+                📦 SUNDAY:
+                    🔙 "Weekend";
                 default:
-                    return "Unknown";
+                    🔙 "Unknown";
             }
         }
     }
 
-    public class ForEachMethodUsage {
+    public 🏛️ ForEachMethodUsage {
         public 💀 printList(java.util.List<String> list) {
             list.forEach(item -> {
-                int length = item.length();
+                🔢 length = item.length();
             });
         }
     }
 
-    public class OptionalUsage {
+    public 🏛️ OptionalUsage {
         public String getValueOrDefault(java.util.Optional<String> optional) {
-            return optional.orElse("Default Value");
+            🔙 optional.orElse("Default Value");
         }
     }
 
-    public class MethodReferenceUsage {
+    public 🏛️ MethodReferenceUsage {
         public java.util.function.Function<String, Integer> getStringLengthFunction() {
-            return String::length;
+            🔙 String::length;
         }
     }
 
-    public class StaticImportUsage {
+    public 🏛️ StaticImportUsage {
         public 💀 useStaticImport() {
-            int max = max(5, 10);
+            🔢 max = max(5, 10);
         }
     }
 
-    public class DefaultMethodInInterface implements DefaultMethodInterface {
+    public 🏛️ DefaultMethodInInterface implements DefaultMethodInterface {
         @Override
         public 💀 abstractMethod() {
         }
     }
 
-    public interface DefaultMethodInterface {
+    public 🖥️ DefaultMethodInterface {
         💀 abstractMethod();
 
         default 💀 defaultMethod() {
-            int defaultValue = 0;
+            🔢 defaultValue = 0;
         }
     }
 
-    public class NestedClassUsage {
-        public class InnerClass {
-            private int value;
+    public 🏛️ NestedClassUsage {
+        public 🏛️ InnerClass {
+            🚫 🔢 value;
 
-            public InnerClass(int value) {
+            public InnerClass(🔢 value) {
                 📍.value = value;
             }
 
-            public int getValue() {
-                return value;
+            public 🔢 getValue() {
+                🔙 value;
             }
         }
     }
 
-    public class BuilderPatternUsage {
-        private 🔒 int field1;
-        private 🔒 String field2;
+    public 🏛️ BuilderPatternUsage {
+        🚫 🔒 🔢 field1;
+        🚫 🔒 String field2;
 
-        private BuilderPatternUsage(Builder builder) {
+        🚫 BuilderPatternUsage(Builder builder) {
             📍.field1 = builder.field1;
             📍.field2 = builder.field2;
         }
 
-        public class Builder {
-            private int field1;
-            private String field2;
+        public 🏛️ Builder {
+            🚫 🔢 field1;
+            🚫 String field2;
 
-            public Builder setField1(int field1) {
+            public Builder setField1(🔢 field1) {
                 📍.field1 = field1;
-                return 📍;
+                🔙 📍;
             }
 
             public Builder setField2(String field2) {
                 📍.field2 = field2;
-                return 📍;
+                🔙 📍;
             }
 
             public BuilderPatternUsage build() {
-                return new BuilderPatternUsage(📍);
+                🔙 ✨ BuilderPatternUsage(📍);
             }
         }
     }
 
-    public class CopyConstructorUsage {
-        private int field1;
-        private String field2;
+    public 🏛️ CopyConstructorUsage {
+        🚫 🔢 field1;
+        🚫 String field2;
 
         public CopyConstructorUsage(CopyConstructorUsage other) {
             📍.field1 = other.field1;
             📍.field2 = other.field2;
         }
 
-        public CopyConstructorUsage(int field1, String field2) {
+        public CopyConstructorUsage(🔢 field1, String field2) {
             📍.field1 = field1;
             📍.field2 = field2;
         }
     }
 
-    public class FinalizerUsage {
+    public 🏛️ FinalizerUsage {
         @Override
         🛡️ 💀 finalize() 🪃 Throwable {
             🤞 {
                 // Finalization logic
-            } finally {
-                super.finalize();
+            } 🏁 {
+                💪.finalize();
             }
         }
     }
 
-    public class VarUsage {
+    public 🏛️ VarUsage {
         public 💀 useVar() {
             var number = 10;
             var text = "Hello";
         }
     }
 
-    public class TypeInferenceUsage {
+    public 🏛️ TypeInferenceUsage {
         public 💀 useTypeInference() {
-            java.util.Map<String, Integer> map = new java.util.HashMap<>();
+            java.util.Map<String, Integer> map = ✨ java.util.HashMap<>();
         }
     }
 
-    public class ResourceBundleUsage {
+    public 🏛️ ResourceBundleUsage {
         public String getMessage(String key) {
             java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("messages");
-            return bundle.getString(key);
+            🔙 bundle.getString(key);
         }
     }
 
-    public class PatternMatchingInstanceof {
+    public 🏛️ PatternMatchingInstanceof {
         public 💀 checkObject(Object obj) {
-            if (obj instanceof String str) {
-                int length = str.length();
+            if (obj is String str) {
+                🔢 length = str.length();
             }
         }
     }
 
-    public class SealedClassUsage {
-        public abstract sealed class Shape permits Circle, Rectangle {
+    public 🏛️ SealedClassUsage {
+        public 🎨 sealed 🏛️ Shape permits Circle, Rectangle {
         }
 
-        public 🔒 class Circle extends Shape {
-            private double radius;
+        public 🔒 🏛️ Circle ↔️ Shape {
+            🚫 ⚖️ radius;
 
-            public Circle(double radius) {
+            public Circle(⚖️ radius) {
                 📍.radius = radius;
             }
 
-            public double getRadius() {
-                return radius;
+            public ⚖️ getRadius() {
+                🔙 radius;
             }
         }
 
-        public 🔒 class Rectangle extends Shape {
-            private double length;
-            private double width;
+        public 🔒 🏛️ Rectangle ↔️ Shape {
+            🚫 ⚖️ length;
+            🚫 ⚖️ width;
 
-            public Rectangle(double length, double width) {
+            public Rectangle(⚖️ length, ⚖️ width) {
                 📍.length = length;
                 📍.width = width;
             }
 
-            public double getLength() {
-                return length;
+            public ⚖️ getLength() {
+                🔙 length;
             }
 
-            public double getWidth() {
-                return width;
+            public ⚖️ getWidth() {
+                🔙 width;
             }
         }
     }
 
-    class NullUsage {
-        public class Data {
+    🏛️ NullUsage {
+        public 🏛️ Data {
 
             public 💀 methodWithNullParam(String input) {
                 input = 🕳️;
             }
 
             public String methodReturningNull() {
-                return 🕳️;
+                🔙 🕳️;
             }
 
             public 💀 methodWithNullField() {
@@ -459,32 +459,32 @@ public class EmojifyTestData {
 
             public 💀 methodWithNullCheck(String input) {
                 if (input == 🕳️) {
-                    return;
+                    🔙;
                 }
             }
 
             public String methodWithNullTernary(String input) {
-                return input != 🕳️ ? input : 🕳️;
+                🔙 input != 🕳️ ? input : 🕳️;
             }
 
             public 💀 methodWithNullInArray() {
-                String[] array = new String[10];
+                String[] array = ✨ String[10];
                 array[0] = 🕳️;
             }
 
             public 💀 methodWithNullInCollection() {
-                java.util.List<String> list = new java.util.ArrayList<>();
+                java.util.List<String> list = ✨ java.util.ArrayList<>();
                 list.add(🕳️);
             }
 
             public 💀 methodWithNullInMap() {
-                java.util.Map<String, String> map = new java.util.HashMap<>();
+                java.util.Map<String, String> map = ✨ java.util.HashMap<>();
                 map.put("key", 🕳️);
             }
 
             public 💀 methodWithNullInStream() {
                 java.util.List<String> list = java.util.Arrays.asList(🕳️, "value");
-                long count = list.stream().filter(java.util.Objects::isNull).count();
+                📏 count = list.stream().filter(java.util.Objects::isNull).count();
             }
 
             public 💀 methodWithNullInOptional() {
@@ -515,7 +515,7 @@ public class EmojifyTestData {
 
             public 💀 methodWithNullInstanceof() {
                 Object obj = 🕳️;
-                boolean isString = obj instanceof String;
+                🔘 isString = obj is String;
             }
 
             public 💀 methodWithNullDefaultValue() {
@@ -532,7 +532,7 @@ public class EmojifyTestData {
                 String value = 🕳️;
                 synchronized (📍) {
                     if (value == 🕳️) {
-                        return;
+                        🔙;
                     }
                 }
             }
@@ -540,7 +540,7 @@ public class EmojifyTestData {
         }
     }
 
-    class SingletonUsage {
+    🏛️ SingletonUsage {
         💀 main() {
             var s = Singleton.🧍;
             System.out.println(Singleton.🧍.isOk());
@@ -551,21 +551,21 @@ public class EmojifyTestData {
             System.out.println(Singleton.🧍.OTHER_NAME.main(Singleton.🧍.OTHER_NAME.main(Singleton.getInstance())));
         }
 
-        ⚡ class Singleton {
-            ⚡ Singleton INSTANCE = new Singleton();
-            Singleton OTHER_NAME = new Singleton();
-            boolean ok;
+        ⚡ 🏛️ Singleton {
+            ⚡ Singleton INSTANCE = ✨ Singleton();
+            Singleton OTHER_NAME = ✨ Singleton();
+            🔘 ok;
 
             Singleton main(Singleton s) {
-                return 📍;
+                🔙 📍;
             }
 
-            public boolean isOk() {
-                return ok;
+            public 🔘 isOk() {
+                🔙 ok;
             }
 
             public ⚡ Singleton getInstance() {
-                return INSTANCE;
+                🔙 INSTANCE;
             }
         }
     }

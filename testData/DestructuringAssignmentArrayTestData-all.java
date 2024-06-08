@@ -3,7 +3,7 @@
 <fold text='🚢' expand='false'>import</fold> java.util.List;
 
 @SuppressWarnings("ALL")
-public class DestructuringAssignmentArrayTestData {
+public <fold text='🏛️' expand='false'>class</fold> DestructuringAssignmentArrayTestData {
     public <fold text='💀' expand='false'>void</fold> enter(Data data, Data[] array) <fold text='{...}' expand='true'>{
         <fold text='val' expand='false'>Data</fold> ignored1 = array[0];
 
@@ -17,7 +17,7 @@ public class DestructuringAssignmentArrayTestData {
         <fold text='val' expand='false'>Data</fold> ignored22 = data.<fold text='array' expand='false'>getArray()</fold>[5];
 
         <fold text='var (' expand='true'>Data </fold>getter1<fold text=', ' expand='true'> = data.getArray()[0];</fold><fold text='' expand='true'>
-        <fold text='val' expand='false'>Data</fold> </fold>getter2<fold text=', ' expand='true'> = data.<fold text='array' expand='false'>getArray()</fold>[1];<fold text='' expand='true'></fold>
+        <fold text='val' expand='false'>Data</fold> </fold>getter2<fold text=', ' expand='true'> = data.<fold text='array' expand='false'>getArray()</fold>[1];</fold><fold text='' expand='true'>
         <fold text='val' expand='false'>Data</fold> </fold>getter3<fold text=') ' expand='true'> </fold>= data.<fold text='array' expand='false'>getArray()</fold><fold text='' expand='true'>[2]</fold>;
         getter1 = data;
 
@@ -31,7 +31,7 @@ public class DestructuringAssignmentArrayTestData {
         blackhole(first, second, third, fourth, ignored21, ignored22, getter1, getter2, deepGetter1, deepGetter2, wrongParent1, wrongParent2);
     }</fold>
 
-    <fold text='⚡' expand='false'>static</fold> class Data <fold text='{...}' expand='true'>{
+    <fold text='⚡' expand='false'>static</fold> <fold text='🏛️' expand='false'>class</fold> Data <fold text='{...}' expand='true'>{
         public Data getData()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
             </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold><fold text='🕳️' expand='false'>null</fold><fold text=' ' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold>

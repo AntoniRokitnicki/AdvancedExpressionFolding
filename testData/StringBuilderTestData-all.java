@@ -1,9 +1,9 @@
 <fold text='📦' expand='false'>package</fold> data;
 
-public class StringBuilderTestData {
+public <fold text='🏛️' expand='false'>class</fold> StringBuilderTestData {
     public <fold text='⚡' expand='false'>static</fold> <fold text='💀' expand='false'>void</fold> main(String[] args) <fold text='{...}' expand='true'>{
         <fold text='val' expand='false'>StringBuilder</fold> sb1 = <fold text='"["' expand='false'>new StringBuilder("[")</fold>;
-        for <fold text='val (' expand='false'>(<fold text='val' expand='false'>int</fold> </fold>i = 0; i < args.length; i++) <fold text='{...}' expand='true'>{
+        <fold text='🔁' expand='false'>for</fold> <fold text='val (' expand='false'>(<fold text='val' expand='false'>int</fold> </fold>i = 0; i < args.length; i++) <fold text='{...}' expand='true'>{
                 <fold text='val' expand='false'>String</fold> arg<fold text=' : ' expand='false'> = </fold>args<fold text=') {
 ' expand='false'>[i];</fold>
         sb1<fold text=' += ' expand='false'>.append(</fold>arg<fold text='' expand='false'>)</fold>;
@@ -14,7 +14,7 @@ public class StringBuilderTestData {
                 <fold text='' expand='false'>System.out.</fold>println(sb1<fold text=' + ' expand='false'>.append(</fold>"]"<fold text='' expand='false'>).toString()</fold>);
 
         <fold text='val' expand='false'>StringBuilder</fold> sb2 = <fold text='' expand='false'>new StringBuilder().append(</fold>"["<fold text='' expand='false'>)</fold>;
-        for <fold text='val (' expand='false'>(<fold text='val' expand='false'>int</fold> </fold>i = 0; i < args.length; i++) <fold text='{...}' expand='true'>{
+        <fold text='🔁' expand='false'>for</fold> <fold text='val (' expand='false'>(<fold text='val' expand='false'>int</fold> </fold>i = 0; i < args.length; i++) <fold text='{...}' expand='true'>{
                 <fold text='val' expand='false'>String</fold> arg<fold text=' : ' expand='false'> = </fold>args<fold text=') {
 ' expand='false'>[i];</fold>
         sb2<fold text=' += ' expand='false'>.append(</fold>arg<fold text='' expand='false'>)</fold>;
@@ -25,7 +25,7 @@ public class StringBuilderTestData {
                 <fold text='' expand='false'>System.out.</fold>println(sb2<fold text=' + ' expand='false'>.append(</fold>"]"<fold text='' expand='false'>).toString()</fold>);
 
         <fold text='val' expand='false'>StringBuilder</fold> sb3 = <fold text='""' expand='false'>new StringBuilder()</fold>;
-        for <fold text='val (' expand='false'>(<fold text='val' expand='false'>int</fold> </fold>i = 0; i < args.length; i++) <fold text='{...}' expand='true'>{
+        <fold text='🔁' expand='false'>for</fold> <fold text='val (' expand='false'>(<fold text='val' expand='false'>int</fold> </fold>i = 0; i < args.length; i++) <fold text='{...}' expand='true'>{
                 <fold text='val' expand='false'>String</fold> arg<fold text=' : ' expand='false'> = </fold>args<fold text=') {
 ' expand='false'>[i];</fold>
         sb3<fold text=' += ' expand='false'>.append(</fold>arg<fold text='' expand='false'>)</fold>;
