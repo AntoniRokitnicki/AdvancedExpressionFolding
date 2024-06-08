@@ -1,7 +1,6 @@
 package com.intellij.advancedExpressionFolding.extension
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.extension.Consts.Emoji.*
 import com.intellij.psi.JavaTokenType.*
 import com.intellij.psi.PsiJavaToken
 
@@ -12,26 +11,60 @@ object TokenExt : BaseExtension() {
         emojify.on() ?: return null
 
         val emoji = when (element.tokenType) {
-            NULL_KEYWORD -> NULL_HOLE
-            VOID_KEYWORD -> VOID_SKULL
-            FINAL_KEYWORD -> FINAL_LOCK
-            TRUE_KEYWORD -> TRUE_CHECK_MARK
-            FALSE_KEYWORD -> FALSE_CROSS_MARK
-            IMPORT_KEYWORD -> IMPORT_SHIP
-            PACKAGE_KEYWORD -> PACKAGE_PACKAGE
-            THROWS_KEYWORD -> THROWS_BOOMERANG
-            THROW_KEYWORD -> THROWS_BOOMERANG
-            TRY_KEYWORD -> TRY_CROSSED_FINGERS
-            CATCH_KEYWORD -> CATCH_FISHING_POLE
-            THIS_KEYWORD -> THIS_ROUND_PUSHPIN
-            STATIC_KEYWORD -> STATIC_HIGH_VOLTAGE
-            PROTECTED_KEYWORD -> PROTECTED_SHIELD
+            NULL_KEYWORD -> "🕳️"
+            VOID_KEYWORD -> "💀"
+            FINAL_KEYWORD -> "🔒"
+            TRUE_KEYWORD -> "✅"
+            FALSE_KEYWORD -> "❌"
+            IMPORT_KEYWORD -> "🚢"
+            PACKAGE_KEYWORD -> "📦"
+            THROWS_KEYWORD -> "🪃"
+            THROW_KEYWORD -> "🪃"
+            TRY_KEYWORD -> "🤞"
+            CATCH_KEYWORD -> "🎣"
+            THIS_KEYWORD -> "📍"
+            STATIC_KEYWORD -> "⚡"
+            PROTECTED_KEYWORD -> "🛡️"
+            ABSTRACT_KEYWORD -> "🎨"
+            BREAK_KEYWORD -> "✋"
+            CASE_KEYWORD -> "📦"
+            CLASS_KEYWORD -> "🏛️"
+            DO_KEYWORD -> "▶️"
+            ELSE_KEYWORD -> "🔄"
+            ENUM_KEYWORD -> "📊"
+            EXTENDS_KEYWORD -> "↔️"
+            FINALLY_KEYWORD -> "🏁"
+            FOR_KEYWORD -> "🔁"
+            WHILE_KEYWORD -> "♾️"
+            INSTANCEOF_KEYWORD -> "is"
+            INTERFACE_KEYWORD -> "🖥️"
+            INT_KEYWORD -> "🔢"
+            LONG_KEYWORD -> "📏"
+            NATIVE_KEYWORD -> "🏕️"
+            NEW_KEYWORD -> "✨"
+            PRIVATE_KEYWORD -> "🚫"
+            SUPER_KEYWORD -> "💪"
+            SWITCH_KEYWORD -> "🔀"
+            TRANSIENT_KEYWORD -> "🚂"
+            RETURN_KEYWORD -> "🔙"
+            VOLATILE_KEYWORD -> "☢️"
+            BYTE_KEYWORD -> "💾"
+            FLOAT_KEYWORD -> "🏊"
+            DOUBLE_KEYWORD -> "⚖️"
+            BOOLEAN_KEYWORD -> "🔘"
+            CHAR_KEYWORD -> "🅲"
+            REQUIRES_KEYWORD -> "🚧"
+            EXPORTS_KEYWORD -> "🚢"
+            YIELD_KEYWORD -> "🚸"
+            RECORD_KEYWORD -> "📀"
+            //IF_KEYWORD -> "🤔"
+            //ANDAND -> "🤝"
+            //OROR -> "🚪"
             else -> null
         }
 
-        return emoji?.toString()?.let {
+        return emoji?.let {
             element.expr(it)
         }
     }
-
 }
