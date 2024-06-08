@@ -2,7 +2,7 @@
 
 <fold text='🚢' expand='false'>import</fold> java.time.LocalDate<fold text='' expand='false'>;</fold>
 
-public class LocalDateLiteralPostfixTestData {
+public <fold text='🏛️' expand='false'>class</fold> LocalDateLiteralPostfixTestData {
     public <fold text='⚡' expand='false'>static</fold> <fold text='💀' expand='false'>void</fold> main(String[] args) <fold text='{...}' expand='true'>{
         <fold text='val' expand='false'>LocalDate</fold> d1 = <fold text='' expand='false'>LocalDate.of(</fold>2018<fold text='Y-' expand='false'>, </fold>01<fold text='M-' expand='false'>, </fold>10<fold text='D' expand='false'>)</fold><fold text='' expand='false'>;</fold>
         <fold text='val' expand='false'>LocalDate</fold> d4 = <fold text='' expand='false'>LocalDate.of(</fold>2018<fold text='Y-' expand='false'>, </fold>01<fold text='M-' expand='false'>, </fold>10<fold text='D' expand='false'>)</fold><fold text='' expand='false'>;</fold>

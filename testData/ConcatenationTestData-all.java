@@ -3,7 +3,7 @@
 <fold text='🚢' expand='false'>import</fold> <fold text='...' expand='false'>java.util.*;
 <fold text='🚢' expand='false'>import</fold> java.util.stream.Collectors;</fold>
 
-public class ConcatenationTestData {
+public <fold text='🏛️' expand='false'>class</fold> ConcatenationTestData {
     public <fold text='⚡' expand='false'>static</fold> <fold text='💀' expand='false'>void</fold> main(String[] args) <fold text='{...}' expand='true'>{
         <fold text='val' expand='false'>List<String></fold> list = Arrays.asList(args);
         list<fold text=' += ' expand='false'>.add(</fold>"one"<fold text='' expand='false'>)</fold>;
@@ -14,11 +14,11 @@ public class ConcatenationTestData {
         list<fold text=' += ' expand='false'>.addAll(</fold>singleton<fold text='' expand='false'>)</fold>;
         list<fold text=' -= ' expand='false'>.removeAll(</fold>singleton<fold text='' expand='false'>)</fold>;
         <fold text='' expand='false'>Collections.addAll(</fold>list<fold text=' += ' expand='false'>, </fold>args<fold text='' expand='false'>)</fold>;
-        <fold text='val' expand='false'>Set<String></fold> set = new HashSet<>();
+        <fold text='val' expand='false'>Set<String></fold> set = <fold text='✨' expand='false'>new</fold> HashSet<>();
         set<fold text=' += ' expand='false'>.add(</fold>"three"<fold text='' expand='false'>)</fold>;
         set<fold text=' -= ' expand='false'>.remove(</fold>"three"<fold text='' expand='false'>)</fold>;
         <fold text='' expand='false'>System.out.</fold>println(set);
-        <fold text='val' expand='false'>Set<String></fold> copyOfSet = new HashSet<>();
+        <fold text='val' expand='false'>Set<String></fold> copyOfSet = <fold text='✨' expand='false'>new</fold> HashSet<>();
         set<fold text=' += ' expand='false'>.addAll(</fold>copyOfSet<fold text='' expand='false'>)</fold>;
         <fold text='' expand='false'>System.out.</fold>println(copyOfSet);
         <fold text='var' expand='false'>List<String></fold> streamToList = <fold text='' expand='false'>Arrays.stream(</fold>args<fold text='' expand='false'>)</fold><fold text='*.' expand='false'>.map(</fold><fold text='toUpperCase()' expand='false'>String::toUpperCase</fold><fold text='' expand='false'>)</fold><fold text='.' expand='false'>.collect(Collectors.</fold>toList()<fold text='' expand='false'>)</fold>;

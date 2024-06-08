@@ -2,8 +2,8 @@
 <fold text='🚢' expand='false'>import</fold> lombok.Data;</fold>
 
 @Data
-public class LombokUsageTestData {
+public <fold text='🏛️' expand='false'>class</fold> LombokUsageTestData {
 
-    private List<Integer> id;
+    <fold text='🚫' expand='false'>private</fold> List<Integer> id;
 
 }

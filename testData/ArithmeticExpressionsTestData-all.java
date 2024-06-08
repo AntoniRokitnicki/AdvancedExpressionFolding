@@ -7,15 +7,15 @@
 <fold text='🚢' expand='false'>import</fold> java.util.Collection;</fold>
 
 @SuppressWarnings("ALL")
-public class ArithmeticExpressionsTestData {
+public <fold text='🏛️' expand='false'>class</fold> ArithmeticExpressionsTestData {
 
-    private Object blackhole;
+    <fold text='🚫' expand='false'>private</fold> Object blackhole;
 
-    class BigDecimalData <fold text='{...}' expand='true'>{
+    <fold text='🏛️' expand='false'>class</fold> BigDecimalData <fold text='{...}' expand='true'>{
 
         public <fold text='💀' expand='false'>void</fold> addBigDecimal() <fold text='{...}' expand='true'>{
             <fold text='val' expand='false'>BigDecimal</fold> a = <fold text='' expand='false'>new BigDecimal(</fold><fold text='10' expand='false'>"10"</fold><fold text='' expand='false'>)</fold>;
-            <fold text='val' expand='false'>BigDecimal</fold> b = <fold text='' expand='false'>new BigDecimal(</fold><fold text='5' expand='false'>"5"</fold><fold text='' expand='false'>)</fold>;
+            <fold text='val' expand='false'>BigDecimal</fold> b = <fold text='' expand='false'>new BigDecimal(<fold text='5' expand='false'></fold>"5"</fold><fold text='' expand='false'>)</fold>;
             blackhole = a<fold text=' + ' expand='false'>.add(</fold>b<fold text='' expand='false'>)</fold>;
         }</fold>
 
@@ -86,7 +86,7 @@ public class ArithmeticExpressionsTestData {
         }</fold>
     }</fold>
 
-    class BigIntegerData <fold text='{...}' expand='true'>{
+    <fold text='🏛️' expand='false'>class</fold> BigIntegerData <fold text='{...}' expand='true'>{
         public <fold text='💀' expand='false'>void</fold> addBigInteger() <fold text='{...}' expand='true'>{
             <fold text='val' expand='false'>BigInteger</fold> a = <fold text='' expand='false'>new BigInteger(</fold><fold text='10' expand='false'>"10"</fold><fold text='' expand='false'>)</fold>;
             <fold text='val' expand='false'>BigInteger</fold> b = <fold text='' expand='false'>new BigInteger(</fold><fold text='5' expand='false'>"5"</fold><fold text='' expand='false'>)</fold>;
@@ -162,7 +162,7 @@ public class ArithmeticExpressionsTestData {
         }</fold>
 
         public <fold text='💀' expand='false'>void</fold> notBigInteger() <fold text='{...}' expand='true'>{
-            <fold text='val' expand='false'>BigInteger</fold> a = <fold text='' expand='false'>new BigInteger(</fold><fold text='10' expand='false'>"10"</fold><fold text='' expand='false'>)</fold>;
+            <fold text='val' expand='false'>BigInteger</fold> a = <fold text='' expand='false'>new BigInteger(<fold text='10' expand='false'></fold>"10"</fold><fold text='' expand='false'>)</fold>;
             blackhole = a.not();
         }</fold>
 
@@ -206,7 +206,7 @@ public class ArithmeticExpressionsTestData {
         }</fold>
     }</fold>
 
-    class MathData <fold text='{...}' expand='true'>{
+    <fold text='🏛️' expand='false'>class</fold> MathData <fold text='{...}' expand='true'>{
         public <fold text='💀' expand='false'>void</fold> minMath() <fold text='{...}' expand='true'>{
             <fold text='val' expand='false'>double</fold> a = 10.0;
             <fold text='val' expand='false'>double</fold> b = 5.0;
@@ -346,28 +346,28 @@ public class ArithmeticExpressionsTestData {
         }</fold>
     }</fold>
 
-    class LongData <fold text='{...}' expand='true'>{
+    <fold text='🏛️' expand='false'>class</fold> LongData <fold text='{...}' expand='true'>{
         public <fold text='💀' expand='false'>void</fold> valueOfLong() <fold text='{...}' expand='true'>{
             <fold text='val' expand='false'>String</fold> a = "10";
             blackhole = <fold text='' expand='false'>Long.valueOf(</fold>a<fold text='' expand='false'>)</fold>;
         }</fold>
     }</fold>
 
-    class IntegerData <fold text='{...}' expand='true'>{
+    <fold text='🏛️' expand='false'>class</fold> IntegerData <fold text='{...}' expand='true'>{
         public <fold text='💀' expand='false'>void</fold> valueOfInteger() <fold text='{...}' expand='true'>{
             <fold text='val' expand='false'>String</fold> a = "10";
             blackhole = <fold text='' expand='false'>Integer.valueOf(</fold>a<fold text='' expand='false'>)</fold>;
         }</fold>
     }</fold>
 
-    class FloatData <fold text='{...}' expand='true'>{
+    <fold text='🏛️' expand='false'>class</fold> FloatData <fold text='{...}' expand='true'>{
         public <fold text='💀' expand='false'>void</fold> valueOfFloat() <fold text='{...}' expand='true'>{
             <fold text='val' expand='false'>String</fold> a = "10.5";
             blackhole = <fold text='' expand='false'>Float.valueOf(</fold>a<fold text='' expand='false'>)</fold>;
         }</fold>
     }</fold>
 
-    class DoubleData <fold text='{...}' expand='true'>{
+    <fold text='🏛️' expand='false'>class</fold> DoubleData <fold text='{...}' expand='true'>{
         public <fold text='💀' expand='false'>void</fold> valueOfDouble() <fold text='{...}' expand='true'>{
             <fold text='val' expand='false'>String</fold> a = "10.5";
             blackhole = <fold text='' expand='false'>Double.valueOf(</fold>a<fold text='' expand='false'>)</fold>;
@@ -375,7 +375,7 @@ public class ArithmeticExpressionsTestData {
     }</fold>
 
 
-    class CollectionData <fold text='{...}' expand='true'>{
+    <fold text='🏛️' expand='false'>class</fold> CollectionData <fold text='{...}' expand='true'>{
         public <fold text='💀' expand='false'>void</fold> addAllAssign() <fold text='{...}' expand='true'>{
             <fold text='val' expand='false'>Collection<Integer></fold> a = <fold text='[' expand='false'>new ArrayList<>(Arrays.asList(</fold>1, 2, 3<fold text=']' expand='false'>))</fold>;
             <fold text='val' expand='false'>Collection<Integer></fold> b = <fold text='[' expand='false'>new ArrayList<>(Arrays.asList(</fold>4, 5, 6<fold text=']' expand='false'>))</fold>;
@@ -403,7 +403,7 @@ public class ArithmeticExpressionsTestData {
         }</fold>
     }</fold>
 
-    class ArithmeticData <fold text='{...}' expand='true'>{
+    <fold text='🏛️' expand='false'>class</fold> ArithmeticData <fold text='{...}' expand='true'>{
 
         public <fold text='💀' expand='false'>void</fold> addAssign() <fold text='{...}' expand='true'>{
             <fold text='var' expand='false'>int</fold> a = 10;

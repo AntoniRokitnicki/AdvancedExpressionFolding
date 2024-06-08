@@ -1,7 +1,7 @@
 <fold text='📦' expand='false'>package</fold> data;
 
 @SuppressWarnings("unused")
-class PrintlnTestData {
+<fold text='🏛️' expand='false'>class</fold> PrintlnTestData {
     <fold text='⚡' expand='false'><fold text='default const' expand='false'>static</fold> <fold text='🔒' expand='false'>final</fold> </fold><fold text='' expand='false'>int</fold> CONST_VALUE = 0;
 
     <fold text='💀' expand='false'>void</fold> println(String string) <fold text='{...}' expand='true'>{

@@ -6,7 +6,7 @@
 <fold text='🚢' expand='false'>import</fold> java.util.stream.Stream;</fold>
 
 @SuppressWarnings("ALL")
-public class OptionalTestData {
+public <fold text='🏛️' expand='false'>class</fold> OptionalTestData {
 
     public <fold text='💀' expand='false'>void</fold> enter(Optional<Data> opt, Data data, Data dataNull) <fold text='{...}' expand='true'>{
         <fold text='var' expand='false'>Object</fold> o = <fold text='🕳️' expand='false'>null</fold>;
@@ -24,7 +24,7 @@ public class OptionalTestData {
         o = <fold text='' expand='false'>Optional.of(</fold>data<fold text='!!' expand='false'>)</fold><fold text='.' expand='false'>.map(</fold><fold text='data' expand='false'>Data::getData</fold><fold text='' expand='false'>)</fold><fold text=' ?: ' expand='false'>.orElse(</fold><fold text='🕳️' expand='false'>null</fold><fold text='' expand='false'>)</fold>;
         o = <fold text='' expand='false'>Optional.ofNullable(</fold>dataNull<fold text='' expand='false'>)</fold>.map(OptionalTestData::getOutsideData)<fold text='!!' expand='false'>.get()</fold>;
 
-        o = opt.map(Data::new).filter(Data.class::isInstance).map(Data.class::cast);
+        o = opt.map(Data::<fold text='✨' expand='false'>new</fold>).filter(Data.<fold text='🏛️' expand='false'>class</fold>::isInstance).map(Data.<fold text='🏛️' expand='false'>class</fold>::cast);
 
         o = <fold text='' expand='false'>Optional.of(</fold>data<fold text='!!' expand='false'>)</fold><fold text='.' expand='false'>.map(</fold><fold text='data' expand='false'>Data::getData</fold><fold text='' expand='false'>)</fold><fold text='?.' expand='false'>
                 .map(</fold><fold text='data' expand='false'>Data::getData</fold><fold text='' expand='false'>)</fold>
@@ -33,7 +33,7 @@ public class OptionalTestData {
                 .map(</fold><fold text='ok' expand='false'>Data::isOk</fold><fold text='' expand='false'>)</fold>
                 .map(it -> !it).map(it -> <fold text='{...}' expand='true'>{
                 <fold text='val' expand='false'>var</fold> s = it.toString();
-        return s<fold text=' ≡ ' expand='false'>.equals(</fold>"false"<fold text='' expand='false'>)</fold>;
+        <fold text='🔙' expand='false'>return</fold> s<fold text=' ≡ ' expand='false'>.equals(</fold>"false"<fold text='' expand='false'>)</fold>;
                 }</fold>)<fold text=' ?: ' expand='false'>.orElse(</fold><fold text='🕳️' expand='false'>null</fold><fold text='' expand='false'>)</fold>;
 
         o = <fold text='' expand='false'>Optional.of(</fold>data.<fold text='data' expand='false'>getData()</fold><fold text='!!' expand='false'>)</fold>.map(OptionalTestData::getOutsideData)<fold text='?.' expand='false'>.map(</fold><fold text='string' expand='false'>Data::getString</fold><fold text='' expand='false'>)</fold><fold text=' ?: ' expand='false'>.orElse(</fold>data.<fold text='string' expand='false'>getString()</fold><fold text='' expand='false'>)</fold>;
@@ -62,9 +62,9 @@ public class OptionalTestData {
         </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold><fold text='🕳️' expand='false'>null</fold><fold text=' ' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
     </fold>}</fold>
 
-    <fold text='@Getter @Setter s' expand='false'><fold text='⚡' expand='false'>s</fold>tatic</fold> class Data <fold text='{...}' expand='true'>{
+    <fold text='@Getter @Setter s' expand='false'><fold text='⚡' expand='false'>s</fold>tatic</fold> <fold text='🏛️' expand='false'>class</fold> Data <fold text='{...}' expand='true'>{
         Data data;
-        boolean ok;
+        <fold text='🔘' expand='false'>boolean</fold> ok;
 
         String string;
 
@@ -84,7 +84,7 @@ public class OptionalTestData {
                 </fold></fold><fold text='📍' expand='false'>this</fold>.data = <fold text='<<' expand='false'>data</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold><fold text='' expand='false'></fold>
 
-        </fold><fold text='' expand='false'>public void setOk(boolean ok)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+        </fold><fold text='' expand='false'>public void setOk(<fold text='🔘' expand='false'>boolean</fold> ok)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
                 </fold></fold><fold text='📍' expand='false'>this</fold>.ok = <fold text='<<' expand='false'>ok</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold><fold text='' expand='false'></fold>
 
