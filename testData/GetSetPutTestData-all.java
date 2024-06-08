@@ -8,7 +8,7 @@ public <fold text='🏛️' expand='false'>class</fold> GetSetPutTestData {
         list<fold text='[' expand='false'>.set(</fold>1<fold text='] = ' expand='false'>,</fold>"three"<fold text='' expand='false'> )</fold>;
         <fold text='' expand='false'>System.out.</fold>println(list<fold text='.getLast' expand='false'>.get</fold>(<fold text='' expand='false'>list.size() - 1</fold>));
         <fold text='' expand='false'>System.out.</fold>println(args<fold text='.last()' expand='false'>[args.length - 1]</fold>);
-        <fold text='val' expand='false'>HashMap<String, Integer></fold> map = <fold text='✨' expand='false'>new</fold> HashMap<>();
+        <fold text='val' expand='false'>HashMap<String, Integer></fold> map = new HashMap<>();
         map<fold text='[' expand='false'>.put(</fold>"one"<fold text='] = ' expand='false'>, </fold>1<fold text='' expand='false'>)</fold>;
         <fold text='' expand='false'>System.out.</fold>println(map<fold text='[' expand='false'>.get(</fold>"two"<fold text=']' expand='false'>)</fold>);
         <fold text='val' expand='false'>List<String></fold> singleton = <fold text='[' expand='false'>java.util.Collections.singletonList(</fold><fold text='"one"' expand='false'>"one"</fold><fold text=']' expand='false'>)</fold>;
@@ -27,7 +27,7 @@ public <fold text='🏛️' expand='false'>class</fold> GetSetPutTestData {
         </fold><fold text=']' expand='false'>}</fold></fold>;
         <fold text='' expand='false'>System.out.</fold>println(set);
         <fold text='val' expand='false'>Set<String></fold> copyOfSet = <fold text='[' expand='false'>Collections.unmodifiableSet(new HashSet<String>() </fold><fold text='{...}' expand='true'><fold text='' expand='false'>{
-            <fold text='' expand='false'><fold text='{...}' expand='true'></fold>{
+            </fold><fold text='' expand='false'><fold text='{...}' expand='true'>{
                 add(</fold>"one"<fold text=', ' expand='false'>);
                 add(</fold>"two"<fold text='' expand='false'>);
             }</fold></fold><fold text='' expand='false'>

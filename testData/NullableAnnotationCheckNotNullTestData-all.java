@@ -8,7 +8,7 @@
     <fold text='🚫' expand='false'>private</fold> String saaa;<fold text='' expand='false'>
 
     </fold><fold text='' expand='false'>public String getSaaa()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-        </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>saaa<fold text=' ' expand='true'>;</fold><fold text=' }' expand='false'><fold text='' expand='true'>
+        </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>saaa<fold text='' expand='true'>;</fold><fold text=' }' expand='false'><fold text='' expand='true'>
     </fold>}</fold></fold>
 
     <fold text='🏛️' expand='false'>class</fold> PreconditionsCheck <fold text='{...}' expand='true'>{
@@ -89,11 +89,11 @@
 
 
     <fold text='🏛️' expand='false'>class</fold> Preconditions <fold text='{...}' expand='true'>{
-        public static <T> T checkNotNull(T o, String s)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold><fold text='' expand='false'>(T) </fold>o<fold text=' ' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+        public <fold text='⚡' expand='false'>static</fold> <T> T checkNotNull(T o, String s)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold><fold text='' expand='false'>(T) </fold>o<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold>
-        public static <T> T checkNotNull(T o)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold><fold text='' expand='false'>(T) </fold>o<fold text=' ' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+        public <fold text='⚡' expand='false'>static</fold> <T> T checkNotNull(T o)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold><fold text='' expand='false'>(T) </fold>o<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold>
     }</fold>
 }

@@ -43,9 +43,9 @@
         if (var7 != null) <fold text='{...}' expand='true'>{
             return var7;
         }</fold></fold>
-        <fold text='✨' expand='false'>new</fold> Thread(<fold text='✨' expand='false'><fold text='run() → { ' expand='false'>new</fold> Runnable() {
+        new Thread(<fold text='run() → { ' expand='false'>new Runnable() {
             <fold text='' expand='true'>@Override</fold>
-            public void run() {<fold text=' ' expand='true'>
+            public <fold text='💀' expand='false'>void</fold> run() {<fold text=' ' expand='true'>
                 </fold></fold><fold text='' expand='false'>System.out.</fold>println<fold text='("$' expand='false'>(</fold>var7<fold text='' expand='false'> + "</fold>1")<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
             </fold>}
         }</fold>);
