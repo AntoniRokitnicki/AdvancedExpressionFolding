@@ -13,13 +13,10 @@ import com.intellij.advancedExpressionFolding.extension.lombok.LombokExt.callbac
 import com.intellij.advancedExpressionFolding.extension.methodcall.dynamic.DynamicExt
 import com.intellij.openapi.editor.Document
 import com.intellij.psi.*
-import com.intellij.psi.impl.source.PsiClassReferenceType
 
 /**
  * [data.NullableAnnotationTestData]
  * [data.NullableAnnotationCheckNotNullTestData]
- *
- *
  */
 object NullableExt : BaseExtension() {
 
@@ -185,7 +182,7 @@ object NullableExt : BaseExtension() {
             noBody = anonymousClass.methods.size + anonymousClass.fields.size == 0
         }
 
-        val sameType = sameTypeOfFieldAndInitializer(initializer, field)
+        val sameType = field.sameTypeOfFieldAndInitializer(initializer)
         if (noBody && sameType && initializer != null) {
             val list = exprList()
             initializer.classReference?.let {
@@ -214,9 +211,7 @@ object NullableExt : BaseExtension() {
 
 
     //TODO: extract generic extension method
-    private fun sameTypeOfFieldAndInitializer(initializer: PsiNewExpression?, field: PsiField) =
-        initializer?.classOrAnonymousClassReference?.resolve() == field.type.asInstance<PsiClassReferenceType>()
-            ?.resolve()
+    private fun PsiField.sameTypeOfFieldAndInitializer(initializer: PsiNewExpression?) = initializer?.classOrAnonymousClassReference?.resolve() == typeResolved
 
     private fun PsiField.hideConstType() =
         (type.isPrimitiveOrString() && hasLiteralConstInitializer()) || (enum && isNotStaticEnumInitializer()) || isFactoryMethod()

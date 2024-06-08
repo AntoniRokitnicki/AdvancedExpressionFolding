@@ -179,7 +179,7 @@ public <fold text='🏛️' expand='false'>class</fold> EmojifyTestData {
 
     public <fold text='🏛️' expand='false'>class</fold> AnonymousClassUsage <fold text='{...}' expand='true'>{
         public Runnable getRunnable() <fold text='{...}' expand='true'>{
-            <fold text='🔙' expand='false'>return</fold> <fold text='✨' expand='false'><fold text='run() → { ' expand='false'>new</fold> Runnable() {
+            <fold text='🔙' expand='false'>return</fold> <fold text='run() → { ' expand='false'>new Runnable() {
                 @Override
                 public <fold text='💀' expand='false'>void</fold> run() {
                     </fold><fold text='🔢' expand='false'>int</fold> x = 5;<fold text=' }' expand='false'>
@@ -202,7 +202,7 @@ public <fold text='🏛️' expand='false'>class</fold> EmojifyTestData {
                 }</fold>
             }</fold>
 
-            LocalClass localInstance = <fold text='✨' expand='false'>new</fold> LocalClass(10);
+            LocalClass localInstance = new LocalClass(10);
             <fold text='🔢' expand='false'>int</fold> value = localInstance.getLocalValue();
         }</fold>
     }</fold>
@@ -219,14 +219,14 @@ public <fold text='🏛️' expand='false'>class</fold> EmojifyTestData {
 
     public <fold text='🏛️' expand='false'>class</fold> DiamondOperatorUsage <fold text='{...}' expand='true'>{
         public <fold text='💀' expand='false'>void</fold> useDiamondOperator() <fold text='{...}' expand='true'>{
-            java.util.List<String> list = <fold text='✨' expand='false'>new</fold> java.util.ArrayList<>();
+            java.util.List<String> list = new java.util.ArrayList<>();
             list.add("Example");
         }</fold>
     }</fold>
 
     public <fold text='🏛️' expand='false'>class</fold> TryWithResourcesUsage <fold text='{...}' expand='true'>{
         public <fold text='💀' expand='false'>void</fold> readFile(String filePath) <fold text='🪃' expand='false'>throws</fold> java.io.IOException <fold text='{...}' expand='true'>{
-            <fold text='🤞' expand='false'>try</fold> (java.io.BufferedReader reader = <fold text='✨' expand='false'>new</fold> java.io.BufferedReader(<fold text='✨' expand='false'>new</fold> java.io.FileReader(filePath))) <fold text='{...}' expand='true'>{
+            <fold text='🤞' expand='false'>try</fold> (java.io.BufferedReader reader = new java.io.BufferedReader(new java.io.FileReader(filePath))) <fold text='{...}' expand='true'>{
                 String line = reader.readLine();
             }</fold>
         }</fold>
@@ -248,7 +248,7 @@ public <fold text='🏛️' expand='false'>class</fold> EmojifyTestData {
 
     public <fold text='🏛️' expand='false'>class</fold> StreamAPIUsage <fold text='{...}' expand='true'>{
         public <fold text='🔢' expand='false'>int</fold> sumList(java.util.List<Integer> list)<fold text=' { ' expand='false'> {
-            </fold><fold text='🔙' expand='false'>return</fold> list.stream().mapToInt(Integer::intValue).sum();<fold text=' }' expand='false'>
+            <fold text='🔙' expand='false'></fold>return</fold> list.stream().mapToInt(Integer::intValue).sum();<fold text=' }' expand='false'>
         }</fold>
     }</fold>
 
@@ -286,13 +286,13 @@ public <fold text='🏛️' expand='false'>class</fold> EmojifyTestData {
 
     public <fold text='🏛️' expand='false'>class</fold> MethodReferenceUsage <fold text='{...}' expand='true'>{
         public java.util.function.Function<String, Integer> getStringLengthFunction()<fold text=' { ' expand='false'> {
-            <fold text='🔙' expand='false'></fold>return</fold> String::length;<fold text=' }' expand='false'>
+            </fold><fold text='🔙' expand='false'>return</fold> String::length;<fold text=' }' expand='false'>
         }</fold>
     }</fold>
 
     public <fold text='🏛️' expand='false'>class</fold> StaticImportUsage <fold text='{...}' expand='true'>{
         public <fold text='💀' expand='false'>void</fold> useStaticImport()<fold text=' { ' expand='false'> {
-            </fold><fold text='🔢' expand='false'>int</fold> max = <fold text='max(' expand='false'>java.lang.Math.max(</fold>5, 10<fold text=')' expand='false'>)</fold>;<fold text=' }' expand='false'>
+            <fold text='🔢' expand='false'></fold>int</fold> max = <fold text='max(' expand='false'>java.lang.Math.max(</fold>5, 10<fold text=')' expand='false'>)</fold>;<fold text=' }' expand='false'>
         }</fold>
     }</fold>
 
@@ -348,7 +348,7 @@ public <fold text='🏛️' expand='false'>class</fold> EmojifyTestData {
             }</fold>
 
             public BuilderPatternUsage build()<fold text=' { ' expand='false'> {
-                </fold><fold text='🔙' expand='false'>return</fold> <fold text='✨' expand='false'>new</fold> BuilderPatternUsage(<fold text='📍' expand='false'>this</fold>);<fold text=' }' expand='false'>
+                </fold><fold text='🔙' expand='false'>return</fold> new BuilderPatternUsage(<fold text='📍' expand='false'>this</fold>);<fold text=' }' expand='false'>
             }</fold>
         }</fold>
     }</fold>
@@ -388,7 +388,7 @@ public <fold text='🏛️' expand='false'>class</fold> EmojifyTestData {
 
     public <fold text='🏛️' expand='false'>class</fold> TypeInferenceUsage <fold text='{...}' expand='true'>{
         public <fold text='💀' expand='false'>void</fold> useTypeInference()<fold text=' { ' expand='false'> {
-            </fold>java.util.Map<String, Integer> map = <fold text='✨' expand='false'>new</fold> java.util.HashMap<>();<fold text=' }' expand='false'>
+            </fold>java.util.Map<String, Integer> map = new java.util.HashMap<>();<fold text=' }' expand='false'>
         }</fold>
     }</fold>
 
@@ -411,7 +411,7 @@ public <fold text='🏛️' expand='false'>class</fold> EmojifyTestData {
         public <fold text='🎨' expand='false'>abstract</fold> sealed <fold text='🏛️' expand='false'>class</fold> Shape permits Circle, Rectangle <fold text='{...}' expand='true'>{
         }</fold>
 
-        public <fold text='🔒' expand='false'>final</fold> <fold text='🏛️' expand='false'>class</fold> Circle <fold text='↔️' expand='false'>extends</fold> Shape <fold text='{...}' expand='true'>{
+        public <fold text='🔒' expand='false'>final</fold> <fold text='🏛️' expand='false'>class</fold> Circle extends Shape <fold text='{...}' expand='true'>{
             <fold text='🚫' expand='false'>private</fold> <fold text='⚖️' expand='false'>double</fold> radius;
 
             public Circle(<fold text='⚖️' expand='false'>double</fold> radius)<fold text=' { ' expand='false'> {
@@ -423,7 +423,7 @@ public <fold text='🏛️' expand='false'>class</fold> EmojifyTestData {
             }</fold>
         }</fold>
 
-        public <fold text='🔒' expand='false'>final</fold> <fold text='🏛️' expand='false'>class</fold> Rectangle <fold text='↔️' expand='false'>extends</fold> Shape <fold text='{...}' expand='true'>{
+        public <fold text='🔒' expand='false'>final</fold> <fold text='🏛️' expand='false'>class</fold> Rectangle extends Shape <fold text='{...}' expand='true'>{
             <fold text='🚫' expand='false'>private</fold> <fold text='⚖️' expand='false'>double</fold> length;
             <fold text='🚫' expand='false'>private</fold> <fold text='⚖️' expand='false'>double</fold> width;
 
@@ -468,17 +468,17 @@ public <fold text='🏛️' expand='false'>class</fold> EmojifyTestData {
             }</fold>
 
             public <fold text='💀' expand='false'>void</fold> methodWithNullInArray() <fold text='{...}' expand='true'>{
-                String[] array = <fold text='✨' expand='false'>new</fold> String[10];
+                String[] array = new String[10];
                 array[0] = <fold text='🕳️' expand='false'>null</fold>;
             }</fold>
 
             public <fold text='💀' expand='false'>void</fold> methodWithNullInCollection() <fold text='{...}' expand='true'>{
-                java.util.List<String> list = <fold text='✨' expand='false'>new</fold> java.util.ArrayList<>();
+                java.util.List<String> list = new java.util.ArrayList<>();
                 list.add(<fold text='🕳️' expand='false'>null</fold>);
             }</fold>
 
             public <fold text='💀' expand='false'>void</fold> methodWithNullInMap() <fold text='{...}' expand='true'>{
-                java.util.Map<String, String> map = <fold text='✨' expand='false'>new</fold> java.util.HashMap<>();
+                java.util.Map<String, String> map = new java.util.HashMap<>();
                 map.put("key", <fold text='🕳️' expand='false'>null</fold>);
             }</fold>
 
@@ -552,8 +552,8 @@ public <fold text='🏛️' expand='false'>class</fold> EmojifyTestData {
         }</fold>
 
         <fold text='⚡' expand='false'>static</fold> <fold text='🏛️' expand='false'>class</fold> Singleton <fold text='{...}' expand='true'>{
-            <fold text='⚡' expand='false'>static</fold> Singleton INSTANCE = <fold text='✨' expand='false'>new</fold> Singleton();
-            Singleton OTHER_NAME = <fold text='✨' expand='false'>new</fold> Singleton();
+            <fold text='⚡' expand='false'>static</fold> Singleton INSTANCE = new Singleton();
+            Singleton OTHER_NAME = new Singleton();
             <fold text='🔘' expand='false'>boolean</fold> ok;
 
             Singleton main(Singleton s)<fold text=' { ' expand='false'> {

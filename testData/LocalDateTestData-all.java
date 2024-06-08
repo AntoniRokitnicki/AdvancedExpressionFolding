@@ -74,39 +74,39 @@ public <fold text='🏛️' expand='false'>class</fold> LocalDateTestData {
             thaiBuddhistDate1 = thaiBuddhistDate2<fold text='' expand='false'>;</fold>
         }</fold>
 
-        <fold text='var' expand='false'>var</fold> utilDate1 = <fold text='✨' expand='false'>new</fold> java.util.Date()<fold text='' expand='false'>;</fold>
-        <fold text='val' expand='false'>var</fold> utilDate2 = <fold text='✨' expand='false'>new</fold> java.util.Date()<fold text='' expand='false'>;</fold>
+        <fold text='var' expand='false'>var</fold> utilDate1 = new java.util.Date()<fold text='' expand='false'>;</fold>
+        <fold text='val' expand='false'>var</fold> utilDate2 = new java.util.Date()<fold text='' expand='false'>;</fold>
         if <fold text='' expand='false'>(</fold>utilDate1<fold text=' < ' expand='false'>.before(</fold>utilDate2<fold text='' expand='false'>)</fold> | utilDate1<fold text=' > ' expand='false'>.after(</fold>utilDate2<fold text='' expand='false'>)</fold> | <fold text='' expand='false'>!</fold>utilDate1<fold text=' ≥ ' expand='false'>.before(</fold>utilDate2<fold text='' expand='false'>)</fold> | <fold text='' expand='false'>!</fold>utilDate1<fold text=' ≤ ' expand='false'>.after(</fold>utilDate2<fold text='' expand='false'>)</fold><fold text='' expand='false'>)</fold> <fold text='' expand='false'><fold text='{...}' expand='true'>{</fold>
             utilDate1 = utilDate2<fold text='' expand='false'>;</fold>
         }</fold>
 
         <fold text='val' expand='false'>long</fold> currentTime = System.currentTimeMillis()<fold text='' expand='false'>;</fold>
-        <fold text='var' expand='false'>var</fold> sqlDate1 = <fold text='✨' expand='false'>new</fold> java.sql.Date(currentTime)<fold text='' expand='false'>;</fold>
-        <fold text='val' expand='false'>var</fold> sqlDate2 = <fold text='✨' expand='false'>new</fold> java.sql.Date(currentTime)<fold text='' expand='false'>;</fold>
+        <fold text='var' expand='false'>var</fold> sqlDate1 = new java.sql.Date(currentTime)<fold text='' expand='false'>;</fold>
+        <fold text='val' expand='false'>var</fold> sqlDate2 = new java.sql.Date(currentTime)<fold text='' expand='false'>;</fold>
         if <fold text='' expand='false'>(</fold>sqlDate1<fold text=' < ' expand='false'>.before(</fold>sqlDate2<fold text='' expand='false'>)</fold> | sqlDate1<fold text=' > ' expand='false'>.after(</fold>sqlDate2<fold text='' expand='false'>)</fold> | <fold text='' expand='false'>!</fold>sqlDate1<fold text=' ≥ ' expand='false'>.before(</fold>sqlDate2<fold text='' expand='false'>)</fold> | <fold text='' expand='false'>!</fold>sqlDate1<fold text=' ≤ ' expand='false'>.after(</fold>sqlDate2<fold text='' expand='false'>)</fold><fold text='' expand='false'>)</fold> <fold text='' expand='false'><fold text='{...}' expand='true'>{</fold>
             sqlDate1 = sqlDate2<fold text='' expand='false'>;</fold>
         }</fold>
 
-        <fold text='var' expand='false'>var</fold> timestamp1 = <fold text='✨' expand='false'>new</fold> Timestamp(System.currentTimeMillis())<fold text='' expand='false'>;</fold>
-        <fold text='val' expand='false'>var</fold> timestamp2 = <fold text='✨' expand='false'>new</fold> Timestamp(System.currentTimeMillis())<fold text='' expand='false'>;</fold>
+        <fold text='var' expand='false'>var</fold> timestamp1 = new Timestamp(System.currentTimeMillis())<fold text='' expand='false'>;</fold>
+        <fold text='val' expand='false'>var</fold> timestamp2 = new Timestamp(System.currentTimeMillis())<fold text='' expand='false'>;</fold>
         if <fold text='' expand='false'>(</fold>timestamp1<fold text=' < ' expand='false'>.before(</fold>timestamp2<fold text='' expand='false'>)</fold> | timestamp1<fold text=' > ' expand='false'>.after(</fold>timestamp2<fold text='' expand='false'>)</fold> | <fold text='' expand='false'>!</fold>timestamp1<fold text=' ≥ ' expand='false'>.before(</fold>timestamp2<fold text='' expand='false'>)</fold> | <fold text='' expand='false'>!</fold>timestamp1<fold text=' ≤ ' expand='false'>.after(</fold>timestamp2<fold text='' expand='false'>)</fold><fold text='' expand='false'>)</fold> <fold text='' expand='false'><fold text='{...}' expand='true'>{</fold>
             timestamp1 = timestamp2<fold text='' expand='false'>;</fold>
         }</fold>
 
         <fold text='var' expand='false'>var</fold> cal1 = Calendar.<fold text='instance' expand='false'>getInstance()</fold><fold text='' expand='false'>;</fold>
-        <fold text='val' expand='false'>var</fold> cal2 = Calendar.<fold text='instance' expand='false'>getInstance()</fold><fold text='' expand='false'>;</fold>
+        <fold text='val' expand='false'>var</fold> cal2 = Calendar.<fold text='instance' expand='false'>getInstance()<fold text='' expand='false'></fold>;</fold>
         if <fold text='' expand='false'>(</fold>cal1<fold text=' < ' expand='false'>.before(</fold>cal2<fold text='' expand='false'>)</fold> | cal1<fold text=' > ' expand='false'>.after(</fold>cal2<fold text='' expand='false'>)</fold> | <fold text='' expand='false'>!</fold>cal1<fold text=' ≥ ' expand='false'>.before(</fold>cal2<fold text='' expand='false'>)</fold> | <fold text='' expand='false'>!</fold>cal1<fold text=' ≤ ' expand='false'>.after(</fold>cal2<fold text='' expand='false'>)</fold><fold text='' expand='false'>)</fold> <fold text='' expand='false'><fold text='{...}' expand='true'>{</fold>
             cal1 = cal2<fold text='' expand='false'>;</fold>
         }</fold>
 
-        <fold text='var' expand='false'>var</fold> customObj1 = <fold text='✨' expand='false'>new</fold> CustomClass()<fold text='' expand='false'>;</fold>
-        <fold text='val' expand='false'>var</fold> customObj2 = <fold text='✨' expand='false'>new</fold> CustomClass()<fold text='' expand='false'>;</fold>
+        <fold text='var' expand='false'>var</fold> customObj1 = new CustomClass()<fold text='' expand='false'>;</fold>
+        <fold text='val' expand='false'>var</fold> customObj2 = new CustomClass()<fold text='' expand='false'>;</fold>
         if <fold text='' expand='false'>(</fold>customObj1<fold text=' < ' expand='false'>.before(</fold>customObj2<fold text='' expand='false'>)</fold> | customObj1<fold text=' > ' expand='false'>.after(</fold>customObj2<fold text='' expand='false'>)</fold> | <fold text='' expand='false'>!</fold>customObj1<fold text=' ≥ ' expand='false'>.before(</fold>customObj2<fold text='' expand='false'>)</fold> | <fold text='' expand='false'>!</fold>customObj1<fold text=' ≤ ' expand='false'>.after(</fold>customObj2<fold text='' expand='false'>)</fold><fold text='' expand='false'>)</fold> <fold text='' expand='false'><fold text='{...}' expand='true'>{</fold>
             customObj1 = customObj2<fold text='' expand='false'>;</fold>
         }</fold>
 
-        <fold text='var' expand='false'>var</fold> customObj2_1 = <fold text='✨' expand='false'>new</fold> CustomClass2()<fold text='' expand='false'>;</fold>
-        <fold text='val' expand='false'>var</fold> customObj2_2 = <fold text='✨' expand='false'>new</fold> CustomClass2()<fold text='' expand='false'>;</fold>
+        <fold text='var' expand='false'>var</fold> customObj2_1 = new CustomClass2()<fold text='' expand='false'>;</fold>
+        <fold text='val' expand='false'>var</fold> customObj2_2 = new CustomClass2()<fold text='' expand='false'>;</fold>
         if <fold text='' expand='false'>(</fold>customObj2_1<fold text=' < ' expand='false'>.isBefore(</fold>customObj2_2<fold text='' expand='false'>)</fold> | customObj2_1<fold text=' > ' expand='false'>.isAfter(</fold>customObj2_2<fold text='' expand='false'>)</fold> | <fold text='' expand='false'>!</fold>customObj2_1<fold text=' ≥ ' expand='false'>.isBefore(</fold>customObj2_2<fold text='' expand='false'>)</fold> | <fold text='' expand='false'>!</fold>customObj2_1<fold text=' ≤ ' expand='false'>.isAfter(</fold>customObj2_2<fold text='' expand='false'>)</fold><fold text='' expand='false'>)</fold> <fold text='' expand='false'><fold text='{...}' expand='true'>{</fold>
             customObj2_1 = customObj2_2<fold text='' expand='false'>;</fold>
         }</fold>
@@ -117,15 +117,15 @@ public <fold text='🏛️' expand='false'>class</fold> LocalDateTestData {
         <fold text='🚫' expand='false'>private</fold> <fold text='🔒' expand='false'>final</fold> <fold text='📏' expand='false'>long</fold> timestamp<fold text='' expand='false'>;</fold>
 
         public CustomClass()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold><fold text='📍' expand='false'>this</fold>.timestamp = System.currentTimeMillis()<fold text='' expand='true'>;</fold><fold text=' }' expand='false'><fold text=' ' expand='true'>
+            </fold></fold><fold text='📍' expand='false'>this</fold>.timestamp = System.currentTimeMillis()<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold>
 
-        public boolean before(CustomClass other)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold><fold text='📍' expand='false'>this</fold>.timestamp < other.timestamp<fold text=' ' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+        public <fold text='🔘' expand='false'>boolean</fold> before(CustomClass other)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold><fold text='📍' expand='false'>this</fold>.timestamp < other.timestamp<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold>
 
-        public boolean after(CustomClass other)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold><fold text='📍' expand='false'>this</fold>.timestamp > other.timestamp<fold text=' ' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+        public <fold text='🔘' expand='false'>boolean</fold> after(CustomClass other)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold><fold text='📍' expand='false'>this</fold>.timestamp > other.timestamp<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold>
     }</fold>
 
@@ -133,15 +133,15 @@ public <fold text='🏛️' expand='false'>class</fold> LocalDateTestData {
         <fold text='🚫' expand='false'>private</fold> <fold text='🔒' expand='false'>final</fold> java.time.chrono.MinguoDate minguoDate<fold text='' expand='false'>;</fold>
 
         public CustomClass2()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold><fold text='📍' expand='false'>this</fold>.minguoDate = java.time.chrono.MinguoDate.now()<fold text='' expand='true'>;</fold><fold text=' }' expand='false'><fold text=' ' expand='true'>
+            </fold></fold><fold text='📍' expand='false'>this</fold>.minguoDate = java.time.chrono.MinguoDate.now()<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold>
 
-        public boolean isBefore(CustomClass2 other)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold><fold text='📍' expand='false'>this</fold>.minguoDate<fold text=' < ' expand='false'>.isBefore(</fold>other.minguoDate<fold text='' expand='false'>)</fold><fold text=' ' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+        public <fold text='🔘' expand='false'>boolean</fold> isBefore(CustomClass2 other)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold><fold text='📍' expand='false'>this</fold>.minguoDate<fold text=' < ' expand='false'>.isBefore(</fold>other.minguoDate<fold text='' expand='false'>)</fold><fold text='' expand='true'>;<fold text='' expand='true'><fold text=' }' expand='false'></fold>
         </fold>}</fold>
 
-        public boolean isAfter(CustomClass2 other)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold><fold text='📍' expand='false'>this</fold>.minguoDate<fold text=' > ' expand='false'>.isAfter(</fold>other.minguoDate<fold text='' expand='false'>)</fold><fold text=' ' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+        public <fold text='🔘' expand='false'>boolean</fold> isAfter(CustomClass2 other)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold><fold text='📍' expand='false'>this</fold>.minguoDate<fold text=' > ' expand='false'>.isAfter(</fold>other.minguoDate<fold text='' expand='false'>)</fold><fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold>
     }</fold>
 

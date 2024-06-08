@@ -179,7 +179,7 @@ public 🏛️ EmojifyTestData {
 
     public 🏛️ AnonymousClassUsage {
         public Runnable getRunnable() {
-            🔙 ✨ Runnable() {
+            🔙 new Runnable() {
                 @Override
                 public 💀 run() {
                     🔢 x = 5;
@@ -202,7 +202,7 @@ public 🏛️ EmojifyTestData {
                 }
             }
 
-            LocalClass localInstance = ✨ LocalClass(10);
+            LocalClass localInstance = new LocalClass(10);
             🔢 value = localInstance.getLocalValue();
         }
     }
@@ -219,14 +219,14 @@ public 🏛️ EmojifyTestData {
 
     public 🏛️ DiamondOperatorUsage {
         public 💀 useDiamondOperator() {
-            java.util.List<String> list = ✨ java.util.ArrayList<>();
+            java.util.List<String> list = new java.util.ArrayList<>();
             list.add("Example");
         }
     }
 
     public 🏛️ TryWithResourcesUsage {
         public 💀 readFile(String filePath) 🪃 java.io.IOException {
-            🤞 (java.io.BufferedReader reader = ✨ java.io.BufferedReader(✨ java.io.FileReader(filePath))) {
+            🤞 (java.io.BufferedReader reader = new java.io.BufferedReader(new java.io.FileReader(filePath))) {
                 String line = reader.readLine();
             }
         }
@@ -348,7 +348,7 @@ public 🏛️ EmojifyTestData {
             }
 
             public BuilderPatternUsage build() {
-                🔙 ✨ BuilderPatternUsage(📍);
+                🔙 new BuilderPatternUsage(📍);
             }
         }
     }
@@ -388,7 +388,7 @@ public 🏛️ EmojifyTestData {
 
     public 🏛️ TypeInferenceUsage {
         public 💀 useTypeInference() {
-            java.util.Map<String, Integer> map = ✨ java.util.HashMap<>();
+            java.util.Map<String, Integer> map = new java.util.HashMap<>();
         }
     }
 
@@ -411,7 +411,7 @@ public 🏛️ EmojifyTestData {
         public 🎨 sealed 🏛️ Shape permits Circle, Rectangle {
         }
 
-        public 🔒 🏛️ Circle ↔️ Shape {
+        public 🔒 🏛️ Circle extends Shape {
             🚫 ⚖️ radius;
 
             public Circle(⚖️ radius) {
@@ -423,7 +423,7 @@ public 🏛️ EmojifyTestData {
             }
         }
 
-        public 🔒 🏛️ Rectangle ↔️ Shape {
+        public 🔒 🏛️ Rectangle extends Shape {
             🚫 ⚖️ length;
             🚫 ⚖️ width;
 
@@ -468,17 +468,17 @@ public 🏛️ EmojifyTestData {
             }
 
             public 💀 methodWithNullInArray() {
-                String[] array = ✨ String[10];
+                String[] array = new String[10];
                 array[0] = 🕳️;
             }
 
             public 💀 methodWithNullInCollection() {
-                java.util.List<String> list = ✨ java.util.ArrayList<>();
+                java.util.List<String> list = new java.util.ArrayList<>();
                 list.add(🕳️);
             }
 
             public 💀 methodWithNullInMap() {
-                java.util.Map<String, String> map = ✨ java.util.HashMap<>();
+                java.util.Map<String, String> map = new java.util.HashMap<>();
                 map.put("key", 🕳️);
             }
 
@@ -552,8 +552,8 @@ public 🏛️ EmojifyTestData {
         }
 
         ⚡ 🏛️ Singleton {
-            ⚡ Singleton INSTANCE = ✨ Singleton();
-            Singleton OTHER_NAME = ✨ Singleton();
+            ⚡ Singleton INSTANCE = new Singleton();
+            Singleton OTHER_NAME = new Singleton();
             🔘 ok;
 
             Singleton main(Singleton s) {
