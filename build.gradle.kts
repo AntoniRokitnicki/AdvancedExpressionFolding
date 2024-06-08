@@ -6,6 +6,7 @@ fun environment(key: String) = providers.environmentVariable(key)
 
 plugins {
     id("java") // Java support
+    id("idea")
     id("groovy")
     alias(libs.plugins.kotlin) // Kotlin support
     alias(libs.plugins.gradleIntelliJPlugin) // Gradle IntelliJ Plugin
@@ -17,12 +18,24 @@ plugins {
 group = properties("pluginGroup").get()
 version = properties("pluginVersion").get()
 
+idea {
+    module {
+        sequenceOf("idea-sandbox", "out").map {
+            file(it)
+        }.filter {
+            it.exists()
+        }.forEach {
+            excludeDirs.add(it)
+        }
+    }
+}
+
 sourceSets {
     named("main") {
         java.srcDirs("src")
         kotlin.srcDirs("src")
         resources.srcDirs("resources")
-        resources.srcDirs("examples")
+        //FIXME: support example download in a new version of intellij resources.srcDirs("examples")
     }
     named("test") {
         java.srcDir("test")
