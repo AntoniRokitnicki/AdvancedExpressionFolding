@@ -643,6 +643,12 @@ public class LombokTestData {
                 // comment
             }
         }
+
+        public class ProtectedNoArgsConstructorSuperAfter {
+            protected ProtectedNoArgsConstructorSuperAfter() {
+                // comment
+            }
+        }
         public class NoArgsConstructorSuper {
             private String field1;
             public NoArgsConstructorSuper() {

@@ -103,6 +103,15 @@ object LombokExt : BaseExtension(), GenericCallback<PsiField, List<FieldLevelAnn
         return list
     }
 
+    private fun PsiMethod.detectModifier2(): String? {
+        val modifier = this.modifier()
+        return if (!modifier.isPublic()) {
+            modifier.modifier
+        } else {
+            null
+        }
+    }
+
     private fun PsiMethod.detectModifier(): List<String> {
         val modifier = this.modifier()
         val arguments = if (!modifier.isPublic()) {
@@ -116,7 +125,10 @@ object LombokExt : BaseExtension(), GenericCallback<PsiField, List<FieldLevelAnn
     private fun foldNoArgsConstructor(constructors: Array<PsiMethod>): List<ClassLevelAnnotation> {
         return constructors.firstNotNullOfOrNull {
             if (isNoArgsConstructor(it)) {
-                ClassLevelAnnotation(LOMBOK_NO_ARGS_CONSTRUCTOR, listOf(it), arguments = it.detectModifier())
+                val args = mutableListOf<String>()
+                it.detectModifier2()?.run(args::add)
+                it.body?.getComment()?.text?.run(args::add)
+                ClassLevelAnnotation(LOMBOK_NO_ARGS_CONSTRUCTOR, listOf(it), arguments = args)
             } else {
                 null
             }

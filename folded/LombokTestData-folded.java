@@ -209,17 +209,12 @@ import java.util.logging.Logger;
         }
         @NoArgsConstructor(private) class NoArgsConstructorPrivate {
         }
-        public class NoArgsConstructorSuperBefore {
-            public NoArgsConstructorSuperBefore() {
-                // comment
-                super();
-            }
+        @NoArgsConstructor(// comment) public class NoArgsConstructorSuperBefore {
         }
-        public class NoArgsConstructorSuperAfter {
-            public NoArgsConstructorSuperAfter() {
-                super();
-                // comment
-            }
+        @NoArgsConstructor(// comment) public class NoArgsConstructorSuperAfter {
+        }
+
+        @NoArgsConstructor(protected,// comment) public class ProtectedNoArgsConstructorSuperAfter {
         }
         @NoArgsConstructor public class NoArgsConstructorSuper {
             private String field1;

@@ -437,6 +437,9 @@ val PsiElement.identifier: PsiIdentifier?
 fun PsiCodeBlock.hasComments(): Boolean = children.any {
     it is PsiComment
 }
+fun PsiCodeBlock.getComment(): PsiElement? = children.firstOrNull {
+    it is PsiComment
+}
 
 fun <K, V> Map<K, V>.isUnique(): Boolean =
     keys.sameSize(keys.distinct()) && values.sameSize(values.distinct())

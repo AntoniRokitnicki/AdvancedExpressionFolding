@@ -52,9 +52,7 @@ object MethodBodyInspector {
     }
 
     fun isPureNoArgsConstructor(method: PsiMethod): Boolean {
-        val body = method.body?.takeIf {
-            !it.hasComments()
-        } ?: return false
+        val body = method.body ?: return false
         return (body.statementCount == 0) || isSuperNoArgsConstructor(body)
     }
 
