@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AJF2: Dynamic Method Folding</title>
+</head>
+<body>
+<h1>AJF2: Dynamic Method Folding</h1>
+<p>This intention allows you to dynamically fold methods in your code. With this intention, you can easily rename or remove method calls using a simple dialog interface.</p>
+
+<h2>Usage</h2>
+<ol>
+    <li>Place the caret on the method call you wish to fold.</li>
+    <li>Invoke the intention by pressing <strong>Alt+Enter</strong> and select <em>AJF2: Dynamic method folding</em>.</li>
+    <li>A dialog will appear prompting you to choose an action:</li>
+    <ul>
+        <li><strong>Rename:</strong> Enter a new method name.</li>
+        <li><strong>Remove:</strong> Remove the method call.</li>
+        <li><strong>Cancel:</strong> Cancel the operation.</li>
+    </ul>
+</ol>
+
+<h2>Dialog Options</h2>
+<p>When the dialog is shown, you can choose to rename the method, remove it, or cancel the operation. If you choose to rename the method, you must provide a new name for it. If you choose to remove the method, it will be removed from the configuration file.</p>
+
+<h2>Implementation Details</h2>
+<p>The implementation leverages the <code>DialogWrapper</code> class to create a custom dialog for method folding. The actions are defined in the <code>Action</code> enum, and the results are handled appropriately based on the user's selection.</p>
+
+<h2>Conclusion</h2>
+<p>With the AJF2: Dynamic Method Folding intention, managing method calls in your code becomes simpler and more efficient. You can easily rename or remove method calls without manually editing the configuration file.</p>
+</body>
+</html>

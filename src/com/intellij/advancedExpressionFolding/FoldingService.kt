@@ -4,6 +4,9 @@ import com.intellij.advancedExpressionFolding.extension.Keys
 import com.intellij.openapi.components.Service
 import com.intellij.openapi.components.service
 import com.intellij.openapi.editor.Editor
+import com.intellij.openapi.fileEditor.FileEditorManager
+import com.intellij.openapi.fileEditor.TextEditor
+import com.intellij.openapi.project.Project
 import com.intellij.psi.PsiDocumentManager
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiRecursiveElementVisitor
@@ -23,6 +26,17 @@ class FoldingService {
                 }
             }
     }
+
+    fun clearAllKeys(project: Project) {
+
+        FileEditorManager.getInstance(project).allEditors.mapNotNull {
+            (it as? TextEditor)?.editor
+        }.forEach {
+            clearAllKeys(it)
+        }
+
+    }
+
 
     fun clearAllKeys(editor: Editor) {
         val project = editor.project ?: return
