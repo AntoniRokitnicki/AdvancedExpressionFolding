@@ -9,6 +9,7 @@ import com.intellij.advancedExpressionFolding.extension.methodcall.date.CreateDa
 import com.intellij.advancedExpressionFolding.extension.methodcall.date.IsAfterDateMethodCall
 import com.intellij.advancedExpressionFolding.extension.methodcall.date.IsBeforeDateMethodCall
 import com.intellij.advancedExpressionFolding.extension.methodcall.dynamic.ConfigurationParser
+import com.intellij.advancedExpressionFolding.extension.methodcall.dynamic.DynamicMethodCall
 import com.intellij.advancedExpressionFolding.extension.methodcall.dynamic.IDynamicDataProvider
 import com.intellij.advancedExpressionFolding.extension.methodcall.nullable.CheckNotNullMethodCall
 import com.intellij.advancedExpressionFolding.extension.on
@@ -78,7 +79,7 @@ object MethodCallFactory : BaseExtension(){
 
     ) + (loadDynamicMethods() ?: emptyList())
 
-    private fun loadDynamicMethods() = dynamic.on(dynamicProvider?.parse())
+    private fun loadDynamicMethods(): List<DynamicMethodCall>? = dynamic.on(dynamicProvider?.parse())
 
     private fun createSupportedClasses(): Collection<ClassName> =
         methodCallMap.values

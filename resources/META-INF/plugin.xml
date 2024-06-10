@@ -11,8 +11,12 @@
     <codeFoldingOptionsProvider instance="com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingOptionsProvider"/>
     <applicationService serviceImplementation="com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings"/>
     <editorFactoryListener implementation="com.intellij.advancedExpressionFolding.FoldingEditorCreatedListener"/>
-  </extensions>
+    <intentionAction>
+      <language>JAVA</language>
+      <className>com.intellij.advancedExpressionFolding.extension.methodcall.dynamic.AddDynamicMethodFoldingIntention</className>
+    </intentionAction>
 
+  </extensions>
   <actions>
     <action id="advanced.folding.toggle.global" class="com.intellij.advancedExpressionFolding.GlobalToggleFoldingAction"
             text="Advanced Folding: Global" description="Toggle advanced folding globally across all files">
