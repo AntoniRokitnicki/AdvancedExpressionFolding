@@ -12,11 +12,11 @@
     }</fold></fold>
 
     public FieldShiftFields(String username, <fold text='🔘' expand='false'>boolean</fold> active, String userIdentifier, FieldShiftFields child) <fold text='{...}' expand='true'>{
-        this.username = <fold text='<<' expand='false'>username</fold>;
-        this.active = <fold text='<<' expand='false'>active</fold>;
-        this.userIdentifier = <fold text='<<' expand='false'>userIdentifier</fold>;
-        this.child = <fold text='<<' expand='false'>child</fold>;
-        this.userIdentifier = child.<fold text='<<' expand='true'>userIdentifier</fold>;
+        <fold text='📍' expand='false'>this</fold>.username = <fold text='<<' expand='false'>username</fold>;
+        <fold text='📍' expand='false'>this</fold>.active = <fold text='<<' expand='false'>active</fold>;
+        <fold text='📍' expand='false'>this</fold>.userIdentifier = <fold text='<<' expand='false'>userIdentifier</fold>;
+        <fold text='📍' expand='false'>this</fold>.child = <fold text='<<' expand='false'>child</fold>;
+        <fold text='📍' expand='false'>this</fold>.userIdentifier = child.<fold text='<<' expand='true'>userIdentifier</fold>;
         <fold text='📍' expand='false'>this</fold>.userIdentifier = child.<fold text='<<' expand='false'>getUserIdentifier()</fold>;
     }</fold>
 
@@ -119,7 +119,7 @@
     </fold>}</fold><fold text='' expand='false'></fold>
 
     </fold><fold text='' expand='false'>public <fold text='🔘' expand='false'>boolean</fold> isActive()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-        </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>active<fold text='' expand='true'>;<fold text='' expand='true'><fold text=' }' expand='false'></fold>
+        </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>active<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
     </fold>}</fold><fold text='' expand='false'></fold>
 
     </fold><fold text='' expand='false'>public String getUserIdentifier()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
@@ -141,7 +141,7 @@
 
         </fold><fold text='' expand='false'>public <fold text='🔘' expand='false'>boolean</fold> isActive()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
             </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>active<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
-        </fold>}</fold></fold><fold text='' expand='false'>
+        </fold>}</fold><fold text='' expand='false'></fold>
 
         </fold><fold text='' expand='false'>public String getUserIdentifier()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
             </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>userIdentifier<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>

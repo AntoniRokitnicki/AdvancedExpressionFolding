@@ -37,7 +37,7 @@ object NullableExt : BaseExtension() {
             list.add(DynamicExt.createExpression(element))
         }
 
-        if (list.filterNotNull().isNotEmpty()) {
+        if (true) {
             getAnyExpression(element.modifierList, document).let(list::add)
             element.returnTypeElement?.let {
                 getAnyExpression(it, document).let(list::add)
