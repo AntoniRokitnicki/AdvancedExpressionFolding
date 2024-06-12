@@ -16,7 +16,9 @@
       <className>com.intellij.advancedExpressionFolding.extension.methodcall.dynamic.AddDynamicMethodFoldingIntention</className>
     </intentionAction>
 
+     <postStartupActivity implementation="com.intellij.advancedExpressionFolding.FoldingStartupActivity" />
   </extensions>
+
   <actions>
     <action id="advanced.folding.toggle.global" class="com.intellij.advancedExpressionFolding.GlobalToggleFoldingAction"
             text="Advanced Folding: Global" description="Toggle advanced folding globally across all files">
