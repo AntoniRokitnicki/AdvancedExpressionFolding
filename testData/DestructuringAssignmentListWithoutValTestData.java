@@ -15,12 +15,12 @@ public class DestructuringAssignmentListWithoutValTestData {
         Data ignored21 = data.<fold text='list' expand='false'>getList()</fold>.get(4);
         Data ignored22 = data.<fold text='list' expand='false'>getList()</fold>.get(5);
 
-        Data<fold text=' (' expand='true'> </fold>getter1<fold text=', ' expand='true'> = data.getList().get(0);</fold><fold text='' expand='true'>
+        Data<fold text=' (' expand='true'> </fold>getter1<fold text=', ' expand='true'> = data.<fold text='list' expand='false'>getList()</fold>.get(0);</fold><fold text='' expand='true'>
         Data </fold>getter2<fold text=', ' expand='true'> = data.<fold text='list' expand='false'>getList()</fold>.get(1);</fold><fold text='' expand='true'>
         Data </fold>getter3<fold text=') ' expand='true'> </fold>= data.<fold text='list' expand='false'>getList()</fold><fold text='' expand='true'>.get(2)</fold>;
         getter1 = data;
 
-        Data<fold text=' (' expand='true'> </fold>deepGetter1<fold text=', ' expand='true'> = data.getData().getList().get(0);</fold><fold text='' expand='true'>
+        Data<fold text=' (' expand='true'> </fold>deepGetter1<fold text=', ' expand='true'> = data.<fold text='data' expand='false'>getData()</fold>.<fold text='list' expand='false'>getList()</fold>.get(0);</fold><fold text='' expand='true'>
         Data </fold>deepGetter2<fold text=') ' expand='true'> </fold>= data.<fold text='data' expand='false'>getData()</fold>.<fold text='list' expand='false'>getList()</fold><fold text='' expand='true'>.get(1)</fold>;
         deepGetter2 = data;
 

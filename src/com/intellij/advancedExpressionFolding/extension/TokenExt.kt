@@ -60,6 +60,7 @@ object TokenExt : BaseExtension() {
             //IF_KEYWORD -> "🤔"
             //ANDAND -> "🤝"
             //OROR -> "🚪"
+            // TODO: String -> "🪡"
             else -> null
         }
 

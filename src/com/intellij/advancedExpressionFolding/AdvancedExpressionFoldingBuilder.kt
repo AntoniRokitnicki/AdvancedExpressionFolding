@@ -40,6 +40,11 @@ class AdvancedExpressionFoldingBuilder(private val config: IConfig = getInstance
             }
         }
         val foldingDescriptors = descriptors ?: BuildExpressionExt.collectFoldRegionsRecursively(element, document, quick)
+        if (memoryImprovement) {
+            (element as? PsiJavaFile)?.run {
+                putUserData(Keys.FULL_CACHE, foldingDescriptors)
+            }
+        }
         return store.store(foldingDescriptors, document)
     }
 

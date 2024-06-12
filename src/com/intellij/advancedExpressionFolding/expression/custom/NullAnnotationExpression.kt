@@ -48,5 +48,5 @@ class NullAnnotationExpression(
         return FoldingDescriptor(element.node, textRange, group, placeholderText, true, emptySet<Any>())
     }
 
-    override fun isNested(): Boolean = true
+    override fun isNested() = true
 }
