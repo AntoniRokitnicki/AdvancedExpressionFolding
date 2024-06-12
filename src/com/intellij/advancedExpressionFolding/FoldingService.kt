@@ -28,15 +28,12 @@ class FoldingService {
     }
 
     fun clearAllKeys(project: Project) {
-
         FileEditorManager.getInstance(project).allEditors.mapNotNull {
             (it as? TextEditor)?.editor
         }.forEach {
             clearAllKeys(it)
         }
-
     }
-
 
     fun clearAllKeys(editor: Editor) {
         val project = editor.project ?: return
