@@ -1,10 +1,10 @@
 package com.intellij.advancedExpressionFolding.extension.methodcall.dynamic
 
-import com.intellij.util.io.readText
 import java.io.File
 import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.Paths
+import kotlin.io.path.readText
 
 object ConfigurationParser : IDynamicDataProvider {
 
@@ -21,7 +21,7 @@ object ConfigurationParser : IDynamicDataProvider {
     fun addOrUpdateMethod(methodName: String, newName: String) {
         val tomlFile = File(filePath.toUri())
         val tomlMap = if (tomlFile.exists()) {
-            objectMapper.readValue(tomlFile, MutableMap::class.java) as MutableMap<String, Any>
+            objectMapper.readValue(tomlFile, MutableMap::class.java) as? MutableMap<String, Any> ?: TODO("toml cast failed")
         } else {
             mutableMapOf()
         }
@@ -42,7 +42,7 @@ object ConfigurationParser : IDynamicDataProvider {
             return
         }
 
-        val tomlMap = objectMapper.readValue(tomlFile, MutableMap::class.java) as MutableMap<String, Any>
+        val tomlMap = objectMapper.readValue(tomlFile, MutableMap::class.java) as? MutableMap<String, Any> ?: TODO("toml cast failed")
         tomlMap.remove(methodName)
 
         objectMapper.writeValue(tomlFile, tomlMap)
