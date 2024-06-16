@@ -3,13 +3,13 @@ package com.intellij.advancedExpressionFolding
 import com.intellij.advancedExpressionFolding.extension.off
 import com.intellij.ide.plugins.DisabledPluginsState
 import com.intellij.openapi.project.Project
-import com.intellij.openapi.startup.StartupActivity
+import com.intellij.openapi.startup.ProjectActivity
 
-class FoldingStartupActivity : StartupActivity.Background {
+class FoldingStartupActivity : ProjectActivity {
 
     private var runOnce = false
 
-    override fun runActivity(project: Project) {
+    override suspend fun execute(project: Project) {
         runOnce.off()?.run {
             @Suppress("UnstableApiUsage")
             DisabledPluginsState.addDisablePluginListener {

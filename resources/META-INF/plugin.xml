@@ -4,6 +4,7 @@
   <vendor email="android.rokitnicki@gmail.com" url="https://github.com/AntoniRokitnicki/AdvancedExpressionFolding">Antoni</vendor>
 
   <depends>com.intellij.modules.java</depends>
+  <depends>com.intellij.modules.platform</depends>
 
   <extensions defaultExtensionNs="com.intellij">
     <!-- Add your extensions here -->
@@ -17,6 +18,8 @@
     </intentionAction>
 
      <postStartupActivity implementation="com.intellij.advancedExpressionFolding.FoldingStartupActivity" />
+
+    <errorHandler implementation="com.intellij.diagnostic.JetBrainsMarketplaceErrorReportSubmitter"/>
   </extensions>
 
   <actions>
