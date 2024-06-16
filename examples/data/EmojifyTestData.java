@@ -154,12 +154,6 @@ public class EmojifyTestData {
         }
     }
 
-    public strictfp class StrictfpData {
-        public strictfp double calculate(double a, double b) {
-            return a / b;
-        }
-    }
-
     public class NativeData {
         public native void nativeMethod();
     }
