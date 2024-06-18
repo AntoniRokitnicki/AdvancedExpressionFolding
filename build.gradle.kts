@@ -67,6 +67,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-params:5.11.0-M2")
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-toml:2.17.1")
     implementation("com.google.code.findbugs:jsr305:3.0.2")
+    testImplementation("org.junit-pioneer:junit-pioneer:2.2.0")
 }
 
 // Set the JVM language level used to build the project. Use Java 11 for 2020.3+, and Java 17 for 2022.2+.

@@ -8,8 +8,11 @@ import com.intellij.advancedExpressionFolding.extension.methodcall.dynamic.IDyna
 import com.intellij.openapi.application.runInEdt
 import org.junit.AssumptionViolatedException
 import org.junit.jupiter.api.Test
+import org.junitpioneer.jupiter.Stopwatch
 import kotlin.reflect.KMutableProperty0
 
+@Stopwatch
+//TODO: maybe use @RetryingTest(maxAttempts = 3, suspendForMs = 100, onExceptions = <FindName>.class) when rarely IDE can't be start
 open class FoldingTest : BaseTest() {
 
     class TooComplexException : AssumptionViolatedException("TOO COMPLEX FOLDING")
