@@ -61,13 +61,15 @@ repositories {
 // Dependencies are managed with Gradle version catalog - read more: https://docs.gradle.org/current/userguide/platforms.html#sub:version-catalog
 dependencies {
     implementation(libs.annotations)
-    implementation("org.jsoup:jsoup:1.17.2")
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.11.0-M2")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.11.0-M2")
-    testImplementation("org.junit.jupiter:junit-jupiter-params:5.11.0-M2")
-    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-toml:2.17.1")
-    implementation("com.google.code.findbugs:jsr305:3.0.2")
-    testImplementation("org.junit-pioneer:junit-pioneer:2.2.0")
+    implementation(libs.jsr305)
+
+    implementation(libs.jsoup)
+    implementation(libs.jackson.dataformat.toml)
+
+    testRuntimeOnly(libs.junit.jupiter.engine)
+    testImplementation(libs.junit.jupiter.api)
+    testImplementation(libs.junit.jupiter.params)
+    testImplementation(libs.junit.pioneer)
 }
 
 // Set the JVM language level used to build the project. Use Java 11 for 2020.3+, and Java 17 for 2022.2+.
