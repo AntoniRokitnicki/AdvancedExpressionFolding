@@ -108,7 +108,7 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
         override var expressionFunc: Boolean = true,
         override var dynamic: Boolean = true,
         override var arithmeticExpressions: Boolean = true,
-        override var emojify: Boolean = true,
+        override var emojify: Boolean = false,
         // NEW OPTION VAR
 
         override var memoryImprovement: Boolean = true,
