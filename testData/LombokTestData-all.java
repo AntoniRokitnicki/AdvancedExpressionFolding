@@ -18,7 +18,7 @@
 @SuppressWarnings("ALL")
 <fold text='@Builder @Getter @Setter @Serial p' expand='false'>p</fold>ublic <fold text='🏛️' expand='false'>class</fold> LombokTestData {<fold text='' expand='false'>
 
-    </fold><fold text='🚫' expand='false'><fold text='' expand='false'>private</fold> <fold text='⚡' expand='false'><fold text='const' expand='false'>static</fold> <fold text='🔒' expand='false'>final</fold> <fold text='' expand='false'></fold>long</fold> serialVersionUID = 1234567L;</fold>
+    </fold><fold text='🚫' expand='false'><fold text='' expand='false'>private</fold> <fold text='⚡' expand='false'><fold text='const' expand='false'>static</fold> <fold text='🔒' expand='false'>final</fold> </fold><fold text='' expand='false'>long</fold> serialVersionUID = 1234567L;</fold>
 
     LombokTestData data;
     <fold text='🔘' expand='false'>boolean</fold> ok;
@@ -29,27 +29,27 @@
     </fold>}</fold><fold text='' expand='false'></fold>
 
     </fold><fold text='' expand='false'>public <fold text='💀' expand='false'>void</fold> setData(LombokTestData data)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-        </fold></fold><fold text='📍' expand='false'>this</fold>.data = <fold text='<<' expand='false'>data</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+        </fold></fold><fold text='📍' expand='false'>this</fold>.data = <fold text='<<' expand='false'>data</fold><fold text='' expand='true'>;<fold text=' ' expand='true'><fold text=' }' expand='false'></fold>
     </fold>}</fold><fold text='' expand='false'></fold>
 
     </fold><fold text='' expand='false'>public <fold text='🔘' expand='false'>boolean</fold> isOk()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
         </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>ok<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
-    </fold>}</fold></fold><fold text='' expand='false'>
+    </fold>}</fold><fold text='' expand='false'></fold>
 
     </fold><fold text='' expand='false'>public <fold text='💀' expand='false'>void</fold> setOk(<fold text='🔘' expand='false'>boolean</fold> ok)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-        </fold></fold><fold text='📍' expand='false'>this</fold>.ok = <fold text='<<' expand='false'>ok</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+        </fold><fold text='📍' expand='false'></fold>this</fold>.ok = <fold text='<<' expand='false'>ok</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
     </fold>}</fold><fold text='' expand='false'></fold>
 
     </fold><fold text='' expand='false'>public String getString()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
         </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>string<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
-    </fold>}</fold><fold text='' expand='false'></fold>
+    </fold>}</fold></fold><fold text='' expand='false'>
 
     </fold><fold text='' expand='false'>public <fold text='💀' expand='false'>void</fold> setString(String string)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-        </fold></fold><fold text='📍' expand='false'>this</fold>.string = <fold text='<<' expand='false'>string</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+        </fold><fold text='📍' expand='false'></fold>this</fold>.string = <fold text='<<' expand='false'>string</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
     </fold>}</fold></fold>
 
     public Optional<LombokTestData> asOptional()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-        </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold><fold text='' expand='false'>Optional.ofNullable(</fold>data<fold text='' expand='false'>)</fold><fold text='' expand='true'>;<fold text='' expand='true'><fold text=' }' expand='false'></fold>
+        </fold></fold><fold text='' expand='true'>return<fold text='' expand='true'></fold> </fold><fold text='' expand='false'>Optional.ofNullable(</fold>data<fold text='' expand='false'>)</fold><fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
     </fold>}</fold>
 
     <fold text='@Getter p' expand='false'>p</fold>ublic <fold text='🏛️' expand='false'>class</fold> LombokGetters <fold text='{...}' expand='true'>{
@@ -58,10 +58,10 @@
 
         </fold><fold text='' expand='false'>public LombokTestData getData()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
             </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>data<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
-        </fold>}</fold></fold><fold text='' expand='false'>
+        </fold>}</fold><fold text='' expand='false'></fold>
 
         </fold><fold text='' expand='false'>public <fold text='🔘' expand='false'>boolean</fold> isOk()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>ok<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>ok<fold text='' expand='true'>;<fold text='' expand='true'><fold text=' }' expand='false'></fold>
         </fold>}</fold></fold>
 
         public <fold text='🏛️' expand='false'>class</fold> LombokGettersPartial <fold text='{...}' expand='true'>{
@@ -83,7 +83,7 @@
         </fold>}</fold><fold text='' expand='false'></fold>
 
         </fold><fold text='' expand='false'>public <fold text='💀' expand='false'>void</fold> setData(LombokTestData data)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold><fold text='📍' expand='false'>this</fold>.data = <fold text='<<' expand='false'>data</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+            </fold></fold><fold text='📍' expand='false'>this</fold>.data = <fold text='<<' expand='false'>data<fold text='' expand='true'></fold>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold><fold text='' expand='false'></fold>
 
         </fold><fold text='' expand='false'>public <fold text='🔘' expand='false'>boolean</fold> isOk()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
@@ -91,7 +91,7 @@
         </fold>}</fold><fold text='' expand='false'></fold>
 
         </fold><fold text='' expand='false'>public <fold text='💀' expand='false'>void</fold> setOk(<fold text='🔘' expand='false'>boolean</fold> ok)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold><fold text='📍' expand='false'>this</fold>.ok = <fold text='<<' expand='false'>ok</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+            </fold><fold text='📍' expand='false'></fold>this</fold>.ok = <fold text='<<' expand='false'>ok</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold></fold>
 
         public <fold text='🏛️' expand='false'>class</fold> LombokSettersPartial <fold text='{...}' expand='true'>{
@@ -107,7 +107,7 @@
             <fold text='@Setter L' expand='false'>L</fold>ombokTestData data;
             <fold text='🔒' expand='false'>final</fold> <fold text='🔘' expand='false'>boolean</fold> ok = <fold text='✅' expand='false'>true</fold>;<fold text='' expand='false'>
 
-            </fold><fold text='' expand='false'>public <fold text='💀' expand='false'>void</fold> setData(LombokTestData data)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+            <fold text='' expand='false'></fold>public <fold text='💀' expand='false'>void</fold> setData(LombokTestData data)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
                 </fold></fold><fold text='📍' expand='false'>this</fold>.data = <fold text='<<' expand='false'>data</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold></fold>
         }</fold>
@@ -142,7 +142,7 @@
             <fold text='🔘' expand='false'>boolean</fold> ok;
             String string;<fold text='' expand='false'>
 
-            </fold><fold text='' expand='true'><fold text='' expand='false'>@Override</fold>
+            <fold text='' expand='true'><fold text='' expand='false'></fold>@Override</fold>
             public String toString() <fold text='{...}' expand='true'>{<fold text=' ' expand='true'>
                 </fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>"ToStringPartial{<fold text='' expand='false'>" +
                         "</fold>data=<fold text='$' expand='false'>" + </fold>data<fold text='${' expand='false'> +
@@ -161,7 +161,7 @@
             if <fold text='' expand='false'>(</fold>o == <fold text='🕳️' expand='false'>null</fold> || <fold text='class' expand='false'>getClass()</fold> != o.<fold text='class' expand='false'>getClass()</fold><fold text='' expand='false'>)</fold> <fold text='🔙' expand='false'>return</fold> <fold text='❌' expand='false'>false</fold>;
             <fold text='val' expand='false'>EqualsAndHashCodeFull</fold> that = <fold text='' expand='false'>(EqualsAndHashCodeFull) </fold>o;
             <fold text='🔙' expand='false'>return</fold> ok == that.ok && (<fold text='' expand='false'>data != null ? </fold>data<fold text='?.' expand='false'><fold text=' ≡ ' expand='false'>.</fold>equals(</fold>that.data<fold text='?)' expand='false'>)</fold><fold text=' ?: ' expand='false'> : </fold>that.data == <fold text='🕳️' expand='false'>null</fold>);
-        }</fold><fold text='' expand='false'></fold>
+        }<fold text='' expand='false'></fold></fold>
 
         </fold><fold text='' expand='true'><fold text='' expand='false'>@Override</fold>
         public <fold text='🔢' expand='false'>int</fold> hashCode() <fold text='{...}' expand='true'>{
@@ -184,7 +184,7 @@
 
             </fold><fold text='' expand='true'><fold text='' expand='false'>@Override</fold>
             public <fold text='🔢' expand='false'>int</fold> hashCode()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold><fold text='' expand='false'>data != null ? </fold>data<fold text='?.' expand='false'>.</fold>hashCode()<fold text=' ?: ' expand='false'> : </fold>0<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+                </fold><fold text='' expand='true'></fold>return</fold><fold text='' expand='true'> </fold><fold text='' expand='false'>data != null ? </fold>data<fold text='?.' expand='false'>.</fold>hashCode()<fold text=' ?: ' expand='false'> : </fold>0<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold></fold>
         }</fold>
 
@@ -226,7 +226,7 @@
             <fold text='@Equals L' expand='false'>L</fold>ombokTestData data;
             <fold text='🔘' expand='false'>boolean</fold> ok;<fold text='' expand='false'>
 
-            </fold><fold text='' expand='true'><fold text='' expand='false'>@Override</fold>
+            <fold text='' expand='true'><fold text='' expand='false'></fold>@Override</fold>
             public <fold text='🔘' expand='false'>boolean</fold> equals(Object o) <fold text='{...}' expand='true'>{
                 if <fold text='' expand='false'>(</fold><fold text='📍' expand='false'>this</fold> == o<fold text='' expand='false'>)</fold> <fold text='🔙' expand='false'>return</fold> <fold text='✅' expand='false'>true</fold>;
                 if <fold text='' expand='false'>(</fold>o == <fold text='🕳️' expand='false'>null</fold> || <fold text='class' expand='false'>getClass()</fold> != o.<fold text='class' expand='false'>getClass()</fold><fold text='' expand='false'>)</fold> <fold text='🔙' expand='false'>return</fold> <fold text='❌' expand='false'>false</fold>;
@@ -254,7 +254,7 @@
         LombokTestData data;
         <fold text='🔘' expand='false'>boolean</fold> ok;<fold text='' expand='false'>
 
-        </fold><fold text='' expand='true'><fold text='' expand='false'>@Override</fold>
+        <fold text='' expand='true'><fold text='' expand='false'></fold>@Override</fold>
         public <fold text='🔢' expand='false'>int</fold> hashCode() <fold text='{...}' expand='true'>{
             <fold text='var' expand='false'>int</fold> result = (<fold text='' expand='false'>data != null ? </fold>data<fold text='?.' expand='false'>.</fold>hashCode()<fold text=' ?: ' expand='false'> : </fold>0);
             result = 31 * result<fold text=' + ' expand='false'> + (</fold>ok ? 1 : 0<fold text='' expand='false'>)</fold>;
@@ -265,7 +265,7 @@
             <fold text='@HashCode L' expand='false'>L</fold>ombokTestData data;
             <fold text='🔘' expand='false'>boolean</fold> ok;<fold text='' expand='false'>
 
-            </fold><fold text='' expand='false'><fold text='' expand='true'>@Override</fold>
+            </fold><fold text='' expand='true'><fold text='' expand='false'>@Override</fold>
             public <fold text='🔢' expand='false'>int</fold> hashCode()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
                 </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold><fold text='' expand='false'>data != null ? </fold>data<fold text='?.' expand='false'>.</fold>hashCode()<fold text=' ?: ' expand='false'> : </fold>0<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold></fold>
@@ -290,20 +290,20 @@
         <fold text='🔘' expand='false'>boolean</fold> ok;<fold text='' expand='false'>
 
         </fold><fold text='' expand='false'>public LombokTestData getData()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>data<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+            </fold><fold text='' expand='true'></fold>return</fold><fold text='' expand='true'> </fold>data<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold><fold text='' expand='false'></fold>
 
         </fold><fold text='' expand='false'>public <fold text='💀' expand='false'>void</fold> setData(LombokTestData data)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold><fold text='📍' expand='false'>this</fold>.data = <fold text='<<' expand='false'>data</fold><fold text='' expand='true'>;</fold><fold text=' }' expand='false'><fold text=' ' expand='true'>
+            </fold><fold text='📍' expand='false'></fold>this</fold>.data = <fold text='<<' expand='false'>data</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold><fold text='' expand='false'></fold>
 
         </fold><fold text='' expand='false'>public <fold text='🔘' expand='false'>boolean</fold> isOk()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
             </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>ok<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
-        </fold>}</fold><fold text='' expand='false'></fold>
+        </fold>}</fold></fold><fold text='' expand='false'>
 
         </fold><fold text='' expand='false'>public <fold text='💀' expand='false'>void</fold> setOk(<fold text='🔘' expand='false'>boolean</fold> ok)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold><fold text='📍' expand='false'></fold>this</fold>.ok = <fold text='<<' expand='false'>ok</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
-        </fold>}</fold><fold text='' expand='false'></fold>
+            </fold></fold><fold text='📍' expand='false'>this</fold>.ok = <fold text='<<' expand='false'>ok</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+        </fold>}<fold text='' expand='false'></fold></fold>
 
         </fold><fold text='' expand='true'><fold text='' expand='false'>@Override</fold>
         public <fold text='🔘' expand='false'>boolean</fold> equals(Object o) <fold text='{...}' expand='true'>{
@@ -335,15 +335,15 @@
             </fold>}</fold><fold text='' expand='false'></fold>
 
             </fold><fold text='' expand='false'>public <fold text='💀' expand='false'>void</fold> setData(LombokTestData data)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold></fold><fold text='📍' expand='false'>this</fold>.data = <fold text='<<' expand='false'>data</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+                </fold></fold><fold text='📍' expand='false'>this</fold>.data = <fold text='<<' expand='false'>data</fold><fold text='' expand='true'>;<fold text=' ' expand='true'><fold text=' }' expand='false'></fold>
             </fold>}</fold><fold text='' expand='false'></fold>
 
             </fold><fold text='' expand='false'>public <fold text='🔘' expand='false'>boolean</fold> isOk()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold><fold text='' expand='true'></fold>return</fold><fold text='' expand='true'> </fold>ok<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+                </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>ok<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold><fold text='' expand='false'></fold>
 
             </fold><fold text='' expand='false'>public <fold text='💀' expand='false'>void</fold> setOk(<fold text='🔘' expand='false'>boolean</fold> ok)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold></fold><fold text='📍' expand='false'>this</fold>.ok = <fold text='<<' expand='false'>ok</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+                </fold><fold text='📍' expand='false'></fold>this</fold>.ok = <fold text='<<' expand='false'>ok</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold><fold text='' expand='false'></fold>
 
             </fold><fold text='' expand='true'><fold text='' expand='false'>@Override</fold>
@@ -352,7 +352,7 @@
                 if <fold text='' expand='false'>(</fold>!(o <fold text='is' expand='false'>instanceof</fold> LombokTestData.DataFull)<fold text='' expand='false'>)</fold> <fold text='🔙' expand='false'>return</fold> <fold text='❌' expand='false'>false</fold>;
                 <fold text='val' expand='false'>LombokTestData.DataFull</fold> dataFull = <fold text='' expand='false'>(LombokTestData.DataFull) </fold>o;
                 <fold text='🔙' expand='false'>return</fold> new EqualsBuilder().append(ok, dataFull.ok).append(data, dataFull.data).<fold text='equals' expand='false'>isEquals()</fold>;
-            }</fold><fold text='' expand='false'></fold>
+            }</fold></fold><fold text='' expand='false'>
 
             </fold><fold text='' expand='true'><fold text='' expand='false'>@Override</fold>
             public <fold text='🔢' expand='false'>int</fold> hashCode()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
@@ -366,15 +366,15 @@
             <fold text='🔘' expand='false'>boolean</fold> ok;<fold text='' expand='false'>
 
             </fold><fold text='' expand='false'>public LombokTestData getData()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold><fold text='' expand='true'></fold>return</fold><fold text='' expand='true'> </fold>data<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+                </fold></fold><fold text='' expand='true'>return<fold text='' expand='true'></fold> </fold>data<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold><fold text='' expand='false'></fold>
 
             </fold><fold text='' expand='false'>public <fold text='💀' expand='false'>void</fold> setData(LombokTestData data)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold></fold><fold text='📍' expand='false'>this</fold>.data = <fold text='<<' expand='false'>data</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+                </fold><fold text='📍' expand='false'></fold>this</fold>.data = <fold text='<<' expand='false'>data</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold><fold text='' expand='false'></fold>
 
-            <fold text='' expand='false'></fold>public <fold text='💀' expand='false'>void</fold> setOk(<fold text='🔘' expand='false'>boolean</fold> ok)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold></fold><fold text='📍' expand='false'>this</fold>.ok = <fold text='<<' expand='false'>ok</fold><fold text='' expand='true'>;</fold><fold text=' }' expand='false'><fold text=' ' expand='true'>
+            </fold><fold text='' expand='false'>public <fold text='💀' expand='false'>void</fold> setOk(<fold text='🔘' expand='false'>boolean</fold> ok)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+                </fold></fold><fold text='📍' expand='false'>this</fold>.ok = <fold text='<<' expand='false'>ok</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold><fold text='' expand='false'></fold>
 
             </fold><fold text='' expand='true'><fold text='' expand='false'>@Override</fold>
@@ -404,16 +404,16 @@
             <fold text='🔘' expand='false'>boolean</fold> ok;<fold text='' expand='false'>
 
             </fold><fold text='' expand='false'>public LombokTestData getData()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>data<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+                </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>data<fold text='' expand='true'>;<fold text='' expand='true'><fold text=' }' expand='false'></fold>
             </fold>}</fold><fold text='' expand='false'></fold>
 
             </fold><fold text='' expand='false'>public <fold text='💀' expand='false'>void</fold> setData(LombokTestData data)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold><fold text='📍' expand='false'></fold>this</fold>.data = <fold text='<<' expand='false'>data</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+                </fold></fold><fold text='📍' expand='false'>this</fold>.data = <fold text='<<' expand='false'>data<fold text='' expand='true'></fold>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold><fold text='' expand='false'></fold>
 
             </fold><fold text='' expand='false'>public <fold text='🔘' expand='false'>boolean</fold> isOk()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>ok<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
-            </fold>}</fold></fold><fold text='' expand='false'>
+                </fold></fold><fold text='' expand='true'>return<fold text='' expand='true'></fold> </fold>ok<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+            </fold>}</fold><fold text='' expand='false'></fold>
 
             </fold><fold text='' expand='true'><fold text='' expand='false'>@Override</fold>
             public <fold text='🔘' expand='false'>boolean</fold> equals(Object o) <fold text='{...}' expand='true'>{
@@ -421,7 +421,7 @@
                 if <fold text='' expand='false'>(</fold>!(o <fold text='is' expand='false'>instanceof</fold> LombokTestData.DataFull)<fold text='' expand='false'>)</fold> <fold text='🔙' expand='false'>return</fold> <fold text='❌' expand='false'>false</fold>;
                 <fold text='val' expand='false'>LombokTestData.DataFull</fold> dataFull = <fold text='' expand='false'>(LombokTestData.DataFull) </fold>o;
                 <fold text='🔙' expand='false'>return</fold> new EqualsBuilder().append(ok, dataFull.ok).append(data, dataFull.data).<fold text='equals' expand='false'>isEquals()</fold>;
-            }</fold><fold text='' expand='false'></fold>
+            }</fold></fold><fold text='' expand='false'>
 
             </fold><fold text='' expand='true'><fold text='' expand='false'>@Override</fold>
             public <fold text='🔢' expand='false'>int</fold> hashCode()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
@@ -443,14 +443,14 @@
             <fold text='🔘' expand='false'>boolean</fold> ok;<fold text='' expand='false'>
 
             </fold><fold text='' expand='false'>public <fold text='🔘' expand='false'>boolean</fold> isOk()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold><fold text='' expand='true'></fold>return</fold><fold text='' expand='true'> </fold>ok<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+                </fold></fold><fold text='' expand='true'>return<fold text='' expand='true'></fold> </fold>ok<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold></fold>
         }</fold>
 
         <fold text='@Getter c' expand='false'><fold text='🏛️' expand='false'>c</fold>lass</fold> FoldOnClass <fold text='{...}' expand='true'>{
             <fold text='🔘' expand='false'>boolean</fold> ok;<fold text='' expand='false'>
 
-            </fold><fold text='' expand='false'>public <fold text='🔘' expand='false'>boolean</fold> isOk()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+            <fold text='' expand='false'></fold>public <fold text='🔘' expand='false'>boolean</fold> isOk()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
                 </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>ok<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold></fold>
         }</fold>
@@ -460,7 +460,7 @@
             <fold text='🔘' expand='false'>boolean</fold> ok;<fold text='' expand='false'>
 
             </fold><fold text='' expand='false'>public <fold text='🔘' expand='false'>boolean</fold> isOk()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>ok<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+                </fold><fold text='' expand='true'></fold>return</fold><fold text='' expand='true'> </fold>ok<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold></fold>
         }</fold>
     }</fold>
@@ -470,7 +470,7 @@
         <fold text='🚫' expand='false'>private</fold> <fold text='🔘' expand='false'>boolean</fold> dirty2;
 
         public <fold text='🔘' expand='false'>boolean</fold> isDirty()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold><fold text='' expand='true'>return<fold text='' expand='true'></fold> </fold>dirty2<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>dirty2<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold>
 
         public <fold text='🔘' expand='false'>boolean</fold> isDirty2()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
@@ -482,11 +482,11 @@
             <fold text='@Getter p' expand='false'><fold text='🚫' expand='false'>p</fold>rivate</fold> <fold text='🔘' expand='false'>boolean</fold> ok;
 
             public <fold text='🔘' expand='false'>boolean</fold> isDirty()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>!dirty<fold text='' expand='true'>;</fold><fold text=' }' expand='false'><fold text='' expand='true'>
+                </fold><fold text='' expand='true'></fold>return</fold><fold text='' expand='true'> </fold>!dirty<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold><fold text='' expand='false'>
 
             </fold><fold text='' expand='false'>public <fold text='🔘' expand='false'>boolean</fold> isOk()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>ok<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+                </fold><fold text='' expand='true'></fold>return</fold><fold text='' expand='true'> </fold>ok<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold><fold text='' expand='false'></fold>
 
             </fold><fold text='' expand='true'><fold text='' expand='false'>@Override</fold>
@@ -500,7 +500,7 @@
                 if <fold text='' expand='false'>(</fold>ok != dirtyData.ok<fold text='' expand='false'>)</fold> <fold text='🔙' expand='false'>return</fold> <fold text='❌' expand='false'>false</fold>;
 
                 <fold text='🔙' expand='false'>return</fold> <fold text='✅' expand='false'>true</fold>;
-            }</fold><fold text='' expand='false'></fold>
+            }</fold></fold><fold text='' expand='false'>
 
             </fold><fold text='' expand='true'><fold text='' expand='false'>@Override</fold>
             public <fold text='🔢' expand='false'>int</fold> hashCode() <fold text='{...}' expand='true'>{
@@ -515,7 +515,7 @@
             <fold text='@Getter b' expand='false'><fold text='🔘' expand='false'>b</fold>oolean</fold> ok;<fold text='' expand='false'>
 
             </fold><fold text='' expand='false'>public <fold text='🔘' expand='false'>boolean</fold> isOk()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold><fold text='' expand='true'></fold>return</fold><fold text='' expand='true'> </fold>ok<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+                </fold></fold><fold text='' expand='true'>return<fold text='' expand='true'></fold> </fold>ok<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold></fold>
 
             public <fold text='🔘' expand='false'>boolean</fold> isDirty()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
@@ -545,16 +545,16 @@
             </fold>}</fold><fold text='' expand='false'>
 
             </fold><fold text='' expand='false'>public <fold text='💀' expand='false'>void</fold> setOk(<fold text='🔘' expand='false'>boolean</fold> ok)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold></fold><fold text='📍' expand='false'>this</fold>.ok = <fold text='<<' expand='false'>ok</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+                </fold><fold text='📍' expand='false'></fold>this</fold>.ok = <fold text='<<' expand='false'>ok</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold><fold text='' expand='false'></fold>
 
             </fold><fold text='' expand='false'>public <fold text='🔘' expand='false'>boolean</fold> isDirty()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>dirty<fold text='' expand='true'>;<fold text='' expand='true'><fold text=' }' expand='false'></fold>
+                </fold><fold text='' expand='true'></fold>return</fold><fold text='' expand='true'> </fold>dirty<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold><fold text='' expand='false'></fold>
 
             </fold><fold text='' expand='false'>public <fold text='🔘' expand='false'>boolean</fold> isOk()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
                 </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>ok<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
-            </fold>}</fold><fold text='' expand='false'></fold>
+            </fold>}</fold></fold><fold text='' expand='false'>
 
             </fold><fold text='' expand='true'><fold text='' expand='false'>@Override</fold>
             public <fold text='🔘' expand='false'>boolean</fold> equals(Object o) <fold text='{...}' expand='true'>{
@@ -567,7 +567,7 @@
                 if <fold text='' expand='false'>(</fold>ok != dirtyData.ok<fold text='' expand='false'>)</fold> <fold text='🔙' expand='false'>return</fold> <fold text='❌' expand='false'>false</fold>;
 
                 <fold text='🔙' expand='false'>return</fold> <fold text='✅' expand='false'>true</fold>;
-            }<fold text='' expand='false'></fold></fold>
+            }</fold></fold><fold text='' expand='false'>
 
             </fold><fold text='' expand='true'><fold text='' expand='false'>@Override</fold>
             public <fold text='🔢' expand='false'>int</fold> hashCode() <fold text='{...}' expand='true'>{
@@ -586,7 +586,7 @@
             </fold>}</fold></fold>
 
             public <fold text='💀' expand='false'>void</fold> setDirty(<fold text='🔘' expand='false'>boolean</fold> dirty)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold></fold><fold text='📍' expand='false'>this</fold>.ok = dirty<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+                </fold><fold text='📍' expand='false'></fold>this</fold>.ok = dirty<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold>
         }</fold>
     }</fold>
@@ -601,17 +601,17 @@
         }</fold>
 
         <fold text='@Log(logger) p' expand='false'>p</fold>ublic <fold text='🏛️' expand='false'>class</fold> LogDiffrentFieldName <fold text='{...}' expand='true'>{<fold text='' expand='false'>
-            </fold><fold text='const' expand='false'><fold text='' expand='false'>public <fold text='⚡' expand='false'>static</fold> <fold text='🔒' expand='false'>final</fold> <fold text='' expand='false'></fold>Logger</fold> logger = Logger.getLogger("LogAnnotation.class");</fold>
+            </fold><fold text='const' expand='false'><fold text='' expand='false'>public <fold text='⚡' expand='false'>static</fold> <fold text='🔒' expand='false'>final</fold> </fold><fold text='' expand='false'>Logger</fold> logger = Logger.getLogger("LogAnnotation.class");</fold>
         }</fold>
 
         <fold text='@Log(xlogger) p' expand='false'>p</fold>ublic <fold text='🏛️' expand='false'>class</fold> LogCustomNameDeprecated <fold text='{...}' expand='true'>{<fold text='' expand='false'>
             </fold><fold text='' expand='false'>@Deprecated
-            <fold text='⚡' expand='false'><fold text='default const' expand='false'>static</fold> <fold text='🔒' expand='false'>final</fold> <fold text='' expand='false'></fold>Logger</fold> xlogger = Logger.getLogger("LogAnnotation.class");</fold>
+            <fold text='⚡' expand='false'><fold text='default const' expand='false'>static</fold> <fold text='🔒' expand='false'>final</fold> </fold><fold text='' expand='false'>Logger</fold> xlogger = Logger.getLogger("LogAnnotation.class");</fold>
         }</fold>
 
         <fold text='@Log @Log(log2) @Log(log3) p' expand='false'>p</fold>ublic <fold text='🏛️' expand='false'>class</fold> TripleLogJava <fold text='{...}' expand='true'>{<fold text='' expand='false'>
             </fold><fold text='' expand='false'>Logger log = Logger.getLogger("LogAnnotation.class");</fold><fold text='' expand='false'>
-            </fold><fold text='' expand='false'><fold text='const' expand='false'>public <fold text='⚡' expand='false'>static</fold> <fold text='🔒' expand='false'>final</fold> <fold text='' expand='false'></fold>Logger</fold> log2 = Logger.getLogger("LogAnnotation.class");</fold><fold text='' expand='false'>
+            </fold><fold text='const' expand='false'><fold text='' expand='false'>public <fold text='⚡' expand='false'>static</fold> <fold text='🔒' expand='false'>final</fold> </fold><fold text='' expand='false'>Logger</fold> log2 = Logger.getLogger("LogAnnotation.class");<fold text='' expand='false'></fold>
             </fold><fold text='⚡' expand='false'><fold text='' expand='false'>static</fold> Logger log3 = Logger.getLogger("LogAnnotation.class");</fold>
         }</fold>
     }</fold>
@@ -628,7 +628,7 @@
             }</fold></fold>
         }</fold>
         <fold text='@NoArgsConstructor(private) c' expand='false'><fold text='🏛️' expand='false'>c</fold>lass</fold> NoArgsConstructorPrivate <fold text='{...}' expand='true'>{<fold text='' expand='false'>
-            </fold><fold text='🚫' expand='false'><fold text='' expand='false'>private</fold> NoArgsConstructorPrivate() <fold text='{}' expand='true'>{
+            <fold text='🚫' expand='false'><fold text='' expand='false'></fold>private</fold> NoArgsConstructorPrivate() <fold text='{}' expand='true'>{
             }</fold></fold>
         }</fold>
         <fold text='@NoArgsConstructor(// comment) p' expand='false'>p</fold>ublic <fold text='🏛️' expand='false'>class</fold> NoArgsConstructorSuperBefore <fold text='{...}' expand='true'>{<fold text='' expand='false'>
@@ -638,14 +638,14 @@
             </fold>}</fold></fold>
         }</fold>
         <fold text='@NoArgsConstructor(// comment) p' expand='false'>p</fold>ublic <fold text='🏛️' expand='false'>class</fold> NoArgsConstructorSuperAfter <fold text='{...}' expand='true'>{<fold text='' expand='false'>
-            </fold><fold text='' expand='false'>public NoArgsConstructorSuperAfter() <fold text='{...}' expand='true'>{<fold text=' ' expand='true'>
+            <fold text='' expand='false'></fold>public NoArgsConstructorSuperAfter() <fold text='{...}' expand='true'>{<fold text=' ' expand='true'>
                 </fold><fold text='💪' expand='false'>super</fold>()<fold text='' expand='true'>;</fold><fold text=' ' expand='true'>
                 </fold>// comment<fold text=' ' expand='true'>
             </fold>}</fold></fold>
         }</fold>
 
         <fold text='@NoArgsConstructor(protected,// comment) p' expand='false'>p</fold>ublic <fold text='🏛️' expand='false'>class</fold> ProtectedNoArgsConstructorSuperAfter <fold text='{...}' expand='true'>{<fold text='' expand='false'>
-            <fold text='🛡️' expand='false'><fold text='' expand='false'></fold>protected</fold> ProtectedNoArgsConstructorSuperAfter() <fold text='{}' expand='true'>{
+            </fold><fold text='🛡️' expand='false'><fold text='' expand='false'>protected</fold> ProtectedNoArgsConstructorSuperAfter() <fold text='{}' expand='true'>{
                 // comment
             }</fold></fold>
         }</fold>
@@ -724,7 +724,7 @@
             <fold text='🚫' expand='false'>private</fold> String field1;
             <fold text='🚫' expand='false'>private</fold> <fold text='🔢' expand='false'>int</fold> field2;
             <fold text='🚫' expand='false'>private</fold> <fold text='🔘' expand='false'>boolean</fold> field3;<fold text='' expand='false'>
-            </fold><fold text='' expand='false'>public AllArgsSuper(String field1, int field2, boolean field3) <fold text='{...}' expand='true'>{
+            <fold text='' expand='false'></fold>public AllArgsSuper(String field1, int field2, boolean field3) <fold text='{...}' expand='true'>{
                 <fold text='💪' expand='false'>super</fold>();
                 <fold text='📍' expand='false'>this</fold>.field1 = <fold text='<<' expand='false'>field1</fold>;
                 <fold text='📍' expand='false'>this</fold>.field2 = <fold text='<<' expand='false'>field2</fold>;
@@ -742,7 +742,7 @@
                 <fold text='📍' expand='false'>this</fold>.field3 = <fold text='<<' expand='false'>field3</fold>;
             }</fold></fold>
             public <fold text='⚡' expand='false'>static</fold> StaticNameArgs of(String field1, <fold text='🔢' expand='false'>int</fold> field2, <fold text='🔘' expand='false'>boolean</fold> field3) <fold text='{...}' expand='true'>{<fold text=' ' expand='true'>
-                </fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>new StaticNameArgs(field1, field2, field3)<fold text='' expand='true'>;</fold><fold text='' expand='true'>
+                </fold><fold text='' expand='true'>return<fold text='' expand='true'></fold> </fold>new StaticNameArgs(field1, field2, field3)<fold text='' expand='true'>;</fold><fold text='' expand='true'>
             </fold>}</fold>
         }</fold>
 
@@ -852,15 +852,15 @@
                 <fold text='📍' expand='false'>this</fold>.field2 = <fold text='<<' expand='false'>field2</fold>;
                 <fold text='📍' expand='false'>this</fold>.field3 = <fold text='<<' expand='false'>field3</fold>;
             }</fold><fold text='' expand='false'></fold>
-            </fold><fold text='' expand='false'>public String getField1()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold><fold text='' expand='true'></fold>return</fold><fold text='' expand='true'> </fold>field1<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
-            </fold>}</fold><fold text='' expand='false'></fold>
-            </fold><fold text='' expand='false'>public <fold text='🔢' expand='false'>int</fold> getField2()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+            <fold text='' expand='false'></fold>public String getField1()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+                </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>field1<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+            </fold>}</fold></fold><fold text='' expand='false'>
+            <fold text='' expand='false'></fold>public <fold text='🔢' expand='false'>int</fold> getField2()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
                 </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>field2<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold><fold text='' expand='false'></fold>
             </fold><fold text='' expand='false'>public <fold text='🔘' expand='false'>boolean</fold> isField3()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
                 </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>field3<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
-            </fold>}</fold><fold text='' expand='false'></fold>
+            </fold>}</fold></fold><fold text='' expand='false'>
             </fold><fold text='' expand='true'><fold text='' expand='false'>@Override</fold>
             public <fold text='🔘' expand='false'>boolean</fold> equals(Object o) <fold text='{...}' expand='true'>{
                 if <fold text='' expand='false'>(</fold><fold text='📍' expand='false'>this</fold> == o<fold text='' expand='false'>)</fold> <fold text='🔙' expand='false'>return</fold> <fold text='✅' expand='false'>true</fold>;
@@ -876,9 +876,9 @@
                 result = 31 * result + field2;
                 result = 31 * result<fold text=' + ' expand='false'> + (</fold>field3 ? 1 : 0<fold text='' expand='false'>)</fold>;
                 <fold text='🔙' expand='false'>return</fold> result;
-            }</fold></fold><fold text='' expand='false'>
+            }</fold><fold text='' expand='false'></fold>
 
-            <fold text='' expand='true'><fold text='' expand='false'></fold>@Override</fold>
+            </fold><fold text='' expand='true'><fold text='' expand='false'>@Override</fold>
             public String toString() <fold text='{...}' expand='true'>{
                 <fold text='🔙' expand='false'>return</fold> "ValueArgs{<fold text='' expand='false'>" +
                         "</fold>field1='<fold text='$' expand='false'>" + </fold>field1<fold text='${' expand='false'> + </fold>'\''<fold text='}' expand='false'> +
@@ -901,8 +901,8 @@
                 </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>field1<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold><fold text='' expand='false'></fold>
             </fold><fold text='' expand='false'>public <fold text='🔢' expand='false'>int</fold> getField2()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>field2<fold text='' expand='true'>;</fold><fold text=' }' expand='false'><fold text='' expand='true'>
-            </fold>}</fold><fold text='' expand='false'></fold>
+                </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>field2<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+            </fold>}</fold></fold><fold text='' expand='false'>
             </fold><fold text='' expand='false'>public <fold text='🔘' expand='false'>boolean</fold> isField3()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
                 </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>field3<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold><fold text='' expand='false'></fold>
@@ -913,7 +913,7 @@
 
                 <fold text='val' expand='false'>ValueArgsSuper</fold> that = <fold text='' expand='false'>(ValueArgsSuper) </fold>o;
                 <fold text='🔙' expand='false'>return</fold> field2 == that.field2 && field3 == that.field3 && <fold text='' expand='false'>Objects.equals(</fold>field1<fold text=' ≡ ' expand='false'>, </fold>that.field1<fold text='' expand='false'>)</fold>;
-            }</fold><fold text='' expand='false'></fold>
+            }<fold text='' expand='false'></fold></fold>
 
             </fold><fold text='' expand='true'><fold text='' expand='false'>@Override</fold>
             public <fold text='🔢' expand='false'>int</fold> hashCode() <fold text='{...}' expand='true'>{
@@ -931,7 +931,7 @@
                 <fold text='📍' expand='false'>this</fold>.field1 = <fold text='<<' expand='false'>field1</fold>;
                 <fold text='📍' expand='false'>this</fold>.field2 = <fold text='<<' expand='false'>field2</fold>;
                 <fold text='📍' expand='false'>this</fold>.field3 = <fold text='<<' expand='false'>field3</fold>;
-            }</fold><fold text='' expand='false'></fold>
+            }<fold text='' expand='false'></fold></fold>
             </fold><fold text='' expand='false'>public String getField1()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
                 </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>field1<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold><fold text='' expand='false'></fold>
@@ -939,7 +939,7 @@
                 </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>field2<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold><fold text='' expand='false'></fold>
             </fold><fold text='' expand='false'>public <fold text='🔘' expand='false'>boolean</fold> isField3()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold><fold text='' expand='true'></fold>return</fold><fold text='' expand='true'> </fold>field3<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+                </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>field3<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold></fold>
         }</fold>
     }</fold>
@@ -947,31 +947,31 @@
         <fold text='@AllArgsConstructor p' expand='false'>p</fold>ublic <fold text='⚡' expand='false'>static</fold> <fold text='🏛️' expand='false'>class</fold> AllArgs <fold text='{...}' expand='true'>{
             <fold text='🚫' expand='false'>private</fold> String field1;<fold text='' expand='false'>
             </fold><fold text='' expand='false'>public AllArgs(String field1)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold><fold text='📍' expand='false'></fold>this</fold>.field1 = <fold text='<<' expand='false'>field1</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+                </fold></fold><fold text='📍' expand='false'>this</fold>.field1 = <fold text='<<' expand='false'>field1</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold></fold>
         }</fold>
         <fold text='@RequiredArgsConstructor p' expand='false'>p</fold>ublic <fold text='⚡' expand='false'>static</fold> <fold text='🏛️' expand='false'>class</fold> ReqArgs <fold text='{...}' expand='true'>{
             <fold text='🚫' expand='false'>private</fold> <fold text='🔒' expand='false'>final</fold> String field1;<fold text='' expand='false'>
             </fold><fold text='' expand='false'>public ReqArgs(String field1)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold></fold><fold text='📍' expand='false'>this</fold>.field1 = <fold text='<<' expand='false'>field1</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+                </fold><fold text='📍' expand='false'></fold>this</fold>.field1 = <fold text='<<' expand='false'>field1</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold></fold>
         }</fold>
         <fold text='@Value p' expand='false'>p</fold>ublic <fold text='⚡' expand='false'>static</fold> <fold text='🏛️' expand='false'>class</fold> Value <fold text='{...}' expand='true'>{
             <fold text='🚫' expand='false'>private</fold> <fold text='🔒' expand='false'>final</fold> String field1;<fold text='' expand='false'>
             </fold><fold text='' expand='false'>public Value(String field1)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold></fold><fold text='📍' expand='false'>this</fold>.field1 = <fold text='<<' expand='false'>field1</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+                </fold></fold><fold text='📍' expand='false'>this</fold>.field1 = <fold text='<<' expand='false'>field1<fold text='' expand='true'></fold>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold><fold text='' expand='false'></fold>
             </fold><fold text='' expand='false'>public String getField1()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>field1<fold text='' expand='true'>;</fold><fold text=' }' expand='false'><fold text='' expand='true'>
+                </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>field1<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold><fold text='' expand='false'></fold>
             </fold><fold text='' expand='true'><fold text='' expand='false'>@Override</fold>
             public <fold text='🔒' expand='false'>final</fold> <fold text='🔘' expand='false'>boolean</fold> equals(Object o) <fold text='{...}' expand='true'>{
-                if <fold text='' expand='false'>(<fold text='📍' expand='false'></fold>this</fold> == o<fold text='' expand='false'>)</fold> <fold text='🔙' expand='false'>return</fold> <fold text='✅' expand='false'>true</fold>;
+                if <fold text='' expand='false'>(</fold><fold text='📍' expand='false'>this</fold> == o<fold text='' expand='false'>)</fold> <fold text='🔙' expand='false'>return</fold> <fold text='✅' expand='false'>true</fold>;
                 if <fold text='' expand='false'>(</fold>!(o <fold text='is' expand='false'>instanceof</fold> Value)<fold text='' expand='false'>)</fold> <fold text='🔙' expand='false'>return</fold> <fold text='❌' expand='false'>false</fold>;
 
                 <fold text='val' expand='false'>Value</fold> value = <fold text='' expand='false'>(Value) </fold>o;
                 <fold text='🔙' expand='false'>return</fold> <fold text='' expand='false'>Objects.equals(</fold>field1<fold text=' ≡ ' expand='false'>, </fold>value.field1<fold text='' expand='false'>)</fold>;
-            }</fold><fold text='' expand='false'></fold>
+            }</fold></fold><fold text='' expand='false'>
             </fold><fold text='' expand='true'><fold text='' expand='false'>@Override</fold>
             public <fold text='🔢' expand='false'>int</fold> hashCode()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
                 </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>Objects.hashCode(field1)<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
@@ -980,10 +980,10 @@
         <fold text='@LightValue p' expand='false'>p</fold>ublic <fold text='⚡' expand='false'>static</fold> <fold text='🏛️' expand='false'>class</fold> ValueWithoutEqualsAndHashCode <fold text='{...}' expand='true'>{
             <fold text='🚫' expand='false'>private</fold> <fold text='🔒' expand='false'>final</fold> String field1;<fold text='' expand='false'>
             </fold><fold text='' expand='false'>public ValueWithoutEqualsAndHashCode(String field1)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold></fold><fold text='📍' expand='false'>this</fold>.field1 = <fold text='<<' expand='false'>field1</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+                </fold><fold text='📍' expand='false'></fold>this</fold>.field1 = <fold text='<<' expand='false'>field1</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold><fold text='' expand='false'></fold>
             </fold><fold text='' expand='false'>public String getField1()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>field1<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+                </fold><fold text='' expand='true'></fold>return</fold><fold text='' expand='true'> </fold>field1<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold></fold>
         }</fold>
         <fold text='🏛️' expand='false'>class</fold> Modifers <fold text='{...}' expand='true'>{
@@ -1012,9 +1012,9 @@
         <fold text='@Data p' expand='false'><fold text='🚫' expand='false'>p</fold>rivate</fold> String name;
         <fold text='🚫' expand='false'>private</fold> String ignored;<fold text='' expand='false'>
 
-        <fold text='' expand='false'></fold>public String getName()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+        </fold><fold text='' expand='false'>public String getName()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
             </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>name<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
-        </fold>}</fold></fold><fold text='' expand='false'>
+        </fold>}</fold><fold text='' expand='false'></fold>
 
         </fold><fold text='' expand='false'>public <fold text='💀' expand='false'>void</fold> setName(String name)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
             </fold></fold><fold text='📍' expand='false'>this</fold>.name = <fold text='<<' expand='false'>name</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
@@ -1026,7 +1026,7 @@
             if <fold text='' expand='false'>(</fold>!(o <fold text='is' expand='false'>instanceof</fold> FieldLevelData)<fold text='' expand='false'>)</fold> <fold text='🔙' expand='false'>return</fold> <fold text='❌' expand='false'>false</fold>;
             <fold text='val' expand='false'>FieldLevelData</fold> that = <fold text='' expand='false'>(FieldLevelData) </fold>o;
             <fold text='🔙' expand='false'>return</fold> <fold text='' expand='false'>Objects.equals(</fold>name<fold text=' ≡ ' expand='false'>, </fold>that.name<fold text='' expand='false'>)</fold>;
-        }</fold><fold text='' expand='false'></fold>
+        }<fold text='' expand='false'></fold></fold>
 
         </fold><fold text='' expand='true'><fold text='' expand='false'>@Override</fold>
         public <fold text='🔢' expand='false'>int</fold> hashCode()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
@@ -1039,16 +1039,16 @@
         <fold text='🚫' expand='false'>private</fold> String ignored;<fold text='' expand='false'>
 
         </fold><fold text='' expand='false'>public String getName()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>name<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+            </fold><fold text='' expand='true'></fold>return</fold><fold text='' expand='true'> </fold>name<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold><fold text='' expand='false'></fold>
 
-        </fold><fold text='' expand='false'><fold text='' expand='true'>@Override</fold>
+        </fold><fold text='' expand='true'><fold text='' expand='false'>@Override</fold>
         public <fold text='🔒' expand='false'>final</fold> <fold text='🔘' expand='false'>boolean</fold> equals(Object o) <fold text='{...}' expand='true'>{
             if <fold text='' expand='false'>(</fold><fold text='📍' expand='false'>this</fold> == o<fold text='' expand='false'>)</fold> <fold text='🔙' expand='false'>return</fold> <fold text='✅' expand='false'>true</fold>;
             if <fold text='' expand='false'>(</fold>!(o <fold text='is' expand='false'>instanceof</fold> FieldLevelData)<fold text='' expand='false'>)</fold> <fold text='🔙' expand='false'>return</fold> <fold text='❌' expand='false'>false</fold>;
             <fold text='val' expand='false'>FieldLevelData</fold> that = <fold text='' expand='false'>(FieldLevelData) </fold>o;
             <fold text='🔙' expand='false'>return</fold> <fold text='' expand='false'>Objects.equals(</fold>name<fold text=' ≡ ' expand='false'>, </fold>that.name<fold text='' expand='false'>)</fold>;
-        }<fold text='' expand='false'></fold></fold>
+        }</fold><fold text='' expand='false'></fold>
 
         </fold><fold text='' expand='true'><fold text='' expand='false'>@Override</fold>
         public <fold text='🔢' expand='false'>int</fold> hashCode()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
@@ -1069,7 +1069,7 @@
             if <fold text='' expand='false'>(</fold>!(o <fold text='is' expand='false'>instanceof</fold> FieldLevelData)<fold text='' expand='false'>)</fold> <fold text='🔙' expand='false'>return</fold> <fold text='❌' expand='false'>false</fold>;
             <fold text='val' expand='false'>FieldLevelData</fold> that = <fold text='' expand='false'>(FieldLevelData) </fold>o;
             <fold text='🔙' expand='false'>return</fold> <fold text='' expand='false'>Objects.equals(</fold>name<fold text=' ≡ ' expand='false'>, </fold>that.name<fold text='' expand='false'>)</fold>;
-        }</fold><fold text='' expand='false'></fold>
+        }</fold></fold><fold text='' expand='false'>
 
         </fold><fold text='' expand='true'><fold text='' expand='false'>@Override</fold>
         public <fold text='🔢' expand='false'>int</fold> hashCode()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
@@ -1088,6 +1088,62 @@
             public ClassWithBuilder build()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
                 </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>new ClassWithBuilder()<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold>
+        }</fold>
+    }</fold>
+
+    <fold text='🏛️' expand='false'>class</fold> Constructors <fold text='{...}' expand='true'>{
+        <fold text='@NoArgsConstructor @AllArgsConstructor p' expand='false'>p</fold>ublic <fold text='🏛️' expand='false'>class</fold> FiveConstructors <fold text='{...}' expand='true'>{
+            <fold text='@Constructor(1) @Constructor(2) @Constructor(3) p' expand='false'><fold text='🚫' expand='false'>p</fold>rivate</fold> <fold text='🔢' expand='false'>int</fold> field1;
+            <fold text='@Constructor(2) @Constructor(3) p' expand='false'><fold text='🚫' expand='false'>p</fold>rivate</fold> String field2;
+            <fold text='@Constructor(3) p' expand='false'><fold text='🚫' expand='false'>p</fold>rivate</fold> <fold text='⚖️' expand='false'>double</fold> field3;
+            <fold text='🚫' expand='false'>private</fold> <fold text='🔘' expand='false'>boolean</fold> field4;<fold text='' expand='false'>
+            </fold><fold text='' expand='false'>public FiveConstructors() <fold text='{}' expand='true'>{
+            }</fold><fold text='' expand='false'></fold>
+            </fold><fold text='' expand='false'>public FiveConstructors(<fold text='🔢' expand='false'>int</fold> field1)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+                </fold></fold><fold text='📍' expand='false'>this</fold>.field1 = <fold text='<<' expand='false'>field1</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+            </fold>}</fold><fold text='' expand='false'></fold>
+            </fold><fold text='' expand='false'>public FiveConstructors(<fold text='🔢' expand='false'>int</fold> field1, String field2) <fold text='{...}' expand='true'>{
+                <fold text='📍' expand='false'>this</fold>.field1 = <fold text='<<' expand='false'>field1</fold>;
+                <fold text='📍' expand='false'>this</fold>.field2 = <fold text='<<' expand='false'>field2</fold>;
+            }</fold><fold text='' expand='false'></fold>
+            </fold><fold text='' expand='false'>public FiveConstructors(<fold text='🔢' expand='false'>int</fold> field1, String field2, <fold text='⚖️' expand='false'>double</fold> field3) <fold text='{...}' expand='true'>{
+                <fold text='📍' expand='false'>this</fold>.field1 = <fold text='<<' expand='false'>field1</fold>;
+                <fold text='📍' expand='false'>this</fold>.field2 = <fold text='<<' expand='false'>field2</fold>;
+                <fold text='📍' expand='false'>this</fold>.field3 = <fold text='<<' expand='false'>field3</fold>;
+            }</fold><fold text='' expand='false'></fold>
+            </fold><fold text='' expand='false'>public FiveConstructors(<fold text='🔢' expand='false'>int</fold> field1, String field2, <fold text='⚖️' expand='false'>double</fold> field3, <fold text='🔘' expand='false'>boolean</fold> field4) <fold text='{...}' expand='true'>{
+                <fold text='📍' expand='false'>this</fold>.field1 = <fold text='<<' expand='false'>field1</fold>;
+                <fold text='📍' expand='false'>this</fold>.field2 = <fold text='<<' expand='false'>field2</fold>;
+                <fold text='📍' expand='false'>this</fold>.field3 = <fold text='<<' expand='false'>field3</fold>;
+                <fold text='📍' expand='false'>this</fold>.field4 = <fold text='<<' expand='false'>field4</fold>;
+            }</fold></fold>
+        }</fold>
+
+        <fold text='@NoArgsConstructor @AllArgsConstructor p' expand='false'>p</fold>ublic <fold text='🏛️' expand='false'>class</fold> FiveConstructorsMod <fold text='{...}' expand='true'>{
+            <fold text='@Constructor(1,private) @Constructor(2,default) @Constructor(3,protected) p' expand='false'><fold text='🚫' expand='false'>p</fold>rivate</fold> <fold text='🔢' expand='false'>int</fold> field1;
+            <fold text='@Constructor(2,default) @Constructor(3,protected) p' expand='false'><fold text='🚫' expand='false'>p</fold>rivate</fold> String field2;
+            <fold text='@Constructor(3,protected) p' expand='false'><fold text='🚫' expand='false'>p</fold>rivate</fold> <fold text='⚖️' expand='false'>double</fold> field3;
+            <fold text='🚫' expand='false'>private</fold> <fold text='🔘' expand='false'>boolean</fold> field4;<fold text='' expand='false'>
+            </fold><fold text='' expand='false'>public FiveConstructorsMod() <fold text='{}' expand='true'>{
+            }</fold></fold><fold text='' expand='false'>
+            </fold><fold text='🚫' expand='false'><fold text='' expand='false'>private</fold> FiveConstructorsMod(<fold text='🔢' expand='false'>int</fold> field1)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+                </fold><fold text='📍' expand='false'></fold>this</fold>.field1 = <fold text='<<' expand='false'>field1</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+            </fold>}</fold><fold text='' expand='false'></fold>
+            </fold><fold text='' expand='false'>FiveConstructorsMod(<fold text='🔢' expand='false'>int</fold> field1, String field2) <fold text='{...}' expand='true'>{
+                <fold text='📍' expand='false'>this</fold>.field1 = <fold text='<<' expand='false'>field1</fold>;
+                <fold text='📍' expand='false'>this</fold>.field2 = <fold text='<<' expand='false'>field2</fold>;
+            }</fold><fold text='' expand='false'></fold>
+            </fold><fold text='🛡️' expand='false'><fold text='' expand='false'>protected</fold> FiveConstructorsMod(<fold text='🔢' expand='false'>int</fold> field1, String field2, <fold text='⚖️' expand='false'>double</fold> field3) <fold text='{...}' expand='true'>{
+                <fold text='📍' expand='false'>this</fold>.field1 = <fold text='<<' expand='false'>field1</fold>;
+                <fold text='📍' expand='false'>this</fold>.field2 = <fold text='<<' expand='false'>field2</fold>;
+                <fold text='📍' expand='false'>this</fold>.field3 = <fold text='<<' expand='false'>field3</fold>;
+            }</fold><fold text='' expand='false'></fold>
+            <fold text='' expand='false'></fold>public FiveConstructorsMod(<fold text='🔢' expand='false'>int</fold> field1, String field2, <fold text='⚖️' expand='false'>double</fold> field3, <fold text='🔘' expand='false'>boolean</fold> field4) <fold text='{...}' expand='true'>{
+                <fold text='📍' expand='false'>this</fold>.field1 = <fold text='<<' expand='false'>field1</fold>;
+                <fold text='📍' expand='false'>this</fold>.field2 = <fold text='<<' expand='false'>field2</fold>;
+                <fold text='📍' expand='false'>this</fold>.field3 = <fold text='<<' expand='false'>field3</fold>;
+                <fold text='📍' expand='false'>this</fold>.field4 = <fold text='<<' expand='false'>field4</fold>;
+            }</fold></fold>
         }</fold>
     }</fold>
 

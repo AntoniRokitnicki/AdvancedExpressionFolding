@@ -78,12 +78,8 @@ public class ExperimentalTestData {
 
 
     @NoArgsConstructor @AllArgsConstructor static class ConstClass {
-        boolean ok;
+        @Constructor(1) boolean ok;
         @ToString String string;
-
-        public ConstClass(boolean ok) {
-            this.ok = ok;
-        }
         public String toString() {
             return new StringJoiner(", ", ConstClass.class.getSimpleName() + "[", "]")
                     .add("string='" + string + "'")

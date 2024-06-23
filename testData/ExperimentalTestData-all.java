@@ -80,15 +80,15 @@ public <fold text='🏛️' expand='false'>class</fold> ExperimentalTestData {
 
 
     <fold text='@NoArgsConstructor @AllArgsConstructor s' expand='false'><fold text='⚡' expand='false'>s</fold>tatic</fold> <fold text='🏛️' expand='false'>class</fold> ConstClass <fold text='{...}' expand='true'>{
-        <fold text='🔘' expand='false'>boolean</fold> ok;
+        <fold text='@Constructor(1) b' expand='false'><fold text='🔘' expand='false'>b</fold>oolean</fold> ok;
         <fold text='@ToString S' expand='false'>S</fold>tring string;<fold text='' expand='false'>
 
-        </fold><fold text='' expand='false'>public ConstClass() <fold text='{}' expand='true'>{
-        }</fold></fold>
+        <fold text='' expand='false'></fold>public ConstClass() <fold text='{}' expand='true'>{
+        }</fold></fold><fold text='' expand='false'>
 
-        public ConstClass(<fold text='🔘' expand='false'>boolean</fold> ok)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+        </fold><fold text='' expand='false'>public ConstClass(<fold text='🔘' expand='false'>boolean</fold> ok)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
             </fold></fold><fold text='📍' expand='false'>this</fold>.ok = <fold text='<<' expand='false'>ok</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
-        </fold>}</fold><fold text='' expand='false'>
+        </fold>}</fold></fold><fold text='' expand='false'>
 
         </fold><fold text='' expand='false'>public ConstClass(<fold text='🔘' expand='false'>boolean</fold> ok, String string) <fold text='{...}' expand='true'>{
             <fold text='📍' expand='false'>this</fold>.ok = <fold text='<<' expand='false'>ok</fold>;

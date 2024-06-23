@@ -18,6 +18,8 @@ enum class LombokFoldingAnnotation(val annotation: String) {
     LOMBOK_ALL_ARGS_CONSTRUCTOR("@AllArgsConstructor"),
     LOMBOK_REQUIRED_ARGS_CONSTRUCTOR("@RequiredArgsConstructor"),
 
+    LOMBOK_FIELD_CONSTRUCTOR("@Constructor"),
+
     LOMBOK_DATA("@Data") {
         override fun children() = of(LOMBOK_GETTER, LOMBOK_SETTER, LOMBOK_EQUALS, LOMBOK_HASHCODE)!!
     },

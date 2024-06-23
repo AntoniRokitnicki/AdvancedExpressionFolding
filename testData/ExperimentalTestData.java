@@ -80,15 +80,15 @@ public class ExperimentalTestData {
 
 
     <fold text='@NoArgsConstructor @AllArgsConstructor s' expand='false'>s</fold>tatic class ConstClass <fold text='{...}' expand='true'>{
-        boolean ok;
+        <fold text='@Constructor(1) b' expand='false'>b</fold>oolean ok;
         <fold text='@ToString S' expand='false'>S</fold>tring string;<fold text='' expand='false'>
 
         </fold><fold text='' expand='false'>public ConstClass() <fold text='{}' expand='true'>{
-        }</fold></fold>
+        }</fold></fold><fold text='' expand='false'>
 
-        public ConstClass(boolean ok)<fold text=' { ' expand='false'> {
+        </fold><fold text='' expand='false'>public ConstClass(boolean ok)<fold text=' { ' expand='false'> {
             </fold>this.ok = ok;<fold text=' }' expand='false'>
-        }</fold><fold text='' expand='false'>
+        }</fold></fold><fold text='' expand='false'>
 
         </fold><fold text='' expand='false'>public ConstClass(boolean ok, String string) <fold text='{...}' expand='true'>{
             this.ok = ok;
@@ -119,7 +119,7 @@ public class ExperimentalTestData {
 
         </fold><fold text='' expand='false'>public data.ExperimentalTestData.NamelessProperty getProp()<fold text=' { ' expand='false'> {
             </fold>return prop;<fold text=' }' expand='false'>
-        }</fold></fold><fold text='' expand='false'>
+        }</fold><fold text='' expand='false'></fold>
 
         </fold><fold text='' expand='false'>public void setProp(NamelessProperty prop)<fold text=' { ' expand='false'> {
             </fold>this.prop = prop;<fold text=' }' expand='false'>
