@@ -1091,4 +1091,60 @@ public class LombokTestData {
         }
     }
 
+    class Constructors {
+        public class FiveConstructors {
+            private int field1;
+            private String field2;
+            private double field3;
+            private boolean field4;
+            public FiveConstructors() {
+            }
+            public FiveConstructors(int field1) {
+                this.field1 = field1;
+            }
+            public FiveConstructors(int field1, String field2) {
+                this.field1 = field1;
+                this.field2 = field2;
+            }
+            public FiveConstructors(int field1, String field2, double field3) {
+                this.field1 = field1;
+                this.field2 = field2;
+                this.field3 = field3;
+            }
+            public FiveConstructors(int field1, String field2, double field3, boolean field4) {
+                this.field1 = field1;
+                this.field2 = field2;
+                this.field3 = field3;
+                this.field4 = field4;
+            }
+        }
+
+        public class FiveConstructorsMod {
+            private int field1;
+            private String field2;
+            private double field3;
+            private boolean field4;
+            public FiveConstructorsMod() {
+            }
+            private FiveConstructorsMod(int field1) {
+                this.field1 = field1;
+            }
+            FiveConstructorsMod(int field1, String field2) {
+                this.field1 = field1;
+                this.field2 = field2;
+            }
+            protected FiveConstructorsMod(int field1, String field2, double field3) {
+                this.field1 = field1;
+                this.field2 = field2;
+                this.field3 = field3;
+            }
+            public FiveConstructorsMod(int field1, String field2, double field3, boolean field4) {
+                this.field1 = field1;
+                this.field2 = field2;
+                this.field3 = field3;
+                this.field4 = field4;
+            }
+        }
+    }
+
 }

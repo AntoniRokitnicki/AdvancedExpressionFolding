@@ -32,7 +32,7 @@ object LombokExt : BaseExtension(), GenericCallback<PsiField, List<FieldLevelAnn
         classLevelAnnotations += foldNoArgsConstructor(this.constructors)
 
         createFieldMap(this)?.let { fieldsMap ->
-            classLevelAnnotations += foldArgsConstructor(this.constructors, fieldsMap.values)
+            classLevelAnnotations += foldArgsConstructor(this.constructors, fieldsMap.values, fieldLevelAnnotations)
 
             val methodTypeToMethodsMap: Map<MethodType, List<PsiMethod>> = groupMethodsByMethodType(this)
             classLevelAnnotations += foldProperties(methodTypeToMethodsMap, fieldsMap, fieldLevelAnnotations)
@@ -82,23 +82,56 @@ object LombokExt : BaseExtension(), GenericCallback<PsiField, List<FieldLevelAnn
 
     private fun foldArgsConstructor(
         constructors: Array<PsiMethod>,
-        fields: Collection<PsiField>
+        fields: Collection<PsiField>,
+        fieldLevelAnnotations: MutableList<FieldLevelAnnotation>
     ): List<ClassLevelAnnotation> {
-        return constructors.flatMap {
-            it.foldArgsConstructor(fields)
+
+        val classLevelAnnotations = constructors.flatMapIndexed { index: Int, psiMethod: PsiMethod ->
+            psiMethod.foldArgsConstructor(fields, fieldLevelAnnotations, index)
         }
+
+
+        return classLevelAnnotations
     }
 
     private fun PsiMethod.foldArgsConstructor(
-        fields: Collection<PsiField>
+        fields: Collection<PsiField>,
+        fieldLevelAnnotations: MutableList<FieldLevelAnnotation>,
+        index: Int
     ): MutableList<ClassLevelAnnotation> {
         val list = mutableListOf<ClassLevelAnnotation>()
+        val detectModifier = detectModifier()
         if (fields.all {
                 it.isFinal()
-            } && isAllArgsConstructor(this, fields)) {
-            list.add(ClassLevelAnnotation(LOMBOK_REQUIRED_ARGS_CONSTRUCTOR, listOf(this), arguments = detectModifier()))
-        } else if (isAllArgsConstructor(this, fields)) {
-            list.add(ClassLevelAnnotation(LOMBOK_ALL_ARGS_CONSTRUCTOR, listOf(this), arguments = detectModifier()))
+            } && isAllArgsConstructor( fields)) {
+            list.add(ClassLevelAnnotation(LOMBOK_REQUIRED_ARGS_CONSTRUCTOR, listOf(this), arguments = detectModifier))
+        } else if (isAllArgsConstructor(fields)) {
+            list.add(ClassLevelAnnotation(LOMBOK_ALL_ARGS_CONSTRUCTOR, listOf(this), arguments = detectModifier))
+        } else if (this.hasParameters()) {
+            if (isFieldConstructor(fields)) {
+                val args = mutableListOf<String>()
+                args.add(index.toString())
+                detectModifier.firstOrNull()?.let {
+                    args.add(it)
+                }
+                val byName = fields.associateBy {
+                    it.name
+                }
+                val usedFields = parameterList.parameters.mapNotNull {
+                    //TODO: find by reference, not by name. get it from isFieldConstructor
+                    byName[it.name]
+                }
+                usedFields.forEach {
+                    fieldLevelAnnotations.add(
+                        FieldLevelAnnotation(
+                            LOMBOK_FIELD_CONSTRUCTOR,
+                            it,
+                            listOf(this),
+                            arguments = args
+                        )
+                    )
+                }
+            }
         }
         return list
     }
@@ -137,12 +170,15 @@ object LombokExt : BaseExtension(), GenericCallback<PsiField, List<FieldLevelAnn
         } ?: emptyList()
     }
 
-    private fun isAllArgsConstructor(method: PsiMethod, fields: Collection<PsiField>): Boolean {
-        return method.hasParameters()
-                && fields.isNotEmpty()
-                && method.parameterList.parametersCount == fields.size
-                && MethodBodyInspector.isAllArgsConstructor(method, fields)
+    private fun PsiMethod.isAllArgsConstructor(fields: Collection<PsiField>): Boolean {
+        return parameterList.parametersCount == fields.size
+                && isFieldConstructor(fields)
     }
+
+    private fun PsiMethod.isFieldConstructor(fields: Collection<PsiField>) =
+        (hasParameters()
+                && fields.isNotEmpty()
+                && MethodBodyInspector.isAllArgsConstructor(this, fields))
 
     private fun isNoArgsConstructor(method: PsiMethod): Boolean {
         return !method.hasParameters() && MethodBodyInspector.isPureNoArgsConstructor(method)
