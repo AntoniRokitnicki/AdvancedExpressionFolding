@@ -80,7 +80,7 @@ public class ExperimentalTestData {
 
 
     <fold text='@NoArgsConstructor @AllArgsConstructor s' expand='false'>s</fold>tatic class ConstClass <fold text='{...}' expand='true'>{
-        <fold text='@Constructor(1) b' expand='false'>b</fold>oolean ok;
+        <fold text='@Constructor(2-1) b' expand='false'>b</fold>oolean ok;
         <fold text='@ToString S' expand='false'>S</fold>tring string;<fold text='' expand='false'>
 
         </fold><fold text='' expand='false'>public ConstClass() <fold text='{}' expand='true'>{

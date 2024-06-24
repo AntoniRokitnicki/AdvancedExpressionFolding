@@ -433,16 +433,16 @@ import java.util.logging.Logger;
 
     class Constructors {
         @NoArgsConstructor @AllArgsConstructor public class FiveConstructors {
-            @Constructor(1) @Constructor(2) @Constructor(3) private int field1;
-            @Constructor(2) @Constructor(3) private String field2;
-            @Constructor(3) private double field3;
+            @Constructor(2-1) @Constructor(3-1) @Constructor(4-1) private int field1;
+            @Constructor(3-2) @Constructor(4-2) private String field2;
+            @Constructor(4-3) private double field3;
             private boolean field4;
         }
 
         @NoArgsConstructor @AllArgsConstructor public class FiveConstructorsMod {
-            @Constructor(1,private) @Constructor(2,default) @Constructor(3,protected) private int field1;
-            @Constructor(2,default) @Constructor(3,protected) private String field2;
-            @Constructor(3,protected) private double field3;
+            @Constructor(2-1,private) @Constructor(3-1,default) @Constructor(4-1,protected) private int field1;
+            @Constructor(3-2,default) @Constructor(4-2,protected) private String field2;
+            @Constructor(4-3,protected) private double field3;
             private boolean field4;
         }
     }

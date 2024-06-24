@@ -14,12 +14,12 @@ import java.time.LocalDate;
  * {@link com.intellij.advancedExpressionFolding.FoldingTest#testNullableAnnotationTestData()}
  */
 @SuppressWarnings("ALL")
-@Getter @Serial public class NullableAnnotationTestData {
+@Serial public class NullableAnnotationTestData {
     
-    @Setter NullableAnnotationTestData!! data;
-    @Setter boolean ok;
+    @Getter @Setter NullableAnnotationTestData!! data;
+    @Getter @Setter boolean ok;
     
-    @Setter String? string;
+    @Getter @Setter String? string;
 
     
     private NullableAnnotationTestData!! data2;

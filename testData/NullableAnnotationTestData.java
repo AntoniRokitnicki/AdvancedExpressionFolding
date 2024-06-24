@@ -14,14 +14,14 @@ import java.time.LocalDate;</fold>
  * {@link com.intellij.advancedExpressionFolding.FoldingTest#testNullableAnnotationTestData()}
  */</fold>
 @SuppressWarnings("ALL")
-<fold text='@Getter @Serial p' expand='false'>p</fold>ublic class NullableAnnotationTestData {<fold text='' expand='false'>
+<fold text='@Serial p' expand='false'>p</fold>ublic class NullableAnnotationTestData {<fold text='' expand='false'>
 
     </fold><fold text='' expand='false'>private static final long serialVersionUID = 1234567L;</fold>
     <fold text='' expand='false'>@NotNull</fold>
-    <fold text='@Setter N' expand='false'>N</fold>ullableAnnotationTestData<fold text='!! ' expand='false'> </fold>data;
-    <fold text='@Setter b' expand='false'>b</fold>oolean ok;
+    <fold text='@Getter @Setter N' expand='false'>N</fold>ullableAnnotationTestData<fold text='!! ' expand='false'> </fold>data;
+    <fold text='@Getter @Setter b' expand='false'>b</fold>oolean ok;
     <fold text='' expand='false'>@Nullable</fold>
-    <fold text='@Setter S' expand='false'>S</fold>tring<fold text='? ' expand='false'> </fold>string;<fold text='' expand='false'>
+    <fold text='@Getter @Setter S' expand='false'>S</fold>tring<fold text='? ' expand='false'> </fold>string;<fold text='' expand='false'>
     </fold><fold text='' expand='false'>public NullableAnnotationTestData getData()<fold text=' { ' expand='false'> {
         </fold>return data;<fold text=' }' expand='false'>
     }</fold><fold text='' expand='false'></fold>
