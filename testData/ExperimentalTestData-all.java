@@ -80,7 +80,7 @@ public <fold text='🏛️' expand='false'>class</fold> ExperimentalTestData {
 
 
     <fold text='@NoArgsConstructor @AllArgsConstructor s' expand='false'><fold text='⚡' expand='false'>s</fold>tatic</fold> <fold text='🏛️' expand='false'>class</fold> ConstClass <fold text='{...}' expand='true'>{
-        <fold text='@Constructor(1) b' expand='false'><fold text='🔘' expand='false'>b</fold>oolean</fold> ok;
+        <fold text='@Constructor(2-1) b' expand='false'><fold text='🔘' expand='false'>b</fold>oolean</fold> ok;
         <fold text='@ToString S' expand='false'>S</fold>tring string;<fold text='' expand='false'>
 
         <fold text='' expand='false'></fold>public ConstClass() <fold text='{}' expand='true'>{

@@ -1093,9 +1093,9 @@
 
     <fold text='🏛️' expand='false'>class</fold> Constructors <fold text='{...}' expand='true'>{
         <fold text='@NoArgsConstructor @AllArgsConstructor p' expand='false'>p</fold>ublic <fold text='🏛️' expand='false'>class</fold> FiveConstructors <fold text='{...}' expand='true'>{
-            <fold text='@Constructor(1) @Constructor(2) @Constructor(3) p' expand='false'><fold text='🚫' expand='false'>p</fold>rivate</fold> <fold text='🔢' expand='false'>int</fold> field1;
-            <fold text='@Constructor(2) @Constructor(3) p' expand='false'><fold text='🚫' expand='false'>p</fold>rivate</fold> String field2;
-            <fold text='@Constructor(3) p' expand='false'><fold text='🚫' expand='false'>p</fold>rivate</fold> <fold text='⚖️' expand='false'>double</fold> field3;
+            <fold text='@Constructor(2-1) @Constructor(3-1) @Constructor(4-1) p' expand='false'><fold text='🚫' expand='false'>p</fold>rivate</fold> <fold text='🔢' expand='false'>int</fold> field1;
+            <fold text='@Constructor(3-2) @Constructor(4-2) p' expand='false'><fold text='🚫' expand='false'>p</fold>rivate</fold> String field2;
+            <fold text='@Constructor(4-3) p' expand='false'><fold text='🚫' expand='false'>p</fold>rivate</fold> <fold text='⚖️' expand='false'>double</fold> field3;
             <fold text='🚫' expand='false'>private</fold> <fold text='🔘' expand='false'>boolean</fold> field4;<fold text='' expand='false'>
             </fold><fold text='' expand='false'>public FiveConstructors() <fold text='{}' expand='true'>{
             }</fold><fold text='' expand='false'></fold>
@@ -1120,9 +1120,9 @@
         }</fold>
 
         <fold text='@NoArgsConstructor @AllArgsConstructor p' expand='false'>p</fold>ublic <fold text='🏛️' expand='false'>class</fold> FiveConstructorsMod <fold text='{...}' expand='true'>{
-            <fold text='@Constructor(1,private) @Constructor(2,default) @Constructor(3,protected) p' expand='false'><fold text='🚫' expand='false'>p</fold>rivate</fold> <fold text='🔢' expand='false'>int</fold> field1;
-            <fold text='@Constructor(2,default) @Constructor(3,protected) p' expand='false'><fold text='🚫' expand='false'>p</fold>rivate</fold> String field2;
-            <fold text='@Constructor(3,protected) p' expand='false'><fold text='🚫' expand='false'>p</fold>rivate</fold> <fold text='⚖️' expand='false'>double</fold> field3;
+            <fold text='@Constructor(2-1,private) @Constructor(3-1,default) @Constructor(4-1,protected) p' expand='false'><fold text='🚫' expand='false'>p</fold>rivate</fold> <fold text='🔢' expand='false'>int</fold> field1;
+            <fold text='@Constructor(3-2,default) @Constructor(4-2,protected) p' expand='false'><fold text='🚫' expand='false'>p</fold>rivate</fold> String field2;
+            <fold text='@Constructor(4-3,protected) p' expand='false'><fold text='🚫' expand='false'>p</fold>rivate</fold> <fold text='⚖️' expand='false'>double</fold> field3;
             <fold text='🚫' expand='false'>private</fold> <fold text='🔘' expand='false'>boolean</fold> field4;<fold text='' expand='false'>
             </fold><fold text='' expand='false'>public FiveConstructorsMod() <fold text='{}' expand='true'>{
             }</fold></fold><fold text='' expand='false'>

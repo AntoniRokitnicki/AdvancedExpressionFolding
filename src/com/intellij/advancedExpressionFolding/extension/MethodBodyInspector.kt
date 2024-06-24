@@ -74,15 +74,22 @@ object MethodBodyInspector {
                     ?.text == "super"
     }
 
-    fun isAllArgsConstructor(method: PsiMethod, fields: Collection<PsiField>): Boolean {
+    fun isAllArgsConstructor(
+        method: PsiMethod,
+        fields: Collection<PsiField>
+    ) = createParameterFieldMap(method, fields)?.isNotEmpty() == true
+
+    fun createParameterFieldMap(
+        method: PsiMethod,
+        fields: Collection<PsiField>
+    ): Map<PsiParameter, PsiField>? {
         val body = method.body?.takeIf {
             !it.hasComments()
-        } ?: return false
+        } ?: return null
         val statements = body.statements.toMutableList()
 
         val fieldToStatementMap = mutableMapOf<PsiField, PsiStatement>()
         val statementToParameterMap = mutableMapOf<PsiStatement, PsiParameter>()
-
         statements.forEach { statement ->
             fields.forEach { field ->
                 val reference = field.findLocalReference(statement)
@@ -100,22 +107,41 @@ object MethodBodyInspector {
         if (statements.size == fieldToStatementMap.size + 1) {
             (body.statements.toList() - statementToParameterMap.keys).singleOrNull()?.takeIf {
                 isEmptySuperCall(it)
-            }?: return false
+            } ?: return null
         } else {
-            (statements.size == fieldToStatementMap.size).on() ?: return false
+            if (statements.size != fieldToStatementMap.size) {
+                return null
+            }
         }
 
-        if (fieldToStatementMap.sameSize(statementToParameterMap) &&
+        if (fieldToStatementMap.size != statementToParameterMap.size ||
             !(fieldToStatementMap.isUnique() && statementToParameterMap.isUnique())) {
-            return false
+            return null
         }
 
-        fieldToStatementMap.all { (field, statement) ->
-            val param = statementToParameterMap[statement] ?: return@all false
-            !method.isDirtyAssignment(statement, field, param)
-        }.on() ?: return false
-        return true
+        return if (isNotDirty(fieldToStatementMap, statementToParameterMap, method)) {
+            statementToParameterMap.mapNotNull {
+                val statement = it.key
+                val field = fieldToStatementMap.entries.firstOrNull { entry ->
+                    entry.value == statement
+                }?.key ?: return@mapNotNull null
+                it.value to field
+            }.toMap()
+        } else {
+            null
+
+        }
     }
+
+    private fun isNotDirty(
+        fieldToStatementMap: MutableMap<PsiField, PsiStatement>,
+        statementToParameterMap: MutableMap<PsiStatement, PsiParameter>,
+        method: PsiMethod
+    ) = fieldToStatementMap.all { (field, statement) ->
+        val param = statementToParameterMap[statement] ?: return@all false
+        !method.isDirtyAssignment(statement, field, param)
+    }
+
 }
 
 

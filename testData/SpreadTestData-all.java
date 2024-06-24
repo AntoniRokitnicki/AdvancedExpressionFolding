@@ -54,7 +54,7 @@ public <fold text='🏛️' expand='false'>class</fold> SpreadTestData {
     </fold>}</fold>
 
     <fold text='@Getter @Setter s' expand='false'><fold text='⚡' expand='false'>s</fold>tatic</fold> <fold text='🏛️' expand='false'>class</fold> Data <fold text='{...}' expand='true'>{
-        <fold text='@Constructor(0) D' expand='false'>D</fold>ata data;
+        <fold text='@Constructor(1-1) D' expand='false'>D</fold>ata data;
         <fold text='🔘' expand='false'>boolean</fold> ok;
         String string;<fold text='' expand='false'>
 

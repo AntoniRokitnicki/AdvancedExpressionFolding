@@ -78,7 +78,7 @@ public class ExperimentalTestData {
 
 
     @NoArgsConstructor @AllArgsConstructor static class ConstClass {
-        @Constructor(1) boolean ok;
+        @Constructor(2-1) boolean ok;
         @ToString String string;
         public String toString() {
             return new StringJoiner(", ", ConstClass.class.getSimpleName() + "[", "]")
