@@ -19,7 +19,7 @@ fun MethodName.showRenameDialog(): Pair<Action, String>? {
 
     val dialogWrapper = object : DialogWrapper(true) {
         init {
-            title = "Choose a new folding for method $name"
+            title = "Choose a new folding for method $name (right now it works only for methods with qualifier)"
             init()
         }
 
