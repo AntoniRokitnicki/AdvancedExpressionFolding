@@ -9,7 +9,7 @@ pioneer = "2.2.0"
 
 # plugins
 kotlin = "1.9.24"
-changelog = "2.2.0"
+changelog = "2.2.1"
 gradleIntelliJPlugin = "1.17.4"
 qodana = "0.1.13"
 kover = "0.7.6"
