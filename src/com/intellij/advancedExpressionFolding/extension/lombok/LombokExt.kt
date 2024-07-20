@@ -86,12 +86,9 @@ object LombokExt : BaseExtension(), GenericCallback<PsiField, List<FieldLevelAnn
         fields: Collection<PsiField>,
         fieldLevelAnnotations: MutableList<FieldLevelAnnotation>
     ): List<ClassLevelAnnotation> {
-
         val classLevelAnnotations = constructors.flatMapIndexed { index: Int, psiMethod: PsiMethod ->
             psiMethod.foldArgsConstructor(fields, fieldLevelAnnotations, index)
         }
-
-
         return classLevelAnnotations
     }
 
