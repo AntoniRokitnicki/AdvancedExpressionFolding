@@ -26,6 +26,7 @@ object LombokExt : BaseExtension(), GenericCallback<PsiField, List<FieldLevelAnn
 
     fun PsiClass.addLombokSupport(): List<ClassLevelAnnotation> {
         if (isInterface) {
+            //TODO: it.modifier() != EModifier.DEFAULT - tutaj ten default to chyba wszystko, a chodzi o default interfejsowy
             val result: Map<String, Map<MethodType, PsiMethod>> = methodsNotStatic
                 .mapNotNull { method ->
                     method.findMethodType().takeIf {
