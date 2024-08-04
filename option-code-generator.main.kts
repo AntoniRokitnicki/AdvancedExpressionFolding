@@ -1,11 +1,10 @@
 #!/usr/bin/env -S kotlinc -script --
 import java.io.File
 
-val basePath = System.getProperty("project.dir", "/Users/ant/h/AdvancedExpressionFolding")
+val basePath: String = System.getProperty("project.dir", "/Users/ant/h/AdvancedExpressionFolding")
 val varName = System.getProperty("varName") ?: TODO("Property varName not found")
 val varText = System.getProperty("varText") ?: TODO("Property varText not found")
 
-TODO(varName)
 val propertyFile = "$basePath/src/com/intellij/advancedExpressionFolding/AdvancedExpressionFoldingSettings.kt"
 propertyFile.doInFile {
     it.insertBeforeMarker("// NEW OPTION VAR", "        override var $varName: Boolean = true,")
