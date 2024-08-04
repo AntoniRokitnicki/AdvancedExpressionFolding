@@ -26,7 +26,7 @@ object PsiClassExt : BaseExtension() {
 
     @JvmStatic
     fun createExpression(clazz: PsiClass): Expression? {
-        (clazz.isIgnored() || !lombok || clazz.isRecord || clazz.isInterface).off() ?: return null
+        (clazz.isIgnored() || !lombok || clazz.isRecord).off() ?: return null
 
         val serialField = isSerial(clazz)
         if (hasLombokImports(clazz) && serialField == null) {

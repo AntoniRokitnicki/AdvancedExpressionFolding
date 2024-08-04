@@ -28,6 +28,36 @@ object LombokExt : BaseExtension(), GenericCallback<PsiField, List<FieldLevelAnn
         val classLevelAnnotations = mutableListOf<ClassLevelAnnotation>()
         val fieldLevelAnnotations = mutableListOf<FieldLevelAnnotation>()
 
+        if (isInterface) {
+            val result: Map<String, Map<MethodType, PsiMethod>> = methodsNotStatic
+                .mapNotNull { method ->
+                    method.findMethodType().takeIf {
+                        it == GETTER || it == SETTER
+                    }?.let { methodType ->
+                        method.guessPropertyName().let { propertyName ->
+                            propertyName to (methodType to method)
+                        }
+                    }
+                }
+                .groupBy {
+                    it.first
+                }
+                .mapValues { (_, values) ->
+                    values.associate { it.second }
+                }
+            //TODO: join getter and setters into 1
+            // result.map { (propertyName, methodTypeMap)  -> propertyName }
+            val a = result
+                .flatMap { (_, methodTypeMap) ->
+                    methodTypeMap.entries
+                }.map { (methodType, method) ->
+                    method
+                    //TODO:
+                }
+
+
+        }
+
         classLevelAnnotations += foldLog(this.fields)
         classLevelAnnotations += foldBuilder()
         classLevelAnnotations += foldNoArgsConstructor(this.constructors)
