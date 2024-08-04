@@ -6,6 +6,7 @@ junit = "5.11.0-M2"
 jackson = "2.17.2"
 jsr305 = "3.0.2"
 pioneer = "2.2.0"
+clikt = "4.4.0"
 
 # plugins
 kotlin = "1.9.24"
@@ -23,6 +24,7 @@ junit-jupiter-params = { group = "org.junit.jupiter", name = "junit-jupiter-para
 jackson-dataformat-toml = { group = "com.fasterxml.jackson.dataformat", name = "jackson-dataformat-toml", version.ref = "jackson" }
 jsr305 = { group = "com.google.code.findbugs", name = "jsr305", version.ref = "jsr305" }
 junit-pioneer = { group = "org.junit-pioneer", name = "junit-pioneer", version.ref = "pioneer" }
+clikt = { group = "com.github.ajalt.clikt", name = "clikt", version.ref = "clikt" }
 
 [plugins]
 changelog = { id = "org.jetbrains.changelog", version.ref = "changelog" }
