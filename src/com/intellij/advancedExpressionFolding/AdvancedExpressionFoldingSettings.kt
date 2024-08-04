@@ -40,6 +40,7 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
         val dynamic: Boolean
         val arithmeticExpressions: Boolean
         val emojify: Boolean
+        val interfaceExtensionProperties: Boolean
         // NEW OPTION VAL
 
         var experimental: Boolean
@@ -109,6 +110,7 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
         override var dynamic: Boolean = true,
         override var arithmeticExpressions: Boolean = true,
         override var emojify: Boolean = false,
+        override var interfaceExtensionProperties: Boolean = true,
         // NEW OPTION VAR
 
         override var memoryImprovement: Boolean = true,
