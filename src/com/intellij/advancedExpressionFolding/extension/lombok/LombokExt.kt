@@ -25,9 +25,6 @@ object LombokExt : BaseExtension(), GenericCallback<PsiField, List<FieldLevelAnn
     }
 
     fun PsiClass.addLombokSupport(): List<ClassLevelAnnotation> {
-        val classLevelAnnotations = mutableListOf<ClassLevelAnnotation>()
-        val fieldLevelAnnotations = mutableListOf<FieldLevelAnnotation>()
-
         if (isInterface) {
             val result: Map<String, Map<MethodType, PsiMethod>> = methodsNotStatic
                 .mapNotNull { method ->
@@ -45,8 +42,7 @@ object LombokExt : BaseExtension(), GenericCallback<PsiField, List<FieldLevelAnn
                 .mapValues { (_, values) ->
                     values.associate { it.second }
                 }
-            //TODO: join getter and setters into 1
-            // result.map { (propertyName, methodTypeMap)  -> propertyName }
+            //TODO: dont join getter and setter, since method references are needed
             val a = result
                 .flatMap { (_, methodTypeMap) ->
                     methodTypeMap.entries
@@ -54,9 +50,11 @@ object LombokExt : BaseExtension(), GenericCallback<PsiField, List<FieldLevelAnn
                     method
                     //TODO:
                 }
-
-
+            return emptyList()
         }
+
+        val classLevelAnnotations = mutableListOf<ClassLevelAnnotation>()
+        val fieldLevelAnnotations = mutableListOf<FieldLevelAnnotation>()
 
         classLevelAnnotations += foldLog(this.fields)
         classLevelAnnotations += foldBuilder()
