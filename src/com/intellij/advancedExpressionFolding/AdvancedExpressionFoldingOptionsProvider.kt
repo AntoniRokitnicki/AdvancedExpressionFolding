@@ -216,6 +216,11 @@ class AdvancedExpressionFoldingOptionsProvider : AbstractExpressionFoldingOption
             mapOf("EmojifyTestData.java" to null),
         )
         
+        checkBox("Converts",
+        state::interfaceExtensionProperties,
+        mapOf("InterfaceExtensionPropertiesTestData.java" to null),
+    )
+    
         // NEW OPTION
 
         checkBox(

@@ -391,6 +391,14 @@ newName = "mainek3"
     fun testEmojifyTestData() {
         doFoldingTest(state::emojify)
     }
+
+    /**
+     * [data.InterfaceExtensionPropertiesTestData]
+     */
+    @Test
+    fun testInterfaceExtensionPropertiesTestData() {
+        doFoldingTest(state::interfaceExtensionProperties)
+    }
     // NEW OPTION
     /**
      * [data.ExperimentalTestData]
