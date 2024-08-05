@@ -11,16 +11,14 @@ import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiMethod
 
 data class MethodLevelAnnotation(
-    val classAnnotation: LombokFoldingAnnotation,
+    val classAnnotation: LombokFoldingAnnotation, //TODO: custom enum?
     val method: PsiMethod,
-    //val arguments: List<String> = emptyList(),
 )
 
 object LombokMethodExt : GenericCallback<PsiMethod, List<MethodLevelAnnotation>> {
     override val callbackKey: Key<() -> List<MethodLevelAnnotation>> by lazy {
         Key.create("lombok-method-callback")
     }
-
 
     fun PsiClass.interfaceSupport(): List<ClassLevelAnnotation>? {
         val k = methods
