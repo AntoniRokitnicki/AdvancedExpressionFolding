@@ -26,32 +26,7 @@ object LombokExt : BaseExtension(), GenericCallback<PsiField, List<FieldLevelAnn
 
     fun PsiClass.addLombokSupport(): List<ClassLevelAnnotation> {
         if (isInterface) {
-            //TODO: it.modifier() != EModifier.DEFAULT - tutaj ten default to chyba wszystko, a chodzi o default interfejsowy
-            val result: Map<String, Map<MethodType, PsiMethod>> = methodsNotStatic
-                .mapNotNull { method ->
-                    method.findMethodType().takeIf {
-                        it == GETTER || it == SETTER
-                    }?.let { methodType ->
-                        method.guessPropertyName().let { propertyName ->
-                            propertyName to (methodType to method)
-                        }
-                    }
-                }
-                .groupBy {
-                    it.first
-                }
-                .mapValues { (_, values) ->
-                    values.associate { it.second }
-                }
-            //TODO: dont join getter and setter, since method references are needed
-            val a = result
-                .flatMap { (_, methodTypeMap) ->
-                    methodTypeMap.entries
-                }.map { (methodType, method) ->
-                    method
-                    //TODO:
-                }
-            return emptyList()
+            return interfaceSupport() ?: emptyList()
         }
 
         val classLevelAnnotations = mutableListOf<ClassLevelAnnotation>()
@@ -76,6 +51,26 @@ object LombokExt : BaseExtension(), GenericCallback<PsiField, List<FieldLevelAnn
 
         applyFieldLevel(fieldOptimizations(fieldLevelMap))
         return classLevelAnnotations
+    }
+
+    private fun PsiClass.interfaceSupport(): List<ClassLevelAnnotation>? {
+        val k = methods
+        val methodsNotStatic = methodsNotStatic
+        val filterNot = methodsNotStatic.filterNot {
+            isInterfaceDefault()
+        }
+        val r = filterNot.mapNotNull { method ->
+            method.findMethodType().takeIf {
+                it == GETTER
+                        //TODO: || it == SETTER
+            }?.let { type ->
+                method to type
+
+            }
+        }
+        //TODO: dont join getter and setter, since method references are needed
+
+        return null
     }
 
     private fun applyFieldLevel(fieldLevelMap: Map<PsiField, List<FieldLevelAnnotation>>) {
