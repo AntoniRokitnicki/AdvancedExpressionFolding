@@ -3,6 +3,8 @@ package data;
 @SuppressWarnings("ALL")
 public class InterfaceExtensionPropertiesTestData {
 
+    //TODO: default & static methods examples - all should be ignored
+
     public interface User {
         String getName();
         void setName(String name);
@@ -212,33 +214,16 @@ public class InterfaceExtensionPropertiesTestData {
         property String name { get; set; }
         property int age { get; }
      }
-
      public interface User {
         String name { get; set; }
         int age { get; }
      }
 
-
      public interface User {
-        @Getter @Setter String name;
+        @Getter String name; <inlay jump to setter?>
+        @Setter String name; <inlay jump to getter?>
         @Getter int age;
      }
+    **/
 
-    public interface User {
-         /**
-         * Gets the name of the user.
-         * @return the name of the user
-         *
-        /**
-         * Sets the name of the user.
-         * @param name the name to set
-         *
-        @Getter @Setter String name;
-        **
-         * Gets the age of the user.
-         * @return the age of the user
-         *
-        @Getter int age;
-    }
-     */
 }

@@ -98,6 +98,9 @@ fun PsiModifierListOwner.isPrivate() = hasModifierProperty(PsiModifier.PRIVATE)
 fun PsiModifierListOwner.isDefault() = !isPublic() && !isProtected() && !isPrivate()
 fun PsiModifierListOwner.isStatic() = hasModifierProperty(PsiModifier.STATIC)
 fun PsiModifierListOwner.isFinal() = hasModifierProperty(PsiModifier.FINAL)
+
+fun PsiModifierListOwner.isInterfaceDefault() = hasModifierProperty(PsiModifier.DEFAULT)
+
 fun PsiModifierListOwner.isNotStatic() = !isStatic()
 fun PsiModifierListOwner.isNotFinal() = !isFinal()
 
