@@ -11,7 +11,7 @@ import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiMethod
 
 data class MethodLevelAnnotation(
-    val classAnnotation: LombokFoldingAnnotation, //TODO: custom enum?
+    val classAnnotation: MethodType, //TODO: custom enum?
     val method: PsiMethod,
 )
 
@@ -32,6 +32,7 @@ object LombokMethodExt : GenericCallback<PsiMethod, List<MethodLevelAnnotation>>
                 //TODO: || it == SETTER
             }?.let { type ->
                 method to type
+                initCallback(method, listOf(MethodLevelAnnotation(type, method)))
 
             }
         }
