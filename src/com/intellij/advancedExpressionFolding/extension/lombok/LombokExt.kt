@@ -3,6 +3,7 @@ package com.intellij.advancedExpressionFolding.extension.lombok
 import com.intellij.advancedExpressionFolding.extension.*
 import com.intellij.advancedExpressionFolding.extension.PsiClassExt.ClassLevelAnnotation
 import com.intellij.advancedExpressionFolding.extension.lombok.LombokFoldingAnnotation.*
+import com.intellij.advancedExpressionFolding.extension.lombok.LombokMethodExt.interfaceSupport
 import com.intellij.advancedExpressionFolding.extension.lombok.MethodType.*
 import com.intellij.openapi.util.Key
 import com.intellij.openapi.util.NlsSafe
@@ -21,7 +22,7 @@ data class FieldLevelAnnotation(
 
 object LombokExt : BaseExtension(), GenericCallback<PsiField, List<FieldLevelAnnotation>> {
     override val callbackKey: Key<() -> List<FieldLevelAnnotation>> by lazy {
-        Key.create("lombok-callback")
+        Key.create("lombok-field-callback")
     }
 
     fun PsiClass.addLombokSupport(): List<ClassLevelAnnotation> {
@@ -53,25 +54,6 @@ object LombokExt : BaseExtension(), GenericCallback<PsiField, List<FieldLevelAnn
         return classLevelAnnotations
     }
 
-    private fun PsiClass.interfaceSupport(): List<ClassLevelAnnotation>? {
-        val k = methods
-        val methodsNotStatic = methodsNotStatic
-        val filterNot = methodsNotStatic.filterNot {
-            isInterfaceDefault()
-        }
-        val r = filterNot.mapNotNull { method ->
-            method.findMethodType().takeIf {
-                it == GETTER
-                        //TODO: || it == SETTER
-            }?.let { type ->
-                method to type
-
-            }
-        }
-        //TODO: dont join getter and setter, since method references are needed
-
-        return null
-    }
 
     private fun applyFieldLevel(fieldLevelMap: Map<PsiField, List<FieldLevelAnnotation>>) {
         fieldLevelMap
@@ -407,7 +389,7 @@ object LombokExt : BaseExtension(), GenericCallback<PsiField, List<FieldLevelAnn
         methodType: MethodType
     ) = this[methodType] ?: emptyList()
 
-    private fun PsiMethod.findMethodType(): MethodType =
+    fun PsiMethod.findMethodType(): MethodType =
         when {
             isGetter() -> GETTER
             isSetter() -> SETTER
