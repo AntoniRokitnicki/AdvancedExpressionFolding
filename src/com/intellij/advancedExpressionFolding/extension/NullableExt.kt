@@ -29,7 +29,7 @@ object NullableExt : BaseExtension() {
         if (interfaceExtensionProperties) {
             element.callback?.invoke()?.let { annotations ->
                 annotations.forEach { methodLevelAnnotations ->
-                    //TODO:
+                    //TODO: render the annotations
                 }
             }
 
