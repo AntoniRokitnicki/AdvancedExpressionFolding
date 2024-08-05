@@ -58,14 +58,7 @@ object LombokExt : BaseExtension(), GenericCallback<PsiField, List<FieldLevelAnn
     private fun applyFieldLevel(fieldLevelMap: Map<PsiField, List<FieldLevelAnnotation>>) {
         fieldLevelMap
             .forEach { (field, annotations) ->
-                try {
-                    field.callback = {
-                        annotations
-                    }
-                    getNonSyntheticExpression(field)
-                } finally {
-                    field.callback = null
-                }
+                initCallback(field, annotations)
             }
     }
 
