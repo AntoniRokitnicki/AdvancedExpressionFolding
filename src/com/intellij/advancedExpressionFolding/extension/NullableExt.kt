@@ -10,6 +10,7 @@ import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFolding
 import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFoldingAnnotation.NULLABLE
 import com.intellij.advancedExpressionFolding.extension.lombok.LombokExt
 import com.intellij.advancedExpressionFolding.extension.lombok.LombokExt.callback
+import com.intellij.advancedExpressionFolding.extension.lombok.LombokMethodExt.callback
 import com.intellij.advancedExpressionFolding.extension.methodcall.dynamic.DynamicExt
 import com.intellij.openapi.editor.Document
 import com.intellij.psi.*
@@ -23,6 +24,16 @@ object NullableExt : BaseExtension() {
     @JvmStatic
     fun createExpression(element: PsiMethod, document: Document): Expression? {
         val list = exprList(fieldAnnotationExpression(element.annotations, element.returnTypeElement))
+
+
+        if (interfaceExtensionProperties) {
+            element.callback?.invoke()?.let { annotations ->
+                annotations.forEach { methodLevelAnnotations ->
+                    //TODO:
+                }
+            }
+
+        }
 
         if (experimental) {
             list += element.annotations.filter {
