@@ -4,212 +4,211 @@ package data;
 public class InterfaceExtensionPropertiesTestData {
 
     //TODO: default & static methods examples - all should be ignored
-
-    public interface User {
+    public interface User <fold text='{...}' expand='true'>{
         String getName();
         void setName(String name);
 
         int getAge();
         void setAge(int age);
-    }
+    }</fold>
 
-    public interface PublicUser {
+    public interface PublicUser <fold text='{...}' expand='true'>{
         public String getName();
         public void setName(String name);
 
         public int getAge();
         public void setAge(int age);
-    }
+    }</fold>
 
 
-    public interface ReadOnlyUser {
+    public interface ReadOnlyUser <fold text='{...}' expand='true'>{
         String getName();
         int getAge();
-    }
+    }</fold>
 
-    public interface WriteOnlyUser {
+    public interface WriteOnlyUser <fold text='{...}' expand='true'>{
         void setName(String name);
         void setAge(int age);
-    }
+    }</fold>
 
-    public interface MixedAccessUser {
+    public interface MixedAccessUser <fold text='{...}' expand='true'>{
         String getName();
         void setName(String name);
 
         int getAge();
-    }
+    }</fold>
 
-    public interface MixedAccessUser2 {
+    public interface MixedAccessUser2 <fold text='{...}' expand='true'>{
         String getName();
         void setName(String name);
 
         void setAge(int age);
-    }
+    }</fold>
 
-    public interface SingleGetterUser {
+    public interface SingleGetterUser <fold text='{...}' expand='true'>{
         String getName();
-    }
+    }</fold>
 
-    public interface SingleSetterUser {
+    public interface SingleSetterUser <fold text='{...}' expand='true'>{
         void setName(String name);
-    }
+    }</fold>
 
-    public interface SinglePropertyUser {
+    public interface SinglePropertyUser <fold text='{...}' expand='true'>{
         String getName();
         void setName(String name);
-    }
+    }</fold>
 
-    class Javadoced {
-        /**
+    class Javadoced <fold text='{...}' expand='true'>{
+        <fold text='/** Interface representing a user with both getter and setter methods for name and age. */' expand='true'>/**
          * Interface representing a user with both getter and setter methods for name and age.
-         */
-        public interface User {
-            /**
+         */</fold>
+        public interface User <fold text='{...}' expand='true'>{
+            <fold text='/** Gets the name of the user. ...*/' expand='true'>/**
              * Gets the name of the user.
              * @return the name of the user
-             */
+             */</fold>
             String getName();
 
-            /**
+            <fold text='/** Sets the name of the user. ...*/' expand='true'>/**
              * Sets the name of the user.
              * @param name the name to set
-             */
+             */</fold>
             void setName(String name);
 
-            /**
+            <fold text='/** Gets the age of the user. ...*/' expand='true'>/**
              * Gets the age of the user.
              * @return the age of the user
-             */
+             */</fold>
             int getAge();
 
-            /**
+            <fold text='/** Sets the age of the user. ...*/' expand='true'>/**
              * Sets the age of the user.
              * @param age the age to set
-             */
+             */</fold>
             void setAge(int age);
-        }
+        }</fold>
 
-        /**
+        <fold text='/** Interface representing a read-only user with getter methods for name and age. */' expand='true'>/**
          * Interface representing a read-only user with getter methods for name and age.
-         */
-        public interface ReadOnlyUser {
-            /**
+         */</fold>
+        public interface ReadOnlyUser <fold text='{...}' expand='true'>{
+            <fold text='/** Gets the name of the user. ...*/' expand='true'>/**
              * Gets the name of the user.
              * @return the name of the user
-             */
+             */</fold>
             String getName();
 
-            /**
+            <fold text='/** Gets the age of the user. ...*/' expand='true'>/**
              * Gets the age of the user.
              * @return the age of the user
-             */
+             */</fold>
             int getAge();
-        }
+        }</fold>
 
-        /**
+        <fold text='/** Interface representing a write-only user with setter methods for name and age. */' expand='true'>/**
          * Interface representing a write-only user with setter methods for name and age.
-         */
-        public interface WriteOnlyUser {
-            /**
+         */</fold>
+        public interface WriteOnlyUser <fold text='{...}' expand='true'>{
+            <fold text='/** Sets the name of the user. ...*/' expand='true'>/**
              * Sets the name of the user.
              * @param name the name to set
-             */
+             */</fold>
             void setName(String name);
 
-            /**
+            <fold text='/** Sets the age of the user. ...*/' expand='true'>/**
              * Sets the age of the user.
              * @param age the age to set
-             */
+             */</fold>
             void setAge(int age);
-        }
+        }</fold>
 
-        /**
+        <fold text='/** Interface representing a user with mixed access: both getter and setter for name, and getter only for age. */' expand='true'>/**
          * Interface representing a user with mixed access: both getter and setter for name, and getter only for age.
-         */
-        public interface MixedAccessUser {
-            /**
+         */</fold>
+        public interface MixedAccessUser <fold text='{...}' expand='true'>{
+            <fold text='/** Gets the name of the user. ...*/' expand='true'>/**
              * Gets the name of the user.
              * @return the name of the user
-             */
+             */</fold>
             String getName();
 
-            /**
+            <fold text='/** Sets the name of the user. ...*/' expand='true'>/**
              * Sets the name of the user.
              * @param name the name to set
-             */
+             */</fold>
             void setName(String name);
 
-            /**
+            <fold text='/** Gets the age of the user. ...*/' expand='true'>/**
              * Gets the age of the user.
              * @return the age of the user
-             */
+             */</fold>
             int getAge();
-        }
+        }</fold>
 
-        /**
+        <fold text='/** Interface representing a user with mixed access: both getter and setter for name, and setter only for age. */' expand='true'>/**
          * Interface representing a user with mixed access: both getter and setter for name, and setter only for age.
-         */
-        public interface MixedAccessUser2 {
-            /**
+         */</fold>
+        public interface MixedAccessUser2 <fold text='{...}' expand='true'>{
+            <fold text='/** Gets the name of the user. ...*/' expand='true'>/**
              * Gets the name of the user.
              * @return the name of the user
-             */
+             */</fold>
             String getName();
 
-            /**
+            <fold text='/** Sets the name of the user. ...*/' expand='true'>/**
              * Sets the name of the user.
              * @param name the name to set
-             */
+             */</fold>
             void setName(String name);
 
-            /**
+            <fold text='/** Sets the age of the user. ...*/' expand='true'>/**
              * Sets the age of the user.
              * @param age the age to set
-             */
+             */</fold>
             void setAge(int age);
-        }
+        }</fold>
 
-        /**
+        <fold text='/** Interface representing a user with a single getter method for name. */' expand='true'>/**
          * Interface representing a user with a single getter method for name.
-         */
-        public interface SingleGetterUser {
-            /**
+         */</fold>
+        public interface SingleGetterUser <fold text='{...}' expand='true'>{
+            <fold text='/** Gets the name of the user. ...*/' expand='true'>/**
              * Gets the name of the user.
              * @return the name of the user
-             */
+             */</fold>
             String getName();
-        }
+        }</fold>
 
-        /**
+        <fold text='/** Interface representing a user with a single setter method for name. */' expand='true'>/**
          * Interface representing a user with a single setter method for name.
-         */
-        public interface SingleSetterUser {
-            /**
+         */</fold>
+        public interface SingleSetterUser <fold text='{...}' expand='true'>{
+            <fold text='/** Sets the name of the user. ...*/' expand='true'>/**
              * Sets the name of the user.
              * @param name the name to set
-             */
+             */</fold>
             void setName(String name);
-        }
+        }</fold>
 
-        /**
+        <fold text='/** Interface representing a user with both getter and setter methods for name. */' expand='true'>/**
          * Interface representing a user with both getter and setter methods for name.
-         */
-        public interface SinglePropertyUser {
-            /**
+         */</fold>
+        public interface SinglePropertyUser <fold text='{...}' expand='true'>{
+            <fold text='/** Gets the name of the user. ...*/' expand='true'>/**
              * Gets the name of the user.
              * @return the name of the user
-             */
+             */</fold>
             String getName();
 
-            /**
+            <fold text='/** Sets the name of the user. ...*/' expand='true'>/**
              * Sets the name of the user.
              * @param name the name to set
-             */
+             */</fold>
             void setName(String name);
-        }
-    }
+        }</fold>
+    }</fold>
 
-    /**
+    <fold text='/**     public interface User { ...*/' expand='true'>/**
      public interface User {
         property String name { get; set; }
         property int age { get; }
@@ -224,6 +223,6 @@ public class InterfaceExtensionPropertiesTestData {
         @Setter String name; <inlay jump to getter?>
         @Getter int age;
      }
-    **/
+    **/</fold>
 
 }

@@ -4,7 +4,6 @@ package data;
 public class InterfaceExtensionPropertiesTestData {
 
     //TODO: default & static methods examples - all should be ignored
-
     public interface User {
         String getName();
         void setName(String name);

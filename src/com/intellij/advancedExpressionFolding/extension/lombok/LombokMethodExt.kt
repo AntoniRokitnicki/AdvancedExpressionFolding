@@ -12,7 +12,6 @@ import com.intellij.psi.PsiMethod
 
 data class MethodLevelAnnotation(
     val classAnnotation: MethodType, //TODO: custom enum?
-    val method: PsiMethod,
 )
 
 object LombokMethodExt : GenericCallback<PsiMethod, List<MethodLevelAnnotation>> {
@@ -31,9 +30,7 @@ object LombokMethodExt : GenericCallback<PsiMethod, List<MethodLevelAnnotation>>
                 it == GETTER
                 //TODO: || it == SETTER
             }?.let { type ->
-                method to type
-                initCallback(method, listOf(MethodLevelAnnotation(type, method)))
-
+                initCallback(method, listOf(MethodLevelAnnotation(type)))
             }
         }
         //TODO: dont join getter and setter, since method references are needed

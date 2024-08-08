@@ -32,7 +32,6 @@ object NullableExt : BaseExtension() {
                     //TODO: render the annotations
                 }
             }
-
         }
 
         if (experimental) {
