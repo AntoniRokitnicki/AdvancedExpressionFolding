@@ -13,10 +13,10 @@ public class InterfaceExtensionPropertiesTestData {
     }
 
     public interface PublicUser {
-        public @Getter String name;
+        @Getter Sublic String name;
         public void setName(String name);
 
-        public @Getter int age;
+        @Getter iublic int age;
         public void setAge(int age);
     }
 
@@ -63,11 +63,11 @@ public class InterfaceExtensionPropertiesTestData {
          * Interface representing a user with both getter and setter methods for name and age.
          */
         public interface User {
-            /**
+            @Getter S**
              * Gets the name of the user.
              * @return the name of the user
              */
-            @Getter String name;
+            String name;
 
             /**
              * Sets the name of the user.
@@ -75,11 +75,11 @@ public class InterfaceExtensionPropertiesTestData {
              */
             void setName(String name);
 
-            /**
+            @Getter i**
              * Gets the age of the user.
              * @return the age of the user
              */
-            @Getter int age;
+            int age;
 
             /**
              * Sets the age of the user.
@@ -92,17 +92,17 @@ public class InterfaceExtensionPropertiesTestData {
          * Interface representing a read-only user with getter methods for name and age.
          */
         public interface ReadOnlyUser {
-            /**
+            @Getter S**
              * Gets the name of the user.
              * @return the name of the user
              */
-            @Getter String name;
+            String name;
 
-            /**
+            @Getter i**
              * Gets the age of the user.
              * @return the age of the user
              */
-            @Getter int age;
+            int age;
         }
 
         /**
@@ -126,11 +126,11 @@ public class InterfaceExtensionPropertiesTestData {
          * Interface representing a user with mixed access: both getter and setter for name, and getter only for age.
          */
         public interface MixedAccessUser {
-            /**
+            @Getter S**
              * Gets the name of the user.
              * @return the name of the user
              */
-            @Getter String name;
+            String name;
 
             /**
              * Sets the name of the user.
@@ -138,22 +138,22 @@ public class InterfaceExtensionPropertiesTestData {
              */
             void setName(String name);
 
-            /**
+            @Getter i**
              * Gets the age of the user.
              * @return the age of the user
              */
-            @Getter int age;
+            int age;
         }
 
         /**
          * Interface representing a user with mixed access: both getter and setter for name, and setter only for age.
          */
         public interface MixedAccessUser2 {
-            /**
+            @Getter S**
              * Gets the name of the user.
              * @return the name of the user
              */
-            @Getter String name;
+            String name;
 
             /**
              * Sets the name of the user.
@@ -172,11 +172,11 @@ public class InterfaceExtensionPropertiesTestData {
          * Interface representing a user with a single getter method for name.
          */
         public interface SingleGetterUser {
-            /**
+            @Getter S**
              * Gets the name of the user.
              * @return the name of the user
              */
-            @Getter String name;
+            String name;
         }
 
         /**
@@ -194,11 +194,11 @@ public class InterfaceExtensionPropertiesTestData {
          * Interface representing a user with both getter and setter methods for name.
          */
         public interface SinglePropertyUser {
-            /**
+            @Getter S**
              * Gets the name of the user.
              * @return the name of the user
              */
-            @Getter String name;
+            String name;
 
             /**
              * Sets the name of the user.

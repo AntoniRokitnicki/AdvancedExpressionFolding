@@ -318,7 +318,8 @@ fun PsiElement.expr(
     text: String,
     vararg children: Expression?,
     group: FoldingGroup? = null,
-    foldPrevWhiteSpace: Boolean = false
+    foldPrevWhiteSpace: Boolean = false,
+    textRange: TextRange = this.textRange,
 ): SimpleExpression? {
     textRange.isEmpty.takeIf {
         !it
