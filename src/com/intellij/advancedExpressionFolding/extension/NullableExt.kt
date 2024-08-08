@@ -29,7 +29,11 @@ object NullableExt : BaseExtension() {
         if (interfaceExtensionProperties) {
             element.callback?.invoke()?.let { annotations ->
                 annotations.forEach { methodLevelAnnotations ->
-                    //TODO: render the annotations
+                    list += element.identifier?.expr(element.guessPropertyName())
+                    list += element.parameterList.exprHide()
+                    //TODO: support @Nullable?
+                    val typeName= element.returnType?.presentableText
+                    list += element.returnTypeElement?.expr("@Getter $typeName")
                 }
             }
         }

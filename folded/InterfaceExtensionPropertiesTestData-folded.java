@@ -5,25 +5,25 @@ public class InterfaceExtensionPropertiesTestData {
 
     //TODO: default & static methods examples - all should be ignored
     public interface User {
-        String getName();
+        @Getter String name;
         void setName(String name);
 
-        int getAge();
+        @Getter int age;
         void setAge(int age);
     }
 
     public interface PublicUser {
-        public String getName();
+        public @Getter String name;
         public void setName(String name);
 
-        public int getAge();
+        public @Getter int age;
         public void setAge(int age);
     }
 
 
     public interface ReadOnlyUser {
-        String getName();
-        int getAge();
+        @Getter String name;
+        @Getter int age;
     }
 
     public interface WriteOnlyUser {
@@ -32,21 +32,21 @@ public class InterfaceExtensionPropertiesTestData {
     }
 
     public interface MixedAccessUser {
-        String getName();
+        @Getter String name;
         void setName(String name);
 
-        int getAge();
+        @Getter int age;
     }
 
     public interface MixedAccessUser2 {
-        String getName();
+        @Getter String name;
         void setName(String name);
 
         void setAge(int age);
     }
 
     public interface SingleGetterUser {
-        String getName();
+        @Getter String name;
     }
 
     public interface SingleSetterUser {
@@ -54,7 +54,7 @@ public class InterfaceExtensionPropertiesTestData {
     }
 
     public interface SinglePropertyUser {
-        String getName();
+        @Getter String name;
         void setName(String name);
     }
 
@@ -67,7 +67,7 @@ public class InterfaceExtensionPropertiesTestData {
              * Gets the name of the user.
              * @return the name of the user
              */
-            String getName();
+            @Getter String name;
 
             /**
              * Sets the name of the user.
@@ -79,7 +79,7 @@ public class InterfaceExtensionPropertiesTestData {
              * Gets the age of the user.
              * @return the age of the user
              */
-            int getAge();
+            @Getter int age;
 
             /**
              * Sets the age of the user.
@@ -96,13 +96,13 @@ public class InterfaceExtensionPropertiesTestData {
              * Gets the name of the user.
              * @return the name of the user
              */
-            String getName();
+            @Getter String name;
 
             /**
              * Gets the age of the user.
              * @return the age of the user
              */
-            int getAge();
+            @Getter int age;
         }
 
         /**
@@ -130,7 +130,7 @@ public class InterfaceExtensionPropertiesTestData {
              * Gets the name of the user.
              * @return the name of the user
              */
-            String getName();
+            @Getter String name;
 
             /**
              * Sets the name of the user.
@@ -142,7 +142,7 @@ public class InterfaceExtensionPropertiesTestData {
              * Gets the age of the user.
              * @return the age of the user
              */
-            int getAge();
+            @Getter int age;
         }
 
         /**
@@ -153,7 +153,7 @@ public class InterfaceExtensionPropertiesTestData {
              * Gets the name of the user.
              * @return the name of the user
              */
-            String getName();
+            @Getter String name;
 
             /**
              * Sets the name of the user.
@@ -176,7 +176,7 @@ public class InterfaceExtensionPropertiesTestData {
              * Gets the name of the user.
              * @return the name of the user
              */
-            String getName();
+            @Getter String name;
         }
 
         /**
@@ -198,7 +198,7 @@ public class InterfaceExtensionPropertiesTestData {
              * Gets the name of the user.
              * @return the name of the user
              */
-            String getName();
+            @Getter String name;
 
             /**
              * Sets the name of the user.
