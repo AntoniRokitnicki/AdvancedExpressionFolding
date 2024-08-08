@@ -13,6 +13,7 @@ import com.intellij.advancedExpressionFolding.extension.lombok.LombokExt.callbac
 import com.intellij.advancedExpressionFolding.extension.lombok.LombokMethodExt.callback
 import com.intellij.advancedExpressionFolding.extension.methodcall.dynamic.DynamicExt
 import com.intellij.openapi.editor.Document
+import com.intellij.openapi.util.TextRange
 import com.intellij.psi.*
 
 /**
@@ -33,7 +34,9 @@ object NullableExt : BaseExtension() {
                     list += element.parameterList.exprHide()
                     //TODO: support @Nullable?
                     val typeName= element.returnType?.presentableText
-                    list += element.returnTypeElement?.expr("@Getter $typeName")
+
+                    //TODO: fix for public
+                    list += element.returnTypeElement?.expr("@Getter ${typeName?.substring(0, 1)}", textRange = TextRange(element.start(), element.start() + 1))
                 }
             }
         }
