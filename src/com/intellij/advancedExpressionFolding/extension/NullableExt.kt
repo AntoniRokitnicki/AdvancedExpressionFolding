@@ -10,9 +10,9 @@ import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFolding
 import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFoldingAnnotation.NULLABLE
 import com.intellij.advancedExpressionFolding.extension.lombok.LombokExt
 import com.intellij.advancedExpressionFolding.extension.lombok.LombokExt.callback
+import com.intellij.advancedExpressionFolding.extension.lombok.LombokFoldingAnnotation
 import com.intellij.advancedExpressionFolding.extension.lombok.LombokMethodExt.callback
 import com.intellij.advancedExpressionFolding.extension.lombok.MethodLevelAnnotation
-import com.intellij.advancedExpressionFolding.extension.lombok.MethodType
 import com.intellij.advancedExpressionFolding.extension.methodcall.dynamic.DynamicExt
 import com.intellij.openapi.editor.Document
 import com.intellij.psi.*
@@ -78,22 +78,24 @@ object NullableExt : BaseExtension() {
 
         val diffCount = countCharDifferencesForGetterAndField(getName, name)
 
-        if (methodLevelAnnotations.classAnnotation == MethodType.GETTER) {
-            list += id.run {
-                // Optimize method name folding to include only the necessary characters
-                // For example, in "getName", fold "getName" to "n" by removing "get" to simplify the representation
-                // This ensures that the method name remains clickable
-                expr(name.first().toString(), textRange = textRangeChar(PsiElement::start, 0, diffCount))
-            }
+        list += id.run {
+            // Optimize method name folding to include only the necessary characters
+            // For example, in "getName", fold "getName" to "n" by removing "get" to simplify the representation
+            // This ensures that the method name remains clickable
+            expr(name.first().toString(), textRange = textRangeChar(PsiElement::start, 0, diffCount))
+        }
 
+        val methodAnnotation = methodLevelAnnotations.methodAnnotation
+        list += this.prevWhiteSpace()?.run {
+            // Add @Getter annotation before the method's start, at the last character of the preceding whitespace
+            expr("${methodAnnotation.annotation} ", textRange = textRangeChar(PsiElement::end, -1, 0))
+        }
+
+
+        if (methodAnnotation == LombokFoldingAnnotation.LOMBOK_GETTER) {
             list += this.parameterList.exprHide()
-            val typeName = this.returnType?.presentableText
-
-            list += this.prevWhiteSpace()?.run {
-                // Add @Getter annotation before the method's start, at the last character of the preceding whitespace
-                expr("@Getter ", textRange = textRangeChar(PsiElement::end, -1, 0))
-            }
         } else {
+            val typeName = this.returnType?.presentableText
             //TODO: setter
         }
     }
