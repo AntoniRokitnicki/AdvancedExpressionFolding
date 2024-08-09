@@ -8,18 +8,18 @@ public class InterfaceExtensionPropertiesTestData {
 
     public interface User <fold text='{...}' expand='true'>{
        <fold text='@Getter ' expand='true'> </fold>String <fold text='n' expand='true'>getN</fold>ame<fold text='' expand='true'>()</fold>;
-       <fold text='@Setter ' expand='true'> </fold>void <fold text='n' expand='true'>setN</fold>ame(String name);
+       <fold text='@Setter ' expand='true'> </fold><fold text='String' expand='true'>void</fold> <fold text='n' expand='true'>setN</fold>ame<fold text='' expand='true'>(String name)</fold>;
 
        <fold text='@Getter ' expand='true'> </fold>int <fold text='a' expand='true'>getA</fold>ge<fold text='' expand='true'>()</fold>;
-       <fold text='@Setter ' expand='true'> </fold>void <fold text='a' expand='true'>setA</fold>ge(int age);
+       <fold text='@Setter ' expand='true'> </fold><fold text='int' expand='true'>void</fold> <fold text='a' expand='true'>setA</fold>ge<fold text='' expand='true'>(int age)</fold>;
     }</fold>
 
     public interface PublicUser <fold text='{...}' expand='true'>{
        <fold text='@Getter ' expand='true'> </fold>public String <fold text='n' expand='true'>getN</fold>ame<fold text='' expand='true'>()</fold>;
-       <fold text='@Setter ' expand='true'> </fold>public void <fold text='n' expand='true'>setN</fold>ame(String name);
+       <fold text='@Setter ' expand='true'> </fold>public <fold text='String' expand='true'>void</fold> <fold text='n' expand='true'>setN</fold>ame<fold text='' expand='true'>(String name)</fold>;
 
        <fold text='@Getter ' expand='true'> </fold>public int <fold text='a' expand='true'>getA</fold>ge<fold text='' expand='true'>()</fold>;
-       <fold text='@Setter ' expand='true'> </fold>public void <fold text='a' expand='true'>setA</fold>ge(int age);
+       <fold text='@Setter ' expand='true'> </fold>public <fold text='int' expand='true'>void</fold> <fold text='a' expand='true'>setA</fold>ge<fold text='' expand='true'>(int age)</fold>;
     }</fold>
 
 
@@ -29,22 +29,22 @@ public class InterfaceExtensionPropertiesTestData {
     }</fold>
 
     public interface WriteOnlyUser <fold text='{...}' expand='true'>{
-       <fold text='@Setter ' expand='true'> </fold>void <fold text='n' expand='true'>setN</fold>ame(String name);
-       <fold text='@Setter ' expand='true'> </fold>void <fold text='a' expand='true'>setA</fold>ge(int age);
+       <fold text='@Setter ' expand='true'> </fold><fold text='String' expand='true'>void</fold> <fold text='n' expand='true'>setN</fold>ame<fold text='' expand='true'>(String name)</fold>;
+       <fold text='@Setter ' expand='true'> </fold><fold text='int' expand='true'>void</fold> <fold text='a' expand='true'>setA</fold>ge<fold text='' expand='true'>(int age)</fold>;
     }</fold>
 
     public interface MixedAccessUser <fold text='{...}' expand='true'>{
        <fold text='@Getter ' expand='true'> </fold>String <fold text='n' expand='true'>getN</fold>ame<fold text='' expand='true'>()</fold>;
-       <fold text='@Setter ' expand='true'> </fold>void <fold text='n' expand='true'>setN</fold>ame(String name);
+       <fold text='@Setter ' expand='true'> </fold><fold text='String' expand='true'>void</fold> <fold text='n' expand='true'>setN</fold>ame<fold text='' expand='true'>(String name)</fold>;
 
        <fold text='@Getter ' expand='true'> </fold>int <fold text='a' expand='true'>getA</fold>ge<fold text='' expand='true'>()</fold>;
     }</fold>
 
     public interface MixedAccessUser2 <fold text='{...}' expand='true'>{
        <fold text='@Getter ' expand='true'> </fold>String <fold text='n' expand='true'>getN</fold>ame<fold text='' expand='true'>()</fold>;
-       <fold text='@Setter ' expand='true'> </fold>void <fold text='n' expand='true'>setN</fold>ame(String name);
+       <fold text='@Setter ' expand='true'> </fold><fold text='String' expand='true'>void</fold> <fold text='n' expand='true'>setN</fold>ame<fold text='' expand='true'>(String name)</fold>;
 
-       <fold text='@Setter ' expand='true'> </fold>void <fold text='a' expand='true'>setA</fold>ge(int age);
+       <fold text='@Setter ' expand='true'> </fold><fold text='int' expand='true'>void</fold> <fold text='a' expand='true'>setA</fold>ge<fold text='' expand='true'>(int age)</fold>;
     }</fold>
 
     public interface SingleGetterUser <fold text='{...}' expand='true'>{
@@ -52,12 +52,12 @@ public class InterfaceExtensionPropertiesTestData {
     }</fold>
 
     public interface SingleSetterUser <fold text='{...}' expand='true'>{
-       <fold text='@Setter ' expand='true'> </fold>void <fold text='n' expand='true'>setN</fold>ame(String name);
+       <fold text='@Setter ' expand='true'> </fold><fold text='String' expand='true'>void</fold> <fold text='n' expand='true'>setN</fold>ame<fold text='' expand='true'>(String name)</fold>;
     }</fold>
 
     public interface SinglePropertyUser <fold text='{...}' expand='true'>{
        <fold text='@Getter ' expand='true'> </fold>String <fold text='n' expand='true'>getN</fold>ame<fold text='' expand='true'>()</fold>;
-       <fold text='@Setter ' expand='true'> </fold>void <fold text='n' expand='true'>setN</fold>ame(String name);
+       <fold text='@Setter ' expand='true'> <fold text='String' expand='true'></fold>void</fold> <fold text='n' expand='true'>setN</fold>ame<fold text='' expand='true'>(String name)</fold>;
     }</fold>
 
     class Javadoced <fold text='{...}' expand='true'>{
@@ -75,7 +75,7 @@ public class InterfaceExtensionPropertiesTestData {
              * Sets the name of the user.
              * @param name the name to set
              */</fold>
-            void <fold text='n' expand='true'>setN</fold>ame(String name);
+            <fold text='String' expand='true'>void</fold> <fold text='n' expand='true'>setN</fold>ame<fold text='' expand='true'>(String name)</fold>;
 
            <fold text='@Getter ' expand='true'> </fold><fold text='/** Gets the age of the user. ...*/' expand='true'>/**
              * Gets the age of the user.
@@ -87,7 +87,7 @@ public class InterfaceExtensionPropertiesTestData {
              * Sets the age of the user.
              * @param age the age to set
              */</fold>
-            void <fold text='a' expand='true'>setA</fold>ge(int age);
+            <fold text='int' expand='true'>void</fold> <fold text='a' expand='true'>setA</fold>ge<fold text='' expand='true'>(int age)</fold>;
         }</fold>
 
         <fold text='/** Interface representing a read-only user with getter methods for name and age. */' expand='true'>/**
@@ -111,17 +111,17 @@ public class InterfaceExtensionPropertiesTestData {
          * Interface representing a write-only user with setter methods for name and age.
          */</fold>
         public interface WriteOnlyUser <fold text='{...}' expand='true'>{
-           <fold text='@Setter ' expand='true'> <fold text='/** Sets the name of the user. ...*/' expand='true'></fold>/**
+           <fold text='@Setter ' expand='true'> </fold><fold text='/** Sets the name of the user. ...*/' expand='true'>/**
              * Sets the name of the user.
              * @param name the name to set
              */</fold>
-            void <fold text='n' expand='true'>setN</fold>ame(String name);
+            <fold text='String' expand='true'>void</fold> <fold text='n' expand='true'>setN</fold>ame<fold text='' expand='true'>(String name)</fold>;
 
            <fold text='@Setter ' expand='true'> </fold><fold text='/** Sets the age of the user. ...*/' expand='true'>/**
              * Sets the age of the user.
              * @param age the age to set
              */</fold>
-            void <fold text='a' expand='true'>setA</fold>ge(int age);
+            <fold text='int' expand='true'>void</fold> <fold text='a' expand='true'>setA</fold>ge<fold text='' expand='true'>(int age)</fold>;
         }</fold>
 
         <fold text='/** Interface representing a user with mixed access: both getter and setter for name, and getter only for age. */' expand='true'>/**
@@ -138,7 +138,7 @@ public class InterfaceExtensionPropertiesTestData {
              * Sets the name of the user.
              * @param name the name to set
              */</fold>
-            void <fold text='n' expand='true'>setN</fold>ame(String name);
+            <fold text='String' expand='true'>void</fold> <fold text='n' expand='true'>setN</fold>ame<fold text='' expand='true'>(String name)</fold>;
 
            <fold text='@Getter ' expand='true'> </fold><fold text='/** Gets the age of the user. ...*/' expand='true'>/**
              * Gets the age of the user.
@@ -161,13 +161,13 @@ public class InterfaceExtensionPropertiesTestData {
              * Sets the name of the user.
              * @param name the name to set
              */</fold>
-            void <fold text='n' expand='true'>setN</fold>ame(String name);
+            <fold text='String' expand='true'>void</fold> <fold text='n' expand='true'>setN</fold>ame<fold text='' expand='true'>(String name)</fold>;
 
            <fold text='@Setter ' expand='true'> </fold><fold text='/** Sets the age of the user. ...*/' expand='true'>/**
              * Sets the age of the user.
              * @param age the age to set
              */</fold>
-            void <fold text='a' expand='true'>setA</fold>ge(int age);
+            <fold text='int' expand='true'>void</fold> <fold text='a' expand='true'>setA</fold>ge<fold text='' expand='true'>(int age)</fold>;
         }</fold>
 
         <fold text='/** Interface representing a user with a single getter method for name. */' expand='true'>/**
@@ -189,7 +189,7 @@ public class InterfaceExtensionPropertiesTestData {
              * Sets the name of the user.
              * @param name the name to set
              */</fold>
-            void <fold text='n' expand='true'>setN</fold>ame(String name);
+            <fold text='String' expand='true'>void</fold> <fold text='n' expand='true'>setN</fold>ame<fold text='' expand='true'>(String name)</fold>;
         }</fold>
 
         <fold text='/** Interface representing a user with both getter and setter methods for name. */' expand='true'>/**
@@ -206,7 +206,7 @@ public class InterfaceExtensionPropertiesTestData {
              * Sets the name of the user.
              * @param name the name to set
              */</fold>
-            void <fold text='n' expand='true'>setN</fold>ame(String name);
+            <fold text='String' expand='true'>void</fold> <fold text='n' expand='true'>setN</fold>ame<fold text='' expand='true'>(String name)</fold>;
         }</fold>
     }</fold>
 

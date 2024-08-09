@@ -8,18 +8,18 @@ public class InterfaceExtensionPropertiesTestData {
 
     public interface User {
        @Getter String name;
-       @Setter void name(String name);
+       @Setter String name;
 
        @Getter int age;
-       @Setter void age(int age);
+       @Setter int age;
     }
 
     public interface PublicUser {
        @Getter public String name;
-       @Setter public void name(String name);
+       @Setter public String name;
 
        @Getter public int age;
-       @Setter public void age(int age);
+       @Setter public int age;
     }
 
 
@@ -29,22 +29,22 @@ public class InterfaceExtensionPropertiesTestData {
     }
 
     public interface WriteOnlyUser {
-       @Setter void name(String name);
-       @Setter void age(int age);
+       @Setter String name;
+       @Setter int age;
     }
 
     public interface MixedAccessUser {
        @Getter String name;
-       @Setter void name(String name);
+       @Setter String name;
 
        @Getter int age;
     }
 
     public interface MixedAccessUser2 {
        @Getter String name;
-       @Setter void name(String name);
+       @Setter String name;
 
-       @Setter void age(int age);
+       @Setter int age;
     }
 
     public interface SingleGetterUser {
@@ -52,12 +52,12 @@ public class InterfaceExtensionPropertiesTestData {
     }
 
     public interface SingleSetterUser {
-       @Setter void name(String name);
+       @Setter String name;
     }
 
     public interface SinglePropertyUser {
        @Getter String name;
-       @Setter void name(String name);
+       @Setter String name;
     }
 
     class Javadoced {
@@ -75,7 +75,7 @@ public class InterfaceExtensionPropertiesTestData {
              * Sets the name of the user.
              * @param name the name to set
              */
-            void name(String name);
+            String name;
 
            @Getter /**
              * Gets the age of the user.
@@ -87,7 +87,7 @@ public class InterfaceExtensionPropertiesTestData {
              * Sets the age of the user.
              * @param age the age to set
              */
-            void age(int age);
+            int age;
         }
 
         /**
@@ -115,13 +115,13 @@ public class InterfaceExtensionPropertiesTestData {
              * Sets the name of the user.
              * @param name the name to set
              */
-            void name(String name);
+            String name;
 
            @Setter /**
              * Sets the age of the user.
              * @param age the age to set
              */
-            void age(int age);
+            int age;
         }
 
         /**
@@ -138,7 +138,7 @@ public class InterfaceExtensionPropertiesTestData {
              * Sets the name of the user.
              * @param name the name to set
              */
-            void name(String name);
+            String name;
 
            @Getter /**
              * Gets the age of the user.
@@ -161,13 +161,13 @@ public class InterfaceExtensionPropertiesTestData {
              * Sets the name of the user.
              * @param name the name to set
              */
-            void name(String name);
+            String name;
 
            @Setter /**
              * Sets the age of the user.
              * @param age the age to set
              */
-            void age(int age);
+            int age;
         }
 
         /**
@@ -189,7 +189,7 @@ public class InterfaceExtensionPropertiesTestData {
              * Sets the name of the user.
              * @param name the name to set
              */
-            void name(String name);
+            String name;
         }
 
         /**
@@ -206,7 +206,7 @@ public class InterfaceExtensionPropertiesTestData {
              * Sets the name of the user.
              * @param name the name to set
              */
-            void name(String name);
+            String name;
         }
     }
 
