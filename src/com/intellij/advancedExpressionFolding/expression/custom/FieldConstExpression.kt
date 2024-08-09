@@ -41,9 +41,9 @@ class FieldConstExpression(
             it == null || it.isPublic()
         }
 
-        val baseTextRange = if (sortedKeywords.firstOrNull() == null) {
+        val baseTextRange = if (sortedKeywords.firstOrNull() == null && keywords.isNotEmpty()) {
             TextRange(keywords.first().end() + 1, modifiers.end())
-        } else {
+        } else if (keywords.isNotEmpty()){
             if (sortedKeywords.any { it == null }) {
                 //TODO: add folding for private, protected not being first
                 //TODO: fold when in the middle and when its last
@@ -51,7 +51,8 @@ class FieldConstExpression(
             }  else { // public
                 TextRange(keywords.first().start() , modifiers.end())
             }
-
+        } else {
+            null
         }
 
         if (baseTextRange != null) {

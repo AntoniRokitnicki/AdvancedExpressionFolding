@@ -11,6 +11,7 @@ import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFolding
 import com.intellij.advancedExpressionFolding.extension.lombok.LombokExt
 import com.intellij.advancedExpressionFolding.extension.lombok.LombokExt.callback
 import com.intellij.advancedExpressionFolding.extension.lombok.LombokMethodExt.callback
+import com.intellij.advancedExpressionFolding.extension.lombok.MethodLevelAnnotation
 import com.intellij.advancedExpressionFolding.extension.methodcall.dynamic.DynamicExt
 import com.intellij.openapi.editor.Document
 import com.intellij.psi.*
@@ -27,38 +28,13 @@ object NullableExt : BaseExtension() {
 
 
         if (interfaceExtensionProperties) {
-            val textRangeLastChar = element.textRangeLastChar
-            element.textRangeFirstChar
-
             element.callback?.invoke()?.let { annotations ->
                 annotations.forEach { methodLevelAnnotations ->
                     // first lets try for @Getter
                     val id = element.identifier ?: return@forEach
-
-                    val name = element.guessPropertyName()
-                    val getName = id.text
-
-                    fun countCharDifferencesForGetterAndField(getName: String, name: String) =
-                        getName.length - name.reversed().zip(getName.reversed())
-                            .indexOfFirst { (c1, c2) -> c1 != c2 }
-
-                    val diffCount = countCharDifferencesForGetterAndField(getName, name)
-                    list += id.run {
-                        // Optimize method name folding to include only the necessary characters
-                        // For example, in "getName", fold "getName" to "n" by removing "get" to simplify the representation
-                        // This ensures that the method name remains clickable
-                        expr(name.first().toString(), textRange = textRangeChar(PsiElement::start, 0, diffCount))
-                    }
-
-                    list += element.parameterList.exprHide()
-                    //TODO: support @Nullable?
-                    val typeName = element.returnType?.presentableText
-
-                    list += element.prevWhiteSpace()?.run {
-                        // Add @Getter annotation before the method's start, at the last character of the preceding whitespace
-                        expr("@Getter ", textRange = textRangeChar(PsiElement::end, -1, 0))
-                    }
+                    addInterfaceAnnotations(methodLevelAnnotations, element, id, list)
                 }
+                return list.exprWrap(element)
             }
         }
 
@@ -84,6 +60,39 @@ object NullableExt : BaseExtension() {
             getAnyExpressions(element.parameterList.parameters, document).let(list::addAll)
         }
         return list.exprWrap(element)
+    }
+
+    private fun addInterfaceAnnotations(
+        methodLevelAnnotations: MethodLevelAnnotation,
+        element: PsiMethod,
+        id: PsiIdentifier,
+        list: MutableList<Expression?>
+    ) {
+        println("methodLevelAnnotations = ${methodLevelAnnotations}")
+
+        val name = element.guessPropertyName()
+        val getName = id.text
+
+        fun countCharDifferencesForGetterAndField(getName: String, name: String) =
+            getName.length - name.reversed().zip(getName.reversed())
+                .indexOfFirst { (c1, c2) -> c1 != c2 }
+
+        val diffCount = countCharDifferencesForGetterAndField(getName, name)
+        list += id.run {
+            // Optimize method name folding to include only the necessary characters
+            // For example, in "getName", fold "getName" to "n" by removing "get" to simplify the representation
+            // This ensures that the method name remains clickable
+            expr(name.first().toString(), textRange = textRangeChar(PsiElement::start, 0, diffCount))
+        }
+
+        list += element.parameterList.exprHide()
+        //TODO: support @Nullable?
+        val typeName = element.returnType?.presentableText
+
+        list += element.prevWhiteSpace()?.run {
+            // Add @Getter annotation before the method's start, at the last character of the preceding whitespace
+            expr("@Getter ", textRange = textRangeChar(PsiElement::end, -1, 0))
+        }
     }
 
 
