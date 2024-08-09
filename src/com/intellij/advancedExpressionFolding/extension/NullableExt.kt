@@ -28,10 +28,15 @@ object NullableExt : BaseExtension() {
 
 
         if (interfaceExtensionProperties) {
+            val textRangeLastChar = element.textRangeLastChar
+            element.textRangeFirstChar
+
             element.callback?.invoke()?.let { annotations ->
                 annotations.forEach { methodLevelAnnotations ->
                     //TODO: fold only on first letter
                     list += element.identifier?.expr(element.guessPropertyName())
+
+
                     list += element.parameterList.exprHide()
                     //TODO: support @Nullable?
                     val typeName= element.returnType?.presentableText
