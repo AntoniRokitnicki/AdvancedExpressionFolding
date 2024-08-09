@@ -11,6 +11,8 @@ import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFolding
 import com.intellij.advancedExpressionFolding.extension.lombok.LombokExt
 import com.intellij.advancedExpressionFolding.extension.lombok.LombokExt.callback
 import com.intellij.advancedExpressionFolding.extension.lombok.LombokFoldingAnnotation
+import com.intellij.advancedExpressionFolding.extension.lombok.LombokFoldingAnnotation.LOMBOK_GETTER
+import com.intellij.advancedExpressionFolding.extension.lombok.LombokFoldingAnnotation.LOMBOK_SETTER
 import com.intellij.advancedExpressionFolding.extension.lombok.LombokMethodExt.callback
 import com.intellij.advancedExpressionFolding.extension.lombok.MethodLevelAnnotation
 import com.intellij.advancedExpressionFolding.extension.methodcall.dynamic.DynamicExt
@@ -91,12 +93,19 @@ object NullableExt : BaseExtension() {
             expr("${methodAnnotation.annotation} ", textRange = textRangeChar(PsiElement::end, -1, 0))
         }
 
+        when (methodAnnotation) {
+            LOMBOK_GETTER -> list += this.parameterList.exprHide()
+            LOMBOK_SETTER -> {
+                val param = this.parameterList.parameters.firstOrNull()?.type?.presentableText
 
-        if (methodAnnotation == LombokFoldingAnnotation.LOMBOK_GETTER) {
-            list += this.parameterList.exprHide()
-        } else {
-            val typeName = this.returnType?.presentableText
-            //TODO: setter
+                list += param?.let {
+                    this.returnTypeElement?.expr(it)
+                }
+
+                list += this.parameterList.exprHide()
+            }
+
+            else -> {}
         }
     }
 
