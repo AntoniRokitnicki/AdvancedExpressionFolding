@@ -5,25 +5,25 @@ public class InterfaceExtensionPropertiesTestData {
 
     //TODO: default & static methods examples - all should be ignored
     public interface User {
-        @Getter String name;
+        String name();
         void setName(String name);
 
-        @Getter int age;
+        int age();
         void setAge(int age);
     }
 
     public interface PublicUser {
-        @Getter Sublic String name;
+        public String name();
         public void setName(String name);
 
-        @Getter iublic int age;
+        public int age();
         public void setAge(int age);
     }
 
 
     public interface ReadOnlyUser {
-        @Getter String name;
-        @Getter int age;
+        String name();
+        int age();
     }
 
     public interface WriteOnlyUser {
@@ -32,21 +32,21 @@ public class InterfaceExtensionPropertiesTestData {
     }
 
     public interface MixedAccessUser {
-        @Getter String name;
+        String name();
         void setName(String name);
 
-        @Getter int age;
+        int age();
     }
 
     public interface MixedAccessUser2 {
-        @Getter String name;
+        String name();
         void setName(String name);
 
         void setAge(int age);
     }
 
     public interface SingleGetterUser {
-        @Getter String name;
+        String name();
     }
 
     public interface SingleSetterUser {
@@ -54,7 +54,7 @@ public class InterfaceExtensionPropertiesTestData {
     }
 
     public interface SinglePropertyUser {
-        @Getter String name;
+        String name();
         void setName(String name);
     }
 
@@ -63,11 +63,11 @@ public class InterfaceExtensionPropertiesTestData {
          * Interface representing a user with both getter and setter methods for name and age.
          */
         public interface User {
-            @Getter S**
+            /**
              * Gets the name of the user.
              * @return the name of the user
              */
-            String name;
+            String name();
 
             /**
              * Sets the name of the user.
@@ -75,11 +75,11 @@ public class InterfaceExtensionPropertiesTestData {
              */
             void setName(String name);
 
-            @Getter i**
+            /**
              * Gets the age of the user.
              * @return the age of the user
              */
-            int age;
+            int age();
 
             /**
              * Sets the age of the user.
@@ -92,17 +92,17 @@ public class InterfaceExtensionPropertiesTestData {
          * Interface representing a read-only user with getter methods for name and age.
          */
         public interface ReadOnlyUser {
-            @Getter S**
+            /**
              * Gets the name of the user.
              * @return the name of the user
              */
-            String name;
+            String name();
 
-            @Getter i**
+            /**
              * Gets the age of the user.
              * @return the age of the user
              */
-            int age;
+            int age();
         }
 
         /**
@@ -126,11 +126,11 @@ public class InterfaceExtensionPropertiesTestData {
          * Interface representing a user with mixed access: both getter and setter for name, and getter only for age.
          */
         public interface MixedAccessUser {
-            @Getter S**
+            /**
              * Gets the name of the user.
              * @return the name of the user
              */
-            String name;
+            String name();
 
             /**
              * Sets the name of the user.
@@ -138,22 +138,22 @@ public class InterfaceExtensionPropertiesTestData {
              */
             void setName(String name);
 
-            @Getter i**
+            /**
              * Gets the age of the user.
              * @return the age of the user
              */
-            int age;
+            int age();
         }
 
         /**
          * Interface representing a user with mixed access: both getter and setter for name, and setter only for age.
          */
         public interface MixedAccessUser2 {
-            @Getter S**
+            /**
              * Gets the name of the user.
              * @return the name of the user
              */
-            String name;
+            String name();
 
             /**
              * Sets the name of the user.
@@ -172,11 +172,11 @@ public class InterfaceExtensionPropertiesTestData {
          * Interface representing a user with a single getter method for name.
          */
         public interface SingleGetterUser {
-            @Getter S**
+            /**
              * Gets the name of the user.
              * @return the name of the user
              */
-            String name;
+            String name();
         }
 
         /**
@@ -194,11 +194,11 @@ public class InterfaceExtensionPropertiesTestData {
          * Interface representing a user with both getter and setter methods for name.
          */
         public interface SinglePropertyUser {
-            @Getter S**
+            /**
              * Gets the name of the user.
              * @return the name of the user
              */
-            String name;
+            String name();
 
             /**
              * Sets the name of the user.

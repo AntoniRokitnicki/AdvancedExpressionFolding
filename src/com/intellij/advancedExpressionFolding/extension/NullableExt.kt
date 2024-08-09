@@ -13,7 +13,6 @@ import com.intellij.advancedExpressionFolding.extension.lombok.LombokExt.callbac
 import com.intellij.advancedExpressionFolding.extension.lombok.LombokMethodExt.callback
 import com.intellij.advancedExpressionFolding.extension.methodcall.dynamic.DynamicExt
 import com.intellij.openapi.editor.Document
-import com.intellij.openapi.util.TextRange
 import com.intellij.psi.*
 
 /**
@@ -33,16 +32,23 @@ object NullableExt : BaseExtension() {
 
             element.callback?.invoke()?.let { annotations ->
                 annotations.forEach { methodLevelAnnotations ->
-                    //TODO: fold only on first letter
-                    list += element.identifier?.expr(element.guessPropertyName())
+                    val id = element.identifier ?: return@forEach
+
+                    val name = element.guessPropertyName()
+                    val getName = id.text
+                    val diffCount = getName.length - name.reversed().zip(getName.reversed())
+                        .indexOfFirst { (c1, c2) -> c1 != c2 }
+                        .let { if (it == -1) minOf(name.length, getName.length) else it } + 1
+
+                    list += id.expr(name.first().toString(), textRange = id.textRangeChar(PsiElement::start, 0, diffCount - 1))
 
 
-                    list += element.parameterList.exprHide()
+                    //list += element.parameterList.exprHide()
                     //TODO: support @Nullable?
                     val typeName= element.returnType?.presentableText
 
                     //TODO: fold on space before type, not type
-                    list += element.returnTypeElement?.prevSibling?.expr("@Getter ${typeName?.substring(0, 1)}", textRange = TextRange(element.start(), element.start() + 1))
+                    //list += element.returnTypeElement?.prevSibling?.expr("@Getter ${typeName?.substring(0, 1)}", textRange = TextRange(element.start(), element.start() + 1))
                 }
             }
         }

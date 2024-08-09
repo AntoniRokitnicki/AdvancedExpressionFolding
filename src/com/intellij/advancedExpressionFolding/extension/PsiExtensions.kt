@@ -36,7 +36,7 @@ val PsiField.singletonField: Boolean
 val PsiField.initializerType: PsiClass?
     get() = initializer.asInstance<PsiReferenceExpression>()?.qualifierExpression.asInstance<PsiReferenceExpression>()?.resolve().asInstance<PsiClass>()
 
-private inline fun PsiElement.textRangeChar(positionMethod: PsiElement.() -> Int, startOffset: Int, endOffset: Int): TextRange {
+inline fun PsiElement.textRangeChar(positionMethod: PsiElement.() -> Int, startOffset: Int, endOffset: Int): TextRange {
     val position = positionMethod()
     return TextRange(position + startOffset, position + endOffset)
 }
