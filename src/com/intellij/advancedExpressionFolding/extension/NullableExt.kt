@@ -30,13 +30,14 @@ object NullableExt : BaseExtension() {
         if (interfaceExtensionProperties) {
             element.callback?.invoke()?.let { annotations ->
                 annotations.forEach { methodLevelAnnotations ->
+                    //TODO: fold only on first letter
                     list += element.identifier?.expr(element.guessPropertyName())
                     list += element.parameterList.exprHide()
                     //TODO: support @Nullable?
                     val typeName= element.returnType?.presentableText
 
-                    //TODO: fix for public
-                    list += element.returnTypeElement?.expr("@Getter ${typeName?.substring(0, 1)}", textRange = TextRange(element.start(), element.start() + 1))
+                    //TODO: fold on space before type, not type
+                    list += element.returnTypeElement?.prevSibling?.expr("@Getter ${typeName?.substring(0, 1)}", textRange = TextRange(element.start(), element.start() + 1))
                 }
             }
         }
