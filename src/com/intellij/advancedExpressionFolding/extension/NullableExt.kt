@@ -32,23 +32,32 @@ object NullableExt : BaseExtension() {
 
             element.callback?.invoke()?.let { annotations ->
                 annotations.forEach { methodLevelAnnotations ->
+                    // first lets try for @Getter
                     val id = element.identifier ?: return@forEach
 
                     val name = element.guessPropertyName()
                     val getName = id.text
-                    val diffCount = getName.length - name.reversed().zip(getName.reversed())
-                        .indexOfFirst { (c1, c2) -> c1 != c2 }
-                        .let { if (it == -1) minOf(name.length, getName.length) else it } + 1
 
-                    list += id.expr(name.first().toString(), textRange = id.textRangeChar(PsiElement::start, 0, diffCount - 1))
+                    fun countCharDifferencesForGetterAndField(getName: String, name: String) =
+                        getName.length - name.reversed().zip(getName.reversed())
+                            .indexOfFirst { (c1, c2) -> c1 != c2 }
 
+                    val diffCount = countCharDifferencesForGetterAndField(getName, name)
+                    list += id.run {
+                        // Optimize method name folding to include only the necessary characters
+                        // For example, in "getName", fold "getName" to "n" by removing "get" to simplify the representation
+                        // This ensures that the method name remains clickable
+                        expr(name.first().toString(), textRange = textRangeChar(PsiElement::start, 0, diffCount))
+                    }
 
-                    //list += element.parameterList.exprHide()
+                    list += element.parameterList.exprHide()
                     //TODO: support @Nullable?
-                    val typeName= element.returnType?.presentableText
+                    val typeName = element.returnType?.presentableText
 
-                    //TODO: fold on space before type, not type
-                    //list += element.returnTypeElement?.prevSibling?.expr("@Getter ${typeName?.substring(0, 1)}", textRange = TextRange(element.start(), element.start() + 1))
+                    list += element.prevWhiteSpace()?.run {
+                        // Add @Getter annotation before the method's start, at the last character of the preceding whitespace
+                        expr("@Getter ", textRange = textRangeChar(PsiElement::end, -1, 0))
+                    }
                 }
             }
         }
@@ -76,6 +85,7 @@ object NullableExt : BaseExtension() {
         }
         return list.exprWrap(element)
     }
+
 
     @JvmStatic
     fun createExpression(psiRecordComponent: PsiRecordComponent): NullAnnotationExpression? {
