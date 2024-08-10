@@ -27,19 +27,19 @@ object NullableExt : BaseExtension() {
 
     @JvmStatic
     fun createExpression(element: PsiMethod, document: Document): Expression? {
-        val list = exprList(fieldAnnotationExpression(element.annotations, element.returnTypeElement))
-
+        val list: MutableList<Expression?> = mutableListOf()
 
         if (interfaceExtensionProperties) {
             element.callback?.invoke()?.let { annotations ->
                 annotations.forEach { methodLevelAnnotations ->
-                    // first lets try for @Getter
                     val id = element.identifier ?: return@forEach
                     element.addInterfaceAnnotations(methodLevelAnnotations, id, list)
                 }
                 return list.exprWrap(element)
             }
         }
+
+        list += exprList(fieldAnnotationExpression(element.annotations, element.returnTypeElement))
 
         if (experimental) {
             list += element.annotations.filter {
@@ -54,6 +54,7 @@ object NullableExt : BaseExtension() {
             list.add(DynamicExt.createExpression(element))
         }
 
+        // works ok now, but may lead to issues
         if (true) {
             getAnyExpression(element.modifierList, document).let(list::add)
             element.returnTypeElement?.let {
@@ -74,41 +75,44 @@ object NullableExt : BaseExtension() {
         val name = this.guessPropertyName()
         val getName = id.text
 
-        fun countCharDifferencesForGetterAndField(getName: String, name: String) =
-            getName.length - name.reversed().zip(getName.reversed())
-                .indexOfFirst { (c1, c2) -> c1 != c2 }
-
-        val diffCount = countCharDifferencesForGetterAndField(getName, name)
-
         list += id.run {
-            // Optimize method name folding to include only the necessary characters
-            // For example, in "getName", fold "getName" to "n" by removing "get" to simplify the representation
-            // This ensures that the method name remains clickable
-            expr(name.first().toString(), textRange = textRangeChar(PsiElement::start, 0, diffCount))
+            fun countCharDifferencesForGetterAndField(getName: String, name: String) =
+                getName.length - name.reversed().zip(getName.reversed())
+                    .indexOfFirst { (c1, c2) -> c1 != c2 }
+            val diffCount = countCharDifferencesForGetterAndField(getName, name)
+            compressMethodNameByFirstChar(name, diffCount)
         }
 
         val methodAnnotation = methodLevelAnnotations.methodAnnotation
         list += this.prevWhiteSpace()?.run {
-            // Add @Getter annotation before the method's start, at the last character of the preceding whitespace
-            expr("${methodAnnotation.annotation} ", textRange = textRangeChar(PsiElement::end, -1, 0))
+            addAnnotationByLastCharOfPrevWhitespace(methodAnnotation)
         }
 
-        when (methodAnnotation) {
-            LOMBOK_GETTER -> list += this.parameterList.exprHide()
-            LOMBOK_SETTER -> {
-                val param = this.parameterList.parameters.firstOrNull()?.type?.presentableText
-
-                list += param?.let {
-                    this.returnTypeElement?.expr(it)
-                }
-
-                list += this.parameterList.exprHide()
+        if (methodAnnotation == LOMBOK_GETTER) list += this.parameterList.exprHide()
+        else if (methodAnnotation == LOMBOK_SETTER) {
+            val param = this.parameterList.parameters.firstOrNull()?.type?.presentableText
+            list += param?.let {
+                this.returnTypeElement?.expr(it)
             }
-
-            else -> {}
+            list += this.parameterList.exprHide()
         }
     }
 
+    /**
+     *  Add @Getter annotation before the method's start, at the last character of the preceding whitespace
+     */
+    private fun PsiWhiteSpace.addAnnotationByLastCharOfPrevWhitespace(methodAnnotation: LombokFoldingAnnotation) =
+        expr("${methodAnnotation.annotation} ", textRange = textRangeChar(PsiElement::end, -1, 0))
+
+    /**
+     * Optimize method name folding to include only the necessary characters
+     * For example, in "getName", fold "getName" to "n" by removing "get" to simplify the representation
+     * This ensures that the method name remains clickable
+     */
+    private fun PsiIdentifier.compressMethodNameByFirstChar(
+        name: String,
+        diffCount: Int
+    ) = expr(name.first().toString(), textRange = textRangeChar(PsiElement::start, 0, diffCount))
 
     @JvmStatic
     fun createExpression(psiRecordComponent: PsiRecordComponent): NullAnnotationExpression? {
@@ -273,7 +277,8 @@ object NullableExt : BaseExtension() {
 
 
     //TODO: extract generic extension method
-    private fun PsiField.sameTypeOfFieldAndInitializer(initializer: PsiNewExpression?) = initializer?.classOrAnonymousClassReference?.resolve() == typeResolved
+    private fun PsiField.sameTypeOfFieldAndInitializer(initializer: PsiNewExpression?) =
+        initializer?.classOrAnonymousClassReference?.resolve() == typeResolved
 
     private fun PsiField.hideConstType() =
         (type.isPrimitiveOrString() && hasLiteralConstInitializer()) || (enum && isNotStaticEnumInitializer()) || isFactoryMethod()
