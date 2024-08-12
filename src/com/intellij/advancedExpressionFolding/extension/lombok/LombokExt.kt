@@ -4,6 +4,7 @@ import com.intellij.advancedExpressionFolding.extension.*
 import com.intellij.advancedExpressionFolding.extension.PsiClassExt.ClassLevelAnnotation
 import com.intellij.advancedExpressionFolding.extension.lombok.LombokFoldingAnnotation.*
 import com.intellij.advancedExpressionFolding.extension.lombok.LombokMethodExt.interfaceSupport
+import com.intellij.advancedExpressionFolding.extension.lombok.LombokMethodExt.isFinder
 import com.intellij.advancedExpressionFolding.extension.lombok.MethodType.*
 import com.intellij.openapi.util.Key
 import com.intellij.openapi.util.NlsSafe
@@ -389,6 +390,7 @@ object LombokExt : BaseExtension(), GenericCallback<PsiField, List<FieldLevelAnn
             isToString() -> TO_STRING
             isEquals() -> EQUALS
             isHashCode() -> HASHCODE
+            isFinder() -> FINDER
             else -> OTHER
         }
 }

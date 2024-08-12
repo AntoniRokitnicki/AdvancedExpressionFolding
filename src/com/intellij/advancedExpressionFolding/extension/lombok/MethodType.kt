@@ -27,6 +27,8 @@ enum class MethodType {
     TO_STRING,
     EQUALS,
     HASHCODE,
+
+    FINDER,
     OTHER,
 
     ;

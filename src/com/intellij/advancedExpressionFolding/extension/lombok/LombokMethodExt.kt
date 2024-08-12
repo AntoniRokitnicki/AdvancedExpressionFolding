@@ -4,15 +4,21 @@ import com.intellij.advancedExpressionFolding.extension.GenericCallback
 import com.intellij.advancedExpressionFolding.extension.PsiClassExt.ClassLevelAnnotation
 import com.intellij.advancedExpressionFolding.extension.isInterfaceDefault
 import com.intellij.advancedExpressionFolding.extension.lombok.LombokExt.findMethodType
-import com.intellij.advancedExpressionFolding.extension.lombok.MethodType.GETTER
-import com.intellij.advancedExpressionFolding.extension.lombok.MethodType.SETTER
+import com.intellij.advancedExpressionFolding.extension.lombok.LombokInterfaceFoldingAnnotation.*
+import com.intellij.advancedExpressionFolding.extension.lombok.MethodType.*
 import com.intellij.advancedExpressionFolding.extension.methodsNotStatic
 import com.intellij.openapi.util.Key
 import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiMethod
 
+enum class LombokInterfaceFoldingAnnotation(val annotation: String) {
+    LOMBOK_INTERFACE_GETTER("@Getter"),
+    LOMBOK_INTERFACE_SETTER("@Setter"),
+    LOMBOK_INTERFACE_FINDER("@Finder"),
+}
+
 data class MethodLevelAnnotation(
-    val methodAnnotation: LombokFoldingAnnotation,
+    val methodAnnotation: LombokInterfaceFoldingAnnotation,
 )
 
 object LombokMethodExt : GenericCallback<PsiMethod, List<MethodLevelAnnotation>> {
@@ -28,11 +34,12 @@ object LombokMethodExt : GenericCallback<PsiMethod, List<MethodLevelAnnotation>>
         }
         val r = filterNot.mapNotNull { method ->
             method.findMethodType().takeIf {
-                it == GETTER || it == SETTER
+                it == GETTER || it == SETTER || it == FINDER
             }?.let { type ->
                 val e = when (type) {
-                    GETTER -> LombokFoldingAnnotation.LOMBOK_GETTER
-                    SETTER -> LombokFoldingAnnotation.LOMBOK_SETTER
+                    GETTER -> LOMBOK_INTERFACE_GETTER
+                    SETTER -> LOMBOK_INTERFACE_SETTER
+                    FINDER -> LOMBOK_INTERFACE_FINDER
                     else -> null
                 }
                 //TODO: better enum conversion, maybe a custom type?
@@ -43,4 +50,7 @@ object LombokMethodExt : GenericCallback<PsiMethod, List<MethodLevelAnnotation>>
 
         return null
     }
+
+    fun PsiMethod.isFinder() = name.startsWith("find") && name.length > "find".length
+            && parameterList.parameters.size == 1
 }
