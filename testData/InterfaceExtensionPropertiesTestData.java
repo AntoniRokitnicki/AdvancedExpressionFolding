@@ -57,7 +57,7 @@ public class InterfaceExtensionPropertiesTestData {
 
     public interface SinglePropertyUser <fold text='{...}' expand='true'>{
        <fold text='@Getter ' expand='true'> </fold>String <fold text='n' expand='true'>getN</fold>ame<fold text='' expand='true'>()</fold>;
-       <fold text='@Setter ' expand='true'> <fold text='String' expand='true'></fold>void</fold> <fold text='n' expand='true'>setN</fold>ame<fold text='' expand='true'>(String name)</fold>;
+       <fold text='@Setter ' expand='true'> </fold><fold text='String' expand='true'>void</fold> <fold text='n' expand='true'>setN</fold>ame<fold text='' expand='true'>(String name)</fold>;
     }</fold>
 
     class Javadoced <fold text='{...}' expand='true'>{
@@ -115,7 +115,7 @@ public class InterfaceExtensionPropertiesTestData {
              * Sets the name of the user.
              * @param name the name to set
              */</fold>
-           <fold text='@Setter ' expand='true'> <fold text='String' expand='true'></fold>void</fold> <fold text='n' expand='true'>setN</fold>ame<fold text='' expand='true'>(String name)</fold>;
+           <fold text='@Setter ' expand='true'> </fold><fold text='String' expand='true'>void</fold> <fold text='n' expand='true'>setN</fold>ame<fold text='' expand='true'>(String name)</fold>;
 
             <fold text='/** Sets the age of the user. ...*/' expand='true'>/**
              * Sets the age of the user.
@@ -211,8 +211,13 @@ public class InterfaceExtensionPropertiesTestData {
     }</fold>
 
     interface Finder <fold text='{...}' expand='true'>{
-       <fold text='@Finder ' expand='true'> </fold>//@Finder String tag(String name);
-        String <fold text='f' expand='true'>findTagByName(</fold>String name);
+       <fold text='@Finder ' expand='true'> </fold>String <fold text='tag' expand='true'>findTagByName</fold>(String name);
+        //@Finder String tag(String name);
+
+       <fold text='@Finder ' expand='true'> </fold>String <fold text='tag' expand='true'>findTagByAge</fold>(byte <fold text='age' expand='true'>name</fold>);
+
+       <fold text='@Finder ' expand='true'> </fold>String <fold text='name' expand='true'>findNameByName</fold>(String name);
+
     }</fold>
 
     <fold text='/**     public interface User { ...*/' expand='true'>/**
