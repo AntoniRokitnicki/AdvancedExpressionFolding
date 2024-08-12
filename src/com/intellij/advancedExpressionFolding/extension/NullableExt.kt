@@ -35,6 +35,7 @@ object NullableExt : BaseExtension() {
                     val id = element.identifier ?: return@forEach
                     element.addInterfaceAnnotations(methodLevelAnnotations, id, list)
                 }
+                // For interfaces only; other functionality was not tested with the interfaces’ methods
                 return list.exprWrap(element)
             }
         }
