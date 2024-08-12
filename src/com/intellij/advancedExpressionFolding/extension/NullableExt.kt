@@ -1,16 +1,17 @@
 package com.intellij.advancedExpressionFolding.extension
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.expression.custom.*
+import com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression
+import com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression
+import com.intellij.advancedExpressionFolding.expression.custom.FieldConstExpression
+import com.intellij.advancedExpressionFolding.expression.custom.NullAnnotationExpression
 import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFoldingAnnotation.Companion.findByName
 import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFoldingAnnotation.NOT_NULL
 import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFoldingAnnotation.NULLABLE
 import com.intellij.advancedExpressionFolding.extension.lombok.LombokExt
 import com.intellij.advancedExpressionFolding.extension.lombok.LombokExt.callback
-import com.intellij.advancedExpressionFolding.extension.lombok.LombokInterfaceFoldingAnnotation
-import com.intellij.advancedExpressionFolding.extension.lombok.LombokInterfaceFoldingAnnotation.*
+import com.intellij.advancedExpressionFolding.extension.lombok.LombokMethodExt.addInterfaceAnnotations
 import com.intellij.advancedExpressionFolding.extension.lombok.LombokMethodExt.callback
-import com.intellij.advancedExpressionFolding.extension.lombok.MethodLevelAnnotation
 import com.intellij.advancedExpressionFolding.extension.methodcall.dynamic.DynamicExt
 import com.intellij.openapi.editor.Document
 import com.intellij.psi.*
@@ -62,86 +63,6 @@ object NullableExt : BaseExtension() {
         }
         return list.exprWrap(element)
     }
-
-    private fun PsiMethod.addInterfaceAnnotations(
-        methodLevelAnnotations: MethodLevelAnnotation,
-        id: PsiIdentifier,
-        list: MutableList<Expression?>
-    ) {
-        val type = methodLevelAnnotations.methodAnnotation
-        if (type == LOMBOK_INTERFACE_FINDER) {
-
-            list += addAnnotationByLastCharOfPrevWhitespace(type)
-            id.run {
-                fun extractTagAndName(input: String): Pair<String, String>? {
-                    val regex = "find(\\w+)By(\\w*)".toRegex(RegexOption.IGNORE_CASE)
-                    val matchResult = regex.find(input)
-
-                    return matchResult?.let {
-                        val (tag, name) = it.destructured
-                        Pair(tag.decapitalize(), name.decapitalize())
-                    }
-                }
-                extractTagAndName(name)?.run {
-                    val (tag, by) = this
-                    println("tag = $tag")
-                    println("by = $by")
-                    //TODO: fold on first char
-                    list += expr(tag)
-
-                    list += parameterList.parameters.first()?.takeIf {
-                        by != it.name
-                    }?.identifier
-                        ?.run {
-                        expr(by)
-                    }
-                }
-            }
-
-            return
-        }
-
-        //TODO: support @Nullable?
-        val name = this.guessPropertyName()
-        val getName = id.text
-
-        list += id.run {
-            fun countCharDifferencesForGetterAndField(getName: String, name: String) =
-                getName.length - name.reversed().zip(getName.reversed())
-                    .indexOfFirst { (c1, c2) -> c1 != c2 }
-            val diffCount = countCharDifferencesForGetterAndField(getName, name)
-            compressMethodNameByFirstChar(name, diffCount)
-        }
-
-        list += addAnnotationByLastCharOfPrevWhitespace(type)
-
-        if (type == LOMBOK_INTERFACE_GETTER) list += this.parameterList.exprHide()
-        else if (type == LOMBOK_INTERFACE_SETTER) {
-            val param = this.parameterList.parameters.firstOrNull()?.type?.presentableText
-            list += param?.let {
-                this.returnTypeElement?.expr(it)
-            }
-            list += this.parameterList.exprHide()
-        }
-    }
-
-    /**
-     *  Add @Getter annotation before the method's start, at the last character of the preceding whitespace
-     */
-    private fun PsiMethod.addAnnotationByLastCharOfPrevWhitespace(methodAnnotation: LombokInterfaceFoldingAnnotation): SimpleExpression? {
-        val element = docComment?.nextWhiteSpace() ?: prevWhiteSpace() ?: return null
-        return expr("${methodAnnotation.annotation} ", textRange = element.textRangeChar(PsiElement::end, -1, 0))
-    }
-
-    /**
-     * Optimize method name folding to include only the necessary characters
-     * For example, in "getName", fold "getName" to "n" by removing "get" to simplify the representation
-     * This ensures that the method name remains clickable
-     */
-    private fun PsiIdentifier.compressMethodNameByFirstChar(
-        name: String,
-        diffCount: Int
-    ) = expr(name.first().toString(), textRange = textRangeChar(PsiElement::start, 0, diffCount))
 
     @JvmStatic
     fun createExpression(psiRecordComponent: PsiRecordComponent): NullAnnotationExpression? {
