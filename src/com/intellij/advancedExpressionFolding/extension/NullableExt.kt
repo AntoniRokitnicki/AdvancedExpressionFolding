@@ -1,10 +1,7 @@
 package com.intellij.advancedExpressionFolding.extension
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression
-import com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression
-import com.intellij.advancedExpressionFolding.expression.custom.FieldConstExpression
-import com.intellij.advancedExpressionFolding.expression.custom.NullAnnotationExpression
+import com.intellij.advancedExpressionFolding.expression.custom.*
 import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFoldingAnnotation.Companion.findByName
 import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFoldingAnnotation.NOT_NULL
 import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFoldingAnnotation.NULLABLE
@@ -85,7 +82,7 @@ object NullableExt : BaseExtension() {
         }
 
         val methodAnnotation = methodLevelAnnotations.methodAnnotation
-        list += this.prevWhiteSpace()?.run {
+        list += this.run {
             addAnnotationByLastCharOfPrevWhitespace(methodAnnotation)
         }
 
@@ -102,8 +99,12 @@ object NullableExt : BaseExtension() {
     /**
      *  Add @Getter annotation before the method's start, at the last character of the preceding whitespace
      */
-    private fun PsiWhiteSpace.addAnnotationByLastCharOfPrevWhitespace(methodAnnotation: LombokFoldingAnnotation) =
-        expr("${methodAnnotation.annotation} ", textRange = textRangeChar(PsiElement::end, -1, 0))
+    private fun PsiMethod.addAnnotationByLastCharOfPrevWhitespace(methodAnnotation: LombokFoldingAnnotation): SimpleExpression? {
+        this.docComment
+        return this.prevWhiteSpace()?.run {
+            return expr("${methodAnnotation.annotation} ", textRange = textRangeChar(PsiElement::end, -1, 0))
+        }
+    }
 
     /**
      * Optimize method name folding to include only the necessary characters
