@@ -210,6 +210,10 @@ public class InterfaceExtensionPropertiesTestData {
         }
     }
 
+    interface Finder {
+        String findTagByName(String name);
+    }
+
     /**
      public interface User {
         property String name { get; set; }
