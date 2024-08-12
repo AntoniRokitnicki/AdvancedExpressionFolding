@@ -363,11 +363,14 @@ fun List<PsiElement>.exprHide(
 fun PsiElement?.exprHide(
     vararg children: Expression?,
     group: FoldingGroup? = null,
-    foldPrevWhiteSpace: Boolean = false
+    foldPrevWhiteSpace: Boolean = false,
+    textRange: TextRange? = this?.textRange,
 ): HideExpression? {
-    this?.textRange?.isEmpty?.takeIf {
+    this ?: return null
+    textRange?.isEmpty?.takeIf {
         !it
     } ?: return null
+
 
     return HideExpression(
         this,

@@ -44,12 +44,10 @@ object LombokMethodExt : GenericCallback<PsiMethod, List<MethodLevelAnnotation>>
                     FINDER -> LOMBOK_INTERFACE_FINDER
                     else -> null
                 }
-                //TODO: better enum conversion, maybe a custom type?
                 initCallback(method, listOf(MethodLevelAnnotation(e!!)))
             }
         }
-        //TODO: dont join getter and setter, since method references are needed
-
+        //don't join getter and setter, since method references are needed
         return null
     }
 
@@ -67,6 +65,7 @@ object LombokMethodExt : GenericCallback<PsiMethod, List<MethodLevelAnnotation>>
 
             list += addAnnotationByLastCharOfPrevWhitespace(type)
             id.run {
+                @Suppress("DEPRECATION")
                 fun extractTagAndName(input: String): Pair<String, String>? {
                     val regex = "find(\\w+)By(\\w*)".toRegex(RegexOption.IGNORE_CASE)
                     val matchResult = regex.find(input)
@@ -78,10 +77,13 @@ object LombokMethodExt : GenericCallback<PsiMethod, List<MethodLevelAnnotation>>
                 }
                 extractTagAndName(name)?.run {
                     val (tag, by) = this
-                    println("tag = $tag")
-                    println("by = $by")
+
                     //TODO: fold on first char
-                    list += expr(tag)
+                    list += expr(tag.first().toString(), textRange = textRangeChar(PsiElement::start, 0, 5))
+                    val startOffset = by.length + "by".length
+                    //list += exprHide(textRange = textRangeChar(PsiElement::end, startOffset * -1, 3))
+                    list += expr("", textRange = textRangeChar(PsiElement::end, startOffset * -1, 0))
+
 
                     list += parameterList.parameters.first()?.takeIf {
                         by != it.name
