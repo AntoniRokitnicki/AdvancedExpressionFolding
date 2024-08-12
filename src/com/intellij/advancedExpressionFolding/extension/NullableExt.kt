@@ -100,10 +100,8 @@ object NullableExt : BaseExtension() {
      *  Add @Getter annotation before the method's start, at the last character of the preceding whitespace
      */
     private fun PsiMethod.addAnnotationByLastCharOfPrevWhitespace(methodAnnotation: LombokFoldingAnnotation): SimpleExpression? {
-        this.docComment
-        return this.prevWhiteSpace()?.run {
-            return expr("${methodAnnotation.annotation} ", textRange = textRangeChar(PsiElement::end, -1, 0))
-        }
+        val element = docComment?.nextWhiteSpace() ?: prevWhiteSpace() ?: return null
+        return expr("${methodAnnotation.annotation} ", textRange = element.textRangeChar(PsiElement::end, -1, 0))
     }
 
     /**
