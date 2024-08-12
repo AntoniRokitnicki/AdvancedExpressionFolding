@@ -211,7 +211,8 @@ public class InterfaceExtensionPropertiesTestData {
     }</fold>
 
     interface Finder <fold text='{...}' expand='true'>{
-        String findTagByName(String name);
+       <fold text='@Finder ' expand='true'> </fold>//@Finder String tag(String name);
+        String <fold text='f' expand='true'>findTagByName(</fold>String name);
     }</fold>
 
     <fold text='/**     public interface User { ...*/' expand='true'>/**

@@ -211,7 +211,8 @@ public class InterfaceExtensionPropertiesTestData {
     }
 
     interface Finder {
-        @Finder String tag(String name);
+       @Finder //@Finder String tag(String name);
+        String fString name);
     }
 
     /**

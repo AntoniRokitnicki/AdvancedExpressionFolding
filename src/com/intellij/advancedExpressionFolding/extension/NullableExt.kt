@@ -7,9 +7,8 @@ import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFolding
 import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFoldingAnnotation.NULLABLE
 import com.intellij.advancedExpressionFolding.extension.lombok.LombokExt
 import com.intellij.advancedExpressionFolding.extension.lombok.LombokExt.callback
-import com.intellij.advancedExpressionFolding.extension.lombok.LombokFoldingAnnotation
-import com.intellij.advancedExpressionFolding.extension.lombok.LombokFoldingAnnotation.LOMBOK_GETTER
-import com.intellij.advancedExpressionFolding.extension.lombok.LombokFoldingAnnotation.LOMBOK_SETTER
+import com.intellij.advancedExpressionFolding.extension.lombok.LombokInterfaceFoldingAnnotation
+import com.intellij.advancedExpressionFolding.extension.lombok.LombokInterfaceFoldingAnnotation.*
 import com.intellij.advancedExpressionFolding.extension.lombok.LombokMethodExt.callback
 import com.intellij.advancedExpressionFolding.extension.lombok.MethodLevelAnnotation
 import com.intellij.advancedExpressionFolding.extension.methodcall.dynamic.DynamicExt
@@ -69,6 +68,11 @@ object NullableExt : BaseExtension() {
         id: PsiIdentifier,
         list: MutableList<Expression?>
     ) {
+        if (methodLevelAnnotations.methodAnnotation == LOMBOK_INTERFACE_FINDER) {
+            //TODO: finder
+            return
+        }
+
         //TODO: support @Nullable?
         val name = this.guessPropertyName()
         val getName = id.text
@@ -86,8 +90,8 @@ object NullableExt : BaseExtension() {
             addAnnotationByLastCharOfPrevWhitespace(methodAnnotation)
         }
 
-        if (methodAnnotation == LOMBOK_GETTER) list += this.parameterList.exprHide()
-        else if (methodAnnotation == LOMBOK_SETTER) {
+        if (methodAnnotation == LOMBOK_INTERFACE_GETTER) list += this.parameterList.exprHide()
+        else if (methodAnnotation == LOMBOK_INTERFACE_SETTER) {
             val param = this.parameterList.parameters.firstOrNull()?.type?.presentableText
             list += param?.let {
                 this.returnTypeElement?.expr(it)
@@ -99,7 +103,7 @@ object NullableExt : BaseExtension() {
     /**
      *  Add @Getter annotation before the method's start, at the last character of the preceding whitespace
      */
-    private fun PsiMethod.addAnnotationByLastCharOfPrevWhitespace(methodAnnotation: LombokFoldingAnnotation): SimpleExpression? {
+    private fun PsiMethod.addAnnotationByLastCharOfPrevWhitespace(methodAnnotation: LombokInterfaceFoldingAnnotation): SimpleExpression? {
         val element = docComment?.nextWhiteSpace() ?: prevWhiteSpace() ?: return null
         return expr("${methodAnnotation.annotation} ", textRange = element.textRangeChar(PsiElement::end, -1, 0))
     }
