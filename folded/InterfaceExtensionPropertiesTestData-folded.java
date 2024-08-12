@@ -210,6 +210,10 @@ public class InterfaceExtensionPropertiesTestData {
         }
     }
 
+    interface Finder {
+        @Finder String tag(String name);
+    }
+
     /**
      public interface User {
         property String name { get; set; }

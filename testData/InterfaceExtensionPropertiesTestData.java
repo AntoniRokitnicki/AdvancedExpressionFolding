@@ -210,6 +210,10 @@ public class InterfaceExtensionPropertiesTestData {
         }</fold>
     }</fold>
 
+    interface Finder <fold text='{...}' expand='true'>{
+        String findTagByName(String name);
+    }</fold>
+
     <fold text='/**     public interface User { ...*/' expand='true'>/**
      public interface User {
         property String name { get; set; }
