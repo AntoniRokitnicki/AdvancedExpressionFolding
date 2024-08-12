@@ -68,8 +68,36 @@ object NullableExt : BaseExtension() {
         id: PsiIdentifier,
         list: MutableList<Expression?>
     ) {
-        if (methodLevelAnnotations.methodAnnotation == LOMBOK_INTERFACE_FINDER) {
-            //TODO: finder
+        val type = methodLevelAnnotations.methodAnnotation
+        if (type == LOMBOK_INTERFACE_FINDER) {
+
+            list += addAnnotationByLastCharOfPrevWhitespace(type)
+            id.run {
+                fun extractTagAndName(input: String): Pair<String, String>? {
+                    val regex = "find(\\w+)By(\\w*)".toRegex(RegexOption.IGNORE_CASE)
+                    val matchResult = regex.find(input)
+
+                    return matchResult?.let {
+                        val (tag, name) = it.destructured
+                        Pair(tag.decapitalize(), name.decapitalize())
+                    }
+                }
+                extractTagAndName(name)?.run {
+                    val (tag, by) = this
+                    println("tag = $tag")
+                    println("by = $by")
+                    //TODO: fold on first char
+                    list += expr(tag)
+
+                    list += parameterList.parameters.first()?.takeIf {
+                        by != it.name
+                    }?.identifier
+                        ?.run {
+                        expr(by)
+                    }
+                }
+            }
+
             return
         }
 
@@ -85,13 +113,10 @@ object NullableExt : BaseExtension() {
             compressMethodNameByFirstChar(name, diffCount)
         }
 
-        val methodAnnotation = methodLevelAnnotations.methodAnnotation
-        list += this.run {
-            addAnnotationByLastCharOfPrevWhitespace(methodAnnotation)
-        }
+        list += addAnnotationByLastCharOfPrevWhitespace(type)
 
-        if (methodAnnotation == LOMBOK_INTERFACE_GETTER) list += this.parameterList.exprHide()
-        else if (methodAnnotation == LOMBOK_INTERFACE_SETTER) {
+        if (type == LOMBOK_INTERFACE_GETTER) list += this.parameterList.exprHide()
+        else if (type == LOMBOK_INTERFACE_SETTER) {
             val param = this.parameterList.parameters.firstOrNull()?.type?.presentableText
             list += param?.let {
                 this.returnTypeElement?.expr(it)

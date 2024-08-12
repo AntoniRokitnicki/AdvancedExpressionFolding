@@ -52,5 +52,5 @@ object LombokMethodExt : GenericCallback<PsiMethod, List<MethodLevelAnnotation>>
     }
 
     fun PsiMethod.isFinder() = name.startsWith("find") && name.length > "find".length
-            && parameterList.parameters.size == 1
+            && parameterList.parameters.size == 1 && name.contains("By")
 }

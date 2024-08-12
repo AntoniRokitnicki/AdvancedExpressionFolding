@@ -211,8 +211,13 @@ public class InterfaceExtensionPropertiesTestData {
     }
 
     interface Finder {
-       @Finder //@Finder String tag(String name);
-        String fString name);
+       @Finder String tag(String name);
+        //@Finder String tag(String name);
+
+       @Finder String tag(byte age);
+
+       @Finder String name(String name);
+
     }
 
     /**
