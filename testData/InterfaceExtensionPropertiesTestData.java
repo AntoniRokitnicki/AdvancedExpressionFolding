@@ -211,12 +211,12 @@ public class InterfaceExtensionPropertiesTestData {
     }</fold>
 
     interface Finder <fold text='{...}' expand='true'>{
-       <fold text='@Finder ' expand='true'> </fold>String <fold text='tag' expand='true'>findTagByName</fold>(String name);
+       <fold text='@Finder ' expand='true'> </fold>String <fold text='t' expand='true'>findT</fold>ag<fold text='' expand='true'>ByName</fold>(String name);
         //@Finder String tag(String name);
 
-       <fold text='@Finder ' expand='true'> </fold>String <fold text='tag' expand='true'>findTagByAge</fold>(byte <fold text='age' expand='true'>name</fold>);
+       <fold text='@Finder ' expand='true'> </fold>String <fold text='t' expand='true'>findT</fold>ag<fold text='' expand='true'>ByAge</fold>(byte <fold text='age' expand='true'>name</fold>);
 
-       <fold text='@Finder ' expand='true'> </fold>String <fold text='name' expand='true'>findNameByName</fold>(String name);
+       <fold text='@Finder ' expand='true'> </fold>String <fold text='n' expand='true'>findN</fold>ame<fold text='' expand='true'>ByName</fold>(String name);
 
     }</fold>
 
