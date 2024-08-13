@@ -1,7 +1,6 @@
 import org.jetbrains.changelog.Changelog
 import org.jetbrains.changelog.markdownToHTML
 import org.jetbrains.dokka.gradle.DokkaTask
-import java.net.URL
 
 fun properties(key: String) = providers.gradleProperty(key)
 fun environment(key: String) = providers.environmentVariable(key)
@@ -194,32 +193,16 @@ tasks {
         outputDirectory.set(layout.buildDirectory.dir("../wiki/dokka"))
     }
 }
-tasks.withType<DokkaTask> ().configureEach {
+tasks.withType<DokkaTask>().configureEach {
     dokkaSourceSets {
-        configureEach {
-            sourceRoots.from(file("testData"))
-            suppress.set(false)
-            displayName.set(name)
-            //documentedVisibilities.set(setOf(Visibility.PUBLIC))
-            reportUndocumented.set(false)
-            skipEmptyPackages.set(true)
-            skipDeprecated.set(false)
-            suppressGeneratedFiles.set(true)
-            jdkVersion.set(8)
-            languageVersion.set("1.7")
-            apiVersion.set("1.7")
-            noStdlibLink.set(false)
-            noJdkLink.set(false)
-            noAndroidSdkLink.set(false)
-            //includes.from(project.files(), "packages.md", "extra.md")
-            //platform.set(Platform.DEFAULT)
-            //classpath.from(project.files(), file("libs/dependency.jar"))
-            //samples.from(project.files(), "samples/Basic.kt", "samples/Advanced.kt")
-
+        dokkaSourceSets.named("main") {
             sourceLink {
-                localDirectory.set(projectDir.resolve("testData"))
-                remoteUrl.set(URL("https://github.com/kotlin/dokka/tree/master/src"))
-                remoteLineSuffix.set("#L")
+                localDirectory.set(file("testData"))
+            }
+        }
+        dokkaSourceSets.named("test") {
+            sourceLink {
+                localDirectory.set(file("testData"))
             }
         }
     }
