@@ -1,10 +1,27 @@
 package data;
 
+import org.jetbrains.annotations.NotNull;
+
+import javax.annotation.Nullable;
+
 @SuppressWarnings("ALL")
 public class InterfaceExtensionPropertiesTestData {
 
-    //TODO: default & static methods examples - all should be ignored
-    //TODO: Nullable examples
+    interface TODO {
+        public interface NullableUser {
+            int getAge();
+            @Nullable
+            String getName();
+            void setName(@Nullable String name);
+        }
+        public interface NotNullUser {
+            @NotNull
+            String getName();
+            void setName(@NotNull String name);
+            int getAge();
+        }
+
+    }
 
     public interface User {
         String getName();
@@ -22,6 +39,25 @@ public class InterfaceExtensionPropertiesTestData {
         public void setAge(int age);
     }
 
+    interface Ignored {
+        public interface DefaultUser {
+            default String getName() {
+                return "Unknown User";
+            }
+            default void setName(String name) {
+            }
+            int getAge();
+        }
+
+        public interface StaticUser {
+            static String getName() {
+                return "Static User";
+            }
+            int getAge();
+            static void setName(String name) {
+            }
+        }
+    }
 
     public interface ReadOnlyUser {
         String getName();
@@ -211,8 +247,8 @@ public class InterfaceExtensionPropertiesTestData {
     }
 
     interface Finder {
-        String findTagByName(String name);
         //@Finder String tag(String name);
+        String findTagByName(String name);
 
         String findTagByAge(byte name);
 
