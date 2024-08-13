@@ -6,6 +6,7 @@ import com.intellij.advancedExpressionFolding.extension.*
 import com.intellij.advancedExpressionFolding.extension.PsiClassExt.ClassLevelAnnotation
 import com.intellij.advancedExpressionFolding.extension.lombok.LombokExt.findMethodType
 import com.intellij.advancedExpressionFolding.extension.lombok.LombokInterfaceFoldingAnnotation.*
+import com.intellij.advancedExpressionFolding.extension.lombok.LombokInterfaceFoldingAnnotation.Companion.fromMethodType
 import com.intellij.advancedExpressionFolding.extension.lombok.MethodType.*
 import com.intellij.openapi.util.Key
 import com.intellij.psi.PsiClass
@@ -13,11 +14,21 @@ import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiIdentifier
 import com.intellij.psi.PsiMethod
 
-enum class LombokInterfaceFoldingAnnotation(val annotation: String) {
-    LOMBOK_INTERFACE_GETTER("@Getter"),
-    LOMBOK_INTERFACE_SETTER("@Setter"),
-    LOMBOK_INTERFACE_FINDER("@Finder"),
+enum class LombokInterfaceFoldingAnnotation(
+    val annotation: String,
+    private val methodType: MethodType,
+) {
+    LOMBOK_INTERFACE_GETTER("@Getter", GETTER),
+    LOMBOK_INTERFACE_SETTER("@Setter", SETTER),
+    LOMBOK_INTERFACE_FINDER("@Finder", FINDER);
+
+    companion object {
+        fun fromMethodType(methodType: MethodType) = values().asSequence().firstOrNull {
+            it.methodType == methodType
+        }
+    }
 }
+
 
 data class MethodLevelAnnotation(
     val methodAnnotation: LombokInterfaceFoldingAnnotation,
@@ -29,25 +40,16 @@ object LombokMethodExt : GenericCallback<PsiMethod, List<MethodLevelAnnotation>>
     }
 
     fun PsiClass.interfaceSupport(): List<ClassLevelAnnotation>? {
-        val k = methods
-        val methodsNotStatic = methodsNotStatic
-        val filterNot = methodsNotStatic.filterNot {
-            isInterfaceDefault()
-        }
-        val r = filterNot.mapNotNull { method ->
-            method.findMethodType().takeIf {
-                it == GETTER || it == SETTER || it == FINDER
-            }?.let { type ->
-                val e = when (type) {
-                    GETTER -> LOMBOK_INTERFACE_GETTER
-                    SETTER -> LOMBOK_INTERFACE_SETTER
-                    FINDER -> LOMBOK_INTERFACE_FINDER
-                    else -> null
+        methodsNotStatic.filter {
+            it.body == null
+        }.mapNotNull { method ->
+            fromMethodType(method.findMethodType())
+                ?.let { type ->
+                    initCallback(method, listOf(MethodLevelAnnotation(type)))
                 }
-                initCallback(method, listOf(MethodLevelAnnotation(e!!)))
-            }
         }
-        //don't join getter and setter, since method references are needed
+        // IMPORTANT: Do not combine @Getter and @Setter at the class level,
+        // as user might need to use method references individually.
         return null
     }
 
@@ -58,7 +60,7 @@ object LombokMethodExt : GenericCallback<PsiMethod, List<MethodLevelAnnotation>>
     fun PsiMethod.addInterfaceAnnotations(
         methodLevelAnnotations: MethodLevelAnnotation,
         id: PsiIdentifier,
-        list: MutableList<Expression?>
+        list: MutableList<Expression?>,
     ) {
         val type = methodLevelAnnotations.methodAnnotation
         if (type == LOMBOK_INTERFACE_FINDER) {

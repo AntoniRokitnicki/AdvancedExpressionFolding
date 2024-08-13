@@ -397,7 +397,7 @@ newName = "mainek3"
      */
     @Test
     fun testInterfaceExtensionPropertiesTestData() {
-        doFoldingTest(state::interfaceExtensionProperties, state::lombok)
+        doFoldingTest(state::interfaceExtensionProperties, state::lombok, state::nullable)
     }
     // NEW OPTION
     /**

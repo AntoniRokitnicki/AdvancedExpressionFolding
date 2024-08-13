@@ -107,6 +107,8 @@ fun PsiModifierListOwner.isDefault() = !isPublic() && !isProtected() && !isPriva
 fun PsiModifierListOwner.isStatic() = hasModifierProperty(PsiModifier.STATIC)
 fun PsiModifierListOwner.isFinal() = hasModifierProperty(PsiModifier.FINAL)
 
+//TODO: look up why
+@Deprecated("doesn't work", ReplaceWith("body == null"))
 fun PsiModifierListOwner.isInterfaceDefault() = hasModifierProperty(PsiModifier.DEFAULT)
 
 fun PsiModifierListOwner.isNotStatic() = !isStatic()
@@ -162,12 +164,12 @@ fun PsiClass?.isBuilder(): Boolean {
     return userData == PsiClassExt.ClassType.BUILDER
 }
 
-val PsiClass.fieldsNotStatic: List<PsiField>
-    get() = fields.filter {
+val PsiClass.fieldsNotStatic: Sequence<PsiField>
+    get() = fields.asSequence().filter {
         it.isNotStatic()
     }
-val PsiClass.methodsNotStatic: List<PsiMethod>
-    get() = methods.filter {
+val PsiClass.methodsNotStatic: Sequence<PsiMethod>
+    get() = methods.asSequence().filter {
         it.isNotStatic()
     }
 

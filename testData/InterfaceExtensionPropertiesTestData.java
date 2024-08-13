@@ -1,63 +1,99 @@
 package data;
 
+import <fold text='...' expand='false'>org.jetbrains.annotations.NotNull;
+
+import javax.annotation.Nullable;</fold>
+
 @SuppressWarnings("ALL")
 public class InterfaceExtensionPropertiesTestData {
 
-    <fold text='//...' expand='true'>//TODO: default & static methods examples - all should be ignored
-    //TODO: Nullable examples</fold>
+    interface TODO <fold text='{...}' expand='true'>{
+        public interface NullableUser <fold text='{...}' expand='true'>{
+            int getAge();
+            <fold text='' expand='false'>@Nullable</fold>
+            String<fold text='? ' expand='false'> </fold>getName();
+            void setName(<fold text='' expand='false'>@Nullable</fold><fold text='' expand='false'> </fold>String<fold text='? ' expand='false'> </fold>name);
+        }</fold>
+        public interface NotNullUser <fold text='{...}' expand='true'>{
+            <fold text='' expand='false'>@NotNull</fold>
+            String<fold text='!! ' expand='false'> </fold>getName();
+            void setName(<fold text='' expand='false'>@NotNull</fold><fold text='' expand='false'> </fold>String<fold text='!! ' expand='false'> </fold>name);
+            int getAge();
+        }</fold>
+
+    }</fold>
 
     public interface User <fold text='{...}' expand='true'>{
-       <fold text='@Getter ' expand='true'> </fold>String <fold text='n' expand='true'>getN</fold>ame<fold text='' expand='true'>()</fold>;
-       <fold text='@Setter ' expand='true'> </fold><fold text='String' expand='true'>void</fold> <fold text='n' expand='true'>setN</fold>ame<fold text='' expand='true'>(String name)</fold>;
+        String getName();
+        void setName(String name);
 
-       <fold text='@Getter ' expand='true'> </fold>int <fold text='a' expand='true'>getA</fold>ge<fold text='' expand='true'>()</fold>;
-       <fold text='@Setter ' expand='true'> </fold><fold text='int' expand='true'>void</fold> <fold text='a' expand='true'>setA</fold>ge<fold text='' expand='true'>(int age)</fold>;
+        int getAge();
+        void setAge(int age);
     }</fold>
 
     public interface PublicUser <fold text='{...}' expand='true'>{
-       <fold text='@Getter ' expand='true'> </fold>public String <fold text='n' expand='true'>getN</fold>ame<fold text='' expand='true'>()</fold>;
-       <fold text='@Setter ' expand='true'> </fold>public <fold text='String' expand='true'>void</fold> <fold text='n' expand='true'>setN</fold>ame<fold text='' expand='true'>(String name)</fold>;
+        public String getName();
+        public void setName(String name);
 
-       <fold text='@Getter ' expand='true'> </fold>public int <fold text='a' expand='true'>getA</fold>ge<fold text='' expand='true'>()</fold>;
-       <fold text='@Setter ' expand='true'> </fold>public <fold text='int' expand='true'>void</fold> <fold text='a' expand='true'>setA</fold>ge<fold text='' expand='true'>(int age)</fold>;
+        public int getAge();
+        public void setAge(int age);
     }</fold>
 
+    interface Ignored <fold text='{...}' expand='true'>{
+        public interface DefaultUser <fold text='{...}' expand='true'>{
+            default String getName()<fold text=' { ' expand='false'> {
+                </fold>return "Unknown User";<fold text=' }' expand='false'>
+            }</fold>
+            default void setName(String name) <fold text='{}' expand='true'>{
+            }</fold>
+            int getAge();
+        }</fold>
+
+        public interface StaticUser <fold text='{...}' expand='true'>{
+            static String getName()<fold text=' { ' expand='false'> {
+                </fold>return "Static User";<fold text=' }' expand='false'>
+            }</fold>
+            int getAge();
+            static void setName(String name) <fold text='{}' expand='true'>{
+            }</fold>
+        }</fold>
+    }</fold>
 
     public interface ReadOnlyUser <fold text='{...}' expand='true'>{
-       <fold text='@Getter ' expand='true'> </fold>String <fold text='n' expand='true'>getN</fold>ame<fold text='' expand='true'>()</fold>;
-       <fold text='@Getter ' expand='true'> </fold>int <fold text='a' expand='true'>getA</fold>ge<fold text='' expand='true'>()</fold>;
+        String getName();
+        int getAge();
     }</fold>
 
     public interface WriteOnlyUser <fold text='{...}' expand='true'>{
-       <fold text='@Setter ' expand='true'> </fold><fold text='String' expand='true'>void</fold> <fold text='n' expand='true'>setN</fold>ame<fold text='' expand='true'>(String name)</fold>;
-       <fold text='@Setter ' expand='true'> </fold><fold text='int' expand='true'>void</fold> <fold text='a' expand='true'>setA</fold>ge<fold text='' expand='true'>(int age)</fold>;
+        void setName(String name);
+        void setAge(int age);
     }</fold>
 
     public interface MixedAccessUser <fold text='{...}' expand='true'>{
-       <fold text='@Getter ' expand='true'> </fold>String <fold text='n' expand='true'>getN</fold>ame<fold text='' expand='true'>()</fold>;
-       <fold text='@Setter ' expand='true'> </fold><fold text='String' expand='true'>void</fold> <fold text='n' expand='true'>setN</fold>ame<fold text='' expand='true'>(String name)</fold>;
+        String getName();
+        void setName(String name);
 
-       <fold text='@Getter ' expand='true'> </fold>int <fold text='a' expand='true'>getA</fold>ge<fold text='' expand='true'>()</fold>;
+        int getAge();
     }</fold>
 
     public interface MixedAccessUser2 <fold text='{...}' expand='true'>{
-       <fold text='@Getter ' expand='true'> </fold>String <fold text='n' expand='true'>getN</fold>ame<fold text='' expand='true'>()</fold>;
-       <fold text='@Setter ' expand='true'> </fold><fold text='String' expand='true'>void</fold> <fold text='n' expand='true'>setN</fold>ame<fold text='' expand='true'>(String name)</fold>;
+        String getName();
+        void setName(String name);
 
-       <fold text='@Setter ' expand='true'> </fold><fold text='int' expand='true'>void</fold> <fold text='a' expand='true'>setA</fold>ge<fold text='' expand='true'>(int age)</fold>;
+        void setAge(int age);
     }</fold>
 
     public interface SingleGetterUser <fold text='{...}' expand='true'>{
-       <fold text='@Getter ' expand='true'> </fold>String <fold text='n' expand='true'>getN</fold>ame<fold text='' expand='true'>()</fold>;
+        String getName();
     }</fold>
 
     public interface SingleSetterUser <fold text='{...}' expand='true'>{
-       <fold text='@Setter ' expand='true'> </fold><fold text='String' expand='true'>void</fold> <fold text='n' expand='true'>setN</fold>ame<fold text='' expand='true'>(String name)</fold>;
+        void setName(String name);
     }</fold>
 
     public interface SinglePropertyUser <fold text='{...}' expand='true'>{
-       <fold text='@Getter ' expand='true'> </fold>String <fold text='n' expand='true'>getN</fold>ame<fold text='' expand='true'>()</fold>;
-       <fold text='@Setter ' expand='true'> </fold><fold text='String' expand='true'>void</fold> <fold text='n' expand='true'>setN</fold>ame<fold text='' expand='true'>(String name)</fold>;
+        String getName();
+        void setName(String name);
     }</fold>
 
     class Javadoced <fold text='{...}' expand='true'>{
@@ -69,25 +105,25 @@ public class InterfaceExtensionPropertiesTestData {
              * Gets the name of the user.
              * @return the name of the user
              */</fold>
-           <fold text='@Getter ' expand='true'> </fold>String <fold text='n' expand='true'>getN</fold>ame<fold text='' expand='true'>()</fold>;
+            String getName();
 
             <fold text='/** Sets the name of the user. ...*/' expand='true'>/**
              * Sets the name of the user.
              * @param name the name to set
              */</fold>
-           <fold text='@Setter ' expand='true'> </fold><fold text='String' expand='true'>void</fold> <fold text='n' expand='true'>setN</fold>ame<fold text='' expand='true'>(String name)</fold>;
+            void setName(String name);
 
             <fold text='/** Gets the age of the user. ...*/' expand='true'>/**
              * Gets the age of the user.
              * @return the age of the user
              */</fold>
-           <fold text='@Getter ' expand='true'> </fold>int <fold text='a' expand='true'>getA</fold>ge<fold text='' expand='true'>()</fold>;
+            int getAge();
 
             <fold text='/** Sets the age of the user. ...*/' expand='true'>/**
              * Sets the age of the user.
              * @param age the age to set
              */</fold>
-           <fold text='@Setter ' expand='true'> </fold><fold text='int' expand='true'>void</fold> <fold text='a' expand='true'>setA</fold>ge<fold text='' expand='true'>(int age)</fold>;
+            void setAge(int age);
         }</fold>
 
         <fold text='/** Interface representing a read-only user with getter methods for name and age. */' expand='true'>/**
@@ -98,13 +134,13 @@ public class InterfaceExtensionPropertiesTestData {
              * Gets the name of the user.
              * @return the name of the user
              */</fold>
-           <fold text='@Getter ' expand='true'> </fold>String <fold text='n' expand='true'>getN</fold>ame<fold text='' expand='true'>()</fold>;
+            String getName();
 
             <fold text='/** Gets the age of the user. ...*/' expand='true'>/**
              * Gets the age of the user.
              * @return the age of the user
              */</fold>
-           <fold text='@Getter ' expand='true'> </fold>int <fold text='a' expand='true'>getA</fold>ge<fold text='' expand='true'>()</fold>;
+            int getAge();
         }</fold>
 
         <fold text='/** Interface representing a write-only user with setter methods for name and age. */' expand='true'>/**
@@ -115,13 +151,13 @@ public class InterfaceExtensionPropertiesTestData {
              * Sets the name of the user.
              * @param name the name to set
              */</fold>
-           <fold text='@Setter ' expand='true'> </fold><fold text='String' expand='true'>void</fold> <fold text='n' expand='true'>setN</fold>ame<fold text='' expand='true'>(String name)</fold>;
+            void setName(String name);
 
             <fold text='/** Sets the age of the user. ...*/' expand='true'>/**
              * Sets the age of the user.
              * @param age the age to set
              */</fold>
-           <fold text='@Setter ' expand='true'> </fold><fold text='int' expand='true'>void</fold> <fold text='a' expand='true'>setA</fold>ge<fold text='' expand='true'>(int age)</fold>;
+            void setAge(int age);
         }</fold>
 
         <fold text='/** Interface representing a user with mixed access: both getter and setter for name, and getter only for age. */' expand='true'>/**
@@ -132,19 +168,19 @@ public class InterfaceExtensionPropertiesTestData {
              * Gets the name of the user.
              * @return the name of the user
              */</fold>
-           <fold text='@Getter ' expand='true'> </fold>String <fold text='n' expand='true'>getN</fold>ame<fold text='' expand='true'>()</fold>;
+            String getName();
 
             <fold text='/** Sets the name of the user. ...*/' expand='true'>/**
              * Sets the name of the user.
              * @param name the name to set
              */</fold>
-           <fold text='@Setter ' expand='true'> </fold><fold text='String' expand='true'>void</fold> <fold text='n' expand='true'>setN</fold>ame<fold text='' expand='true'>(String name)</fold>;
+            void setName(String name);
 
             <fold text='/** Gets the age of the user. ...*/' expand='true'>/**
              * Gets the age of the user.
              * @return the age of the user
              */</fold>
-           <fold text='@Getter ' expand='true'> </fold>int <fold text='a' expand='true'>getA</fold>ge<fold text='' expand='true'>()</fold>;
+            int getAge();
         }</fold>
 
         <fold text='/** Interface representing a user with mixed access: both getter and setter for name, and setter only for age. */' expand='true'>/**
@@ -155,19 +191,19 @@ public class InterfaceExtensionPropertiesTestData {
              * Gets the name of the user.
              * @return the name of the user
              */</fold>
-           <fold text='@Getter ' expand='true'> </fold>String <fold text='n' expand='true'>getN</fold>ame<fold text='' expand='true'>()</fold>;
+            String getName();
 
             <fold text='/** Sets the name of the user. ...*/' expand='true'>/**
              * Sets the name of the user.
              * @param name the name to set
              */</fold>
-           <fold text='@Setter ' expand='true'> </fold><fold text='String' expand='true'>void</fold> <fold text='n' expand='true'>setN</fold>ame<fold text='' expand='true'>(String name)</fold>;
+            void setName(String name);
 
             <fold text='/** Sets the age of the user. ...*/' expand='true'>/**
              * Sets the age of the user.
              * @param age the age to set
              */</fold>
-           <fold text='@Setter ' expand='true'> </fold><fold text='int' expand='true'>void</fold> <fold text='a' expand='true'>setA</fold>ge<fold text='' expand='true'>(int age)</fold>;
+            void setAge(int age);
         }</fold>
 
         <fold text='/** Interface representing a user with a single getter method for name. */' expand='true'>/**
@@ -178,7 +214,7 @@ public class InterfaceExtensionPropertiesTestData {
              * Gets the name of the user.
              * @return the name of the user
              */</fold>
-           <fold text='@Getter ' expand='true'> </fold>String <fold text='n' expand='true'>getN</fold>ame<fold text='' expand='true'>()</fold>;
+            String getName();
         }</fold>
 
         <fold text='/** Interface representing a user with a single setter method for name. */' expand='true'>/**
@@ -189,7 +225,7 @@ public class InterfaceExtensionPropertiesTestData {
              * Sets the name of the user.
              * @param name the name to set
              */</fold>
-           <fold text='@Setter ' expand='true'> </fold><fold text='String' expand='true'>void</fold> <fold text='n' expand='true'>setN</fold>ame<fold text='' expand='true'>(String name)</fold>;
+            void setName(String name);
         }</fold>
 
         <fold text='/** Interface representing a user with both getter and setter methods for name. */' expand='true'>/**
@@ -200,23 +236,23 @@ public class InterfaceExtensionPropertiesTestData {
              * Gets the name of the user.
              * @return the name of the user
              */</fold>
-           <fold text='@Getter ' expand='true'> </fold>String <fold text='n' expand='true'>getN</fold>ame<fold text='' expand='true'>()</fold>;
+            String getName();
 
             <fold text='/** Sets the name of the user. ...*/' expand='true'>/**
              * Sets the name of the user.
              * @param name the name to set
              */</fold>
-           <fold text='@Setter ' expand='true'> </fold><fold text='String' expand='true'>void</fold> <fold text='n' expand='true'>setN</fold>ame<fold text='' expand='true'>(String name)</fold>;
+            void setName(String name);
         }</fold>
     }</fold>
 
     interface Finder <fold text='{...}' expand='true'>{
-       <fold text='@Finder ' expand='true'> </fold>String <fold text='t' expand='true'>findT</fold>ag<fold text='' expand='true'>ByName</fold>(String name);
         //@Finder String tag(String name);
+        String findTagByName(String name);
 
-       <fold text='@Finder ' expand='true'> </fold>String <fold text='t' expand='true'>findT</fold>ag<fold text='' expand='true'>ByAge</fold>(byte <fold text='age' expand='true'>name</fold>);
+        String findTagByAge(byte name);
 
-       <fold text='@Finder ' expand='true'> </fold>String <fold text='n' expand='true'>findN</fold>ame<fold text='' expand='true'>ByName</fold>(String name);
+        String findNameByName(String name);
 
     }</fold>
 
