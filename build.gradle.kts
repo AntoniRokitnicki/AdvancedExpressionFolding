@@ -196,14 +196,15 @@ tasks {
 tasks.withType<DokkaTask>().configureEach {
     dokkaSourceSets {
         dokkaSourceSets.named("main") {
-            sourceLink {
-                localDirectory.set(file("testData"))
-            }
+            suppress = true
         }
         dokkaSourceSets.named("test") {
-            sourceLink {
-                localDirectory.set(file("testData"))
-            }
+            suppress = true
+        }
+        register("testData") {
+            suppress = false
+            displayName = "testData"
+            sourceRoots.from(file("testData"))
         }
     }
 }
