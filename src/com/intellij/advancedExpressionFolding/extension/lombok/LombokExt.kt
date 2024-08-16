@@ -390,7 +390,7 @@ object LombokExt : BaseExtension(), GenericCallback<PsiField, List<FieldLevelAnn
             isToString() -> TO_STRING
             isEquals() -> EQUALS
             isHashCode() -> HASHCODE
-            isFinder() -> FINDER
+            isFinder() -> FIND_BY
             else -> OTHER
         }
 }

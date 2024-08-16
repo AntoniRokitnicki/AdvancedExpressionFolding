@@ -28,7 +28,7 @@ enum class MethodType {
     EQUALS,
     HASHCODE,
 
-    FINDER,
+    FIND_BY,
     OTHER,
 
     ;

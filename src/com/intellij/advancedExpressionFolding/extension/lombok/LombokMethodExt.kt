@@ -20,7 +20,7 @@ enum class LombokInterfaceFoldingAnnotation(
 ) {
     LOMBOK_INTERFACE_GETTER("@Getter", GETTER),
     LOMBOK_INTERFACE_SETTER("@Setter", SETTER),
-    LOMBOK_INTERFACE_FINDER("@Finder", FINDER);
+    LOMBOK_INTERFACE_FIND_BY("@FindBy", FIND_BY);
 
     companion object {
         fun fromMethodType(methodType: MethodType) = values().asSequence().firstOrNull {
@@ -63,7 +63,7 @@ object LombokMethodExt : GenericCallback<PsiMethod, List<MethodLevelAnnotation>>
         list: MutableList<Expression?>,
     ) {
         val type = methodLevelAnnotations.methodAnnotation
-        if (type == LOMBOK_INTERFACE_FINDER) {
+        if (type == LOMBOK_INTERFACE_FIND_BY) {
 
             list += addAnnotationByLastCharOfPrevWhitespace(type)
             id.run {
