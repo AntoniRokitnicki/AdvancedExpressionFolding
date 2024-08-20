@@ -9,7 +9,9 @@ public class InterfaceExtensionPropertiesTestData {
 
     interface TODO {
         public interface NullableUser {
-            int getAge();
+            @Nullable
+            Integer getAge();
+            void setAge(@Nullable int age);
             @Nullable
             String getName();
             void setName(@Nullable String name);
@@ -20,7 +22,6 @@ public class InterfaceExtensionPropertiesTestData {
             void setName(@NotNull String name);
             int getAge();
         }
-
     }
 
     public interface User {
