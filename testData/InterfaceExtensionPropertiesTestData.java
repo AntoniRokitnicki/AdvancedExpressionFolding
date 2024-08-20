@@ -9,7 +9,9 @@ public class InterfaceExtensionPropertiesTestData {
 
     interface TODO <fold text='{...}' expand='true'>{
         public interface NullableUser <fold text='{...}' expand='true'>{
-            int getAge();
+            <fold text='' expand='false'>@Nullable</fold>
+            Integer<fold text='? ' expand='false'> </fold>getAge();
+            void setAge(<fold text='' expand='false'>@Nullable</fold><fold text='' expand='false'> </fold>int<fold text='? ' expand='false'> </fold>age);
             <fold text='' expand='false'>@Nullable</fold>
             String<fold text='? ' expand='false'> </fold>getName();
             void setName(<fold text='' expand='false'>@Nullable</fold><fold text='' expand='false'> </fold>String<fold text='? ' expand='false'> </fold>name);
@@ -20,7 +22,6 @@ public class InterfaceExtensionPropertiesTestData {
             void setName(<fold text='' expand='false'>@NotNull</fold><fold text='' expand='false'> </fold>String<fold text='!! ' expand='false'> </fold>name);
             int getAge();
         }</fold>
-
     }</fold>
 
     public interface User <fold text='{...}' expand='true'>{

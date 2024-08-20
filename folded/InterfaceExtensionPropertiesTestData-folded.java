@@ -9,7 +9,9 @@ public class InterfaceExtensionPropertiesTestData {
 
     interface TODO {
         public interface NullableUser {
-            int getAge();
+            
+            Integer? getAge();
+            void setAge(int? age);
             
             String? getName();
             void setName(String? name);
@@ -20,7 +22,6 @@ public class InterfaceExtensionPropertiesTestData {
             void setName(String!! name);
             int getAge();
         }
-
     }
 
     public interface User {
