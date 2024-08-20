@@ -40,7 +40,7 @@ object LombokMethodExt : GenericCallback<PsiMethod, List<MethodLevelAnnotation>>
     }
 
     fun PsiClass.interfaceSupport(): List<ClassLevelAnnotation>? {
-        methodsNotStatic.filter {
+        methodsNotStatic.toList().filter {
             it.body == null
         }.mapNotNull { method ->
             fromMethodType(method.findMethodType())
@@ -69,10 +69,12 @@ object LombokMethodExt : GenericCallback<PsiMethod, List<MethodLevelAnnotation>>
             id.run {
                 @Suppress("DEPRECATION")
                 fun extractTagAndName(input: String): Pair<String, String>? {
-                    val regex = "find(\\w+)By(\\w*)".toRegex(RegexOption.IGNORE_CASE)
+                    val regex = "find(\\w+)By(\\w+)".toRegex(RegexOption.IGNORE_CASE)
                     val matchResult = regex.find(input)
 
-                    return matchResult?.let {
+                    return matchResult?.takeIf {
+                        it.groupValues.size == 2
+                    }?.let {
                         val (tag, name) = it.destructured
                         Pair(tag.decapitalize(), name.decapitalize())
                     }
