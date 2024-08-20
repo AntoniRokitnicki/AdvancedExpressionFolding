@@ -9,35 +9,35 @@ public class InterfaceExtensionPropertiesTestData {
 
     interface TODO {
         public interface NullableUser {
-            
-            Integer? getAge();
-            void setAge(int? age);
-            
-            String? getName();
-            void setName(String? name);
+           @Getter @Nullable
+            Integer age;
+           @Setter int age;
+           @Getter @Nullable
+            String name;
+           @Setter String name;
         }
         public interface NotNullUser {
-            
-            String!! getName();
-            void setName(String!! name);
-            int getAge();
+           @Getter @NotNull
+            String name;
+           @Setter String name;
+           @Getter int age;
         }
     }
 
     public interface User {
-        String getName();
-        void setName(String name);
+       @Getter String name;
+       @Setter String name;
 
-        int getAge();
-        void setAge(int age);
+       @Getter int age;
+       @Setter int age;
     }
 
     public interface PublicUser {
-        public String getName();
-        public void setName(String name);
+       @Getter public String name;
+       @Setter public String name;
 
-        public int getAge();
-        public void setAge(int age);
+       @Getter public int age;
+       @Setter public int age;
     }
 
     interface Ignored {
@@ -47,54 +47,54 @@ public class InterfaceExtensionPropertiesTestData {
             }
             default void setName(String name) {
             }
-            int getAge();
+           @Getter int age;
         }
 
         public interface StaticUser {
             static String getName() {
                 return "Static User";
             }
-            int getAge();
+           @Getter int age;
             static void setName(String name) {
             }
         }
     }
 
     public interface ReadOnlyUser {
-        String getName();
-        int getAge();
+       @Getter String name;
+       @Getter int age;
     }
 
     public interface WriteOnlyUser {
-        void setName(String name);
-        void setAge(int age);
+       @Setter String name;
+       @Setter int age;
     }
 
     public interface MixedAccessUser {
-        String getName();
-        void setName(String name);
+       @Getter String name;
+       @Setter String name;
 
-        int getAge();
+       @Getter int age;
     }
 
     public interface MixedAccessUser2 {
-        String getName();
-        void setName(String name);
+       @Getter String name;
+       @Setter String name;
 
-        void setAge(int age);
+       @Setter int age;
     }
 
     public interface SingleGetterUser {
-        String getName();
+       @Getter String name;
     }
 
     public interface SingleSetterUser {
-        void setName(String name);
+       @Setter String name;
     }
 
     public interface SinglePropertyUser {
-        String getName();
-        void setName(String name);
+       @Getter String name;
+       @Setter String name;
     }
 
     class Javadoced {
@@ -106,25 +106,25 @@ public class InterfaceExtensionPropertiesTestData {
              * Gets the name of the user.
              * @return the name of the user
              */
-            String getName();
+           @Getter String name;
 
             /**
              * Sets the name of the user.
              * @param name the name to set
              */
-            void setName(String name);
+           @Setter String name;
 
             /**
              * Gets the age of the user.
              * @return the age of the user
              */
-            int getAge();
+           @Getter int age;
 
             /**
              * Sets the age of the user.
              * @param age the age to set
              */
-            void setAge(int age);
+           @Setter int age;
         }
 
         /**
@@ -135,13 +135,13 @@ public class InterfaceExtensionPropertiesTestData {
              * Gets the name of the user.
              * @return the name of the user
              */
-            String getName();
+           @Getter String name;
 
             /**
              * Gets the age of the user.
              * @return the age of the user
              */
-            int getAge();
+           @Getter int age;
         }
 
         /**
@@ -152,13 +152,13 @@ public class InterfaceExtensionPropertiesTestData {
              * Sets the name of the user.
              * @param name the name to set
              */
-            void setName(String name);
+           @Setter String name;
 
             /**
              * Sets the age of the user.
              * @param age the age to set
              */
-            void setAge(int age);
+           @Setter int age;
         }
 
         /**
@@ -169,19 +169,19 @@ public class InterfaceExtensionPropertiesTestData {
              * Gets the name of the user.
              * @return the name of the user
              */
-            String getName();
+           @Getter String name;
 
             /**
              * Sets the name of the user.
              * @param name the name to set
              */
-            void setName(String name);
+           @Setter String name;
 
             /**
              * Gets the age of the user.
              * @return the age of the user
              */
-            int getAge();
+           @Getter int age;
         }
 
         /**
@@ -192,19 +192,19 @@ public class InterfaceExtensionPropertiesTestData {
              * Gets the name of the user.
              * @return the name of the user
              */
-            String getName();
+           @Getter String name;
 
             /**
              * Sets the name of the user.
              * @param name the name to set
              */
-            void setName(String name);
+           @Setter String name;
 
             /**
              * Sets the age of the user.
              * @param age the age to set
              */
-            void setAge(int age);
+           @Setter int age;
         }
 
         /**
@@ -215,7 +215,7 @@ public class InterfaceExtensionPropertiesTestData {
              * Gets the name of the user.
              * @return the name of the user
              */
-            String getName();
+           @Getter String name;
         }
 
         /**
@@ -226,7 +226,7 @@ public class InterfaceExtensionPropertiesTestData {
              * Sets the name of the user.
              * @param name the name to set
              */
-            void setName(String name);
+           @Setter String name;
         }
 
         /**
@@ -237,23 +237,23 @@ public class InterfaceExtensionPropertiesTestData {
              * Gets the name of the user.
              * @return the name of the user
              */
-            String getName();
+           @Getter String name;
 
             /**
              * Sets the name of the user.
              * @param name the name to set
              */
-            void setName(String name);
+           @Setter String name;
         }
     }
 
     interface Finder {
-        //@Finder String tag(String name);
+       @FindBy //@Finder String tag(String name);
         String findTagByName(String name);
 
-        String findTagByAge(byte name);
+       @FindBy String findTagByAge(byte name);
 
-        String findNameByName(String name);
+       @FindBy String findNameByName(String name);
 
     }
 
