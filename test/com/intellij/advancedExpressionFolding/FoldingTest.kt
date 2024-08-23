@@ -18,7 +18,8 @@ open class FoldingTest : BaseTest() {
     class TooComplexException : AssumptionViolatedException("TOO COMPLEX FOLDING")
     class RandomException(t: Throwable) : AssumptionViolatedException("TOO COMPLEX FOLDING", t)
 
-    private val state: State by lazy {
+    @Suppress("MemberVisibilityCanBePrivate")
+    protected val state: State by lazy {
         getInstance().state
     }
 
