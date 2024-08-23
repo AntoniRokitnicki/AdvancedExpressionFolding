@@ -16,6 +16,7 @@ public class InterfaceExtensionPropertiesTestData {
             String name;
            @Setter String name;
         }
+
         public interface NotNullUser {
            @Getter @NotNull
             String name;
