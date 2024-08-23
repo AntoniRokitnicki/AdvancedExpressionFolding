@@ -16,6 +16,7 @@ public class InterfaceExtensionPropertiesTestData {
             String <fold text='n' expand='true'>getN</fold>ame<fold text='' expand='true'>()</fold>;
            <fold text='@Setter ' expand='true'> </fold><fold text='String' expand='true'>void</fold> <fold text='n' expand='true'>setN</fold>ame<fold text='' expand='true'>(<fold text='' expand='false'>@Nullable</fold><fold text='' expand='false'> </fold>String<fold text='? ' expand='false'> </fold>name)</fold>;
         }</fold>
+
         public interface NotNullUser <fold text='{...}' expand='true'>{
            <fold text='@Getter ' expand='true'> </fold>@NotNull
             String <fold text='n' expand='true'>getN</fold>ame<fold text='' expand='true'>()</fold>;
