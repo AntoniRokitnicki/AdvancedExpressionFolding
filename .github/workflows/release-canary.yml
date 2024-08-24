@@ -5,19 +5,14 @@
 name: Release Canary
 on:
   workflow_dispatch:
-    inputs:
-      release_msg:
-        description: 'Release message'
-        required: true
   push:
-    branches: [ master ]
+    branches: [ main ]
     paths-ignore:
       - '.github/**'
       - 'wiki/**'
       - 'build-version.gradle.kts'
       - '*.md'
       - 'pages/**'
-
 jobs:
 
   # Prepare and publish the plugin to JetBrains Marketplace repository
@@ -48,9 +43,11 @@ jobs:
         with:
           gradle-home-cache-cleanup: true
 
+
+
+
       - name: Canary Version Change
         run: ./gradlew canaryRelease
-
       # Set environment variables
       - name: Export Properties
         id: properties
@@ -64,7 +61,6 @@ jobs:
           echo "changelog<<EOF" >> $GITHUB_OUTPUT
           echo "$CHANGELOG" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
-
       # Update the Unreleased section with the current release note
       - name: Patch Changelog
         if: ${{ steps.properties.outputs.changelog != '' }}
@@ -72,13 +68,11 @@ jobs:
           CHANGELOG: ${{ steps.properties.outputs.changelog }}
         run: |
           ./gradlew patchChangelog --release-note="$CHANGELOG"
-
       - name: Canary show version
         shell: bash
         run: |
           cat gradle.properties
           git status
-
       # Publish the plugin to JetBrains Marketplace
       - name: Publish Plugin
         env:
@@ -88,8 +82,42 @@ jobs:
           PRIVATE_KEY_PASSWORD: ${{ secrets.PRIVATE_KEY_PASSWORD }}
         run: ./gradlew publishPlugin
 
+
+
+
+
+
       - name: EAP Canary Version Change
         run: ./gradlew canaryEapRelease
+      # Update the Unreleased section with the current release note
+      - name: Patch Changelog
+        if: ${{ steps.properties.outputs.changelog != '' }}
+        env:
+          CHANGELOG: ${{ steps.properties.outputs.changelog }}
+        run: |
+          ./gradlew patchChangelog --release-note="$CHANGELOG"
+      - name: Canary show version
+        shell: bash
+        run: |
+          cat gradle.properties
+          git status
+      # Publish the plugin to JetBrains Marketplace
+      - name: Publish Plugin
+        env:
+          PUBLISH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
+          CERTIFICATE_CHAIN: ${{ secrets.CERTIFICATE_CHAIN }}
+          PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+          PRIVATE_KEY_PASSWORD: ${{ secrets.PRIVATE_KEY_PASSWORD }}
+        run: ./gradlew publishPlugin
+
+
+
+
+
+
+
+
+
 
       # Upload artifact as a release asset
       - name: Upload Release Asset
