@@ -248,6 +248,7 @@ intellijPlatformTesting {
     }
 }
 
+apply(from = "build-version.gradle.kts")
 //
 //
 //tasks {
