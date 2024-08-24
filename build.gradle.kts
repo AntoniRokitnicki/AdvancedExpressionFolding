@@ -21,7 +21,7 @@ version = properties("pluginVersion").get()
 
 idea {
     module {
-        sequenceOf("idea-sandbox", "out").map {
+        sequenceOf("idea-sandbox", "out", ".intellijPlatform").map {
             file(it)
         }.filter {
             it.exists()
@@ -66,8 +66,6 @@ repositories {
 
 // Dependencies are managed with Gradle version catalog - read more: https://docs.gradle.org/current/userguide/platforms.html#sub:version-catalog
 dependencies {
-//    testImplementation(libs.junit)
-
     implementation(libs.annotations)
     implementation(libs.jsr305)
 
