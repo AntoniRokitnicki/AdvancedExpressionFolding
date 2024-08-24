@@ -57,7 +57,10 @@ tasks.register("canaryRelease") {
 
         val version = readVersion(properties)
         val timestamp = Instant.now().toEpochMilli()
-        val newVersion = "1.0.$timestamp-canary"
+        val major = (timestamp / 1000000000) % 1000
+        val minor = (timestamp / 1000000) % 1000
+        val patch = (timestamp / 1000) % 1000
+        val newVersion = "$major.$minor.$patch-canary"
 
         properties.setProperty("pluginVersion", newVersion)
         saveProperties(propertiesFile, properties)
