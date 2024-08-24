@@ -9,14 +9,15 @@ import com.intellij.openapi.application.runInEdt
 import org.junit.AssumptionViolatedException
 import org.junit.jupiter.api.Test
 import org.junitpioneer.jupiter.Stopwatch
+import org.opentest4j.TestAbortedException
 import kotlin.reflect.KMutableProperty0
 
 @Stopwatch
 //TODO: maybe use @RetryingTest(maxAttempts = 3, suspendForMs = 100, onExceptions = <FindName>.class) when rarely IDE can't be start
 open class FoldingTest : BaseTest() {
 
-    class TooComplexException : AssumptionViolatedException("TOO COMPLEX FOLDING")
-    class RandomException(t: Throwable) : AssumptionViolatedException("TOO COMPLEX FOLDING", t)
+    class TooComplexException : TestAbortedException("TOO COMPLEX FOLDING")
+    class RandomException(t: Throwable) : TestAbortedException("TOO COMPLEX FOLDING", t)
 
     @Suppress("MemberVisibilityCanBePrivate")
     protected val state: State by lazy {

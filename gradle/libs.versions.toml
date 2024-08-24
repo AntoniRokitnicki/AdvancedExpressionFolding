@@ -9,7 +9,6 @@ pioneer = "2.2.0"
 # plugins
 changelog = "2.2.1"
 intelliJPlatform = "2.0.1"
-#gradleIntelliJPlugin = "1.17.4"
 kotlin = "1.9.25"
 kover = "0.8.3"
 qodana = "2024.1.9"
