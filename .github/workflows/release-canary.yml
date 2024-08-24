@@ -4,7 +4,19 @@
 
 name: Release Canary
 on:
-  workflow_dispatch
+  workflow_dispatch:
+    inputs:
+      release_msg:
+        description: 'Release message'
+        required: true
+  push:
+    branches: [ master ]
+    paths-ignore:
+      - '.github/**'
+      - 'wiki/**'
+      - 'build-version.gradle.kts'
+      - '*.md'
+      - 'pages/**'
 
 jobs:
 
