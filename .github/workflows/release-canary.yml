@@ -2,7 +2,7 @@
 # Running the publishPlugin task requires all following secrets to be provided: PUBLISH_TOKEN, PRIVATE_KEY, PRIVATE_KEY_PASSWORD, CERTIFICATE_CHAIN.
 # See https://plugins.jetbrains.com/docs/intellij/plugin-signing.html for more information.
 
-name: Release
+name: Release Canary
 on:
   workflow_dispatch
 
@@ -36,6 +36,9 @@ jobs:
         with:
           gradle-home-cache-cleanup: true
 
+      - name: Canary Version Change
+        run: ./gradlew canaryRelease
+
       # Set environment variables
       - name: Export Properties
         id: properties
@@ -58,6 +61,12 @@ jobs:
         run: |
           ./gradlew patchChangelog --release-note="$CHANGELOG"
 
+      - name: Canary show version
+        shell: bash
+        run: |
+          cat gradle.properties
+          git status
+
       # Publish the plugin to JetBrains Marketplace
       - name: Publish Plugin
         env:
@@ -66,6 +75,9 @@ jobs:
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
           PRIVATE_KEY_PASSWORD: ${{ secrets.PRIVATE_KEY_PASSWORD }}
         run: ./gradlew publishPlugin
+
+      - name: EAP Canary Version Change
+        run: ./gradlew canaryEapRelease
 
       # Upload artifact as a release asset
       - name: Upload Release Asset
