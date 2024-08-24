@@ -6,6 +6,7 @@ import java.nio.file.Path
 import java.nio.file.Paths
 import kotlin.io.path.readText
 
+@Suppress("UNCHECKED_CAST")
 object ConfigurationParser : IDynamicDataProvider {
 
     private val filePath: Path = Paths.get(System.getProperty("user.home"), "dynamic-ajf2.toml")
