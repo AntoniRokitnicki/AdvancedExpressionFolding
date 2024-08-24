@@ -10,7 +10,6 @@ on:
     paths-ignore:
       - '.github/**'
       - 'wiki/**'
-      - 'build-version.gradle.kts'
       - '*.md'
       - 'pages/**'
 jobs:
