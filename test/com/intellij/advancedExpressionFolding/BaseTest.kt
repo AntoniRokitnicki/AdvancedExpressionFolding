@@ -13,7 +13,7 @@ import com.intellij.rt.execution.junit.FileComparisonFailure
 import com.intellij.testFramework.fixtures.DefaultLightProjectDescriptor
 import com.intellij.testFramework.fixtures.LightJavaCodeInsightFixtureTestCase5
 import com.intellij.testFramework.fixtures.impl.CodeInsightTestFixtureImpl
-import org.junit.Assert
+import org.junit.jupiter.api.Assertions.assertNotNull
 import java.io.File
 import java.io.IOException
 import java.nio.file.Files
@@ -90,7 +90,7 @@ abstract class BaseTest : LightJavaCodeInsightFixtureTestCase5(TEST_JDK) {
         } catch (e: IOException) {
             throw RuntimeException(e)
         }
-        Assert.assertNotNull(expectedContent)
+        assertNotNull(expectedContent)
 
         expectedContent = StringUtil.replace(expectedContent, "\r", "")
         val cleanContent =
@@ -105,7 +105,7 @@ abstract class BaseTest : LightJavaCodeInsightFixtureTestCase5(TEST_JDK) {
             try {
                 FileUtil.writeToFile(File(destinationFileName), cleanContent)
                 val file = LocalFileSystem.getInstance().refreshAndFindFileByPath(destinationFileName)
-                Assert.assertNotNull(file)
+                assertNotNull(file)
                 fixture.configureFromExistingVirtualFile(file!!)
             } catch (e: IOException) {
                 throw RuntimeException(e)
