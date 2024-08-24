@@ -14,7 +14,6 @@ plugins {
     alias(libs.plugins.changelog) // Gradle Changelog Plugin
     alias(libs.plugins.qodana) // Gradle Qodana Plugin
     alias(libs.plugins.kover) // Gradle Kover Plugin
-    id("org.jetbrains.dokka") version "1.9.20"
 }
 
 group = properties("pluginGroup").get()
@@ -322,29 +321,10 @@ intellijPlatformTesting {
 //    }
 //    apply(from = "build-version.gradle.kts")
 //
-//    dokkaGfm {
-//        outputDirectory.set(layout.buildDirectory.dir("../wiki/dokka"))
-//    }
 //}
-//tasks.withType<DokkaTask>().configureEach {
-//    dokkaSourceSets {
-//        dokkaSourceSets.named("main") {
-//            suppress = true
-//        }
-//        dokkaSourceSets.named("test") {
-//            suppress = true
-//        }
-//        register("testData") {
-//            suppress = false
-//            displayName = "testData"
-//            sourceRoots.from(file("testData"))
-//        }
-//    }
-//}
-//
-//tasks.withType<Copy> {
-//    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-//}
-//tasks.jar {
-//    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-//}
+tasks.withType<Copy> {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+tasks.jar {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
