@@ -57,7 +57,7 @@ tasks.register("canaryRelease") {
 
         val version = readVersion(properties)
         val timestamp = Instant.now().toEpochMilli()
-        val newVersion = "$version-$timestamp-canary"
+        val newVersion = "$timestamp-canary"
 
         properties.setProperty("pluginVersion", newVersion)
         saveProperties(propertiesFile, properties)
@@ -76,7 +76,7 @@ tasks.register("canaryEapRelease") {
 
         properties.setProperty("pluginVersion", newVersion)
         properties.setProperty("pluginSinceBuild", "242.10180.25")
-        properties.setProperty("pluginUntilBuild", "243.*")
+        properties.setProperty("pluginUntilBuild", "245.*")
         saveProperties(propertiesFile, properties)
 
         println("Updated pluginVersion to $newVersion")
