@@ -16,7 +16,11 @@ name: Build
 on:
   # Trigger the workflow on pushes to only the 'main' branch (this avoids duplicate checks being run e.g., for dependabot pull requests)
   push:
-    branches: [ main ]
+    paths-ignore:
+      - '.github/**'
+      - 'wiki/**'
+      - 'build-version.gradle.kts'
+      - '*.md'
   # Trigger the workflow on any pull request
   pull_request:
 
@@ -36,13 +40,13 @@ jobs:
       pluginVerifierHomeDir: ${{ steps.properties.outputs.pluginVerifierHomeDir }}
     steps:
 
-      # Check out the current repository
+      # Check out current repository
       - name: Fetch Sources
         uses: actions/checkout@v4
 
       # Validate wrapper
       - name: Gradle Wrapper Validation
-        uses: gradle/actions/wrapper-validation@v3
+        uses: gradle/wrapper-validation-action@v3
 
       # Set up Java environment for the next steps
       - name: Setup Java
@@ -73,6 +77,8 @@ jobs:
           echo "$CHANGELOG" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
 
+          ./gradlew listProductsReleases # prepare list of IDEs for Plugin Verifier
+
       # Build plugin
       - name: Build plugin
         run: ./gradlew buildPlugin
@@ -102,7 +108,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      # Check out the current repository
+      # Check out current repository
       - name: Fetch Sources
         uses: actions/checkout@v4
 
@@ -121,7 +127,7 @@ jobs:
 
       # Run tests
       - name: Run Tests
-        run: ./gradlew check
+        run: ./gradlew check --stacktrace --info
 
       # Collect Tests Result of failed tests
       - name: Collect Tests Result
@@ -140,6 +146,7 @@ jobs:
   # Run Qodana inspections and provide report
   inspectCode:
     name: Inspect code
+    if: ${{ false }}
     needs: [ build ]
     runs-on: ubuntu-latest
     permissions:
@@ -155,7 +162,7 @@ jobs:
           tool-cache: false
           large-packages: false
 
-      # Check out the current repository
+      # Check out current repository
       - name: Fetch Sources
         uses: actions/checkout@v4
 
@@ -186,7 +193,7 @@ jobs:
           tool-cache: false
           large-packages: false
 
-      # Check out the current repository
+      # Check out current repository
       - name: Fetch Sources
         uses: actions/checkout@v4
 
@@ -212,7 +219,7 @@ jobs:
 
       # Run Verify Plugin task and IntelliJ Plugin Verifier tool
       - name: Run Plugin Verification tasks
-        run: ./gradlew verifyPlugin -Dplugin.verifier.home.dir=${{ needs.build.outputs.pluginVerifierHomeDir }}
+        run: ./gradlew runPluginVerifier -Dplugin.verifier.home.dir=${{ needs.build.outputs.pluginVerifierHomeDir }}
 
       # Collect Plugin Verifier Result
       - name: Collect Plugin Verifier Result
@@ -233,7 +240,7 @@ jobs:
       contents: write
     steps:
 
-      # Check out the current repository
+      # Check out current repository
       - name: Fetch Sources
         uses: actions/checkout@v4
 
@@ -258,3 +265,4 @@ jobs:
           ${{ needs.build.outputs.changelog }}
           EOM
           )"
+
