@@ -60,7 +60,8 @@ tasks.register("canaryRelease") {
         val major = (timestamp / 1000000000) % 1000
         val minor = (timestamp / 1000000) % 1000
         val patch = (timestamp / 1000) % 1000
-        val newVersion = "$major.$minor.$patch-canary"
+        var newVersion = "$major.$minor.$patch-canary"
+        newVersion = "2.0.0"
 
         properties.setProperty("pluginVersion", newVersion)
         saveProperties(propertiesFile, properties)
@@ -83,7 +84,7 @@ tasks.register("canaryEapRelease") {
         properties.setProperty("pluginVersion", newVersion)
         properties.setProperty("pluginSinceBuild", sinceVersion)
         properties.setProperty("pluginUntilBuild", "249.*")
-        saveProperties(propertiesFile, properties)
+        //saveProperties(propertiesFile, properties)
 
         println("Updated pluginVersion to $newVersion")
     }
