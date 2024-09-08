@@ -37,8 +37,7 @@
 <p>For more information, read the <a href="https://medium.com/@andrey_cheptsov/making-java-code-easier-to-read-without-changing-it-adeebd5c36de" target="_blank">blog post</a>.</p>
 
 ## New features:
-- [**Lombok Emulator & Validator**: `@Data`, `@Getter`, `@Setter`, `@EqualsAndHashCode`, `@ToString`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/Lombok)
-- [java.time.* isBefore/isAfter folding and LocalDate literals](https://github.com/cheptsov/AdvancedExpressionFolding/pull/132)
+- [**Lombok Emulator & Validator**: `@Data`, `@Getter`, `@Setter`, `@ToString`, `@EqualsAndHashCode`, `@NoArgsConstructor`, `@AllArgsConstructor`, `@RequiredArgsConstructor`, `@Builder`, `@Value`, `@Log`, `@Equals`, `@HashCode`, `@Serial`, `@Constructor`, `@LightValue`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/Lombok)
 - [Extended java time folding](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/Extended-java-time-folding)
 - [**Logger Brackets Folding**: For Slf4j and other logging framework](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/Log-brackets-folding)
 - [Extended null-safe ifs](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/Extended-null%E2%80%90safe-ifs)
