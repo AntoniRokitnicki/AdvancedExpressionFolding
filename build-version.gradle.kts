@@ -79,7 +79,7 @@ tasks.register("canaryEapRelease") {
         val newVersion = "$version".replace("-canary", "-eap-canary")
 
         val sinceVersion = "223"
-        properties.setProperty("platformVersion", sinceVersion)
+        //properties.setProperty("platformVersion", sinceVersion)
 
         properties.setProperty("pluginVersion", newVersion)
         properties.setProperty("pluginSinceBuild", sinceVersion)
