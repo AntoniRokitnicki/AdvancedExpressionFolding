@@ -221,6 +221,11 @@ class AdvancedExpressionFoldingOptionsProvider : AbstractExpressionFoldingOption
         mapOf("InterfaceExtensionPropertiesTestData.java" to null),
     )
     
+        checkBox("Pattern Matching for instanceof (JEP 394)",
+        state::patternMatchingInstanceof,
+        mapOf("PatternMatchingInstanceofTestData.java" to null),
+    )
+    
         // NEW OPTION
 
         checkBox(

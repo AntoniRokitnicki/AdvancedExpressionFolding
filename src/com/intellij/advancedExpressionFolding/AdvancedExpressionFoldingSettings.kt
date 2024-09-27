@@ -41,6 +41,7 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
         val arithmeticExpressions: Boolean
         val emojify: Boolean
         val interfaceExtensionProperties: Boolean
+        val patternMatchingInstanceof: Boolean
         // NEW OPTION VAL
 
         var experimental: Boolean
@@ -111,6 +112,7 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
         override var arithmeticExpressions: Boolean = true,
         override var emojify: Boolean = false,
         override var interfaceExtensionProperties: Boolean = true,
+        override var patternMatchingInstanceof: Boolean = true,
         // NEW OPTION VAR
 
         override var memoryImprovement: Boolean = true,
