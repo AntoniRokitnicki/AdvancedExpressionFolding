@@ -112,7 +112,8 @@ public class BuildExpressionExt {
             }
         }
         if (element instanceof PsiLiteralExpression) {
-            Expression expression = LiteralExpressionExt.getLiteralExpression((PsiLiteralExpression) element);
+            PsiLiteralExpression literalExpression = (PsiLiteralExpression) element;
+            Expression expression = LiteralExpressionExt.getLiteralExpression(literalExpression);
             if (expression != null) {
                 return expression;
             }
