@@ -1,9 +1,9 @@
 #!/usr/bin/env -S kotlinc -script --
 import java.io.File
 
-val basePath: String = System.getProperty("project.dir", "/Users/ant/h/AdvancedExpressionFolding")
-val varName = System.getProperty("varName") ?: TODO("Property varName not found")
-val varText = System.getProperty("varText") ?: TODO("Property varText not found")
+val basePath: String = System.getProperty("project.dir", "~/h/AdvancedExpressionFolding")
+val varName = System.getProperty("varName") ?: "patternMatchingInstanceof"
+val varText = System.getProperty("varText") ?: "Pattern Matching for instanceof (JEP 394)"
 
 val propertyFile = "$basePath/src/com/intellij/advancedExpressionFolding/AdvancedExpressionFoldingSettings.kt"
 propertyFile.doInFile {
