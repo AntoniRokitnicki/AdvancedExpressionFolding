@@ -401,6 +401,14 @@ newName = "mainek3"
     fun testInterfaceExtensionPropertiesTestData() {
         doFoldingTest(state::interfaceExtensionProperties, state::lombok, state::nullable)
     }
+
+    /**
+     * [data.PatternMatchingInstanceofTestData]
+     */
+    @Test
+    fun testPatternMatchingInstanceofTestData() {
+        doFoldingTest(state::patternMatchingInstanceof)
+    }
     // NEW OPTION
     /**
      * [data.ExperimentalTestData]
