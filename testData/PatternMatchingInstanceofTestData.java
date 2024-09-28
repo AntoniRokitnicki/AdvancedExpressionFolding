@@ -1,54 +1,54 @@
 package data;
 
-import <fold text='...' expand='false'>java.util.List;
-import java.util.Map;</fold>
+import java.util.List;
+import java.util.Map;
 
 public class PatternMatchingInstanceofTestData {
 
-    public void main(String arg, int i, Object o, Data data) <fold text='{...}' expand='true'>{
-        if (o instanceof String) <fold text='{...}' expand='true'>{
+    public void main(String arg, int i, Object o, Data data) {
+        if (o instanceof String) {
             String s = (String) o;
             System.out.println(s.length());
-        }</fold>
+        }
 
-        if (o instanceof Integer) <fold text='{...}' expand='true'>{
+        if (o instanceof Integer) {
             Integer num = (Integer) o;
             System.out.println(num * 2);
-        }</fold>
+        }
 
-        if (o instanceof List) <fold text='{...}' expand='true'>{
+        if (o instanceof List) {
             List<?> list = (List<?>) o;
             System.out.println(list.size());
-        }</fold>
+        }
 
-        if (o instanceof Map) <fold text='{...}' expand='true'>{
+        if (o instanceof Map) {
             Map<?, ?> map = (Map<?, ?>) o;
             System.out.println(map.keySet());
-        }</fold>
+        }
 
-        if (o instanceof Data) <fold text='{...}' expand='true'>{
+        if (o instanceof Data) {
             Data d = (Data) o;
             System.out.println(d.getValue());
-        }</fold>
+        }
 
-        if (o instanceof int[]) <fold text='{...}' expand='true'>{
+        if (o instanceof int[]) {
             int[] arr = (int[]) o;
             System.out.println(arr.length);
-        }</fold>
+        }
 
-        if (o instanceof DayOfWeek) <fold text='{...}' expand='true'>{
+        if (o instanceof DayOfWeek) {
             DayOfWeek day = (DayOfWeek) o;
             System.out.println(day.name());
-        }</fold>
-    }</fold>
+        }
+    }
 
-    static class Data <fold text='{...}' expand='true'>{
-        public int getValue()<fold text=' { ' expand='false'> {
-            </fold>return 42;<fold text=' }' expand='false'>
-        }</fold>
-    }</fold>
+    static class Data {
+        public int getValue() {
+            return 42;
+        }
+    }
 
-    enum DayOfWeek <fold text='{...}' expand='true'>{
+    enum DayOfWeek {
         MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY
-    }</fold>
+    }
 }
