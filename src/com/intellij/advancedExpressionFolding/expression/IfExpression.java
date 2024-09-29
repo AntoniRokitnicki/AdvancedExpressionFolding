@@ -74,10 +74,10 @@ public class IfExpression extends Expression {
                 foldAssertion(element, document, descriptors, group, state);
             } else if (isCompactExpression(state, this.element)) {
                 foldCompactExpr(element, document, group, descriptors);
-            } else if (state.getPatternMatchingInstanceof()){
+            } else if (state.getPatternMatchingInstanceof() && element instanceof PsiIfStatement ifStatement){
                 var instanceOfExpr = findInstanceOf(element);
                 if (instanceOfExpr != null) {
-                    PatternMatchingExt.foldInstanceOf(instanceOfExpr, document, group, descriptors, element);
+                    PatternMatchingExt.foldInstanceOf(instanceOfExpr, document, group, descriptors, ifStatement);
                 }
             }
         }

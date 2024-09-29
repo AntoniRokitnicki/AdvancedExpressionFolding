@@ -36,6 +36,7 @@ public class PatternMatchingInstanceofTestData {
             System.out.println(arr.length);
         }
 
+
         if (o instanceof DayOfWeek) {
             DayOfWeek day = (DayOfWeek) o;
             System.out.println(day.name());
