@@ -77,7 +77,7 @@ public class IfExpression extends Expression {
             } else if (state.getPatternMatchingInstanceof() && element instanceof PsiIfStatement ifStatement){
                 var instanceOfExpr = findInstanceOf(element);
                 if (instanceOfExpr != null) {
-                    PatternMatchingExt.foldInstanceOf(instanceOfExpr, document, group, descriptors, ifStatement);
+                    PatternMatchingExt.foldInstanceOf(instanceOfExpr, document, descriptors, ifStatement);
                 }
             }
         }

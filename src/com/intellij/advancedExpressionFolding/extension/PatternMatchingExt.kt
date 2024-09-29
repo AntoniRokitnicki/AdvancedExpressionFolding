@@ -1,34 +1,52 @@
 package com.intellij.advancedExpressionFolding.extension
 
 
+import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.lang.folding.FoldingDescriptor
 import com.intellij.openapi.editor.Document
-import com.intellij.openapi.editor.FoldingGroup
+import com.intellij.openapi.util.NlsSafe
 import com.intellij.psi.*
 
 object PatternMatchingExt : BaseExtension() {
-
 
     @JvmStatic
     fun foldInstanceOf(
         instanceOfExpr: PsiInstanceOfExpression,
         document: Document,
-        group: FoldingGroup,
         descriptors: ArrayList<FoldingDescriptor>,
         element: PsiIfStatement
     ) {
         element.thenBranch.asInstance<PsiBlockStatement>()?.codeBlock?.statements?.firstOrNull()
-            .asInstance<PsiDeclarationStatement>()?.let {
-                val list = exprList()
-                val varName = it.declaredElements.firstOrNull().asInstance<PsiLocalVariable>()?.name
-                list += instanceOfExpr?.nextSibling?.expr(" $varName)")
-                list += it.exprHide()
-                list += it.nextWhiteSpace().exprHide()
-                val expression = list.exprWrap(element)
-                expression?.buildFoldRegions(element, document, expression)?.let {
-                    descriptors.addAll(it)
-                }
+            .asInstance<PsiDeclarationStatement>()?.run {
+                val localVariable = declaredElements.firstOrNull().asInstance<PsiLocalVariable>() ?: return
+                // TODO: check type and ==var from instanceof, simple var?, cast?
+
+                appendDescriptors(instanceOfExpr, localVariable.name, element, document, descriptors)
             }
+    }
+
+    private fun PsiDeclarationStatement.appendDescriptors(
+        instanceOfExpr: PsiInstanceOfExpression,
+        varName: @NlsSafe String,
+        element: PsiIfStatement,
+        document: Document,
+        descriptors: ArrayList<FoldingDescriptor>,
+    ) {
+        val list = exprList()
+        list += instanceOfExpr.nextSibling?.expr(" $varName)")
+        list += exprHide()
+        list += nextWhiteSpace().exprHide()
+        asBuildFoldRegions(list, element, document, descriptors)
+    }
+
+    private fun asBuildFoldRegions(
+        list: MutableList<Expression?>,
+        element: PsiIfStatement,
+        document: Document,
+        descriptors: ArrayList<FoldingDescriptor>
+    ) {
+        val expression = list.exprWrap(element)
+        expression?.buildFoldRegions(element, document, expression)?.let(descriptors::addAll)
     }
 
 }
