@@ -5,6 +5,13 @@
 ## [Unreleased]
 
 ### Added
+
+- [patternMatchingInstanceof] - Pattern Matching for instanceof (JEP 394)
+
+## [2.0.0] - 2024-09-15
+
+### Added
+
 - [lombok] - @Builder - marker annotation when class has inner class with name *Builder
 - [lombok] - @Value and @LightValue(without @EqualsAndHashCode)
 - [lombok] - @NoArgsConstructor, @NoArgsConstructor(protected), etc.
@@ -17,8 +24,9 @@
 - [lombok] - @Constructor(nr) on field level for additional constructors
 
 ### Fixed
+
 - [cache] - sometimes caching goes wrong when IDE throws ProcessCanceledException and friends
- 
+
 ## [1.0.52] - 2024-05-18
 
 @Setter(dirty) folded only on field level
@@ -250,7 +258,8 @@ Improved handling of multi-line log messages
 
 ## [0.0.1]
 
-[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.52...HEAD
+[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v2.0.0...HEAD
+[2.0.0]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.52...v2.0.0
 [1.0.52]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.51...v1.0.52
 [1.0.51]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.50...v1.0.51
 [1.0.50]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.49...v1.0.50
@@ -291,7 +300,7 @@ Improved handling of multi-line log messages
 [1.0.15]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.14...v1.0.15
 [1.0.14]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.13...v1.0.14
 [1.0.13]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.12...v1.0.13
-[1.0.12]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.6...v1.0.12
+[1.0.12]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.11...v1.0.12
 [1.0.11]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.6...v1.0.11
 [1.0.6]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.5...v1.0.6
 [1.0.5]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.4...v1.0.5
