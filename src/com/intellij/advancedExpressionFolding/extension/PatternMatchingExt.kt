@@ -19,7 +19,7 @@ object PatternMatchingExt : BaseExtension() {
         element.thenBranch.asInstance<PsiBlockStatement>()?.codeBlock?.statements?.firstOrNull()
             .asInstance<PsiDeclarationStatement>()?.run {
                 val localVariable = declaredElements.firstOrNull().asInstance<PsiLocalVariable>() ?: return
-                // TODO: check type and ==var from instanceof, simple var?, cast?
+                // TODO: check type and ==var from instanceof, simple var?, cast?, maybe instanceof alreayd have a var?
 
                 appendDescriptors(instanceOfExpr, localVariable.name, element, document, descriptors)
             }
