@@ -1,55 +1,55 @@
-package data;
+<fold text='📦' expand='false'>package</fold> data;
 
-import <fold text='...' expand='false'>java.util.List;
-import java.util.Map;</fold>
+<fold text='🚢' expand='false'>import</fold> <fold text='...' expand='false'>java.util.List;
+<fold text='🚢' expand='false'>import</fold> java.util.Map;</fold>
 
-public class PatternMatchingInstanceofTestData {
+public <fold text='🏛️' expand='false'>class</fold> PatternMatchingInstanceofTestData {
 
-    public void main(String arg, int i, Object o, Data data) <fold text='{...}' expand='true'>{
-        if (o instanceof String<fold text=' s)' expand='true'>)</fold> <fold text='{...}' expand='true'>{
-            <fold text='' expand='true'>String s = (String) o;</fold><fold text='' expand='true'>
-            </fold>System.out.println(s.length());
+    public <fold text='💀' expand='false'>void</fold> main(String arg, <fold text='🔢' expand='false'>int</fold> i, Object o, Data data) <fold text='{...}' expand='true'>{
+        if <fold text='' expand='false'>(</fold>o <fold text='is' expand='false'>instanceof</fold> String<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
+            <fold text='val' expand='false'>String</fold> s = <fold text='' expand='false'>(String) </fold>o;
+            <fold text='' expand='false'>System.out.</fold>println(s.length());
         }</fold>
 
-        if (o instanceof Integer<fold text=' num)' expand='true'>)</fold> <fold text='{...}' expand='true'>{
-            <fold text='' expand='true'>Integer num = (Integer) o;</fold><fold text='' expand='true'>
-            </fold>System.out.println(num * 2);
+        if <fold text='' expand='false'>(</fold>o <fold text='is' expand='false'>instanceof</fold> Integer<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
+            <fold text='val' expand='false'>Integer</fold> num = <fold text='' expand='false'>(Integer) </fold>o;
+            <fold text='' expand='false'>System.out.</fold>println(num * 2);
         }</fold>
 
-        if (o instanceof List<fold text=' list)' expand='true'>)</fold> <fold text='{...}' expand='true'>{
-            <fold text='' expand='true'>List<?> list = (List<?>) o;</fold><fold text='' expand='true'>
-            </fold>System.out.println(list.size());
+        if <fold text='' expand='false'>(</fold>o <fold text='is' expand='false'>instanceof</fold> List<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
+            <fold text='val' expand='false'>List<?></fold> list = <fold text='' expand='false'>(List<?>) </fold>o;
+            <fold text='' expand='false'>System.out.</fold>println(list.size());
         }</fold>
 
-        if (o instanceof Map<fold text=' map)' expand='true'>)</fold> <fold text='{...}' expand='true'>{
-            <fold text='' expand='true'>Map<?, ?> map = (Map<?, ?>) o;<fold text='' expand='true'></fold>
-            </fold>System.out.println(map.keySet());
+        if <fold text='' expand='false'>(</fold>o <fold text='is' expand='false'>instanceof</fold> Map<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
+            <fold text='val' expand='false'>Map<?, ?></fold> map = <fold text='' expand='false'>(Map<?, ?>) </fold>o;
+            <fold text='' expand='false'>System.out.</fold>println(map.keySet());
         }</fold>
 
-        if (o instanceof Data<fold text=' d)' expand='true'>)</fold> <fold text='{...}' expand='true'>{
-            <fold text='' expand='true'>Data d = (Data) o;</fold><fold text='' expand='true'>
-            </fold>System.out.println(d.getValue());
+        if <fold text='' expand='false'>(</fold>o <fold text='is' expand='false'>instanceof</fold> Data<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
+            <fold text='val' expand='false'>Data</fold> d = <fold text='' expand='false'>(Data) </fold>o;
+            <fold text='' expand='false'>System.out.</fold>println(d.<fold text='value' expand='false'>getValue()</fold>);
         }</fold>
 
-        if (o instanceof int[]<fold text=' arr)' expand='true'>)</fold> <fold text='{...}' expand='true'>{
-            <fold text='' expand='true'>int[] arr = (int[]) o;</fold><fold text='' expand='true'>
-            </fold>System.out.println(arr.length);
+        if <fold text='' expand='false'>(</fold>o <fold text='is' expand='false'>instanceof</fold> <fold text='🔢' expand='false'>int</fold>[]<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
+            <fold text='🔢' expand='false'><fold text='val' expand='false'>int</fold>[]</fold> arr = <fold text='' expand='false'>(int[]) </fold>o;
+            <fold text='' expand='false'>System.out.</fold>println(arr.length);
         }</fold>
 
 
-        if (o instanceof DayOfWeek<fold text=' day)' expand='true'>)</fold> <fold text='{...}' expand='true'>{
-            <fold text='' expand='true'>DayOfWeek day = (DayOfWeek) o;</fold><fold text='' expand='true'>
-            </fold>System.out.println(day.name());
-        }</fold>
-    }</fold>
-
-    static class Data <fold text='{...}' expand='true'>{
-        public int getValue()<fold text=' { ' expand='false'> {
-            </fold>return 42;<fold text=' }' expand='false'>
+        if <fold text='' expand='false'>(</fold>o <fold text='is' expand='false'>instanceof</fold> DayOfWeek<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
+            <fold text='val' expand='false'>DayOfWeek</fold> day = <fold text='' expand='false'>(DayOfWeek) </fold>o;
+            <fold text='' expand='false'>System.out.</fold>println(day.name());
         }</fold>
     }</fold>
 
-    enum DayOfWeek <fold text='{...}' expand='true'>{
+    <fold text='⚡' expand='false'>static</fold> <fold text='🏛️' expand='false'>class</fold> Data <fold text='{...}' expand='true'>{
+        public <fold text='🔢' expand='false'>int</fold> getValue()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>42<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+        </fold>}</fold>
+    }</fold>
+
+    <fold text='📊' expand='false'>enum</fold> DayOfWeek <fold text='{...}' expand='true'>{
         MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY
     }</fold>
 }
