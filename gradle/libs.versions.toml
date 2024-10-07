@@ -5,7 +5,7 @@ jsoup = "1.18.1"
 junit = "5.11.1"
 jackson = "2.18.0"
 jsr305 = "3.0.2"
-pioneer = "2.2.0"
+pioneer = "2.3.0"
 # plugins
 changelog = "2.2.1"
 intelliJPlatform = "2.1.0"
