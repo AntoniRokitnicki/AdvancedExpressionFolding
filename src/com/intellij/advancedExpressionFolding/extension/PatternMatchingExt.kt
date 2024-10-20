@@ -29,9 +29,39 @@ object PatternMatchingExt : BaseExtension() {
         localVariable: PsiLocalVariable,
         element: PsiIfStatement
     ): Any? {
-        // TODO: check type and ==var from instanceof, simple var?, cast?, maybe instanceof alreayd have a var?, poisoned state?
+        // Check if the types match
+        val instanceOfType = instanceOfExpr.checkType?.type
+        val localVariableType = localVariable.type
+        if (instanceOfType != localVariableType) return null
+
+        // Check if the variable from instanceof is used
+        val operand = instanceOfExpr.operand
+        if (operand !is PsiReferenceExpression) return null
+        val referencedVar = operand.resolve() as? PsiVariable ?: return null
+
+        // Check if the local variable is a simple assignment or a cast
+        val initializer = localVariable.initializer
+        if (initializer !is PsiTypeCastExpression) {
+            // Simple assignment
+            if (initializer?.text != referencedVar.name) return null
+        } else {
+            // Cast assignment
+            val castOperand = initializer.operand
+            if (castOperand?.text != referencedVar.name) return null
+        }
+
+        // Check for poisoned state (compiler errors)
+        if (element.hasErrorElement() || instanceOfExpr.hasErrorElement() || localVariable.hasErrorElement()) {
+            return null
+        }
 
         return this
+    }
+
+    // Helper extension function to check for error elements
+    private fun PsiElement.hasErrorElement(): Boolean {
+        return this.children.any { it is PsiErrorElement } ||
+                (this as? PsiErrorElement) != null
     }
 
     private fun PsiDeclarationStatement.appendDescriptors(

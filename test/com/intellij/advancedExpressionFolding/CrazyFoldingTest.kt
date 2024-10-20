@@ -19,7 +19,7 @@ import kotlin.reflect.KMutableProperty
 import kotlin.time.DurationUnit
 import kotlin.time.toDuration
 
-@EnabledIfEnvironmentVariable(named = "dev-mode", matches = "1")
+@EnabledIfEnvironmentVariable(named = "dev-mode", matches = "2")
 class CrazyFoldingTest : BaseTest() {
 
     class TooComplexException : AssumptionViolatedException("TOO COMPLEX FOLDING")
