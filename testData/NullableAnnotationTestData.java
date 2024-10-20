@@ -4,7 +4,8 @@ import <fold text='...' expand='false'>org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
-import java.time.LocalDate;</fold>
+import java.time.LocalDate;
+import java.util.HashMap;</fold>
 
 <fold text='/** {@link com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.IState#getNullable()} ...*/' expand='true'>/**
  * {@link com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.IState#getNullable()}
@@ -14,9 +15,7 @@ import java.time.LocalDate;</fold>
  * {@link com.intellij.advancedExpressionFolding.FoldingTest#testNullableAnnotationTestData()}
  */</fold>
 @SuppressWarnings("ALL")
-<fold text='@Serial p' expand='false'>p</fold>ublic class NullableAnnotationTestData {<fold text='' expand='false'>
-
-    </fold><fold text='' expand='false'>private static final long serialVersionUID = 1234567L;</fold>
+public class NullableAnnotationTestData {
     <fold text='' expand='false'>@NotNull</fold>
     <fold text='@Getter @Setter N' expand='false'>N</fold>ullableAnnotationTestData<fold text='!! ' expand='false'> </fold>data;
     <fold text='@Getter @Setter b' expand='false'>b</fold>oolean ok;
@@ -47,11 +46,12 @@ import java.time.LocalDate;</fold>
     <fold text='' expand='false'>@Nullable</fold>
     private String<fold text='? ' expand='false'> </fold>string2;
 
-    public void select(<fold text='' expand='false'>@Nullable</fold><fold text='' expand='false'> </fold>String<fold text='? ' expand='false'> </fold>element,
+    public void select(@Nullable String element,
                        int i,
-                       <fold text='' expand='false'>@NotNull</fold><fold text='' expand='false'> </fold>Object<fold text='!! ' expand='false'> </fold>o,
-                       <fold text='' expand='false'>@Nonnull</fold><fold text='' expand='false'> </fold>LocalDate<fold text='!! ' expand='false'> </fold>date
-                       ) <fold text='{}' expand='true'>{
+                       @NotNull Object o,
+                       @Nonnull LocalDate date
+                       ) <fold text='{...}' expand='true'>{
+        new HashMap<String, String>().put("a", "b");
 
     }</fold>
 
@@ -143,14 +143,15 @@ import java.time.LocalDate;</fold>
 
         public class HasGetterSetter <fold text='{...}' expand='true'>{
             <fold text='' expand='false'>@Nullable</fold>
-            <fold text='@Getter @Setter p' expand='false'>p</fold>rivate String<fold text='? ' expand='false'> </fold>field;
+            <fold text='@Getter(dirty) @Setter p' expand='false'>p</fold>rivate String<fold text='? ' expand='false'> </fold>field;
             private String bla;<fold text='' expand='false'>
 
-            </fold><fold text='' expand='false'>public <fold text='' expand='false'>@Nullable</fold> String<fold text='? ' expand='false'> </fold>getField()<fold text=' { ' expand='false'> {
-                </fold>return field;<fold text=' }' expand='false'>
+            </fold><fold text='' expand='false'>public <fold text='' expand='false'>@Nullable</fold> String<fold text='? ' expand='false'> </fold>getField() <fold text='{...}' expand='true'>{
+                new HashMap<String, String>().put("a", "b");
+                return field;
             }</fold></fold><fold text='' expand='false'>
 
-            </fold><fold text='' expand='false'>public void setField(<fold text='' expand='false'>@Nullable</fold><fold text='' expand='false'> </fold>String<fold text='? ' expand='false'> </fold>field)<fold text=' { ' expand='false'> {
+            <fold text='' expand='false'></fold>public void setField(<fold text='' expand='false'>@Nullable</fold><fold text='' expand='false'> </fold>String<fold text='? ' expand='false'> </fold>field)<fold text=' { ' expand='false'> {
                 </fold>this.field = field;<fold text=' }' expand='false'>
             }</fold></fold>
         }</fold>

@@ -154,12 +154,6 @@ public 🏛️ EmojifyTestData {
         }
     }
 
-    public strictfp 🏛️ StrictfpData {
-        public strictfp ⚖️ calculate(⚖️ a, ⚖️ b) {
-            🔙 a / b;
-        }
-    }
-
     public 🏛️ NativeData {
         public 🏕️ 💀 nativeMethod();
     }

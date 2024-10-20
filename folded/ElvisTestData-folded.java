@@ -1,5 +1,6 @@
 package data;
 
+@SuppressWarnings("ALL")
 public class ElvisTestData {
     private ElvisTestData e = create();
 

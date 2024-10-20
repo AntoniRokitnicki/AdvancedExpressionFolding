@@ -52,4 +52,76 @@ public <fold text='🏛️' expand='false'>class</fold> PatternMatchingInstanceo
     <fold text='📊' expand='false'>enum</fold> DayOfWeek <fold text='{...}' expand='true'>{
         MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY
     }</fold>
+
+    // Test for type matching
+    <fold text='⚡' expand='false'>static</fold> <fold text='🏛️' expand='false'>class</fold> TypeMatchingTest <fold text='{...}' expand='true'>{
+        public <fold text='💀' expand='false'>void</fold> positiveTest(Object o) <fold text='{...}' expand='true'>{
+            if <fold text='' expand='false'>(</fold>o <fold text='is' expand='false'>instanceof</fold> String<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
+                <fold text='val' expand='false'>String</fold> s = <fold text='' expand='false'>(String) </fold>o;
+                <fold text='' expand='false'>System.out.</fold>println(s.length());
+            }</fold>
+        }</fold>
+
+        public <fold text='💀' expand='false'>void</fold> negativeTest(Object o) <fold text='{...}' expand='true'>{
+            if <fold text='' expand='false'>(</fold>o <fold text='is' expand='false'>instanceof</fold> String<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
+                <fold text='val' expand='false'>Integer</fold> i = <fold text='' expand='false'>(Integer) </fold>o; // Type mismatch
+                <fold text='' expand='false'>System.out.</fold>println(i);
+            }</fold>
+        }</fold>
+    }</fold>
+
+    // Test for variable usage in instanceof
+    <fold text='⚡' expand='false'>static</fold> <fold text='🏛️' expand='false'>class</fold> VariableUsageTest <fold text='{...}' expand='true'>{
+        public <fold text='💀' expand='false'>void</fold> positiveTest(Object o) <fold text='{...}' expand='true'>{
+            if <fold text='' expand='false'>(</fold>o <fold text='is' expand='false'>instanceof</fold> String<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
+                <fold text='val' expand='false'>String</fold> s = <fold text='' expand='false'>(String) </fold>o;
+                <fold text='' expand='false'>System.out.</fold>println(s.length());
+            }</fold>
+        }</fold>
+
+        public <fold text='💀' expand='false'>void</fold> negativeTest(Object o) <fold text='{...}' expand='true'>{
+            if <fold text='' expand='false'>(</fold><fold text='object' expand='false'>getObject()</fold> <fold text='is' expand='false'>instanceof</fold> String<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{ // Method call instead of variable
+                <fold text='val' expand='false'>String</fold> s = <fold text='' expand='false'>(String) </fold>o;
+                <fold text='' expand='false'>System.out.</fold>println(s.length());
+            }</fold>
+        }</fold>
+
+        <fold text='🚫' expand='false'>private</fold> Object getObject()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>new Object()<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+        </fold>}</fold>
+    }</fold>
+
+    // Test for simple assignment
+    <fold text='⚡' expand='false'>static</fold> <fold text='🏛️' expand='false'>class</fold> SimpleAssignmentTest <fold text='{...}' expand='true'>{
+        public <fold text='💀' expand='false'>void</fold> positiveTest(Object o) <fold text='{...}' expand='true'>{
+            if <fold text='' expand='false'>(</fold>o <fold text='is' expand='false'>instanceof</fold> String<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
+                <fold text='val' expand='false'>String</fold> s = <fold text='' expand='false'>(String) </fold>o;
+                <fold text='' expand='false'>System.out.</fold>println(s.length());
+            }</fold>
+        }</fold>
+
+        public <fold text='💀' expand='false'>void</fold> negativeTest(Object o) <fold text='{...}' expand='true'>{
+            if <fold text='' expand='false'>(</fold>o <fold text='is' expand='false'>instanceof</fold> String<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
+                <fold text='val' expand='false'>String</fold> s = "Hello"; // Different assignment
+                <fold text='' expand='false'>System.out.</fold>println(s.length());
+            }</fold>
+        }</fold>
+    }</fold>
+
+    // Test for cast assignment
+    <fold text='⚡' expand='false'>static</fold> <fold text='🏛️' expand='false'>class</fold> CastAssignmentTest <fold text='{...}' expand='true'>{
+        public <fold text='💀' expand='false'>void</fold> positiveTest(Object o) <fold text='{...}' expand='true'>{
+            if <fold text='' expand='false'>(</fold>o <fold text='is' expand='false'>instanceof</fold> String<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
+                <fold text='val' expand='false'>String</fold> s = <fold text='' expand='false'>(String) </fold>o;
+                <fold text='' expand='false'>System.out.</fold>println(s.length());
+            }</fold>
+        }</fold>
+
+        public <fold text='💀' expand='false'>void</fold> negativeTest(Object o) <fold text='{...}' expand='true'>{
+            if <fold text='' expand='false'>(</fold>o <fold text='is' expand='false'>instanceof</fold> String<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
+                <fold text='val' expand='false'>String</fold> s = <fold text='' expand='false'>(String) </fold>"Hello"; // Cast of a different object
+                <fold text='' expand='false'>System.out.</fold>println(s.length());
+            }</fold>
+        }</fold>
+    }</fold>
 }

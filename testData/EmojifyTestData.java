@@ -142,7 +142,7 @@ public <fold text='🏛️' expand='false'>class</fold> EmojifyTestData {
         }</fold>
 
         public <fold text='💀' expand='false'>void</fold> setTransientField(<fold text='🔢' expand='false'>int</fold> transientField)<fold text=' { ' expand='false'> {
-            </fold><fold text='📍' expand='false'>this</fold>.transientField = transientField;<fold text=' }' expand='false'>
+            <fold text='📍' expand='false'></fold>this</fold>.transientField = transientField;<fold text=' }' expand='false'>
         }</fold>
 
         public <fold text='🔘' expand='false'>boolean</fold> isVolatileField()<fold text=' { ' expand='false'> {
@@ -151,12 +151,6 @@ public <fold text='🏛️' expand='false'>class</fold> EmojifyTestData {
 
         public <fold text='💀' expand='false'>void</fold> setVolatileField(<fold text='🔘' expand='false'>boolean</fold> volatileField)<fold text=' { ' expand='false'> {
             </fold><fold text='📍' expand='false'>this</fold>.volatileField = volatileField;<fold text=' }' expand='false'>
-        }</fold>
-    }</fold>
-
-    public strictfp <fold text='🏛️' expand='false'>class</fold> StrictfpData <fold text='{...}' expand='true'>{
-        public strictfp <fold text='⚖️' expand='false'>double</fold> calculate(<fold text='⚖️' expand='false'>double</fold> a, <fold text='⚖️' expand='false'>double</fold> b)<fold text=' { ' expand='false'> {
-            </fold><fold text='🔙' expand='false'>return</fold> a / b;<fold text=' }' expand='false'>
         }</fold>
     }</fold>
 
@@ -248,7 +242,7 @@ public <fold text='🏛️' expand='false'>class</fold> EmojifyTestData {
 
     public <fold text='🏛️' expand='false'>class</fold> StreamAPIUsage <fold text='{...}' expand='true'>{
         public <fold text='🔢' expand='false'>int</fold> sumList(java.util.List<Integer> list)<fold text=' { ' expand='false'> {
-            <fold text='🔙' expand='false'></fold>return</fold> list.stream().mapToInt(Integer::intValue).sum();<fold text=' }' expand='false'>
+            </fold><fold text='🔙' expand='false'>return</fold> list.stream().mapToInt(Integer::intValue).sum();<fold text=' }' expand='false'>
         }</fold>
     }</fold>
 
@@ -292,7 +286,7 @@ public <fold text='🏛️' expand='false'>class</fold> EmojifyTestData {
 
     public <fold text='🏛️' expand='false'>class</fold> StaticImportUsage <fold text='{...}' expand='true'>{
         public <fold text='💀' expand='false'>void</fold> useStaticImport()<fold text=' { ' expand='false'> {
-            <fold text='🔢' expand='false'></fold>int</fold> max = <fold text='max(' expand='false'>java.lang.Math.max(</fold>5, 10<fold text=')' expand='false'>)</fold>;<fold text=' }' expand='false'>
+            </fold><fold text='🔢' expand='false'>int</fold> max = <fold text='max(' expand='false'>java.lang.Math.max(</fold>5, 10<fold text=')' expand='false'>)</fold>;<fold text=' }' expand='false'>
         }</fold>
     }</fold>
 
