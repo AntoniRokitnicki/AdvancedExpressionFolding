@@ -7,15 +7,15 @@ public class DestructuringAssignmentArrayTestData {
     public void enter(Data data, Data[] array) {
         val ignored1 = array[0];
 
-        val (first, second, third, fourth) = array;
+        val first, second, third, fourth) = array;
 
         val ignored21 = data.array[4];
         val ignored22 = data.array[5];
 
-        var (getter1, getter2, getter3) = data.array;
+        var getter1, getter2, getter3) = data.array;
         getter1 = data;
 
-        var (deepGetter1, deepGetter2) = data.data.array;
+        val deepGetter1, deepGetter2) = data.data.array;
         deepGetter2 = data;
         
         val wrongParent1 = data.array[0];

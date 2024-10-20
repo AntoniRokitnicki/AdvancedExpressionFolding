@@ -1,5 +1,6 @@
 <fold text='📦' expand='false'>package</fold> data;
 
+@SuppressWarnings("ALL")
 public <fold text='🏛️' expand='false'>class</fold> ElvisTestData {
     <fold text='🚫' expand='false'>private</fold> ElvisTestData e = create();
 

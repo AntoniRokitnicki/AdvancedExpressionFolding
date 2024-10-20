@@ -5,6 +5,7 @@ import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
 import java.time.LocalDate;
+import java.util.HashMap;
 
 /**
  * {@link com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.IState#getNullable()}
@@ -14,7 +15,7 @@ import java.time.LocalDate;
  * {@link com.intellij.advancedExpressionFolding.FoldingTest#testNullableAnnotationTestData()}
  */
 @SuppressWarnings("ALL")
-@Serial public class NullableAnnotationTestData {
+public class NullableAnnotationTestData {
     
     @Getter @Setter NullableAnnotationTestData!! data;
     @Getter @Setter boolean ok;
@@ -27,11 +28,12 @@ import java.time.LocalDate;
     
     private String? string2;
 
-    public void select(String? element,
+    public void select(@Nullable String element,
                        int i,
-                       Object!! o,
-                       LocalDate!! date
+                       @NotNull Object o,
+                       @Nonnull LocalDate date
                        ) {
+        new HashMap<String, String>().put("a", "b");
 
     }
 
@@ -109,7 +111,7 @@ import java.time.LocalDate;
 
         public class HasGetterSetter {
             
-            @Getter @Setter private String? field;
+            @Getter(dirty) @Setter private String? field;
             private String bla;
         }
     }
