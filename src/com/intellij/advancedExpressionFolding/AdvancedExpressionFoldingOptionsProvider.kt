@@ -226,6 +226,11 @@ class AdvancedExpressionFoldingOptionsProvider : AbstractExpressionFoldingOption
         mapOf("PatternMatchingInstanceofTestData.java" to null),
     )
     
+        checkBox("Displays a folded summary of overridden methods from parent classes and interfaces.",
+        state::summaryParentOverride,
+        mapOf("SummaryParentOverrideTestData.java" to null),
+    )
+    
         // NEW OPTION
 
         checkBox(

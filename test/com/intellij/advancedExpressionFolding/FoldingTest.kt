@@ -409,6 +409,14 @@ newName = "mainek3"
     fun testPatternMatchingInstanceofTestData() {
         doFoldingTest(state::patternMatchingInstanceof)
     }
+
+    /**
+     * [data.SummaryParentOverrideTestData]
+     */
+    @Test
+    fun testSummaryParentOverrideTestData() {
+        doFoldingTest(state::summaryParentOverride)
+    }
     // NEW OPTION
     /**
      * [data.ExperimentalTestData]
