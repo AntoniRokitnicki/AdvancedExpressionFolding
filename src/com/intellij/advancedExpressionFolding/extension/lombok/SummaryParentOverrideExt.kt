@@ -14,11 +14,13 @@ object SummaryParentOverrideExt : BaseExtension() {
 
         sequenceOf(this.extendsList, this.implementsList).filterNotNull().mapNotNull { parent ->
             val a = parent.referencedTypes
-            parent.referenceElements.mapNotNull {
-                //TODO: not first but matching, maybe use zip here?
-                val c= a.first().resolve()
-                //TODO: use JavaAllOverridingMethodsSearcher or something else to find all methods overridden or implemented(in case of interfaces) in current class(stored in this) that are taken from c or its children and print it out here
-                it?.referenceNameElement
+            parent.referenceElements.zip(a).mapNotNull { (refElement, type) ->
+                val c = type.resolve()
+                val overriddenMethods = c?.methods?.filter { method ->
+                    this.findMethodBySignature(method, false) != null
+                }?.joinToString(", ") { it.name }
+                println("overriddenMethods = ${overriddenMethods}")
+                refElement.referenceNameElement
             }
         }.flatten().toList().takeIf {
             it.isNotEmpty()
@@ -28,8 +30,5 @@ object SummaryParentOverrideExt : BaseExtension() {
             return it.exprWrap(this)
         }
         return null
-
     }
 }
-
-
