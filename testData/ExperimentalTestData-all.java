@@ -104,10 +104,10 @@ public <fold text='🏛️' expand='false'>class</fold> ExperimentalTestData {
     }</fold>
 
 
-    <fold text='⚡' expand='false'>static</fold> <fold text='🏛️' expand='false'>class</fold> SubConstClass extends ConstClass <fold text='{...}' expand='true'>{
+    <fold text='⚡' expand='false'>static</fold> <fold text='🏛️' expand='false'>class</fold> SubConstClass extends ConstClas<fold text='s(0-)' expand='true'>s</fold> <fold text='{...}' expand='true'>{
     }</fold>
 
-    <fold text='⚡' expand='false'>static</fold> <fold text='🔒' expand='false'>final</fold> <fold text='🏛️' expand='false'>class</fold> SubConstClass2 extends ConstClass <fold text='{...}' expand='true'>{
+    <fold text='⚡' expand='false'>static</fold> <fold text='🔒' expand='false'>final</fold> <fold text='🏛️' expand='false'>class</fold> SubConstClass2 extends ConstClas<fold text='s(0-)' expand='true'>s</fold> <fold text='{...}' expand='true'>{
     }</fold>
 
     <fold text='@Getter @Setter c' expand='false'><fold text='🏛️' expand='false'>c</fold>lass</fold> NamelessProperty <fold text='{...}' expand='true'>{

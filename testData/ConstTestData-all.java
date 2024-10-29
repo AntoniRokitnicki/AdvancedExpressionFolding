@@ -12,7 +12,7 @@
  */</fold>
 public <fold text='🏛️' expand='false'>class</fold> ConstTestData {
 
-    <fold text='⚡' expand='false'><fold text='default const' expand='false'>static</fold> <fold text='🔒' expand='false'>final</fold> </fold><fold text='' expand='false'>Pattern</fold> PATTERN = Pattern.compile(".*");
+    <fold text='default const' expand='false'><fold text='⚡' expand='false'>static</fold> <fold text='🔒' expand='false'>final</fold> </fold><fold text='' expand='false'>Pattern</fold> PATTERN = Pattern.compile(".*");
     <fold text='⚡' expand='false'><fold text='default const' expand='false'>static</fold> <fold text='🔒' expand='false'>final</fold></fold> Pattern PATTERN_STATIC_IMPORT = compile(".*");
 
     <fold text='⚡' expand='false'><fold text='default econst' expand='false'>static</fold> <fold text='🔒' expand='false'>final</fold> <fold text='' expand='false'></fold>EOrder</fold> ENUM = EOrder.FIRST;
@@ -21,7 +21,7 @@ public <fold text='🏛️' expand='false'>class</fold> ConstTestData {
 
     <fold text='const' expand='false'>public <fold text='⚡' expand='false'>static</fold> <fold text='🔒' expand='false'>final</fold> <fold text='' expand='false'></fold>String</fold> PUBLIC_STATIC_FINAL_VAR = "";
     <fold text='🚫' expand='false'>private</fold> <fold text='⚡' expand='false'><fold text='const' expand='false'>static</fold> <fold text='🔒' expand='false'>final</fold> </fold><fold text='' expand='false'>String</fold> PRIVATE_STATIC_FINAL_VAR = "";
-    <fold text='🛡️' expand='false'>protected</fold> <fold text='⚡' expand='false'><fold text='const' expand='false'>static</fold> <fold text='🔒' expand='false'>final</fold> </fold><fold text='' expand='false'>String</fold> PROTECTED_STATIC_FINAL_VAR = "";
+    <fold text='🛡️' expand='false'>protected</fold> <fold text='⚡' expand='false'><fold text='const' expand='false'>static</fold> <fold text='🔒' expand='false'>final</fold> <fold text='' expand='false'></fold>String</fold> PROTECTED_STATIC_FINAL_VAR = "";
     <fold text='⚡' expand='false'><fold text='default const' expand='false'>static</fold> <fold text='🔒' expand='false'>final</fold> </fold><fold text='' expand='false'>String</fold> DEFAULT_STATIC_FINAL_VAR = "";
 
     <fold text='const' expand='false'>public <fold text='⚡' expand='false'>static</fold> <fold text='🔒' expand='false'>final</fold></fold> String STRING_JOINER = "<fold text='' expand='false'>" + "</fold>1";
@@ -29,15 +29,15 @@ public <fold text='🏛️' expand='false'>class</fold> ConstTestData {
     <fold text='const' expand='false'>public <fold text='⚡' expand='false'>static</fold> <fold text='🔒' expand='false'>final</fold></fold> String STRING_JOINER3 =<fold text=' "$' expand='false'> </fold>DEFAULT_STATIC_FINAL_VAR<fold text='' expand='false'> + "</fold>";
     <fold text='const' expand='false'>public <fold text='⚡' expand='false'>static</fold> <fold text='🔒' expand='false'>final</fold></fold> String STRING_JOINER4 = DEFAULT_STATIC_FINAL_VAR + PROTECTED_STATIC_FINAL_VAR + PUBLIC_STATIC_FINAL_VAR;
 
-    <fold text='const' expand='false'>public <fold text='🔒' expand='false'>final</fold> <fold text='⚡' expand='false'>static</fold> <fold text='' expand='false'></fold>String</fold> PUBLIC_FINAL_STATIC_VAR = "";
-    <fold text='🚫' expand='false'>private</fold> <fold text='🔒' expand='false'><fold text='const' expand='false'>final</fold> <fold text='⚡' expand='false'>static</fold> </fold><fold text='' expand='false'>String</fold> PRIVATE_FINAL_STATIC_VAR = "";
+    <fold text='const' expand='false'>public <fold text='🔒' expand='false'>final</fold> <fold text='⚡' expand='false'>static</fold> </fold><fold text='' expand='false'>String</fold> PUBLIC_FINAL_STATIC_VAR = "";
+    <fold text='🚫' expand='false'>private</fold> <fold text='const' expand='false'><fold text='🔒' expand='false'>final</fold> <fold text='⚡' expand='false'>static</fold> </fold><fold text='' expand='false'>String</fold> PRIVATE_FINAL_STATIC_VAR = "";
     <fold text='🛡️' expand='false'>protected</fold> <fold text='🔒' expand='false'><fold text='const' expand='false'>final</fold> <fold text='⚡' expand='false'>static</fold> </fold><fold text='' expand='false'>String</fold> PROTECTED_FINAL_STATIC_VAR = "";
 
     <fold text='⚡' expand='false'><fold text='const' expand='false'>static</fold> public <fold text='🔒' expand='false'>final</fold> </fold><fold text='' expand='false'>String</fold> STATIC_PUBLIC_FINAL_VAR = "";
     <fold text='⚡' expand='false'>static</fold> <fold text='🚫' expand='false'>private</fold> <fold text='🔒' expand='false'>final</fold> String STATIC_PRIVATE_FINAL_VAR = "";
     <fold text='⚡' expand='false'>static</fold> <fold text='🛡️' expand='false'>protected</fold> <fold text='🔒' expand='false'>final</fold> String STATIC_PROTECTED_FINAL_VAR = "";
 
-    <fold text='⚡' expand='false'><fold text='const' expand='false'>static</fold> <fold text='🔒' expand='false'>final</fold> public </fold><fold text='' expand='false'>String</fold> STATIC_FINAL_PUBLIC_VAR = "";
+    <fold text='const' expand='false'><fold text='⚡' expand='false'>static</fold> <fold text='🔒' expand='false'>final</fold> public </fold><fold text='' expand='false'>String</fold> STATIC_FINAL_PUBLIC_VAR = "";
     <fold text='⚡' expand='false'>static</fold> <fold text='🔒' expand='false'>final</fold> <fold text='🚫' expand='false'>private</fold> String STATIC_FINAL_PRIVATE_VAR = "";
     <fold text='⚡' expand='false'>static</fold> <fold text='🔒' expand='false'>final</fold> <fold text='🛡️' expand='false'>protected</fold> String STATIC_FINAL_PROTECTED_VAR = "";
 
@@ -45,7 +45,7 @@ public <fold text='🏛️' expand='false'>class</fold> ConstTestData {
     <fold text='🔒' expand='false'>final</fold> <fold text='🚫' expand='false'>private</fold> <fold text='⚡' expand='false'>static</fold> String FINAL_PRIVATE_STATIC_VAR = "";
     <fold text='🔒' expand='false'>final</fold> <fold text='🛡️' expand='false'>protected</fold> <fold text='⚡' expand='false'>static</fold> String FINAL_PROTECTED_STATIC_VAR = "";
 
-    <fold text='🔒' expand='false'><fold text='const' expand='false'>final</fold> <fold text='⚡' expand='false'>static</fold> public <fold text='' expand='false'></fold>String</fold> FINAL_STATIC_PUBLIC_VAR = "";
+    <fold text='🔒' expand='false'><fold text='const' expand='false'>final</fold> <fold text='⚡' expand='false'>static</fold> public </fold><fold text='' expand='false'>String</fold> FINAL_STATIC_PUBLIC_VAR = "";
     <fold text='🔒' expand='false'>final</fold> <fold text='⚡' expand='false'>static</fold> <fold text='🚫' expand='false'>private</fold> String FINAL_STATIC_PRIVATE_VAR = "";
     <fold text='🔒' expand='false'>final</fold> <fold text='⚡' expand='false'>static</fold> <fold text='🛡️' expand='false'>protected</fold> String FINAL_STATIC_PROTECTED_VAR = "";
 
@@ -91,13 +91,13 @@ public <fold text='🏛️' expand='false'>class</fold> ConstTestData {
         <fold text='const' expand='false'>public <fold text='⚡' expand='false'>static</fold> <fold text='🔒' expand='false'>final</fold> </fold><fold text='' expand='false'>String</fold> PUBLIC_STATIC_FINAL_VAR = "";
 
         @Deprecated
-        <fold text='🚫' expand='false'>private</fold> <fold text='⚡' expand='false'><fold text='const' expand='false'>static</fold> <fold text='🔒' expand='false'>final</fold> <fold text='' expand='false'></fold>String</fold> PRIVATE_STATIC_FINAL_VAR = "";
+        <fold text='🚫' expand='false'>private</fold> <fold text='⚡' expand='false'><fold text='const' expand='false'>static</fold> <fold text='🔒' expand='false'>final</fold> </fold><fold text='' expand='false'>String</fold> PRIVATE_STATIC_FINAL_VAR = "";
 
         @Deprecated
         <fold text='🛡️' expand='false'>protected</fold> <fold text='⚡' expand='false'><fold text='const' expand='false'>static</fold> <fold text='🔒' expand='false'>final</fold> </fold><fold text='' expand='false'>String</fold> PROTECTED_STATIC_FINAL_VAR = "";
 
         @Deprecated
-        <fold text='⚡' expand='false'><fold text='default const' expand='false'>static</fold> <fold text='🔒' expand='false'>final</fold> <fold text='' expand='false'></fold>String</fold> DEFAULT_STATIC_FINAL_VAR = "";
+        <fold text='⚡' expand='false'><fold text='default const' expand='false'>static</fold> <fold text='🔒' expand='false'>final</fold> </fold><fold text='' expand='false'>String</fold> DEFAULT_STATIC_FINAL_VAR = "";
 
         @Deprecated
         <fold text='const' expand='false'>public <fold text='⚡' expand='false'>static</fold> <fold text='🔒' expand='false'>final</fold></fold> String STRING_JOINER = "<fold text='' expand='false'>" + "</fold>1";
@@ -112,13 +112,13 @@ public <fold text='🏛️' expand='false'>class</fold> ConstTestData {
         <fold text='const' expand='false'>public <fold text='⚡' expand='false'>static</fold> <fold text='🔒' expand='false'>final</fold></fold> String STRING_JOINER4 = DEFAULT_STATIC_FINAL_VAR + PROTECTED_STATIC_FINAL_VAR + PUBLIC_STATIC_FINAL_VAR;
 
         @Deprecated
-        <fold text='const' expand='false'>public <fold text='🔒' expand='false'>final</fold> <fold text='⚡' expand='false'>static</fold> </fold><fold text='' expand='false'>String</fold> PUBLIC_FINAL_STATIC_VAR = "";
+        <fold text='const' expand='false'>public <fold text='🔒' expand='false'>final</fold> <fold text='⚡' expand='false'>static</fold> <fold text='' expand='false'></fold>String</fold> PUBLIC_FINAL_STATIC_VAR = "";
 
         @Deprecated
-        <fold text='🚫' expand='false'>private</fold> <fold text='🔒' expand='false'><fold text='const' expand='false'>final</fold> <fold text='⚡' expand='false'>static</fold> <fold text='' expand='false'></fold>String</fold> PRIVATE_FINAL_STATIC_VAR = "";
+        <fold text='🚫' expand='false'>private</fold> <fold text='🔒' expand='false'><fold text='const' expand='false'>final</fold> <fold text='⚡' expand='false'>static</fold> </fold><fold text='' expand='false'>String</fold> PRIVATE_FINAL_STATIC_VAR = "";
 
         @Deprecated
-        <fold text='🛡️' expand='false'>protected</fold> <fold text='🔒' expand='false'><fold text='const' expand='false'>final</fold> <fold text='⚡' expand='false'>static</fold> </fold><fold text='' expand='false'>String</fold> PROTECTED_FINAL_STATIC_VAR = "";
+        <fold text='🛡️' expand='false'>protected</fold> <fold text='🔒' expand='false'><fold text='const' expand='false'>final</fold> <fold text='⚡' expand='false'>static</fold> <fold text='' expand='false'></fold>String</fold> PROTECTED_FINAL_STATIC_VAR = "";
 
         @Deprecated
         <fold text='⚡' expand='false'><fold text='const' expand='false'>static</fold> public <fold text='🔒' expand='false'>final</fold> </fold><fold text='' expand='false'>String</fold> STATIC_PUBLIC_FINAL_VAR = "";
@@ -130,7 +130,7 @@ public <fold text='🏛️' expand='false'>class</fold> ConstTestData {
         <fold text='⚡' expand='false'>static</fold> <fold text='🛡️' expand='false'>protected</fold> <fold text='🔒' expand='false'>final</fold> String STATIC_PROTECTED_FINAL_VAR = "";
 
         @Deprecated
-        <fold text='⚡' expand='false'><fold text='const' expand='false'>static</fold> <fold text='🔒' expand='false'>final</fold> public <fold text='' expand='false'></fold>String</fold> STATIC_FINAL_PUBLIC_VAR = "";
+        <fold text='⚡' expand='false'><fold text='const' expand='false'>static</fold> <fold text='🔒' expand='false'>final</fold> public </fold><fold text='' expand='false'>String</fold> STATIC_FINAL_PUBLIC_VAR = "";
 
         @Deprecated
         <fold text='⚡' expand='false'>static</fold> <fold text='🔒' expand='false'>final</fold> <fold text='🚫' expand='false'>private</fold> String STATIC_FINAL_PRIVATE_VAR = "";
@@ -204,7 +204,7 @@ public <fold text='🏛️' expand='false'>class</fold> ConstTestData {
 
 
     public <fold text='🖥️' expand='false'>interface</fold> Orderable {}
-    <fold text='📊' expand='false'>enum</fold> EOrder implements Orderable <fold text='{...}' expand='true'>{
+    <fold text='📊' expand='false'>enum</fold> EOrder implements Orderabl<fold text='e(0-)' expand='true'>e</fold> <fold text='{...}' expand='true'>{
         FIRST,
         SECOND;
     }</fold>
