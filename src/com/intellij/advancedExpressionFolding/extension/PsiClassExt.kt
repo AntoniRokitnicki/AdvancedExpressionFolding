@@ -6,6 +6,7 @@ import com.intellij.advancedExpressionFolding.extension.Consts.SUPERSCRIPT_MAPPI
 import com.intellij.advancedExpressionFolding.extension.lombok.LombokExt.addLombokSupport
 import com.intellij.advancedExpressionFolding.extension.lombok.LombokFoldingAnnotation
 import com.intellij.advancedExpressionFolding.extension.lombok.LombokFoldingAnnotation.SERIAL
+import com.intellij.advancedExpressionFolding.extension.lombok.SummaryParentOverrideExt.addParentSummary
 import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiField
@@ -26,6 +27,11 @@ object PsiClassExt : BaseExtension() {
 
     @JvmStatic
     fun createExpression(clazz: PsiClass): Expression? {
+        clazz.addParentSummary()?.run {
+            //TODO: work together with others
+            return this
+        }
+
         (clazz.isIgnored() || !lombok || clazz.isRecord).off() ?: return null
 
         val serialField = isSerial(clazz)

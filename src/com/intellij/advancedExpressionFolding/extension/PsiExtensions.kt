@@ -34,12 +34,14 @@ val PsiType.typeResolved: PsiClass?
 val PsiField.singletonField: Boolean
     get() = type.asInstance<PsiClassReferenceType>()?.resolve() == containingClass
 val PsiField.initializerType: PsiClass?
-    get() = initializer.asInstance<PsiReferenceExpression>()?.qualifierExpression.asInstance<PsiReferenceExpression>()?.resolve().asInstance<PsiClass>()
+    get() = initializer.asInstance<PsiReferenceExpression>()?.qualifierExpression.asInstance<PsiReferenceExpression>()
+        ?.resolve().asInstance<PsiClass>()
 
 inline fun PsiElement.textRangeChar(positionMethod: PsiElement.() -> Int, startOffset: Int, endOffset: Int): TextRange {
     val position = positionMethod()
     return TextRange(position + startOffset, position + endOffset)
 }
+
 val PsiElement.textRangeLastChar: TextRange
     get() = textRangeChar(PsiElement::end, -1, 0)
 val PsiElement.textRangeFirstChar: TextRange
@@ -55,8 +57,10 @@ fun Pair<Int, Int>.toTextRange() = TextRange(first, second)
 fun IntRange.toTextRange() = TextRange(this.first, this.last)
 operator fun TextRange.plus(string: String): TextRange =
     TextRange.create(startOffset + string.length, endOffset + string.length)
+
 operator fun TextRange.plus(addon: IntRange): TextRange =
     TextRange.create(startOffset + addon.first, endOffset + addon.last)
+
 fun PsiElement.start(): Int = textRange.startOffset
 fun PsiElement.end(): Int = textRange.endOffset
 
@@ -87,11 +91,13 @@ enum class EModifier(val modifier: String) {
     PRIVATE("private"),
     PROTECTED("protected"),
     DEFAULT("default");
+
     fun isPublic() = this == PUBLIC
     fun isProtected() = this == PROTECTED
     fun isPrivate() = this == PRIVATE
     fun isDefault() = this == DEFAULT
 }
+
 fun PsiModifierListOwner.modifier(): EModifier {
     return when {
         isPublic() -> PUBLIC
@@ -100,6 +106,7 @@ fun PsiModifierListOwner.modifier(): EModifier {
         else -> DEFAULT
     }
 }
+
 fun PsiModifierListOwner.isPublic() = hasModifierProperty(PsiModifier.PUBLIC)
 fun PsiModifierListOwner.isProtected() = hasModifierProperty(PsiModifier.PROTECTED)
 fun PsiModifierListOwner.isPrivate() = hasModifierProperty(PsiModifier.PRIVATE)
@@ -198,6 +205,7 @@ val PsiField.metadata: Keys.FieldMetaData
         }
         return userData
     }
+
 fun PsiField.hasLiteralConstInitializer() = initializer is PsiLiteralExpression
 
 fun PsiMethod.isBuilder(): Boolean = containingClass?.isBuilder() == true
@@ -227,7 +235,6 @@ fun <T : PsiElement> PsiElement.findParents(
 }
 
 
-
 fun PsiElement.prevWhiteSpace(): PsiWhiteSpace? = prevSibling as? PsiWhiteSpace
 fun PsiElement.nextWhiteSpace(): PsiWhiteSpace? = nextSibling as? PsiWhiteSpace
 
@@ -242,6 +249,7 @@ inline fun <reified T> Any?.isInstance(): Boolean = this is T
 fun <E, T : Collection<E>?> T.takeIfSize(size: Int): T? = this.takeIf {
     it?.size == size
 }
+
 fun <E, T : Collection<E>?> T.takeIfSizeNot(size: Int): T? = this.takeIf {
     it?.size != size
 }
@@ -249,6 +257,7 @@ fun <E, T : Collection<E>?> T.takeIfSizeNot(size: Int): T? = this.takeIf {
 fun <T> Array<T>?.takeIfSize(size: Int): Array<T>? = this.takeIf {
     it?.size == size
 }
+
 fun <T> Array<T>?.takeIfSizeNot(size: Int): Array<T>? = this.takeIf {
     it?.size != size
 }
@@ -324,6 +333,18 @@ fun List<PsiElement>.expr(
     }
     return map.exprWrap(first().parent)
 }
+
+fun PsiElement.exprOnLastChar(
+    text: String,
+    vararg children: Expression?,
+    group: FoldingGroup? = null,
+    foldPrevWhiteSpace: Boolean = false,
+    //textRange: TextRange = this.textRange,
+): SimpleExpression? = expr(
+    text = this.text.last() + text,
+    *children, group = group, foldPrevWhiteSpace = foldPrevWhiteSpace, textRange = textRangeChar(PsiElement::end, -1, 0)
+)
+
 fun PsiElement.expr(
     text: String,
     vararg children: Expression?,
@@ -362,6 +383,7 @@ fun List<PsiElement>.exprHide(
     }
     return map.exprWrap(first().parent)
 }
+
 fun PsiElement?.exprHide(
     vararg children: Expression?,
     group: FoldingGroup? = null,
@@ -416,9 +438,10 @@ fun Collection<Expression?>.exprWrap(
     return WrapperExpression(parent, chain = chain)
 }
 
-fun elemList(vararg elements: PsiElement?) : MutableList<Expression?> = elements.mapNotNull {
+fun elemList(vararg elements: PsiElement?): MutableList<Expression?> = elements.mapNotNull {
     it.exprHide()
 }.toMutableList()
+
 fun exprList(elements: Iterable<Expression?>) = mutableListOf(elements)
 fun exprList(vararg elements: Expression?) = mutableListOf(*elements)
 fun foldingList(vararg elements: FoldingDescriptor) = mutableListOf(*elements)
@@ -450,10 +473,10 @@ val PsiElement.identifier: PsiIdentifier?
     } as? PsiIdentifier
 
 
-
 fun PsiCodeBlock.hasComments(): Boolean = children.any {
     it is PsiComment
 }
+
 fun PsiCodeBlock.getComment(): PsiElement? = children.firstOrNull {
     it is PsiComment
 }

@@ -9,10 +9,8 @@ import com.intellij.advancedExpressionFolding.extension.lombok.LombokInterfaceFo
 import com.intellij.advancedExpressionFolding.extension.lombok.LombokInterfaceFoldingAnnotation.Companion.fromMethodType
 import com.intellij.advancedExpressionFolding.extension.lombok.MethodType.*
 import com.intellij.openapi.util.Key
-import com.intellij.psi.PsiClass
-import com.intellij.psi.PsiElement
-import com.intellij.psi.PsiIdentifier
-import com.intellij.psi.PsiMethod
+import com.intellij.psi.*
+import com.intellij.psi.javadoc.PsiDocComment
 
 enum class LombokInterfaceFoldingAnnotation(
     val annotation: String,
@@ -126,8 +124,12 @@ object LombokMethodExt : GenericCallback<PsiMethod, List<MethodLevelAnnotation>>
      *  Add @Getter annotation before the method's start, at the last character of the preceding whitespace
      */
     private fun PsiMethod.addAnnotationByLastCharOfPrevWhitespace(methodAnnotation: LombokInterfaceFoldingAnnotation): SimpleExpression? {
-        val element = docComment?.nextWhiteSpace() ?: prevWhiteSpace() ?: return null
-        return expr("${methodAnnotation.annotation} ", textRange = element.textRangeChar(PsiElement::end, -1, 0))
+        return foldOnLastElement(methodAnnotation.annotation, docComment)
+    }
+
+    fun PsiElement.foldOnLastElement(text: String, spaceable: PsiElement?): SimpleExpression? {
+        val whiteSpace = spaceable?.nextWhiteSpace() ?: prevWhiteSpace() ?: return null
+        return expr("$text ", textRange = whiteSpace.textRangeChar(PsiElement::end, -1, 0))
     }
 
     /**
