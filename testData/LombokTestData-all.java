@@ -655,7 +655,7 @@
                 </fold></fold><fold text='💪' expand='false'>super</fold>()<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold></fold>
         }</fold>
-        public <fold text='🏛️' expand='false'>class</fold> NoArgsConstructorSuperParent extends Parent <fold text='{...}' expand='true'>{
+        public <fold text='🏛️' expand='false'>class</fold> NoArgsConstructorSuperParent extends Paren<fold text='t(0-)' expand='true'>t</fold> <fold text='{...}' expand='true'>{
             public NoArgsConstructorSuperParent()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
                 </fold></fold><fold text='💪' expand='false'>super</fold>(<fold text='🕳️' expand='false'>null</fold>)<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold>
@@ -724,7 +724,7 @@
             <fold text='🚫' expand='false'>private</fold> String field1;
             <fold text='🚫' expand='false'>private</fold> <fold text='🔢' expand='false'>int</fold> field2;
             <fold text='🚫' expand='false'>private</fold> <fold text='🔘' expand='false'>boolean</fold> field3;<fold text='' expand='false'>
-            <fold text='' expand='false'></fold>public AllArgsSuper(String field1, int field2, boolean field3) <fold text='{...}' expand='true'>{
+            </fold><fold text='' expand='false'>public AllArgsSuper(String field1, int field2, boolean field3) <fold text='{...}' expand='true'>{
                 <fold text='💪' expand='false'>super</fold>();
                 <fold text='📍' expand='false'>this</fold>.field1 = <fold text='<<' expand='false'>field1</fold>;
                 <fold text='📍' expand='false'>this</fold>.field2 = <fold text='<<' expand='false'>field2</fold>;
@@ -742,7 +742,7 @@
                 <fold text='📍' expand='false'>this</fold>.field3 = <fold text='<<' expand='false'>field3</fold>;
             }</fold></fold>
             public <fold text='⚡' expand='false'>static</fold> StaticNameArgs of(String field1, <fold text='🔢' expand='false'>int</fold> field2, <fold text='🔘' expand='false'>boolean</fold> field3) <fold text='{...}' expand='true'>{<fold text=' ' expand='true'>
-                </fold><fold text='' expand='true'>return<fold text='' expand='true'></fold> </fold>new StaticNameArgs(field1, field2, field3)<fold text='' expand='true'>;</fold><fold text='' expand='true'>
+                <fold text='' expand='true'></fold>return</fold><fold text='' expand='true'> </fold>new StaticNameArgs(field1, field2, field3)<fold text='' expand='true'>;</fold><fold text='' expand='true'>
             </fold>}</fold>
         }</fold>
 

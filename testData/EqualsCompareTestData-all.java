@@ -1,6 +1,6 @@
 <fold text='📦' expand='false'>package</fold> data;
 
-public <fold text='🏛️' expand='false'>class</fold> EqualsCompareTestData implements Comparable<EqualsCompareTestData> {
+public <fold text='🏛️' expand='false'>class</fold> EqualsCompareTestData implements Comparabl<fold text='e(0-)' expand='true'>e</fold><EqualsCompareTestData> {
     public <fold text='⚡' expand='false'>static</fold> <fold text='💀' expand='false'>void</fold> main(String[] args) <fold text='{...}' expand='true'>{
         <fold text='val' expand='false'>EqualsCompareTestData</fold> a = new EqualsCompareTestData();
         <fold text='val' expand='false'>EqualsCompareTestData</fold> b = new EqualsCompareTestData();
