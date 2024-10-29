@@ -12,7 +12,7 @@ public class SummaryParentOverrideTestData {
         }
     }
 
-    class ParentClass extends GrandparentClassBlaBlaBla {
+    class ParentClass extends GrandparentClass(1-grandparentMethod) {
         @Override
         public void grandparentMethod() {
             System.out.println("Overridden Grandparent Method in Parent");
@@ -32,7 +32,7 @@ public class SummaryParentOverrideTestData {
         void interfaceMethodTwo();
     }
 
-    public class TestDataClass extends ParentClassBlaBlaBla implements FirstInterfaceBlaBlaBla, SecondInterfaceBlaBlaBla {
+    public class TestDataClass extends ParentClass(1-grandparentMethod) implements FirstInterface(2-interfaceMethodOne, sharedMethod), SecondInterface(1-interfaceMethodTwo) {
 
         @Override
         public void interfaceMethodOne() {

@@ -12,7 +12,7 @@ public class SummaryParentOverrideTestData {
         }</fold>
     }</fold>
 
-    class ParentClass extends GrandparentClas<fold text='sBlaBlaBla' expand='true'>s</fold> <fold text='{...}' expand='true'>{
+    class ParentClass extends GrandparentClas<fold text='s(1-grandparentMethod)' expand='true'>s</fold> <fold text='{...}' expand='true'>{
         @Override
         public void grandparentMethod()<fold text=' { ' expand='false'> {
             </fold>System.out.println("Overridden Grandparent Method in Parent");<fold text=' }' expand='false'>
@@ -32,7 +32,7 @@ public class SummaryParentOverrideTestData {
         void interfaceMethodTwo();
     }</fold>
 
-    public class TestDataClass extends ParentClas<fold text='sBlaBlaBla' expand='true'>s</fold> implements FirstInterfac<fold text='eBlaBlaBla' expand='true'>e</fold>, SecondInterfac<fold text='eBlaBlaBla' expand='true'>e</fold> <fold text='{...}' expand='true'>{
+    public class TestDataClass extends ParentClas<fold text='s(1-grandparentMethod)' expand='true'>s</fold> implements FirstInterfac<fold text='e(2-interfaceMethodOne, sharedMethod)' expand='true'>e</fold>, SecondInterfac<fold text='e(1-interfaceMethodTwo)' expand='true'>e</fold> <fold text='{...}' expand='true'>{
 
         @Override
         public void interfaceMethodOne()<fold text=' { ' expand='false'> {
