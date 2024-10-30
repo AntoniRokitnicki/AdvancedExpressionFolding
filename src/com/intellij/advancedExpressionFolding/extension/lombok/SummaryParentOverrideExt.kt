@@ -20,6 +20,7 @@ object SummaryParentOverrideExt : BaseExtension() {
             parent.referenceElements.zip(parent.referencedTypes).mapNotNull { (refElement, type) ->
                 refElement.referenceNameElement?.let { element ->
                     val overriddenMethods = type.resolve()?.methods?.filter { method ->
+                        //TODO: support sharedMethod from GrandparentClass as well here
                         findMethodBySignature(method, false) != null
                     }?.map {
                         it.name
