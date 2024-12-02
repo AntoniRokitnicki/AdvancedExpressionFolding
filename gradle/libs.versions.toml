@@ -1,7 +1,7 @@
 [versions]
 # libraries
 annotations = "26.0.1"
-jsoup = "1.18.1"
+jsoup = "1.18.3"
 junit = "5.11.3"
 jackson = "2.18.1"
 jsr305 = "3.0.2"
