@@ -7,9 +7,8 @@ import com.intellij.psi.*
 object KeywordExt : BaseExtension() {
 
     @JvmStatic
-    fun createExpression(keyword: PsiKeyword): Expression? {
-        return finalRemoval.on(keyword)?.finalRemoval() ?: finalEmoji.on(keyword)?.finalEmoji()
-    }
+    fun createExpression(keyword: PsiKeyword): Expression? =
+        finalRemoval.on(keyword)?.finalRemoval() ?: finalEmoji.on(keyword)?.finalEmoji()
 
     private fun PsiKeyword.finalEmoji(): Expression? = foldFinalsExceptFields { expr(Emoji.FINAL_LOCK.toString()) }
 
