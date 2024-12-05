@@ -13,8 +13,7 @@ private data class ReferenceWithMethods(
 object SummaryParentOverrideExt : BaseExtension() {
 
     fun PsiClass.addParentSummary(): Expression? {
-        summaryParentOverride.on() ?: return null
-        name ?: return null
+        summaryParentOverride.on(name) ?: return null
 
         sequenceOf(this.extendsList, this.implementsList).filterNotNull().map { parent ->
             parent.referenceElements.zip(parent.referencedTypes).mapNotNull { (refElement, type) ->
