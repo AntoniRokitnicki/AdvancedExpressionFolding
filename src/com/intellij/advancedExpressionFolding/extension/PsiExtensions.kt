@@ -21,6 +21,7 @@ import com.intellij.psi.*
 import com.intellij.psi.impl.source.PsiClassReferenceType
 import com.intellij.psi.search.LocalSearchScope
 import com.intellij.psi.search.searches.ReferencesSearch
+import com.intellij.psi.util.MethodSignature
 import java.util.*
 import kotlin.reflect.KClass
 
@@ -486,3 +487,6 @@ fun <K, V> Map<K, V>.isUnique(): Boolean =
 
 fun <K, V, K2, V2> Map<K, V>?.sameSize(otherMap: Map<K2, V2>?) = this?.size == otherMap?.size
 fun <E, E2> Collection<E>?.sameSize(otherCollection: Collection<E2>?) = this?.size == otherCollection?.size
+
+
+fun PsiMethod.getSignature(): MethodSignature = getSignature(PsiSubstitutor.EMPTY)
