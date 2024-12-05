@@ -14,7 +14,7 @@ object SummaryParentOverrideExt : BaseExtension() {
 
     fun PsiClass.addParentSummary(): Expression? {
         summaryParentOverride.on() ?: return null
-        val className = this.name ?: return null
+        name ?: return null
 
         sequenceOf(this.extendsList, this.implementsList).filterNotNull().map { parent ->
             parent.referenceElements.zip(parent.referencedTypes).mapNotNull { (refElement, type) ->

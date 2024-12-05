@@ -13,11 +13,11 @@ object FoldTagsParser {
         val doc = parser.parseInput(text, "")
         val folds = doc.select("fold")
 
-        fun Element.value(): String = this.attribute("text").value
+        fun Element.value(): String = this.attribute("text")!!.value
 
         // intellij built-in folding
         fun Element.ignored(): Boolean {
-            val value = this.attribute("text").value
+            val value = this.attribute("text")!!.value
             return value == "{...}" || value == " { " || value == " }" || value == "..."
         }
 
