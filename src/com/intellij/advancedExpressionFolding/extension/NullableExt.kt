@@ -5,6 +5,7 @@ import com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpr
 import com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression
 import com.intellij.advancedExpressionFolding.expression.custom.FieldConstExpression
 import com.intellij.advancedExpressionFolding.expression.custom.NullAnnotationExpression
+import com.intellij.advancedExpressionFolding.extension.Keys.METHOD_TO_PARENT_CLASS_KEY
 import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFoldingAnnotation.Companion.findByName
 import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFoldingAnnotation.NOT_NULL
 import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFoldingAnnotation.NULLABLE
@@ -15,6 +16,7 @@ import com.intellij.advancedExpressionFolding.extension.lombok.LombokMethodExt.c
 import com.intellij.advancedExpressionFolding.extension.methodcall.dynamic.DynamicExt
 import com.intellij.openapi.editor.Document
 import com.intellij.psi.*
+import com.intellij.psi.util.MethodSignature
 
 /**
  * [data.NullableAnnotationTestData]
@@ -39,10 +41,21 @@ object NullableExt : BaseExtension() {
 
         list += exprList(fieldAnnotationExpression(element.annotations, element.returnTypeElement))
 
-        if (experimental) {
-            list += element.annotations.filter {
+        if (experimental || summaryParentOverride) {
+            val hideOverride = element.annotations.filter {
                 it.textMatches("@Override")
             }.exprHide(foldPrevWhiteSpace = true)
+            list += hideOverride
+            summaryParentOverride.on(hideOverride)?.let {
+                //TODO:
+                element.body?.lBrace?.run {
+                    val signature = element.getSignature()
+                    element.containingClass?.getUserData(METHOD_TO_PARENT_CLASS_KEY)
+                        ?.get(signature)?.let {
+                        list += this.expr("{ // overrides from $it")
+                    }
+                }
+            }
         }
 
         if (expressionFunc) {
