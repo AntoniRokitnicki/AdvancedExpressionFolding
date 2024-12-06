@@ -16,6 +16,7 @@ public class SummaryParentOverrideTestData {
         @Override
         public void grandparentMethod() {
             System.out.println("Overridden Grandparent Method in Parent");
+            System.out.println("Overridden Grandparent Method in Parent");
         }
 
         public void parentMethod() {
