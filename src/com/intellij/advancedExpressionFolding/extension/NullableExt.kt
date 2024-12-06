@@ -48,11 +48,11 @@ object NullableExt : BaseExtension() {
             list += hideOverride
             summaryParentOverride.on(hideOverride)?.let {
                 //TODO:
-                element.body?.lBrace?.run {
+                element.body?.lBrace?.let { brace ->
                     val signature = element.getSignature()
                     element.containingClass?.getUserData(METHOD_TO_PARENT_CLASS_KEY)
                         ?.get(signature)?.let {
-                        list += this.expr("{ // overrides from $it")
+                        list += brace.expr("{ // overrides from $it")
                     }
                 }
             }
