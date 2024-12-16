@@ -8,7 +8,7 @@ jsr305 = "3.0.2"
 pioneer = "2.3.0"
 # plugins
 changelog = "2.2.1"
-intelliJPlatform = "2.1.0"
+intelliJPlatform = "2.2.1"
 kotlin = "2.1.0"
 kover = "0.8.3"
 qodana = "2024.2.6"
