@@ -1,6 +1,6 @@
 [versions]
 # libraries
-annotations = "26.0.1"
+annotations = "26.0.2"
 jsoup = "1.18.3"
 junit = "5.11.4"
 jackson = "2.18.2"
