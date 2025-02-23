@@ -17,6 +17,7 @@ open class ClassAnnotationExpression(
     element: PsiElement,
     internal val customClassAnnotations: List<CustomClassAnnotation>,
     internal val elementsToFold: List<PsiElement?>,
+    private val additionalExpression: Expression?,
 ) : Expression(element, element.textRange) {
     override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean {
         return true
@@ -24,7 +25,8 @@ open class ClassAnnotationExpression(
 
     override fun buildFoldRegions(element: PsiElement, document: Document, parent: Expression?): Array<FoldingDescriptor> {
         val group = FoldingGroup.newGroup(this::class.java.name)
-        return (elementsToFold
+        val foldingDescriptors = (elementsToFold
+            .asSequence()
             .filterNotNull()
             .filter {
                 !it.textRange.isEmpty
@@ -32,8 +34,11 @@ open class ClassAnnotationExpression(
                 it.node == null
             }.map {
                 fold(it, it.textRange, "", group)
-            } + addAnnotation(element, document, group))
-            .toTypedArray()
+            } + addAnnotation(element, document, group)).toMutableList()
+        additionalExpression?.let {
+            foldingDescriptors += it.buildFoldRegions(element, document, parent)
+        }
+        return foldingDescriptors.toTypedArray()
     }
 
 
@@ -73,5 +78,5 @@ open class ClassAnnotationExpression(
         return FoldingDescriptor(element.node, textRange, group, placeholderText, true, emptySet<Any>())
     }
 
-    override fun isNested(): Boolean = true
+    override fun isNested() = true
 }

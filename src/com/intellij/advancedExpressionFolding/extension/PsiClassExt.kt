@@ -27,23 +27,20 @@ object PsiClassExt : BaseExtension() {
 
     @JvmStatic
     fun createExpression(clazz: PsiClass): Expression? {
-        clazz.addParentSummary()?.run {
-            //TODO: work together with others
-            return this
-        }
+        val parentSummary: Expression? = clazz.addParentSummary()
 
-        (clazz.isIgnored() || !lombok || clazz.isRecord).off() ?: return null
+        (clazz.isIgnored() || !lombok || clazz.isRecord).off() ?: return parentSummary
 
         val serialField = isSerial(clazz)
         if (hasLombokImports(clazz) && serialField == null) {
             clazz.markIgnored()
-            return null
+            return parentSummary
         }
 
         val changes = clazz.addLombokSupport() + addSerialVersionUID(serialField)
         if (changes.isEmpty()) {
             clazz.markIgnored()
-            return null
+            return parentSummary
         }
 
         val elementsToHide = changes.map {
@@ -66,7 +63,7 @@ object PsiClassExt : BaseExtension() {
                 } ?: ""
 
             hidingAnnotation.classAnnotation.annotation + notPureSuffix + args
-        }, elementsToFold)
+        }, elementsToFold, parentSummary)
     }
 
     private fun addSerialVersionUID(
