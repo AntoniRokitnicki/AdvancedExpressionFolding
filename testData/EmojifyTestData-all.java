@@ -128,42 +128,42 @@ public <fold text='🏛️' expand='false'>class</fold> EmojifyTestData {
         </fold>}</fold>
     }</fold>
 
-    public <fold text='🏛️' expand='false'>class</fold> TransientVolatileData implements java.io.Serializabl<fold text='e(0-)' expand='true'>e</fold> <fold text='{...}' expand='true'>{
+    <fold text='@AllArgsConstructor @Getter @Setter p' expand='false'>p</fold>ublic <fold text='🏛️' expand='false'>class</fold> TransientVolatileData implements java.io.Serializabl<fold text='e(0-)' expand='false'>e</fold> <fold text='{...}' expand='true'>{
         <fold text='🚫' expand='false'>private</fold> <fold text='🚂' expand='false'>transient</fold> <fold text='🔢' expand='false'>int</fold> transientField;
-        <fold text='🚫' expand='false'>private</fold> <fold text='☢️' expand='false'>volatile</fold> <fold text='🔘' expand='false'>boolean</fold> volatileField;
+        <fold text='🚫' expand='false'>private</fold> <fold text='☢️' expand='false'>volatile</fold> <fold text='🔘' expand='false'>boolean</fold> volatileField;<fold text='' expand='false'>
 
-        public TransientVolatileData(<fold text='🔢' expand='false'>int</fold> transientField, <fold text='🔘' expand='false'>boolean</fold> volatileField) <fold text='{...}' expand='true'>{
+        </fold><fold text='' expand='false'>public TransientVolatileData(<fold text='🔢' expand='false'>int</fold> transientField, <fold text='🔘' expand='false'>boolean</fold> volatileField) <fold text='{...}' expand='true'>{
             <fold text='📍' expand='false'>this</fold>.transientField = <fold text='<<' expand='false'>transientField</fold>;
             <fold text='📍' expand='false'>this</fold>.volatileField = <fold text='<<' expand='false'>volatileField</fold>;
-        }</fold>
+        }</fold><fold text='' expand='false'></fold>
 
-        public <fold text='🔢' expand='false'>int</fold> getTransientField()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+        </fold><fold text='' expand='false'>public <fold text='🔢' expand='false'>int</fold> getTransientField()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
             </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>transientField<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
-        </fold>}</fold>
+        </fold>}</fold><fold text='' expand='false'></fold>
 
-        public <fold text='💀' expand='false'>void</fold> setTransientField(<fold text='🔢' expand='false'>int</fold> transientField)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold><fold text='📍' expand='false'></fold>this</fold>.transientField = <fold text='<<' expand='false'>transientField</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
-        </fold>}</fold>
+        </fold><fold text='' expand='false'>public <fold text='💀' expand='false'>void</fold> setTransientField(<fold text='🔢' expand='false'>int</fold> transientField)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+            </fold></fold><fold text='📍' expand='false'>this</fold>.transientField = <fold text='<<' expand='false'>transientField</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+        </fold>}</fold></fold><fold text='' expand='false'>
 
-        public <fold text='🔘' expand='false'>boolean</fold> isVolatileField()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+        <fold text='' expand='false'></fold>public <fold text='🔘' expand='false'>boolean</fold> isVolatileField()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
             </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>volatileField<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
-        </fold>}</fold>
+        </fold>}</fold></fold><fold text='' expand='false'>
 
-        public <fold text='💀' expand='false'>void</fold> setVolatileField(<fold text='🔘' expand='false'>boolean</fold> volatileField)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+        </fold><fold text='' expand='false'>public <fold text='💀' expand='false'>void</fold> setVolatileField(<fold text='🔘' expand='false'>boolean</fold> volatileField)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
             </fold></fold><fold text='📍' expand='false'>this</fold>.volatileField = <fold text='<<' expand='false'>volatileField</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
-        </fold>}</fold>
+        </fold>}</fold></fold>
     }</fold>
 
     public <fold text='🏛️' expand='false'>class</fold> NativeData <fold text='{...}' expand='true'>{
         public <fold text='🏕️' expand='false'>native</fold> <fold text='💀' expand='false'>void</fold> nativeMethod();
     }</fold>
 
-    public <fold text='🏛️' expand='false'>class</fold> InterfaceUsage implements Comparabl<fold text='e(0-)' expand='true'>e</fold><InterfaceUsage> <fold text='{...}' expand='true'>{
-        <fold text='🚫' expand='false'>private</fold> <fold text='🔢' expand='false'>int</fold> value;
+    <fold text='@AllArgsConstructor p' expand='false'>p</fold>ublic <fold text='🏛️' expand='false'>class</fold> InterfaceUsage implements Comparabl<fold text='e(0-)' expand='false'>e</fold><InterfaceUsage> <fold text='{...}' expand='true'>{
+        <fold text='🚫' expand='false'>private</fold> <fold text='🔢' expand='false'>int</fold> value;<fold text='' expand='false'>
 
-        public InterfaceUsage(<fold text='🔢' expand='false'>int</fold> value)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+        </fold><fold text='' expand='false'>public InterfaceUsage(<fold text='🔢' expand='false'>int</fold> value)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
             </fold></fold><fold text='📍' expand='false'>this</fold>.value = <fold text='<<' expand='false'>value</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
-        </fold>}</fold>
+        </fold>}</fold></fold>
 
         <fold text='' expand='true'>@Override</fold>
         public <fold text='🔢' expand='false'>int</fold> compareTo(InterfaceUsage other)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
@@ -188,7 +188,7 @@ public <fold text='🏛️' expand='false'>class</fold> EmojifyTestData {
                 <fold text='🚫' expand='false'>private</fold> <fold text='🔢' expand='false'>int</fold> localValue;<fold text='' expand='false'>
 
                 </fold><fold text='' expand='false'>public LocalClass(<fold text='🔢' expand='false'>int</fold> localValue)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                    </fold></fold><fold text='📍' expand='false'>this</fold>.localValue = <fold text='<<' expand='false'>localValue</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+                    </fold></fold><fold text='📍' expand='false'>this</fold>.localValue = <fold text='<<' expand='false'>localValue</fold><fold text='' expand='true'>;<fold text=' ' expand='true'><fold text=' }' expand='false'></fold>
                 </fold>}</fold><fold text='' expand='false'></fold>
 
                 </fold><fold text='' expand='false'>public <fold text='🔢' expand='false'>int</fold> getLocalValue()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
@@ -230,7 +230,7 @@ public <fold text='🏛️' expand='false'>class</fold> EmojifyTestData {
         public <fold text='💀' expand='false'>void</fold> iterateList(java.util.List<String> list) <fold text='{...}' expand='true'>{<fold text=' ' expand='true'>
             </fold><fold text='🔁' expand='false'>for</fold> <fold text='' expand='false'>(</fold><fold text='val' expand='false'>String</fold> item : list<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
                 <fold text='val' expand='false'>int</fold> length = item.length();
-            }<fold text=' ' expand='true'></fold>
+            }</fold><fold text=' ' expand='true'>
         </fold>}</fold>
     }</fold>
 
@@ -274,13 +274,13 @@ public <fold text='🏛️' expand='false'>class</fold> EmojifyTestData {
 
     public <fold text='🏛️' expand='false'>class</fold> OptionalUsage <fold text='{...}' expand='true'>{
         public String getValueOrDefault(java.util.Optional<String> optional) <fold text='{...}' expand='true'>{<fold text=' ' expand='true'>
-            <fold text='' expand='true'></fold>return</fold><fold text='' expand='true'> </fold>optional<fold text=' ?: ' expand='false'>.orElse(</fold>"Default Value"<fold text='' expand='false'>)</fold><fold text='' expand='true'>;</fold><fold text='' expand='true'>
+            </fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>optional<fold text=' ?: ' expand='false'>.orElse(</fold>"Default Value"<fold text='' expand='false'>)</fold><fold text='' expand='true'>;</fold><fold text='' expand='true'>
         </fold>}</fold>
     }</fold>
 
     public <fold text='🏛️' expand='false'>class</fold> MethodReferenceUsage <fold text='{...}' expand='true'>{
         public java.util.function.Function<String, Integer> getStringLengthFunction()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>String::length<fold text='' expand='true'>;<fold text='' expand='true'><fold text=' }' expand='false'></fold>
+            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>String::length<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold>
     }</fold>
 
@@ -300,7 +300,7 @@ public <fold text='🏛️' expand='false'>class</fold> EmojifyTestData {
         <fold text='💀' expand='false'>void</fold> abstractMethod();
 
         default <fold text='💀' expand='false'>void</fold> defaultMethod()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold><fold text='val' expand='false'>int</fold> defaultValue = 0;<fold text=' ' expand='true'><fold text=' }' expand='false'>
+            </fold><fold text='val' expand='false'></fold>int</fold> defaultValue = 0;<fold text=' ' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold>
     }</fold>
 
@@ -309,11 +309,11 @@ public <fold text='🏛️' expand='false'>class</fold> EmojifyTestData {
             <fold text='🚫' expand='false'>private</fold> <fold text='🔢' expand='false'>int</fold> value;<fold text='' expand='false'>
 
             </fold><fold text='' expand='false'>public InnerClass(<fold text='🔢' expand='false'>int</fold> value)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold><fold text='📍' expand='false'></fold>this</fold>.value = <fold text='<<' expand='false'>value</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+                </fold></fold><fold text='📍' expand='false'>this</fold>.value = <fold text='<<' expand='false'>value</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold><fold text='' expand='false'></fold>
 
             </fold><fold text='' expand='false'>public <fold text='🔢' expand='false'>int</fold> getValue()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>value<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+                </fold></fold><fold text='' expand='true'>return<fold text='' expand='true'></fold> </fold>value<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold></fold>
         }</fold>
     }</fold>
@@ -342,7 +342,7 @@ public <fold text='🏛️' expand='false'>class</fold> EmojifyTestData {
             }</fold>
 
             public BuilderPatternUsage build()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>new BuilderPatternUsage(<fold text='📍' expand='false'>this</fold>)<fold text='' expand='true'>;<fold text='' expand='true'><fold text=' }' expand='false'></fold>
+                </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>new BuilderPatternUsage(<fold text='📍' expand='false'>this</fold>)<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold>
         }</fold>
     }</fold>
@@ -405,34 +405,34 @@ public <fold text='🏛️' expand='false'>class</fold> EmojifyTestData {
         public <fold text='🎨' expand='false'>abstract</fold> sealed <fold text='🏛️' expand='false'>class</fold> Shape permits Circle, Rectangle <fold text='{...}' expand='true'>{
         }</fold>
 
-        public <fold text='🔒' expand='false'>final</fold> <fold text='🏛️' expand='false'>class</fold> Circle extends Shap<fold text='e(0-)' expand='true'>e</fold> <fold text='{...}' expand='true'>{
-            <fold text='🚫' expand='false'>private</fold> <fold text='⚖️' expand='false'>double</fold> radius;
+        <fold text='@AllArgsConstructor @Getter p' expand='false'>p</fold>ublic <fold text='🔒' expand='false'>final</fold> <fold text='🏛️' expand='false'>class</fold> Circle extends Shap<fold text='e(0-)' expand='false'>e</fold> <fold text='{...}' expand='true'>{
+            <fold text='🚫' expand='false'>private</fold> <fold text='⚖️' expand='false'>double</fold> radius;<fold text='' expand='false'>
 
-            public Circle(<fold text='⚖️' expand='false'>double</fold> radius)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold><fold text='📍' expand='false'></fold>this</fold>.radius = <fold text='<<' expand='false'>radius</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
-            </fold>}</fold>
+            <fold text='' expand='false'></fold>public Circle(<fold text='⚖️' expand='false'>double</fold> radius)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+                </fold></fold><fold text='📍' expand='false'>this</fold>.radius = <fold text='<<' expand='false'>radius</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+            </fold>}</fold></fold><fold text='' expand='false'>
 
-            public <fold text='⚖️' expand='false'>double</fold> getRadius()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>radius<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
-            </fold>}</fold>
+            </fold><fold text='' expand='false'>public <fold text='⚖️' expand='false'>double</fold> getRadius()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+                </fold><fold text='' expand='true'></fold>return</fold><fold text='' expand='true'> </fold>radius<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+            </fold>}</fold></fold>
         }</fold>
 
-        public <fold text='🔒' expand='false'>final</fold> <fold text='🏛️' expand='false'>class</fold> Rectangle extends Shap<fold text='e(0-)' expand='true'>e</fold> <fold text='{...}' expand='true'>{
+        <fold text='@AllArgsConstructor @Getter p' expand='false'>p</fold>ublic <fold text='🔒' expand='false'>final</fold> <fold text='🏛️' expand='false'>class</fold> Rectangle extends Shap<fold text='e(0-)' expand='false'>e</fold> <fold text='{...}' expand='true'>{
             <fold text='🚫' expand='false'>private</fold> <fold text='⚖️' expand='false'>double</fold> length;
-            <fold text='🚫' expand='false'>private</fold> <fold text='⚖️' expand='false'>double</fold> width;
+            <fold text='🚫' expand='false'>private</fold> <fold text='⚖️' expand='false'>double</fold> width;<fold text='' expand='false'>
 
-            public Rectangle(<fold text='⚖️' expand='false'>double</fold> length, <fold text='⚖️' expand='false'>double</fold> width) <fold text='{...}' expand='true'>{
+            </fold><fold text='' expand='false'>public Rectangle(<fold text='⚖️' expand='false'>double</fold> length, <fold text='⚖️' expand='false'>double</fold> width) <fold text='{...}' expand='true'>{
                 <fold text='📍' expand='false'>this</fold>.length = <fold text='<<' expand='false'>length</fold>;
                 <fold text='📍' expand='false'>this</fold>.width = <fold text='<<' expand='false'>width</fold>;
-            }</fold>
+            }</fold></fold><fold text='' expand='false'>
 
-            public <fold text='⚖️' expand='false'>double</fold> getLength()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+            </fold><fold text='' expand='false'>public <fold text='⚖️' expand='false'>double</fold> getLength()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
                 </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>length<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
-            </fold>}</fold>
+            </fold>}</fold><fold text='' expand='false'></fold>
 
-            public <fold text='⚖️' expand='false'>double</fold> getWidth()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold><fold text='' expand='true'></fold>return</fold><fold text='' expand='true'> </fold>width<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
-            </fold>}</fold>
+            </fold><fold text='' expand='false'>public <fold text='⚖️' expand='false'>double</fold> getWidth()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+                </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>width<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+            </fold>}</fold></fold>
         }</fold>
     }</fold>
 
