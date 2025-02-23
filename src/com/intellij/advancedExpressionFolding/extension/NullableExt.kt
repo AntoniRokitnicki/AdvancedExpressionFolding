@@ -228,8 +228,10 @@ object NullableExt : BaseExtension() {
             if (noParams) {
                 list += initializer.argumentList?.exprHide()
             } else {
-                list += initializer.argumentList!!.expressions.map {
+                initializer.argumentList?.expressions?.map {
                     getAnyExpression(it, document)
+                }?.let {
+                    list.plusAssign(it)
                 }
             }
 
