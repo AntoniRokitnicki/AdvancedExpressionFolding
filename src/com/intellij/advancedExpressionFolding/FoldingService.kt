@@ -15,6 +15,9 @@ import com.intellij.psi.PsiRecursiveElementVisitor
 class FoldingService {
 
     fun fold(editor: Editor, state: Boolean) {
+        if (editor.isDisposed) {
+            return
+        }
         val regions = editor.foldingModel.allFoldRegions.filter {
             it.group?.toString()?.startsWith("com.intellij.advancedExpressionFolding") ?: false
         }
@@ -30,12 +33,17 @@ class FoldingService {
     fun clearAllKeys(project: Project) {
         FileEditorManager.getInstance(project).allEditors.mapNotNull {
             (it as? TextEditor)?.editor
+        }.filter {
+            !it.isDisposed
         }.forEach {
             clearAllKeys(it)
         }
     }
 
     fun clearAllKeys(editor: Editor) {
+        if (editor.isDisposed) {
+            return
+        }
         val project = editor.project ?: return
         val psiFile = PsiDocumentManager.getInstance(project).getPsiFile(editor.document) ?: return
         psiFile.accept(KeyCleanerPsiElementVisitor())
