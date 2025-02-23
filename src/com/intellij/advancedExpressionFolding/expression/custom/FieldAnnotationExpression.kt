@@ -7,4 +7,4 @@ class FieldAnnotationExpression(
     element: PsiElement,
     customClassAnnotations: List<CustomClassAnnotation>,
     elementsToFold: List<PsiElement?>,
-) : ClassAnnotationExpression(element, customClassAnnotations, elementsToFold)
+) : ClassAnnotationExpression(element, customClassAnnotations, elementsToFold, null)
