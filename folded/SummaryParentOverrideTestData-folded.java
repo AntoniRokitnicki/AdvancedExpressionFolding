@@ -14,9 +14,9 @@ public class SummaryParentOverrideTestData {
 
     class ParentClass extends GrandparentClass(1-grandparentMethod) {
         
-        public void grandparentMethod() { // overrides from GrandparentClass
+        public void grandparentMethod() {
             System.out.println("Overridden Grandparent Method in Parent");
-        }
+        } // overrides from GrandparentClass
 
         public void parentMethod() {
             System.out.println("Parent Method");
@@ -35,24 +35,24 @@ public class SummaryParentOverrideTestData {
     public class TestDataClass extends ParentClass(1-grandparentMethod) implements FirstInterface(2-interfaceMethodOne, sharedMethod), SecondInterface(1-interfaceMethodTwo) {
 
         
-        public void interfaceMethodOne() { // overrides from FirstInterface
+        public void interfaceMethodOne() {
             System.out.println("Implementation of Interface Method One");
-        }
+        } // overrides from FirstInterface
 
         
-        public void interfaceMethodTwo() { // overrides from SecondInterface
+        public void interfaceMethodTwo() {
             System.out.println("Implementation of Interface Method Two");
-        }
+        } // overrides from SecondInterface
 
         
-        public void sharedMethod() { // overrides from FirstInterface
+        public void sharedMethod() {
             System.out.println("Overridden Shared Method");
-        }
+        } // overrides from FirstInterface
 
         
-        public void grandparentMethod() { // overrides from ParentClass
+        public void grandparentMethod() {
             System.out.println("Overridden Grandparent Method in TestDataClass");
-        }
+        } // overrides from ParentClass
 
         public void additionalMethodOne() {
             System.out.println("Additional method one");

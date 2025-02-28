@@ -16,7 +16,6 @@ import com.intellij.advancedExpressionFolding.extension.lombok.LombokMethodExt.c
 import com.intellij.advancedExpressionFolding.extension.methodcall.dynamic.DynamicExt
 import com.intellij.openapi.editor.Document
 import com.intellij.psi.*
-import com.intellij.psi.util.MethodSignature
 
 /**
  * [data.NullableAnnotationTestData]
@@ -47,14 +46,24 @@ object NullableExt : BaseExtension() {
             }.exprHide(foldPrevWhiteSpace = true)
             list += hideOverride
             summaryParentOverride.on(hideOverride)?.let {
-                //TODO:
-                element.body?.lBrace?.let { brace ->
+                element.body
+            }?.let { body ->
+                val oneLiner = body.statements.size == 1
+                if (oneLiner) {
+                    body.rBrace
+                } else {
+                    body.lBrace
+                }?.let { brace ->
                     val signature = element.getSignature()
                     element.containingClass?.getUserData(METHOD_TO_PARENT_CLASS_KEY)
                         ?.get(signature)?.let {
-                        list += brace.expr("{ // overrides from $it")
-                        //TODO: looks weird for one line methods
-                    }
+                            val prefix = if (oneLiner) {
+                                '}'
+                            } else {
+                                '{'
+                            }
+                            list += brace.expr("$prefix // overrides from $it")
+                        }
                 }
             }
         }
