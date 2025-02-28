@@ -10,6 +10,7 @@ import com.intellij.advancedExpressionFolding.expression.stream.StreamFilterNotN
 import com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall;
 import com.intellij.advancedExpressionFolding.expression.stream.StreamMapCallParam;
 import com.intellij.advancedExpressionFolding.extension.*;
+import com.intellij.advancedExpressionFolding.extension.logger.LoggerBracketsExt;
 import com.intellij.advancedExpressionFolding.extension.methodcall.dynamic.ConfigurationParser;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.util.TextRange;

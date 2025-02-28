@@ -6,6 +6,7 @@
 
 ### Added
 
+- [logFolding] - Enable LogBrackets folding for every method and support String.format with %s placeholders
 - [patternMatchingInstanceof] - Pattern Matching for instanceof (JEP 394)
 
 ## [2.0.0] - 2024-09-15
