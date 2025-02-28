@@ -15,11 +15,11 @@ object ExperimentalExt : BaseExtension() {
         val singleExpression = getAnyExpression(single.children.first(), document)
 
         return statement.asInstance<PsiReturnStatement>()?.let {
-            sefReturn(it, method, singleExpression)
-        } ?: sefNoReturn(statement, method, singleExpression)
+            onSingleExpressionReturn(it, method, singleExpression)
+        } ?: onSingleExpressionNoReturn(statement, method, singleExpression)
     }
 
-    private fun sefNoReturn(
+    private fun onSingleExpressionNoReturn(
         statement: PsiStatement,
         method: PsiMethod,
         singleExpression: Expression
@@ -39,7 +39,7 @@ object ExperimentalExt : BaseExtension() {
         return exprList.exprWrap(method)
     }
 
-    private fun sefReturn(
+    private fun onSingleExpressionReturn(
         statement: PsiReturnStatement,
         method: PsiMethod,
         singleExpression: Expression,
