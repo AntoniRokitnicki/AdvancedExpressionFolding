@@ -1,6 +1,5 @@
 package com.intellij.advancedExpressionFolding
 
-import com.intellij.advancedExpressionFolding.FoldingTemporaryTestEditor.getFoldedText
 import com.intellij.advancedExpressionFolding.diff.FoldingDescriptorExWrapper
 import com.intellij.openapi.application.WriteAction
 import com.intellij.openapi.fileTypes.FileTypeManager
@@ -26,7 +25,6 @@ abstract class BaseTest : LightJavaCodeInsightFixtureTestCase5(TEST_JDK) {
         val fileName = getTestFileName(testName)
         rewriteFileOnFailure(fileName, testName) {
             fixture.testFoldingWithCollapseStatus(fileName)
-            println(1)
         }
     }
 
@@ -133,7 +131,7 @@ abstract class BaseTest : LightJavaCodeInsightFixtureTestCase5(TEST_JDK) {
         }
 
         private fun createFoldedFile(foldingFile: String, actual: String, wrapper: FoldingDescriptorExWrapper) {
-            Files.writeString(createOutputFile(foldingFile, "-folded.java").toPath(), getFoldedText(actual, wrapper))
+            Files.writeString(createOutputFile(foldingFile, "-folded.java").toPath(), FoldingTemporaryTestEditor.getFoldedText(actual, wrapper))
         }
 
         private fun replaceAllTestData(fileName: String, actual: String) {
