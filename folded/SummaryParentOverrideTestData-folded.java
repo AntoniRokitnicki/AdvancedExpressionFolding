@@ -14,9 +14,10 @@ public class SummaryParentOverrideTestData {
 
     class ParentClass extends GrandparentClass(1-grandparentMethod) {
         
-        public void grandparentMethod() {
+        public void grandparentMethod() { // overrides from GrandparentClass
             System.out.println("Overridden Grandparent Method in Parent");
-        } // overrides from GrandparentClass
+            System.out.println("Overridden Grandparent Method in Parent");
+        }
 
         public void parentMethod() {
             System.out.println("Parent Method");

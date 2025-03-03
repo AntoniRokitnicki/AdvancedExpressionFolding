@@ -6,9 +6,6 @@ import java.util.*;
 /**
  * {@link com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.IState#getExperimental()}
  * <p>
- * {@link com.intellij.advancedExpressionFolding.extension.ExperimentalExt#singletonField(com.intellij.psi.PsiReferenceExpression)}
- * {@link com.intellij.advancedExpressionFolding.extension.NullableExt#foldFieldConstructor(com.intellij.psi.PsiField, com.intellij.openapi.editor.Document)}
- * <p>
  * {@link com.intellij.advancedExpressionFolding.FoldingTest#testExperimentalTestData()}
  */
 public class ExperimentalTestData {
