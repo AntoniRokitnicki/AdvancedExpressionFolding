@@ -181,56 +181,72 @@ class AdvancedExpressionFoldingOptionsProvider : AbstractExpressionFoldingOption
                 "NullableAnnotationCheckNotNullTestData.java" to "checkNotNull"
             )
         )
-        checkBox("Remove the 'final' modifier from all elements except fields",
+        checkBox(
+            "Remove the 'final' modifier from all elements except fields",
             state::finalRemoval,
             mapOf("FinalRemovalTestData.java" to null),
         )
-        checkBox("Replace the 'final' modifier with "+ Emoji.FINAL_LOCK,
+        checkBox(
+            "Replace the 'final' modifier with " + Emoji.FINAL_LOCK,
             state::finalEmoji,
             mapOf("FinalEmojiTestData.java" to null),
         )
-        checkBox("Don't fold lombok dirty getters/setters",
+        checkBox(
+            "Don't fold lombok dirty getters/setters",
             state::lombokDirtyOff,
             mapOf("LombokDirtyOffTestData.java" to null),
         )
-        
-        checkBox("Single-Expression Function",
+
+        checkBox(
+            "Single-Expression Function",
             state::expressionFunc,
             mapOf("ExpressionFuncTestData.java" to null),
         )
-        
-        checkBox("Dynamic names for methods based on \$user.home/dynamic-ajf2.toml",
+
+        checkBox(
+            "Dynamic names for methods based on \$user.home/dynamic-ajf2.toml",
             state::dynamic,
             mapOf("DynamicTestData.java" to null),
         )
-        
+
         if (false) {
-            checkBox("BigDecimal, BigInteger and Math",
+            checkBox(
+                "BigDecimal, BigInteger and Math",
                 state::arithmeticExpressions,
                 mapOf("ArithmeticExpressionsTestData.java" to null),
             )
         }
-        
-        checkBox("Emojify code",
+
+        checkBox(
+            "Emojify code",
             state::emojify,
             mapOf("EmojifyTestData.java" to null),
         )
-        
-        checkBox("Converts",
-        state::interfaceExtensionProperties,
-        mapOf("InterfaceExtensionPropertiesTestData.java" to null),
-    )
-    
-        checkBox("Pattern Matching for instanceof (JEP 394)",
-        state::patternMatchingInstanceof,
-        mapOf("PatternMatchingInstanceofTestData.java" to null),
-    )
-    
-        checkBox("Displays a folded summary of overridden methods from parent classes and interfaces.",
-        state::summaryParentOverride,
-        mapOf("SummaryParentOverrideTestData.java" to null),
-    )
-    
+
+        checkBox(
+            "Converts traditional getter and setter methods in interfaces into extension properties",
+            state::interfaceExtensionProperties,
+            mapOf("InterfaceExtensionPropertiesTestData.java" to null),
+        )
+
+        checkBox(
+            "Pattern Matching for instanceof (JEP 394)",
+            state::patternMatchingInstanceof,
+            mapOf("PatternMatchingInstanceofTestData.java" to null),
+        )
+
+        checkBox(
+            "Displays a folded summary of overridden methods from parent classes and interfaces.",
+            state::summaryParentOverride,
+            mapOf("SummaryParentOverrideTestData.java" to null),
+        )
+
+        checkBox(
+            "Constructor reference notation ::new and compact field initialization",
+            state::constructorReferenceNotation,
+            mapOf("ConstructorReferenceNotationTestData.java" to null),
+        )
+
         // NEW OPTION
 
         checkBox(

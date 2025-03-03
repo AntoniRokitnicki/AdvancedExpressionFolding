@@ -13,6 +13,7 @@
 
 ### Added
 
+- [constructorReferenceNotation] Constructor reference notation ::new and compact field initialization
 - [logFolding] - Enable LogBrackets folding for every method and support String.format with %s placeholders
 - [patternMatchingInstanceof] - Pattern Matching for instanceof (JEP 394)
 
