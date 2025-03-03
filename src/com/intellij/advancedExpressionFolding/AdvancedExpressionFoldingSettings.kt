@@ -114,7 +114,7 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
         override var emojify: Boolean = false,
         override var interfaceExtensionProperties: Boolean = true,
         override var patternMatchingInstanceof: Boolean = true,
-        override var summaryParentOverride: Boolean = true,
+        override var summaryParentOverride: Boolean = false,
         // NEW OPTION VAR
 
         override var memoryImprovement: Boolean = true,
