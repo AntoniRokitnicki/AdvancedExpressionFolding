@@ -417,6 +417,22 @@ newName = "mainek3"
     fun testSummaryParentOverrideTestData() {
         doFoldingTest(state::summaryParentOverride)
     }
+
+    /**
+     * [data.ConstructorReferenceNotationTestData]
+     */
+    @Test
+    fun testConstructorReferenceNotationTestData() {
+        doFoldingTest(state::constructorReferenceNotation)
+    }
+    /**
+     * [data.ConstructorReferenceNotationWithConstTestData]
+     */
+    @Test
+    fun testConstructorReferenceNotationWithConstTestData() {
+        doFoldingTest(state::constructorReferenceNotation, state::const)
+    }
+
     // NEW OPTION
     /**
      * [data.ExperimentalTestData]

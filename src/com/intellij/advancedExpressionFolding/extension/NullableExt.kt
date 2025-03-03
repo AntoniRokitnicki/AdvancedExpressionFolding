@@ -193,7 +193,7 @@ object NullableExt : BaseExtension() {
 
     private fun foldConstConstructor(field: PsiField, document: Document): Expression {
         val constFolding = field.createConst(null)
-        experimental.on() ?: return constFolding
+        constructorReferenceNotation.on() ?: return constFolding
 
         return foldFieldConstructor(field, document, constFolding) ?: constFolding
     }
@@ -210,7 +210,7 @@ object NullableExt : BaseExtension() {
         document: Document,
         constFolding: FieldConstExpression? = null
     ): Expression? {
-        experimental.on() ?: return constFolding
+        constructorReferenceNotation.on() ?: return constFolding
 
         val initializer = field.initializer.asInstance<PsiNewExpression>()
         val noParams = initializer?.argumentList?.isEmpty == true

@@ -43,6 +43,7 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
         val interfaceExtensionProperties: Boolean
         val patternMatchingInstanceof: Boolean
         val summaryParentOverride: Boolean
+        val constructorReferenceNotation: Boolean
         // NEW OPTION VAL
 
         var experimental: Boolean
@@ -115,6 +116,7 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
         override var interfaceExtensionProperties: Boolean = true,
         override var patternMatchingInstanceof: Boolean = true,
         override var summaryParentOverride: Boolean = false,
+        override var constructorReferenceNotation: Boolean = true,
         // NEW OPTION VAR
 
         override var memoryImprovement: Boolean = true,
