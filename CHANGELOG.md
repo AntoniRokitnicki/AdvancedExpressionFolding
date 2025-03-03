@@ -6,15 +6,12 @@
 
 ### Added
 
-- [logFolding] - Enable LogBrackets folding for every method and support String.format with %s placeholders
-- [patternMatchingInstanceof] - Pattern Matching for instanceof (JEP 394)
-
 ## [3.0.0] - 2025-03-03
 
 ### Added
 
 - [constructorReferenceNotation] Constructor reference notation ::new and compact field initialization
-- [logFolding] - Enable LogBrackets folding for every method and support String.format with %s placeholders
+- [logFolding] - Support log folding for {} and %s-like placeholders in most formatting scenarios
 - [patternMatchingInstanceof] - Pattern Matching for instanceof (JEP 394)
 
 ## [2.0.0] - 2024-09-15
