@@ -40,7 +40,7 @@ object NullableExt : BaseExtension() {
 
         list += exprList(fieldAnnotationExpression(element.annotations, element.returnTypeElement))
 
-        if (experimental || summaryParentOverride) {
+        if (summaryParentOverride) {
             val hideOverride = element.annotations.filter {
                 it.textMatches("@Override")
             }.exprHide(foldPrevWhiteSpace = true)

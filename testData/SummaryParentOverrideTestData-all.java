@@ -14,9 +14,10 @@ public <fold text='🏛️' expand='false'>class</fold> SummaryParentOverrideTes
 
     <fold text='🏛️' expand='false'>class</fold> ParentClass extends GrandparentClas<fold text='s(1-grandparentMethod)' expand='true'>s</fold> <fold text='{...}' expand='true'>{
         <fold text='' expand='true'>@Override</fold>
-        public <fold text='💀' expand='false'>void</fold> grandparentMethod()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold><fold text='' expand='false'>System.out.</fold>println(<fold text='"Overridden Grandparent Method in Parent"' expand='false'>"Overridden Grandparent Method in Parent"</fold>)<fold text='' expand='true'>;<fold text=' ' expand='true'><fold text=' }' expand='false'></fold>
-        </fold><fold text='} // overrides from GrandparentClass' expand='true'>}</fold></fold>
+        public <fold text='💀' expand='false'>void</fold> grandparentMethod() <fold text='{ // overrides from GrandparentClass' expand='true'><fold text='{...}' expand='true'>{</fold>
+            <fold text='' expand='false'>System.out.</fold>println(<fold text='"Overridden Grandparent Method in Parent"' expand='false'>"Overridden Grandparent Method in Parent"</fold>);
+            <fold text='' expand='false'>System.out.</fold>println(<fold text='"Overridden Grandparent Method in Parent"' expand='false'>"Overridden Grandparent Method in Parent"</fold>);
+        }</fold>
 
         public <fold text='💀' expand='false'>void</fold> parentMethod()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
             </fold></fold><fold text='' expand='false'>System.out.</fold>println(<fold text='"Parent Method"' expand='false'>"Parent Method"</fold>)<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
