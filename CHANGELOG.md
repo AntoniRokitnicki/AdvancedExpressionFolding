@@ -4,7 +4,12 @@
 
 ## [Unreleased]
 
-### Added
+## [3.0.1] - 2025-03-04
+
+- make compatible with 251.* EAP
+- [constructorReferenceNotation] Constructor reference notation ::new and compact field initialization
+- [logFolding] - Support log folding for {} and %s-like placeholders in most formatting scenarios
+- [patternMatchingInstanceof] - Pattern Matching for instanceof (JEP 394)
 
 ## [3.0.0] - 2025-03-03
 
@@ -264,7 +269,9 @@ Improved handling of multi-line log messages
 
 ## [0.0.1]
 
-[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v2.0.0...HEAD
+[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v3.0.1...HEAD
+[3.0.1]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v3.0.0...v3.0.1
+[3.0.0]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v2.0.0...v3.0.0
 [2.0.0]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.52...v2.0.0
 [1.0.52]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.51...v1.0.52
 [1.0.51]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v1.0.50...v1.0.51
