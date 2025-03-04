@@ -319,18 +319,3 @@ tasks.register("canaryRelease") {
     }
 }
 
-tasks.register("canaryEapRelease") {
-    doLast {
-        val propertiesFile = getPropertiesFile()
-        val properties = readProperties(propertiesFile)
-
-        val version = readVersion(properties)
-        val newVersion = version.replace("-canary", "-eap-canary")
-
-        properties.setProperty("pluginVersion", newVersion)
-        properties.setProperty("pluginUntilBuild", "249.*")
-        saveProperties(propertiesFile, properties)
-
-        println("Updated pluginVersion to $newVersion")
-    }
-}
