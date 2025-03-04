@@ -5,15 +5,14 @@ import java.util.*;
 public class ConstructorReferenceNotationTestData {
 
     static class Const {
-        public static final ConstClass SELF = new ConstClass();
-        public static final ConstClass SELF_ANN = new ConstClass() {
-        };
+        public static final ConstClass SELF = ::new;
+        public static final ConstClass SELF_ANN = ::new{};
         public static final ConstClass SELF_SUB = new SubConstClass();
         public static final ConstClass SELF_SUB_ANN = new SubConstClass() {
         };
 
-        private static final HashMap<String, String> MAP = new HashMap<>();
-        private static final HashMap<String, String> MAP2 = new HashMap<String, String>();
+        private static final HashMap<String, String> MAP = ::new;
+        private static final HashMap<String, String> MAP2 = ::new;
         private static final Map<String, String> MAP3 = new HashMap<>();
         private static final Map<String, String> MAP_TREE = new TreeMap<>();
         private static final Map<String, String> MAP4 = Map.of();
@@ -24,8 +23,8 @@ public class ConstructorReferenceNotationTestData {
         private static final List<String> LIST_LINKED = new LinkedList<>();
 
 
-        public static final ConstClass SELF_PARAM_1 = new ConstClass(true);
-        public static final ConstClass SELF_PARAM_2 = new ConstClass(false, LIST_SINGLE.get(0));
+        public static final ConstClass SELF_PARAM_1 = ::new(true);
+        public static final ConstClass SELF_PARAM_2 = ::new(false, LIST_SINGLE.get(0));
 
         public static final ConstClass SELF_SUBCLASS_MORE_FIELD = new ConstClass() {
             int i = 1;
@@ -39,22 +38,21 @@ public class ConstructorReferenceNotationTestData {
         protected static ConstClass EMPTY;
     }
     static class Fields {
-        final ConstClass SELF = new ConstClass();
-        ConstClass SELF_ANN = new ConstClass() {
-        };
+        final ConstClass SELF = ::new;
+        ConstClass SELF_ANN = ::new{};
         public final ConstClass SELF_SUB = new SubConstClass();
         public final ConstClass SELF_SUB_ANN = new SubConstClass() {
         };
 
-        private final HashMap<String, String> MAP = new HashMap<>();
-        private final HashMap<String, String> MAP2 = new HashMap<String, String>();
+        private final HashMap<String, String> MAP = ::new;
+        private final HashMap<String, String> MAP2 = ::new;
         private final Map<String, String> MAP3 = new HashMap<>();
 
         private final List<String> LIST = new ArrayList<>();
         private final List<String> LIST2 = List.of("1");
 
-        public final ConstClass SELF_PARAM_1 = new ConstClass(true);
-        public final ConstClass SELF_PARAM_2 = new ConstClass(false, LIST2.get(0));
+        public final ConstClass SELF_PARAM_1 = ::new(true);
+        public final ConstClass SELF_PARAM_2 = ::new(false, LIST2.get(0));
 
         public final ConstClass SELF_SUBCLASS_MORE_FIELD = new ConstClass() {
             int i = 1;
