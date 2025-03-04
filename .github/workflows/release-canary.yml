@@ -42,11 +42,12 @@ jobs:
         with:
           gradle-home-cache-cleanup: true
 
-
-
-
       - name: Canary Version Change
         run: ./gradlew canaryRelease
+
+      - name: Canary Patch Changelog
+        run: ./gradlew patchChangelogWithLastCommitMsg
+
       # Set environment variables
       - name: Export Properties
         id: properties
@@ -81,13 +82,12 @@ jobs:
           PRIVATE_KEY_PASSWORD: ${{ secrets.PRIVATE_KEY_PASSWORD }}
         run: ./gradlew publishPlugin
 
-
-
-
-
-
       - name: EAP Canary Version Change
         run: ./gradlew canaryEapRelease
+
+      - name: EAP Canary Patch Changelog
+        run: ./gradlew patchChangelogWithLastCommitMsg
+
       # Update the Unreleased section with the current release note
       - name: Patch Changelog
         if: ${{ steps.properties.outputs.changelog != '' }}
