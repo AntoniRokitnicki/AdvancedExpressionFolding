@@ -131,8 +131,12 @@ object NullableExt : BaseExtension() {
             typeExpression ?: findPropertyAnnotation(field, typeElement)
         }
 
+        list += constructorReferenceNotation.on()?.let {
+            foldFieldConstructor(field, document)
+        }
+
         list += const.on()?.let {
-            fieldConstExpression(field, typeElement, document)
+            fieldConstExpression(field, typeElement)
         }
 
         return list.exprWrap(field)
@@ -158,6 +162,7 @@ object NullableExt : BaseExtension() {
                         name
                     }
                 } ?: return null
+                @Suppress("EnumValuesSoftDeprecate")
                 return values().firstOrNull { e ->
                     e.annotations.firstOrNull { single ->
                         single.contains(name)
@@ -169,17 +174,16 @@ object NullableExt : BaseExtension() {
 
     private fun fieldConstExpression(
         field: PsiField,
-        typeElement: PsiTypeElement?,
-        document: Document
+        typeElement: PsiTypeElement?
     ): Expression? {
         return if (field.isStatic() && field.isFinal()) {
             if (field.hideConstType()) {
                 field.createConst(typeElement)
             } else {
-                foldConstConstructor(field, document)
+                field.createConst(null)
             }
         } else {
-            foldFieldConstructor(field, document)
+            null
         }
     }
 
@@ -191,13 +195,6 @@ object NullableExt : BaseExtension() {
         }
     }
 
-    private fun foldConstConstructor(field: PsiField, document: Document): Expression {
-        val constFolding = field.createConst(null)
-        constructorReferenceNotation.on() ?: return constFolding
-
-        return foldFieldConstructor(field, document, constFolding) ?: constFolding
-    }
-
     private fun PsiField.createConst(
         typeElement: PsiTypeElement?,
     ): FieldConstExpression {
@@ -207,11 +204,8 @@ object NullableExt : BaseExtension() {
 
     private fun foldFieldConstructor(
         field: PsiField,
-        document: Document,
-        constFolding: FieldConstExpression? = null
+        document: Document
     ): Expression? {
-        constructorReferenceNotation.on() ?: return constFolding
-
         val initializer = field.initializer.asInstance<PsiNewExpression>()
         val noParams = initializer?.argumentList?.isEmpty == true
         val anonymousClass = initializer?.anonymousClass
@@ -243,8 +237,6 @@ object NullableExt : BaseExtension() {
                     list.plusAssign(it)
                 }
             }
-
-            list += constFolding
             return list.exprWrap(field)
         }
         return null
