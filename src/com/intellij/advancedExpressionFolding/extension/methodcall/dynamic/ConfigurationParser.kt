@@ -1,12 +1,11 @@
 package com.intellij.advancedExpressionFolding.extension.methodcall.dynamic
 
-import java.io.File
+import com.intellij.advancedExpressionFolding.extension.methodcall.MethodName
 import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.Paths
 import kotlin.io.path.readText
 
-@Suppress("UNCHECKED_CAST")
 object ConfigurationParser : IDynamicDataProvider {
 
     private val filePath: Path = Paths.get(System.getProperty("user.home"), "dynamic-ajf2.toml")
@@ -19,13 +18,8 @@ object ConfigurationParser : IDynamicDataProvider {
         return parseToml(text)
     }
 
-    fun addOrUpdateMethod(methodName: String, newName: String) {
-        val tomlFile = File(filePath.toUri())
-        val tomlMap = if (tomlFile.exists()) {
-            objectMapper.readValue(tomlFile, MutableMap::class.java) as? MutableMap<String, Any> ?: TODO("toml cast failed")
-        } else {
-            mutableMapOf()
-        }
+    fun addOrUpdateMethod(methodName: MethodName, newName: MethodName) {
+        val tomlMap = objectMapper.readTomlFile(filePath)
 
         val methodDetails = mutableMapOf(
             "method" to methodName,
@@ -34,19 +28,17 @@ object ConfigurationParser : IDynamicDataProvider {
 
         tomlMap[methodName] = methodDetails
 
-        objectMapper.writeValue(tomlFile, tomlMap)
+        objectMapper.writeTomlFile(filePath, tomlMap)
     }
 
-    fun remove(methodName: String) {
-        val tomlFile = File(filePath.toUri())
-        if (!tomlFile.exists()) {
+    fun remove(methodName: MethodName) {
+        if (!Files.exists(filePath)) {
             return
         }
 
-        val tomlMap = objectMapper.readValue(tomlFile, MutableMap::class.java) as? MutableMap<String, Any> ?: TODO("toml cast failed")
+        val tomlMap = objectMapper.readTomlFile(filePath)
         tomlMap.remove(methodName)
 
-        objectMapper.writeValue(tomlFile, tomlMap)
+        objectMapper.writeTomlFile(filePath, tomlMap)
     }
-
 }

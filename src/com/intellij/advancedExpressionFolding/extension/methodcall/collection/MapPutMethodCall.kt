@@ -22,8 +22,11 @@ class MapPutMethodCall : AbstractMethodCall() {
         a2: PsiExpression,
         a1Expression: Expression,
         a2Expression: Expression
-    ): Expression? = (element.parent is PsiStatement).on()?.let {
-        Put(element, element.textRange, context.qualifierExpression, a1Expression, a2Expression)
+    ): Expression? {
+        context.qualifierExpression ?: return null
+        return (element.parent is PsiStatement).on()?.let {
+            Put(element, element.textRange, context.qualifierExpression, a1Expression, a2Expression)
+        }
     }
 
 }

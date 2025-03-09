@@ -7,6 +7,8 @@ import com.intellij.psi.PsiMethodCallExpression
 class OptionalGetMethodCall : AbstractOptionalMethodCall() {
     override val methodNames = listOf("get", "orElseThrow")
 
-    override fun onNoArguments(element: PsiMethodCallExpression, context: Context) =
-        OptionalNotNullAssertionGet(element, context.identifier.textRange, context.qualifierExpression)
+    override fun onNoArguments(element: PsiMethodCallExpression, context: Context): OptionalNotNullAssertionGet? {
+        context.qualifierExpression ?: return null
+        return OptionalNotNullAssertionGet(element, context.identifier.textRange, context.qualifierExpression)
+    }
 }

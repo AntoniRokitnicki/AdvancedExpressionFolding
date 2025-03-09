@@ -20,7 +20,7 @@ typealias ClassName = String
 object MethodCallFactory : BaseExtension(){
 
     @Volatile
-    private var dynamicProvider: IDynamicDataProvider? = null
+    private var dynamicProvider: IDynamicDataProvider? = ConfigurationParser
 
     @Volatile
     private var methodCallMap: Map<MethodName?, List<AbstractMethodCall>> = emptyMap()
@@ -33,7 +33,7 @@ object MethodCallFactory : BaseExtension(){
 
     fun refreshMethodCallMappings(dynamicProvider: IDynamicDataProvider? = null) {
         synchronized(this) {
-            if (this.dynamicProvider == null) {
+            if (dynamicProvider != null) {
                 // for tests
                 this.dynamicProvider = dynamicProvider
             }
@@ -47,9 +47,11 @@ object MethodCallFactory : BaseExtension(){
         }
     }
 
-    fun initialize(dynamicProvider: IDynamicDataProvider = ConfigurationParser): MethodCallFactory {
+    fun initialize(dynamicProvider: IDynamicDataProvider? = ConfigurationParser): MethodCallFactory {
         synchronized(this) {
-                this.dynamicProvider = dynamicProvider
+                if (dynamicProvider != null) {
+                    this.dynamicProvider = dynamicProvider
+                }
                 refreshMethodCallMappings()
         }
         return this
@@ -95,7 +97,7 @@ object MethodCallFactory : BaseExtension(){
     private fun createSupportedMethods(): List<MethodName> =
         methodCallMap.values
             .flatten()
-            .mapNotNull {
+            .map {
                 it.methodNames
             }.flatten() + Consts.SUPPORTED_METHODS
 
@@ -104,7 +106,7 @@ object MethodCallFactory : BaseExtension(){
             .flatten()
             .filter {
                 it.classNames.isEmpty()
-            }.mapNotNull {
+            }.map {
                 it.methodNames
             }.flatten() + Consts.UNSUPPORTED_CLASSES_METHODS_EXCEPTIONS
 

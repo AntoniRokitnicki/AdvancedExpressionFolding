@@ -3,48 +3,35 @@ package data;
 public class DynamicTestData {
 
     static class Data {
-        Data data;
+        String data;
 
-        String string;
-
-        public String getString() {
-            return string;
-        }
-
-        public Data getData() {
+        public String getData() {
             return data;
         }
     }
 
-    public static void aaa(Data data) {
-        var aa = new DynamicTestData()
-                .main(
-                        new DynamicTestData()
-                                .main2(
-                                        new DynamicTestData()
-                                                .main(
-                                                        main3(
-                                                                new DynamicTestData()
-                                                                        .main3(
-                                                                                data.getData().getString()
-                                                                        )
-                                                        )
+
+    public static void staticMethod(Data data) {
+        new DynamicTestData()
+                .normalMethod(
+                        staticMethod(
+                                new DynamicTestData()
+                                        .normalMethod(
+                                                new DynamicTestData().staticMethod(
+                                                        data.getData()
                                                 )
-                                )
+                                        )
+                        )
                 );
-        System.out.println(aa);
+        staticMethod(data.getData());
     }
 
-    private String main(String args) {
-        return "";
+    private String normalMethod(String args) {
+        return normalMethod(args.substring(1));
     }
 
-    private String main2(String args) {
-        return "";
-    }
-
-    private static String main3(String args) {
-        System.out.println("DynamicTestData.main3");
+    private static String staticMethod(String args) {
+        System.out.println("DynamicTestData.staticMethod");
         return "";
     }
 
