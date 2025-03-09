@@ -5,6 +5,7 @@ import com.intellij.advancedExpressionFolding.extension.methodcall.MethodCallFac
 import com.intellij.advancedExpressionFolding.extension.methodcall.MethodName
 import com.intellij.codeInsight.folding.CodeFoldingManager
 import com.intellij.codeInsight.intention.IntentionAction
+import com.intellij.codeInsight.intention.preview.IntentionPreviewInfo
 import com.intellij.openapi.application.runInEdt
 import com.intellij.openapi.editor.Editor
 import com.intellij.openapi.project.Project
@@ -26,6 +27,8 @@ class AddDynamicMethodFoldingIntention : IntentionAction {
         return methodCall != null
     }
 
+    override fun generatePreview(project: Project, editor: Editor, file: PsiFile): IntentionPreviewInfo = IntentionPreviewInfo.EMPTY
+
     override fun invoke(project: Project, editor: Editor, file: PsiFile) {
 
         val element = file.findElementAt(editor.caretModel.offset)
@@ -44,11 +47,6 @@ class AddDynamicMethodFoldingIntention : IntentionAction {
                             Action.REMOVE -> methodName.remove()
                             Action.CANCEL -> return
                         }
-                        runInEdt {
-                            FoldingService.get().clearAllKeys(project)
-                            MethodCallFactory.refreshMethodCallMappings()
-                            CodeFoldingManager.getInstance(project).updateFoldRegions(editor)
-                        }
                     }
                 }
                 else -> {
@@ -56,10 +54,15 @@ class AddDynamicMethodFoldingIntention : IntentionAction {
                     ConfigurationParser.addOrUpdateMethod(methodName, newName)
                 }
             }
+            runInEdt {
+                FoldingService.get().clearAllKeys(project)
+                MethodCallFactory.refreshMethodCallMappings()
+                CodeFoldingManager.getInstance(project).updateFoldRegions(editor)
+            }
         }
     }
 
-    override fun startInWriteAction() = true
+    override fun startInWriteAction() = false
 
     private fun MethodName.exists() = MethodCallFactory.findByMethodName(this)?.any {
         it is DynamicMethodCall
