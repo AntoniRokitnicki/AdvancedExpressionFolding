@@ -24,8 +24,8 @@ class CollectionGetMethodCall : AbstractMethodCall() {
         context: Context,
         argument: PsiExpression,
         argumentExpression: Expression
-    ): Expression {
-        val qualifierExpression = context.qualifierExpression
+    ): Expression? {
+        val qualifierExpression = context.qualifierExpression ?: return null
         if (argumentExpression is NumberLiteral && argumentExpression.number == 0) {
             return Get(element, element.textRange, qualifierExpression, argumentExpression, Style.FIRST)
         } else if (argument is PsiBinaryExpression) {

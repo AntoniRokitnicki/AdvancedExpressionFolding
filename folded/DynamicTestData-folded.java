@@ -3,48 +3,35 @@ package data;
 public class DynamicTestData {
 
     static class Data {
-        Data data;
+        String data;
 
-        String string;
-
-        public String getString() {
-            return string;
-        }
-
-        public Data getData() {
+        public String getData() {
             return data;
         }
     }
 
-    public static void aaa(Data data) {
-        var aa = new DynamicTestData()
-                .mainek1(
-                        new DynamicTestData()
-                                .mainek2(
-                                        new DynamicTestData()
-                                                .mainek1(
-                                                        main3(
-                                                                new DynamicTestData()
-                                                                        .mainek3(
-                                                                                data.getData().getString()
-                                                                        )
-                                                        )
+
+    public static void changedStaticMethod(Data data) {
+        new DynamicTestData()
+                .changedNormalMethod(
+                        changedStaticMethod(
+                                new DynamicTestData()
+                                        .changedNormalMethod(
+                                                new DynamicTestData().changedStaticMethod(
+                                                        data.data
                                                 )
-                                )
+                                        )
+                        )
                 );
-        System.out.println(aa);
+        changedStaticMethod(data.data);
     }
 
-    private String mainek1(String args) {
-        return "";
+    private String changedNormalMethod(String args) {
+        return changedNormalMethod(args.substring(1));
     }
 
-    private String mainek2(String args) {
-        return "";
-    }
-
-    private static String mainek3(String args) {
-        System.out.println("DynamicTestData.main3");
+    private static String changedStaticMethod(String args) {
+        System.out.println("DynamicTestData.staticMethod");
         return "";
     }
 

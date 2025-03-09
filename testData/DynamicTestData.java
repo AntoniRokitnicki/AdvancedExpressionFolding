@@ -3,48 +3,35 @@ package data;
 public class DynamicTestData {
 
     static class Data <fold text='{...}' expand='true'>{
-        Data data;
+        String data;
 
-        String string;
-
-        public String getString()<fold text=' { ' expand='false'> {
-            </fold>return string;<fold text=' }' expand='false'>
-        }</fold>
-
-        public Data getData()<fold text=' { ' expand='false'> {
+        public String getData()<fold text=' { ' expand='false'> {
             </fold>return data;<fold text=' }' expand='false'>
         }</fold>
     }</fold>
 
-    public static void aaa(Data data) <fold text='{...}' expand='true'>{
-        var aa = new DynamicTestData()
-                .<fold text='mainek1' expand='true'>main</fold>(
-                        new DynamicTestData()
-                                .<fold text='mainek2' expand='true'>main2</fold>(
-                                        new DynamicTestData()
-                                                .<fold text='mainek1' expand='true'>main</fold>(
-                                                        main3(
-                                                                new DynamicTestData()
-                                                                        .<fold text='mainek3' expand='true'>main3</fold>(
-                                                                                data.getData().getString()
-                                                                        )
-                                                        )
+
+    public static void <fold text='changedStaticMethod' expand='true'>staticMethod</fold>(Data data) <fold text='{...}' expand='true'>{
+        new DynamicTestData()
+                .<fold text='changedNormalMethod' expand='true'>normalMethod</fold>(
+                        <fold text='changedStaticMethod' expand='true'>staticMethod</fold>(
+                                new DynamicTestData()
+                                        .<fold text='changedNormalMethod' expand='true'>normalMethod</fold>(
+                                                new DynamicTestData().<fold text='changedStaticMethod' expand='true'>staticMethod</fold>(
+                                                        data.<fold text='data' expand='false'>getData()</fold>
                                                 )
-                                )
+                                        )
+                        )
                 );
-        System.out.println(aa);
+        <fold text='changedStaticMethod' expand='true'>staticMethod</fold>(data.<fold text='data' expand='false'>getData()</fold>);
     }</fold>
 
-    private String <fold text='mainek1' expand='true'>main</fold>(String args)<fold text=' { ' expand='false'> {
-        </fold>return "";<fold text=' }' expand='false'>
+    private String <fold text='changedNormalMethod' expand='true'>normalMethod</fold>(String args)<fold text=' { ' expand='false'> {
+        </fold>return <fold text='changedNormalMethod' expand='true'>normalMethod</fold>(args.substring(1));<fold text=' }' expand='false'>
     }</fold>
 
-    private String <fold text='mainek2' expand='true'>main2</fold>(String args)<fold text=' { ' expand='false'> {
-        </fold>return "";<fold text=' }' expand='false'>
-    }</fold>
-
-    private static String <fold text='mainek3' expand='true'>main3</fold>(String args) <fold text='{...}' expand='true'>{
-        System.out.println("DynamicTestData.main3");
+    private static String <fold text='changedStaticMethod' expand='true'>staticMethod</fold>(String args) <fold text='{...}' expand='true'>{
+        System.out.println("DynamicTestData.staticMethod");
         return "";
     }</fold>
 

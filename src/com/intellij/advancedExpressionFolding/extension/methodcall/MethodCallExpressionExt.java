@@ -29,7 +29,7 @@ import static com.intellij.advancedExpressionFolding.extension.ReferenceExpressi
 @SuppressWarnings({"RedundantIfStatement", "SwitchStatementWithTooFewBranches", "unused", "EnhancedSwitchMigration", "RedundantSuppression"})
 public class MethodCallExpressionExt {
 
-    private static final MethodCallFactory FACTORY = MethodCallFactory.INSTANCE.initialize(ConfigurationParser.INSTANCE);
+    private static final MethodCallFactory FACTORY = MethodCallFactory.INSTANCE.initialize(null);
 
     @Nullable
     public static Expression getMethodCallExpression(PsiMethodCallExpression element, @NotNull Document document) {
@@ -61,7 +61,8 @@ public class MethodCallExpressionExt {
     }
 
     @Nullable
-    private static Expression useMethodCallFactory(PsiElement identifier, PsiReferenceExpression referenceExpression, @NotNull Document document, @Nullable PsiExpression qualifier, @NotNull AdvancedExpressionFoldingSettings settings, PsiMethodCallExpression element) {
+    private static Expression useMethodCallFactory(PsiElement identifier, PsiReferenceExpression referenceExpression, @NotNull Document document,
+                                                   @Nullable PsiExpression qualifier, @NotNull AdvancedExpressionFoldingSettings settings, PsiMethodCallExpression element) {
         if (FACTORY.getSupportedMethods().contains(identifier.getText())) {
             PsiMethod method = (PsiMethod) referenceExpression.resolve();
             if (method != null) {
@@ -69,8 +70,7 @@ public class MethodCallExpressionExt {
                 if (psiClass != null && psiClass.getQualifiedName() != null) {
                     String className = Helper.eraseGenerics(psiClass.getQualifiedName());
                     BuilderShiftExt.markIfBuilder(element, psiClass);
-                    if ((FACTORY.getSupportedClasses().contains(className) || FACTORY.getClasslessMethods().contains(method.getName()))
-                            && qualifier != null) {
+                    if ((FACTORY.getSupportedClasses().contains(className) || FACTORY.getClasslessMethods().contains(method.getName()))) {
                         Expression result = onAnyExpression(element, document, qualifier, identifier, settings, className, method);
                         if (result != null) {
                             return result;
@@ -82,11 +82,14 @@ public class MethodCallExpressionExt {
         return null;
     }
 
-    private static @Nullable Expression onAnyExpression(PsiMethodCallExpression element, @NotNull Document document, @NotNull PsiExpression qualifier, PsiElement identifier, @NotNull AdvancedExpressionFoldingSettings settings, String className, PsiMethod method) {
-        @NotNull Expression qualifierExpression = BuildExpressionExt.getAnyExpression(qualifier, document);
+    private static @Nullable Expression onAnyExpression(PsiMethodCallExpression element, @NotNull Document document, @Nullable PsiExpression qualifier, PsiElement identifier, @NotNull AdvancedExpressionFoldingSettings settings, String className, PsiMethod method) {
+        @Nullable Expression qualifierExpression;
+        if (qualifier != null) {
+            qualifierExpression = BuildExpressionExt.getAnyExpression(qualifier, document);
+        } else {
+            qualifierExpression = null;
+        }
         String methodName = identifier.getText();
-        int argumentCount = element.getArgumentList().getExpressions().length;
-
         var methodCalls = FACTORY.findByMethodName(methodName);
         if (methodCalls != null) {
             for (AbstractMethodCall methodCall : methodCalls) {
@@ -97,7 +100,11 @@ public class MethodCallExpressionExt {
                 }
             }
         }
+        if (qualifierExpression == null) {
+            return null;
+        }
 
+        int argumentCount = element.getArgumentList().getExpressions().length;
         if (methodName.equals("asList") || methodName.equals("singletonList")) {
             ListLiteral result = onListLiteral(element, document, methodName, settings);
             if (result != null) {

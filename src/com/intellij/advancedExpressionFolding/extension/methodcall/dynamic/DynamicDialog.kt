@@ -10,9 +10,9 @@ enum class Action {
     RENAME, REMOVE, CANCEL
 }
 
-fun MethodName.showRenameDialog(): Pair<Action, String>? {
+fun MethodName.showRenameDialog(): Pair<Action, MethodName>? {
     var selectedAction: Action? = null
-    var newMethodName: String? = null
+    var newMethodName: MethodName? = null
 
     val name = this
     val textField = JBTextField(name, 20)
