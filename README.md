@@ -42,6 +42,7 @@
 ## 3.0.0 ##
 - [Dynamic names for methods](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/Dynamic-Folding)
 - [Constructor reference notation ::new and compact field initialization](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/ConstructorReferenceNotation)
+- [Improved log folding](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/Log-brackets-folding)
 
 
 ## New features:
