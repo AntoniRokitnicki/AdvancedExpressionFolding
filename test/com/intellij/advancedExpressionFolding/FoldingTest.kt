@@ -476,6 +476,14 @@ staticMethod.newName = 'changedStaticMethod'
         doFoldingTest(state::constructorReferenceNotation, state::const)
     }
 
+
+    /**
+     * [data.MethodDefaultParametersTestData]
+     */
+    @Test
+    fun testMethodDefaultParametersTestData() {
+        doFoldingTest(state::methodDefaultParameters)
+    }
     // NEW OPTION
     /**
      * [data.ExperimentalTestData]

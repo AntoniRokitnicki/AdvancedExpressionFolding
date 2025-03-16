@@ -247,6 +247,11 @@ class AdvancedExpressionFoldingOptionsProvider : AbstractExpressionFoldingOption
             mapOf("ConstructorReferenceNotationTestData.java" to null),
         )
 
+        checkBox("Default",
+        state::methodDefaultParameters,
+        mapOf("MethodDefaultParametersTestData.java" to null),
+    )
+    
         // NEW OPTION
 
         checkBox(

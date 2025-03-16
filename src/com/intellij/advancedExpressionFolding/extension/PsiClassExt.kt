@@ -18,7 +18,7 @@ object PsiClassExt : BaseExtension() {
         list.addIfEnabled(summaryParentOverride) {
             clazz.addParentSummary()
         }
-        list.addIfEnabled(experimental) {
+        list.addIfEnabled(methodDefaultParameters) {
             MethodDefaultParameterExt.enhanceMethodsWithDefaultParams(clazz)
         }
         list.addIfEnabled(lombok) {
