@@ -1,14 +1,30 @@
-package com.intellij.advancedExpressionFolding
+package com.intellij.advancedExpressionFolding.settings
 
+import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings
 import com.intellij.advancedExpressionFolding.extension.Consts.Emoji
-import com.intellij.advancedExpressionFolding.extension.methodcall.MethodCallFactory
+import kotlin.reflect.KMutableProperty0
 
-class AdvancedExpressionFoldingOptionsProvider : AbstractExpressionFoldingOptionsProvider() {
+typealias Description = String
+typealias UrlSuffix = String
+typealias ExampleFile = String
 
-    init {
-        val state = AdvancedExpressionFoldingSettings.getInstance().state
+data class CheckboxDefinition(
+    val title: String,
+    val property: KMutableProperty0<Boolean>,
+    val exampleLinkMap: Map<ExampleFile, Description?>? = null,
+    val docLink: UrlSuffix? = null
+)
 
-        title = "Advanced Expression Folding 2"
+class CheckboxDefinitionsProvider {
+    private val checkboxDefinitions = mutableListOf<CheckboxDefinition>()
+    
+    fun getCheckboxDefinitions(): List<CheckboxDefinition> = checkboxDefinitions
+    
+    fun getAllExampleFiles(): List<ExampleFile> = checkboxDefinitions
+        .mapNotNull { it.exampleLinkMap }
+        .flatMap { it.keys }
+    
+    fun initialize(state: AdvancedExpressionFoldingSettings.State): CheckboxDefinitionsProvider {
         checkBox(
             "Getters and setters as properties",
             state::getSetExpressionsCollapse,
@@ -233,6 +249,7 @@ class AdvancedExpressionFoldingOptionsProvider : AbstractExpressionFoldingOption
             "Pattern Matching for instanceof (JEP 394)",
             state::patternMatchingInstanceof,
             mapOf("PatternMatchingInstanceofTestData.java" to null),
+            docLink = "/PatternMatchingInstanceof"
         )
 
         checkBox(
@@ -245,14 +262,16 @@ class AdvancedExpressionFoldingOptionsProvider : AbstractExpressionFoldingOption
             "Constructor reference notation ::new and compact field initialization",
             state::constructorReferenceNotation,
             mapOf("ConstructorReferenceNotationTestData.java" to null),
+            docLink = "/ConstructorReferenceNotation"
         )
 
         checkBox(
             "Default parameter values inline for overloaded method",
             state::methodDefaultParameters,
             mapOf("MethodDefaultParametersTestData.java" to null),
+            docLink = "/MethodDefaultParameters"
         )
-    
+
         // NEW OPTION
 
         checkBox(
@@ -263,11 +282,16 @@ class AdvancedExpressionFoldingOptionsProvider : AbstractExpressionFoldingOption
             "Experimental features",
             state::experimental
         )
+        
+        return this
     }
 
-    override fun apply() {
-        super.apply()
-        MethodCallFactory.refreshMethodCallMappings()
+    private fun checkBox(
+        title: String,
+        property: KMutableProperty0<Boolean>,
+        exampleLinkMap: Map<ExampleFile, Description?>? = null,
+        docLink: UrlSuffix? = null
+    ) {
+        checkboxDefinitions.add(CheckboxDefinition(title, property, exampleLinkMap, docLink))
     }
-
 }

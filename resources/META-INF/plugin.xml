@@ -7,9 +7,7 @@
   <depends>com.intellij.modules.platform</depends>
 
   <extensions defaultExtensionNs="com.intellij">
-    <!-- Add your extensions here -->
     <lang.foldingBuilder language="JAVA" implementationClass="com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingBuilder"/>
-    <codeFoldingOptionsProvider instance="com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingOptionsProvider"/>
     <applicationService serviceImplementation="com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings"/>
     <editorFactoryListener implementation="com.intellij.advancedExpressionFolding.FoldingEditorCreatedListener"/>
     <intentionAction>
@@ -20,6 +18,11 @@
      <postStartupActivity implementation="com.intellij.advancedExpressionFolding.FoldingStartupActivity" />
 
     <errorHandler implementation="com.intellij.diagnostic.JetBrainsMarketplaceErrorReportSubmitter"/>
+
+      <editorOptionsProvider
+              instance="com.intellij.advancedExpressionFolding.settings.SettingsConfigurable"
+              id="editor.folding.advanced.expression"
+              displayName="Advanced Expression Folding 2"/>
   </extensions>
 
   <actions>

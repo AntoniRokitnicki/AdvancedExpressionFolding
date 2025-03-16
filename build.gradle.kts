@@ -42,7 +42,7 @@ sourceSets {
         java.srcDirs("src")
         kotlin.srcDirs("src")
         resources.srcDirs("resources")
-        //FIXME: support example download in a new version of intellij resources.srcDirs("examples")
+        resources.srcDirs("examples")
     }
     named("test") {
         java.srcDir("test")
