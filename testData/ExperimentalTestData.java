@@ -7,44 +7,42 @@ package data;
  */</fold>
 public class ExperimentalTestData {
 
-    <fold text='@Getter @Setter c' expand='false'>c</fold>lass NamelessProperty <fold text='{...}' expand='true'>{
-        private NamelessProperty prop;
+    class OverloadedAsDefaultParam <fold text='{...}' expand='true'>{
 
-        public NamelessProperty get()<fold text=' { ' expand='false'> {
-            </fold>return prop;<fold text=' }' expand='false'>
-        }</fold><fold text='' expand='false'>
-
-        </fold><fold text='' expand='false'>public data.ExperimentalTestData.NamelessProperty getProp()<fold text=' { ' expand='false'> {
-            </fold>return prop;<fold text=' }' expand='false'>
-        }</fold><fold text='' expand='false'></fold>
-
-        </fold><fold text='' expand='false'>public void setProp(NamelessProperty prop)<fold text=' { ' expand='false'> {
-            </fold>this.prop = prop;<fold text=' }' expand='false'>
+        public String applySort1(String criterionName)<fold text=' { ' expand='false'> {
+            </fold>return applySort1(criterionName, false);<fold text=' }' expand='false'>
+        }</fold>
+        public String applySort1(String criterionName<fold text=' = "DESC",' expand='true'>,</fold> boolean descending<fold text=' = false)' expand='true'>)</fold><fold text=' { ' expand='false'> {
+            </fold>return criterionName;<fold text=' }' expand='false'>
+        }</fold>
+        <fold text='' expand='true'>public String applySort1()<fold text=' { ' expand='false'> {
+            </fold>return applySort1("DESC", false);<fold text=' }' expand='false'>
         }</fold></fold>
 
-        public void set(NamelessProperty s)<fold text=' { ' expand='false'> {
-            </fold>this.prop = s;<fold text=' }' expand='false'>
+
+        public String applySort2(String criterionName, boolean descending<fold text=' = System.getProperty("sort-desc") != null)' expand='true'>)</fold><fold text=' { ' expand='false'> {
+            </fold>return criterionName;<fold text=' }' expand='false'>
+        }</fold>
+        <fold text='' expand='true'>public String applySort2(String criterionName) <fold text='{...}' expand='true'>{
+            return applySort2(criterionName, System<fold text='[' expand='false'>.getProperty(</fold>"sort-desc"<fold text=']' expand='false'>)</fold> != null);
+        }</fold></fold>
+
+
+        public String applySortWrongFirstType(int criterionName) <fold text='{...}' expand='true'>{
+            return applySortWrongFirstType(<fold text='' expand='false'>String.valueOf(</fold>criterionName<fold text='' expand='false'>)</fold>, false);
+        }</fold>
+        public String applySortWrongFirstType(String criterionName, boolean descending)<fold text=' { ' expand='false'> {
+            </fold>return criterionName;<fold text=' }' expand='false'>
         }</fold>
 
-        NamelessProperty main(NamelessProperty s, NamelessProperty namelessProperty) <fold text='{...}' expand='true'>{
-            s.set(namelessProperty.getProp().get());
-            s.set(namelessProperty.getProp());
-            s.setProp(namelessProperty.getProp().get());
-            s.setProp(namelessProperty.getProp());
 
-
-            s.set(namelessProperty.get());
-            s.set(namelessProperty.get().get()); //TODO:
-
-            System.out.println(s.get());
-            s.get();
-            s.set(namelessProperty);
-            s.set(s.get());
-            s.set(namelessProperty.get().get().get());
-            s.set(main(s.get(), namelessProperty.get()));
-            return namelessProperty.get();
+        private String applySort4(String criterionName)<fold text=' { ' expand='false'> {
+            </fold>return applySort2(criterionName, false);<fold text=' }' expand='false'>
         }</fold>
+        protected String applySort4(String criterionName, boolean descending)<fold text=' { ' expand='false'> {
+            </fold>return criterionName;<fold text=' }' expand='false'>
+        }</fold>
+
+
     }</fold>
-
-
 }

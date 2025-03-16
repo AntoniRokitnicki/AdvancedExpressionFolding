@@ -1,16 +1,10 @@
 package com.intellij.advancedExpressionFolding.extension
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression
-import com.intellij.advancedExpressionFolding.extension.Consts.SUPERSCRIPT_MAPPING
-import com.intellij.advancedExpressionFolding.extension.lombok.LombokExt.addLombokSupport
-import com.intellij.advancedExpressionFolding.extension.lombok.LombokFoldingAnnotation
-import com.intellij.advancedExpressionFolding.extension.lombok.LombokFoldingAnnotation.SERIAL
+import com.intellij.advancedExpressionFolding.extension.lombok.AnnotationExt
+import com.intellij.advancedExpressionFolding.extension.lombok.MethodDefaultParameterExt
 import com.intellij.advancedExpressionFolding.extension.lombok.SummaryParentOverrideExt.addParentSummary
-import com.intellij.psi.PsiClass
-import com.intellij.psi.PsiElement
-import com.intellij.psi.PsiField
-import com.intellij.psi.PsiJavaFile
+import com.intellij.psi.*
 
 object PsiClassExt : BaseExtension() {
 
@@ -18,78 +12,19 @@ object PsiClassExt : BaseExtension() {
         BUILDER,
     }
 
-    data class ClassLevelAnnotation(
-        val classAnnotation: LombokFoldingAnnotation,
-        val elementsToHide: List<PsiElement>,
-        val pure: Boolean = true,
-        val arguments: List<String> = emptyList(),
-    )
-
     @JvmStatic
     fun createExpression(clazz: PsiClass): Expression? {
-        val parentSummary: Expression? = clazz.addParentSummary()
-
-        (clazz.isIgnored() || !lombok || clazz.isRecord).off() ?: return parentSummary
-
-        val serialField = isSerial(clazz)
-        if (hasLombokImports(clazz) && serialField == null) {
-            clazz.markIgnored()
-            return parentSummary
+        val list = exprList()
+        list.addIfEnabled(summaryParentOverride) {
+            clazz.addParentSummary()
         }
-
-        val changes = clazz.addLombokSupport() + addSerialVersionUID(serialField)
-        if (changes.isEmpty()) {
-            clazz.markIgnored()
-            return parentSummary
+        list.addIfEnabled(experimental) {
+            MethodDefaultParameterExt.enhanceMethodsWithDefaultParams(clazz)
         }
-
-        val elementsToHide = changes.map {
-            it.elementsToHide
-        }.flatten()
-        val elementsToFold = elementsToHide.mapNotNull { method ->
-            method.prevWhiteSpace()
-        } + elementsToHide
-        return ClassAnnotationExpression(clazz, changes.map { hidingAnnotation ->
-            val notPureSuffix = hidingAnnotation.pure.takeIf { it ->
-                !it
-            }?.let {
-                SUPERSCRIPT_MAPPING['*']
-            } ?: ""
-            val args = hidingAnnotation.arguments.takeIf {
-                it.isNotEmpty()
-            }?.joinToString(separator = ",")
-                ?.let {
-                    "($it)"
-                } ?: ""
-
-            hidingAnnotation.classAnnotation.annotation + notPureSuffix + args
-        }, elementsToFold, parentSummary)
+        list.addIfEnabled(lombok) {
+            AnnotationExt.addClassLevelAnnotations(clazz)
+        }
+        return list.exprWrap(clazz)
     }
-
-    private fun addSerialVersionUID(
-        serialField: PsiField?
-    ): List<ClassLevelAnnotation> {
-        return serialField?.let {
-            it.markIgnored()
-            listOf(ClassLevelAnnotation(SERIAL, listOf(it)))
-        } ?: emptyList()
-    }
-
-
-    private fun isSerial(clazz: PsiClass): PsiField? = clazz.fields.firstOrNull {
-        it.name == "serialVersionUID"
-    }
-
-    private fun hasLombokImports(clazz: PsiClass) =
-        clazz.containingFile.asInstance<PsiJavaFile>()?.importList?.importStatements?.any {
-            it.qualifiedName?.startsWith("lombok") ?: false
-        } ?: false
-
 
 }
-
-
-
-
-
-

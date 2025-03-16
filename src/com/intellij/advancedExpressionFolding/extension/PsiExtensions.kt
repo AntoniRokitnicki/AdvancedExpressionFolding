@@ -16,7 +16,9 @@ import com.intellij.advancedExpressionFolding.extension.EModifier.*
 import com.intellij.advancedExpressionFolding.extension.Keys.IGNORED
 import com.intellij.lang.folding.FoldingDescriptor
 import com.intellij.openapi.editor.FoldingGroup
+import com.intellij.openapi.project.Project
 import com.intellij.openapi.util.TextRange
+import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.psi.*
 import com.intellij.psi.impl.source.PsiClassReferenceType
 import com.intellij.psi.search.LocalSearchScope
@@ -446,6 +448,12 @@ fun elemList(vararg elements: PsiElement?): MutableList<Expression?> = elements.
 fun exprList(elements: Iterable<Expression?>) = mutableListOf(elements)
 fun exprList(vararg elements: Expression?) = mutableListOf(*elements)
 fun foldingList(vararg elements: FoldingDescriptor) = mutableListOf(*elements)
+inline fun MutableList<Expression?>.addIfEnabled(featureFlag: Boolean, function: () -> Expression?) {
+    if (featureFlag) {
+        add(function.invoke())
+    }
+}
+
 
 
 fun <T> Iterable<T>.distinctNot(): List<T> {
@@ -490,3 +498,10 @@ fun <E, E2> Collection<E>?.sameSize(otherCollection: Collection<E2>?) = this?.si
 
 
 fun PsiMethod.getSignature(): MethodSignature = getSignature(PsiSubstitutor.EMPTY)
+
+fun VirtualFile.toJavaPsiFile(project: Project): PsiJavaFile? {
+    if (!isValid) {
+        return null
+    }
+    return PsiManager.getInstance(project).findFile(this) as PsiJavaFile?
+}

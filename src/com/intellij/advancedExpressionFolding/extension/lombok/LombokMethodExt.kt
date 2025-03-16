@@ -3,14 +3,13 @@ package com.intellij.advancedExpressionFolding.extension.lombok
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.custom.SimpleExpression
 import com.intellij.advancedExpressionFolding.extension.*
-import com.intellij.advancedExpressionFolding.extension.PsiClassExt.ClassLevelAnnotation
+import com.intellij.advancedExpressionFolding.extension.lombok.AnnotationExt.ClassLevelAnnotation
 import com.intellij.advancedExpressionFolding.extension.lombok.LombokExt.findMethodType
 import com.intellij.advancedExpressionFolding.extension.lombok.LombokInterfaceFoldingAnnotation.*
 import com.intellij.advancedExpressionFolding.extension.lombok.LombokInterfaceFoldingAnnotation.Companion.fromMethodType
 import com.intellij.advancedExpressionFolding.extension.lombok.MethodType.*
 import com.intellij.openapi.util.Key
 import com.intellij.psi.*
-import com.intellij.psi.javadoc.PsiDocComment
 
 enum class LombokInterfaceFoldingAnnotation(
     val annotation: String,

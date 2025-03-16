@@ -58,7 +58,7 @@ abstract class AbstractMultiExpression(
                 )
                 combinedFieldAnnotationExpression
             } else {
-                println("WARNING!: folding on same element")
+                //println("WARNING!: folding on same element")
                 null
             }
         }.filterNotNull()

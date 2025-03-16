@@ -3,7 +3,6 @@ package com.intellij.advancedExpressionFolding.extension.lombok
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.extension.*
 import com.intellij.advancedExpressionFolding.extension.Keys.METHOD_TO_PARENT_CLASS_KEY
-import com.intellij.openapi.rd.util.putUserData
 import com.intellij.openapi.util.removeUserData
 import com.intellij.psi.*
 import com.intellij.psi.util.MethodSignature
@@ -13,10 +12,9 @@ private data class ReferenceWithMethods(
     val methods: List<String>
 )
 
-object SummaryParentOverrideExt : BaseExtension() {
+object SummaryParentOverrideExt {
 
     fun PsiClass.addParentSummary(): Expression? {
-        summaryParentOverride.on(name) ?: return null
         val parentToMethods = mutableMapOf<String, List<String>>()
         val methodToParentClass: MutableMap<MethodSignature, String> = mutableMapOf<MethodSignature, String>() //TODO: String->Pointer?
 

@@ -17,7 +17,7 @@ open class ClassAnnotationExpression(
     element: PsiElement,
     internal val customClassAnnotations: List<CustomClassAnnotation>,
     internal val elementsToFold: List<PsiElement?>,
-    private val additionalExpression: Expression?,
+    private val additionalExpression: Expression? = null,
 ) : Expression(element, element.textRange) {
     override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean {
         return true

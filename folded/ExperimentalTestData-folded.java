@@ -7,36 +7,38 @@ package data;
  */
 public class ExperimentalTestData {
 
-    @Getter @Setter class NamelessProperty {
-        private NamelessProperty prop;
+    class OverloadedAsDefaultParam {
 
-        public NamelessProperty get() {
-            return prop;
+        public String applySort1(String criterionName) {
+            return applySort1(criterionName, false);
+        }
+        public String applySort1(String criterionName = "DESC", boolean descending = false) {
+            return criterionName;
+        }
+        
+
+
+        public String applySort2(String criterionName, boolean descending = System.getProperty("sort-desc") != null) {
+            return criterionName;
+        }
+        
+
+
+        public String applySortWrongFirstType(int criterionName) {
+            return applySortWrongFirstType(criterionName, false);
+        }
+        public String applySortWrongFirstType(String criterionName, boolean descending) {
+            return criterionName;
         }
 
-        public void set(NamelessProperty s) {
-            this.prop = s;
+
+        private String applySort4(String criterionName) {
+            return applySort2(criterionName, false);
+        }
+        protected String applySort4(String criterionName, boolean descending) {
+            return criterionName;
         }
 
-        NamelessProperty main(NamelessProperty s, NamelessProperty namelessProperty) {
-            s.set(namelessProperty.getProp().get());
-            s.set(namelessProperty.getProp());
-            s.setProp(namelessProperty.getProp().get());
-            s.setProp(namelessProperty.getProp());
 
-
-            s.set(namelessProperty.get());
-            s.set(namelessProperty.get().get()); //TODO:
-
-            System.out.println(s.get());
-            s.get();
-            s.set(namelessProperty);
-            s.set(s.get());
-            s.set(namelessProperty.get().get().get());
-            s.set(main(s.get(), namelessProperty.get()));
-            return namelessProperty.get();
-        }
     }
-
-
 }

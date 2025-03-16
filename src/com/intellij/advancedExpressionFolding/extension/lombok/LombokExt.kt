@@ -1,13 +1,12 @@
 package com.intellij.advancedExpressionFolding.extension.lombok
 
 import com.intellij.advancedExpressionFolding.extension.*
-import com.intellij.advancedExpressionFolding.extension.PsiClassExt.ClassLevelAnnotation
+import com.intellij.advancedExpressionFolding.extension.lombok.AnnotationExt.ClassLevelAnnotation
 import com.intellij.advancedExpressionFolding.extension.lombok.LombokFoldingAnnotation.*
 import com.intellij.advancedExpressionFolding.extension.lombok.LombokMethodExt.interfaceSupport
 import com.intellij.advancedExpressionFolding.extension.lombok.LombokMethodExt.isFinder
 import com.intellij.advancedExpressionFolding.extension.lombok.MethodType.*
 import com.intellij.openapi.util.Key
-import com.intellij.openapi.util.NlsSafe
 import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiField
 import com.intellij.psi.PsiMethod
@@ -200,7 +199,7 @@ object LombokExt : BaseExtension(), GenericCallback<PsiField, List<FieldLevelAnn
 
     private fun foldProperties(
         methodTypeToMethodsMap: Map<MethodType, List<PsiMethod>>,
-        fieldsMap: Map<@NlsSafe String, PsiField>,
+        fieldsMap: Map<String, PsiField>,
         fieldLevelAnnotations: MutableList<FieldLevelAnnotation>
     ): List<ClassLevelAnnotation> {
         return mapOf(
@@ -256,7 +255,7 @@ object LombokExt : BaseExtension(), GenericCallback<PsiField, List<FieldLevelAnn
 
     private fun foldData(
         methodTypeToMethodsMap: Map<MethodType, List<PsiMethod>>,
-        fieldsMap: Map<@NlsSafe String, PsiField>,
+        fieldsMap: Map<String, PsiField>,
         fieldLevelAnnotations: MutableList<FieldLevelAnnotation>
     ): List<ClassLevelAnnotation> {
         return mapOf(
