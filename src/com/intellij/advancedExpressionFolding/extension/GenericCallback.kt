@@ -1,6 +1,6 @@
 package com.intellij.advancedExpressionFolding.extension
 
-import com.intellij.advancedExpressionFolding.extension.lombok.LombokExt.getNonSyntheticExpression
+import com.intellij.advancedExpressionFolding.extension.clazz.LombokExt.getNonSyntheticExpression
 import com.intellij.openapi.util.Key
 import com.intellij.psi.PsiElement
 

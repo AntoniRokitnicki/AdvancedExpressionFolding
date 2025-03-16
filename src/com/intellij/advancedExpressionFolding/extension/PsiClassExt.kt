@@ -1,9 +1,9 @@
 package com.intellij.advancedExpressionFolding.extension
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.extension.lombok.AnnotationExt
-import com.intellij.advancedExpressionFolding.extension.lombok.MethodDefaultParameterExt
-import com.intellij.advancedExpressionFolding.extension.lombok.SummaryParentOverrideExt.addParentSummary
+import com.intellij.advancedExpressionFolding.extension.clazz.AnnotationExt
+import com.intellij.advancedExpressionFolding.extension.clazz.MethodDefaultParameterExt
+import com.intellij.advancedExpressionFolding.extension.clazz.SummaryParentOverrideExt.addParentSummary
 import com.intellij.psi.*
 
 object PsiClassExt : BaseExtension() {

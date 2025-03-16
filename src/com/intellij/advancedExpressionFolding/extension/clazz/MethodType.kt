@@ -1,4 +1,4 @@
-package com.intellij.advancedExpressionFolding.extension.lombok
+package com.intellij.advancedExpressionFolding.extension.clazz
 
 import com.intellij.advancedExpressionFolding.extension.MethodBodyInspector.isDirtyGetter
 import com.intellij.advancedExpressionFolding.extension.MethodBodyInspector.isDirtySetter

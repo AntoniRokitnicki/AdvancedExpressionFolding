@@ -1,13 +1,13 @@
-package com.intellij.advancedExpressionFolding.extension.lombok
+package com.intellij.advancedExpressionFolding.extension.clazz
 
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.custom.SimpleExpression
 import com.intellij.advancedExpressionFolding.extension.*
-import com.intellij.advancedExpressionFolding.extension.lombok.AnnotationExt.ClassLevelAnnotation
-import com.intellij.advancedExpressionFolding.extension.lombok.LombokExt.findMethodType
-import com.intellij.advancedExpressionFolding.extension.lombok.LombokInterfaceFoldingAnnotation.*
-import com.intellij.advancedExpressionFolding.extension.lombok.LombokInterfaceFoldingAnnotation.Companion.fromMethodType
-import com.intellij.advancedExpressionFolding.extension.lombok.MethodType.*
+import com.intellij.advancedExpressionFolding.extension.clazz.AnnotationExt.ClassLevelAnnotation
+import com.intellij.advancedExpressionFolding.extension.clazz.LombokExt.findMethodType
+import com.intellij.advancedExpressionFolding.extension.clazz.LombokInterfaceFoldingAnnotation.*
+import com.intellij.advancedExpressionFolding.extension.clazz.LombokInterfaceFoldingAnnotation.Companion.fromMethodType
+import com.intellij.advancedExpressionFolding.extension.clazz.MethodType.*
 import com.intellij.openapi.util.Key
 import com.intellij.psi.*
 

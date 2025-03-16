@@ -9,10 +9,10 @@ import com.intellij.advancedExpressionFolding.extension.Keys.METHOD_TO_PARENT_CL
 import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFoldingAnnotation.Companion.findByName
 import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFoldingAnnotation.NOT_NULL
 import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFoldingAnnotation.NULLABLE
-import com.intellij.advancedExpressionFolding.extension.lombok.LombokExt
-import com.intellij.advancedExpressionFolding.extension.lombok.LombokExt.callback
-import com.intellij.advancedExpressionFolding.extension.lombok.LombokMethodExt.addInterfaceAnnotations
-import com.intellij.advancedExpressionFolding.extension.lombok.LombokMethodExt.callback
+import com.intellij.advancedExpressionFolding.extension.clazz.LombokExt
+import com.intellij.advancedExpressionFolding.extension.clazz.LombokExt.callback
+import com.intellij.advancedExpressionFolding.extension.clazz.LombokMethodExt.addInterfaceAnnotations
+import com.intellij.advancedExpressionFolding.extension.clazz.LombokMethodExt.callback
 import com.intellij.advancedExpressionFolding.extension.methodcall.dynamic.DynamicExt
 import com.intellij.openapi.editor.Document
 import com.intellij.psi.*
