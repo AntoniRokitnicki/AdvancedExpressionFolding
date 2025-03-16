@@ -23,6 +23,17 @@
   </extensions>
 
   <actions>
+      <group id="AdvancedExpressionFolding2Group"
+             text="Advanced Expression Folding 2 - Searches"
+             description="Advanced expression folding search operations"
+             popup="true">
+          <add-to-group group-id="CodeMenu" anchor="last"/>
+          <action id="FindMethodsWithDefaultParametersAction"
+                  class="com.intellij.advancedExpressionFolding.FindMethodsWithDefaultParametersAction"
+                  text="Find Methods with Default Parameters"
+                  description="Searches the project for methods that use default parameter values"/>
+      </group>
+
     <action id="advanced.folding.toggle.global" class="com.intellij.advancedExpressionFolding.GlobalToggleFoldingAction"
             text="Advanced Folding: Global" description="Toggle advanced folding globally across all files">
       <add-to-group group-id="CodeMenu" anchor="last"/>
