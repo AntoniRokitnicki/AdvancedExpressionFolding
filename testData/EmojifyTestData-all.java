@@ -128,7 +128,7 @@ public <fold text='🏛️' expand='false'>class</fold> EmojifyTestData {
         </fold>}</fold>
     }</fold>
 
-    <fold text='@AllArgsConstructor @Getter @Setter p' expand='false'>p</fold>ublic <fold text='🏛️' expand='false'>class</fold> TransientVolatileData implements java.io.Serializabl<fold text='e(0-)' expand='false'>e</fold> <fold text='{...}' expand='true'>{
+    <fold text='@AllArgsConstructor @Getter @Setter p' expand='false'>p</fold>ublic <fold text='🏛️' expand='false'>class</fold> TransientVolatileData implements java.io.Serializabl<fold text='e(0-)' expand='true'>e</fold> <fold text='{...}' expand='true'>{
         <fold text='🚫' expand='false'>private</fold> <fold text='🚂' expand='false'>transient</fold> <fold text='🔢' expand='false'>int</fold> transientField;
         <fold text='🚫' expand='false'>private</fold> <fold text='☢️' expand='false'>volatile</fold> <fold text='🔘' expand='false'>boolean</fold> volatileField;<fold text='' expand='false'>
 
@@ -158,7 +158,7 @@ public <fold text='🏛️' expand='false'>class</fold> EmojifyTestData {
         public <fold text='🏕️' expand='false'>native</fold> <fold text='💀' expand='false'>void</fold> nativeMethod();
     }</fold>
 
-    <fold text='@AllArgsConstructor p' expand='false'>p</fold>ublic <fold text='🏛️' expand='false'>class</fold> InterfaceUsage implements Comparabl<fold text='e(0-)' expand='false'>e</fold><InterfaceUsage> <fold text='{...}' expand='true'>{
+    <fold text='@AllArgsConstructor p' expand='false'>p</fold>ublic <fold text='🏛️' expand='false'>class</fold> InterfaceUsage implements Comparabl<fold text='e(0-)' expand='true'>e</fold><InterfaceUsage> <fold text='{...}' expand='true'>{
         <fold text='🚫' expand='false'>private</fold> <fold text='🔢' expand='false'>int</fold> value;<fold text='' expand='false'>
 
         </fold><fold text='' expand='false'>public InterfaceUsage(<fold text='🔢' expand='false'>int</fold> value)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
@@ -405,7 +405,7 @@ public <fold text='🏛️' expand='false'>class</fold> EmojifyTestData {
         public <fold text='🎨' expand='false'>abstract</fold> sealed <fold text='🏛️' expand='false'>class</fold> Shape permits Circle, Rectangle <fold text='{...}' expand='true'>{
         }</fold>
 
-        <fold text='@AllArgsConstructor @Getter p' expand='false'>p</fold>ublic <fold text='🔒' expand='false'>final</fold> <fold text='🏛️' expand='false'>class</fold> Circle extends Shap<fold text='e(0-)' expand='false'>e</fold> <fold text='{...}' expand='true'>{
+        <fold text='@AllArgsConstructor @Getter p' expand='false'>p</fold>ublic <fold text='🔒' expand='false'>final</fold> <fold text='🏛️' expand='false'>class</fold> Circle extends Shap<fold text='e(0-)' expand='true'>e</fold> <fold text='{...}' expand='true'>{
             <fold text='🚫' expand='false'>private</fold> <fold text='⚖️' expand='false'>double</fold> radius;<fold text='' expand='false'>
 
             <fold text='' expand='false'></fold>public Circle(<fold text='⚖️' expand='false'>double</fold> radius)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
@@ -417,7 +417,7 @@ public <fold text='🏛️' expand='false'>class</fold> EmojifyTestData {
             </fold>}</fold></fold>
         }</fold>
 
-        <fold text='@AllArgsConstructor @Getter p' expand='false'>p</fold>ublic <fold text='🔒' expand='false'>final</fold> <fold text='🏛️' expand='false'>class</fold> Rectangle extends Shap<fold text='e(0-)' expand='false'>e</fold> <fold text='{...}' expand='true'>{
+        <fold text='@AllArgsConstructor @Getter p' expand='false'>p</fold>ublic <fold text='🔒' expand='false'>final</fold> <fold text='🏛️' expand='false'>class</fold> Rectangle extends Shap<fold text='e(0-)' expand='true'>e</fold> <fold text='{...}' expand='true'>{
             <fold text='🚫' expand='false'>private</fold> <fold text='⚖️' expand='false'>double</fold> length;
             <fold text='🚫' expand='false'>private</fold> <fold text='⚖️' expand='false'>double</fold> width;<fold text='' expand='false'>
 

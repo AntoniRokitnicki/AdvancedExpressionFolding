@@ -6,7 +6,8 @@ import com.intellij.advancedExpressionFolding.extension.methodcall.MethodCallFac
 import com.intellij.advancedExpressionFolding.extension.methodcall.dynamic.DynamicMethodCall
 import com.intellij.advancedExpressionFolding.extension.methodcall.dynamic.IDynamicDataProvider
 import com.intellij.openapi.application.runInEdt
-import org.junit.AssumptionViolatedException
+import com.intellij.platform.testFramework.core.FileComparisonFailedError
+
 import org.junit.jupiter.api.Test
 import org.junitpioneer.jupiter.Stopwatch
 import org.opentest4j.TestAbortedException
@@ -17,7 +18,7 @@ import kotlin.reflect.KMutableProperty0
 open class FoldingTest : BaseTest() {
 
     class TooComplexException : TestAbortedException("TOO COMPLEX FOLDING")
-    class RandomException(t: Throwable) : TestAbortedException("TOO COMPLEX FOLDING", t)
+    class RandomException(t: Throwable) : TestAbortedException("IDE RANDOM EXCEPTION", t)
 
     @Suppress("MemberVisibilityCanBePrivate")
     protected val state: State by lazy {
@@ -39,8 +40,8 @@ open class FoldingTest : BaseTest() {
         MethodCallFactory.initialize(dynamic)
         try {
             super.doFoldingTest(null)
-        } catch (e: com.intellij.rt.execution.junit.FileComparisonFailure) {
-            throw RuntimeException("FileComparisonFailure")
+        } catch (e: FileComparisonFailedError) {
+            throw RuntimeException("FileComparisonFailedError")
         } catch (e: IllegalArgumentException) {
             if (e.message == "Comparison method violates its general contract!") {
                 throw TooComplexException()

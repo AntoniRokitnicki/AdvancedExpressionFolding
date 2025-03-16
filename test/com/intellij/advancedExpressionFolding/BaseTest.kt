@@ -8,6 +8,7 @@ import com.intellij.openapi.projectRoots.Sdk
 import com.intellij.openapi.util.io.FileUtil
 import com.intellij.openapi.util.text.StringUtil
 import com.intellij.openapi.vfs.LocalFileSystem
+import com.intellij.platform.testFramework.core.FileComparisonFailedError
 import com.intellij.rt.execution.junit.FileComparisonFailure
 import com.intellij.testFramework.fixtures.DefaultLightProjectDescriptor
 import com.intellij.testFramework.fixtures.LightJavaCodeInsightFixtureTestCase5
@@ -50,11 +51,11 @@ abstract class BaseTest : LightJavaCodeInsightFixtureTestCase5(TEST_JDK) {
         com.intellij.advancedExpressionFolding.store = store
         try {
             action.run()
-        } catch (e: FileComparisonFailure) {
+        } catch (e: FileComparisonFailedError) {
             try {
                 //TODO: fixture.editor
 
-                val actual = e.actual
+                val actual = e.actual.stringRepresentation
                 Files.writeString(testDataFile.toPath(), actual)
 
                 val wrapper = store.saveFolding(createOutputFile(fileName, ".json"))
@@ -116,7 +117,7 @@ abstract class BaseTest : LightJavaCodeInsightFixtureTestCase5(TEST_JDK) {
         }
         val actual = (fixture as CodeInsightTestFixtureImpl).getFoldingDescription(doCheckCollapseStatus)
         if (expectedContent != actual) {
-            throw FileComparisonFailure(verificationFile.name, expectedContent, actual, verificationFile.path)
+            throw FileComparisonFailedError(verificationFile.name, expectedContent, actual, verificationFile.path)
         }
     }
 
