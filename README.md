@@ -40,7 +40,7 @@
 ## 3.1.0 ##
 - [Method default parameter using an overloaded method](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/MethodDefaultParameters)
 ## 3.0.2 ##
-- [Dynamic Folding](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/Dynamic-Folding)
+- [Dynamic names for methods](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/Dynamic-Folding)
 
 
 ## New features:
