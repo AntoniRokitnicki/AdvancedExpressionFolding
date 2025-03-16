@@ -24,7 +24,7 @@
 
   <actions>
       <group id="AdvancedExpressionFolding2Group"
-             text="Advanced Expression Folding 2 - Searches"
+             text="Advanced Folding: Searches"
              description="Advanced expression folding search operations"
              popup="true">
           <add-to-group group-id="CodeMenu" anchor="last"/>
