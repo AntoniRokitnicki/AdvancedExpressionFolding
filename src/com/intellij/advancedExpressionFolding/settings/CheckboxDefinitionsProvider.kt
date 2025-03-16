@@ -15,283 +15,238 @@ data class CheckboxDefinition(
     val docLink: UrlSuffix? = null
 )
 
+class CheckboxBuilder {
+    private val examples = mutableMapOf<ExampleFile, Description?>()
+    private var docLink: UrlSuffix? = null
+
+    fun example(file: ExampleFile, description: Description? = null) {
+        examples[file] = description
+    }
+
+    fun link(documentationLink: UrlSuffix) {
+        docLink = documentationLink
+    }
+
+    internal fun build(
+        property: KMutableProperty0<Boolean>,
+        title: String
+    ): CheckboxDefinition {
+        return CheckboxDefinition(
+            title = title,
+            property = property,
+            exampleLinkMap = if (examples.isEmpty()) null else examples.toMap(),
+            docLink = docLink
+        )
+    }
+}
+
 class CheckboxDefinitionsProvider {
     private val checkboxDefinitions = mutableListOf<CheckboxDefinition>()
-    
+
     fun getCheckboxDefinitions(): List<CheckboxDefinition> = checkboxDefinitions
-    
+
     fun getAllExampleFiles(): List<ExampleFile> = checkboxDefinitions
         .mapNotNull { it.exampleLinkMap }
         .flatMap { it.keys }
-    
-    fun initialize(state: AdvancedExpressionFoldingSettings.State): CheckboxDefinitionsProvider {
-        checkBox(
-            "Getters and setters as properties",
-            state::getSetExpressionsCollapse,
-            mapOf("GetterSetterTestData.java" to null)
-        )
-        checkBox(
-            "Variable declarations (var/val)",
-            state::varExpressionsCollapse,
-            mapOf("VarTestData.java" to null)
-        )
-        checkBox(
-            "Compact control flow condition syntax (Golang ifs)",
-            state::compactControlFlowSyntaxCollapse,
-            mapOf("CompactControlFlowTestData.java" to null)
-        )
-        checkBox(
-            "List.get, List.set, Map.get and Map.put expressions, array and list literals",
-            state::getExpressionsCollapse,
-            mapOf("GetSetPutTestData.java" to null)
-        )
 
-        checkBox(
-            "StringBuilder.append and Collection.add/remove expressions, interpolated Strings and Stream expressions",
-            state::concatenationExpressionsCollapse,
-            mapOf(
-                "StringBuilderTestData.java" to "StringBuilder",
-                "InterpolatedStringTestData.java" to "Interpolate",
-                "AppendSetterInterpolatedStringTestData.java" to "Append",
-                "ConcatenationTestData.java" to "Concatenation"
-            )
-        )
-        checkBox(
-            "List.subList and String.substring expressions",
-            state::slicingExpressionsCollapse,
-            mapOf("SliceTestData.java" to null)
-        )
-        checkBox(
-            "Object.equals and Comparable.compareTo expressions",
-            state::comparingExpressionsCollapse,
-            mapOf("EqualsCompareTestData.java" to null)
-        )
+    fun registerCheckbox(
+        property: KMutableProperty0<Boolean>,
+        title: String,
+        block: (CheckboxBuilder.() -> Unit)? = null
+    ) {
+        val builder = CheckboxBuilder()
+        block?.invoke(builder)
 
-        checkBox(
-            "Java.time isBefore/isAfter expressions",
-            state::comparingLocalDatesCollapse,
-            mapOf("LocalDateTestData.java" to null)
-        )
-        checkBox(
-            "LocalDate.of literals (e.g. 2018-02-12)",
-            state::localDateLiteralCollapse,
-            mapOf("LocalDateLiteralTestData.java" to null)
-        )
-        checkBox(
-            "Postfix LocalDate literals (e.g. 2018Y-02M-12D)",
-            state::localDateLiteralPostfixCollapse,
-            mapOf("LocalDateLiteralPostfixTestData.java" to null)
-        )
-
-        checkBox(
-            "Type cast expressions",
-            state::castExpressionsCollapse,
-            mapOf("TypeCastTestData.java" to null)
-        )
-        checkBox(
-            "For loops, range expressions",
-            state::rangeExpressionsCollapse,
-            mapOf("ForRangeTestData.java" to null)
-        )
-        checkBox(
-            "Null-safe calls",
-            state::checkExpressionsCollapse,
-            mapOf("ElvisTestData.java" to null)
-        )
-        checkBox(
-            "Extended null-safe ifs",
-            state::ifNullSafe,
-            mapOf("IfNullSafeData.java" to null),
-            "/Extended-null‐safe-ifs"
-        )
-        checkBox(
-            "Kotlin quick return",
-            state::kotlinQuickReturn,
-            mapOf("LetReturnIt.java" to null)
-        )
-
-        checkBox(
-            "Asserts",
-            state::assertsCollapse,
-            mapOf("AssertTestData.java" to null)
-        )
-
-        checkBox(
-            "Display optional as Kotlin null-safe",
-            state::optional,
-            mapOf("OptionalTestData.java" to null)
-        )
-        checkBox(
-            "Display stream operations as Groovy's spread operator",
-            state::streamSpread,
-            mapOf("SpreadTestData.java" to null)
-        )
-
-        checkBox(
-            "Display Java bean as Lombok",
-            state::lombok,
-            mapOf("LombokTestData.java" to null)
-        )
-        checkBox(
-            "Log folding",
-            state::logFolding,
-            mapOf("LogBrackets.java" to null),
-            "/Log-brackets-folding"
-        )
-        checkBox(
-            "Display mapping of field with same name as << (for builders, setters and assignments)",
-            state::fieldShift,
-            mapOf(
-                "FieldShiftBuilder.java" to "builders",
-                "FieldShiftSetters.java" to "setters",
-                "FieldShiftFields.java" to "fields",
-            ),
-            "/FieldShift"
-        )
-        checkBox(
-            "Destructuring assignment for array & list",
-            state::destructuring,
-            mapOf(
-                "DestructuringAssignmentArrayTestData.java" to "array",
-                "DestructuringAssignmentListTestData.java" to "list"
-            ),
-            "/Destructuring-assignment"
-        )
-        checkBox(
-            "Simplify System.out.println to println",
-            state::println,
-            mapOf("PrintlnTestData.java" to null),
-            "/Simplify-System.out.println-to-println"
-        )
-
-        checkBox(
-            "Control flow single-statement code block braces (read-only files)",
-            state::controlFlowSingleStatementCodeBlockCollapse,
-            mapOf("ControlFlowSingleStatementTestData.java" to null)
-        )
-        checkBox(
-            "Control flow multi-statement code block braces (read-only files, deprecated)",
-            state::controlFlowMultiStatementCodeBlockCollapse,
-            mapOf("ControlFlowMultiStatementTestData.java" to null)
-        )
-        checkBox(
-            "Semicolons (read-only files)",
-            state::semicolonsCollapse,
-            mapOf("SemicolonTestData.java" to null)
-        )
-        checkBox(
-            "Folding of testData in diff",
-            state::testDataFoldingDiff,
-            docLink = "/Folding-of-testData-in-diff"
-        )
-        checkBox(
-            "Simplify * static final to const",
-            state::const,
-            mapOf("ConstTestData.java" to null),
-        )
-        checkBox(
-            "Simplify @NotNull to Type!! and @Nullable to Type?",
-            state::nullable,
-            mapOf(
-                "NullableAnnotationTestData.java" to "annotations",
-                "NullableAnnotationCheckNotNullTestData.java" to "checkNotNull"
-            )
-        )
-        checkBox(
-            "Remove the 'final' modifier from all elements except fields",
-            state::finalRemoval,
-            mapOf("FinalRemovalTestData.java" to null),
-        )
-        checkBox(
-            "Replace the 'final' modifier with " + Emoji.FINAL_LOCK,
-            state::finalEmoji,
-            mapOf("FinalEmojiTestData.java" to null),
-        )
-        checkBox(
-            "Don't fold lombok dirty getters/setters",
-            state::lombokDirtyOff,
-            mapOf("LombokDirtyOffTestData.java" to null),
-        )
-
-        checkBox(
-            "Single-Expression Function",
-            state::expressionFunc,
-            mapOf("ExpressionFuncTestData.java" to null),
-        )
-
-        checkBox(
-            "Dynamic names for methods based on \$user.home/dynamic-ajf2.toml",
-            state::dynamic,
-            mapOf("DynamicTestData.java" to null),
-        )
-
-        if (false) {
-            checkBox(
-                "BigDecimal, BigInteger and Math",
-                state::arithmeticExpressions,
-                mapOf("ArithmeticExpressionsTestData.java" to null),
-            )
-        }
-
-        checkBox(
-            "Emojify code",
-            state::emojify,
-            mapOf("EmojifyTestData.java" to null),
-        )
-
-        checkBox(
-            "Converts traditional getter and setter methods in interfaces into extension properties",
-            state::interfaceExtensionProperties,
-            mapOf("InterfaceExtensionPropertiesTestData.java" to null),
-        )
-
-        checkBox(
-            "Pattern Matching for instanceof (JEP 394)",
-            state::patternMatchingInstanceof,
-            mapOf("PatternMatchingInstanceofTestData.java" to null),
-            docLink = "/PatternMatchingInstanceof"
-        )
-
-        checkBox(
-            "Displays a folded summary of overridden methods from parent classes and interfaces.",
-            state::summaryParentOverride,
-            mapOf("SummaryParentOverrideTestData.java" to null),
-        )
-
-        checkBox(
-            "Constructor reference notation ::new and compact field initialization",
-            state::constructorReferenceNotation,
-            mapOf("ConstructorReferenceNotationTestData.java" to null),
-            docLink = "/ConstructorReferenceNotation"
-        )
-
-        checkBox(
-            "Default parameter values inline for overloaded method",
-            state::methodDefaultParameters,
-            mapOf("MethodDefaultParametersTestData.java" to null),
-            docLink = "/MethodDefaultParameters"
-        )
-
-        // NEW OPTION
-
-        checkBox(
-            "Memory improvements(experimental)",
-            state::memoryImprovement
-        )
-        checkBox(
-            "Experimental features",
-            state::experimental
-        )
-        
-        return this
+        checkboxDefinitions.add(builder.build(property, title))
     }
 
-    private fun checkBox(
-        title: String,
-        property: KMutableProperty0<Boolean>,
-        exampleLinkMap: Map<ExampleFile, Description?>? = null,
-        docLink: UrlSuffix? = null
-    ) {
-        checkboxDefinitions.add(CheckboxDefinition(title, property, exampleLinkMap, docLink))
+    fun initialize(state: AdvancedExpressionFoldingSettings.State): CheckboxDefinitionsProvider {
+        registerCheckbox(state::getSetExpressionsCollapse, "Getters and setters as properties") {
+            example("GetterSetterTestData.java")
+        }
+
+        registerCheckbox(state::varExpressionsCollapse, "Variable declarations (var/val)") {
+            example("VarTestData.java")
+        }
+
+        registerCheckbox(state::compactControlFlowSyntaxCollapse, "Compact control flow condition syntax (Golang ifs)") {
+            example("CompactControlFlowTestData.java")
+        }
+
+        registerCheckbox(state::getExpressionsCollapse, "List.get, List.set, Map.get and Map.put expressions, array and list literals") {
+            example("GetSetPutTestData.java")
+        }
+
+        registerCheckbox(state::concatenationExpressionsCollapse,
+            "StringBuilder.append and Collection.add/remove expressions, interpolated Strings and Stream expressions") {
+            example("StringBuilderTestData.java", "StringBuilder")
+            example("InterpolatedStringTestData.java", "Interpolate")
+            example("AppendSetterInterpolatedStringTestData.java", "Append")
+            example("ConcatenationTestData.java", "Concatenation")
+        }
+
+        registerCheckbox(state::slicingExpressionsCollapse, "List.subList and String.substring expressions") {
+            example("SliceTestData.java")
+        }
+
+        registerCheckbox(state::comparingExpressionsCollapse, "Object.equals and Comparable.compareTo expressions") {
+            example("EqualsCompareTestData.java")
+        }
+
+        registerCheckbox(state::comparingLocalDatesCollapse, "Java.time isBefore/isAfter expressions") {
+            example("LocalDateTestData.java")
+        }
+
+        registerCheckbox(state::localDateLiteralCollapse, "LocalDate.of literals (e.g. 2018-02-12)") {
+            example("LocalDateLiteralTestData.java")
+        }
+
+        registerCheckbox(state::localDateLiteralPostfixCollapse, "Postfix LocalDate literals (e.g. 2018Y-02M-12D)") {
+            example("LocalDateLiteralPostfixTestData.java")
+        }
+
+        registerCheckbox(state::castExpressionsCollapse, "Type cast expressions") {
+            example("TypeCastTestData.java")
+        }
+
+        registerCheckbox(state::rangeExpressionsCollapse, "For loops, range expressions") {
+            example("ForRangeTestData.java")
+        }
+
+        registerCheckbox(state::checkExpressionsCollapse, "Null-safe calls") {
+            example("ElvisTestData.java")
+        }
+
+        registerCheckbox(state::ifNullSafe, "Extended null-safe ifs") {
+            example("IfNullSafeData.java")
+            link("/Extended-null‐safe-ifs")
+        }
+
+        registerCheckbox(state::kotlinQuickReturn, "Kotlin quick return") {
+            example("LetReturnIt.java")
+        }
+
+        registerCheckbox(state::assertsCollapse, "Asserts") {
+            example("AssertTestData.java")
+        }
+
+        registerCheckbox(state::optional, "Display optional as Kotlin null-safe") {
+            example("OptionalTestData.java")
+        }
+
+        registerCheckbox(state::streamSpread, "Display stream operations as Groovy's spread operator") {
+            example("SpreadTestData.java")
+        }
+
+        registerCheckbox(state::lombok, "Display Java bean as Lombok") {
+            example("LombokTestData.java")
+        }
+
+        registerCheckbox(state::logFolding, "Log folding") {
+            example("LogBrackets.java")
+            link("/Log-brackets-folding")
+        }
+
+        registerCheckbox(state::fieldShift, "Display mapping of field with same name as << (for builders, setters and assignments)") {
+            example("FieldShiftBuilder.java", "builders")
+            example("FieldShiftSetters.java", "setters")
+            example("FieldShiftFields.java", "fields")
+            link("/FieldShift")
+        }
+
+        registerCheckbox(state::destructuring, "Destructuring assignment for array & list") {
+            example("DestructuringAssignmentArrayTestData.java", "array")
+            example("DestructuringAssignmentListTestData.java", "list")
+            link("/Destructuring-assignment")
+        }
+
+        registerCheckbox(state::println, "Simplify System.out.println to println") {
+            example("PrintlnTestData.java")
+            link("/Simplify-System.out.println-to-println")
+        }
+
+        registerCheckbox(state::controlFlowSingleStatementCodeBlockCollapse, "Control flow single-statement code block braces (read-only files)") {
+            example("ControlFlowSingleStatementTestData.java")
+        }
+
+        registerCheckbox(state::controlFlowMultiStatementCodeBlockCollapse, "Control flow multi-statement code block braces (read-only files, deprecated)") {
+            example("ControlFlowMultiStatementTestData.java")
+        }
+
+        registerCheckbox(state::semicolonsCollapse, "Semicolons (read-only files)") {
+            example("SemicolonTestData.java")
+        }
+
+        registerCheckbox(state::testDataFoldingDiff, "Folding of testData in diff") {
+            link("/Folding-of-testData-in-diff")
+        }
+
+        registerCheckbox(state::const, "Simplify * static final to const") {
+            example("ConstTestData.java")
+        }
+
+        registerCheckbox(state::nullable, "Simplify @NotNull to Type!! and @Nullable to Type?") {
+            example("NullableAnnotationTestData.java", "annotations")
+            example("NullableAnnotationCheckNotNullTestData.java", "checkNotNull")
+        }
+
+        registerCheckbox(state::finalRemoval, "Remove the 'final' modifier from all elements except fields") {
+            example("FinalRemovalTestData.java")
+        }
+
+        registerCheckbox(state::finalEmoji, "Replace the 'final' modifier with " + Emoji.FINAL_LOCK) {
+            example("FinalEmojiTestData.java")
+        }
+
+        registerCheckbox(state::lombokDirtyOff, "Don't fold lombok dirty getters/setters") {
+            example("LombokDirtyOffTestData.java")
+        }
+
+        registerCheckbox(state::expressionFunc, "Single-Expression Function") {
+            example("ExpressionFuncTestData.java")
+        }
+
+        registerCheckbox(state::dynamic, "Dynamic names for methods based on \$user.home/dynamic-ajf2.toml") {
+            example("DynamicTestData.java")
+        }
+
+        if (false) {
+            registerCheckbox(state::arithmeticExpressions, "BigDecimal, BigInteger and Math") {
+                example("ArithmeticExpressionsTestData.java")
+            }
+        }
+
+        registerCheckbox(state::emojify, "Emojify code") {
+            example("EmojifyTestData.java")
+        }
+
+        registerCheckbox(state::interfaceExtensionProperties, "Converts traditional getter and setter methods in interfaces into extension properties") {
+            example("InterfaceExtensionPropertiesTestData.java")
+        }
+
+        registerCheckbox(state::patternMatchingInstanceof, "Pattern Matching for instanceof (JEP 394)") {
+            example("PatternMatchingInstanceofTestData.java")
+            link("/PatternMatchingInstanceof")
+        }
+
+        registerCheckbox(state::summaryParentOverride, "Displays a folded summary of overridden methods from parent classes and interfaces.") {
+            example("SummaryParentOverrideTestData.java")
+        }
+
+        registerCheckbox(state::constructorReferenceNotation, "Constructor reference notation ::new and compact field initialization") {
+            example("ConstructorReferenceNotationTestData.java")
+            link("/ConstructorReferenceNotation")
+        }
+
+        registerCheckbox(state::methodDefaultParameters, "Default parameter values inline for overloaded method") {
+            example("MethodDefaultParametersTestData.java")
+            link("/MethodDefaultParameters")
+        }
+
+        registerCheckbox(state::memoryImprovement, "Memory improvements(experimental)")
+
+        registerCheckbox(state::experimental, "Experimental features")
+
+        return this
     }
 }
