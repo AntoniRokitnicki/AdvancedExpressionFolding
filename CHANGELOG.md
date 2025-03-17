@@ -4,10 +4,16 @@
 
 ## [Unreleased]
 
+## [3.2.0] - 2025-03-17
+
+- New settings with downloadable examples and documentation
+- [methodDefaultParameters] Method default parameter using an overloaded method
+- [methodDefaultParameters] Menu option: Code -> Advanced Folding: Searches -> Find Methods with Default Parameters
+
 ## [3.1.0] - 2025-03-16
 
 - [methodDefaultParameters] Method default parameter using an overloaded method
-- [methodDefaultParameters] Menu option: Code -> Advanced Folding: Searches -> Find Methods with Default Parameters 
+- [methodDefaultParameters] Menu option: Code -> Advanced Folding: Searches -> Find Methods with Default Parameters
 
 ## [3.0.2] - 2025-03-09
 
@@ -280,7 +286,8 @@ Improved handling of multi-line log messages
 
 ## [0.0.1]
 
-[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v3.1.0...HEAD
+[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v3.2.0...HEAD
+[3.2.0]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v3.1.0...v3.2.0
 [3.1.0]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v3.0.2...v3.1.0
 [3.0.2]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v3.0.1...v3.0.2
 [3.0.1]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v3.0.0...v3.0.1
