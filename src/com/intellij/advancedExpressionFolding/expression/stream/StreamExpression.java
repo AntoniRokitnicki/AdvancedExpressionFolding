@@ -29,9 +29,14 @@ public class StreamExpression extends Expression {
                 && document.getText(TextRange.create(textRange.getStartOffset() + startOffset, textRange.getStartOffset() + startOffset + 1)).equals("\n")
                 && endOffset > 1) {
             int startOffsetNoWhitespace = Helper.findDot(document, textRange.getStartOffset(), -1, false);
+            int startOffsetFinal = textRange.getStartOffset() + startOffsetNoWhitespace;
+            int endOffsetFinal = textRange.getEndOffset() + endOffset;
+            if (endOffsetFinal <0) {
+                return EMPTY_ARRAY;
+            }
             return new FoldingDescriptor[]{
-                    new FoldingDescriptor(element.getNode(), TextRange.create(textRange.getStartOffset() + startOffsetNoWhitespace,
-                            textRange.getEndOffset() + endOffset),
+                    new FoldingDescriptor(element.getNode(), TextRange.create(startOffsetFinal,
+                            endOffsetFinal),
                             FoldingGroup.newGroup(StreamExpression.class.getName()), ".")
             };
         } else if (startOffset < -1
