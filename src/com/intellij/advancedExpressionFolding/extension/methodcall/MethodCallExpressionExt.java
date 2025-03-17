@@ -186,7 +186,7 @@ public class MethodCallExpressionExt {
     }
 
     private static Expression onGetterRecord(PsiMethodCallExpression element, AdvancedExpressionFoldingSettings settings, Document document, PsiClass psiClass, PsiExpression qualifier, PsiElement identifier) {
-        if (psiClass != null && psiClass.isRecord()) {
+        if (psiClass != null && psiClass.isRecord() && element.getArgumentList().getExpressionCount() == 0) {
             if (settings.getState().getGetSetExpressionsCollapse()) {
                 Expression expression = qualifier != null
                         ? BuildExpressionExt.getAnyExpression(qualifier, document)
