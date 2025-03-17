@@ -3,6 +3,7 @@ package com.intellij.advancedExpressionFolding.extension.clazz
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.extension.*
 import com.intellij.psi.*
+import com.jetbrains.rd.util.firstOrNull
 
 object MethodDefaultParameterExt {
 
@@ -11,23 +12,24 @@ object MethodDefaultParameterExt {
         return buildExpressions(defaultParamMethods, clazz)
     }
 
-    private fun findMethodsWithDefaultParams(clazz: PsiClass) = clazz.methods.filter {
+    private fun findMethodsWithDefaultParams(clazz: PsiClass): List<DefaultValue> = clazz.methods.filter {
         it.body != null
     }.groupBy {
         it.name
     }.values.mapNotNull { methods ->
-        methods.firstNotNullOfOrNull {
+        methods.groupBy {
             getParentMethod(it)
-        }?.let { mainMethod ->
-            findDefaultValuesForMostParams(methods, mainMethod)
+        }.filterKeys {
+            it != null
+        }.firstOrNull()?.let { (mainMethod, duplicates) ->
+            findDefaultValuesForMostParams(mainMethod!!, duplicates)
         }
     }
 
     private fun findDefaultValuesForMostParams(
-        methods: List<PsiMethod>,
-        mainMethod: PsiMethod
+        mainMethod: PsiMethod,
+        duplicates: List<PsiMethod>
     ): DefaultValue? {
-        val duplicates = methods - mainMethod
         val paramMap = methodToDefaultValues(duplicates)
         return paramMap.entries.maxByOrNull { (_, paramsMap) ->
             paramsMap.map.size
@@ -89,9 +91,9 @@ object MethodDefaultParameterExt {
     }
 
     private fun hasSamePrefixParameterTypes(parentMethod: PsiMethod, candidate: PsiMethod): Boolean {
-        return parentMethod.parameterList.parameters.zip(candidate.parameterList.parameters)
+        return candidate.parameterList.parameters.zip(parentMethod.parameterList.parameters)
             .all { (param1, param2) ->
-                param1.type == param2.type
+                param1.type.canonicalText == param2.type.canonicalText
             }
     }
 
