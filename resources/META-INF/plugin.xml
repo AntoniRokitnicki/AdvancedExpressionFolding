@@ -1,63 +1,92 @@
 <idea-plugin>
-  <id>com.github.advanced-java-folding2</id>
-  <name>Advanced Java Folding 2 (Fork)</name>
-  <vendor email="android.rokitnicki@gmail.com" url="https://github.com/AntoniRokitnicki/AdvancedExpressionFolding">Antoni</vendor>
+    <id>com.github.advanced-java-folding2</id>
+    <name>Advanced Java Folding 2 (Fork)</name>
+    <vendor email="android.rokitnicki@gmail.com" url="https://github.com/AntoniRokitnicki/AdvancedExpressionFolding">
+        Antoni
+    </vendor>
 
-  <depends>com.intellij.modules.java</depends>
-  <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.java</depends>
+    <depends>com.intellij.modules.platform</depends>
 
-  <extensions defaultExtensionNs="com.intellij">
-    <lang.foldingBuilder language="JAVA" implementationClass="com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingBuilder"/>
-    <applicationService serviceImplementation="com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings"/>
-    <editorFactoryListener implementation="com.intellij.advancedExpressionFolding.FoldingEditorCreatedListener"/>
-    <intentionAction>
-      <language>JAVA</language>
-      <className>com.intellij.advancedExpressionFolding.extension.methodcall.dynamic.AddDynamicMethodFoldingIntention</className>
-    </intentionAction>
+    <extensionPoints>
+        <extensionPoint name="advancedExpressionFolding2.methodCall"
+                        interface="com.intellij.advancedExpressionFolding.extension.methodcall.AbstractMethodCall"
+                        dynamic="true"/>
+    </extensionPoints>
+    <extensions defaultExtensionNs="com.github.advanced-java-folding2">
+        <advancedExpressionFolding2.methodCall
+                implementation="com.intellij.advancedExpressionFolding.extension.methodcall.date.BeforeDateMethodCall"/>
+        <advancedExpressionFolding2.methodCall
+                implementation="com.intellij.advancedExpressionFolding.extension.methodcall.date.AfterDateMethodCall"/>
+        <advancedExpressionFolding2.methodCall
+                implementation="com.intellij.advancedExpressionFolding.extension.methodcall.date.CreateDateFactoryMethodCall"/>
+        <advancedExpressionFolding2.methodCall
+                implementation="com.intellij.advancedExpressionFolding.extension.methodcall.nullable.CheckNotNullMethodCall"/>
+        <advancedExpressionFolding2.methodCall
+                implementation="com.intellij.advancedExpressionFolding.extension.methodcall.collection.MapPutMethodCall"/>
+        <advancedExpressionFolding2.methodCall
+                implementation="com.intellij.advancedExpressionFolding.extension.methodcall.collection.CollectionGetMethodCall"/>
+        <advancedExpressionFolding2.methodCall
+                implementation="com.intellij.advancedExpressionFolding.extension.methodcall.collection.OptionalGetMethodCall"/>
+    </extensions>
 
-     <postStartupActivity implementation="com.intellij.advancedExpressionFolding.FoldingStartupActivity" />
+    <extensions defaultExtensionNs="com.intellij">
+        <lang.foldingBuilder language="JAVA"
+                             implementationClass="com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingBuilder"/>
+        <applicationService
+                serviceImplementation="com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings"/>
+        <editorFactoryListener implementation="com.intellij.advancedExpressionFolding.FoldingEditorCreatedListener"/>
+        <intentionAction>
+            <language>JAVA</language>
+            <className>
+                com.intellij.advancedExpressionFolding.extension.methodcall.dynamic.AddDynamicMethodFoldingIntention
+            </className>
+        </intentionAction>
 
-    <errorHandler implementation="com.intellij.diagnostic.JetBrainsMarketplaceErrorReportSubmitter"/>
+        <postStartupActivity implementation="com.intellij.advancedExpressionFolding.FoldingStartupActivity"/>
 
-      <editorOptionsProvider
-              instance="com.intellij.advancedExpressionFolding.settings.SettingsConfigurable"
-              id="editor.folding.advanced.expression"
-              displayName="Advanced Expression Folding 2"/>
-  </extensions>
+        <errorHandler implementation="com.intellij.diagnostic.JetBrainsMarketplaceErrorReportSubmitter"/>
 
-  <actions>
-      <group id="AdvancedExpressionFolding2Group"
-             text="Advanced Folding: Searches"
-             description="Advanced expression folding search operations"
-             popup="true">
-          <add-to-group group-id="CodeMenu" anchor="last"/>
-          <action id="FindMethodsWithDefaultParametersAction"
-                  class="com.intellij.advancedExpressionFolding.FindMethodsWithDefaultParametersAction"
-                  text="Find Methods with Default Parameters"
-                  description="Searches the project for methods that use default parameter values"/>
-      </group>
+        <editorOptionsProvider
+                instance="com.intellij.advancedExpressionFolding.settings.SettingsConfigurable"
+                id="editor.folding.advanced.expression"
+                displayName="Advanced Expression Folding 2"/>
+    </extensions>
 
-    <action id="advanced.folding.toggle.global" class="com.intellij.advancedExpressionFolding.GlobalToggleFoldingAction"
-            text="Advanced Folding: Global" description="Toggle advanced folding globally across all files">
-      <add-to-group group-id="CodeMenu" anchor="last"/>
-    </action>
+    <actions>
+        <group id="AdvancedExpressionFolding2Group"
+               text="Advanced Folding: Searches"
+               description="Advanced expression folding search operations"
+               popup="true">
+            <add-to-group group-id="CodeMenu" anchor="last"/>
+            <action id="FindMethodsWithDefaultParametersAction"
+                    class="com.intellij.advancedExpressionFolding.FindMethodsWithDefaultParametersAction"
+                    text="Find Methods with Default Parameters"
+                    description="Searches the project for methods that use default parameter values"/>
+        </group>
 
-    <action id="advanced.folding.toggle.on" class="com.intellij.advancedExpressionFolding.FoldingOnAction"
-            text="Advanced Folding: Activate" description="Activate advanced folding in the current file"
-            icon="AllIcons.Actions.ArrowExpand">
-      <add-to-group group-id="CodeMenu" anchor="last"/>
-      <keyboard-shortcut first-keystroke="alt shift F" keymap="$default" replace-all="true" />
-      <keyboard-shortcut first-keystroke="alt T" keymap="Mac OS X 10.5+" replace-all="true" />
-    </action>
+        <action id="advanced.folding.toggle.global"
+                class="com.intellij.advancedExpressionFolding.GlobalToggleFoldingAction"
+                text="Advanced Folding: Global" description="Toggle advanced folding globally across all files">
+            <add-to-group group-id="CodeMenu" anchor="last"/>
+        </action>
 
-    <action id="advanced.folding.toggle.off" class="com.intellij.advancedExpressionFolding.FoldingOffAction"
-            text="Advanced Folding: Deactivate" description="Deactivate advanced folding in the current file"
-            icon="AllIcons.Actions.ArrowCollapse">
-      <add-to-group group-id="CodeMenu" anchor="last"/>
-      <keyboard-shortcut first-keystroke="alt shift D" keymap="$default"/>
-      <keyboard-shortcut first-keystroke="alt Y" keymap="Mac OS X 10.5+" replace-all="true" />
-    </action>
+        <action id="advanced.folding.toggle.on" class="com.intellij.advancedExpressionFolding.FoldingOnAction"
+                text="Advanced Folding: Activate" description="Activate advanced folding in the current file"
+                icon="AllIcons.Actions.ArrowExpand">
+            <add-to-group group-id="CodeMenu" anchor="last"/>
+            <keyboard-shortcut first-keystroke="alt shift F" keymap="$default" replace-all="true"/>
+            <keyboard-shortcut first-keystroke="alt T" keymap="Mac OS X 10.5+" replace-all="true"/>
+        </action>
 
-  </actions>
+        <action id="advanced.folding.toggle.off" class="com.intellij.advancedExpressionFolding.FoldingOffAction"
+                text="Advanced Folding: Deactivate" description="Deactivate advanced folding in the current file"
+                icon="AllIcons.Actions.ArrowCollapse">
+            <add-to-group group-id="CodeMenu" anchor="last"/>
+            <keyboard-shortcut first-keystroke="alt shift D" keymap="$default"/>
+            <keyboard-shortcut first-keystroke="alt Y" keymap="Mac OS X 10.5+" replace-all="true"/>
+        </action>
+
+    </actions>
 
 </idea-plugin>

@@ -2,16 +2,9 @@ package com.intellij.advancedExpressionFolding.extension.methodcall
 
 import com.intellij.advancedExpressionFolding.extension.BaseExtension
 import com.intellij.advancedExpressionFolding.extension.Consts
-import com.intellij.advancedExpressionFolding.extension.methodcall.collection.CollectionGetMethodCall
-import com.intellij.advancedExpressionFolding.extension.methodcall.collection.MapPutMethodCall
-import com.intellij.advancedExpressionFolding.extension.methodcall.collection.OptionalGetMethodCall
-import com.intellij.advancedExpressionFolding.extension.methodcall.date.CreateDateFactoryMethodCall
-import com.intellij.advancedExpressionFolding.extension.methodcall.date.IsAfterDateMethodCall
-import com.intellij.advancedExpressionFolding.extension.methodcall.date.IsBeforeDateMethodCall
 import com.intellij.advancedExpressionFolding.extension.methodcall.dynamic.ConfigurationParser
 import com.intellij.advancedExpressionFolding.extension.methodcall.dynamic.DynamicMethodCall
 import com.intellij.advancedExpressionFolding.extension.methodcall.dynamic.IDynamicDataProvider
-import com.intellij.advancedExpressionFolding.extension.methodcall.nullable.CheckNotNullMethodCall
 import com.intellij.advancedExpressionFolding.extension.on
 
 typealias MethodName = String
@@ -73,15 +66,9 @@ object MethodCallFactory : BaseExtension(){
             })
         }
 
-    //TODO: move to extension list when API is stable
-    private fun getAllMethodCalls() = listOf(
-        IsBeforeDateMethodCall(), IsAfterDateMethodCall(), CreateDateFactoryMethodCall(),
-        CheckNotNullMethodCall(), MapPutMethodCall(), CollectionGetMethodCall(),
-        OptionalGetMethodCall(),
+    private fun getAllMethodCalls(): List<AbstractMethodCall> = MethodCallManager.methodCalls + loadDynamicMethods().orEmpty()
 
-    ) + (loadDynamicMethods() ?: emptyList())
-
-    private fun loadDynamicMethods(): List<DynamicMethodCall>? = dynamic.on(dynamicProvider?.parse())
+    private fun loadDynamicMethods(): List<DynamicMethodCall>? = dynamic.on()?.let { dynamicProvider?.parse() }
 
     private fun createSupportedClasses(): Collection<ClassName> =
         methodCallMap.values
