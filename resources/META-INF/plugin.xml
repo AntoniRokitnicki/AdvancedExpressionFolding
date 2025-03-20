@@ -9,24 +9,24 @@
     <depends>com.intellij.modules.platform</depends>
 
     <extensionPoints>
-        <extensionPoint name="advancedExpressionFolding2.methodCall"
+        <extensionPoint name="methodCallFolding"
                         interface="com.intellij.advancedExpressionFolding.extension.methodcall.AbstractMethodCall"
                         dynamic="true"/>
     </extensionPoints>
     <extensions defaultExtensionNs="com.github.advanced-java-folding2">
-        <advancedExpressionFolding2.methodCall
+        <methodCallFolding
                 implementation="com.intellij.advancedExpressionFolding.extension.methodcall.date.BeforeDateMethodCall"/>
-        <advancedExpressionFolding2.methodCall
+        <methodCallFolding
                 implementation="com.intellij.advancedExpressionFolding.extension.methodcall.date.AfterDateMethodCall"/>
-        <advancedExpressionFolding2.methodCall
+        <methodCallFolding
                 implementation="com.intellij.advancedExpressionFolding.extension.methodcall.date.CreateDateFactoryMethodCall"/>
-        <advancedExpressionFolding2.methodCall
+        <methodCallFolding
                 implementation="com.intellij.advancedExpressionFolding.extension.methodcall.nullable.CheckNotNullMethodCall"/>
-        <advancedExpressionFolding2.methodCall
+        <methodCallFolding
                 implementation="com.intellij.advancedExpressionFolding.extension.methodcall.collection.MapPutMethodCall"/>
-        <advancedExpressionFolding2.methodCall
+        <methodCallFolding
                 implementation="com.intellij.advancedExpressionFolding.extension.methodcall.collection.CollectionGetMethodCall"/>
-        <advancedExpressionFolding2.methodCall
+        <methodCallFolding
                 implementation="com.intellij.advancedExpressionFolding.extension.methodcall.collection.OptionalGetMethodCall"/>
     </extensions>
 
