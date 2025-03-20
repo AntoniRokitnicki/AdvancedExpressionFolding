@@ -93,7 +93,8 @@ public class MethodCallExpressionExt {
         var methodCalls = FACTORY.findByMethodName(methodName);
         if (methodCalls != null) {
             for (AbstractMethodCall methodCall : methodCalls) {
-                var context = new Context(methodName, className, qualifierExpression, method, document, identifier, Collections.emptyList());
+                var args = Arrays.stream(element.getArgumentList().getExpressions()).map(arg -> BuildExpressionExt.getAnyExpression(arg, document)).toList();
+                var context = new Context(methodName, className, qualifierExpression, method, document, identifier, args);
                 var expression = methodCall.execute(element, context);
                 if (expression != null) {
                     return expression;

@@ -13,7 +13,7 @@ data class Context(
     val method: PsiMethod,
     val document: Document,
     val identifier: PsiElement,
-    var argumentExpressions: List<Expression> = emptyList(),
+    var argumentExpressions: List<Expression>,
 ) {
     fun getOperands(): List<Expression> =
         qualifierExpression?.let {
