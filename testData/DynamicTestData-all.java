@@ -26,9 +26,9 @@ public <fold text='🏛️' expand='false'>class</fold> DynamicTestData {
         <fold text='changedStaticMethod' expand='true'>staticMethod</fold>(data.<fold text='data' expand='false'>getData()</fold>);
     }</fold>
 
-    <fold text='🚫' expand='false'>private</fold> String <fold text='changedNormalMethod' expand='true'>normalMethod</fold>(String args)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+    <fold text='🚫' expand='false'><fold text='' expand='true'>private</fold> String <fold text='changedNormalMethod' expand='true'>normalMethod</fold>(String args<fold text=' = args.substring(1))' expand='true'>)</fold><fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
         </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold><fold text='changedNormalMethod' expand='true'>normalMethod</fold>(args<fold text='[' expand='false'>.substring(</fold>1<fold text=':]' expand='false'>)</fold>)<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
-    </fold>}</fold>
+    </fold>}</fold></fold>
 
     <fold text='🚫' expand='false'>private</fold> <fold text='⚡' expand='false'>static</fold> String <fold text='changedStaticMethod' expand='true'>staticMethod</fold>(String args) <fold text='{...}' expand='true'>{
         <fold text='' expand='false'>System.out.</fold>println(<fold text='"DynamicTestData.staticMethod"' expand='false'>"DynamicTestData.staticMethod"</fold>);
