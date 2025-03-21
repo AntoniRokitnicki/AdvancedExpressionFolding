@@ -46,10 +46,10 @@ public class NullableAnnotationTestData {
     <fold text='' expand='false'>@Nullable</fold>
     private String<fold text='? ' expand='false'> </fold>string2;
 
-    public void select(@Nullable String element,
+    public void select(<fold text='' expand='false'>@Nullable</fold><fold text='' expand='false'> </fold>String<fold text='? ' expand='false'> </fold>element,
                        int i,
-                       @NotNull Object o,
-                       @Nonnull LocalDate date
+                       <fold text='' expand='false'>@NotNull</fold><fold text='' expand='false'> </fold>Object<fold text='!! ' expand='false'> </fold>o,
+                       <fold text='' expand='false'>@Nonnull</fold><fold text='' expand='false'> </fold>LocalDate<fold text='!! ' expand='false'> </fold>date
                        ) <fold text='{...}' expand='true'>{
         new HashMap<String, String>().put("a", "b");
 
@@ -151,7 +151,7 @@ public class NullableAnnotationTestData {
                 return field;
             }</fold></fold><fold text='' expand='false'>
 
-            <fold text='' expand='false'></fold>public void setField(<fold text='' expand='false'>@Nullable</fold><fold text='' expand='false'> </fold>String<fold text='? ' expand='false'> </fold>field)<fold text=' { ' expand='false'> {
+            </fold><fold text='' expand='false'>public void setField(<fold text='' expand='false'>@Nullable<fold text='' expand='false'></fold> </fold>String<fold text='? ' expand='false'> </fold>field)<fold text=' { ' expand='false'> {
                 </fold>this.field = field;<fold text=' }' expand='false'>
             }</fold></fold>
         }</fold>
@@ -185,7 +185,7 @@ public class NullableAnnotationTestData {
 
             </fold><fold text='' expand='false'>public <fold text='' expand='false'>@Nullable</fold> String<fold text='? ' expand='false'> </fold>getField()<fold text=' { ' expand='false'> {
                 </fold>return field;<fold text=' }' expand='false'>
-            }</fold><fold text='' expand='false'></fold>
+            }</fold></fold><fold text='' expand='false'>
 
             </fold><fold text='' expand='false'>public void setField(<fold text='' expand='false'>@Nullable</fold><fold text='' expand='false'> </fold>String<fold text='? ' expand='false'> </fold>field)<fold text=' { ' expand='false'> {
                 </fold>this.field = field;<fold text=' }' expand='false'>

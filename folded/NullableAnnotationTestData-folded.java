@@ -28,10 +28,10 @@ public class NullableAnnotationTestData {
     
     private String? string2;
 
-    public void select(@Nullable String element,
+    public void select(String? element,
                        int i,
-                       @NotNull Object o,
-                       @Nonnull LocalDate date
+                       Object!! o,
+                       LocalDate!! date
                        ) {
         new HashMap<String, String>().put("a", "b");
 

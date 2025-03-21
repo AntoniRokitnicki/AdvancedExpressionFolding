@@ -20,13 +20,13 @@ public class NullableAnnotationCheckNotNullTestData {
             new HashMap<String, String>().put("a", "b");
         }
 
-        public void mainConflictAnnotations(@Nullable String!!! args, @Nullable Object!!! o, @Nullable Long!!! l, @Nullable Preconditions z) {args!!;l!!;
+        public void mainConflictAnnotations(String!!! args, Object!!! o, Long!!! l, Preconditions? z) {args!!;l!!;
             Preconditions.checkNotNull(z.getData());o!!;
             System.out.println();
             new HashMap<String, String>().put("a", "b");
         }
 
-        public void mainConflictAnnotationsWithMsg(@Nullable String!!! args, @Nullable Object!!! o, @Nullable Long!!! l, @Nullable Preconditions z) {args!!;l!!;
+        public void mainConflictAnnotationsWithMsg(String!!! args, Object!!! o, Long!!! l, Preconditions? z) {args!!;l!!;
             Preconditions.checkNotNull(z.getData(), "o is null");o!!;
             new HashMap<String, String>().put("a", "b");
             System.out.println();

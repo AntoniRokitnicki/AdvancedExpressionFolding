@@ -94,11 +94,13 @@ object NullableExt : BaseExtension() {
 
     @JvmStatic
     fun createExpression(psiParameter: PsiParameter, document: Document): Expression? {
-        return readCheckNotNullMethods(psiParameter, document) ?: fieldAnnotationExpression(
+        val list = exprList(readCheckNotNullMethods(psiParameter, document))
+        list += fieldAnnotationExpression(
             psiParameter.annotations,
             psiParameter.typeElement,
             true
         )
+        return list.exprWrap(psiParameter)
     }
 
     @JvmStatic
