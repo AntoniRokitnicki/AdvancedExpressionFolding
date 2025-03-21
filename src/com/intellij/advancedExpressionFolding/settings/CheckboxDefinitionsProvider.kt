@@ -208,6 +208,7 @@ class CheckboxDefinitionsProvider {
 
         registerCheckbox(state::dynamic, "Dynamic names for methods based on \$user.home/dynamic-ajf2.toml") {
             example("DynamicTestData.java")
+            link("/Dynamic-Folding")
         }
 
         if (false) {
