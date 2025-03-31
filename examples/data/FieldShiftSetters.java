@@ -1,10 +1,13 @@
 package data;
 
+import java.util.List;
+
 public class FieldShiftSetters {
     private String username;
     private boolean active;
     private String userIdentifier;
     private FieldShiftSetters child;
+    private List<String> list;
 
     public FieldShiftSetters() {
     }
@@ -25,6 +28,14 @@ public class FieldShiftSetters {
         this.child = child;
     }
 
+    public List<String> getList() {
+        return list;
+    }
+
+    public void setList(List<String> list) {
+        this.list = list;
+    }
+
     public static FieldShiftSetters mapPojoChain(FieldShiftSetters source) {
         FieldShiftSetters result = new FieldShiftSetters();
         result.setUsername(source.getChild().getUsername());
@@ -38,6 +49,7 @@ public class FieldShiftSetters {
         result.setUsername(source.getUsername());
         result.setUserIdentifier(source.getUserIdentifier());
         result.setActive(source.isActive());
+        result.setList(List.copyOf(source.getList()));
         return result;
     }
 

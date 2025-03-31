@@ -1,5 +1,7 @@
 package data;
 
+import java.util.List;
+
 public class FieldShiftFields {
     public String username;
     public boolean active;
@@ -10,6 +12,7 @@ public class FieldShiftFields {
     public FieldShiftFields() {
 
     }
+    private List<String> list;
 
     public FieldShiftFields(String username, boolean active, String userIdentifier, FieldShiftFields child) {
         this.username = <<;
@@ -25,6 +28,7 @@ public class FieldShiftFields {
         result.username = source.child.<<;
         result.userIdentifier = source.child.child.child.<<;
         result.active = source.child.<<;
+        result.list = List.copyOf(source.<<);
         return result;
     }
 
@@ -59,7 +63,7 @@ public class FieldShiftFields {
         var2.active = source.<<;
         FieldShiftFields result = new FieldShiftFields();
         result.username = record.userIdentifier;
-        result.username = changer(record.username);
+        result.username = changer(record.<<);
         result.username = source.<<;
         result.username = var1.child.<<;
         result.username = source.username + "1";
@@ -87,7 +91,7 @@ public class FieldShiftFields {
         var2.active = source.<<;
         FieldShiftFields result = new FieldShiftFields();
         result.username = record.userIdentifier;
-        result.username = changer(record.username);
+        result.username = changer(record.<<);
         result.username = source.<<;
         result.username = var1.child.<<;
         result.username = source.username + "1";

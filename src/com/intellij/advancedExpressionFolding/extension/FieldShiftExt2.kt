@@ -11,32 +11,39 @@ object FieldShiftExt2 : BaseExtension() {
 
     @JvmStatic
     fun createExpression(
-        element: PsiMethodCallExpression,
+        getterElement: PsiMethodCallExpression,
         document: Document,
         qualifier: PsiExpression?
     ): Expression? {
         fieldShift.takeIf {
-            it && qualifier != null && element.argumentList.isEmpty
+            it && qualifier != null && getterElement.argumentList.isEmpty
         } ?: return null
 
-        val expressionList = element.parent.asInstance<PsiExpressionList>() ?: return null
+        val expressionList = getterElement.parent.asInstance<PsiExpressionList>() ?: return null
 
-        val parentMethod = expressionList.parent.asInstance<PsiMethodCallExpression>()?.resolveMethod() ?: return null
+        val parentMethod = expressionList.parent.asInstance<PsiMethodCallExpression>()?.let { methodCall ->
+            methodCall.resolveMethod()?.takeIf {
+                it.isSetterOrBuilder()
+            } ?: run {
+                methodCall.parent.asInstance<PsiExpressionList>()?.parent.asInstance<PsiMethodCallExpression>()
+                    ?.resolveMethod()?.takeIf {
+                        it.isSetterOrBuilder()
+                    }
+            }
+        } ?: return null
+
         val parameters = parentMethod.parameterList.parameters
-        val index = expressionList.filterOutWhiteSpaceAndTokens().indexOf(element)
+        val index = expressionList.filterOutWhiteSpaceAndTokens().indexOf(getterElement)
         val parameter = parameters.getOrNull(index) ?: return null
 
-        val qualifierExpr = getAnyExpression(qualifier!!, document)
-
-        val currentMethod = element.resolveMethod() ?: return null
+        val currentMethod = getterElement.resolveMethod() ?: return null
         if (currentMethod.isGetter()) {
             val propertyName = currentMethod.guessPropertyName()
             if (propertyName == parameter.name) {
                 if (parameters.size == 1) {
-                    if (parentMethod.isSetterOrBuilder()) {
-                        if (parentMethod.guessPropertyName() == propertyName) {
-                            return FieldShiftMethod(element, element.textRange, listOf(qualifierExpr), "<<")
-                        }
+                    if (parentMethod.guessPropertyName() == propertyName) {
+                        val qualifierExpr = getAnyExpression(qualifier!!, document)
+                        return FieldShiftMethod(getterElement, getterElement.textRange, listOf(qualifierExpr), "<<")
                     }
                 }
             }

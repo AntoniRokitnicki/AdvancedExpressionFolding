@@ -7,6 +7,7 @@ import com.intellij.advancedExpressionFolding.expression.Variable
 import com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression
 import com.intellij.openapi.editor.Document
 import com.intellij.psi.PsiAssignmentExpression
+import com.intellij.psi.PsiMethodCallExpression
 import com.intellij.psi.PsiReferenceExpression
 
 object FieldShiftExt : BaseExtension() {
@@ -17,7 +18,9 @@ object FieldShiftExt : BaseExtension() {
             it || fieldShift
         } ?: return null
 
-        val right = element.rExpression ?: return null
+        val right = element.rExpression?.let {
+            it.asInstance<PsiMethodCallExpression>()?.argumentList?.expressions?.singleOrNull() ?: it
+        } ?: return null
 
         val leftText =
             element.lExpression.asInstance<PsiReferenceExpression>()?.referenceNameElement?.text ?: return null

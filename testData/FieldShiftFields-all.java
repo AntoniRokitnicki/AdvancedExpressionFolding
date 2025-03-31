@@ -1,15 +1,18 @@
 <fold text='📦' expand='false'>package</fold> data;
 
-<fold text='@NoArgsConstructor @Getter p' expand='false'>p</fold>ublic <fold text='🏛️' expand='false'>class</fold> FieldShiftFields {
-    public String username;
-    public <fold text='🔘' expand='false'>boolean</fold> active;
-    public String userIdentifier;
-    public FieldShiftFields child;<fold text='' expand='false'>
+<fold text='🚢' expand='false'>import</fold> java.util.List;
+
+<fold text='@NoArgsConstructor p' expand='false'>p</fold>ublic <fold text='🏛️' expand='false'>class</fold> FieldShiftFields {
+    <fold text='@Getter p' expand='false'>p</fold>ublic String username;
+    <fold text='@Getter p' expand='false'>p</fold>ublic <fold text='🔘' expand='false'>boolean</fold> active;
+    <fold text='@Getter p' expand='false'>p</fold>ublic String userIdentifier;
+    <fold text='@Getter p' expand='false'>p</fold>ublic FieldShiftFields child;<fold text='' expand='false'>
 
 
     </fold><fold text='' expand='false'>public FieldShiftFields() <fold text='{}' expand='true'>{
 
     }</fold></fold>
+    <fold text='🚫' expand='false'>private</fold> List<String> list;
 
     public FieldShiftFields(String username, <fold text='🔘' expand='false'>boolean</fold> active, String userIdentifier, FieldShiftFields child) <fold text='{...}' expand='true'>{
         <fold text='📍' expand='false'>this</fold>.username = <fold text='<<' expand='false'>username</fold>;
@@ -25,6 +28,7 @@
         result.username = source.child.<fold text='<<' expand='true'>username</fold>;
         result.userIdentifier = source.child.child.child.<fold text='<<' expand='true'>userIdentifier</fold>;
         result.active = source.child.<fold text='<<' expand='true'>active</fold>;
+        result.list = List.copyOf(source.<fold text='<<' expand='true'>list</fold>);
         <fold text='🔙' expand='false'>return</fold> result;
     }</fold>
 
@@ -59,7 +63,7 @@
         var2.active = source.<fold text='<<' expand='true'>active</fold>;
         <fold text='val' expand='false'>FieldShiftFields</fold> result = new FieldShiftFields();
         result.username = record.userIdentifier;
-        result.username = changer(record.username);
+        result.username = changer(record.<fold text='<<' expand='true'>username</fold>);
         result.username = source.<fold text='<<' expand='true'>username</fold>;
         result.username = var1.child.<fold text='<<' expand='true'>username</fold>;
         result.username =<fold text=' "${' expand='false'> </fold>source.username<fold text='}' expand='false'> + "</fold>1";
@@ -87,7 +91,7 @@
         var2.active = source.<fold text='<<' expand='false'>isActive()</fold>;
         <fold text='val' expand='false'>FieldShiftFields</fold> result = new FieldShiftFields();
         result.username = record.userIdentifier;
-        result.username = changer(record.<fold text='username' expand='false'>username()</fold>);
+        result.username = changer(record.<fold text='<<' expand='false'>username()</fold>);
         result.username = source.<fold text='<<' expand='false'>getUsername()</fold>;
         result.username = var1.<fold text='child' expand='false'>getChild()</fold>.<fold text='<<' expand='false'>getUsername()</fold>;
         result.username =<fold text=' "${' expand='false'> </fold>source.<fold text='username' expand='false'>getUsername()</fold><fold text='}' expand='false'> + "</fold>1";
@@ -127,7 +131,7 @@
     </fold>}</fold></fold><fold text='' expand='false'>
 
     </fold><fold text='' expand='false'>public FieldShiftFields getChild()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-        </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>child<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+        </fold><fold text='' expand='true'></fold>return</fold><fold text='' expand='true'> </fold>child<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
     </fold>}</fold></fold>
 
     <fold text='@Getter p' expand='false'>p</fold>ublic <fold text='⚡' expand='false'>static</fold> <fold text='🏛️' expand='false'>class</fold> UserData2 <fold text='{...}' expand='true'>{
@@ -137,7 +141,7 @@
 
         </fold><fold text='' expand='false'>public String getUsername()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
             </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>username<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
-        </fold>}</fold></fold><fold text='' expand='false'>
+        </fold>}</fold><fold text='' expand='false'></fold>
 
         </fold><fold text='' expand='false'>public <fold text='🔘' expand='false'>boolean</fold> isActive()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
             </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>active<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>

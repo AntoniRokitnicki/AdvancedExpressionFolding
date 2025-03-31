@@ -1,5 +1,7 @@
 package data;
 
+import java.util.List;
+
 public class FieldShiftFields {
     public String username;
     public boolean active;
@@ -10,6 +12,7 @@ public class FieldShiftFields {
     public FieldShiftFields() {
 
     }
+    private List<String> list;
 
     public FieldShiftFields(String username, boolean active, String userIdentifier, FieldShiftFields child) {
         this.username = username;
@@ -25,6 +28,7 @@ public class FieldShiftFields {
         result.username = source.child.username;
         result.userIdentifier = source.child.child.child.userIdentifier;
         result.active = source.child.active;
+        result.list = List.copyOf(source.list);
         return result;
     }
 

@@ -1,5 +1,7 @@
 package data;
 
+import java.util.List;
+
 public class FieldShiftFields {
     public String username;
     public boolean active;
@@ -10,6 +12,7 @@ public class FieldShiftFields {
     public FieldShiftFields() <fold text='{}' expand='true'>{
 
     }</fold>
+    private List<String> list;
 
     public FieldShiftFields(String username, boolean active, String userIdentifier, FieldShiftFields child) <fold text='{...}' expand='true'>{
         this.username = <fold text='<<' expand='false'>username</fold>;
@@ -25,6 +28,7 @@ public class FieldShiftFields {
         result.username = source.child.<fold text='<<' expand='true'>username</fold>;
         result.userIdentifier = source.child.child.child.<fold text='<<' expand='true'>userIdentifier</fold>;
         result.active = source.child.<fold text='<<' expand='true'>active</fold>;
+        result.list = List.copyOf(source.<fold text='<<' expand='true'>list</fold>);
         return result;
     }</fold>
 
@@ -59,7 +63,7 @@ public class FieldShiftFields {
         var2.active = source.<fold text='<<' expand='true'>active</fold>;
         FieldShiftFields result = new FieldShiftFields();
         result.username = record.userIdentifier;
-        result.username = changer(record.username);
+        result.username = changer(record.<fold text='<<' expand='true'>username</fold>);
         result.username = source.<fold text='<<' expand='true'>username</fold>;
         result.username = var1.child.<fold text='<<' expand='true'>username</fold>;
         result.username = source.username + "1";
@@ -87,7 +91,7 @@ public class FieldShiftFields {
         var2.active = source.<fold text='<<' expand='false'>isActive()</fold>;
         FieldShiftFields result = new FieldShiftFields();
         result.username = record.userIdentifier;
-        result.username = changer(record.<fold text='username' expand='false'>username()</fold>);
+        result.username = changer(record.<fold text='<<' expand='false'>username()</fold>);
         result.username = source.<fold text='<<' expand='false'>getUsername()</fold>;
         result.username = var1.<fold text='child' expand='false'>getChild()</fold>.<fold text='<<' expand='false'>getUsername()</fold>;
         result.username = source.<fold text='username' expand='false'>getUsername()</fold> + "1";

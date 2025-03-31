@@ -1,10 +1,13 @@
 package data;
 
+import java.util.List;
+
 public class FieldShiftSetters {
     private String username;
     private boolean active;
     private String userIdentifier;
     private FieldShiftSetters child;
+    private List<String> list;
 
     public FieldShiftSetters() <fold text='{}' expand='true'>{
     }</fold>
@@ -25,6 +28,14 @@ public class FieldShiftSetters {
         </fold>this.child = <fold text='<<' expand='false'>child</fold>;<fold text=' }' expand='false'>
     }</fold>
 
+    public List<String> getList()<fold text=' { ' expand='false'> {
+        </fold>return list;<fold text=' }' expand='false'>
+    }</fold>
+
+    public void setList(List<String> list)<fold text=' { ' expand='false'> {
+        </fold>this.list = <fold text='<<' expand='false'>list</fold>;<fold text=' }' expand='false'>
+    }</fold>
+
     public static FieldShiftSetters mapPojoChain(FieldShiftSetters source) <fold text='{...}' expand='true'>{
         FieldShiftSetters result = new FieldShiftSetters();
         result.<fold text='username = ' expand='false'>setUsername(</fold>source.<fold text='child' expand='false'>getChild()</fold><fold text='<<' expand='false'>.getUsername()</fold><fold text='' expand='false'>)</fold>;
@@ -38,6 +49,7 @@ public class FieldShiftSetters {
         result.<fold text='username = ' expand='false'>setUsername(</fold>source<fold text='<<' expand='false'>.getUsername()</fold><fold text='' expand='false'>)</fold>;
         result.<fold text='userIdentifier = ' expand='false'>setUserIdentifier(</fold>source<fold text='<<' expand='false'>.getUserIdentifier()</fold><fold text='' expand='false'>)</fold>;
         result.<fold text='active = ' expand='false'>setActive(</fold>source<fold text='<<' expand='false'>.isActive()</fold><fold text='' expand='false'>)</fold>;
+        result.<fold text='list = ' expand='false'>setList(</fold>List.copyOf(source<fold text='<<' expand='false'>.getList()</fold>)<fold text='' expand='false'>)</fold>;
         return result;
     }</fold>
 
@@ -56,7 +68,7 @@ public class FieldShiftSetters {
         var2.<fold text='active = ' expand='false'>setActive(</fold>source<fold text='<<' expand='false'>.isActive()</fold><fold text='' expand='false'>)</fold>;
         FieldShiftSetters result = new FieldShiftSetters();
         result.<fold text='username = ' expand='false'>setUsername(</fold>record.<fold text='userIdentifier' expand='false'>userIdentifier()</fold><fold text='' expand='false'>)</fold>;
-        result.<fold text='username = ' expand='false'>setUsername(</fold>changer(record.<fold text='username' expand='false'>username()</fold>)<fold text='' expand='false'>)</fold>;
+        result.<fold text='username = ' expand='false'>setUsername(</fold>changer(record<fold text='<<' expand='false'>.username()</fold>)<fold text='' expand='false'>)</fold>;
         result.<fold text='username = ' expand='false'>setUsername(</fold>source<fold text='<<' expand='false'>.getUsername()</fold><fold text='' expand='false'>)</fold>;
         result.<fold text='username = ' expand='false'>setUsername(</fold>var1.<fold text='child' expand='false'>getChild()</fold><fold text='<<' expand='false'>.getUsername()</fold><fold text='' expand='false'>)</fold>;
         result.<fold text='username = ' expand='false'>setUsername(</fold>source.<fold text='username' expand='false'>getUsername()</fold> + "1"<fold text='' expand='false'>)</fold>;

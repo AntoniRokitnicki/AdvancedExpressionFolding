@@ -19,7 +19,7 @@ public class FieldShiftBuilder {
                 .username(record<fold text='<<' expand='false'>.username()</fold>);
         var builder2 = builder
                 .active(source<fold text='<<' expand='false'>.isActive()</fold>);
-        return FieldShiftBuilder.builder().username(record.<fold text='userIdentifier' expand='false'>userIdentifier()</fold>).username(changer(record.<fold text='username' expand='false'>username()</fold>))
+        return FieldShiftBuilder.builder().username(record.<fold text='userIdentifier' expand='false'>userIdentifier()</fold>).username(changer(record<fold text='<<' expand='false'>.username()</fold>))
                 .username(source<fold text='<<' expand='false'>.getUsername()</fold>).username(builder.username("a").build()<fold text='<<' expand='false'>.getUsername()</fold>)
                 .username(source.<fold text='username' expand='false'>getUsername()</fold> + "1")
                 .active(source<fold text='<<' expand='false'>.isActive()</fold>).userIdentifier(source<fold text='<<' expand='false'>.getUserIdentifier()</fold>)

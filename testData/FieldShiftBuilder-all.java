@@ -19,7 +19,7 @@
                 .username(record<fold text='<<' expand='true'>.username()</fold>);
         <fold text='val' expand='false'>var</fold> builder2 = builder
                 .active(source<fold text='<<' expand='true'>.isActive()</fold>);
-        <fold text='🔙' expand='false'>return</fold> FieldShiftBuilder.builder().username(record.<fold text='userIdentifier' expand='false'>userIdentifier()</fold>).username(changer(record.<fold text='username' expand='false'>username()</fold>))
+        <fold text='🔙' expand='false'>return</fold> FieldShiftBuilder.builder().username(record.<fold text='userIdentifier' expand='false'>userIdentifier()</fold>).username(changer(record<fold text='<<' expand='false'>.username()</fold>))
                 .username(source<fold text='<<' expand='true'>.getUsername()</fold>).username(builder.username("a").build()<fold text='<<' expand='true'>.getUsername()</fold>)
                 .username<fold text='("${' expand='false'>(</fold>source.<fold text='username' expand='false'>getUsername()</fold><fold text='}' expand='false'> + "</fold>1")
                 .active(source<fold text='<<' expand='true'>.isActive()</fold>).userIdentifier(source<fold text='<<' expand='true'>.getUserIdentifier()</fold>)
