@@ -31,7 +31,9 @@ object ExperimentalExt : BaseExtension() {
             it.expr(" ")
         }
         val endingSemicolon = statement.children.lastOrNull().asInstance<PsiJavaToken>()//;
-        val exprList = elemList(endingSemicolon)
+        val exprList = arrayOf<PsiElement?>(endingSemicolon).mapNotNull {
+            it.exprHide()
+        }.toMutableList<Expression?>()
         exprList.addAll(whitespaces)
 
         exprList.add(getAnyExpression(body))
@@ -52,7 +54,9 @@ object ExperimentalExt : BaseExtension() {
         val preBracketSpace = statement.nextSibling
         val endingSemicolon = statement.children.lastOrNull().asInstance<PsiJavaToken>()//;
 
-        val exprList = elemList(keyword, keywordNextWhitespace, preBracketSpace)
+        val exprList = sequenceOf(keyword, keywordNextWhitespace, preBracketSpace).mapNotNull {
+            it.exprHide()
+        }.toMutableList<Expression?>()
 
         //TODO: fix issue with Intellij method folding to fold like kotlin
         //val braceLeft = returnPrevSpace?.prevSibling
