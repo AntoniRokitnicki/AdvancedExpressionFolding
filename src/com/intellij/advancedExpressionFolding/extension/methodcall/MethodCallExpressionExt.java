@@ -43,7 +43,7 @@ public class MethodCallExpressionExt {
         PsiElement identifier = identifierOpt.orElseThrow();
         @Nullable PsiExpression qualifier = element.getMethodExpression().getQualifierExpression();
 
-        Expression shiftExpr = FieldShiftExt2.createExpression(element, document, qualifier);
+        Expression shiftExpr = FieldShiftExt.createExpression(element, document, qualifier);
         if (shiftExpr != null) {
             return shiftExpr;
         }

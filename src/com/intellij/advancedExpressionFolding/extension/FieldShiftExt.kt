@@ -5,12 +5,12 @@ import com.intellij.advancedExpressionFolding.expression.IGetter
 import com.intellij.advancedExpressionFolding.expression.INameable
 import com.intellij.advancedExpressionFolding.expression.Variable
 import com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression
+import com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod
 import com.intellij.openapi.editor.Document
-import com.intellij.psi.PsiAssignmentExpression
-import com.intellij.psi.PsiMethodCallExpression
-import com.intellij.psi.PsiReferenceExpression
+import com.intellij.psi.*
 
 object FieldShiftExt : BaseExtension() {
+    private const val FIELD_SHIFT = "<<"
 
     @JvmStatic
     fun createExpression(element: PsiAssignmentExpression, document: Document?): Expression? {
@@ -34,13 +34,57 @@ object FieldShiftExt : BaseExtension() {
 
         if (leftText == rightText) {
             if (rightExp is IGetter) {
-                return BuilderShiftExpression(right, rightExp.getterTextRange, "<<")
+                return BuilderShiftExpression(right, rightExp.getterTextRange, FIELD_SHIFT)
             }
             if (rightExp is Variable) {
-                return BuilderShiftExpression(right, rightExp.textRange, "<<")
+                return BuilderShiftExpression(right, rightExp.textRange, FIELD_SHIFT)
             }
             right.asInstance<PsiReferenceExpression>()?.referenceNameElement?.let {
-                return BuilderShiftExpression(it, it.textRange, "<<")
+                return BuilderShiftExpression(it, it.textRange, FIELD_SHIFT)
+            }
+        }
+        return null
+    }
+
+    @JvmStatic
+    fun createExpression(
+        getterElement: PsiMethodCallExpression,
+        document: Document,
+        qualifier: PsiExpression?
+    ): Expression? {
+        fieldShift.takeIf {
+            it && qualifier != null && getterElement.argumentList.isEmpty
+        } ?: return null
+
+        val expressionList = getterElement.parent.asInstance<PsiExpressionList>() ?: return null
+
+        val parentMethod = expressionList.parent.asInstance<PsiMethodCallExpression>()?.let { methodCall ->
+            methodCall.resolveMethod()?.takeIf {
+                it.isSetterOrBuilder()
+            } ?: run {
+                methodCall.parent.asInstance<PsiExpressionList>()?.parent.asInstance<PsiMethodCallExpression>()
+                    ?.resolveMethod()?.takeIf {
+                        it.isSetterOrBuilder()
+                    }
+            }
+        } ?: return null
+
+        val parameters = parentMethod.parameterList.parameters
+        val index = expressionList.filterOutWhiteSpaceAndTokens().indexOf(getterElement)
+        val parameter = parameters.getOrNull(index) ?: return null
+
+        val currentMethod = getterElement.resolveMethod() ?: return null
+        if (currentMethod.isGetter()) {
+            val propertyName = currentMethod.guessPropertyName()
+            if (propertyName == parameter.name) {
+                if (parameters.size == 1) {
+                    if (parentMethod.guessPropertyName() == propertyName) {
+                        val qualifierExpr = getAnyExpression(qualifier!!, document)
+                        return FieldShiftMethod(getterElement, getterElement.textRange, listOf(qualifierExpr),
+                            FIELD_SHIFT
+                        )
+                    }
+                }
             }
         }
         return null
