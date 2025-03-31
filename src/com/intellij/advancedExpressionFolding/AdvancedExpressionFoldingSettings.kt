@@ -30,7 +30,6 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
         val controlFlowSingleStatementCodeBlockCollapse: Boolean
         val controlFlowMultiStatementCodeBlockCollapse: Boolean
         val semicolonsCollapse: Boolean
-        val fieldShiftOld: Boolean
         val finalRemoval: Boolean
         val finalEmoji: Boolean
         val lombokDirtyOff: Boolean
@@ -99,7 +98,6 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
         override var streamSpread: Boolean = true,
         override var lombok: Boolean = true,
         override var fieldShift: Boolean = true,
-        override var fieldShiftOld: Boolean = false,
         override var kotlinQuickReturn: Boolean = true,
         override var ifNullSafe: Boolean = true,
         override var logFolding: Boolean = true,

@@ -27,18 +27,9 @@ class GetterRecord(element: PsiElement, textRange: TextRange, private var getter
         return descriptors.toArray(EMPTY_ARRAY)
     }
 
-    override fun getName(): String {
-        return name
-    }
+    override fun getName(): String = name
 
-    override fun getGetterTextRange(): TextRange {
-        return getterTextRange
-    }
-
-    override fun makeFieldShift() {
-        name = "<<"
-        getterTextRange += (-1..0)
-    }
+    override fun getGetterTextRange(): TextRange = getterTextRange
 
     override fun getObject(): Expression? = `object`
 }

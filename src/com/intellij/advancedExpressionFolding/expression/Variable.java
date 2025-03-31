@@ -11,7 +11,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 
-public class Variable extends Expression implements ArithmeticExpression, INameable, IFieldShift {
+public class Variable extends Expression implements ArithmeticExpression, INameable {
     private @NotNull String name;
     private boolean copy;
     private @Nullable TextRange variableTextRange;
@@ -89,17 +89,5 @@ public class Variable extends Expression implements ArithmeticExpression, INamea
     @Nullable
     public TextRange getVariableTextRange() {
         return variableTextRange;
-    }
-
-    @Override
-    public void makeFieldShift() {
-        name = "<<";
-        textRange = plus(textRange, new IntRange(-1, 0));
-    }
-
-    private static TextRange plus(TextRange textRange, IntRange addon) {
-        int newStartOffset = textRange.getStartOffset() + addon.getFirst();
-        int newEndOffset = textRange.getEndOffset() + addon.getLast();
-        return TextRange.create(newStartOffset, newEndOffset);
     }
 }

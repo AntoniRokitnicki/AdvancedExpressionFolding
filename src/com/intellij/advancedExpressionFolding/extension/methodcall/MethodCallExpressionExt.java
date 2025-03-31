@@ -11,7 +11,6 @@ import com.intellij.advancedExpressionFolding.expression.stream.StreamMapCall;
 import com.intellij.advancedExpressionFolding.expression.stream.StreamMapCallParam;
 import com.intellij.advancedExpressionFolding.extension.*;
 import com.intellij.advancedExpressionFolding.extension.logger.LoggerBracketsExt;
-import com.intellij.advancedExpressionFolding.extension.methodcall.dynamic.ConfigurationParser;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.*;
@@ -69,7 +68,6 @@ public class MethodCallExpressionExt {
                 PsiClass psiClass = method.getContainingClass();
                 if (psiClass != null && psiClass.getQualifiedName() != null) {
                     String className = Helper.eraseGenerics(psiClass.getQualifiedName());
-                    BuilderShiftExt.markIfBuilder(element, psiClass);
                     if ((FACTORY.getSupportedClasses().contains(className) || FACTORY.getClasslessMethods().contains(method.getName()))) {
                         Expression result = onAnyExpression(element, document, qualifier, identifier, settings, className, method);
                         if (result != null) {
@@ -172,11 +170,6 @@ public class MethodCallExpressionExt {
             if (result != null) {
                 return result;
             }
-
-            Expression builder = BuilderShiftExt.createExpression(element, psiClass);
-            if (builder != null) {
-                return builder;
-            }
         }
         String text = identifier.getText();
         Expression logger = LoggerBracketsExt.createExpression(element, text, document);
@@ -203,9 +196,6 @@ public class MethodCallExpressionExt {
 
     private static Expression onGetterSetter(PsiMethodCallExpression element, AdvancedExpressionFoldingSettings settings, Document document, PsiElement identifier, @Nullable PsiExpression qualifier) {
         if (Helper.isGetter(identifier, element)) {
-            if (BuilderShiftExt.isShifted(element)) {
-                return null;
-            }
             Expression expression = qualifier != null
                     ? BuildExpressionExt.getAnyExpression(qualifier, document)
                     : null;
@@ -223,13 +213,6 @@ public class MethodCallExpressionExt {
                 Expression qualifierExpression = qualifier != null ? BuildExpressionExt.getAnyExpression(qualifier, document) : null;
                 Expression paramExpression = BuildExpressionExt.getAnyExpression(element.getArgumentList().getExpressions()[0], document);
                 String propertyName = guessPropertyName(text);
-                if (settings.getState().getFieldShiftOld()) {
-                    if (paramExpression instanceof IGetter getter) {
-                        if (getter.getName().equals(propertyName)) {
-                            getter.makeFieldShift();
-                        }
-                    }
-                }
                 return new Setter(element, element.getTextRange(), TextRange.create(identifier.getTextRange().getStartOffset(),
                         element.getTextRange().getEndOffset()),
                         qualifierExpression,

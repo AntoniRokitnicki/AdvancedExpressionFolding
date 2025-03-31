@@ -7,14 +7,12 @@ import com.intellij.psi.PsiElement;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public interface IGetter extends INameable, IFieldShift  {
+public interface IGetter extends INameable  {
     @NotNull
     String getName();
 
     @NotNull
     TextRange getGetterTextRange();
-
-    void makeFieldShift();
 
     Expression getObject();
 
