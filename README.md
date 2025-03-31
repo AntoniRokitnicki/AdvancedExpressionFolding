@@ -37,8 +37,15 @@
 <p>For more information, read the <a href="https://medium.com/@andrey_cheptsov/making-java-code-easier-to-read-without-changing-it-adeebd5c36de" target="_blank">blog post</a>.</p>
 
 
+## 3.3.0 ##
+- [FieldShift - defensive copy support](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/FieldShift#defensive-copy-support)
+
+## 3.2.0 ##
+- [New settings with downloadable examples and documentation](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/New-settings)
+
 ## 3.1.0 ##
 - [Method default parameters using an overloaded method](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/MethodDefaultParameters)
+
 ## 3.0.0 ##
 - [Dynamic names for methods](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/Dynamic-Folding)
 - [Constructor reference notation ::new and compact field initialization](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/ConstructorReferenceNotation)
