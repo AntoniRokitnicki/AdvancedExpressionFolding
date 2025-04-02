@@ -9,7 +9,10 @@ import com.intellij.advancedExpressionFolding.extension.clazz.LombokInterfaceFol
 import com.intellij.advancedExpressionFolding.extension.clazz.LombokInterfaceFoldingAnnotation.Companion.fromMethodType
 import com.intellij.advancedExpressionFolding.extension.clazz.MethodType.*
 import com.intellij.openapi.util.Key
-import com.intellij.psi.*
+import com.intellij.psi.PsiClass
+import com.intellij.psi.PsiElement
+import com.intellij.psi.PsiIdentifier
+import com.intellij.psi.PsiMethod
 
 enum class LombokInterfaceFoldingAnnotation(
     val annotation: String,
@@ -61,10 +64,8 @@ object LombokMethodExt : GenericCallback<PsiMethod, List<MethodLevelAnnotation>>
     ) {
         val type = methodLevelAnnotations.methodAnnotation
         if (type == LOMBOK_INTERFACE_FIND_BY) {
-
             list += addAnnotationByLastCharOfPrevWhitespace(type)
             id.run {
-                @Suppress("DEPRECATION")
                 fun extractTagAndName(input: String): Pair<String, String>? {
                     val regex = "find(\\w+)By(\\w+)".toRegex(RegexOption.IGNORE_CASE)
                     val matchResult = regex.find(input)
@@ -73,7 +74,7 @@ object LombokMethodExt : GenericCallback<PsiMethod, List<MethodLevelAnnotation>>
                         it.groupValues.size == 2
                     }?.let {
                         val (tag, name) = it.destructured
-                        Pair(tag.decapitalize(), name.decapitalize())
+                        Pair(tag.replaceFirstChar(Char::lowercase), name.replaceFirstChar(Char::lowercase))
                     }
                 }
                 extractTagAndName(name)?.run {
