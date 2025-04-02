@@ -308,17 +308,18 @@ abstract class CheckboxDefinitionsProvider {
         val editor = factory.createEditor(document, null) as EditorEx
         document.addDocumentListener(object : DocumentListener {
             override fun documentChanged(event: DocumentEvent) {
-                event.document.text.trim().takeIf {
-                    it.isNotEmpty()
-                }?.run {
-                    try {
-                        toPattern()
-                        this
-                    } catch (e: Exception) {
+                event.document.text.trim().run {
+                    if (isEmpty()) {
                         null
+                    } else {
+                        try {
+                            toPattern()
+                            this
+                        } catch (e: Exception) {
+                            null
+                        }
                     }
-                }
-                ?.let(property::set)
+                }.let(property::set)
             }
         })
         return editor.apply {
