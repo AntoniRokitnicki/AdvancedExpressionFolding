@@ -190,10 +190,7 @@ abstract class CheckboxDefinitionsProvider {
 
         registerCheckbox(state::semicolonsCollapse, "Semicolons (read-only files)") {
             example("SemicolonTestData.java")
-        }
-
-        registerCheckbox(state::testDataFoldingDiff, "Folding of testData in diff") {
-            link("/Folding-of-testData-in-diff")
+            link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#semicolonscollapse")
         }
 
         registerCheckbox(state::const, "Simplify * static final to const") {

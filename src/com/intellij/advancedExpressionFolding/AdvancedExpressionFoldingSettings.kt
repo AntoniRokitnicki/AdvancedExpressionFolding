@@ -19,7 +19,6 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
     }
 
     interface IConfig {
-        val testDataFoldingDiff: Boolean
         var globalOn: Boolean
         val memoryImprovement: Boolean
     }
@@ -122,7 +121,6 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
         override var memoryImprovement: Boolean = true,
         override var experimental: Boolean = false,
 
-        override var testDataFoldingDiff: Boolean = false,
         override var globalOn: Boolean = true,
 
         ) : IState, IConfig
