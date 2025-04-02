@@ -1,6 +1,8 @@
 package com.intellij.advancedExpressionFolding.settings
 
+import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings
 import com.intellij.application.options.CodeStyle
+import com.intellij.application.options.editor.EditorOptionsProvider
 import com.intellij.icons.AllIcons
 import com.intellij.ide.BrowserUtil
 import com.intellij.ide.HelpTooltip
@@ -14,18 +16,18 @@ import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.openapi.vfs.encoding.EncodingProjectManager
 import com.intellij.ui.components.ActionLink
 import com.intellij.ui.components.JBCheckBox
-import com.intellij.ui.dsl.builder.*
-import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings
-import com.intellij.application.options.editor.EditorOptionsProvider
+import com.intellij.ui.dsl.builder.Panel
+import com.intellij.ui.dsl.builder.panel
 import java.awt.FlowLayout
 import java.net.URI
 import javax.swing.JPanel
+import kotlin.reflect.KMutableProperty0
 
-class SettingsConfigurable : EditorOptionsProvider {
+class SettingsConfigurable : EditorOptionsProvider, CheckboxDefinitionsProvider() {
     private val state = AdvancedExpressionFoldingSettings.getInstance().state
     private var panel: DialogPanel? = null
-    private val checkboxDefinitionsProvider = CheckboxDefinitionsProvider().initialize(state)
-    private val checkboxDefinitions = checkboxDefinitionsProvider.getCheckboxDefinitions()
+    private val allExampleFiles = mutableSetOf<ExampleFile>()
+    private val pendingChanges = mutableMapOf<KMutableProperty0<Boolean>, Boolean>()
 
     override fun getId() = "advanced.expression.folding"
 
@@ -46,18 +48,20 @@ class SettingsConfigurable : EditorOptionsProvider {
 
                 WriteCommandAction.runWriteCommandAction(project) {
                     val directory = sourceRoot.getOrCreatePackageDir()
-                    createFileIfExists(directory, file, project)?.open(project)
+                    createFile(directory, file, project)?.open(project)
                 }
             }
             actionLink.setIcon(AllIcons.Actions.CheckOut, true)
             HelpTooltip().setDescription("WARNING: Clicking this button will checkout $file into your current project")
                 .installOn(actionLink)
             panel.add(actionLink)
+
+            allExampleFiles.add(file)
         }
 
         docLink?.let {
             val actionLink = ActionLink("doc") {
-                BrowserUtil.browse(URI("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki$docLink"))
+                BrowserUtil.browse(URI(docLink))
             }
             actionLink.setExternalLinkIcon()
             panel.add(actionLink)
@@ -73,8 +77,8 @@ class SettingsConfigurable : EditorOptionsProvider {
 
             WriteCommandAction.runWriteCommandAction(project) {
                 val directory = sourceRoot.getOrCreatePackageDir()
-                checkboxDefinitionsProvider.getAllExampleFiles().forEach {
-                    createFileIfExists(directory, it, project)
+                allExampleFiles.forEach {
+                    createFile(directory, it, project)
                 }
             }
         }
@@ -89,23 +93,7 @@ class SettingsConfigurable : EditorOptionsProvider {
             cell(createDownloadExamplesLink())
         }
 
-        for (def in checkboxDefinitions) {
-            val checkbox = JBCheckBox(def.title)
-            checkbox.isSelected = def.property.get()
-            checkbox.addActionListener {
-                def.property.set(checkbox.isSelected)
-            }
-
-            row {
-                cell(checkbox)
-            }
-
-            if (def.exampleLinkMap != null || def.docLink != null) {
-                row {
-                    cell(createExamplePanel(def.exampleLinkMap, def.docLink))
-                }
-            }
-        }
+        initialize(state)
     }.also { panel = it }
 
     override fun isModified(): Boolean {
@@ -113,6 +101,11 @@ class SettingsConfigurable : EditorOptionsProvider {
     }
 
     override fun apply() {
+        pendingChanges.forEach { (property, value) ->
+            property.set(value)
+        }
+        pendingChanges.clear()
+        
         panel?.apply()
     }
 
@@ -125,7 +118,7 @@ class SettingsConfigurable : EditorOptionsProvider {
 
     private fun selectedProject(): Project = ProjectUtil.getActiveProject() ?: TODO("No project is opened")
 
-    private fun createFileIfExists(
+    private fun createFile(
         directory: VirtualFile,
         file: ExampleFile,
         project: Project
@@ -155,5 +148,32 @@ class SettingsConfigurable : EditorOptionsProvider {
 
     companion object {
         private const val EXAMPLE_DIR = "data"
+    }
+    
+    override fun Panel.registerCheckbox(
+        property: KMutableProperty0<Boolean>,
+        title: String,
+        block: (CheckboxBuilder.() -> Unit)?
+    ) {
+        val builder = CheckboxBuilder()
+        block?.invoke(builder)
+        
+        val checkbox = JBCheckBox(title)
+        checkbox.isSelected = property.get()
+        checkbox.addActionListener {
+            pendingChanges[property] = checkbox.isSelected
+        }
+        
+        row {
+            cell(checkbox)
+        }
+        
+        val definition = builder.build(property, title)
+        if (definition.exampleLinkMap != null || definition.docLink != null) {
+            row {
+                cell(createExamplePanel(definition.exampleLinkMap, definition.docLink))
+            }
+        }
+
     }
 }

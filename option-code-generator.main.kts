@@ -11,13 +11,14 @@ propertyFile.doInFile {
         .insertBeforeMarker("// NEW OPTION VAL", "        val $varName: Boolean")
 }
 
-val exampleFileName = "${varName.capitalize()}TestData"
-val checkboxFile = "$basePath/src/com/intellij/advancedExpressionFolding/AdvancedExpressionFoldingOptionsProvider.kt"
+val exampleFileName = "${varName.replaceFirstChar(Char::titlecase)}TestData"
+val checkboxFile = "$basePath/src/com/intellij/advancedExpressionFolding/settings/CheckboxDefinitionsProvider.kt"
 checkboxFile.doInFile {
-    it.insertBeforeMarker("// NEW OPTION", """        checkBox("$varText",
-        state::$varName,
-        mapOf("$exampleFileName.java" to null),
-    )
+    it.insertBeforeMarker("// NEW OPTION", """
+        registerCheckbox(state::$varName, "$varText") {
+            example("$exampleFileName.java")
+            link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#$varName")
+        }
     """)
 }
 
