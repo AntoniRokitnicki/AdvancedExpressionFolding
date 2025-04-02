@@ -1,1 +1,1 @@
-./option-code-generator.main.kts -DvarName=interfaceExtensionProperties -DvarText=Converts traditional getter and setter methods in interfaces into extension properties
+./option-code-generator.main.kts -DvarName=lombokPatternOff -DvarText="Pattern to turn off Lombok folding"

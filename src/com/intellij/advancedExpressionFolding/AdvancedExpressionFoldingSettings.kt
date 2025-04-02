@@ -8,6 +8,7 @@ import org.jetbrains.annotations.NotNull
 import kotlin.reflect.KClass
 import kotlin.reflect.KMutableProperty
 import kotlin.reflect.full.memberProperties
+import kotlin.reflect.jvm.javaType
 
 @State(name = "AdvancedExpressionFoldingSettings", storages = [Storage("editor.codeinsight.xml")])
 class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpressionFoldingSettings.State> {
@@ -43,6 +44,7 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
         val summaryParentOverride: Boolean
         val constructorReferenceNotation: Boolean
         val methodDefaultParameters: Boolean
+        val lombokPatternOff: String?
         // NEW OPTION VAL
 
         var experimental: Boolean
@@ -116,6 +118,7 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
         override var summaryParentOverride: Boolean = false,
         override var constructorReferenceNotation: Boolean = true,
         override var methodDefaultParameters: Boolean = true,
+        override var lombokPatternOff: String? = null,
         // NEW OPTION VAR
 
         override var memoryImprovement: Boolean = true,
@@ -126,13 +129,14 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
         ) : IState, IConfig
 
     open class StateDelegate(private val state: State = getInstance().state) : IState by state
-    open class ConfigDelegate(private val config: IConfig = getInstance().state) : IConfig by config
 
     private fun updateAllState(value: Boolean) {
         with(myState) {
             allProperties()
                 .forEach {
-                    it.setter.call(this, value)
+                    if (it.setter.parameters.getOrNull(1)?.type?.javaType?.typeName == "boolean") {
+                        it.setter.call(this, value)
+                    }
                 }
         }
     }
@@ -147,7 +151,7 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
             ApplicationManager.getApplication().getService(AdvancedExpressionFoldingSettings::class.java)
 
         fun allProperties() = State::class.memberProperties
-            .filterIsInstance<KMutableProperty<*>>()
+            .filterIsInstance<KMutableProperty<Boolean>>()
             .filter { property ->
                 exclude(IConfig::class, property)
             }

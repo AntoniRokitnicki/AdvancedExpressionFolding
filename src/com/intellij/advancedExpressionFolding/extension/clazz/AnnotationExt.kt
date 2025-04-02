@@ -4,6 +4,7 @@ import com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationE
 import com.intellij.advancedExpressionFolding.extension.*
 import com.intellij.advancedExpressionFolding.extension.Consts.SUPERSCRIPT_MAPPING
 import com.intellij.advancedExpressionFolding.extension.clazz.LombokExt.addLombokSupport
+import com.intellij.advancedExpressionFolding.extension.clazz.LombokExt.lombokPatternOff
 import com.intellij.advancedExpressionFolding.extension.clazz.LombokFoldingAnnotation.SERIAL
 import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiElement
@@ -21,6 +22,12 @@ object AnnotationExt {
 
     fun addClassLevelAnnotations(clazz: PsiClass): ClassAnnotationExpression? {
         (clazz.isIgnored() || clazz.isRecord).off() ?: return null
+
+        lombokPatternOff?.run {
+            clazz.qualifiedName?.let {
+                if (toRegex().containsMatchIn(it)) return null
+            }
+        }
 
         val serialField = hasSerialField(clazz)
         if (hasLombokImports(clazz) && serialField == null) {

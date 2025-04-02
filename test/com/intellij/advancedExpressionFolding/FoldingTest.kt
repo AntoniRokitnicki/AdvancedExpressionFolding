@@ -484,6 +484,31 @@ staticMethod.newName = 'changedStaticMethod'
     fun testMethodDefaultParametersTestData() {
         doFoldingTest(state::methodDefaultParameters)
     }
+
+    /**
+     * [data.LombokPatternOffTestData]
+     */
+    @Test
+    fun testLombokPatternOffTestData() {
+        state.lombokPatternOff = "LombokPatternOffTestData".toRegex()
+        try {
+            doFoldingTest(state::lombok)
+        } finally {
+            state.lombokPatternOff = null
+        }
+    }
+    /**
+     * [data.LombokPatternOffNegativeTestData]
+     */
+    @Test
+    fun testLombokPatternOffNegativeTestData() {
+        state.lombokPatternOff = "LombokPatternOffTestData".toRegex()
+        try {
+            doFoldingTest(state::lombok)
+        } finally {
+            state.lombokPatternOff = null
+        }
+    }
     // NEW OPTION
     /**
      * [data.ExperimentalTestData]

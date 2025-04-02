@@ -2,7 +2,14 @@ package com.intellij.advancedExpressionFolding.settings
 
 import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.State
 import com.intellij.advancedExpressionFolding.extension.Consts.Emoji
+import com.intellij.openapi.editor.event.DocumentEvent
+import com.intellij.openapi.editor.event.DocumentListener
+import com.intellij.openapi.editor.ex.EditorEx
+import com.intellij.openapi.editor.highlighter.EditorHighlighterFactory
+import com.intellij.ui.components.JBLabel
 import com.intellij.ui.dsl.builder.Panel
+import org.intellij.lang.regexp.RegExpFileType
+import java.awt.Dimension
 import kotlin.reflect.KMutableProperty0
 
 typealias Description = String
@@ -219,9 +226,16 @@ abstract class CheckboxDefinitionsProvider {
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#lombok")
         }
 
-        registerCheckbox(state::lombokDirtyOff, "Don't fold lombok dirty getters/setters") {
+        registerCheckbox(state::lombokDirtyOff, "Don't fold Lombok dirty getters/setters") {
             example("LombokDirtyOffTestData.java")
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#lombokdirtyoff")
+        }
+
+        row {
+            cell(JBLabel("Pattern to turn off Lombok folding"))
+        }
+        row {
+            cell(createEditor(state::lombokPatternOff).component)
         }
 
         registerCheckbox(state::expressionFunc, "Single-Expression Function") {
@@ -285,6 +299,38 @@ abstract class CheckboxDefinitionsProvider {
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#experimental")
         }
         // NEW OPTION
+    }
+
+    private fun createEditor(property: KMutableProperty0<String?>): EditorEx {
+        val factory = com.intellij.openapi.editor.EditorFactory.getInstance()
+        val document = factory.createDocument(property.get()?.toString() ?: "")
+
+        val editor = factory.createEditor(document, null) as EditorEx
+        document.addDocumentListener(object : DocumentListener {
+            override fun documentChanged(event: DocumentEvent) {
+                event.document.text.trim().takeIf {
+                    it.isNotEmpty()
+                }?.run {
+                    try {
+                        toPattern()
+                        this
+                    } catch (e: Exception) {
+                        null
+                    }
+                }
+                ?.let(property::set)
+            }
+        })
+        return editor.apply {
+            settings.apply {
+                isUseSoftWraps = true
+                isUseCustomSoftWrapIndent = true
+                isLineNumbersShown = false
+                isLineMarkerAreaShown = false
+            }
+            highlighter = EditorHighlighterFactory.getInstance().createEditorHighlighter(null, RegExpFileType.INSTANCE)
+            component.preferredSize = Dimension(500, 50)
+        }
     }
 
     abstract fun Panel.registerCheckbox(
