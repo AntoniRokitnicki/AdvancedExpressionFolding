@@ -232,7 +232,7 @@ abstract class CheckboxDefinitionsProvider {
         }
 
         row {
-            cell(JBLabel("Pattern to turn off Lombok folding"))
+            cell(JBLabel("Regex to disable Lombok folding (matched classes won’t be folded)"))
         }
         row {
             cell(createEditor(state::lombokPatternOff).component)
