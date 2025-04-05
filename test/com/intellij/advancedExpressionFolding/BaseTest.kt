@@ -9,7 +9,7 @@ import com.intellij.openapi.util.io.FileUtil
 import com.intellij.openapi.util.text.StringUtil
 import com.intellij.openapi.vfs.LocalFileSystem
 import com.intellij.platform.testFramework.core.FileComparisonFailedError
-import com.intellij.rt.execution.junit.FileComparisonFailure
+import com.intellij.testFramework.PlatformTestUtil
 import com.intellij.testFramework.fixtures.DefaultLightProjectDescriptor
 import com.intellij.testFramework.fixtures.LightJavaCodeInsightFixtureTestCase5
 import com.intellij.testFramework.fixtures.impl.CodeInsightTestFixtureImpl
@@ -24,9 +24,9 @@ abstract class BaseTest : LightJavaCodeInsightFixtureTestCase5(TEST_JDK) {
     protected open fun doFoldingTest(testNameArg: String? = null) {
         val testName = testNameArg ?: getTestName(false)
         val fileName = getTestFileName(testName)
-        rewriteFileOnFailure(fileName, testName) {
+        PlatformTestUtil.newBenchmark(testName) {
             fixture.testFoldingWithCollapseStatus(fileName)
-        }
+        }.attempts(100).start()
     }
 
     protected fun doReadOnlyFoldingTest() {

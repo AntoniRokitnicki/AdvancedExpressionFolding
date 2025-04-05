@@ -98,6 +98,8 @@ dependencies {
         zipSigner()
         testFramework(TestFrameworkType.JUnit5)
         testFramework(TestFrameworkType.Plugin.Java)
+        testFramework(TestFrameworkType.Platform)
+        testFramework(TestFrameworkType.Metrics)
     }
 }
 
