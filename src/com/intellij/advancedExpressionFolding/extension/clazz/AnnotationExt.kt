@@ -24,8 +24,9 @@ object AnnotationExt {
         (clazz.isIgnored() || clazz.isRecord).off() ?: return null
 
         lombokPatternOff?.run {
+            val regex = patternAsRegex()
             clazz.qualifiedName?.let {
-                if (toRegex().containsMatchIn(it)) return null
+                if (regex?.containsMatchIn(it) == true) return null
             }
         }
 
@@ -53,6 +54,14 @@ object AnnotationExt {
             hidingAnnotation.classAnnotation.annotation + notPureSuffix + args
         }, elementsToFold)
         return classLevelAnnotations
+    }
+
+    private var PATTERN_CACHE : Regex? = null
+    private fun patternAsRegex(): Regex? {
+        if (PATTERN_CACHE?.toString() != lombokPatternOff) {
+            PATTERN_CACHE = lombokPatternOff?.toRegex()
+        }
+        return PATTERN_CACHE
     }
 
     private fun argsAsString(hidingAnnotation: ClassLevelAnnotation) =

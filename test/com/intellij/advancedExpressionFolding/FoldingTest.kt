@@ -490,7 +490,7 @@ staticMethod.newName = 'changedStaticMethod'
      */
     @Test
     fun testLombokPatternOffTestData() {
-        state.lombokPatternOff = "LombokPatternOffTestData".toRegex()
+        state.lombokPatternOff = "LombokPa[t]{2}ernOffTestData"
         try {
             doFoldingTest(state::lombok)
         } finally {
@@ -502,7 +502,7 @@ staticMethod.newName = 'changedStaticMethod'
      */
     @Test
     fun testLombokPatternOffNegativeTestData() {
-        state.lombokPatternOff = "LombokPatternOffTestData".toRegex()
+        state.lombokPatternOff = "LombokPatternOffTestData"
         try {
             doFoldingTest(state::lombok)
         } finally {
