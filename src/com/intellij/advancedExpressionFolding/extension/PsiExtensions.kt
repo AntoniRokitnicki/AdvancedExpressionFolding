@@ -45,10 +45,8 @@ inline fun PsiElement.textRangeChar(positionMethod: PsiElement.() -> Int, startO
     return TextRange(position + startOffset, position + endOffset)
 }
 
-val PsiElement.textRangeLastChar: TextRange
-    get() = textRangeChar(PsiElement::end, -1, 0)
-val PsiElement.textRangeFirstChar: TextRange
-    get() = textRangeChar(PsiElement::start, 0, 1)
+fun PsiElement.trailingCharsRange(charCount: Int): TextRange = textRangeChar(PsiElement::end, -charCount, 0)
+fun PsiElement.leadingCharsRange(charCount: Int): TextRange = textRangeChar(PsiElement::start, 0, charCount)
 
 inline fun String.filter(predicate: (String) -> Boolean): String? = takeIf(predicate)
 
@@ -238,8 +236,8 @@ fun <T : PsiElement> PsiElement.findParents(
 }
 
 
-fun PsiElement.prevWhiteSpace(): PsiWhiteSpace? = prevSibling as? PsiWhiteSpace
-fun PsiElement.nextWhiteSpace(): PsiWhiteSpace? = nextSibling as? PsiWhiteSpace
+fun PsiElement?.prevWhiteSpace(): PsiWhiteSpace? = this?.prevSibling as? PsiWhiteSpace
+fun PsiElement?.nextWhiteSpace(): PsiWhiteSpace? = this?.nextSibling as? PsiWhiteSpace
 
 inline fun <reified T> Any?.asInstance(): T? = if (T::class.isInstance(this)) {
     this as T

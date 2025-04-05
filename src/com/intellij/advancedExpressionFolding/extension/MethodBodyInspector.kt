@@ -115,7 +115,8 @@ object MethodBodyInspector {
         }
 
         if (fieldToStatementMap.size != statementToParameterMap.size ||
-            !(fieldToStatementMap.isUnique() && statementToParameterMap.isUnique())) {
+            !(fieldToStatementMap.isUnique() && statementToParameterMap.isUnique())
+        ) {
             return null
         }
 
@@ -142,10 +143,28 @@ object MethodBodyInspector {
         !method.isDirtyAssignment(statement, field, param)
     }
 
+    /**
+     * check if its
+     * <code>
+     * throw new RuntimeException(e);
+     * </code>
+     * or
+     * <code>
+     * throw new IllegalStateException(e);
+     * </code>
+     */
+    fun PsiCatchSection.isRethrowingException(): Boolean {
+        val param = parameter ?: return false
+        val statement = catchBlock?.statements?.singleOrNull() ?: return false
+
+        val newExpression = statement.asInstance<PsiThrowStatement>()?.exception.asInstance<PsiNewExpression>()
+        newExpression?.classReference?.qualifiedName?.takeIf { qualifiedName ->
+            qualifiedName == "java.lang.RuntimeException" || qualifiedName == "java.lang.IllegalStateException"
+        } ?: return false
+        val args = newExpression.argumentList?.expressions
+        val e = args?.singleOrNull()?.asInstance<PsiReferenceExpression>()
+        return e?.let {
+            e.isReferenceTo(param)
+        } == true
+    }
 }
-
-
-
-
-
-

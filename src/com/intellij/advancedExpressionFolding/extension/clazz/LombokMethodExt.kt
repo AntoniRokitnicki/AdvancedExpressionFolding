@@ -127,7 +127,7 @@ object LombokMethodExt : GenericCallback<PsiMethod, List<MethodLevelAnnotation>>
         return foldOnLastElement(methodAnnotation.annotation, docComment)
     }
 
-    fun PsiElement.foldOnLastElement(text: String, spaceable: PsiElement?): SimpleExpression? {
+    private fun PsiElement.foldOnLastElement(text: String, spaceable: PsiElement?): SimpleExpression? {
         val whiteSpace = spaceable?.nextWhiteSpace() ?: prevWhiteSpace() ?: return null
         return expr("$text ", textRange = whiteSpace.textRangeChar(PsiElement::end, -1, 0))
     }

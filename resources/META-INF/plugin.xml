@@ -154,6 +154,8 @@
                 implementation="com.intellij.advancedExpressionFolding.extension.MethodBuilder"/>
         <expressionBuilder
                 implementation="com.intellij.advancedExpressionFolding.extension.KeywordBuilder"/>
+        <expressionBuilder
+                implementation="com.intellij.advancedExpressionFolding.extension.TryStatementBuilder"/>
     </extensions>
 
 </idea-plugin>

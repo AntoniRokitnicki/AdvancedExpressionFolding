@@ -4,6 +4,7 @@ import com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpre
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.SemicolonExpression
 import com.intellij.advancedExpressionFolding.expression.TypeCast
+import com.intellij.advancedExpressionFolding.extension.TryStatementExt.createSneakyThrows
 import com.intellij.advancedExpressionFolding.extension.methodcall.MethodCallExpressionExt
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.util.TextRange
@@ -215,6 +216,12 @@ class MethodBuilder : BuildExpression<PsiMethod>(PsiMethod::class.java) {
 class KeywordBuilder : BuildExpression<PsiKeyword>(PsiKeyword::class.java) {
     override fun buildExpression(element: PsiKeyword, document: Document, synthetic: Boolean) =
         KeywordExt.createExpression(element)
+}
+
+class TryStatementBuilder : BuildExpression<PsiTryStatement>(PsiTryStatement::class.java) {
+    override fun buildExpression(element: PsiTryStatement, document: Document, synthetic: Boolean) =
+        element.createSneakyThrows()
+
 }
 
 fun tryBuildExpression(element: PsiElement, document: Document, synthetic: Boolean): Expression? {
