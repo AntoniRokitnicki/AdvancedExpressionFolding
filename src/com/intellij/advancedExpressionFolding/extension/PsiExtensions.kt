@@ -319,7 +319,6 @@ fun <T> Boolean.off(element: T?): T? = if (this) {
 
 fun List<PsiElement>.expr(
     text: String,
-    vararg children: Expression?,
     group: FoldingGroup? = null,
     foldPrevWhiteSpace: Boolean = false
 ): Expression? {
@@ -329,7 +328,6 @@ fun List<PsiElement>.expr(
     val map = map { element ->
         element.expr(
             text = text,
-            children = children,
             group = group,
             foldPrevWhiteSpace = foldPrevWhiteSpace
         )
@@ -339,18 +337,14 @@ fun List<PsiElement>.expr(
 
 fun PsiElement.exprOnLastChar(
     text: String,
-    vararg children: Expression?,
     group: FoldingGroup? = null,
     foldPrevWhiteSpace: Boolean = false,
-    //textRange: TextRange = this.textRange,
 ): SimpleExpression? = expr(
-    text = this.text.last() + text,
-    *children, group = group, foldPrevWhiteSpace = foldPrevWhiteSpace, textRange = textRangeChar(PsiElement::end, -1, 0)
+    text = this.text.last() + text, group = group, foldPrevWhiteSpace = foldPrevWhiteSpace, textRange = textRangeChar(PsiElement::end, -1, 0)
 )
 
 fun PsiElement.expr(
     text: String,
-    vararg children: Expression?,
     group: FoldingGroup? = null,
     foldPrevWhiteSpace: Boolean = false,
     textRange: TextRange = this.textRange,
@@ -361,7 +355,6 @@ fun PsiElement.expr(
 
     return SimpleExpression(
         this,
-        *children,
         text = text,
         textRange = textRange,
         group = group,
@@ -405,7 +398,6 @@ fun PsiElement?.exprHide(
 }
 
 fun PsiElement.exprWrapAround(
-    vararg children: Expression?,
     group: FoldingGroup? = null,
     textBefore: String? = null,
     foldPrevWhiteSpace: Boolean = false,
@@ -416,7 +408,6 @@ fun PsiElement.exprWrapAround(
     WrapAroundExpression(
         this,
         textRange,
-        *children,
         group = group,
         textBefore = textBefore,
         foldPrevWhiteSpace = foldPrevWhiteSpace,
