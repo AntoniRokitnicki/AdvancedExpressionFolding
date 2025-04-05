@@ -25,6 +25,15 @@ plugins {
 group = properties("pluginGroup").get()
 version = properties("pluginVersion").get()
 
+// Set the JVM language level used to build the project. Use Java 11 for 2020.3+, and Java 17 for 2022.2+.
+kotlin {
+    jvmToolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+        @Suppress("UnstableApiUsage")
+        vendor = JvmVendorSpec.JETBRAINS
+    }
+}
+
 idea {
     module {
         sequenceOf("idea-sandbox", "out", ".intellijPlatform").map {
@@ -94,26 +103,10 @@ dependencies {
 
         // Plugin Dependencies. Uses `platformPlugins` property from the gradle.properties file for plugin from JetBrains Marketplace.
         plugins(providers.gradleProperty("platformPlugins").map { it.split(',') })
-        pluginVerifier()
-        zipSigner()
         testFramework(TestFrameworkType.JUnit5)
         testFramework(TestFrameworkType.Plugin.Java)
     }
 }
-
-// Set the JVM language level used to build the project. Use Java 11 for 2020.3+, and Java 17 for 2022.2+.
-kotlin {
-    @Suppress("UnstableApiUsage")
-    jvmToolchain {
-        languageVersion = JavaLanguageVersion.of(17)
-        vendor = JvmVendorSpec.JETBRAINS
-    }
-}
-
-// Configure Gradle IntelliJ Plugin - read more: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html
-//intellij {
-//    sandboxDir = "idea-sandbox"
-//}
 
 // Configure IntelliJ Platform Gradle Plugin - read more: https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-gradle-plugin-extension.html
 intellijPlatform {
@@ -222,6 +215,7 @@ intellijPlatformTesting {
     }
 }
 
+
 //tasks {
 //    runIde {
 //        autoReloadPlugins = true
@@ -244,25 +238,6 @@ fun readProperties(file: File): Properties {
         properties.load(inputStream)
     }
     return properties
-}
-
-fun readVersion(properties: Properties): String =
-    properties.getProperty("pluginVersion") ?: throw GradleException("pluginVersion not found in gradle.properties")
-
-fun incrementMinorVersion(version: String): String {
-    val versionParts = version.split('.').toMutableList()
-    if (versionParts.size != 3) {
-        throw GradleException("pluginVersion must have three parts separated by dots")
-    }
-    val minorPart = versionParts[1].toIntOrNull() ?: throw GradleException("Second part of pluginVersion is not a number")
-    versionParts[1] = (minorPart + 1).toString()
-    return versionParts.joinToString(".")
-}
-
-fun saveProperties(file: File, properties: Properties) {
-    file.writer().use { writer: Writer ->
-        properties.store(writer, null)
-    }
 }
 
 tasks.register("patchChangelogWithLastCommitMsg") {
@@ -288,6 +263,17 @@ tasks.register("patchChangelogWithLastCommitMsg") {
 
 tasks.register("minorRelease") {
     doLast {
+        fun readVersion(properties: Properties): String =
+            properties.getProperty("pluginVersion") ?: throw GradleException("pluginVersion not found in gradle.properties")
+        fun incrementMinorVersion(version: String): String {
+            val versionParts = version.split('.').toMutableList()
+            if (versionParts.size != 3) {
+                throw GradleException("pluginVersion must have three parts separated by dots")
+            }
+            val minorPart = versionParts[1].toIntOrNull() ?: throw GradleException("Second part of pluginVersion is not a number")
+            versionParts[1] = (minorPart + 1).toString()
+            return versionParts.joinToString(".")
+        }
         val propertiesFile = getPropertiesFile()
         val properties = readProperties(propertiesFile)
 
@@ -301,6 +287,11 @@ tasks.register("minorRelease") {
 
 tasks.register("canaryRelease") {
     doLast {
+        fun saveProperties(file: File, properties: Properties) {
+            file.writer().use { writer: Writer ->
+                properties.store(writer, null)
+            }
+        }
         val propertiesFile = getPropertiesFile()
         val properties = readProperties(propertiesFile)
 
