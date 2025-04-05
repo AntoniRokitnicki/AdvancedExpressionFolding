@@ -370,7 +370,6 @@ fun PsiElement.expr(
 }
 
 fun List<PsiElement>.exprHide(
-    vararg children: Expression?,
     group: FoldingGroup? = null,
     foldPrevWhiteSpace: Boolean = false
 ): Expression? {
@@ -379,7 +378,6 @@ fun List<PsiElement>.exprHide(
     }
     val map = map { element ->
         element.exprHide(
-            children = children,
             group = group,
             foldPrevWhiteSpace = foldPrevWhiteSpace
         )
@@ -388,7 +386,6 @@ fun List<PsiElement>.exprHide(
 }
 
 fun PsiElement?.exprHide(
-    vararg children: Expression?,
     group: FoldingGroup? = null,
     foldPrevWhiteSpace: Boolean = false,
     textRange: TextRange? = this?.textRange,
@@ -402,7 +399,6 @@ fun PsiElement?.exprHide(
     return HideExpression(
         this,
         textRange,
-        *children,
         group = group,
         foldPrevWhiteSpace = foldPrevWhiteSpace
     )
