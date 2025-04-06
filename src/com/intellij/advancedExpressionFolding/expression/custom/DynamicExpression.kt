@@ -12,10 +12,10 @@ class DynamicExpression(
     text: String = "",
     group: FoldingGroup? = null,
     foldPrevWhiteSpace: Boolean = false,
-) : SimpleExpression(
+) : AbstractMultiExpression(
     element,
-    *children,
     textRange = textRange,
+    *children,
     text = text,
     group = group,
     foldPrevWhiteSpace = foldPrevWhiteSpace

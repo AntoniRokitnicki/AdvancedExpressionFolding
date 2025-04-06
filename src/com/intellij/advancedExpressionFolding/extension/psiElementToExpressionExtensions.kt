@@ -14,7 +14,6 @@ import kotlin.reflect.KClass
 fun List<PsiElement>.expr(
     text: String,
     group: FoldingGroup? = null,
-    foldPrevWhiteSpace: Boolean = false
 ): Expression? {
     if (this.isEmpty()) {
         return null
@@ -23,7 +22,6 @@ fun List<PsiElement>.expr(
         element.expr(
             text = text,
             group = group,
-            foldPrevWhiteSpace = foldPrevWhiteSpace
         )
     }
     return map.exprWrap(first().parent)
@@ -32,15 +30,13 @@ fun List<PsiElement>.expr(
 fun PsiElement.exprOnLastChar(
     text: String,
     group: FoldingGroup? = null,
-    foldPrevWhiteSpace: Boolean = false,
 ): SimpleExpression? = expr(
-    text = this.text.last() + text, group = group, foldPrevWhiteSpace = foldPrevWhiteSpace, textRange = textRangeChar(PsiElement::end, -1, 0)
+    text = this.text.last() + text, group = group, textRange = textRangeChar(PsiElement::end, -1, 0)
 )
 
 fun PsiElement.expr(
     text: String,
     group: FoldingGroup? = null,
-    foldPrevWhiteSpace: Boolean = false,
     textRange: TextRange = this.textRange,
 ): SimpleExpression? {
     textRange.isEmpty.takeIf {
@@ -52,7 +48,6 @@ fun PsiElement.expr(
         text = text,
         textRange = textRange,
         group = group,
-        foldPrevWhiteSpace = foldPrevWhiteSpace
     )
 }
 
@@ -90,9 +85,6 @@ fun PsiElement.exprWrapAround(
     group: FoldingGroup? = null,
     textBefore: String? = null,
     foldPrevWhiteSpace: Boolean = false,
-    //TODO:
-    textAfter: String? = null,
-    foldNextWhiteSpace: Boolean = false
 ) =
     WrapAroundExpression(
         this,
@@ -100,8 +92,6 @@ fun PsiElement.exprWrapAround(
         group = group,
         textBefore = textBefore,
         foldPrevWhiteSpace = foldPrevWhiteSpace,
-        textAfter = textAfter,
-        foldNextWhiteSpace = foldNextWhiteSpace
     )
 
 fun Collection<Expression?>.exprWrap(
@@ -117,7 +107,6 @@ fun Collection<Expression?>.exprWrap(
     return WrapperExpression(parent, chain = chain)
 }
 
-fun exprList(elements: Iterable<Expression?>) = mutableListOf(elements)
 fun exprList(vararg elements: Expression?) = mutableListOf(*elements)
 fun foldingList(vararg elements: FoldingDescriptor) = mutableListOf(*elements)
 inline fun MutableList<Expression?>.addIfEnabled(featureFlag: Boolean, function: () -> Expression?) {
