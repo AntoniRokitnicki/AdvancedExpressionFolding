@@ -13,7 +13,7 @@ public class ExperimentalTestData {
     public class SneakyThrowsExample implements Runnable {
         public String utf8ToString(byte[] bytes) {
             @SneakyThrows
-            return new String(bytes, "UTF-8"); 
+            return new String(System["sort-desc"].getBytes(), "UTF-8"); 
         }
         public void run() {
             @SneakyThrows

@@ -13,13 +13,13 @@ public class ExperimentalTestData {
     public class SneakyThrowsExample implements Runnable <fold text='{...}' expand='true'>{
         public String utf8ToString(byte[] bytes) <fold text='{...}' expand='true'>{
             <fold text='@SneakyThrows' expand='true'>try</fold><fold text='' expand='true'> </fold><fold text='' expand='true'><fold text='{...}' expand='true'>{</fold>
-            <fold text='' expand='true'>    </fold>return new String(bytes, "UTF-8");<fold text='' expand='true'>
+            <fold text='' expand='true'>    </fold>return new String(System<fold text='[' expand='false'>.getProperty(</fold>"sort-desc"<fold text=']' expand='false'>)</fold>.getBytes(), "UTF-8");<fold text='' expand='true'>
             </fold><fold text='' expand='true'>}</fold></fold> <fold text='' expand='true'>catch (UnsupportedEncodingException e) <fold text='{...}' expand='true'>{
                 throw new RuntimeException(e);
             }</fold></fold>
         }</fold>
         public void run() <fold text='{...}' expand='true'>{
-            <fold text='@SneakyThrows' expand='true'>try<fold text='' expand='true'></fold> </fold><fold text='' expand='true'><fold text='{...}' expand='true'>{</fold>
+            <fold text='@SneakyThrows' expand='true'>try</fold><fold text='' expand='true'> </fold><fold text='' expand='true'><fold text='{...}' expand='true'>{</fold>
             throw new Throwable();<fold text='' expand='true'>
             </fold><fold text='' expand='true'>}</fold></fold> <fold text='' expand='true'>catch (Throwable t) <fold text='{...}' expand='true'>{
                 throw new IllegalStateException(t);

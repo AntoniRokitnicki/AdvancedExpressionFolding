@@ -13,7 +13,7 @@ public class ExperimentalTestData {
     public class SneakyThrowsExample implements Runnable {
         public String utf8ToString(byte[] bytes) {
             try {
-                return new String(bytes, "UTF-8");
+                return new String(System.getProperty("sort-desc").getBytes(), "UTF-8");
             } catch (UnsupportedEncodingException e) {
                 throw new RuntimeException(e);
             }
