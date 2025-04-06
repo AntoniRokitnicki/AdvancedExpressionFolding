@@ -7,10 +7,10 @@ import com.intellij.psi.PsiElement
 open class SimpleExpression(
     element: PsiElement,
     textRange: TextRange = element.textRange,
-    text: String = "",
+    text: String,
     group: FoldingGroup? = null,
 ) :
-    AbstractMultiExpression(
+    FastExpression(
         element,
         textRange,
         text = text,

@@ -45,8 +45,8 @@ fun PsiElement.expr(
 
     return SimpleExpression(
         this,
-        text = text,
         textRange = textRange,
+        text = text,
         group = group,
     )
 }
