@@ -46,10 +46,40 @@ abstract class AbstractMultiExpression(
             }
         }
 
+        optimizeFieldAnnotationExpression()
+
+        childrenList.forEach { child ->
+            if (child == null) {
+                return@forEach
+            }
+            assignGroupOnNotFound(child, parentGroup)
+            list += child.buildFoldRegions(child.element, document, this)
+        }
+        return list.toTypedArray()
+    }
+
+    private fun assignGroupOnNotFound(
+        child: Expression?,
+        parentGroup: FoldingGroup
+    ) {
+        child.asInstance<AbstractMultiExpression>()
+            ?.takeIf {
+                it.group == null
+            }
+            ?.let {
+                it.group = parentGroup
+            }
+    }
+
+    private fun optimizeFieldAnnotationExpression() {
+        if (childrenList.firstOrNull {
+                it is FieldAnnotationExpression
+            } == null) return
         val notDistinct = childrenList.distinctNot()
         val combined = notDistinct.zipWithNext { a, b ->
             if (a is FieldAnnotationExpression && b is FieldAnnotationExpression) {
-                val combinedCustomClassAnnotations = (a.customClassAnnotations + b.customClassAnnotations).distinct()
+                val combinedCustomClassAnnotations =
+                    (a.customClassAnnotations + b.customClassAnnotations).distinct()
                 val combinedElementsToFold = (a.elementsToFold + b.elementsToFold).distinct()
                 val combinedFieldAnnotationExpression = FieldAnnotationExpression(
                     element = a.element,
@@ -67,24 +97,6 @@ abstract class AbstractMultiExpression(
             childrenList.removeAll(notDistinct)
             childrenList.addAll(combined)
         }
-
-
-        childrenList.forEach { child ->
-            if (child == null) {
-                return@forEach
-            }
-            child.asInstance<AbstractMultiExpression>()
-                ?.takeIf {
-                    it.group == null
-                }
-                ?.let {
-                    it.group = parentGroup
-                }
-            //if (child.supportsFoldRegions(document, parent)) {
-                list += child.buildFoldRegions(child.element, document, this)
-            //}
-        }
-        return list.toTypedArray()
     }
 
     open fun wrapElement(
