@@ -44,7 +44,7 @@ public <fold text='🏛️' expand='false'>class</fold> InterfaceExtensionProper
     <fold text='🖥️' expand='false'>interface</fold> Ignored <fold text='{...}' expand='true'>{
         public <fold text='🖥️' expand='false'>interface</fold> DefaultUser <fold text='{...}' expand='true'>{
             default String getName()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>"Unknown User"<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+                </fold></fold><fold text='' expand='false'>return</fold><fold text='' expand='true'> </fold>"Unknown User"<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold>
             default <fold text='💀' expand='false'>void</fold> setName(String name) <fold text='{}' expand='true'>{
             }</fold>
@@ -53,7 +53,7 @@ public <fold text='🏛️' expand='false'>class</fold> InterfaceExtensionProper
 
         public <fold text='🖥️' expand='false'>interface</fold> StaticUser <fold text='{...}' expand='true'>{
             <fold text='⚡' expand='false'>static</fold> String getName()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>"Static User"<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+                </fold></fold><fold text='' expand='false'>return</fold><fold text='' expand='true'> </fold>"Static User"<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold>
            <fold text='@Getter ' expand='true'> </fold><fold text='🔢' expand='false'>int</fold> <fold text='a' expand='true'>getA</fold>ge<fold text='' expand='true'>()</fold>;
             <fold text='⚡' expand='false'>static</fold> <fold text='💀' expand='false'>void</fold> setName(String name) <fold text='{}' expand='true'>{

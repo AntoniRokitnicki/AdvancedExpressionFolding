@@ -8,5 +8,4 @@ class HideExpression(
     element: PsiElement,
     textRange: TextRange = element.textRange,
     group: FoldingGroup? = null,
-) :
-AbstractMultiExpression(element, textRange, null, group = group)
+) : FastExpression(element, textRange, null, group = group)

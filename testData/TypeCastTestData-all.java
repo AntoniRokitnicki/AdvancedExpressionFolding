@@ -11,7 +11,7 @@ public <fold text='🏛️' expand='false'>class</fold> TypeCastTestData {
     }</fold>
 
     <fold text='🚫' expand='false'>private</fold> Object getObject()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-        </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold><fold text='📍' expand='false'>this<fold text='' expand='true'></fold>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+        </fold></fold><fold text='' expand='false'>return</fold><fold text='' expand='true'> </fold><fold text='📍' expand='false'>this<fold text='' expand='true'></fold>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
     </fold>}</fold>
 
     <fold text='🚫' expand='false'>private</fold> <fold text='⚡' expand='false'>static</fold> <fold text='💀' expand='false'>void</fold> handle(TypeCastTestData t)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
