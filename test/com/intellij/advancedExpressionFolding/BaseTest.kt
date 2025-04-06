@@ -9,7 +9,6 @@ import com.intellij.openapi.util.io.FileUtil
 import com.intellij.openapi.util.text.StringUtil
 import com.intellij.openapi.vfs.LocalFileSystem
 import com.intellij.platform.testFramework.core.FileComparisonFailedError
-import com.intellij.rt.execution.junit.FileComparisonFailure
 import com.intellij.testFramework.fixtures.DefaultLightProjectDescriptor
 import com.intellij.testFramework.fixtures.LightJavaCodeInsightFixtureTestCase5
 import com.intellij.testFramework.fixtures.impl.CodeInsightTestFixtureImpl
@@ -24,7 +23,7 @@ abstract class BaseTest : LightJavaCodeInsightFixtureTestCase5(TEST_JDK) {
     protected open fun doFoldingTest(testNameArg: String? = null) {
         val testName = testNameArg ?: getTestName(false)
         val fileName = getTestFileName(testName)
-        rewriteFileOnFailure(fileName, testName) {
+        testWrapper(fileName, testName) {
             fixture.testFoldingWithCollapseStatus(fileName)
         }
     }
@@ -32,16 +31,18 @@ abstract class BaseTest : LightJavaCodeInsightFixtureTestCase5(TEST_JDK) {
     protected fun doReadOnlyFoldingTest() {
         val testName = getTestName(false)
         val fileName = getTestFileName(testName)
-        rewriteFileOnFailure(fileName, testName) {
+        testWrapper(fileName, testName) {
             testReadOnlyFoldingRegions(
                 fileName,
                 null, true
             )
         }
     }
+    protected open fun testWrapper(fileName: String, testName: String, action: () -> Unit) {
+        rewriteFileOnFailure(fileName, testName, action)
+    }
 
-
-    private fun rewriteFileOnFailure(fileName: String, testName: String, action: Runnable) {
+    private inline fun rewriteFileOnFailure(fileName: String, testName: String, action: () -> Unit) {
         val testDataFile = File(fileName)
         if (devMode()) {
             replaceTestDataWithExample(testName, testDataFile)
@@ -50,7 +51,7 @@ abstract class BaseTest : LightJavaCodeInsightFixtureTestCase5(TEST_JDK) {
         val store = FoldingDataStorage()
         com.intellij.advancedExpressionFolding.store = store
         try {
-            action.run()
+            action.invoke()
         } catch (e: FileComparisonFailedError) {
             try {
                 //TODO: fixture.editor
