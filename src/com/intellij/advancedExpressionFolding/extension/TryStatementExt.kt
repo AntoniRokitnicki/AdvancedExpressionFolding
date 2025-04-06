@@ -27,10 +27,10 @@ object TryStatementExt : BaseExtension() {
             tryKeyword.expr("@SneakyThrows"),
             tryKeyword.nextWhiteSpace().exprHide(),
             firstBrace.exprHide(),
+            foldSpacesBeforeSingleStatement(codeBlock),
             lastBrace.prevWhiteSpace().exprHide(),
             lastBrace.exprHide(),
             catchBlock.exprHide(),
-            foldSpacesBeforeSingleStatement(codeBlock),
         )
         return list.exprWrap(this)
     }
