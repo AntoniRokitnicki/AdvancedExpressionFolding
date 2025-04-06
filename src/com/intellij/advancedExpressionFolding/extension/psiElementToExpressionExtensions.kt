@@ -58,23 +58,20 @@ fun PsiElement.expr(
 
 fun List<PsiElement>.exprHide(
     group: FoldingGroup? = null,
-    foldPrevWhiteSpace: Boolean = false
 ): Expression? {
     if (this.isEmpty()) {
         return null
     }
-    val map = map { element ->
+    val list = map { element ->
         element.exprHide(
             group = group,
-            foldPrevWhiteSpace = foldPrevWhiteSpace
         )
     }
-    return map.exprWrap(first().parent)
+    return list.exprWrap(first().parent)
 }
 
 fun PsiElement?.exprHide(
     group: FoldingGroup? = null,
-    foldPrevWhiteSpace: Boolean = false,
     textRange: TextRange? = this?.textRange,
 ): HideExpression? {
     this ?: return null
@@ -82,12 +79,10 @@ fun PsiElement?.exprHide(
         !it
     } ?: return null
 
-
     return HideExpression(
         this,
         textRange,
-        group = group,
-        foldPrevWhiteSpace = foldPrevWhiteSpace
+        group = group
     )
 }
 

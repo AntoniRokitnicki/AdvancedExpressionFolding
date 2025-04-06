@@ -8,6 +8,5 @@ class HideExpression(
     element: PsiElement,
     textRange: TextRange = element.textRange,
     group: FoldingGroup? = null,
-    foldPrevWhiteSpace: Boolean = false,
 ) :
-AbstractMultiExpression(element, textRange, null, group = group, foldPrevWhiteSpace = foldPrevWhiteSpace)
+AbstractMultiExpression(element, textRange, null, group = group)

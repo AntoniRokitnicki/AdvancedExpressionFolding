@@ -41,10 +41,14 @@ object NullableExt : BaseExtension() {
         list += exprList(fieldAnnotationExpression(element.annotations, element.returnTypeElement))
 
         if (summaryParentOverride) {
-            val hideOverride = element.annotations.filter {
+            val overrides = element.annotations.filter {
                 it.textMatches("@Override")
-            }.exprHide(foldPrevWhiteSpace = true)
+            }
+            val hideOverride = overrides.exprHide()
             list += hideOverride
+            list += overrides.mapNotNull {
+                it.prevWhiteSpace().exprHide()
+            }
             summaryParentOverride.on(hideOverride)?.let {
                 element.body
             }?.let { body ->
