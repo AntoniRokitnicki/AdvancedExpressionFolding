@@ -41,12 +41,10 @@ object MethodCallFactory : BaseExtension(){
     }
 
     fun initialize(dynamicProvider: IDynamicDataProvider? = ConfigurationParser): MethodCallFactory {
-        synchronized(this) {
-                if (dynamicProvider != null) {
-                    this.dynamicProvider = dynamicProvider
-                }
-                refreshMethodCallMappings()
+        if (dynamicProvider != null) {
+            this.dynamicProvider = dynamicProvider
         }
+        refreshMethodCallMappings()
         return this
     }
 
