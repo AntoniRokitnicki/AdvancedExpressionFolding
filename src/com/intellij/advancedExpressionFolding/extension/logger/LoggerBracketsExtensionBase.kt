@@ -111,7 +111,7 @@ open class LoggerBracketsExtensionBase(
     open fun Array<PsiExpression>.extractLiteral(): PsiLiteralExpression? = firstOrNull().asStringLiteral()
 
     open fun MutableList<PsiExpression>.prepareArguments(): MutableList<PsiExpression> {
-        removeFirst() // remove logLiteral
+        removeAt(0) // remove logLiteral
         return this
     }
 

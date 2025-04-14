@@ -150,7 +150,7 @@ object IfNullSafeExt : BaseExtension() {
 
             val toMutableList =
                 iGetter.buildFoldRegions(parentGetter.element, document, null).reversed().toMutableList()
-            toMutableList.removeLast()
+            toMutableList.removeAt(toMutableList.lastIndex)
 
             var prefix = ""
             if (parent !is IGetter && parent is INameable) {

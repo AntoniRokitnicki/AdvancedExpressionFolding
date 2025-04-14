@@ -13,8 +13,8 @@ class MarkerLoggerBracketsExtension(
         override fun Array<PsiExpression>.extractLiteral(): PsiLiteralExpression? = this[1].asStringLiteral()
 
         override fun MutableList<PsiExpression>.prepareArguments(): MutableList<PsiExpression> {
-            removeFirst() // remove marker
-            removeFirst() // remove logLiteral
+            removeAt(0)  // remove marker
+            removeAt(0)  // remove logLiteral
             return this
         }
     }
