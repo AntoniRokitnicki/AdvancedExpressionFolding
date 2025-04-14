@@ -30,7 +30,7 @@ class AdvancedExpressionFoldingBuilder(private val config: IConfig = getInstance
             val file  = element as? PsiJavaFile
             if (file != null && !quick) {
                 if (file.isExpired(document, false)) {
-                    descriptors = BuildExpressionExt.collectFoldRegionsRecursively(element, document, quick)
+                    descriptors = collect(element, document, false)
                     if (descriptors.isNotEmpty()) {
                         file.putUserData(Keys.FULL_CACHE, descriptors)
                     }
@@ -39,7 +39,7 @@ class AdvancedExpressionFoldingBuilder(private val config: IConfig = getInstance
                 }
             }
         }
-        val foldingDescriptors = descriptors ?: BuildExpressionExt.collectFoldRegionsRecursively(element, document, quick)
+        val foldingDescriptors = descriptors ?: collect(element, document, quick)
         if (memoryImprovement) {
             (element as? PsiJavaFile)?.run {
                 putUserData(Keys.FULL_CACHE, foldingDescriptors)
@@ -50,7 +50,7 @@ class AdvancedExpressionFoldingBuilder(private val config: IConfig = getInstance
 
     @Suppress("unused")
     fun preview(element: PsiElement, document: Document, quick: Boolean): List<String> {
-        val foldingDescriptors = BuildExpressionExt.collectFoldRegionsRecursively(element, document, quick)
+        val foldingDescriptors = collect(element, document, quick)
         return Arrays.stream(foldingDescriptors).map { it: FoldingDescriptor ->
             (it.range.substring(document.text)
                     + " => "
@@ -59,6 +59,14 @@ class AdvancedExpressionFoldingBuilder(private val config: IConfig = getInstance
                     it.group
                     + "]")
         }.collect(Collectors.toList())
+    }
+
+    private fun collect(
+        element: PsiElement,
+        document: Document,
+        quick: Boolean
+    ): Array<FoldingDescriptor> {
+        return BuildExpressionExt.collectFoldRegionsRecursively(element, document, quick)
     }
 
     override fun getPlaceholderText(astNode: ASTNode): String? {
