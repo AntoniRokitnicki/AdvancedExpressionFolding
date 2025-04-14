@@ -1,10 +1,7 @@
 package com.intellij.advancedExpressionFolding.extension
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.expression.custom.HideExpression
-import com.intellij.advancedExpressionFolding.expression.custom.SimpleExpression
-import com.intellij.advancedExpressionFolding.expression.custom.WrapAroundExpression
-import com.intellij.advancedExpressionFolding.expression.custom.WrapperExpression
+import com.intellij.advancedExpressionFolding.expression.custom.*
 import com.intellij.lang.folding.FoldingDescriptor
 import com.intellij.openapi.editor.FoldingGroup
 import com.intellij.openapi.util.TextRange
@@ -109,6 +106,14 @@ fun Collection<Expression?>.exprWrap(
 
 fun exprList(vararg elements: Expression?) = mutableListOf(*elements)
 fun foldingList(vararg elements: FoldingDescriptor) = mutableListOf(*elements)
+fun MutableList<Expression?>.applyGroup(group: FoldingGroup) {
+    filterIsInstance<FastExpression>().apply {
+        forEach {
+            it.group = group
+        }
+    }
+}
+
 inline fun MutableList<Expression?>.addIfEnabled(featureFlag: Boolean, function: () -> Expression?) {
     if (featureFlag) {
         add(function.invoke())
@@ -116,3 +121,4 @@ inline fun MutableList<Expression?>.addIfEnabled(featureFlag: Boolean, function:
 }
 
 fun KClass<*>.group(addon: String = ""): FoldingGroup = FoldingGroup.newGroup(qualifiedName + addon)
+fun Any.group(addon: String = ""): FoldingGroup = this::class.group(addon)

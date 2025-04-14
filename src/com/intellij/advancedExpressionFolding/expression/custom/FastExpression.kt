@@ -12,7 +12,7 @@ abstract class FastExpression(
     element: PsiElement,
     textRange: TextRange = element.textRange,
     private val text: String? = null,
-    private var group: FoldingGroup? = null,
+    var group: FoldingGroup? = null,
 ) : Expression(element, textRange) {
 
     override fun supportsFoldRegions(document: Document, parent: Expression?) = true
