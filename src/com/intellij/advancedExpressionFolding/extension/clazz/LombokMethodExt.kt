@@ -60,54 +60,31 @@ object LombokMethodExt : GenericCallback<PsiMethod, List<MethodLevelAnnotation>>
     fun PsiMethod.addInterfaceAnnotations(
         methodLevelAnnotations: MethodLevelAnnotation,
         id: PsiIdentifier,
-        list: MutableList<Expression?>,
-    ) {
+    ): MutableList<Expression?> {
+        val list = exprList()
         val type = methodLevelAnnotations.methodAnnotation
         if (type == LOMBOK_INTERFACE_FIND_BY) {
-            list += addAnnotationByLastCharOfPrevWhitespace(type)
-            id.run {
-                fun extractTagAndName(input: String): Pair<String, String>? {
-                    val regex = "find(\\w+)By(\\w+)".toRegex(RegexOption.IGNORE_CASE)
-                    val matchResult = regex.find(input)
-
-                    return matchResult?.takeIf {
-                        it.groupValues.size == 2
-                    }?.let {
-                        val (tag, name) = it.destructured
-                        Pair(tag.replaceFirstChar(Char::lowercase), name.replaceFirstChar(Char::lowercase))
-                    }
-                }
-                extractTagAndName(name)?.run {
-                    val (tag, by) = this
-
-                    list += expr(tag.first().toString(), textRange = textRangeChar(PsiElement::start, 0, 5))
-                    val goBackBy = by.length + "by".length
-                    list += exprHide(textRange = textRangeChar(PsiElement::end, goBackBy * -1, 0))
-
-                    list += parameterList.parameters.first()?.takeIf {
-                        by != it.name
-                    }?.identifier
-                        ?.run {
-                            expr(by)
-                        }
-                }
-            }
-
-            return
+            addFindBy(id, list, type)
+        } else {
+            addGetterAndSetter(id, list, type)
         }
+        list.applyGroup(group())
+        return list
+    }
 
+    private fun PsiMethod.addGetterAndSetter(
+        id: PsiIdentifier,
+        list: MutableList<Expression?>,
+        type: LombokInterfaceFoldingAnnotation
+    ) {
         //TODO: support @Nullable?
         val name = this.guessPropertyName()
         val getName = id.text
 
         list += id.run {
-            fun countCharDifferencesForGetterAndField(getName: String, name: String) =
-                getName.length - name.reversed().zip(getName.reversed())
-                    .indexOfFirst { (c1, c2) -> c1 != c2 }
-            val diffCount = countCharDifferencesForGetterAndField(getName, name)
+             val diffCount = countCharDifferencesForGetterAndField(getName, name)
             compressMethodNameByFirstChar(name, diffCount)
         }
-
         list += addAnnotationByLastCharOfPrevWhitespace(type)
 
         if (type == LOMBOK_INTERFACE_GETTER) list += this.parameterList.exprHide()
@@ -117,6 +94,44 @@ object LombokMethodExt : GenericCallback<PsiMethod, List<MethodLevelAnnotation>>
                 this.returnTypeElement?.expr(it)
             }
             list += this.parameterList.exprHide()
+        }
+    }
+
+    private fun PsiMethod.addFindBy(
+        id: PsiIdentifier,
+        list: MutableList<Expression?>,
+        type: LombokInterfaceFoldingAnnotation
+    ) {
+        list += addAnnotationByLastCharOfPrevWhitespace(type)
+        id.run {
+            extractTagAndName(name)?.let { (tag, by) ->
+                list += expr(tag.first().toString(), textRange = textRangeChar(PsiElement::start, 0, 5))
+                val goBackBy = by.length + "by".length
+                list += exprHide(textRange = textRangeChar(PsiElement::end, goBackBy * -1, 0))
+
+                list += parameterList.parameters.first()?.takeIf {
+                    by != it.name
+                }?.identifier
+                    ?.run {
+                        expr(by)
+                    }
+            }
+        }
+    }
+
+    fun countCharDifferencesForGetterAndField(getName: String, name: String) =
+        getName.length - name.reversed().zip(getName.reversed())
+            .indexOfFirst { (c1, c2) -> c1 != c2 }
+
+    fun extractTagAndName(input: String): Pair<String, String>? {
+        val regex = "find(\\w+)By(\\w+)".toRegex(RegexOption.IGNORE_CASE)
+        val matchResult = regex.find(input)
+
+        return matchResult?.takeIf {
+            it.groupValues.size == 3
+        }?.let {
+            val (tag, name) = it.destructured
+            Pair(tag.replaceFirstChar(Char::lowercase), name.replaceFirstChar(Char::lowercase))
         }
     }
 
@@ -143,3 +158,4 @@ object LombokMethodExt : GenericCallback<PsiMethod, List<MethodLevelAnnotation>>
     ) = expr(name.first().toString(), textRange = textRangeChar(PsiElement::start, 0, diffCount))
 
 }
+

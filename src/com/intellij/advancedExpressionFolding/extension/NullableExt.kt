@@ -31,7 +31,7 @@ object NullableExt : BaseExtension() {
             element.callback?.invoke()?.let { annotations ->
                 annotations.forEach { methodLevelAnnotations ->
                     val id = element.identifier ?: return@forEach
-                    element.addInterfaceAnnotations(methodLevelAnnotations, id, list)
+                    list += element.addInterfaceAnnotations(methodLevelAnnotations, id)
                 }
                 // For interfaces only; other functionality was not tested with the interfaces’ methods
                 return list.exprWrap(element)
@@ -357,6 +357,3 @@ object NullableExt : BaseExtension() {
     }
 
 }
-
-
-

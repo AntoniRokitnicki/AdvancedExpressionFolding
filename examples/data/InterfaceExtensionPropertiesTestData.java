@@ -249,7 +249,7 @@ public class InterfaceExtensionPropertiesTestData {
     }
 
     interface Finder {
-        //@Finder String tag(String name);
+        //@FindBy String tag(String name);
         String findTagByName(String name);
 
         String findTagByAge(byte name);
