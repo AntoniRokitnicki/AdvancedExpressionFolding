@@ -21,8 +21,6 @@
             </className>
         </intentionAction>
 
-        <postStartupActivity implementation="com.intellij.advancedExpressionFolding.FoldingStartupActivity"/>
-
         <errorHandler implementation="com.intellij.diagnostic.JetBrainsMarketplaceErrorReportSubmitter"/>
 
         <editorOptionsProvider

@@ -4,7 +4,6 @@ package com.intellij.advancedExpressionFolding.extension
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.lang.folding.FoldingDescriptor
 import com.intellij.openapi.editor.Document
-import com.intellij.openapi.util.NlsSafe
 import com.intellij.psi.*
 
 object PatternMatchingExt : BaseExtension() {
@@ -66,7 +65,7 @@ object PatternMatchingExt : BaseExtension() {
 
     private fun PsiDeclarationStatement.appendDescriptors(
         instanceOfExpr: PsiInstanceOfExpression,
-        varName: @NlsSafe String,
+        varName: String,
         element: PsiIfStatement,
         document: Document,
         descriptors: ArrayList<FoldingDescriptor>,
