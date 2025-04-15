@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  * {@link com.intellij.advancedExpressionFolding.FoldingTest#testLombokPatternOffTestData()}
  */
 @SuppressWarnings("ALL")
-@Builder @Getter @Setter @Serial public class LombokPatternOffNegativeTestData {
+@Builder(ClassWithBuilder) @Getter @Setter @Serial public class LombokPatternOffNegativeTestData {
 
     LombokPatternOffNegativeTestData data;
     boolean ok;

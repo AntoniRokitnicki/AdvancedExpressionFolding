@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  * {@link com.intellij.advancedExpressionFolding.FoldingTest#testLombokTestData()}
  */
 @SuppressWarnings("ALL")
-@Builder @Getter @Setter @Serial public class LombokTestData {
+@Builder(ClassWithBuilder) @Getter @Setter @Serial public class LombokTestData {
 
     LombokTestData data;
     boolean ok;
@@ -445,6 +445,22 @@ import java.util.logging.Logger;
             @Constructor(4-3,protected) private double field3;
             private boolean field4;
         }
+    }
+
+    @Builder(FirstBuilder) @Builder(SecondBuilder) @Builder class Builders {
+
+        class FirstBuilder {
+
+        }
+
+        class SecondBuilder {
+
+        }
+
+        class BuildersBuilder {
+
+        }
+
     }
 
 }

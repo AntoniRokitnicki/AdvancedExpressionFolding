@@ -16,7 +16,7 @@ import java.util.logging.Logger;</fold>
  * {@link com.intellij.advancedExpressionFolding.FoldingTest#testLombokTestData()}
  */</fold>
 @SuppressWarnings("ALL")
-<fold text='@Builder @Getter @Setter @Serial p' expand='false'>p</fold>ublic class LombokTestData {<fold text='' expand='false'>
+<fold text='@Builder(ClassWithBuilder) @Getter @Setter @Serial p' expand='false'>p</fold>ublic class LombokTestData {<fold text='' expand='false'>
 
     </fold><fold text='' expand='false'>private static final long serialVersionUID = 1234567L;</fold>
 
@@ -1132,7 +1132,7 @@ import java.util.logging.Logger;</fold>
             </fold><fold text='' expand='false'>FiveConstructorsMod(int field1, String field2) <fold text='{...}' expand='true'>{
                 this.field1 = field1;
                 this.field2 = field2;
-            }</fold></fold><fold text='' expand='false'>
+            }</fold><fold text='' expand='false'></fold>
             </fold><fold text='' expand='false'>protected FiveConstructorsMod(int field1, String field2, double field3) <fold text='{...}' expand='true'>{
                 this.field1 = field1;
                 this.field2 = field2;
@@ -1145,6 +1145,22 @@ import java.util.logging.Logger;</fold>
                 this.field4 = field4;
             }</fold></fold>
         }</fold>
+    }</fold>
+
+    <fold text='@Builder(FirstBuilder) @Builder(SecondBuilder) @Builder c' expand='false'>c</fold>lass Builders <fold text='{...}' expand='true'>{
+
+        class FirstBuilder <fold text='{...}' expand='true'>{
+
+        }</fold>
+
+        class SecondBuilder <fold text='{...}' expand='true'>{
+
+        }</fold>
+
+        class BuildersBuilder <fold text='{...}' expand='true'>{
+
+        }</fold>
+
     }</fold>
 
 }

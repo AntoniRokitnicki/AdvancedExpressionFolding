@@ -75,8 +75,15 @@ object LombokExt : BaseExtension(), GenericCallback<PsiField, List<FieldLevelAnn
     private fun PsiClass.foldBuilder(): List<ClassLevelAnnotation> {
         return allInnerClasses.filter {
             it.name?.endsWith("Builder") == true
-        }.map {
-            ClassLevelAnnotation(LOMBOK_BUILDER, emptyList())
+        }.mapNotNull {
+            val namelessBuilder = it.name == "${name}Builder"
+            if (namelessBuilder) {
+                ClassLevelAnnotation(LOMBOK_BUILDER, emptyList())
+            } else if (it.name != null){
+                ClassLevelAnnotation(LOMBOK_BUILDER, emptyList(), arguments = listOf(it.name!!))
+            } else {
+                null
+            }
         }
     }
 

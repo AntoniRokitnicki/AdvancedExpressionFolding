@@ -1,6 +1,6 @@
 <fold text='📦' expand='false'>package</fold> data;
 
-<fold text='@Builder @AllArgsConstructor(default) @Getter p' expand='false'>p</fold>ublic <fold text='🏛️' expand='false'>class</fold> FieldShiftBuilder {
+<fold text='@Builder(BuilderFieldShiftBuilder) @AllArgsConstructor(default) @Getter p' expand='false'>p</fold>ublic <fold text='🏛️' expand='false'>class</fold> FieldShiftBuilder {
     <fold text='🚫' expand='false'>private</fold> String username;
     <fold text='🚫' expand='false'>private</fold> <fold text='🔘' expand='false'>boolean</fold> active;
     <fold text='🚫' expand='false'>private</fold> String userIdentifier;

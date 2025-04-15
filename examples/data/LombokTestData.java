@@ -1147,4 +1147,20 @@ public class LombokTestData {
         }
     }
 
+    class Builders {
+
+        class FirstBuilder {
+
+        }
+
+        class SecondBuilder {
+
+        }
+
+        class BuildersBuilder {
+
+        }
+
+    }
+
 }

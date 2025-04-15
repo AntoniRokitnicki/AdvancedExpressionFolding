@@ -16,7 +16,7 @@
  * {@link com.intellij.advancedExpressionFolding.FoldingTest#testLombokPatternOffTestData()}
  */</fold>
 @SuppressWarnings("ALL")
-<fold text='@Builder @Getter @Setter @Serial p' expand='false'>p</fold>ublic <fold text='🏛️' expand='false'>class</fold> LombokPatternOffNegativeTestData {<fold text='' expand='false'>
+<fold text='@Builder(ClassWithBuilder) @Getter @Setter @Serial p' expand='false'>p</fold>ublic <fold text='🏛️' expand='false'>class</fold> LombokPatternOffNegativeTestData {<fold text='' expand='false'>
 
     </fold><fold text='🚫' expand='false'><fold text='' expand='false'>private</fold> <fold text='⚡' expand='false'><fold text='const' expand='false'>static</fold> <fold text='🔒' expand='false'>final</fold> </fold><fold text='' expand='false'>long</fold> serialVersionUID = 1234567L;</fold>
 

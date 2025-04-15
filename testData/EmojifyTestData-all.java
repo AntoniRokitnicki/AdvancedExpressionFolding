@@ -318,7 +318,7 @@ public <fold text='🏛️' expand='false'>class</fold> EmojifyTestData {
         }</fold>
     }</fold>
 
-    <fold text='@Builder p' expand='false'>p</fold>ublic <fold text='🏛️' expand='false'>class</fold> BuilderPatternUsage <fold text='{...}' expand='true'>{
+    <fold text='@Builder(Builder) p' expand='false'>p</fold>ublic <fold text='🏛️' expand='false'>class</fold> BuilderPatternUsage <fold text='{...}' expand='true'>{
         <fold text='🚫' expand='false'>private</fold> <fold text='🔒' expand='false'>final</fold> <fold text='🔢' expand='false'>int</fold> field1;
         <fold text='🚫' expand='false'>private</fold> <fold text='🔒' expand='false'>final</fold> String field2;
 

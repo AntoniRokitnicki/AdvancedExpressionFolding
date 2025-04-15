@@ -16,7 +16,7 @@
  * {@link com.intellij.advancedExpressionFolding.FoldingTest#testLombokTestData()}
  */</fold>
 @SuppressWarnings("ALL")
-<fold text='@Builder @Getter @Setter @Serial p' expand='false'>p</fold>ublic <fold text='🏛️' expand='false'>class</fold> LombokTestData {<fold text='' expand='false'>
+<fold text='@Builder(ClassWithBuilder) @Getter @Setter @Serial p' expand='false'>p</fold>ublic <fold text='🏛️' expand='false'>class</fold> LombokTestData {<fold text='' expand='false'>
 
     </fold><fold text='🚫' expand='false'><fold text='' expand='false'>private</fold> <fold text='⚡' expand='false'><fold text='const' expand='false'>static</fold> <fold text='🔒' expand='false'>final</fold> </fold><fold text='' expand='false'>long</fold> serialVersionUID = 1234567L;</fold>
 
@@ -1145,6 +1145,22 @@
                 <fold text='📍' expand='false'>this</fold>.field4 = <fold text='<<' expand='false'>field4</fold>;
             }</fold></fold>
         }</fold>
+    }</fold>
+
+    <fold text='@Builder(FirstBuilder) @Builder(SecondBuilder) @Builder c' expand='false'><fold text='🏛️' expand='false'>c</fold>lass</fold> Builders <fold text='{...}' expand='true'>{
+
+        <fold text='🏛️' expand='false'>class</fold> FirstBuilder <fold text='{...}' expand='true'>{
+
+        }</fold>
+
+        <fold text='🏛️' expand='false'>class</fold> SecondBuilder <fold text='{...}' expand='true'>{
+
+        }</fold>
+
+        <fold text='🏛️' expand='false'>class</fold> BuildersBuilder <fold text='{...}' expand='true'>{
+
+        }</fold>
+
     }</fold>
 
 }
