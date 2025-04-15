@@ -37,7 +37,7 @@
 <p>For more information, read the <a href="https://medium.com/@andrey_cheptsov/making-java-code-easier-to-read-without-changing-it-adeebd5c36de" target="_blank">blog post</a>.</p>
 
 
-## 3.4.0 ##
+## 3.4.1 ##
 - [Prevents all Lombok folding for classes matching the regex pattern](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#lombokpatternoff)
 - [experimental - @SneakyThrows for single statement](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#experimental)
 - [InterfaceExtensionPropertiesTestData] Group added per method

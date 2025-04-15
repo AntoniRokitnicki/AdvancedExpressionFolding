@@ -4,6 +4,10 @@
 
 ## [Unreleased]
 
+## [3.4.1] - 2025-04-15
+
+- remove internal code run before plugin updates to remove warnings
+
 ## [3.4.0] - 2025-04-14
 
 - [lombokPatternOff] Prevents all Lombok folding for classes matching the regex pattern
@@ -294,7 +298,8 @@ Improved handling of multi-line log messages
 
 ## [0.0.1]
 
-[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v3.4.0...HEAD
+[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v3.4.1...HEAD
+[3.4.1]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v3.4.0...v3.4.1
 [3.4.0]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v3.3.0...v3.4.0
 [3.3.0]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v3.2.0...v3.3.0
 [3.2.0]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v3.1.0...v3.2.0
