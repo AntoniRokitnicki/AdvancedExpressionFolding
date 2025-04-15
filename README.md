@@ -12,7 +12,7 @@
 
 [![Java](https://img.shields.io/badge/java-21-blue.svg)](https://www.java.com)
 [![Kotlin](https://img.shields.io/badge/dynamic/toml?url=https%3A%2F%2Fraw.githubusercontent.com%2FAntoniRokitnicki%2FAdvancedExpressionFolding%2Fmain%2Fgradle%2Flibs.versions.toml&query=%24.versions.kotlin&label=kotlin)](https://kotlinlang.org)
-[![Gradle](https://img.shields.io/badge/gradle-8.9-blue.svg)](https://gradle.org)
+[![Gradle](https://img.shields.io/badge/gradle-8.13-blue.svg)](https://gradle.org)
 
 [![Version](https://img.shields.io/jetbrains/plugin/v/com.github.advanced-java-folding2.svg)](https://plugins.jetbrains.com/plugin/23659-advanced-java-folding-2-fork-)
 [![Downloads](https://img.shields.io/jetbrains/plugin/d/com.github.advanced-java-folding2.svg)](https://plugins.jetbrains.com/plugin/23659-advanced-java-folding-2-fork-)
