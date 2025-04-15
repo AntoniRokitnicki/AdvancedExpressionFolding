@@ -45,13 +45,51 @@ object LombokExt : BaseExtension(), GenericCallback<PsiField, List<FieldLevelAnn
             classLevelAnnotations += foldData(methodTypeToMethodsMap, fieldsMap, fieldLevelAnnotations)
         }
         classOptimizations(classLevelAnnotations)
+        fieldOptimizations(fieldLevelAnnotations)
 
-        val fieldLevelMap = fieldLevelAnnotations.groupBy {
+        val fieldLevelMap: MutableMap<PsiField, List<FieldLevelAnnotation>> = fieldLevelAnnotations.groupBy {
             it.field
         }.toMutableMap()
 
-        applyFieldLevel(fieldOptimizations(fieldLevelMap))
+        applyFieldLevel(fieldOptimizationsPerField(fieldLevelMap))
         return classLevelAnnotations
+    }
+
+    private fun fieldOptimizations(fieldLevelAnnotations: MutableList<FieldLevelAnnotation>) {
+        fieldLevelAnnotations.filter {
+            it.classAnnotation == LOMBOK_FIELD_CONSTRUCTOR
+        }.takeIf {
+            it.isNotEmpty()
+        }?.run {
+            when (size) {
+                1 -> singleConstructor(fieldLevelAnnotations)
+                else -> singleConstructorManyFields(fieldLevelAnnotations)
+            }
+        }
+    }
+
+    private fun List<FieldLevelAnnotation>.singleConstructorManyFields(
+        fieldLevelAnnotations: MutableList<FieldLevelAnnotation>
+    ) {
+        groupBy {
+            it.arguments.first().substringBefore("-", "")
+        }.takeIf {
+            it.size == 1
+        }?.run {
+            values.flatten().forEach {
+                val index = fieldLevelAnnotations.indexOf(it)
+                val firstArg = it.arguments.first().substringAfter("-", "")
+                fieldLevelAnnotations[index] = it.copy(arguments = listOf(firstArg) + it.arguments.drop(1))
+            }
+        }
+    }
+
+    private fun List<FieldLevelAnnotation>.singleConstructor(
+        fieldLevelAnnotations: MutableList<FieldLevelAnnotation>
+    ) {
+        val first = first()
+        val index = fieldLevelAnnotations.indexOf(first)
+        fieldLevelAnnotations[index] = first.copy(arguments = first.arguments.drop(1))
     }
 
 
@@ -284,8 +322,7 @@ object LombokExt : BaseExtension(), GenericCallback<PsiField, List<FieldLevelAnn
         }
     }
 
-
-    private fun fieldOptimizations(fieldLevelMap: MutableMap<PsiField, List<FieldLevelAnnotation>>): Map<PsiField, List<FieldLevelAnnotation>> {
+    private fun fieldOptimizationsPerField(fieldLevelMap: MutableMap<PsiField, List<FieldLevelAnnotation>>): Map<PsiField, List<FieldLevelAnnotation>> {
         return fieldLevelMap.mapValues { (field, list) ->
             if (list.size < 2 && list.none {
                     it.arguments.isEmpty()
@@ -298,7 +335,7 @@ object LombokExt : BaseExtension(), GenericCallback<PsiField, List<FieldLevelAnn
             val usedAnnotations = list.map {
                 it.classAnnotation
             }.toMutableList()
-            val values = LombokFoldingAnnotation.values().toMutableList()
+            val values = LombokFoldingAnnotation.entries.toMutableList()
             values.remove(LOMBOK_VALUE_SIMPLE)
             values.forEach { groupingAnnotation ->
                 groupingAnnotation.children()?.let { neededKids ->
@@ -338,7 +375,7 @@ object LombokExt : BaseExtension(), GenericCallback<PsiField, List<FieldLevelAnn
         }
 
         val usedAnnotations = annotations.keys.toMutableSet()
-        LombokFoldingAnnotation.values().forEach { groupingAnnotation ->
+        LombokFoldingAnnotation.entries.forEach { groupingAnnotation ->
             groupingAnnotation.children()?.let { neededKids ->
                 if (usedAnnotations.containsAll(neededKids)) {
                     if (groupingAnnotation == LOMBOK_DATA || groupingAnnotation == LOMBOK_VALUE) {

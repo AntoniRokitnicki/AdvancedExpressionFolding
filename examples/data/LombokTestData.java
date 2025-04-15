@@ -1124,20 +1124,25 @@ public class LombokTestData {
             private String field2;
             private double field3;
             private boolean field4;
+
             public FiveConstructorsMod() {
             }
+
             private FiveConstructorsMod(int field1) {
                 this.field1 = field1;
             }
+
             FiveConstructorsMod(int field1, String field2) {
                 this.field1 = field1;
                 this.field2 = field2;
             }
+
             protected FiveConstructorsMod(int field1, String field2, double field3) {
                 this.field1 = field1;
                 this.field2 = field2;
                 this.field3 = field3;
             }
+
             public FiveConstructorsMod(int field1, String field2, double field3, boolean field4) {
                 this.field1 = field1;
                 this.field2 = field2;
@@ -1145,6 +1150,45 @@ public class LombokTestData {
                 this.field4 = field4;
             }
         }
+
+        class SingleConstructor {
+            private final int field1;
+            private int field2;
+            SingleConstructor(int field1) {
+                this.field1 = field1;
+            }
+        }
+
+        private class SingleDoubleConstructor {
+            private final int field1;
+            private final int field2;
+            private int field3;
+
+            private SingleDoubleConstructor(int field1, int field2) {
+                this.field1 = field1;
+                this.field2 = field2;
+            }
+        }
+
+        public class SingleConstructorNoMod {
+            private final int field1;
+            private int field2;
+            public SingleConstructorNoMod(int field1) {
+                this.field1 = field1;
+            }
+        }
+
+        public class SingleDoubleConstructorNoMod {
+            private final int field1;
+            private final int field2;
+            private int field3;
+
+            public SingleDoubleConstructorNoMod(int field1, int field2) {
+                this.field1 = field1;
+                this.field2 = field2;
+            }
+        }
+
     }
 
     class Builders {

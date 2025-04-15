@@ -445,6 +445,29 @@ import java.util.logging.Logger;
             @Constructor(4-3,protected) private double field3;
             private boolean field4;
         }
+
+        class SingleConstructor {
+            @Constructor(default) private final int field1;
+            private int field2;
+        }
+
+        private class SingleDoubleConstructor {
+            @Constructor(1,private) private final int field1;
+            @Constructor(2,private) private final int field2;
+            private int field3;
+        }
+
+        public class SingleConstructorNoMod {
+            @Constructor private final int field1;
+            private int field2;
+        }
+
+        public class SingleDoubleConstructorNoMod {
+            @Constructor(1) private final int field1;
+            @Constructor(2) private final int field2;
+            private int field3;
+        }
+
     }
 
     @Builder(FirstBuilder) @Builder(SecondBuilder) @Builder class Builders {
