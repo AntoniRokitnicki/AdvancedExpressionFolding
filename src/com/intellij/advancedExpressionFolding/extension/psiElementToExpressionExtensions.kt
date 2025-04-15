@@ -106,12 +106,13 @@ fun Collection<Expression?>.exprWrap(
 
 fun exprList(vararg elements: Expression?) = mutableListOf(*elements)
 fun foldingList(vararg elements: FoldingDescriptor) = mutableListOf(*elements)
-fun MutableList<Expression?>.applyGroup(group: FoldingGroup) {
+fun MutableList<Expression?>.applyGroup(group: FoldingGroup): MutableList<Expression?> {
     filterIsInstance<FastExpression>().apply {
         forEach {
             it.group = group
         }
     }
+    return this
 }
 
 inline fun MutableList<Expression?>.addIfEnabled(featureFlag: Boolean, function: () -> Expression?) {
@@ -121,4 +122,4 @@ inline fun MutableList<Expression?>.addIfEnabled(featureFlag: Boolean, function:
 }
 
 fun KClass<*>.group(addon: String = ""): FoldingGroup = FoldingGroup.newGroup(qualifiedName + addon)
-fun Any.group(addon: String = ""): FoldingGroup = this::class.group(addon)
+fun BaseExtension.group(addon: String = ""): FoldingGroup = this::class.group(addon)

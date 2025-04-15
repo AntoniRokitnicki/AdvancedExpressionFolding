@@ -8,6 +8,7 @@ import com.intellij.advancedExpressionFolding.extension.clazz.LombokExt.findMeth
 import com.intellij.advancedExpressionFolding.extension.clazz.LombokInterfaceFoldingAnnotation.*
 import com.intellij.advancedExpressionFolding.extension.clazz.LombokInterfaceFoldingAnnotation.Companion.fromMethodType
 import com.intellij.advancedExpressionFolding.extension.clazz.MethodType.*
+import com.intellij.openapi.editor.FoldingGroup
 import com.intellij.openapi.util.Key
 import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiElement
@@ -23,7 +24,7 @@ enum class LombokInterfaceFoldingAnnotation(
     LOMBOK_INTERFACE_FIND_BY("@FindBy", FIND_BY);
 
     companion object {
-        fun fromMethodType(methodType: MethodType) = values().asSequence().firstOrNull {
+        fun fromMethodType(methodType: MethodType) = entries.asSequence().firstOrNull {
             it.methodType == methodType
         }
     }
@@ -60,6 +61,7 @@ object LombokMethodExt : GenericCallback<PsiMethod, List<MethodLevelAnnotation>>
     fun PsiMethod.addInterfaceAnnotations(
         methodLevelAnnotations: MethodLevelAnnotation,
         id: PsiIdentifier,
+        group: FoldingGroup,
     ): MutableList<Expression?> {
         val list = exprList()
         val type = methodLevelAnnotations.methodAnnotation
@@ -68,8 +70,7 @@ object LombokMethodExt : GenericCallback<PsiMethod, List<MethodLevelAnnotation>>
         } else {
             addGetterAndSetter(id, list, type)
         }
-        list.applyGroup(group())
-        return list
+        return list.applyGroup(group)
     }
 
     private fun PsiMethod.addGetterAndSetter(
@@ -87,8 +88,9 @@ object LombokMethodExt : GenericCallback<PsiMethod, List<MethodLevelAnnotation>>
         }
         list += addAnnotationByLastCharOfPrevWhitespace(type)
 
-        if (type == LOMBOK_INTERFACE_GETTER) list += this.parameterList.exprHide()
-        else if (type == LOMBOK_INTERFACE_SETTER) {
+        if (type == LOMBOK_INTERFACE_GETTER) {
+            list += this.parameterList.exprHide()
+        } else if (type == LOMBOK_INTERFACE_SETTER) {
             val param = this.parameterList.parameters.firstOrNull()?.type?.presentableText
             list += param?.let {
                 this.returnTypeElement?.expr(it)
