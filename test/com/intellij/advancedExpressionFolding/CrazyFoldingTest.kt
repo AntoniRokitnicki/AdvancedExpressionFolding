@@ -4,6 +4,7 @@ import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.
 import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.Companion.getInstance
 import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.State
 import com.intellij.advancedExpressionFolding.extension.on
+import junit.framework.ComparisonFailure
 import org.junit.AssumptionViolatedException
 import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable
 import org.junit.jupiter.params.ParameterizedTest
@@ -44,7 +45,7 @@ class CrazyFoldingTest : BaseTest() {
         val startTime = System.nanoTime()
         try {
             super.doFoldingTest(testName)
-        } catch (e: com.intellij.rt.execution.junit.FileComparisonFailure) {
+        } catch (_: ComparisonFailure) {
             println("counter = $counter")
         } catch (e: IllegalArgumentException) {
             if (e.message == "Comparison method violates its general contract!") {
