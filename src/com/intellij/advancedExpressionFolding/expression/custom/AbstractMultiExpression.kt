@@ -2,7 +2,6 @@ package com.intellij.advancedExpressionFolding.expression.custom
 
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.extension.asInstance
-import com.intellij.advancedExpressionFolding.extension.distinctNot
 import com.intellij.advancedExpressionFolding.extension.group
 import com.intellij.advancedExpressionFolding.extension.prevWhiteSpace
 import com.intellij.lang.folding.FoldingDescriptor
@@ -46,14 +45,11 @@ abstract class AbstractMultiExpression(
             }
         }
 
-        optimizeFieldAnnotationExpression()
-
         childrenList.forEach { child ->
-            if (child == null) {
-                return@forEach
+            if (child != null) {
+                assignGroupOnNotFound(child, parentGroup)
+                list += child.buildFoldRegions(child.element, document, this)
             }
-            assignGroupOnNotFound(child, parentGroup)
-            list += child.buildFoldRegions(child.element, document, this)
         }
         return list.toTypedArray()
     }
@@ -71,34 +67,6 @@ abstract class AbstractMultiExpression(
             }
     }
 
-    private fun optimizeFieldAnnotationExpression() {
-        if (childrenList.firstOrNull {
-                it is FieldAnnotationExpression
-            } == null) return
-        val notDistinct = childrenList.distinctNot()
-        val combined = notDistinct.zipWithNext { a, b ->
-            if (a is FieldAnnotationExpression && b is FieldAnnotationExpression) {
-                val combinedCustomClassAnnotations =
-                    (a.customClassAnnotations + b.customClassAnnotations).distinct()
-                val combinedElementsToFold = (a.elementsToFold + b.elementsToFold).distinct()
-                val combinedFieldAnnotationExpression = FieldAnnotationExpression(
-                    element = a.element,
-                    customClassAnnotations = combinedCustomClassAnnotations,
-                    elementsToFold = combinedElementsToFold
-                )
-                combinedFieldAnnotationExpression
-            } else {
-                //println("WARNING!: folding on same element")
-                null
-            }
-        }.filterNotNull()
-
-        if (combined.isNotEmpty()) {
-            childrenList.removeAll(notDistinct)
-            childrenList.addAll(combined)
-        }
-    }
-
     open fun wrapElement(
         element: PsiElement,
         parentGroup: FoldingGroup
@@ -114,10 +82,6 @@ abstract class AbstractMultiExpression(
     }
 
     open fun createGroup(): FoldingGroup = this::class.group()
-
-    fun addChild(other: Expression?) {
-        childrenList.add(other)
-    }
 
 }
 
