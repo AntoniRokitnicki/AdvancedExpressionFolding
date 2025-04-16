@@ -310,3 +310,7 @@ tasks.register("canaryRelease") {
     }
 }
 
+
+configurations.all {
+    resolutionStrategy.cacheDynamicVersionsFor(14, "days")
+}
