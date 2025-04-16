@@ -7,7 +7,7 @@ import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiElement
 
 open class WrapperExpression(element: PsiElement, textRange: TextRange = element.textRange, val chain : List<Expression> = emptyList(), private val nested: Boolean = true) :
-    AbstractMultiExpression(element, textRange, *chain.toTypedArray()) {
+    AbstractMultiExpression(element, textRange, chain) {
 
     override fun isNested() = nested
 

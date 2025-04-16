@@ -6,4 +6,4 @@ import com.intellij.psi.PsiElement
 
 class PrintlnExpression(
     element: PsiElement, textRange: TextRange, child: Expression?
-) : AbstractMultiExpression(element, textRange, child)
+) : AbstractMultiExpression(element, textRange, listOf(child))

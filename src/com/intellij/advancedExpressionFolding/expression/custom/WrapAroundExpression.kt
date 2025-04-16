@@ -11,16 +11,17 @@ import com.intellij.psi.PsiElement
 class WrapAroundExpression(
     element: PsiElement,
     textRange: TextRange = element.textRange,
-    vararg children: Expression?,
+    children: List<Expression?> = emptyList<Expression?>(), //TODO: not needed
     group: FoldingGroup? = null,
     textBefore: String? = null,
     foldPrevWhiteSpace: Boolean = false,
+    //TODO: not needed
     textAfter: String? = null,
     foldNextWhiteSpace: Boolean = false,
 ) :
 AbstractMultiExpression(element,
     textRange,
-    *modifyChildren(children, element, textBefore, foldPrevWhiteSpace, textAfter, foldNextWhiteSpace),
+    modifyChildren(children, element, textBefore, foldPrevWhiteSpace, textAfter, foldNextWhiteSpace),
     group = group,
     foldPrevWhiteSpace = foldPrevWhiteSpace) {
 
@@ -30,13 +31,13 @@ AbstractMultiExpression(element,
 
     companion object {
         fun modifyChildren(
-            children: Array<out Expression?>,
+            children: List<Expression?>,
             element: PsiElement,
             textBefore: String?,
             foldPrevWhiteSpace: Boolean,
             textAfter: String?,
             foldNextWhiteSpace: Boolean,
-        ): Array<Expression?> {
+        ): List<Expression?> {
             val list = mutableListOf<Expression?>()
             list.addAll(children)
 
@@ -60,7 +61,7 @@ AbstractMultiExpression(element,
                 TODO()
             }
 
-            return list.toTypedArray()
+            return list
         }
     }
 

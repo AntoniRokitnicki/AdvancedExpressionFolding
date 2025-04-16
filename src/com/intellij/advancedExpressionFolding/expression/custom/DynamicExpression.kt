@@ -7,7 +7,7 @@ import com.intellij.psi.PsiElement
 
 class DynamicExpression(
     element: PsiElement,
-    vararg children: Expression?,
+    children: List<Expression?>,
     textRange: TextRange = element.textRange,
     text: String = "",
     group: FoldingGroup? = null,
@@ -15,7 +15,7 @@ class DynamicExpression(
 ) : AbstractMultiExpression(
     element,
     textRange = textRange,
-    *children,
+    children,
     text = text,
     group = group,
     foldPrevWhiteSpace = foldPrevWhiteSpace

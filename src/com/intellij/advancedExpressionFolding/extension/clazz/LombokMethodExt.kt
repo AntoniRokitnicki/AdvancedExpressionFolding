@@ -62,7 +62,7 @@ object LombokMethodExt : GenericCallback<PsiMethod, List<MethodLevelAnnotation>>
         methodLevelAnnotations: MethodLevelAnnotation,
         id: PsiIdentifier,
         group: FoldingGroup,
-    ): MutableList<Expression?> {
+    ): List<Expression?> {
         val list = exprList()
         val type = methodLevelAnnotations.methodAnnotation
         if (type == LOMBOK_INTERFACE_FIND_BY) {

@@ -13,16 +13,11 @@ import com.intellij.psi.PsiElement
 abstract class AbstractMultiExpression(
     element: PsiElement,
     textRange: TextRange = element.textRange,
-    /**
-     * creation only, [childrenList] is used in [buildFoldRegions] and [plus]
-     */
-    vararg children: Expression?,
+    private val children: List<Expression?>,
     private val text: String = "",
     private var group: FoldingGroup? = null,
     private val foldPrevWhiteSpace: Boolean = false,
 ) : Expression(element, textRange) {
-
-    private val childrenList: MutableList<Expression?> = children.toMutableList()
 
     override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean = true
 
@@ -45,7 +40,7 @@ abstract class AbstractMultiExpression(
             }
         }
 
-        childrenList.forEach { child ->
+        children.forEach { child ->
             if (child != null) {
                 assignGroupOnNotFound(child, parentGroup)
                 list += child.buildFoldRegions(child.element, document, this)

@@ -91,10 +91,14 @@ fun PsiElement.exprWrapAround(
         foldPrevWhiteSpace = foldPrevWhiteSpace,
     )
 
-fun Collection<Expression?>.exprWrap(
+fun List<Expression?>.exprWrap(
     parent: PsiElement,
+    group: FoldingGroup? = null,
 ): Expression? {
-    val chain = filterNotNull()
+    val chain = when {
+        group != null -> applyGroup(group)
+        else -> this
+    }.filterNotNull()
     if (chain.isEmpty()) {
         return null
     }
@@ -106,7 +110,7 @@ fun Collection<Expression?>.exprWrap(
 
 fun exprList(vararg elements: Expression?) = mutableListOf(*elements)
 fun foldingList(vararg elements: FoldingDescriptor) = mutableListOf(*elements)
-fun MutableList<Expression?>.applyGroup(group: FoldingGroup): MutableList<Expression?> {
+fun List<Expression?>.applyGroup(group: FoldingGroup): List<Expression?> {
     filterIsInstance<FastExpression>().apply {
         forEach {
             it.group = group

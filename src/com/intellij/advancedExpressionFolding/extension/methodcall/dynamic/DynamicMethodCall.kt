@@ -24,7 +24,7 @@ class DynamicMethodCall(val data: DynamicMethodCallData) : AbstractMethodCall() 
         return DynamicExpression(
             context.identifier,
             text = data.newName,
-            children = context.getOperandsArray(),
+            children = context.getOperands(),
             group = dynamicGroup
         )
     }
