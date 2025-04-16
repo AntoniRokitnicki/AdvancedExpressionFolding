@@ -18,7 +18,6 @@ import kotlin.reflect.KMutableProperty0
 open class FoldingTest : BaseTest() {
 
     class TooComplexException : TestAbortedException("TOO COMPLEX FOLDING")
-    class RandomException(t: Throwable) : TestAbortedException("IDE RANDOM EXCEPTION", t)
 
     @Suppress("MemberVisibilityCanBePrivate")
     protected val state: State by lazy {
@@ -40,16 +39,12 @@ open class FoldingTest : BaseTest() {
         MethodCallFactory.initialize(dynamic)
         try {
             super.doFoldingTest(null)
-        } catch (e: FileComparisonFailedError) {
+        } catch (_: FileComparisonFailedError) {
             throw RuntimeException("FileComparisonFailedError")
         } catch (e: IllegalArgumentException) {
             if (e.message == "Comparison method violates its general contract!") {
                 throw TooComplexException()
-            } else {
-                throw RandomException(e)
             }
-        } catch (t: Throwable) {
-            throw RandomException(t)
         }
     }
 

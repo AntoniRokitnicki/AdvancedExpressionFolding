@@ -20,13 +20,25 @@ class FoldingDataStorage : EmptyStorage() {
 
     private val showTextRangeIntersections = false
 
+    class FoldingGroupNotFound(msg: String) : RuntimeException(msg)
+    class InvalidFoldingGroup(msg: String) : RuntimeException(msg)
+
     override fun store(
-        foldingDescriptors: Array<out FoldingDescriptor>?,
+        descriptors: Array<FoldingDescriptor>,
         document: Document
     ): Array<FoldingDescriptor> {
-        this.descriptors = super.store(foldingDescriptors, document)
+        validateCorrectFoldingGroup(descriptors)
+        this.descriptors = descriptors
         this.document = document
-        return descriptors
+        return this@FoldingDataStorage.descriptors
+    }
+
+    private fun validateCorrectFoldingGroup(descriptors: Array<FoldingDescriptor>) = descriptors.forEach {
+        if (it.group == null) {
+            throw FoldingGroupNotFound("${it.placeholderText} - ${it.element}")
+        } else if (!it.group.toString().contains("com.intellij.advancedExpressionFolding")) {
+            throw InvalidFoldingGroup("${it.placeholderText} - ${it.element} - ${it.group}")
+        }
     }
 
     fun saveFolding(file: File): FoldingDescriptorExWrapper {
@@ -163,11 +175,13 @@ class FoldingDataStorage : EmptyStorage() {
         if (uniqueElements.size != descriptors.size) {
             val duplicatedFoldings = descriptors.toSet() - uniqueElements.toSet()
 
-            println("WARNING! ${duplicatedFoldings.size} elements have many foldings for ${
-                duplicatedFoldings.map {
-                    it.group.asSimpleString()
-                }.joinToString(separator = ",")
-            }")
+            println(
+                "WARNING! ${duplicatedFoldings.size} elements have many foldings for ${
+                    duplicatedFoldings.mapNotNull {
+                        it.group.asSimpleString()
+                    }.joinToString(separator = ",")
+                }"
+            )
         }
     }
 
