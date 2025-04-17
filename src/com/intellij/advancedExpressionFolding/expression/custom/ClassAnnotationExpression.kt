@@ -34,11 +34,13 @@ open class ClassAnnotationExpression(
                 it.node == null
             }.map {
                 fold(it, it.textRange, "", group)
-            } + addAnnotation(element, document, group)).toMutableList()
-        additionalExpression?.let {
-            foldingDescriptors += it.buildFoldRegions(element, document, parent)
-        }
-        return foldingDescriptors.toTypedArray()
+            } + addAnnotation(element, document, group))
+            .let { sequence ->
+                additionalExpression?.let {
+                    sequence.plus(it.buildFoldRegions(element, document, parent))
+                } ?: sequence
+            }
+        return foldingDescriptors.toList().toTypedArray()
     }
 
 
