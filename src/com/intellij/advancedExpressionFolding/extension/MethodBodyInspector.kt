@@ -167,4 +167,72 @@ object MethodBodyInspector {
             e.isReferenceTo(param)
         } == true
     }
+
+    fun PsiMethod.asWrapperGetter(field: PsiField): String? {
+        val methodCall = body?.statements?.singleOrNull().asReturn()?.returnValue.asMethodCall()
+            ?.takeIf {
+                it.argumentCount == 1 && it.isArgumentReferencingElement(0, field)
+            } ?: return null
+        val clazz = methodCall.className?.text ?: "this"
+        val method = methodCall.methodName?.text ?: return null
+        return "wrapper = $clazz::$method"
+    }
+
+    fun PsiMethod.asNewInstanceWrapperGetter(field: PsiField): String? {
+        val clazz = body?.statements?.singleOrNull().asReturn()?.returnValue.asNewInstance()
+            ?.takeIf {
+                it.argumentCount == 1 && it.isArgumentReferencingElement(0, field)
+            }?.className ?: return null
+        return "wrapper = $clazz::new"
+    }
+
+
+    /**
+     * if (lazyLoadedList == null) {
+     *     lazyLoadedList = new ArrayList<>();
+     * }
+     * return lazyLoadedList;
+     */
+    fun PsiMethod.asLazyGetter(field: PsiField): String? {
+        // if (lazyLoadedList == null) {
+        val ifExp = body?.statements?.getOrNull(0).asSimpleIf().takeIf {
+            it.asSimpleCondition().asEqualsNull().isReference(field)
+        }
+
+        //return lazyLoadedList;
+        body?.statements?.getOrNull(1).asReturn()?.returnValue.asReference()
+            ?.takeIf {
+                it.isReference(field)
+            } ?: return null
+
+        //lazyLoadedList = new ArrayList<>();
+        val className = ifExp?.thenBranch.asSingleStatement().asAssignment()?.let { (left, right) ->
+            right.asNewInstance()?.takeIf {
+                it.argumentCount == 0
+            }?.takeIf {
+                left.isReference(field)
+            }?.className
+        } ?: return null
+
+        return "lazy = $className::new"
+    }
+
+    fun PsiMethod.asDirtyNoReference(field: PsiField): String? {
+        var hasReference = false
+        accept(object : PsiRecursiveElementVisitor() {
+            override fun visitElement(element: PsiElement) {
+                if (hasReference || element.asReference().isReference(field)) {
+                    hasReference = true
+                    return
+                }
+                super.visitElement(element)
+            }
+        })
+        return "dirtyNoReference".takeIf {
+            !hasReference
+        }
+    }
+
 }
+
+

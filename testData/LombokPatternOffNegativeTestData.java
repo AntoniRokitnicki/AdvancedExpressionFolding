@@ -466,8 +466,8 @@ import java.util.logging.Logger;</fold>
     }</fold>
 
     public class DirtyLombokGetters <fold text='{...}' expand='true'>{
-        <fold text='@Getter(dirty) b' expand='false'>b</fold>oolean dirty;
-        <fold text='@Getter(dirty) p' expand='false'>p</fold>rivate boolean dirty2;<fold text='' expand='false'>
+        <fold text='@Getter(dirtyNoReference) b' expand='false'>b</fold>oolean dirty;
+        <fold text='@Getter(dirtyNoReference) p' expand='false'>p</fold>rivate boolean dirty2;<fold text='' expand='false'>
 
         </fold><fold text='' expand='false'>public boolean isDirty()<fold text=' { ' expand='false'> {
             </fold>return dirty2;<fold text=' }' expand='false'>
@@ -511,7 +511,7 @@ import java.util.logging.Logger;</fold>
         }</fold>
 
         public class DirtySingle <fold text='{...}' expand='true'>{
-            <fold text='@Getter(dirty) b' expand='false'>b</fold>oolean dirty;
+            <fold text='@Getter(dirtyNoReference) b' expand='false'>b</fold>oolean dirty;
             <fold text='@Getter b' expand='false'>b</fold>oolean ok;<fold text='' expand='false'>
 
             </fold><fold text='' expand='false'>public boolean isOk()<fold text=' { ' expand='false'> {
@@ -525,8 +525,8 @@ import java.util.logging.Logger;</fold>
     }</fold>
 
     public class DirtyLombokSetters <fold text='{...}' expand='true'>{
-        <fold text='@Setter(dirty) b' expand='false'>b</fold>oolean dirty;
-        <fold text='@Setter(dirty) p' expand='false'>p</fold>rivate boolean dirty2;<fold text='' expand='false'>
+        <fold text='@Setter(dirtyNoReference) b' expand='false'>b</fold>oolean dirty;
+        <fold text='@Setter(dirtyNoReference) p' expand='false'>p</fold>rivate boolean dirty2;<fold text='' expand='false'>
 
         </fold><fold text='' expand='false'>public void setDirty(boolean dirty)<fold text=' { ' expand='false'> {
             </fold>this.dirty2 = dirty;<fold text=' }' expand='false'>
@@ -578,7 +578,7 @@ import java.util.logging.Logger;</fold>
         }</fold>
 
         public class DirtySingle <fold text='{...}' expand='true'>{
-            <fold text='@Setter(dirty) b' expand='false'>b</fold>oolean dirty;
+            <fold text='@Setter(dirtyNoReference) b' expand='false'>b</fold>oolean dirty;
             <fold text='@Setter b' expand='false'>b</fold>oolean ok;<fold text='' expand='false'>
 
             </fold><fold text='' expand='false'>public void setOk(boolean ok)<fold text=' { ' expand='false'> {

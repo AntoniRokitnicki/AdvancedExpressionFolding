@@ -285,7 +285,7 @@ object LombokExt : BaseExtension(), GenericCallback<PsiField, List<FieldLevelAnn
                         if (dirty && lombokDirtyOff) {
                             null
                         } else {
-                            val arguments = methodType.createFieldArgument(dirty)?.let(::listOf) ?: emptyList()
+                            val arguments = methodType.createFieldArgument(dirty, field, method)?.let(::listOf) ?: emptyList()
                             FieldLevelAnnotation(annotation, field, listOf(method), arguments)
                         }
                     }.forEach(fieldLevelAnnotations::add)

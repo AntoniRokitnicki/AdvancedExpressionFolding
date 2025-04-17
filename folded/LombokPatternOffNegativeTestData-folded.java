@@ -152,8 +152,8 @@ import java.util.logging.Logger;
     }
 
     public class DirtyLombokGetters {
-        @Getter(dirty) boolean dirty;
-        @Getter(dirty) private boolean dirty2;
+        @Getter(dirtyNoReference) boolean dirty;
+        @Getter(dirtyNoReference) private boolean dirty2;
 
         @EqualsAndHashCode public class DirtyData {
             @Getter(dirty) boolean dirty;
@@ -161,14 +161,14 @@ import java.util.logging.Logger;
         }
 
         public class DirtySingle {
-            @Getter(dirty) boolean dirty;
+            @Getter(dirtyNoReference) boolean dirty;
             @Getter boolean ok;
         }
     }
 
     public class DirtyLombokSetters {
-        @Setter(dirty) boolean dirty;
-        @Setter(dirty) private boolean dirty2;
+        @Setter(dirtyNoReference) boolean dirty;
+        @Setter(dirtyNoReference) private boolean dirty2;
 
         @Getter @EqualsAndHashCode public class DirtyData {
             @Setter(dirty) boolean dirty;
@@ -176,7 +176,7 @@ import java.util.logging.Logger;
         }
 
         public class DirtySingle {
-            @Setter(dirty) boolean dirty;
+            @Setter(dirtyNoReference) boolean dirty;
             @Setter boolean ok;
         }
     }

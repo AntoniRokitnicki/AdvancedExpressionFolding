@@ -4,8 +4,7 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 import java.util.logging.Logger;
 
 /**
@@ -521,6 +520,65 @@ public class LombokTestData {
             public boolean isDirty() {
                 return dirty2;
             }
+        }
+    }
+
+    public class SupportedDirtyLombokGetters {
+        private List<String> wrapper;
+        private List<String> wrapperWrongRef;
+        private List<String> wrapperDeeplyHiddenRef;
+
+        private List<String> localMethodWrappedList;
+        private List<String> thisLocalMethodWrappedList;
+        private List<String> lazyLoadedList;
+        private List<String> oneLineLazyLoadedList;
+        private List<String> defensiveCopyList;
+
+        public List<String> getWrapper() {
+            return Collections.unmodifiableList(wrapper);
+        }
+
+        public List<String> getWrapperDeeplyHiddenRef() {
+            if (wrapper != null) {
+                try {
+                    return wrapperDeeplyHiddenRef;
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            return null;
+        }
+
+        public List<String> getWrapperWrongRef() {
+            return Collections.unmodifiableList(wrapper);
+        }
+
+        public List<String> getLocalMethodWrappedList() {
+            return localWrap(localMethodWrappedList);
+        }
+
+        public List<String> getThisLocalMethodWrappedList() {
+            return this.localWrap(thisLocalMethodWrappedList);
+        }
+
+        public List<String> getLazyLoadedList() {
+            if (lazyLoadedList == null) {
+                lazyLoadedList = new ArrayList<>();
+            }
+            return lazyLoadedList;
+        }
+
+        public List<String> getDefensiveCopyList() {
+            return new ArrayList<>(defensiveCopyList);
+        }
+
+        public List<String> getOneLineLazyLoadedList() {
+            if (oneLineLazyLoadedList == null) oneLineLazyLoadedList = new ArrayList<>();
+            return oneLineLazyLoadedList;
+        }
+
+        private List<String> localWrap(List<String> list) {
+            return null;
         }
     }
 
