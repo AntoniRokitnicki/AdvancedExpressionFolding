@@ -22,9 +22,6 @@ class FoldingEditorCreatedListener : EditorFactoryListener {
         }
     }
 
-    override fun editorReleased(event: EditorFactoryEvent) {
-        val editor = event.editor
-        FoldingService.get().clearAllKeys(editor)
-    }
+    override fun editorReleased(event: EditorFactoryEvent) = FoldingService.get().clearAllKeys(event.editor)
 
 }
