@@ -5,7 +5,7 @@ import com.intellij.advancedExpressionFolding.extension.*
 import com.intellij.psi.*
 import com.jetbrains.rd.util.firstOrNull
 
-object MethodDefaultParameterExt {
+object MethodDefaultParameterExt : BaseExtension(){
 
     fun enhanceMethodsWithDefaultParams(clazz: PsiClass): Expression? {
         val defaultParamMethods = findMethodsWithDefaultParams(clazz)
@@ -44,7 +44,7 @@ object MethodDefaultParameterExt {
     ): Expression? {
         val list = exprList()
         defaultParamMethods.forEach { (method, params, duplicatedMethod) ->
-            val group = MethodDefaultParameterExt::class.group()
+            val group = group()
             params.map.forEach { (paramNr, value) ->
                 val paramWithValue = method.parameterList.parameters.getOrNull(paramNr)
                 val paramNextElement = paramWithValue?.nextSibling
