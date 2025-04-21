@@ -91,8 +91,8 @@ dependencies {
     testImplementation(libs.junit.jupiter.api)
     testImplementation(libs.junit.jupiter.params)
     testImplementation(libs.junit.pioneer)
-    testImplementation("org.junit.vintage:junit-vintage-engine")
-
+    testImplementation(libs.junit.vintage.engine)
+    implementation(libs.kodein.di.conf)
 
     // IntelliJ Platform Gradle Plugin Dependencies Extension - read more: https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-gradle-plugin-dependencies-extension.html
     intellijPlatform {
@@ -107,6 +107,7 @@ dependencies {
         testFramework(TestFrameworkType.Plugin.Java)
         testFramework(TestFrameworkType.Platform)
         testFramework(TestFrameworkType.Metrics)
+        testFramework(TestFrameworkType.Starter)
     }
 }
 
