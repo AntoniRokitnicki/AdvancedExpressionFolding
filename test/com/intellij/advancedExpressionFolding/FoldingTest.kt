@@ -19,12 +19,11 @@ open class FoldingTest : BaseTest() {
 
     class TooComplexException : TestAbortedException("TOO COMPLEX FOLDING")
 
-    @Suppress("MemberVisibilityCanBePrivate")
     protected val state: State by lazy {
         getInstance().state
     }
 
-    open fun assignState(turnOnProperties: Array<out KMutableProperty0<Boolean>>) {
+    open fun assignState(vararg turnOnProperties: KMutableProperty0<Boolean>,) {
         getInstance().disableAll()
         turnOnProperties.forEach {
             it.set(true)
@@ -35,7 +34,7 @@ open class FoldingTest : BaseTest() {
         vararg turnOnProperties: KMutableProperty0<Boolean>,
         dynamic: IDynamicDataProvider = TestDynamicDataProvider(),
     ) {
-        assignState(turnOnProperties)
+        assignState(*turnOnProperties)
         MethodCallFactory.initialize(dynamic)
         try {
             super.doFoldingTest(null)
@@ -52,7 +51,7 @@ open class FoldingTest : BaseTest() {
         vararg turnOnProperties: KMutableProperty0<Boolean>,
         dynamic: IDynamicDataProvider = TestDynamicDataProvider()
     ) {
-        assignState(turnOnProperties)
+        assignState(*turnOnProperties)
         MethodCallFactory.initialize(dynamic)
         runInEdt {
             super.doReadOnlyFoldingTest()
@@ -63,7 +62,7 @@ open class FoldingTest : BaseTest() {
      * [data.ElvisTestData]
      */
     @Test
-    fun testElvisTestData() {
+    fun elvisTestData() {
         doFoldingTest(state::checkExpressionsCollapse)
     }
 
@@ -71,7 +70,7 @@ open class FoldingTest : BaseTest() {
      * [data.ForRangeTestData]
      */
     @Test
-    fun testForRangeTestData() {
+    fun forRangeTestData() {
         doFoldingTest(state::rangeExpressionsCollapse)
     }
 
@@ -79,7 +78,7 @@ open class FoldingTest : BaseTest() {
      * [data.StringBuilderTestData]
      */
     @Test
-    fun testStringBuilderTestData() {
+    fun stringBuilderTestData() {
         doFoldingTest(state::concatenationExpressionsCollapse)
     }
 
@@ -87,7 +86,7 @@ open class FoldingTest : BaseTest() {
      * [data.InterpolatedStringTestData]
      */
     @Test
-    fun testInterpolatedStringTestData() {
+    fun interpolatedStringTestData() {
         doFoldingTest(state::concatenationExpressionsCollapse)
     }
 
@@ -95,7 +94,7 @@ open class FoldingTest : BaseTest() {
      * [data.GetSetPutTestData]
      */
     @Test
-    fun testGetSetPutTestData() {
+    fun getSetPutTestData() {
         doFoldingTest(state::getExpressionsCollapse)
     }
 
@@ -103,7 +102,7 @@ open class FoldingTest : BaseTest() {
      * [data.SliceTestData]
      */
     @Test
-    fun testSliceTestData() {
+    fun sliceTestData() {
         doFoldingTest(state::slicingExpressionsCollapse)
     }
 
@@ -111,7 +110,7 @@ open class FoldingTest : BaseTest() {
      * [data.AppendSetterInterpolatedStringTestData]
      */
     @Test
-    fun testAppendSetterInterpolatedStringTestData() {
+    fun appendSetterInterpolatedStringTestData() {
         doFoldingTest(state::concatenationExpressionsCollapse, state::getSetExpressionsCollapse)
     }
 
@@ -119,7 +118,7 @@ open class FoldingTest : BaseTest() {
      * [data.EqualsCompareTestData]
      */
     @Test
-    fun testEqualsCompareTestData() {
+    fun equalsCompareTestData() {
         doFoldingTest(state::comparingExpressionsCollapse)
     }
 
@@ -127,7 +126,7 @@ open class FoldingTest : BaseTest() {
      * [data.TypeCastTestData]
      */
     @Test
-    fun testTypeCastTestData() {
+    fun typeCastTestData() {
         doFoldingTest(state::castExpressionsCollapse)
     }
 
@@ -135,7 +134,7 @@ open class FoldingTest : BaseTest() {
      * [data.VarTestData]
      */
     @Test
-    fun testVarTestData() {
+    fun varTestData() {
         doFoldingTest(state::varExpressionsCollapse)
     }
 
@@ -143,7 +142,7 @@ open class FoldingTest : BaseTest() {
      * [data.GetterSetterTestData]
      */
     @Test
-    fun testGetterSetterTestData() {
+    fun getterSetterTestData() {
         doFoldingTest(state::getSetExpressionsCollapse)
     }
 
@@ -151,7 +150,7 @@ open class FoldingTest : BaseTest() {
      * [data.ControlFlowSingleStatementTestData]
      */
     @Test
-    fun testControlFlowSingleStatementTestData() {
+    fun controlFlowSingleStatementTestData() {
         // TODO: Test with different indentation settings
         doReadOnlyFoldingTest(state::controlFlowSingleStatementCodeBlockCollapse)
     }
@@ -160,7 +159,7 @@ open class FoldingTest : BaseTest() {
      * [data.ControlFlowMultiStatementTestData]
      */
     @Test
-    fun testControlFlowMultiStatementTestData() {
+    fun controlFlowMultiStatementTestData() {
         // TODO: Test with different indentation settings
         doReadOnlyFoldingTest(state::controlFlowMultiStatementCodeBlockCollapse)
     }
@@ -169,7 +168,7 @@ open class FoldingTest : BaseTest() {
      * [data.LocalDateTestData]
      */
     @Test
-    fun testLocalDateTestData() {
+    fun localDateTestData() {
         doReadOnlyFoldingTest(state::comparingLocalDatesCollapse)
     }
 
@@ -177,7 +176,7 @@ open class FoldingTest : BaseTest() {
      * [data.LocalDateLiteralTestData]
      */
     @Test
-    fun testLocalDateLiteralTestData() {
+    fun localDateLiteralTestData() {
         doReadOnlyFoldingTest(state::localDateLiteralCollapse)
     }
 
@@ -185,7 +184,7 @@ open class FoldingTest : BaseTest() {
      * [data.LocalDateLiteralPostfixTestData]
      */
     @Test
-    fun testLocalDateLiteralPostfixTestData() {
+    fun localDateLiteralPostfixTestData() {
         doReadOnlyFoldingTest(state::localDateLiteralCollapse, state::localDateLiteralPostfixCollapse)
     }
 
@@ -193,7 +192,7 @@ open class FoldingTest : BaseTest() {
      * [data.CompactControlFlowTestData]
      */
     @Test
-    fun testCompactControlFlowTestData() {
+    fun compactControlFlowTestData() {
         doFoldingTest(state::compactControlFlowSyntaxCollapse)
     }
 
@@ -201,7 +200,7 @@ open class FoldingTest : BaseTest() {
      * [data.SemicolonTestData]
      */
     @Test
-    fun testSemicolonTestData() {
+    fun semicolonTestData() {
         doReadOnlyFoldingTest(state::semicolonsCollapse)
     }
 
@@ -209,7 +208,7 @@ open class FoldingTest : BaseTest() {
      * [data.AssertTestData]
      */
     @Test
-    fun testAssertTestData() {
+    fun assertTestData() {
         doReadOnlyFoldingTest(state::assertsCollapse)
     }
 
@@ -217,7 +216,7 @@ open class FoldingTest : BaseTest() {
      * [data.ConcatenationTestData]
      */
     @Test
-    fun testConcatenationTestData() {
+    fun concatenationTestData() {
         doFoldingTest(state::concatenationExpressionsCollapse, state::optional, state::streamSpread)
     }
 
@@ -225,7 +224,7 @@ open class FoldingTest : BaseTest() {
      * [data.OptionalTestData]
      */
     @Test
-    fun testOptionalTestData() {
+    fun optionalTestData() {
         doFoldingTest(state::concatenationExpressionsCollapse, state::optional, state::streamSpread)
     }
 
@@ -233,7 +232,7 @@ open class FoldingTest : BaseTest() {
      * [data.SpreadTestData]
      */
     @Test
-    fun testSpreadTestData() {
+    fun spreadTestData() {
         doFoldingTest(state::concatenationExpressionsCollapse, state::optional, state::streamSpread)
     }
 
@@ -241,12 +240,12 @@ open class FoldingTest : BaseTest() {
      * [data.LombokTestData]
      */
     @Test
-    fun testLombokTestData() {
+    fun lombokTestData() {
         doFoldingTest(state::lombok)
     }
 
     @Test
-    fun testLombokUsageTestData() {
+    fun lombokUsageTestData() {
         doFoldingTest(state::lombok)
     }
 
@@ -254,7 +253,7 @@ open class FoldingTest : BaseTest() {
      * [data.FieldShiftBuilder]
      */
     @Test
-    fun testFieldShiftBuilder() {
+    fun fieldShiftBuilder() {
         doFoldingTest(state::fieldShift, state::getSetExpressionsCollapse)
     }
 
@@ -262,7 +261,7 @@ open class FoldingTest : BaseTest() {
      * [data.FieldShiftSetters]
      */
     @Test
-    fun testFieldShiftSetters() {
+    fun fieldShiftSetters() {
         doFoldingTest(state::fieldShift, state::getSetExpressionsCollapse)
     }
 
@@ -270,7 +269,7 @@ open class FoldingTest : BaseTest() {
      * [data.LetReturnIt]
      */
     @Test
-    fun testLetReturnIt() {
+    fun letReturnIt() {
         doFoldingTest(state::varExpressionsCollapse, state::kotlinQuickReturn)
     }
 
@@ -278,7 +277,7 @@ open class FoldingTest : BaseTest() {
      * [data.IfNullSafeData]
      */
     @Test
-    fun testIfNullSafeData() {
+    fun ifNullSafeData() {
         doFoldingTest(state::checkExpressionsCollapse, state::getSetExpressionsCollapse, state::ifNullSafe)
     }
 
@@ -286,7 +285,7 @@ open class FoldingTest : BaseTest() {
      * [data.LogBrackets]
      */
     @Test
-    fun testLogBrackets() {
+    fun logBrackets() {
         doFoldingTest(state::getSetExpressionsCollapse, state::logFolding)
     }
 
@@ -294,7 +293,7 @@ open class FoldingTest : BaseTest() {
      * [data.FieldShiftFields]
      */
     @Test
-    fun testFieldShiftFields() {
+    fun fieldShiftFields() {
         doFoldingTest(state::getSetExpressionsCollapse, state::fieldShift)
     }
 
@@ -302,15 +301,15 @@ open class FoldingTest : BaseTest() {
      * [data.DestructuringAssignmentArrayTestData]
      */
     @Test
-    fun testDestructuringAssignmentArrayTestData() {
+    fun destructuringAssignmentArrayTestData() {
         doFoldingTest(state::destructuring, state::getSetExpressionsCollapse, state::varExpressionsCollapse)
     }
 
     /**
      * [data.DestructuringAssignmentArrayWithoutValTestData]
      */
-    open @Test
-    fun testDestructuringAssignmentArrayWithoutValTestData() {
+    @Test
+    open fun destructuringAssignmentArrayWithoutValTestData() {
         doFoldingTest(state::destructuring, state::getSetExpressionsCollapse)
     }
 
@@ -318,15 +317,15 @@ open class FoldingTest : BaseTest() {
      * [data.DestructuringAssignmentListTestData]
      */
     @Test
-    fun testDestructuringAssignmentListTestData() {
+    fun destructuringAssignmentListTestData() {
         doFoldingTest(state::destructuring, state::getSetExpressionsCollapse, state::varExpressionsCollapse)
     }
 
     /**
      * [data.DestructuringAssignmentListWithoutValTestData]
      */
-    open @Test
-    fun testDestructuringAssignmentListWithoutValTestData() {
+    @Test
+    open fun destructuringAssignmentListWithoutValTestData() {
         doFoldingTest(state::destructuring, state::getSetExpressionsCollapse)
     }
 
@@ -334,15 +333,15 @@ open class FoldingTest : BaseTest() {
      * [data.PrintlnTestData]
      */
     @Test
-    fun testPrintlnTestData() {
-        doFoldingTest()
+    fun printlnTestData() {
+        doFoldingTest(state::println)
     }
 
     /**
      * [data.NullableAnnotationTestData]
      */
     @Test
-    fun testNullableAnnotationTestData() {
+    fun nullableAnnotationTestData() {
         doFoldingTest(state::nullable, state::lombok)
     }
 
@@ -350,7 +349,7 @@ open class FoldingTest : BaseTest() {
      * [data.NullableAnnotationCheckNotNullTestData]
      */
     @Test
-    fun testNullableAnnotationCheckNotNullTestData() {
+    fun nullableAnnotationCheckNotNullTestData() {
         doFoldingTest(state::nullable, state::lombok)
     }
 
@@ -358,7 +357,7 @@ open class FoldingTest : BaseTest() {
      * [data.ConstTestData]
      */
     @Test
-    fun testConstTestData() {
+    fun constTestData() {
         doFoldingTest(state::const)
     }
 
@@ -366,7 +365,7 @@ open class FoldingTest : BaseTest() {
      * [data.FinalRemovalTestData]
      */
     @Test
-    fun testFinalRemovalTestData() {
+    fun finalRemovalTestData() {
         doFoldingTest(state::finalRemoval)
     }
 
@@ -374,7 +373,7 @@ open class FoldingTest : BaseTest() {
      * [data.FinalEmojiTestData]
      */
     @Test
-    fun testFinalEmojiTestData() {
+    fun finalEmojiTestData() {
         doFoldingTest(state::finalEmoji)
     }
 
@@ -382,7 +381,7 @@ open class FoldingTest : BaseTest() {
      * [data.LombokDirtyOffTestData]
      */
     @Test
-    fun testLombokDirtyOffTestData() {
+    fun lombokDirtyOffTestData() {
         doFoldingTest(state::lombok, state::lombokDirtyOff)
     }
 
@@ -390,7 +389,7 @@ open class FoldingTest : BaseTest() {
      * [data.ExpressionFuncTestData]
      */
     @Test
-    fun testExpressionFuncTestData() {
+    fun expressionFuncTestData() {
         doFoldingTest(state::expressionFunc)
     }
 
@@ -398,7 +397,7 @@ open class FoldingTest : BaseTest() {
      * [data.DynamicTestData]
      */
     @Test
-    fun testDynamicTestData() {
+    fun dynamicTestData() {
         val dynamicProvider = object : IDynamicDataProvider {
             override fun parse(): List<DynamicMethodCall> {
                 return parseToml(
@@ -419,7 +418,7 @@ staticMethod.newName = 'changedStaticMethod'
      * [data.ArithmeticExpressionsTestData]
      */
     @Test
-    fun testArithmeticExpressionsTestData() {
+    fun arithmeticExpressionsTestData() {
         doFoldingTest(state::arithmeticExpressions)
     }
 
@@ -427,7 +426,7 @@ staticMethod.newName = 'changedStaticMethod'
      * [data.EmojifyTestData]
      */
     @Test
-    fun testEmojifyTestData() {
+    fun emojifyTestData() {
         doFoldingTest(state::emojify)
     }
 
@@ -435,7 +434,7 @@ staticMethod.newName = 'changedStaticMethod'
      * [data.InterfaceExtensionPropertiesTestData]
      */
     @Test
-    fun testInterfaceExtensionPropertiesTestData() {
+    fun interfaceExtensionPropertiesTestData() {
         doFoldingTest(state::interfaceExtensionProperties, state::lombok, state::nullable)
     }
 
@@ -443,7 +442,7 @@ staticMethod.newName = 'changedStaticMethod'
      * [data.PatternMatchingInstanceofTestData]
      */
     @Test
-    fun testPatternMatchingInstanceofTestData() {
+    fun patternMatchingInstanceofTestData() {
         doFoldingTest(state::patternMatchingInstanceof)
     }
 
@@ -451,7 +450,7 @@ staticMethod.newName = 'changedStaticMethod'
      * [data.SummaryParentOverrideTestData]
      */
     @Test
-    fun testSummaryParentOverrideTestData() {
+    fun summaryParentOverrideTestData() {
         doFoldingTest(state::summaryParentOverride)
     }
 
@@ -459,7 +458,7 @@ staticMethod.newName = 'changedStaticMethod'
      * [data.ConstructorReferenceNotationTestData]
      */
     @Test
-    fun testConstructorReferenceNotationTestData() {
+    fun constructorReferenceNotationTestData() {
         doFoldingTest(state::constructorReferenceNotation)
     }
 
@@ -467,7 +466,7 @@ staticMethod.newName = 'changedStaticMethod'
      * [data.ConstructorReferenceNotationWithConstTestData]
      */
     @Test
-    fun testConstructorReferenceNotationWithConstTestData() {
+    fun constructorReferenceNotationWithConstTestData() {
         doFoldingTest(state::constructorReferenceNotation, state::const)
     }
 
@@ -476,7 +475,7 @@ staticMethod.newName = 'changedStaticMethod'
      * [data.MethodDefaultParametersTestData]
      */
     @Test
-    fun testMethodDefaultParametersTestData() {
+    fun methodDefaultParametersTestData() {
         doFoldingTest(state::methodDefaultParameters)
     }
 
@@ -484,7 +483,7 @@ staticMethod.newName = 'changedStaticMethod'
      * [data.LombokPatternOffTestData]
      */
     @Test
-    fun testLombokPatternOffTestData() {
+    fun lombokPatternOffTestData() {
         state.lombokPatternOff = "LombokPa[t]{2}ernOffTestData"
         try {
             doFoldingTest(state::lombok)
@@ -496,7 +495,7 @@ staticMethod.newName = 'changedStaticMethod'
      * [data.LombokPatternOffNegativeTestData]
      */
     @Test
-    fun testLombokPatternOffNegativeTestData() {
+    fun lombokPatternOffNegativeTestData() {
         state.lombokPatternOff = "LombokPatternOffTestData"
         try {
             doFoldingTest(state::lombok)
@@ -509,7 +508,7 @@ staticMethod.newName = 'changedStaticMethod'
      * [data.ExperimentalTestData]
      */
     @Test
-    fun testExperimentalTestData() {
+    fun experimentalTestData() {
         doFoldingTest(state::experimental, state::nullable, state::const, state::lombok, state::getExpressionsCollapse)
     }
 

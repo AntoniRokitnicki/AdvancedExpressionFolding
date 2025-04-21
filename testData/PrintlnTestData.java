@@ -5,24 +5,24 @@ class PrintlnTestData {
     static final int CONST_VALUE = 0;
 
     void println(String string) <fold text='{...}' expand='true'>{
-        System.out.println("Hello");
-        System.out.println
+        <fold text='' expand='false'>System.out.</fold>println(<fold text='"Hello"' expand='false'>"Hello"</fold>);
+        <fold text='' expand='false'>System.out.</fold>println
                 (123);
-        System.
-                out.println("Spacing");
-        System.out.
-                println(3.14);
-        System.out.println(string);
-        System.out.println(true);
-        System.out.println('A');
-        System.out.println(CONST_VALUE);
-        System.out.println("Divided: " + ""<fold text=' + ' expand='false'> +
+        <fold text='' expand='false'>System.
+                out.</fold>println(<fold text='"Spacing"' expand='false'>"Spacing"</fold>);
+        <fold text='' expand='false'>System.out.
+                </fold>println(3.14);
+        <fold text='' expand='false'>System.out.</fold>println(string);
+        <fold text='' expand='false'>System.out.</fold>println(true);
+        <fold text='' expand='false'>System.out.</fold>println('A');
+        <fold text='' expand='false'>System.out.</fold>println(CONST_VALUE);
+        <fold text='' expand='false'>System.out.</fold>println("Divided: " + ""<fold text=' + ' expand='false'> +
                 </fold>"into"<fold text=' + ' expand='false'> +
                 </fold>" multiple" + " " + "strings");
-        System.out.println("Passed as parameter: " + string);
-        System.out.println("Passed as parameter: "<fold text=' + ' expand='false'> +
+        <fold text='' expand='false'>System.out.</fold>println("Passed as parameter: " + string);
+        <fold text='' expand='false'>System.out.</fold>println("Passed as parameter: "<fold text=' + ' expand='false'> +
 </fold>this.getClass());
-        System.out.println(<fold text='"text
+        <fold text='' expand='false'>System.out.</fold>println(<fold text='"text
 block
 "' expand='false'>"""
                 text

@@ -18,11 +18,11 @@ class FullFoldingTest : FoldingTest() {
         return file.canonicalPath
     }
 
-    override fun testDestructuringAssignmentArrayWithoutValTestData() {
-        // ignored, already tested in testDestructuringAssignmentArrayTestData
+    override fun destructuringAssignmentArrayWithoutValTestData() {
+        // ignored, already tested in destructuringAssignmentArrayTestData
     }
 
-    override fun testDestructuringAssignmentListWithoutValTestData() {
-        // ignored, already tested in testDestructuringAssignmentListTestData
+    override fun destructuringAssignmentListWithoutValTestData() {
+        // ignored, already tested in destructuringAssignmentListTestData
     }
 }

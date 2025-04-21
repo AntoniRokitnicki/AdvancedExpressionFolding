@@ -1,5 +1,6 @@
 package com.intellij.advancedExpressionFolding
 
+import ai.grazie.utils.capitalize
 import com.intellij.advancedExpressionFolding.diff.FoldingDescriptorExWrapper
 import com.intellij.openapi.application.WriteAction
 import com.intellij.openapi.fileTypes.FileTypeManager
@@ -74,7 +75,7 @@ abstract class BaseTest : LightJavaCodeInsightFixtureTestCase5(TEST_JDK) {
         }
     }
 
-    protected open fun getTestFileName(testName: String) = "testData/$testName.java"
+    protected open fun getTestFileName(testName: String) = "testData/${testName.capitalize()}.java"
 
     // TODO: Refactor this mess
     private fun testReadOnlyFoldingRegions(

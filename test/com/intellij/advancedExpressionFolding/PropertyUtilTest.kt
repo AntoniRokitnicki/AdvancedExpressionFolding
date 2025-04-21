@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 
 class PropertyUtilTest {
     @Test
-    fun testGuessPropertyName() {
+    fun checkGuessPropertyName() {
         assertEquals("", guessPropertyName(""))
         assertEquals("length", guessPropertyName("length"))
         assertEquals("name", guessPropertyName("getName"))
