@@ -51,11 +51,9 @@ sourceSets {
         java.srcDirs("src")
         kotlin.srcDirs("src")
         resources.srcDirs("resources")
-        resources.srcDirs("examples")
     }
     named("test") {
         java.srcDir("test")
-        java.srcDir("examples")
         kotlin.srcDirs("test")
     }
 }
@@ -195,6 +193,12 @@ tasks {
     publishPlugin {
         dependsOn(patchChangelog)
     }
+
+    processResources {
+        from("examples/data") {
+            into("data")
+        }
+    }
 }
 
 intellijPlatformTesting {
@@ -218,13 +222,6 @@ intellijPlatformTesting {
     }
 }
 
-
-//tasks {
-//    runIde {
-//        autoReloadPlugins = true
-//        jvmArgs("-Didea.ProcessCanceledException=disabled")
-//        jvmArgs("-Dide.show.tips.on.startup.default.value=false")
-//    }
 tasks.withType<Copy> {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }

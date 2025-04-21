@@ -3,3 +3,6 @@ plugins {
 }
 
 rootProject.name = "advanced-expression-folding"
+
+include(":examples")
+include(":folded")
