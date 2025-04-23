@@ -14,6 +14,10 @@ dependencies {
 
 sourceSets {
     named("test") {
-        java.srcDirs(".")
+        java.srcDir(".")
     }
+}
+
+repositories {
+    mavenCentral()
 }
