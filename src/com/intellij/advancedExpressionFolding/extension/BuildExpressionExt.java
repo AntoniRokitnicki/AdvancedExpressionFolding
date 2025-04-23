@@ -11,7 +11,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -54,31 +54,21 @@ public class BuildExpressionExt {
         return getExpression(element, document, false);
     }
 
-    @SuppressWarnings({"unused", "UnusedAssignment"})
-    @NotNull
-    public static FoldingDescriptor @NotNull [] collectFoldRegionsRecursively(@NotNull PsiElement element, @NotNull Document document, boolean quick, Set<Expression> uniqueSet) {
-        PsiElement lastElement = element;
-        List<FoldingDescriptor> allDescriptors = null;
+    public static void collectFoldRegionsRecursively(@NotNull PsiElement element, @NotNull Document document, Set<Expression> uniqueSet, List<FoldingDescriptor> allDescriptors) {
         @Nullable Expression expression = getNonSyntheticExpression(element, document);
 
-        if (expression != null && uniqueSet.add(expression) && expression.supportsFoldRegions(document, null)) {
+        boolean unique = uniqueSet.add(expression);
+        if (expression != null && unique && expression.supportsFoldRegions(document, null)) {
             FoldingDescriptor[] descriptors = expression.buildFoldRegions(expression.getElement(), document, null);
-            allDescriptors = new ArrayList<>();
-            Collections.addAll(allDescriptors, descriptors);
-        }
-        if (expression == null || expression.isNested()) {
-            for (PsiElement child : element.getChildren()) {
-                lastElement = child;
-                FoldingDescriptor[] descriptors = collectFoldRegionsRecursively(child, document, quick, uniqueSet);
-                if (descriptors.length > 0) {
-                    if (allDescriptors == null) {
-                        allDescriptors = new ArrayList<>();
-                    }
-                    Collections.addAll(allDescriptors, descriptors);
-                }
+            if (descriptors.length > 0) {
+                allDescriptors.addAll(Arrays.asList(descriptors));
             }
         }
-        return allDescriptors != null ? allDescriptors.toArray(NO_DESCRIPTORS) : NO_DESCRIPTORS;
+        if (expression == null || (unique && expression.isNested())) {
+            for (PsiElement child : element.getChildren()) {
+                collectFoldRegionsRecursively(child, document, uniqueSet, allDescriptors);
+            }
+        }
     }
 
 }
