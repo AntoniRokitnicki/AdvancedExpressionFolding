@@ -30,7 +30,7 @@ class FoldingDataStorage : EmptyStorage() {
         validateCorrectFoldingGroup(descriptors)
         this.descriptors = descriptors
         this.document = document
-        return this@FoldingDataStorage.descriptors
+        return descriptors
     }
 
     private fun validateCorrectFoldingGroup(descriptors: Array<FoldingDescriptor>) = descriptors.forEach {

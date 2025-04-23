@@ -11,16 +11,16 @@ import org.jetbrains.annotations.Contract
 
 object CacheExt : AdvancedExpressionFoldingSettings.StateDelegate() {
 
-    fun PsiElement.isExpired(document: Document, synthetic: Boolean): Boolean {
+    fun PsiElement.invalidateExpired(document: Document, synthetic: Boolean): Boolean {
         val versionKey = getVersionKey(synthetic)
         val lastVersion = getUserData(versionKey)
         val hashCode = document.text.hashCode()
-        val changed = lastVersion != hashCode
-        if (changed) {
+        val expired = lastVersion != hashCode
+        if (expired) {
             Keys.clearAllOnExpire(this)
             putUserData(versionKey, hashCode)
         }
-        return changed
+        return expired
     }
 
     // method is run from different threads
@@ -28,7 +28,7 @@ object CacheExt : AdvancedExpressionFoldingSettings.StateDelegate() {
     @Contract("_, _, true -> !null")
     fun getExpression(element: PsiElement, document: Document, synthetic: Boolean): Expression? {
             val key = getKey(synthetic)
-            val cachedExpression = if (element.isExpired(document, synthetic)) {
+            val cachedExpression = if (element.invalidateExpired(document, synthetic)) {
                 null
             } else {
                 element.getUserData(key)

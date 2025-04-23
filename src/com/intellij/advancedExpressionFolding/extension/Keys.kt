@@ -6,7 +6,6 @@ import com.intellij.openapi.util.Key
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiField
 import com.intellij.psi.PsiMethod
-import com.intellij.psi.util.CachedValue
 import com.intellij.psi.util.MethodSignature
 
 object Keys {
@@ -27,8 +26,6 @@ object Keys {
     private val NOT_SYNTHETIC_KEY: Key<Expression> = Key.create("${PREFIX}!syn")
     private val VERSION_SYNTHETIC_KEY: Key<Int> = Key.create("${PREFIX}ver-syn")
     private val VERSION_NOT_SYNTHETIC_KEY: Key<Int> = Key.create("${PREFIX}ver-!syn")
-    private val SYNTHETIC_KEY_OLD: Key<CachedValue<Expression>> = Key.create("${PREFIX}syn-old")
-    private val NOT_SYNTHETIC_KEY_OLD: Key<CachedValue<Expression>> = Key.create("${PREFIX}!syn-old")
 
     val FULL_CACHE: Key<Array<FoldingDescriptor>> = Key.create("${PREFIX}-full")
 
@@ -45,8 +42,6 @@ object Keys {
             NOT_SYNTHETIC_KEY,
             VERSION_SYNTHETIC_KEY,
             VERSION_NOT_SYNTHETIC_KEY,
-            SYNTHETIC_KEY_OLD,
-            NOT_SYNTHETIC_KEY_OLD,
             FIELD_KEY,
             FULL_CACHE,
         )
@@ -65,12 +60,6 @@ object Keys {
         return when {
             synthetic -> VERSION_SYNTHETIC_KEY
             else -> VERSION_NOT_SYNTHETIC_KEY
-        }
-    }
-    fun getKeyOld(synthetic: Boolean): Key<CachedValue<Expression>> {
-        return when {
-            synthetic -> SYNTHETIC_KEY_OLD
-            else -> NOT_SYNTHETIC_KEY_OLD
         }
     }
     fun getKey(synthetic: Boolean): Key<Expression> {

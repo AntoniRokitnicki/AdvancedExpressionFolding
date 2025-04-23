@@ -20,8 +20,6 @@ import static com.intellij.advancedExpressionFolding.extension.CacheExt.getExpre
 
 public class BuildExpressionExt {
 
-    static final FoldingDescriptor[] NO_DESCRIPTORS = new FoldingDescriptor[0];
-
     @Contract("_, _, true -> !null")
     static Expression buildExpression(@NotNull PsiElement element, @NotNull Document document, boolean synthetic) {
         var expression = tryBuildExpression(element, document, synthetic);
@@ -59,6 +57,7 @@ public class BuildExpressionExt {
 
         boolean unique = uniqueSet.add(expression);
         if (expression != null && unique && expression.supportsFoldRegions(document, null)) {
+            //TODO: add to allDescriptors list instead of creating temporary arrays
             FoldingDescriptor[] descriptors = expression.buildFoldRegions(expression.getElement(), document, null);
             if (descriptors.length > 0) {
                 allDescriptors.addAll(Arrays.asList(descriptors));

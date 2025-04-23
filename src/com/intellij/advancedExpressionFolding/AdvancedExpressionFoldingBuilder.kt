@@ -6,7 +6,7 @@ import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.
 import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.IConfig
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.extension.BuildExpressionExt
-import com.intellij.advancedExpressionFolding.extension.CacheExt.isExpired
+import com.intellij.advancedExpressionFolding.extension.CacheExt.invalidateExpired
 import com.intellij.advancedExpressionFolding.extension.Keys
 import com.intellij.lang.ASTNode
 import com.intellij.lang.folding.FoldingBuilderEx
@@ -16,51 +16,62 @@ import com.intellij.openapi.project.IndexNotReadyException
 import com.intellij.psi.PsiDocumentManager
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiJavaFile
-import java.util.*
-import java.util.stream.Collectors
 
 class AdvancedExpressionFoldingBuilder(private val config: IConfig = getInstance().state) : FoldingBuilderEx(), IConfig by config {
     override fun buildFoldRegions(element: PsiElement, document: Document, quick: Boolean): Array<FoldingDescriptor> {
         if (!globalOn) {
             return Expression.EMPTY_ARRAY
         }
-        //preview(element, document, quick)
-
-        var descriptors: Array<FoldingDescriptor>? = null
-
-        if (memoryImprovement) {
-            val file  = element as? PsiJavaFile
-            if (file != null && !quick) {
-                if (file.isExpired(document, false)) {
-                    descriptors = collect(element, document)
-                    if (descriptors.isNotEmpty()) {
-                        file.putUserData(Keys.FULL_CACHE, descriptors)
-                    }
-                } else {
-                    descriptors = file.getUserData(Keys.FULL_CACHE)
-                }
-            }
+        if (debugFolding) {
+            preview(element, document)
         }
-        val foldingDescriptors = descriptors ?: collect(element, document)
-        if (memoryImprovement) {
-            (element as? PsiJavaFile)?.run {
-                putUserData(Keys.FULL_CACHE, foldingDescriptors)
-            }
+
+        val cachedDescriptors = when {
+            memoryImprovement -> readCache(element, quick, document)
+            else -> null
+        }
+        val foldingDescriptors = cachedDescriptors ?: collect(element, document)
+        if (memoryImprovement && !quick && cachedDescriptors !== foldingDescriptors) {
+            writeCache(element, foldingDescriptors)
         }
         return store.store(foldingDescriptors, document)
     }
 
-    @Suppress("unused")
-    fun preview(element: PsiElement, document: Document, quick: Boolean): List<String> {
-        val foldingDescriptors = collect(element, document)
-        return Arrays.stream(foldingDescriptors).map { it: FoldingDescriptor ->
-            (it.range.substring(document.text)
-                    + " => "
-                    + it.placeholderText
-                    + "[" +
-                    it.group
-                    + "]")
-        }.collect(Collectors.toList())
+    private fun readCache(
+        element: PsiElement,
+        quick: Boolean,
+        document: Document
+    ): Array<FoldingDescriptor>? {
+        if (!quick) {
+            (element as? PsiJavaFile)?.let { file ->
+                if (!file.invalidateExpired(document, false)) {
+                    return file.getUserData(Keys.FULL_CACHE)
+                }
+            }
+        }
+        return null
+    }
+
+    private fun writeCache(
+        element: PsiElement,
+        foldingDescriptors: Array<FoldingDescriptor>
+    ) {
+        (element as? PsiJavaFile)?.run {
+            putUserData(Keys.FULL_CACHE, foldingDescriptors)
+        }
+    }
+
+    fun preview(element: PsiElement, document: Document): List<String> {
+        return collect(element, document).map { descriptor ->
+            buildString {
+                append(descriptor.range.substring(document.text))
+                append(" => ")
+                append(descriptor.placeholderText)
+                append('[')
+                append(descriptor.group)
+                append(']')
+            }
+        }
     }
 
     private fun collect(
@@ -73,9 +84,7 @@ class AdvancedExpressionFoldingBuilder(private val config: IConfig = getInstance
         return allDescriptors.toTypedArray()
     }
 
-    override fun getPlaceholderText(astNode: ASTNode): String? {
-        return null
-    }
+    override fun getPlaceholderText(astNode: ASTNode) = null
 
     // TODO: Collapse everything by default but use these settings when actually building the folding descriptors
     override fun isCollapsedByDefault(astNode: ASTNode): Boolean {
@@ -86,12 +95,13 @@ class AdvancedExpressionFoldingBuilder(private val config: IConfig = getInstance
                 val expression = BuildExpressionExt.getNonSyntheticExpression(element, document)
                 return expression != null && expression.isCollapsedByDefault
             }
-        } catch (e: IndexNotReadyException) {
+        } catch (_: IndexNotReadyException) {
             return false
         }
         return false
     }
 
+    private val debugFolding = false
 }
 
 var store = EmptyStorage()
