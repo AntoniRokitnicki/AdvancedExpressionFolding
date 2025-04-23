@@ -43,8 +43,8 @@
 
 ## 3.4.1 ##
 - [Prevents all Lombok folding for classes matching the regex pattern](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#lombokpatternoff)
-- [experimental - @SneakyThrows for single statement](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#experimental)
-- [InterfaceExtensionPropertiesTestData] Group added per method
+- [[experimental] - @SneakyThrows for single statement](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/folded/ExperimentalTestData-folded.java)
+- [[interfaceExtensionProperties] Group added per method](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#interfaceextensionproperties)
 
 ## 3.3.0 ##
 - [FieldShift - defensive copy support](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/FieldShift#defensive-copy-support)
