@@ -8,6 +8,7 @@
 
 [![Build](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/actions/workflows/build.yml/badge.svg)](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/actions/workflows/build.yml)
 [![Release](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/actions/workflows/release.yml/badge.svg)](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/actions/workflows/release.yml)
+[![Canary Release](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/actions/workflows/release-canary.yml/badge.svg)](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/actions/workflows/release-canary.yml)
 [![Snyk](https://snyk.io/test/github/antonirokitnicki/AdvancedExpressionFolding/badge.svg)](https://app.snyk.io/org/antonirokitnicki/project/cb199e96-f9b6-471e-a7f2-befcd26d62ca)
 ![GitHub License](https://img.shields.io/github/license/AntoniRokitnicki/AdvancedExpressionFolding)
 
