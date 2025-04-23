@@ -1,5 +1,6 @@
 package com.intellij.advancedExpressionFolding
 
+import com.google.common.collect.Sets
 import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.Companion.getInstance
 import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.IConfig
 import com.intellij.advancedExpressionFolding.expression.Expression
@@ -66,7 +67,10 @@ class AdvancedExpressionFoldingBuilder(private val config: IConfig = getInstance
         document: Document,
         quick: Boolean
     ): Array<FoldingDescriptor> {
-        return BuildExpressionExt.collectFoldRegionsRecursively(element, document, quick)
+        val uniqueSet = Sets.newIdentityHashSet<Expression>()
+        val collectFoldRegionsRecursively =
+            BuildExpressionExt.collectFoldRegionsRecursively(element, document, quick, uniqueSet)
+        return collectFoldRegionsRecursively
     }
 
     override fun getPlaceholderText(astNode: ASTNode): String? {

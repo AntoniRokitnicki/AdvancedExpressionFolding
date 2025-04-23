@@ -1,10 +1,11 @@
 package com.intellij.advancedExpressionFolding.extension;
 
-import com.intellij.advancedExpressionFolding.expression.*;
+import com.intellij.advancedExpressionFolding.expression.Expression;
+import com.intellij.advancedExpressionFolding.expression.SyntheticExpressionImpl;
 import com.intellij.lang.folding.FoldingDescriptor;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.project.IndexNotReadyException;
-import com.intellij.psi.*;
+import com.intellij.psi.PsiElement;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -12,11 +13,13 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 import static com.intellij.advancedExpressionFolding.extension.BuildExpressionKt.tryBuildExpression;
 import static com.intellij.advancedExpressionFolding.extension.CacheExt.getExpression;
 
 public class BuildExpressionExt {
+
     static final FoldingDescriptor[] NO_DESCRIPTORS = new FoldingDescriptor[0];
 
     @Contract("_, _, true -> !null")
@@ -53,11 +56,12 @@ public class BuildExpressionExt {
 
     @SuppressWarnings({"unused", "UnusedAssignment"})
     @NotNull
-    public static FoldingDescriptor @NotNull [] collectFoldRegionsRecursively(@NotNull PsiElement element, @NotNull Document document, boolean quick) {
+    public static FoldingDescriptor @NotNull [] collectFoldRegionsRecursively(@NotNull PsiElement element, @NotNull Document document, boolean quick, Set<Expression> uniqueSet) {
         PsiElement lastElement = element;
         List<FoldingDescriptor> allDescriptors = null;
         @Nullable Expression expression = getNonSyntheticExpression(element, document);
-        if (expression != null && expression.supportsFoldRegions(document, null)) {
+
+        if (expression != null && uniqueSet.add(expression) && expression.supportsFoldRegions(document, null)) {
             FoldingDescriptor[] descriptors = expression.buildFoldRegions(expression.getElement(), document, null);
             allDescriptors = new ArrayList<>();
             Collections.addAll(allDescriptors, descriptors);
@@ -65,7 +69,7 @@ public class BuildExpressionExt {
         if (expression == null || expression.isNested()) {
             for (PsiElement child : element.getChildren()) {
                 lastElement = child;
-                FoldingDescriptor[] descriptors = collectFoldRegionsRecursively(child, document, quick);
+                FoldingDescriptor[] descriptors = collectFoldRegionsRecursively(child, document, quick, uniqueSet);
                 if (descriptors.length > 0) {
                     if (allDescriptors == null) {
                         allDescriptors = new ArrayList<>();
