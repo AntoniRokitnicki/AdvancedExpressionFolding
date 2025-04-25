@@ -3,7 +3,7 @@
 annotations = "26.0.1"
 jsoup = "1.19.1"
 junit = "5.12.2"
-jackson = "2.18.3"
+jackson = "2.19.0"
 jsr305 = "3.0.2"
 pioneer = "2.3.0"
 lombok = "1.18.38"
