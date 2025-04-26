@@ -18,6 +18,7 @@ import kotlin.reflect.KMutableProperty0
 open class FoldingTest : BaseTest() {
 
     class TooComplexException : TestAbortedException("TOO COMPLEX FOLDING")
+    class FoldingChangedException : AssertionError()
 
     protected val state: State by lazy {
         getInstance().state
@@ -39,7 +40,7 @@ open class FoldingTest : BaseTest() {
         try {
             super.doFoldingTest(null)
         } catch (_: FileComparisonFailedError) {
-            throw RuntimeException("FileComparisonFailedError")
+            throw FoldingChangedException()
         } catch (e: IllegalArgumentException) {
             if (e.message == "Comparison method violates its general contract!") {
                 throw TooComplexException()
