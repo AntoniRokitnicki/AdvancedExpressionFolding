@@ -4,6 +4,12 @@
 
 ## [Unreleased]
 
+## [3.5.0] - 2025-04-27
+
+- performance improvements
+- [lombok] support more types of dirty getters: wrapper, lazy and dirtyNoReference
+- [lombok] don't show index on @constructor for class with single constructor
+
 ## [3.4.1] - 2025-04-15
 
 - remove internal code run before plugin updates to remove warnings
@@ -298,7 +304,8 @@ Improved handling of multi-line log messages
 
 ## [0.0.1]
 
-[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v3.4.1...HEAD
+[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v3.5.0...HEAD
+[3.5.0]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v3.4.1...v3.5.0
 [3.4.1]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v3.4.0...v3.4.1
 [3.4.0]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v3.3.0...v3.4.0
 [3.3.0]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v3.2.0...v3.3.0

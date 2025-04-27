@@ -41,10 +41,12 @@
 <p>For more information, read the <a href="https://medium.com/@andrey_cheptsov/making-java-code-easier-to-read-without-changing-it-adeebd5c36de" target="_blank">blog post</a>.</p>
 
 
+## 3.5.0 ##
+- [[lombok] support more types of dirty getters: wrapper, lazy and dirtyNoReference](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/4ec74d4d7a40d22749e3e491baa604036f407bc4/folded/LombokTestData-folded.java#L168)
+
 ## 3.4.1 ##
 - [Prevents all Lombok folding for classes matching the regex pattern](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#lombokpatternoff)
 - [[experimental] - @SneakyThrows for single statement](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/folded/ExperimentalTestData-folded.java)
-- [[interfaceExtensionProperties] Group added per method](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#interfaceextensionproperties)
 
 ## 3.3.0 ##
 - [FieldShift - defensive copy support](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/FieldShift#defensive-copy-support)
