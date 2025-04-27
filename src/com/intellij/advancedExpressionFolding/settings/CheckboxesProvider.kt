@@ -12,43 +12,7 @@ import org.intellij.lang.regexp.RegExpFileType
 import java.awt.Dimension
 import kotlin.reflect.KMutableProperty0
 
-typealias Description = String
-typealias UrlSuffix = String
-typealias ExampleFile = String
-
-data class CheckboxDefinition(
-    val title: String,
-    val property: KMutableProperty0<Boolean>,
-    val exampleLinkMap: Map<ExampleFile, Description?>? = null,
-    val docLink: UrlSuffix? = null
-)
-
-class CheckboxBuilder {
-    private val examples = mutableMapOf<ExampleFile, Description?>()
-    private var docLink: UrlSuffix? = null
-
-    fun example(file: ExampleFile, description: Description? = null) {
-        examples[file] = description
-    }
-
-    fun link(documentationLink: UrlSuffix) {
-        docLink = documentationLink
-    }
-
-    internal fun build(
-        property: KMutableProperty0<Boolean>,
-        title: String
-    ): CheckboxDefinition {
-        return CheckboxDefinition(
-            title = title,
-            property = property,
-            exampleLinkMap = if (examples.isEmpty()) null else examples.toMap(),
-            docLink = docLink
-        )
-    }
-}
-
-abstract class CheckboxDefinitionsProvider {
+abstract class CheckboxesProvider {
 
     fun Panel.initialize(state: State) {
         registerCheckbox(state::getSetExpressionsCollapse, "Getters and setters as properties") {
@@ -301,42 +265,40 @@ abstract class CheckboxDefinitionsProvider {
         // NEW OPTION
     }
 
-    private fun createEditor(property: KMutableProperty0<String?>): EditorEx {
-        val factory = com.intellij.openapi.editor.EditorFactory.getInstance()
-        val document = factory.createDocument(property.get()?.toString() ?: "")
-
-        val editor = factory.createEditor(document, null) as EditorEx
-        document.addDocumentListener(object : DocumentListener {
-            override fun documentChanged(event: DocumentEvent) {
-                event.document.text.trim().run {
-                    if (isEmpty()) {
-                        null
-                    } else {
-                        try {
-                            toPattern()
-                            this
-                        } catch (e: Exception) {
-                            null
-                        }
-                    }
-                }.let(property::set)
-            }
-        })
-        return editor.apply {
-            settings.apply {
-                isUseSoftWraps = true
-                isUseCustomSoftWrapIndent = true
-                isLineNumbersShown = false
-                isLineMarkerAreaShown = false
-            }
-            highlighter = EditorHighlighterFactory.getInstance().createEditorHighlighter(null, RegExpFileType.INSTANCE)
-            component.preferredSize = Dimension(500, 50)
-        }
-    }
-
     abstract fun Panel.registerCheckbox(
         property: KMutableProperty0<Boolean>,
         title: String,
         block: (CheckboxBuilder.() -> Unit)? = null
     )
+}
+
+
+private fun createEditor(property: KMutableProperty0<String?>): EditorEx {
+    val factory = com.intellij.openapi.editor.EditorFactory.getInstance()
+    val document = factory.createDocument(property.get() ?: "")
+
+    val editor = factory.createEditor(document, null) as EditorEx
+    document.addDocumentListener(object : DocumentListener {
+        override fun documentChanged(event: DocumentEvent) {
+            event.document.text.trim().takeIf {
+                it.isNotEmpty()
+            }?.let { text ->
+                runCatching {
+                    text.toPattern()
+                }.getOrNull()?.let {
+                    text
+                }
+            }.let(property::set)
+        }
+    })
+    return editor.apply {
+        settings.apply {
+            isUseSoftWraps = true
+            isUseCustomSoftWrapIndent = true
+            isLineNumbersShown = false
+            isLineMarkerAreaShown = false
+        }
+        highlighter = EditorHighlighterFactory.getInstance().createEditorHighlighter(null, RegExpFileType.INSTANCE)
+        component.preferredSize = Dimension(500, 50)
+    }
 }

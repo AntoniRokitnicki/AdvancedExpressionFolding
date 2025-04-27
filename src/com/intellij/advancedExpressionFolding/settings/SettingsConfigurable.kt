@@ -23,11 +23,12 @@ import java.net.URI
 import javax.swing.JPanel
 import kotlin.reflect.KMutableProperty0
 
-class SettingsConfigurable : EditorOptionsProvider, CheckboxDefinitionsProvider() {
+class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
     private val state = AdvancedExpressionFoldingSettings.getInstance().state
-    private var panel: DialogPanel? = null
+    private lateinit var panel: DialogPanel
     private val allExampleFiles = mutableSetOf<ExampleFile>()
     private val pendingChanges = mutableMapOf<KMutableProperty0<Boolean>, Boolean>()
+    private val propertyToCheckbox = mutableMapOf<KMutableProperty0<Boolean>, JBCheckBox>()
 
     override fun getId() = "advanced.expression.folding"
 
@@ -92,12 +93,13 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxDefinitionsProvider(
         row {
             cell(createDownloadExamplesLink())
         }
-
         initialize(state)
-    }.also { panel = it }
+    }.also {
+        panel = it
+    }
 
     override fun isModified(): Boolean {
-        return panel?.isModified() ?: false
+        return panel.isModified() || pendingChanges.isNotEmpty()
     }
 
     override fun apply() {
@@ -106,11 +108,14 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxDefinitionsProvider(
         }
         pendingChanges.clear()
         
-        panel?.apply()
+        panel.apply()
     }
 
     override fun reset() {
-        panel?.reset()
+        pendingChanges.clear()
+        propertyToCheckbox.forEach { (property, checkbox) ->
+            checkbox.isSelected = property.get()
+        }
     }
 
     private fun firstSourceRoot(project: Project) =
@@ -163,6 +168,7 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxDefinitionsProvider(
         checkbox.addActionListener {
             pendingChanges[property] = checkbox.isSelected
         }
+        propertyToCheckbox[property] = checkbox
         
         row {
             cell(checkbox)
