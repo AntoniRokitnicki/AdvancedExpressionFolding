@@ -11,6 +11,24 @@ import java.io.UnsupportedEncodingException;
 public class ExperimentalTestData {
 
     public class SneakyThrowsExample implements Runnable {
+
+        public String utf8ToStringMultiline(byte[] bytes) {
+            try {
+                byte[] bytez = System.getProperty("sort-desc").getBytes();
+                return new String(bytez, "UTF-8");
+            } catch (UnsupportedEncodingException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        public void runMultiline() {
+            try {
+                var throwable = new Throwable();
+                throw throwable;
+            } catch (Throwable t) {
+                throw new IllegalStateException(t);
+            }
+        }
+
         public String utf8ToString(byte[] bytes) {
             try {
                 return new String(System.getProperty("sort-desc").getBytes(), "UTF-8");
@@ -42,9 +60,25 @@ public class ExperimentalTestData {
                     throw new RuntimeException("", t);
                 }
             }
+
+            public String utf8ToStringMultiline(byte[] bytes) {
+                try {
+                    String charsetName = "UTF-8";
+                    return new String(bytes, charsetName);
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                    throw new RuntimeException(e);
+                }
+            }
+            public void runMultiline() {
+                try {
+                    Throwable throwable = new Throwable();
+                    throw throwable;
+                } catch (Throwable t) {
+                    throw new RuntimeException("", t);
+                }
+            }
         }
     }
-
-
 
 }

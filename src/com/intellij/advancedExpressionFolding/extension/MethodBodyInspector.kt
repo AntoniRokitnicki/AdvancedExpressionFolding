@@ -157,14 +157,14 @@ object MethodBodyInspector {
         val param = parameter ?: return false
         val statement = catchBlock?.statements?.singleOrNull() ?: return false
 
-        val newExpression = statement.asInstance<PsiThrowStatement>()?.exception.asInstance<PsiNewExpression>()
+        val newExpression = statement.asInstance<PsiThrowStatement>()?.exception.asNewInstance()
         newExpression?.classReference?.qualifiedName?.takeIf { qualifiedName ->
             qualifiedName == "java.lang.RuntimeException" || qualifiedName == "java.lang.IllegalStateException"
         } ?: return false
         val args = newExpression.argumentList?.expressions
-        val e = args?.singleOrNull()?.asInstance<PsiReferenceExpression>()
-        return e?.let {
-            e.isReferenceTo(param)
+        val referenceExpression = args?.singleOrNull().asReference()
+        return referenceExpression?.let {
+            referenceExpression.isReferenceTo(param)
         } == true
     }
 

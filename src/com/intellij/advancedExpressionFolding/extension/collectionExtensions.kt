@@ -6,10 +6,12 @@ import java.util.*
 fun <E, T : Collection<E>?> T.takeIfSizeNot(size: Int): T? = this.takeIf {
     it?.size != size
 }
-
 fun <T> Array<T>?.takeIfSize(size: Int): Array<T>? = this.takeIf {
     it?.size == size
 }
+
+val Array<*>?.one: Boolean
+    get() = this?.singleOrNull() != null
 
 fun <T> Array<T>.firstOrNullIfNotEmpty(): T? {
     return if (isEmpty() || size > 1) {
@@ -18,7 +20,6 @@ fun <T> Array<T>.firstOrNullIfNotEmpty(): T? {
         first()
     }
 }
-
 
 fun Array<out PsiElement>.asInstance(vararg elements: Class<out PsiElement>): Array<out PsiElement>? {
     if (elements.size != this.size) {

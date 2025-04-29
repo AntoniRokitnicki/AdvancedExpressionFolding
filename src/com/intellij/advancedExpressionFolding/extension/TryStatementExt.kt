@@ -6,33 +6,40 @@ import com.intellij.advancedExpressionFolding.extension.MethodBodyInspector.isRe
 import com.intellij.psi.PsiStatement
 import com.intellij.psi.PsiTryStatement
 
+
 object TryStatementExt : BaseExtension() {
 
     fun PsiTryStatement.createSneakyThrows(): Expression? {
-        if (!experimental || finallyBlock?.statements != null || resourceList != null) return null
+        if (!experimental || !isSimpleTryCatch()) return null
 
-        val codeBlock = tryBlock?.statements?.singleOrNull() ?: return null
-
-        val catchBlock = catchSections.singleOrNull()
-        val catchBlockCode = catchBlock?.catchBlock ?: return null
-
-        catchBlockCode.statements.singleOrNull() ?: return null
+        val catchBlock = catchSections.singleOrNull()?.takeIf {
+            it.catchBlock?.statements?.singleOrNull() != null
+        } ?: return null
 
         if (!catchBlock.isRethrowingException()) return null
 
         val tryKeyword = firstChild
-        val firstBrace = tryBlock?.firstChild
-        val lastBrace = tryBlock?.lastChild
-        val list = exprList(
-            tryKeyword.expr("@SneakyThrows"),
-            tryKeyword.nextWhiteSpace().exprHide(),
-            firstBrace.exprHide(),
-            foldSpacesBeforeSingleStatement(codeBlock),
-            lastBrace.prevWhiteSpace().exprHide(),
-            lastBrace.exprHide(),
-            catchBlock.exprHide(),
-        )
-        return list.exprWrap(this)
+        val sneakyThrows = tryKeyword.expr("@SneakyThrows")
+        val codeBlock = tryBlock?.statements?.singleOrNull()
+        val list = if (codeBlock  != null) {
+            val firstBrace = tryBlock?.firstChild
+            val lastBrace = tryBlock?.lastChild
+            exprList(
+                sneakyThrows,
+                tryKeyword.nextWhiteSpace().exprHide(),
+                firstBrace.exprHide(),
+                foldSpacesBeforeSingleStatement(codeBlock),
+                lastBrace.prevWhiteSpace().exprHide(),
+                lastBrace.exprHide(),
+                catchBlock.exprHide(),
+            )
+        } else {
+            exprList(
+                sneakyThrows,
+                catchBlock.exprHide(),
+            )
+        }
+        return list.exprWrap(this, group())
     }
 
     /**
@@ -64,6 +71,16 @@ object TryStatementExt : BaseExtension() {
             }
         }
     }
+
+    fun PsiTryStatement.isSimpleTryCatch() = allTrue(
+        tryBlock?.statements?.isNotEmpty(),
+        catchBlocks.one,
+        catchBlocks.one,
+        catchBlockParameters.one,
+        catchSections.one,
+        finallyBlock == null,
+        resourceList == null
+    )
 
 }
 
