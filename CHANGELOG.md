@@ -4,6 +4,9 @@
 
 ## [Unreleased]
 
+- [experimental] multi-line @SneakyThrows
+- [interfaceExtensionProperties] support nullable folding
+
 ## [3.5.0] - 2025-04-27
 
 - performance improvements

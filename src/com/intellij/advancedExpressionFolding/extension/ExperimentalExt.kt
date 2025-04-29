@@ -38,7 +38,7 @@ object ExperimentalExt : BaseExtension() {
 
         exprList.add(getAnyExpression(body))
         exprList.add(singleExpression)
-        return exprList.exprWrap(method)
+        return exprList.exprWrap(method, group())
     }
 
     private fun onSingleExpressionReturn(
@@ -66,7 +66,7 @@ object ExperimentalExt : BaseExtension() {
         exprList.add(returnPrevSpace?.expr(" "))
         exprList.add(endingSemicolon?.exprHide())
         exprList.add(singleExpression)
-        return exprList.exprWrap(method)
+        return exprList.exprWrap(method, group())
     }
 
     @JvmStatic

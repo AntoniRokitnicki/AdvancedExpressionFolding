@@ -7,24 +7,6 @@ import javax.annotation.Nullable;
 @SuppressWarnings("ALL")
 public class InterfaceExtensionPropertiesTestData {
 
-    interface TODO {
-        public interface NullableUser {
-           @Getter @Nullable
-            Integer age;
-           @Setter int age;
-           @Getter @Nullable
-            String name;
-           @Setter String name;
-        }
-
-        public interface NotNullUser {
-           @Getter @NotNull
-            String name;
-           @Setter String name;
-           @Getter int age;
-        }
-    }
-
     public interface User {
        @Getter String name;
        @Setter String name;
@@ -248,6 +230,7 @@ public class InterfaceExtensionPropertiesTestData {
         }
     }
 
+    //TODO: nullable support
     interface Finder {
        @FindBy //@FindBy String tag(String name);
         String tag(String name);
@@ -255,22 +238,25 @@ public class InterfaceExtensionPropertiesTestData {
        @FindBy String tag(byte age);
 
        @FindBy String name(String name);
+    }
 
+    public interface NullableUser {
+       @Getter Integer? age;
+       @Setter int? age;
+       @Getter String? name;
+       @Setter String? name;
+    }
+
+    public interface NotNullUser {
+       @Getter String!! name;
+       @Setter String!! name;
+       @Getter int age;
     }
 
     /**
      public interface User {
-        property String name { get; set; }
-        property int age { get; }
-     }
-     public interface User {
-        String name { get; set; }
-        int age { get; }
-     }
-
-     public interface User {
-        @Getter String name; <inlay jump to setter?>
-        @Setter String name; <inlay jump to getter?>
+        @Getter String name; <lineMarkerProvider to jump to setter?>
+        @Setter String name; <lineMarkerProvider to jump to getter?>
         @Getter int age;
      }
     **/

@@ -197,10 +197,9 @@ fun <T : PsiElement> PsiElement.findParents(
 }
 
 val PsiElement.identifier: PsiIdentifier?
-    get() = this.children.firstOrNull {
+    get() = children.firstOrNull {
         it is PsiIdentifier
     } as? PsiIdentifier
-
 
 fun PsiCodeBlock.hasComments(): Boolean = children.any {
     it is PsiComment

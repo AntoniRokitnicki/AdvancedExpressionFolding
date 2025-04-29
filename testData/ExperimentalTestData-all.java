@@ -1,6 +1,6 @@
-package data;
+<fold text='📦' expand='false'>package</fold> data;
 
-import java.io.UnsupportedEncodingException;
+<fold text='🚢' expand='false'>import</fold> java.io.UnsupportedEncodingException;
 
 <fold text='/** {@link com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.IState#getExperimental()} ...*/' expand='true'>/**
  * {@link com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.IState#getExperimental()}
@@ -8,74 +8,74 @@ import java.io.UnsupportedEncodingException;
  * {@link com.intellij.advancedExpressionFolding.FoldingTest#testExperimentalTestData()}
  */</fold>
 @SuppressWarnings("ALL")
-public class ExperimentalTestData {
+public <fold text='🏛️' expand='false'>class</fold> ExperimentalTestData {
 
-    public class SneakyThrowsExample implements Runnable <fold text='{...}' expand='true'>{
+    public <fold text='🏛️' expand='false'>class</fold> SneakyThrowsExample implements Runnabl<fold text='e(1-run)' expand='true'>e</fold> <fold text='{...}' expand='true'>{
 
-        public String utf8ToStringMultiline(byte[] bytes) <fold text='{...}' expand='true'>{
-            <fold text='@SneakyThrows' expand='true'>try</fold> <fold text='{...}' expand='true'>{
-                byte[] bytez = System<fold text='[' expand='false'>.getProperty(</fold>"sort-desc"<fold text=']' expand='false'>)</fold>.getBytes();
-                return new String(bytez, "UTF-8");
-            }</fold> <fold text='' expand='true'>catch (UnsupportedEncodingException e) <fold text='{...}' expand='true'>{
-                throw new RuntimeException(e);
+        public String utf8ToStringMultiline(<fold text='💾' expand='false'>byte</fold>[] bytes) <fold text='{...}' expand='true'>{
+            <fold text='@SneakyThrows' expand='false'>try</fold> <fold text='{...}' expand='true'>{
+                <fold text='💾' expand='false'><fold text='val' expand='false'>byte</fold>[]</fold> bytez = System<fold text='[' expand='false'>.getProperty(</fold>"sort-desc"<fold text=']' expand='false'>)</fold>.<fold text='bytes' expand='false'>getBytes()</fold>;
+                <fold text='🔙' expand='false'>return</fold> new String(bytez, "UTF-8");
+            }</fold> <fold text='🎣' expand='false'><fold text='' expand='false'>catch</fold> <fold text='' expand='false'>(</fold>UnsupportedEncodingException e<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
+                <fold text='🪃' expand='false'>throw</fold> new RuntimeException(e);
             }</fold></fold>
         }</fold>
-        public void runMultiline() <fold text='{...}' expand='true'>{
-            <fold text='@SneakyThrows' expand='true'>try</fold> <fold text='{...}' expand='true'>{
-                var throwable = new Throwable();
-                throw throwable;
-            }</fold> <fold text='' expand='true'>catch (Throwable t) <fold text='{...}' expand='true'>{
-                throw new IllegalStateException(t);
+        public <fold text='💀' expand='false'>void</fold> runMultiline() <fold text='{...}' expand='true'>{
+            <fold text='@SneakyThrows' expand='false'>try</fold> <fold text='{...}' expand='true'>{
+                <fold text='val' expand='false'>var</fold> throwable = new Throwable();
+                <fold text='🪃' expand='false'>throw</fold> throwable;
+            }</fold> <fold text='🎣' expand='false'><fold text='' expand='false'>catch</fold> <fold text='' expand='false'>(</fold>Throwable t<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
+                <fold text='🪃' expand='false'>throw</fold> new IllegalStateException(t);
             }</fold></fold>
         }</fold>
 
-        public String utf8ToString(byte[] bytes) <fold text='{...}' expand='true'>{
+        public String utf8ToString(<fold text='💾' expand='false'>byte</fold>[] bytes) <fold text='{...}' expand='true'>{
             <fold text='@SneakyThrows' expand='true'>try</fold><fold text='' expand='true'> </fold><fold text='' expand='true'><fold text='{...}' expand='true'>{</fold>
-            <fold text='' expand='true'>    </fold>return new String(System<fold text='[' expand='false'>.getProperty(</fold>"sort-desc"<fold text=']' expand='false'>)</fold>.getBytes(), "UTF-8");<fold text='' expand='true'>
-            </fold><fold text='' expand='true'>}</fold></fold> <fold text='' expand='true'>catch (UnsupportedEncodingException e) <fold text='{...}' expand='true'>{
-                throw new RuntimeException(e);
+            <fold text='' expand='true'>    </fold><fold text='🔙' expand='false'>return</fold> new String(System<fold text='[' expand='false'>.getProperty(</fold>"sort-desc"<fold text=']' expand='false'>)</fold>.<fold text='bytes' expand='false'>getBytes()</fold>, "UTF-8");<fold text='' expand='true'>
+            </fold><fold text='' expand='true'>}</fold></fold> <fold text='🎣' expand='false'><fold text='' expand='true'>catch</fold> <fold text='' expand='false'>(</fold>UnsupportedEncodingException e<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
+                <fold text='🪃' expand='false'>throw</fold> new RuntimeException(e);
             }</fold></fold>
         }</fold>
-        public void run() <fold text='{...}' expand='true'>{
+        public <fold text='💀' expand='false'>void</fold> run() <fold text='{...}' expand='true'>{
             <fold text='@SneakyThrows' expand='true'>try</fold><fold text='' expand='true'> </fold><fold text='' expand='true'><fold text='{...}' expand='true'>{</fold>
-            throw new Throwable();<fold text='' expand='true'>
-            </fold><fold text='' expand='true'>}</fold></fold> <fold text='' expand='true'>catch (Throwable t) <fold text='{...}' expand='true'>{
-                throw new IllegalStateException(t);
+            <fold text='🪃' expand='false'>throw</fold> new Throwable();<fold text='' expand='true'>
+            </fold><fold text='' expand='true'>}</fold></fold> <fold text='🎣' expand='false'><fold text='' expand='true'>catch</fold> <fold text='' expand='false'>(</fold>Throwable t<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
+                <fold text='🪃' expand='false'>throw</fold> new IllegalStateException(t);
             }</fold></fold>
         }</fold>
 
-        class Nagative <fold text='{...}' expand='true'>{
-            public String utf8ToString(byte[] bytes) <fold text='{...}' expand='true'>{
-                try <fold text='{...}' expand='true'>{
-                    return new String(bytes, "UTF-8");
-                }</fold> catch (UnsupportedEncodingException e) <fold text='{...}' expand='true'>{
+        <fold text='🏛️' expand='false'>class</fold> Nagative <fold text='{...}' expand='true'>{
+            public String utf8ToString(<fold text='💾' expand='false'>byte</fold>[] bytes) <fold text='{...}' expand='true'>{
+                <fold text='🤞' expand='false'>try</fold> <fold text='{...}' expand='true'>{
+                    <fold text='🔙' expand='false'>return</fold> new String(bytes, "UTF-8");
+                }</fold> <fold text='🎣' expand='false'>catch</fold> <fold text='' expand='false'>(</fold>UnsupportedEncodingException e<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
                     e.printStackTrace();
-                    throw new RuntimeException(e);
+                    <fold text='🪃' expand='false'>throw</fold> new RuntimeException(e);
                 }</fold>
             }</fold>
-            public void run() <fold text='{...}' expand='true'>{
-                try <fold text='{...}' expand='true'>{
-                    throw new Throwable();
-                }</fold> catch (Throwable t) <fold text='{...}' expand='true'>{
-                    throw new RuntimeException("", t);
+            public <fold text='💀' expand='false'>void</fold> run() <fold text='{...}' expand='true'>{
+                <fold text='🤞' expand='false'>try</fold> <fold text='{...}' expand='true'>{
+                    <fold text='🪃' expand='false'>throw</fold> new Throwable();
+                }</fold> <fold text='🎣' expand='false'>catch</fold> <fold text='' expand='false'>(</fold>Throwable t<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
+                    <fold text='🪃' expand='false'>throw</fold> new RuntimeException("", t);
                 }</fold>
             }</fold>
 
-            public String utf8ToStringMultiline(byte[] bytes) <fold text='{...}' expand='true'>{
-                try <fold text='{...}' expand='true'>{
-                    String charsetName = "UTF-8";
-                    return new String(bytes, charsetName);
-                }</fold> catch (UnsupportedEncodingException e) <fold text='{...}' expand='true'>{
+            public String utf8ToStringMultiline(<fold text='💾' expand='false'>byte</fold>[] bytes) <fold text='{...}' expand='true'>{
+                <fold text='🤞' expand='false'>try</fold> <fold text='{...}' expand='true'>{
+                    <fold text='val' expand='false'>String</fold> charsetName = "UTF-8";
+                    <fold text='🔙' expand='false'>return</fold> new String(bytes, charsetName);
+                }</fold> <fold text='🎣' expand='false'>catch</fold> <fold text='' expand='false'>(</fold>UnsupportedEncodingException e<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
                     e.printStackTrace();
-                    throw new RuntimeException(e);
+                    <fold text='🪃' expand='false'>throw</fold> new RuntimeException(e);
                 }</fold>
             }</fold>
-            public void runMultiline() <fold text='{...}' expand='true'>{
-                try <fold text='{...}' expand='true'>{
-                    Throwable throwable = new Throwable();
-                    throw throwable;
-                }</fold> catch (Throwable t) <fold text='{...}' expand='true'>{
-                    throw new RuntimeException("", t);
+            public <fold text='💀' expand='false'>void</fold> runMultiline() <fold text='{...}' expand='true'>{
+                <fold text='🤞' expand='false'>try</fold> <fold text='{...}' expand='true'>{
+                    <fold text='val' expand='false'>Throwable</fold> throwable = new Throwable();
+                    <fold text='🪃' expand='false'>throw</fold> throwable;
+                }</fold> <fold text='🎣' expand='false'>catch</fold> <fold text='' expand='false'>(</fold>Throwable t<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
+                    <fold text='🪃' expand='false'>throw</fold> new RuntimeException("", t);
                 }</fold>
             }</fold>
         }</fold>

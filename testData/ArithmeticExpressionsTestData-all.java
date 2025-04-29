@@ -75,13 +75,13 @@ public <fold text='🏛️' expand='false'>class</fold> ArithmeticExpressionsTes
             blackhole = a.abs();
         }</fold>
 
-        public <fold text='💀' expand='false'>void</fold> valueOfBigDecimal()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold>blackhole = <fold text='' expand='false'>BigDecimal.valueOf(</fold>10<fold text='' expand='false'>)</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
-        </fold>}</fold>
+        public <fold text='💀' expand='false'>void</fold> valueOfBigDecimal()<fold text=' { ' expand='false'> {
+            </fold>blackhole = <fold text='' expand='false'>BigDecimal.valueOf(</fold>10<fold text='' expand='false'>)</fold>;<fold text=' }' expand='false'>
+        }</fold>
 
         public <fold text='💀' expand='false'>void</fold> equalsBigDecimal() <fold text='{...}' expand='true'>{
             <fold text='val' expand='false'>BigDecimal</fold> a = <fold text='' expand='false'>new BigDecimal(</fold><fold text='10' expand='false'>"10"</fold><fold text='' expand='false'>)</fold>;
-            <fold text='val' expand='false'>BigDecimal</fold> b = <fold text='' expand='false'>new BigDecimal(</fold><fold text='10' expand='false'>"10"</fold><fold text='' expand='false'>)</fold>;
+            <fold text='val' expand='false'>BigDecimal</fold> b = <fold text='' expand='false'>new BigDecimal(</fold><fold text='10' expand='false'>"10"<fold text='' expand='false'></fold>)</fold>;
             blackhole = a<fold text=' ≡ ' expand='false'>.equals(</fold>b<fold text='' expand='false'>)</fold>;
         }</fold>
     }</fold>
@@ -139,9 +139,9 @@ public <fold text='🏛️' expand='false'>class</fold> ArithmeticExpressionsTes
             blackhole = a.negate();
         }</fold>
 
-        public <fold text='💀' expand='false'>void</fold> valueOfBigInteger()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold>blackhole = <fold text='' expand='false'>BigInteger.valueOf(</fold>10<fold text='' expand='false'>)</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
-        </fold>}</fold>
+        public <fold text='💀' expand='false'>void</fold> valueOfBigInteger()<fold text=' { ' expand='false'> {
+            </fold>blackhole = <fold text='' expand='false'>BigInteger.valueOf(</fold>10<fold text='' expand='false'>)</fold>;<fold text=' }' expand='false'>
+        }</fold>
 
         public <fold text='💀' expand='false'>void</fold> equalsBigInteger() <fold text='{...}' expand='true'>{
             <fold text='val' expand='false'>BigInteger</fold> a = <fold text='' expand='false'>new BigInteger(</fold><fold text='10' expand='false'>"10"</fold><fold text='' expand='false'>)</fold>;
@@ -173,7 +173,7 @@ public <fold text='🏛️' expand='false'>class</fold> ArithmeticExpressionsTes
         }</fold>
 
         public <fold text='💀' expand='false'>void</fold> shiftLeftBigInteger() <fold text='{...}' expand='true'>{
-            <fold text='val' expand='false'>BigInteger</fold> a = <fold text='' expand='false'>new BigInteger(<fold text='10' expand='false'></fold>"10"</fold><fold text='' expand='false'>)</fold>;
+            <fold text='val' expand='false'>BigInteger</fold> a = <fold text='' expand='false'>new BigInteger(</fold><fold text='10' expand='false'>"10"</fold><fold text='' expand='false'>)</fold>;
             blackhole = a<fold text=' << ' expand='false'>.shiftLeft(</fold>2<fold text='' expand='false'>)</fold>;
         }</fold>
 
@@ -286,9 +286,9 @@ public <fold text='🏛️' expand='false'>class</fold> ArithmeticExpressionsTes
             blackhole = <fold text='log(' expand='false'>Math.log10(</fold>a<fold text=')' expand='false'>)</fold>;
         }</fold>
 
-        public <fold text='💀' expand='false'>void</fold> randomMath()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold>blackhole = Math.random()<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
-        </fold>}</fold>
+        public <fold text='💀' expand='false'>void</fold> randomMath()<fold text=' { ' expand='false'> {
+            </fold>blackhole = Math.random();<fold text=' }' expand='false'>
+        }</fold>
 
         public <fold text='💀' expand='false'>void</fold> rintMath() <fold text='{...}' expand='true'>{
             <fold text='val' expand='false'>double</fold> a = 8.5;

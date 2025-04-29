@@ -11,14 +11,14 @@ interface GenericCallback<CallbackOnType: PsiElement, CallbackReturn> {
         get() = getUserData(callbackKey)
         set(value) = putUserData(callbackKey, value)
 
-    fun initCallback(field: CallbackOnType, annotations: CallbackReturn) {
+    fun initCallback(psiElement: CallbackOnType, annotations: CallbackReturn) {
         try {
-            field.callback = {
+            psiElement.callback = {
                 annotations
             }
-            getNonSyntheticExpression(field)
+            getNonSyntheticExpression(psiElement)
         } finally {
-            field.callback = null
+            psiElement.callback = null
         }
     }
 

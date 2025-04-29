@@ -21,19 +21,19 @@ public <fold text='🏛️' expand='false'>class</fold> ElvisTestData {
         }</fold>
     }</fold>
 
-    <fold text='🚫' expand='false'>private</fold> String sayHello()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-        </fold></fold><fold text='' expand='false'>return</fold><fold text='' expand='true'> </fold>"Hello"<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
-    </fold>}</fold>
+    <fold text='🚫' expand='false'>private</fold> String sayHello()<fold text=' { ' expand='false'> {
+        </fold><fold text='🔙' expand='false'>return</fold> "Hello";<fold text=' }' expand='false'>
+    }</fold>
 
-    <fold text='🚫' expand='false'>private</fold> <fold text='⚡' expand='false'>static</fold> ElvisTestData create() <fold text='{...}' expand='true'>{<fold text=' ' expand='true'>
-        </fold>if <fold text='' expand='false'>(</fold>Math.random() > 0.5<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
+    <fold text='🚫' expand='false'>private</fold> <fold text='⚡' expand='false'>static</fold> ElvisTestData create() <fold text='{...}' expand='true'>{
+        if <fold text='' expand='false'>(</fold>Math.random() > 0.5<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
         <fold text='🔙' expand='false'>return</fold> new ElvisTestData();
         }</fold> <fold text='🔄' expand='false'>else</fold> <fold text='{...}' expand='true'>{
         <fold text='🔙' expand='false'>return</fold> <fold text='🕳️' expand='false'>null</fold>;
-        }</fold><fold text=' ' expand='true'>
-    </fold>}</fold>
+        }</fold>
+    }</fold>
 
-    <fold text='🚫' expand='false'>private</fold> ElvisTestData get()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-        </fold></fold><fold text='' expand='false'>return</fold><fold text='' expand='true'> </fold>e<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
-    </fold>}</fold>
+    <fold text='🚫' expand='false'>private</fold> ElvisTestData get()<fold text=' { ' expand='false'> {
+        </fold><fold text='🔙' expand='false'>return</fold> e;<fold text=' }' expand='false'>
+    }</fold>
 }

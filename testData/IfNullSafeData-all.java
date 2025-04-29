@@ -18,7 +18,7 @@ public <fold text='🏛️' expand='false'>class</fold> IfNullSafeData {
         if <fold text='' expand='false'>(</fold><fold text='data?.data1?.data2?.data3 != null' expand='false'>data != <fold text='🕳️' expand='false'>null</fold> && data.<fold text='data1' expand='false'>getData1()</fold> != <fold text='🕳️' expand='false'>null</fold> &&
                 data.<fold text='data1' expand='false'>getData1()</fold>.<fold text='data2' expand='false'>getData2()</fold> != <fold text='🕳️' expand='false'>null</fold> && data.<fold text='data1' expand='false'>getData1()</fold>.
                 <fold text='data2' expand='false'>getData2()</fold>
-                .<fold text='data3' expand='false'>getData3()</fold> != <fold text='🕳️' expand='false'>null</fold><fold text='' expand='false'></fold>)</fold> <fold text='{...}' expand='true'>{
+                .<fold text='data3' expand='false'>getData3()</fold> != <fold text='🕳️' expand='false'>null</fold></fold><fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
             <fold text='' expand='false'>System.out.</fold>println(<fold text='"data?.data1?.data2?.data3 != null"' expand='false'>"data?.data1?.data2?.data3 != null"</fold>);
         }</fold>
         if <fold text='' expand='false'>(</fold><fold text='data?.data1 != null' expand='false'>data != <fold text='🕳️' expand='false'>null</fold> && data.<fold text='data1' expand='false'>getData1()</fold> != <fold text='🕳️' expand='false'>null</fold></fold><fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
@@ -48,7 +48,7 @@ public <fold text='🏛️' expand='false'>class</fold> IfNullSafeData {
                 && data.<fold text='data1' expand='false'>getData1()</fold> != <fold text='🕳️' expand='false'>null</fold>
                 && data.<fold text='data1' expand='false'>getData1()</fold>.<fold text='active' expand='false'>isActive()</fold></fold>;
         <fold text='val' expand='false'>var</fold> inactive = <fold text='data?.active == false' expand='false'>data != <fold text='🕳️' expand='false'>null</fold> && !data.<fold text='active' expand='false'>isActive()</fold></fold>;
-        <fold text='♾️' expand='false'>while</fold> <fold text='' expand='false'>(</fold><fold text='data?.data2?.active == false' expand='false'>data != <fold text='🕳️' expand='false'>null</fold> && data.<fold text='data2' expand='false'>getData2()</fold> != <fold text='🕳️' expand='false'>null</fold> && !data.<fold text='data2' expand='false'>getData2()</fold>.<fold text='active' expand='false'>isActive()</fold></fold><fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
+        <fold text='♾️' expand='false'>while</fold> <fold text='' expand='false'>(</fold><fold text='data?.data2?.active == false' expand='false'>data != <fold text='🕳️' expand='false'>null</fold> && data.<fold text='data2' expand='false'>getData2()</fold> != <fold text='🕳️' expand='false'>null</fold> && !data.<fold text='data2' expand='false'>getData2()</fold>.<fold text='active' expand='false'>isActive()</fold><fold text='' expand='false'></fold>)</fold> <fold text='{...}' expand='true'>{
             active = !data.<fold text='data1' expand='false'>getData1()</fold>.<fold text='active' expand='false'>isActive()</fold>;
         }</fold>
     }</fold>
@@ -98,7 +98,7 @@ public <fold text='🏛️' expand='false'>class</fold> IfNullSafeData {
     public <fold text='💀' expand='false'>void</fold> notFullRoll(Data data) <fold text='{...}' expand='true'>{
         <fold text='val' expand='false'>Data</fold> data2 = data;
         if <fold text='' expand='false'>(</fold><fold text='data.data1.data2.data3?.active == true' expand='false'>data.<fold text='data1' expand='false'>getData1()</fold>.<fold text='data2' expand='false'>getData2()</fold>.<fold text='data3' expand='false'>getData3()</fold> != <fold text='🕳️' expand='false'>null</fold> &&
-                data.<fold text='data1' expand='false'>getData1()</fold>.<fold text='data2' expand='false'>getData2()</fold>.<fold text='data3' expand='false'>getData3()</fold>.<fold text='active' expand='false'>isActive()</fold><fold text='' expand='false'></fold>)</fold> {
+                data.<fold text='data1' expand='false'>getData1()</fold>.<fold text='data2' expand='false'>getData2()</fold>.<fold text='data3' expand='false'>getData3()</fold>.<fold text='active' expand='false'>isActive()</fold></fold><fold text='' expand='false'>)</fold> {
 
         }
 
@@ -115,32 +115,32 @@ public <fold text='🏛️' expand='false'>class</fold> IfNullSafeData {
     }</fold>
 
     <fold text='⚡' expand='false'>static</fold> <fold text='🏛️' expand='false'>class</fold> Data <fold text='{...}' expand='true'>{
-        public Data getData1()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold><fold text='' expand='false'>return</fold><fold text='' expand='true'> </fold><fold text='🕳️' expand='false'>null<fold text='' expand='true'></fold>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
-        </fold>}</fold>
+        public Data getData1()<fold text=' { ' expand='false'> {
+            </fold><fold text='🔙' expand='false'>return</fold> <fold text='🕳️' expand='false'>null</fold>;<fold text=' }' expand='false'>
+        }</fold>
 
-        public Data getData2()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold><fold text='' expand='false'>return</fold><fold text='' expand='true'> </fold><fold text='🕳️' expand='false'>null</fold><fold text='' expand='true'>;<fold text='' expand='true'><fold text=' }' expand='false'></fold>
-        </fold>}</fold>
+        public Data getData2()<fold text=' { ' expand='false'> {
+            </fold><fold text='🔙' expand='false'>return</fold> <fold text='🕳️' expand='false'>null</fold>;<fold text=' }' expand='false'>
+        }</fold>
 
-        public Data getData3()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold><fold text='' expand='false'>return</fold><fold text='' expand='true'> </fold><fold text='🕳️' expand='false'>null</fold><fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
-        </fold>}</fold>
+        public Data getData3()<fold text=' { ' expand='false'> {
+            </fold><fold text='🔙' expand='false'>return</fold> <fold text='🕳️' expand='false'>null</fold>;<fold text=' }' expand='false'>
+        }</fold>
 
-        public Data getData4()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold><fold text='' expand='false'>return</fold><fold text='' expand='true'> </fold><fold text='🕳️' expand='false'>null</fold><fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
-        </fold>}</fold>
+        public Data getData4()<fold text=' { ' expand='false'> {
+            </fold><fold text='🔙' expand='false'>return</fold> <fold text='🕳️' expand='false'>null</fold>;<fold text=' }' expand='false'>
+        }</fold>
 
-        public Data getData5()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold><fold text='' expand='false'>return</fold><fold text='' expand='true'> </fold><fold text='🕳️' expand='false'>null</fold><fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
-        </fold>}</fold>
+        public Data getData5()<fold text=' { ' expand='false'> {
+            </fold><fold text='🔙' expand='false'>return</fold> <fold text='🕳️' expand='false'>null</fold>;<fold text=' }' expand='false'>
+        }</fold>
 
-        public Data getData6()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold><fold text='' expand='false'></fold>return</fold><fold text='' expand='true'> </fold><fold text='🕳️' expand='false'>null</fold><fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
-        </fold>}</fold>
+        public Data getData6()<fold text=' { ' expand='false'> {
+            </fold><fold text='🔙' expand='false'>return</fold> <fold text='🕳️' expand='false'>null</fold>;<fold text=' }' expand='false'>
+        }</fold>
 
-        public <fold text='🔘' expand='false'>boolean</fold> isActive()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold><fold text='' expand='false'></fold>return</fold><fold text='' expand='true'> </fold><fold text='✅' expand='false'>true</fold><fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
-        </fold>}</fold>
+        public <fold text='🔘' expand='false'>boolean</fold> isActive()<fold text=' { ' expand='false'> {
+            </fold><fold text='🔙' expand='false'>return</fold> <fold text='✅' expand='false'>true</fold>;<fold text=' }' expand='false'>
+        }</fold>
     }</fold>
 }

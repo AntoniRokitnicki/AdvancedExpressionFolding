@@ -20,7 +20,7 @@ public <fold text='🏛️' expand='false'>class</fold> ConstructorReferenceNota
 
         <fold text='🚫' expand='false'>private</fold> <fold text='⚡' expand='false'><fold text='const' expand='false'>static</fold> <fold text='🔒' expand='false'>final</fold></fold> List<String> LIST = <fold text='[]' expand='false'>new ArrayList<>()</fold>;
         <fold text='🚫' expand='false'>private</fold> <fold text='⚡' expand='false'><fold text='const' expand='false'>static</fold> <fold text='🔒' expand='false'>final</fold></fold> List<String> LIST2 = List.of();
-        <fold text='🚫' expand='false'>private</fold> <fold text='const' expand='false'><fold text='⚡' expand='false'>static</fold> <fold text='🔒' expand='false'>final</fold></fold> List<String> LIST_SINGLE = List.of("1");
+        <fold text='🚫' expand='false'>private</fold> <fold text='⚡' expand='false'><fold text='const' expand='false'>static</fold> <fold text='🔒' expand='false'>final</fold></fold> List<String> LIST_SINGLE = List.of("1");
         <fold text='🚫' expand='false'>private</fold> <fold text='⚡' expand='false'><fold text='const' expand='false'>static</fold> <fold text='🔒' expand='false'>final</fold></fold> List<String> LIST_LINKED = new LinkedList<>();
 
 
@@ -40,14 +40,14 @@ public <fold text='🏛️' expand='false'>class</fold> ConstructorReferenceNota
     }</fold>
     <fold text='⚡' expand='false'>static</fold> <fold text='🏛️' expand='false'>class</fold> Fields <fold text='{...}' expand='true'>{
         <fold text='🔒' expand='false'>final</fold> ConstClass SELF =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> </fold><fold text='' expand='true'>ConstClass</fold><fold text='' expand='true'>()</fold>;
-        ConstClass SELF_ANN =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> </fold><fold text='{}' expand='true'>ConstClass<fold text='' expand='true'>()</fold> <fold text='{...}' expand='true'>{
+        ConstClass SELF_ANN =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> <fold text='{}' expand='true'></fold>ConstClass<fold text='' expand='true'>()</fold> <fold text='{...}' expand='true'>{
         }</fold></fold>;
         public <fold text='🔒' expand='false'>final</fold> ConstClass SELF_SUB = new SubConstClass();
         public <fold text='🔒' expand='false'>final</fold> ConstClass SELF_SUB_ANN = new SubConstClass() <fold text='{...}' expand='true'>{
         }</fold>;
 
         <fold text='🚫' expand='false'>private</fold> <fold text='🔒' expand='false'>final</fold> HashMap<String, String> MAP =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> </fold><fold text='' expand='true'>HashMap<></fold><fold text='' expand='true'>()</fold>;
-        <fold text='🚫' expand='false'>private</fold> <fold text='🔒' expand='false'>final</fold> HashMap<String, String> MAP2 =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> </fold><fold text='' expand='true'>HashMap<fold text='<~>' expand='false'><String, String></fold><fold text='' expand='true'></fold>()</fold>;
+        <fold text='🚫' expand='false'>private</fold> <fold text='🔒' expand='false'>final</fold> HashMap<String, String> MAP2 =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> </fold><fold text='' expand='true'>HashMap<fold text='<~>' expand='false'><String, String></fold></fold><fold text='' expand='true'>()</fold>;
         <fold text='🚫' expand='false'>private</fold> <fold text='🔒' expand='false'>final</fold> Map<String, String> MAP3 = new HashMap<>();
 
         <fold text='🚫' expand='false'>private</fold> <fold text='🔒' expand='false'>final</fold> List<String> LIST = <fold text='[]' expand='false'>new ArrayList<>()</fold>;
@@ -75,16 +75,16 @@ public <fold text='🏛️' expand='false'>class</fold> ConstructorReferenceNota
         </fold><fold text='' expand='false'>public ConstClass() <fold text='{}' expand='true'>{
         }</fold></fold><fold text='' expand='false'>
 
-        </fold><fold text='' expand='false'>public ConstClass(<fold text='🔘' expand='false'>boolean</fold> ok)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold><fold text='📍' expand='false'>this</fold>.ok = <fold text='<<' expand='false'>ok</fold><fold text='' expand='true'>;<fold text=' ' expand='true'><fold text=' }' expand='false'></fold>
-        </fold>}</fold><fold text='' expand='false'></fold>
-
-        </fold><fold text='' expand='false'>public ConstClass(<fold text='🔘' expand='false'>boolean</fold> ok, String string) <fold text='{...}' expand='true'>{
-            <fold text='📍' expand='false'>this</fold>.ok = <fold text='<<' expand='false'>ok</fold>;
-            <fold text='📍' expand='false'>this</fold>.string = <fold text='<<' expand='false'>string</fold>;
+        </fold><fold text='' expand='false'>public ConstClass(<fold text='🔘' expand='false'>boolean</fold> ok)<fold text=' { ' expand='false'> {
+            </fold>this.ok = <fold text='<<' expand='false'>ok</fold>;<fold text=' }' expand='false'>
         }</fold></fold><fold text='' expand='false'>
 
-        </fold><fold text='' expand='true'><fold text='' expand='false'>@Override</fold>
+        </fold><fold text='' expand='false'>public ConstClass(<fold text='🔘' expand='false'>boolean</fold> ok, String string) <fold text='{...}' expand='true'>{
+            this.ok = <fold text='<<' expand='false'>ok</fold>;
+            this.string = <fold text='<<' expand='false'>string</fold>;
+        }</fold></fold><fold text='' expand='false'>
+
+        </fold><fold text='' expand='false'>@Override
         public String toString() <fold text='{...}' expand='true'>{
             <fold text='🔙' expand='false'>return</fold> new StringJoiner(", ",<fold text=' "${' expand='false'> </fold>ConstClass.<fold text='🏛️' expand='false'>class</fold>.<fold text='simpleName' expand='false'>getSimpleName()</fold><fold text='}' expand='false'> + "</fold>[", "]")
                     .add("string='<fold text='$' expand='false'>" + </fold>string<fold text='' expand='false'> + "</fold>'")

@@ -12,6 +12,7 @@ import com.intellij.lang.ASTNode
 import com.intellij.lang.folding.FoldingBuilderEx
 import com.intellij.lang.folding.FoldingDescriptor
 import com.intellij.openapi.editor.Document
+import com.intellij.openapi.editor.FoldingGroup
 import com.intellij.openapi.project.IndexNotReadyException
 import com.intellij.psi.PsiDocumentManager
 import com.intellij.psi.PsiElement
@@ -62,13 +63,19 @@ class AdvancedExpressionFoldingBuilder(private val config: IConfig = getInstance
     }
 
     fun preview(element: PsiElement, document: Document): List<String> {
+        val groupIds = Sets.newIdentityHashSet<FoldingGroup>()
         return collect(element, document).map { descriptor ->
+            descriptor.group?.let(groupIds::add)
             buildString {
                 append(descriptor.range.substring(document.text))
                 append(" => ")
                 append(descriptor.placeholderText)
                 append('[')
-                append(descriptor.group)
+                append(groupIds.size)
+                append("-")
+                append(descriptor.group?.run {
+                    toString().substringAfterLast(".")
+                } ?: "null")
                 append(']')
             }
         }

@@ -100,14 +100,13 @@ object LombokExt : BaseExtension(), GenericCallback<PsiField, List<FieldLevelAnn
             }
     }
 
-    fun createFieldLevelAnnotation(fieldLevelAnnotation: FieldLevelAnnotation): String {
-        val arguments = fieldLevelAnnotation.arguments.takeIf {
+    fun FieldLevelAnnotation.createFieldLevelAnnotation(): String {
+        val arguments = arguments.takeIf {
             it.isNotEmpty()
         }?.joinToString(separator = ",")?.let {
             "($it)"
         } ?: ""
-        val annotationAsString = fieldLevelAnnotation.classAnnotation.annotation + arguments
-        return annotationAsString
+        return classAnnotation.annotation + arguments
     }
 
     private fun PsiClass.foldBuilder(): List<ClassLevelAnnotation> {

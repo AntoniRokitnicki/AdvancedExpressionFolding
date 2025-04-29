@@ -3,18 +3,16 @@ package com.intellij.advancedExpressionFolding.extension
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression
 import com.intellij.advancedExpressionFolding.expression.custom.FieldAnnotationExpression
-import com.intellij.advancedExpressionFolding.expression.custom.FieldConstExpression
 import com.intellij.advancedExpressionFolding.expression.custom.NullAnnotationExpression
-import com.intellij.advancedExpressionFolding.extension.Keys.METHOD_TO_PARENT_CLASS_KEY
 import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFoldingAnnotation.Companion.findByName
 import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFoldingAnnotation.NOT_NULL
 import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFoldingAnnotation.NULLABLE
-import com.intellij.advancedExpressionFolding.extension.clazz.LombokExt
+import com.intellij.advancedExpressionFolding.extension.clazz.FieldLevelAnnotation
 import com.intellij.advancedExpressionFolding.extension.clazz.LombokExt.callback
-import com.intellij.advancedExpressionFolding.extension.clazz.LombokMethodExt.addInterfaceAnnotations
-import com.intellij.advancedExpressionFolding.extension.clazz.LombokMethodExt.callback
+import com.intellij.advancedExpressionFolding.extension.clazz.LombokExt.createFieldLevelAnnotation
 import com.intellij.advancedExpressionFolding.extension.methodcall.dynamic.DynamicExt
 import com.intellij.openapi.editor.Document
+import com.intellij.openapi.editor.FoldingGroup
 import com.intellij.psi.*
 
 /**
@@ -24,71 +22,35 @@ import com.intellij.psi.*
 object NullableExt : BaseExtension() {
 
     @JvmStatic
-    fun createExpression(element: PsiMethod, document: Document): Expression? {
-        val list: MutableList<Expression?> = mutableListOf()
-
+    fun createExpression(method: PsiMethod, document: Document): Expression? {
         if (interfaceExtensionProperties) {
-            element.callback?.invoke()?.let { annotations ->
-                annotations.forEach { methodLevelAnnotations ->
-                    val id = element.identifier ?: return@forEach
-                    list += element.addInterfaceAnnotations(methodLevelAnnotations, id, group("interfaceExtensionProperties"))
-                }
-                // For interfaces only; other functionality was not tested with the interfaces’ methods
-                return list.exprWrap(element)
-            }
+            // For interfaces only; other functionality was not tested with the interfaces’ methods
+            return InterfacePropertiesExt.foldProperties(method)
         }
-
-        list += exprList(fieldAnnotationExpression(element.annotations, element.returnTypeElement))
+        val list = exprList(fieldAnnotationExpression(method.annotations, method.returnTypeElement))
 
         if (summaryParentOverride) {
-            val overrides = element.annotations.filter {
-                it.textMatches("@Override")
-            }
-            val hideOverride = overrides.exprHide()
-            list += hideOverride
-            list += overrides.mapNotNull {
-                it.prevWhiteSpace().exprHide()
-            }
-            summaryParentOverride.on(hideOverride)?.let {
-                element.body
-            }?.let { body ->
-                val oneLiner = body.statements.size == 1
-                if (oneLiner) {
-                    body.rBrace
-                } else {
-                    body.lBrace
-                }?.let { brace ->
-                    val signature = element.getSignature()
-                    element.containingClass?.getUserData(METHOD_TO_PARENT_CLASS_KEY)
-                        ?.get(signature)?.let {
-                            val prefix = if (oneLiner) {
-                                '}'
-                            } else {
-                                '{'
-                            }
-                            list += brace.expr("$prefix // overrides from $it")
-                        }
-                }
-            }
+            SummaryParentExt.summaryParent(method, list)
         }
 
-        if (expressionFunc) {
-            list.add(ExperimentalExt.createSingleExpressionFunctions(element, document))
+        list.addIfEnabled(expressionFunc) {
+            ExperimentalExt.createSingleExpressionFunctions(method, document)
         }
-        if (dynamic) {
-            list.add(DynamicExt.createExpression(element))
+
+        list.addIfEnabled(dynamic) {
+            DynamicExt.createExpression(method)
         }
 
         // works ok now, but may lead to issues
         if (true) {
-            getAnyExpression(element.modifierList, document).let(list::add)
-            element.returnTypeElement?.let {
+            getAnyExpression(method.modifierList, document).let(list::add)
+            method.returnTypeElement?.let {
                 getAnyExpression(it, document).let(list::add)
             }
-            getAnyExpressions(element.body?.statements, document).let(list::addAll)
-            getAnyExpressions(element.parameterList.parameters, document).let(list::addAll)
+            getAnyExpressions(method.body?.statements, document).let(list::addAll)
+            getAnyExpressions(method.parameterList.parameters, document).let(list::addAll)
         }
-        return list.exprWrap(element)
+        return list.exprWrap(method)
     }
 
     @JvmStatic
@@ -97,14 +59,18 @@ object NullableExt : BaseExtension() {
     }
 
     @JvmStatic
-    fun createExpression(psiParameter: PsiParameter, document: Document): Expression? {
-        val list = exprList(readCheckNotNullMethods(psiParameter, document))
+    fun createExpression(parameter: PsiParameter, document: Document): Expression? {
+        if (interfaceExtensionProperties && InterfacePropertiesExt.ignoreFoldingParameter(parameter)) {
+            return null
+        }
+
+        val list = exprList(readCheckNotNullMethods(parameter, document))
         list += fieldAnnotationExpression(
-            psiParameter.annotations,
-            psiParameter.typeElement,
+            parameter.annotations,
+            parameter.typeElement,
             true
         )
-        return list.exprWrap(psiParameter)
+        return list.exprWrap(parameter)
     }
 
     @JvmStatic
@@ -113,38 +79,34 @@ object NullableExt : BaseExtension() {
             !field.isIgnored()
         } ?: return null
 
-        val fieldAnnotations = mutableListOf<String>()
-        val elementsToHide = mutableListOf<PsiElement?>()
-
-        field.callback?.invoke()?.let { annotations ->
-            annotations.forEach { fieldLevelAnnotation ->
-                elementsToHide.addAll(fieldLevelAnnotation.method)
-                elementsToHide.addAll(fieldLevelAnnotation.method.mapNotNull {
-                    it.prevWhiteSpace()
-                })
-                fieldAnnotations += LombokExt.createFieldLevelAnnotation(fieldLevelAnnotation)
-            }
-        }
-
         val list = exprList()
 
-        list += fieldAnnotations.takeIfSizeNot(0)?.let {
-            FieldAnnotationExpression(field, it, elementsToHide)
+        field.callback?.invoke()?.let { annotations: List<FieldLevelAnnotation> ->
+            val annotationsAsString = mutableListOf<String>()
+            val elementsToHide = mutableListOf<PsiElement?>()
+            annotations.forEach { fieldLevelAnnotation ->
+                elementsToHide += fieldLevelAnnotation.method
+                elementsToHide += fieldLevelAnnotation.method.mapNotNull {
+                    it.prevWhiteSpace()
+                }
+                annotationsAsString += fieldLevelAnnotation.createFieldLevelAnnotation()
+            }
+            annotationsAsString.takeIfSizeNot(0)?.let {
+                list += FieldAnnotationExpression(field, it, elementsToHide)
+            }
         }
-
-        list += nullable.on()?.let {
+        list.addIfEnabled(nullable) {
             val typeExpression = fieldAnnotationExpression(field.annotations, typeElement, false)
             typeExpression ?: findPropertyAnnotation(field, typeElement)
         }
 
-        list += constructorReferenceNotation.on()?.let {
-            foldFieldConstructor(field, document)
+        list.addIfEnabled(constructorReferenceNotation) {
+            ConstructorReferenceExt.foldFieldConstructor(field, document)
         }
 
-        list += const.on()?.let {
-            fieldConstExpression(field, typeElement)
+        list.addIfEnabled(const) {
+            ConstExt.fieldConstExpression(field, typeElement)
         }
-
         return list.exprWrap(field)
     }
 
@@ -168,8 +130,7 @@ object NullableExt : BaseExtension() {
                         name
                     }
                 } ?: return null
-                @Suppress("EnumValuesSoftDeprecate")
-                return values().firstOrNull { e ->
+                return entries.firstOrNull { e ->
                     e.annotations.firstOrNull { single ->
                         single.contains(name)
                     } != null
@@ -177,100 +138,6 @@ object NullableExt : BaseExtension() {
             }
         }
     }
-
-    private fun fieldConstExpression(
-        field: PsiField,
-        typeElement: PsiTypeElement?
-    ): Expression? {
-        return if (field.isStatic() && field.isFinal()) {
-            if (field.hideConstType()) {
-                field.createConst(typeElement)
-            } else {
-                field.createConst(null)
-            }
-        } else {
-            null
-        }
-    }
-
-    private fun PsiField.constText(): String {
-        @Suppress("SpellCheckingInspection")
-        return when (this.enum) {
-            true -> "econst"
-            false -> "const"
-        }
-    }
-
-    private fun PsiField.createConst(
-        typeElement: PsiTypeElement?,
-    ): FieldConstExpression {
-        val modifiers = modifierList!!
-        return FieldConstExpression(typeElement, modifiers, constText())
-    }
-
-    private fun foldFieldConstructor(
-        field: PsiField,
-        document: Document
-    ): Expression? {
-        val initializer = field.initializer.asInstance<PsiNewExpression>()
-        val noParams = initializer?.argumentList?.isEmpty == true
-        val anonymousClass = initializer?.anonymousClass
-
-        var noBody = initializer?.classReference != null
-        if (anonymousClass != null) {
-            noBody = anonymousClass.methods.size + anonymousClass.fields.size == 0
-        }
-
-        val sameType = field.sameTypeOfFieldAndInitializer(initializer)
-        if (noBody && sameType && initializer != null) {
-            val list = exprList()
-            initializer.classReference?.let {
-                list += it.prevWhiteSpace()?.exprHide()
-                list += it.exprHide()
-            }
-            initializer.anonymousClass?.let {
-                list += it.prevWhiteSpace()?.exprHide()
-                list += it.expr("{}")
-            }
-            list += initializer.exprWrapAround(textBefore = "::")
-
-            if (noParams) {
-                list += initializer.argumentList?.exprHide()
-            } else {
-                initializer.argumentList?.expressions?.map {
-                    getAnyExpression(it, document)
-                }?.let {
-                    list.plusAssign(it)
-                }
-            }
-            return list.exprWrap(field)
-        }
-        return null
-    }
-
-
-    //TODO: extract generic extension method
-    private fun PsiField.sameTypeOfFieldAndInitializer(initializer: PsiNewExpression?) =
-        initializer?.classOrAnonymousClassReference?.resolve() == typeResolved
-
-    private fun PsiField.hideConstType() =
-        (type.isPrimitiveOrString() && hasLiteralConstInitializer()) || (enum && isNotStaticEnumInitializer()) || isFactoryMethod()
-
-    /**
-     * example: static final Pattern PATTERN = Pattern.compile(".*");
-     */
-    private fun PsiField.isFactoryMethod(): Boolean {
-        val methodCall = initializer.asInstance<PsiMethodCallExpression>()
-        val typeResolved = typeResolved
-        return methodCall?.type?.typeResolved == typeResolved &&
-                methodCall?.methodExpression
-                    .asInstance<PsiReferenceExpression>()
-                    ?.qualifierExpression
-                    .asInstance<PsiReferenceExpression>()
-                    ?.resolve() == typeResolved
-    }
-
-    private fun PsiField.isNotStaticEnumInitializer() = initializerType == typeResolved
 
     private fun findPropertyAnnotation(field: PsiField, typeElement: PsiTypeElement?): Expression? {
         return field.metadata.getter
@@ -331,10 +198,11 @@ object NullableExt : BaseExtension() {
         }
     }
 
-    private fun fieldAnnotationExpression(
+    fun fieldAnnotationExpression(
         annotations: Array<out PsiAnnotation>,
         typeElement: PsiTypeElement?,
         foldPrevWhiteSpace: Boolean = false,
+        group: FoldingGroup? = null,
     ): NullAnnotationExpression? {
         typeElement?.takeIf {
             nullable
@@ -352,7 +220,7 @@ object NullableExt : BaseExtension() {
                     NOT_NULL -> "!!"
                     NULLABLE -> "?"
                 }
-                NullAnnotationExpression(typeElement, annotationElement, typeSuffix, foldPrevWhiteSpace)
+                NullAnnotationExpression(typeElement, annotationElement, typeSuffix, foldPrevWhiteSpace, group)
             }
     }
 

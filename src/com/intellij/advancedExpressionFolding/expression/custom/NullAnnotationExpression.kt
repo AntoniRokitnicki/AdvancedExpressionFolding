@@ -16,6 +16,7 @@ class NullAnnotationExpression(
     private val annotationToHide: PsiElement?,
     val typeSuffix: String,
     private val foldPrevWhiteSpace: Boolean = false,
+    val foldingGroup: FoldingGroup? = null,
 ) : Expression(typeToAppend, typeToAppend.textRange) {
     override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean {
         return true
@@ -26,7 +27,8 @@ class NullAnnotationExpression(
         document: Document,
         parent: Expression?
     ): Array<FoldingDescriptor> {
-        val group = FoldingGroup.newGroup(NullAnnotationExpression::class.java.name)
+        val group = foldingGroup ?: FoldingGroup.newGroup(NullAnnotationExpression::class.java.name)
+
         val list = foldingList(fold(typeToAppend, TextRange(typeToAppend.end(), typeToAppend.end() + 1), "$typeSuffix ", group))
         typeToAppend.prevWhiteSpace()?.takeIf {
             foldPrevWhiteSpace

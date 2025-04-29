@@ -8,7 +8,6 @@ import com.intellij.advancedExpressionFolding.extension.clazz.LombokExt.findMeth
 import com.intellij.advancedExpressionFolding.extension.clazz.LombokInterfaceFoldingAnnotation.*
 import com.intellij.advancedExpressionFolding.extension.clazz.LombokInterfaceFoldingAnnotation.Companion.fromMethodType
 import com.intellij.advancedExpressionFolding.extension.clazz.MethodType.*
-import com.intellij.openapi.editor.FoldingGroup
 import com.intellij.openapi.util.Key
 import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiElement
@@ -61,7 +60,6 @@ object LombokMethodExt : GenericCallback<PsiMethod, List<MethodLevelAnnotation>>
     fun PsiMethod.addInterfaceAnnotations(
         methodLevelAnnotations: MethodLevelAnnotation,
         id: PsiIdentifier,
-        group: FoldingGroup,
     ): List<Expression?> {
         val list = exprList()
         val type = methodLevelAnnotations.methodAnnotation
@@ -70,7 +68,7 @@ object LombokMethodExt : GenericCallback<PsiMethod, List<MethodLevelAnnotation>>
         } else {
             addGetterAndSetter(id, list, type)
         }
-        return list.applyGroup(group)
+        return list
     }
 
     private fun PsiMethod.addGetterAndSetter(
