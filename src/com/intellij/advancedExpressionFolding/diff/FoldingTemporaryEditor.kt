@@ -1,27 +1,12 @@
 package com.intellij.advancedExpressionFolding.diff
 
-import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.editor.EditorFactory
 import com.intellij.openapi.editor.EditorKind
 import com.intellij.openapi.editor.LogicalPosition
 import com.intellij.openapi.editor.ex.EditorEx
 import com.intellij.openapi.util.TextRange
-import javax.swing.SwingUtilities
 
 object FoldingTemporaryEditor {
-
-    fun getFoldedText(
-        text: String,
-        wrapper: FoldingDescriptorExWrapper
-    ): String {
-        var changedText: String? = null
-        SwingUtilities.invokeAndWait {
-            ApplicationManager.getApplication().runWriteAction {
-                changedText = foldInEditor(text, wrapper.list)
-            }
-        }
-        return changedText!!
-    }
 
     fun foldInEditor(text: String, list: List<FoldingDescriptorEx>) : String {
         val editorFactory = EditorFactory.getInstance()
@@ -53,7 +38,7 @@ object FoldingTemporaryEditor {
                     foldedText.append(document.getText(TextRange(offset, foldStart)))
                     foldedText.append(region.placeholderText)
                     offset = region.endOffset
-                } catch (e: IllegalArgumentException) {
+                } catch (_: IllegalArgumentException) {
                     //ignore text that has already been folded
                 }
             }

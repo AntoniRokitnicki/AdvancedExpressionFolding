@@ -81,8 +81,6 @@ repositories {
 dependencies {
     implementation(libs.annotations)
     implementation(libs.jsr305)
-
-    implementation(libs.jsoup)
     implementation(libs.jackson.dataformat.toml)
 
     testRuntimeOnly(libs.junit.jupiter.engine)
