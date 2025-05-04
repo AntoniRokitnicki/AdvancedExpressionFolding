@@ -1,8 +1,9 @@
 package com.intellij.advancedExpressionFolding.extension.methodcall;
 
 import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings;
-import com.intellij.advancedExpressionFolding.expression.Random;
+import com.intellij.advancedExpressionFolding.MethodCallFoldingLoaderService;
 import com.intellij.advancedExpressionFolding.expression.*;
+import com.intellij.advancedExpressionFolding.expression.Random;
 import com.intellij.advancedExpressionFolding.expression.custom.GetterRecord;
 import com.intellij.advancedExpressionFolding.expression.optional.*;
 import com.intellij.advancedExpressionFolding.expression.stream.StreamExpression;
@@ -27,8 +28,6 @@ import static com.intellij.advancedExpressionFolding.extension.ReferenceExpressi
 
 @SuppressWarnings({"RedundantIfStatement", "SwitchStatementWithTooFewBranches", "unused", "EnhancedSwitchMigration", "RedundantSuppression"})
 public class MethodCallExpressionExt {
-
-    private static final MethodCallFactory FACTORY = MethodCallFactory.INSTANCE.initialize(null);
 
     @Nullable
     public static Expression getMethodCallExpression(PsiMethodCallExpression element, @NotNull Document document) {
@@ -62,13 +61,14 @@ public class MethodCallExpressionExt {
     @Nullable
     private static Expression useMethodCallFactory(PsiElement identifier, PsiReferenceExpression referenceExpression, @NotNull Document document,
                                                    @Nullable PsiExpression qualifier, @NotNull AdvancedExpressionFoldingSettings settings, PsiMethodCallExpression element) {
-        if (FACTORY.getSupportedMethods().contains(identifier.getText())) {
+        var factory = MethodCallFoldingLoaderService.factory();
+        if (factory.getSupportedMethods().contains(identifier.getText())) {
             PsiMethod method = (PsiMethod) referenceExpression.resolve();
             if (method != null) {
                 PsiClass psiClass = method.getContainingClass();
                 if (psiClass != null && psiClass.getQualifiedName() != null) {
                     String className = Helper.eraseGenerics(psiClass.getQualifiedName());
-                    if ((FACTORY.getSupportedClasses().contains(className) || FACTORY.getClasslessMethods().contains(method.getName()))) {
+                    if ((factory.getSupportedClasses().contains(className) || factory.getClasslessMethods().contains(method.getName()))) {
                         Expression result = onAnyExpression(element, document, qualifier, identifier, settings, className, method);
                         if (result != null) {
                             return result;
@@ -88,7 +88,8 @@ public class MethodCallExpressionExt {
             qualifierExpression = null;
         }
         String methodName = identifier.getText();
-        var methodCalls = FACTORY.findByMethodName(methodName);
+        var factory = MethodCallFoldingLoaderService.factory();
+        var methodCalls = factory.findByMethodName(methodName);
         if (methodCalls != null) {
             for (AbstractMethodCall methodCall : methodCalls) {
                 var args = Arrays.stream(element.getArgumentList().getExpressions()).map(arg -> BuildExpressionExt.getAnyExpression(arg, document)).toList();
