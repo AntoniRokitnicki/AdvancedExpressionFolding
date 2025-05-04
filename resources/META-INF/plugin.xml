@@ -27,6 +27,8 @@
                 instance="com.intellij.advancedExpressionFolding.settings.SettingsConfigurable"
                 id="editor.folding.advanced.expression"
                 displayName="Advanced Expression Folding 2"/>
+
+        <postStartupActivity implementation="com.intellij.advancedExpressionFolding.MethodCallFoldingLoader"/>
     </extensions>
 
     <actions>
