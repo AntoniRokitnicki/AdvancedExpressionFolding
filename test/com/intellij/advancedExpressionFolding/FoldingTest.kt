@@ -241,7 +241,7 @@ open class FoldingTest : BaseTest() {
      * [data.LombokTestData]
      */
     @Test
-    fun lombokTestData() {
+    open fun lombokTestData() {
         doFoldingTest(state::lombok)
     }
 

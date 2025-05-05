@@ -7,6 +7,7 @@ import com.intellij.openapi.components.Storage
 import org.jetbrains.annotations.NotNull
 import kotlin.reflect.KClass
 import kotlin.reflect.KMutableProperty
+import kotlin.reflect.KMutableProperty0
 import kotlin.reflect.full.memberProperties
 import kotlin.reflect.jvm.javaType
 
@@ -133,10 +134,13 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
 
     open class StateDelegate(private val state: State = getInstance().state) : IState by state
 
-    private fun updateAllState(value: Boolean) {
+    private fun updateAllState(value: Boolean, vararg excludeProperties: KMutableProperty<Boolean>) {
+        val excluded = excludeProperties.map { it.toString() }
         with(myState) {
             allProperties()
-                .forEach {
+                .filter {
+                    !excluded.contains(it.toString())
+                }.forEach {
                     if (it.setter.parameters.getOrNull(1)?.type?.javaType?.typeName == "boolean") {
                         it.setter.call(this, value)
                     }
@@ -145,7 +149,7 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
     }
 
     fun disableAll() = updateAllState(false)
-    fun enableAll() = updateAllState(true)
+    fun enableAll(vararg excludeProperties: KMutableProperty0<Boolean>) = updateAllState(true, *excludeProperties)
 
     companion object {
         @JvmStatic
