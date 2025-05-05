@@ -84,10 +84,15 @@ object LombokExt : BaseExtension(), GenericCallback<PsiField, List<FieldLevelAnn
             val group = group()
             values.flatten().takeIf {
                 it.size > 1
-            }?.forEach {
-                val index = fieldLevelAnnotations.indexOf(it)
-                val firstArg = constructorAnnotationSecondArgument(it)
-                fieldLevelAnnotations[index] = it.copy(arguments = listOf(firstArg) + it.arguments.drop(1), group = group)
+            }?.forEachIndexed { constructorIndex, annotation ->
+                val index = fieldLevelAnnotations.indexOf(annotation)
+                val firstArg = constructorAnnotationSecondArgument(annotation)
+                val methods = if (constructorIndex > 0) {
+                    emptyList()
+                } else {
+                    annotation.method
+                }
+                fieldLevelAnnotations[index] = annotation.copy(arguments = listOf(firstArg) + annotation.arguments.drop(1), group = group, method = methods)
             }
         }
     }
