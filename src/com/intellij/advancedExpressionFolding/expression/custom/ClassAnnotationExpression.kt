@@ -18,13 +18,17 @@ open class ClassAnnotationExpression(
     internal val customClassAnnotations: List<CustomClassAnnotation>,
     internal val elementsToFold: List<PsiElement?>,
     private val additionalExpression: Expression? = null,
+    private val group: FoldingGroup? = null,
+
 ) : Expression(element, element.textRange) {
     override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean {
         return true
     }
 
     override fun buildFoldRegions(element: PsiElement, document: Document, parent: Expression?): Array<FoldingDescriptor> {
-        val group = FoldingGroup.newGroup(this::class.java.name)
+        val group = group ?: run {
+            FoldingGroup.newGroup(this::class.java.name)
+        }
         val foldingDescriptors = (elementsToFold
             .asSequence()
             .filterNotNull()

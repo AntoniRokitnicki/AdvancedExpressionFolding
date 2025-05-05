@@ -6,6 +6,7 @@ import com.intellij.advancedExpressionFolding.extension.clazz.LombokFoldingAnnot
 import com.intellij.advancedExpressionFolding.extension.clazz.LombokMethodExt.interfaceSupport
 import com.intellij.advancedExpressionFolding.extension.clazz.LombokMethodExt.isFinder
 import com.intellij.advancedExpressionFolding.extension.clazz.MethodType.*
+import com.intellij.openapi.editor.FoldingGroup
 import com.intellij.openapi.util.Key
 import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiField
@@ -18,6 +19,7 @@ data class FieldLevelAnnotation(
     val field: PsiField,
     val method: List<PsiMethod>,
     val arguments: List<String> = emptyList(),
+    val group: FoldingGroup? = null,
 )
 
 object LombokExt : BaseExtension(), GenericCallback<PsiField, List<FieldLevelAnnotation>> {
@@ -71,15 +73,21 @@ object LombokExt : BaseExtension(), GenericCallback<PsiField, List<FieldLevelAnn
     private fun List<FieldLevelAnnotation>.singleConstructorManyFields(
         fieldLevelAnnotations: MutableList<FieldLevelAnnotation>
     ) {
+        fun constructorAnnotationFirstArgument(annotation: FieldLevelAnnotation): String = annotation.arguments.first().substringBefore("-", "")
+        fun constructorAnnotationSecondArgument(annotation: FieldLevelAnnotation): String = annotation.arguments.first().substringAfter("-", "")
+
         groupBy {
-            it.arguments.first().substringBefore("-", "")
+            constructorAnnotationFirstArgument(it)
         }.takeIf {
             it.size == 1
         }?.run {
-            values.flatten().forEach {
+            val group = group()
+            values.flatten().takeIf {
+                it.size > 1
+            }?.forEach {
                 val index = fieldLevelAnnotations.indexOf(it)
-                val firstArg = it.arguments.first().substringAfter("-", "")
-                fieldLevelAnnotations[index] = it.copy(arguments = listOf(firstArg) + it.arguments.drop(1))
+                val firstArg = constructorAnnotationSecondArgument(it)
+                fieldLevelAnnotations[index] = it.copy(arguments = listOf(firstArg) + it.arguments.drop(1), group = group)
             }
         }
     }

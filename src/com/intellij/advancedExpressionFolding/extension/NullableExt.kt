@@ -82,6 +82,7 @@ object NullableExt : BaseExtension() {
         val list = exprList()
 
         field.callback?.invoke()?.let { annotations: List<FieldLevelAnnotation> ->
+
             val annotationsAsString = mutableListOf<String>()
             val elementsToHide = mutableListOf<PsiElement?>()
             annotations.forEach { fieldLevelAnnotation ->
@@ -91,8 +92,11 @@ object NullableExt : BaseExtension() {
                 }
                 annotationsAsString += fieldLevelAnnotation.createFieldLevelAnnotation()
             }
+            val group = annotations.firstOrNull() {
+                it.group != null
+            }?.group
             annotationsAsString.takeIfSizeNot(0)?.let {
-                list += FieldAnnotationExpression(field, it, elementsToHide)
+                list += FieldAnnotationExpression(field, it, elementsToHide, group = group)
             }
         }
         list.addIfEnabled(nullable) {
