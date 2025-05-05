@@ -107,11 +107,14 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
         override var const: Boolean = true,
         override var nullable: Boolean = false,
         override var finalRemoval: Boolean = false,
+        @Deprecated("too specific")
         override var finalEmoji: Boolean = false,
         override var lombokDirtyOff: Boolean = false,
         override var expressionFunc: Boolean = true,
         override var dynamic: Boolean = true,
-        override var arithmeticExpressions: Boolean = true,
+        @Deprecated("to be removed")
+        override var arithmeticExpressions: Boolean = false,
+        @Deprecated("it generates too many foldings")
         override var emojify: Boolean = false,
         override var interfaceExtensionProperties: Boolean = true,
         override var patternMatchingInstanceof: Boolean = true,
