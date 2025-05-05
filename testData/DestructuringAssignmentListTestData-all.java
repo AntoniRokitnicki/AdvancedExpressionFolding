@@ -1,14 +1,14 @@
-<fold text='📦' expand='false'>package</fold> data;
+package data;
 
-<fold text='🚢' expand='false'>import</fold> java.util.List;
+import java.util.List;
 
 @SuppressWarnings("ALL")
-public <fold text='🏛️' expand='false'>class</fold> DestructuringAssignmentListTestData {
-    public <fold text='💀' expand='false'>void</fold> enter(Data data, List<Data> list) <fold text='{...}' expand='true'>{
+public class DestructuringAssignmentListTestData {
+    public void enter(Data data, List<Data> list) <fold text='{...}' expand='true'>{
         <fold text='val' expand='false'>Data</fold> ignored1 = list<fold text='.getFirst' expand='false'>.get</fold>(<fold text='' expand='false'>0</fold>);
 
         <fold text='val' expand='false'><fold text='val (' expand='true'>Data</fold> </fold>first<fold text=', ' expand='true'> = list<fold text='.getFirst' expand='false'>.get</fold>(<fold text='' expand='false'>0</fold>);</fold><fold text='' expand='true'>
-        <fold text='val' expand='false'>Data</fold> </fold>second<fold text=', ' expand='true'> = list<fold text='[' expand='false'>.get(</fold>1<fold text=']' expand='false'>)</fold>;</fold><fold text='' expand='true'>
+        <fold text='val' expand='false'>Data</fold> </fold>second<fold text=', ' expand='true'> = list<fold text='[' expand='false'>.get(</fold>1<fold text=']' expand='false'>)</fold>;<fold text='' expand='true'></fold>
         <fold text='val' expand='false'>Data</fold> </fold>third<fold text=', ' expand='true'> = list<fold text='[' expand='false'>.get(</fold>2<fold text=']' expand='false'>)</fold>;</fold><fold text='' expand='true'>
         <fold text='val' expand='false'>Data</fold> </fold>fourth<fold text=') ' expand='true'> </fold>= list<fold text='[' expand='false'><fold text='' expand='true'>.get(</fold>3<fold text=']' expand='false'>)</fold></fold>;
 
@@ -30,20 +30,20 @@ public <fold text='🏛️' expand='false'>class</fold> DestructuringAssignmentL
         blackhole(first, second, third, fourth, ignored21, ignored22, getter1, getter2, deepGetter1, deepGetter2, wrongParent1, wrongParent2);
     }</fold>
 
-    <fold text='⚡' expand='false'>static</fold> <fold text='🏛️' expand='false'>class</fold> Data <fold text='{...}' expand='true'>{
+    static class Data <fold text='{...}' expand='true'>{
         public Data getData()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold><fold text='🕳️' expand='false'>null</fold><fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>null<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold>
 
         public Data[] getArray()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold><fold text='🕳️' expand='false'>null</fold><fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>null<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold>
 
         public List<Data> getList()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold><fold text='🕳️' expand='false'>null</fold><fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>null<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold>
     }</fold>
 
-    <fold text='💀' expand='false'>void</fold> blackhole(Data... datas) {}
+    void blackhole(Data... datas) {}
 
 }

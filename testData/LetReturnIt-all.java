@@ -1,10 +1,10 @@
-<fold text='📦' expand='false'>package</fold> data;
+package data;
 
-<fold text='🚢' expand='false'>import</fold> java.time.LocalDate;
+import java.time.LocalDate;
 
 @SuppressWarnings("ALL")
-<fold text='🏛️' expand='false'>class</fold> LetReturnIt {
-    <fold text='⚡' expand='false'>static</fold> String buildExpression(String someString) <fold text='{...}' expand='true'>{
+class LetReturnIt {
+    static String buildExpression(String someString) <fold text='{...}' expand='true'>{
         <fold text='val' expand='false'><fold text='' expand='true'>String</fold> var1 = </fold>getData(someString)<fold text='?.let { return it }' expand='true'>;
         if (var1 != null) <fold text='{...}' expand='true'>{
             return var1;
@@ -29,13 +29,13 @@
         if (var6 == null) <fold text='{...}' expand='true'>{
             return null;
         }</fold></fold>
-        <fold text='♾️' expand='false'>while</fold> <fold text='' expand='false'>(</fold><fold text='✅' expand='false'>true</fold><fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
+        while <fold text='' expand='false'>(</fold>true<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
             if <fold text='' expand='false'>(</fold>LocalDate.now()<fold text=' > ' expand='false'>.isAfter(</fold>LocalDate.now()<fold text='' expand='false'>)</fold><fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
-                if <fold text='' expand='false'>(</fold>var6 == <fold text='🕳️' expand='false'>null</fold><fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
+                if <fold text='' expand='false'>(</fold>var6 == null<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
                     <fold text='' expand='false'>System.out.</fold>println(<fold text='"1"' expand='false'>"1"</fold>);
                 }</fold>
             }</fold>
-            <fold text='✋' expand='false'>break</fold>;
+            break;
         }</fold>
 
 
@@ -45,18 +45,18 @@
         }</fold></fold>
         new Thread(<fold text='run() → { ' expand='false'>new Runnable() {
             <fold text='' expand='true'>@Override</fold>
-            public <fold text='💀' expand='false'>void</fold> run() {<fold text=' ' expand='true'>
-                </fold></fold><fold text='' expand='false'>System.out.</fold>println<fold text='("$' expand='false'>(</fold>var7<fold text='' expand='false'> + "</fold>1")<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+            public void run() {<fold text=' ' expand='true'>
+                </fold><fold text='' expand='false'></fold>System.out.</fold>println<fold text='("$' expand='false'>(</fold>var7<fold text='' expand='false'> + "</fold>1")<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
             </fold>}
         }</fold>);
-        <fold text='🔙' expand='false'>return</fold> <fold text='🕳️' expand='false'>null</fold>;
+        return null;
     }</fold>
 
-    <fold text='🚫' expand='false'>private</fold> <fold text='⚡' expand='false'>static</fold> String getData(String someString) <fold text='{...}' expand='true'>{
-        <fold text='🤞' expand='false'>try</fold> <fold text='{...}' expand='true'>{
-            <fold text='🔙' expand='false'>return</fold> ClassLoader.getSystemResource("a").toString();
-        }</fold> <fold text='🎣' expand='false'>catch</fold> <fold text='' expand='false'>(</fold>Exception e<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
-            <fold text='🔙' expand='false'>return</fold> <fold text='🕳️' expand='false'>null</fold>;
+    private static String getData(String someString) <fold text='{...}' expand='true'>{
+        try <fold text='{...}' expand='true'>{
+            return ClassLoader.getSystemResource("a").toString();
+        }</fold> catch <fold text='' expand='false'>(</fold>Exception e<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
+            return null;
         }</fold>
     }</fold>
 

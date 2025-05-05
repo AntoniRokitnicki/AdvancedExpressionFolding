@@ -1,20 +1,20 @@
-<fold text='📦' expand='false'>package</fold> data;
+package data;
 
-<fold text='🚢' expand='false'>import</fold> <fold text='...' expand='false'>org.slf4j.Logger;
-<fold text='🚢' expand='false'>import</fold> org.slf4j.LoggerFactory;
-<fold text='🚢' expand='false'>import</fold> org.slf4j.Marker;
-<fold text='🚢' expand='false'>import</fold> org.slf4j.MarkerFactory;
+import <fold text='...' expand='false'>org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Marker;
+import org.slf4j.MarkerFactory;
 
-<fold text='🚢' expand='false'>import</fold> java.io.File;
-<fold text='🚢' expand='false'>import</fold> java.io.FileNotFoundException;
-<fold text='🚢' expand='false'>import</fold> java.io.PrintWriter;
-<fold text='🚢' expand='false'>import</fold> java.util.Formatter;</fold>
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.util.Formatter;</fold>
 
 @SuppressWarnings("ALL")
-<fold text='@Log p' expand='false'>p</fold>ublic <fold text='🏛️' expand='false'>class</fold> LogBrackets {<fold text='' expand='false'>
+<fold text='@Log p' expand='false'>p</fold>ublic class LogBrackets {<fold text='' expand='false'>
 
-    </fold><fold text='🚫' expand='false'><fold text='' expand='false'>private</fold> <fold text='⚡' expand='false'><fold text='const' expand='false'>static</fold> <fold text='🔒' expand='false'>final</fold> </fold><fold text='' expand='false'>Logger</fold> log = LoggerFactory.getLogger(LogBrackets.<fold text='🏛️' expand='false'>class</fold>);</fold>
-    <fold text='🚫' expand='false'>private</fold> <fold text='⚡' expand='false'><fold text='const' expand='false'>static</fold> <fold text='🔒' expand='false'>final</fold> </fold><fold text='' expand='false'>Marker</fold> MY_MARKER = MarkerFactory.getMarker("MY_MARKER");
+    </fold><fold text='' expand='false'>private <fold text='const' expand='false'>static final </fold><fold text='' expand='false'>Logger</fold> log = LoggerFactory.getLogger(LogBrackets.class);</fold>
+    private <fold text='const' expand='false'>static final </fold><fold text='' expand='false'>Marker</fold> MY_MARKER = MarkerFactory.getMarker("MY_MARKER");
 
     public Data logPrintfStyle(Data data) <fold text='{...}' expand='true'>{
         <fold text='val' expand='false'>String</fold> name = "John";
@@ -37,7 +37,7 @@
         log.error("Missing 3 parameters - 1: <fold text='$' expand='false'>%s, empty: %s, empty: %s, empty: %s", </fold>name<fold text=', empty: %s, empty: %s, empty: %s")' expand='false'>)</fold>;
         log.error("Missing all parameters - - empty: %s, empty: %s, empty: %s, empty: %s");
 
-        <fold text='🤞' expand='false'>try</fold> <fold text='{...}' expand='true'>{
+        try <fold text='{...}' expand='true'>{
             log.warn("Warning message with 3 parameters and formatting - 1: <fold text='$' expand='false'>%s, 2: %s, 3: %s",
                     </fold>name<fold text=', 2: ${' expand='false'>,
 
@@ -51,7 +51,7 @@
                     </fold>name<fold text=', 3: ${' expand='false'>,
                     </fold>data.<fold text='data' expand='false'>getData()</fold>.<fold text='name' expand='false'>getName()</fold><fold text='}"' expand='false'>
             </fold>);
-        }</fold> <fold text='🎣' expand='false'>catch</fold> <fold text='' expand='false'>(</fold>Exception e<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
+        }</fold> catch <fold text='' expand='false'>(</fold>Exception e<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
             log.error("error1 <fold text='$' expand='false'>%s", </fold>e<fold text='",' expand='false'>,</fold> e.<fold text='message' expand='false'>getMessage()</fold>, e);
             log.error("error2 <fold text='${' expand='false'>%s", </fold>data.<fold text='data' expand='false'>getData()</fold>.<fold text='name' expand='false'>getName()</fold><fold text='}",' expand='false'>,</fold> data.<fold text='data' expand='false'>getData()</fold>.<fold text='name' expand='false'>getName()</fold>, data.<fold text='data' expand='false'>getData()</fold>.<fold text='name' expand='false'>getName()</fold>);
         }</fold>
@@ -72,12 +72,12 @@
         log.info("Formatter example: <fold text='${' expand='false'>{}", </fold>formatter.toString()<fold text='}")' expand='false'>)</fold>;
 
         // 5. PrintWriter with printf
-        <fold text='🤞' expand='false'>try</fold> <fold text='{...}' expand='true'>{
+        try <fold text='{...}' expand='true'>{
             <fold text='val' expand='false'>PrintWriter</fold> writer = new PrintWriter(new File("log.txt"));
             writer.printf("Log entry: User <fold text='$' expand='false'>%s, Age %d, accessed from %s", </fold>name<fold text=', Age $' expand='false'>, </fold>age<fold text=', accessed from $' expand='false'>, </fold>city<fold text='")' expand='false'>)</fold>;
             writer.close();
-        }</fold> <fold text='🎣' expand='false'>catch</fold> <fold text='' expand='false'>(</fold>FileNotFoundException e<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
-            log.error("Failed to write to log file: <fold text='${' expand='false'>%s", </fold>e.<fold text='message' expand='false'>getMessage()</fold><fold text='}")' expand='false'>)</fold>;
+        }</fold> catch <fold text='' expand='false'>(</fold>FileNotFoundException e<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
+            log.error("Failed to write to log file: <fold text='${' expand='false'>%s", </fold>e.<fold text='message' expand='false'>getMessage()<fold text='}")' expand='false'></fold>)</fold>;
         }</fold>
 
         // 6. String with formatted
@@ -91,12 +91,12 @@
         <fold text='' expand='false'>System.out.</fold>println("Missing all parameters - - empty: %s, empty: %s, empty: %s, empty: %s".formatted());
         <fold text='' expand='false'>System.out.</fold>println("Additional 1 parameter - Name: <fold text='$' expand='false'>%s".formatted(</fold>name<fold text='".formatted(' expand='false'>,</fold> data));
         <fold text='' expand='false'>System.out.</fold>println("Additional 2 parameters - Name: <fold text='$' expand='false'>%s".formatted(</fold>name<fold text='".formatted(' expand='false'>,</fold> data, logPrintfStyle(data)));
-        <fold text='🔙' expand='false'>return</fold> data;
+        return data;
     }</fold>
 
-    <fold text='@Getter p' expand='false'>p</fold>ublic <fold text='⚡' expand='false'>static</fold> <fold text='🏛️' expand='false'>class</fold> Data <fold text='{...}' expand='true'>{
-        <fold text='🚫' expand='false'>private</fold> Data data;
-        <fold text='🚫' expand='false'>private</fold> String name;<fold text='' expand='false'>
+    <fold text='@Getter p' expand='false'>p</fold>ublic static class Data <fold text='{...}' expand='true'>{
+        private Data data;
+        private String name;<fold text='' expand='false'>
 
         </fold><fold text='' expand='false'>public String getName()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
             </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>name<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>

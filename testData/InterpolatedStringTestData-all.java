@@ -1,7 +1,7 @@
-<fold text='📦' expand='false'>package</fold> data;
+package data;
 
-public <fold text='🏛️' expand='false'>class</fold> InterpolatedStringTestData {
-    public <fold text='⚡' expand='false'>static</fold> <fold text='💀' expand='false'>void</fold> main(String[] args) <fold text='{...}' expand='true'>{
+public class InterpolatedStringTestData {
+    public static void main(String[] args) <fold text='{...}' expand='true'>{
         <fold text='' expand='false'>System.out.</fold>println("Hello, <fold text='${' expand='false'>" + </fold>args[0]<fold text='}")' expand='false'>)</fold>;
         <fold text='' expand='false'>System.out.</fold>println("Hello, <fold text='${' expand='false'>" + </fold>args[0]<fold text='}' expand='false'> + "</fold>!");
         <fold text='' expand='false'>System.out.</fold>println<fold text='("${' expand='false'>(</fold>args[0]<fold text='}' expand='false'> + "</fold>, hello!");
