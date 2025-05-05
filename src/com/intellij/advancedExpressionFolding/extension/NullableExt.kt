@@ -23,9 +23,11 @@ object NullableExt : BaseExtension() {
 
     @JvmStatic
     fun createExpression(method: PsiMethod, document: Document): Expression? {
-        if (interfaceExtensionProperties) {
+        if (interfaceExtensionProperties && method.containingClass?.isInterface == true) {
             // For interfaces only; other functionality was not tested with the interfaces’ methods
-            return InterfacePropertiesExt.foldProperties(method)
+            InterfacePropertiesExt.foldProperties(method)?.let {
+                return it
+            }
         }
         val list = exprList(fieldAnnotationExpression(method.annotations, method.returnTypeElement))
 
