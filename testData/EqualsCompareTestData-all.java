@@ -20,8 +20,8 @@ public <fold text='🏛️' expand='false'>class</fold> EqualsCompareTestData im
         <fold text='' expand='false'>System.out.</fold>println(a<fold text=' ≤ ' expand='false'>.compareTo(</fold>b<fold text='' expand='false'>) <= 0</fold>); // Should be a <= b
     }</fold>
 
-    @Override
-    public <fold text='🔢' expand='false'>int</fold> compareTo(EqualsCompareTestData o)<fold text=' { ' expand='false'> {
-        </fold><fold text='🔙' expand='false'>return</fold> 0;<fold text=' }' expand='false'>
-    }</fold>
+    <fold text='' expand='true'>@Override</fold>
+    public <fold text='🔢' expand='false'>int</fold> compareTo(EqualsCompareTestData o)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+        </fold><fold text='' expand='true'></fold>return</fold><fold text='' expand='true'> </fold>0<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+    </fold>}</fold>
 }

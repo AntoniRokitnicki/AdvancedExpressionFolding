@@ -14,7 +14,7 @@
 <fold text='@Log p' expand='false'>p</fold>ublic <fold text='🏛️' expand='false'>class</fold> LogBrackets {<fold text='' expand='false'>
 
     </fold><fold text='🚫' expand='false'><fold text='' expand='false'>private</fold> <fold text='⚡' expand='false'><fold text='const' expand='false'>static</fold> <fold text='🔒' expand='false'>final</fold> </fold><fold text='' expand='false'>Logger</fold> log = LoggerFactory.getLogger(LogBrackets.<fold text='🏛️' expand='false'>class</fold>);</fold>
-    <fold text='🚫' expand='false'>private</fold> <fold text='⚡' expand='false'><fold text='const' expand='false'>static</fold> <fold text='🔒' expand='false'>final</fold> <fold text='' expand='false'></fold>Marker</fold> MY_MARKER = MarkerFactory.getMarker("MY_MARKER");
+    <fold text='🚫' expand='false'>private</fold> <fold text='⚡' expand='false'><fold text='const' expand='false'>static</fold> <fold text='🔒' expand='false'>final</fold> </fold><fold text='' expand='false'>Marker</fold> MY_MARKER = MarkerFactory.getMarker("MY_MARKER");
 
     public Data logPrintfStyle(Data data) <fold text='{...}' expand='true'>{
         <fold text='val' expand='false'>String</fold> name = "John";
@@ -98,13 +98,13 @@
         <fold text='🚫' expand='false'>private</fold> Data data;
         <fold text='🚫' expand='false'>private</fold> String name;<fold text='' expand='false'>
 
-        </fold><fold text='' expand='false'>public String getName()<fold text=' { ' expand='false'> {
-            </fold><fold text='🔙' expand='false'>return</fold> name;<fold text=' }' expand='false'>
-        }</fold></fold><fold text='' expand='false'>
+        </fold><fold text='' expand='false'>public String getName()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>name<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+        </fold>}</fold></fold><fold text='' expand='false'>
 
-        </fold><fold text='' expand='false'>public Data getData()<fold text=' { ' expand='false'> {
-            </fold><fold text='🔙' expand='false'>return</fold> data;<fold text=' }' expand='false'>
-        }</fold></fold>
+        </fold><fold text='' expand='false'>public Data getData()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>data<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+        </fold>}</fold></fold>
     }</fold>
 
 }

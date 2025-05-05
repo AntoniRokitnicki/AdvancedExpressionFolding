@@ -44,9 +44,9 @@ public <fold text='🏛️' expand='false'>class</fold> PatternMatchingInstanceo
     }</fold>
 
     <fold text='⚡' expand='false'>static</fold> <fold text='🏛️' expand='false'>class</fold> Data <fold text='{...}' expand='true'>{
-        public <fold text='🔢' expand='false'>int</fold> getValue()<fold text=' { ' expand='false'> {
-            </fold><fold text='🔙' expand='false'>return</fold> 42;<fold text=' }' expand='false'>
-        }</fold>
+        public <fold text='🔢' expand='false'>int</fold> getValue()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>42<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+        </fold>}</fold>
     }</fold>
 
     <fold text='📊' expand='false'>enum</fold> DayOfWeek <fold text='{...}' expand='true'>{
@@ -86,9 +86,9 @@ public <fold text='🏛️' expand='false'>class</fold> PatternMatchingInstanceo
             }</fold>
         }</fold>
 
-        <fold text='🚫' expand='false'>private</fold> Object getObject()<fold text=' { ' expand='false'> {
-            </fold><fold text='🔙' expand='false'>return</fold> new Object();<fold text=' }' expand='false'>
-        }</fold>
+        <fold text='🚫' expand='false'>private</fold> Object getObject()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>new Object()<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+        </fold>}</fold>
     }</fold>
 
     // Test for simple assignment

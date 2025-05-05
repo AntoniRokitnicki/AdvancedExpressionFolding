@@ -17,11 +17,11 @@ public <fold text='🏛️' expand='false'>class</fold> DestructuringAssignmentA
         <fold text='val' expand='false'>Data</fold> ignored22 = data.<fold text='array' expand='false'>getArray()</fold>[5];
 
         <fold text='var' expand='false'><fold text='var (' expand='true'>Data</fold> </fold>getter1<fold text=', ' expand='true'> = data.<fold text='array' expand='false'>getArray()</fold>[0];</fold><fold text='' expand='true'>
-        <fold text='val' expand='false'>Data</fold> </fold>getter2<fold text=', ' expand='true'> = data.<fold text='array' expand='false'>getArray()</fold>[1];</fold><fold text='' expand='true'>
+        <fold text='val' expand='false'>Data</fold> </fold>getter2<fold text=', ' expand='true'> = data.<fold text='array' expand='false'>getArray()</fold>[1];<fold text='' expand='true'></fold>
         <fold text='val' expand='false'>Data</fold> </fold>getter3<fold text=') ' expand='true'> </fold>= data.<fold text='array' expand='false'>getArray()</fold><fold text='' expand='true'>[2]</fold>;
         getter1 = data;
 
-        <fold text='val' expand='false'><fold text='var (' expand='true'>Data</fold> </fold>deepGetter1<fold text=', ' expand='true'> = data.<fold text='data' expand='false'>getData()</fold>.<fold text='array' expand='false'>getArray()</fold>[0];</fold><fold text='' expand='true'>
+        <fold text='val' expand='false'><fold text='var (' expand='true'>Data</fold> </fold>deepGetter1<fold text=', ' expand='true'> = data.<fold text='data' expand='false'>getData()</fold>.<fold text='array' expand='false'>getArray()</fold>[0];<fold text='' expand='true'></fold>
         <fold text='var' expand='false'>Data</fold> </fold>deepGetter2<fold text=') ' expand='true'> </fold>= data.<fold text='data' expand='false'>getData()</fold>.<fold text='array' expand='false'>getArray()</fold><fold text='' expand='true'>[1]</fold>;
         deepGetter2 = data;
         
@@ -32,17 +32,17 @@ public <fold text='🏛️' expand='false'>class</fold> DestructuringAssignmentA
     }</fold>
 
     <fold text='⚡' expand='false'>static</fold> <fold text='🏛️' expand='false'>class</fold> Data <fold text='{...}' expand='true'>{
-        public Data getData()<fold text=' { ' expand='false'> {
-            </fold><fold text='🔙' expand='false'>return</fold> <fold text='🕳️' expand='false'>null</fold>;<fold text=' }' expand='false'>
-        }</fold>
+        public Data getData()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold><fold text='🕳️' expand='false'>null<fold text='' expand='true'></fold>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+        </fold>}</fold>
 
-        public Data[] getArray()<fold text=' { ' expand='false'> {
-            </fold><fold text='🔙' expand='false'>return</fold> <fold text='🕳️' expand='false'>null</fold>;<fold text=' }' expand='false'>
-        }</fold>
+        public Data[] getArray()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold><fold text='🕳️' expand='false'>null</fold><fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+        </fold>}</fold>
 
-        public List<Data> getList()<fold text=' { ' expand='false'> {
-            </fold><fold text='🔙' expand='false'>return</fold> <fold text='🕳️' expand='false'>null</fold>;<fold text=' }' expand='false'>
-        }</fold>
+        public List<Data> getList()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold><fold text='🕳️' expand='false'>null</fold><fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+        </fold>}</fold>
     }</fold>
 
     <fold text='💀' expand='false'>void</fold> blackhole(Data... datas) {}
