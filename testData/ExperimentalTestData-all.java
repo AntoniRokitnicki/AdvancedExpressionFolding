@@ -1,6 +1,7 @@
 package data;
 
-import java.io.UnsupportedEncodingException;
+import <fold text='...' expand='false'>java.io.UnsupportedEncodingException;
+import java.util.function.Function;</fold>
 
 <fold text='/** {@link com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.IState#getExperimental()} ...*/' expand='true'>/**
  * {@link com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.IState#getExperimental()}
@@ -16,15 +17,36 @@ public class ExperimentalTestData {
             <fold text='@SneakyThrows' expand='true'>try</fold> <fold text='{...}' expand='true'>{
                 <fold text='val' expand='false'>byte[]</fold> bytez = System<fold text='[' expand='false'>.getProperty(</fold>"sort-desc"<fold text=']' expand='false'>)</fold>.<fold text='bytes' expand='false'>getBytes()</fold>;
                 return new String(bytez, "UTF-8");
-            }</fold> <fold text='' expand='true'>catch <fold text='' expand='false'>(</fold>UnsupportedEncodingException e<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
+            }</fold><fold text='' expand='true'> </fold><fold text='' expand='true'>catch <fold text='' expand='false'>(</fold>UnsupportedEncodingException e<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
                 throw new RuntimeException(e);
             }</fold></fold>
         }</fold>
+
+        public int parseInteger(String value) <fold text='{...}' expand='true'>{
+            <fold text='@SneakyThrows(IllegalArgumentException)' expand='true'>try</fold><fold text='' expand='true'> </fold><fold text='' expand='true'><fold text='{...}' expand='true'>{</fold>
+            <fold text='' expand='true'>    </fold>return Integer.parseInt(value);<fold text='' expand='true'>
+            </fold><fold text='' expand='true'>}</fold></fold><fold text='' expand='true'> </fold><fold text='' expand='true'>catch <fold text='' expand='false'>(</fold>NumberFormatException e<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
+                throw new IllegalArgumentException(e);
+            }</fold></fold>
+        }</fold>
+
+        public long parseLong(String value) <fold text='{...}' expand='true'>{
+            long longValue;
+            <fold text='@SneakyThrows(IllegalArgumentException)' expand='true'>try</fold> <fold text='{...}' expand='true'>{
+                <fold text='val' expand='false'>Function<String, Long></fold> longFunction = Long::parseLong;
+                longValue = longFunction.apply(value);
+            }</fold><fold text='' expand='true'> </fold><fold text='' expand='true'>catch <fold text='' expand='false'>(</fold>NumberFormatException e<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
+                throw new IllegalArgumentException(e);
+            }</fold></fold>
+            <fold text='' expand='false'>System.out.</fold>println("longValue = <fold text='$' expand='false'>" + </fold>longValue<fold text='")' expand='false'>)</fold>;
+            return longValue;
+        }</fold>
+
         public void runMultiline() <fold text='{...}' expand='true'>{
             <fold text='@SneakyThrows' expand='true'>try</fold> <fold text='{...}' expand='true'>{
                 <fold text='val' expand='false'>var</fold> throwable = new Throwable();
                 throw throwable;
-            }</fold> <fold text='' expand='true'>catch <fold text='' expand='false'>(</fold>Throwable t<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
+            }</fold><fold text='' expand='true'> </fold><fold text='' expand='true'>catch <fold text='' expand='false'>(</fold>Throwable t<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
                 throw new IllegalStateException(t);
             }</fold></fold>
         }</fold>
@@ -32,14 +54,14 @@ public class ExperimentalTestData {
         public String utf8ToString(byte[] bytes) <fold text='{...}' expand='true'>{
             <fold text='@SneakyThrows' expand='true'>try</fold><fold text='' expand='true'> </fold><fold text='' expand='true'><fold text='{...}' expand='true'>{</fold>
             <fold text='' expand='true'>    </fold>return new String(System<fold text='[' expand='false'>.getProperty(</fold>"sort-desc"<fold text=']' expand='false'>)</fold>.<fold text='bytes' expand='false'>getBytes()</fold>, "UTF-8");<fold text='' expand='true'>
-            </fold><fold text='' expand='true'>}</fold></fold> <fold text='' expand='true'>catch <fold text='' expand='false'>(</fold>UnsupportedEncodingException e<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
+            </fold><fold text='' expand='true'>}</fold></fold><fold text='' expand='true'> </fold><fold text='' expand='true'>catch <fold text='' expand='false'>(</fold>UnsupportedEncodingException e<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
                 throw new RuntimeException(e);
             }</fold></fold>
         }</fold>
         public void run() <fold text='{...}' expand='true'>{
             <fold text='@SneakyThrows' expand='true'>try</fold><fold text='' expand='true'> </fold><fold text='' expand='true'><fold text='{...}' expand='true'>{</fold>
             throw new Throwable();<fold text='' expand='true'>
-            </fold><fold text='' expand='true'>}</fold></fold> <fold text='' expand='true'>catch <fold text='' expand='false'>(</fold>Throwable t<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
+            </fold><fold text='' expand='true'>}</fold></fold><fold text='' expand='true'> </fold><fold text='' expand='true'>catch <fold text='' expand='false'>(</fold>Throwable t<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
                 throw new IllegalStateException(t);
             }</fold></fold>
         }</fold>

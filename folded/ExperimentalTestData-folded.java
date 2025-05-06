@@ -1,6 +1,7 @@
 package data;
 
 import java.io.UnsupportedEncodingException;
+import java.util.function.Function;
 
 /**
  * {@link com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.IState#getExperimental()}
@@ -16,22 +17,38 @@ public class ExperimentalTestData {
             @SneakyThrows {
                 byte[] bytez = System["sort-desc"].getBytes();
                 return new String(bytez, "UTF-8");
-            } 
+            }
         }
+
+        public int parseInteger(String value) {
+            @SneakyThrows(IllegalArgumentException)
+            return Integer.parseInt(value);
+        }
+
+        public long parseLong(String value) {
+            long longValue;
+            @SneakyThrows(IllegalArgumentException) {
+                Function<String, Long> longFunction = Long::parseLong;
+                longValue = longFunction.apply(value);
+            }
+            System.out.println("longValue = " + longValue);
+            return longValue;
+        }
+
         public void runMultiline() {
             @SneakyThrows {
                 var throwable = new Throwable();
                 throw throwable;
-            } 
+            }
         }
 
         public String utf8ToString(byte[] bytes) {
             @SneakyThrows
-            return new String(System["sort-desc"].getBytes(), "UTF-8"); 
+            return new String(System["sort-desc"].getBytes(), "UTF-8");
         }
         public void run() {
             @SneakyThrows
-            throw new Throwable(); 
+            throw new Throwable();
         }
 
         class Nagative {

@@ -143,29 +143,19 @@ object MethodBodyInspector {
         !method.isDirtyAssignment(statement, field, param)
     }
 
-    /**
-     * check if its
-     * <code>
-     * throw new RuntimeException(e);
-     * </code>
-     * or
-     * <code>
-     * throw new IllegalStateException(e);
-     * </code>
-     */
-    fun PsiCatchSection.isRethrowingException(): Boolean {
-        val param = parameter ?: return false
-        val statement = catchBlock?.statements?.singleOrNull() ?: return false
+    fun PsiCatchSection.getRethrownException(): String? {
+        val param = parameter ?: return null
+        val statement = catchBlock?.statements?.singleOrNull()
 
         val newExpression = statement.asInstance<PsiThrowStatement>()?.exception.asNewInstance()
-        newExpression?.classReference?.qualifiedName?.takeIf { qualifiedName ->
-            qualifiedName == "java.lang.RuntimeException" || qualifiedName == "java.lang.IllegalStateException"
-        } ?: return false
+        val referenceName = newExpression?.classReference?.referenceName ?: return null
         val args = newExpression.argumentList?.expressions
         val referenceExpression = args?.singleOrNull().asReference()
-        return referenceExpression?.let {
+        return referenceExpression?.takeIf {
             referenceExpression.isReferenceTo(param)
-        } == true
+        }?.let {
+            referenceName
+        }
     }
 
     fun PsiMethod.asWrapperGetter(field: PsiField): String? {

@@ -1,6 +1,7 @@
 package data;
 
 import java.io.UnsupportedEncodingException;
+import java.util.function.Function;
 
 /**
  * {@link com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.IState#getExperimental()}
@@ -20,6 +21,27 @@ public class ExperimentalTestData {
                 throw new RuntimeException(e);
             }
         }
+
+        public int parseInteger(String value) {
+            try {
+                return Integer.parseInt(value);
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException(e);
+            }
+        }
+
+        public long parseLong(String value) {
+            long longValue;
+            try {
+                Function<String, Long> longFunction = Long::parseLong;
+                longValue = longFunction.apply(value);
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException(e);
+            }
+            System.out.println("longValue = " + longValue);
+            return longValue;
+        }
+
         public void runMultiline() {
             try {
                 var throwable = new Throwable();

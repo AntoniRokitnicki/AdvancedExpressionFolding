@@ -2,7 +2,7 @@ package com.intellij.advancedExpressionFolding.extension
 
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.custom.HideExpression
-import com.intellij.advancedExpressionFolding.extension.MethodBodyInspector.isRethrowingException
+import com.intellij.advancedExpressionFolding.extension.MethodBodyInspector.getRethrownException
 import com.intellij.psi.PsiStatement
 import com.intellij.psi.PsiTryStatement
 
@@ -16,12 +16,15 @@ object TryStatementExt : BaseExtension() {
             it.catchBlock?.statements?.singleOrNull() != null
         } ?: return null
 
-        if (!catchBlock.isRethrowingException()) return null
+        val rethrownException = catchBlock.getRethrownException() ?: return null
 
         val tryKeyword = firstChild
-        val sneakyThrows = tryKeyword.expr("@SneakyThrows")
+        val sneakyThrows = when {
+            rethrownException.selectivelyAddException() -> tryKeyword.expr("@SneakyThrows($rethrownException)")
+            else -> tryKeyword.expr("@SneakyThrows")
+        }
         val codeBlock = tryBlock?.statements?.singleOrNull()
-        val list = if (codeBlock  != null) {
+        val list = if (codeBlock != null) {
             val firstBrace = tryBlock?.firstChild
             val lastBrace = tryBlock?.lastChild
             exprList(
@@ -29,6 +32,8 @@ object TryStatementExt : BaseExtension() {
                 tryKeyword.nextWhiteSpace().exprHide(),
                 firstBrace.exprHide(),
                 foldSpacesBeforeSingleStatement(codeBlock),
+                codeBlock.nextWhiteSpace().exprHide(),
+                catchBlock.prevWhiteSpace().exprHide(),
                 lastBrace.prevWhiteSpace().exprHide(),
                 lastBrace.exprHide(),
                 catchBlock.exprHide(),
@@ -37,10 +42,13 @@ object TryStatementExt : BaseExtension() {
             exprList(
                 sneakyThrows,
                 catchBlock.exprHide(),
+                catchBlock.prevWhiteSpace().exprHide(),
             )
         }
         return list.exprWrap(this, group())
     }
+
+    private fun String.selectivelyAddException() = this != "RuntimeException" && this != "IllegalStateException"
 
     /**
      * Folds extra indentation spaces before a single statement in a try block.
