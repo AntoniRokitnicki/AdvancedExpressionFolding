@@ -4,8 +4,11 @@
 
 ## [Unreleased]
 
+## [3.6.0] - 2025-05-11
+
+- [experimental] Add exception class to @SneakyThrows annotation
+- fix [expressionFunc] issue with when combining with [interfaceExtensionProperties]
 - [experimental] multi-line @SneakyThrows
-- [interfaceExtensionProperties] support nullable folding
 
 ## [3.5.0] - 2025-04-27
 
@@ -307,7 +310,8 @@ Improved handling of multi-line log messages
 
 ## [0.0.1]
 
-[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v3.5.0...HEAD
+[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v3.6.0...HEAD
+[3.6.0]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v3.5.0...v3.6.0
 [3.5.0]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v3.4.1...v3.5.0
 [3.4.1]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v3.4.0...v3.4.1
 [3.4.0]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v3.3.0...v3.4.0
