@@ -39,6 +39,7 @@ abstract class BaseTest : LightJavaCodeInsightFixtureTestCase5(TEST_JDK) {
             )
         }
     }
+
     protected open fun testWrapper(fileName: String, testName: String, action: () -> Unit) {
         rewriteFileOnFailure(fileName, testName, action)
     }
@@ -54,25 +55,23 @@ abstract class BaseTest : LightJavaCodeInsightFixtureTestCase5(TEST_JDK) {
         try {
             action.invoke()
         } catch (e: FileComparisonFailedError) {
-            try {
-                //TODO: fixture.editor
+            val actual = e.actual.stringRepresentation
+            Files.writeString(testDataFile.toPath(), actual)
 
-                val actual = e.actual.stringRepresentation
-                Files.writeString(testDataFile.toPath(), actual)
+            val wrapper = store.saveFolding(createOutputFile(fileName, ".json"))
 
-                val wrapper = store.saveFolding(createOutputFile(fileName, ".json"))
-
-                val all = fileName.contains("-all")
-                if (!all) {
-                    replaceAllTestData(fileName, actual)
-                    val foldingFile = fileName.replace("testData/", "folded/")
-                    createFoldedFile(foldingFile, actual, wrapper)
-                }
-            } catch (ex: IOException) {
-                throw RuntimeException(ex)
+            val all = fileName.contains("-all")
+            if (!all) {
+                replaceAllTestData(fileName, actual)
+                createFoldedFile(fileName, actual, wrapper)
             }
             throw e
         }
+    }
+
+    private fun createFoldedFile(fileName: String, actual: String, wrapper: FoldingDescriptorExWrapper) {
+        val foldingFile = fileName.replace("testData/", "folded/")
+        Files.writeString(createOutputFile(foldingFile, "-folded.java").toPath(), FoldingTemporaryTestEditor.getFoldedText(actual, wrapper))
     }
 
     protected open fun getTestFileName(testName: String) = "testData/${testName.capitalize()}.java"
@@ -83,14 +82,8 @@ abstract class BaseTest : LightJavaCodeInsightFixtureTestCase5(TEST_JDK) {
         destinationFileName: String?,
         doCheckCollapseStatus: Boolean
     ) {
-        var expectedContent: String
-        val verificationFile: File
-        try {
-            verificationFile = File(verificationFileName)
-            expectedContent = FileUtil.loadFile(verificationFile)
-        } catch (e: IOException) {
-            throw RuntimeException(e)
-        }
+        val verificationFile = File(verificationFileName)
+        var expectedContent = FileUtil.loadFile(verificationFile)
         assertNotNull(expectedContent)
 
         expectedContent = StringUtil.replace(expectedContent, "\r", "")
@@ -103,19 +96,13 @@ abstract class BaseTest : LightJavaCodeInsightFixtureTestCase5(TEST_JDK) {
                 cleanContent
             )
         } else {
-            try {
-                FileUtil.writeToFile(File(destinationFileName), cleanContent)
-                val file = LocalFileSystem.getInstance().refreshAndFindFileByPath(destinationFileName)
-                assertNotNull(file)
-                fixture.configureFromExistingVirtualFile(file!!)
-            } catch (e: IOException) {
-                throw RuntimeException(e)
-            }
+            FileUtil.writeToFile(File(destinationFileName), cleanContent)
+            val file = LocalFileSystem.getInstance().refreshAndFindFileByPath(destinationFileName)
+            assertNotNull(file)
+            fixture.configureFromExistingVirtualFile(file!!)
         }
-        try {
-            WriteAction.run<IOException> { fixture.file.virtualFile.isWritable = false }
-        } catch (e: IOException) {
-            throw RuntimeException(e)
+        WriteAction.run<IOException> {
+            fixture.file.virtualFile.isWritable = false
         }
         val actual = (fixture as CodeInsightTestFixtureImpl).getFoldingDescription(doCheckCollapseStatus)
         if (expectedContent != actual) {
@@ -133,10 +120,6 @@ abstract class BaseTest : LightJavaCodeInsightFixtureTestCase5(TEST_JDK) {
             }
         }
 
-        private fun createFoldedFile(foldingFile: String, actual: String, wrapper: FoldingDescriptorExWrapper) {
-            Files.writeString(createOutputFile(foldingFile, "-folded.java").toPath(), FoldingTemporaryTestEditor.getFoldedText(actual, wrapper))
-        }
-
         private fun replaceAllTestData(fileName: String, actual: String) {
             Files.writeString(getAllTestFileName(fileName).toPath(), actual)
         }
@@ -145,11 +128,7 @@ abstract class BaseTest : LightJavaCodeInsightFixtureTestCase5(TEST_JDK) {
 
         private fun replaceTestDataWithExample(testName: String, testDataFile: File) {
             val exampleFile = File(".", "/examples/data/$testName.java")
-            try {
-                com.google.common.io.Files.copy(exampleFile, testDataFile)
-            } catch (e: IOException) {
-                throw RuntimeException(e)
-            }
+            com.google.common.io.Files.copy(exampleFile, testDataFile)
         }
 
         private fun createOutputFile(fileName: String, extension: String) = File(fileName.replace(".java", extension))

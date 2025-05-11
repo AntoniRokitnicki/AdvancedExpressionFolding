@@ -2,34 +2,35 @@ package com.intellij.advancedExpressionFolding.diff
 
 import com.intellij.openapi.editor.EditorFactory
 import com.intellij.openapi.editor.EditorKind
+import com.intellij.openapi.editor.FoldingGroup
 import com.intellij.openapi.editor.LogicalPosition
 import com.intellij.openapi.editor.ex.EditorEx
 import com.intellij.openapi.util.TextRange
 
 object FoldingTemporaryEditor {
 
-    fun foldInEditor(text: String, list: List<FoldingDescriptorEx>) : String {
+    fun foldInEditor(text: String, list: List<FoldingDescriptorEx>) : FoldedCode {
         val editorFactory = EditorFactory.getInstance()
         val document = editorFactory.createDocument(removeFoldingMarkers(text))
 
         val editor = editorFactory.createViewer(document, null, EditorKind.MAIN_EDITOR) as EditorEx
-        val foldedText = try {
+        return try {
             editor.caretModel.moveToLogicalPosition(LogicalPosition(0, 0))
             editor.foldingModel.runBatchFoldingOperation {
                 list.forEach {
-                    editor.foldingModel.addFoldRegion(it.range.start, it.range.end, it.placeholder!!)
+                    editor.foldingModel.createFoldRegion(it.range.start, it.range.end, it.placeholder!!,
+                        FoldingGroup.newGroup("${it.groupReference}"), false)
                 }
             }
-            getVisibleText(editor)
+            getVisibleCode(editor)
         } finally {
             editorFactory.releaseEditor(editor)
         }
-        return foldedText
     }
 
-    private fun getVisibleText(editor: EditorEx): String {
+    private fun getVisibleCode(editor: EditorEx): FoldedCode {
         val document = editor.document
-        val foldedText = StringBuilder()
+        val foldedText = StringBuilder(document.textLength)
         var offset = 0
         for (region in editor.foldingModel.allFoldRegions) {
             if (region.isValid && region.isExpanded) {
@@ -55,3 +56,4 @@ object FoldingTemporaryEditor {
 
 }
 
+typealias FoldedCode = String

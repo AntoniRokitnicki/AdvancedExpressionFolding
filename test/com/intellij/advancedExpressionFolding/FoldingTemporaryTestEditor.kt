@@ -1,5 +1,6 @@
 package com.intellij.advancedExpressionFolding
 
+import com.intellij.advancedExpressionFolding.diff.FoldedCode
 import com.intellij.advancedExpressionFolding.diff.FoldingDescriptorExWrapper
 import com.intellij.advancedExpressionFolding.diff.FoldingTemporaryEditor
 import com.intellij.openapi.application.ApplicationManager
@@ -10,7 +11,7 @@ object FoldingTemporaryTestEditor {
     fun getFoldedText(
         text: String,
         wrapper: FoldingDescriptorExWrapper
-    ): String {
+    ): FoldedCode {
         return runInEdtAndGet {
             ApplicationManager.getApplication().runWriteAction(Computable {
                 FoldingTemporaryEditor.foldInEditor(text, wrapper.list)

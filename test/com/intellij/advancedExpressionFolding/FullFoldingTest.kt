@@ -27,4 +27,10 @@ class FullFoldingTest : FoldingTest() {
     override fun destructuringAssignmentListWithoutValTestData() {
         // ignored, already tested in destructuringAssignmentListTestData
     }
+
+    @Test
+    override fun lombokTestData() {
+        super.lombokTestData()
+    }
+
 }
