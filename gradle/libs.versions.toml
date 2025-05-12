@@ -6,7 +6,7 @@ jackson = "2.19.0"
 jsr305 = "3.0.2"
 pioneer = "2.3.0"
 lombok = "1.18.38"
-kodein = "7.25.0"
+kodein = "7.26.1"
 # plugins
 changelog = "2.2.1"
 intelliJPlatform = "2.5.0"
