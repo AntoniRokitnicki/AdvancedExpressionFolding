@@ -694,21 +694,26 @@ public class LombokTestData {
             private NoArgsConstructorPrivate() {
             }
         }
-        public class NoArgsConstructorSuperBefore {
-            public NoArgsConstructorSuperBefore() {
+        public class NoArgsConstructorCommentBeforeSuper {
+            public NoArgsConstructorCommentBeforeSuper() {
                 // comment
                 super();
             }
         }
-        public class NoArgsConstructorSuperAfter {
-            public NoArgsConstructorSuperAfter() {
+        public class NoArgsConstructorCommentAfterSuper {
+            public NoArgsConstructorCommentAfterSuper() {
                 super();
                 // comment
             }
         }
-
-        public class ProtectedNoArgsConstructorSuperAfter {
-            protected ProtectedNoArgsConstructorSuperAfter() {
+        public class ProtectedNoArgsConstructorComment {
+            protected ProtectedNoArgsConstructorComment() {
+                // comment
+            }
+        }
+        // comment hidden as it is common and adds no meaningful value
+        public class PrivateNoArgsConstructorComment {
+            private PrivateNoArgsConstructorComment() {
                 // comment
             }
         }

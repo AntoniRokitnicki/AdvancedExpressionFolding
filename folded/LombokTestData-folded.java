@@ -225,12 +225,14 @@ import java.util.logging.Logger;
         }
         @NoArgsConstructor(private) class NoArgsConstructorPrivate {
         }
-        @NoArgsConstructor(// comment) public class NoArgsConstructorSuperBefore {
+        @NoArgsConstructor(// comment) public class NoArgsConstructorCommentBeforeSuper {
         }
-        @NoArgsConstructor(// comment) public class NoArgsConstructorSuperAfter {
+        @NoArgsConstructor(// comment) public class NoArgsConstructorCommentAfterSuper {
         }
-
-        @NoArgsConstructor(protected,// comment) public class ProtectedNoArgsConstructorSuperAfter {
+        @NoArgsConstructor(protected,// comment) public class ProtectedNoArgsConstructorComment {
+        }
+        // comment hidden as it is common and adds no meaningful value
+        @NoArgsConstructor(private) public class PrivateNoArgsConstructorComment {
         }
         @NoArgsConstructor public class NoArgsConstructorSuper {
             private String field1;
