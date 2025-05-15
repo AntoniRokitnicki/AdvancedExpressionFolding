@@ -8,8 +8,8 @@ import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFolding
 import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFoldingAnnotation.NOT_NULL
 import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFoldingAnnotation.NULLABLE
 import com.intellij.advancedExpressionFolding.extension.clazz.FieldLevelAnnotation
-import com.intellij.advancedExpressionFolding.extension.clazz.LombokExt.callback
-import com.intellij.advancedExpressionFolding.extension.clazz.LombokExt.createFieldLevelAnnotation
+import com.intellij.advancedExpressionFolding.extension.clazz.LombokFieldExt.callback
+import com.intellij.advancedExpressionFolding.extension.clazz.LombokFieldExt.createFieldLevelAnnotation
 import com.intellij.advancedExpressionFolding.extension.methodcall.dynamic.DynamicExt
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.editor.FoldingGroup
