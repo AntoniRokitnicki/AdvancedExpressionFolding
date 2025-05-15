@@ -12,6 +12,8 @@ fun <T> Array<T>?.takeIfSize(size: Int): Array<T>? = this.takeIf {
 
 val Array<*>?.one: Boolean
     get() = this?.singleOrNull() != null
+val List<*>?.one: Boolean
+    get() = this?.singleOrNull() != null
 
 fun <T> Array<T>.firstOrNullIfNotEmpty(): T? {
     return if (isEmpty() || size > 1) {

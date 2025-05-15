@@ -34,12 +34,10 @@ object MethodBodyInspector {
             ?.expression
             .asInstance<PsiAssignmentExpression>() ?: return true
 
-        // check `this.*data* = data;` point to correct field
+        // check `this.*data* = data;` point to correct field, also works without this
         assignment.lExpression
             .asInstance<PsiReferenceExpression>()
-            ?.takeIf {
-                it.qualifier.isInstance<PsiThisExpression>()
-            }?.takeIf { thisField ->
+            ?.takeIf { thisField ->
                 thisField.resolve() == field
             } ?: return true
 

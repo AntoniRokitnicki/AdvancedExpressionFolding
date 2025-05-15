@@ -585,6 +585,7 @@ public class LombokTestData {
     public class DirtyLombokSetters {
         boolean dirty;
         private boolean dirty2;
+        boolean withoutThis;
 
         public void setDirty(boolean dirty) {
             this.dirty2 = dirty;
@@ -592,6 +593,10 @@ public class LombokTestData {
 
         public void setDirty2(boolean dirty2) {
             this.dirty = dirty2;
+        }
+
+        public void setWithoutThis(boolean withoutThiss) {
+            withoutThis = withoutThiss;
         }
 
         public class DirtyData {

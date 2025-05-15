@@ -250,15 +250,15 @@ public class InterfaceExtensionPropertiesTestData {
     }</fold>
 
     public interface NotNullUser <fold text='{...}' expand='true'>{
-       <fold text='@Getter ' expand='true'> </fold><fold text='' expand='true'>@NotNull</fold><fold text='' expand='true'> </fold>String<fold text='!! ' expand='true'> </fold><fold text='n' expand='true'>getN</fold>ame<fold text='' expand='true'>()</fold>;
+       <fold text='@Getter ' expand='true'> </fold><fold text='' expand='true'>@NotNull()</fold><fold text='' expand='true'> </fold>String<fold text='!! ' expand='true'> </fold><fold text='n' expand='true'>getN</fold>ame<fold text='' expand='true'>()</fold>;
        <fold text='@Setter ' expand='true'> </fold><fold text='String' expand='true'>void</fold><fold text='!! ' expand='true'> </fold><fold text='n' expand='true'>setN</fold>ame<fold text='' expand='true'>(<fold text='' expand='true'>@NotNull</fold> String name)</fold>;
        <fold text='@Getter ' expand='true'> </fold>int <fold text='a' expand='true'>getA</fold>ge<fold text='' expand='true'>()</fold>;
     }</fold>
 
     <fold text='/**     public interface User { ...*/' expand='true'>/**
      public interface User {
-        @Getter String name; <lineMarkerProvider to jump to setter?>
-        @Setter String name; <lineMarkerProvider to jump to getter?>
+        @Getter String name; <inlay jump to setter?>
+        @Setter String name; <inlay jump to getter?>
         @Getter int age;
      }
     **/</fold>

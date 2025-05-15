@@ -184,6 +184,7 @@ import java.util.logging.Logger;
     public class DirtyLombokSetters {
         @Setter(dirtyNoReference) boolean dirty;
         @Setter(dirtyNoReference) private boolean dirty2;
+        @Setter boolean withoutThis;
 
         @Getter @EqualsAndHashCode public class DirtyData {
             @Setter(dirty) boolean dirty;

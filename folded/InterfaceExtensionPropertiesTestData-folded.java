@@ -255,8 +255,8 @@ public class InterfaceExtensionPropertiesTestData {
 
     /**
      public interface User {
-        @Getter String name; <lineMarkerProvider to jump to setter?>
-        @Setter String name; <lineMarkerProvider to jump to getter?>
+        @Getter String name; <inlay jump to setter?>
+        @Setter String name; <inlay jump to getter?>
         @Getter int age;
      }
     **/

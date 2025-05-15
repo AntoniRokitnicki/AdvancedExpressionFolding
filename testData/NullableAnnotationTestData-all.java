@@ -1,197 +1,197 @@
-<fold text='📦' expand='false'>package</fold> data;
+package data;
 
-<fold text='🚢' expand='false'>import</fold> <fold text='...' expand='false'>org.jetbrains.annotations.NotNull;
-<fold text='🚢' expand='false'>import</fold> org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-<fold text='🚢' expand='false'>import</fold> javax.annotation.Nonnull;
-<fold text='🚢' expand='false'>import</fold> java.time.LocalDate;
-<fold text='🚢' expand='false'>import</fold> java.util.HashMap;</fold>
+import javax.annotation.Nonnull;
+import java.time.LocalDate;
+import java.util.HashMap;
 
-<fold text='/** {@link com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.IState#getNullable()} ...*/' expand='true'>/**
+/**
  * {@link com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.IState#getNullable()}
  * <p>
  *  {@link com.intellij.advancedExpressionFolding.extension.NullableExt#createExpression(com.intellij.psi.PsiMethod)}
  * <p>
  * {@link com.intellij.advancedExpressionFolding.FoldingTest#testNullableAnnotationTestData()}
- */</fold>
+ */
 @SuppressWarnings("ALL")
-public <fold text='🏛️' expand='false'>class</fold> NullableAnnotationTestData {
-    <fold text='' expand='false'>@NotNull</fold>
-    <fold text='@Getter @Setter N' expand='false'>N</fold>ullableAnnotationTestData<fold text='!! ' expand='false'> </fold>data;
-    <fold text='@Getter @Setter b' expand='false'><fold text='🔘' expand='false'>b</fold>oolean</fold> ok;
-    <fold text='' expand='false'>@Nullable</fold>
-    <fold text='@Getter @Setter S' expand='false'>S</fold>tring<fold text='? ' expand='false'> </fold>string;<fold text='' expand='false'>
-    </fold><fold text='' expand='false'>public NullableAnnotationTestData getData()<fold text=' { ' expand='false'> {
-        </fold><fold text='🔙' expand='false'>return</fold> data;<fold text=' }' expand='false'>
-    }</fold></fold><fold text='' expand='false'>
-    </fold><fold text='' expand='false'>public <fold text='💀' expand='false'>void</fold> setData(NullableAnnotationTestData data)<fold text=' { ' expand='false'> {
-        </fold>this.data = <fold text='<<' expand='false'>data</fold>;<fold text=' }' expand='false'>
-    }</fold></fold><fold text='' expand='false'>
-    </fold><fold text='' expand='false'>public <fold text='🔘' expand='false'>boolean</fold> isOk()<fold text=' { ' expand='false'> {
-        </fold><fold text='🔙' expand='false'>return</fold> ok;<fold text=' }' expand='false'>
-    }</fold><fold text='' expand='false'></fold>
-    </fold><fold text='' expand='false'>public <fold text='💀' expand='false'>void</fold> setOk(<fold text='🔘' expand='false'>boolean</fold> ok)<fold text=' { ' expand='false'> {
-        </fold>this.ok = <fold text='<<' expand='false'>ok</fold>;<fold text=' }' expand='false'>
-    }</fold></fold><fold text='' expand='false'>
-    </fold><fold text='' expand='false'>public String getString()<fold text=' { ' expand='false'> {
-        </fold><fold text='🔙' expand='false'>return</fold> string;<fold text=' }' expand='false'>
-    }</fold><fold text='' expand='false'></fold>
-    </fold><fold text='' expand='false'>public <fold text='💀' expand='false'>void</fold> setString(String string)<fold text=' { ' expand='false'> {
-        </fold>this.string = <fold text='<<' expand='false'>string</fold>;<fold text=' }' expand='false'>
-    }</fold></fold>
-
-    <fold text='' expand='false'>@Nonnull</fold>
-    <fold text='🚫' expand='false'>private</fold> NullableAnnotationTestData<fold text='!! ' expand='false'> </fold>data2;
-    <fold text='🔘' expand='false'>boolean</fold> ok2;
-    <fold text='' expand='false'>@Nullable</fold>
-    <fold text='🚫' expand='false'>private</fold> String<fold text='? ' expand='false'> </fold>string2;
-
-    public <fold text='💀' expand='false'>void</fold> select(<fold text='' expand='false'>@Nullable</fold><fold text='' expand='false'> </fold>String<fold text='? ' expand='false'> </fold>element,
-                       int i,
-                       <fold text='' expand='false'>@NotNull</fold><fold text='' expand='false'> </fold>Object<fold text='!! ' expand='false'> </fold>o,
-                       <fold text='' expand='false'>@Nonnull</fold><fold text='' expand='false'> </fold>LocalDate<fold text='!! ' expand='false'> </fold>date
-                       ) <fold text='{...}' expand='true'>{
-        new HashMap<String, String>()<fold text='[' expand='false'>.put(</fold>"a"<fold text='] = ' expand='false'>, </fold>"b"<fold text='' expand='false'>)</fold>;
-
-    }</fold>
-
+public class NullableAnnotationTestData {
     @NotNull
-    public String getStringNotNull()<fold text=' { ' expand='false'> {
-        </fold><fold text='🔙' expand='false'>return</fold> string;<fold text=' }' expand='false'>
-    }</fold>
+    NullableAnnotationTestData data;
+    boolean ok;
+    @Nullable
+    String string;
+    public NullableAnnotationTestData getData() {
+        return data;
+    }
+    public void setData(NullableAnnotationTestData data) {
+        this.data = data;
+    }
+    public boolean isOk() {
+        return ok;
+    }
+    public void setOk(boolean ok) {
+        this.ok = ok;
+    }
+    public String getString() {
+        return string;
+    }
+    public void setString(String string) {
+        this.string = string;
+    }
 
     @Nonnull
-    public String getStringNotNull2()<fold text=' { ' expand='false'> {
-        </fold><fold text='🔙' expand='false'>return</fold> string;<fold text=' }' expand='false'>
-    }</fold>
+    private NullableAnnotationTestData data2;
+    boolean ok2;
+    @Nullable
+    private String string2;
+
+    public void select(@Nullable String element,
+                       int i,
+                       @NotNull Object o,
+                       @Nonnull LocalDate date
+                       ) {
+        new HashMap<String, String>().put("a", "b");
+
+    }
+
+    @NotNull
+    public String getStringNotNull() {
+        return string;
+    }
+
+    @Nonnull
+    public String getStringNotNull2() {
+        return string;
+    }
 
     @Nullable
-    public String getStringNull()<fold text=' { ' expand='false'> {
-        </fold><fold text='🔙' expand='false'>return</fold> string;<fold text=' }' expand='false'>
-    }</fold>
+    public String getStringNull() {
+        return string;
+    }
 
-    <fold text='🖥️' expand='false'>interface</fold> Datable <fold text='{...}' expand='true'>{
+    interface Datable {
         @Nullable
-        public Integer select(<fold text='' expand='false'>@Nullable</fold><fold text='' expand='false'> </fold>String<fold text='? ' expand='false'> </fold>element,
-                           <fold text='🔢' expand='false'>int</fold> i,
-                           <fold text='' expand='false'>@NotNull</fold><fold text='' expand='false'> </fold>Object<fold text='!! ' expand='false'> </fold>o,
-                           <fold text='' expand='false'>@Nonnull</fold><fold text='' expand='false'> </fold>LocalDate<fold text='!! ' expand='false'> </fold>date
+        public Integer select(@Nullable String element,
+                           int i,
+                           @NotNull Object o,
+                           @Nonnull LocalDate date
         );
-    }</fold>
+    }
 
-    public <fold text='📊' expand='false'>enum</fold> FieldFoldingAnnotation <fold text='{...}' expand='true'>{
+    public enum FieldFoldingAnnotation {
         NOT_NULL("NotNull", "NonNull"),
         NULLABLE("Nullable");
 
-        <fold text='🚫' expand='false'>private</fold> String[] annotations;
+        private String[] annotations;
 
-        FieldFoldingAnnotation(String... annotations) <fold text='{}' expand='true'>{
+        FieldFoldingAnnotation(String... annotations) {
 
-        }</fold>
+        }
 
         @Nonnull
-        public <fold text='⚡' expand='false'>static</fold> <fold text='🔢' expand='false'>int</fold> select(<fold text='' expand='false'>@Nullable</fold><fold text='' expand='false'> </fold>String<fold text='? ' expand='false'> </fold>element,
-                                 <fold text='🔢' expand='false'>int</fold> i,
-                                 <fold text='' expand='false'>@NotNull<fold text='' expand='false'></fold> </fold>Object<fold text='!! ' expand='false'> </fold>o,
-                                 <fold text='' expand='false'>@Nonnull</fold><fold text='' expand='false'> </fold>LocalDate<fold text='!! ' expand='false'> </fold>date
-        ) <fold text='{...}' expand='true'>{
-            <fold text='🔙' expand='false'>return</fold> 1;
-        }</fold>
+        public static int select(@Nullable String element,
+                                 int i,
+                                 @NotNull Object o,
+                                 @Nonnull LocalDate date
+        ) {
+            return 1;
+        }
 
-    }</fold>
+    }
 
-    public <fold text='📀' expand='false'>record</fold> UserDataRecord(<fold text='' expand='false'>@Nonnull</fold><fold text='' expand='false'> </fold>String<fold text='!! ' expand='false'> </fold>username, <fold text='🔘' expand='false'>boolean</fold> active, <fold text='' expand='false'>@Nullable</fold><fold text='' expand='false'> </fold>String<fold text='? ' expand='false'> </fold>userIdentifier, <fold text='' expand='false'>@NotNull</fold><fold text='' expand='false'> </fold>String<fold text='!! ' expand='false'> </fold>username2) <fold text='{...}' expand='true'>{
-    }</fold>
+    public record UserDataRecord(@Nonnull String username, boolean active, @Nullable String userIdentifier, @NotNull String username2) {
+    }
 
-    <fold text='@Getter c' expand='false'><fold text='🏛️' expand='false'>c</fold>lass</fold> GetterNullable <fold text='{...}' expand='true'>{
-        NullableAnnotationTestData getterNullable;<fold text='' expand='false'>
+    class GetterNullable {
+        NullableAnnotationTestData getterNullable;
 
-        </fold><fold text='' expand='false'>@Nullable
-        public NullableAnnotationTestData getGetterNullable()<fold text=' { ' expand='false'> {
-            </fold><fold text='🔙' expand='false'>return</fold> getterNullable;<fold text=' }' expand='false'>
-        }</fold></fold>
-    }</fold>
+        @Nullable
+        public NullableAnnotationTestData getGetterNullable() {
+            return getterNullable;
+        }
+    }
 
-    <fold text='@Setter c' expand='false'><fold text='🏛️' expand='false'>c</fold>lass</fold> SetterNullable <fold text='{...}' expand='true'>{
-        NullableAnnotationTestData setterNullable;<fold text='' expand='false'>
+    class SetterNullable {
+        NullableAnnotationTestData setterNullable;
 
-        </fold><fold text='' expand='false'>public <fold text='💀' expand='false'>void</fold> setSetterNullable(<fold text='' expand='false'>@Nonnull</fold><fold text='' expand='false'> </fold>NullableAnnotationTestData<fold text='!! ' expand='false'> </fold>setterNullable) <fold text='{...}' expand='true'>{
-            this.setterNullable = <fold text='<<' expand='false'>setterNullable</fold>;
-        }</fold></fold>
-    }</fold>
+        public void setSetterNullable(@Nonnull NullableAnnotationTestData setterNullable) {
+            this.setterNullable = setterNullable;
+        }
+    }
 
-    public <fold text='🏛️' expand='false'>class</fold> LombokFieldLevelIntegration <fold text='{...}' expand='true'>{
-        public <fold text='🏛️' expand='false'>class</fold> HasGetter <fold text='{...}' expand='true'>{
-            <fold text='' expand='false'>@Nullable</fold>
-            <fold text='@Getter p' expand='false'><fold text='🚫' expand='false'>p</fold>rivate</fold> String<fold text='? ' expand='false'> </fold>field;
-            <fold text='🚫' expand='false'>private</fold> String bla;<fold text='' expand='false'>
+    public class LombokFieldLevelIntegration {
+        public class HasGetter {
+            @Nullable
+            private String field;
+            private String bla;
 
-            </fold><fold text='' expand='false'>public @Nullable String getField()<fold text=' { ' expand='false'> {
-                </fold><fold text='🔙' expand='false'>return</fold> field;<fold text=' }' expand='false'>
-            }</fold></fold>
-        }</fold>
+            public @Nullable String getField() {
+                return field;
+            }
+        }
 
-        public <fold text='🏛️' expand='false'>class</fold> HasSetter <fold text='{...}' expand='true'>{
-            <fold text='' expand='false'>@Nullable</fold>
-            <fold text='@Setter p' expand='false'><fold text='🚫' expand='false'>p</fold>rivate</fold> String<fold text='? ' expand='false'> </fold>field;
-            <fold text='🚫' expand='false'>private</fold> String bla;<fold text='' expand='false'>
+        public class HasSetter {
+            @Nullable
+            private String field;
+            private String bla;
 
-            <fold text='' expand='false'></fold>public <fold text='💀' expand='false'>void</fold> setField(<fold text='' expand='false'>@Nullable</fold><fold text='' expand='false'> </fold>String<fold text='? ' expand='false'> </fold>field)<fold text=' { ' expand='false'> {
-                </fold>this.field = <fold text='<<' expand='false'>field</fold>;<fold text=' }' expand='false'>
-            }</fold></fold>
-        }</fold>
+            public void setField(@Nullable String field) {
+                this.field = field;
+            }
+        }
 
-        public <fold text='🏛️' expand='false'>class</fold> HasGetterSetter <fold text='{...}' expand='true'>{
-            <fold text='' expand='false'>@Nullable</fold>
-            <fold text='@Setter p' expand='false'><fold text='🚫' expand='false'>p</fold>rivate</fold> String<fold text='? ' expand='false'> </fold>field;
-            <fold text='🚫' expand='false'>private</fold> String bla;
+        public class HasGetterSetter {
+            @Nullable
+            private String field;
+            private String bla;
 
-            public @Nullable String getField() <fold text='{...}' expand='true'>{
-                new HashMap<String, String>()<fold text='[' expand='false'>.put(</fold>"a"<fold text='] = ' expand='false'>, </fold>"b"<fold text='' expand='false'>)</fold>;
-                <fold text='🔙' expand='false'>return</fold> field;
-            }</fold><fold text='' expand='false'>
+            public @Nullable String getField() {
+                new HashMap<String, String>().put("a", "b");
+                return field;
+            }
 
-            </fold><fold text='' expand='false'>public <fold text='💀' expand='false'>void</fold> setField(<fold text='' expand='false'>@Nullable</fold><fold text='' expand='false'> </fold>String<fold text='? ' expand='false'> </fold>field)<fold text=' { ' expand='false'> {
-                </fold>this.field = <fold text='<<' expand='false'>field</fold>;<fold text=' }' expand='false'>
-            }</fold></fold>
-        }</fold>
-    }</fold>
+            public void setField(@Nullable String field) {
+                this.field = field;
+            }
+        }
+    }
 
-    public <fold text='🏛️' expand='false'>class</fold> LombokFieldLevelNotPrivateIntegration <fold text='{...}' expand='true'>{
-        public <fold text='🏛️' expand='false'>class</fold> HasGetter <fold text='{...}' expand='true'>{
-            <fold text='' expand='false'>@Nullable</fold>
-            <fold text='@Getter S' expand='false'>S</fold>tring<fold text='? ' expand='false'> </fold>field;
-            String bla;<fold text='' expand='false'>
+    public class LombokFieldLevelNotPrivateIntegration {
+        public class HasGetter {
+            @Nullable
+            String field;
+            String bla;
 
-            </fold><fold text='' expand='false'>public @Nullable String getField()<fold text=' { ' expand='false'> {
-                </fold><fold text='🔙' expand='false'>return</fold> field;<fold text=' }' expand='false'>
-            }</fold></fold>
-        }</fold>
+            public @Nullable String getField() {
+                return field;
+            }
+        }
 
-        public <fold text='🏛️' expand='false'>class</fold> HasSetter <fold text='{...}' expand='true'>{
-            <fold text='' expand='false'>@Nullable</fold>
-            <fold text='@Setter S' expand='false'>S</fold>tring<fold text='? ' expand='false'> </fold>field;
-            String bla;<fold text='' expand='false'>
+        public class HasSetter {
+            @Nullable
+            String field;
+            String bla;
 
-            </fold><fold text='' expand='false'>public <fold text='💀' expand='false'>void</fold> setField(<fold text='' expand='false'>@Nullable</fold><fold text='' expand='false'> </fold>String<fold text='? ' expand='false'> </fold>field)<fold text=' { ' expand='false'> {
-                </fold>this.field = <fold text='<<' expand='false'>field</fold>;<fold text=' }' expand='false'>
-            }</fold></fold>
-        }</fold>
+            public void setField(@Nullable String field) {
+                this.field = field;
+            }
+        }
 
-        public <fold text='🏛️' expand='false'>class</fold> HasGetterSetter <fold text='{...}' expand='true'>{
-            <fold text='' expand='false'>@Nullable</fold>
-            <fold text='@Getter @Setter S' expand='false'>S</fold>tring<fold text='? ' expand='false'> </fold>field;
-            String bla;<fold text='' expand='false'>
+        public class HasGetterSetter {
+            @Nullable
+            String field;
+            String bla;
 
-            </fold><fold text='' expand='false'>public @Nullable String getField()<fold text=' { ' expand='false'> {
-                </fold><fold text='🔙' expand='false'>return</fold> field;<fold text=' }' expand='false'>
-            }</fold></fold><fold text='' expand='false'>
+            public @Nullable String getField() {
+                return field;
+            }
 
-            </fold><fold text='' expand='false'>public <fold text='💀' expand='false'>void</fold> setField(<fold text='' expand='false'>@Nullable</fold><fold text='' expand='false'> </fold>String<fold text='? ' expand='false'> </fold>field)<fold text=' { ' expand='false'> {
-                </fold>this.field = <fold text='<<' expand='false'>field</fold>;<fold text=' }' expand='false'>
-            }</fold></fold>
-        }</fold>
-    }</fold>
+            public void setField(@Nullable String field) {
+                this.field = field;
+            }
+        }
+    }
 
 
 }

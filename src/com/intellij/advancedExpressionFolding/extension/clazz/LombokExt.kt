@@ -344,12 +344,17 @@ object LombokExt : BaseExtension(), GenericCallback<PsiField, List<FieldLevelAnn
 
             val outList = list.toMutableList()
 
-            val usedAnnotations = list.map {
+            val usedAnnotations = list.asSequence()
+                .filter {
+                    it.arguments.isEmpty()
+                }.map {
                 it.classAnnotation
-            }.toMutableList()
-            val values = LombokFoldingAnnotation.entries.toMutableList()
-            values.remove(LOMBOK_VALUE_SIMPLE)
-            values.forEach { groupingAnnotation ->
+            }.toSet()
+
+            LombokFoldingAnnotation.entries
+                .asSequence()
+                .filterNot { it == LOMBOK_VALUE_SIMPLE }
+                .forEach { groupingAnnotation ->
                 groupingAnnotation.children()?.let { neededKids ->
                     if (groupingAnnotation == LOMBOK_VALUE && field.isFinal()) {
                         neededKids.remove(LOMBOK_REQUIRED_ARGS_CONSTRUCTOR)
