@@ -1,1 +1,1 @@
-./option-code-generator.main.kts -DvarName=lombokPatternOff -DvarText="Pattern to turn off Lombok folding"
+./option-code-generator.main.kts -DvarName=overrideHide -DvarText="Hide @Override annotation"

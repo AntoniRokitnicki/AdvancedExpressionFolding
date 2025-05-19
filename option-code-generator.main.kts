@@ -1,5 +1,6 @@
 #!/usr/bin/env -S kotlinc -script --
 import java.io.File
+import java.util.*
 
 val basePath: String = System.getProperty("project.dir", ".")
 val varName = System.getProperty("varName") ?: "patternMatchingInstanceof"
@@ -12,14 +13,12 @@ propertyFile.doInFile {
 }
 
 val exampleFileName = "${varName.replaceFirstChar(Char::titlecase)}TestData"
-val checkboxFile = "$basePath/src/com/intellij/advancedExpressionFolding/settings/CheckboxDefinitionsProvider.kt"
+val checkboxFile = "$basePath/src/com/intellij/advancedExpressionFolding/settings/CheckboxesProvider.kt"
 checkboxFile.doInFile {
-    it.insertBeforeMarker("// NEW OPTION", """
-        registerCheckbox(state::$varName, "$varText") {
+    it.insertBeforeMarker("// NEW OPTION", """        registerCheckbox(state::$varName, "$varText") {
             example("$exampleFileName.java")
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#$varName")
-        }
-    """)
+        }""")
 }
 
 val exampleFile = "$basePath/examples/data/$exampleFileName.java"
@@ -65,13 +64,13 @@ public class $exampleFileName {
 }
 
 val testFile = "$basePath/test/com/intellij/advancedExpressionFolding/FoldingTest.kt"
-testFile.doInFile {
-    it.insertBeforeMarker("// NEW OPTION", """
+testFile.doInFile { list ->
+    list.insertBeforeMarker("// NEW OPTION", """
     /**
      * [data.$exampleFileName]
      */
     @Test
-    fun test${exampleFileName}() {
+    fun ${exampleFileName.replaceFirstChar { it.lowercase(Locale.getDefault()) }}() {
         doFoldingTest(state::$varName)
     }""")
 }
