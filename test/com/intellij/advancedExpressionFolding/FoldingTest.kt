@@ -512,6 +512,13 @@ staticMethod.newName = 'changedStaticMethod'
     fun overrideHideTestData() {
         doFoldingTest(state::overrideHide)
     }
+    /**
+     * [data.SuppressWarningsHideTestData]
+     */
+    @Test
+    fun suppressWarningsHideTestData() {
+        doFoldingTest(state::suppressWarningsHide)
+    }
     // NEW OPTION
     /**
      * [data.ExperimentalTestData]

@@ -5,7 +5,9 @@ import com.intellij.advancedExpressionFolding.expression.custom.*
 import com.intellij.lang.folding.FoldingDescriptor
 import com.intellij.openapi.editor.FoldingGroup
 import com.intellij.openapi.util.TextRange
+import com.intellij.psi.PsiAnnotation
 import com.intellij.psi.PsiElement
+import com.intellij.psi.PsiModifierListOwner
 import kotlin.reflect.KClass
 
 fun List<PsiElement>.expr(
@@ -124,10 +126,22 @@ inline fun MutableList<Expression?>.forwardIfEnabled(featureFlag: Boolean, funct
         function(this)
     }
 }
-
 inline fun MutableList<Expression?>.addIfEnabled(featureFlag: Boolean, function: () -> Expression?) {
     if (featureFlag) {
         add(function.invoke())
+    }
+}
+inline fun PsiModifierListOwner.hideAnnotation(
+    list: MutableList<Expression?>,
+    group: FoldingGroup,
+    crossinline annotationFilter: PsiAnnotation.() -> Boolean,
+) {
+    (modifierList ?: return).annotations.asSequence().filter {
+        annotationFilter.invoke(it)
+    }.forEach {
+        list.add(it.exprHide(group = group))
+        list.add(it.prevWhiteSpace().exprHide(group = group))
+        list.add(it.nextWhiteSpace().exprHide(group = group))
     }
 }
 

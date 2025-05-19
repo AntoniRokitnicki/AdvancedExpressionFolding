@@ -7,6 +7,7 @@
 - [expressionFunc] methods returning literals are now more compact
 - support @Setter without "this."
 - [overrideHide] hides @Override annotation
+- [suppressWarningsHide] hides @SuppressWarnings annotation at method level
 
 ## [3.6.0] - 2025-05-11
 

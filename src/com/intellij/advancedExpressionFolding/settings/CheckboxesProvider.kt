@@ -259,6 +259,10 @@ abstract class CheckboxesProvider {
             example("OverrideHideTestData.java")
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#overrideHide")
         }
+        registerCheckbox(state::suppressWarningsHide, "Hide @SuppressWarnings annotation") {
+            example("SuppressWarningsHideTestData.java")
+            link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#suppressWarningsHide")
+        }
         // NEW OPTION
         registerCheckbox(state::memoryImprovement, "Memory improvements")
         registerCheckbox(state::experimental, "Experimental features") {

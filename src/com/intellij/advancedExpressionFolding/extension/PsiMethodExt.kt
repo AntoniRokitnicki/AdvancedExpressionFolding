@@ -30,7 +30,14 @@ object PsiMethodExt : BaseExtension() {
         }
 
         list.forwardIfEnabled(overrideHide) {
-            method.overrideHide(it)
+            method.hideAnnotation(it, group()) {
+                isOverride()
+            }
+        }
+        list.forwardIfEnabled(suppressWarningsHide) {
+            method.hideAnnotation(it, group()) {
+                isSuppressWarnings()
+            }
         }
 
         // may lead to issues
@@ -43,17 +50,6 @@ object PsiMethodExt : BaseExtension() {
             getAnyExpressions(method.parameterList.parameters, document).let(list::addAll)
         }
         return list.exprWrap(method)
-    }
-
-    private fun PsiMethod.overrideHide(list: MutableList<Expression?>) {
-        modifierList.annotations.asSequence().filter {
-            it.isOverride()
-        }.forEach {
-            val group = group()
-            list.add(it.exprHide(group = group) )
-            list.add(it.prevWhiteSpace().exprHide(group = group))
-            list.add(it.nextWhiteSpace().exprHide(group = group))
-        }
     }
 
     fun createExpression(parameter: PsiParameter, document: Document): Expression? {
