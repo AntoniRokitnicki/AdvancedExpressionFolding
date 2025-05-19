@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;</fold>
 
-<fold text='' expand='true'>@SuppressWarnings("ALL")</fold><fold text='' expand='true'>
-</fold>public class ArithmeticExpressionsTestData {
+@SuppressWarnings("ALL")
+public class ArithmeticExpressionsTestData {
 
     private Object blackhole;
 
@@ -20,14 +20,14 @@ import java.util.Collection;</fold>
         }</fold>
 
         public void multiplyBigDecimal() <fold text='{...}' expand='true'>{
-            <fold text='val' expand='false'>BigDecimal</fold> a = <fold text='' expand='false'>new BigDecimal(</fold><fold text='10' expand='false'>"10"</fold><fold text='' expand='false'>)</fold>;
+            <fold text='val' expand='false'>BigDecimal</fold> a = <fold text='' expand='false'>new BigDecimal(<fold text='10' expand='false'></fold>"10"</fold><fold text='' expand='false'>)</fold>;
             <fold text='val' expand='false'>BigDecimal</fold> b = <fold text='' expand='false'>new BigDecimal(</fold><fold text='5' expand='false'>"5"</fold><fold text='' expand='false'>)</fold>;
             blackhole = a<fold text=' * ' expand='false'>.multiply(</fold>b<fold text='' expand='false'>)</fold>;
         }</fold>
 
         public void divideBigDecimal() <fold text='{...}' expand='true'>{
             <fold text='val' expand='false'>BigDecimal</fold> a = <fold text='' expand='false'>new BigDecimal(</fold><fold text='10' expand='false'>"10"</fold><fold text='' expand='false'>)</fold>;
-            <fold text='val' expand='false'>BigDecimal</fold> b = <fold text='' expand='false'>new BigDecimal(</fold><fold text='5' expand='false'>"5"</fold><fold text='' expand='false'>)</fold>;
+            <fold text='val' expand='false'>BigDecimal</fold> b = <fold text='' expand='false'>new BigDecimal(</fold><fold text='5' expand='false'>"5"<fold text='' expand='false'></fold>)</fold>;
             blackhole = a<fold text=' / ' expand='false'>.divide(</fold>b<fold text='' expand='false'>)</fold>;
         }</fold>
 
@@ -56,7 +56,7 @@ import java.util.Collection;</fold>
 
         public void maxBigDecimal() <fold text='{...}' expand='true'>{
             <fold text='val' expand='false'>BigDecimal</fold> a = <fold text='' expand='false'>new BigDecimal(</fold><fold text='10' expand='false'>"10"</fold><fold text='' expand='false'>)</fold>;
-            <fold text='val' expand='false'>BigDecimal</fold> b = <fold text='' expand='false'>new BigDecimal(</fold><fold text='5' expand='false'>"5"</fold><fold text='' expand='false'>)</fold>;
+            <fold text='val' expand='false'>BigDecimal</fold> b = <fold text='' expand='false'>new BigDecimal(</fold><fold text='5' expand='false'>"5"<fold text='' expand='false'></fold>)</fold>;
             blackhole = a.max(b);
         }</fold>
 
@@ -71,7 +71,7 @@ import java.util.Collection;</fold>
         }</fold>
 
         public void absBigDecimal() <fold text='{...}' expand='true'>{
-            <fold text='val' expand='false'>BigDecimal</fold> a = <fold text='' expand='false'>new BigDecimal(<fold text='-10' expand='false'></fold>"-10"</fold><fold text='' expand='false'>)</fold>;
+            <fold text='val' expand='false'>BigDecimal</fold> a = <fold text='' expand='false'>new BigDecimal(</fold><fold text='-10' expand='false'>"-10"</fold><fold text='' expand='false'>)</fold>;
             blackhole = a.abs();
         }</fold>
 
@@ -81,7 +81,7 @@ import java.util.Collection;</fold>
 
         public void equalsBigDecimal() <fold text='{...}' expand='true'>{
             <fold text='val' expand='false'>BigDecimal</fold> a = <fold text='' expand='false'>new BigDecimal(</fold><fold text='10' expand='false'>"10"</fold><fold text='' expand='false'>)</fold>;
-            <fold text='val' expand='false'>BigDecimal</fold> b = <fold text='' expand='false'>new BigDecimal(<fold text='10' expand='false'></fold>"10"</fold><fold text='' expand='false'>)</fold>;
+            <fold text='val' expand='false'>BigDecimal</fold> b = <fold text='' expand='false'>new BigDecimal(</fold><fold text='10' expand='false'>"10"</fold><fold text='' expand='false'>)</fold>;
             blackhole = a<fold text=' ≡ ' expand='false'>.equals(</fold>b<fold text='' expand='false'>)</fold>;
         }</fold>
     }</fold>
@@ -101,7 +101,7 @@ import java.util.Collection;</fold>
 
         public void divideBigInteger() <fold text='{...}' expand='true'>{
             <fold text='val' expand='false'>BigInteger</fold> a = <fold text='' expand='false'>new BigInteger(</fold><fold text='10' expand='false'>"10"</fold><fold text='' expand='false'>)</fold>;
-            <fold text='val' expand='false'>BigInteger</fold> b = <fold text='' expand='false'>new BigInteger(</fold><fold text='5' expand='false'>"5"</fold><fold text='' expand='false'>)</fold>;
+            <fold text='val' expand='false'>BigInteger</fold> b = <fold text='' expand='false'>new BigInteger(<fold text='5' expand='false'></fold>"5"</fold><fold text='' expand='false'>)</fold>;
             blackhole = a<fold text=' / ' expand='false'>.divide(</fold>b<fold text='' expand='false'>)</fold>;
         }</fold>
 
@@ -118,7 +118,7 @@ import java.util.Collection;</fold>
         }</fold>
 
         public void powBigInteger() <fold text='{...}' expand='true'>{
-            <fold text='val' expand='false'>BigInteger</fold> a = <fold text='' expand='false'>new BigInteger(</fold><fold text='10' expand='false'>"10"<fold text='' expand='false'></fold>)</fold>;
+            <fold text='val' expand='false'>BigInteger</fold> a = <fold text='' expand='false'>new BigInteger(</fold><fold text='10' expand='false'>"10"</fold><fold text='' expand='false'>)</fold>;
             blackhole = a<fold text='²' expand='false'>.pow(2)</fold>;
         }</fold>
 
@@ -130,7 +130,7 @@ import java.util.Collection;</fold>
 
         public void maxBigInteger() <fold text='{...}' expand='true'>{
             <fold text='val' expand='false'>BigInteger</fold> a = <fold text='' expand='false'>new BigInteger(</fold><fold text='10' expand='false'>"10"</fold><fold text='' expand='false'>)</fold>;
-            <fold text='val' expand='false'>BigInteger</fold> b = <fold text='' expand='false'>new BigInteger(</fold><fold text='5' expand='false'>"5"</fold><fold text='' expand='false'>)</fold>;
+            <fold text='val' expand='false'>BigInteger</fold> b = <fold text='' expand='false'>new BigInteger(<fold text='5' expand='false'></fold>"5"</fold><fold text='' expand='false'>)</fold>;
             blackhole = a.max(b);
         }</fold>
 
@@ -151,7 +151,7 @@ import java.util.Collection;</fold>
 
         public void andBigInteger() <fold text='{...}' expand='true'>{
             <fold text='val' expand='false'>BigInteger</fold> a = <fold text='' expand='false'>new BigInteger(</fold><fold text='10' expand='false'>"10"</fold><fold text='' expand='false'>)</fold>;
-            <fold text='val' expand='false'>BigInteger</fold> b = <fold text='' expand='false'>new BigInteger(</fold><fold text='5' expand='false'>"5"</fold><fold text='' expand='false'>)</fold>;
+            <fold text='val' expand='false'>BigInteger</fold> b = <fold text='' expand='false'>new BigInteger(<fold text='5' expand='false'></fold>"5"</fold><fold text='' expand='false'>)</fold>;
             blackhole = a<fold text=' & ' expand='false'>.and(</fold>b<fold text='' expand='false'>)</fold>;
         }</fold>
 
@@ -162,7 +162,7 @@ import java.util.Collection;</fold>
         }</fold>
 
         public void notBigInteger() <fold text='{...}' expand='true'>{
-            <fold text='val' expand='false'>BigInteger</fold> a = <fold text='' expand='false'>new BigInteger(</fold><fold text='10' expand='false'>"10"</fold><fold text='' expand='false'>)</fold>;
+            <fold text='val' expand='false'>BigInteger</fold> a = <fold text='' expand='false'>new BigInteger(<fold text='10' expand='false'></fold>"10"</fold><fold text='' expand='false'>)</fold>;
             blackhole = a.not();
         }</fold>
 
@@ -183,7 +183,7 @@ import java.util.Collection;</fold>
         }</fold>
 
         public void signumBigInteger() <fold text='{...}' expand='true'>{
-            <fold text='val' expand='false'>BigInteger</fold> a = <fold text='' expand='false'>new BigInteger(<fold text='10' expand='false'></fold>"10"</fold><fold text='' expand='false'>)</fold>;
+            <fold text='val' expand='false'>BigInteger</fold> a = <fold text='' expand='false'>new BigInteger(</fold><fold text='10' expand='false'>"10"</fold><fold text='' expand='false'>)</fold>;
             blackhole = a.signum();
         }</fold>
 
@@ -194,14 +194,14 @@ import java.util.Collection;</fold>
         }</fold>
 
         public void andNotBigInteger() <fold text='{...}' expand='true'>{
-            <fold text='val' expand='false'>BigInteger</fold> a = <fold text='' expand='false'>new BigInteger(<fold text='10' expand='false'></fold>"10"</fold><fold text='' expand='false'>)</fold>;
+            <fold text='val' expand='false'>BigInteger</fold> a = <fold text='' expand='false'>new BigInteger(</fold><fold text='10' expand='false'>"10"</fold><fold text='' expand='false'>)</fold>;
             <fold text='val' expand='false'>BigInteger</fold> b = <fold text='' expand='false'>new BigInteger(</fold><fold text='5' expand='false'>"5"</fold><fold text='' expand='false'>)</fold>;
             blackhole = a<fold text=' & ' expand='false'>.andNot(</fold>b<fold text='' expand='false'>)</fold>;
         }</fold>
 
         public void modBigInteger() <fold text='{...}' expand='true'>{
             <fold text='val' expand='false'>BigInteger</fold> a = <fold text='' expand='false'>new BigInteger(</fold><fold text='10' expand='false'>"10"</fold><fold text='' expand='false'>)</fold>;
-            <fold text='val' expand='false'>BigInteger</fold> b = <fold text='' expand='false'>new BigInteger(</fold><fold text='5' expand='false'>"5"<fold text='' expand='false'></fold>)</fold>;
+            <fold text='val' expand='false'>BigInteger</fold> b = <fold text='' expand='false'>new BigInteger(</fold><fold text='5' expand='false'>"5"</fold><fold text='' expand='false'>)</fold>;
             blackhole = a<fold text=' % ' expand='false'>.mod(</fold>b<fold text='' expand='false'>)</fold>;
         }</fold>
     }</fold>

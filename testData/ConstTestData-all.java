@@ -70,58 +70,58 @@ public class ConstTestData {
     <fold text='default const' expand='false'>static final </fold><fold text='' expand='false'>int</fold> VERSION = 1;
     <fold text='default const' expand='false'>static final </fold><fold text='' expand='false'>int</fold> VERSION_REF = VERSION;
 
-    <fold text='' expand='true'>@SuppressWarnings("ALL")</fold>
+    @SuppressWarnings("ALL")
     class ConstsWithAnnotaiton <fold text='{...}' expand='true'>{
         @Deprecated
-        static final Pattern PATTERN = Pattern.compile(".*");
+        <fold text='default const' expand='false'>static final </fold><fold text='' expand='false'>Pattern</fold> PATTERN = Pattern.compile(".*");
 
         @Deprecated
-        static final Pattern PATTERN_STATIC_IMPORT = compile(".*");
+        <fold text='default const' expand='false'>static final</fold> Pattern PATTERN_STATIC_IMPORT = compile(".*");
 
         @Deprecated
-        static final EOrder ENUM = EOrder.FIRST;
+        <fold text='default econst' expand='false'>static final </fold><fold text='' expand='false'>EOrder</fold> ENUM = EOrder.FIRST;
 
         @Deprecated
-        static final Orderable ENUM_BY_INTERFACE = EOrder.FIRST;
+        <fold text='default const' expand='false'>static final</fold> Orderable ENUM_BY_INTERFACE = EOrder.FIRST;
 
         @Deprecated
-        static final EOrder ENUM_STATIC_IMPORT = SECOND;
+        <fold text='default econst' expand='false'>static final</fold> EOrder ENUM_STATIC_IMPORT = SECOND;
 
         @Deprecated
-        public static final String PUBLIC_STATIC_FINAL_VAR = "";
+        <fold text='const' expand='false'>public static final </fold><fold text='' expand='false'>String</fold> PUBLIC_STATIC_FINAL_VAR = "";
 
         @Deprecated
-        private static final String PRIVATE_STATIC_FINAL_VAR = "";
+        private <fold text='const' expand='false'>static final </fold><fold text='' expand='false'>String</fold> PRIVATE_STATIC_FINAL_VAR = "";
 
         @Deprecated
-        protected static final String PROTECTED_STATIC_FINAL_VAR = "";
+        protected <fold text='const' expand='false'>static final </fold><fold text='' expand='false'>String</fold> PROTECTED_STATIC_FINAL_VAR = "";
 
         @Deprecated
-        static final String DEFAULT_STATIC_FINAL_VAR = "";
+        <fold text='default const' expand='false'>static final </fold><fold text='' expand='false'>String</fold> DEFAULT_STATIC_FINAL_VAR = "";
 
         @Deprecated
-        public static final String STRING_JOINER = "" + "1";
+        <fold text='const' expand='false'>public static final</fold> String STRING_JOINER = "<fold text='' expand='false'>" + "</fold>1";
 
         @Deprecated
-        public static final String STRING_JOINER2 = "" + DEFAULT_STATIC_FINAL_VAR;
+        <fold text='const' expand='false'>public static final</fold> String STRING_JOINER2 = "<fold text='$' expand='false'>" + </fold>DEFAULT_STATIC_FINAL_VAR<fold text='";' expand='false'>;</fold>
 
         @Deprecated
-        public static final String STRING_JOINER3 = DEFAULT_STATIC_FINAL_VAR + "";
+        <fold text='const' expand='false'>public static final</fold> String STRING_JOINER3 =<fold text=' "$' expand='false'> </fold>DEFAULT_STATIC_FINAL_VAR<fold text='' expand='false'> + "</fold>";
 
         @Deprecated
-        public static final String STRING_JOINER4 = DEFAULT_STATIC_FINAL_VAR + PROTECTED_STATIC_FINAL_VAR + PUBLIC_STATIC_FINAL_VAR;
+        <fold text='const' expand='false'>public static final</fold> String STRING_JOINER4 = DEFAULT_STATIC_FINAL_VAR + PROTECTED_STATIC_FINAL_VAR + PUBLIC_STATIC_FINAL_VAR;
 
         @Deprecated
-        public final static String PUBLIC_FINAL_STATIC_VAR = "";
+        <fold text='const' expand='false'>public final static </fold><fold text='' expand='false'>String</fold> PUBLIC_FINAL_STATIC_VAR = "";
 
         @Deprecated
-        private final static String PRIVATE_FINAL_STATIC_VAR = "";
+        private <fold text='const' expand='false'>final static </fold><fold text='' expand='false'>String</fold> PRIVATE_FINAL_STATIC_VAR = "";
 
         @Deprecated
-        protected final static String PROTECTED_FINAL_STATIC_VAR = "";
+        protected <fold text='const' expand='false'>final static </fold><fold text='' expand='false'>String</fold> PROTECTED_FINAL_STATIC_VAR = "";
 
         @Deprecated
-        static public final String STATIC_PUBLIC_FINAL_VAR = "";
+        <fold text='const' expand='false'>static public final </fold><fold text='' expand='false'>String</fold> STATIC_PUBLIC_FINAL_VAR = "";
 
         @Deprecated
         static private final String STATIC_PRIVATE_FINAL_VAR = "";
@@ -130,7 +130,7 @@ public class ConstTestData {
         static protected final String STATIC_PROTECTED_FINAL_VAR = "";
 
         @Deprecated
-        static final public String STATIC_FINAL_PUBLIC_VAR = "";
+        <fold text='const' expand='false'>static final public </fold><fold text='' expand='false'>String</fold> STATIC_FINAL_PUBLIC_VAR = "";
 
         @Deprecated
         static final private String STATIC_FINAL_PRIVATE_VAR = "";
@@ -139,7 +139,7 @@ public class ConstTestData {
         static final protected String STATIC_FINAL_PROTECTED_VAR = "";
 
         @Deprecated
-        final public static String FINAL_PUBLIC_STATIC_VAR = "";
+        <fold text='const' expand='false'>final public static </fold><fold text='' expand='false'>String</fold> FINAL_PUBLIC_STATIC_VAR = "";
 
         @Deprecated
         final private static String FINAL_PRIVATE_STATIC_VAR = "";
@@ -148,7 +148,7 @@ public class ConstTestData {
         final protected static String FINAL_PROTECTED_STATIC_VAR = "";
 
         @Deprecated
-        final static public String FINAL_STATIC_PUBLIC_VAR = "";
+        <fold text='const' expand='false'>final static public </fold><fold text='' expand='false'>String</fold> FINAL_STATIC_PUBLIC_VAR = "";
 
         @Deprecated
         final static private String FINAL_STATIC_PRIVATE_VAR = "";
@@ -193,13 +193,13 @@ public class ConstTestData {
         final protected String FINAL_PROTECTED_VAR = "";
 
         @Deprecated
-        static final String DEFAULT_STATIC_FINAL_VAR_REF = DEFAULT_STATIC_FINAL_VAR;
+        <fold text='default const' expand='false'>static final</fold> String DEFAULT_STATIC_FINAL_VAR_REF = DEFAULT_STATIC_FINAL_VAR;
 
         @Deprecated
-        static final int VERSION = 1;
+        <fold text='default const' expand='false'>static final </fold><fold text='' expand='false'>int</fold> VERSION = 1;
 
         @Deprecated
-        static final int VERSION_REF = VERSION;
+        <fold text='default const' expand='false'>static final </fold><fold text='' expand='false'>int</fold> VERSION_REF = VERSION;
     }</fold>
 
 

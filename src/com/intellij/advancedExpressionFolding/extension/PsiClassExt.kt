@@ -4,7 +4,7 @@ import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.extension.clazz.AnnotationExt
 import com.intellij.advancedExpressionFolding.extension.clazz.MethodDefaultParameterExt
 import com.intellij.advancedExpressionFolding.extension.clazz.SummaryParentOverrideExt.addParentSummary
-import com.intellij.psi.PsiClass
+import com.intellij.psi.*
 
 object PsiClassExt : BaseExtension() {
 
@@ -15,11 +15,6 @@ object PsiClassExt : BaseExtension() {
     @JvmStatic
     fun createExpression(clazz: PsiClass): Expression? {
         val list = exprList()
-        list.forwardIfEnabled(suppressWarningsHide) {
-            clazz.hideAnnotation(it, group()) {
-                isSuppressWarnings()
-            }
-        }
         list.addIfEnabled(summaryParentOverride) {
             clazz.addParentSummary()
         }

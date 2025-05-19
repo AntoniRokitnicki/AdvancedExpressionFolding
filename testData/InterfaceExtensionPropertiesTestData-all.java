@@ -4,8 +4,8 @@ import <fold text='...' expand='false'>org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;</fold>
 
-<fold text='' expand='true'>@SuppressWarnings("ALL")</fold><fold text='' expand='true'>
-</fold>public class InterfaceExtensionPropertiesTestData {
+@SuppressWarnings("ALL")
+public class InterfaceExtensionPropertiesTestData {
 
     public interface User <fold text='{...}' expand='true'>{
        <fold text='@Getter ' expand='true'> </fold>String <fold text='n' expand='true'>getN</fold>ame<fold text='' expand='true'>()</fold>;
