@@ -17,11 +17,11 @@ package data;
     </fold>}</fold></fold><fold text='' expand='false'>
 
     </fold><fold text='' expand='false'>private GetterSetterTestData getParent()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-        </fold><fold text='' expand='true'></fold>return</fold><fold text='' expand='true'> </fold>parent<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+        </fold><fold text='' expand='true'></fold>return</fold><fold text='' expand='true'> </fold>parent<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
     </fold>}</fold><fold text='' expand='false'></fold>
 
     </fold><fold text='' expand='false'>private String getName()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-        </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>name<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+        </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>name<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
     </fold>}</fold><fold text='' expand='false'></fold>
 
     </fold><fold text='' expand='false'>private void setName(String name)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>

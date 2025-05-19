@@ -39,7 +39,7 @@ package data;
     }</fold>
 
     private static String changer(String username)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-        </fold><fold text='' expand='true'></fold>return</fold><fold text='' expand='true'> </fold>username<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+        </fold><fold text='' expand='true'></fold>return</fold><fold text='' expand='true'> </fold>username<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
     </fold>}</fold>
 
 
@@ -59,23 +59,23 @@ package data;
     }</fold>
 
     public static BuilderFieldShiftBuilder builder()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-        </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>new BuilderFieldShiftBuilder()<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+        </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>new BuilderFieldShiftBuilder()<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
     </fold>}</fold><fold text='' expand='false'>
 
     </fold><fold text='' expand='false'>public String getUsername()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-        </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>this.username<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+        </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>this.username<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
     </fold>}</fold><fold text='' expand='false'></fold>
 
     </fold><fold text='' expand='false'>public boolean isActive()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-        </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>this.active<fold text='' expand='true'>;<fold text='' expand='true'><fold text=' }' expand='false'></fold>
+        </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>this.active<fold text='' expand='true'>;<fold text=' ' expand='true'><fold text=' }' expand='false'></fold>
     </fold>}</fold><fold text='' expand='false'></fold>
 
     </fold><fold text='' expand='false'>public String getUserIdentifier()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-        </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>this.userIdentifier<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+        </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>this.userIdentifier<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
     </fold>}</fold></fold><fold text='' expand='false'>
 
     <fold text='' expand='false'></fold>public FieldShiftBuilder getChild()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-        </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>this.child<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+        </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>this.child<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
     </fold>}</fold></fold>
 
     <fold text='@Builder @AllArgsConstructor(default) @Getter p' expand='false'>p</fold>ublic static class UserData2 <fold text='{...}' expand='true'>{
@@ -90,19 +90,19 @@ package data;
         }</fold></fold>
 
         public static UserData2Builder builder()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>new UserData2Builder()<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>new UserData2Builder()<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold><fold text='' expand='false'>
 
         <fold text='' expand='false'></fold>public String getUsername()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>this.username<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>this.username<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold></fold><fold text='' expand='false'>
 
         </fold><fold text='' expand='false'>public boolean isActive()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>this.active<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>this.active<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold><fold text='' expand='false'></fold>
 
         </fold><fold text='' expand='false'>public String getUserIdentifier()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>this.userIdentifier<fold text='' expand='true'>;<fold text='' expand='true'><fold text=' }' expand='false'></fold>
+            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>this.userIdentifier<fold text='' expand='true'>;<fold text=' ' expand='true'><fold text=' }' expand='false'></fold>
         </fold>}</fold></fold>
 
         <fold text='@NoArgsConstructor(default) @ToString p' expand='false'>p</fold>ublic static class UserData2Builder <fold text='{...}' expand='true'>{
@@ -129,7 +129,7 @@ package data;
             }</fold>
 
             public UserData2 build()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>new UserData2(username, active, userIdentifier)<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+                </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>new UserData2(username, active, userIdentifier)<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold><fold text='' expand='false'>
 
             </fold><fold text='' expand='false'>public String toString() <fold text='{...}' expand='true'>{
@@ -171,7 +171,7 @@ package data;
         }</fold>
 
         public FieldShiftBuilder build()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>new FieldShiftBuilder(username, active, userIdentifier, child)<fold text='' expand='true'>;<fold text='' expand='true'><fold text=' }' expand='false'></fold>
+            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>new FieldShiftBuilder(username, active, userIdentifier, child)<fold text='' expand='true'>;<fold text=' ' expand='true'><fold text=' }' expand='false'></fold>
         </fold>}</fold><fold text='' expand='false'>
 
         </fold><fold text='' expand='false'>public String toString() <fold text='{...}' expand='true'>{

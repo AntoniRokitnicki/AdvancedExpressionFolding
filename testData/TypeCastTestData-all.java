@@ -11,7 +11,7 @@ public class TypeCastTestData {
     }</fold>
 
     private Object getObject()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-        </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>this<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+        </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>this<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
     </fold>}</fold>
 
     private static void handle(TypeCastTestData t)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>

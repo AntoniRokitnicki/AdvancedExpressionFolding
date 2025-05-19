@@ -77,21 +77,23 @@ fun PsiModifierListOwner.modifier(): EModifier {
         else -> DEFAULT
     }
 }
+val PsiMethod.keywords: List<PsiKeyword>
+    get() = modifierList.children.filterIsInstance<PsiKeyword>()
 
 fun PsiModifierListOwner.isPublic() = hasModifierProperty(PsiModifier.PUBLIC)
 fun PsiModifierListOwner.isProtected() = hasModifierProperty(PsiModifier.PROTECTED)
 fun PsiModifierListOwner.isPrivate() = hasModifierProperty(PsiModifier.PRIVATE)
-fun PsiModifierListOwner.isDefault() = !isPublic() && !isProtected() && !isPrivate()
 fun PsiModifierListOwner.isStatic() = hasModifierProperty(PsiModifier.STATIC)
 fun PsiModifierListOwner.isFinal() = hasModifierProperty(PsiModifier.FINAL)
 
 fun PsiModifierListOwner.isNotStatic() = !isStatic()
-fun PsiModifierListOwner.isNotFinal() = !isFinal()
 
 fun PsiKeyword.isPrivate() = tokenType == JavaTokenType.PRIVATE_KEYWORD
 fun PsiKeyword.isProtected() = tokenType == JavaTokenType.PROTECTED_KEYWORD
 fun PsiKeyword.isPublic() = tokenType == JavaTokenType.PUBLIC_KEYWORD
 
+fun PsiAnnotation.isOverride() = qualifiedName == "java.lang.Override"
+fun PsiAnnotation.isSuppressWarnings() = qualifiedName == "java.lang.SuppressWarnings"
 
 fun PsiMethod.isSetterOrBuilder(): Boolean = isSetter() || isBuilder()
 

@@ -34,7 +34,7 @@ object NullableExt : BaseExtension() {
         }
 
         list.addIfEnabled(expressionFunc) {
-            ExperimentalExt.createSingleExpressionFunctions(method, document)
+            SingleExpressionFunctionExt.createSingleExpressionFunctions(method, document)
         }
 
         list.addIfEnabled(dynamic) {

@@ -44,8 +44,8 @@ public class PatternMatchingInstanceofTestData {
     }</fold>
 
     static class Data <fold text='{...}' expand='true'>{
-        public int getValue()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>42<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+        <fold text='' expand='true'>public</fold><fold text='' expand='true'> <fold text='' expand='true'></fold>int</fold><fold text='' expand='true'> </fold>getValue<fold text='' expand='true'>()</fold><fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>42<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold>
     }</fold>
 
@@ -87,7 +87,7 @@ public class PatternMatchingInstanceofTestData {
         }</fold>
 
         private Object getObject()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>new Object()<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>new Object()<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold>
     }</fold>
 

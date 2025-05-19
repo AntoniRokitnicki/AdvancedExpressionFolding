@@ -25,8 +25,8 @@ public class InterfaceExtensionPropertiesTestData {
 
     interface Ignored <fold text='{...}' expand='true'>{
         public interface DefaultUser <fold text='{...}' expand='true'>{
-            default String getName()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>"Unknown User"<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+            <fold text='' expand='true'>default</fold><fold text='' expand='true'> </fold><fold text='' expand='true'>String</fold><fold text='' expand='true'> </fold>getName<fold text='' expand='true'>()</fold><fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+                </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>"Unknown User"<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold>
             default void setName(String name) <fold text='{}' expand='true'>{
             }</fold>
@@ -35,7 +35,7 @@ public class InterfaceExtensionPropertiesTestData {
 
         public interface StaticUser <fold text='{...}' expand='true'>{
             static String getName()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>"Static User"<fold text='' expand='true'>;</fold><fold text='' expand='true'><fold text=' }' expand='false'>
+                </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>"Static User"<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold>
            <fold text='@Getter ' expand='true'> </fold>int <fold text='a' expand='true'>getA</fold>ge<fold text='' expand='true'>()</fold>;
             static void setName(String name) <fold text='{}' expand='true'>{

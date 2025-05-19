@@ -10,19 +10,19 @@ public class ExpressionFuncTestData {
 
     private void printStatus() { new HashMap<String, String>().put("a", "b") }
 
-    private String printStatusReturn() { new HashMap<String, String>().put("a", "b")}
+    private String printStatusReturn() { new HashMap<String, String>().put("a", "b") }
 
-    public boolean isUser() { false}
+    isUser { false }
 
-    public long findNinjaId() { 1L}
+    findNinjaId { 1L }
 
-    public String tableName() { "table1"}
+    tableName { "table1" }
 
     public void assignField(String field) { this.field = field }
 
-    public String assignFieldAndReturn(String field) { this.field = field}
+    public String assignFieldAndReturn(String field) { this.field = field }
 
-    public String methodCall(String field) { assignFieldAndReturn(field)}
+    public String methodCall(String field) { assignFieldAndReturn(field) }
 
     public void methodCall2(String field) { assignFieldAndReturn(field) }
 

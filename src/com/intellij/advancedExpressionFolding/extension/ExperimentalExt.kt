@@ -1,73 +1,11 @@
 package com.intellij.advancedExpressionFolding.extension
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.openapi.editor.Document
-import com.intellij.psi.*
+import com.intellij.psi.PsiField
+import com.intellij.psi.PsiReferenceExpression
+
 
 object ExperimentalExt : BaseExtension() {
-
-    fun createSingleExpressionFunctions(method: PsiMethod, document: Document): Expression? {
-        val single = method.body?.statements?.singleOrNull()
-        val statement = single?.takeIf {
-            method.body!!.text.length < 145
-        } ?: return null
-
-        val singleExpression = getAnyExpression(single.children.first(), document)
-
-        return statement.asInstance<PsiReturnStatement>()?.let {
-            onSingleExpressionReturn(it, method, singleExpression)
-        } ?: onSingleExpressionNoReturn(statement, method, singleExpression)
-    }
-
-    private fun onSingleExpressionNoReturn(
-        statement: PsiStatement,
-        method: PsiMethod,
-        singleExpression: Expression
-    ): Expression? {
-        val body = method.body!!
-        val whitespaces = body.children.filter {
-            it.isWhitespace()
-        }.map {
-            it.expr(" ")
-        }
-        val endingSemicolon = statement.children.lastOrNull().asInstance<PsiJavaToken>()//;
-        val exprList = arrayOf<PsiElement?>(endingSemicolon).mapNotNull {
-            it.exprHide()
-        }.toMutableList<Expression?>()
-        exprList.addAll(whitespaces)
-
-        exprList.add(getAnyExpression(body))
-        exprList.add(singleExpression)
-        return exprList.exprWrap(method, group())
-    }
-
-    private fun onSingleExpressionReturn(
-        statement: PsiReturnStatement,
-        method: PsiMethod,
-        singleExpression: Expression,
-    ): Expression? {
-        val keyword = statement.children.firstOrNull().asInstance<PsiKeyword>()
-        val keywordNextWhitespace = keyword?.nextWhiteSpace()
-        val returnPrevSpace = statement.prevWhiteSpace()
-
-
-        val preBracketSpace = statement.nextSibling
-        val endingSemicolon = statement.children.lastOrNull().asInstance<PsiJavaToken>()//;
-
-        val exprList = sequenceOf(keyword, keywordNextWhitespace, preBracketSpace).mapNotNull {
-            it.exprHide()
-        }.toMutableList<Expression?>()
-
-        //TODO: fix issue with Intellij method folding to fold like kotlin
-        //val braceLeft = returnPrevSpace?.prevSibling
-        //val braceRight = preBracketSpace.nextSibling
-        //exprList.add(braceLeft?.expr("= "))
-        // hide them then:
-        exprList.add(returnPrevSpace?.expr(" "))
-        exprList.add(endingSemicolon?.exprHide())
-        exprList.add(singleExpression)
-        return exprList.exprWrap(method, group())
-    }
 
     @JvmStatic
     fun createExpression(element: PsiReferenceExpression): Expression? {
@@ -86,7 +24,5 @@ object ExperimentalExt : BaseExtension() {
             }
         }
     }
-
-
 
 }
