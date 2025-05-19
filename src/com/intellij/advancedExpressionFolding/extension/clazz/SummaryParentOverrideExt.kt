@@ -1,6 +1,7 @@
 package com.intellij.advancedExpressionFolding.extension.clazz
 
 import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.advancedExpressionFolding.expression.custom.SimpleExpression
 import com.intellij.advancedExpressionFolding.extension.*
 import com.intellij.advancedExpressionFolding.extension.Keys.METHOD_TO_PARENT_CLASS_KEY
 import com.intellij.openapi.util.removeUserData
@@ -12,11 +13,11 @@ private data class ReferenceWithMethods(
     val methods: List<String>
 )
 
-object SummaryParentOverrideExt {
+object SummaryParentOverrideExt : BaseExtension() {
 
     fun PsiClass.addParentSummary(): Expression? {
         val parentToMethods = mutableMapOf<String, List<String>>()
-        val methodToParentClass: MutableMap<MethodSignature, String> = mutableMapOf<MethodSignature, String>() //TODO: String->Pointer?
+        val methodToParentClass: MutableMap<MethodSignature, String> = mutableMapOf() //TODO: String->Pointer?
 
         sequenceOf(this.extendsList, this.implementsList).filterNotNull().map { parent ->
             parent.referenceElements.zip(parent.referencedTypes).mapNotNull { (refElement, type) ->
@@ -51,6 +52,48 @@ object SummaryParentOverrideExt {
     private fun asCount(it: ReferenceWithMethods) = it.methods.size
 
     private fun asString(it: ReferenceWithMethods) = it.methods.joinToString(", ")
+
+    fun summaryParent(
+        element: PsiMethod,
+        list: MutableList<Expression?>
+    ) {
+        val overrides = element.annotations.filter {
+            it.textMatches("@Override")
+        }
+        val hideOverride = overrides.exprHide()
+        list += hideOverride
+        list += overrides.mapNotNull {
+            it.prevWhiteSpace().exprHide()
+        }
+        list += summaryParentOverride.on(hideOverride)?.let {
+            element.body
+        }?.let { body ->
+            createOverridesComment(element, body)
+        }
+    }
+
+    private fun createOverridesComment(
+        element: PsiMethod,
+        body: PsiCodeBlock
+    ): SimpleExpression? {
+        val oneLiner = body.statements.one
+        return if (oneLiner) {
+            body.rBrace
+        } else {
+            body.lBrace
+        }?.let { brace ->
+            val signature = element.getSignature()
+            element.containingClass?.getUserData(METHOD_TO_PARENT_CLASS_KEY)
+                ?.get(signature)?.let {
+                    val prefix = if (oneLiner) {
+                        '}'
+                    } else {
+                        '{'
+                    }
+                    brace.expr("$prefix // overrides from $it")
+                }
+        }
+    }
 }
 
 

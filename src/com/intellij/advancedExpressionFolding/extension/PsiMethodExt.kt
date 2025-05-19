@@ -3,6 +3,7 @@ package com.intellij.advancedExpressionFolding.extension
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.extension.NullableExt.fieldAnnotationExpression
 import com.intellij.advancedExpressionFolding.extension.NullableExt.readCheckNotNullMethods
+import com.intellij.advancedExpressionFolding.extension.clazz.SummaryParentOverrideExt
 import com.intellij.advancedExpressionFolding.extension.methodcall.dynamic.DynamicExt
 import com.intellij.openapi.editor.Document
 import com.intellij.psi.PsiMethod
@@ -17,7 +18,7 @@ object PsiMethodExt : BaseExtension() {
         val list = exprList(fieldAnnotationExpression(method.annotations, method.returnTypeElement))
 
         if (summaryParentOverride) {
-            SummaryParentExt.summaryParent(method, list)
+            SummaryParentOverrideExt.summaryParent(method, list)
         }
 
         list.addIfEnabled(expressionFunc) {
