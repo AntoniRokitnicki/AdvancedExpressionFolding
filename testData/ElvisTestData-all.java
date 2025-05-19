@@ -1,7 +1,7 @@
 package data;
 
-@SuppressWarnings("ALL")
-public class ElvisTestData {
+<fold text='' expand='true'>@SuppressWarnings("ALL")</fold><fold text='' expand='true'>
+</fold>public class ElvisTestData {
     private ElvisTestData e = create();
 
     public static void main(String[] args) <fold text='{...}' expand='true'>{
@@ -16,7 +16,7 @@ public class ElvisTestData {
         if (e.get() != null) <fold text='{...}' expand='true'>{
                 e.get()<fold text='?.' expand='false'>.</fold>sayHello();<fold text='' expand='false'>
         }</fold></fold>
-        if <fold text='' expand='false'>(</fold><fold text='e?.get != null' expand='false'>e != null && e.get() != null</fold><fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
+        if <fold text='' expand='false'>(</fold><fold text='e?.get != null' expand='false'>e != null && e.get() != null<fold text='' expand='false'></fold>)</fold> <fold text='{...}' expand='true'>{
                 e.get().sayHello();
         }</fold>
     }</fold>

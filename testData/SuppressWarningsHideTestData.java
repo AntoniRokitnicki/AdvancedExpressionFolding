@@ -4,8 +4,8 @@ import <fold text='...' expand='false'>java.util.ArrayList;
 import java.util.Date;
 import java.util.List;</fold>
 
-@SuppressWarnings("rawtypes")
-public class SuppressWarningsHideTestData {
+<fold text='' expand='true'>@SuppressWarnings("rawtypes")</fold><fold text='' expand='true'>
+</fold>public class SuppressWarningsHideTestData {
 
     @SuppressWarnings("unused")
     private int unusedField;

@@ -5,8 +5,8 @@ import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Stream;</fold>
 
-@SuppressWarnings("ALL")
-public class OptionalTestData {
+<fold text='' expand='true'>@SuppressWarnings("ALL")</fold><fold text='' expand='true'>
+</fold>public class OptionalTestData {
 
     public void enter(Optional<Data> opt, Data data, Data dataNull) <fold text='{...}' expand='true'>{
         <fold text='var' expand='false'>Object</fold> o = null;

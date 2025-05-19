@@ -10,8 +10,8 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.Formatter;</fold>
 
-@SuppressWarnings("ALL")
-<fold text='@Log p' expand='false'>p</fold>ublic class LogBrackets {<fold text='' expand='false'>
+<fold text='' expand='true'>@SuppressWarnings("ALL")</fold><fold text='' expand='true'>
+</fold><fold text='@Log p' expand='false'>p</fold>ublic class LogBrackets {<fold text='' expand='false'>
 
     </fold><fold text='' expand='false'>private <fold text='const' expand='false'>static final </fold><fold text='' expand='false'>Logger</fold> log = LoggerFactory.getLogger(LogBrackets.class);</fold>
     private <fold text='const' expand='false'>static final </fold><fold text='' expand='false'>Marker</fold> MY_MARKER = MarkerFactory.getMarker("MY_MARKER");
@@ -77,7 +77,7 @@ import java.util.Formatter;</fold>
             writer.printf("Log entry: User <fold text='$' expand='false'>%s, Age %d, accessed from %s", </fold>name<fold text=', Age $' expand='false'>, </fold>age<fold text=', accessed from $' expand='false'>, </fold>city<fold text='")' expand='false'>)</fold>;
             writer.close();
         }</fold> catch <fold text='' expand='false'>(</fold>FileNotFoundException e<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
-            log.error("Failed to write to log file: <fold text='${' expand='false'>%s", </fold>e.<fold text='message' expand='false'>getMessage()<fold text='}")' expand='false'></fold>)</fold>;
+            log.error("Failed to write to log file: <fold text='${' expand='false'>%s", </fold>e.<fold text='message' expand='false'>getMessage()</fold><fold text='}")' expand='false'>)</fold>;
         }</fold>
 
         // 6. String with formatted

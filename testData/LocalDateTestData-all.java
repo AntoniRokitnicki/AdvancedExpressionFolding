@@ -4,8 +4,8 @@ import <fold text='...' expand='false'>java.sql.Timestamp<fold text='' expand='f
 import java.time.LocalDate<fold text='' expand='false'>;</fold>
 import java.util.Calendar<fold text='' expand='false'>;</fold></fold>
 
-@SuppressWarnings("ALL")
-public class LocalDateTestData {
+<fold text='' expand='true'>@SuppressWarnings("ALL")</fold><fold text='' expand='true'>
+</fold>public class LocalDateTestData {
     public void main(String[] args) <fold text='{...}' expand='true'>{
         <fold text='val' expand='false'>LocalDate</fold> d1 = <fold text='' expand='false'>LocalDate.of(</fold>2018<fold text='Y-' expand='false'>, </fold>12<fold text='M-' expand='false'>, </fold>10<fold text='D' expand='false'>)</fold><fold text='' expand='false'>;</fold>
         <fold text='val' expand='false'>LocalDate</fold> d2 = <fold text='' expand='false'>LocalDate.of(</fold>2018<fold text='Y-' expand='false'>, </fold>12<fold text='M-' expand='false'>, </fold>10<fold text='D' expand='false'>)</fold><fold text='' expand='false'>;</fold>
