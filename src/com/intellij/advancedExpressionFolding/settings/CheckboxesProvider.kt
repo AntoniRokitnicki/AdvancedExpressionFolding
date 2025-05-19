@@ -255,14 +255,16 @@ abstract class CheckboxesProvider {
             example("MethodDefaultParametersTestData.java")
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#methodDefaultParameters")
         }
-
+        registerCheckbox(state::overrideHide, "Hide @Override annotation") {
+            example("OverrideHideTestData.java")
+            link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#overrideHide")
+        }
+        // NEW OPTION
         registerCheckbox(state::memoryImprovement, "Memory improvements")
-
         registerCheckbox(state::experimental, "Experimental features") {
             example("ExperimentalTestData.java")
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#experimental")
         }
-        // NEW OPTION
     }
 
     abstract fun Panel.registerCheckbox(

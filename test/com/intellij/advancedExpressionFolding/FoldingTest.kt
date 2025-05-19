@@ -504,6 +504,14 @@ staticMethod.newName = 'changedStaticMethod'
             state.lombokPatternOff = null
         }
     }
+
+    /**
+     * [data.OverrideHideTestData]
+     */
+    @Test
+    fun overrideHideTestData() {
+        doFoldingTest(state::overrideHide)
+    }
     // NEW OPTION
     /**
      * [data.ExperimentalTestData]

@@ -78,7 +78,7 @@ object SingleExpressionFunctionExt : BaseExtension() {
         exprList: MutableList<Expression?>
     ) {
         if (modifier().isPublic() && !isStatic()) {
-            foldModifiers(exprList)
+            foldKeywords(exprList)
 
             exprList.add(returnTypeElement.prevWhiteSpace().exprHide())
             exprList.add(returnTypeElement.exprHide())
@@ -90,19 +90,9 @@ object SingleExpressionFunctionExt : BaseExtension() {
         }
     }
 
-    private fun PsiMethod.foldModifiers(exprList: MutableList<Expression?>) {
-        val modifiers = modifierList.takeIf {
-            it.annotations.all { annotation ->
-                annotation.isOverride() || annotation.isSuppressWarnings()
-            }
-        }
-        if (modifiers != null) {
-            exprList.add(modifiers.exprHide())
-        } else {
-            val keywords = keywords
-            if (keywords.isNotEmpty()) {
-                exprList.add(keywords.exprHide())
-            }
+    private fun PsiMethod.foldKeywords(exprList: MutableList<Expression?>) {
+        keywords.takeIfSizeNot(0)?.let {
+            exprList.add(it.exprHide())
         }
     }
 

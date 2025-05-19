@@ -54,21 +54,16 @@ object SummaryParentOverrideExt : BaseExtension() {
     private fun asString(it: ReferenceWithMethods) = it.methods.joinToString(", ")
 
     fun summaryParent(
-        element: PsiMethod,
+        method: PsiMethod,
         list: MutableList<Expression?>
     ) {
-        val overrides = element.annotations.filter {
-            it.textMatches("@Override")
+        val hasOverride = method.annotations.any {
+            it.isOverride()
         }
-        val hideOverride = overrides.exprHide()
-        list += hideOverride
-        list += overrides.mapNotNull {
-            it.prevWhiteSpace().exprHide()
-        }
-        list += summaryParentOverride.on(hideOverride)?.let {
-            element.body
+        list += hasOverride.on()?.let {
+            method.body
         }?.let { body ->
-            createOverridesComment(element, body)
+            createOverridesComment(method, body)
         }
     }
 

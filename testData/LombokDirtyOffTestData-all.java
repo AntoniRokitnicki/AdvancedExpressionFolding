@@ -26,8 +26,8 @@ public class LombokDirtyOffTestData {
                 </fold></fold><fold text='' expand='true'>return<fold text='' expand='true'></fold> </fold>ok<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold><fold text='' expand='false'></fold>
 
-            </fold><fold text='' expand='true'><fold text='' expand='false'>@Override</fold>
-            public boolean equals(Object o) <fold text='{...}' expand='true'>{
+            </fold><fold text='' expand='true'><fold text='' expand='false'>@Override</fold><fold text='' expand='true'>
+            </fold>public boolean equals(Object o) <fold text='{...}' expand='true'>{
                 if <fold text='' expand='false'>(</fold>this == o<fold text='' expand='false'>)</fold> return true;
                 if <fold text='' expand='false'>(</fold>!(o instanceof DirtyData)<fold text='' expand='false'>)</fold> return false;
 
@@ -39,8 +39,8 @@ public class LombokDirtyOffTestData {
                 return true;
             }</fold><fold text='' expand='false'></fold>
 
-            </fold><fold text='' expand='true'><fold text='' expand='false'>@Override</fold>
-            public int hashCode() <fold text='{...}' expand='true'>{
+            </fold><fold text='' expand='false'><fold text='' expand='true'>@Override<fold text='' expand='true'></fold>
+            </fold>public int hashCode() <fold text='{...}' expand='true'>{
                 <fold text='var' expand='false'>int</fold> result = (dirty ? 1 : 0);
                 result = 31 * result<fold text=' + ' expand='false'> + (</fold>ok ? 1 : 0<fold text='' expand='false'>)</fold>;
                 return result;
@@ -52,7 +52,7 @@ public class LombokDirtyOffTestData {
             <fold text='@Getter b' expand='false'>b</fold>oolean ok;<fold text='' expand='false'>
 
             </fold><fold text='' expand='false'>public boolean isOk()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold><fold text='' expand='true'></fold>return</fold><fold text='' expand='true'> </fold>ok<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+                </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>ok<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold></fold>
             public boolean isDirty()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
                 </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>dirty2<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
@@ -77,7 +77,7 @@ public class LombokDirtyOffTestData {
             <fold text='@Setter p' expand='false'>p</fold>rivate boolean ok;
 
             public void setDirty(boolean dirty)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold></fold>this.dirty = !dirty<fold text='' expand='true'>;<fold text=' ' expand='true'><fold text=' }' expand='false'></fold>
+                </fold></fold>this.dirty = !dirty<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold><fold text='' expand='false'>
 
             </fold><fold text='' expand='false'>public void setOk(boolean ok)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
@@ -86,14 +86,14 @@ public class LombokDirtyOffTestData {
 
             </fold><fold text='' expand='false'>public boolean isDirty()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
                 </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>dirty<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
-            </fold>}</fold></fold><fold text='' expand='false'>
+            </fold>}</fold><fold text='' expand='false'></fold>
 
-            <fold text='' expand='false'></fold>public boolean isOk()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+            </fold><fold text='' expand='false'>public boolean isOk()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
                 </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>ok<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold></fold><fold text='' expand='false'>
 
-            </fold><fold text='' expand='true'><fold text='' expand='false'>@Override</fold>
-            public boolean equals(Object o) <fold text='{...}' expand='true'>{
+            </fold><fold text='' expand='true'><fold text='' expand='false'>@Override</fold><fold text='' expand='true'>
+            </fold>public boolean equals(Object o) <fold text='{...}' expand='true'>{
                 if <fold text='' expand='false'>(</fold>this == o<fold text='' expand='false'>)</fold> return true;
                 if <fold text='' expand='false'>(</fold>!(o instanceof DirtyData)<fold text='' expand='false'>)</fold> return false;
 
@@ -105,8 +105,8 @@ public class LombokDirtyOffTestData {
                 return true;
             }</fold><fold text='' expand='false'></fold>
 
-            </fold><fold text='' expand='true'><fold text='' expand='false'>@Override</fold>
-            public int hashCode() <fold text='{...}' expand='true'>{
+            </fold><fold text='' expand='true'><fold text='' expand='false'>@Override</fold><fold text='' expand='true'>
+            </fold>public int hashCode() <fold text='{...}' expand='true'>{
                 <fold text='var' expand='false'>int</fold> result = (dirty ? 1 : 0);
                 result = 31 * result<fold text=' + ' expand='false'> + (</fold>ok ? 1 : 0<fold text='' expand='false'>)</fold>;
                 return result;

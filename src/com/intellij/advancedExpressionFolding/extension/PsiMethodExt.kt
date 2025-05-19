@@ -29,6 +29,10 @@ object PsiMethodExt : BaseExtension() {
             DynamicExt.createExpression(method)
         }
 
+        list.forwardIfEnabled(overrideHide) {
+            method.overrideHide(it)
+        }
+
         // may lead to issues
         if (true) {
             getAnyExpression(method.modifierList, document).let(list::add)
@@ -39,6 +43,17 @@ object PsiMethodExt : BaseExtension() {
             getAnyExpressions(method.parameterList.parameters, document).let(list::addAll)
         }
         return list.exprWrap(method)
+    }
+
+    private fun PsiMethod.overrideHide(list: MutableList<Expression?>) {
+        modifierList.annotations.asSequence().filter {
+            it.isOverride()
+        }.forEach {
+            val group = group()
+            list.add(it.exprHide(group = group) )
+            list.add(it.prevWhiteSpace().exprHide(group = group))
+            list.add(it.nextWhiteSpace().exprHide(group = group))
+        }
     }
 
     fun createExpression(parameter: PsiParameter, document: Document): Expression? {

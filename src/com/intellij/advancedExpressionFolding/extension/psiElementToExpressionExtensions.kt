@@ -119,6 +119,12 @@ fun List<Expression?>.applyGroup(group: FoldingGroup): List<Expression?> {
     return this
 }
 
+inline fun MutableList<Expression?>.forwardIfEnabled(featureFlag: Boolean, function: (MutableList<Expression?>) -> Unit) {
+    if (featureFlag) {
+        function(this)
+    }
+}
+
 inline fun MutableList<Expression?>.addIfEnabled(featureFlag: Boolean, function: () -> Expression?) {
     if (featureFlag) {
         add(function.invoke())

@@ -6,6 +6,7 @@
 
 - [expressionFunc] methods returning literals are now more compact
 - support @Setter without "this."
+- [overrideHide] hides @Override annotation
 
 ## [3.6.0] - 2025-05-11
 

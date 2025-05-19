@@ -13,7 +13,7 @@ public class SummaryParentOverrideTestData {
     }</fold>
 
     class ParentClass extends GrandparentClas<fold text='s(1-grandparentMethod)' expand='true'>s</fold> <fold text='{...}' expand='true'>{
-        <fold text='' expand='true'>@Override</fold>
+        @Override
         public void grandparentMethod() <fold text='{ // overrides from GrandparentClass' expand='true'><fold text='{...}' expand='true'>{</fold>
             System.out.println("Overridden Grandparent Method in Parent");
             System.out.println("Overridden Grandparent Method in Parent");
@@ -35,22 +35,22 @@ public class SummaryParentOverrideTestData {
 
     public class TestDataClass extends ParentClas<fold text='s(1-grandparentMethod)' expand='true'>s</fold> implements FirstInterfac<fold text='e(2-interfaceMethodOne, sharedMethod)' expand='true'>e</fold>, SecondInterfac<fold text='e(1-interfaceMethodTwo)' expand='true'>e</fold> <fold text='{...}' expand='true'>{
 
-        <fold text='' expand='true'>@Override</fold>
+        @Override
         public void interfaceMethodOne()<fold text=' { ' expand='false'> {
             </fold>System.out.println("Implementation of Interface Method One");<fold text=' }' expand='false'>
         <fold text='} // overrides from FirstInterface' expand='true'>}</fold></fold>
 
-        <fold text='' expand='true'>@Override</fold>
+        @Override
         public void interfaceMethodTwo()<fold text=' { ' expand='false'> {
             </fold>System.out.println("Implementation of Interface Method Two");<fold text=' }' expand='false'>
         <fold text='} // overrides from SecondInterface' expand='true'>}</fold></fold>
 
-        <fold text='' expand='true'>@Override</fold>
+        @Override
         public void sharedMethod()<fold text=' { ' expand='false'> {
             </fold>System.out.println("Overridden Shared Method");<fold text=' }' expand='false'>
         <fold text='} // overrides from FirstInterface' expand='true'>}</fold></fold>
 
-        <fold text='' expand='true'>@Override</fold>
+        @Override
         public void grandparentMethod()<fold text=' { ' expand='false'> {
             </fold>System.out.println("Overridden Grandparent Method in TestDataClass");<fold text=' }' expand='false'>
         <fold text='} // overrides from ParentClass' expand='true'>}</fold></fold>

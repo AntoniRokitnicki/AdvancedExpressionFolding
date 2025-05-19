@@ -20,8 +20,8 @@ public class EqualsCompareTestData implements Comparabl<fold text='e(0-)' expand
         <fold text='' expand='false'>System.out.</fold>println(a<fold text=' ≤ ' expand='false'>.compareTo(</fold>b<fold text='' expand='false'>) <= 0</fold>); // Should be a <= b
     }</fold>
 
-    <fold text='' expand='true'><fold text='' expand='true'>@Override</fold>
-    public</fold><fold text='' expand='true'> </fold><fold text='' expand='true'>int</fold><fold text='' expand='true'> </fold>compareTo(EqualsCompareTestData o)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-        </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>0<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+    <fold text='' expand='true'>@Override</fold><fold text='' expand='true'>
+    </fold><fold text='' expand='true'>public</fold><fold text='' expand='true'> </fold><fold text='' expand='true'>int</fold><fold text='' expand='true'> </fold>compareTo(EqualsCompareTestData o)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+        </fold><fold text='' expand='true'></fold>return</fold><fold text='' expand='true'> </fold>0<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
     </fold>}</fold>
 }
