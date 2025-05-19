@@ -21,7 +21,7 @@ class WrapAroundExpression(
 ) :
 AbstractMultiExpression(element,
     textRange,
-    modifyChildren(children, element, textBefore, foldPrevWhiteSpace, textAfter, foldNextWhiteSpace),
+    modifyChildren(children, element, textBefore, foldPrevWhiteSpace, textAfter, foldNextWhiteSpace, group),
     group = group,
     foldPrevWhiteSpace = foldPrevWhiteSpace) {
 
@@ -37,6 +37,7 @@ AbstractMultiExpression(element,
             foldPrevWhiteSpace: Boolean,
             textAfter: String?,
             foldNextWhiteSpace: Boolean,
+            group: FoldingGroup?,
         ): List<Expression?> {
             val list = mutableListOf<Expression?>()
             list.addAll(children)
@@ -44,11 +45,11 @@ AbstractMultiExpression(element,
             if (textBefore != null) {
                 element.prevWhiteSpace()?.let {
                     if (foldPrevWhiteSpace) {
-                        list += SimpleExpression(it, textRange = it.textRange, text = textBefore)
+                        list += SimpleExpression(it, textRange = it.textRange, text = textBefore, group = group)
                     } else {
                         val text = it.text
                         val c = text.substring(text.length - 1)
-                        list += SimpleExpression(it, textRange = TextRange(it.end()-1, it.end()), text = "$c$textBefore")
+                        list += SimpleExpression(it, textRange = TextRange(it.end()-1, it.end()), text = "$c$textBefore", group = group)
                     }
                 }
                 //TODO: else

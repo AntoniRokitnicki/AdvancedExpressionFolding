@@ -22,6 +22,7 @@ object ConstructorReferenceExt : BaseExtension() {
 
         val sameType = field.sameTypeOfFieldAndInitializer(initializer)
         if (noBody && sameType && initializer != null) {
+            val group = group()
             val list = exprList()
             initializer.classReference?.let {
                 list += it.prevWhiteSpace()?.exprHide()
@@ -31,7 +32,7 @@ object ConstructorReferenceExt : BaseExtension() {
                 list += it.prevWhiteSpace()?.exprHide()
                 list += it.expr("{}")
             }
-            list += initializer.exprWrapAround(textBefore = "::")
+            list += initializer.exprWrapAround(textBefore = "::", group = group)
 
             if (noParams) {
                 list += initializer.argumentList?.exprHide()
@@ -42,7 +43,7 @@ object ConstructorReferenceExt : BaseExtension() {
                     list.plusAssign(it)
                 }
             }
-            return list.exprWrap(field)
+            return list.exprWrap(field, group)
         }
         return null
     }

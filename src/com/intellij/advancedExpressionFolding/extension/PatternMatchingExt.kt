@@ -83,7 +83,7 @@ object PatternMatchingExt : BaseExtension() {
         document: Document,
         descriptors: ArrayList<FoldingDescriptor>
     ) {
-        val expression = list.exprWrap(element)
+        val expression = list.exprWrap(element, group())
         expression?.buildFoldRegions(element, document, expression)?.let(descriptors::addAll)
     }
 
