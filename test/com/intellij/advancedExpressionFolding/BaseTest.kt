@@ -2,6 +2,7 @@ package com.intellij.advancedExpressionFolding
 
 import ai.grazie.utils.capitalize
 import com.intellij.advancedExpressionFolding.diff.FoldingDescriptorExWrapper
+import com.intellij.advancedExpressionFolding.extension.off
 import com.intellij.openapi.application.WriteAction
 import com.intellij.openapi.fileTypes.FileTypeManager
 import com.intellij.openapi.projectRoots.JavaSdk
@@ -20,6 +21,7 @@ import java.nio.file.Files
 
 abstract class BaseTest : LightJavaCodeInsightFixtureTestCase5(TEST_JDK) {
     override fun getTestDataPath() = "testData"
+    private val saveFoldingsAsJson = false
 
     protected open fun doFoldingTest(testNameArg: String? = null) {
         val testName = testNameArg ?: getTestName(false)
@@ -57,9 +59,13 @@ abstract class BaseTest : LightJavaCodeInsightFixtureTestCase5(TEST_JDK) {
         } catch (e: FileComparisonFailedError) {
             val actual = e.actual.stringRepresentation
             Files.writeString(testDataFile.toPath(), actual)
-
-            val wrapper = store.saveFolding(createOutputFile(fileName, ".json"))
-
+            val wrapper = store.createOrderedFoldingWrapper()
+            saveFoldingsAsJson.off() ?: run {
+                val folderName = "wrappers"
+                val jsonFileName = fileName.replace("testData/", "$folderName/")
+                File(folderName).mkdirs()
+                store.saveToJsonFile(createOutputFile(jsonFileName, ".json"), wrapper)
+            }
             val all = fileName.contains("-all")
             if (!all) {
                 replaceAllTestData(fileName, actual)

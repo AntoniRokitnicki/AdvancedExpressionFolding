@@ -6,15 +6,12 @@ import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import com.intellij.advancedExpressionFolding.diff.FoldingDescriptorEx
 import com.intellij.advancedExpressionFolding.diff.FoldingDescriptorExWrapper
 import com.intellij.advancedExpressionFolding.diff.Range
-import com.intellij.advancedExpressionFolding.extension.off
 import com.intellij.lang.folding.FoldingDescriptor
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.editor.FoldingGroup
 import java.io.File
 
 class FoldingDataStorage : EmptyStorage() {
-    private val saveJson = false
-
     private lateinit var descriptors: Array<FoldingDescriptor>
     private lateinit var document: Document
 
@@ -41,7 +38,7 @@ class FoldingDataStorage : EmptyStorage() {
         }
     }
 
-    fun saveFolding(file: File): FoldingDescriptorExWrapper {
+    fun createOrderedFoldingWrapper(): FoldingDescriptorExWrapper {
         val uniqueElements = descriptors.distinctBy {
             it.element
         }.distinctBy {
@@ -75,14 +72,10 @@ class FoldingDataStorage : EmptyStorage() {
                 foldingGroupSet.size - 1
             )
         }
-        val foldingDescriptorExWrapper = FoldingDescriptorExWrapper(list.size, list)
-
-        saveJson.off() ?: saveToJsonFile(file, foldingDescriptorExWrapper)
-
-        return foldingDescriptorExWrapper
+        return FoldingDescriptorExWrapper(list.size, list)
     }
 
-    private fun saveToJsonFile(
+    fun saveToJsonFile(
         file: File,
         foldingDescriptorExWrapper: FoldingDescriptorExWrapper
     ) {
