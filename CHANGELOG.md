@@ -4,6 +4,9 @@
 
 ## [Unreleased]
 
+- [expressionFunc] methods returning literals are now more compact
+- support @Setter without "this."
+
 ## [3.6.0] - 2025-05-11
 
 - [experimental] Add exception class to @SneakyThrows annotation
