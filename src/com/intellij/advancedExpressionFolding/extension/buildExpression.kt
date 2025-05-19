@@ -195,22 +195,22 @@ class ClassBuilder : BuildExpression<PsiClass>(PsiClass::class.java) {
 
 class FieldBuilder : BuildExpression<PsiField>(PsiField::class.java) {
     override fun buildExpression(element: PsiField, document: Document, synthetic: Boolean) =
-        NullableExt.createExpression(element, document)
+        PsiFieldExt.createExpression(element, document)
 }
 
 class ParameterBuilder : BuildExpression<PsiParameter>(PsiParameter::class.java) {
     override fun buildExpression(element: PsiParameter, document: Document, synthetic: Boolean) =
-        NullableExt.createExpression(element, document)
+        PsiMethodExt.createExpression(element, document)
 }
 
 class RecordComponentBuilder : BuildExpression<PsiRecordComponent>(PsiRecordComponent::class.java) {
     override fun buildExpression(element: PsiRecordComponent, document: Document, synthetic: Boolean) =
-        NullableExt.createExpression(element)
+        PsiFieldExt.createExpression(element)
 }
 
 class MethodBuilder : BuildExpression<PsiMethod>(PsiMethod::class.java) {
     override fun buildExpression(element: PsiMethod, document: Document, synthetic: Boolean) =
-        NullableExt.createExpression(element, document)
+        PsiMethodExt.createExpression(element, document)
 }
 
 class KeywordBuilder : BuildExpression<PsiKeyword>(PsiKeyword::class.java) {
