@@ -40,7 +40,11 @@ object SummaryParentOverrideExt : BaseExtension() {
         }.flatten().toList().takeIf {
             it.isNotEmpty()
         }?.mapNotNull {
-            it.element.exprOnLastChar("(${asCount(it)}-${asString(it)})")
+            val overriddenMethodsLabel = when {
+                it.methods.isNotEmpty() -> "(${asCount(it)}-${asString(it)})"
+                else -> "(nothing overridden)"
+            }
+            it.element.exprOnLastChar(overriddenMethodsLabel)
         }?.let {
             this.putUserData(METHOD_TO_PARENT_CLASS_KEY, methodToParentClass)
             return it.exprWrap(this)

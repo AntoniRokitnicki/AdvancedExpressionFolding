@@ -33,7 +33,11 @@ public class SummaryParentOverrideTestData {
         void interfaceMethodTwo();
     }
 
-    public class TestDataClass extends ParentClass implements FirstInterface, SecondInterface {
+    interface WithoutMethodInterface {
+
+    }
+
+    public class TestDataClass extends ParentClass implements FirstInterface, SecondInterface, WithoutMethodInterface {
 
         @Override
         public void interfaceMethodOne() {

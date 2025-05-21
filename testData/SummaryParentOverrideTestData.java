@@ -33,7 +33,11 @@ public class SummaryParentOverrideTestData {
         void interfaceMethodTwo();
     }</fold>
 
-    public class TestDataClass extends ParentClas<fold text='s(1-grandparentMethod)' expand='true'>s</fold> implements FirstInterfac<fold text='e(2-interfaceMethodOne, sharedMethod)' expand='true'>e</fold>, SecondInterfac<fold text='e(1-interfaceMethodTwo)' expand='true'>e</fold> <fold text='{...}' expand='true'>{
+    interface WithoutMethodInterface <fold text='{...}' expand='true'>{
+
+    }</fold>
+
+    public class TestDataClass extends ParentClas<fold text='s(1-grandparentMethod)' expand='true'>s</fold> implements FirstInterfac<fold text='e(2-interfaceMethodOne, sharedMethod)' expand='true'>e</fold>, SecondInterfac<fold text='e(1-interfaceMethodTwo)' expand='true'>e</fold>, WithoutMethodInterfac<fold text='e(nothing overridden)' expand='true'>e</fold> <fold text='{...}' expand='true'>{
 
         @Override
         public void interfaceMethodOne()<fold text=' { ' expand='false'> {
