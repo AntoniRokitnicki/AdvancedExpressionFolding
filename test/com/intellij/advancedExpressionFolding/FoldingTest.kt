@@ -375,6 +375,7 @@ open class FoldingTest : BaseTest() {
      */
     @Test
     open fun finalEmojiTestData() {
+        @Suppress("DEPRECATION")
         doFoldingTest(state::finalEmoji)
     }
 
@@ -400,7 +401,7 @@ open class FoldingTest : BaseTest() {
     @Test
     open fun dynamicTestData() {
         val dynamicProvider = object : IDynamicDataProvider {
-            override open fun parse(): List<DynamicMethodCall> {
+            override fun parse(): List<DynamicMethodCall> {
                 return parseToml(
                     """
 normalMethod.method = 'normalMethod'
@@ -420,6 +421,7 @@ staticMethod.newName = 'changedStaticMethod'
      */
     @Test
     open fun arithmeticExpressionsTestData() {
+        @Suppress("DEPRECATION")
         doFoldingTest(state::arithmeticExpressions)
     }
 
@@ -428,6 +430,7 @@ staticMethod.newName = 'changedStaticMethod'
      */
     @Test
     open fun emojifyTestData() {
+        @Suppress("DEPRECATION")
         doFoldingTest(state::emojify)
     }
 
