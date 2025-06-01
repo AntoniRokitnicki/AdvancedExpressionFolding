@@ -128,7 +128,7 @@ public class EmojifyTestData {
         </fold>}</fold>
     }</fold>
 
-    <fold text='@AllArgsConstructor @Getter @Setter p' expand='false'>p</fold>ublic class TransientVolatileData implements java.io.Serializabl<fold text='e(0-)' expand='true'>e</fold> <fold text='{...}' expand='true'>{
+    <fold text='@AllArgsConstructor @Getter @Setter p' expand='false'>p</fold>ublic class TransientVolatileData implements java.io.Serializabl<fold text='e(nothing overridden)' expand='true'>e</fold> <fold text='{...}' expand='true'>{
         private transient int transientField;
         private volatile boolean volatileField;<fold text='' expand='false'>
 
@@ -158,7 +158,7 @@ public class EmojifyTestData {
         public native void nativeMethod();
     }</fold>
 
-    <fold text='@AllArgsConstructor p' expand='false'>p</fold>ublic class InterfaceUsage implements Comparabl<fold text='e(0-)' expand='true'>e</fold><InterfaceUsage> <fold text='{...}' expand='true'>{
+    <fold text='@AllArgsConstructor p' expand='false'>p</fold>ublic class InterfaceUsage implements Comparabl<fold text='e(nothing overridden)' expand='true'>e</fold><InterfaceUsage> <fold text='{...}' expand='true'>{
         private int value;<fold text='' expand='false'>
 
         </fold><fold text='' expand='false'>public InterfaceUsage(int value)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
@@ -405,7 +405,7 @@ public class EmojifyTestData {
         public abstract sealed class Shape permits Circle, Rectangle <fold text='{...}' expand='true'>{
         }</fold>
 
-        <fold text='@AllArgsConstructor @Getter p' expand='false'>p</fold>ublic <fold text='' expand='false'>final</fold> class Circle extends Shap<fold text='e(0-)' expand='true'>e</fold> <fold text='{...}' expand='true'>{
+        <fold text='@AllArgsConstructor @Getter p' expand='false'>p</fold>ublic <fold text='' expand='false'>final</fold> class Circle extends Shap<fold text='e(nothing overridden)' expand='true'>e</fold> <fold text='{...}' expand='true'>{
             private double radius;<fold text='' expand='false'>
 
             </fold><fold text='' expand='false'>public Circle(double radius)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
@@ -417,7 +417,7 @@ public class EmojifyTestData {
             </fold>}</fold></fold>
         }</fold>
 
-        <fold text='@AllArgsConstructor @Getter p' expand='false'>p</fold>ublic <fold text='' expand='false'>final</fold> class Rectangle extends Shap<fold text='e(0-)' expand='true'>e</fold> <fold text='{...}' expand='true'>{
+        <fold text='@AllArgsConstructor @Getter p' expand='false'>p</fold>ublic <fold text='' expand='false'>final</fold> class Rectangle extends Shap<fold text='e(nothing overridden)' expand='true'>e</fold> <fold text='{...}' expand='true'>{
             private double length;
             private double width;<fold text='' expand='false'>
 

@@ -204,7 +204,7 @@ public class ConstTestData {
 
 
     public interface Orderable {}
-    enum EOrder implements Orderabl<fold text='e(0-)' expand='true'>e</fold> <fold text='{...}' expand='true'>{
+    enum EOrder implements Orderabl<fold text='e(nothing overridden)' expand='true'>e</fold> <fold text='{...}' expand='true'>{
         FIRST,
         SECOND;
     }</fold>

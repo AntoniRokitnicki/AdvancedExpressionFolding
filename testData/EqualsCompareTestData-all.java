@@ -1,6 +1,6 @@
 package data;
 
-public class EqualsCompareTestData implements Comparabl<fold text='e(0-)' expand='true'>e</fold><EqualsCompareTestData> {
+public class EqualsCompareTestData implements Comparabl<fold text='e(nothing overridden)' expand='true'>e</fold><EqualsCompareTestData> {
     public static void main(String[] args) <fold text='{...}' expand='true'>{
         <fold text='val' expand='false'>EqualsCompareTestData</fold> a = new EqualsCompareTestData();
         <fold text='val' expand='false'>EqualsCompareTestData</fold> b = new EqualsCompareTestData();

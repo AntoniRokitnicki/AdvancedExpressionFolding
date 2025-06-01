@@ -655,7 +655,7 @@ import java.util.logging.Logger;</fold>
                 </fold></fold>super()<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold></fold>
         }</fold>
-        public class NoArgsConstructorSuperParent extends Paren<fold text='t(0-)' expand='true'>t</fold> <fold text='{...}' expand='true'>{
+        public class NoArgsConstructorSuperParent extends Paren<fold text='t(nothing overridden)' expand='true'>t</fold> <fold text='{...}' expand='true'>{
             public NoArgsConstructorSuperParent()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
                 </fold></fold>super(null)<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold>

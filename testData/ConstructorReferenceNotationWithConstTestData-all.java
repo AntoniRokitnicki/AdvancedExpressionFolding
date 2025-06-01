@@ -92,9 +92,9 @@ public class ConstructorReferenceNotationWithConstTestData {
         }</fold></fold>
     }</fold>
 
-    static class SubConstClass extends ConstClas<fold text='s(0-)' expand='true'>s</fold> <fold text='{...}' expand='true'>{
+    static class SubConstClass extends ConstClas<fold text='s(nothing overridden)' expand='true'>s</fold> <fold text='{...}' expand='true'>{
     }</fold>
 
-    static <fold text='' expand='false'>final</fold> class SubConstClass2 extends ConstClas<fold text='s(0-)' expand='true'>s</fold> <fold text='{...}' expand='true'>{
+    static <fold text='' expand='false'>final</fold> class SubConstClass2 extends ConstClas<fold text='s(nothing overridden)' expand='true'>s</fold> <fold text='{...}' expand='true'>{
     }</fold>
 }
