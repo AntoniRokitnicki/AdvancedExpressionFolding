@@ -21,7 +21,7 @@
 [![Marketplace Version](https://img.shields.io/jetbrains/plugin/v/com.github.advanced-java-folding2.svg)](https://plugins.jetbrains.com/plugin/23659-advanced-java-folding-2-fork-)
 [![Downloads](https://img.shields.io/jetbrains/plugin/d/com.github.advanced-java-folding2.svg)](https://plugins.jetbrains.com/plugin/23659-advanced-java-folding-2-fork-)
 ![GitHub Release Date](https://img.shields.io/github/release-date/AntoniRokitnicki/AdvancedExpressionFolding)
-[![GitHub commits since latest release](https://img.shields.io/github/commits-since/AntoniRokitnicki/AdvancedExpressionFolding/latest)](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v3.4.1...main)
+[![GitHub commits since latest release](https://img.shields.io/github/commits-since/AntoniRokitnicki/AdvancedExpressionFolding/latest)](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v3.7.0...main)
 <!-- https://plugins.jetbrains.com/api/plugins/23659/updates?channel=&size=8 -->
 
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/AntoniRokitnicki/AdvancedExpressionFolding)
@@ -40,6 +40,18 @@
 
 <p>For more information, read the <a href="https://medium.com/@andrey_cheptsov/making-java-code-easier-to-read-without-changing-it-adeebd5c36de" target="_blank">blog post</a>.</p>
 
+
+## 3.7.0 ##
+
+- [[expressionFunc] methods returning literals are now more compact](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/folded/ExpressionFuncTestData-folded.java)
+- [[summaryParentOverride] Improvement of summary parent override when no override exists](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/ec60ae57361709b9e5ff3d05da29923e9aedfe44/folded/SummaryParentOverrideTestData-folded.java#L40)
+- [[lombok] support @Setter without "this."](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/ec60ae57361709b9e5ff3d05da29923e9aedfe44/examples/data/LombokTestData.java#L598)
+- [suppressWarningsHide] hides @SuppressWarnings annotation at method level
+- [overrideHide] hides @Override annotation
+
+## 3.6.0 ##
+
+- [[experimental] Add exception class to @SneakyThrows and support multiline](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/folded/ExperimentalTestData-folded.java)
 
 ## 3.5.0 ##
 - [[lombok] support more types of dirty getters: wrapper, lazy and dirtyNoReference](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/4ec74d4d7a40d22749e3e491baa604036f407bc4/folded/LombokTestData-folded.java#L168)

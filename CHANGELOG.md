@@ -4,10 +4,14 @@
 
 ## [Unreleased]
 
+## [3.7.0] - 2025-06-09
+
 - [expressionFunc] methods returning literals are now more compact
-- support @Setter without "this."
-- [overrideHide] hides @Override annotation
+- [summaryParentOverride] Improvement of summary parent override when no override exists
+- [lombok] support @Setter without "this."
 - [suppressWarningsHide] hides @SuppressWarnings annotation at method level
+- [overrideHide] hides @Override annotation
+- [lombok] turn off showing comment for private @NoArgsConstructor
 
 ## [3.6.0] - 2025-05-11
 
@@ -315,7 +319,8 @@ Improved handling of multi-line log messages
 
 ## [0.0.1]
 
-[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v3.6.0...HEAD
+[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v3.7.0...HEAD
+[3.7.0]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v3.6.0...v3.7.0
 [3.6.0]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v3.5.0...v3.6.0
 [3.5.0]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v3.4.1...v3.5.0
 [3.4.1]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v3.4.0...v3.4.1
