@@ -16,6 +16,10 @@
 [![Kotlin](https://img.shields.io/badge/dynamic/toml?url=https%3A%2F%2Fraw.githubusercontent.com%2FAntoniRokitnicki%2FAdvancedExpressionFolding%2Fmain%2Fgradle%2Flibs.versions.toml&query=%24.versions.kotlin&label=kotlin)](https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-stdlib)
 [![Gradle](https://img.shields.io/badge/gradle-8.13-blue.svg)](https://gradle.org/releases/)
 
+[![Junit](https://img.shields.io/badge/dynamic/toml?url=https%3A%2F%2Fraw.githubusercontent.com%2FAntoniRokitnicki%2FAdvancedExpressionFolding%2Fmain%2Fgradle%2Flibs.versions.toml&query=%24.versions.junit&label=junit)](https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api)
+[![Jackson toml](https://img.shields.io/badge/dynamic/toml?url=https%3A%2F%2Fraw.githubusercontent.com%2FAntoniRokitnicki%2FAdvancedExpressionFolding%2Fmain%2Fgradle%2Flibs.versions.toml&query=%24.versions.jackson&label=jackson%20toml)](https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-toml)
+[![Junit pioneer](https://img.shields.io/badge/dynamic/toml?url=https%3A%2F%2Fraw.githubusercontent.com%2FAntoniRokitnicki%2FAdvancedExpressionFolding%2Fmain%2Fgradle%2Flibs.versions.toml&query=%24.versions.pioneer&label=junit%20pioneer)](https://mvnrepository.com/artifact/org.junit-pioneer/junit-pioneer)
+[![Kodein jxinject](https://img.shields.io/badge/dynamic/toml?url=https%3A%2F%2Fraw.githubusercontent.com%2FAntoniRokitnicki%2FAdvancedExpressionFolding%2Fmain%2Fgradle%2Flibs.versions.toml&query=%24.versions.kodein&label=kodein%20jxinject)](https://mvnrepository.com/artifact/org.kodein.di/kodein-di-conf-jvm)
 
 [![Release Version](https://img.shields.io/github/v/release/AntoniRokitnicki/AdvancedExpressionFolding)](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/releases)
 [![Marketplace Version](https://img.shields.io/jetbrains/plugin/v/com.github.advanced-java-folding2.svg)](https://plugins.jetbrains.com/plugin/23659-advanced-java-folding-2-fork-)
