@@ -29,6 +29,10 @@
                 displayName="Advanced Expression Folding 2"/>
     </extensions>
 
+    <applicationListeners>
+        <listener class="com.intellij.advancedExpressionFolding.PluginUnloadingListener" topic="com.intellij.ide.plugins.DynamicPluginListener"/>
+    </applicationListeners>
+
     <actions>
         <group id="AdvancedExpressionFolding2Group"
                text="Advanced Folding: Searches"

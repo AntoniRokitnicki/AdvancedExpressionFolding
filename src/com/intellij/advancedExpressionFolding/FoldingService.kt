@@ -7,6 +7,7 @@ import com.intellij.openapi.editor.Editor
 import com.intellij.openapi.fileEditor.FileEditorManager
 import com.intellij.openapi.fileEditor.TextEditor
 import com.intellij.openapi.project.Project
+import com.intellij.openapi.project.ProjectManager
 import com.intellij.psi.PsiDocumentManager
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiRecursiveElementVisitor
@@ -31,6 +32,10 @@ class FoldingService {
                     it.isExpanded = !state
                 }
             }
+    }
+
+    fun clearAllKeys() {
+        ProjectManager.getInstance().openProjects.forEach(this::clearAllKeys)
     }
 
     fun clearAllKeys(project: Project) {
