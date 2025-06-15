@@ -12,4 +12,6 @@ class FoldingOffAction : AnAction() {
         }
     }
 
+    override fun isDumbAware() = false
+
 }

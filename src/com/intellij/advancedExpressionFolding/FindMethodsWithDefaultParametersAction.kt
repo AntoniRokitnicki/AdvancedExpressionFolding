@@ -66,4 +66,6 @@ class FindMethodsWithDefaultParametersAction : AnAction() {
         }
     }
 
+    override fun isDumbAware() = false
+
 }

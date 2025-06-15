@@ -16,4 +16,6 @@ class FoldingOnAction(private val state: AdvancedExpressionFoldingSettings.IConf
         }
     }
 
+    override fun isDumbAware() = false
+
 }

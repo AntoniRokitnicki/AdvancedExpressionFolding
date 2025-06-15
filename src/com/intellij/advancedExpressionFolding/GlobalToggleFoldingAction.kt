@@ -3,9 +3,10 @@ package com.intellij.advancedExpressionFolding
 import com.intellij.openapi.actionSystem.ActionUpdateThread
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.ToggleAction
+import com.intellij.openapi.project.DumbAware
 
 class GlobalToggleFoldingAction(private val state: AdvancedExpressionFoldingSettings.IConfig = AdvancedExpressionFoldingSettings.getInstance().state) :
-    ToggleAction(), AdvancedExpressionFoldingSettings.IConfig by state {
+    ToggleAction(), AdvancedExpressionFoldingSettings.IConfig by state, DumbAware {
 
     override fun isSelected(e: AnActionEvent): Boolean = globalOn
 
