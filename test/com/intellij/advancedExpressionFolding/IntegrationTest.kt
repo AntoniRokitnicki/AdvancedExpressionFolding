@@ -1,7 +1,7 @@
 package com.intellij.advancedExpressionFolding
 
 import com.intellij.driver.client.Driver
-import com.intellij.driver.sdk.ui.components.ideFrame
+import com.intellij.driver.sdk.ui.components.common.ideFrame
 import com.intellij.driver.sdk.waitForIndicators
 import com.intellij.ide.starter.ci.CIServer
 import com.intellij.ide.starter.ci.NoCIServer
