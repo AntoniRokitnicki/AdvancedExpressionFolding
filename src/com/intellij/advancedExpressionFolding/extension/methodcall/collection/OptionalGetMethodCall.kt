@@ -2,13 +2,13 @@ package com.intellij.advancedExpressionFolding.extension.methodcall.collection
 
 import com.intellij.advancedExpressionFolding.expression.optional.OptionalNotNullAssertionGet
 import com.intellij.advancedExpressionFolding.extension.methodcall.Context
+import com.intellij.advancedExpressionFolding.extension.methodcall.NeedsQualifier
 import com.intellij.psi.PsiMethodCallExpression
 
-class OptionalGetMethodCall : AbstractOptionalMethodCall() {
+class OptionalGetMethodCall : AbstractOptionalMethodCall(), NeedsQualifier {
     override val methodNames = listOf("get", "orElseThrow")
 
     override fun onNoArguments(element: PsiMethodCallExpression, context: Context): OptionalNotNullAssertionGet? {
-        context.qualifierExpression ?: return null
-        return OptionalNotNullAssertionGet(element, context.identifier.textRange, context.qualifierExpression)
+        return OptionalNotNullAssertionGet(element, context.identifier.textRange, context.qualifierExpr)
     }
 }

@@ -4,7 +4,7 @@ import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.psi.JavaTokenType.*
 import com.intellij.psi.PsiJavaToken
 
-object TokenExt : BaseExtension() {
+object PsiJavaTokenExt : BaseExtension() {
 
     @JvmStatic
     fun createExpression(element: PsiJavaToken): Expression? {

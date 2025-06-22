@@ -4,7 +4,7 @@ import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.extension.Consts.Emoji
 import com.intellij.psi.*
 
-object KeywordExt : BaseExtension() {
+object PsiKeywordExt : BaseExtension() {
 
     @JvmStatic
     fun createExpression(keyword: PsiKeyword): Expression? =

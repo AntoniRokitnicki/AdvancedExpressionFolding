@@ -2,12 +2,13 @@ package com.intellij.advancedExpressionFolding.extension.methodcall.date
 
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.LocalDateLiteral
+import com.intellij.advancedExpressionFolding.extension.methodcall.AbstractMethodCall
 import com.intellij.advancedExpressionFolding.extension.methodcall.Context
 import com.intellij.psi.PsiExpression
 import com.intellij.psi.PsiLiteralExpression
 import com.intellij.psi.PsiMethodCallExpression
 
-class CreateDateFactoryMethodCall : AbstractDateMethodCall() {
+class CreateDateFactoryMethodCall : AbstractMethodCall() {
     override fun permission() = localDateLiteralCollapse || localDateLiteralPostfixCollapse
 
     override val methodNames by lazy { listOf("of") }

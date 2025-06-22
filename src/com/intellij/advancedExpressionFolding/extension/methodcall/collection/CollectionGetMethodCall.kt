@@ -4,16 +4,15 @@ import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.Get
 import com.intellij.advancedExpressionFolding.expression.Get.Style
 import com.intellij.advancedExpressionFolding.expression.NumberLiteral
-import com.intellij.advancedExpressionFolding.expression.optional.OptionalNotNullAssertionGet
 import com.intellij.advancedExpressionFolding.extension.Helper.getSlicePosition
 import com.intellij.advancedExpressionFolding.extension.methodcall.AbstractMethodCall
 import com.intellij.advancedExpressionFolding.extension.methodcall.Context
-import com.intellij.advancedExpressionFolding.extension.on
+import com.intellij.advancedExpressionFolding.extension.methodcall.NeedsQualifier
 import com.intellij.psi.PsiBinaryExpression
 import com.intellij.psi.PsiExpression
 import com.intellij.psi.PsiMethodCallExpression
 
-class CollectionGetMethodCall : AbstractMethodCall() {
+class CollectionGetMethodCall : AbstractMethodCall(), NeedsQualifier {
 
     override fun permission() = getExpressionsCollapse
 
@@ -25,16 +24,16 @@ class CollectionGetMethodCall : AbstractMethodCall() {
         argument: PsiExpression,
         argumentExpression: Expression
     ): Expression? {
-        val qualifierExpression = context.qualifierExpression ?: return null
+        val qualifier = context.qualifierExpr
         if (argumentExpression is NumberLiteral && argumentExpression.number == 0) {
-            return Get(element, element.textRange, qualifierExpression, argumentExpression, Style.FIRST)
+            return Get(element, element.textRange, qualifier, argumentExpression, Style.FIRST)
         } else if (argument is PsiBinaryExpression) {
-            val position = getSlicePosition(element, qualifierExpression, argument, context.document)
+            val position = getSlicePosition(element, qualifier, argument, context.document)
             if (position != null && position.number == -1) {
-                return Get(element, element.textRange, qualifierExpression, argumentExpression, Style.LAST)
+                return Get(element, element.textRange, qualifier, argumentExpression, Style.LAST)
             }
         }
-        return Get(element, element.textRange, qualifierExpression, argumentExpression, Style.NORMAL)
+        return Get(element, element.textRange, qualifier, argumentExpression, Style.NORMAL)
     }
 
 }

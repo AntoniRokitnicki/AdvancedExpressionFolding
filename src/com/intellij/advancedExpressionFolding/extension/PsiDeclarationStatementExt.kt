@@ -5,7 +5,7 @@ import com.intellij.advancedExpressionFolding.expression.custom.DestructuringExp
 import com.intellij.advancedExpressionFolding.expression.custom.WrapperExpression
 import com.intellij.psi.*
 
-object PsiDeclarationStatementEx : BaseExtension() {
+object PsiDeclarationStatementExt : BaseExtension() {
 
     @JvmStatic
     fun createExpression(

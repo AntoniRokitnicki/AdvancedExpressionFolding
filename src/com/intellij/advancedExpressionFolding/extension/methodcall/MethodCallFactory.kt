@@ -77,14 +77,14 @@ object MethodCallFactory : BaseExtension(){
             }.map {
                 it.classNames
             }.distinct().flatten()
-            .toList() + Consts.SUPPORTED_CLASSES
+            .toList()
 
     private fun createSupportedMethods(): List<MethodName> =
         methodCallMap.values
             .flatten()
             .map {
                 it.methodNames
-            }.flatten() + Consts.SUPPORTED_METHODS
+            }.flatten()
 
     private fun createClasslessMethods(): List<MethodName> =
         methodCallMap.values

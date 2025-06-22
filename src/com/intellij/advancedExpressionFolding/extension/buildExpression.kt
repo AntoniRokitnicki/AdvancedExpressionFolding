@@ -4,7 +4,6 @@ import com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpre
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.SemicolonExpression
 import com.intellij.advancedExpressionFolding.expression.TypeCast
-import com.intellij.advancedExpressionFolding.extension.TryStatementExt.createSneakyThrows
 import com.intellij.advancedExpressionFolding.extension.methodcall.MethodCallExpressionExt
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.util.TextRange
@@ -61,7 +60,7 @@ class TokenBuilder : BuildExpression<PsiJavaToken>(PsiJavaToken::class.java) {
         element.tokenType != JavaTokenType.SEMICOLON || element.isWritable
 
     override fun buildExpression(element: PsiJavaToken, document: Document, synthetic: Boolean) =
-        TokenExt.createExpression(element)
+        PsiJavaTokenExt.createExpression(element)
 }
 
 class CatchSectionBuilder : BuildExpression<PsiCatchSection>(PsiCatchSection::class.java) {
@@ -172,7 +171,7 @@ class TypeCastExpressionBuilder : BuildExpression<PsiTypeCastExpression>(PsiType
 
 class DeclarationStatementBuilder : BuildExpression<PsiDeclarationStatement>(PsiDeclarationStatement::class.java) {
     override fun buildExpression(element: PsiDeclarationStatement, document: Document, synthetic: Boolean) =
-        PsiDeclarationStatementEx.createExpression(element)
+        PsiDeclarationStatementExt.createExpression(element)
 }
 
 class VariableBuilder : BuildExpression<PsiVariable>(PsiVariable::class.java) {
@@ -215,12 +214,12 @@ class MethodBuilder : BuildExpression<PsiMethod>(PsiMethod::class.java) {
 
 class KeywordBuilder : BuildExpression<PsiKeyword>(PsiKeyword::class.java) {
     override fun buildExpression(element: PsiKeyword, document: Document, synthetic: Boolean) =
-        KeywordExt.createExpression(element)
+        PsiKeywordExt.createExpression(element)
 }
 
 class TryStatementBuilder : BuildExpression<PsiTryStatement>(PsiTryStatement::class.java) {
     override fun buildExpression(element: PsiTryStatement, document: Document, synthetic: Boolean) =
-        element.createSneakyThrows()
+        PsiTryStatementExt.createExpression(element)
 
 }
 

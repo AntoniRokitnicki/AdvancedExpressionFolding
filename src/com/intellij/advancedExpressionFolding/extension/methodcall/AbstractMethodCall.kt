@@ -14,6 +14,10 @@ abstract class AbstractMethodCall : BaseExtension() {
         element: PsiMethodCallExpression,
         context: Context
     ): Expression? {
+        if (context.qualifierExprNullable == null && this is NeedsQualifier) {
+            return null
+        }
+
         methodNames.firstOrNull {
             it == context.methodName
         } ?: return null

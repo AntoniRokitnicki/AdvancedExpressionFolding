@@ -1,5 +1,3 @@
-@file:Suppress("UnstableApiUsage")
-
 package com.intellij.advancedExpressionFolding.extension
 
 import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings

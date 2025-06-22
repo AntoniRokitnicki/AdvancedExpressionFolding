@@ -286,7 +286,7 @@ public <fold text='🏛️' expand='false'>class</fold> EmojifyTestData {
 
     public <fold text='🏛️' expand='false'>class</fold> StaticImportUsage <fold text='{...}' expand='true'>{
         public <fold text='💀' expand='false'>void</fold> useStaticImport()<fold text=' { ' expand='false'> {
-            </fold><fold text='🔢' expand='false'>int</fold> max = <fold text='max(' expand='false'>java.lang.Math.max(</fold>5, 10<fold text=')' expand='false'>)</fold>;<fold text=' }' expand='false'>
+            </fold><fold text='🔢' expand='false'>int</fold> max = java.lang.Math.max(5, 10);<fold text=' }' expand='false'>
         }</fold>
     }</fold>
 
@@ -413,7 +413,7 @@ public <fold text='🏛️' expand='false'>class</fold> EmojifyTestData {
             }</fold>
 
             public <fold text='⚖️' expand='false'>double</fold> getRadius()<fold text=' { ' expand='false'> {
-                </fold><fold text='🔙' expand='false'>return</fold> radius;<fold text=' }' expand='false'>
+                <fold text='🔙' expand='false'></fold>return</fold> radius;<fold text=' }' expand='false'>
             }</fold>
         }</fold>
 
@@ -427,7 +427,7 @@ public <fold text='🏛️' expand='false'>class</fold> EmojifyTestData {
             }</fold>
 
             public <fold text='⚖️' expand='false'>double</fold> getLength()<fold text=' { ' expand='false'> {
-                </fold><fold text='🔙' expand='false'>return</fold> length;<fold text=' }' expand='false'>
+                <fold text='🔙' expand='false'></fold>return</fold> length;<fold text=' }' expand='false'>
             }</fold>
 
             public <fold text='⚖️' expand='false'>double</fold> getWidth()<fold text=' { ' expand='false'> {

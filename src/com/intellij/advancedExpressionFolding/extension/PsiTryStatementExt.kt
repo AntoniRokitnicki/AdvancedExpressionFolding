@@ -7,7 +7,9 @@ import com.intellij.psi.PsiStatement
 import com.intellij.psi.PsiTryStatement
 
 
-object TryStatementExt : BaseExtension() {
+object PsiTryStatementExt : BaseExtension() {
+
+    fun createExpression(element: PsiTryStatement) = element.createSneakyThrows()
 
     fun PsiTryStatement.createSneakyThrows(): Expression? {
         if (!experimental || !isSimpleTryCatch()) return null

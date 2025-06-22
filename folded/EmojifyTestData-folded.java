@@ -286,7 +286,7 @@ public 🏛️ EmojifyTestData {
 
     public 🏛️ StaticImportUsage {
         public 💀 useStaticImport() {
-            🔢 max = max(5, 10);
+            🔢 max = java.lang.Math.max(5, 10);
         }
     }
 

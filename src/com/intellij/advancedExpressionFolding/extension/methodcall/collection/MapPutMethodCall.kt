@@ -4,12 +4,13 @@ import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.Put
 import com.intellij.advancedExpressionFolding.extension.methodcall.AbstractMethodCall
 import com.intellij.advancedExpressionFolding.extension.methodcall.Context
+import com.intellij.advancedExpressionFolding.extension.methodcall.NeedsQualifier
 import com.intellij.advancedExpressionFolding.extension.on
 import com.intellij.psi.PsiExpression
 import com.intellij.psi.PsiMethodCallExpression
 import com.intellij.psi.PsiStatement
 
-class MapPutMethodCall : AbstractMethodCall() {
+class MapPutMethodCall : AbstractMethodCall(), NeedsQualifier {
 
     override fun permission() = getExpressionsCollapse
 
@@ -23,9 +24,8 @@ class MapPutMethodCall : AbstractMethodCall() {
         a1Expression: Expression,
         a2Expression: Expression
     ): Expression? {
-        context.qualifierExpression ?: return null
         return (element.parent is PsiStatement).on()?.let {
-            Put(element, element.textRange, context.qualifierExpression, a1Expression, a2Expression)
+            Put(element, element.textRange, context.qualifierExpr, a1Expression, a2Expression)
         }
     }
 
