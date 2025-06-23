@@ -17,7 +17,6 @@ jobs:
             runTest: |
               export DISPLAY=:99.0
               Xvfb -ac :99 -screen 0 1920x1080x16 &
-              ffmpeg -y -video_size 1920x1080 -framerate 15 -f x11grab -i :99.0 recordings/screen.avi &
               export integration=1
               ./gradlew :test --tests "com.intellij.advancedExpressionFolding.IntegrationTest" &
           - os: macos-latest

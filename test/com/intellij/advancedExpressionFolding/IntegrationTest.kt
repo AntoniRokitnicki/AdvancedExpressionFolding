@@ -23,7 +23,6 @@ import com.intellij.ide.starter.runner.Starter
 import com.intellij.ide.starter.screenRecorder.IDEScreenRecorder
 import com.intellij.tools.ide.performanceTesting.commands.*
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable
 import org.junit.jupiter.api.fail
 import org.kodein.di.DI
 import org.kodein.di.bindSingleton
@@ -31,7 +30,7 @@ import java.io.File
 import kotlin.io.path.Path
 import kotlin.time.Duration.Companion.minutes
 
-@EnabledIfEnvironmentVariable(named = "integration", matches = "1")
+//@EnabledIfEnvironmentVariable(named = "integration", matches = "1")
 class IntegrationTest {
 
     init {
