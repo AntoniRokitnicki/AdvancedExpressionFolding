@@ -1,4 +1,4 @@
-name: Run Integration Tests
+name: TODO Run Integration Tests
 
 on: [workflow_dispatch]
 
@@ -19,10 +19,10 @@ jobs:
 
       - name: Build plugin
         shell: bash
-        run: ./gradlew buildPlugin --info --stacktrace
+        run: ./gradlew buildPlugin
 
       - name: Setup Display (Linux)
         if: runner.os == 'Linux'
         uses: coactions/setup-xvfb@v1
         with:
-          run: ./gradlew check --info --stacktrace
+          run: ./gradlew check
