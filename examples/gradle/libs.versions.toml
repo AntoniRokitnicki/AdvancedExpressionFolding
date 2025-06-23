@@ -1,0 +1,41 @@
+[versions]
+# libraries
+annotations = "26.0.1"
+junit = "5.13.1"
+jackson = "2.19.1"
+jsr305 = "3.0.2"
+pioneer = "2.3.0"
+lombok = "1.18.38"
+kodein = "7.26.1"
+# plugins
+changelog = "2.2.1"
+intelliJPlatform = "2.6.0"
+kotlin = "2.1.21"
+kover = "0.9.1"
+qodana = "2024.3.4"
+lombok-plugin = "8.13.1"
+commons-lang3 = "3.17.0"
+slf4j = "2.0.17"
+
+[libraries]
+annotations = { group = "org.jetbrains", name = "annotations", version.ref = "annotations" }
+junit-jupiter-api = { group = "org.junit.jupiter", name = "junit-jupiter-api", version.ref = "junit" }
+junit-vintage-engine = { group = "org.junit.vintage", name = "junit-vintage-engine" }
+junit-jupiter-engine = { group = "org.junit.jupiter", name = "junit-jupiter-engine", version.ref = "junit" }
+junit-jupiter-params = { group = "org.junit.jupiter", name = "junit-jupiter-params", version.ref = "junit" }
+jackson-dataformat-toml = { group = "com.fasterxml.jackson.dataformat", name = "jackson-dataformat-toml", version.ref = "jackson" }
+jsr305 = { group = "com.google.code.findbugs", name = "jsr305", version.ref = "jsr305" }
+junit-pioneer = { group = "org.junit-pioneer", name = "junit-pioneer", version.ref = "pioneer" }
+kodein-di-conf = { group = "org.kodein.di", name = "kodein-di-conf-jvm", version.ref = "kodein" }
+lombok = { module = "org.projectlombok:lombok", version.ref = "lombok" }
+commons-lang3 = { module = "org.apache.commons:commons-lang3", version.ref = "commons-lang3" }
+slf4j-api = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
+
+
+[plugins]
+changelog = { id = "org.jetbrains.changelog", version.ref = "changelog" }
+intelliJPlatform = { id = "org.jetbrains.intellij.platform", version.ref = "intelliJPlatform" }
+kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
+qodana = { id = "org.jetbrains.qodana", version.ref = "qodana" }
+lombok = { id = "io.freefair.lombok", version.ref = "lombok-plugin" }
