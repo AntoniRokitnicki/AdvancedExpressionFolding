@@ -142,12 +142,12 @@ class IntegrationTest {
 }
 
 inline fun <T> IDEScreenRecorder.record(block: () -> T): T {
-    start()
+    //start()
     return try {
         block()
     } finally {
         Thread.sleep(500)
-        stop()
+        //stop()
     }
 }
 

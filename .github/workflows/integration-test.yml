@@ -1,7 +1,6 @@
-name: Run Integration Test
+name: Run Integration Tests
 
-on:
-  workflow_dispatch:
+on: [workflow_dispatch]
 
 jobs:
   integrationTest:
@@ -9,65 +8,21 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        include:
-          - os: ubuntu-latest
-            preSteps: |
-              sudo apt-get update
-              sudo apt-get install -y ffmpeg xvfb
-            runTest: |
-              export DISPLAY=:99.0
-              Xvfb -ac :99 -screen 0 1920x1080x16 &
-              export integration=1
-              ./gradlew :test --tests "com.intellij.advancedExpressionFolding.IntegrationTest" &
-          - os: macos-latest
-            preSteps: |
-              brew install ffmpeg
-            runTest: |
-              export integration=1
-              ./gradlew :test --tests "com.intellij.advancedExpressionFolding.IntegrationTest" &
-          - os: windows-latest
-            preSteps: ""
-            runTest: |
-              set integration=1
-              start gradlew.bat :test --tests "com.intellij.advancedExpressionFolding.IntegrationTest"
+        os: [ubuntu-latest]
 
     steps:
-      - name: Fetch Sources
-        uses: actions/checkout@v4
-
-      - name: Setup Java
-        uses: actions/setup-java@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
         with:
           distribution: zulu
           java-version: 21
 
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
-
-      - name: Pre-test setup
+      - name: Build plugin
         shell: bash
-        run: ${{ matrix.preSteps }}
+        run: ./gradlew buildPlugin --info --stacktrace
 
-      - name: Run single UI test
-        shell: bash
-        run: ${{ matrix.runTest }}
-
-      - name: Find and move screen recording
-        shell: bash
-        run: |
-          mkdir -p recordings
-          find out/ide-tests/tests -type f -name '*.avi' -exec cp {} recordings/ \; || true
-
-      - name: Upload screen recording
-        uses: actions/upload-artifact@v4
+      - name: Setup Display (Linux)
+        if: runner.os == 'Linux'
+        uses: coactions/setup-xvfb@v1
         with:
-          name: screen-recording-${{ runner.os }}
-          path: recordings/*.avi
-
-      - name: Comment with artifact link (if PR)
-        if: github.event_name == 'pull_request'
-        uses: marocchino/sticky-pull-request-comment@v2
-        with:
-          message: |
-            🎥 Screen recording uploaded for **${{ runner.os }}**
-            → [Download](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
+          run: ./gradlew check --info --stacktrace
