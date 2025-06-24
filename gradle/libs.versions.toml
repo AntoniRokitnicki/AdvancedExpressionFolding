@@ -1,7 +1,7 @@
 [versions]
 # libraries
 annotations = "26.0.1"
-junit = "5.13.1"
+junit = "5.13.2"
 jackson = "2.19.1"
 jsr305 = "3.0.2"
 pioneer = "2.3.0"
