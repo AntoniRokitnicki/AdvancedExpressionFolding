@@ -18,7 +18,6 @@ import com.intellij.ide.starter.models.TestCase
 import com.intellij.ide.starter.plugins.PluginConfigurator
 import com.intellij.ide.starter.project.LocalProjectInfo
 import com.intellij.ide.starter.runner.IDECommandLine
-import com.intellij.ide.starter.runner.IDERunContext
 import com.intellij.ide.starter.runner.Starter
 import com.intellij.ide.starter.screenRecorder.IDEScreenRecorder
 import com.intellij.tools.ide.performanceTesting.commands.*
@@ -79,6 +78,9 @@ class IntegrationTest {
                 it.importGradleProject()
                 it.awaitCompleteProjectConfiguration()
                 it.waitForSmartMode()
+            }
+            execute {
+                it.searchEverywhere(textToType = "Zen Mode", selectFirst = true)
             }
             recorder.record {
                 openFiles()
@@ -165,12 +167,5 @@ private fun init(testName: String): IDETestContext = Starter.newContext(
         ?.absolutePath ?: "No zip files found"
     val pathToPlugin = latestZipFile
     PluginConfigurator(this).installPluginFromPath(Path(pathToPlugin))
-    IDERunContext(this)
-
-}.applyVMOptionsPatch {
-    //addSystemProperty("sun.java2d.dpiaware", "false")
-    //addSystemProperty("ide.window.system.frame.decorated", "false")
-    addSystemProperty("Idea.Is.In.FullScreen.Mode.Now", "true")
-    addSystemProperty("ide.window.size", "1600x900")
 }
 
