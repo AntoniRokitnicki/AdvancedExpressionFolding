@@ -1,12 +1,17 @@
 package com.intellij.advancedExpressionFolding.settings
 
 import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings
+import com.intellij.advancedExpressionFolding.UpdateFoldedTextColorsAction
 import com.intellij.application.options.CodeStyle
 import com.intellij.application.options.editor.EditorOptionsProvider
 import com.intellij.icons.AllIcons
 import com.intellij.ide.BrowserUtil
+import com.intellij.ide.DataManager
 import com.intellij.ide.HelpTooltip
 import com.intellij.ide.impl.ProjectUtil
+import com.intellij.openapi.actionSystem.ActionPlaces
+import com.intellij.openapi.actionSystem.ActionUiKind
+import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.command.WriteCommandAction
 import com.intellij.openapi.fileEditor.FileEditorManager
 import com.intellij.openapi.project.Project
@@ -14,12 +19,15 @@ import com.intellij.openapi.roots.ProjectRootManager
 import com.intellij.openapi.ui.DialogPanel
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.openapi.vfs.encoding.EncodingProjectManager
+import com.intellij.ui.JBColor
 import com.intellij.ui.components.ActionLink
 import com.intellij.ui.components.JBCheckBox
 import com.intellij.ui.dsl.builder.Panel
 import com.intellij.ui.dsl.builder.panel
+import java.awt.Color.decode
 import java.awt.FlowLayout
 import java.net.URI
+import javax.swing.JButton
 import javax.swing.JPanel
 import kotlin.reflect.KMutableProperty0
 
@@ -90,6 +98,26 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
     }
 
     override fun createComponent() = panel {
+        row {
+            val themeColor = if (!JBColor.isBright()) decode("#7ca0bb") else decode("#000091")
+            val button =
+                JButton("Apply folded color: ${if (!JBColor.isBright()) "soft blue" else "dark navy"}")
+            button.foreground = themeColor
+            button.addActionListener {
+                val action = UpdateFoldedTextColorsAction()
+                val dataContext = DataManager.getInstance().dataContextFromFocusAsync.blockingGet(200)
+                val event = AnActionEvent.createEvent(
+                    action,
+                    dataContext!!,
+                    action.templatePresentation.clone(),
+                    ActionPlaces.UNKNOWN,
+                    ActionUiKind.NONE,
+                    null
+                )
+                action.actionPerformed(event)
+            }
+            cell(button)
+        }
         row {
             cell(createDownloadExamplesLink())
         }

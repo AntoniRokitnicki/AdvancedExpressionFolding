@@ -67,6 +67,11 @@
             <keyboard-shortcut first-keystroke="alt Y" keymap="Mac OS X 10.5+" replace-all="true"/>
         </action>
 
+        <action
+                id="com.intellij.advancedExpressionFolding.UpdateFoldedTextColorsAction"
+                class="com.intellij.advancedExpressionFolding.UpdateFoldedTextColorsAction"
+                text="Update Folded Text Colors"
+                description="Updates folded text color based on current theme"/>
     </actions>
 
     <extensionPoints>
