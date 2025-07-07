@@ -25,7 +25,7 @@
 [![Marketplace Version](https://img.shields.io/jetbrains/plugin/v/com.github.advanced-java-folding2.svg)](https://plugins.jetbrains.com/plugin/23659-advanced-java-folding-2-fork-)
 [![Downloads](https://img.shields.io/jetbrains/plugin/d/com.github.advanced-java-folding2.svg)](https://plugins.jetbrains.com/plugin/23659-advanced-java-folding-2-fork-)
 ![GitHub Release Date](https://img.shields.io/github/release-date/AntoniRokitnicki/AdvancedExpressionFolding)
-[![GitHub commits since latest release](https://img.shields.io/github/commits-since/AntoniRokitnicki/AdvancedExpressionFolding/latest)](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v3.7.0...main)
+[![GitHub commits since latest release](https://img.shields.io/github/commits-since/AntoniRokitnicki/AdvancedExpressionFolding/latest)](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v3.8.0...main)
 <!-- https://plugins.jetbrains.com/api/plugins/23659/updates?channel=&size=8 -->
 
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/AntoniRokitnicki/AdvancedExpressionFolding)
@@ -44,6 +44,9 @@
 
 <p>For more information, read the <a href="https://medium.com/@andrey_cheptsov/making-java-code-easier-to-read-without-changing-it-adeebd5c36de" target="_blank">blog post</a>.</p>
 
+## 3.8.0 ##
+
+- add button to apply folded text color based on current theme (blue/navy) in settings
 
 ## 3.7.0 ##
 

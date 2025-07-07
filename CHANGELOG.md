@@ -4,6 +4,11 @@
 
 ## [Unreleased]
 
+## [3.8.0] - 2025-07-07
+
+- make compatible with 252 eap
+- add button to apply folded text color based on current theme (blue/navy) in settings
+
 ## [3.7.0] - 2025-06-09
 
 - [expressionFunc] methods returning literals are now more compact
@@ -319,7 +324,8 @@ Improved handling of multi-line log messages
 
 ## [0.0.1]
 
-[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v3.7.0...HEAD
+[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v3.8.0...HEAD
+[3.8.0]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v3.7.0...v3.8.0
 [3.7.0]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v3.6.0...v3.7.0
 [3.6.0]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v3.5.0...v3.6.0
 [3.5.0]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v3.4.1...v3.5.0
