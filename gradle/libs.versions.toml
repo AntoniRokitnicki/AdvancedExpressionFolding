@@ -14,7 +14,7 @@ kotlin = "2.2.0"
 kover = "0.9.1"
 qodana = "2024.3.4"
 lombok-plugin = "8.14"
-commons-lang3 = "3.17.0"
+commons-lang3 = "3.18.0"
 slf4j = "2.0.17"
 
 [libraries]
