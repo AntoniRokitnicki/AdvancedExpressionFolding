@@ -5,6 +5,7 @@ import com.intellij.advancedExpressionFolding.expression.IGetter
 import com.intellij.advancedExpressionFolding.expression.INameable
 import com.intellij.advancedExpressionFolding.expression.Variable
 import com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression
+import com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression
 import com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod
 import com.intellij.openapi.editor.Document
 import com.intellij.psi.*
@@ -25,7 +26,12 @@ object FieldShiftExt : BaseExtension() {
         val leftText =
             element.lExpression.asRefExpr()?.referenceNameElement?.text ?: return null
 
-        val rightExp = BuildExpressionExt.getAnyExpression(right, document)
+        val rightExp = BuildExpressionExt.getAnyExpression(right, document).run {
+            asInstance<CheckNotNullExpression>()?.run {
+                argumentExpression
+            } ?: this
+        }
+
         val rightText = if (rightExp is INameable) {
             rightExp.name
         } else {

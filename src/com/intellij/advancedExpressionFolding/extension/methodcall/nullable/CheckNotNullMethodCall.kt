@@ -62,7 +62,8 @@ class CheckNotNullMethodCall : AbstractMethodCall() {
             preFirstArgumentRange,
             "",
             postFirstArgumentSuffix,
-            isMethodParameterWrappable
+            isMethodParameterWrappable,
+            argumentExpression
         )
     }
 

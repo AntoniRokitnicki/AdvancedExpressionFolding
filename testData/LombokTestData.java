@@ -711,7 +711,7 @@ import java.util.logging.Logger;</fold>
                 // comment
             }</fold></fold>
         }</fold>
-        // comment hidden, since its common and provides no value
+        // comment hidden as it is common and adds no meaningful value
         <fold text='@NoArgsConstructor(private) p' expand='false'>p</fold>ublic class PrivateNoArgsConstructorComment <fold text='{...}' expand='true'>{<fold text='' expand='false'>
             </fold><fold text='' expand='false'>private PrivateNoArgsConstructorComment() <fold text='{}' expand='true'>{
                 // comment

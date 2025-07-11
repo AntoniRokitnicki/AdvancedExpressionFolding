@@ -350,8 +350,15 @@ open class FoldingTest : BaseTest() {
      * [data.NullableAnnotationCheckNotNullTestData]
      */
     @Test
-    open fun nullableAnnotationCheckNotNullTestData() {
-        doFoldingTest(state::nullable, state::lombok)
+    open fun nullableAnnotationCheckNotNullTestData() { //TODO: folding to constructor should not depend on lombok
+        doFoldingTest(state::nullable, state::lombok, state::getSetExpressionsCollapse)
+    }
+    /**
+     * [data.NullableAnnotationCheckNotNullFieldShiftTestData]
+     */
+    @Test
+    open fun nullableAnnotationCheckNotNullFieldShiftTestData() {
+        doFoldingTest(state::nullable, state::lombok, state::getExpressionsCollapse, state::fieldShift)
     }
 
     /**

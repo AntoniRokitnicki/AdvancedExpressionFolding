@@ -5,5 +5,10 @@ import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiElement
 
 class CheckNotNullExpression(
-    element: PsiElement, textRange: TextRange, text: String, child: Expression?, val isMethodParameterWrappable: Boolean = false
+    element: PsiElement,
+    textRange: TextRange,
+    text: String,
+    child: Expression?,
+    val isMethodParameterWrappable: Boolean = false,
+    val argumentExpression: Expression? = null
 ) : AbstractSingleChildExpression(element, textRange, text, child)

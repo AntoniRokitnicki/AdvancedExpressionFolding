@@ -44,6 +44,10 @@
 
 <p>For more information, read the <a href="https://medium.com/@andrey_cheptsov/making-java-code-easier-to-read-without-changing-it-adeebd5c36de" target="_blank">blog post</a>.</p>
 
+## Unreleased ##
+
+- [[fieldshift] Preconditions.checkNotNull now supported](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/folded/NullableAnnotationCheckNotNullFieldShiftTestData-folded.java)
+
 ## 3.8.0 ##
 
 - add button to apply folded text color based on current theme (blue/navy) in settings

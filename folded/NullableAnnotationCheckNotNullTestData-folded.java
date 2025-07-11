@@ -8,26 +8,30 @@ import java.util.HashMap;
 public class NullableAnnotationCheckNotNullTestData {
 
     class PreconditionsCheck {
-        public void main(String!!! args, Object!!! o, Long!!! l, Preconditions z) {args!!;l!!;
-            Preconditions.checkNotNull(z.getData());o!!;
+        public void main(String!!! args, Object o, Long!!! l, Preconditions z) {args!!;l!!;
+            z.data!!;
+            o!!;
             System.out.println();
             new HashMap<String, String>().put("a", "b");
         }
 
-        public void mainMsgs(String!!! args, Object!!! o, Long!!! l, Preconditions z) {args!!;l!!;
-            Preconditions.checkNotNull(z.getData(), "o is null");o!!;
+        public void mainMsgs(String!!! args, Object o, Long!!! l, Preconditions z) {args!!;l!!;
+            z.data!!;
+            o!!;
             System.out.println();
             new HashMap<String, String>().put("a", "b");
         }
 
-        public void mainConflictAnnotations(String!!! args, Object!!! o, Long!!! l, Preconditions? z) {args!!;l!!;
-            Preconditions.checkNotNull(z.getData());o!!;
+        public void mainConflictAnnotations(String!!! args, Object? o, Long!!! l, Preconditions? z) {args!!;l!!;
+            z.data!!;
+            o!!;
             System.out.println();
             new HashMap<String, String>().put("a", "b");
         }
 
-        public void mainConflictAnnotationsWithMsg(String!!! args, Object!!! o, Long!!! l, Preconditions? z) {args!!;l!!;
-            Preconditions.checkNotNull(z.getData(), "o is null");o!!;
+        public void mainConflictAnnotationsWithMsg(String!!! args, Object? o, Long!!! l, Preconditions? z) {args!!;l!!;
+            z.data!!;
+            o!!;
             new HashMap<String, String>().put("a", "b");
             System.out.println();
         }
@@ -42,7 +46,7 @@ public class NullableAnnotationCheckNotNullTestData {
         public void main1(String args, Object o, Long l, Preconditions z) {
             this.args = args!!;
             this.l = l!!;
-            this.data = Preconditions.checkNotNull(z.getData());
+            this.data = z.data!!;
             this.o = o!!;
             new HashMap<String, String>().put("a", "b");
             printStatus();
@@ -51,7 +55,7 @@ public class NullableAnnotationCheckNotNullTestData {
         public void mainMsgs(String args, Object o, Long l, Preconditions z) {
             this.args = args!!;
             this.l = l!!;
-            this.data = Preconditions.checkNotNull(z.getData(), "saaa is null");
+            this.data = z.data!!;
             this.o = o!!;
             new HashMap<String, String>().put("a", "b");
             printStatus();
@@ -60,7 +64,7 @@ public class NullableAnnotationCheckNotNullTestData {
         public void mainNullable(String? args, Object? o, Long? l, Preconditions? z) {
             this.args = args!!;
             this.l = l!!;
-            this.data = Preconditions.checkNotNull(z.getData());
+            this.data = z.data!!;
             this.o = o!!;
             new HashMap<String, String>().put("a", "b");
             printStatus();
@@ -69,7 +73,7 @@ public class NullableAnnotationCheckNotNullTestData {
         public void mainMsgsNullable(String? args, Object? o, Long? l, Preconditions? z) {
             this.args = args!!;
             this.l = l!!;
-            this.data = Preconditions.checkNotNull(z.getData(), "saaa is null");
+            this.data = z.data!!;
             this.o = o!!;
             new HashMap<String, String>().put("a", "b");
             printStatus();

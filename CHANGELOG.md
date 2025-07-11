@@ -4,6 +4,8 @@
 
 ## [Unreleased]
 
+- [fieldshift] Preconditions.checkNotNull now supported
+
 ## [3.8.0] - 2025-07-07
 
 - make compatible with 252 eap
