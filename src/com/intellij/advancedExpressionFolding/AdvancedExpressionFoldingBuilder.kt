@@ -8,6 +8,7 @@ import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.extension.BuildExpressionExt
 import com.intellij.advancedExpressionFolding.extension.CacheExt.invalidateExpired
 import com.intellij.advancedExpressionFolding.extension.Keys
+import com.intellij.advancedExpressionFolding.extension.asInstance
 import com.intellij.lang.ASTNode
 import com.intellij.lang.folding.FoldingBuilderEx
 import com.intellij.lang.folding.FoldingDescriptor
@@ -20,7 +21,7 @@ import com.intellij.psi.PsiJavaFile
 
 class AdvancedExpressionFoldingBuilder(private val config: IConfig = getInstance().state) : FoldingBuilderEx(), IConfig by config {
     override fun buildFoldRegions(element: PsiElement, document: Document, quick: Boolean): Array<FoldingDescriptor> {
-        if (!globalOn) {
+        if (!globalOn || isFoldingFile(element)) {
             return Expression.EMPTY_ARRAY
         }
         if (debugFolding) {
@@ -37,6 +38,9 @@ class AdvancedExpressionFoldingBuilder(private val config: IConfig = getInstance
         }
         return store.store(foldingDescriptors, document)
     }
+
+    private fun isFoldingFile(element: PsiElement) =
+        element.asInstance<PsiJavaFile>()?.name?.endsWith("-folded.java") != null
 
     private fun readCache(
         element: PsiElement,
