@@ -9,7 +9,9 @@ import com.intellij.ui.JBColor
 import java.awt.Color.decode
 
 class UpdateFoldedTextColorsAction : AnAction() {
-    override fun actionPerformed(event: AnActionEvent) {
+    override fun actionPerformed(event: AnActionEvent) = changeFoldingColors()
+
+    fun changeFoldingColors() {
         val scheme = EditorColorsManager.getInstance().globalScheme
         val textAttributes = scheme.getAttributes(EditorColors.FOLDED_TEXT_ATTRIBUTES)
         val foregroundColor = if (!JBColor.isBright()) {

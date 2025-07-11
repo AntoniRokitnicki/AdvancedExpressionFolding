@@ -6,12 +6,8 @@ import com.intellij.application.options.CodeStyle
 import com.intellij.application.options.editor.EditorOptionsProvider
 import com.intellij.icons.AllIcons
 import com.intellij.ide.BrowserUtil
-import com.intellij.ide.DataManager
 import com.intellij.ide.HelpTooltip
 import com.intellij.ide.impl.ProjectUtil
-import com.intellij.openapi.actionSystem.ActionPlaces
-import com.intellij.openapi.actionSystem.ActionUiKind
-import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.command.WriteCommandAction
 import com.intellij.openapi.fileEditor.FileEditorManager
 import com.intellij.openapi.project.Project
@@ -99,22 +95,11 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
 
     override fun createComponent() = panel {
         row {
-            val themeColor = if (!JBColor.isBright()) decode("#7ca0bb") else decode("#000091")
             val button =
                 JButton("Apply folded color: ${if (!JBColor.isBright()) "soft blue" else "dark navy"}")
-            button.foreground = themeColor
+            button.foreground = if (!JBColor.isBright()) decode("#7ca0bb") else decode("#000091")
             button.addActionListener {
-                val action = UpdateFoldedTextColorsAction()
-                val dataContext = DataManager.getInstance().dataContextFromFocusAsync.blockingGet(200)
-                val event = AnActionEvent.createEvent(
-                    action,
-                    dataContext!!,
-                    action.templatePresentation.clone(),
-                    ActionPlaces.UNKNOWN,
-                    ActionUiKind.NONE,
-                    null
-                )
-                action.actionPerformed(event)
+                UpdateFoldedTextColorsAction().changeFoldingColors()
             }
             cell(button)
         }
