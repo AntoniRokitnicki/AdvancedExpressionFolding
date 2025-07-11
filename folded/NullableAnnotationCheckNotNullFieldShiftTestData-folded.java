@@ -16,32 +16,32 @@ public class NullableAnnotationCheckNotNullFieldShiftTestData {
         public void main1(String args, Object o, Long l, Preconditions z) {
             this.args = <<!!;
             this.l = <<!!;
-            this.data = Preconditions.checkNotNull(z.getData());
+            this.data = z.<<!!;
             this.o = <<!!;
-            new HashMap<String, String>()["a"] = "b";
+            new HashMap<String, String>().put("a", "b");
             printStatus();
         }
 
         public void mainMsgs(String args, Object o, Long l, Preconditions z) {
             this.args = <<!!;
             this.l = <<!!;
-            this.data = Preconditions.checkNotNull(z.getData(), "saaa is null");
+            this.data = z.<<!!;
             this.o = <<!!;
-            new HashMap<String, String>()["a"] = "b";
+            new HashMap<String, String>().put("a", "b");
             printStatus();
         }
 
         public void mainNullable(String? args, Object? o, Long? l, Preconditions? z) {
             this.args = <<!!;
             this.l = <<!!;
-            this.data = Preconditions.checkNotNull(z.getData());
+            this.data = z.<<!!;
             this.o = <<!!;
-            new HashMap<String, String>()["a"] = "b";
+            new HashMap<String, String>().put("a", "b");
             printStatus();
         }
 
         private void printStatus() {
-            new HashMap<String, String>()["a"] = "b";
+            new HashMap<String, String>().put("a", "b");
         }
     }
 

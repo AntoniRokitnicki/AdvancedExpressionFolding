@@ -358,7 +358,7 @@ open class FoldingTest : BaseTest() {
      */
     @Test
     open fun nullableAnnotationCheckNotNullFieldShiftTestData() {
-        doFoldingTest(state::nullable, state::getExpressionsCollapse, state::fieldShift)
+        doFoldingTest(state::nullable, state::getSetExpressionsCollapse, state::fieldShift)
     }
 
     /**
