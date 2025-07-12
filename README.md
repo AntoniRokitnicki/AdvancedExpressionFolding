@@ -14,7 +14,7 @@
 
 [![Java](https://img.shields.io/badge/java-17-blue.svg)](https://plugins.jetbrains.com/docs/intellij/setting-up-theme-environment.html#add-jdk-and-intellij-platform-plugin-sdk)
 [![Kotlin](https://img.shields.io/badge/dynamic/toml?url=https%3A%2F%2Fraw.githubusercontent.com%2FAntoniRokitnicki%2FAdvancedExpressionFolding%2Fmain%2Fgradle%2Flibs.versions.toml&query=%24.versions.kotlin&label=kotlin)](https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-stdlib)
-[![Gradle](https://img.shields.io/badge/gradle-8.13-blue.svg)](https://gradle.org/releases/)
+[![Gradle](https://img.shields.io/badge/gradle-8.14.2-blue.svg)](https://gradle.org/releases/)
 
 [![Junit](https://img.shields.io/badge/dynamic/toml?url=https%3A%2F%2Fraw.githubusercontent.com%2FAntoniRokitnicki%2FAdvancedExpressionFolding%2Fmain%2Fgradle%2Flibs.versions.toml&query=%24.versions.junit&label=junit)](https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api)
 [![Jackson toml](https://img.shields.io/badge/dynamic/toml?url=https%3A%2F%2Fraw.githubusercontent.com%2FAntoniRokitnicki%2FAdvancedExpressionFolding%2Fmain%2Fgradle%2Flibs.versions.toml&query=%24.versions.jackson&label=jackson%20toml)](https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-toml)
