@@ -48,6 +48,7 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
         val lombokPatternOff: String?
         val overrideHide: Boolean
         val suppressWarningsHide: Boolean
+        val pseudoAnnotations: Boolean
         // NEW OPTION VAL
 
         var experimental: Boolean
@@ -127,6 +128,7 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
         override var lombokPatternOff: String? = null,
         override var overrideHide: Boolean = true,
         override var suppressWarningsHide: Boolean = true,
+        override var pseudoAnnotations: Boolean = true,
         // NEW OPTION VAR
 
         override var memoryImprovement: Boolean = true,

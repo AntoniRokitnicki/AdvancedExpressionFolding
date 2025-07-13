@@ -1,5 +1,8 @@
 package com.intellij.advancedExpressionFolding
 
+import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.Companion.getInstance
+import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.IState
+import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.State
 import com.intellij.advancedExpressionFolding.extension.BaseExtension.Companion.isVoid
 import com.intellij.codeInsight.completion.*
 import com.intellij.codeInsight.lookup.AutoCompletionPolicy
@@ -10,7 +13,7 @@ import com.intellij.psi.*
 import com.intellij.psi.util.PsiTreeUtil
 import com.intellij.util.ProcessingContext
 
-class MainAnnotationCompletionContributor : CompletionContributor() {
+class MainAnnotationCompletionContributor(private val state: State = getInstance().state) : CompletionContributor(), IState by state {
     init {
         extend(
             CompletionType.BASIC,
@@ -25,6 +28,8 @@ class MainAnnotationCompletionContributor : CompletionContributor() {
                     context: ProcessingContext,
                     result: CompletionResultSet
                 ) {
+                    if (!pseudoAnnotations) return
+
                     val lookup = LookupElementBuilder.create("Main")
                         .withLookupString("@Main")
                         .withPresentableText("@Main")
