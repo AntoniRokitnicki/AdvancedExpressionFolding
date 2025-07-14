@@ -1,1 +1,1 @@
-./option-code-generator.main.kts -DvarName=overrideHide -DvarText="Hide @Override annotation"
+./option-code-generator.main.kts -DvarName=pseudoAnnotationsMain -DvarText="Pseudo-annotations: @Main"
