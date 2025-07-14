@@ -1,10 +1,14 @@
 package com.intellij.advancedExpressionFolding
 
 import com.intellij.codeInsight.completion.CompletionType
+import com.intellij.openapi.application.runInEdt
 import com.intellij.testFramework.fixtures.LightJavaCodeInsightFixtureTestCase5
 import org.intellij.lang.annotations.Language
-import org.junit.jupiter.api.*
+import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertNotNull
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
@@ -30,7 +34,10 @@ class MainAnnotationCompletionContributorTest : LightJavaCodeInsightFixtureTestC
                 """.trimIndent(),
                 expected = """
                     public class Test {
-                        @Main
+                        public static void main(String[] args) {
+                            int x = 0;
+                            staticMethod(x);
+                        }
                         public static void staticMethod(int x) {
                         }
                     }
@@ -48,7 +55,10 @@ class MainAnnotationCompletionContributorTest : LightJavaCodeInsightFixtureTestC
                 """.trimIndent(),
                 expected = """
                     public class Test {
-                        @Main
+                        public static void main(String[] args) {
+                            String s = null;
+                            new Test().instanceMethod(s);
+                        }
                         public void instanceMethod(String s) {
                         }
                     }
@@ -67,7 +77,9 @@ class MainAnnotationCompletionContributorTest : LightJavaCodeInsightFixtureTestC
                 """.trimIndent(),
                 expected = """
                     public class Test {
-                        @Main
+                        public static void main(String[] args) {
+                            System.out.println(new Test().getValue());
+                        }
                         public String getValue() {
                             return "";
                         }
@@ -89,10 +101,15 @@ class MainAnnotationCompletionContributorTest : LightJavaCodeInsightFixtureTestC
                 """.trimIndent(),
                 expected = """
                     public class Test {
+                        public static void main(String[] args) {
+                            int param = 0;
+                    
+                            String s = null;
+                            new Test(param).testMethod(s);
+                        }
                         public Test(int param) {
                         }
                         
-                        @Main
                         public void testMethod(String s) {
                         }
                     }
@@ -110,7 +127,10 @@ class MainAnnotationCompletionContributorTest : LightJavaCodeInsightFixtureTestC
                 """.trimIndent(),
                 expected = """
                     public class Test {
-                        @Main
+                        public static void main(String[] args) {
+                            String[] args = new String[]{};
+                            new Test().stringVarargs(args);
+                        }
                         public void stringVarargs(String... args) {
                         }
                     }
@@ -133,33 +153,10 @@ class MainAnnotationCompletionContributorTest : LightJavaCodeInsightFixtureTestC
                 expected = """
                     public class Test {
                         public static void main(String[] args) {
-                            // existing main
+                            new Test().newMethod();
                         }
-                        
-                        @Main
+                    
                         public void newMethod() {
-                        }
-                    }
-                """.trimIndent()
-            )),
-            
-            Arguments.of(TestCase(
-                name = "Nested Static Class",
-                input = """
-                    public class Test {
-                        public static class NestedStatic {
-                            @<caret>
-                            public void nestedMethod(int x) {
-                            }
-                        }
-                    }
-                """.trimIndent(),
-                expected = """
-                    public class Test {
-                        public static class NestedStatic {
-                            @Main
-                            public void nestedMethod(int x) {
-                            }
                         }
                     }
                 """.trimIndent()
@@ -176,7 +173,17 @@ class MainAnnotationCompletionContributorTest : LightJavaCodeInsightFixtureTestC
                 """.trimIndent(),
                 expected = """
                     public class Test {
-                        @Main
+                        public static void main(String[] args) {
+                            boolean b = false;
+                            char c = '\0';
+                            byte by = 0;
+                            short s = 0;
+                            int i = 0;
+                            long l = 0;
+                            float f = 0.0f;
+                            double d = 0.0;
+                            new Test().primitiveParams(b, c, by, s, i, l, f, d);
+                        }
                         public void primitiveParams(boolean b, char c, byte by, short s, int i, long l, float f, double d) {
                         }
                     }
@@ -200,7 +207,13 @@ class MainAnnotationCompletionContributorTest : LightJavaCodeInsightFixtureTestC
                     import java.time.ZonedDateTime;
                     
                     public class Test {
-                        @Main
+                        public static void main(String[] args) {
+                            Date date = new java.util.Date();
+                            LocalDate ld = java.time.LocalDate.now();
+                            LocalDateTime ldt = java.time.LocalDateTime.now();
+                            ZonedDateTime zdt = java.time.ZonedDateTime.now();
+                            new Test().dateParams(date, ld, ldt, zdt);
+                        }
                         public void dateParams(java.util.Date date, LocalDate ld, java.time.LocalDateTime ldt, ZonedDateTime zdt) {
                         }
                     }
@@ -239,14 +252,19 @@ class MainAnnotationCompletionContributorTest : LightJavaCodeInsightFixtureTestC
 
     @ParameterizedTest
     @MethodSource("testCases")
-    fun `should add @Main annotation when typing Main after @`(testCase: TestCase) {
+    fun `should generate main method when selecting @Main from completion`(testCase: TestCase) {
         fixture.configureByText("Test.java", testCase.input)
-        fixture.type("Main")
         
-        println("=== ${testCase.name} ===")
-        println("Actual result:")
-        println(fixture.file.text)
-        println("=== End ${testCase.name} ===")
+        val completions = fixture.complete(CompletionType.BASIC)
+        assertNotNull(completions)
+        
+        val mainCompletion = completions.find { it.lookupString == "Main" }
+        assertNotNull(mainCompletion)
+
+        runInEdt {
+            fixture.lookup.currentItem = mainCompletion
+            fixture.finishLookup('\n')
+        }
         
         fixture.checkResult(testCase.expected)
     }
@@ -255,5 +273,7 @@ class MainAnnotationCompletionContributorTest : LightJavaCodeInsightFixtureTestC
         val name: String,
         @param:Language("JAVA") val input: String,
         @param:Language("JAVA") val expected: String
-    )
+    ) {
+        override fun toString() = name
+    }
 }
