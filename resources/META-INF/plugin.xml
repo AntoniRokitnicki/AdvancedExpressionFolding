@@ -7,6 +7,7 @@
 
     <depends>com.intellij.modules.java</depends>
     <depends>com.intellij.modules.platform</depends>
+    <resource-bundle>Bundle</resource-bundle>
 
     <extensions defaultExtensionNs="com.intellij">
         <lang.foldingBuilder language="JAVA"
@@ -26,7 +27,8 @@
         <editorOptionsProvider
                 instance="com.intellij.advancedExpressionFolding.settings.SettingsConfigurable"
                 id="editor.folding.advanced.expression"
-                displayName="Advanced Expression Folding 2"/>
+                key="editor.folding.advanced.expression.displayName"
+                bundle="Bundle"/>
 
         <completion.contributor
                 language="JAVA"
@@ -38,44 +40,34 @@
     </applicationListeners>
 
     <actions>
-        <group id="AdvancedExpressionFolding2Group"
-               text="Advanced Folding: Searches"
-               description="Advanced expression folding search operations"
+        <group id="com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingGroup"
                popup="true">
             <add-to-group group-id="CodeMenu" anchor="last"/>
-            <action id="FindMethodsWithDefaultParametersAction"
-                    class="com.intellij.advancedExpressionFolding.FindMethodsWithDefaultParametersAction"
-                    text="Find Methods with Default Parameters"
-                    description="Searches the project for methods that use default parameter values"/>
+            <action id="com.intellij.advancedExpressionFolding.FindMethodsWithDefaultParametersAction"
+                    class="com.intellij.advancedExpressionFolding.FindMethodsWithDefaultParametersAction"/>
         </group>
 
-        <action id="advanced.folding.toggle.global"
-                class="com.intellij.advancedExpressionFolding.GlobalToggleFoldingAction"
-                text="Advanced Folding: Global" description="Toggle advanced folding globally across all files">
-            <add-to-group group-id="CodeMenu" anchor="last"/>
-        </action>
+        <action id="com.intellij.advancedExpressionFolding.GlobalToggleFoldingAction"
+                class="com.intellij.advancedExpressionFolding.GlobalToggleFoldingAction"/>
 
-        <action id="advanced.folding.toggle.on" class="com.intellij.advancedExpressionFolding.FoldingOnAction"
-                text="Advanced Folding: Activate" description="Activate advanced folding in the current file"
+        <action id="com.intellij.advancedExpressionFolding.FoldingOnAction"
+                class="com.intellij.advancedExpressionFolding.FoldingOnAction"
                 icon="AllIcons.Actions.ArrowExpand">
             <add-to-group group-id="CodeMenu" anchor="last"/>
             <keyboard-shortcut first-keystroke="alt shift F" keymap="$default" replace-all="true"/>
             <keyboard-shortcut first-keystroke="alt T" keymap="Mac OS X 10.5+" replace-all="true"/>
         </action>
 
-        <action id="advanced.folding.toggle.off" class="com.intellij.advancedExpressionFolding.FoldingOffAction"
-                text="Advanced Folding: Deactivate" description="Deactivate advanced folding in the current file"
+        <action id="com.intellij.advancedExpressionFolding.FoldingOffAction"
+                class="com.intellij.advancedExpressionFolding.FoldingOffAction"
                 icon="AllIcons.Actions.ArrowCollapse">
             <add-to-group group-id="CodeMenu" anchor="last"/>
             <keyboard-shortcut first-keystroke="alt shift D" keymap="$default"/>
             <keyboard-shortcut first-keystroke="alt Y" keymap="Mac OS X 10.5+" replace-all="true"/>
         </action>
 
-        <action
-                id="com.intellij.advancedExpressionFolding.UpdateFoldedTextColorsAction"
-                class="com.intellij.advancedExpressionFolding.UpdateFoldedTextColorsAction"
-                text="Update Folded Text Colors"
-                description="Updates folded text color based on current theme"/>
+        <action id="com.intellij.advancedExpressionFolding.UpdateFoldedTextColorsAction"
+                class="com.intellij.advancedExpressionFolding.UpdateFoldedTextColorsAction"/>
     </actions>
 
     <extensionPoints>
@@ -136,7 +128,6 @@
         <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.collection.CollectionsUnmodifiableListMethodCall"/>
         <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.collection.ArraysListMethodCall"/>
 
-
         <!-- Arithmetic implementations -->
         <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.arithmetic.ArithmeticAddMethodCall"/>
         <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.arithmetic.ArithmeticSubtractMethodCall"/>
@@ -187,9 +178,7 @@
         <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.math.MathMinMethodCall"/>
         <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.math.MathMaxMethodCall"/>
         <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.math.MathPowMethodCall"/>
-
     </extensions>
-
 
     <extensions defaultExtensionNs="com.github.advanced-java-folding2">
         <expressionBuilder
