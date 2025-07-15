@@ -27,7 +27,7 @@
     <DebugAllEnabled>false</DebugAllEnabled>
     <RunAsTest>true</RunAsTest>
     <method v="2">
-      <option name="RunConfigurationTask" enabled="true" run_configuration_name="Clean and Build" run_configuration_type="GradleRunConfiguration" />
+      <option name="RunConfigurationTask" enabled="true" run_configuration_name="AdvancedExpressionFolding [clean buildPlugin]" run_configuration_type="GradleRunConfiguration" />
     </method>
   </configuration>
 </component>

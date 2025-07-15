@@ -31,7 +31,7 @@ class PerformanceTest : FoldingTest() {
             PlatformTestUtil.newBenchmark(testName) {
                 try {
                     action.invoke()
-                } catch (e: FileComparisonFailedError) {
+                } catch (_: FileComparisonFailedError) {
                     // ignore
                 }
             }.warmupIterations(50).attempts(100).start()

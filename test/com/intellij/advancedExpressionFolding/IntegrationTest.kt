@@ -17,6 +17,8 @@ import com.intellij.ide.starter.ide.IdeProductProvider
 import com.intellij.ide.starter.models.TestCase
 import com.intellij.ide.starter.plugins.PluginConfigurator
 import com.intellij.ide.starter.project.LocalProjectInfo
+import com.intellij.ide.starter.report.Error
+import com.intellij.ide.starter.report.ErrorReporterToCI
 import com.intellij.ide.starter.runner.IDECommandLine
 import com.intellij.ide.starter.runner.Starter
 import com.intellij.ide.starter.screenRecorder.IDEScreenRecorder
@@ -60,8 +62,12 @@ class IntegrationTest {
                 toggleCheckbox(driver, expectInitiallyChecked = true, thenCheck = false)
                 clickOk()
 
+                //TODO: see if folding is disabled
+
                 toggleCheckbox(driver, expectInitiallyChecked = false, thenCheck = true)
                 clickOk()
+
+                //TODO: see if folding is enabled
             }
         }
     }
@@ -79,12 +85,32 @@ class IntegrationTest {
                 it.awaitCompleteProjectConfiguration()
                 it.waitForSmartMode()
             }
-            execute {
-                it.searchEverywhere(textToType = "Zen Mode", selectFirst = true)
+            //TODO: turn on all properties in settings, maybe use service?
+
+            //TODO: startZenMode()
+            val record = false
+            val next = { openFiles() }
+            val errorList = if (record) {
+                recorder.record {
+                    next()
+                }
+            } else {
+                next()
             }
-            recorder.record {
-                openFiles()
+            errorList.forEach { (filename, errors) ->
+                println("File: $filename")
+                errors.forEach { error ->
+                    println(error.stackTraceContent)
+                }
             }
+
+
+        }
+    }
+
+    private fun Driver.startZenMode() {
+        execute {
+            it.searchEverywhere(textToType = "Zen Mode", selectFirst = true)
         }
     }
 
@@ -128,22 +154,56 @@ class IntegrationTest {
     }
 
 
-    private fun Driver.openFiles() {
-        File("examples/data").listFiles()
-            ?.filter { it.extension == "java" }
-            ?.take(2)
-            ?.forEach { file ->
+    private fun Driver.openFiles(): List<Pair<ErrorFileName, List<Error>>> {
+        val seenErrors = HashSet<Error>()
+
+        return File("examples/data")
+            .listFiles()
+            .filter { it.extension == "java" }
+            //.take(3)
+            .mapNotNull { file ->
+                val filename = "data/${file.name}"
                 execute {
-                    it.openFile("data/${file.name}")
-                        //out/ide-tests/tests/IC-251.26094.121/openAllFiles/log/screenshots/my/FinalEmojiTestData.java/frame0.png
-                        //.takeScreenshot("my/${file.name}")
+                    it.openFile(filename)
                 }
-                //TODO:
-                //gotoLine(1)
+                //showWholeFile(file)
+
+                val errors = allErrors().filter { error ->
+                    seenErrors.add(error)
+                }.toList()
+                if (errors.isNotEmpty()) {
+                    file.name to errors
+                } else {
+                    null
+                }
+
             }
+    }
+
+    private fun allErrors(): Sequence<Error> {
+        val file = File("out/ide-tests/tests/IC-251.26094.121/openAllFiles/log/errors")
+        if (!file.exists()) {
+            return emptySequence()
+        }
+        return ErrorReporterToCI.collectErrors(file.toPath())
+            .asSequence()
+            .filter {
+                it.stackTraceContent.contains("advancedExpressionFolding")
+            }
+    }
+
+    //TODO:
+    private fun Driver.showWholeFile(file: File) {
+        val linesCount = file.readText().lineSequence().count()
+        (50 until linesCount step 50).forEach { index ->
+            execute {
+                it.gotoLine(50)
+            }
+        }
     }
 }
 
+//./out/ide-tests/tests/IC-251.26094.121/openAllFiles/log/screenRecording/ScreenRecording
 inline fun <T> IDEScreenRecorder.record(block: () -> T): T {
     start()
     return try {
@@ -169,3 +229,4 @@ private fun init(testName: String): IDETestContext = Starter.newContext(
     PluginConfigurator(this).installPluginFromPath(Path(pathToPlugin))
 }
 
+typealias ErrorFileName = String
