@@ -46,6 +46,8 @@
 
 ## Unreleased ##
 
+## 4.0.0 ##
+
 - [[pseudo-annotations] @Main - method-level annotation that generates a main method invoking the annotated method.](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/PseudoAnnotations)
 - [[fieldshift] Preconditions.checkNotNull now supported](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/FieldShift#preconditionschecknotnull)
 
