@@ -10,7 +10,7 @@ import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.PrintStream
 
-@TestMethodOrder(MethodOrderer.Random::class)
+@TestMethodOrder(MethodOrderer.DisplayName::class)
 @EnabledIfEnvironmentVariable(named = "performance-mode", matches = "1")
 class PerformanceTest : FoldingTest() {
 
@@ -34,7 +34,7 @@ class PerformanceTest : FoldingTest() {
                 } catch (_: FileComparisonFailedError) {
                     // ignore
                 }
-            }.warmupIterations(50).attempts(100).start()
+            }.warmupIterations(100).attempts(1_000).start()
         }
         val executionTime = output.substringAfter("attempt.median.ms").trim().substringBefore("\n").toLong()
         println("executionTime = $executionTime")
