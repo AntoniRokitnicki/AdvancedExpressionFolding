@@ -2,7 +2,7 @@
 # libraries
 annotations = "26.0.1"
 junit = "5.13.4"
-jackson = "2.19.1"
+jackson = "2.19.2"
 jsr305 = "3.0.2"
 pioneer = "2.3.0"
 lombok = "1.18.38"
