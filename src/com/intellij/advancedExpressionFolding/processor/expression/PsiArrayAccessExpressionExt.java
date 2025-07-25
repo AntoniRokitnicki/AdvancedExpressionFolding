@@ -1,9 +1,11 @@
 
-package com.intellij.advancedExpressionFolding.processor;
+package com.intellij.advancedExpressionFolding.processor.expression;
 
 import com.intellij.advancedExpressionFolding.expression.Expression;
 import com.intellij.advancedExpressionFolding.expression.literal.NumberLiteral;
 import com.intellij.advancedExpressionFolding.expression.operation.collection.ArrayGet;
+import com.intellij.advancedExpressionFolding.processor.BaseExtension;
+import com.intellij.advancedExpressionFolding.processor.BuildExpressionExt;
 import com.intellij.advancedExpressionFolding.processor.util.Helper;
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings;
 import com.intellij.openapi.editor.Document;
@@ -18,7 +20,7 @@ import org.jetbrains.annotations.Nullable;
 public class PsiArrayAccessExpressionExt extends BaseExtension {
 
     @Nullable
-    static Expression getArrayAccessExpression(@NotNull PsiArrayAccessExpression element, @NotNull Document document) {
+    public static Expression getArrayAccessExpression(@NotNull PsiArrayAccessExpression element, @NotNull Document document) {
         @Nullable PsiExpression index = element.getIndexExpression();
         AdvancedExpressionFoldingSettings settings = AdvancedExpressionFoldingSettings.getInstance();
         if (!(element.getParent() instanceof PsiAssignmentExpression

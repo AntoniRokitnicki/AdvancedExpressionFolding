@@ -9,8 +9,8 @@ import com.intellij.advancedExpressionFolding.expression.literal.InterpolatedStr
 import com.intellij.advancedExpressionFolding.expression.literal.StringLiteral;
 import com.intellij.advancedExpressionFolding.expression.math.basic.Add;
 import com.intellij.advancedExpressionFolding.processor.BaseExtension;
-import com.intellij.advancedExpressionFolding.processor.BinaryExpressionExt;
 import com.intellij.advancedExpressionFolding.processor.BuildExpressionExt;
+import com.intellij.advancedExpressionFolding.processor.expression.BinaryExpressionExt;
 import com.intellij.advancedExpressionFolding.processor.language.kotlin.IfNullSafeExt;
 import com.intellij.advancedExpressionFolding.processor.language.kotlin.LetReturnExt;
 import com.intellij.advancedExpressionFolding.processor.util.Helper;

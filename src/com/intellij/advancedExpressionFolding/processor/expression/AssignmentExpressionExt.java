@@ -1,10 +1,12 @@
-package com.intellij.advancedExpressionFolding.processor;
+package com.intellij.advancedExpressionFolding.processor.expression;
 
 import com.intellij.advancedExpressionFolding.expression.Expression;
 import com.intellij.advancedExpressionFolding.expression.Operation;
 import com.intellij.advancedExpressionFolding.expression.math.basic.*;
 import com.intellij.advancedExpressionFolding.expression.math.bitwise.*;
 import com.intellij.advancedExpressionFolding.expression.operation.basic.Variable;
+import com.intellij.advancedExpressionFolding.processor.BuildExpressionExt;
+import com.intellij.advancedExpressionFolding.processor.FieldShiftExt;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.PsiAssignmentExpression;
@@ -21,7 +23,7 @@ import static java.util.Arrays.asList;
 
 public class AssignmentExpressionExt {
     @Nullable
-    static Expression getAssignmentExpression(PsiAssignmentExpression element, @Nullable Document document) {
+    public static Expression getAssignmentExpression(PsiAssignmentExpression element, @Nullable Document document) {
         Variable leftVariable = getVariableExpression(element.getLExpression());
         if (leftVariable != null && element.getRExpression() != null) {
             @NotNull Expression leftExpression = BuildExpressionExt.getAnyExpression(element.getRExpression(), document);
