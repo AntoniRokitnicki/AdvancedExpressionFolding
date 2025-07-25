@@ -1,6 +1,9 @@
-package com.intellij.advancedExpressionFolding.extension
+package com.intellij.advancedExpressionFolding.extension.token
 
 import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.advancedExpressionFolding.extension.BaseExtension
+import com.intellij.advancedExpressionFolding.extension.expr
+import com.intellij.advancedExpressionFolding.extension.on
 import com.intellij.psi.JavaTokenType.*
 import com.intellij.psi.PsiJavaToken
 

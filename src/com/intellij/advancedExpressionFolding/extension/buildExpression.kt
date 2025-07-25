@@ -6,6 +6,8 @@ import com.intellij.advancedExpressionFolding.expression.controlflow.SemicolonEx
 import com.intellij.advancedExpressionFolding.expression.operation.basic.TypeCast
 import com.intellij.advancedExpressionFolding.extension.cache.CacheExt
 import com.intellij.advancedExpressionFolding.extension.methodcall.MethodCallExpressionExt
+import com.intellij.advancedExpressionFolding.extension.token.PsiJavaTokenExt
+import com.intellij.advancedExpressionFolding.extension.token.PsiKeywordExt
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.*

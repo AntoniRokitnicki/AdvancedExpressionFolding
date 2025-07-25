@@ -1,6 +1,7 @@
-package com.intellij.advancedExpressionFolding.extension
+package com.intellij.advancedExpressionFolding.extension.token
 
 import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.advancedExpressionFolding.extension.*
 import com.intellij.advancedExpressionFolding.extension.util.Consts.Emoji
 import com.intellij.psi.*
 
