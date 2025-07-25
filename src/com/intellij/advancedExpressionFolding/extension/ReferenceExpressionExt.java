@@ -3,6 +3,7 @@ package com.intellij.advancedExpressionFolding.extension;
 import com.intellij.advancedExpressionFolding.expression.Expression;
 import com.intellij.advancedExpressionFolding.expression.literal.NumberLiteral;
 import com.intellij.advancedExpressionFolding.expression.operation.basic.Variable;
+import com.intellij.advancedExpressionFolding.extension.util.Consts;
 import com.intellij.advancedExpressionFolding.extension.util.Helper;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiIdentifier;

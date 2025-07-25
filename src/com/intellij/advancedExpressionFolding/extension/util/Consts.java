@@ -1,4 +1,4 @@
-package com.intellij.advancedExpressionFolding.extension;
+package com.intellij.advancedExpressionFolding.extension.util;
 
 import java.util.HashMap;
 import java.util.HashSet;

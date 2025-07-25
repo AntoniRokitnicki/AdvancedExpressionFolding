@@ -1,5 +1,6 @@
-package com.intellij.advancedExpressionFolding.extension
+package com.intellij.advancedExpressionFolding.extension.util
 
+import com.intellij.advancedExpressionFolding.extension.isWhitespace
 import com.intellij.ide.highlighter.JavaFileType
 import com.intellij.psi.*
 

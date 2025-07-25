@@ -4,6 +4,7 @@ import com.intellij.advancedExpressionFolding.expression.Expression;
 import com.intellij.advancedExpressionFolding.expression.literal.CharacterLiteral;
 import com.intellij.advancedExpressionFolding.expression.literal.NumberLiteral;
 import com.intellij.advancedExpressionFolding.expression.literal.StringLiteral;
+import com.intellij.advancedExpressionFolding.extension.util.Consts;
 import com.intellij.psi.PsiLiteralExpression;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

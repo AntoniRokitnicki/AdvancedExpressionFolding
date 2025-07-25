@@ -1,6 +1,6 @@
 package com.intellij.advancedExpressionFolding.settings.view
 
-import com.intellij.advancedExpressionFolding.extension.Consts.Emoji
+import com.intellij.advancedExpressionFolding.extension.util.Consts.Emoji
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings.State
 import com.intellij.openapi.editor.event.DocumentEvent
 import com.intellij.openapi.editor.event.DocumentListener

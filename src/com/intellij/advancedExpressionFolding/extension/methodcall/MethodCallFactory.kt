@@ -1,11 +1,11 @@
 package com.intellij.advancedExpressionFolding.extension.methodcall
 
 import com.intellij.advancedExpressionFolding.extension.BaseExtension
-import com.intellij.advancedExpressionFolding.extension.Consts
 import com.intellij.advancedExpressionFolding.extension.methodcall.dynamic.ConfigurationParser
 import com.intellij.advancedExpressionFolding.extension.methodcall.dynamic.DynamicMethodCall
 import com.intellij.advancedExpressionFolding.extension.methodcall.dynamic.IDynamicDataProvider
 import com.intellij.advancedExpressionFolding.extension.on
+import com.intellij.advancedExpressionFolding.extension.util.Consts
 
 typealias MethodName = String
 typealias ClassName = String

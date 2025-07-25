@@ -1,6 +1,7 @@
 package com.intellij.advancedExpressionFolding.extension
 
 import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.advancedExpressionFolding.extension.util.Consts
 import com.intellij.psi.PsiField
 import com.intellij.psi.PsiReferenceExpression
 
