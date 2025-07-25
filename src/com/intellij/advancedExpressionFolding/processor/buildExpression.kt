@@ -9,6 +9,7 @@ import com.intellij.advancedExpressionFolding.processor.controlflow.ForStatement
 import com.intellij.advancedExpressionFolding.processor.controlflow.IfExt
 import com.intellij.advancedExpressionFolding.processor.controlflow.LoopExt
 import com.intellij.advancedExpressionFolding.processor.controlflow.PsiTryStatementExt
+import com.intellij.advancedExpressionFolding.processor.declaration.*
 import com.intellij.advancedExpressionFolding.processor.methodcall.MethodCallExpressionExt
 import com.intellij.advancedExpressionFolding.processor.reference.NewExpressionExt
 import com.intellij.advancedExpressionFolding.processor.reference.ReferenceExpressionExt

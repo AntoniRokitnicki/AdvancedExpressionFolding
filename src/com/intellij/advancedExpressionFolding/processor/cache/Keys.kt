@@ -1,7 +1,7 @@
 package com.intellij.advancedExpressionFolding.processor.cache
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.processor.PsiClassExt
+import com.intellij.advancedExpressionFolding.processor.declaration.PsiClassExt
 import com.intellij.lang.folding.FoldingDescriptor
 import com.intellij.openapi.util.Key
 import com.intellij.psi.PsiElement

@@ -1,6 +1,7 @@
-package com.intellij.advancedExpressionFolding.processor;
+package com.intellij.advancedExpressionFolding.processor.declaration;
 
 import com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl;
+import com.intellij.advancedExpressionFolding.processor.BaseExtension;
 import com.intellij.advancedExpressionFolding.processor.util.Helper;
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings;
 import com.intellij.openapi.util.TextRange;
@@ -11,7 +12,7 @@ import org.jetbrains.annotations.Nullable;
 public class PsiVariableExt extends BaseExtension {
 
     @Nullable
-    static VariableDeclarationImpl getVariableDeclaration(PsiVariable element) {
+    public static VariableDeclarationImpl getVariableDeclaration(PsiVariable element) {
         AdvancedExpressionFoldingSettings settings = AdvancedExpressionFoldingSettings.getInstance();
         if (settings.getState().getVarExpressionsCollapse()
                 && element.getName() != null

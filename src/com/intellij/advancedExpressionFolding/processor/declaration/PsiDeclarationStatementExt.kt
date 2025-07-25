@@ -1,8 +1,9 @@
-package com.intellij.advancedExpressionFolding.processor
+package com.intellij.advancedExpressionFolding.processor.declaration
 
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.semantic.WrapperExpression
 import com.intellij.advancedExpressionFolding.expression.semantic.kotlin.DestructuringExpression
+import com.intellij.advancedExpressionFolding.processor.*
 import com.intellij.advancedExpressionFolding.processor.util.Helper
 import com.intellij.psi.*
 

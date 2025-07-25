@@ -1,6 +1,7 @@
-package com.intellij.advancedExpressionFolding.processor
+package com.intellij.advancedExpressionFolding.processor.declaration
 
 import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.advancedExpressionFolding.processor.*
 import com.intellij.advancedExpressionFolding.processor.NullableExt.fieldAnnotationExpression
 import com.intellij.advancedExpressionFolding.processor.NullableExt.readCheckNotNullMethods
 import com.intellij.advancedExpressionFolding.processor.language.kotlin.SingleExpressionFunctionExt
