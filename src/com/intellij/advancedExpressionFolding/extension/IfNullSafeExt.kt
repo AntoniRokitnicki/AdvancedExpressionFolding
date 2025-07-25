@@ -1,8 +1,8 @@
 package com.intellij.advancedExpressionFolding.extension
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.expression.IGetter
-import com.intellij.advancedExpressionFolding.expression.INameable
+import com.intellij.advancedExpressionFolding.expression.property.IGetter
+import com.intellij.advancedExpressionFolding.expression.property.INameable
 import com.intellij.advancedExpressionFolding.expression.semantic.WrapperExpression
 import com.intellij.advancedExpressionFolding.expression.semantic.kotlin.IfNullSafeExpression
 import com.intellij.openapi.editor.Document

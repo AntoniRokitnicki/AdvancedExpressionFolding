@@ -1,7 +1,7 @@
 package com.intellij.advancedExpressionFolding.expression.optional;
 
 import com.intellij.advancedExpressionFolding.expression.Expression;
-import com.intellij.advancedExpressionFolding.expression.Getter;
+import com.intellij.advancedExpressionFolding.expression.property.Getter;
 import com.intellij.lang.folding.FoldingDescriptor;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.editor.FoldingGroup;

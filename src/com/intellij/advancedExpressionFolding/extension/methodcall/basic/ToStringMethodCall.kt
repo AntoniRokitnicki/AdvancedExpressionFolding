@@ -1,10 +1,10 @@
 package com.intellij.advancedExpressionFolding.extension.methodcall.basic
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.expression.Variable
 import com.intellij.advancedExpressionFolding.expression.literal.NumberLiteral
 import com.intellij.advancedExpressionFolding.expression.literal.StringLiteral
 import com.intellij.advancedExpressionFolding.expression.operation.basic.Append
+import com.intellij.advancedExpressionFolding.expression.operation.basic.Variable
 import com.intellij.advancedExpressionFolding.extension.methodcall.AbstractMethodCall
 import com.intellij.advancedExpressionFolding.extension.methodcall.Context
 import com.intellij.advancedExpressionFolding.extension.methodcall.NeedsQualifier
@@ -53,10 +53,10 @@ class ToStringMethodCall : AbstractMethodCall(), NeedsQualifier {
                 true
             )
             is Variable -> Variable(
-                element, 
-                element.textRange, 
-                qualifier.textRange, 
-                qualifier.name, 
+                element,
+                element.textRange,
+                qualifier.textRange,
+                qualifier.name,
                 true
             )
             else -> null

@@ -1,8 +1,8 @@
 package com.intellij.advancedExpressionFolding.extension
 
 import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.advancedExpressionFolding.expression.operation.stream.StreamMapCallParam
 import com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCallParam
-import com.intellij.advancedExpressionFolding.expression.stream.StreamMapCallParam
 import com.intellij.psi.PsiExpressionList
 import com.intellij.psi.PsiMethod
 import com.intellij.psi.PsiMethodCallExpression

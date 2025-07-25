@@ -1,5 +1,6 @@
-package com.intellij.advancedExpressionFolding.expression
+package com.intellij.advancedExpressionFolding.expression.property
 
+import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.lang.folding.FoldingDescriptor
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.editor.FoldingGroup
@@ -7,7 +8,8 @@ import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiElement
 import java.util.*
 
-class GetterRecord(element: PsiElement, textRange: TextRange, private var getterTextRange: TextRange, private val `object`: Expression?, private var name: String) : Expression(element, textRange), IGetter {
+class GetterRecord(element: PsiElement, textRange: TextRange, private var getterTextRange: TextRange, private val `object`: Expression?, private var name: String) : Expression(element, textRange),
+    IGetter {
     override fun supportsFoldRegions(document: Document,
                                      parent: Expression?): Boolean {
         return true

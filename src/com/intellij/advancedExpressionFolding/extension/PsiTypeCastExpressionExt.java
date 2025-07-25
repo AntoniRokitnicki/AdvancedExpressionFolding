@@ -1,6 +1,6 @@
 package com.intellij.advancedExpressionFolding.extension;
 
-import com.intellij.advancedExpressionFolding.expression.TypeCast;
+import com.intellij.advancedExpressionFolding.expression.operation.basic.TypeCast;
 import com.intellij.openapi.editor.Document;
 import com.intellij.psi.PsiExpression;
 import com.intellij.psi.PsiTypeCastExpression;

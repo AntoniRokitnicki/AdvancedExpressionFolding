@@ -1,7 +1,7 @@
 package com.intellij.advancedExpressionFolding.extension.methodcall.basic
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.expression.Variable
+import com.intellij.advancedExpressionFolding.expression.operation.basic.Variable
 import com.intellij.advancedExpressionFolding.extension.NewExpressionExt
 import com.intellij.advancedExpressionFolding.extension.ReferenceExpressionExt.getReferenceExpression
 import com.intellij.advancedExpressionFolding.extension.methodcall.AbstractMethodCall
@@ -44,10 +44,10 @@ class ValueOfMethodCall : AbstractMethodCall(), NeedsQualifier {
                 val refExpr = getReferenceExpression(argument)
                 if (refExpr is Variable) {
                     Variable(
-                        element, 
-                        element.textRange, 
-                        refExpr.textRange, 
-                        refExpr.name, 
+                        element,
+                        element.textRange,
+                        refExpr.textRange,
+                        refExpr.name,
                         true
                     )
                 } else null

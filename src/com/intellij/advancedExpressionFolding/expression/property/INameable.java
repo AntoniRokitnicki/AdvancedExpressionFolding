@@ -1,4 +1,4 @@
-package com.intellij.advancedExpressionFolding.expression;
+package com.intellij.advancedExpressionFolding.expression.property;
 
 import org.jetbrains.annotations.NotNull;
 

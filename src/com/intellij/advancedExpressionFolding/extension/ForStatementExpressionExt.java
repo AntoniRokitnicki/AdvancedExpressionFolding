@@ -2,12 +2,12 @@ package com.intellij.advancedExpressionFolding.extension;
 
 import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings;
 import com.intellij.advancedExpressionFolding.expression.Expression;
-import com.intellij.advancedExpressionFolding.expression.Variable;
 import com.intellij.advancedExpressionFolding.expression.controlflow.CompactControlFlowExpression;
 import com.intellij.advancedExpressionFolding.expression.controlflow.ForEachIndexedStatement;
 import com.intellij.advancedExpressionFolding.expression.controlflow.ForEachStatement;
 import com.intellij.advancedExpressionFolding.expression.controlflow.ForStatement;
 import com.intellij.advancedExpressionFolding.expression.literal.NumberLiteral;
+import com.intellij.advancedExpressionFolding.expression.operation.basic.Variable;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.*;

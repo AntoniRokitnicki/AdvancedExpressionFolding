@@ -2,7 +2,7 @@ package com.intellij.advancedExpressionFolding.extension.methodcall.stream
 
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.SyntheticExpressionImpl
-import com.intellij.advancedExpressionFolding.expression.stream.StreamFilterNotNull
+import com.intellij.advancedExpressionFolding.expression.operation.stream.StreamFilterNotNull
 import com.intellij.advancedExpressionFolding.extension.methodcall.Context
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiExpression

@@ -1,4 +1,4 @@
-package com.intellij.advancedExpressionFolding.expression.stream
+package com.intellij.advancedExpressionFolding.expression.operation.stream
 
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.Operation
