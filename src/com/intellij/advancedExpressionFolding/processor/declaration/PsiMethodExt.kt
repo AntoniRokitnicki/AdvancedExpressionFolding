@@ -5,6 +5,7 @@ import com.intellij.advancedExpressionFolding.processor.*
 import com.intellij.advancedExpressionFolding.processor.NullableExt.fieldAnnotationExpression
 import com.intellij.advancedExpressionFolding.processor.NullableExt.readCheckNotNullMethods
 import com.intellij.advancedExpressionFolding.processor.language.kotlin.SingleExpressionFunctionExt
+import com.intellij.advancedExpressionFolding.processor.lombok.InterfacePropertiesExt
 import com.intellij.advancedExpressionFolding.processor.lombok.SummaryParentOverrideExt
 import com.intellij.advancedExpressionFolding.processor.methodcall.dynamic.DynamicExt
 import com.intellij.openapi.editor.Document

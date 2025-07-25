@@ -1,14 +1,11 @@
-package com.intellij.advancedExpressionFolding.processor
+package com.intellij.advancedExpressionFolding.processor.lombok
 
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.semantic.lombok.InterfacePropertiesExpression
 import com.intellij.advancedExpressionFolding.expression.semantic.lombok.NullAnnotationExpression
-import com.intellij.advancedExpressionFolding.processor.NullableExt.fieldAnnotationExpression
-import com.intellij.advancedExpressionFolding.processor.lombok.LombokInterfaceFoldingAnnotation.LOMBOK_INTERFACE_GETTER
-import com.intellij.advancedExpressionFolding.processor.lombok.LombokInterfaceFoldingAnnotation.LOMBOK_INTERFACE_SETTER
+import com.intellij.advancedExpressionFolding.processor.*
 import com.intellij.advancedExpressionFolding.processor.lombok.LombokMethodExt.addInterfaceAnnotations
 import com.intellij.advancedExpressionFolding.processor.lombok.LombokMethodExt.callback
-import com.intellij.advancedExpressionFolding.processor.lombok.MethodLevelAnnotation
 import com.intellij.openapi.editor.FoldingGroup
 import com.intellij.psi.PsiMethod
 import com.intellij.psi.PsiParameter
@@ -37,17 +34,17 @@ object InterfacePropertiesExt : BaseExtension() {
         group: FoldingGroup
     ): NullAnnotationExpression? {
         return when (annotation.methodAnnotation) {
-            LOMBOK_INTERFACE_GETTER ->
-                fieldAnnotationExpression(
+            LombokInterfaceFoldingAnnotation.LOMBOK_INTERFACE_GETTER ->
+                NullableExt.fieldAnnotationExpression(
                     method.annotations,
                     method.returnTypeElement,
                     group = group,
                     foldPrevWhiteSpace = true
                 )
 
-            LOMBOK_INTERFACE_SETTER -> {
+            LombokInterfaceFoldingAnnotation.LOMBOK_INTERFACE_SETTER -> {
                 method.parameterList.parameters.firstOrNull()?.let {
-                    fieldAnnotationExpression(
+                    NullableExt.fieldAnnotationExpression(
                         it.annotations,
                         method.returnTypeElement,
                         group = group,
