@@ -1,7 +1,7 @@
 package com.intellij.advancedExpressionFolding.extension.methodcall.math
 
-import com.intellij.advancedExpressionFolding.expression.Ceil
 import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.advancedExpressionFolding.expression.math.advanced.Ceil
 import com.intellij.advancedExpressionFolding.extension.methodcall.Context
 import com.intellij.psi.PsiExpression
 import com.intellij.psi.PsiMethodCallExpression
@@ -15,5 +15,9 @@ class MathCeilMethodCall : AbstractMathMethodCall() {
         context: Context,
         argument: PsiExpression,
         argumentExpression: Expression
-    ): Expression? = Ceil(element, element.textRange, Collections.singletonList(argumentExpression))
+    ): Expression? = Ceil(
+        element,
+        element.textRange,
+        Collections.singletonList(argumentExpression)
+    )
 }

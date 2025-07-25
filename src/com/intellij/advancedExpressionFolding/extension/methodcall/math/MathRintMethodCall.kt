@@ -1,7 +1,7 @@
 package com.intellij.advancedExpressionFolding.extension.methodcall.math
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.expression.Rint
+import com.intellij.advancedExpressionFolding.expression.math.advanced.Rint
 import com.intellij.advancedExpressionFolding.extension.methodcall.Context
 import com.intellij.psi.PsiExpression
 import com.intellij.psi.PsiMethodCallExpression
@@ -15,5 +15,9 @@ class MathRintMethodCall : AbstractMathMethodCall() {
         context: Context,
         argument: PsiExpression,
         argumentExpression: Expression
-    ): Expression? = Rint(element, element.textRange, Collections.singletonList(argumentExpression))
+    ): Expression? = Rint(
+        element,
+        element.textRange,
+        Collections.singletonList(argumentExpression)
+    )
 }

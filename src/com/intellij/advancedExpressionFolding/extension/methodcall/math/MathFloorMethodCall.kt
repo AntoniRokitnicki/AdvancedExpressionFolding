@@ -1,7 +1,7 @@
 package com.intellij.advancedExpressionFolding.extension.methodcall.math
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.expression.Floor
+import com.intellij.advancedExpressionFolding.expression.math.advanced.Floor
 import com.intellij.advancedExpressionFolding.extension.methodcall.Context
 import com.intellij.psi.PsiExpression
 import com.intellij.psi.PsiMethodCallExpression
@@ -15,5 +15,9 @@ class MathFloorMethodCall : AbstractMathMethodCall() {
         context: Context,
         argument: PsiExpression,
         argumentExpression: Expression
-    ): Expression? = Floor(element, element.textRange, Collections.singletonList(argumentExpression))
+    ): Expression? = Floor(
+        element,
+        element.textRange,
+        Collections.singletonList(argumentExpression)
+    )
 }

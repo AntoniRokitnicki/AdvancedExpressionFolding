@@ -1,7 +1,7 @@
 package com.intellij.advancedExpressionFolding.extension.methodcall.math
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.expression.Pow
+import com.intellij.advancedExpressionFolding.expression.math.advanced.Pow
 import com.intellij.advancedExpressionFolding.extension.methodcall.Context
 import com.intellij.psi.PsiExpression
 import com.intellij.psi.PsiMethodCallExpression
@@ -16,5 +16,9 @@ class MathPowMethodCall : AbstractMathMethodCall() {
         a2: PsiExpression,
         a1Expression: Expression,
         a2Expression: Expression
-    ): Expression? = Pow(element, element.textRange, listOf(a1Expression, a2Expression))
+    ): Expression? = Pow(
+        element,
+        element.textRange,
+        listOf(a1Expression, a2Expression)
+    )
 }
