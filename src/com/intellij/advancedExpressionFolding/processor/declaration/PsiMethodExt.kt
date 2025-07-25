@@ -2,8 +2,8 @@ package com.intellij.advancedExpressionFolding.processor.declaration
 
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.processor.*
-import com.intellij.advancedExpressionFolding.processor.NullableExt.fieldAnnotationExpression
-import com.intellij.advancedExpressionFolding.processor.NullableExt.readCheckNotNullMethods
+import com.intellij.advancedExpressionFolding.processor.language.kotlin.NullableExt.fieldAnnotationExpression
+import com.intellij.advancedExpressionFolding.processor.language.kotlin.NullableExt.readCheckNotNullMethods
 import com.intellij.advancedExpressionFolding.processor.language.kotlin.SingleExpressionFunctionExt
 import com.intellij.advancedExpressionFolding.processor.lombok.InterfacePropertiesExt
 import com.intellij.advancedExpressionFolding.processor.lombok.SummaryParentOverrideExt

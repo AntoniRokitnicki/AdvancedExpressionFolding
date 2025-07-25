@@ -4,10 +4,10 @@ import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.semantic.lombok.FieldAnnotationExpression
 import com.intellij.advancedExpressionFolding.expression.semantic.lombok.NullAnnotationExpression
 import com.intellij.advancedExpressionFolding.processor.*
-import com.intellij.advancedExpressionFolding.processor.NullableExt.fieldAnnotationExpression
-import com.intellij.advancedExpressionFolding.processor.NullableExt.findPropertyAnnotation
 import com.intellij.advancedExpressionFolding.processor.language.java.ConstructorReferenceExt
 import com.intellij.advancedExpressionFolding.processor.language.kotlin.ConstExt
+import com.intellij.advancedExpressionFolding.processor.language.kotlin.NullableExt.fieldAnnotationExpression
+import com.intellij.advancedExpressionFolding.processor.language.kotlin.NullableExt.findPropertyAnnotation
 import com.intellij.advancedExpressionFolding.processor.lombok.FieldLevelAnnotation
 import com.intellij.advancedExpressionFolding.processor.lombok.LombokFieldExt.callback
 import com.intellij.advancedExpressionFolding.processor.lombok.LombokFieldExt.createFieldLevelAnnotation

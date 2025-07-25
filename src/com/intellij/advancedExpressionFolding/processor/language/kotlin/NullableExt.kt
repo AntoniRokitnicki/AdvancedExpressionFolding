@@ -1,11 +1,9 @@
-package com.intellij.advancedExpressionFolding.processor
+package com.intellij.advancedExpressionFolding.processor.language.kotlin
 
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.semantic.kotlin.CheckNotNullExpression
 import com.intellij.advancedExpressionFolding.expression.semantic.lombok.NullAnnotationExpression
-import com.intellij.advancedExpressionFolding.processor.NullableExt.FieldFoldingAnnotation.Companion.findByName
-import com.intellij.advancedExpressionFolding.processor.NullableExt.FieldFoldingAnnotation.NOT_NULL
-import com.intellij.advancedExpressionFolding.processor.NullableExt.FieldFoldingAnnotation.NULLABLE
+import com.intellij.advancedExpressionFolding.processor.*
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.editor.FoldingGroup
 import com.intellij.psi.*
@@ -118,13 +116,13 @@ object NullableExt : BaseExtension() {
             if (it.isIgnored()) {
                 return null
             }
-            val fieldFoldingAnnotation = findByName(it.qualifiedName) ?: return@mapNotNull null
+            val fieldFoldingAnnotation = FieldFoldingAnnotation.Companion.findByName(it.qualifiedName) ?: return@mapNotNull null
             Pair(fieldFoldingAnnotation, it)
         }.firstOrNull()
             ?.let { (foldingAnnotation, annotationElement) ->
                 val typeSuffix = when (foldingAnnotation) {
-                    NOT_NULL -> "!!"
-                    NULLABLE -> "?"
+                    FieldFoldingAnnotation.NOT_NULL -> "!!"
+                    FieldFoldingAnnotation.NULLABLE -> "?"
                 }
                 NullAnnotationExpression(typeElement, annotationElement, typeSuffix, foldPrevWhiteSpace, group)
             }
