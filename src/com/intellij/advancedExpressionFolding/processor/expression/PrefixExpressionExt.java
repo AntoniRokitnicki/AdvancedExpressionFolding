@@ -1,4 +1,4 @@
-package com.intellij.advancedExpressionFolding.processor;
+package com.intellij.advancedExpressionFolding.processor.expression;
 
 import com.intellij.advancedExpressionFolding.expression.Expression;
 import com.intellij.advancedExpressionFolding.expression.math.basic.Negate;
