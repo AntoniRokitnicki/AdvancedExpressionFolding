@@ -1,7 +1,7 @@
 package com.intellij.advancedExpressionFolding.expression.controlflow;
 
 import com.intellij.advancedExpressionFolding.expression.Expression;
-import com.intellij.advancedExpressionFolding.processor.PatternMatchingExt;
+import com.intellij.advancedExpressionFolding.processor.language.java.PatternMatchingExt;
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings;
 import com.intellij.lang.folding.FoldingDescriptor;
 import com.intellij.openapi.editor.Document;

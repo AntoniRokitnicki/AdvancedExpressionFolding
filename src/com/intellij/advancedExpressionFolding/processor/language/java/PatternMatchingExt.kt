@@ -1,7 +1,8 @@
-package com.intellij.advancedExpressionFolding.processor
+package com.intellij.advancedExpressionFolding.processor.language.java
 
 
 import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.advancedExpressionFolding.processor.*
 import com.intellij.lang.folding.FoldingDescriptor
 import com.intellij.openapi.editor.Document
 import com.intellij.psi.*
