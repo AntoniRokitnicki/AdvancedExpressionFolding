@@ -6,6 +6,7 @@ import com.intellij.advancedExpressionFolding.expression.semantic.lombok.NullAnn
 import com.intellij.advancedExpressionFolding.processor.*
 import com.intellij.advancedExpressionFolding.processor.NullableExt.fieldAnnotationExpression
 import com.intellij.advancedExpressionFolding.processor.NullableExt.findPropertyAnnotation
+import com.intellij.advancedExpressionFolding.processor.language.java.ConstructorReferenceExt
 import com.intellij.advancedExpressionFolding.processor.language.kotlin.ConstExt
 import com.intellij.advancedExpressionFolding.processor.lombok.FieldLevelAnnotation
 import com.intellij.advancedExpressionFolding.processor.lombok.LombokFieldExt.callback
