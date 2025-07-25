@@ -1,8 +1,8 @@
 package com.intellij.advancedExpressionFolding.extension
 
 import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.advancedExpressionFolding.expression.operation.optional.OptionalMapSafeCallParam
 import com.intellij.advancedExpressionFolding.expression.operation.stream.StreamMapCallParam
-import com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCallParam
 import com.intellij.psi.PsiExpressionList
 import com.intellij.psi.PsiMethod
 import com.intellij.psi.PsiMethodCallExpression
@@ -31,7 +31,11 @@ object MethodReferenceExt : BaseExtension() {
         if (parentMethodCall?.name?.filter { it == "map" || it == "flatMap" } != null) {
             val className = parentMethodCall.containingClass?.qualifiedName
             return when (className) {
-                "java.util.Optional" -> OptionalMapSafeCallParam(element, element.textRange, psiMethod.guessPropertyName())
+                "java.util.Optional" -> OptionalMapSafeCallParam(
+                    element,
+                    element.textRange,
+                    psiMethod.guessPropertyName()
+                )
                 "java.util.stream.Stream" -> StreamMapCallParam(element, element.textRange, psiMethod.guessPropertyName())
                 else -> null
             }

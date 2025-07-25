@@ -1,10 +1,10 @@
 package com.intellij.advancedExpressionFolding.extension.methodcall.optional
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.expression.optional.OptionalMapCall
-import com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCall
-import com.intellij.advancedExpressionFolding.expression.optional.OptionalMapSafeCallParam
-import com.intellij.advancedExpressionFolding.expression.optional.OptionalOf
+import com.intellij.advancedExpressionFolding.expression.operation.optional.OptionalMapCall
+import com.intellij.advancedExpressionFolding.expression.operation.optional.OptionalMapSafeCall
+import com.intellij.advancedExpressionFolding.expression.operation.optional.OptionalMapSafeCallParam
+import com.intellij.advancedExpressionFolding.expression.operation.optional.OptionalOf
 import com.intellij.advancedExpressionFolding.extension.methodcall.Context
 import com.intellij.psi.PsiExpression
 import com.intellij.psi.PsiMethodCallExpression
@@ -23,9 +23,19 @@ class OptionalMapMethodCall : AbstractOptionalMethodCall() {
             val qualifier = context.qualifierExpr
             
             return if (qualifier is OptionalOf) {
-                OptionalMapCall(element, element.textRange, context.getOperands(), flatMap)
+                OptionalMapCall(
+                    element,
+                    element.textRange,
+                    context.getOperands(),
+                    flatMap
+                )
             } else {
-                OptionalMapSafeCall(element, element.textRange, context.getOperands(), flatMap)
+                OptionalMapSafeCall(
+                    element,
+                    element.textRange,
+                    context.getOperands(),
+                    flatMap
+                )
             }
         }
         return null

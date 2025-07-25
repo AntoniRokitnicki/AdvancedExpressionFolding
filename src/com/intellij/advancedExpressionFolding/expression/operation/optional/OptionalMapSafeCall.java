@@ -1,4 +1,4 @@
-package com.intellij.advancedExpressionFolding.expression.optional;
+package com.intellij.advancedExpressionFolding.expression.operation.optional;
 
 import com.intellij.advancedExpressionFolding.expression.Expression;
 import com.intellij.advancedExpressionFolding.expression.Operation;
@@ -10,9 +10,9 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class OptionalOrElseElvis extends Operation {
-    public OptionalOrElseElvis(@NotNull PsiElement element, @NotNull TextRange textRange, @NotNull List<Expression> operands) {
-        super(element, textRange, " ?: ", 300, operands);
+public class OptionalMapSafeCall extends Operation {
+    public OptionalMapSafeCall(@NotNull PsiElement element, @NotNull TextRange textRange, @NotNull List<Expression> operands, boolean flatMap) {
+        super(element, textRange, flatMap ? "?.*" : "?.", 300, operands);
     }
 
     @Override

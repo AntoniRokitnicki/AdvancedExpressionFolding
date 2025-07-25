@@ -1,4 +1,4 @@
-package com.intellij.advancedExpressionFolding.expression.optional;
+package com.intellij.advancedExpressionFolding.expression.operation.optional;
 
 import com.intellij.advancedExpressionFolding.expression.Expression;
 import com.intellij.advancedExpressionFolding.expression.Operation;
@@ -10,23 +10,14 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class FieldShiftMethod extends Operation {
-    private final String text;
-
-    public FieldShiftMethod(@NotNull PsiElement element, @NotNull TextRange textRange, @NotNull List<Expression> operands, String text) {
-        super(element, textRange, "", 300, operands);
-        this.text = text;
+public class OptionalMapCall extends Operation {
+    public OptionalMapCall(@NotNull PsiElement element, @NotNull TextRange textRange, @NotNull List<Expression> operands, boolean flatMap) {
+        super(element, textRange, flatMap ? ".*" : ".", 300, operands);
     }
 
     @Override
     protected @NotNull String buildFolding(@NotNull String character) {
         return character;
-    }
-
-    @NotNull
-    @Override
-    protected String suffixText() {
-        return text;
     }
 
     @Override

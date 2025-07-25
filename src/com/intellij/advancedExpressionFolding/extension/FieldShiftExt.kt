@@ -1,8 +1,8 @@
 package com.intellij.advancedExpressionFolding.extension
 
 import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.advancedExpressionFolding.expression.operation.FieldShiftMethod
 import com.intellij.advancedExpressionFolding.expression.operation.basic.Variable
-import com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod
 import com.intellij.advancedExpressionFolding.expression.property.IGetter
 import com.intellij.advancedExpressionFolding.expression.property.INameable
 import com.intellij.advancedExpressionFolding.expression.semantic.BuilderShiftExpression

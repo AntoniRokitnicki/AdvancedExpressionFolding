@@ -1,4 +1,4 @@
-package com.intellij.advancedExpressionFolding.expression.optional;
+package com.intellij.advancedExpressionFolding.expression.operation.optional;
 
 import com.intellij.advancedExpressionFolding.expression.Expression;
 import com.intellij.openapi.util.TextRange;

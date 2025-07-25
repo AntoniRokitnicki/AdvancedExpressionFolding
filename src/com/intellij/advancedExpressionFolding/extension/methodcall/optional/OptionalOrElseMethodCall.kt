@@ -1,7 +1,7 @@
 package com.intellij.advancedExpressionFolding.extension.methodcall.optional
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.expression.optional.OptionalOrElseElvis
+import com.intellij.advancedExpressionFolding.expression.operation.optional.OptionalOrElseElvis
 import com.intellij.advancedExpressionFolding.extension.Helper
 import com.intellij.advancedExpressionFolding.extension.methodcall.Context
 import com.intellij.psi.PsiExpression
@@ -18,7 +18,11 @@ class OptionalOrElseMethodCall : AbstractOptionalMethodCall() {
         argumentExpression: Expression
     ): Expression? {
         if (Helper.findChildByTypeHierarchy(element, PsiExpressionList::class.java, PsiExpressionList::class.java).isPresent) {
-            return OptionalOrElseElvis(element, element.textRange, context.getOperands())
+            return OptionalOrElseElvis(
+                element,
+                element.textRange,
+                context.getOperands()
+            )
         }
         return null
     }

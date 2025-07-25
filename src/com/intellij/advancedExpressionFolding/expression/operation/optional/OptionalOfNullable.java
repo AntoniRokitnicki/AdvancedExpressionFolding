@@ -1,4 +1,4 @@
-package com.intellij.advancedExpressionFolding.expression.optional;
+package com.intellij.advancedExpressionFolding.expression.operation.optional;
 
 import com.intellij.advancedExpressionFolding.expression.Expression;
 import com.intellij.advancedExpressionFolding.expression.Operation;
@@ -10,14 +10,19 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class OptionalMapCall extends Operation {
-    public OptionalMapCall(@NotNull PsiElement element, @NotNull TextRange textRange, @NotNull List<Expression> operands, boolean flatMap) {
-        super(element, textRange, flatMap ? ".*" : ".", 300, operands);
+public class OptionalOfNullable extends Operation {
+    public OptionalOfNullable(@NotNull PsiElement element, @NotNull TextRange textRange, @NotNull List<Expression> operands) {
+        super(element, textRange, "", 300, operands);
     }
 
     @Override
     protected @NotNull String buildFolding(@NotNull String character) {
         return character;
+    }
+
+    @Override
+    protected int changeOperandsStartOffset(int offset) {
+        return offset - "Optional".length();
     }
 
     @Override
@@ -30,4 +35,5 @@ public class OptionalMapCall extends Operation {
                                        @Nullable Expression parent) {
         return true;
     }
+
 }

@@ -1,7 +1,7 @@
 package com.intellij.advancedExpressionFolding.extension.methodcall.optional
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.expression.optional.OptionalOfNullable
+import com.intellij.advancedExpressionFolding.expression.operation.optional.OptionalOfNullable
 import com.intellij.advancedExpressionFolding.extension.Helper
 import com.intellij.advancedExpressionFolding.extension.methodcall.Context
 import com.intellij.psi.PsiExpression
@@ -17,7 +17,11 @@ class OptionalOfNullableMethodCall : AbstractOptionalMethodCall() {
         argumentExpression: Expression
     ): Expression? {
         if (Helper.hasOptionalChainOperations(element)) {
-            return OptionalOfNullable(element, element.textRange, context.getOperands())
+            return OptionalOfNullable(
+                element,
+                element.textRange,
+                context.getOperands()
+            )
         }
         return null
     }
