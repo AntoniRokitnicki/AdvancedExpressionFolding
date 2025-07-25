@@ -1,4 +1,4 @@
-package com.intellij.advancedExpressionFolding.processor
+package com.intellij.advancedExpressionFolding.processor.language
 
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.operation.FieldShiftMethod
@@ -7,6 +7,7 @@ import com.intellij.advancedExpressionFolding.expression.property.IGetter
 import com.intellij.advancedExpressionFolding.expression.property.INameable
 import com.intellij.advancedExpressionFolding.expression.semantic.BuilderShiftExpression
 import com.intellij.advancedExpressionFolding.expression.semantic.kotlin.CheckNotNullExpression
+import com.intellij.advancedExpressionFolding.processor.*
 import com.intellij.openapi.editor.Document
 import com.intellij.psi.*
 
