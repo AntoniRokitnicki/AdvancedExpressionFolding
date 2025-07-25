@@ -1,5 +1,6 @@
-package com.intellij.advancedExpressionFolding
+package com.intellij.advancedExpressionFolding.action
 
+import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings
 import com.intellij.openapi.actionSystem.ActionUpdateThread
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.ToggleAction

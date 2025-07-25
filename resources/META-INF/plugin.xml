@@ -43,31 +43,31 @@
         <group id="com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingGroup"
                popup="true">
             <add-to-group group-id="CodeMenu" anchor="last"/>
-            <action id="com.intellij.advancedExpressionFolding.FindMethodsWithDefaultParametersAction"
-                    class="com.intellij.advancedExpressionFolding.FindMethodsWithDefaultParametersAction"/>
+            <action id="com.intellij.advancedExpressionFolding.action.FindMethodsWithDefaultParametersAction"
+                    class="com.intellij.advancedExpressionFolding.action.FindMethodsWithDefaultParametersAction"/>
         </group>
 
-        <action id="com.intellij.advancedExpressionFolding.GlobalToggleFoldingAction"
-                class="com.intellij.advancedExpressionFolding.GlobalToggleFoldingAction"/>
+        <action id="com.intellij.advancedExpressionFolding.action.GlobalToggleFoldingAction"
+                class="com.intellij.advancedExpressionFolding.action.GlobalToggleFoldingAction"/>
 
-        <action id="com.intellij.advancedExpressionFolding.FoldingOnAction"
-                class="com.intellij.advancedExpressionFolding.FoldingOnAction"
+        <action id="com.intellij.advancedExpressionFolding.action.FoldingOnAction"
+                class="com.intellij.advancedExpressionFolding.action.FoldingOnAction"
                 icon="AllIcons.Actions.ArrowExpand">
             <add-to-group group-id="CodeMenu" anchor="last"/>
             <keyboard-shortcut first-keystroke="alt shift F" keymap="$default" replace-all="true"/>
             <keyboard-shortcut first-keystroke="alt T" keymap="Mac OS X 10.5+" replace-all="true"/>
         </action>
 
-        <action id="com.intellij.advancedExpressionFolding.FoldingOffAction"
-                class="com.intellij.advancedExpressionFolding.FoldingOffAction"
+        <action id="com.intellij.advancedExpressionFolding.action.FoldingOffAction"
+                class="com.intellij.advancedExpressionFolding.action.FoldingOffAction"
                 icon="AllIcons.Actions.ArrowCollapse">
             <add-to-group group-id="CodeMenu" anchor="last"/>
             <keyboard-shortcut first-keystroke="alt shift D" keymap="$default"/>
             <keyboard-shortcut first-keystroke="alt Y" keymap="Mac OS X 10.5+" replace-all="true"/>
         </action>
 
-        <action id="com.intellij.advancedExpressionFolding.UpdateFoldedTextColorsAction"
-                class="com.intellij.advancedExpressionFolding.UpdateFoldedTextColorsAction"/>
+        <action id="com.intellij.advancedExpressionFolding.action.UpdateFoldedTextColorsAction"
+                class="com.intellij.advancedExpressionFolding.action.UpdateFoldedTextColorsAction"/>
     </actions>
 
     <extensionPoints>
