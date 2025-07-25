@@ -8,6 +8,7 @@ import com.intellij.advancedExpressionFolding.extension.BaseExtension.Companion.
 import com.intellij.advancedExpressionFolding.extension.EModifier.*
 import com.intellij.advancedExpressionFolding.extension.cache.Keys
 import com.intellij.advancedExpressionFolding.extension.cache.Keys.IGNORED
+import com.intellij.advancedExpressionFolding.extension.util.PropertyUtil
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.psi.*

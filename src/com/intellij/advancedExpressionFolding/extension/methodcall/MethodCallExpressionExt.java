@@ -7,8 +7,8 @@ import com.intellij.advancedExpressionFolding.expression.property.GetterRecord;
 import com.intellij.advancedExpressionFolding.expression.property.Setter;
 import com.intellij.advancedExpressionFolding.extension.BuildExpressionExt;
 import com.intellij.advancedExpressionFolding.extension.FieldShiftExt;
-import com.intellij.advancedExpressionFolding.extension.Helper;
 import com.intellij.advancedExpressionFolding.extension.logger.LoggerBracketsExt;
+import com.intellij.advancedExpressionFolding.extension.util.Helper;
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.util.TextRange;
@@ -20,7 +20,7 @@ import java.util.Arrays;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-import static com.intellij.advancedExpressionFolding.extension.PropertyUtil.guessPropertyName;
+import static com.intellij.advancedExpressionFolding.extension.util.PropertyUtil.guessPropertyName;
 
 public class MethodCallExpressionExt {
 

@@ -19,7 +19,7 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 import static com.intellij.advancedExpressionFolding.extension.BuildExpressionExt.getAnyExpression;
-import static com.intellij.advancedExpressionFolding.extension.Helper.eraseGenerics;
+import static com.intellij.advancedExpressionFolding.extension.util.Helper.eraseGenerics;
 
 public class BinaryExpressionExt {
     @Nullable

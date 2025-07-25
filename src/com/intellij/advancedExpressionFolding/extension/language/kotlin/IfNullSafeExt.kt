@@ -1,10 +1,11 @@
-package com.intellij.advancedExpressionFolding.extension
+package com.intellij.advancedExpressionFolding.extension.language.kotlin
 
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.property.IGetter
 import com.intellij.advancedExpressionFolding.expression.property.INameable
 import com.intellij.advancedExpressionFolding.expression.semantic.WrapperExpression
 import com.intellij.advancedExpressionFolding.expression.semantic.kotlin.IfNullSafeExpression
+import com.intellij.advancedExpressionFolding.extension.*
 import com.intellij.openapi.editor.Document
 import com.intellij.psi.*
 import com.intellij.psi.util.elementType

@@ -2,6 +2,7 @@ package com.intellij.advancedExpressionFolding.extension;
 
 import com.intellij.advancedExpressionFolding.expression.Expression;
 import com.intellij.advancedExpressionFolding.expression.SyntheticExpressionImpl;
+import com.intellij.advancedExpressionFolding.extension.util.Helper;
 import com.intellij.lang.folding.FoldingDescriptor;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.project.IndexNotReadyException;

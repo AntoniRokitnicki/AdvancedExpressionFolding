@@ -4,6 +4,7 @@ package com.intellij.advancedExpressionFolding.extension;
 import com.intellij.advancedExpressionFolding.expression.Expression;
 import com.intellij.advancedExpressionFolding.expression.literal.NumberLiteral;
 import com.intellij.advancedExpressionFolding.expression.operation.collection.ArrayGet;
+import com.intellij.advancedExpressionFolding.extension.util.Helper;
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings;
 import com.intellij.openapi.editor.Document;
 import com.intellij.psi.PsiArrayAccessExpression;

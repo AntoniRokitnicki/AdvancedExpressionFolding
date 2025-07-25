@@ -2,8 +2,8 @@ package com.intellij.advancedExpressionFolding.extension.methodcall.stream
 
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.operation.collection.Collect
-import com.intellij.advancedExpressionFolding.extension.Helper
 import com.intellij.advancedExpressionFolding.extension.methodcall.Context
+import com.intellij.advancedExpressionFolding.extension.util.Helper
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiExpression
 import com.intellij.psi.PsiIdentifier

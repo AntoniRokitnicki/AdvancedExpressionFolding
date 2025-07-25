@@ -4,10 +4,10 @@ import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.literal.NumberLiteral
 import com.intellij.advancedExpressionFolding.expression.operation.collection.Slice
 import com.intellij.advancedExpressionFolding.extension.BuildExpressionExt
-import com.intellij.advancedExpressionFolding.extension.Helper
 import com.intellij.advancedExpressionFolding.extension.methodcall.AbstractMethodCall
 import com.intellij.advancedExpressionFolding.extension.methodcall.Context
 import com.intellij.advancedExpressionFolding.extension.methodcall.NeedsQualifier
+import com.intellij.advancedExpressionFolding.extension.util.Helper
 import com.intellij.psi.PsiBinaryExpression
 import com.intellij.psi.PsiExpression
 import com.intellij.psi.PsiIdentifier

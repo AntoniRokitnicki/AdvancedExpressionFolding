@@ -3,6 +3,7 @@ package com.intellij.advancedExpressionFolding.extension
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.semantic.WrapperExpression
 import com.intellij.advancedExpressionFolding.expression.semantic.kotlin.DestructuringExpression
+import com.intellij.advancedExpressionFolding.extension.util.Helper
 import com.intellij.psi.*
 
 object PsiDeclarationStatementExt : BaseExtension() {

@@ -6,6 +6,7 @@ import com.intellij.advancedExpressionFolding.expression.math.basic.NotEqual;
 import com.intellij.advancedExpressionFolding.expression.operation.basic.Append;
 import com.intellij.advancedExpressionFolding.expression.operation.basic.Equal;
 import com.intellij.advancedExpressionFolding.expression.operation.basic.GreaterEqual;
+import com.intellij.advancedExpressionFolding.extension.util.Helper;
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings;
 import com.intellij.openapi.editor.Document;
 import com.intellij.psi.*;

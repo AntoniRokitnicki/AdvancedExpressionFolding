@@ -7,6 +7,7 @@ import com.intellij.advancedExpressionFolding.expression.controlflow.ForEachStat
 import com.intellij.advancedExpressionFolding.expression.controlflow.ForStatement;
 import com.intellij.advancedExpressionFolding.expression.literal.NumberLiteral;
 import com.intellij.advancedExpressionFolding.expression.operation.basic.Variable;
+import com.intellij.advancedExpressionFolding.extension.util.Helper;
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.util.TextRange;

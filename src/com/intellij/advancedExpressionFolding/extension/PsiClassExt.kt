@@ -1,8 +1,8 @@
 package com.intellij.advancedExpressionFolding.extension
 
 import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.advancedExpressionFolding.extension.language.kotlin.MethodDefaultParameterExt
 import com.intellij.advancedExpressionFolding.extension.lombok.AnnotationExt
-import com.intellij.advancedExpressionFolding.extension.lombok.MethodDefaultParameterExt
 import com.intellij.advancedExpressionFolding.extension.lombok.SummaryParentOverrideExt.addParentSummary
 import com.intellij.psi.PsiClass
 

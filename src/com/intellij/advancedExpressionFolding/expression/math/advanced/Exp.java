@@ -3,7 +3,7 @@ package com.intellij.advancedExpressionFolding.expression.math.advanced;
 import com.intellij.advancedExpressionFolding.expression.Expression;
 import com.intellij.advancedExpressionFolding.expression.Function;
 import com.intellij.advancedExpressionFolding.expression.math.ArithmeticExpression;
-import com.intellij.advancedExpressionFolding.extension.Helper;
+import com.intellij.advancedExpressionFolding.extension.util.Helper;
 import com.intellij.lang.folding.FoldingDescriptor;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.editor.FoldingGroup;

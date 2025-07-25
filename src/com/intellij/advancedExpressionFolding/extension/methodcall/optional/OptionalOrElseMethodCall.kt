@@ -2,8 +2,8 @@ package com.intellij.advancedExpressionFolding.extension.methodcall.optional
 
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.operation.optional.OptionalOrElseElvis
-import com.intellij.advancedExpressionFolding.extension.Helper
 import com.intellij.advancedExpressionFolding.extension.methodcall.Context
+import com.intellij.advancedExpressionFolding.extension.util.Helper
 import com.intellij.psi.PsiExpression
 import com.intellij.psi.PsiExpressionList
 import com.intellij.psi.PsiMethodCallExpression
