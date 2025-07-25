@@ -1,7 +1,7 @@
 package com.intellij.advancedExpressionFolding.extension.methodcall.basic
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.extension.PrintlnExt
+import com.intellij.advancedExpressionFolding.extension.language.kotlin.PrintlnExt
 import com.intellij.advancedExpressionFolding.extension.methodcall.AbstractMethodCall
 import com.intellij.advancedExpressionFolding.extension.methodcall.Context
 import com.intellij.advancedExpressionFolding.extension.methodcall.NeedsQualifier
