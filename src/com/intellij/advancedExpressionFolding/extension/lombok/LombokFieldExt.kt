@@ -1,11 +1,11 @@
-package com.intellij.advancedExpressionFolding.extension.clazz
+package com.intellij.advancedExpressionFolding.extension.lombok
 
 import com.intellij.advancedExpressionFolding.extension.*
-import com.intellij.advancedExpressionFolding.extension.clazz.AnnotationExt.ClassLevelAnnotation
-import com.intellij.advancedExpressionFolding.extension.clazz.LombokConstructorExt.singleConstructor
-import com.intellij.advancedExpressionFolding.extension.clazz.LombokConstructorExt.singleConstructorManyFields
-import com.intellij.advancedExpressionFolding.extension.clazz.LombokFoldingAnnotation.*
-import com.intellij.advancedExpressionFolding.extension.clazz.MethodType.*
+import com.intellij.advancedExpressionFolding.extension.lombok.AnnotationExt.ClassLevelAnnotation
+import com.intellij.advancedExpressionFolding.extension.lombok.LombokConstructorExt.singleConstructor
+import com.intellij.advancedExpressionFolding.extension.lombok.LombokConstructorExt.singleConstructorManyFields
+import com.intellij.advancedExpressionFolding.extension.lombok.LombokFoldingAnnotation.*
+import com.intellij.advancedExpressionFolding.extension.lombok.MethodType.*
 import com.intellij.openapi.util.Key
 import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiField

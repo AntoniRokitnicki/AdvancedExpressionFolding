@@ -1,11 +1,11 @@
-package com.intellij.advancedExpressionFolding.extension.clazz
+package com.intellij.advancedExpressionFolding.extension.lombok
 
 import com.intellij.advancedExpressionFolding.expression.semantic.lombok.ClassAnnotationExpression
 import com.intellij.advancedExpressionFolding.extension.*
 import com.intellij.advancedExpressionFolding.extension.Consts.SUPERSCRIPT_MAPPING
-import com.intellij.advancedExpressionFolding.extension.clazz.LombokExt.addLombokSupport
-import com.intellij.advancedExpressionFolding.extension.clazz.LombokExt.lombokPatternOff
-import com.intellij.advancedExpressionFolding.extension.clazz.LombokFoldingAnnotation.SERIAL
+import com.intellij.advancedExpressionFolding.extension.lombok.LombokExt.addLombokSupport
+import com.intellij.advancedExpressionFolding.extension.lombok.LombokExt.lombokPatternOff
+import com.intellij.advancedExpressionFolding.extension.lombok.LombokFoldingAnnotation.SERIAL
 import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiField

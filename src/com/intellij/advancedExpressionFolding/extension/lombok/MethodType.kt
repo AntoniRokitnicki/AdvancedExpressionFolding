@@ -1,4 +1,4 @@
-package com.intellij.advancedExpressionFolding.extension.clazz
+package com.intellij.advancedExpressionFolding.extension.lombok
 
 import com.intellij.advancedExpressionFolding.extension.MethodBodyInspector.asDirtyNoReference
 import com.intellij.advancedExpressionFolding.extension.MethodBodyInspector.asLazyGetter

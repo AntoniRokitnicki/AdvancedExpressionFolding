@@ -1,4 +1,4 @@
-package com.intellij.advancedExpressionFolding.extension.clazz
+package com.intellij.advancedExpressionFolding.extension.lombok
 
 import java.util.*
 import java.util.EnumSet.of

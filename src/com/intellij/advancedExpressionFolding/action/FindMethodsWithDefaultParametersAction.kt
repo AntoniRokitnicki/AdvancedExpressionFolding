@@ -2,7 +2,7 @@ package com.intellij.advancedExpressionFolding.action
 
 import com.intellij.advancedExpressionFolding.expression.semantic.SimpleExpression
 import com.intellij.advancedExpressionFolding.expression.semantic.WrapperExpression
-import com.intellij.advancedExpressionFolding.extension.clazz.MethodDefaultParameterExt
+import com.intellij.advancedExpressionFolding.extension.lombok.MethodDefaultParameterExt
 import com.intellij.advancedExpressionFolding.extension.toJavaPsiFile
 import com.intellij.advancedExpressionFolding.view.FindUsageCustomView
 import com.intellij.openapi.actionSystem.AnAction

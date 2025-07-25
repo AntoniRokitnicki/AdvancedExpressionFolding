@@ -5,9 +5,9 @@ import com.intellij.advancedExpressionFolding.expression.semantic.lombok.FieldAn
 import com.intellij.advancedExpressionFolding.expression.semantic.lombok.NullAnnotationExpression
 import com.intellij.advancedExpressionFolding.extension.NullableExt.fieldAnnotationExpression
 import com.intellij.advancedExpressionFolding.extension.NullableExt.findPropertyAnnotation
-import com.intellij.advancedExpressionFolding.extension.clazz.FieldLevelAnnotation
-import com.intellij.advancedExpressionFolding.extension.clazz.LombokFieldExt.callback
-import com.intellij.advancedExpressionFolding.extension.clazz.LombokFieldExt.createFieldLevelAnnotation
+import com.intellij.advancedExpressionFolding.extension.lombok.FieldLevelAnnotation
+import com.intellij.advancedExpressionFolding.extension.lombok.LombokFieldExt.callback
+import com.intellij.advancedExpressionFolding.extension.lombok.LombokFieldExt.createFieldLevelAnnotation
 import com.intellij.openapi.editor.Document
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiField
