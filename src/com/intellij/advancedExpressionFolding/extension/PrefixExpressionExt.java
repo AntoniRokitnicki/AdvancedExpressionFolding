@@ -1,12 +1,12 @@
 package com.intellij.advancedExpressionFolding.extension;
 
 import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings;
-import com.intellij.advancedExpressionFolding.expression.Equal;
 import com.intellij.advancedExpressionFolding.expression.Expression;
-import com.intellij.advancedExpressionFolding.expression.GreaterEqual;
-import com.intellij.advancedExpressionFolding.expression.LessEqual;
 import com.intellij.advancedExpressionFolding.expression.math.basic.Negate;
 import com.intellij.advancedExpressionFolding.expression.math.basic.NotEqual;
+import com.intellij.advancedExpressionFolding.expression.operation.basic.Append;
+import com.intellij.advancedExpressionFolding.expression.operation.basic.Equal;
+import com.intellij.advancedExpressionFolding.expression.operation.basic.GreaterEqual;
 import com.intellij.openapi.editor.Document;
 import com.intellij.psi.*;
 import org.jetbrains.annotations.NotNull;
@@ -40,7 +40,7 @@ public class PrefixExpressionExt {
                             }
 
                             if (methodName.equals("isAfter") || methodName.equals("after")) {
-                                return new LessEqual(element, element.getTextRange(), Arrays.asList(callInformation.qualifierExpression, callInformation.getFoldedArgument(0)));
+                                return new Append.LessEqual(element, element.getTextRange(), Arrays.asList(callInformation.qualifierExpression, callInformation.getFoldedArgument(0)));
                             }
                         }
 

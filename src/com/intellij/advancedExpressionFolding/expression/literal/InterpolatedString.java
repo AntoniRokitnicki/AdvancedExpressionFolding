@@ -1,6 +1,5 @@
 package com.intellij.advancedExpressionFolding.expression.literal;
 
-import com.intellij.advancedExpressionFolding.expression.CharSequenceLiteral;
 import com.intellij.advancedExpressionFolding.expression.Expression;
 import com.intellij.advancedExpressionFolding.expression.Variable;
 import com.intellij.lang.folding.FoldingDescriptor;

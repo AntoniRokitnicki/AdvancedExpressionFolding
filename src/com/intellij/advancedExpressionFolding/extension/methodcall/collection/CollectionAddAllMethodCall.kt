@@ -1,7 +1,7 @@
 package com.intellij.advancedExpressionFolding.extension.methodcall.collection
 
-import com.intellij.advancedExpressionFolding.expression.AddAssignForCollection
 import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.advancedExpressionFolding.expression.operation.collection.AddAssignForCollection
 import com.intellij.advancedExpressionFolding.extension.methodcall.Context
 import com.intellij.psi.PsiExpression
 import com.intellij.psi.PsiMethodCallExpression
@@ -16,7 +16,12 @@ class CollectionAddAllMethodCall : AbstractCollectionMethodCall() {
         context: Context,
         argument: PsiExpression,
         argumentExpression: Expression
-    ): Expression? = AddAssignForCollection(element, element.textRange, context.getOperands())
+    ): Expression? =
+        AddAssignForCollection(
+            element,
+            element.textRange,
+            context.getOperands()
+        )
 
     override fun onTwoArguments(
         element: PsiMethodCallExpression,
@@ -25,5 +30,10 @@ class CollectionAddAllMethodCall : AbstractCollectionMethodCall() {
         a2: PsiExpression,
         a1Expression: Expression,
         a2Expression: Expression
-    ): Expression? = AddAssignForCollection(element, element.textRange, listOf(a1Expression, a2Expression))
+    ): Expression? =
+        AddAssignForCollection(
+            element,
+            element.textRange,
+            listOf(a1Expression, a2Expression)
+        )
 }

@@ -2,7 +2,7 @@ package com.intellij.advancedExpressionFolding.expression.controlflow;
 
 import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings;
 import com.intellij.advancedExpressionFolding.expression.Expression;
-import com.intellij.advancedExpressionFolding.expression.Range;
+import com.intellij.advancedExpressionFolding.expression.operation.collection.Range;
 import com.intellij.lang.folding.FoldingDescriptor;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.editor.FoldingGroup;

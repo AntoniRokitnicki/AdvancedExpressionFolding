@@ -1,7 +1,7 @@
 package com.intellij.advancedExpressionFolding.extension.methodcall.basic
 
-import com.intellij.advancedExpressionFolding.expression.Equal
 import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.advancedExpressionFolding.expression.operation.basic.Equal
 import com.intellij.advancedExpressionFolding.extension.methodcall.AbstractMethodCall
 import com.intellij.advancedExpressionFolding.extension.methodcall.Context
 import com.intellij.advancedExpressionFolding.extension.methodcall.NeedsQualifier
@@ -30,7 +30,11 @@ class EqualsMethodCall : AbstractMethodCall(), NeedsQualifier {
         context: Context,
         argument: PsiExpression,
         argumentExpression: Expression
-    ): Expression? = Equal(element, element.textRange, context.getOperands())
+    ): Expression? = Equal(
+        element,
+        element.textRange,
+        context.getOperands()
+    )
 
     override fun onTwoArguments(
         element: PsiMethodCallExpression,
@@ -39,5 +43,9 @@ class EqualsMethodCall : AbstractMethodCall(), NeedsQualifier {
         a2: PsiExpression,
         a1Expression: Expression,
         a2Expression: Expression
-    ): Expression? = Equal(element, element.textRange, listOf(a1Expression, a2Expression))
+    ): Expression? = Equal(
+        element,
+        element.textRange,
+        listOf(a1Expression, a2Expression)
+    )
 }

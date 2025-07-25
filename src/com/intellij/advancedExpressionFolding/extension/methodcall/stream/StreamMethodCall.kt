@@ -1,6 +1,6 @@
 package com.intellij.advancedExpressionFolding.extension.methodcall.stream
 
-import com.intellij.advancedExpressionFolding.expression.ArrayStream
+import com.intellij.advancedExpressionFolding.expression.operation.collection.ArrayStream
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.extension.methodcall.AbstractMethodCall
 import com.intellij.advancedExpressionFolding.extension.methodcall.Context
@@ -32,8 +32,11 @@ class StreamMethodCall : AbstractMethodCall(), NeedsQualifier {
         if (element.parent is PsiReferenceExpression &&
             (element.parent as PsiReferenceExpression).qualifierExpression == element) {
             
-            return ArrayStream(element, TextRange.create(
-                element.textRange.startOffset, element.textRange.endOffset), argumentExpression)
+            return ArrayStream(
+                element, TextRange.create(
+                    element.textRange.startOffset, element.textRange.endOffset
+                ), argumentExpression
+            )
         }
         return null
     }

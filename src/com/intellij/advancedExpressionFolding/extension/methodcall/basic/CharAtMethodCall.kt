@@ -1,7 +1,7 @@
 package com.intellij.advancedExpressionFolding.extension.methodcall.basic
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.expression.Get
+import com.intellij.advancedExpressionFolding.expression.operation.Get
 import com.intellij.advancedExpressionFolding.extension.methodcall.AbstractMethodCall
 import com.intellij.advancedExpressionFolding.extension.methodcall.Context
 import com.intellij.advancedExpressionFolding.extension.methodcall.NeedsQualifier
@@ -21,6 +21,12 @@ class CharAtMethodCall : AbstractMethodCall(), NeedsQualifier {
         argument: PsiExpression,
         argumentExpression: Expression
     ): Expression? {
-        return Get(element, element.textRange, context.qualifierExpr, argumentExpression, Get.Style.NORMAL)
+        return Get(
+            element,
+            element.textRange,
+            context.qualifierExpr,
+            argumentExpression,
+            Get.Style.NORMAL
+        )
     }
 }

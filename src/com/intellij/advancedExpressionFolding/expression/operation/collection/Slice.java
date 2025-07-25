@@ -1,5 +1,7 @@
-package com.intellij.advancedExpressionFolding.expression;
+package com.intellij.advancedExpressionFolding.expression.operation.collection;
 
+import com.intellij.advancedExpressionFolding.expression.Expression;
+import com.intellij.advancedExpressionFolding.expression.Function;
 import com.intellij.advancedExpressionFolding.expression.literal.NumberLiteral;
 import com.intellij.lang.folding.FoldingDescriptor;
 import com.intellij.openapi.editor.Document;

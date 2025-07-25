@@ -1,9 +1,9 @@
 package com.intellij.advancedExpressionFolding.extension.methodcall.collection
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.expression.Get
-import com.intellij.advancedExpressionFolding.expression.Get.Style
 import com.intellij.advancedExpressionFolding.expression.literal.NumberLiteral
+import com.intellij.advancedExpressionFolding.expression.operation.Get
+import com.intellij.advancedExpressionFolding.expression.operation.Get.Style
 import com.intellij.advancedExpressionFolding.extension.Helper.getSlicePosition
 import com.intellij.advancedExpressionFolding.extension.methodcall.AbstractMethodCall
 import com.intellij.advancedExpressionFolding.extension.methodcall.Context
@@ -26,14 +26,32 @@ class CollectionGetMethodCall : AbstractMethodCall(), NeedsQualifier {
     ): Expression? {
         val qualifier = context.qualifierExpr
         if (argumentExpression is NumberLiteral && argumentExpression.number == 0) {
-            return Get(element, element.textRange, qualifier, argumentExpression, Style.FIRST)
+            return Get(
+                element,
+                element.textRange,
+                qualifier,
+                argumentExpression,
+                Style.FIRST
+            )
         } else if (argument is PsiBinaryExpression) {
             val position = getSlicePosition(element, qualifier, argument, context.document)
             if (position != null && position.number == -1) {
-                return Get(element, element.textRange, qualifier, argumentExpression, Style.LAST)
+                return Get(
+                    element,
+                    element.textRange,
+                    qualifier,
+                    argumentExpression,
+                    Style.LAST
+                )
             }
         }
-        return Get(element, element.textRange, qualifier, argumentExpression, Style.NORMAL)
+        return Get(
+            element,
+            element.textRange,
+            qualifier,
+            argumentExpression,
+            Style.NORMAL
+        )
     }
 
 }

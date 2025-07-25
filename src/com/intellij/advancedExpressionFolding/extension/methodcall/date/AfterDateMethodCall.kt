@@ -1,7 +1,7 @@
 package com.intellij.advancedExpressionFolding.extension.methodcall.date
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.expression.Greater
+import com.intellij.advancedExpressionFolding.expression.operation.basic.Greater
 import com.intellij.advancedExpressionFolding.extension.methodcall.AbstractMethodCall
 import com.intellij.advancedExpressionFolding.extension.methodcall.Context
 import com.intellij.psi.PsiExpression
@@ -17,6 +17,10 @@ class AfterDateMethodCall : AbstractMethodCall() {
         context: Context,
         argument: PsiExpression,
         argumentExpression: Expression
-    ) = Greater(element, element.textRange, context.getOperands())
+    ) = Greater(
+        element,
+        element.textRange,
+        context.getOperands()
+    )
 
 }

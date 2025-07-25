@@ -1,8 +1,8 @@
 package com.intellij.advancedExpressionFolding.extension.methodcall.basic
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.expression.Slice
 import com.intellij.advancedExpressionFolding.expression.literal.NumberLiteral
+import com.intellij.advancedExpressionFolding.expression.operation.collection.Slice
 import com.intellij.advancedExpressionFolding.extension.BuildExpressionExt
 import com.intellij.advancedExpressionFolding.extension.Helper
 import com.intellij.advancedExpressionFolding.extension.methodcall.AbstractMethodCall
@@ -35,10 +35,18 @@ class SubstringOrSubListMethodCall : AbstractMethodCall(), NeedsQualifier {
         if (argument is PsiBinaryExpression) {
             val position = Helper.getSlicePosition(element, qualifier, argument, context.document)
             if (position != null) {
-                return Slice(element, element.textRange, context.getOperands())
+                return Slice(
+                    element,
+                    element.textRange,
+                    context.getOperands()
+                )
             }
         }
-        return Slice(element, element.textRange, context.getOperands())
+        return Slice(
+            element,
+            element.textRange,
+            context.getOperands()
+        )
     }
 
     override fun onTwoArguments(

@@ -1,7 +1,7 @@
 package com.intellij.advancedExpressionFolding.extension.methodcall.collection
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.expression.Put
+import com.intellij.advancedExpressionFolding.expression.operation.collection.Put
 import com.intellij.advancedExpressionFolding.extension.methodcall.AbstractMethodCall
 import com.intellij.advancedExpressionFolding.extension.methodcall.Context
 import com.intellij.advancedExpressionFolding.extension.methodcall.NeedsQualifier
@@ -25,7 +25,13 @@ class MapPutMethodCall : AbstractMethodCall(), NeedsQualifier {
         a2Expression: Expression
     ): Expression? {
         return (element.parent is PsiStatement).on()?.let {
-            Put(element, element.textRange, context.qualifierExpr, a1Expression, a2Expression)
+            Put(
+                element,
+                element.textRange,
+                context.qualifierExpr,
+                a1Expression,
+                a2Expression
+            )
         }
     }
 

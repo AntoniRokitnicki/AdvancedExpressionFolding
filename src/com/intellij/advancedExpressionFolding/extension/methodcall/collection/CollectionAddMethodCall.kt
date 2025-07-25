@@ -1,6 +1,6 @@
 package com.intellij.advancedExpressionFolding.extension.methodcall.collection
 
-import com.intellij.advancedExpressionFolding.expression.AddAssignForCollection
+import com.intellij.advancedExpressionFolding.expression.operation.collection.AddAssignForCollection
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.extension.methodcall.Context
 import com.intellij.psi.PsiExpression
@@ -19,7 +19,11 @@ class CollectionAddMethodCall : AbstractCollectionMethodCall() {
         argumentExpression: Expression
     ): Expression? {
         if (element.parent is PsiStatement) {
-            return AddAssignForCollection(element, element.textRange, context.getOperands())
+            return AddAssignForCollection(
+                element,
+                element.textRange,
+                context.getOperands()
+            )
         }
         return null
     }

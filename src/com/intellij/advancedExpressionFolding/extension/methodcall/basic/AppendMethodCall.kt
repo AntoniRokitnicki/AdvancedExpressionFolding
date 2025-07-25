@@ -1,8 +1,8 @@
 package com.intellij.advancedExpressionFolding.extension.methodcall.basic
 
-import com.intellij.advancedExpressionFolding.expression.Append
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.literal.StringLiteral
+import com.intellij.advancedExpressionFolding.expression.operation.basic.Append
 import com.intellij.advancedExpressionFolding.extension.methodcall.AbstractMethodCall
 import com.intellij.advancedExpressionFolding.extension.methodcall.Context
 import com.intellij.advancedExpressionFolding.extension.methodcall.NeedsQualifier
@@ -32,14 +32,26 @@ class AppendMethodCall : AbstractMethodCall(), NeedsQualifier {
             qualifier is Append -> {
                 val operands = ArrayList(qualifier.operands)
                 operands.add(argumentExpression)
-                Append(element, element.textRange, operands, element.parent is PsiStatement)
+                Append(
+                    element,
+                    element.textRange,
+                    operands,
+                    element.parent is PsiStatement
+                )
             }
             qualifier is StringLiteral && qualifier.string.isEmpty() -> {
-                Append(element, element.textRange,
-                    Collections.singletonList(argumentExpression), element.parent is PsiStatement)
+                Append(
+                    element, element.textRange,
+                    Collections.singletonList(argumentExpression), element.parent is PsiStatement
+                )
             }
             else -> {
-                Append(element, element.textRange, context.getOperands(), element.parent is PsiStatement)
+                Append(
+                    element,
+                    element.textRange,
+                    context.getOperands(),
+                    element.parent is PsiStatement
+                )
             }
         }
     }

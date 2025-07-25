@@ -1,10 +1,10 @@
 package com.intellij.advancedExpressionFolding.extension.methodcall.basic
 
-import com.intellij.advancedExpressionFolding.expression.Append
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.Variable
 import com.intellij.advancedExpressionFolding.expression.literal.NumberLiteral
 import com.intellij.advancedExpressionFolding.expression.literal.StringLiteral
+import com.intellij.advancedExpressionFolding.expression.operation.basic.Append
 import com.intellij.advancedExpressionFolding.extension.methodcall.AbstractMethodCall
 import com.intellij.advancedExpressionFolding.extension.methodcall.Context
 import com.intellij.advancedExpressionFolding.extension.methodcall.NeedsQualifier
@@ -35,9 +35,9 @@ class ToStringMethodCall : AbstractMethodCall(), NeedsQualifier {
         
         return when (qualifier) {
             is Append -> Append(
-                element, 
-                element.textRange, 
-                qualifier.operands, 
+                element,
+                element.textRange,
+                qualifier.operands,
                 element.parent is PsiStatement
             )
             is StringLiteral -> StringLiteral(

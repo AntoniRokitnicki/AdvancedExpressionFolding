@@ -1,11 +1,11 @@
 package com.intellij.advancedExpressionFolding.expression;
 
+import com.intellij.advancedExpressionFolding.expression.math.ArithmeticExpression;
 import com.intellij.lang.folding.FoldingDescriptor;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.editor.FoldingGroup;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.PsiElement;
-import kotlin.ranges.IntRange;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

@@ -1,5 +1,7 @@
-package com.intellij.advancedExpressionFolding.expression;
+package com.intellij.advancedExpressionFolding.expression.operation.basic;
 
+import com.intellij.advancedExpressionFolding.expression.Expression;
+import com.intellij.advancedExpressionFolding.expression.Operation;
 import com.intellij.advancedExpressionFolding.expression.literal.StringLiteral;
 import com.intellij.advancedExpressionFolding.expression.math.basic.Add;
 import com.intellij.lang.folding.FoldingDescriptor;
@@ -111,5 +113,17 @@ public class Append extends Operation {
     @Override
     public boolean isHighlighted() {
         return operands.size() == 1;
+    }
+
+    public static class Less extends Operation {
+        public Less(PsiElement element, TextRange textRange, List<Expression> operands) {
+            super(element, textRange, "<", 18, operands);
+        }
+    }
+
+    public static class LessEqual extends Operation {
+        public LessEqual(PsiElement element, TextRange textRange, List<Expression> operands) {
+            super(element, textRange, "≤", 18, operands);
+        }
     }
 }

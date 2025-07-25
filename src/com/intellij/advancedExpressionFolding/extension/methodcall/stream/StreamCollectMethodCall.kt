@@ -1,7 +1,7 @@
 package com.intellij.advancedExpressionFolding.extension.methodcall.stream
 
-import com.intellij.advancedExpressionFolding.expression.Collect
 import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.advancedExpressionFolding.expression.operation.collection.Collect
 import com.intellij.advancedExpressionFolding.extension.Helper
 import com.intellij.advancedExpressionFolding.extension.methodcall.Context
 import com.intellij.openapi.util.TextRange
@@ -32,8 +32,8 @@ class StreamCollectMethodCall : AbstractStreamMethodCall() {
                 if (i.isPresent) {
                     // This is a special case that takes a TextRange parameter
                     return Collect(
-                        element, 
-                        TextRange.create(context.identifier.textRange.startOffset, element.textRange.endOffset), 
+                        element,
+                        TextRange.create(context.identifier.textRange.startOffset, element.textRange.endOffset),
                         context.qualifierExpr,
                         TextRange.create(i.get().textRange.startOffset, argument.textRange.endOffset)
                     )

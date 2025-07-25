@@ -2,9 +2,9 @@
 package com.intellij.advancedExpressionFolding.extension;
 
 import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings;
-import com.intellij.advancedExpressionFolding.expression.ArrayGet;
 import com.intellij.advancedExpressionFolding.expression.Expression;
 import com.intellij.advancedExpressionFolding.expression.literal.NumberLiteral;
+import com.intellij.advancedExpressionFolding.expression.operation.collection.ArrayGet;
 import com.intellij.openapi.editor.Document;
 import com.intellij.psi.PsiArrayAccessExpression;
 import com.intellij.psi.PsiAssignmentExpression;

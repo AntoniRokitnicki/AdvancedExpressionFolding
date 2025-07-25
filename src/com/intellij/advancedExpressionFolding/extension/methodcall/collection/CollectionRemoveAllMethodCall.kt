@@ -1,7 +1,7 @@
 package com.intellij.advancedExpressionFolding.extension.methodcall.collection
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.expression.RemoveAssignForCollection
+import com.intellij.advancedExpressionFolding.expression.operation.collection.RemoveAssignForCollection
 import com.intellij.advancedExpressionFolding.extension.methodcall.Context
 import com.intellij.psi.PsiExpression
 import com.intellij.psi.PsiMethodCallExpression
@@ -16,5 +16,10 @@ class CollectionRemoveAllMethodCall : AbstractCollectionMethodCall() {
         context: Context,
         argument: PsiExpression,
         argumentExpression: Expression
-    ): Expression? = RemoveAssignForCollection(element, element.textRange, context.getOperands())
+    ): Expression? =
+        RemoveAssignForCollection(
+            element,
+            element.textRange,
+            context.getOperands()
+        )
 }

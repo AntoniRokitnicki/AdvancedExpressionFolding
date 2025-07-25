@@ -1,8 +1,13 @@
 package com.intellij.advancedExpressionFolding.extension;
 
 import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings;
-import com.intellij.advancedExpressionFolding.expression.*;
+import com.intellij.advancedExpressionFolding.expression.Expression;
 import com.intellij.advancedExpressionFolding.expression.math.basic.*;
+import com.intellij.advancedExpressionFolding.expression.operation.basic.Append;
+import com.intellij.advancedExpressionFolding.expression.operation.basic.Equal;
+import com.intellij.advancedExpressionFolding.expression.operation.basic.Greater;
+import com.intellij.advancedExpressionFolding.expression.operation.basic.GreaterEqual;
+import com.intellij.advancedExpressionFolding.expression.operation.collection.Range;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.*;
@@ -64,7 +69,7 @@ public class BinaryExpressionExt {
                                 if (operationSign.equals("==")) {
                                     switch (expression) {
                                         case -1:
-                                            return new Less(element, element.getTextRange(), Arrays.asList(qualifier, argument));
+                                            return new Append.Less(element, element.getTextRange(), Arrays.asList(qualifier, argument));
                                         case 0:
                                             return new Equal(element, element.getTextRange(), Arrays.asList(qualifier, argument));
                                         case 1:
@@ -73,7 +78,7 @@ public class BinaryExpressionExt {
                                 } else if (operationSign.equals("!=")) {
                                     switch (expression) {
                                         case 1:
-                                            return new LessEqual(element, element.getTextRange(), Arrays.asList(qualifier, argument));
+                                            return new Append.LessEqual(element, element.getTextRange(), Arrays.asList(qualifier, argument));
                                         case 0:
                                             return new NotEqual(element, element.getTextRange(), Arrays.asList(qualifier, argument));
                                         case -1:
@@ -84,9 +89,9 @@ public class BinaryExpressionExt {
                                 else if(operationSign.equals(lessOperation)) {
                                     switch (expression) {
                                         case 1:
-                                            return new LessEqual(element, element.getTextRange(), Arrays.asList(qualifier, argument));
+                                            return new Append.LessEqual(element, element.getTextRange(), Arrays.asList(qualifier, argument));
                                         case 0:
-                                            return new Less(element, element.getTextRange(), Arrays.asList(qualifier, argument));
+                                            return new Append.Less(element, element.getTextRange(), Arrays.asList(qualifier, argument));
                                     }
                                 }
                                 else if(operationSign.equals(greaterOperation)) {
@@ -100,9 +105,9 @@ public class BinaryExpressionExt {
                                 else if(operationSign.equals(lessOperation + "=")) {
                                     switch (expression) {
                                         case -1:
-                                            return new Less(element, element.getTextRange(), Arrays.asList(qualifier, argument));
+                                            return new Append.Less(element, element.getTextRange(), Arrays.asList(qualifier, argument));
                                         case 0:
-                                            return new LessEqual(element, element.getTextRange(), Arrays.asList(qualifier, argument));
+                                            return new Append.LessEqual(element, element.getTextRange(), Arrays.asList(qualifier, argument));
                                     }
                                 }
                                 else if(operationSign.equals(greaterOperation + "=")) {
