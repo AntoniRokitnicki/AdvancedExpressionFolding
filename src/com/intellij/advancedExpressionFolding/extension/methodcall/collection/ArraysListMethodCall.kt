@@ -1,7 +1,7 @@
 package com.intellij.advancedExpressionFolding.extension.methodcall.collection
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.expression.ListLiteral
+import com.intellij.advancedExpressionFolding.expression.literal.ListLiteral
 import com.intellij.advancedExpressionFolding.extension.methodcall.AbstractMethodCall
 import com.intellij.advancedExpressionFolding.extension.methodcall.Context
 import com.intellij.advancedExpressionFolding.extension.methodcall.NeedsQualifier
@@ -25,7 +25,11 @@ class ArraysListMethodCall : AbstractMethodCall(), NeedsQualifier {
             expressions.size != 1 ||
             expressions[0].type !is PsiArrayType
         ) {
-            return ListLiteral(element, element.textRange, context.argumentExpressions.toList())
+            return ListLiteral(
+                element,
+                element.textRange,
+                context.argumentExpressions.toList()
+            )
         }
         return null
 

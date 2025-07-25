@@ -1,7 +1,7 @@
 package com.intellij.advancedExpressionFolding.extension.methodcall.date
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.expression.LocalDateLiteral
+import com.intellij.advancedExpressionFolding.expression.literal.LocalDateLiteral
 import com.intellij.advancedExpressionFolding.extension.methodcall.AbstractMethodCall
 import com.intellij.advancedExpressionFolding.extension.methodcall.Context
 import com.intellij.psi.PsiExpression
@@ -31,6 +31,12 @@ class CreateDateFactoryMethodCall : AbstractMethodCall() {
         } ?: return null
 
         val (year, month, day) = literals
-        return LocalDateLiteral(element, element.textRange, year, month, day)
+        return LocalDateLiteral(
+            element,
+            element.textRange,
+            year,
+            month,
+            day
+        )
     }
 }

@@ -3,7 +3,7 @@ package com.intellij.advancedExpressionFolding.extension.methodcall.collection
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.Get
 import com.intellij.advancedExpressionFolding.expression.Get.Style
-import com.intellij.advancedExpressionFolding.expression.NumberLiteral
+import com.intellij.advancedExpressionFolding.expression.literal.NumberLiteral
 import com.intellij.advancedExpressionFolding.extension.Helper.getSlicePosition
 import com.intellij.advancedExpressionFolding.extension.methodcall.AbstractMethodCall
 import com.intellij.advancedExpressionFolding.extension.methodcall.Context

@@ -1,7 +1,7 @@
 package com.intellij.advancedExpressionFolding.extension.methodcall.collection
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.expression.ListLiteral
+import com.intellij.advancedExpressionFolding.expression.literal.ListLiteral
 import com.intellij.advancedExpressionFolding.extension.methodcall.AbstractMethodCall
 import com.intellij.advancedExpressionFolding.extension.methodcall.Context
 import com.intellij.advancedExpressionFolding.extension.methodcall.NeedsQualifier
@@ -23,7 +23,7 @@ class CollectionsUnmodifiableListMethodCall : AbstractMethodCall(), NeedsQualifi
     ): Expression? {
         if (argumentExpression is ListLiteral) {
             return ListLiteral(
-                element, 
+                element,
                 element.textRange,
                 argumentExpression.items
             )

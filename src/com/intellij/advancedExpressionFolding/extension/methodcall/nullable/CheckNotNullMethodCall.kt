@@ -2,8 +2,8 @@ package com.intellij.advancedExpressionFolding.extension.methodcall.nullable
 
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.INameable
-import com.intellij.advancedExpressionFolding.expression.StringLiteral
 import com.intellij.advancedExpressionFolding.expression.Variable
+import com.intellij.advancedExpressionFolding.expression.literal.StringLiteral
 import com.intellij.advancedExpressionFolding.expression.semantic.kotlin.CheckNotNullExpression
 import com.intellij.advancedExpressionFolding.extension.asInstance
 import com.intellij.advancedExpressionFolding.extension.end

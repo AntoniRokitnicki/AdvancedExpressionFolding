@@ -1,9 +1,9 @@
 package com.intellij.advancedExpressionFolding.extension;
 
-import com.intellij.advancedExpressionFolding.expression.CharacterLiteral;
 import com.intellij.advancedExpressionFolding.expression.Expression;
-import com.intellij.advancedExpressionFolding.expression.NumberLiteral;
-import com.intellij.advancedExpressionFolding.expression.StringLiteral;
+import com.intellij.advancedExpressionFolding.expression.literal.CharacterLiteral;
+import com.intellij.advancedExpressionFolding.expression.literal.NumberLiteral;
+import com.intellij.advancedExpressionFolding.expression.literal.StringLiteral;
 import com.intellij.psi.PsiLiteralExpression;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

@@ -1,8 +1,8 @@
 package com.intellij.advancedExpressionFolding.extension;
 
 import com.intellij.advancedExpressionFolding.expression.Expression;
-import com.intellij.advancedExpressionFolding.expression.NumberLiteral;
 import com.intellij.advancedExpressionFolding.expression.Variable;
+import com.intellij.advancedExpressionFolding.expression.literal.NumberLiteral;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiIdentifier;
 import com.intellij.psi.PsiMethodReferenceExpression;

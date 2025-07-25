@@ -1,5 +1,6 @@
-package com.intellij.advancedExpressionFolding.expression;
+package com.intellij.advancedExpressionFolding.expression.literal;
 
+import com.intellij.advancedExpressionFolding.expression.Expression;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.PsiElement;
 

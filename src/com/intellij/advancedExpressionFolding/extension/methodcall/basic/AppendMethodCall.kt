@@ -2,7 +2,7 @@ package com.intellij.advancedExpressionFolding.extension.methodcall.basic
 
 import com.intellij.advancedExpressionFolding.expression.Append
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.expression.StringLiteral
+import com.intellij.advancedExpressionFolding.expression.literal.StringLiteral
 import com.intellij.advancedExpressionFolding.extension.methodcall.AbstractMethodCall
 import com.intellij.advancedExpressionFolding.extension.methodcall.Context
 import com.intellij.advancedExpressionFolding.extension.methodcall.NeedsQualifier
