@@ -16,12 +16,12 @@ import java.util.List;
 import java.util.Set;
 
 import static com.intellij.advancedExpressionFolding.extension.BuildExpressionKt.tryBuildExpression;
-import static com.intellij.advancedExpressionFolding.extension.CacheExt.getExpression;
+import static com.intellij.advancedExpressionFolding.extension.cache.CacheExt.getExpression;
 
 public class BuildExpressionExt {
 
     @Contract("_, _, true -> !null")
-    static Expression buildExpression(@NotNull PsiElement element, @NotNull Document document, boolean synthetic) {
+    public static Expression buildExpression(@NotNull PsiElement element, @NotNull Document document, boolean synthetic) {
         var expression = tryBuildExpression(element, document, synthetic);
         if (expression!= null) {
             return expression;

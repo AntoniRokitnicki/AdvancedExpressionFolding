@@ -1,6 +1,6 @@
 package com.intellij.advancedExpressionFolding
 
-import com.intellij.advancedExpressionFolding.extension.Keys
+import com.intellij.advancedExpressionFolding.extension.cache.Keys
 import com.intellij.openapi.components.Service
 import com.intellij.openapi.components.service
 import com.intellij.openapi.editor.Editor

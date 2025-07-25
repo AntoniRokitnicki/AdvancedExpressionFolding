@@ -4,6 +4,7 @@ import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.controlflow.CompactControlFlowExpression
 import com.intellij.advancedExpressionFolding.expression.controlflow.SemicolonExpression
 import com.intellij.advancedExpressionFolding.expression.operation.basic.TypeCast
+import com.intellij.advancedExpressionFolding.extension.cache.CacheExt
 import com.intellij.advancedExpressionFolding.extension.methodcall.MethodCallExpressionExt
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.util.TextRange

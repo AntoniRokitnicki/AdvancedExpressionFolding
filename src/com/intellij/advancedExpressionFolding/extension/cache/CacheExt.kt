@@ -1,10 +1,8 @@
-package com.intellij.advancedExpressionFolding.extension
+package com.intellij.advancedExpressionFolding.extension.cache
 
-import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.extension.BuildExpressionExt.buildExpression
-import com.intellij.advancedExpressionFolding.extension.Keys.getKey
-import com.intellij.advancedExpressionFolding.extension.Keys.getVersionKey
+import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
 import com.intellij.openapi.editor.Document
 import com.intellij.psi.PsiElement
 import org.jetbrains.annotations.Contract
@@ -12,7 +10,7 @@ import org.jetbrains.annotations.Contract
 object CacheExt : AdvancedExpressionFoldingSettings.StateDelegate() {
 
     fun PsiElement.invalidateExpired(document: Document, synthetic: Boolean): Boolean {
-        val versionKey = getVersionKey(synthetic)
+        val versionKey = Keys.getVersionKey(synthetic)
         val lastVersion = getUserData(versionKey)
         val hashCode = document.text.hashCode()
         val expired = lastVersion != hashCode
@@ -27,7 +25,7 @@ object CacheExt : AdvancedExpressionFoldingSettings.StateDelegate() {
     @JvmStatic
     @Contract("_, _, true -> !null")
     fun getExpression(element: PsiElement, document: Document, synthetic: Boolean): Expression? {
-            val key = getKey(synthetic)
+            val key = Keys.getKey(synthetic)
             val cachedExpression = if (element.invalidateExpired(document, synthetic)) {
                 null
             } else {

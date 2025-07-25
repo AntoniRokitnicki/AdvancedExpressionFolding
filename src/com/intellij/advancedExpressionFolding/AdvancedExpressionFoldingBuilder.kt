@@ -4,9 +4,9 @@ import com.google.common.collect.Lists
 import com.google.common.collect.Sets
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.extension.BuildExpressionExt
-import com.intellij.advancedExpressionFolding.extension.CacheExt.invalidateExpired
-import com.intellij.advancedExpressionFolding.extension.Keys
 import com.intellij.advancedExpressionFolding.extension.asInstance
+import com.intellij.advancedExpressionFolding.extension.cache.CacheExt.invalidateExpired
+import com.intellij.advancedExpressionFolding.extension.cache.Keys
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings.Companion.getInstance
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings.IConfig
 import com.intellij.lang.ASTNode

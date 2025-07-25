@@ -3,7 +3,7 @@ package com.intellij.advancedExpressionFolding.extension.clazz
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.semantic.SimpleExpression
 import com.intellij.advancedExpressionFolding.extension.*
-import com.intellij.advancedExpressionFolding.extension.Keys.METHOD_TO_PARENT_CLASS_KEY
+import com.intellij.advancedExpressionFolding.extension.cache.Keys.METHOD_TO_PARENT_CLASS_KEY
 import com.intellij.openapi.util.removeUserData
 import com.intellij.psi.*
 import com.intellij.psi.util.MethodSignature
