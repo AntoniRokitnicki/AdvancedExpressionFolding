@@ -1,7 +1,7 @@
 package com.intellij.advancedExpressionFolding.extension
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.expression.custom.*
+import com.intellij.advancedExpressionFolding.expression.semantic.*
 import com.intellij.lang.folding.FoldingDescriptor
 import com.intellij.openapi.editor.FoldingGroup
 import com.intellij.openapi.util.TextRange

@@ -7,7 +7,7 @@ import static java.util.regex.Pattern.compile;
 
 
 /**
- * {@link com.intellij.advancedExpressionFolding.expression.custom.FieldConstExpression )}
+ * {@link com.intellij.advancedExpressionFolding.expression.semantic.FieldConstExpression )}
  * {@link com.intellij.advancedExpressionFolding.FoldingTest#testConstTestData}
  */
 public class ConstTestData {

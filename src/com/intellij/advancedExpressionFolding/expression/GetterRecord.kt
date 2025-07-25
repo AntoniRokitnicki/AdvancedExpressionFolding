@@ -1,8 +1,5 @@
-package com.intellij.advancedExpressionFolding.expression.custom
+package com.intellij.advancedExpressionFolding.expression
 
-import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.expression.IGetter
-import com.intellij.advancedExpressionFolding.extension.plus
 import com.intellij.lang.folding.FoldingDescriptor
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.editor.FoldingGroup

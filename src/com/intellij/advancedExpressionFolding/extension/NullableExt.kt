@@ -1,8 +1,8 @@
 package com.intellij.advancedExpressionFolding.extension
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression
-import com.intellij.advancedExpressionFolding.expression.custom.NullAnnotationExpression
+import com.intellij.advancedExpressionFolding.expression.semantic.kotlin.CheckNotNullExpression
+import com.intellij.advancedExpressionFolding.expression.semantic.lombok.NullAnnotationExpression
 import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFoldingAnnotation.Companion.findByName
 import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFoldingAnnotation.NOT_NULL
 import com.intellij.advancedExpressionFolding.extension.NullableExt.FieldFoldingAnnotation.NULLABLE

@@ -4,9 +4,9 @@ import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.IGetter
 import com.intellij.advancedExpressionFolding.expression.INameable
 import com.intellij.advancedExpressionFolding.expression.Variable
-import com.intellij.advancedExpressionFolding.expression.custom.BuilderShiftExpression
-import com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression
 import com.intellij.advancedExpressionFolding.expression.optional.FieldShiftMethod
+import com.intellij.advancedExpressionFolding.expression.semantic.BuilderShiftExpression
+import com.intellij.advancedExpressionFolding.expression.semantic.kotlin.CheckNotNullExpression
 import com.intellij.openapi.editor.Document
 import com.intellij.psi.*
 

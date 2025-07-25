@@ -1,6 +1,6 @@
 package com.intellij.advancedExpressionFolding.extension.methodcall.dynamic
 
-import com.intellij.advancedExpressionFolding.expression.custom.DynamicExpression
+import com.intellij.advancedExpressionFolding.expression.semantic.DynamicExpression
 import com.intellij.advancedExpressionFolding.extension.group
 import com.intellij.advancedExpressionFolding.extension.methodcall.AbstractMethodCall
 import com.intellij.advancedExpressionFolding.extension.methodcall.Context

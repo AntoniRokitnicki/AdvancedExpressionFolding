@@ -1,4 +1,4 @@
-package com.intellij.advancedExpressionFolding.expression.custom
+package com.intellij.advancedExpressionFolding.expression.semantic.lombok
 
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.extension.end

@@ -1,8 +1,8 @@
 package com.intellij.advancedExpressionFolding.extension
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.expression.custom.ElvisReturnNull
-import com.intellij.advancedExpressionFolding.expression.custom.LetReturnIt
+import com.intellij.advancedExpressionFolding.expression.semantic.kotlin.ElvisReturnNull
+import com.intellij.advancedExpressionFolding.expression.semantic.kotlin.LetReturnIt
 import com.intellij.psi.*
 
 

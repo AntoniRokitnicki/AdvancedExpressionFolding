@@ -2,8 +2,8 @@ package com.intellij.advancedExpressionFolding.extension.logger
 
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.Variable
-import com.intellij.advancedExpressionFolding.expression.custom.LoggerBracketExpression
-import com.intellij.advancedExpressionFolding.expression.custom.LoggerBracketParentExpression
+import com.intellij.advancedExpressionFolding.expression.semantic.logging.LoggerBracketExpression
+import com.intellij.advancedExpressionFolding.expression.semantic.logging.LoggerBracketParentExpression
 import com.intellij.advancedExpressionFolding.extension.BuildExpressionExt.getAnyExpression
 import com.intellij.advancedExpressionFolding.extension.asInstance
 import com.intellij.advancedExpressionFolding.extension.end

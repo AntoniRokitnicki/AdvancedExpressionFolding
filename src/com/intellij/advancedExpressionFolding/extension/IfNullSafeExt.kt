@@ -3,8 +3,8 @@ package com.intellij.advancedExpressionFolding.extension
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.IGetter
 import com.intellij.advancedExpressionFolding.expression.INameable
-import com.intellij.advancedExpressionFolding.expression.custom.IfNullSafeExpression
-import com.intellij.advancedExpressionFolding.expression.custom.WrapperExpression
+import com.intellij.advancedExpressionFolding.expression.semantic.WrapperExpression
+import com.intellij.advancedExpressionFolding.expression.semantic.kotlin.IfNullSafeExpression
 import com.intellij.openapi.editor.Document
 import com.intellij.psi.*
 import com.intellij.psi.util.elementType

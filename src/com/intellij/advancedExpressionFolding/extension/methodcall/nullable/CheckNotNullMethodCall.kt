@@ -4,7 +4,7 @@ import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.INameable
 import com.intellij.advancedExpressionFolding.expression.StringLiteral
 import com.intellij.advancedExpressionFolding.expression.Variable
-import com.intellij.advancedExpressionFolding.expression.custom.CheckNotNullExpression
+import com.intellij.advancedExpressionFolding.expression.semantic.kotlin.CheckNotNullExpression
 import com.intellij.advancedExpressionFolding.extension.asInstance
 import com.intellij.advancedExpressionFolding.extension.end
 import com.intellij.advancedExpressionFolding.extension.methodcall.AbstractMethodCall

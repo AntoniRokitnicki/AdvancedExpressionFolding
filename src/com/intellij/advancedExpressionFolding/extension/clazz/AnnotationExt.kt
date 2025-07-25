@@ -1,6 +1,6 @@
 package com.intellij.advancedExpressionFolding.extension.clazz
 
-import com.intellij.advancedExpressionFolding.expression.custom.ClassAnnotationExpression
+import com.intellij.advancedExpressionFolding.expression.semantic.lombok.ClassAnnotationExpression
 import com.intellij.advancedExpressionFolding.extension.*
 import com.intellij.advancedExpressionFolding.extension.Consts.SUPERSCRIPT_MAPPING
 import com.intellij.advancedExpressionFolding.extension.clazz.LombokExt.addLombokSupport

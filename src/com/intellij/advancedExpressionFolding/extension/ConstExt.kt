@@ -1,7 +1,7 @@
 package com.intellij.advancedExpressionFolding.extension
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.expression.custom.FieldConstExpression
+import com.intellij.advancedExpressionFolding.expression.semantic.kotlin.FieldConstExpression
 import com.intellij.psi.PsiField
 import com.intellij.psi.PsiMethodCallExpression
 import com.intellij.psi.PsiReferenceExpression

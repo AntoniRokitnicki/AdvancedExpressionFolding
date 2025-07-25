@@ -1,4 +1,4 @@
-package com.intellij.advancedExpressionFolding.expression.custom
+package com.intellij.advancedExpressionFolding.expression.semantic.lombok
 
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.extension.asInstance
@@ -20,7 +20,7 @@ open class ClassAnnotationExpression(
     private val additionalExpression: Expression? = null,
     private val group: FoldingGroup? = null,
 
-) : Expression(element, element.textRange) {
+    ) : Expression(element, element.textRange) {
     override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean {
         return true
     }

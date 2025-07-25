@@ -1,8 +1,8 @@
 package com.intellij.advancedExpressionFolding.extension
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.expression.custom.InterfacePropertiesExpression
-import com.intellij.advancedExpressionFolding.expression.custom.NullAnnotationExpression
+import com.intellij.advancedExpressionFolding.expression.semantic.lombok.InterfacePropertiesExpression
+import com.intellij.advancedExpressionFolding.expression.semantic.lombok.NullAnnotationExpression
 import com.intellij.advancedExpressionFolding.extension.NullableExt.fieldAnnotationExpression
 import com.intellij.advancedExpressionFolding.extension.clazz.LombokInterfaceFoldingAnnotation.LOMBOK_INTERFACE_GETTER
 import com.intellij.advancedExpressionFolding.extension.clazz.LombokInterfaceFoldingAnnotation.LOMBOK_INTERFACE_SETTER
