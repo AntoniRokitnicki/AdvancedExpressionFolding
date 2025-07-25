@@ -1,6 +1,6 @@
 package com.intellij.advancedExpressionFolding.extension.methodcall.arithmetic
 
-import com.intellij.advancedExpressionFolding.expression.Divide
+import com.intellij.advancedExpressionFolding.expression.math.basic.Divide
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.extension.methodcall.Context
 import com.intellij.psi.PsiExpression
@@ -14,5 +14,9 @@ class ArithmeticDivideMethodCall : AbstractArithmeticMethodCall() {
         context: Context,
         argument: PsiExpression,
         argumentExpression: Expression
-    ): Expression? = Divide(element, element.textRange, context.getOperands())
+    ): Expression? = Divide(
+        element,
+        element.textRange,
+        context.getOperands()
+    )
 }

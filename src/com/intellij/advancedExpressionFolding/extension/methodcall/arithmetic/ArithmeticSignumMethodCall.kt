@@ -1,7 +1,7 @@
 package com.intellij.advancedExpressionFolding.extension.methodcall.arithmetic
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.expression.Signum
+import com.intellij.advancedExpressionFolding.expression.math.basic.Signum
 import com.intellij.advancedExpressionFolding.extension.methodcall.Context
 import com.intellij.psi.PsiMethodCallExpression
 
@@ -11,5 +11,9 @@ class ArithmeticSignumMethodCall : AbstractArithmeticMethodCall() {
     override fun onNoArguments(
         element: PsiMethodCallExpression,
         context: Context
-    ): Expression? = Signum(element, element.textRange, context.getOperands())
+    ): Expression? = Signum(
+        element,
+        element.textRange,
+        context.getOperands()
+    )
 }

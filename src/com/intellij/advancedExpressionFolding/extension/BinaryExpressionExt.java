@@ -2,6 +2,7 @@ package com.intellij.advancedExpressionFolding.extension;
 
 import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings;
 import com.intellij.advancedExpressionFolding.expression.*;
+import com.intellij.advancedExpressionFolding.expression.math.basic.*;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.*;

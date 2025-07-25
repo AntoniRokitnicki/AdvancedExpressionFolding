@@ -1,7 +1,7 @@
 package com.intellij.advancedExpressionFolding.extension.methodcall.arithmetic
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.expression.Negate
+import com.intellij.advancedExpressionFolding.expression.math.basic.Negate
 import com.intellij.advancedExpressionFolding.extension.methodcall.Context
 import com.intellij.psi.PsiMethodCallExpression
 
@@ -11,5 +11,9 @@ class ArithmeticNegateMethodCall : AbstractArithmeticMethodCall() {
     override fun onNoArguments(
         element: PsiMethodCallExpression,
         context: Context
-    ): Expression? = Negate(element, element.textRange, context.getOperands())
+    ): Expression? = Negate(
+        element,
+        element.textRange,
+        context.getOperands()
+    )
 }

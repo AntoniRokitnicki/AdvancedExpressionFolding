@@ -2,7 +2,7 @@ package com.intellij.advancedExpressionFolding.extension.methodcall.arithmetic
 
 import com.intellij.advancedExpressionFolding.expression.And
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.expression.Not
+import com.intellij.advancedExpressionFolding.expression.math.basic.Not
 import com.intellij.advancedExpressionFolding.extension.methodcall.Context
 
 import com.intellij.psi.PsiExpression
@@ -19,7 +19,11 @@ class ArithmeticAndNotMethodCall : AbstractArithmeticMethodCall() {
         argumentExpression: Expression
     ): Expression? {
         val qualifier = context.qualifierExpr
-        val notExpr = Not(element, argumentExpression.textRange, Collections.singletonList(argumentExpression))
+        val notExpr = Not(
+            element,
+            argumentExpression.textRange,
+            Collections.singletonList(argumentExpression)
+        )
         return And(element, element.textRange, listOf(qualifier, notExpr))
     }
 }

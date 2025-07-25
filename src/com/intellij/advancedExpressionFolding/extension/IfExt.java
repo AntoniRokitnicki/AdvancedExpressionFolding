@@ -1,7 +1,6 @@
 package com.intellij.advancedExpressionFolding.extension;
 
 import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings;
-import com.intellij.advancedExpressionFolding.expression.Add;
 import com.intellij.advancedExpressionFolding.expression.Expression;
 import com.intellij.advancedExpressionFolding.expression.IfExpression;
 import com.intellij.advancedExpressionFolding.expression.controlflow.CompactControlFlowExpression;
@@ -9,6 +8,7 @@ import com.intellij.advancedExpressionFolding.expression.controlflow.ElvisExpres
 import com.intellij.advancedExpressionFolding.expression.controlflow.ShortElvisExpression;
 import com.intellij.advancedExpressionFolding.expression.literal.InterpolatedString;
 import com.intellij.advancedExpressionFolding.expression.literal.StringLiteral;
+import com.intellij.advancedExpressionFolding.expression.math.basic.Add;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.*;
