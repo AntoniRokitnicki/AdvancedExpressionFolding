@@ -1,7 +1,7 @@
 package com.intellij.advancedExpressionFolding.extension.methodcall.arithmetic
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.expression.Remainder
+import com.intellij.advancedExpressionFolding.expression.math.bitwise.Remainder
 import com.intellij.advancedExpressionFolding.extension.methodcall.Context
 import com.intellij.psi.PsiExpression
 import com.intellij.psi.PsiMethodCallExpression
@@ -14,5 +14,9 @@ class ArithmeticRemainderMethodCall : AbstractArithmeticMethodCall() {
         context: Context,
         argument: PsiExpression,
         argumentExpression: Expression
-    ): Expression? = Remainder(element, element.textRange, context.getOperands())
+    ): Expression? = Remainder(
+        element,
+        element.textRange,
+        context.getOperands()
+    )
 }

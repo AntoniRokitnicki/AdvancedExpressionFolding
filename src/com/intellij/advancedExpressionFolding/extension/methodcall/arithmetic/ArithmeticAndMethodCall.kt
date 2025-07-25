@@ -1,6 +1,6 @@
 package com.intellij.advancedExpressionFolding.extension.methodcall.arithmetic
 
-import com.intellij.advancedExpressionFolding.expression.And
+import com.intellij.advancedExpressionFolding.expression.math.bitwise.And
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.extension.methodcall.Context
 import com.intellij.psi.PsiExpression
@@ -14,5 +14,9 @@ class ArithmeticAndMethodCall : AbstractArithmeticMethodCall() {
         context: Context,
         argument: PsiExpression,
         argumentExpression: Expression
-    ): Expression? = And(element, element.textRange, context.getOperands())
+    ): Expression? = And(
+        element,
+        element.textRange,
+        context.getOperands()
+    )
 }

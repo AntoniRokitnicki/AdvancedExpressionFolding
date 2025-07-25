@@ -1,7 +1,7 @@
 package com.intellij.advancedExpressionFolding.extension.methodcall.arithmetic
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.expression.ShiftRight
+import com.intellij.advancedExpressionFolding.expression.math.bitwise.ShiftRight
 import com.intellij.advancedExpressionFolding.extension.methodcall.Context
 import com.intellij.psi.PsiExpression
 import com.intellij.psi.PsiMethodCallExpression
@@ -14,5 +14,9 @@ class ArithmeticShiftRightMethodCall : AbstractArithmeticMethodCall() {
         context: Context,
         argument: PsiExpression,
         argumentExpression: Expression
-    ): Expression? = ShiftRight(element, element.textRange, context.getOperands())
+    ): Expression? = ShiftRight(
+        element,
+        element.textRange,
+        context.getOperands()
+    )
 }

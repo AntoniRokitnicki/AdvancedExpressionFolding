@@ -1,7 +1,7 @@
 package com.intellij.advancedExpressionFolding.extension.methodcall.arithmetic
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.expression.Or
+import com.intellij.advancedExpressionFolding.expression.math.bitwise.Or
 import com.intellij.advancedExpressionFolding.extension.methodcall.Context
 import com.intellij.psi.PsiExpression
 import com.intellij.psi.PsiMethodCallExpression
@@ -14,5 +14,9 @@ class ArithmeticOrMethodCall : AbstractArithmeticMethodCall() {
         context: Context,
         argument: PsiExpression,
         argumentExpression: Expression
-    ): Expression? = Or(element, element.textRange, context.getOperands())
+    ): Expression? = Or(
+        element,
+        element.textRange,
+        context.getOperands()
+    )
 }

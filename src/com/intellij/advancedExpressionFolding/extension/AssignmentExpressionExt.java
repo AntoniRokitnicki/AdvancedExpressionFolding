@@ -1,7 +1,10 @@
 package com.intellij.advancedExpressionFolding.extension;
 
-import com.intellij.advancedExpressionFolding.expression.*;
+import com.intellij.advancedExpressionFolding.expression.Expression;
+import com.intellij.advancedExpressionFolding.expression.Operation;
+import com.intellij.advancedExpressionFolding.expression.Variable;
 import com.intellij.advancedExpressionFolding.expression.math.basic.*;
+import com.intellij.advancedExpressionFolding.expression.math.bitwise.*;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.PsiAssignmentExpression;
