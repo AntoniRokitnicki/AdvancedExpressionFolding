@@ -1,9 +1,9 @@
 package com.intellij.advancedExpressionFolding.extension
 
-import com.intellij.advancedExpressionFolding.expression.CompactControlFlowExpression
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.SemicolonExpression
 import com.intellij.advancedExpressionFolding.expression.TypeCast
+import com.intellij.advancedExpressionFolding.expression.controlflow.CompactControlFlowExpression
 import com.intellij.advancedExpressionFolding.extension.methodcall.MethodCallExpressionExt
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.util.TextRange

@@ -23,7 +23,7 @@ public class Range extends Expression {
     Expression startRange;
     private @NotNull
     Expression endRange;
-    String separator;
+    protected String separator;
     private boolean startInclusive;
     private boolean endInclusive;
 

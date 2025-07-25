@@ -1,4 +1,4 @@
-package com.intellij.advancedExpressionFolding.expression;
+package com.intellij.advancedExpressionFolding.expression.controlflow;
 
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.PsiCodeBlock;
