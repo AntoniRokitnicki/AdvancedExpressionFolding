@@ -1,6 +1,6 @@
 package com.intellij.advancedExpressionFolding
 
-import com.intellij.advancedExpressionFolding.extension.util.PropertyUtil.guessPropertyName
+import com.intellij.advancedExpressionFolding.processor.util.PropertyUtil.guessPropertyName
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 

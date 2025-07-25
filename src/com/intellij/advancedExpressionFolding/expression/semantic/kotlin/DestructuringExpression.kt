@@ -2,7 +2,7 @@ package com.intellij.advancedExpressionFolding.expression.semantic.kotlin
 
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.semantic.AbstractMultiExpression
-import com.intellij.advancedExpressionFolding.extension.toTextRange
+import com.intellij.advancedExpressionFolding.processor.toTextRange
 import com.intellij.psi.PsiElement
 
 class DestructuringExpression(

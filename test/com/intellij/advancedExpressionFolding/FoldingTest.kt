@@ -1,8 +1,8 @@
 package com.intellij.advancedExpressionFolding
 
-import com.intellij.advancedExpressionFolding.extension.methodcall.MethodCallFactory
-import com.intellij.advancedExpressionFolding.extension.methodcall.dynamic.DynamicMethodCall
-import com.intellij.advancedExpressionFolding.extension.methodcall.dynamic.IDynamicDataProvider
+import com.intellij.advancedExpressionFolding.processor.methodcall.MethodCallFactory
+import com.intellij.advancedExpressionFolding.processor.methodcall.dynamic.DynamicMethodCall
+import com.intellij.advancedExpressionFolding.processor.methodcall.dynamic.IDynamicDataProvider
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings.Companion.getInstance
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings.State
 import com.intellij.openapi.application.runInEdt

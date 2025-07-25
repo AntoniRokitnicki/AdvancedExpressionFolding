@@ -18,7 +18,7 @@
         <intentionAction>
             <language>JAVA</language>
             <className>
-                com.intellij.advancedExpressionFolding.extension.methodcall.dynamic.AddDynamicMethodFoldingIntention
+                com.intellij.advancedExpressionFolding.processor.methodcall.dynamic.AddDynamicMethodFoldingIntention
             </className>
         </intentionAction>
 
@@ -72,177 +72,177 @@
 
     <extensionPoints>
         <extensionPoint name="methodCallFolding"
-                        interface="com.intellij.advancedExpressionFolding.extension.methodcall.AbstractMethodCall"
+                        interface="com.intellij.advancedExpressionFolding.processor.methodcall.AbstractMethodCall"
                         dynamic="true"/>
 
         <extensionPoint name="expressionBuilder"
-                        interface="com.intellij.advancedExpressionFolding.extension.BuildExpression"
+                        interface="com.intellij.advancedExpressionFolding.processor.BuildExpression"
                         dynamic="true"/>
     </extensionPoints>
     <extensions defaultExtensionNs="com.github.advanced-java-folding2">
         <methodCallFolding
-                implementation="com.intellij.advancedExpressionFolding.extension.methodcall.date.BeforeDateMethodCall"/>
+                implementation="com.intellij.advancedExpressionFolding.processor.methodcall.date.BeforeDateMethodCall"/>
         <methodCallFolding
-                implementation="com.intellij.advancedExpressionFolding.extension.methodcall.date.AfterDateMethodCall"/>
+                implementation="com.intellij.advancedExpressionFolding.processor.methodcall.date.AfterDateMethodCall"/>
         <methodCallFolding
-                implementation="com.intellij.advancedExpressionFolding.extension.methodcall.date.CreateDateFactoryMethodCall"/>
+                implementation="com.intellij.advancedExpressionFolding.processor.methodcall.date.CreateDateFactoryMethodCall"/>
         <methodCallFolding
-                implementation="com.intellij.advancedExpressionFolding.extension.methodcall.nullable.CheckNotNullMethodCall"/>
+                implementation="com.intellij.advancedExpressionFolding.processor.methodcall.nullable.CheckNotNullMethodCall"/>
         <methodCallFolding
-                implementation="com.intellij.advancedExpressionFolding.extension.methodcall.collection.MapPutMethodCall"/>
+                implementation="com.intellij.advancedExpressionFolding.processor.methodcall.collection.MapPutMethodCall"/>
         <methodCallFolding
-                implementation="com.intellij.advancedExpressionFolding.extension.methodcall.collection.CollectionGetMethodCall"/>
+                implementation="com.intellij.advancedExpressionFolding.processor.methodcall.collection.CollectionGetMethodCall"/>
         <methodCallFolding
-                implementation="com.intellij.advancedExpressionFolding.extension.methodcall.optional.OptionalGetMethodCall"/>
+                implementation="com.intellij.advancedExpressionFolding.processor.methodcall.optional.OptionalGetMethodCall"/>
     </extensions>
 
     <extensions defaultExtensionNs="com.github.advanced-java-folding2">
         <!-- Basic/Generic implementation -->
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.basic.PrintlnMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.basic.EqualsMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.basic.AppendMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.basic.CharAtMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.basic.SubstringOrSubListMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.basic.ToStringMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.basic.ValueOfMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.basic.PrintlnMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.basic.EqualsMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.basic.AppendMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.basic.CharAtMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.basic.SubstringOrSubListMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.basic.ToStringMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.basic.ValueOfMethodCall"/>
 
         <!-- Optional implementations -->
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.optional.OptionalOfNullableMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.optional.OptionalOfMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.optional.OptionalMapMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.optional.OptionalOrElseMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.optional.OptionalOfNullableMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.optional.OptionalOfMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.optional.OptionalMapMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.optional.OptionalOrElseMethodCall"/>
 
         <!-- Stream implementations -->
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.stream.StreamFilterMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.stream.StreamMapMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.stream.StreamCollectMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.stream.StreamMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.stream.StreamFilterMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.stream.StreamMapMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.stream.StreamCollectMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.stream.StreamMethodCall"/>
 
         <!-- Collection implementations -->
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.collection.CollectionAddMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.collection.CollectionRemoveMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.collection.CollectionAddAllMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.collection.CollectionRemoveAllMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.collection.CollectionStreamMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.collection.CollectionsUnmodifiableSetMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.collection.CollectionsUnmodifiableListMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.collection.ArraysListMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.collection.CollectionAddMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.collection.CollectionRemoveMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.collection.CollectionAddAllMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.collection.CollectionRemoveAllMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.collection.CollectionStreamMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.collection.CollectionsUnmodifiableSetMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.collection.CollectionsUnmodifiableListMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.collection.ArraysListMethodCall"/>
 
         <!-- Arithmetic implementations -->
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.arithmetic.ArithmeticAddMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.arithmetic.ArithmeticSubtractMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.arithmetic.ArithmeticMultiplyMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.arithmetic.ArithmeticDivideMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.arithmetic.ArithmeticRemainderMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.arithmetic.ArithmeticAndNotMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.arithmetic.ArithmeticPowMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.arithmetic.ArithmeticMinMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.arithmetic.ArithmeticMaxMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.arithmetic.ArithmeticGcdMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.arithmetic.ArithmeticAndMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.arithmetic.ArithmeticOrMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.arithmetic.ArithmeticXorMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.arithmetic.ArithmeticShiftLeftMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.arithmetic.ArithmeticShiftRightMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.arithmetic.ArithmeticAtan2MethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.arithmetic.ArithmeticPlusMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.arithmetic.ArithmeticNegateMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.arithmetic.ArithmeticNotMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.arithmetic.ArithmeticAbsMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.arithmetic.ArithmeticSignumMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.math.MathRandomMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.arithmetic.ArithmeticAddMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.arithmetic.ArithmeticSubtractMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.arithmetic.ArithmeticMultiplyMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.arithmetic.ArithmeticDivideMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.arithmetic.ArithmeticRemainderMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.arithmetic.ArithmeticAndNotMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.arithmetic.ArithmeticPowMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.arithmetic.ArithmeticMinMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.arithmetic.ArithmeticMaxMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.arithmetic.ArithmeticGcdMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.arithmetic.ArithmeticAndMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.arithmetic.ArithmeticOrMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.arithmetic.ArithmeticXorMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.arithmetic.ArithmeticShiftLeftMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.arithmetic.ArithmeticShiftRightMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.arithmetic.ArithmeticAtan2MethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.arithmetic.ArithmeticPlusMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.arithmetic.ArithmeticNegateMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.arithmetic.ArithmeticNotMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.arithmetic.ArithmeticAbsMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.arithmetic.ArithmeticSignumMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.math.MathRandomMethodCall"/>
 
         <!-- Math Method Calls -->
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.math.MathAbsMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.math.MathAcosMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.math.MathAsinMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.math.MathAtanMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.math.MathCbrtMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.math.MathCeilMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.math.MathCosMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.math.MathCoshMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.math.MathExpMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.math.MathFloorMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.math.MathLogMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.math.MathLog10MethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.math.MathRintMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.math.MathRoundMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.math.MathSinMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.math.MathSinhMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.math.MathSqrtMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.math.MathTanMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.math.MathTanhMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.math.MathToDegreesMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.math.MathToRadiansMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.math.MathUlpMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.math.MathMinMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.math.MathMaxMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.extension.methodcall.math.MathPowMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.math.MathAbsMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.math.MathAcosMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.math.MathAsinMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.math.MathAtanMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.math.MathCbrtMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.math.MathCeilMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.math.MathCosMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.math.MathCoshMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.math.MathExpMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.math.MathFloorMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.math.MathLogMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.math.MathLog10MethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.math.MathRintMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.math.MathRoundMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.math.MathSinMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.math.MathSinhMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.math.MathSqrtMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.math.MathTanMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.math.MathTanhMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.math.MathToDegreesMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.math.MathToRadiansMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.math.MathUlpMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.math.MathMinMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.math.MathMaxMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.math.MathPowMethodCall"/>
     </extensions>
 
     <extensions defaultExtensionNs="com.github.advanced-java-folding2">
         <expressionBuilder
-                implementation="com.intellij.advancedExpressionFolding.extension.ForStatementBuilder"/>
+                implementation="com.intellij.advancedExpressionFolding.processor.ForStatementBuilder"/>
         <expressionBuilder
-                implementation="com.intellij.advancedExpressionFolding.extension.ForeachStatementBuilder"/>
+                implementation="com.intellij.advancedExpressionFolding.processor.ForeachStatementBuilder"/>
         <expressionBuilder
-                implementation="com.intellij.advancedExpressionFolding.extension.IfStatementBuilder"/>
+                implementation="com.intellij.advancedExpressionFolding.processor.IfStatementBuilder"/>
         <expressionBuilder
-                implementation="com.intellij.advancedExpressionFolding.extension.WhileStatementBuilder"/>
+                implementation="com.intellij.advancedExpressionFolding.processor.WhileStatementBuilder"/>
         <expressionBuilder
-                implementation="com.intellij.advancedExpressionFolding.extension.SemicolonBuilder"/>
+                implementation="com.intellij.advancedExpressionFolding.processor.SemicolonBuilder"/>
         <expressionBuilder
-                implementation="com.intellij.advancedExpressionFolding.extension.TokenBuilder"/>
+                implementation="com.intellij.advancedExpressionFolding.processor.TokenBuilder"/>
         <expressionBuilder
-                implementation="com.intellij.advancedExpressionFolding.extension.CatchSectionBuilder"/>
+                implementation="com.intellij.advancedExpressionFolding.processor.CatchSectionBuilder"/>
         <expressionBuilder
-                implementation="com.intellij.advancedExpressionFolding.extension.DoWhileStatementBuilder"/>
+                implementation="com.intellij.advancedExpressionFolding.processor.DoWhileStatementBuilder"/>
         <expressionBuilder
-                implementation="com.intellij.advancedExpressionFolding.extension.SwitchStatementBuilder"/>
+                implementation="com.intellij.advancedExpressionFolding.processor.SwitchStatementBuilder"/>
         <expressionBuilder
-                implementation="com.intellij.advancedExpressionFolding.extension.ArrayAccessExpressionBuilder"/>
+                implementation="com.intellij.advancedExpressionFolding.processor.ArrayAccessExpressionBuilder"/>
         <expressionBuilder
-                implementation="com.intellij.advancedExpressionFolding.extension.MethodCallExpressionBuilder"/>
+                implementation="com.intellij.advancedExpressionFolding.processor.MethodCallExpressionBuilder"/>
         <expressionBuilder
-                implementation="com.intellij.advancedExpressionFolding.extension.ReferenceExpressionBuilder"/>
+                implementation="com.intellij.advancedExpressionFolding.processor.ReferenceExpressionBuilder"/>
         <expressionBuilder
-                implementation="com.intellij.advancedExpressionFolding.extension.NewExpressionBuilder"/>
+                implementation="com.intellij.advancedExpressionFolding.processor.NewExpressionBuilder"/>
         <expressionBuilder
-                implementation="com.intellij.advancedExpressionFolding.extension.LiteralExpressionBuilder"/>
+                implementation="com.intellij.advancedExpressionFolding.processor.LiteralExpressionBuilder"/>
         <expressionBuilder
-                implementation="com.intellij.advancedExpressionFolding.extension.AssignmentExpressionBuilder"/>
+                implementation="com.intellij.advancedExpressionFolding.processor.AssignmentExpressionBuilder"/>
         <expressionBuilder
-                implementation="com.intellij.advancedExpressionFolding.extension.PolyadicExpressionBuilder"/>
+                implementation="com.intellij.advancedExpressionFolding.processor.PolyadicExpressionBuilder"/>
         <expressionBuilder
-                implementation="com.intellij.advancedExpressionFolding.extension.BinaryExpressionBuilder"/>
+                implementation="com.intellij.advancedExpressionFolding.processor.BinaryExpressionBuilder"/>
         <expressionBuilder
-                implementation="com.intellij.advancedExpressionFolding.extension.ConditionalExpressionBuilder"/>
+                implementation="com.intellij.advancedExpressionFolding.processor.ConditionalExpressionBuilder"/>
         <expressionBuilder
-                implementation="com.intellij.advancedExpressionFolding.extension.PrefixExpressionBuilder"/>
+                implementation="com.intellij.advancedExpressionFolding.processor.PrefixExpressionBuilder"/>
         <expressionBuilder
-                implementation="com.intellij.advancedExpressionFolding.extension.ParenthesizedExpressionBuilder"/>
+                implementation="com.intellij.advancedExpressionFolding.processor.ParenthesizedExpressionBuilder"/>
         <expressionBuilder
-                implementation="com.intellij.advancedExpressionFolding.extension.TypeCastExpressionBuilder"/>
+                implementation="com.intellij.advancedExpressionFolding.processor.TypeCastExpressionBuilder"/>
         <expressionBuilder
-                implementation="com.intellij.advancedExpressionFolding.extension.DeclarationStatementBuilder"/>
+                implementation="com.intellij.advancedExpressionFolding.processor.DeclarationStatementBuilder"/>
         <expressionBuilder
-                implementation="com.intellij.advancedExpressionFolding.extension.VariableBuilder"/>
+                implementation="com.intellij.advancedExpressionFolding.processor.VariableBuilder"/>
         <expressionBuilder
-                implementation="com.intellij.advancedExpressionFolding.extension.CodeBlockBuilder"/>
+                implementation="com.intellij.advancedExpressionFolding.processor.CodeBlockBuilder"/>
         <expressionBuilder
-                implementation="com.intellij.advancedExpressionFolding.extension.ClassBuilder"/>
+                implementation="com.intellij.advancedExpressionFolding.processor.ClassBuilder"/>
         <expressionBuilder
-                implementation="com.intellij.advancedExpressionFolding.extension.FieldBuilder"/>
+                implementation="com.intellij.advancedExpressionFolding.processor.FieldBuilder"/>
         <expressionBuilder
-                implementation="com.intellij.advancedExpressionFolding.extension.ParameterBuilder"/>
+                implementation="com.intellij.advancedExpressionFolding.processor.ParameterBuilder"/>
         <expressionBuilder
-                implementation="com.intellij.advancedExpressionFolding.extension.RecordComponentBuilder"/>
+                implementation="com.intellij.advancedExpressionFolding.processor.RecordComponentBuilder"/>
         <expressionBuilder
-                implementation="com.intellij.advancedExpressionFolding.extension.MethodBuilder"/>
+                implementation="com.intellij.advancedExpressionFolding.processor.MethodBuilder"/>
         <expressionBuilder
-                implementation="com.intellij.advancedExpressionFolding.extension.KeywordBuilder"/>
+                implementation="com.intellij.advancedExpressionFolding.processor.KeywordBuilder"/>
         <expressionBuilder
-                implementation="com.intellij.advancedExpressionFolding.extension.TryStatementBuilder"/>
+                implementation="com.intellij.advancedExpressionFolding.processor.TryStatementBuilder"/>
     </extensions>
 
 </idea-plugin>

@@ -1,9 +1,9 @@
 package com.intellij.advancedExpressionFolding.expression.semantic
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.extension.asInstance
-import com.intellij.advancedExpressionFolding.extension.group
-import com.intellij.advancedExpressionFolding.extension.prevWhiteSpace
+import com.intellij.advancedExpressionFolding.processor.asInstance
+import com.intellij.advancedExpressionFolding.processor.group
+import com.intellij.advancedExpressionFolding.processor.prevWhiteSpace
 import com.intellij.lang.folding.FoldingDescriptor
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.editor.FoldingGroup

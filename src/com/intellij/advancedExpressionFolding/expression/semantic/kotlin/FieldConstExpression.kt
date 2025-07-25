@@ -1,7 +1,7 @@
 package com.intellij.advancedExpressionFolding.expression.semantic.kotlin
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.extension.*
+import com.intellij.advancedExpressionFolding.processor.*
 import com.intellij.lang.folding.FoldingDescriptor
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.editor.FoldingGroup

@@ -1,0 +1,51 @@
+package com.intellij.advancedExpressionFolding.processor.reference
+
+import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.advancedExpressionFolding.expression.operation.optional.OptionalMapSafeCallParam
+import com.intellij.advancedExpressionFolding.expression.operation.stream.StreamMapCallParam
+import com.intellij.advancedExpressionFolding.processor.BaseExtension
+import com.intellij.advancedExpressionFolding.processor.filter
+import com.intellij.advancedExpressionFolding.processor.findParents
+import com.intellij.advancedExpressionFolding.processor.guessPropertyName
+import com.intellij.psi.PsiExpressionList
+import com.intellij.psi.PsiMethod
+import com.intellij.psi.PsiMethodCallExpression
+import com.intellij.psi.PsiMethodReferenceExpression
+
+object MethodReferenceExt : BaseExtension() {
+    @JvmStatic
+    fun createExpression(element: PsiMethodReferenceExpression): Expression? {
+        if (!(optional || streamSpread)) {
+            return null
+        }
+
+        val reference = element.reference ?: return null
+        val psiMethod = reference.resolve() ?: return null
+
+        if (psiMethod !is PsiMethod || !psiMethod.parameterList.isEmpty) {
+            return null
+        }
+
+        val parentMethodCall = element.findParents(
+            PsiMethodCallExpression::class.java,
+            PsiExpressionList::class.java,
+            PsiMethodCallExpression::class.java
+        )?.methodExpression?.reference?.resolve() as? PsiMethod
+
+        if (parentMethodCall?.name?.filter { it == "map" || it == "flatMap" } != null) {
+            val className = parentMethodCall.containingClass?.qualifiedName
+            return when (className) {
+                "java.util.Optional" -> OptionalMapSafeCallParam(
+                    element,
+                    element.textRange,
+                    psiMethod.guessPropertyName()
+                )
+                "java.util.stream.Stream" -> StreamMapCallParam(element, element.textRange, psiMethod.guessPropertyName())
+                else -> null
+            }
+        }
+        return null
+    }
+
+}
+

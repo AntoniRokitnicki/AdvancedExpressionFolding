@@ -1,6 +1,6 @@
 package com.intellij.advancedExpressionFolding
 
-import com.intellij.advancedExpressionFolding.extension.BaseExtension.Companion.isVoid
+import com.intellij.advancedExpressionFolding.processor.BaseExtension.Companion.isVoid
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings.Companion.getInstance
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings.IState
 import com.intellij.codeInsight.completion.*

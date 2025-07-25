@@ -2,7 +2,7 @@ package com.intellij.advancedExpressionFolding
 
 import ai.grazie.utils.capitalize
 import com.intellij.advancedExpressionFolding.diff.FoldingDescriptorExWrapper
-import com.intellij.advancedExpressionFolding.extension.off
+import com.intellij.advancedExpressionFolding.processor.off
 import com.intellij.openapi.application.WriteAction
 import com.intellij.openapi.fileTypes.FileTypeManager
 import com.intellij.openapi.projectRoots.JavaSdk

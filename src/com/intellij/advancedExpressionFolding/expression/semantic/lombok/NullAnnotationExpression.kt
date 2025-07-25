@@ -1,9 +1,9 @@
 package com.intellij.advancedExpressionFolding.expression.semantic.lombok
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.extension.end
-import com.intellij.advancedExpressionFolding.extension.foldingList
-import com.intellij.advancedExpressionFolding.extension.prevWhiteSpace
+import com.intellij.advancedExpressionFolding.processor.end
+import com.intellij.advancedExpressionFolding.processor.foldingList
+import com.intellij.advancedExpressionFolding.processor.prevWhiteSpace
 import com.intellij.lang.folding.FoldingDescriptor
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.editor.FoldingGroup

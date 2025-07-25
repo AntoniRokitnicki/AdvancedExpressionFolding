@@ -1,6 +1,6 @@
 package com.intellij.advancedExpressionFolding
 
-import com.intellij.advancedExpressionFolding.extension.methodcall.MethodCallFactory
+import com.intellij.advancedExpressionFolding.processor.methodcall.MethodCallFactory
 import com.intellij.openapi.components.Service
 import com.intellij.openapi.components.service
 
