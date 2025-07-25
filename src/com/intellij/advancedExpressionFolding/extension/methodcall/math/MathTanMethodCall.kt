@@ -1,7 +1,7 @@
 package com.intellij.advancedExpressionFolding.extension.methodcall.math
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.expression.Tan
+import com.intellij.advancedExpressionFolding.expression.math.trig.Tan
 import com.intellij.advancedExpressionFolding.extension.methodcall.Context
 import com.intellij.psi.PsiExpression
 import com.intellij.psi.PsiMethodCallExpression
@@ -15,5 +15,9 @@ class MathTanMethodCall : AbstractMathMethodCall() {
         context: Context,
         argument: PsiExpression,
         argumentExpression: Expression
-    ): Expression? = Tan(element, element.textRange, Collections.singletonList(argumentExpression))
+    ): Expression? = Tan(
+        element,
+        element.textRange,
+        Collections.singletonList(argumentExpression)
+    )
 }

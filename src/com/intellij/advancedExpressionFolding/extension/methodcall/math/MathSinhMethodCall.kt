@@ -1,7 +1,7 @@
 package com.intellij.advancedExpressionFolding.extension.methodcall.math
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.expression.Sinh
+import com.intellij.advancedExpressionFolding.expression.math.trig.Sinh
 import com.intellij.advancedExpressionFolding.extension.methodcall.Context
 import com.intellij.psi.PsiExpression
 import com.intellij.psi.PsiMethodCallExpression
@@ -15,5 +15,9 @@ class MathSinhMethodCall : AbstractMathMethodCall() {
         context: Context,
         argument: PsiExpression,
         argumentExpression: Expression
-    ): Expression? = Sinh(element, element.textRange, Collections.singletonList(argumentExpression))
+    ): Expression? = Sinh(
+        element,
+        element.textRange,
+        Collections.singletonList(argumentExpression)
+    )
 }

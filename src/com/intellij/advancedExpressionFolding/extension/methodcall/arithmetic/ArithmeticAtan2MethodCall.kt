@@ -1,6 +1,6 @@
 package com.intellij.advancedExpressionFolding.extension.methodcall.arithmetic
 
-import com.intellij.advancedExpressionFolding.expression.Atan2
+import com.intellij.advancedExpressionFolding.expression.math.trig.Atan2
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.extension.methodcall.Context
 import com.intellij.psi.PsiExpression
@@ -16,5 +16,9 @@ class ArithmeticAtan2MethodCall : AbstractArithmeticMethodCall() {
         a2: PsiExpression,
         a1Expression: Expression,
         a2Expression: Expression
-    ): Expression? = Atan2(element, element.textRange, context.getOperands())
+    ): Expression? = Atan2(
+        element,
+        element.textRange,
+        context.getOperands()
+    )
 }
