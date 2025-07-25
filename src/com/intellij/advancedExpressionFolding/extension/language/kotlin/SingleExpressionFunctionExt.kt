@@ -1,9 +1,9 @@
-package com.intellij.advancedExpressionFolding.extension
+package com.intellij.advancedExpressionFolding.extension.language.kotlin
 
 import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.advancedExpressionFolding.extension.*
 import com.intellij.openapi.editor.Document
 import com.intellij.psi.*
-
 
 object SingleExpressionFunctionExt : BaseExtension() {
 

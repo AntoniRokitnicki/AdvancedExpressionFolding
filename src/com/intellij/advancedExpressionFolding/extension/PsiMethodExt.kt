@@ -3,6 +3,7 @@ package com.intellij.advancedExpressionFolding.extension
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.extension.NullableExt.fieldAnnotationExpression
 import com.intellij.advancedExpressionFolding.extension.NullableExt.readCheckNotNullMethods
+import com.intellij.advancedExpressionFolding.extension.language.kotlin.SingleExpressionFunctionExt
 import com.intellij.advancedExpressionFolding.extension.lombok.SummaryParentOverrideExt
 import com.intellij.advancedExpressionFolding.extension.methodcall.dynamic.DynamicExt
 import com.intellij.openapi.editor.Document
