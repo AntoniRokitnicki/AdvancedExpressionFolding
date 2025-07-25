@@ -1,4 +1,4 @@
-package com.intellij.advancedExpressionFolding.extension;
+package com.intellij.advancedExpressionFolding.extension.controlflow;
 
 import com.intellij.advancedExpressionFolding.expression.Expression;
 import com.intellij.advancedExpressionFolding.expression.controlflow.CompactControlFlowExpression;
@@ -9,7 +9,7 @@ import com.intellij.psi.PsiForeachStatement;
 import com.intellij.psi.PsiWhileStatement;
 
 public class LoopExt {
-    static Expression getForeachStatementExpression(PsiForeachStatement element) {
+    public static Expression getForeachStatementExpression(PsiForeachStatement element) {
         AdvancedExpressionFoldingSettings settings = AdvancedExpressionFoldingSettings.getInstance();
         if (element.getIteratedValue() != null && element.getRParenth() != null &&
                 settings.getState().getCompactControlFlowSyntaxCollapse()) {
@@ -20,7 +20,7 @@ public class LoopExt {
         return null;
     }
 
-    static Expression getWhileStatement(PsiWhileStatement element) {
+    public static Expression getWhileStatement(PsiWhileStatement element) {
         AdvancedExpressionFoldingSettings settings = AdvancedExpressionFoldingSettings.getInstance();
         if (element.getCondition() != null
                 && element.getLParenth() != null && element.getRParenth() != null
@@ -32,7 +32,7 @@ public class LoopExt {
         return null;
     }
 
-    static Expression getDoWhileStatement(PsiDoWhileStatement element) {
+    public static Expression getDoWhileStatement(PsiDoWhileStatement element) {
         AdvancedExpressionFoldingSettings settings = AdvancedExpressionFoldingSettings.getInstance();
         if (element.getCondition() != null
                 && element.getLParenth() != null && element.getRParenth() != null

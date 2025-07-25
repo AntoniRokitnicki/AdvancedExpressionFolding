@@ -1,4 +1,4 @@
-package com.intellij.advancedExpressionFolding.extension;
+package com.intellij.advancedExpressionFolding.extension.controlflow;
 
 import com.intellij.advancedExpressionFolding.expression.Expression;
 import com.intellij.advancedExpressionFolding.expression.controlflow.CompactControlFlowExpression;
@@ -8,6 +8,9 @@ import com.intellij.advancedExpressionFolding.expression.controlflow.ShortElvisE
 import com.intellij.advancedExpressionFolding.expression.literal.InterpolatedString;
 import com.intellij.advancedExpressionFolding.expression.literal.StringLiteral;
 import com.intellij.advancedExpressionFolding.expression.math.basic.Add;
+import com.intellij.advancedExpressionFolding.extension.BaseExtension;
+import com.intellij.advancedExpressionFolding.extension.BinaryExpressionExt;
+import com.intellij.advancedExpressionFolding.extension.BuildExpressionExt;
 import com.intellij.advancedExpressionFolding.extension.language.kotlin.IfNullSafeExt;
 import com.intellij.advancedExpressionFolding.extension.language.kotlin.LetReturnExt;
 import com.intellij.advancedExpressionFolding.extension.util.Helper;
@@ -25,7 +28,7 @@ import java.util.stream.Collectors;
 
 public class IfExt {
 
-    static Expression getSwitchStatement(PsiSwitchStatement element) {
+    public static Expression getSwitchStatement(PsiSwitchStatement element) {
         AdvancedExpressionFoldingSettings settings = AdvancedExpressionFoldingSettings.getInstance();
         if (element.getExpression() != null
                 && element.getLParenth() != null && element.getRParenth() != null
@@ -38,7 +41,7 @@ public class IfExt {
     }
 
     @Nullable
-    static Expression getIfExpression(PsiIfStatement element, Document document) {
+    public static Expression getIfExpression(PsiIfStatement element, Document document) {
         AdvancedExpressionFoldingSettings settings = AdvancedExpressionFoldingSettings.getInstance();
         var getIfExpression = LetReturnExt.getIfExpression(element);
         if (getIfExpression != null) {
@@ -90,7 +93,7 @@ public class IfExt {
     }
 
     @Nullable
-    static Expression getConditionalExpression(@NotNull PsiConditionalExpression element, @NotNull Document document) {
+    public static Expression getConditionalExpression(@NotNull PsiConditionalExpression element, @NotNull Document document) {
         AdvancedExpressionFoldingSettings settings = AdvancedExpressionFoldingSettings.getInstance();
         if (settings.getState().getCheckExpressionsCollapse()
                 && element.getCondition() instanceof @NotNull PsiBinaryExpression condition) {
@@ -130,7 +133,7 @@ public class IfExt {
     }
 
     @Nullable
-    static Expression getPolyadicExpression(@NotNull PsiPolyadicExpression element, @NotNull Document document) {
+    public static Expression getPolyadicExpression(@NotNull PsiPolyadicExpression element, @NotNull Document document) {
         boolean add = true;
         boolean string = false;
         Expression[] operands = null;

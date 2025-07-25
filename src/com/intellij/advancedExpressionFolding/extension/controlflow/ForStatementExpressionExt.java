@@ -1,4 +1,4 @@
-package com.intellij.advancedExpressionFolding.extension;
+package com.intellij.advancedExpressionFolding.extension.controlflow;
 
 import com.intellij.advancedExpressionFolding.expression.Expression;
 import com.intellij.advancedExpressionFolding.expression.controlflow.CompactControlFlowExpression;
@@ -23,7 +23,7 @@ import static com.intellij.advancedExpressionFolding.extension.BuildExpressionEx
 
 public class ForStatementExpressionExt {
     @Nullable
-    static Expression getForStatementExpression(@NotNull PsiForStatement element, @NotNull Document document) {
+    public static Expression getForStatementExpression(@NotNull PsiForStatement element, @NotNull Document document) {
         AdvancedExpressionFoldingSettings settings = AdvancedExpressionFoldingSettings.getInstance();
         @Nullable PsiJavaToken lParenth = element.getLParenth();
         @Nullable PsiJavaToken rParenth = element.getRParenth();
@@ -174,7 +174,7 @@ public class ForStatementExpressionExt {
         return null;
     }
 
-    static boolean isReferenceTo(@Nullable PsiReferenceExpression referenceExpression, @Nullable PsiElement element) {
+    public static boolean isReferenceTo(@Nullable PsiReferenceExpression referenceExpression, @Nullable PsiElement element) {
         return referenceExpression != null && element != null && referenceExpression.isReferenceTo(element);
     }
 }

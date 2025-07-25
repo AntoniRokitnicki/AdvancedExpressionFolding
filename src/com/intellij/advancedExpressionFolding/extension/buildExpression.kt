@@ -5,6 +5,10 @@ import com.intellij.advancedExpressionFolding.expression.controlflow.CompactCont
 import com.intellij.advancedExpressionFolding.expression.controlflow.SemicolonExpression
 import com.intellij.advancedExpressionFolding.expression.operation.basic.TypeCast
 import com.intellij.advancedExpressionFolding.extension.cache.CacheExt
+import com.intellij.advancedExpressionFolding.extension.controlflow.ForStatementExpressionExt
+import com.intellij.advancedExpressionFolding.extension.controlflow.IfExt
+import com.intellij.advancedExpressionFolding.extension.controlflow.LoopExt
+import com.intellij.advancedExpressionFolding.extension.controlflow.PsiTryStatementExt
 import com.intellij.advancedExpressionFolding.extension.methodcall.MethodCallExpressionExt
 import com.intellij.advancedExpressionFolding.extension.token.PsiJavaTokenExt
 import com.intellij.advancedExpressionFolding.extension.token.PsiKeywordExt

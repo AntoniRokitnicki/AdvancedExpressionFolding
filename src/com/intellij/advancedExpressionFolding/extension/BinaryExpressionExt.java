@@ -24,7 +24,7 @@ import static com.intellij.advancedExpressionFolding.extension.util.Helper.erase
 
 public class BinaryExpressionExt {
     @Nullable
-    static Expression getBinaryExpression(@NotNull PsiBinaryExpression element, @NotNull Document document) {
+    public static Expression getBinaryExpression(@NotNull PsiBinaryExpression element, @NotNull Document document) {
         AdvancedExpressionFoldingSettings settings = AdvancedExpressionFoldingSettings.getInstance();
         if ((element.getLOperand() instanceof PsiMethodCallExpression
                 && isLiteralOrNegatedLiteral(element.getROperand())
@@ -156,8 +156,8 @@ public class BinaryExpressionExt {
     }
 
     @Nullable
-    static Expression getAndTwoBinaryExpressions(@NotNull PsiElement parent, @NotNull PsiBinaryExpression a,
-                                                         @NotNull PsiBinaryExpression b, @NotNull Document document) {
+    public static Expression getAndTwoBinaryExpressions(@NotNull PsiElement parent, @NotNull PsiBinaryExpression a,
+                                                        @NotNull PsiBinaryExpression b, @NotNull Document document) {
         AdvancedExpressionFoldingSettings settings = AdvancedExpressionFoldingSettings.getInstance();
         if (settings.getState().getRangeExpressionsCollapse()) {
             if ((a.getOperationSign().getText().equals("<") || a.getOperationSign().getText().equals("<="))
