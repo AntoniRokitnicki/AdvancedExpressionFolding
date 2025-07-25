@@ -13,7 +13,7 @@
         <lang.foldingBuilder language="JAVA"
                              implementationClass="com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingBuilder"/>
         <applicationService
-                serviceImplementation="com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings"/>
+                serviceImplementation="com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings"/>
         <editorFactoryListener implementation="com.intellij.advancedExpressionFolding.FoldingEditorCreatedListener"/>
         <intentionAction>
             <language>JAVA</language>
@@ -25,7 +25,7 @@
         <errorHandler implementation="com.intellij.diagnostic.JetBrainsMarketplaceErrorReportSubmitter"/>
 
         <editorOptionsProvider
-                instance="com.intellij.advancedExpressionFolding.settings.SettingsConfigurable"
+                instance="com.intellij.advancedExpressionFolding.settings.view.SettingsConfigurable"
                 id="editor.folding.advanced.expression"
                 key="editor.folding.advanced.expression.displayName"
                 bundle="Bundle"/>

@@ -1,10 +1,10 @@
 package com.intellij.advancedExpressionFolding.extension;
 
-import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings;
 import com.intellij.advancedExpressionFolding.expression.Expression;
 import com.intellij.advancedExpressionFolding.expression.controlflow.ControlFlowMultiStatementCodeBlockExpression;
 import com.intellij.advancedExpressionFolding.expression.controlflow.ControlFlowSingleStatementCodeBlockExpression;
 import com.intellij.advancedExpressionFolding.expression.controlflow.IfExpression;
+import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings;
 import com.intellij.psi.*;
 import org.jetbrains.annotations.Nullable;
 

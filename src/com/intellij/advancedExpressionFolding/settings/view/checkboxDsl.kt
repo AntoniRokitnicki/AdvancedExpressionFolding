@@ -1,4 +1,4 @@
-package com.intellij.advancedExpressionFolding.settings
+package com.intellij.advancedExpressionFolding.settings.view
 
 import kotlin.reflect.KMutableProperty0
 

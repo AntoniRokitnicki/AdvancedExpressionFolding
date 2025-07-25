@@ -1,5 +1,6 @@
 package com.intellij.advancedExpressionFolding
 
+import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
 import com.intellij.codeInsight.completion.CompletionType
 import com.intellij.openapi.application.runInEdt
 import com.intellij.testFramework.fixtures.LightJavaCodeInsightFixtureTestCase5

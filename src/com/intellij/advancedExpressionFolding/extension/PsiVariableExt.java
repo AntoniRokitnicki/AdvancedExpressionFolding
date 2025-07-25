@@ -1,7 +1,7 @@
 package com.intellij.advancedExpressionFolding.extension;
 
-import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings;
 import com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl;
+import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.PsiForeachStatement;
 import com.intellij.psi.PsiVariable;

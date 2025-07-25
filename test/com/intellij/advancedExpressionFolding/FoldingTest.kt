@@ -1,13 +1,12 @@
 package com.intellij.advancedExpressionFolding
 
-import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.Companion.getInstance
-import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.State
 import com.intellij.advancedExpressionFolding.extension.methodcall.MethodCallFactory
 import com.intellij.advancedExpressionFolding.extension.methodcall.dynamic.DynamicMethodCall
 import com.intellij.advancedExpressionFolding.extension.methodcall.dynamic.IDynamicDataProvider
+import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings.Companion.getInstance
+import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings.State
 import com.intellij.openapi.application.runInEdt
 import com.intellij.platform.testFramework.core.FileComparisonFailedError
-
 import org.junit.jupiter.api.Test
 import org.junitpioneer.jupiter.Stopwatch
 import org.opentest4j.TestAbortedException

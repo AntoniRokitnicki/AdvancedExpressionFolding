@@ -1,6 +1,5 @@
 package com.intellij.advancedExpressionFolding.extension.methodcall;
 
-import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings;
 import com.intellij.advancedExpressionFolding.MethodCallFoldingLoaderService;
 import com.intellij.advancedExpressionFolding.expression.Expression;
 import com.intellij.advancedExpressionFolding.expression.property.Getter;
@@ -10,6 +9,7 @@ import com.intellij.advancedExpressionFolding.extension.BuildExpressionExt;
 import com.intellij.advancedExpressionFolding.extension.FieldShiftExt;
 import com.intellij.advancedExpressionFolding.extension.Helper;
 import com.intellij.advancedExpressionFolding.extension.logger.LoggerBracketsExt;
+import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.*;

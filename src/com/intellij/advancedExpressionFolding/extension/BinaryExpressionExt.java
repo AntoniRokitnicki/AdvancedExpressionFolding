@@ -1,6 +1,5 @@
 package com.intellij.advancedExpressionFolding.extension;
 
-import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings;
 import com.intellij.advancedExpressionFolding.expression.Expression;
 import com.intellij.advancedExpressionFolding.expression.math.basic.*;
 import com.intellij.advancedExpressionFolding.expression.operation.basic.Append;
@@ -8,6 +7,7 @@ import com.intellij.advancedExpressionFolding.expression.operation.basic.Equal;
 import com.intellij.advancedExpressionFolding.expression.operation.basic.Greater;
 import com.intellij.advancedExpressionFolding.expression.operation.basic.GreaterEqual;
 import com.intellij.advancedExpressionFolding.expression.operation.collection.Range;
+import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.*;

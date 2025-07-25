@@ -1,7 +1,7 @@
-package com.intellij.advancedExpressionFolding.settings
+package com.intellij.advancedExpressionFolding.settings.view
 
-import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings
 import com.intellij.advancedExpressionFolding.action.UpdateFoldedTextColorsAction
+import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
 import com.intellij.application.options.CodeStyle
 import com.intellij.application.options.editor.EditorOptionsProvider
 import com.intellij.icons.AllIcons

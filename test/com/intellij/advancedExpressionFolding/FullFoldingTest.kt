@@ -1,6 +1,6 @@
 package com.intellij.advancedExpressionFolding
 
-import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.Companion.getInstance
+import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings.Companion.getInstance
 import org.junit.jupiter.api.Test
 import java.io.File
 import java.nio.file.Files

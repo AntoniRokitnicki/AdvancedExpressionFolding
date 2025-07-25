@@ -1,6 +1,6 @@
 package com.intellij.advancedExpressionFolding.extension
 
-import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings
+import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.extension.BuildExpressionExt.buildExpression
 import com.intellij.advancedExpressionFolding.extension.Keys.getKey

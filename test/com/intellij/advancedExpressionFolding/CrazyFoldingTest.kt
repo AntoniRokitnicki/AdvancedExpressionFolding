@@ -1,9 +1,9 @@
 package com.intellij.advancedExpressionFolding
 
-import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.Companion.allMainProperties
-import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.Companion.getInstance
-import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.State
 import com.intellij.advancedExpressionFolding.extension.on
+import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings.Companion.allMainProperties
+import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings.Companion.getInstance
+import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings.State
 import junit.framework.ComparisonFailure
 import org.junit.AssumptionViolatedException
 import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable
