@@ -1,7 +1,7 @@
 package com.intellij.advancedExpressionFolding.processor.cache
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.processor.BuildExpressionExt.buildExpression
+import com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt.buildExpression
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
 import com.intellij.openapi.editor.Document
 import com.intellij.psi.PsiElement

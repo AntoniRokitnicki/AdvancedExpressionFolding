@@ -1,6 +1,6 @@
 package com.intellij.advancedExpressionFolding.processor.methodcall
 
-import com.intellij.advancedExpressionFolding.processor.BaseExtension
+import com.intellij.advancedExpressionFolding.processor.core.BaseExtension
 import com.intellij.advancedExpressionFolding.processor.methodcall.dynamic.ConfigurationParser
 import com.intellij.advancedExpressionFolding.processor.methodcall.dynamic.DynamicMethodCall
 import com.intellij.advancedExpressionFolding.processor.methodcall.dynamic.IDynamicDataProvider

@@ -8,8 +8,8 @@ import com.intellij.advancedExpressionFolding.expression.controlflow.ShortElvisE
 import com.intellij.advancedExpressionFolding.expression.literal.InterpolatedString;
 import com.intellij.advancedExpressionFolding.expression.literal.StringLiteral;
 import com.intellij.advancedExpressionFolding.expression.math.basic.Add;
-import com.intellij.advancedExpressionFolding.processor.BaseExtension;
-import com.intellij.advancedExpressionFolding.processor.BuildExpressionExt;
+import com.intellij.advancedExpressionFolding.processor.core.BaseExtension;
+import com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt;
 import com.intellij.advancedExpressionFolding.processor.expression.BinaryExpressionExt;
 import com.intellij.advancedExpressionFolding.processor.language.kotlin.IfNullSafeExt;
 import com.intellij.advancedExpressionFolding.processor.language.kotlin.LetReturnExt;

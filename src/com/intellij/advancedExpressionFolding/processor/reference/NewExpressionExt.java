@@ -2,7 +2,7 @@ package com.intellij.advancedExpressionFolding.processor.reference;
 
 import com.intellij.advancedExpressionFolding.expression.Expression;
 import com.intellij.advancedExpressionFolding.expression.literal.*;
-import com.intellij.advancedExpressionFolding.processor.BuildExpressionExt;
+import com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt;
 import com.intellij.advancedExpressionFolding.processor.expression.LiteralExpressionExt;
 import com.intellij.advancedExpressionFolding.processor.methodcall.MethodCallExpressionExt;
 import com.intellij.advancedExpressionFolding.processor.util.Consts;

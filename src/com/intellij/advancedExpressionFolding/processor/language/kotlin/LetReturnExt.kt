@@ -4,6 +4,7 @@ import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.semantic.kotlin.ElvisReturnNull
 import com.intellij.advancedExpressionFolding.expression.semantic.kotlin.LetReturnIt
 import com.intellij.advancedExpressionFolding.processor.*
+import com.intellij.advancedExpressionFolding.processor.core.BaseExtension
 import com.intellij.psi.*
 
 

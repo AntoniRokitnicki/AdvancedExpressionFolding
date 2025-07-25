@@ -1,8 +1,8 @@
 package com.intellij.advancedExpressionFolding.processor.logger
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.processor.BaseExtension
 import com.intellij.advancedExpressionFolding.processor.asInstance
+import com.intellij.advancedExpressionFolding.processor.core.BaseExtension
 import com.intellij.advancedExpressionFolding.processor.on
 import com.intellij.openapi.editor.Document
 import com.intellij.psi.PsiExpression

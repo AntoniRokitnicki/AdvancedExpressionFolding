@@ -4,8 +4,8 @@ import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.operation.basic.Variable
 import com.intellij.advancedExpressionFolding.expression.semantic.logging.LoggerBracketExpression
 import com.intellij.advancedExpressionFolding.expression.semantic.logging.LoggerBracketParentExpression
-import com.intellij.advancedExpressionFolding.processor.BuildExpressionExt.getAnyExpression
 import com.intellij.advancedExpressionFolding.processor.asInstance
+import com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt.getAnyExpression
 import com.intellij.advancedExpressionFolding.processor.end
 import com.intellij.advancedExpressionFolding.processor.start
 import com.intellij.advancedExpressionFolding.processor.toTextRange

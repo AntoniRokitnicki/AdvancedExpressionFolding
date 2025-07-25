@@ -2,7 +2,7 @@ package com.intellij.advancedExpressionFolding.processor.util;
 
 import com.intellij.advancedExpressionFolding.expression.Expression;
 import com.intellij.advancedExpressionFolding.expression.literal.NumberLiteral;
-import com.intellij.advancedExpressionFolding.processor.BuildExpressionExt;
+import com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.util.TextRange;

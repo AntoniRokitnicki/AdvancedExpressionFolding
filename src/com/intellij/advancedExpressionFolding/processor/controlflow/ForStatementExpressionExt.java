@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-import static com.intellij.advancedExpressionFolding.processor.BuildExpressionExt.getAnyExpression;
+import static com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt.getAnyExpression;
 
 public class ForStatementExpressionExt {
     @Nullable

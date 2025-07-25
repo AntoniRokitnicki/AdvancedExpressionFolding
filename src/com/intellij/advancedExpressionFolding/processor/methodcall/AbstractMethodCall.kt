@@ -1,7 +1,7 @@
 package com.intellij.advancedExpressionFolding.processor.methodcall
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.processor.BaseExtension
+import com.intellij.advancedExpressionFolding.processor.core.BaseExtension
 import com.intellij.psi.PsiExpression
 import com.intellij.psi.PsiMethodCallExpression
 

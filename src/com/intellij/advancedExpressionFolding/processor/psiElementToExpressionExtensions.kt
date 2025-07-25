@@ -2,6 +2,7 @@ package com.intellij.advancedExpressionFolding.processor
 
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.semantic.*
+import com.intellij.advancedExpressionFolding.processor.core.BaseExtension
 import com.intellij.lang.folding.FoldingDescriptor
 import com.intellij.openapi.editor.FoldingGroup
 import com.intellij.openapi.util.TextRange

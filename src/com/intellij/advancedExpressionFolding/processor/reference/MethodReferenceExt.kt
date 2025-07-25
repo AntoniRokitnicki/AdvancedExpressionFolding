@@ -3,7 +3,7 @@ package com.intellij.advancedExpressionFolding.processor.reference
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.operation.optional.OptionalMapSafeCallParam
 import com.intellij.advancedExpressionFolding.expression.operation.stream.StreamMapCallParam
-import com.intellij.advancedExpressionFolding.processor.BaseExtension
+import com.intellij.advancedExpressionFolding.processor.core.BaseExtension
 import com.intellij.advancedExpressionFolding.processor.filter
 import com.intellij.advancedExpressionFolding.processor.findParents
 import com.intellij.advancedExpressionFolding.processor.guessPropertyName

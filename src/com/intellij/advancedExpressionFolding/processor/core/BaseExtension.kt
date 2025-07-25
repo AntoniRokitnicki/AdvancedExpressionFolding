@@ -1,6 +1,7 @@
-package com.intellij.advancedExpressionFolding.processor
+package com.intellij.advancedExpressionFolding.processor.core
 
 import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.advancedExpressionFolding.processor.asInstance
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
 import com.intellij.openapi.editor.Document
 import com.intellij.psi.PsiElement

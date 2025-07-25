@@ -5,7 +5,7 @@ import com.intellij.advancedExpressionFolding.expression.Expression;
 import com.intellij.advancedExpressionFolding.expression.property.Getter;
 import com.intellij.advancedExpressionFolding.expression.property.GetterRecord;
 import com.intellij.advancedExpressionFolding.expression.property.Setter;
-import com.intellij.advancedExpressionFolding.processor.BuildExpressionExt;
+import com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt;
 import com.intellij.advancedExpressionFolding.processor.language.FieldShiftExt;
 import com.intellij.advancedExpressionFolding.processor.logger.LoggerBracketsExt;
 import com.intellij.advancedExpressionFolding.processor.util.Helper;

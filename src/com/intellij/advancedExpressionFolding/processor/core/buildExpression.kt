@@ -1,4 +1,4 @@
-package com.intellij.advancedExpressionFolding.processor
+package com.intellij.advancedExpressionFolding.processor.core
 
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.controlflow.CompactControlFlowExpression
@@ -242,7 +242,7 @@ class TryStatementBuilder : BuildExpression<PsiTryStatement>(PsiTryStatement::cl
 }
 
 fun tryBuildExpression(element: PsiElement, document: Document, synthetic: Boolean): Expression? {
-    return ExpressionBuilderManager.expressionBuilders
+    return ExpressionBuilderManager.Companion.expressionBuilders
         .firstNotNullOfOrNull {
             it.tryBuildExpression(element, document, synthetic)
         }

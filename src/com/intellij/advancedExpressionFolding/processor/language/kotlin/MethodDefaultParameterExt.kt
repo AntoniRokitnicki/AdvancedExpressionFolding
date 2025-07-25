@@ -2,6 +2,7 @@ package com.intellij.advancedExpressionFolding.processor.language.kotlin
 
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.processor.*
+import com.intellij.advancedExpressionFolding.processor.core.BaseExtension
 import com.intellij.psi.*
 import com.jetbrains.rd.util.firstOrNull
 

@@ -5,7 +5,12 @@ import com.intellij.advancedExpressionFolding.expression.property.IGetter
 import com.intellij.advancedExpressionFolding.expression.property.INameable
 import com.intellij.advancedExpressionFolding.expression.semantic.WrapperExpression
 import com.intellij.advancedExpressionFolding.expression.semantic.kotlin.IfNullSafeExpression
-import com.intellij.advancedExpressionFolding.processor.*
+import com.intellij.advancedExpressionFolding.processor.asInstance
+import com.intellij.advancedExpressionFolding.processor.core.BaseExtension
+import com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt
+import com.intellij.advancedExpressionFolding.processor.end
+import com.intellij.advancedExpressionFolding.processor.start
+import com.intellij.advancedExpressionFolding.processor.toTextRange
 import com.intellij.openapi.editor.Document
 import com.intellij.psi.*
 import com.intellij.psi.util.elementType

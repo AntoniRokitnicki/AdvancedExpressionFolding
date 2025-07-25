@@ -1,6 +1,7 @@
 package com.intellij.advancedExpressionFolding.processor.lombok
 
 import com.intellij.advancedExpressionFolding.processor.*
+import com.intellij.advancedExpressionFolding.processor.core.BaseExtension
 import com.intellij.advancedExpressionFolding.processor.lombok.AnnotationExt.ClassLevelAnnotation
 import com.intellij.advancedExpressionFolding.processor.lombok.LombokFoldingAnnotation.*
 import com.intellij.psi.PsiField

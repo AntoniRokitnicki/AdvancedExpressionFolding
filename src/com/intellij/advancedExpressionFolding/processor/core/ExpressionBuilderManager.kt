@@ -1,10 +1,10 @@
-package com.intellij.advancedExpressionFolding.processor
+package com.intellij.advancedExpressionFolding.processor.core
 
 import com.intellij.openapi.extensions.ExtensionPointName
 
 class ExpressionBuilderManager {
   companion object {
-    private val EP_NAME = ExtensionPointName.create<BuildExpression<*>>(
+    private val EP_NAME = ExtensionPointName.Companion.create<BuildExpression<*>>(
       "com.github.advanced-java-folding2.expressionBuilder"
     )
 

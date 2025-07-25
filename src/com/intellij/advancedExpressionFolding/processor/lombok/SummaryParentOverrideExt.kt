@@ -4,6 +4,7 @@ import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.semantic.SimpleExpression
 import com.intellij.advancedExpressionFolding.processor.*
 import com.intellij.advancedExpressionFolding.processor.cache.Keys.METHOD_TO_PARENT_CLASS_KEY
+import com.intellij.advancedExpressionFolding.processor.core.BaseExtension
 import com.intellij.openapi.util.removeUserData
 import com.intellij.psi.*
 import com.intellij.psi.util.MethodSignature

@@ -1,4 +1,4 @@
-package com.intellij.advancedExpressionFolding.processor;
+package com.intellij.advancedExpressionFolding.processor.core;
 
 import com.intellij.advancedExpressionFolding.expression.Expression;
 import com.intellij.advancedExpressionFolding.expression.SyntheticExpressionImpl;
@@ -16,8 +16,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
-import static com.intellij.advancedExpressionFolding.processor.BuildExpressionKt.tryBuildExpression;
 import static com.intellij.advancedExpressionFolding.processor.cache.CacheExt.getExpression;
+import static com.intellij.advancedExpressionFolding.processor.core.BuildExpressionKt.tryBuildExpression;
 
 public class BuildExpressionExt {
 

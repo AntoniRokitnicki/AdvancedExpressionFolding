@@ -1,13 +1,13 @@
 package com.intellij.advancedExpressionFolding.processor
 
-import com.intellij.advancedExpressionFolding.processor.BaseExtension.Companion.isBoolean
-import com.intellij.advancedExpressionFolding.processor.BaseExtension.Companion.isInt
-import com.intellij.advancedExpressionFolding.processor.BaseExtension.Companion.isObject
-import com.intellij.advancedExpressionFolding.processor.BaseExtension.Companion.isString
-import com.intellij.advancedExpressionFolding.processor.BaseExtension.Companion.isVoid
 import com.intellij.advancedExpressionFolding.processor.EModifier.*
 import com.intellij.advancedExpressionFolding.processor.cache.Keys
 import com.intellij.advancedExpressionFolding.processor.cache.Keys.IGNORED
+import com.intellij.advancedExpressionFolding.processor.core.BaseExtension.Companion.isBoolean
+import com.intellij.advancedExpressionFolding.processor.core.BaseExtension.Companion.isInt
+import com.intellij.advancedExpressionFolding.processor.core.BaseExtension.Companion.isObject
+import com.intellij.advancedExpressionFolding.processor.core.BaseExtension.Companion.isString
+import com.intellij.advancedExpressionFolding.processor.core.BaseExtension.Companion.isVoid
 import com.intellij.advancedExpressionFolding.processor.declaration.PsiClassExt
 import com.intellij.advancedExpressionFolding.processor.util.PropertyUtil
 import com.intellij.openapi.project.Project

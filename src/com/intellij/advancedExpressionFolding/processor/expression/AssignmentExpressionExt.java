@@ -5,7 +5,7 @@ import com.intellij.advancedExpressionFolding.expression.Operation;
 import com.intellij.advancedExpressionFolding.expression.math.basic.*;
 import com.intellij.advancedExpressionFolding.expression.math.bitwise.*;
 import com.intellij.advancedExpressionFolding.expression.operation.basic.Variable;
-import com.intellij.advancedExpressionFolding.processor.BuildExpressionExt;
+import com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt;
 import com.intellij.advancedExpressionFolding.processor.language.FieldShiftExt;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.util.TextRange;

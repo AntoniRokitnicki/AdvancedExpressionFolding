@@ -2,7 +2,11 @@ package com.intellij.advancedExpressionFolding.processor.language.kotlin
 
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.semantic.kotlin.PrintlnExpression
-import com.intellij.advancedExpressionFolding.processor.*
+import com.intellij.advancedExpressionFolding.processor.core.BaseExtension
+import com.intellij.advancedExpressionFolding.processor.end
+import com.intellij.advancedExpressionFolding.processor.equalsIgnoreSpaces
+import com.intellij.advancedExpressionFolding.processor.isWhitespace
+import com.intellij.advancedExpressionFolding.processor.start
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiMethodCallExpression
 

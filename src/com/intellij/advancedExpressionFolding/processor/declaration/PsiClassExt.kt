@@ -1,8 +1,8 @@
 package com.intellij.advancedExpressionFolding.processor.declaration
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.processor.BaseExtension
 import com.intellij.advancedExpressionFolding.processor.addIfEnabled
+import com.intellij.advancedExpressionFolding.processor.core.BaseExtension
 import com.intellij.advancedExpressionFolding.processor.exprList
 import com.intellij.advancedExpressionFolding.processor.exprWrap
 import com.intellij.advancedExpressionFolding.processor.language.kotlin.MethodDefaultParameterExt
