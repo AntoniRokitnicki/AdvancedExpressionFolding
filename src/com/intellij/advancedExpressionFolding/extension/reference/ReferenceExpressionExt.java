@@ -1,8 +1,10 @@
-package com.intellij.advancedExpressionFolding.extension;
+package com.intellij.advancedExpressionFolding.extension.reference;
 
 import com.intellij.advancedExpressionFolding.expression.Expression;
 import com.intellij.advancedExpressionFolding.expression.literal.NumberLiteral;
 import com.intellij.advancedExpressionFolding.expression.operation.basic.Variable;
+import com.intellij.advancedExpressionFolding.extension.AssignmentExpressionExt;
+import com.intellij.advancedExpressionFolding.extension.ExperimentalExt;
 import com.intellij.advancedExpressionFolding.extension.util.Consts;
 import com.intellij.advancedExpressionFolding.extension.util.Helper;
 import com.intellij.psi.PsiElement;

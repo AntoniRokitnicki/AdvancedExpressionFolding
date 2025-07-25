@@ -10,6 +10,8 @@ import com.intellij.advancedExpressionFolding.extension.controlflow.IfExt
 import com.intellij.advancedExpressionFolding.extension.controlflow.LoopExt
 import com.intellij.advancedExpressionFolding.extension.controlflow.PsiTryStatementExt
 import com.intellij.advancedExpressionFolding.extension.methodcall.MethodCallExpressionExt
+import com.intellij.advancedExpressionFolding.extension.reference.NewExpressionExt
+import com.intellij.advancedExpressionFolding.extension.reference.ReferenceExpressionExt
 import com.intellij.advancedExpressionFolding.extension.token.PsiJavaTokenExt
 import com.intellij.advancedExpressionFolding.extension.token.PsiKeywordExt
 import com.intellij.openapi.editor.Document

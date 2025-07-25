@@ -2,11 +2,11 @@ package com.intellij.advancedExpressionFolding.extension.methodcall.basic
 
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.operation.basic.Variable
-import com.intellij.advancedExpressionFolding.extension.NewExpressionExt
-import com.intellij.advancedExpressionFolding.extension.ReferenceExpressionExt.getReferenceExpression
 import com.intellij.advancedExpressionFolding.extension.methodcall.AbstractMethodCall
 import com.intellij.advancedExpressionFolding.extension.methodcall.Context
 import com.intellij.advancedExpressionFolding.extension.methodcall.NeedsQualifier
+import com.intellij.advancedExpressionFolding.extension.reference.NewExpressionExt
+import com.intellij.advancedExpressionFolding.extension.reference.ReferenceExpressionExt.getReferenceExpression
 import com.intellij.psi.PsiExpression
 import com.intellij.psi.PsiLiteralExpression
 import com.intellij.psi.PsiMethodCallExpression

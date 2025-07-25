@@ -1,8 +1,12 @@
-package com.intellij.advancedExpressionFolding.extension
+package com.intellij.advancedExpressionFolding.extension.reference
 
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.operation.optional.OptionalMapSafeCallParam
 import com.intellij.advancedExpressionFolding.expression.operation.stream.StreamMapCallParam
+import com.intellij.advancedExpressionFolding.extension.BaseExtension
+import com.intellij.advancedExpressionFolding.extension.filter
+import com.intellij.advancedExpressionFolding.extension.findParents
+import com.intellij.advancedExpressionFolding.extension.guessPropertyName
 import com.intellij.psi.PsiExpressionList
 import com.intellij.psi.PsiMethod
 import com.intellij.psi.PsiMethodCallExpression

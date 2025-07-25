@@ -69,7 +69,7 @@ public class AssignmentExpressionExt {
     }
 
     @Nullable
-    static Variable getVariableExpression(PsiElement element, boolean copy) {
+    public static Variable getVariableExpression(PsiElement element, boolean copy) {
         PsiReference reference = element.getReference();
         if (reference != null) {
             PsiElement e = reference.resolve();

@@ -1,7 +1,9 @@
-package com.intellij.advancedExpressionFolding.extension;
+package com.intellij.advancedExpressionFolding.extension.reference;
 
 import com.intellij.advancedExpressionFolding.expression.Expression;
 import com.intellij.advancedExpressionFolding.expression.literal.*;
+import com.intellij.advancedExpressionFolding.extension.BuildExpressionExt;
+import com.intellij.advancedExpressionFolding.extension.LiteralExpressionExt;
 import com.intellij.advancedExpressionFolding.extension.methodcall.MethodCallExpressionExt;
 import com.intellij.advancedExpressionFolding.extension.util.Consts;
 import com.intellij.advancedExpressionFolding.extension.util.Helper;
@@ -21,7 +23,7 @@ import java.util.stream.Collectors;
 
 public class NewExpressionExt {
     @Nullable
-    static Expression getNewExpression(PsiNewExpression element, @NotNull Document document) {
+    public static Expression getNewExpression(PsiNewExpression element, @NotNull Document document) {
         AdvancedExpressionFoldingSettings settings = AdvancedExpressionFoldingSettings.getInstance();
         @Nullable PsiType type = element.getType();
 
