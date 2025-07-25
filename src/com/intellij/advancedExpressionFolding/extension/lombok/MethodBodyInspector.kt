@@ -1,5 +1,6 @@
-package com.intellij.advancedExpressionFolding.extension
+package com.intellij.advancedExpressionFolding.extension.lombok
 
+import com.intellij.advancedExpressionFolding.extension.*
 import com.intellij.psi.*
 
 object MethodBodyInspector {
@@ -222,5 +223,3 @@ object MethodBodyInspector {
     }
 
 }
-
-

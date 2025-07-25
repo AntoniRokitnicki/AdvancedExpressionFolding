@@ -1,11 +1,11 @@
 package com.intellij.advancedExpressionFolding.extension.lombok
 
-import com.intellij.advancedExpressionFolding.extension.MethodBodyInspector.asDirtyNoReference
-import com.intellij.advancedExpressionFolding.extension.MethodBodyInspector.asLazyGetter
-import com.intellij.advancedExpressionFolding.extension.MethodBodyInspector.asNewInstanceWrapperGetter
-import com.intellij.advancedExpressionFolding.extension.MethodBodyInspector.asWrapperGetter
-import com.intellij.advancedExpressionFolding.extension.MethodBodyInspector.isDirtyGetter
-import com.intellij.advancedExpressionFolding.extension.MethodBodyInspector.isDirtySetter
+import com.intellij.advancedExpressionFolding.extension.lombok.MethodBodyInspector.asDirtyNoReference
+import com.intellij.advancedExpressionFolding.extension.lombok.MethodBodyInspector.asLazyGetter
+import com.intellij.advancedExpressionFolding.extension.lombok.MethodBodyInspector.asNewInstanceWrapperGetter
+import com.intellij.advancedExpressionFolding.extension.lombok.MethodBodyInspector.asWrapperGetter
+import com.intellij.advancedExpressionFolding.extension.lombok.MethodBodyInspector.isDirtyGetter
+import com.intellij.advancedExpressionFolding.extension.lombok.MethodBodyInspector.isDirtySetter
 import com.intellij.psi.PsiField
 import com.intellij.psi.PsiMethod
 

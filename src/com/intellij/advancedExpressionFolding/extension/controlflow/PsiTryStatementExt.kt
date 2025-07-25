@@ -3,7 +3,7 @@ package com.intellij.advancedExpressionFolding.extension.controlflow
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.semantic.HideExpression
 import com.intellij.advancedExpressionFolding.extension.*
-import com.intellij.advancedExpressionFolding.extension.MethodBodyInspector.getRethrownException
+import com.intellij.advancedExpressionFolding.extension.lombok.MethodBodyInspector.getRethrownException
 import com.intellij.psi.PsiStatement
 import com.intellij.psi.PsiTryStatement
 
