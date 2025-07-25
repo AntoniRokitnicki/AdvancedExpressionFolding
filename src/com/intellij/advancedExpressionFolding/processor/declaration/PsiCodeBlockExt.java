@@ -1,9 +1,10 @@
-package com.intellij.advancedExpressionFolding.processor;
+package com.intellij.advancedExpressionFolding.processor.declaration;
 
 import com.intellij.advancedExpressionFolding.expression.Expression;
 import com.intellij.advancedExpressionFolding.expression.controlflow.ControlFlowMultiStatementCodeBlockExpression;
 import com.intellij.advancedExpressionFolding.expression.controlflow.ControlFlowSingleStatementCodeBlockExpression;
 import com.intellij.advancedExpressionFolding.expression.controlflow.IfExpression;
+import com.intellij.advancedExpressionFolding.processor.BaseExtension;
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings;
 import com.intellij.psi.*;
 import org.jetbrains.annotations.Nullable;
@@ -11,7 +12,7 @@ import org.jetbrains.annotations.Nullable;
 public class PsiCodeBlockExt extends BaseExtension {
 
     @Nullable
-    static Expression getCodeBlockExpression(PsiCodeBlock element) {
+    public static Expression getCodeBlockExpression(PsiCodeBlock element) {
         PsiElement parent = element.getParent();
         AdvancedExpressionFoldingSettings settings = AdvancedExpressionFoldingSettings.getInstance();
         if (parent instanceof PsiBlockStatement
