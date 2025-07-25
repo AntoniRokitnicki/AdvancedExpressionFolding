@@ -25,7 +25,7 @@ import static com.intellij.advancedExpressionFolding.processor.BuildExpressionEx
 public class PrefixExpressionExt {
 
     @Nullable
-    static Expression getPrefixExpression(@NotNull PsiPrefixExpression element, @NotNull Document document) {
+    public static Expression getPrefixExpression(@NotNull PsiPrefixExpression element, @NotNull Document document) {
         AdvancedExpressionFoldingSettings settings = AdvancedExpressionFoldingSettings.getInstance();
         if (element.getOperand() != null) {
             if (element.getOperationSign().getText().equals("!")) {

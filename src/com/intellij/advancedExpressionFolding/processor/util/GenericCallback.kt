@@ -1,6 +1,6 @@
-package com.intellij.advancedExpressionFolding.processor
+package com.intellij.advancedExpressionFolding.processor.util
 
-import com.intellij.advancedExpressionFolding.processor.lombok.LombokExt.getNonSyntheticExpression
+import com.intellij.advancedExpressionFolding.processor.ExperimentalExt.getNonSyntheticExpression
 import com.intellij.openapi.util.Key
 import com.intellij.psi.PsiElement
 

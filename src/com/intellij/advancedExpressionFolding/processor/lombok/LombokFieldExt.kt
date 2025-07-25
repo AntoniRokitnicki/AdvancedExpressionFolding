@@ -6,6 +6,7 @@ import com.intellij.advancedExpressionFolding.processor.lombok.LombokConstructor
 import com.intellij.advancedExpressionFolding.processor.lombok.LombokConstructorExt.singleConstructorManyFields
 import com.intellij.advancedExpressionFolding.processor.lombok.LombokFoldingAnnotation.*
 import com.intellij.advancedExpressionFolding.processor.lombok.MethodType.*
+import com.intellij.advancedExpressionFolding.processor.util.GenericCallback
 import com.intellij.openapi.util.Key
 import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiField

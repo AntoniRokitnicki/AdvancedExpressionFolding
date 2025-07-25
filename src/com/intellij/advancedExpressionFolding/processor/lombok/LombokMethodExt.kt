@@ -8,6 +8,7 @@ import com.intellij.advancedExpressionFolding.processor.lombok.LombokExt.findMet
 import com.intellij.advancedExpressionFolding.processor.lombok.LombokInterfaceFoldingAnnotation.*
 import com.intellij.advancedExpressionFolding.processor.lombok.LombokInterfaceFoldingAnnotation.Companion.fromMethodType
 import com.intellij.advancedExpressionFolding.processor.lombok.MethodType.*
+import com.intellij.advancedExpressionFolding.processor.util.GenericCallback
 import com.intellij.openapi.util.Key
 import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiElement
