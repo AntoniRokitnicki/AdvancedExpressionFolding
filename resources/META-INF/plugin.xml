@@ -150,9 +150,9 @@
         <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.arithmetic.ArithmeticNotMethodCall"/>
         <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.arithmetic.ArithmeticAbsMethodCall"/>
         <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.arithmetic.ArithmeticSignumMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.math.MathRandomMethodCall"/>
 
         <!-- Math Method Calls -->
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.math.MathRandomMethodCall"/>
         <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.math.MathAbsMethodCall"/>
         <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.math.MathAcosMethodCall"/>
         <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.math.MathAsinMethodCall"/>

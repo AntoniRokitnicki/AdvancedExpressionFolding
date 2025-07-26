@@ -5,12 +5,14 @@ import com.intellij.driver.client.Remote
 
 @Remote("com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings", plugin = "com.github.advanced-java-folding2")
 interface SettingsStub{
-    fun disableAll()
     fun enableEverything()
     fun getState(): ISettingsState
 }
 
-@Remote("com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings\$State", plugin = "com.github.advanced-java-folding2")
-interface ISettingsState : IState {
+@Remote($$"com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings$State", plugin = "com.github.advanced-java-folding2")
+interface ISettingsState : IState
 
+@Remote("com.intellij.advancedExpressionFolding.action.UpdateFoldedTextColorsAction", plugin = "com.github.advanced-java-folding2")
+interface ColorActionStub {
+    fun changeFoldingColors()
 }

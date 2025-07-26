@@ -99,7 +99,7 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
                 JButton("Apply folded color: ${if (!JBColor.isBright()) "soft blue" else "dark navy"}")
             button.foreground = if (!JBColor.isBright()) decode("#7ca0bb") else decode("#000091")
             button.addActionListener {
-                UpdateFoldedTextColorsAction().changeFoldingColors()
+                UpdateFoldedTextColorsAction.changeFoldingColors()
             }
             cell(button)
         }

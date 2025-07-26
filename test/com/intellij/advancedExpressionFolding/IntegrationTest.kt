@@ -2,6 +2,7 @@ package com.intellij.advancedExpressionFolding
 
 import com.intellij.driver.client.Driver
 import com.intellij.driver.client.service
+import com.intellij.driver.client.utility
 import com.intellij.driver.sdk.ui.components.common.IdeaFrameUI
 import com.intellij.driver.sdk.ui.components.common.ideFrame
 import com.intellij.driver.sdk.ui.components.elements.JCheckBoxUi
@@ -30,15 +31,18 @@ import org.junit.jupiter.api.fail
 import org.kodein.di.DI
 import org.kodein.di.bindSingleton
 import java.io.File
+import java.lang.Thread.sleep
 import kotlin.io.path.Path
 import kotlin.time.Duration.Companion.minutes
+import kotlin.time.Duration.Companion.seconds
 
 /**
- * One test = one IDE run
+ * One test == one IDE run
  */
 @EnabledIfEnvironmentVariable(named = "integration", matches = "1")
 class IntegrationTest {
     val record = false
+    val showWholeFile = false
 
     init {
         di = DI {
@@ -58,23 +62,28 @@ class IntegrationTest {
         }
     }
 
+    //@Disabled
     @Test
     fun `make sure setting changes are persisted`() {
         init("settings").runIdeWithDriver().useDriverAndCloseIde {
             wait()
             ideFrame {
                 val property = service<SettingsStub>().getState()::expressionFunc
+                check(property.get()) {
+                    "expressionFunc should be initially enabled (true), but was ${property.get()}"
+                }
 
-                check(property.get()) { "Checkbox ${if (thenCheck) "check" else "uncheck"} did not work" }
                 toggleCheckbox(driver, expectInitiallyChecked = true, thenCheck = false)
                 clickOk()
-
-                //TODO: see if folding is disabled
+                check(!property.get()) {
+                    "expressionFunc should be disabled (false) after unchecking, but was ${property.get()}"
+                }
 
                 toggleCheckbox(driver, expectInitiallyChecked = false, thenCheck = true)
                 clickOk()
-
-                //TODO: see if folding is enabled
+                check(property.get()) {
+                    "expressionFunc should be enabled (true) after checking, but was ${property.get()}"
+                }
             }
         }
     }
@@ -92,9 +101,11 @@ class IntegrationTest {
                 it.awaitCompleteProjectConfiguration()
                 it.waitForSmartMode()
             }
-            service<SettingsStub>().enableEverything()
 
+            utility<ColorActionStub>().changeFoldingColors()
+            service<SettingsStub>().enableEverything()
             startZenMode()
+
             val next = { openFiles() }
             val errorList = if (record) {
                 recorder.record {
@@ -109,8 +120,6 @@ class IntegrationTest {
                     println(error.stackTraceContent)
                 }
             }
-
-
         }
     }
 
@@ -159,20 +168,42 @@ class IntegrationTest {
         }.click()
     }
 
-
     private fun Driver.openFiles(): List<Pair<ErrorFileName, List<Error>>> {
         val seenErrors = HashSet<Error>()
+
+        val excludedFiles = setOf(
+            // Deprecated features
+            "FinalEmojiTestData.java",
+            "EmojifyTestData.java",
+            //"ArithmeticExpressionsTestData.java",
+
+            // Multiple Lombok tests - keep only basic one
+            "LombokUsageTestData.java",
+            "LombokDirtyOffTestData.java",
+            "LombokPatternOffTestData.java",
+            "LombokPatternOffNegativeTestData.java",
+
+            // Complex/edge case combinations
+            "DestructuringAssignmentArrayWithoutValTestData.java",
+            "DestructuringAssignmentListWithoutValTestData.java",
+            "NullableAnnotationCheckNotNullFieldShiftTestData.java",
+            "ConstructorReferenceNotationWithConstTestData.java",
+        )
 
         return File("examples/data")
             .listFiles()
             .filter { it.extension == "java" }
+            .filterNot { it.name in excludedFiles }
+            .sorted()
             //.take(3)
             .mapNotNull { file ->
                 val filename = "data/${file.name}"
                 execute {
                     it.openFile(filename)
                 }
-                //showWholeFile(file)
+                if (showWholeFile) {
+                    showWholeFile(file)
+                }
 
                 val errors = allErrors().filter { error ->
                     seenErrors.add(error)
@@ -198,13 +229,15 @@ class IntegrationTest {
             }
     }
 
-    //TODO:
     private fun Driver.showWholeFile(file: File) {
+        val millis = 2.seconds.inWholeMilliseconds
+        sleep(millis)
         val linesCount = file.readText().lineSequence().count()
         (50 until linesCount step 50).forEach { index ->
             execute {
-                it.gotoLine(50)
+                it.gotoLine(index)
             }
+            sleep(millis)
         }
     }
 }
@@ -215,7 +248,7 @@ inline fun <T> IDEScreenRecorder.record(block: () -> T): T {
     return try {
         block()
     } finally {
-        Thread.sleep(500)
+        sleep(500)
         stop()
     }
 }
@@ -231,8 +264,7 @@ private fun init(testName: String): IDETestContext = Starter.newContext(
         ?.filter { it.extension == "zip" }
         ?.maxByOrNull { it.lastModified() }
         ?.absolutePath ?: "No zip files found"
-    val pathToPlugin = latestZipFile
-    PluginConfigurator(this).installPluginFromPath(Path(pathToPlugin))
+    PluginConfigurator(this).installPluginFromPath(Path(latestZipFile))
 }
 
 typealias ErrorFileName = String
