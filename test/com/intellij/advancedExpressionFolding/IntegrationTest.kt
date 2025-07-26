@@ -1,6 +1,7 @@
 package com.intellij.advancedExpressionFolding
 
 import com.intellij.driver.client.Driver
+import com.intellij.driver.client.service
 import com.intellij.driver.sdk.ui.components.common.IdeaFrameUI
 import com.intellij.driver.sdk.ui.components.common.ideFrame
 import com.intellij.driver.sdk.ui.components.elements.JCheckBoxUi
@@ -32,8 +33,12 @@ import java.io.File
 import kotlin.io.path.Path
 import kotlin.time.Duration.Companion.minutes
 
+/**
+ * One test = one IDE run
+ */
 @EnabledIfEnvironmentVariable(named = "integration", matches = "1")
 class IntegrationTest {
+    val record = false
 
     init {
         di = DI {
@@ -58,7 +63,9 @@ class IntegrationTest {
         init("settings").runIdeWithDriver().useDriverAndCloseIde {
             wait()
             ideFrame {
+                val property = service<SettingsStub>().getState()::expressionFunc
 
+                check(property.get()) { "Checkbox ${if (thenCheck) "check" else "uncheck"} did not work" }
                 toggleCheckbox(driver, expectInitiallyChecked = true, thenCheck = false)
                 clickOk()
 
@@ -85,10 +92,9 @@ class IntegrationTest {
                 it.awaitCompleteProjectConfiguration()
                 it.waitForSmartMode()
             }
-            //TODO: turn on all properties in settings, maybe use service?
+            service<SettingsStub>().enableEverything()
 
-            //TODO: startZenMode()
-            val record = false
+            startZenMode()
             val next = { openFiles() }
             val errorList = if (record) {
                 recorder.record {

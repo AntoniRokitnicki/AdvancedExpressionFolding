@@ -91,8 +91,11 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
         }
     }
 
-    fun disableAll() = updateAllState(false)
     fun enableAll(vararg excludeProperties: KMutableProperty0<Boolean>) = updateAllState(true, *excludeProperties)
+
+    // used in integrationStubs
+    fun enableEverything() = updateAllState(true)
+    fun disableAll() = updateAllState(false)
 
     companion object {
         @JvmStatic
