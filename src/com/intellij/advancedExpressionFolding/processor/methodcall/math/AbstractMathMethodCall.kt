@@ -4,7 +4,7 @@ import com.intellij.advancedExpressionFolding.processor.methodcall.AbstractMetho
 import com.intellij.advancedExpressionFolding.processor.methodcall.NeedsQualifier
 
 abstract class AbstractMathMethodCall : AbstractMethodCall(), NeedsQualifier {
-    override fun permission() = arithmeticExpressions
+    override fun canExecute() = arithmeticExpressions
     
     override val classNames by lazy { 
         listOf("java.lang.Math") 

@@ -12,7 +12,7 @@ import com.intellij.psi.PsiStatement
 
 class MapPutMethodCall : AbstractMethodCall(), NeedsQualifier {
 
-    override fun permission() = getExpressionsCollapse
+    override fun canExecute() = getExpressionsCollapse
 
     override val methodNames by lazy { listOf("set", "put", "setProperty", "setAttribute", "setValue") }
 

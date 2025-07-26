@@ -50,7 +50,7 @@ object MethodCallFactory : BaseExtension(){
 
     private fun createMethodCalls(): Map<MethodName?, List<AbstractMethodCall>> =
         getAllMethodCalls().filter {
-            it.permission()
+            it.canExecute()
         }.flatMap { methodCall ->
             methodCall.methodNames.map { methodName ->
                 methodName to methodCall

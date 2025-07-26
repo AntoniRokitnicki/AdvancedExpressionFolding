@@ -9,7 +9,7 @@ import com.intellij.psi.PsiLiteralExpression
 import com.intellij.psi.PsiMethodCallExpression
 
 class CreateDateFactoryMethodCall : AbstractMethodCall() {
-    override fun permission() = localDateLiteralCollapse || localDateLiteralPostfixCollapse
+    override fun canExecute() = localDateLiteralCollapse || localDateLiteralPostfixCollapse
 
     override val methodNames by lazy { listOf("of") }
 

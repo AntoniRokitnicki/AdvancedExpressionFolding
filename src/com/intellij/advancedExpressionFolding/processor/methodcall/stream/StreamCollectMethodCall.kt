@@ -12,7 +12,7 @@ import com.intellij.psi.PsiReferenceExpression
 import java.util.*
 
 class StreamCollectMethodCall : AbstractStreamMethodCall() {
-    override fun permission() = concatenationExpressionsCollapse
+    override fun canExecute() = concatenationExpressionsCollapse
 
     override val methodNames by lazy { listOf("collect") }
     

@@ -15,7 +15,7 @@ import com.intellij.psi.*
 
 class CheckNotNullMethodCall : AbstractMethodCall() {
 
-    override fun permission() = nullable
+    override fun canExecute() = nullable
 
     override val methodNames by lazy { listOf("checkNotNull") }
 

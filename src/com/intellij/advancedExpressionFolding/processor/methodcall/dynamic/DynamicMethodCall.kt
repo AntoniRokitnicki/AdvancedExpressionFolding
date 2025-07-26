@@ -10,7 +10,7 @@ import com.intellij.psi.PsiMethodCallExpression
 
 class DynamicMethodCall(val data: DynamicMethodCallData) : AbstractMethodCall() {
 
-    override fun permission() = dynamic
+    override fun canExecute() = dynamic
 
     override val methodNames by lazy { listOf(data.method) }
 

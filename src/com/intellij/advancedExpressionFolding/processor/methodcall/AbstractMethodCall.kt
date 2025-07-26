@@ -6,9 +6,7 @@ import com.intellij.psi.PsiExpression
 import com.intellij.psi.PsiMethodCallExpression
 
 abstract class AbstractMethodCall : BaseExtension() {
-    open fun permission(): Boolean = true
-
-    //TODO: support priority
+    open fun canExecute(): Boolean = true
 
     open fun execute(
         element: PsiMethodCallExpression,

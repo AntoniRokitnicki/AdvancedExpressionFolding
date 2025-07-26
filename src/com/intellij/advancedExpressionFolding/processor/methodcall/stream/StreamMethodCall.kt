@@ -1,7 +1,7 @@
 package com.intellij.advancedExpressionFolding.processor.methodcall.stream
 
-import com.intellij.advancedExpressionFolding.expression.operation.collection.ArrayStream
 import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.advancedExpressionFolding.expression.operation.collection.ArrayStream
 import com.intellij.advancedExpressionFolding.processor.methodcall.AbstractMethodCall
 import com.intellij.advancedExpressionFolding.processor.methodcall.Context
 import com.intellij.advancedExpressionFolding.processor.methodcall.NeedsQualifier
@@ -11,7 +11,7 @@ import com.intellij.psi.PsiMethodCallExpression
 import com.intellij.psi.PsiReferenceExpression
 
 class StreamMethodCall : AbstractMethodCall(), NeedsQualifier {
-    override fun permission() = concatenationExpressionsCollapse
+    override fun canExecute() = concatenationExpressionsCollapse
 
     override val methodNames by lazy { listOf("stream") }
     

@@ -9,7 +9,7 @@ import com.intellij.psi.PsiExpression
 import com.intellij.psi.PsiMethodCallExpression
 
 class EqualsMethodCall : AbstractMethodCall(), NeedsQualifier {
-    override fun permission() = comparingExpressionsCollapse
+    override fun canExecute() = comparingExpressionsCollapse
 
     override val methodNames by lazy { listOf("equals") }
     

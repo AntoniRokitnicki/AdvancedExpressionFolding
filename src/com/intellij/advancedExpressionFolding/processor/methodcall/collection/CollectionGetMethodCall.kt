@@ -14,7 +14,7 @@ import com.intellij.psi.PsiMethodCallExpression
 
 class CollectionGetMethodCall : AbstractMethodCall(), NeedsQualifier {
 
-    override fun permission() = getExpressionsCollapse
+    override fun canExecute() = getExpressionsCollapse
 
     override val methodNames by lazy { listOf("get", "getProperty", "getAttribute", "getValue") }
 

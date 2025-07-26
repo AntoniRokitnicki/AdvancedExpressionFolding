@@ -12,7 +12,7 @@ import com.intellij.psi.PsiStatement
 import java.util.*
 
 class AppendMethodCall : AbstractMethodCall(), NeedsQualifier {
-    override fun permission() = concatenationExpressionsCollapse
+    override fun canExecute() = concatenationExpressionsCollapse
 
     override val methodNames by lazy { listOf("append") }
     

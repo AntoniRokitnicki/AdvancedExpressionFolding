@@ -14,7 +14,7 @@ import com.intellij.psi.PsiIdentifier
 import com.intellij.psi.PsiMethodCallExpression
 
 class SubstringOrSubListMethodCall : AbstractMethodCall(), NeedsQualifier {
-    override fun permission() = slicingExpressionsCollapse
+    override fun canExecute() = slicingExpressionsCollapse
 
     override val methodNames by lazy { listOf("substring", "subList") }
     
