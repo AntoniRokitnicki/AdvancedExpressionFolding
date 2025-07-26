@@ -20,67 +20,6 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
         myState = state.copy()
     }
 
-    interface IConfig {
-        var globalOn: Boolean
-        val memoryImprovement: Boolean
-    }
-
-    interface ILessImportantState {
-        val localDateLiteralCollapse: Boolean
-        val localDateLiteralPostfixCollapse: Boolean
-        val controlFlowSingleStatementCodeBlockCollapse: Boolean
-        val controlFlowMultiStatementCodeBlockCollapse: Boolean
-        val semicolonsCollapse: Boolean
-        val finalRemoval: Boolean
-        val finalEmoji: Boolean
-        val lombokDirtyOff: Boolean
-        val destructuring: Boolean
-
-        val expressionFunc: Boolean
-        val dynamic: Boolean
-        val arithmeticExpressions: Boolean
-        val emojify: Boolean
-        val interfaceExtensionProperties: Boolean
-        val patternMatchingInstanceof: Boolean
-        val summaryParentOverride: Boolean
-        val constructorReferenceNotation: Boolean
-        val methodDefaultParameters: Boolean
-        val lombokPatternOff: String?
-        val overrideHide: Boolean
-        val suppressWarningsHide: Boolean
-        val pseudoAnnotations: Boolean
-        // NEW OPTION VAL
-
-        var experimental: Boolean
-    }
-
-    interface IState : ILessImportantState {
-        val concatenationExpressionsCollapse: Boolean
-        val slicingExpressionsCollapse: Boolean
-        val comparingExpressionsCollapse: Boolean
-        val comparingLocalDatesCollapse: Boolean
-        val getExpressionsCollapse: Boolean
-        val rangeExpressionsCollapse: Boolean
-        val checkExpressionsCollapse: Boolean
-        val castExpressionsCollapse: Boolean
-        val varExpressionsCollapse: Boolean
-        val getSetExpressionsCollapse: Boolean
-        val compactControlFlowSyntaxCollapse: Boolean
-        val assertsCollapse: Boolean
-
-        val optional: Boolean
-        val streamSpread: Boolean
-        val lombok: Boolean
-        val fieldShift: Boolean
-        val kotlinQuickReturn: Boolean
-        val ifNullSafe: Boolean
-        val logFolding: Boolean
-        val println: Boolean
-        val const: Boolean
-        val nullable: Boolean
-
-    }
-
     data class State(
         override var concatenationExpressionsCollapse: Boolean = true,
         override var slicingExpressionsCollapse: Boolean = true,
@@ -137,8 +76,6 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
         override var globalOn: Boolean = true,
 
         ) : IState, IConfig
-
-    open class StateDelegate(private val state: State = getInstance().state) : IState by state
 
     private fun updateAllState(value: Boolean, vararg excludeProperties: KMutableProperty<Boolean>) {
         val excluded = excludeProperties.map { it.toString() }

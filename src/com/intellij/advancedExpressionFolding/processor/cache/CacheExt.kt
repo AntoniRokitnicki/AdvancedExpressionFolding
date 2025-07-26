@@ -2,12 +2,12 @@ package com.intellij.advancedExpressionFolding.processor.cache
 
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt.buildExpression
-import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
+import com.intellij.advancedExpressionFolding.settings.StateDelegate
 import com.intellij.openapi.editor.Document
 import com.intellij.psi.PsiElement
 import org.jetbrains.annotations.Contract
 
-object CacheExt : AdvancedExpressionFoldingSettings.StateDelegate() {
+object CacheExt : StateDelegate() {
 
     fun PsiElement.invalidateExpired(document: Document, synthetic: Boolean): Boolean {
         val versionKey = Keys.getVersionKey(synthetic)

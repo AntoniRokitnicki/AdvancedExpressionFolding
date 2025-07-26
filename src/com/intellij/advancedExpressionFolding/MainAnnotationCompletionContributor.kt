@@ -2,7 +2,7 @@ package com.intellij.advancedExpressionFolding
 
 import com.intellij.advancedExpressionFolding.processor.core.BaseExtension.Companion.isVoid
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings.Companion.getInstance
-import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings.IState
+import com.intellij.advancedExpressionFolding.settings.IState
 import com.intellij.codeInsight.completion.*
 import com.intellij.codeInsight.lookup.AutoCompletionPolicy
 import com.intellij.codeInsight.lookup.LookupElementBuilder
