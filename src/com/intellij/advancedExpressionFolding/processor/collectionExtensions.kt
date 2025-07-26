@@ -12,8 +12,6 @@ fun <T> Array<T>?.takeIfSize(size: Int): Array<T>? = this.takeIf {
 
 val Array<*>?.one: Boolean
     get() = this?.singleOrNull() != null
-val List<*>?.one: Boolean
-    get() = this?.singleOrNull() != null
 
 fun <T> Array<T>.firstOrNullIfNotEmpty(): T? {
     return if (isEmpty() || size > 1) {
@@ -37,16 +35,6 @@ fun Array<out PsiElement>.asInstance(vararg elements: Class<out PsiElement>): Ar
     return this
 }
 
-
-fun <T> Iterable<T>.distinctNot(): List<T> {
-    return groupBy {
-        it
-    }.filter {
-        it.value.size > 1
-    }.flatMap {
-        it.value
-    }
-}
 
 fun <K, V> Map<K, V>.isUnique(): Boolean =
     keys.sameSize(keys.distinct()) && values.sameSize(values.distinct())
