@@ -38,7 +38,7 @@ public class StringBuilderTestData {
         <fold text='' expand='false'>System.out.</fold>println(
                 str<fold text='[' expand='false'>.charAt(</fold>0<fold text=']' expand='false'>)</fold>
         );
-        <fold text='var' expand='false'>int</fold> i = 2;
+        <fold text='val' expand='false'>int</fold> i = 2;
         <fold text='' expand='false'>System.out.</fold>println(
                 str<fold text='[' expand='false'>.charAt(</fold>i<fold text=']' expand='false'>)</fold>
         );
