@@ -45,7 +45,7 @@ public class Append extends Operation {
 
     @Override
     public boolean supportsFoldRegions(@NotNull Document document, @Nullable Expression parent) {
-        return super.supportsFoldRegions(document, parent) & operands.size() > 0;
+        return operands.size() > 0 && super.supportsFoldRegions(document, parent);
     }
 
     @Override
