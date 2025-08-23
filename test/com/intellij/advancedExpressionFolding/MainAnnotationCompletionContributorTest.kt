@@ -3,7 +3,6 @@ package com.intellij.advancedExpressionFolding
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
 import com.intellij.codeInsight.completion.CompletionType
 import com.intellij.openapi.application.runInEdt
-import com.intellij.testFramework.fixtures.LightJavaCodeInsightFixtureTestCase5
 import org.intellij.lang.annotations.Language
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertTrue
@@ -15,9 +14,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 import java.util.stream.Stream
 
-class MainAnnotationCompletionContributorTest : LightJavaCodeInsightFixtureTestCase5() {
-
-    override fun getTestDataPath(): String = "testData"
+class MainAnnotationCompletionContributorTest : BaseTest() {
 
     companion object {
         private var originalPseudoAnnotationsValue: Boolean = false
