@@ -79,7 +79,7 @@ open class FoldingTest : BaseTest() {
      */
     @Test
     open fun stringBuilderTestData() {
-        doFoldingTest(state::concatenationExpressionsCollapse)
+        doFoldingTest(state::concatenationExpressionsCollapse, state::getExpressionsCollapse)
     }
 
     /**
@@ -95,14 +95,6 @@ open class FoldingTest : BaseTest() {
      */
     @Test
     open fun getSetPutTestData() {
-        doFoldingTest(state::getExpressionsCollapse)
-    }
-
-    /**
-     * [data.CharAtTestData]
-     */
-    @Test
-    open fun charAtTestData() {
         doFoldingTest(state::getExpressionsCollapse)
     }
 
