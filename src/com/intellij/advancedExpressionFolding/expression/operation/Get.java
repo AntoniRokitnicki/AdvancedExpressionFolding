@@ -45,8 +45,7 @@ public class Get extends Expression {
                     && keyEnd < end;
         } else {
             return objectEnd < keyStart - 1
-                    && keyStart < keyEnd
-                    && keyEnd <= end;
+                    && keyStart < keyEnd;
         }
     }
 

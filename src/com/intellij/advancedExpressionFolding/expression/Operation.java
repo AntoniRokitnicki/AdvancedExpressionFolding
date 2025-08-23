@@ -60,11 +60,6 @@ public abstract class Operation extends Expression {
                 return false;
             }
         }
-        for (Expression operand : operands) {
-            if (!operand.supportsFoldRegions(document, this)) {
-                return false;
-            }
-        }
         return true;
     }
 
