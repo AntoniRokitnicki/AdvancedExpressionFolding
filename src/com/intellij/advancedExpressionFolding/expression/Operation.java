@@ -60,12 +60,12 @@ public abstract class Operation extends Expression {
                 return false;
             }
         }
-        return true;
+        return true; // TODO no-format: ensure operands.supportFoldRegions
     }
 
     private boolean equalOrLessPriority(int index) {
         return operands.get(index) instanceof Operation
-                && ((Operation) operands.get(index)).getPriority() <= priority;
+                && ((Operation) operands.get(index)).getPriority() < priority;
     }
 
     @Override

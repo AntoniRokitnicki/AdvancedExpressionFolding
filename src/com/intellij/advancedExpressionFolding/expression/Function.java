@@ -55,10 +55,17 @@ public abstract class Function extends Expression {
     @Override
     public boolean supportsFoldRegions(@NotNull Document document,
                                        @Nullable Expression parent) {
-        // TODO: check if operands have text in between
-        return operands.size() > 0
-                && getTextRange().getStartOffset() < operands.get(0).getTextRange().getStartOffset()
-                && getTextRange().getEndOffset() > operands.get(operands.size() - 1).getTextRange().getEndOffset();
+        if (operands.size() == 0
+                || getTextRange().getStartOffset() >= operands.get(0).getTextRange().getStartOffset()
+                || getTextRange().getEndOffset() <= operands.get(operands.size() - 1).getTextRange().getEndOffset()) {
+            return false;
+        }
+        for (int i = 1; i < operands.size(); i++) {
+            if (operands.get(i - 1).getTextRange().getEndOffset() >= operands.get(i).getTextRange().getStartOffset()) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
