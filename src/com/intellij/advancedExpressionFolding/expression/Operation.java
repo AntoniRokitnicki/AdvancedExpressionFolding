@@ -51,7 +51,7 @@ public abstract class Operation extends Expression {
     @Override
     public boolean supportsFoldRegions(@NotNull Document document,
                                        @Nullable Expression parent) {
-        if (equalOrLessPriority(0)) {
+        if (operands.isEmpty() || equalOrLessPriority(0)) {
             return false;
         }
         for (int i = 1; i < operands.size(); i++) {
