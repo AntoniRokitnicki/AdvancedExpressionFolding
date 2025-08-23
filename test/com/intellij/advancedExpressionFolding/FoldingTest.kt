@@ -99,6 +99,14 @@ open class FoldingTest : BaseTest() {
     }
 
     /**
+     * [data.CharAtTestData]
+     */
+    @Test
+    open fun charAtTestData() {
+        doFoldingTest(state::getExpressionsCollapse)
+    }
+
+    /**
      * [data.SliceTestData]
      */
     @Test
