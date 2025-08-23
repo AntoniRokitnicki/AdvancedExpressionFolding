@@ -9,7 +9,7 @@ import com.intellij.psi.PsiExpression
 import com.intellij.psi.PsiMethodCallExpression
 
 class CharAtMethodCall : AbstractMethodCall(), NeedsQualifier {
-    override fun canExecute() = getExpressionsCollapse
+    override fun canExecute() = concatenationExpressionsCollapse
 
     override val methodNames by lazy { listOf("charAt") }
     
