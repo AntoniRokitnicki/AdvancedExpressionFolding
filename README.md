@@ -120,10 +120,10 @@ To disable certain types of folding, go to <strong>Settings</strong> | <strong>E
 
 > [!TIP]
 > <a name="canary">To install the Canary version of the plugin:</a>
-> 1. Open <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>⚙️</kbd> > <kbd>Manager Plugin Repositories</kbd>
+> 1. Open <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>⚙️</kbd> > <kbd>Manage Plugin Repositories</kbd>
 > 2. Add the following URL: [https://plugins.jetbrains.com/plugins/list?channel=canary&pluginId=23659](https://plugins.jetbrains.com/plugins/list?channel=canary&pluginId=23659)
-> 3. Go to the <kbd>Marketplace</kbd>
-> 4. Search for <kbd>advanced</kbd>
+> 3. Go to the <kbd>Marketplace</kbd> tab
+> 4. Search for <kbd>Advanced Expression Folding</kbd>
 
 
 
