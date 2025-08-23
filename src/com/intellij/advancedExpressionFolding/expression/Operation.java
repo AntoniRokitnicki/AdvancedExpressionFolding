@@ -70,7 +70,7 @@ public abstract class Operation extends Expression {
 
     private boolean equalOrLessPriority(int index) {
         return operands.get(index) instanceof Operation
-                && ((Operation) operands.get(index)).getPriority() <= priority;
+                && ((Operation) operands.get(index)).getPriority() < priority;
     }
 
     @Override
