@@ -27,7 +27,15 @@ public class Put extends Expression {
     @Override
     public boolean supportsFoldRegions(@NotNull Document document,
                                        @Nullable Expression parent) {
-        return this.object.getTextRange().getEndOffset() < this.key.getTextRange().getStartOffset(); // TODO: Check how this is possible
+        var objectEnd = object.getTextRange().getEndOffset();
+        var keyStart = key.getTextRange().getStartOffset();
+        var keyEnd = key.getTextRange().getEndOffset();
+        var valueStart = value.getTextRange().getStartOffset();
+        var valueEnd = value.getTextRange().getEndOffset();
+        var end = getTextRange().getEndOffset();
+        return objectEnd < keyStart
+                && keyEnd < valueStart
+                && valueEnd <= end;
     }
 
     @Override
