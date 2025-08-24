@@ -15,22 +15,9 @@ public class PsiCodeBlockExt extends BaseExtension {
     public static Expression getCodeBlockExpression(PsiCodeBlock element) {
         PsiElement parent = element.getParent();
         AdvancedExpressionFoldingSettings settings = AdvancedExpressionFoldingSettings.getInstance();
-        if (parent instanceof PsiBlockStatement
-                && (
-                (parent.getParent() instanceof PsiIfStatement || parent.getParent() instanceof PsiLoopStatement)
-                        && element.getRBrace() != null
-                        && element.getLBrace() != null
-        )
-                || parent instanceof PsiSwitchStatement
-                || parent instanceof PsiTryStatement
-                || parent instanceof PsiCatchSection) {
+        if (isSupportedParent(parent, element)) {
             if (element.getStatements().length == 1 || parent instanceof PsiSwitchStatement) {
-                if (settings.getState().getControlFlowSingleStatementCodeBlockCollapse()
-                        && !element.isWritable()
-                        &&
-                        (!(parent.getParent() instanceof PsiIfStatement) ||
-                                !IfExpression.isAssertExpression(settings.getState(),
-                                        (PsiIfStatement) parent.getParent()))) {
+                if (shouldCollapseSingleStatement(element, parent, settings)) {
                     return new ControlFlowSingleStatementCodeBlockExpression(element, element.getTextRange());
                 }
             } else {
@@ -42,5 +29,25 @@ public class PsiCodeBlockExt extends BaseExtension {
             }
         }
         return null;
+    }
+
+    private static boolean isSupportedParent(PsiElement parent, PsiCodeBlock element) {
+        return parent instanceof PsiBlockStatement
+                && ((parent.getParent() instanceof PsiIfStatement
+                || parent.getParent() instanceof PsiLoopStatement)
+                && element.getRBrace() != null
+                && element.getLBrace() != null)
+                || parent instanceof PsiSwitchStatement
+                || parent instanceof PsiTryStatement
+                || parent instanceof PsiCatchSection;
+    }
+
+    private static boolean shouldCollapseSingleStatement(
+            PsiCodeBlock element, PsiElement parent, AdvancedExpressionFoldingSettings settings) {
+        return settings.getState().getControlFlowSingleStatementCodeBlockCollapse()
+                && !element.isWritable()
+                && (!(parent.getParent() instanceof PsiIfStatement)
+                || !IfExpression.isAssertExpression(
+                settings.getState(), (PsiIfStatement) parent.getParent()));
     }
 }

@@ -51,12 +51,7 @@ public class IfExt {
         if (settings.getState().getCheckExpressionsCollapse()
                 && element.getCondition() instanceof PsiBinaryExpression) {
             PsiBinaryExpression condition = (PsiBinaryExpression) element.getCondition();
-            if (condition.getOperationSign().getText().equals("!=")
-                    && element.getElseBranch() == null
-                    && (BaseExtension.isNull(condition.getLOperand().getType())
-                    && condition.getROperand() != null
-                    || condition.getROperand() != null && BaseExtension.isNull(condition.getROperand().getType()))
-                    && element.getThenBranch() != null) {
+            if (isNullCheckWithoutElse(element, condition)) {
                 PsiStatement thenStatement = element.getThenBranch();
                 if (thenStatement.getChildren().length == 1 && thenStatement
                         .getChildren()[0] instanceof PsiCodeBlock) {
@@ -97,12 +92,7 @@ public class IfExt {
         AdvancedExpressionFoldingSettings settings = AdvancedExpressionFoldingSettings.getInstance();
         if (settings.getState().getCheckExpressionsCollapse()
                 && element.getCondition() instanceof @NotNull PsiBinaryExpression condition) {
-            if (condition.getOperationSign().getText().equals("!=")
-                    && condition.getROperand() != null
-                    && (BaseExtension.isNull(condition.getLOperand().getType())
-                    || BaseExtension.isNull(condition.getROperand().getType()))
-                    && element.getThenExpression() != null
-                    && element.getElseExpression() != null) {
+            if (isNullCheckConditional(element, condition)) {
                 PsiElement qualifier = BaseExtension.isNull(condition.getLOperand().getType())
                         ? condition.getROperand()
                         : condition.getLOperand();
@@ -188,5 +178,26 @@ public class IfExt {
             return expression;
         }
         return null;
+    }
+
+    private static boolean isNullCheckWithoutElse(
+            PsiIfStatement element, PsiBinaryExpression condition) {
+        return condition.getOperationSign().getText().equals("!=")
+                && element.getElseBranch() == null
+                && (BaseExtension.isNull(condition.getLOperand().getType())
+                && condition.getROperand() != null
+                || condition.getROperand() != null
+                && BaseExtension.isNull(condition.getROperand().getType()))
+                && element.getThenBranch() != null;
+    }
+
+    private static boolean isNullCheckConditional(
+            PsiConditionalExpression element, PsiBinaryExpression condition) {
+        return condition.getOperationSign().getText().equals("!=")
+                && condition.getROperand() != null
+                && (BaseExtension.isNull(condition.getLOperand().getType())
+                || BaseExtension.isNull(condition.getROperand().getType()))
+                && element.getThenExpression() != null
+                && element.getElseExpression() != null;
     }
 }
