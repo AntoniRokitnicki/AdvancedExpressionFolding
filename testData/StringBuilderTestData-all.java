@@ -30,9 +30,20 @@ public class StringBuilderTestData {
 ' expand='false'>[i];</fold>
         sb3<fold text=' += ' expand='false'>.append(</fold>arg<fold text='' expand='false'>)</fold>;
         if <fold text='' expand='false'>(</fold>i < args.length - 1<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
-                sb3<fold text=' += ' expand='false'>.append(</fold>","<fold text=' + ' expand='false'>).append(</fold>" "<fold text='' expand='false'>)</fold>;
+        sb3<fold text=' += ' expand='false'>.append(</fold>","<fold text=' + ' expand='false'>).append(</fold>" "<fold text='' expand='false'>)</fold>;
             }</fold>
         }</fold>
                 <fold text='' expand='false'>System.out.</fold>println(sb3<fold text='' expand='false'>.toString()</fold>);
+        <fold text='val' expand='false'>String</fold> str = "hello";
+        <fold text='' expand='false'>System.out.</fold>println(
+                str<fold text='[' expand='false'>.charAt(</fold>0<fold text=']' expand='false'>)</fold>
+        );
+        <fold text='val' expand='false'>int</fold> i = 2;
+        <fold text='' expand='false'>System.out.</fold>println(
+                str<fold text='[' expand='false'>.charAt(</fold>i<fold text=']' expand='false'>)</fold>
+        );
+        <fold text='' expand='false'>System.out.</fold>println(
+                str<fold text='[' expand='false'>.charAt(</fold>str.length() - 1<fold text=']' expand='false'>)</fold>
+        );
     }</fold>
 }
