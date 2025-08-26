@@ -16,6 +16,7 @@
 - `testData/` – Input Java files for testing
 - `folded/` – Expected output showing folded results
 - `examples/data/` – Example files demonstrating features
+- Keep `examples/data/` in sync with `testData/` changes.
 
 ## Commits
 - Follow Conventional Commits (`feat:`, `fix:`, `refactor:`, `test:`).
