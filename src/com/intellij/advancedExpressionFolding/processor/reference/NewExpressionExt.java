@@ -26,90 +26,145 @@ public class NewExpressionExt {
     public static Expression getNewExpression(PsiNewExpression element, @NotNull Document document) {
         AdvancedExpressionFoldingSettings settings = AdvancedExpressionFoldingSettings.getInstance();
         @Nullable PsiType type = element.getType();
-
         @Nullable String erasedType = type != null ? Helper.eraseGenerics(type.getCanonicalText()) : null;
-        if (type != null && Consts.SUPPORTED_CLASSES.contains(erasedType)) {
-            PsiExpressionList argumentList = element.getArgumentList();
-            if (argumentList != null && argumentList.getExpressions().length == 1) {
-                PsiExpression arg = argumentList.getExpressions()[0];
-                if (arg instanceof PsiLiteralExpression) {
-                    return getConstructorExpression(element,
-                            (PsiLiteralExpression) arg,
-                            erasedType);
-                } else if (arg instanceof PsiReferenceExpression) {
-                    return ReferenceExpressionExt.getReferenceExpression(
-                            (PsiReferenceExpression) arg, true);
-                } else if (erasedType.equals("java.util.ArrayList")
-                        && arg instanceof PsiMethodCallExpression) {
-                    Expression methodCallExpression = MethodCallExpressionExt.getMethodCallExpression(((PsiMethodCallExpression) arg), document);
-                    if (methodCallExpression instanceof ListLiteral && settings.getState().getGetExpressionsCollapse()) {
-                        return new ListLiteral(element, element.getTextRange(), ((ListLiteral) methodCallExpression).getItems());
-                    }
-                }
-            } else if (argumentList != null && argumentList.getExpressions().length == 0) {
-                switch (erasedType) {
-                    case "java.lang.String":
-                    case "java.lang.StringBuilder":
-                        return new StringLiteral(element, element.getTextRange(), "");
-                    case "java.util.ArrayList":
-                        if (settings.getState().getGetExpressionsCollapse()) {
-                            return new ListLiteral(element, element.getTextRange(), Collections.emptyList());
-                        } else {
-                            return null;
-                        }
-                }
+
+        Expression expression;
+        expression = handleSupportedClasses(element, document, settings, type, erasedType);
+        if (expression != null) {
+            return expression;
+        }
+        expression = handleArrayInitializer(element, document, settings, type);
+        if (expression != null) {
+            return expression;
+        }
+        expression = handleAnonymousClass(element, document, settings, type, erasedType);
+        if (expression != null) {
+            return expression;
+        }
+        return null;
+    }
+
+    @Nullable
+    private static Expression handleSupportedClasses(PsiNewExpression element, Document document,
+                                                     AdvancedExpressionFoldingSettings settings, @Nullable PsiType type,
+                                                     @Nullable String erasedType) {
+        if (type == null || erasedType == null || !Consts.SUPPORTED_CLASSES.contains(erasedType)) {
+            return null;
+        }
+        PsiExpressionList argumentList = element.getArgumentList();
+        if (argumentList == null) {
+            return null;
+        }
+        PsiExpression[] expressions = argumentList.getExpressions();
+        if (expressions.length == 1) {
+            return handleSingleArgument(element, document, settings, erasedType, expressions[0]);
+        } else if (expressions.length == 0) {
+            return handleNoArguments(element, settings, erasedType);
+        }
+        return null;
+    }
+
+    @Nullable
+    private static Expression handleSingleArgument(PsiNewExpression element, Document document,
+                                                   AdvancedExpressionFoldingSettings settings, String erasedType,
+                                                   PsiExpression arg) {
+        if (arg instanceof PsiLiteralExpression) {
+            return getConstructorExpression(element, (PsiLiteralExpression) arg, erasedType);
+        } else if (arg instanceof PsiReferenceExpression) {
+            return ReferenceExpressionExt.getReferenceExpression((PsiReferenceExpression) arg, true);
+        } else if ("java.util.ArrayList".equals(erasedType) && arg instanceof PsiMethodCallExpression) {
+            Expression methodCallExpression = MethodCallExpressionExt.getMethodCallExpression((PsiMethodCallExpression) arg, document);
+            if (methodCallExpression instanceof ListLiteral && settings.getState().getGetExpressionsCollapse()) {
+                return new ListLiteral(element, element.getTextRange(), ((ListLiteral) methodCallExpression).getItems());
             }
         }
-        @Nullable PsiArrayInitializerExpression arrayInitializer = element.getArrayInitializer();
+        return null;
+    }
+
+    @Nullable
+    private static Expression handleNoArguments(PsiNewExpression element,
+                                                AdvancedExpressionFoldingSettings settings,
+                                                String erasedType) {
+        switch (erasedType) {
+            case "java.lang.String":
+            case "java.lang.StringBuilder":
+                return new StringLiteral(element, element.getTextRange(), "");
+            case "java.util.ArrayList":
+                if (settings.getState().getGetExpressionsCollapse()) {
+                    return new ListLiteral(element, element.getTextRange(), Collections.emptyList());
+                }
+                return null;
+            default:
+                return null;
+        }
+    }
+
+    @Nullable
+    private static Expression handleArrayInitializer(PsiNewExpression element, Document document,
+                                                     AdvancedExpressionFoldingSettings settings,
+                                                     @Nullable PsiType type) {
+        PsiArrayInitializerExpression arrayInitializer = element.getArrayInitializer();
         if (type != null && arrayInitializer != null && settings.getState().getGetExpressionsCollapse()) {
             return new ArrayLiteral(element, element.getTextRange(),
                     Arrays.stream(arrayInitializer.getInitializers())
-                            .map(i -> BuildExpressionExt.getAnyExpression(i, document)).collect(
-                            Collectors.toList()));
+                            .map(i -> BuildExpressionExt.getAnyExpression(i, document))
+                            .collect(Collectors.toList()));
         }
-        @Nullable PsiAnonymousClass anonymousClass = element.getAnonymousClass();
-        if (type != null && anonymousClass != null && anonymousClass.getLBrace() != null && anonymousClass.getRBrace() != null) {
-            if (erasedType.equals("java.util.HashSet")) {
-                if (anonymousClass.getInitializers().length == 1) {
-                    @NotNull PsiStatement[] statements = anonymousClass.getInitializers()[0].getBody().getStatements();
-                    if (statements.length > 0) {
-                        boolean flag = true;
-                        ArrayList<PsiElement> arguments = new ArrayList<>();
-                        for (PsiStatement statement : statements) {
-                            if (statement instanceof PsiExpressionStatement
-                                    && ((PsiExpressionStatement) statement).getExpression() instanceof @NotNull PsiMethodCallExpression methodCall) {
-                                if (methodCall.getMethodExpression().getText().equals("add") && methodCall.getArgumentList().getExpressions().length == 1) {
-                                    PsiMethod method = (PsiMethod) methodCall.getMethodExpression().resolve();
-                                    if (method != null && method.getContainingClass() != null
-                                            && method.getContainingClass().getQualifiedName() != null
-                                            && method.getContainingClass().getQualifiedName().equals("java.util.HashSet")) {
-                                        arguments.add(methodCall.getArgumentList().getExpressions()[0]);
-                                    } else {
-                                        flag = false;
-                                        break;
-                                    }
-                                } else {
-                                    flag = false;
-                                    break;
-                                }
-                            } else {
-                                flag = false;
-                                break;
-                            }
-                        }
-                        if (flag) {
-                            if (settings.getState().getGetExpressionsCollapse())
-                                return new SetLiteral(element, element.getTextRange(),
-                                        TextRange.create(anonymousClass.getLBrace().getTextRange().getStartOffset(),
-                                                anonymousClass.getRBrace().getTextRange().getEndOffset()),
-                                        anonymousClass.getInitializers()[0].getTextRange(),
-                                        arguments.stream().map(a -> BuildExpressionExt.getAnyExpression(a, document)).collect(Collectors.toList()));
-                        }
-                    }
+        return null;
+    }
+
+    @Nullable
+    private static Expression handleAnonymousClass(PsiNewExpression element, Document document,
+                                                   AdvancedExpressionFoldingSettings settings, @Nullable PsiType type,
+                                                   @Nullable String erasedType) {
+        PsiAnonymousClass anonymousClass = element.getAnonymousClass();
+        if (type == null || anonymousClass == null
+                || anonymousClass.getLBrace() == null || anonymousClass.getRBrace() == null) {
+            return null;
+        }
+        if ("java.util.HashSet".equals(erasedType) && anonymousClass.getInitializers().length == 1) {
+            PsiStatement[] statements = anonymousClass.getInitializers()[0].getBody().getStatements();
+            if (statements.length > 0) {
+                ArrayList<PsiElement> arguments = collectHashSetArguments(statements);
+                if (arguments != null && settings.getState().getGetExpressionsCollapse()) {
+                    return new SetLiteral(element, element.getTextRange(),
+                            TextRange.create(anonymousClass.getLBrace().getTextRange().getStartOffset(),
+                                    anonymousClass.getRBrace().getTextRange().getEndOffset()),
+                            anonymousClass.getInitializers()[0].getTextRange(),
+                            arguments.stream()
+                                    .map(a -> BuildExpressionExt.getAnyExpression(a, document))
+                                    .collect(Collectors.toList()));
                 }
             }
         }
         return null;
+    }
+
+    @Nullable
+    private static ArrayList<PsiElement> collectHashSetArguments(PsiStatement[] statements) {
+        ArrayList<PsiElement> arguments = new ArrayList<>();
+        for (PsiStatement statement : statements) {
+            if (!(statement instanceof PsiExpressionStatement)) {
+                return null;
+            }
+            PsiExpression expression = ((PsiExpressionStatement) statement).getExpression();
+            if (!(expression instanceof PsiMethodCallExpression)) {
+                return null;
+            }
+            PsiMethodCallExpression methodCall = (PsiMethodCallExpression) expression;
+            if (!"add".equals(methodCall.getMethodExpression().getText())
+                    || methodCall.getArgumentList().getExpressions().length != 1) {
+                return null;
+            }
+            PsiMethod method = (PsiMethod) methodCall.getMethodExpression().resolve();
+            if (method == null || method.getContainingClass() == null
+                    || method.getContainingClass().getQualifiedName() == null
+                    || !"java.util.HashSet".equals(method.getContainingClass().getQualifiedName())) {
+                return null;
+            }
+            arguments.add(methodCall.getArgumentList().getExpressions()[0]);
+        }
+        return arguments;
     }
 
     @Nullable
