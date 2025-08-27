@@ -1,6 +1,7 @@
 package com.intellij.advancedExpressionFolding
 
 import com.intellij.advancedExpressionFolding.processor.cache.Keys
+import com.intellij.openapi.application.runReadAction
 import com.intellij.openapi.components.Service
 import com.intellij.openapi.components.service
 import com.intellij.openapi.editor.Editor
@@ -57,8 +58,10 @@ class FoldingService {
             return
         }
         val project = editor.project ?: return
-        val psiFile = PsiDocumentManager.getInstance(project).getPsiFile(editor.document) ?: return
-        psiFile.accept(KeyCleanerPsiElementVisitor())
+        runReadAction {
+            val psiFile = PsiDocumentManager.getInstance(project).getPsiFile(editor.document) ?: return@runReadAction
+            psiFile.accept(KeyCleanerPsiElementVisitor())
+        }
     }
 
     class KeyCleanerPsiElementVisitor : PsiRecursiveElementVisitor() {
