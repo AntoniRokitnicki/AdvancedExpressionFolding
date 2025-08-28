@@ -299,7 +299,7 @@ Improved handling of multi-line log messages
 ### Added
 
 - Fix NPEs when calling isReferenceTo with r.resolve() that might return null
-- Better support for compareto folding
+- Better support for compareTo folding
 - Improve getter folding
 
 ## [1.0.3]
