@@ -2,6 +2,7 @@ import org.jetbrains.changelog.Changelog
 import org.jetbrains.changelog.markdownToHTML
 import org.jetbrains.changelog.tasks.PatchChangelogTask
 import org.jetbrains.intellij.platform.gradle.TestFrameworkType
+import org.gradle.api.tasks.SourceSetContainer
 import java.io.ByteArrayOutputStream
 import java.io.InputStream
 import java.io.Writer
@@ -58,6 +59,15 @@ sourceSets {
     }
 }
 
+evaluationDependsOn(":examples")
+
+val examplesTestOutput = project(":examples").extensions.getByType<SourceSetContainer>()["test"].output
+val examples by configurations.creating
+
+configurations.named("testImplementation") {
+    extendsFrom(examples)
+}
+
 tasks.withType<JavaCompile> {
     options.encoding = "UTF-8"
 }
@@ -65,6 +75,7 @@ tasks.test {
     systemProperty("file.encoding", "UTF-8")
     systemProperty("line.separator", "\n")
     useJUnitPlatform()
+    dependsOn(":examples:testClasses")
 }
 
 // Configure project's dependencies
@@ -82,6 +93,8 @@ dependencies {
     implementation(libs.annotations)
     implementation(libs.jsr305)
     implementation(libs.jackson.dataformat.toml)
+
+    examples(examplesTestOutput)
 
     testRuntimeOnly(libs.junit.jupiter.engine)
     testImplementation(libs.junit.jupiter.api)
