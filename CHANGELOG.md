@@ -11,7 +11,7 @@
 
 ## [3.8.0] - 2025-07-07
 
-- make compatible with 252 eap
+- make compatible with 252 EAP
 - add button to apply folded text color based on current theme (blue/navy) in settings
 
 ## [3.7.0] - 2025-06-09
