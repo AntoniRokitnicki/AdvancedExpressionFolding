@@ -1,0 +1,203 @@
+packages:
+  com.intellij.advancedExpressionFolding:
+    summary: "Core classes for expression folding."
+    classes:
+      EmptyStorage: "Placeholder storage implementation."
+      Expression: "Abstract base for foldable expressions, storing PSI elements and text ranges."
+      Function: "Base for function-style expressions with a name and operand list."
+      Operation: "Parent for expressions combining operands to produce results."
+      SyntheticExpressionImpl: "Expression fabricated by the plugin, not tied to real code elements."
+      VariableDeclarationImpl: "Synthetic representation of a variable declaration."
+    subpackages:
+      expression:
+        summary: "Specialized expression implementations."
+        subpackages:
+          controlflow:
+            summary: "Control-flow block expressions including loops, conditionals, and Elvis operator."
+            classes:
+              AbstractControlFlowCodeBlock: "Base class for control-flow block expressions."
+              CompactControlFlowExpression: "Represents a concise control-flow block."
+              ControlFlowMultiStatementCodeBlockExpression: "Code block with multiple statements."
+              ControlFlowSingleStatementCodeBlockExpression: "Code block wrapping a single statement."
+              ElvisExpression: "Models the `?:` Elvis operator."
+              ForEachIndexedStatement: "Enhanced for-each loop exposing index and element."
+              ForEachStatement: "Standard for-each loop representation."
+              ForStatement: "Traditional `for` loop expression."
+              IfExpression: "`if` statement folding."
+              SemicolonExpression: "Explicit semicolon expression in control flow."
+              ShortElvisExpression: "Elvis operator without explicit right side."
+          literal:
+            summary: "Literal representations such as numbers, strings, collections, and dates."
+            classes:
+              ArrayLiteral: "Array literal expression."
+              CharSequenceLiteral: "Literal for character sequences."
+              CharacterLiteral: "Single-character literal."
+              InterpolatedString: "String with embedded expressions."
+              ListLiteral: "List literal expression."
+              LocalDateLiteral: "Literal for `LocalDate` values."
+              NumberLiteral: "Numeric literal."
+              SetLiteral: "Set literal expression."
+              StringLiteral: "Plain string literal."
+          math:
+            summary: "Mathematical expressions."
+            classes:
+              ArithmeticExpression: "Base for math expressions."
+            subpackages:
+              advanced:
+                summary: "Advanced mathematical functions."
+                classes:
+                  Cbrt: "Cube root."
+                  Ceil: "Ceiling function."
+                  Exp: "Exponential."
+                  Floor: "Floor function."
+                  Gcd: "Greatest common divisor."
+                  Log: "Natural logarithm."
+                  Log10: "Base-10 logarithm."
+                  Pow: "Exponentiation."
+                  Random: "Random number generation."
+                  Rint: "Round-to-nearest-integer."
+                  Round: "Standard rounding."
+                  Sqrt: "Square root."
+                  Ulp: "ULP calculation."
+              basic:
+                summary: "Basic arithmetic and logical operations."
+                classes:
+                  Abs: "Absolute value."
+                  Add: "Addition."
+                  AddAllAssign: "Adds all elements to a collection."
+                  AddAssign: "`+=` assignment."
+                  Divide: "Division."
+                  DivideAssign: "`/=` assignment."
+                  Max: "Maximum of operands."
+                  Min: "Minimum of operands."
+                  Multiply: "Multiplication."
+                  MultiplyAssign: "`*=` assignment."
+                  Negate: "Unary negation."
+                  Not: "Logical NOT."
+                  NotEqual: "Inequality comparison."
+                  Signum: "Sign determination."
+                  Subtract: "Subtraction."
+                  SubtractAssign: "`-=` assignment."
+              bitwise:
+                summary: "Bitwise operations."
+                classes:
+                  And: "Bitwise AND."
+                  AndAssign: "`&=` assignment."
+                  Or: "Bitwise OR."
+                  Remainder: "Remainder operation."
+                  RemainderAssign: "`%=` assignment."
+                  ShiftLeft: "Left bit shift."
+                  ShiftLeftAssign: "`<<=` assignment."
+                  ShiftRight: "Right bit shift."
+                  ShiftRightAssign: "`>>=` assignment."
+                  Xor: "Bitwise XOR."
+              trig:
+                summary: "Trigonometric functions and angle conversions."
+                classes:
+                  Acos: "Arc cosine."
+                  Asin: "Arc sine."
+                  Atan: "Arc tangent."
+                  Atan2: "Two-argument arc tangent."
+                  Cos: "Cosine."
+                  Cosh: "Hyperbolic cosine."
+                  Sin: "Sine."
+                  Sinh: "Hyperbolic sine."
+                  Tan: "Tangent."
+                  Tanh: "Hyperbolic tangent."
+                  ToDegrees: "Radians to degrees conversion."
+                  ToRadians: "Degrees to radians conversion."
+          operation:
+            summary: "Operations manipulating variables, collections, and optionals."
+            classes:
+              FieldShiftMethod: "Operation representing bit-shift method calls."
+              Get: "Generic property access."
+            subpackages:
+              basic:
+                summary: "Primitive operations and comparisons."
+                classes:
+                  Append: "Append operation for sequences."
+                  Equal: "Equality comparison."
+                  Greater: "\"Greater than\" comparison."
+                  GreaterEqual: "\"Greater or equal\" comparison."
+                  TypeCast: "Explicit type cast."
+                  Variable: "Variable reference."
+              collection:
+                summary: "Collection-specific operations."
+                classes:
+                  AddAssignForCollection: "`+=` for collection additions."
+                  ArrayGet: "Array element access."
+                  ArrayStream: "Converts array to stream."
+                  Collect: "Terminal stream collection."
+                  Put: "Map insertion."
+                  Range: "Range operation."
+                  Remove: "Element removal."
+                  RemoveAllAssign: "Remove collection elements via assignment."
+                  RemoveAssignForCollection: "`-=` for collections."
+                  Slice: "Subrange extraction."
+              optional:
+                summary: "Operations on `Optional` values."
+                classes:
+                  OptionalMapCall: "Mapping call on `Optional`."
+                  OptionalMapSafeCall: "Safe mapping call (`Optional.map?`)."
+                  OptionalMapSafeCallParam: "Parameter for safe optional map."
+                  OptionalNotNullAssertionGet: "`Optional.get!` style assertion."
+                  OptionalOf: "Wraps value into `Optional.of`."
+                  OptionalOfNullable: "Wraps value into `Optional.ofNullable`."
+                  OptionalOrElseElvis: "Elvis-style `orElse` for optionals."
+              stream:
+                summary: "Stream operations."
+                classes:
+                  StreamExpression: "Base for stream operations."
+                  StreamFilterNotNull: "Filter non-null elements."
+                  StreamMapCall: "Mapping operation on a stream."
+                  StreamMapCallParam: "Parameter representation for map calls."
+          property:
+            summary: "Property getter and setter expressions."
+            classes:
+              Getter: "Property getter call."
+              IGetter: "Interface describing getter behavior."
+              INameable: "Interface for name-bearing elements."
+              Setter: "Property setter call."
+  processor:
+    summary: "Extensions converting PSI structures to folding expressions."
+    subpackages:
+      controlflow:
+        summary: "Control-flow specific processors."
+        classes:
+          ForStatementExpressionExt: "Converts PSI `for` loops into folding expressions."
+          IfExt: "Handles `if` statement folding."
+          LoopExt: "Generic loop-folding utilities."
+      core:
+        summary: "Central expression builder."
+        classes:
+          BuildExpressionExt: "Central builder converting PSI into expressions."
+      declaration:
+        summary: "Utilities for declarations and variables."
+        classes:
+          PsiCodeBlockExt: "Utilities for working with code blocks."
+          PsiVariableExt: "Utilities for PSI variable handling."
+      expression:
+        summary: "Processors for various expression types."
+        classes:
+          AssignmentExpressionExt: "Transforms assignment expressions into foldable operations."
+          BinaryExpressionExt: "Builds expressions for binary operators."
+          LiteralExpressionExt: "Extracts literal expressions."
+          PrefixExpressionExt: "Handles prefix operator expressions."
+          PsiArrayAccessExpressionExt: "Builds expressions for array indexing."
+          PsiTypeCastExpressionExt: "Handles cast expressions."
+      methodcall:
+        summary: "Processors for method calls."
+        classes:
+          MethodCallExpressionExt: "Transforms method calls for folding."
+      reference:
+        summary: "Processors for reference expressions."
+        classes:
+          NewExpressionExt: "Processes constructor calls."
+          ReferenceExpressionExt: "Resolves references for expression folding."
+      util:
+        summary: "Helper utilities."
+        classes:
+          Consts: "Global constants."
+          Helper: "Miscellaneous helper methods."
+          PropertyUtil: "Reflection utilities for properties."
+total_classes: 129
