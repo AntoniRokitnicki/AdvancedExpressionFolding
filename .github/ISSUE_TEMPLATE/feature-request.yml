@@ -1,0 +1,70 @@
+name: Feature Request
+description: Suggest a new folding rule or improvement
+title: "Feature: "
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for sharing your idea! Please provide the current code snippet and show how it should fold.
+  - type: textarea
+    id: code
+    attributes:
+      label: Code sample
+      description: Minimal snippet that would benefit from this feature.
+      render: java
+      placeholder: |
+        class Example {
+            void method() {
+                // your code
+            }
+        }
+    validations:
+      required: true
+  - type: textarea
+    id: desired
+    attributes:
+      label: Folded result
+      description: What should the snippet fold into?
+      render: java
+      placeholder: |
+        class Example {
+            void method() {
+                // folded result
+            }
+        }
+    validations:
+      required: true
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Motivation
+      description: Why would this folding be useful?
+    validations:
+      required: true
+  - type: textarea
+    id: similar
+    attributes:
+      label: Related features
+      description: Is this similar to an existing folding rule or plugin? Provide links or references.
+    validations:
+      required: false
+  - type: dropdown
+    id: importance
+    attributes:
+      label: How important is this feature to you?
+      options:
+        - Nice to have
+        - Would make my day
+        - Blocking adoption
+    validations:
+      required: true
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: Contribution
+      options:
+        - label: I can help implement this feature
+          required: false
+        - label: I am willing to provide more details if needed
+          required: true
