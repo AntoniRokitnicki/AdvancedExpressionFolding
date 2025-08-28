@@ -2,8 +2,8 @@ package com.intellij.advancedExpressionFolding.processor.methodcall.dynamic
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.dataformat.toml.TomlFactory
-import com.intellij.advancedExpressionFolding.processor.asInstance
 import com.intellij.openapi.diagnostic.Logger
+import java.util.LinkedHashMap
 import java.nio.file.Files
 import java.nio.file.Path
 
@@ -11,7 +11,7 @@ interface IDynamicDataProvider {
     private val logger: Logger
         get() = Logger.getInstance(IDynamicDataProvider::class.java)
     val objectMapper: ObjectMapper
-        get() = ObjectMapper(TomlFactory())
+        get() = ObjectMapper(TomlFactory()).deactivateDefaultTyping()
 
     fun parse(): List<DynamicMethodCall>
 
@@ -27,7 +27,12 @@ interface IDynamicDataProvider {
      */
     fun ObjectMapper.parseTomlValues(text: String): Collection<Map<String, String>>? {
         return try {
-            this.readValue(text, Map::class.java).values.asInstance<Collection<Map<String, String>>>()
+            val typeFactory = this.typeFactory
+            val stringType = typeFactory.constructType(String::class.java)
+            val inner = typeFactory.constructMapType(LinkedHashMap::class.java, stringType, stringType)
+            val outer = typeFactory.constructMapType(LinkedHashMap::class.java, stringType, inner)
+            val result: Map<String, Map<String, String>> = this.readValue(text, outer)
+            result.values
         } catch (e: Exception) {
             logger.error("parseToml failed", e)
             null
