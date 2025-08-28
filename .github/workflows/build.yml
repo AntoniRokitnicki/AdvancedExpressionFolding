@@ -20,11 +20,16 @@ on:
       - '.github/**'
       - 'wiki'
       - 'wiki/**'
-      - 'build-version.gradle.kts'
-      - '*.md'
+      - '**/*.md'
       - 'pages/**'
   # Trigger the workflow on any pull request
   pull_request:
+    paths-ignore:
+      - '.github/**'
+      - 'wiki'
+      - 'wiki/**'
+      - '**/*.md'
+      - 'pages/**'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
