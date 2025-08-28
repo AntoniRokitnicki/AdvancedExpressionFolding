@@ -35,7 +35,7 @@
 <!-- Plugin description -->
 <p>Modern JVM languages such as Kotlin, Groovy, Scala and some others offer many language features that let you
   write code in a more concise and expressive manner. These features include type inference, properties,
-  interpolated string, range and tuple literals, enhanced operators, closures, implicits, smart casts and many more.</p>
+  interpolated strings, range and tuple literals, enhanced operators, closures, implicits, smart casts and many more.</p>
 
 <p>This plugin extends the IDE’s folding features to emulate some of these modern languages’ features helping
   fight verbosity.</p>
