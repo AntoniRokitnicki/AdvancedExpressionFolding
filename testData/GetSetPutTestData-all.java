@@ -26,8 +26,8 @@ public class GetSetPutTestData {
             }</fold></fold><fold text='' expand='false'>
         </fold><fold text=']' expand='false'>}</fold></fold>;
         <fold text='' expand='false'>System.out.</fold>println(set);
-        <fold text='val' expand='false'>Set<String></fold> copyOfSet = <fold text='[' expand='false'>Collections.unmodifiableSet(new HashSet<String>() <fold text='' expand='false'><fold text='{...}' expand='true'></fold>{
-            </fold><fold text='' expand='false'><fold text='{...}' expand='true'>{
+        <fold text='val' expand='false'>Set<String></fold> copyOfSet = <fold text='[' expand='false'>Collections.unmodifiableSet(new HashSet<String>() </fold><fold text='{...}' expand='true'><fold text='' expand='false'>{
+            <fold text='' expand='false'><fold text='{...}' expand='true'></fold>{
                 add(</fold>"one"<fold text=', ' expand='false'>);
                 add(</fold>"two"<fold text='' expand='false'>);
             }</fold></fold><fold text='' expand='false'>
@@ -39,5 +39,9 @@ public class GetSetPutTestData {
         <fold text='' expand='false'>System.out.</fold>println(System.getProperty("user.dir", "c:/windows"));
         <fold text='' expand='false'>System.out.</fold>println(System.getenv("user.dir"));
         <fold text='' expand='false'>System.out.</fold>println(System.getenv()<fold text='[' expand='false'>.get(</fold>"user.dir"<fold text=']' expand='false'>)</fold>);
+        list<fold text=' -= ' expand='false'>.remove(</fold>"one"<fold text='' expand='false'>)</fold>;
+        set<fold text=' -= ' expand='false'>.remove(</fold>"two"<fold text='' expand='false'>)</fold>;
+        map<fold text=' -= ' expand='false'>.remove(</fold>"three"<fold text='' expand='false'>)</fold>;
+        list<fold text=' -= ' expand='false'>.removeAll(</fold>copy<fold text='' expand='false'>)</fold>;
     }</fold>
 }

@@ -29,5 +29,9 @@ public class GetSetPutTestData {
         System.out.println(System.getProperty("user.dir", "c:/windows"));
         System.out.println(System.getenv("user.dir"));
         System.out.println(System.getenv()["user.dir"]);
+        list -= "one";
+        set -= "two";
+        map -= "three";
+        list -= copy;
     }
 }

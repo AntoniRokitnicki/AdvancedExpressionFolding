@@ -95,7 +95,7 @@ open class FoldingTest : BaseTest() {
      */
     @Test
     open fun getSetPutTestData() {
-        doFoldingTest(state::getExpressionsCollapse)
+        doFoldingTest(state::concatenationExpressionsCollapse, state::getExpressionsCollapse)
     }
 
     /**
