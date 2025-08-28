@@ -23,6 +23,8 @@ public class GetSetPutTestData {
         System.out.println(set);
         Set<String> copyOfSet = ["one", "two"];
         System.out.println(copyOfSet);
+        Set<String> literal = ["one", "two"];
+        System.out.println(literal);
         String[] strings = ["one", "two"];
         System.out.println(Arrays.toString(strings));
         System.out.println(System["user.dir"]);

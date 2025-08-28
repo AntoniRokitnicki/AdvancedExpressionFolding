@@ -33,6 +33,8 @@ public class GetSetPutTestData {
             }</fold></fold><fold text='' expand='false'>
         </fold><fold text=']' expand='false'>}</fold><fold text='' expand='false'></fold>)</fold>;
         System.out.println(copyOfSet);
+        Set<String> literal = <fold text='[' expand='false'>Set.of(</fold>"one", "two"<fold text=']' expand='false'>)</fold>;
+        System.out.println(literal);
         String[] strings = <fold text='[' expand='false'>new String[] {</fold>"one", "two"<fold text=']' expand='false'>}</fold>;
         System.out.println(Arrays.toString(strings));
         System.out.println(System<fold text='[' expand='false'>.getProperty(</fold>"user.dir"<fold text=']' expand='false'>)</fold>);

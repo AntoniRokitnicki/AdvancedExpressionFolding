@@ -33,6 +33,8 @@ public class GetSetPutTestData {
             }
         });
         System.out.println(copyOfSet);
+        Set<String> literal = Set.of("one", "two");
+        System.out.println(literal);
         String[] strings = new String[] {"one", "two"};
         System.out.println(Arrays.toString(strings));
         System.out.println(System.getProperty("user.dir"));
