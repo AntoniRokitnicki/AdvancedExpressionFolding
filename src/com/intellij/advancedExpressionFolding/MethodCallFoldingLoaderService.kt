@@ -5,16 +5,19 @@ import com.intellij.openapi.components.Service
 import com.intellij.openapi.components.service
 
 @Service
-class MethodCallFoldingLoaderService {
+internal class MethodCallFoldingLoaderService {
 
-    val factory by lazy(LazyThreadSafetyMode.PUBLICATION) {
+    @PublishedApi
+    internal val factory by lazy(LazyThreadSafetyMode.PUBLICATION) {
         MethodCallFactory.initialize()
     }
 
     companion object {
-        fun get() = service<MethodCallFoldingLoaderService>()
+        @PublishedApi
+        internal fun get() = service<MethodCallFoldingLoaderService>()
         @JvmStatic
-        fun factory() = get().factory
+        @PublishedApi
+        internal fun factory() = get().factory
     }
 }
 
