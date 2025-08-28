@@ -49,6 +49,15 @@ body:
       description: Is this similar to an existing folding rule or plugin? Provide links or references.
     validations:
       required: false
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternative solutions
+      description: Have you tried any workarounds? What are you doing currently instead?
+      placeholder: |
+        Currently I work around this by...
+    validations:
+      required: false
   - type: dropdown
     id: importance
     attributes:

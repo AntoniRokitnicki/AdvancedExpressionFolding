@@ -6,3 +6,8 @@
 
 ## Related Issues
 <!-- List related issues or feature requests -->
+
+## Checklist
+- [ ] Tests added/updated
+- [ ] Documentation updated (if applicable)
+- [ ] Tested with latest IDE version
