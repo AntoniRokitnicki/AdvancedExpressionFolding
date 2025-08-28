@@ -11,7 +11,7 @@
 
 ## [3.8.0] - 2025-07-07
 
-- make compatible with 252 eap
+- make compatible with 252 EAP
 - add button to apply folded text color based on current theme (blue/navy) in settings
 
 ## [3.7.0] - 2025-06-09
@@ -189,7 +189,7 @@ Destructuring assignment for array - preview
 
 ## [1.0.30] - 2024-03-14
 
-windows-compatible keyboard shortcuts for IntelliJ and Android Studio
+Windows-compatible keyboard shortcuts for IntelliJ and Android Studio
 
 ## [1.0.29] - 2024-03-13
 
