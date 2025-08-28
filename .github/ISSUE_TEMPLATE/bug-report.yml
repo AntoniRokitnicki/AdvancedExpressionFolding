@@ -54,6 +54,8 @@ body:
     attributes:
       label: Why is this a bug?
       description: Explain why the current folding is incorrect.
+      placeholder: |
+        The folding changes the code's meaning / makes it less readable because...
     validations:
       required: true
   - type: input
