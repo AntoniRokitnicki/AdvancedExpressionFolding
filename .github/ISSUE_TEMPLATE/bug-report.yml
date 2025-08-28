@@ -8,6 +8,15 @@ body:
       value: |
         Thanks for taking the time to report an issue with Advanced Expression Folding!
   - type: textarea
+    id: reason
+    attributes:
+      label: Why is this a bug?
+      description: Explain why the current folding is incorrect.
+      placeholder: |
+        The folding changes the code's meaning / makes it less readable because...
+    validations:
+      required: true
+  - type: textarea
     id: code
     attributes:
       label: Code sample
@@ -20,7 +29,7 @@ body:
             }
         }
     validations:
-      required: true
+      required: false
   - type: textarea
     id: actual
     attributes:
@@ -34,7 +43,7 @@ body:
             }
         }
     validations:
-      required: true
+      required: false
   - type: textarea
     id: expected
     attributes:
@@ -48,36 +57,27 @@ body:
             }
         }
     validations:
-      required: true
-  - type: textarea
-    id: reason
-    attributes:
-      label: Why is this a bug?
-      description: Explain why the current folding is incorrect.
-      placeholder: |
-        The folding changes the code's meaning / makes it less readable because...
-    validations:
-      required: true
+      required: false
   - type: input
     id: plugin_version
     attributes:
       label: Plugin Version
       description: Which version of the plugin are you using?
     validations:
-      required: true
+      required: false
   - type: input
     id: ide_version
     attributes:
       label: IDE Version
-      description: e.g. IntelliJ IDEA 2023.1
+      description: e.g. IntelliJ IDEA 2025.2
     validations:
-      required: true
+      required: false
   - type: checkboxes
     id: checks
     attributes:
       label: Verification
       options:
         - label: I have tested with the latest plugin release
-          required: true
+          required: false
         - label: I'd like to help fix this bug
           required: false

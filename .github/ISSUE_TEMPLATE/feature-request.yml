@@ -8,6 +8,13 @@ body:
       value: |
         Thanks for sharing your idea! Please provide the current code snippet and show how it should fold.
   - type: textarea
+    id: motivation
+    attributes:
+      label: Motivation
+      description: Why would this folding be useful?
+    validations:
+      required: true
+  - type: textarea
     id: code
     attributes:
       label: Code sample
@@ -20,7 +27,7 @@ body:
             }
         }
     validations:
-      required: true
+      required: false
   - type: textarea
     id: desired
     attributes:
@@ -34,14 +41,7 @@ body:
             }
         }
     validations:
-      required: true
-  - type: textarea
-    id: motivation
-    attributes:
-      label: Motivation
-      description: Why would this folding be useful?
-    validations:
-      required: true
+      required: false
   - type: textarea
     id: similar
     attributes:
@@ -75,5 +75,4 @@ body:
       options:
         - label: I can help implement this feature
           required: false
-        - label: I am willing to provide more details if needed
-          required: true
+
