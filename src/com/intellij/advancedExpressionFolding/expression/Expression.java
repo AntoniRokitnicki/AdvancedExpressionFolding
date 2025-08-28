@@ -26,7 +26,8 @@ public abstract class Expression {
 
     @Override
     public String toString() {
-        return element.getText(); // TODO: Use document.getText(textRange)
+        Document document = element.getContainingFile().getViewProvider().getDocument();
+        return document != null ? document.getText(textRange) : element.getText();
     }
 
     public boolean supportsFoldRegions(@NotNull Document document,
