@@ -26,7 +26,7 @@
 ## [3.6.0] - 2025-05-11
 
 - [experimental] Add exception class to @SneakyThrows annotation
-- fix [expressionFunc] issue with when combining with [interfaceExtensionProperties]
+- fix [expressionFunc] issue when combining with [interfaceExtensionProperties]
 - [experimental] multi-line @SneakyThrows
 
 ## [3.5.0] - 2025-04-27
