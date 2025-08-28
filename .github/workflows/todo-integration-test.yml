@@ -1,10 +1,12 @@
-name: TODO Run Integration Tests
+name: Run Integration Tests
 
 on: [workflow_dispatch]
 
 jobs:
   integrationTest:
     runs-on: ${{ matrix.os }}
+    env:
+      integration: '1'
     strategy:
       fail-fast: false
       matrix:
