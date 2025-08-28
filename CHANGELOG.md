@@ -189,7 +189,7 @@ Destructuring assignment for array - preview
 
 ## [1.0.30] - 2024-03-14
 
-windows-compatible keyboard shortcuts for IntelliJ and Android Studio
+Windows-compatible keyboard shortcuts for IntelliJ and Android Studio
 
 ## [1.0.29] - 2024-03-13
 
