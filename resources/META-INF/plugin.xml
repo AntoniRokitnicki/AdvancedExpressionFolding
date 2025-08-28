@@ -202,7 +202,7 @@
         <expressionBuilder implementation="com.intellij.advancedExpressionFolding.processor.core.TryStatementBuilder"/>
         <expressionBuilder implementation="com.intellij.advancedExpressionFolding.processor.core.CatchSectionBuilder"/>
         <expressionBuilder implementation="com.intellij.advancedExpressionFolding.processor.core.ForStatementBuilder"/>
-        <expressionBuilder implementation="com.intellij.advancedExpressionFolding.processor.core.ForeachStatementBuilder"/>
+        <expressionBuilder implementation="com.intellij.advancedExpressionFolding.processor.core.ForEachStatementBuilder"/>
         <expressionBuilder implementation="com.intellij.advancedExpressionFolding.processor.core.WhileStatementBuilder"/>
         <expressionBuilder implementation="com.intellij.advancedExpressionFolding.processor.core.DoWhileStatementBuilder"/>
 
