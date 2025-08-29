@@ -1,7 +1,8 @@
 # AGENTS.md
 
 ## Language and Style
-- Use Java 17 or Kotlin. Prefer idiomatic Kotlin for all new code and utilities.
+- Use Java 17 or Kotlin.
+- Use idiomatic Kotlin for all new code and utilities.
 - Follow Google Java Style and Kotlin Coding Conventions.
 - Unit tests must use JUnit 5.
 
@@ -16,6 +17,7 @@
 - `testData/` – Input Java files for testing
 - `folded/` – Expected output showing folded results
 - `examples/data/` – Example files demonstrating features
+- Keep `examples/data/` updated with new folding features.
 
 ## Commits
 - Follow Conventional Commits (`feat:`, `fix:`, `refactor:`, `test:`).
@@ -30,3 +32,17 @@
 - Never run tests before applying the changes.
 - If tests fail, fix the code until all tests pass.
 - Do not run tests if only documentation files (e.g. `.md`) are modified.
+- **Test Data Mapping**: Test methods use camelCase names mapped to PascalCase file names, e.g.
+  `appendSetterInterpolatedStringTestData()` → `AppendSetterInterpolatedStringTestData.java`. Folding
+  config comes from `doFoldingTest` parameters, so `doFoldingTest(state::concatenationExpressionsCollapse,
+  state::getSetExpressionsCollapse)` yields `state: ["concatenationExpressionsCollapse", "getSetExpressionsCollapse"]`.
+
+## Documentation Generation
+- When documenting the project, produce `complete-project-documentation.yaml` reflecting the entire repository.
+- When unsure whether documentation should be updated, ask the user (e.g., "update docs?") rather than forcing an update.
+- Analyze every file including source, tests, resources, examples, configuration, scripts, and documentation.
+- Organize the YAML to mirror the directory structure.
+- For each file include: `purpose`, `key_classes`, `key_methods`.
+- For `testData` files, map camelCase test methods to PascalCase file names and extract `state::` parameters from `doFoldingTest`; include them under `state` unless the file ends with `-all.java`.
+- Separate main and test code sections.
+- Descriptions must be specific and exhaustive; do not skip files or use vague language.
