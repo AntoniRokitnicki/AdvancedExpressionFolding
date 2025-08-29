@@ -41,9 +41,9 @@ class ForStatementBuilder : BuildExpression<PsiForStatement>(PsiForStatement::cl
         ForStatementExpressionExt.getForStatementExpression(element, document)
 }
 
-class ForeachStatementBuilder : BuildExpression<PsiForeachStatement>(PsiForeachStatement::class.java) {
+class ForEachStatementBuilder : BuildExpression<PsiForeachStatement>(PsiForeachStatement::class.java) {
     override fun buildExpression(element: PsiForeachStatement, document: Document, synthetic: Boolean): Expression? =
-        LoopExt.getForeachStatementExpression(element)
+        LoopExt.getForEachStatementExpression(element)
 }
 
 class IfStatementBuilder : BuildExpression<PsiIfStatement>(PsiIfStatement::class.java) {
