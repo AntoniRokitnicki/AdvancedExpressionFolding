@@ -58,7 +58,9 @@
         </group>
 
         <action id="com.intellij.advancedExpressionFolding.action.GlobalToggleFoldingAction"
-                class="com.intellij.advancedExpressionFolding.action.GlobalToggleFoldingAction"/>
+                class="com.intellij.advancedExpressionFolding.action.GlobalToggleFoldingAction">
+            <add-to-group group-id="CodeMenu" anchor="last"/>
+        </action>
 
         <action id="com.intellij.advancedExpressionFolding.action.FoldingOnAction"
                 class="com.intellij.advancedExpressionFolding.action.FoldingOnAction"
