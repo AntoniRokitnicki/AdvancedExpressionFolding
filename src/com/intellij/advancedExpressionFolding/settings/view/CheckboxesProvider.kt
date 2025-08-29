@@ -15,6 +15,7 @@ import kotlin.reflect.KMutableProperty0
 abstract class CheckboxesProvider {
 
     @Suppress("DEPRECATION")
+    @CheckboxDsl
     fun Panel.initialize(state: State) {
         registerCheckbox(state::getSetExpressionsCollapse, "Getters and setters as properties") {
             example("GetterSetterTestData.java")
@@ -276,6 +277,7 @@ abstract class CheckboxesProvider {
         }
     }
 
+    @CheckboxDsl
     abstract fun Panel.registerCheckbox(
         property: KMutableProperty0<Boolean>,
         title: String,

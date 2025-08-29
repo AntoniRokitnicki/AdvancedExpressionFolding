@@ -168,6 +168,7 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
         private const val EXAMPLE_DIR = "data"
     }
     
+    @CheckboxDsl
     override fun Panel.registerCheckbox(
         property: KMutableProperty0<Boolean>,
         title: String,
