@@ -66,28 +66,53 @@ public abstract class Function extends Expression {
                                                 @Nullable Expression parent) {
         FoldingGroup group = FoldingGroup.newGroup(getClass().getName());
         List<FoldingDescriptor> descriptors = new ArrayList<>();
+        int offset = addOpeningDescriptor(element, descriptors, group);
+        offset = addParameterDescriptors(element, document, descriptors, group, offset);
+        addClosingDescriptor(element, descriptors, group, offset);
+        addOperandRegions(document, descriptors);
+        return descriptors.toArray(EMPTY_ARRAY);
+    }
+
+    private int addOpeningDescriptor(@NotNull PsiElement element,
+                                     @NotNull List<FoldingDescriptor> descriptors,
+                                     @NotNull FoldingGroup group) {
         int offset = getTextRange().getStartOffset();
         descriptors.add(new FoldingDescriptor(element.getNode(),
                 TextRange.create(offset, operands.get(0).getTextRange().getStartOffset()), group, name + "("));
-        offset = operands.get(0).getTextRange().getEndOffset();
-        //noinspection Duplicates
+        return operands.get(0).getTextRange().getEndOffset();
+    }
+
+    private int addParameterDescriptors(@NotNull PsiElement element,
+                                        @NotNull Document document,
+                                        @NotNull List<FoldingDescriptor> descriptors,
+                                        @NotNull FoldingGroup group,
+                                        int offset) {
         for (int i = 1; i < operands.size(); i++) {
             TextRange r = TextRange.create(offset, operands.get(i).getTextRange().getStartOffset());
             String p = ", ";
             if (!document.getText(r).equals(p)) {
-                descriptors.add(new FoldingDescriptor(element.getNode(),
-                        r, group, p));
+                descriptors.add(new FoldingDescriptor(element.getNode(), r, group, p));
             }
             offset = operands.get(i).getTextRange().getEndOffset();
         }
+        return offset;
+    }
+
+    private void addClosingDescriptor(@NotNull PsiElement element,
+                                      @NotNull List<FoldingDescriptor> descriptors,
+                                      @NotNull FoldingGroup group,
+                                      int offset) {
         descriptors.add(new FoldingDescriptor(element.getNode(),
                 TextRange.create(offset, getTextRange().getEndOffset()), group, ")"));
+    }
+
+    private void addOperandRegions(@NotNull Document document,
+                                   @NotNull List<FoldingDescriptor> descriptors) {
         for (Expression operand : operands) {
             if (operand.supportsFoldRegions(document, this)) {
                 Collections.addAll(descriptors, operand.buildFoldRegions(operand.getElement(), document, this));
             }
         }
-        return descriptors.toArray(EMPTY_ARRAY);
     }
 
     @NotNull
