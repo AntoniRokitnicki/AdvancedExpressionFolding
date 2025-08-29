@@ -61,9 +61,7 @@ class AdvancedExpressionFoldingBuilder(private val config: IConfig = getInstance
         element: PsiElement,
         foldingDescriptors: Array<FoldingDescriptor>
     ) {
-        (element as? PsiJavaFile)?.run {
-            putUserData(Keys.FULL_CACHE, foldingDescriptors)
-        }
+        element.asInstance<PsiJavaFile>()?.putUserData(Keys.FULL_CACHE, foldingDescriptors)
     }
 
     fun preview(element: PsiElement, document: Document): List<String> {
