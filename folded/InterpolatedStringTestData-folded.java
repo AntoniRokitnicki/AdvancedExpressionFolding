@@ -11,5 +11,7 @@ public class InterpolatedStringTestData {
         System.out.println("Hello, $name!");
         System.out.println("$name, hello!");
         System.out.println("$name, $name");
+        System.out.println("!${args[0]}${'!'}");
+        System.out.println('! + name + "!");
     }
 }

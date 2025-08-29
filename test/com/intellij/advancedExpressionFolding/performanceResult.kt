@@ -7,8 +7,7 @@ import kotlin.reflect.KFunction0
 object PerformanceResult : FoldingTest() {
 
     @Suppress("unused")
-    val result = performance { // sum=370
-        ::appendSetterInterpolatedStringTestData to 4
+    val result = performance { // sum=362
         ::arithmeticExpressionsTestData to 14
         ::assertTestData to 6
         ::compactControlFlowTestData to 5

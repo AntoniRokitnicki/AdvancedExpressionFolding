@@ -11,5 +11,7 @@ public class InterpolatedStringTestData {
         System.out.println("Hello, <fold text='$' expand='false'>" + </fold>name<fold text='' expand='false'> + "</fold>!");
         System.out.println<fold text='("$' expand='false'>(</fold>name<fold text='' expand='false'> + "</fold>, hello!");
         System.out.println<fold text='("$' expand='false'>(</fold>name<fold text='' expand='false'> + "</fold>, <fold text='$' expand='false'>" + </fold>name<fold text='")' expand='false'>)</fold>;
+        System.out.println("!<fold text='${' expand='false'>" + </fold>args[0]<fold text='}${' expand='false'> + </fold>'!'<fold text='}")' expand='false'>)</fold>;
+        System.out.println('! + name + "!");
     }</fold>
 }
