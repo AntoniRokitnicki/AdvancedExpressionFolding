@@ -10,11 +10,15 @@
     <resource-bundle>Bundle</resource-bundle>
 
     <extensions defaultExtensionNs="com.intellij">
+        <!-- Entry point: Java folding builder delegating to expressionBuilder extensions -->
         <lang.foldingBuilder language="JAVA"
                              implementationClass="com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingBuilder"/>
+        <!-- Application-level service that persists plugin settings -->
         <applicationService
                 serviceImplementation="com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings"/>
+        <!-- Listens for editor lifecycle to fold code one second after the editor opens and clear on release -->
         <editorFactoryListener implementation="com.intellij.advancedExpressionFolding.FoldingEditorCreatedListener"/>
+        <!-- Adds an Alt+Enter intention on method names to fold calls dynamically -->
         <intentionAction>
             <language>JAVA</language>
             <className>
@@ -22,20 +26,24 @@
             </className>
         </intentionAction>
 
+        <!-- Submits plugin errors to JetBrains Marketplace for diagnostics -->
         <errorHandler implementation="com.intellij.diagnostic.JetBrainsMarketplaceErrorReportSubmitter"/>
 
+        <!-- Shows plugin options under Settings | Editor | Code Folding -->
         <editorOptionsProvider
                 instance="com.intellij.advancedExpressionFolding.settings.view.SettingsConfigurable"
                 id="editor.folding.advanced.expression"
                 key="editor.folding.advanced.expression.displayName"
                 bundle="Bundle"/>
 
+        <!-- Suggests the pseudo-annotation @Main used by the plugin -->
         <completion.contributor
                 language="JAVA"
                 implementationClass="com.intellij.advancedExpressionFolding.MainAnnotationCompletionContributor"/>
     </extensions>
 
     <applicationListeners>
+        <!-- Releases plugin resources on unload to support dynamic updates -->
         <listener class="com.intellij.advancedExpressionFolding.PluginUnloadingListener"
                   topic="com.intellij.ide.plugins.DynamicPluginListener"/>
     </applicationListeners>
@@ -43,6 +51,7 @@
     <actions>
         <group id="com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingGroup"
                popup="true">
+            <!-- Inserts group into the Code menu -->
             <add-to-group group-id="CodeMenu" anchor="last"/>
             <action id="com.intellij.advancedExpressionFolding.action.FindMethodsWithDefaultParametersAction"
                     class="com.intellij.advancedExpressionFolding.action.FindMethodsWithDefaultParametersAction"/>
@@ -67,15 +76,18 @@
             <keyboard-shortcut first-keystroke="alt Y" keymap="Mac OS X 10.5+" replace-all="true"/>
         </action>
 
+        <!-- Hidden action invoked from settings to refresh folded text colors -->
         <action id="com.intellij.advancedExpressionFolding.action.UpdateFoldedTextColorsAction"
                 class="com.intellij.advancedExpressionFolding.action.UpdateFoldedTextColorsAction"/>
     </actions>
 
     <extensionPoints>
+        <!-- Handlers that fold calls to a particular method (e.g., Math.abs) -->
         <extensionPoint name="methodCallFolding"
                         interface="com.intellij.advancedExpressionFolding.processor.methodcall.AbstractMethodCall"
                         dynamic="true"/>
 
+        <!-- Builders that create foldable representations for specific PsiElements -->
         <extensionPoint name="expressionBuilder"
                         interface="com.intellij.advancedExpressionFolding.processor.core.BuildExpression"
                         dynamic="true"/>
