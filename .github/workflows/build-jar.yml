@@ -1,0 +1,43 @@
+# Workflow for building the plugin JAR and exposing the distribution artifacts
+name: Build Jar
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      zip: ${{ steps.build.outputs.zip }}
+      jar: ${{ steps.build.outputs.jar }}
+    steps:
+      - name: Fetch Sources
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: zulu
+          java-version: 17
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-home-cache-cleanup: true
+
+      - name: Build plugin
+        id: build
+        uses: ./.github/actions/build-plugin
+
+      - name: Upload plugin jar
+        uses: actions/upload-artifact@v4
+        with:
+          name: plugin-jar
+          path: ${{ steps.build.outputs.jar }}
+
+      - name: Show distribution paths
+        run: |
+          echo "ZIP located at ${{ steps.build.outputs.zip }}"
+          echo "JAR located at ${{ steps.build.outputs.jar }}"
