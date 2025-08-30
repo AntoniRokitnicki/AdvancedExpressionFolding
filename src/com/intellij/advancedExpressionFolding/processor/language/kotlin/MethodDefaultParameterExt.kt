@@ -4,7 +4,7 @@ import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.processor.*
 import com.intellij.advancedExpressionFolding.processor.core.BaseExtension
 import com.intellij.psi.*
-import kotlin.collections.firstOrNull
+import com.jetbrains.rd.util.firstOrNull
 
 object MethodDefaultParameterExt : BaseExtension(){
 
