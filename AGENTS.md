@@ -19,6 +19,9 @@
 - `examples/data/` – Example files demonstrating features
 - Keep `examples/data/` updated with new folding features.
 
+## Workflow
+- Before starting any work, rebase the `main` branch onto the latest `origin/main` to ensure you are working with the newest code.
+
 ## Commits
 - Follow Conventional Commits (`feat:`, `fix:`, `refactor:`, `test:`).
 - Each commit should cover a single logical scope.
