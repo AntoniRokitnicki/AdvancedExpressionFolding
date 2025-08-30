@@ -20,6 +20,19 @@ import kotlin.reflect.KMutableProperty
 import kotlin.time.DurationUnit
 import kotlin.time.toDuration
 
+/**
+ * Exhaustive stress test that iterates through every combination of
+ * [AdvancedExpressionFoldingSettings] flags.
+ *
+ * Each permutation toggles the plugin's main settings, runs the folding engine on the
+ * `LombokTestData` file, and copies the resulting input and folded output into a directory
+ * named after the active configuration. Progress is stored in `crazy.properties` so the
+ * process can resume across JVM restarts, and each iteration writes a commit capturing the
+ * produced artifacts.
+ *
+ * The test is intentionally gated behind the environment variable `dev-mode=2` to avoid
+ * running during normal test execution due to its extremely long runtime.
+ */
 @EnabledIfEnvironmentVariable(named = "dev-mode", matches = "2")
 class CrazyFoldingTest : BaseTest() {
 
