@@ -6,6 +6,7 @@ import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.processor.asInstance
 import com.intellij.advancedExpressionFolding.processor.cache.CacheExt.invalidateExpired
 import com.intellij.advancedExpressionFolding.processor.cache.Keys
+import com.intellij.openapi.util.Key
 import com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings.Companion.getInstance
 import com.intellij.advancedExpressionFolding.settings.IConfig
@@ -50,7 +51,8 @@ class AdvancedExpressionFoldingBuilder(private val config: IConfig = getInstance
         if (!quick) {
             (element as? PsiJavaFile)?.let { file ->
                 if (!file.invalidateExpired(document, false)) {
-                    return file.getUserData(Keys.FULL_CACHE)
+                    @Suppress("UNCHECKED_CAST")
+                    return file.getUserData(Keys.FULL_CACHE.key as Key<Array<FoldingDescriptor>>)
                 }
             }
         }
@@ -62,7 +64,8 @@ class AdvancedExpressionFoldingBuilder(private val config: IConfig = getInstance
         foldingDescriptors: Array<FoldingDescriptor>
     ) {
         (element as? PsiJavaFile)?.run {
-            putUserData(Keys.FULL_CACHE, foldingDescriptors)
+            @Suppress("UNCHECKED_CAST")
+            putUserData(Keys.FULL_CACHE.key as Key<Array<FoldingDescriptor>>, foldingDescriptors)
         }
     }
 

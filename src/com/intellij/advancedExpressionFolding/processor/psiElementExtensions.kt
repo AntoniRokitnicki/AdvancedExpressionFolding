@@ -2,7 +2,7 @@ package com.intellij.advancedExpressionFolding.processor
 
 import com.intellij.advancedExpressionFolding.processor.EModifier.*
 import com.intellij.advancedExpressionFolding.processor.cache.Keys
-import com.intellij.advancedExpressionFolding.processor.cache.Keys.IGNORED
+import com.intellij.openapi.util.Key
 import com.intellij.advancedExpressionFolding.processor.core.BaseExtension.Companion.isBoolean
 import com.intellij.advancedExpressionFolding.processor.core.BaseExtension.Companion.isInt
 import com.intellij.advancedExpressionFolding.processor.core.BaseExtension.Companion.isObject
@@ -35,8 +35,9 @@ val PsiField.initializerType: PsiClass?
 
 inline fun String.filter(predicate: (String) -> Boolean): String? = takeIf(predicate)
 
-fun PsiElement.isIgnored(): Boolean = getUserData(IGNORED) ?: false
-fun PsiElement.markIgnored(value: Boolean = true) = putUserData(IGNORED, value)
+fun PsiElement.isIgnored(): Boolean = getUserData(Keys.ignoredKey) ?: false
+
+fun PsiElement.markIgnored(value: Boolean = true) = putUserData(Keys.ignoredKey, value)
 
 fun PsiExpressionList.filterOutWhiteSpaceAndTokens() = children.filter {
     !it.isIgnorable()
@@ -153,22 +154,29 @@ val PsiClass.methodsNotStatic: Sequence<PsiMethod>
     }
 
 fun PsiElement.setClassType(type: PsiClassExt.ClassType) {
-    putUserData(Keys.CLASS_TYPE_KEY, type)
-    putCopyableUserData(Keys.CLASS_TYPE_KEY, type)
+    @Suppress("UNCHECKED_CAST")
+    putUserData(Keys.CLASS_TYPE_KEY.key as Key<PsiClassExt.ClassType>, type)
+    @Suppress("UNCHECKED_CAST")
+    putCopyableUserData(Keys.CLASS_TYPE_KEY.key as Key<PsiClassExt.ClassType>, type)
 }
 
-fun PsiElement.getClassType(): PsiClassExt.ClassType? = getUserData(Keys.CLASS_TYPE_KEY)
+@Suppress("UNCHECKED_CAST")
+fun PsiElement.getClassType(): PsiClassExt.ClassType? = getUserData(Keys.CLASS_TYPE_KEY.key as Key<PsiClassExt.ClassType>)
 
 var PsiMethod.propertyField: PsiField?
-    get() = getUserData(Keys.FIELD_KEY)
-    set(value) = putUserData(Keys.FIELD_KEY, value)
+    @Suppress("UNCHECKED_CAST")
+    get() = getUserData(Keys.FIELD_KEY.key as Key<PsiField>)
+    @Suppress("UNCHECKED_CAST")
+    set(value) = putUserData(Keys.FIELD_KEY.key as Key<PsiField>, value)
 
 val PsiField.metadata: Keys.FieldMetaData
     get() {
-        var userData = getUserData(Keys.FIELD_META_DATA_KEY)
+        @Suppress("UNCHECKED_CAST")
+        var userData = getUserData(Keys.FIELD_META_DATA_KEY.key as Key<Keys.FieldMetaData>)
         if (userData == null) {
             userData = Keys.FieldMetaData()
-            putUserData(Keys.FIELD_META_DATA_KEY, userData)
+            @Suppress("UNCHECKED_CAST")
+            putUserData(Keys.FIELD_META_DATA_KEY.key as Key<Keys.FieldMetaData>, userData)
         }
         return userData
     }
