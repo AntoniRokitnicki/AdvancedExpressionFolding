@@ -49,7 +49,7 @@ object MethodDefaultParameterExt : BaseExtension(){
             params.map.forEach { (paramNr, value) ->
                 val paramWithValue = method.parameterList.parameters.getOrNull(paramNr)
                 val paramNextElement = paramWithValue?.nextSibling
-                list += paramNextElement?.expr(" = $value" + paramNextElement.text, group = group)
+                list += paramNextElement?.expr(" = $value${paramNextElement.text}", group = group)
             }
             if (params.map.isNotEmpty()) {
                 list += duplicatedMethod.exprHide(group = group)
