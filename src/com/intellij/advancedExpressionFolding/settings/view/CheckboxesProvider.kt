@@ -181,7 +181,7 @@ abstract class CheckboxesProvider {
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#finalremoval")
         }
 
-        registerCheckbox(state::finalEmoji, "Replace the 'final' modifier with " + Emoji.FINAL_LOCK) {
+        registerCheckbox(state::finalEmoji, "Replace the 'final' modifier with ${Emoji.FINAL_LOCK}") {
             example("FinalEmojiTestData.java")
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#finalemoji")
         }
