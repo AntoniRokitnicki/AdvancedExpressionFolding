@@ -57,8 +57,8 @@ abstract class AbstractControlFlowCodeBlock(
                 if (thisStatement != null) {
                     val thisStatementIndent =
                         indentHelper.getIndent(thisStatement.containingFile, thisStatement.node)
-                    val before = PsiTreeUtil.prevLeaf(this.element.rBrace, true)
-                    val after = PsiTreeUtil.prevLeaf(this.element.rBrace, true)
+                    val before = PsiTreeUtil.prevLeaf(this.element.rBrace!!, true)
+                    val after = PsiTreeUtil.prevLeaf(this.element.rBrace!!, true)
                     if (before is PsiWhiteSpace && after is PsiWhiteSpace) {
                         smart = true
                         var startOffset = this.element.rBrace!!.textRange.startOffset
@@ -100,7 +100,7 @@ abstract class AbstractControlFlowCodeBlock(
                 }
             }
             if (!smart) {
-                var siblingKeyword: PsiElement? = PsiTreeUtil.nextLeaf(this.element.rBrace, true)
+                var siblingKeyword: PsiElement? = PsiTreeUtil.nextLeaf(this.element.rBrace!!, true)
                 if (siblingKeyword is PsiWhiteSpace) {
                     siblingKeyword = PsiTreeUtil.nextLeaf(siblingKeyword, true)
                 }
