@@ -1,9 +1,8 @@
 package com.intellij.advancedExpressionFolding
 
 import com.intellij.advancedExpressionFolding.processor.on
+import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings.Companion.allMainProperties
-import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings.Companion.getInstance
-import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings.State
 import junit.framework.ComparisonFailure
 import org.junit.AssumptionViolatedException
 import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable
@@ -16,7 +15,7 @@ import java.io.FileOutputStream
 import java.util.*
 import java.util.stream.Stream
 import kotlin.math.pow
-import kotlin.reflect.KMutableProperty
+import kotlin.reflect.KMutableProperty1
 import kotlin.time.DurationUnit
 import kotlin.time.toDuration
 
@@ -46,10 +45,6 @@ import kotlin.time.toDuration
 class CrazyFoldingTest : BaseTest() {
 
     class TooComplexException : AssumptionViolatedException("TOO COMPLEX FOLDING")
-
-    private val state: State by lazy {
-        getInstance().state
-    }
 
     private fun File.saveCounterAndFilename(counter: Long, filename: String) {
         val properties = Properties()
@@ -92,9 +87,13 @@ class CrazyFoldingTest : BaseTest() {
 
     @ParameterizedTest
     @MethodSource("permutations")
-    fun testLombokTestData(booleans: BooleanArray, props: List<KMutableProperty<*>>) {
+    fun testLombokTestData(
+        booleans: BooleanArray,
+        props: List<KMutableProperty1<AdvancedExpressionFoldingSettings.State, Boolean>>
+    ) {
+        val state = AdvancedExpressionFoldingSettings.getInstance().state
         val message = props.zip(booleans.toList()).map { (prop, value) ->
-            prop.setter.call(state, value)
+            prop.set(state, value)
             if (value) {
                 prop.name
             } else {
@@ -115,7 +114,7 @@ class CrazyFoldingTest : BaseTest() {
             CONFIG_FILE.readCounterAndFilename()?.let { (count: Long, _: String) ->
                 counter = count
             }
-            val props: List<KMutableProperty<*>> = allMainProperties()
+            val props: List<KMutableProperty1<AdvancedExpressionFoldingSettings.State, Boolean>> = allMainProperties()
             val numBooleans = props.size
             return Stream.iterate(BooleanArray(numBooleans)) { prev ->
                 val next = prev.clone()
