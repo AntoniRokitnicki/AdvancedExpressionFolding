@@ -53,6 +53,13 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
+    - name: Configure Gradle memory
+      run: |
+        mkdir -p ~/.gradle
+        echo "org.gradle.jvmargs=-Xmx3g -Dfile.encoding=UTF-8" >> ~/.gradle/gradle.properties
+        echo "kotlin.daemon.jvmargs=-Xmx3g" >> ~/.gradle/gradle.properties
+        echo "org.gradle.workers.max=1" >> ~/.gradle/gradle.properties
+
     # Add any setup steps before running the `github/codeql-action/init` action.
     # This includes steps like installing compilers or runtimes (`actions/setup-node`
     # or others). This is typically only required for manual builds.
