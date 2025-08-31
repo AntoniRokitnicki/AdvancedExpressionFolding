@@ -38,12 +38,20 @@ on:
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
-  
+
 jobs:
 
   # Prepare environment and build the plugin
   build:
     name: Build
+    # Skip build for PRs that have label 'skip-ci' or title containing '[skip ci]'
+    if: >
+      github.event_name != 'pull_request' ||
+      (
+        github.event.pull_request != null &&
+        !contains(github.event.pull_request.labels.*.name, 'skip-ci') &&
+        !contains(github.event.pull_request.title, '[skip ci]')
+      )
     runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.properties.outputs.version }}
@@ -114,6 +122,14 @@ jobs:
   test:
     name: Test
     needs: [ build ]
+    # Mirror the same skip rule for PRs
+    if: >
+      github.event_name != 'pull_request' ||
+      (
+        github.event.pull_request != null &&
+        !contains(github.event.pull_request.labels.*.name, 'skip-ci') &&
+        !contains(github.event.pull_request.title, '[skip ci]')
+      )
     runs-on: ubuntu-latest
     steps:
 
