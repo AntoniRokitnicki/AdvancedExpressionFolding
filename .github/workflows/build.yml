@@ -176,6 +176,8 @@ jobs:
     if: ${{ false }}
     needs: [ build ]
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Maximize Build Space
         uses: jlumbroso/free-disk-space@main
