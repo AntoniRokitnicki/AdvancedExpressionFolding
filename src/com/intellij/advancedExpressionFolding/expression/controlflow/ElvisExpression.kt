@@ -1,57 +1,79 @@
-package com.intellij.advancedExpressionFolding.expression.controlflow;
+package com.intellij.advancedExpressionFolding.expression.controlflow
 
-import com.intellij.advancedExpressionFolding.expression.Expression;
-import com.intellij.lang.folding.FoldingDescriptor;
-import com.intellij.openapi.editor.Document;
-import com.intellij.openapi.editor.FoldingGroup;
-import com.intellij.openapi.util.TextRange;
-import com.intellij.psi.PsiElement;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.lang.folding.FoldingDescriptor
+import com.intellij.openapi.editor.Document
+import com.intellij.openapi.editor.FoldingGroup
+import com.intellij.openapi.util.TextRange
+import com.intellij.psi.PsiElement
+import java.util.ArrayList
+import java.util.Collections
+import java.util.List
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+class ElvisExpression(
+    element: PsiElement,
+    textRange: TextRange,
+    thenExpression: Expression,
+    elseExpression: Expression,
+    elements: List<TextRange>
+) : Expression(element, textRange) {
+    private var thenExpression: Expression
+    private var elseExpression: Expression
+    private var elements: List<TextRange>
 
-public class ElvisExpression extends Expression {
-    private final @NotNull Expression thenExpression;
-    private final @NotNull Expression elseExpression;
-    private final @NotNull List<TextRange> elements;
-
-    public ElvisExpression(@NotNull PsiElement element, @NotNull TextRange textRange, @NotNull Expression thenExpression,
-                           @NotNull Expression elseExpression,
-                           @NotNull List<TextRange> elements) {
-        super(element, textRange);
-        this.thenExpression = thenExpression;
-        this.elseExpression = elseExpression;
-        this.elements = elements;
+    init {
+        this.thenExpression = thenExpression
+        this.elseExpression = elseExpression
+        this.elements = elements
     }
 
-    @Override
-    public FoldingDescriptor[] buildFoldRegions(@NotNull PsiElement element, @NotNull Document document, @Nullable Expression parent) {
-        ArrayList<FoldingDescriptor> descriptors = new ArrayList<>();
-        FoldingGroup group = FoldingGroup.newGroup(ElvisExpression.class.getName());
-        descriptors.add(new FoldingDescriptor(element.getNode(),
+    override fun buildFoldRegions(element: PsiElement, document: Document, parent: Expression?): Array<FoldingDescriptor> {
+        val descriptors = ArrayList<FoldingDescriptor>()
+        val group = FoldingGroup.newGroup(ElvisExpression::class.java.getName())
+        descriptors.add(
+            FoldingDescriptor(
+                element.getNode(),
                 TextRange.create(textRange.getStartOffset(), thenExpression.getTextRange().getStartOffset()),
-                group, ""));
-        descriptors.add(new FoldingDescriptor(element.getNode(),
-                TextRange.create(thenExpression.getTextRange().getEndOffset(),
-                        elseExpression.getTextRange().getStartOffset()),
-                group, " ?: " /* TODO: Eat spaces around */));
-        ShortElvisExpression.nullify(element, document, descriptors, group, elements,
-                !(elements.size() == 1 && elements.get(0).equals(thenExpression.getTextRange())));
+                group,
+                ""
+            )
+        )
+        descriptors.add(
+            FoldingDescriptor(
+                element.getNode(),
+                TextRange.create(
+                    thenExpression.getTextRange().getEndOffset(),
+                    elseExpression.getTextRange().getStartOffset()
+                ),
+                group,
+                " ?: "
+            )
+        )
+        ShortElvisExpression.nullify(
+            element,
+            document,
+            descriptors,
+            group,
+            elements,
+            !(elements.size() == 1 && elements.get(0).equals(thenExpression.getTextRange()))
+        )
         if (thenExpression.supportsFoldRegions(document, this)) {
-            Collections.addAll(descriptors, thenExpression.buildFoldRegions(thenExpression.getElement(), document, this));
+            Collections.addAll(
+                descriptors,
+                thenExpression.buildFoldRegions(thenExpression.getElement(), document, this)
+            )
         }
         if (elseExpression.supportsFoldRegions(document, this)) {
-            Collections.addAll(descriptors, elseExpression.buildFoldRegions(elseExpression.getElement(), document, this));
+            Collections.addAll(
+                descriptors,
+                elseExpression.buildFoldRegions(elseExpression.getElement(), document, this)
+            )
         }
-        return descriptors.toArray(EMPTY_ARRAY);
+        return descriptors.toArray(EMPTY_ARRAY)
     }
 
-    @Override
-    public boolean supportsFoldRegions(@NotNull Document document,
-                                       @Nullable Expression parent) {
-        return true;
+    override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean {
+        return true
     }
 }
+

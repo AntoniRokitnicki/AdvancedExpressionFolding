@@ -1,49 +1,60 @@
-package com.intellij.advancedExpressionFolding.expression.controlflow;
+package com.intellij.advancedExpressionFolding.expression.controlflow
 
-import com.intellij.advancedExpressionFolding.expression.Expression;
-import com.intellij.advancedExpressionFolding.expression.operation.collection.Range;
-import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings;
-import com.intellij.lang.folding.FoldingDescriptor;
-import com.intellij.openapi.editor.Document;
-import com.intellij.openapi.editor.FoldingGroup;
-import com.intellij.openapi.util.TextRange;
-import com.intellij.psi.PsiElement;
-import com.intellij.psi.PsiForStatement;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.advancedExpressionFolding.expression.operation.collection.Range
+import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
+import com.intellij.lang.folding.FoldingDescriptor
+import com.intellij.openapi.editor.Document
+import com.intellij.openapi.editor.FoldingGroup
+import com.intellij.openapi.util.TextRange
+import com.intellij.psi.PsiElement
+import com.intellij.psi.PsiForStatement
+import java.util.ArrayList
+import java.util.Arrays
 
-import java.util.ArrayList;
-import java.util.Arrays;
+class ForStatement(
+    element: PsiForStatement,
+    textRange: TextRange,
+    operand: Expression,
+    startRange: Expression,
+    startInclusive: Boolean,
+    endRange: Expression,
+    endInclusive: Boolean
+) : Range(element, textRange, operand, startRange, startInclusive, endRange, endInclusive) {
+    private var element: PsiForStatement
 
-public class ForStatement extends Range {
-    public static final String FOR_SEPARATOR = ":";
-    private final PsiForStatement element;
-
-    public ForStatement(PsiForStatement element, TextRange textRange,
-                        Expression operand, Expression startRange, boolean startInclusive,
-                        Expression endRange, boolean endInclusive) {
-        super(element, textRange, operand, startRange, startInclusive, endRange, endInclusive);
-        this.element = element;
-        this.separator = FOR_SEPARATOR;
+    init {
+        this.element = element
+        this.separator = FOR_SEPARATOR
     }
 
-    @Override
-    public FoldingDescriptor[] buildFoldRegions(@NotNull PsiElement element, @NotNull Document document,
-                                                @Nullable Expression parent) {
-        // TODO: Refactor this mess
-        ArrayList<FoldingDescriptor> descriptors = new ArrayList<>(Arrays.asList(super.buildFoldRegions(element, document, parent)));
+    override fun buildFoldRegions(element: PsiElement, document: Document, parent: Expression?): Array<FoldingDescriptor> {
+        val descriptors = ArrayList<FoldingDescriptor>(
+            Arrays.asList(*super.buildFoldRegions(element, document, parent))
+        )
         if (AdvancedExpressionFoldingSettings.getInstance().getState().getCompactControlFlowSyntaxCollapse()
-                && this.element.getLParenth() != null && this.element.getRParenth() != null) {
-            // TODO: Refactor this mess
-            TextRange textRange = TextRange.create(this.element.getLParenth().getTextRange().getStartOffset(),
-                    this.element.getRParenth().getTextRange().getEndOffset());
+            && this.element.getLParenth() != null && this.element.getRParenth() != null
+        ) {
+            val textRange = TextRange.create(
+                this.element.getLParenth().getTextRange().getStartOffset(),
+                this.element.getRParenth().getTextRange().getEndOffset()
+            )
             if (CompactControlFlowExpression.supportsFoldRegions(document, textRange)) {
-                CompactControlFlowExpression.buildFoldRegions(element,
-                        descriptors.size() > 0 ? descriptors.get(0).getGroup() :
-                                FoldingGroup.newGroup(CompactControlFlowExpression.class.getName()), descriptors,
-                        textRange);
+                CompactControlFlowExpression.buildFoldRegions(
+                    element,
+                    if (descriptors.size() > 0) descriptors.get(0).getGroup() else FoldingGroup.newGroup(
+                        CompactControlFlowExpression::class.java.getName()
+                    ),
+                    descriptors,
+                    textRange
+                )
             }
         }
-        return descriptors.toArray(EMPTY_ARRAY);
+        return descriptors.toArray(EMPTY_ARRAY)
+    }
+
+    companion object {
+        const val FOR_SEPARATOR: String = ":"
     }
 }
+

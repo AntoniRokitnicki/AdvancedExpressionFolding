@@ -1,13 +1,9 @@
-package com.intellij.advancedExpressionFolding.expression.controlflow;
+package com.intellij.advancedExpressionFolding.expression.controlflow
 
-import com.intellij.openapi.util.TextRange;
-import com.intellij.psi.PsiCodeBlock;
-import org.jetbrains.annotations.NotNull;
+import com.intellij.openapi.util.TextRange
+import com.intellij.psi.PsiCodeBlock
 
 @Deprecated
-public class ControlFlowMultiStatementCodeBlockExpression extends AbstractControlFlowCodeBlock {
-    public ControlFlowMultiStatementCodeBlockExpression(@NotNull PsiCodeBlock element,
-                                                        @NotNull TextRange textRange) {
-        super(element, textRange);
-    }
-}
+class ControlFlowMultiStatementCodeBlockExpression(element: PsiCodeBlock, textRange: TextRange) :
+    AbstractControlFlowCodeBlock(element, textRange)
+

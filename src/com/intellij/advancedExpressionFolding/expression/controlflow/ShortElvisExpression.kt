@@ -1,75 +1,112 @@
-package com.intellij.advancedExpressionFolding.expression.controlflow;
+package com.intellij.advancedExpressionFolding.expression.controlflow
 
-import com.intellij.advancedExpressionFolding.expression.Expression;
-import com.intellij.lang.folding.FoldingDescriptor;
-import com.intellij.openapi.editor.Document;
-import com.intellij.openapi.editor.FoldingGroup;
-import com.intellij.openapi.util.TextRange;
-import com.intellij.psi.PsiElement;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.lang.folding.FoldingDescriptor
+import com.intellij.openapi.editor.Document
+import com.intellij.openapi.editor.FoldingGroup
+import com.intellij.openapi.util.TextRange
+import com.intellij.psi.PsiElement
+import java.util.ArrayList
+import java.util.Collections
+import java.util.HashSet
+import java.util.List
+import java.util.Set
 
-import java.util.*;
+class ShortElvisExpression(
+    element: PsiElement,
+    textRange: TextRange,
+    thenExpression: Expression,
+    elements: List<TextRange>
+) : Expression(element, textRange) {
+    private var thenExpression: Expression
+    private var elements: List<TextRange>
 
-public class ShortElvisExpression extends Expression {
-    private final @NotNull Expression thenExpression;
-    private final @NotNull List<TextRange> elements;
-
-    public ShortElvisExpression(@NotNull PsiElement element, @NotNull TextRange textRange, @NotNull Expression thenExpression,
-                                @NotNull List<TextRange> elements) {
-        super(element, textRange);
-        this.thenExpression = thenExpression;
-        this.elements = elements;
+    init {
+        this.thenExpression = thenExpression
+        this.elements = elements
     }
 
-    @Override
-    public FoldingDescriptor[] buildFoldRegions(@NotNull PsiElement element, @NotNull Document document, @Nullable Expression parent) {
-        ArrayList<FoldingDescriptor> descriptors = new ArrayList<>();
-        FoldingGroup group = FoldingGroup.newGroup(ShortElvisExpression.class.getName());
-        descriptors.add(new FoldingDescriptor(element.getNode(),
+    override fun buildFoldRegions(element: PsiElement, document: Document, parent: Expression?): Array<FoldingDescriptor> {
+        val descriptors = ArrayList<FoldingDescriptor>()
+        val group = FoldingGroup.newGroup(ShortElvisExpression::class.java.getName())
+        descriptors.add(
+            FoldingDescriptor(
+                element.getNode(),
                 TextRange.create(textRange.getStartOffset(), thenExpression.getTextRange().getStartOffset()),
-                group, ""));
+                group,
+                ""
+            )
+        )
         if (thenExpression.getTextRange().getEndOffset() < textRange.getEndOffset()) {
-            descriptors.add(new FoldingDescriptor(element.getNode(),
-                    TextRange.create(thenExpression.getTextRange().getEndOffset(),
-                            getTextRange().getEndOffset()), group, ""));
+            descriptors.add(
+                FoldingDescriptor(
+                    element.getNode(),
+                    TextRange.create(
+                        thenExpression.getTextRange().getEndOffset(),
+                        getTextRange().getEndOffset()
+                    ),
+                    group,
+                    ""
+                )
+            )
         }
-        nullify(element, document, descriptors, group, elements, true);
+        nullify(element, document, descriptors, group, elements, true)
         if (thenExpression.supportsFoldRegions(document, this)) {
-            Collections.addAll(descriptors, thenExpression.buildFoldRegions(thenExpression.getElement(), document, this));
+            Collections.addAll(
+                descriptors,
+                thenExpression.buildFoldRegions(thenExpression.getElement(), document, this)
+            )
         }
-        return descriptors.toArray(EMPTY_ARRAY);
+        return descriptors.toArray(EMPTY_ARRAY)
     }
 
-    protected static final Set<String> SUPPORTED_POSTFIXES = new HashSet<>() {
-        {
-            add(".");
-            add(";");
-            add(",");
-            add(")");
-        }
-    };
+    override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean {
+        return true
+    }
 
-    protected static void nullify(@NotNull PsiElement element, @NotNull Document document,
-                                  ArrayList<FoldingDescriptor> descriptors, FoldingGroup group,
-                                  List<TextRange> elements, boolean replaceSingle) {
-        for (TextRange range : elements) {
-            String postfix = document.getText(TextRange.create(range.getEndOffset(), range.getEndOffset() + 1));
-            if (SUPPORTED_POSTFIXES.contains(postfix)) {
-                descriptors.add(new FoldingDescriptor(element.getNode(),
-                        TextRange.create(range.getEndOffset(), range.getEndOffset() + 1),
-                        group, "?" + postfix));
-            } else if (replaceSingle) {
-                TextRange r = TextRange.create(range.getStartOffset(), range.getEndOffset());
-                descriptors.add(new FoldingDescriptor(element.getNode(),
-                        r, group, document.getText(r) + "?"));
+    companion object {
+        protected val SUPPORTED_POSTFIXES: Set<String> = object : HashSet<String>() {
+            init {
+                add(".")
+                add(";")
+                add(",")
+                add(")")
+            }
+        }
+
+        @JvmStatic
+        protected fun nullify(
+            element: PsiElement,
+            document: Document,
+            descriptors: ArrayList<FoldingDescriptor>,
+            group: FoldingGroup,
+            elements: List<TextRange>,
+            replaceSingle: Boolean
+        ) {
+            for (range in elements) {
+                val postfix = document.getText(TextRange.create(range.getEndOffset(), range.getEndOffset() + 1))
+                if (SUPPORTED_POSTFIXES.contains(postfix)) {
+                    descriptors.add(
+                        FoldingDescriptor(
+                            element.getNode(),
+                            TextRange.create(range.getEndOffset(), range.getEndOffset() + 1),
+                            group,
+                            "?" + postfix
+                        )
+                    )
+                } else if (replaceSingle) {
+                    val r = TextRange.create(range.getStartOffset(), range.getEndOffset())
+                    descriptors.add(
+                        FoldingDescriptor(
+                            element.getNode(),
+                            r,
+                            group,
+                            document.getText(r) + "?"
+                        )
+                    )
+                }
             }
         }
     }
-
-    @Override
-    public boolean supportsFoldRegions(@NotNull Document document,
-                                       @Nullable Expression parent) {
-        return true;
-    }
 }
+
