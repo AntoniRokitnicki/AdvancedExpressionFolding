@@ -12,7 +12,7 @@ class UpdateFoldedTextColorsAction : AnAction() {
     override fun actionPerformed(event: AnActionEvent) = changeFoldingColors()
 
     companion object {
-        @JvmStatic
+
         fun changeFoldingColors() {
             val scheme = EditorColorsManager.getInstance().globalScheme
             val textAttributes = scheme.getAttributes(EditorColors.FOLDED_TEXT_ATTRIBUTES)

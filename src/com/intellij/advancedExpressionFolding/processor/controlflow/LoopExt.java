@@ -9,7 +9,7 @@ import com.intellij.psi.PsiForeachStatement;
 import com.intellij.psi.PsiWhileStatement;
 
 public class LoopExt {
-    public static Expression getForeachStatementExpression(PsiForeachStatement element) {
+    public static Expression getForEachStatementExpression(PsiForeachStatement element) {
         AdvancedExpressionFoldingSettings settings = AdvancedExpressionFoldingSettings.getInstance();
         if (element.getIteratedValue() != null && element.getRParenth() != null &&
                 settings.getState().getCompactControlFlowSyntaxCollapse()) {

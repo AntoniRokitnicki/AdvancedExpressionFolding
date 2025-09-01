@@ -71,7 +71,7 @@ public class ConstTestData {
     <fold text='default const' expand='false'>static final </fold><fold text='' expand='false'>int</fold> VERSION_REF = VERSION;
 
     @SuppressWarnings("ALL")
-    class ConstsWithAnnotaiton <fold text='{...}' expand='true'>{
+    class ConstsWithAnnotation <fold text='{...}' expand='true'>{
         @Deprecated
         <fold text='default const' expand='false'>static final </fold><fold text='' expand='false'>Pattern</fold> PATTERN = Pattern.compile(".*");
 
