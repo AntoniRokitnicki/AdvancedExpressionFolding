@@ -42,11 +42,11 @@ object MethodCallFactory : BaseExtension(){
     @Volatile
     private var methodCallMap: Map<MethodName?, List<AbstractMethodCall>> = emptyMap()
     @Volatile
-    lateinit var supportedClasses: Collection<ClassName>
+    var supportedClasses: Collection<ClassName> = emptyList()
     @Volatile
-    lateinit var supportedMethods: Collection<MethodName>
+    var supportedMethods: Collection<MethodName> = emptyList()
     @Volatile
-    lateinit var classlessMethods: Collection<MethodName>
+    var classlessMethods: Collection<MethodName> = emptyList()
 
     fun refreshMethodCallMappings(dynamicProvider: IDynamicDataProvider? = null) {
         synchronized(this) {
