@@ -13,7 +13,6 @@ import com.intellij.psi.*
 
 object PsiDeclarationStatementExt : BaseExtension() {
 
-    @JvmStatic
     fun createExpression(
         element: PsiDeclarationStatement
     ): Expression? {

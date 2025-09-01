@@ -1,10 +1,14 @@
 name: TODO Run Integration Tests
+permissions:
+  contents: read
 
 on: [workflow_dispatch]
 
 jobs:
   integrationTest:
     runs-on: ${{ matrix.os }}
+    env:
+      integration: '1'
     strategy:
       fail-fast: false
       matrix:
@@ -15,7 +19,7 @@ jobs:
       - uses: actions/setup-java@v5
         with:
           distribution: zulu
-          java-version: 21
+          java-version: 17
 
       - name: Build plugin
         shell: bash

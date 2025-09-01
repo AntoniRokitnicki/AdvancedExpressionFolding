@@ -15,6 +15,7 @@ import kotlin.reflect.KMutableProperty0
 abstract class CheckboxesProvider {
 
     @Suppress("DEPRECATION")
+    @CheckboxDsl
     fun Panel.initialize(state: State) {
         registerCheckbox(state::getSetExpressionsCollapse, "Getters and setters as properties") {
             example("GetterSetterTestData.java")
@@ -181,7 +182,7 @@ abstract class CheckboxesProvider {
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#finalremoval")
         }
 
-        registerCheckbox(state::finalEmoji, "Replace the 'final' modifier with " + Emoji.FINAL_LOCK) {
+        registerCheckbox(state::finalEmoji, "Replace the 'final' modifier with ${Emoji.FINAL_LOCK}") {
             example("FinalEmojiTestData.java")
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#finalemoji")
         }
@@ -276,6 +277,7 @@ abstract class CheckboxesProvider {
         }
     }
 
+    @CheckboxDsl
     abstract fun Panel.registerCheckbox(
         property: KMutableProperty0<Boolean>,
         title: String,
