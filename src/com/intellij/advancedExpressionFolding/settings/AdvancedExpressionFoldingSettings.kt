@@ -5,6 +5,9 @@ import com.intellij.openapi.components.PersistentStateComponent
 import com.intellij.openapi.components.State
 import com.intellij.openapi.components.Storage
 import org.jetbrains.annotations.NotNull
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlin.reflect.KClass
 import kotlin.reflect.KMutableProperty
 import kotlin.reflect.KMutableProperty0
@@ -13,11 +16,12 @@ import kotlin.reflect.jvm.javaType
 
 @State(name = "AdvancedExpressionFoldingSettings", storages = [Storage("editor.codeinsight.xml")])
 class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpressionFoldingSettings.State> {
-    private var myState = State()
-    override fun getState(): State = myState
+    private val _stateFlow = MutableStateFlow(State())
+    val stateFlow: StateFlow<State> = _stateFlow.asStateFlow()
+    override fun getState(): State = _stateFlow.value
 
     override fun loadState(state: State) {
-        myState = state.copy()
+        _stateFlow.value = state.copy()
     }
 
     data class State(
@@ -79,7 +83,8 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
 
     private fun updateAllState(value: Boolean, vararg excludeProperties: KMutableProperty<Boolean>) {
         val excluded = excludeProperties.map { it.toString() }
-        with(myState) {
+        val current = _stateFlow.value
+        with(current) {
             allProperties()
                 .filter {
                     !excluded.contains(it.toString())
@@ -89,6 +94,11 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
                     }
                 }
         }
+        _stateFlow.value = current.copy()
+    }
+
+    fun notifyStateChanged() {
+        _stateFlow.value = _stateFlow.value.copy()
     }
 
     fun disableAll() = updateAllState(false)
