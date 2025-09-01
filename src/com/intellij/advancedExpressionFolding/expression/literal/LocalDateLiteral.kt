@@ -1,0 +1,85 @@
+package com.intellij.advancedExpressionFolding.expression.literal
+
+import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
+import com.intellij.lang.folding.FoldingDescriptor
+import com.intellij.openapi.editor.Document
+import com.intellij.openapi.editor.FoldingGroup
+import com.intellij.openapi.util.TextRange
+import com.intellij.psi.PsiElement
+import com.intellij.psi.PsiLiteralExpression
+import org.jetbrains.annotations.NotNull
+import org.jetbrains.annotations.Nullable
+import java.util.ArrayList
+
+class LocalDateLiteral(
+    element: PsiElement,
+    textRange: TextRange,
+    year: PsiLiteralExpression,
+    month: PsiLiteralExpression,
+    day: PsiLiteralExpression
+) : Expression(element, textRange) {
+    companion object {
+        const val DATE_SEPARATOR: String = "-"
+        const val YEAR_POSTFIX: String = "Y"
+        const val MONTH_POSTFIX: String = "M"
+        const val DAY_POSTFIX: String = "D"
+    }
+
+    private var year: PsiLiteralExpression
+    private var month: PsiLiteralExpression
+    private var day: PsiLiteralExpression
+
+    init {
+        this.year = year
+        this.month = month
+        this.day = day
+    }
+
+    override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean {
+        return true
+    }
+
+    override fun buildFoldRegions(element: PsiElement, document: Document, parent: Expression?): Array<FoldingDescriptor> {
+        val group = FoldingGroup.newGroup(ListLiteral::class.java.getName())
+        val descriptors: ArrayList<FoldingDescriptor> = ArrayList()
+        descriptors.add(object : FoldingDescriptor(element.getNode(), TextRange.create(getTextRange().getStartOffset(),
+            year.getTextRange().getStartOffset()), group) {
+            override fun getPlaceholderText(): String {
+                return ""
+            }
+        })
+        val usePostfix = AdvancedExpressionFoldingSettings.getInstance().getState().getLocalDateLiteralPostfixCollapse()
+        val dateSep = DATE_SEPARATOR
+        val yearPostfix = if (usePostfix) YEAR_POSTFIX else ""
+        val monthPostfix = if (usePostfix) MONTH_POSTFIX else ""
+        val dayPostfix = if (usePostfix) DAY_POSTFIX else ""
+        descriptors.add(object : FoldingDescriptor(element.getNode(), TextRange.create(year.getTextRange().getEndOffset(),
+            month.getTextRange().getStartOffset()), group) {
+            override fun getPlaceholderText(): String {
+                if (month.getTextLength() == 1) {
+                    return yearPostfix + dateSep + "0"
+                } else {
+                    return yearPostfix + dateSep
+                }
+            }
+        })
+        descriptors.add(object : FoldingDescriptor(element.getNode(), TextRange.create(month.getTextRange().getEndOffset(),
+            day.getTextRange().getStartOffset()), group) {
+            override fun getPlaceholderText(): String {
+                if (day.getTextLength() == 1) {
+                    return monthPostfix + dateSep + "0"
+                } else {
+                    return monthPostfix + dateSep
+                }
+            }
+        })
+        descriptors.add(object : FoldingDescriptor(element.getNode(), TextRange.create(day.getTextRange().getEndOffset(),
+            getTextRange().getEndOffset()), group) {
+            override fun getPlaceholderText(): String {
+                return dayPostfix + ""
+            }
+        })
+        return descriptors.toTypedArray()
+    }
+}
