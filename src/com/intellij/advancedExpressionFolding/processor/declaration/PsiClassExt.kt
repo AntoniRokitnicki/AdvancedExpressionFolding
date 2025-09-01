@@ -16,7 +16,6 @@ object PsiClassExt : BaseExtension() {
         BUILDER,
     }
 
-    @JvmStatic
     fun createExpression(clazz: PsiClass): Expression? {
         val list = exprList()
         list.addIfEnabled(summaryParentOverride) {

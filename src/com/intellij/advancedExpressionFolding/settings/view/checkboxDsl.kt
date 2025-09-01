@@ -2,6 +2,9 @@ package com.intellij.advancedExpressionFolding.settings.view
 
 import kotlin.reflect.KMutableProperty0
 
+@DslMarker
+annotation class CheckboxDsl
+
 typealias Description = String
 typealias UrlSuffix = String
 typealias ExampleFile = String
@@ -13,6 +16,7 @@ data class CheckboxDefinition(
     val docLink: UrlSuffix? = null
 )
 
+@CheckboxDsl
 class CheckboxBuilder {
     private val examples = mutableMapOf<ExampleFile, Description?>()
     private var docLink: UrlSuffix? = null

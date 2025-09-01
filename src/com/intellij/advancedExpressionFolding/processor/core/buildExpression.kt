@@ -41,9 +41,9 @@ class ForStatementBuilder : BuildExpression<PsiForStatement>(PsiForStatement::cl
         ForStatementExpressionExt.getForStatementExpression(element, document)
 }
 
-class ForeachStatementBuilder : BuildExpression<PsiForeachStatement>(PsiForeachStatement::class.java) {
+class ForEachStatementBuilder : BuildExpression<PsiForeachStatement>(PsiForeachStatement::class.java) {
     override fun buildExpression(element: PsiForeachStatement, document: Document, synthetic: Boolean): Expression? =
-        LoopExt.getForeachStatementExpression(element)
+        LoopExt.getForEachStatementExpression(element)
 }
 
 class IfStatementBuilder : BuildExpression<PsiIfStatement>(PsiIfStatement::class.java) {
@@ -84,11 +84,14 @@ class CatchSectionBuilder : BuildExpression<PsiCatchSection>(PsiCatchSection::cl
                 element.lParenth != null &&
                 element.rParenth != null
 
-    override fun buildExpression(element: PsiCatchSection, document: Document, synthetic: Boolean) =
-        CompactControlFlowExpression(
+    override fun buildExpression(element: PsiCatchSection, document: Document, synthetic: Boolean): Expression? {
+        val l = element.lParenth ?: return null
+        val r = element.rParenth ?: return null
+        return CompactControlFlowExpression(
             element,
-            TextRange.create(element.lParenth!!.textRange.startOffset, element.rParenth!!.textRange.endOffset)
+            TextRange.create(l.textRange.startOffset, r.textRange.endOffset)
         )
+    }
 }
 
 class DoWhileStatementBuilder : BuildExpression<PsiDoWhileStatement>(PsiDoWhileStatement::class.java) {
