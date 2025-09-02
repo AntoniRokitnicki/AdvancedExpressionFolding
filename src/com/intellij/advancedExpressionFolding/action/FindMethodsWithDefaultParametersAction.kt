@@ -54,11 +54,11 @@ class FindMethodsWithDefaultParametersAction : AnAction() {
             wrappedExpression?.run {
                 chain.filterIsInstance<SimpleExpression>()
                     .groupBy {
-                        it.element.parent.parent as? PsiMethod
+                        it.getElement().getParent().getParent() as? PsiMethod
                     }.filterKeys {
                         it != null
                     }.forEach { (_, expressions) ->
-                        val textRange = expressions.last().textRange
+                        val textRange = expressions.last().getTextRange()
                         findUsageCustomView.addToUsage(javaFile, textRange)
                     }
             }
