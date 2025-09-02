@@ -1,7 +1,6 @@
 # Migration Progress
 
 ## Files to Process:
-- [ ] src/com/intellij/advancedExpressionFolding/expression/math/basic/Abs.java → src/com/intellij/advancedExpressionFolding/expression/math/basic/Abs.kt
 - [ ] src/com/intellij/advancedExpressionFolding/expression/math/basic/Add.java → src/com/intellij/advancedExpressionFolding/expression/math/basic/Add.kt
 - [ ] src/com/intellij/advancedExpressionFolding/expression/math/basic/AddAllAssign.java → src/com/intellij/advancedExpressionFolding/expression/math/basic/AddAllAssign.kt
 - [ ] src/com/intellij/advancedExpressionFolding/expression/math/basic/AddAssign.java → src/com/intellij/advancedExpressionFolding/expression/math/basic/AddAssign.kt
@@ -132,5 +131,6 @@
 - [x] src/com/intellij/advancedExpressionFolding/expression/controlflow/IfExpression.java → src/com/intellij/advancedExpressionFolding/expression/controlflow/IfExpression.kt (git mv done, content converted, fields fixed)
 - [x] src/com/intellij/advancedExpressionFolding/expression/controlflow/SemicolonExpression.java → src/com/intellij/advancedExpressionFolding/expression/controlflow/SemicolonExpression.kt (git mv done, content converted, fields fixed)
 - [x] src/com/intellij/advancedExpressionFolding/expression/controlflow/ShortElvisExpression.java → src/com/intellij/advancedExpressionFolding/expression/controlflow/ShortElvisExpression.kt (git mv done, content converted, fields fixed)
+- [x] src/com/intellij/advancedExpressionFolding/expression/math/basic/Abs.java → src/com/intellij/advancedExpressionFolding/expression/math/basic/Abs.kt (git mv done, content converted, fields fixed)
 
-## Current Status: 45/128 files completed
+## Current Status: 46/128 files completed
