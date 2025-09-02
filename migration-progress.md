@@ -1,21 +1,6 @@
 # Migration Progress
 
 ## Files to Process:
-- [ ] src/com/intellij/advancedExpressionFolding/expression/math/trig/Cosh.java → src/com/intellij/advancedExpressionFolding/expression/math/trig/Cosh.kt
-- [ ] src/com/intellij/advancedExpressionFolding/expression/math/trig/Sin.java → src/com/intellij/advancedExpressionFolding/expression/math/trig/Sin.kt
-- [ ] src/com/intellij/advancedExpressionFolding/expression/math/trig/Sinh.java → src/com/intellij/advancedExpressionFolding/expression/math/trig/Sinh.kt
-- [ ] src/com/intellij/advancedExpressionFolding/expression/math/trig/Tan.java → src/com/intellij/advancedExpressionFolding/expression/math/trig/Tan.kt
-- [ ] src/com/intellij/advancedExpressionFolding/expression/math/trig/Tanh.java → src/com/intellij/advancedExpressionFolding/expression/math/trig/Tanh.kt
-- [ ] src/com/intellij/advancedExpressionFolding/expression/math/trig/ToDegrees.java → src/com/intellij/advancedExpressionFolding/expression/math/trig/ToDegrees.kt
-- [ ] src/com/intellij/advancedExpressionFolding/expression/math/trig/ToRadians.java → src/com/intellij/advancedExpressionFolding/expression/math/trig/ToRadians.kt
-- [ ] src/com/intellij/advancedExpressionFolding/expression/operation/FieldShiftMethod.java → src/com/intellij/advancedExpressionFolding/expression/operation/FieldShiftMethod.kt
-- [ ] src/com/intellij/advancedExpressionFolding/expression/operation/Get.java → src/com/intellij/advancedExpressionFolding/expression/operation/Get.kt
-- [ ] src/com/intellij/advancedExpressionFolding/expression/operation/basic/Append.java → src/com/intellij/advancedExpressionFolding/expression/operation/basic/Append.kt
-- [ ] src/com/intellij/advancedExpressionFolding/expression/operation/basic/Equal.java → src/com/intellij/advancedExpressionFolding/expression/operation/basic/Equal.kt
-- [ ] src/com/intellij/advancedExpressionFolding/expression/operation/basic/Greater.java → src/com/intellij/advancedExpressionFolding/expression/operation/basic/Greater.kt
-- [ ] src/com/intellij/advancedExpressionFolding/expression/operation/basic/GreaterEqual.java → src/com/intellij/advancedExpressionFolding/expression/operation/basic/GreaterEqual.kt
-- [ ] src/com/intellij/advancedExpressionFolding/expression/operation/basic/TypeCast.java → src/com/intellij/advancedExpressionFolding/expression/operation/basic/TypeCast.kt
-- [ ] src/com/intellij/advancedExpressionFolding/expression/operation/basic/Variable.java → src/com/intellij/advancedExpressionFolding/expression/operation/basic/Variable.kt
 - [ ] src/com/intellij/advancedExpressionFolding/expression/operation/collection/AddAssignForCollection.java → src/com/intellij/advancedExpressionFolding/expression/operation/collection/AddAssignForCollection.kt
 - [ ] src/com/intellij/advancedExpressionFolding/expression/operation/collection/ArrayGet.java → src/com/intellij/advancedExpressionFolding/expression/operation/collection/ArrayGet.kt
 - [ ] src/com/intellij/advancedExpressionFolding/expression/operation/collection/ArrayStream.java → src/com/intellij/advancedExpressionFolding/expression/operation/collection/ArrayStream.kt
@@ -133,4 +118,20 @@
 - [x] src/com/intellij/advancedExpressionFolding/expression/math/trig/Atan2.java → src/com/intellij/advancedExpressionFolding/expression/math/trig/Atan2.kt (git mv done, content converted, fields fixed)
 - [x] src/com/intellij/advancedExpressionFolding/expression/math/trig/Cos.java → src/com/intellij/advancedExpressionFolding/expression/math/trig/Cos.kt (git mv done, content converted, fields fixed)
 
-## Current Status: 76/128 files completed
+- [x] src/com/intellij/advancedExpressionFolding/expression/math/trig/Cosh.java → src/com/intellij/advancedExpressionFolding/expression/math/trig/Cosh.kt (git mv done, content converted, fields fixed)
+- [x] src/com/intellij/advancedExpressionFolding/expression/math/trig/Sin.java → src/com/intellij/advancedExpressionFolding/expression/math/trig/Sin.kt (git mv done, content converted, fields fixed)
+- [x] src/com/intellij/advancedExpressionFolding/expression/math/trig/Sinh.java → src/com/intellij/advancedExpressionFolding/expression/math/trig/Sinh.kt (git mv done, content converted, fields fixed)
+- [x] src/com/intellij/advancedExpressionFolding/expression/math/trig/Tan.java → src/com/intellij/advancedExpressionFolding/expression/math/trig/Tan.kt (git mv done, content converted, fields fixed)
+- [x] src/com/intellij/advancedExpressionFolding/expression/math/trig/Tanh.java → src/com/intellij/advancedExpressionFolding/expression/math/trig/Tanh.kt (git mv done, content converted, fields fixed)
+- [x] src/com/intellij/advancedExpressionFolding/expression/math/trig/ToDegrees.java → src/com/intellij/advancedExpressionFolding/expression/math/trig/ToDegrees.kt (git mv done, content converted, fields fixed)
+- [x] src/com/intellij/advancedExpressionFolding/expression/math/trig/ToRadians.java → src/com/intellij/advancedExpressionFolding/expression/math/trig/ToRadians.kt (git mv done, content converted, fields fixed)
+- [x] src/com/intellij/advancedExpressionFolding/expression/operation/FieldShiftMethod.java → src/com/intellij/advancedExpressionFolding/expression/operation/FieldShiftMethod.kt (git mv done, content converted, fields fixed)
+- [x] src/com/intellij/advancedExpressionFolding/expression/operation/Get.java → src/com/intellij/advancedExpressionFolding/expression/operation/Get.kt (git mv done, content converted, fields fixed)
+- [x] src/com/intellij/advancedExpressionFolding/expression/operation/basic/Append.java → src/com/intellij/advancedExpressionFolding/expression/operation/basic/Append.kt (git mv done, content converted, fields fixed)
+- [x] src/com/intellij/advancedExpressionFolding/expression/operation/basic/Equal.java → src/com/intellij/advancedExpressionFolding/expression/operation/basic/Equal.kt (git mv done, content converted, fields fixed)
+- [x] src/com/intellij/advancedExpressionFolding/expression/operation/basic/Greater.java → src/com/intellij/advancedExpressionFolding/expression/operation/basic/Greater.kt (git mv done, content converted, fields fixed)
+- [x] src/com/intellij/advancedExpressionFolding/expression/operation/basic/GreaterEqual.java → src/com/intellij/advancedExpressionFolding/expression/operation/basic/GreaterEqual.kt (git mv done, content converted, fields fixed)
+- [x] src/com/intellij/advancedExpressionFolding/expression/operation/basic/TypeCast.java → src/com/intellij/advancedExpressionFolding/expression/operation/basic/TypeCast.kt (git mv done, content converted, fields fixed)
+- [x] src/com/intellij/advancedExpressionFolding/expression/operation/basic/Variable.java → src/com/intellij/advancedExpressionFolding/expression/operation/basic/Variable.kt (git mv done, content converted, fields fixed)
+
+## Current Status: 91/128 files completed
