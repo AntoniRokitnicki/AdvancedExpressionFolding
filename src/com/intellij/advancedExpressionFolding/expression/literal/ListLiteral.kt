@@ -28,25 +28,25 @@ class ListLiteral(
         val group = FoldingGroup.newGroup(ListLiteral::class.java.getName())
         return if (items.isEmpty()) {
             arrayOf(
-                FoldingDescriptor(element.getNode(), textRange, group, "[]")
+                FoldingDescriptor(element.getNode(), getTextRange(), group, "[]")
             )
         } else {
             val descriptors = ArrayList<FoldingDescriptor>()
             descriptors.add(
                 FoldingDescriptor(
                     element.getNode(),
-                    TextRange.create(textRange.getStartOffset(), items.get(0).getTextRange().getStartOffset()),
+                    TextRange.create(getTextRange().getStartOffset(), items.get(0).getTextRange().getStartOffset()),
                     group,
                     "["
                 )
             )
-            if (items.get(items.size - 1).getTextRange().getEndOffset() < textRange.getEndOffset()) {
+            if (items.get(items.size - 1).getTextRange().getEndOffset() < getTextRange().getEndOffset()) {
                 descriptors.add(
                     FoldingDescriptor(
                         element.getNode(),
                         TextRange.create(
                             items.get(items.size - 1).getTextRange().getEndOffset(),
-                            textRange.getEndOffset()
+                            getTextRange().getEndOffset()
                         ),
                         group,
                         "]"

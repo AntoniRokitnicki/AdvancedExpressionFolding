@@ -53,7 +53,7 @@ class LocalDateLiteral(
         val descriptors = ArrayList<FoldingDescriptor>()
         descriptors.add(object : FoldingDescriptor(
             element.getNode(),
-            TextRange.create(textRange.getStartOffset(), year.getTextRange().getStartOffset()),
+            TextRange.create(getTextRange().getStartOffset(), year.getTextRange().getStartOffset()),
             group
         ) {
             override fun getPlaceholderText(): String {
@@ -98,7 +98,7 @@ class LocalDateLiteral(
 
         descriptors.add(object : FoldingDescriptor(
             element.getNode(),
-            TextRange.create(day.getTextRange().getEndOffset(), textRange.getEndOffset()),
+            TextRange.create(day.getTextRange().getEndOffset(), getTextRange().getEndOffset()),
             group
         ) {
             override fun getPlaceholderText(): String {

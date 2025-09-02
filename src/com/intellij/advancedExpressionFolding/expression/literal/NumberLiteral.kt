@@ -47,11 +47,11 @@ class NumberLiteral(
         val descriptors = ArrayList<FoldingDescriptor>()
         if (numberTextRange != null) {
             val group = FoldingGroup.newGroup(NumberLiteral::class.java.getName() + HIGHLIGHTED_GROUP_POSTFIX)
-            if (textRange.getStartOffset() < numberTextRange!!.getStartOffset()) {
+            if (getTextRange().getStartOffset() < numberTextRange!!.getStartOffset()) {
                 descriptors.add(
                     FoldingDescriptor(
                         element.getNode(),
-                        TextRange.create(textRange.getStartOffset(), numberTextRange!!.getStartOffset()),
+                        TextRange.create(getTextRange().getStartOffset(), numberTextRange!!.getStartOffset()),
                         group,
                         ""
                     )
@@ -73,11 +73,11 @@ class NumberLiteral(
                     )
                 )
             }
-            if (numberTextRange!!.getEndOffset() < textRange.getEndOffset()) {
+            if (numberTextRange!!.getEndOffset() < getTextRange().getEndOffset()) {
                 descriptors.add(
                     FoldingDescriptor(
                         element.getNode(),
-                        TextRange.create(numberTextRange!!.getEndOffset(), textRange.getEndOffset()),
+                        TextRange.create(numberTextRange!!.getEndOffset(), getTextRange().getEndOffset()),
                         group,
                         ""
                     )
@@ -88,7 +88,7 @@ class NumberLiteral(
     }
 
     override fun isHighlighted(): Boolean {
-        return numberTextRange != null && numberTextRange!!.getStartOffset() >= textRange.getStartOffset() && numberTextRange!!.getEndOffset() <= textRange.getEndOffset()
+        return numberTextRange != null && numberTextRange!!.getStartOffset() >= getTextRange().getStartOffset() && numberTextRange!!.getEndOffset() <= getTextRange().getEndOffset()
     }
 
     fun getNumberTextRange(): TextRange? {
