@@ -1,0 +1,136 @@
+# Migration Progress
+
+## Files to Process:
+- [ ] src/com/intellij/advancedExpressionFolding/expression/math/basic/Abs.java → src/com/intellij/advancedExpressionFolding/expression/math/basic/Abs.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/math/basic/Add.java → src/com/intellij/advancedExpressionFolding/expression/math/basic/Add.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/math/basic/AddAllAssign.java → src/com/intellij/advancedExpressionFolding/expression/math/basic/AddAllAssign.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/math/basic/AddAssign.java → src/com/intellij/advancedExpressionFolding/expression/math/basic/AddAssign.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/math/basic/Divide.java → src/com/intellij/advancedExpressionFolding/expression/math/basic/Divide.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/math/basic/DivideAssign.java → src/com/intellij/advancedExpressionFolding/expression/math/basic/DivideAssign.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/math/basic/Max.java → src/com/intellij/advancedExpressionFolding/expression/math/basic/Max.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/math/basic/Min.java → src/com/intellij/advancedExpressionFolding/expression/math/basic/Min.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/math/basic/Multiply.java → src/com/intellij/advancedExpressionFolding/expression/math/basic/Multiply.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/math/basic/MultiplyAssign.java → src/com/intellij/advancedExpressionFolding/expression/math/basic/MultiplyAssign.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/math/basic/Negate.java → src/com/intellij/advancedExpressionFolding/expression/math/basic/Negate.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/math/basic/Not.java → src/com/intellij/advancedExpressionFolding/expression/math/basic/Not.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/math/basic/NotEqual.java → src/com/intellij/advancedExpressionFolding/expression/math/basic/NotEqual.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/math/basic/Signum.java → src/com/intellij/advancedExpressionFolding/expression/math/basic/Signum.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/math/basic/Subtract.java → src/com/intellij/advancedExpressionFolding/expression/math/basic/Subtract.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/math/basic/SubtractAssign.java → src/com/intellij/advancedExpressionFolding/expression/math/basic/SubtractAssign.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/math/bitwise/And.java → src/com/intellij/advancedExpressionFolding/expression/math/bitwise/And.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/math/bitwise/AndAssign.java → src/com/intellij/advancedExpressionFolding/expression/math/bitwise/AndAssign.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/math/bitwise/Or.java → src/com/intellij/advancedExpressionFolding/expression/math/bitwise/Or.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/math/bitwise/Remainder.java → src/com/intellij/advancedExpressionFolding/expression/math/bitwise/Remainder.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/math/bitwise/RemainderAssign.java → src/com/intellij/advancedExpressionFolding/expression/math/bitwise/RemainderAssign.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/math/bitwise/ShiftLeft.java → src/com/intellij/advancedExpressionFolding/expression/math/bitwise/ShiftLeft.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/math/bitwise/ShiftLeftAssign.java → src/com/intellij/advancedExpressionFolding/expression/math/bitwise/ShiftLeftAssign.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/math/bitwise/ShiftRight.java → src/com/intellij/advancedExpressionFolding/expression/math/bitwise/ShiftRight.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/math/bitwise/ShiftRightAssign.java → src/com/intellij/advancedExpressionFolding/expression/math/bitwise/ShiftRightAssign.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/math/bitwise/Xor.java → src/com/intellij/advancedExpressionFolding/expression/math/bitwise/Xor.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/math/trig/Acos.java → src/com/intellij/advancedExpressionFolding/expression/math/trig/Acos.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/math/trig/Asin.java → src/com/intellij/advancedExpressionFolding/expression/math/trig/Asin.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/math/trig/Atan.java → src/com/intellij/advancedExpressionFolding/expression/math/trig/Atan.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/math/trig/Atan2.java → src/com/intellij/advancedExpressionFolding/expression/math/trig/Atan2.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/math/trig/Cos.java → src/com/intellij/advancedExpressionFolding/expression/math/trig/Cos.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/math/trig/Cosh.java → src/com/intellij/advancedExpressionFolding/expression/math/trig/Cosh.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/math/trig/Sin.java → src/com/intellij/advancedExpressionFolding/expression/math/trig/Sin.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/math/trig/Sinh.java → src/com/intellij/advancedExpressionFolding/expression/math/trig/Sinh.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/math/trig/Tan.java → src/com/intellij/advancedExpressionFolding/expression/math/trig/Tan.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/math/trig/Tanh.java → src/com/intellij/advancedExpressionFolding/expression/math/trig/Tanh.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/math/trig/ToDegrees.java → src/com/intellij/advancedExpressionFolding/expression/math/trig/ToDegrees.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/math/trig/ToRadians.java → src/com/intellij/advancedExpressionFolding/expression/math/trig/ToRadians.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/operation/FieldShiftMethod.java → src/com/intellij/advancedExpressionFolding/expression/operation/FieldShiftMethod.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/operation/Get.java → src/com/intellij/advancedExpressionFolding/expression/operation/Get.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/operation/basic/Append.java → src/com/intellij/advancedExpressionFolding/expression/operation/basic/Append.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/operation/basic/Equal.java → src/com/intellij/advancedExpressionFolding/expression/operation/basic/Equal.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/operation/basic/Greater.java → src/com/intellij/advancedExpressionFolding/expression/operation/basic/Greater.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/operation/basic/GreaterEqual.java → src/com/intellij/advancedExpressionFolding/expression/operation/basic/GreaterEqual.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/operation/basic/TypeCast.java → src/com/intellij/advancedExpressionFolding/expression/operation/basic/TypeCast.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/operation/basic/Variable.java → src/com/intellij/advancedExpressionFolding/expression/operation/basic/Variable.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/operation/collection/AddAssignForCollection.java → src/com/intellij/advancedExpressionFolding/expression/operation/collection/AddAssignForCollection.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/operation/collection/ArrayGet.java → src/com/intellij/advancedExpressionFolding/expression/operation/collection/ArrayGet.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/operation/collection/ArrayStream.java → src/com/intellij/advancedExpressionFolding/expression/operation/collection/ArrayStream.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/operation/collection/Collect.java → src/com/intellij/advancedExpressionFolding/expression/operation/collection/Collect.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/operation/collection/Put.java → src/com/intellij/advancedExpressionFolding/expression/operation/collection/Put.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/operation/collection/Range.java → src/com/intellij/advancedExpressionFolding/expression/operation/collection/Range.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/operation/collection/Remove.java → src/com/intellij/advancedExpressionFolding/expression/operation/collection/Remove.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/operation/collection/RemoveAllAssign.java → src/com/intellij/advancedExpressionFolding/expression/operation/collection/RemoveAllAssign.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/operation/collection/RemoveAssignForCollection.java → src/com/intellij/advancedExpressionFolding/expression/operation/collection/RemoveAssignForCollection.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/operation/collection/Slice.java → src/com/intellij/advancedExpressionFolding/expression/operation/collection/Slice.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/operation/optional/OptionalMapCall.java → src/com/intellij/advancedExpressionFolding/expression/operation/optional/OptionalMapCall.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/operation/optional/OptionalMapSafeCall.java → src/com/intellij/advancedExpressionFolding/expression/operation/optional/OptionalMapSafeCall.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/operation/optional/OptionalMapSafeCallParam.java → src/com/intellij/advancedExpressionFolding/expression/operation/optional/OptionalMapSafeCallParam.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/operation/optional/OptionalNotNullAssertionGet.java → src/com/intellij/advancedExpressionFolding/expression/operation/optional/OptionalNotNullAssertionGet.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/operation/optional/OptionalOf.java → src/com/intellij/advancedExpressionFolding/expression/operation/optional/OptionalOf.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/operation/optional/OptionalOfNullable.java → src/com/intellij/advancedExpressionFolding/expression/operation/optional/OptionalOfNullable.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/operation/optional/OptionalOrElseElvis.java → src/com/intellij/advancedExpressionFolding/expression/operation/optional/OptionalOrElseElvis.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/operation/stream/StreamExpression.java → src/com/intellij/advancedExpressionFolding/expression/operation/stream/StreamExpression.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/operation/stream/StreamFilterNotNull.java → src/com/intellij/advancedExpressionFolding/expression/operation/stream/StreamFilterNotNull.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/operation/stream/StreamMapCall.java → src/com/intellij/advancedExpressionFolding/expression/operation/stream/StreamMapCall.kt
+- [ ] src/com/intellij/advancedExpressionFolding/expression/operation/stream/StreamMapCallParam.java → src/com/intellij/advancedExpressionFolding/expression/operation/stream/StreamMapCallParam.kt
+- [ ] src/com/intellij/advancedExpressionFolding/processor/controlflow/ForStatementExpressionExt.java → src/com/intellij/advancedExpressionFolding/processor/controlflow/ForStatementExpressionExt.kt
+- [ ] src/com/intellij/advancedExpressionFolding/processor/controlflow/IfExt.java → src/com/intellij/advancedExpressionFolding/processor/controlflow/IfExt.kt
+- [ ] src/com/intellij/advancedExpressionFolding/processor/controlflow/LoopExt.java → src/com/intellij/advancedExpressionFolding/processor/controlflow/LoopExt.kt
+- [ ] src/com/intellij/advancedExpressionFolding/processor/declaration/PsiCodeBlockExt.java → src/com/intellij/advancedExpressionFolding/processor/declaration/PsiCodeBlockExt.kt
+- [ ] src/com/intellij/advancedExpressionFolding/processor/declaration/PsiVariableExt.java → src/com/intellij/advancedExpressionFolding/processor/declaration/PsiVariableExt.kt
+- [ ] src/com/intellij/advancedExpressionFolding/processor/expression/AssignmentExpressionExt.java → src/com/intellij/advancedExpressionFolding/processor/expression/AssignmentExpressionExt.kt
+- [ ] src/com/intellij/advancedExpressionFolding/processor/expression/BinaryExpressionExt.java → src/com/intellij/advancedExpressionFolding/processor/expression/BinaryExpressionExt.kt
+- [ ] src/com/intellij/advancedExpressionFolding/processor/expression/LiteralExpressionExt.java → src/com/intellij/advancedExpressionFolding/processor/expression/LiteralExpressionExt.kt
+- [ ] src/com/intellij/advancedExpressionFolding/processor/expression/PrefixExpressionExt.java → src/com/intellij/advancedExpressionFolding/processor/expression/PrefixExpressionExt.kt
+- [ ] src/com/intellij/advancedExpressionFolding/processor/expression/PsiArrayAccessExpressionExt.java → src/com/intellij/advancedExpressionFolding/processor/expression/PsiArrayAccessExpressionExt.kt
+- [ ] src/com/intellij/advancedExpressionFolding/processor/expression/PsiTypeCastExpressionExt.java → src/com/intellij/advancedExpressionFolding/processor/expression/PsiTypeCastExpressionExt.kt
+- [ ] src/com/intellij/advancedExpressionFolding/processor/methodcall/MethodCallExpressionExt.java → src/com/intellij/advancedExpressionFolding/processor/methodcall/MethodCallExpressionExt.kt
+- [ ] src/com/intellij/advancedExpressionFolding/processor/reference/NewExpressionExt.java → src/com/intellij/advancedExpressionFolding/processor/reference/NewExpressionExt.kt
+- [ ] src/com/intellij/advancedExpressionFolding/processor/reference/ReferenceExpressionExt.java → src/com/intellij/advancedExpressionFolding/processor/reference/ReferenceExpressionExt.kt
+- [ ] src/com/intellij/advancedExpressionFolding/processor/util/Consts.java → src/com/intellij/advancedExpressionFolding/processor/util/Consts.kt
+- [ ] src/com/intellij/advancedExpressionFolding/processor/util/Helper.java → src/com/intellij/advancedExpressionFolding/processor/util/Helper.kt
+
+## Completed Files:
+- [x] src/com/intellij/advancedExpressionFolding/processor/core/BuildExpressionExt.java → src/com/intellij/advancedExpressionFolding/processor/core/BuildExpressionExt.kt (git mv done, content converted, fields fixed)
+- [x] src/com/intellij/advancedExpressionFolding/processor/util/PropertyUtil.java → src/com/intellij/advancedExpressionFolding/processor/util/PropertyUtil.kt (git mv done, content converted, fields fixed)
+- [x] src/com/intellij/advancedExpressionFolding/expression/Function.java → src/com/intellij/advancedExpressionFolding/expression/Function.kt (git mv done, content converted, fields fixed)
+- [x] src/com/intellij/advancedExpressionFolding/expression/Expression.java → src/com/intellij/advancedExpressionFolding/expression/Expression.kt (git mv done, content converted, fields fixed)
+- [x] src/com/intellij/advancedExpressionFolding/expression/Operation.java → src/com/intellij/advancedExpressionFolding/expression/Operation.kt (git mv done, content converted, fields fixed)
+- [x] src/com/intellij/advancedExpressionFolding/expression/VariableDeclarationImpl.java → src/com/intellij/advancedExpressionFolding/expression/VariableDeclarationImpl.kt (git mv done, content converted, fields fixed)
+- [x] src/com/intellij/advancedExpressionFolding/expression/property/Getter.java → src/com/intellij/advancedExpressionFolding/expression/property/Getter.kt (git mv done, content converted, fields fixed)
+- [x] src/com/intellij/advancedExpressionFolding/expression/property/IGetter.java → src/com/intellij/advancedExpressionFolding/expression/property/IGetter.kt (git mv done, content converted, fields fixed)
+- [x] src/com/intellij/advancedExpressionFolding/expression/property/INameable.java → src/com/intellij/advancedExpressionFolding/expression/property/INameable.kt (git mv done, content converted, fields fixed)
+- [x] src/com/intellij/advancedExpressionFolding/expression/property/Setter.java → src/com/intellij/advancedExpressionFolding/expression/property/Setter.kt (git mv done, content converted, fields fixed)
+
+- [x] src/com/intellij/advancedExpressionFolding/expression/literal/ArrayLiteral.java → src/com/intellij/advancedExpressionFolding/expression/literal/ArrayLiteral.kt (git mv done, content converted, fields fixed)
+- [x] src/com/intellij/advancedExpressionFolding/expression/literal/CharSequenceLiteral.java → src/com/intellij/advancedExpressionFolding/expression/literal/CharSequenceLiteral.kt (git mv done, content converted, fields fixed)
+- [x] src/com/intellij/advancedExpressionFolding/expression/literal/CharacterLiteral.java → src/com/intellij/advancedExpressionFolding/expression/literal/CharacterLiteral.kt (git mv done, content converted, fields fixed)
+- [x] src/com/intellij/advancedExpressionFolding/expression/math/ArithmeticExpression.java → src/com/intellij/advancedExpressionFolding/expression/math/ArithmeticExpression.kt (git mv done, content converted, fields fixed)
+- [x] src/com/intellij/advancedExpressionFolding/expression/math/advanced/Cbrt.java → src/com/intellij/advancedExpressionFolding/expression/math/advanced/Cbrt.kt (git mv done, content converted, fields fixed)
+- [x] src/com/intellij/advancedExpressionFolding/expression/math/advanced/Ceil.java → src/com/intellij/advancedExpressionFolding/expression/math/advanced/Ceil.kt (git mv done, content converted, fields fixed)
+- [x] src/com/intellij/advancedExpressionFolding/expression/math/advanced/Exp.java → src/com/intellij/advancedExpressionFolding/expression/math/advanced/Exp.kt (git mv done, content converted, fields fixed)
+- [x] src/com/intellij/advancedExpressionFolding/expression/math/advanced/Floor.java → src/com/intellij/advancedExpressionFolding/expression/math/advanced/Floor.kt (git mv done, content converted, fields fixed)
+- [x] src/com/intellij/advancedExpressionFolding/expression/math/advanced/Gcd.java → src/com/intellij/advancedExpressionFolding/expression/math/advanced/Gcd.kt (git mv done, content converted, fields fixed)
+- [x] src/com/intellij/advancedExpressionFolding/expression/math/advanced/Log.java → src/com/intellij/advancedExpressionFolding/expression/math/advanced/Log.kt (git mv done, content converted, fields fixed)
+- [x] src/com/intellij/advancedExpressionFolding/expression/math/advanced/Log10.java → src/com/intellij/advancedExpressionFolding/expression/math/advanced/Log10.kt (git mv done, content converted, fields fixed)
+- [x] src/com/intellij/advancedExpressionFolding/expression/math/advanced/Pow.java → src/com/intellij/advancedExpressionFolding/expression/math/advanced/Pow.kt (git mv done, content converted, fields fixed)
+- [x] src/com/intellij/advancedExpressionFolding/expression/math/advanced/Random.java → src/com/intellij/advancedExpressionFolding/expression/math/advanced/Random.kt (git mv done, content converted, fields fixed)
+- [x] src/com/intellij/advancedExpressionFolding/expression/math/advanced/Rint.java → src/com/intellij/advancedExpressionFolding/expression/math/advanced/Rint.kt (git mv done, content converted, fields fixed)
+- [x] src/com/intellij/advancedExpressionFolding/expression/math/advanced/Round.java → src/com/intellij/advancedExpressionFolding/expression/math/advanced/Round.kt (git mv done, content converted, fields fixed)
+- [x] src/com/intellij/advancedExpressionFolding/expression/math/advanced/Sqrt.java → src/com/intellij/advancedExpressionFolding/expression/math/advanced/Sqrt.kt (git mv done, content converted, fields fixed)
+- [x] src/com/intellij/advancedExpressionFolding/expression/math/advanced/Ulp.java → src/com/intellij/advancedExpressionFolding/expression/math/advanced/Ulp.kt (git mv done, content converted, fields fixed)
+- [x] src/com/intellij/advancedExpressionFolding/expression/literal/InterpolatedString.java → src/com/intellij/advancedExpressionFolding/expression/literal/InterpolatedString.kt (git mv done, content converted, fields fixed)
+- [x] src/com/intellij/advancedExpressionFolding/expression/literal/ListLiteral.java → src/com/intellij/advancedExpressionFolding/expression/literal/ListLiteral.kt (git mv done, content converted, fields fixed)
+- [x] src/com/intellij/advancedExpressionFolding/expression/literal/LocalDateLiteral.java → src/com/intellij/advancedExpressionFolding/expression/literal/LocalDateLiteral.kt (git mv done, content converted, fields fixed)
+- [x] src/com/intellij/advancedExpressionFolding/expression/literal/NumberLiteral.java → src/com/intellij/advancedExpressionFolding/expression/literal/NumberLiteral.kt (git mv done, content converted, fields fixed)
+- [x] src/com/intellij/advancedExpressionFolding/expression/literal/SetLiteral.java → src/com/intellij/advancedExpressionFolding/expression/literal/SetLiteral.kt (git mv done, content converted, fields fixed)
+- [x] src/com/intellij/advancedExpressionFolding/expression/literal/StringLiteral.java → src/com/intellij/advancedExpressionFolding/expression/literal/StringLiteral.kt (git mv done, content converted, fields fixed)
+- [x] src/com/intellij/advancedExpressionFolding/expression/SyntheticExpressionImpl.java → src/com/intellij/advancedExpressionFolding/expression/SyntheticExpressionImpl.kt (git mv done, content converted, fields fixed)
+- [x] src/com/intellij/advancedExpressionFolding/expression/controlflow/AbstractControlFlowCodeBlock.java → src/com/intellij/advancedExpressionFolding/expression/controlflow/AbstractControlFlowCodeBlock.kt (git mv done, content converted, fields fixed)
+- [x] src/com/intellij/advancedExpressionFolding/expression/controlflow/CompactControlFlowExpression.java → src/com/intellij/advancedExpressionFolding/expression/controlflow/CompactControlFlowExpression.kt (git mv done, content converted, fields fixed)
+- [x] src/com/intellij/advancedExpressionFolding/expression/controlflow/ControlFlowMultiStatementCodeBlockExpression.java → src/com/intellij/advancedExpressionFolding/expression/controlflow/ControlFlowMultiStatementCodeBlockExpression.kt (git mv done, content converted, fields fixed)
+- [x] src/com/intellij/advancedExpressionFolding/expression/controlflow/ControlFlowSingleStatementCodeBlockExpression.java → src/com/intellij/advancedExpressionFolding/expression/controlflow/ControlFlowSingleStatementCodeBlockExpression.kt (git mv done, content converted, fields fixed)
+- [x] src/com/intellij/advancedExpressionFolding/expression/controlflow/ElvisExpression.java → src/com/intellij/advancedExpressionFolding/expression/controlflow/ElvisExpression.kt (git mv done, content converted, fields fixed)
+- [x] src/com/intellij/advancedExpressionFolding/expression/controlflow/ForEachIndexedStatement.java → src/com/intellij/advancedExpressionFolding/expression/controlflow/ForEachIndexedStatement.kt (git mv done, content converted, fields fixed)
+- [x] src/com/intellij/advancedExpressionFolding/expression/controlflow/ForEachStatement.java → src/com/intellij/advancedExpressionFolding/expression/controlflow/ForEachStatement.kt (git mv done, content converted, fields fixed)
+- [x] src/com/intellij/advancedExpressionFolding/expression/controlflow/ForStatement.java → src/com/intellij/advancedExpressionFolding/expression/controlflow/ForStatement.kt (git mv done, content converted, fields fixed)
+- [x] src/com/intellij/advancedExpressionFolding/expression/controlflow/IfExpression.java → src/com/intellij/advancedExpressionFolding/expression/controlflow/IfExpression.kt (git mv done, content converted, fields fixed)
+- [x] src/com/intellij/advancedExpressionFolding/expression/controlflow/SemicolonExpression.java → src/com/intellij/advancedExpressionFolding/expression/controlflow/SemicolonExpression.kt (git mv done, content converted, fields fixed)
+- [x] src/com/intellij/advancedExpressionFolding/expression/controlflow/ShortElvisExpression.java → src/com/intellij/advancedExpressionFolding/expression/controlflow/ShortElvisExpression.kt (git mv done, content converted, fields fixed)
+
+## Current Status: 45/128 files completed
