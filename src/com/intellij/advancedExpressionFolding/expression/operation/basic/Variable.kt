@@ -51,21 +51,21 @@ class Variable(
             val group = FoldingGroup.newGroup(
                 Variable::class.java.getName() + Expression.HIGHLIGHTED_GROUP_POSTFIX
             )
-            if (textRange.getStartOffset() < variableTextRange!!.getStartOffset()) {
+            if (getTextRange().getStartOffset() < variableTextRange!!.getStartOffset()) {
                 descriptors.add(
                     FoldingDescriptor(
                         element.getNode(),
-                        TextRange.create(textRange.getStartOffset(), variableTextRange!!.getStartOffset()),
+                        TextRange.create(getTextRange().getStartOffset(), variableTextRange!!.getStartOffset()),
                         group,
                         ""
                     )
                 )
             }
-            if (variableTextRange!!.getEndOffset() < textRange.getEndOffset()) {
+            if (variableTextRange!!.getEndOffset() < getTextRange().getEndOffset()) {
                 descriptors.add(
                     FoldingDescriptor(
                         element.getNode(),
-                        TextRange.create(variableTextRange!!.getEndOffset(), textRange.getEndOffset()),
+                        TextRange.create(variableTextRange!!.getEndOffset(), getTextRange().getEndOffset()),
                         group,
                         ""
                     )
@@ -81,8 +81,8 @@ class Variable(
 
     override fun isHighlighted(): Boolean {
         return variableTextRange != null &&
-            (variableTextRange!!.getStartOffset() > textRange.getStartOffset() ||
-                variableTextRange!!.getEndOffset() < textRange.getEndOffset())
+            (variableTextRange!!.getStartOffset() > getTextRange().getStartOffset() ||
+                variableTextRange!!.getEndOffset() < getTextRange().getEndOffset())
     }
 
     fun getVariableTextRange(): TextRange? {

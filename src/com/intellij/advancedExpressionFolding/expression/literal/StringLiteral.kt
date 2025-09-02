@@ -20,7 +20,7 @@ class StringLiteral(
     }
 
     override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean {
-        return !document.getText(textRange).equals("\"" + string + "\"")
+        return !document.getText(getTextRange()).equals("\"" + string + "\"")
     }
 
     override fun buildFoldRegions(
