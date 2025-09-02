@@ -6,7 +6,7 @@ import com.intellij.advancedExpressionFolding.expression.math.ArithmeticExpressi
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiElement
-import java.util.List
+
 
 class Negate(
     element: PsiElement,

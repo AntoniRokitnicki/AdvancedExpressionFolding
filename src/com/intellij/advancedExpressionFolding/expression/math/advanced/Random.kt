@@ -5,7 +5,7 @@ import com.intellij.advancedExpressionFolding.expression.Function
 import com.intellij.advancedExpressionFolding.expression.math.ArithmeticExpression
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiElement
-import java.util.List
+
 
 class Random(element: PsiElement, textRange: TextRange, operands: List<Expression>) :
     Function(element, textRange, "random", operands), ArithmeticExpression {

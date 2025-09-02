@@ -12,7 +12,7 @@ import com.intellij.psi.PsiElement
 import org.jetbrains.annotations.NotNull
 import org.jetbrains.annotations.Nullable
 import java.util.ArrayList
-import java.util.List
+
 
 class Exp(element: PsiElement, textRange: TextRange, operands: List<Expression>) :
     Function(element, textRange, "exp", operands), ArithmeticExpression {

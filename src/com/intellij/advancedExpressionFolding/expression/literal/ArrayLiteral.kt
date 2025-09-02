@@ -10,7 +10,7 @@ import org.jetbrains.annotations.NotNull
 import org.jetbrains.annotations.Nullable
 import java.util.ArrayList
 import java.util.Collections
-import java.util.List
+
 
 class ArrayLiteral(element: PsiElement, textRange: TextRange, items: List<Expression>) :
     Expression(element, textRange) {

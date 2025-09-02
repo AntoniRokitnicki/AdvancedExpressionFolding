@@ -9,7 +9,7 @@ import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiElement
 import java.util.ArrayList
 import java.util.Collections
-import java.util.List
+
 
 class ElvisExpression(element: PsiElement, textRange: TextRange, thenExpression: Expression, elseExpression: Expression, elements: List<TextRange>) :
     Expression(element, textRange) {

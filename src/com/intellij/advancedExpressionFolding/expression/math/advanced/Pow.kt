@@ -14,7 +14,7 @@ import org.jetbrains.annotations.NotNull
 import org.jetbrains.annotations.Nullable
 import java.util.ArrayList
 import java.util.Collections
-import java.util.List
+
 
 class Pow(element: PsiElement, textRange: TextRange, operands: List<Expression>) :
     Function(element, textRange, "pow", operands), ArithmeticExpression {

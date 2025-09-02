@@ -15,7 +15,7 @@ import com.intellij.psi.PsiReference
 import com.intellij.psi.PsiVariable
 import org.jetbrains.annotations.NotNull
 import org.jetbrains.annotations.Nullable
-import java.util.List
+
 import java.util.Objects
 import java.util.Arrays.asList
 

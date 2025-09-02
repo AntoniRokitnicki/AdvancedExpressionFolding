@@ -11,7 +11,7 @@ import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiElement
 import java.util.ArrayList
 import java.util.Collections
-import java.util.List
+
 
 /**
  * TODO: sb.append(interpolatedString).append(x) - merge x into interpolatedString

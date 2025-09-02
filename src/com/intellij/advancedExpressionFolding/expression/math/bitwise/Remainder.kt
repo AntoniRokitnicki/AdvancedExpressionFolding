@@ -5,7 +5,7 @@ import com.intellij.advancedExpressionFolding.expression.Operation
 import com.intellij.advancedExpressionFolding.expression.math.ArithmeticExpression
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiElement
-import java.util.List
+
 
 class Remainder(
     element: PsiElement,
