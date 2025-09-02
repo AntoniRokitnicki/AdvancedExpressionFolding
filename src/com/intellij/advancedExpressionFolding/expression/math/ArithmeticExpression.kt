@@ -1,5 +1,5 @@
 package com.intellij.advancedExpressionFolding.expression.math
 
-@Deprecated
+@Deprecated("")
 interface ArithmeticExpression
 

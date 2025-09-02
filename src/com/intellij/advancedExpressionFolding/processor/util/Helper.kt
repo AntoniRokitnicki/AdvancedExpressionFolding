@@ -12,7 +12,6 @@ import org.jetbrains.annotations.Nullable
 import java.util.*
 import java.util.function.Predicate
 import java.util.regex.Matcher
-import java.util.stream.Stream
 
 object Helper {
     @JvmStatic
@@ -136,8 +135,11 @@ object Helper {
             val e = reference.resolve()
             if (e is PsiField) {
                 val psiClass = e.getContainingClass()
-                if (psiClass != null && psiClass.getQualifiedName() != null) {
-                    return Consts.SUPPORTED_CLASSES.contains(eraseGenerics(psiClass.getQualifiedName()))
+                if (psiClass != null) {
+                    val qualifiedName = psiClass.getQualifiedName()
+                    if (qualifiedName != null) {
+                        return Consts.SUPPORTED_CLASSES.contains(eraseGenerics(qualifiedName))
+                    }
                 }
             }
         }
@@ -175,7 +177,20 @@ object Helper {
 
     @JvmStatic
     fun charAt(document: Document, position: Int): Char {
-        return document.getText(TextRange.create(position, position + 1)).charAt(0)
+        return document.getText(TextRange.create(position, position + 1)).get(0)
+    }
+
+    @JvmStatic
+    fun superscript(text: String): String? {
+        val builder = StringBuilder()
+        for (c in text.toCharArray()) {
+            val mapped = Consts.SUPERSCRIPT_MAPPING.get(c)
+            if (mapped == null) {
+                return null
+            }
+            builder.append(mapped)
+        }
+        return builder.toString()
     }
 
     @JvmStatic
@@ -187,8 +202,14 @@ object Helper {
             val s = BuildExpressionExt.getAnyExpression(rOperand, document)
             if (s is NumberLiteral) {
                 val a2me: PsiReferenceExpression = if (lOperand is PsiMethodCallExpression) lOperand.getMethodExpression() else lOperand as PsiReferenceExpression
-                val a2i = Stream.of(a2me.getChildren()).filter { c -> c is PsiIdentifier }.findAny()
-                if (a2i.isPresent && (a2i.get().getText() == "length" || a2i.get().getText() == "size")) {
+                var a2i: PsiElement? = null
+                for (c in a2me.getChildren()) {
+                    if (c is PsiIdentifier) {
+                        a2i = c
+                        break
+                    }
+                }
+                if (a2i != null && (a2i.getText() == "length" || a2i.getText() == "size")) {
                     val slicePosition = s.getNumber().toInt()
                     val offset = findDot(document, a2b.getTextRange().getStartOffset(), -1, false)
                     if (offset < Integer.MAX_VALUE) {

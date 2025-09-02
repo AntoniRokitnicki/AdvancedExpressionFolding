@@ -56,7 +56,7 @@ abstract class AbstractControlFlowCodeBlock : Expression {
                         var endOffset = this.element.getRBrace().getTextRange().getEndOffset()
                         while (endOffset < document.getTextLength()) {
                             endOffset++
-                            val c = document.getText(TextRange.create(endOffset - 1, endOffset)).charAt(0)
+                            val c = document.getText(TextRange.create(endOffset - 1, endOffset)).get(0)
                             if (c != ' ' && c != '\t') {
                                 if (c != '\n') {
                                     endOffset--
@@ -69,7 +69,7 @@ abstract class AbstractControlFlowCodeBlock : Expression {
                         if (newLine) {
                             var i = 0
                             while (i < thisStatementIndent) {
-                                val c = document.getText(TextRange.create(startOffset - 1, startOffset)).charAt(0)
+                                val c = document.getText(TextRange.create(startOffset - 1, startOffset)).get(0)
                                 if (c != ' ' && c != '\t') {
                                     smart = false
                                     break
