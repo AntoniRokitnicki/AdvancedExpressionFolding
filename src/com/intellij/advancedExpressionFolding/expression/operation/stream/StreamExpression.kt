@@ -17,12 +17,12 @@ class StreamExpression(
     }
 
     override fun buildFoldRegions(element: PsiElement, document: Document, parent: Expression?): Array<FoldingDescriptor> {
-        val startOffset = Helper.findDot(document, textRange.getStartOffset(), -1, true)
-        val endOffset = Helper.findDot(document, textRange.getEndOffset() - 1, 1, false)
-        if (startOffset < -1 && document.getText(TextRange.create(textRange.getStartOffset() + startOffset, textRange.getStartOffset() + startOffset + 1)) == "\n" && endOffset > 1) {
-            val startOffsetNoWhitespace = Helper.findDot(document, textRange.getStartOffset(), -1, false)
-            val startOffsetFinal = textRange.getStartOffset() + startOffsetNoWhitespace
-            val endOffsetFinal = textRange.getEndOffset() + endOffset
+        val startOffset = Helper.findDot(document, getTextRange().getStartOffset(), -1, true)
+        val endOffset = Helper.findDot(document, getTextRange().getEndOffset() - 1, 1, false)
+        if (startOffset < -1 && document.getText(TextRange.create(getTextRange().getStartOffset() + startOffset, getTextRange().getStartOffset() + startOffset + 1)) == "\n" && endOffset > 1) {
+            val startOffsetNoWhitespace = Helper.findDot(document, getTextRange().getStartOffset(), -1, false)
+            val startOffsetFinal = getTextRange().getStartOffset() + startOffsetNoWhitespace
+            val endOffsetFinal = getTextRange().getEndOffset() + endOffset
             if (endOffsetFinal < 0) {
                 return EMPTY_ARRAY
             }
@@ -34,12 +34,12 @@ class StreamExpression(
                     "."
                 )
             )
-        } else if (startOffset < -1 && document.getText(TextRange.create(textRange.getStartOffset() + startOffset, textRange.getStartOffset() + startOffset + 1)) == ".") {
-            val endOffsetWithWhitespace = Helper.findDot(document, textRange.getEndOffset() - 1, 1, true)
+        } else if (startOffset < -1 && document.getText(TextRange.create(getTextRange().getStartOffset() + startOffset, getTextRange().getStartOffset() + startOffset + 1)) == ".") {
+            val endOffsetWithWhitespace = Helper.findDot(document, getTextRange().getEndOffset() - 1, 1, true)
             return arrayOf(
                 FoldingDescriptor(
                     element.getNode(),
-                    TextRange.create(textRange.getStartOffset(), textRange.getEndOffset() + endOffsetWithWhitespace),
+                    TextRange.create(getTextRange().getStartOffset(), getTextRange().getEndOffset() + endOffsetWithWhitespace),
                     FoldingGroup.newGroup(StreamExpression::class.java.name + HIGHLIGHTED_GROUP_POSTFIX),
                     ""
                 )
@@ -48,17 +48,17 @@ class StreamExpression(
             return arrayOf(
                 FoldingDescriptor(
                     element.getNode(),
-                    TextRange.create(textRange.getStartOffset() + startOffset, textRange.getEndOffset()),
+                    TextRange.create(getTextRange().getStartOffset() + startOffset, getTextRange().getEndOffset()),
                     FoldingGroup.newGroup(StreamExpression::class.java.name + Expression.HIGHLIGHTED_GROUP_POSTFIX),
                     ""
                 )
             )
-        } else if (startOffset < -1 && document.getText(TextRange.create(textRange.getStartOffset() - 1, textRange.getStartOffset())) == "." && endOffset == 1) {
-            val endOffsetWithWhitespace = Helper.findDot(document, textRange.getEndOffset() - 1, 1, true)
+        } else if (startOffset < -1 && document.getText(TextRange.create(getTextRange().getStartOffset() - 1, getTextRange().getStartOffset())) == "." && endOffset == 1) {
+            val endOffsetWithWhitespace = Helper.findDot(document, getTextRange().getEndOffset() - 1, 1, true)
             return arrayOf(
                 FoldingDescriptor(
                     element.getNode(),
-                    TextRange.create(textRange.getStartOffset() - 1, textRange.getEndOffset() + endOffsetWithWhitespace),
+                    TextRange.create(getTextRange().getStartOffset() - 1, getTextRange().getEndOffset() + endOffsetWithWhitespace),
                     FoldingGroup.newGroup(StreamExpression::class.java.name),
                     "."
                 )
@@ -67,7 +67,7 @@ class StreamExpression(
             return arrayOf(
                 FoldingDescriptor(
                     element.getNode(),
-                    TextRange.create(textRange.getStartOffset() - 1, textRange.getEndOffset() + 1),
+                    TextRange.create(getTextRange().getStartOffset() - 1, getTextRange().getEndOffset() + 1),
                     FoldingGroup.newGroup(StreamExpression::class.java.name),
                     "."
                 )

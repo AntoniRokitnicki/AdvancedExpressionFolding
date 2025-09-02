@@ -31,7 +31,7 @@ class Slice(
                 element.getNode(),
                 TextRange.create(
                     ops.get(0).getTextRange().getEndOffset(),
-                    if (ops.get(1) is NumberLiteral && (ops.get(1) as NumberLiteral).getNumber().intValue() == 0)
+                    if (ops.get(1) is NumberLiteral && (ops.get(1) as NumberLiteral).getNumber().toInt() == 0)
                         ops.get(1).getTextRange().getEndOffset()
                     else
                         ops.get(1).getTextRange().getStartOffset()
@@ -41,7 +41,7 @@ class Slice(
             )
         )
         if (ops.get(1) is NumberLiteral &&
-            (ops.get(1) as NumberLiteral).getNumber().intValue() < 0 &&
+            (ops.get(1) as NumberLiteral).getNumber().toInt() < 0 &&
             document.getText(
                 TextRange.create(
                     ops.get(1).getTextRange().getStartOffset() + 1,
@@ -74,7 +74,7 @@ class Slice(
                 )
             )
             if (ops.get(2) is NumberLiteral &&
-                (ops.get(2) as NumberLiteral).getNumber().intValue() < 0 &&
+                (ops.get(2) as NumberLiteral).getNumber().toInt() < 0 &&
                 document.getText(
                     TextRange.create(
                         ops.get(2).getTextRange().getStartOffset() + 1,

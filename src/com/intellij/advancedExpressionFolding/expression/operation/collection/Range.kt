@@ -8,8 +8,6 @@ import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiElement
 import java.util.ArrayList
 import java.util.Collections
-import java.util.HashSet
-import java.util.Set
 
 class Range(
     element: PsiElement,
@@ -157,14 +155,12 @@ class Range(
     companion object {
         const val RANGE_COMMA_DELIMITER: String = ", "
         const val RANGE_IN_SEPARATOR: String = "in"
-        private val SUPPORTED_OVERLAPPED_SYMBOLS: Set<String> = object : HashSet<String>() {
-            init {
-                add(" ")
-                add("&")
-                add("|")
-                add("(")
-                add(")")
-            }
-        }
+        private val SUPPORTED_OVERLAPPED_SYMBOLS: Set<String> = hashSetOf(
+            " ",
+            "&",
+            "|",
+            "(",
+            ")"
+        )
     }
 }

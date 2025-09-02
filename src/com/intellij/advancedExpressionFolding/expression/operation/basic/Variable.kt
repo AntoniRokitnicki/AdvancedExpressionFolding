@@ -22,7 +22,7 @@ class Variable(
     private var copy: Boolean = copy
     private var variableTextRange: TextRange? = variableTextRange
 
-    fun getName(): String {
+    override fun getName(): String {
         return name
     }
 
