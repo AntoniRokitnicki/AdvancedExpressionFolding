@@ -9,7 +9,7 @@ import com.intellij.psi.PsiElement
 import java.util.ArrayList
 import java.util.Collections
 
-class Range(
+open class Range(
     element: PsiElement,
     textRange: TextRange,
     operand: Expression,
