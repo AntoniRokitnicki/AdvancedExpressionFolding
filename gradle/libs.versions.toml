@@ -5,7 +5,7 @@ junit = "5.13.4"
 jackson = "2.20.0"
 jsr305 = "3.0.2"
 pioneer = "2.3.0"
-lombok = "1.18.38"
+lombok = "1.18.40"
 kodein = "7.26.1"
 # plugins
 changelog = "2.4.0"
