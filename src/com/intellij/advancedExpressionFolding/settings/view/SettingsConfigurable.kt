@@ -16,9 +16,12 @@ import com.intellij.openapi.ui.DialogPanel
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.openapi.vfs.encoding.EncodingProjectManager
 import com.intellij.ui.JBColor
+import com.intellij.ui.DocumentAdapter
+import com.intellij.ui.SearchTextField
 import com.intellij.ui.components.ActionLink
 import com.intellij.ui.components.JBCheckBox
 import com.intellij.ui.dsl.builder.Panel
+import com.intellij.ui.dsl.builder.Row
 import com.intellij.ui.dsl.builder.panel
 import java.awt.Color.decode
 import java.awt.FlowLayout
@@ -33,6 +36,7 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
     private val allExampleFiles = mutableSetOf<ExampleFile>()
     private val pendingChanges = mutableMapOf<KMutableProperty0<Boolean>, Boolean>()
     private val propertyToCheckbox = mutableMapOf<KMutableProperty0<Boolean>, JBCheckBox>()
+    private val propertyToRows = mutableMapOf<KMutableProperty0<Boolean>, List<Row>>()
 
     override fun getId() = "advanced.expression.folding"
 
@@ -106,6 +110,15 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
         row {
             cell(createDownloadExamplesLink())
         }
+        row {
+            val searchField = SearchTextField()
+            searchField.addDocumentListener(object : DocumentAdapter() {
+                override fun textChanged(e: javax.swing.event.DocumentEvent) {
+                    applyFilter(searchField.text)
+                }
+            })
+            cell(searchField)
+        }
         initialize(state)
     }.also {
         panel = it
@@ -129,6 +142,17 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
         propertyToCheckbox.forEach { (property, checkbox) ->
             checkbox.isSelected = property.get()
         }
+    }
+
+    private fun applyFilter(filter: String) {
+        val needle = filter.lowercase()
+        propertyToRows.forEach { (property, rows) ->
+            val checkbox = propertyToCheckbox[property] ?: return@forEach
+            val visible = checkbox.text.lowercase().contains(needle)
+            rows.forEach { it.visible(visible) }
+        }
+        panel.revalidate()
+        panel.repaint()
     }
 
     private fun firstSourceRoot(project: Project) =
@@ -183,17 +207,17 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
             pendingChanges[property] = checkbox.isSelected
         }
         propertyToCheckbox[property] = checkbox
-        
-        row {
+
+        val definition = builder.build(property, title)
+        val checkboxRow = row {
             cell(checkbox)
         }
-        
-        val definition = builder.build(property, title)
+        var exampleRow: Row? = null
         if (definition.exampleLinkMap != null || definition.docLink != null) {
-            row {
+            exampleRow = row {
                 cell(createExamplePanel(definition.exampleLinkMap, definition.docLink))
             }
         }
-
+        propertyToRows[property] = listOfNotNull(checkboxRow, exampleRow)
     }
 }
