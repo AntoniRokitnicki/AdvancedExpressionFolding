@@ -114,6 +114,8 @@ jobs:
         !contains(github.event.pull_request.body  || '', '[skip ci]')
       )
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Fetch Sources
         uses: actions/checkout@v5
