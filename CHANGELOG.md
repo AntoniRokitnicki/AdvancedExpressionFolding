@@ -4,6 +4,8 @@
 
 ## [Unreleased]
 
+- update JUnit to 6.0.0-RC2
+
 ## [4.0.0] - 2025-07-15
 
 - [[pseudo-annotations] @Main - method-level annotation that generates a main method invoking the annotated method.](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/PseudoAnnotations)
