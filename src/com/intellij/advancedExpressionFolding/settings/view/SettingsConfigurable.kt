@@ -13,6 +13,7 @@ import com.intellij.openapi.fileEditor.FileEditorManager
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.roots.ProjectRootManager
 import com.intellij.openapi.ui.DialogPanel
+import com.intellij.openapi.ui.Messages
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.openapi.vfs.encoding.EncodingProjectManager
 import com.intellij.ui.JBColor
@@ -48,8 +49,8 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
             val description = "example$suffix"
 
             val actionLink = ActionLink(description) {
-                val project = selectedProject()
-                val sourceRoot = firstSourceRoot(project)
+                val project = selectedProject() ?: return@ActionLink
+                val sourceRoot = firstSourceRoot(project) ?: return@ActionLink
 
                 WriteCommandAction.runWriteCommandAction(project) {
                     val directory = sourceRoot.getOrCreatePackageDir()
@@ -77,8 +78,8 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
 
     private fun createDownloadExamplesLink(): ActionLink {
         val actionLink = ActionLink("Checkout Examples to Current Project") {
-            val project = selectedProject()
-            val sourceRoot = firstSourceRoot(project)
+            val project = selectedProject() ?: return@ActionLink
+            val sourceRoot = firstSourceRoot(project) ?: return@ActionLink
 
             WriteCommandAction.runWriteCommandAction(project) {
                 val directory = sourceRoot.getOrCreatePackageDir()
@@ -131,10 +132,21 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
         }
     }
 
-    private fun firstSourceRoot(project: Project) =
-        ProjectRootManager.getInstance(project).contentSourceRoots.firstOrNull() ?: TODO("No sourceRoot found")
+    private fun firstSourceRoot(project: Project): VirtualFile? {
+        val sourceRoot = ProjectRootManager.getInstance(project).contentSourceRoots.firstOrNull()
+        if (sourceRoot == null) {
+            Messages.showErrorDialog(project, "No source root found", "Advanced Expression Folding")
+        }
+        return sourceRoot
+    }
 
-    private fun selectedProject(): Project = ProjectUtil.getActiveProject() ?: TODO("No project is opened")
+    private fun selectedProject(): Project? {
+        val project = ProjectUtil.getActiveProject()
+        if (project == null) {
+            Messages.showErrorDialog("No project is opened", "Advanced Expression Folding")
+        }
+        return project
+    }
 
     private fun createFile(
         directory: VirtualFile,
