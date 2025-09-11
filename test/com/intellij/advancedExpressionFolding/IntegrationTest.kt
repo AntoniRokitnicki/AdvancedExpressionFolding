@@ -123,6 +123,46 @@ class IntegrationTest {
         }
     }
 
+    @Test
+    fun `global toggle folding action switches setting`() {
+        val init = init("globalToggleFolding")
+        init.runIdeWithDriver().useDriverAndCloseIde {
+            execute {
+                it.importGradleProject()
+                it.awaitCompleteProjectConfiguration()
+                it.waitForSmartMode()
+            }
+
+            check(service<SettingsStub>().getState().globalOn) { "globalOn should start enabled" }
+
+            execute { it.searchEverywhere(textToType = "Advanced Folding: Global", selectFirst = true) }
+            wait()
+            check(!service<SettingsStub>().getState().globalOn) { "globalOn should be disabled after toggle" }
+
+            execute { it.searchEverywhere(textToType = "Advanced Folding: Global", selectFirst = true) }
+            wait()
+            check(service<SettingsStub>().getState().globalOn) { "globalOn should be re-enabled after second toggle" }
+        }
+    }
+
+    @Test
+    fun `find methods with default parameters action shows usage results`() {
+        val init = init("findMethodsWithDefaultParameters")
+        init.runIdeWithDriver().useDriverAndCloseIde {
+            execute {
+                it.importGradleProject()
+                it.awaitCompleteProjectConfiguration()
+                it.waitForSmartMode()
+            }
+
+            execute { it.searchEverywhere(textToType = "Find Methods with Default Parameters", selectFirst = true) }
+            wait()
+
+            val usageCount = service<UsageViewManagerStub>().getSelectedUsageView()?.getUsagesCount() ?: 0
+            check(usageCount > 0) { "Expected to find usages but found $usageCount" }
+        }
+    }
+
     private fun Driver.startZenMode() {
         execute {
             it.searchEverywhere(textToType = "Zen Mode", selectFirst = true)
