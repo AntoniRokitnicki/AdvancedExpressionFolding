@@ -16,6 +16,7 @@ qodana = "2024.3.4"
 lombok-plugin = "8.14.2"
 commons-lang3 = "3.18.0"
 slf4j = "2.0.17"
+mockk = "1.13.13"
 
 [libraries]
 annotations = { group = "org.jetbrains", name = "annotations", version.ref = "annotations" }
@@ -30,6 +31,7 @@ kodein-di-conf = { group = "org.kodein.di", name = "kodein-di-conf-jvm", version
 lombok = { module = "org.projectlombok:lombok", version.ref = "lombok" }
 commons-lang3 = { module = "org.apache.commons:commons-lang3", version.ref = "commons-lang3" }
 slf4j-api = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
+mockk = { group = "io.mockk", name = "mockk-jvm", version.ref = "mockk" }
 
 
 [plugins]
