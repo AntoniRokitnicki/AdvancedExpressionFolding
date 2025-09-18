@@ -10,7 +10,7 @@ kodein = "7.26.1"
 # plugins
 changelog = "2.4.0"
 intelliJPlatform = "2.6.0"
-kotlin = "2.2.10"
+kotlin = "2.2.20"
 kover = "0.9.2"
 qodana = "2024.3.4"
 lombok-plugin = "8.14.2"
