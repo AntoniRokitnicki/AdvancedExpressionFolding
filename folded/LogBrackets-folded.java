@@ -83,9 +83,8 @@ public class LogBrackets {
         System.out.println("Additional 2 parameters - Name: $name".formatted( data, logPrintfStyle(data)));
 
         // 7. Text Block examples (Java 15+)
-        log.error("""
-                Missing 1 parameter - 1: $name, 2: $age, 3: $city, empty: %s
-                """);
+        log.error("Missing 1 parameter - 1: %s, 2: %d, 3: %s, empty: %s
+", name, age, city);
         return data;
     }
 
