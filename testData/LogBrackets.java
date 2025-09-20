@@ -93,10 +93,9 @@ public class LogBrackets {
         System.out.println("Additional 2 parameters - Name: <fold text='$' expand='false'>%s".formatted(</fold>name<fold text='".formatted(' expand='false'>,</fold> data, logPrintfStyle(data)));
 
         // 7. Text Block examples (Java 15+)
-        log.error(<fold text='"Missing 1 parameter - 1: %s, 2: %d, 3: %s, empty: %s
-"' expand='false'>"""
+        log.error("""
                 Missing 1 parameter - 1: %s, 2: %d, 3: %s, empty: %s
-                """</fold>, name, age, city);
+                """, name, age, city);
         return data;
     }</fold>
 
