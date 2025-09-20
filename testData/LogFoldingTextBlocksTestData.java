@@ -11,12 +11,13 @@ import java.io.PrintWriter;
 import java.util.Formatter;</fold>
 
 @SuppressWarnings("ALL")
-public class LogBrackets {
+public class LogFoldingTextBlocksTestData {
 
-    private static final Logger log = LoggerFactory.getLogger(LogBrackets.class);
+    private static final Logger log = LoggerFactory.getLogger(LogFoldingTextBlocksTestData.class);
+
     private static final Marker MY_MARKER = MarkerFactory.getMarker("MY_MARKER");
 
-    public Data logPrintfStyle(Data data) <fold text='{...}' expand='true'>{
+    public LogBrackets.Data logPrintfStyle(LogBrackets.Data data) <fold text='{...}' expand='true'>{
         String name = "John";
         int age = 30;
         String city = "New York";
@@ -29,7 +30,7 @@ public class LogBrackets {
 
 
         log.debug("Debug message with 1 parameter - Name: " + name);
-        log.trace("Trace message - Name: <fold text='${' expand='false'>%s, log:%s    $", </fold>data.<fold text='name' expand='false'>getName()<fold text='}, log:${' expand='false'></fold>, </fold>logPrintfStyle(data)<fold text='}    $")' expand='false'>)</fold>;
+        log.trace("Trace message - Name: <fold text='${' expand='false'>%s, log:%s    $", </fold>data.<fold text='name' expand='false'>getName()</fold><fold text='}, log:${' expand='false'>, </fold>logPrintfStyle(data)<fold text='}    $")' expand='false'>)</fold>;
         log.warn("Warning message with three parameters - Name: <fold text='$' expand='false'>%s, Age: %s, City: %s", </fold>name<fold text=', Age: ${' expand='false'>, </fold>data.<fold text='data' expand='false'>getData()</fold>.<fold text='name' expand='false'>getName()</fold><fold text='}, City: $' expand='false'>, </fold>city<fold text='")' expand='false'>)</fold>;
 
         log.error("Missing 1 parameter - 1: <fold text='$' expand='false'>%s, 2: %d, 3: %s, empty: %s", </fold>name<fold text=', 2: $' expand='false'>, </fold>age<fold text=', 3: $' expand='false'>, </fold>city<fold text=', empty: %s")' expand='false'>)</fold>;
@@ -93,22 +94,22 @@ public class LogBrackets {
         System.out.println("Additional 2 parameters - Name: <fold text='$' expand='false'>%s".formatted(</fold>name<fold text='".formatted(' expand='false'>,</fold> data, logPrintfStyle(data)));
 
         // 7. Text Block examples (Java 15+)
-        log.error(<fold text='"Missing 1 parameter - 1: %s, 2: %d, 3: %s, empty: %s
-"' expand='false'>"""
-                Missing 1 parameter - 1: %s, 2: %d, 3: %s, empty: %s
-                """</fold>, name, age, city);
+        log.error("""
+                Missing 1 parameter - 1: <fold text='$' expand='false'>%s, 2: %d, 3: %s, empty: %s
+                """, </fold>name<fold text=', 2: $' expand='false'>, </fold>age<fold text=', 3: $' expand='false'>, </fold>city<fold text=', empty: %s
+                """)' expand='false'>)</fold>;
         return data;
     }</fold>
 
     public static class Data <fold text='{...}' expand='true'>{
-        private Data data;
+        private LogBrackets.Data data;
         private String name;
 
         public String getName()<fold text=' { ' expand='false'> {
             </fold>return name;<fold text=' }' expand='false'>
         }</fold>
 
-        public Data getData()<fold text=' { ' expand='false'> {
+        public LogBrackets.Data getData()<fold text=' { ' expand='false'> {
             </fold>return data;<fold text=' }' expand='false'>
         }</fold>
     }</fold>
