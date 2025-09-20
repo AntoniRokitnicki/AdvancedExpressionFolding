@@ -11,7 +11,7 @@ import java.io.PrintWriter;
 import java.util.Formatter;
 
 @SuppressWarnings("ALL")
-public class LogBrackets {
+public class LogFoldingTextBlocksTestData {
 
     private static final Logger log = LoggerFactory.getLogger(LogBrackets.class);
     private static final Marker MY_MARKER = MarkerFactory.getMarker("MY_MARKER");
