@@ -4,9 +4,10 @@
 
 ## [Unreleased]
 
-## [4.1.0] - 2025-09-20
+## [4.2.0] - 2025-09-20
 
 - [Add setting to prevent collapsing Java text blocks in log folding](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/338)
+- [Bugfix/log folding strings no params](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/341)~~~~
 
 ## [4.0.0] - 2025-07-15
 
