@@ -46,6 +46,9 @@
 
 ## Unreleased ##
 
+## 4.1.0 ##
+- [Add setting to prevent collapsing Java text blocks in log folding](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/338)
+
 ## 4.0.0 ##
 
 - [[pseudo-annotations] @Main - method-level annotation that generates a main method invoking the annotated method.](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/PseudoAnnotations)
