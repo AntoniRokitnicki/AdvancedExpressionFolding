@@ -83,23 +83,9 @@ public class LogBrackets {
         System.out.println("Additional 2 parameters - Name: $name".formatted( data, logPrintfStyle(data)));
 
         // 7. Text Block examples (Java 15+)
-        String textBlockMessage = "Multi-line log with placeholders:
-Name: %s
-Age: %d
-City: %s
-";
-        log.info(textBlockMessage, name, age, city);
-
         log.error("""
                 Missing 1 parameter - 1: $name, 2: $age, 3: $city, empty: %s
                 """);
-
-        String formattedTextBlock = """
-                User summary:
-                - Name: $name
-                - City: $city
-                """.formatted();
-        log.debug("Text block formatted example: $formattedTextBlock");
         return data;
     }
 

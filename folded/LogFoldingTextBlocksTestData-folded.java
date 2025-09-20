@@ -13,10 +13,11 @@ import java.util.Formatter;
 @SuppressWarnings("ALL")
 public class LogFoldingTextBlocksTestData {
 
-    private static final Logger log = LoggerFactory.getLogger(LogBrackets.class);
+    private static final Logger log = LoggerFactory.getLogger(LogFoldingTextBlocksTestData.class);
+
     private static final Marker MY_MARKER = MarkerFactory.getMarker("MY_MARKER");
 
-    public Data logPrintfStyle(Data data) {
+    public LogBrackets.Data logPrintfStyle(LogBrackets.Data data) {
         String name = "John";
         int age = 30;
         String city = "New York";
@@ -83,35 +84,21 @@ public class LogFoldingTextBlocksTestData {
         System.out.println("Additional 2 parameters - Name: $name".formatted( data, logPrintfStyle(data)));
 
         // 7. Text Block examples (Java 15+)
-        String textBlockMessage = "Multi-line log with placeholders:
-Name: %s
-Age: %d
-City: %s
-";
-        log.info(textBlockMessage, name, age, city);
-
         log.error("""
                 Missing 1 parameter - 1: $name, 2: $age, 3: $city, empty: %s
                 """);
-
-        String formattedTextBlock = """
-                User summary:
-                - Name: $name
-                - City: $city
-                """.formatted();
-        log.debug("Text block formatted example: $formattedTextBlock");
         return data;
     }
 
     public static class Data {
-        private Data data;
+        private LogBrackets.Data data;
         private String name;
 
         public String getName() {
             return name;
         }
 
-        public Data getData() {
+        public LogBrackets.Data getData() {
             return data;
         }
     }

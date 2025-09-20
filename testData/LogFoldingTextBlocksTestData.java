@@ -13,10 +13,11 @@ import java.util.Formatter;</fold>
 @SuppressWarnings("ALL")
 public class LogFoldingTextBlocksTestData {
 
-    private static final Logger log = LoggerFactory.getLogger(LogBrackets.class);
+    private static final Logger log = LoggerFactory.getLogger(LogFoldingTextBlocksTestData.class);
+
     private static final Marker MY_MARKER = MarkerFactory.getMarker("MY_MARKER");
 
-    public Data logPrintfStyle(Data data) <fold text='{...}' expand='true'>{
+    public LogBrackets.Data logPrintfStyle(LogBrackets.Data data) <fold text='{...}' expand='true'>{
         String name = "John";
         int age = 30;
         String city = "New York";
@@ -93,43 +94,22 @@ public class LogFoldingTextBlocksTestData {
         System.out.println("Additional 2 parameters - Name: <fold text='$' expand='false'>%s".formatted(</fold>name<fold text='".formatted(' expand='false'>,</fold> data, logPrintfStyle(data)));
 
         // 7. Text Block examples (Java 15+)
-        String textBlockMessage = <fold text='"Multi-line log with placeholders:
-Name: %s
-Age: %d
-City: %s
-"' expand='false'>"""
-                Multi-line log with placeholders:
-                Name: %s
-                Age: %d
-                City: %s
-                """</fold>;
-        log.info(textBlockMessage, name, age, city);
-
         log.error("""
                 Missing 1 parameter - 1: <fold text='$' expand='false'>%s, 2: %d, 3: %s, empty: %s
                 """, </fold>name<fold text=', 2: $' expand='false'>, </fold>age<fold text=', 3: $' expand='false'>, </fold>city<fold text=', empty: %s
                 """)' expand='false'>)</fold>;
-
-        String formattedTextBlock = """
-                User summary:
-                - Name: <fold text='$' expand='false'>%s
-                - City: %s
-                """.formatted(</fold>name<fold text='
-                - City: $' expand='false'>, </fold>city<fold text='
-                """.formatted()' expand='false'>)</fold>;
-        log.debug("Text block formatted example: <fold text='$' expand='false'>{}", </fold>formattedTextBlock<fold text='")' expand='false'>)</fold>;
         return data;
     }</fold>
 
     public static class Data <fold text='{...}' expand='true'>{
-        private Data data;
+        private LogBrackets.Data data;
         private String name;
 
         public String getName()<fold text=' { ' expand='false'> {
             </fold>return name;<fold text=' }' expand='false'>
         }</fold>
 
-        public Data getData()<fold text=' { ' expand='false'> {
+        public LogBrackets.Data getData()<fold text=' { ' expand='false'> {
             </fold>return data;<fold text=' }' expand='false'>
         }</fold>
     }</fold>

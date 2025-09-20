@@ -27,16 +27,9 @@ public class StringBuilderTestData {
                 String arg = args[i];
         sb3<fold text=' += ' expand='false'>.append(</fold>arg<fold text='' expand='false'>)</fold>;
         if (i < args.length - 1) <fold text='{...}' expand='true'>{
-        sb3<fold text=' += ' expand='false'>.append(</fold>","<fold text=' + ' expand='false'>).append(</fold>" "<fold text='' expand='false'>)</fold>;
+                sb3<fold text=' += ' expand='false'>.append(</fold>","<fold text=' + ' expand='false'>).append(</fold>" "<fold text='' expand='false'>)</fold>;
             }</fold>
         }</fold>
                 System.out.println(sb3<fold text='' expand='false'>.toString()</fold>);
-        String str = "hello";
-        System.out.println(str<fold text='[' expand='false'>.charAt(</fold>0<fold text=']' expand='false'>)</fold>);
-        int i = 2;
-        System.out.println(str<fold text='[' expand='false'>.charAt(</fold>i<fold text=']' expand='false'>)</fold>);
-        System.out.println(
-                str<fold text='[' expand='false'>.charAt(</fold>str.length() - 1<fold text=']' expand='false'>)</fold>
-        );
     }</fold>
 }
