@@ -15,16 +15,21 @@ import com.intellij.openapi.roots.ProjectRootManager
 import com.intellij.openapi.ui.DialogPanel
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.openapi.vfs.encoding.EncodingProjectManager
+import com.intellij.ui.DocumentAdapter
 import com.intellij.ui.JBColor
+import com.intellij.ui.SearchTextField
 import com.intellij.ui.components.ActionLink
 import com.intellij.ui.components.JBCheckBox
+import com.intellij.ui.dsl.builder.AlignX
 import com.intellij.ui.dsl.builder.Panel
+import com.intellij.ui.dsl.builder.Row
 import com.intellij.ui.dsl.builder.panel
 import java.awt.Color.decode
 import java.awt.FlowLayout
 import java.net.URI
 import javax.swing.JButton
 import javax.swing.JPanel
+import javax.swing.event.DocumentEvent
 import kotlin.reflect.KMutableProperty0
 
 class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
@@ -33,6 +38,8 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
     private val allExampleFiles = mutableSetOf<ExampleFile>()
     private val pendingChanges = mutableMapOf<KMutableProperty0<Boolean>, Boolean>()
     private val propertyToCheckbox = mutableMapOf<KMutableProperty0<Boolean>, JBCheckBox>()
+    private val propertyToRows = mutableMapOf<KMutableProperty0<Boolean>, List<Row>>()
+    private lateinit var searchField: SearchTextField
 
     override fun getId() = "advanced.expression.folding"
 
@@ -93,22 +100,38 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
         return actionLink
     }
 
-    override fun createComponent() = panel {
-        row {
-            val button =
-                JButton("Apply folded color: ${if (!JBColor.isBright()) "soft blue" else "dark navy"}")
-            button.foreground = if (!JBColor.isBright()) decode("#7ca0bb") else decode("#000091")
-            button.addActionListener {
-                UpdateFoldedTextColorsAction.changeFoldingColors()
+    override fun createComponent(): DialogPanel {
+        propertyToCheckbox.clear()
+        propertyToRows.clear()
+        return panel {
+            row {
+                val button =
+                    JButton("Apply folded color: ${if (!JBColor.isBright()) "soft blue" else "dark navy"}")
+                button.foreground = if (!JBColor.isBright()) decode("#7ca0bb") else decode("#000091")
+                button.addActionListener {
+                    UpdateFoldedTextColorsAction.changeFoldingColors()
+                }
+                cell(button)
             }
-            cell(button)
+            row {
+                cell(createDownloadExamplesLink())
+            }
+            row {
+                searchField = SearchTextField()
+                searchField.textEditor.emptyText.text = "Filter options"
+                searchField.addDocumentListener(object : DocumentAdapter() {
+                    override fun textChanged(event: DocumentEvent) {
+                        applyFilter(searchField.text)
+                    }
+                })
+                cell(searchField)
+                    .align(AlignX.FILL)
+                    .resizableColumn()
+            }
+            initialize(state)
+        }.also { createdPanel ->
+            panel = createdPanel
         }
-        row {
-            cell(createDownloadExamplesLink())
-        }
-        initialize(state)
-    }.also {
-        panel = it
     }
 
     override fun isModified(): Boolean {
@@ -126,6 +149,9 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
 
     override fun reset() {
         pendingChanges.clear()
+        if (this::searchField.isInitialized) {
+            searchField.text = ""
+        }
         propertyToCheckbox.forEach { (property, checkbox) ->
             checkbox.isSelected = property.get()
         }
@@ -164,8 +190,31 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
         fileEditorManager.openFile(this, true)
     }
 
+    private fun applyFilter(query: String) {
+        val tokens = query
+            .trim()
+            .lowercase()
+            .split(Regex("\\s+"))
+            .filter { it.isNotEmpty() }
+
+        propertyToCheckbox.forEach { (property, checkbox) ->
+            val data = checkbox.getClientProperty(CHECKBOX_FILTER_DATA_PROPERTY) as? CheckboxFilterData
+            val matches = data?.matches(tokens) ?: tokens.isEmpty()
+            propertyToRows[property]?.forEach { row ->
+                row.visible(matches)
+            }
+        }
+
+        if (this::panel.isInitialized) {
+            panel.revalidate()
+            panel.repaint()
+        }
+    }
+
     companion object {
         private const val EXAMPLE_DIR = "data"
+        private const val CHECKBOX_FILTER_DATA_PROPERTY =
+            "AdvancedExpressionFolding.SettingsConfigurable.filterData"
     }
     
     @CheckboxDsl
@@ -176,24 +225,59 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
     ) {
         val builder = CheckboxBuilder()
         block?.invoke(builder)
-        
-        val checkbox = JBCheckBox(title)
+        val definition = builder.build(property, title)
+
+        val checkbox = JBCheckBox(definition.title)
         checkbox.isSelected = property.get()
         checkbox.addActionListener {
             pendingChanges[property] = checkbox.isSelected
         }
         propertyToCheckbox[property] = checkbox
-        
-        row {
+        checkbox.putClientProperty(
+            CHECKBOX_FILTER_DATA_PROPERTY,
+            CheckboxFilterData.from(definition.title, definition.keywords)
+        )
+
+        val rows = mutableListOf<Row>()
+        val checkboxRow = row {
             cell(checkbox)
         }
-        
-        val definition = builder.build(property, title)
+        rows += checkboxRow
+
         if (definition.exampleLinkMap != null || definition.docLink != null) {
-            row {
+            val additionalRow = row {
                 cell(createExamplePanel(definition.exampleLinkMap, definition.docLink))
             }
+            rows += additionalRow
         }
 
+        propertyToRows[property] = rows
+
+        applyFilter(searchField.text)
+    }
+}
+
+private data class CheckboxFilterData(
+    val label: String,
+    val keywords: Set<String>
+) {
+    private val searchableValues: Set<String> = buildSet {
+        add(label.lowercase())
+        keywords.mapTo(this) { it.lowercase() }
+    }
+
+    fun matches(tokens: List<String>): Boolean {
+        if (tokens.isEmpty()) return true
+        return tokens.all { token ->
+            searchableValues.any { value ->
+                value.contains(token)
+            }
+        }
+    }
+
+    companion object {
+        fun from(label: String, keywords: Set<String>): CheckboxFilterData {
+            return CheckboxFilterData(label, keywords)
+        }
     }
 }
