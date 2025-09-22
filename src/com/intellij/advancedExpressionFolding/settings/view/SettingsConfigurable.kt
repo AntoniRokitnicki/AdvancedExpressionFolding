@@ -20,6 +20,9 @@ import com.intellij.ui.components.ActionLink
 import com.intellij.ui.components.JBCheckBox
 import com.intellij.ui.dsl.builder.Panel
 import com.intellij.ui.dsl.builder.panel
+import com.intellij.advancedExpressionFolding.settings.view.ExampleFile
+import com.intellij.advancedExpressionFolding.settings.view.Description
+import com.intellij.advancedExpressionFolding.settings.view.UrlSuffix
 import java.awt.Color.decode
 import java.awt.FlowLayout
 import java.net.URI
@@ -27,7 +30,7 @@ import javax.swing.JButton
 import javax.swing.JPanel
 import kotlin.reflect.KMutableProperty0
 
-class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
+open class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
     private val state = AdvancedExpressionFoldingSettings.getInstance().state
     private lateinit var panel: DialogPanel
     private val allExampleFiles = mutableSetOf<ExampleFile>()
@@ -40,7 +43,10 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
 
     override fun getHelpTopic() = null
 
-    private fun createExamplePanel(examples: Map<ExampleFile, Description?>? = null, docLink: UrlSuffix? = null): JPanel {
+    protected open fun createExamplePanel(
+        examples: Map<ExampleFile, Description?>? = null,
+        docLink: UrlSuffix? = null
+    ): JPanel {
         val panel = JPanel(FlowLayout(FlowLayout.LEFT))
 
         examples?.forEach { (file, desc) ->
@@ -52,8 +58,10 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
                 val sourceRoot = firstSourceRoot(project)
 
                 WriteCommandAction.runWriteCommandAction(project) {
-                    val directory = sourceRoot.getOrCreatePackageDir()
-                    createFile(directory, file, project)?.open(project)
+                    val directory = getOrCreatePackageDir(sourceRoot)
+                    createFile(directory, file, project)?.let { created ->
+                        openFile(created, project)
+                    }
                 }
             }
             actionLink.setIcon(AllIcons.Actions.CheckOut, true)
@@ -66,7 +74,7 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
 
         docLink?.let {
             val actionLink = ActionLink("doc") {
-                BrowserUtil.browse(URI(docLink))
+                browseDocumentation(URI(docLink))
             }
             actionLink.setExternalLinkIcon()
             panel.add(actionLink)
@@ -81,7 +89,7 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
             val sourceRoot = firstSourceRoot(project)
 
             WriteCommandAction.runWriteCommandAction(project) {
-                val directory = sourceRoot.getOrCreatePackageDir()
+                val directory = getOrCreatePackageDir(sourceRoot)
                 allExampleFiles.forEach {
                     createFile(directory, it, project)
                 }
@@ -131,12 +139,12 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
         }
     }
 
-    private fun firstSourceRoot(project: Project) =
+    protected open fun firstSourceRoot(project: Project) =
         ProjectRootManager.getInstance(project).contentSourceRoots.firstOrNull() ?: TODO("No sourceRoot found")
 
-    private fun selectedProject(): Project = ProjectUtil.getActiveProject() ?: TODO("No project is opened")
+    protected open fun selectedProject(): Project = ProjectUtil.getActiveProject() ?: TODO("No project is opened")
 
-    private fun createFile(
+    protected open fun createFile(
         directory: VirtualFile,
         file: ExampleFile,
         project: Project
@@ -152,16 +160,19 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
             }
     }
 
-    private fun VirtualFile.getOrCreatePackageDir(): VirtualFile {
-        val directory = this.findChild(EXAMPLE_DIR)?.takeIf {
+    protected open fun getOrCreatePackageDir(directory: VirtualFile): VirtualFile {
+        return directory.findChild(EXAMPLE_DIR)?.takeIf {
             it.exists()
-        } ?: this.createChildDirectory(null, EXAMPLE_DIR)
-        return directory
+        } ?: directory.createChildDirectory(null, EXAMPLE_DIR)
     }
 
-    private fun VirtualFile.open(project: Project) {
+    protected open fun openFile(file: VirtualFile, project: Project) {
         val fileEditorManager = FileEditorManager.getInstance(project)
-        fileEditorManager.openFile(this, true)
+        fileEditorManager.openFile(file, true)
+    }
+
+    protected open fun browseDocumentation(uri: URI) {
+        BrowserUtil.browse(uri)
     }
 
     companion object {
