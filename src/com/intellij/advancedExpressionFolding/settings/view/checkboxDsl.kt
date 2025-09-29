@@ -1,6 +1,7 @@
 package com.intellij.advancedExpressionFolding.settings.view
 
 import kotlin.reflect.KMutableProperty0
+import javax.swing.Icon
 
 @DslMarker
 annotation class CheckboxDsl
@@ -13,13 +14,15 @@ data class CheckboxDefinition(
     val title: String,
     val property: KMutableProperty0<Boolean>,
     val exampleLinkMap: Map<ExampleFile, Description?>? = null,
-    val docLink: UrlSuffix? = null
+    val docLink: UrlSuffix? = null,
+    val icon: Icon? = null,
 )
 
 @CheckboxDsl
 class CheckboxBuilder {
     private val examples = mutableMapOf<ExampleFile, Description?>()
     private var docLink: UrlSuffix? = null
+    private var icon: Icon? = null
 
     fun example(file: ExampleFile, description: Description? = null) {
         examples[file] = description
@@ -27,6 +30,10 @@ class CheckboxBuilder {
 
     fun link(documentationLink: UrlSuffix) {
         docLink = documentationLink
+    }
+
+    fun icon(icon: Icon) {
+        this.icon = icon
     }
 
     internal fun build(
@@ -37,7 +44,8 @@ class CheckboxBuilder {
             title = title,
             property = property,
             exampleLinkMap = if (examples.isEmpty()) null else examples.toMap(),
-            docLink = docLink
+            docLink = docLink,
+            icon = icon,
         )
     }
 
