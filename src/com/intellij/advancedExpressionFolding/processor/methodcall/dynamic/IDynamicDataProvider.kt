@@ -17,8 +17,16 @@ interface IDynamicDataProvider {
 
     fun parseToml(text: String): List<DynamicMethodCall> {
         val listOfMaps = objectMapper.parseTomlValues(text)
-        return listOfMaps?.map {
-            DynamicMethodCall(DynamicMethodCallData(it))
+        return listOfMaps?.mapNotNull { entry ->
+            val method = entry["method"]
+            val newName = entry["newName"]
+
+            if (method.isNullOrBlank() || newName.isNullOrBlank()) {
+                logger.warn("Skipping dynamic method entry missing required keys: $entry")
+                null
+            } else {
+                DynamicMethodCall(DynamicMethodCallData(entry))
+            }
         } ?: emptyList()
     }
 
