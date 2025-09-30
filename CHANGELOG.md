@@ -4,6 +4,11 @@
 
 ## [Unreleased]
 
+## [4.2.0] - 2025-09-20
+
+- [Add setting to prevent collapsing Java text blocks in log folding](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/338)
+- [Bugfix/log folding strings no params](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/341)~~~~
+
 ## [4.0.0] - 2025-07-15
 
 - [[pseudo-annotations] @Main - method-level annotation that generates a main method invoking the annotated method.](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/PseudoAnnotations)
@@ -329,7 +334,8 @@ Improved handling of multi-line log messages
 
 ## [0.0.1]
 
-[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v4.0.0...HEAD
+[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v4.1.0...HEAD
+[4.1.0]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v4.0.0...v4.1.0
 [4.0.0]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v3.8.0...v4.0.0
 [3.8.0]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v3.7.0...v3.8.0
 [3.7.0]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v3.6.0...v3.7.0

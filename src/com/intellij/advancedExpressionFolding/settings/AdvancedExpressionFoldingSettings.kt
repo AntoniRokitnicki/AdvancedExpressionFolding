@@ -44,7 +44,10 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
         override var fieldShift: Boolean = true,
         override var kotlinQuickReturn: Boolean = true,
         override var ifNullSafe: Boolean = true,
+
         override var logFolding: Boolean = true,
+        override var logFoldingTextBlocks: Boolean = false,
+
         override var destructuring: Boolean = false,
         override var println: Boolean = true,
         override var const: Boolean = true,
