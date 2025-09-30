@@ -1,5 +1,6 @@
 package com.intellij.advancedExpressionFolding
 
+import com.intellij.advancedExpressionFolding.integration.FoldingSnapshot
 import com.intellij.advancedExpressionFolding.settings.IConfig
 import com.intellij.advancedExpressionFolding.settings.IState
 import com.intellij.driver.client.Remote
@@ -23,7 +24,7 @@ interface FoldingServiceStub {
     fun clearAllKeys()
 }
 
-@Remote("com.intellij.advancedExpressionFolding.FoldingIntegrationTestBridge", plugin = "com.github.advanced-java-folding2")
+@Remote("com.intellij.advancedExpressionFolding.integration.FoldingIntegrationTestBridge", plugin = "com.github.advanced-java-folding2")
 interface FoldingTestBridgeStub {
     fun snapshot(filePaths: List<String>): List<FoldingSnapshot>
     fun updateFoldRegions(filePaths: List<String>)

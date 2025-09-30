@@ -25,11 +25,7 @@ import com.intellij.ide.starter.runner.IDECommandLine
 import com.intellij.ide.starter.runner.Starter
 import com.intellij.ide.starter.screenRecorder.IDEScreenRecorder
 import com.intellij.tools.ide.performanceTesting.commands.*
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertNotEquals
-import org.junit.jupiter.api.Assertions.assertNotNull
-import org.junit.jupiter.api.Assertions.assertNull
-import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable
 import org.junit.jupiter.api.fail
@@ -201,8 +197,8 @@ class IntegrationTest {
                 execute { it.openFile(file) }
             }
 
-            val foldingBridge = service<FoldingTestBridgeStub>()
-            val foldingService = service<FoldingServiceStub>()
+            val foldingBridge = utility<FoldingTestBridgeStub>()
+            val foldingService = utility<FoldingServiceStub>()
 
             foldingBridge.updateFoldRegions(filesToCheck)
             wait()

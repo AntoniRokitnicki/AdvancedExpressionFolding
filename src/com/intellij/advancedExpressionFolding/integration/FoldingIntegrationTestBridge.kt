@@ -1,5 +1,6 @@
-package com.intellij.advancedExpressionFolding
+package com.intellij.advancedExpressionFolding.integration
 
+import com.intellij.advancedExpressionFolding.FoldingService
 import com.intellij.advancedExpressionFolding.processor.cache.Keys
 import com.intellij.codeInsight.folding.CodeFoldingManager
 import com.intellij.lang.folding.FoldingDescriptor
@@ -54,7 +55,7 @@ object FoldingIntegrationTestBridge {
         application.invokeAndWait {
             application.runWriteAction {
                 if (!editor.isDisposed) {
-                    FoldingService.get().fold(editor, collapse)
+                    FoldingService.Companion.get().fold(editor, collapse)
                 }
             }
         }
