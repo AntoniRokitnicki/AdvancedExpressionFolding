@@ -115,4 +115,4 @@ class AdvancedExpressionFoldingBuilder(private val config: IConfig = getInstance
     private val debugFolding = false
 }
 
-var store = EmptyStorage()
+var store: Storage = EmptyStorage

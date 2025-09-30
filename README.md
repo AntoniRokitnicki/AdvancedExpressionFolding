@@ -35,7 +35,7 @@
 <!-- Plugin description -->
 <p>Modern JVM languages such as Kotlin, Groovy, Scala and some others offer many language features that let you
   write code in a more concise and expressive manner. These features include type inference, properties,
-  interpolated string, range and tuple literals, enhanced operators, closures, implicits, smart casts and many more.</p>
+  interpolated strings, range and tuple literals, enhanced operators, closures, implicits, smart casts and many more.</p>
 
 <p>This plugin extends the IDE’s folding features to emulate some of these modern languages’ features helping
   fight verbosity.</p>
@@ -45,6 +45,10 @@
 <p>For more information, read the <a href="https://medium.com/@andrey_cheptsov/making-java-code-easier-to-read-without-changing-it-adeebd5c36de" target="_blank">blog post</a>.</p>
 
 ## Unreleased ##
+
+## 4.2.0 ##
+- [Add setting to prevent collapsing Java text blocks in log folding](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/338)
+- [Bugfix/log folding strings no params](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/341)
 
 ## 4.0.0 ##
 

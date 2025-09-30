@@ -17,9 +17,10 @@ class PrintlnTestData {
         println("Divided: " + "" + "into" + " multiple" + " " + "strings");
         println("Passed as parameter: " + string);
         println("Passed as parameter: " + this.getClass());
-        println("text
-block
-");
+        println("""
+                text
+                block
+                """);
     }
 
 }

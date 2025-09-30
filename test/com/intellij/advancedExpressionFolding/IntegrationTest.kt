@@ -102,7 +102,9 @@ class IntegrationTest {
                 it.waitForSmartMode()
             }
 
-            utility<ColorActionStub>().changeFoldingColors()
+            println("changeFoldingColors=" + runCatching {
+                changeFoldingColors()
+            }.exceptionOrNull())
             service<SettingsStub>().enableEverything()
             startZenMode()
 
@@ -122,6 +124,8 @@ class IntegrationTest {
             }
         }
     }
+
+    private fun Driver.changeFoldingColors() = utility<ColorActionStub>().changeFoldingColors()
 
     private fun Driver.startZenMode() {
         execute {
