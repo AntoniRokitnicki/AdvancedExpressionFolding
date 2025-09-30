@@ -3,6 +3,7 @@ package com.intellij.advancedExpressionFolding
 import com.intellij.driver.client.Driver
 import com.intellij.driver.client.service
 import com.intellij.driver.client.utility
+import com.intellij.driver.sdk.singleProject
 import com.intellij.driver.sdk.ui.components.common.IdeaFrameUI
 import com.intellij.driver.sdk.ui.components.common.ideFrame
 import com.intellij.driver.sdk.ui.components.elements.JCheckBoxUi
@@ -95,11 +96,7 @@ class IntegrationTest {
             recorder = IDEScreenRecorder(it)
             IDECommandLine.OpenTestCaseProject(init)
         }).useDriverAndCloseIde {
-            execute {
-                it.importGradleProject()
-                it.awaitCompleteProjectConfiguration()
-                it.waitForSmartMode()
-            }
+            setupProjectWithGradle()
 
             println("changeFoldingColors=" + runCatching {
                 changeFoldingColors()
@@ -121,6 +118,38 @@ class IntegrationTest {
                     println(error.stackTraceContent)
                 }
             }
+        }
+    }
+
+    @Test
+    fun `global toggle folding action switches setting`() {
+        val init = init("globalToggleFolding")
+        init.runIdeWithDriver().useDriverAndCloseIde {
+            setupProjectWithGradle()
+
+            check(service<SettingsStub>().getState().globalOn) { "globalOn should start enabled" }
+
+            execute { it.searchEverywhere(textToType = "Advanced Folding: Global", selectFirst = true) }
+            wait()
+            check(!service<SettingsStub>().getState().globalOn) { "globalOn should be disabled after toggle" }
+
+            execute { it.searchEverywhere(textToType = "Advanced Folding: Global", selectFirst = true) }
+            wait()
+            check(service<SettingsStub>().getState().globalOn) { "globalOn should be re-enabled after second toggle" }
+        }
+    }
+
+    @Test
+    fun `find methods with default parameters action shows usage results`() {
+        val init = init("findMethodsWithDefaultParameters")
+        init.runIdeWithDriver().useDriverAndCloseIde {
+            setupProjectWithGradle()
+
+            execute { it.searchEverywhere(textToInsert = "Find Methods with Default Parameters", selectFirst = true) }
+            wait()
+            wait()
+            val usageCount = service<UsageViewManagerStub>(singleProject()).getSelectedUsageView()?.getUsagesCount() ?: 0
+            check(usageCount > 0) { "Expected to find usages but found $usageCount" }
         }
     }
 
@@ -321,3 +350,12 @@ private fun init(testName: String): IDETestContext = Starter.newContext(
 }
 
 typealias ErrorFileName = String
+
+
+private fun Driver.setupProjectWithGradle() {
+    execute {
+        it.importGradleProject()
+        it.awaitCompleteProjectConfiguration()
+        it.waitForSmartMode()
+    }
+}

@@ -10,7 +10,7 @@ interface SettingsStub {
     fun getState(): ISettingsState
 }
 
-@Remote($$"com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings$State", plugin = "com.github.advanced-java-folding2")
+@Remote("com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings\$State", plugin = "com.github.advanced-java-folding2")
 interface ISettingsState : IState, IConfig
 
 @Remote("com.intellij.advancedExpressionFolding.action.UpdateFoldedTextColorsAction", plugin = "com.github.advanced-java-folding2")
@@ -22,4 +22,14 @@ interface ColorActionStub {
 interface FoldingIntegrationStub {
     fun toggleGlobalFolding(state: Boolean)
     fun countAdvancedFoldRegions(): Int
+}
+
+@Remote("com.intellij.usages.UsageViewManager", plugin = "com.intellij")
+interface UsageViewManagerStub {
+    fun getSelectedUsageView(): UsageViewStub?
+}
+
+@Remote("com.intellij.usages.UsageView", plugin = "com.intellij")
+interface UsageViewStub {
+    fun getUsagesCount(): Int
 }
