@@ -59,6 +59,9 @@ open class FoldingTest : BaseTest() {
     }
 
     /**
+     * Folds verbose null checks into Kotlin Elvis syntax, e.g. `e == null ? "" : e` and
+     * `e != null ? e.sayHello() : ""` collapse to `e ?: ""` and `e?.sayHello() ?: ""`.
+     *
      * [data.ElvisTestData]
      */
     @Test
@@ -67,6 +70,10 @@ open class FoldingTest : BaseTest() {
     }
 
     /**
+     * Replaces index-based iteration like `for (int i = 0; i < args.length; i++)` and
+     * length comparisons with Kotlin-style range loops and membership checks such as
+     * `for ((i, arg) : args)` and `if (args.length in (0, 2))`.
+     *
      * [data.ForRangeTestData]
      */
     @Test
@@ -75,6 +82,10 @@ open class FoldingTest : BaseTest() {
     }
 
     /**
+     * Collapses `StringBuilder` chains such as `sb.append(a).append(b)` and
+     * character appends `sb.append(str.charAt(0))` into `+=` concatenations and
+     * bracket character access.
+     *
      * [data.StringBuilderTestData]
      */
     @Test
@@ -83,6 +94,9 @@ open class FoldingTest : BaseTest() {
     }
 
     /**
+     * Turns explicit concatenations like `"Hello, " + name` into string
+     * interpolation `"Hello, $name"`, merging nested concatenations.
+     *
      * [data.InterpolatedStringTestData]
      */
     @Test
@@ -91,6 +105,10 @@ open class FoldingTest : BaseTest() {
     }
 
     /**
+     * Converts collection access like `list.set(i, v)`, `map.put(k, v)` and
+     * `map.get(k)` into bracket syntax `list[i] = v`, `map[k] = v`, `map[k]`,
+     * and rewrites factory methods into literal collections.
+     *
      * [data.GetSetPutTestData]
      */
     @Test
@@ -99,6 +117,9 @@ open class FoldingTest : BaseTest() {
     }
 
     /**
+     * Rewrites `subList`, `substring` and array copy calls into slice notation
+     * such as `list[1..3]` or `text[1:3]`.
+     *
      * [data.SliceTestData]
      */
     @Test
@@ -107,6 +128,9 @@ open class FoldingTest : BaseTest() {
     }
 
     /**
+     * Folds chains like `obj.setName(obj.getName() + " " + suffix)` into
+     * property assignments with interpolation `obj.name = "${obj.name} $suffix"`.
+     *
      * [data.AppendSetterInterpolatedStringTestData]
      */
     @Test
@@ -115,6 +139,9 @@ open class FoldingTest : BaseTest() {
     }
 
     /**
+     * Replaces `equals`, `compareTo` and negated comparisons with symbolic
+     * operators like `==`, `!=`, `>=`, `<=`, `>` and `<`.
+     *
      * [data.EqualsCompareTestData]
      */
     @Test
@@ -123,6 +150,10 @@ open class FoldingTest : BaseTest() {
     }
 
     /**
+     * Eliminates redundant casts after `instanceof` checks so that
+     * `if (o instanceof String) ((String)o).trim()` becomes
+     * `if (o is String) o.trim()`.
+     *
      * [data.TypeCastTestData]
      */
     @Test
@@ -131,6 +162,9 @@ open class FoldingTest : BaseTest() {
     }
 
     /**
+     * Replaces explicit types in local declarations and enhanced for-loops
+     * with `val`/`var` type inference.
+     *
      * [data.VarTestData]
      */
     @Test
@@ -139,6 +173,9 @@ open class FoldingTest : BaseTest() {
     }
 
     /**
+     * Collapses `obj.getName()`/`obj.setName(v)` method calls into
+     * property-style access `obj.name` and assignment `obj.name = v`.
+     *
      * [data.GetterSetterTestData]
      */
     @Test
@@ -147,6 +184,9 @@ open class FoldingTest : BaseTest() {
     }
 
     /**
+     * Removes braces and condenses `if`, `else`, `while`, and `for` blocks that
+     * contain a single statement into one-line forms.
+     *
      * [data.ControlFlowSingleStatementTestData]
      */
     @Test
@@ -156,6 +196,9 @@ open class FoldingTest : BaseTest() {
     }
 
     /**
+     * Normalizes multi-statement control-flow structures into compact Kotlin
+     * style while preserving braces and indentation.
+     *
      * [data.ControlFlowMultiStatementTestData]
      */
     @Test
@@ -165,6 +208,9 @@ open class FoldingTest : BaseTest() {
     }
 
     /**
+     * Transforms temporal comparisons like `d1.isBefore(d2)` and
+     * `!d1.isAfter(d2)` into `<`, `>`, `<=`, and `>=` operators.
+     *
      * [data.LocalDateTestData]
      */
     @Test
@@ -173,6 +219,8 @@ open class FoldingTest : BaseTest() {
     }
 
     /**
+     * Verifies folding of `LocalDate` literal expressions.
+     *
      * [data.LocalDateLiteralTestData]
      */
     @Test
@@ -181,6 +229,8 @@ open class FoldingTest : BaseTest() {
     }
 
     /**
+     * Ensures `LocalDate` literals with postfix notation fold properly.
+     *
      * [data.LocalDateLiteralPostfixTestData]
      */
     @Test
@@ -189,6 +239,8 @@ open class FoldingTest : BaseTest() {
     }
 
     /**
+     * Tests compact control-flow syntax transformations.
+     *
      * [data.CompactControlFlowTestData]
      */
     @Test
@@ -197,6 +249,8 @@ open class FoldingTest : BaseTest() {
     }
 
     /**
+     * Verifies removal of redundant semicolons.
+     *
      * [data.SemicolonTestData]
      */
     @Test
@@ -205,6 +259,9 @@ open class FoldingTest : BaseTest() {
     }
 
     /**
+     * Converts defensive `if`/`throw` checks into concise `assert` statements,
+     * optionally preserving custom messages.
+     *
      * [data.AssertTestData]
      */
     @Test
@@ -213,6 +270,9 @@ open class FoldingTest : BaseTest() {
     }
 
     /**
+     * Simplifies complex string concatenations and collection mutations,
+     * using `+=` for lists and spread operators for streams like `*.map`.
+     *
      * [data.ConcatenationTestData]
      */
     @Test
@@ -221,6 +281,9 @@ open class FoldingTest : BaseTest() {
     }
 
     /**
+     * Replaces Java `Optional` chaining with Kotlin nullable operators
+     * such as `?.`, `?:`, and non-null assertions `!!`.
+     *
      * [data.OptionalTestData]
      */
     @Test
@@ -229,6 +292,9 @@ open class FoldingTest : BaseTest() {
     }
 
     /**
+     * Collapses stream `map`/`flatMap` pipelines and array spreads into
+     * concise spread syntax like `list*.prop` or `array**method`.
+     *
      * [data.SpreadTestData]
      */
     @Test
@@ -237,6 +303,13 @@ open class FoldingTest : BaseTest() {
     }
 
     /**
+     * Ensures every supported Lombok annotation folds to the generated
+     * Kotlin-style construct. The test covers accessors (`@Getter`,
+     * `@Setter`), builders (`@Builder`), string and equality helpers
+     * (`@ToString`, `@EqualsAndHashCode`, `@Data`, `@Value`), logging
+     * (`@Log`), and constructor shorthands (`@NoArgsConstructor`,
+     * `@AllArgsConstructor`, `@RequiredArgsConstructor`).
+     *
      * [data.LombokTestData]
      */
     @Test
@@ -244,12 +317,22 @@ open class FoldingTest : BaseTest() {
         doFoldingTest(state::lombok)
     }
 
+    /**
+     * Demonstrates that the Lombok annotations listed above collapse into
+     * property access, builder invocations and compact constructors in a
+     * typical class hierarchy.
+     *
+     * [data.LombokTestData]
+     */
     @Test
     open fun lombokUsageTestData() {
         doFoldingTest(state::lombok)
     }
 
     /**
+     * Uses the `<<` placeholder to copy builder fields directly into the
+     * constructed object without repetitive setters.
+     *
      * [data.FieldShiftBuilder]
      */
     @Test
@@ -258,6 +341,9 @@ open class FoldingTest : BaseTest() {
     }
 
     /**
+     * Converts sequences of `setX(value)` invocations into direct field
+     * assignments using field shift semantics.
+     *
      * [data.FieldShiftSetters]
      */
     @Test
@@ -266,6 +352,12 @@ open class FoldingTest : BaseTest() {
     }
 
     /**
+     * Collapses verbose early-return idioms. For example:
+     * `String v = getData(s); if (v != null) { return v; }` →
+     * `val v = getData(s)?.let { return it }` and
+     * `String v = getData(s); if (v == null) { return null; }` →
+     * `val v = getData(s) ?: return null`.
+     *
      * [data.LetReturnIt]
      */
     @Test
@@ -274,6 +366,9 @@ open class FoldingTest : BaseTest() {
     }
 
     /**
+     * Turns nested null checks and boolean conditions into chained safe
+     * navigation such as `a?.b?.c == true`.
+     *
      * [data.IfNullSafeData]
      */
     @Test
@@ -282,6 +377,9 @@ open class FoldingTest : BaseTest() {
     }
 
     /**
+     * Rewrites logger placeholders like `logger.info("x={}", x)` into
+     * interpolation `logger.info("x=$x")` and simplifies bracket handling.
+     *
      * [data.LogBrackets]
      */
     @Test
@@ -297,6 +395,9 @@ open class FoldingTest : BaseTest() {
     }
 
     /**
+     * Applies field shift when assigning directly to fields, e.g.
+     * `other.name << name` moves values without intermediate setters.
+     *
      * [data.FieldShiftFields]
      */
     @Test
@@ -305,6 +406,9 @@ open class FoldingTest : BaseTest() {
     }
 
     /**
+     * Converts manual array element extraction (`String first = arr[0];`) into
+     * Kotlin-style destructuring `val (first, second) = arr`.
+     *
      * [data.DestructuringAssignmentArrayTestData]
      */
     @Test
@@ -313,6 +417,9 @@ open class FoldingTest : BaseTest() {
     }
 
     /**
+     * Handles array destructuring when the declaration keyword is omitted,
+     * relying on inference for the new variables.
+     *
      * [data.DestructuringAssignmentArrayWithoutValTestData]
      */
     @Test
@@ -321,6 +428,9 @@ open class FoldingTest : BaseTest() {
     }
 
     /**
+     * Expands list destructuring such as `val first = list.get(0)` into
+     * Kotlin's `val (first, second) = list` pattern.
+     *
      * [data.DestructuringAssignmentListTestData]
      */
     @Test
@@ -329,6 +439,9 @@ open class FoldingTest : BaseTest() {
     }
 
     /**
+     * Handles list destructuring when the declaration keyword is omitted,
+     * relying on type inference for the unpacked variables.
+     *
      * [data.DestructuringAssignmentListWithoutValTestData]
      */
     @Test
@@ -337,6 +450,9 @@ open class FoldingTest : BaseTest() {
     }
 
     /**
+     * Shortens verbose `System.out.println` calls to simple `println` and
+     * converts chained concatenations into interpolation.
+     *
      * [data.PrintlnTestData]
      */
     @Test
@@ -345,6 +461,9 @@ open class FoldingTest : BaseTest() {
     }
 
     /**
+     * Transforms `@Nullable`/`@NotNull` annotations into postfix markers
+     * (`?` and `!!`) and leverages Lombok for generated accessors.
+     *
      * [data.NullableAnnotationTestData]
      */
     @Test
@@ -353,6 +472,9 @@ open class FoldingTest : BaseTest() {
     }
 
     /**
+     * Rewrites `Preconditions.checkNotNull(arg)` into `arg!!` and marks the
+     * variable as non-null in subsequent code.
+     *
      * [data.NullableAnnotationCheckNotNullTestData]
      */
     @Test
@@ -360,6 +482,9 @@ open class FoldingTest : BaseTest() {
         doFoldingTest(state::nullable, state::getSetExpressionsCollapse)
     }
     /**
+     * Same as above but also demonstrates field shift during assignment,
+     * ensuring `target.name << checkNotNull(src.name)` collapses cleanly.
+     *
      * [data.NullableAnnotationCheckNotNullFieldShiftTestData]
      */
     @Test
@@ -368,6 +493,9 @@ open class FoldingTest : BaseTest() {
     }
 
     /**
+     * Collapses `final static` fields initialized with constant expressions
+     * into `const`/`econst` declarations with simplified modifiers.
+     *
      * [data.ConstTestData]
      */
     @Test
@@ -376,6 +504,9 @@ open class FoldingTest : BaseTest() {
     }
 
     /**
+     * Strips unnecessary `final` modifiers from variables and fields when
+     * mutability is implied by context.
+     *
      * [data.FinalRemovalTestData]
      */
     @Test
@@ -384,6 +515,9 @@ open class FoldingTest : BaseTest() {
     }
 
     /**
+     * Replaces the `final` keyword with a 🔒 emoji to denote immutability
+     * when the emojify option is enabled.
+     *
      * [data.FinalEmojiTestData]
      */
     @Test
@@ -393,6 +527,12 @@ open class FoldingTest : BaseTest() {
     }
 
     /**
+     * Confirms that all Lombok annotations (`@Getter`, `@Setter`, `@Builder`,
+     * `@ToString`, `@EqualsAndHashCode`, `@Data`, `@Value`, `@Log`,
+     * `@NoArgsConstructor`, `@AllArgsConstructor`, `@RequiredArgsConstructor`)
+     * are folded even when dirty tracking is turned off via
+     * `lombokDirtyOff`.
+     *
      * [data.LombokDirtyOffTestData]
      */
     @Test
@@ -401,6 +541,9 @@ open class FoldingTest : BaseTest() {
     }
 
     /**
+     * Converts single-expression methods from block bodies with `return` to
+     * expression-bodied functions (`fun f() = expr`).
+     *
      * [data.Expressionopen funcTestData]
      */
     @Test
@@ -409,6 +552,9 @@ open class FoldingTest : BaseTest() {
     }
 
     /**
+     * Demonstrates dynamic method renaming through an external TOML
+     * configuration (e.g., `staticMethod` → `changedStaticMethod`).
+     *
      * [data.DynamicTestData]
      */
     @Test
@@ -430,6 +576,9 @@ staticMethod.newName = 'changedStaticMethod'
     }
 
     /**
+     * Simplifies `BigDecimal`/`BigInteger` constructions and operations into
+     * plain numeric literals and operators such as `a + b` and `a.pow(2)` → `a²`.
+     *
      * [data.ArithmeticExpressionsTestData]
      */
     @Test
@@ -439,6 +588,9 @@ staticMethod.newName = 'changedStaticMethod'
     }
 
     /**
+     * Substitutes keywords and primitive types with emoji equivalents
+     * (e.g., `package` → 📦, `int` → 🔢).
+     *
      * [data.EmojifyTestData]
      */
     @Test
@@ -448,6 +600,9 @@ staticMethod.newName = 'changedStaticMethod'
     }
 
     /**
+     * Collapses interface getter/setter pairs into annotated properties,
+     * combining Lombok generation with nullable markers.
+     *
      * [data.InterfaceExtensionPropertiesTestData]
      */
     @Test
@@ -456,6 +611,9 @@ staticMethod.newName = 'changedStaticMethod'
     }
 
     /**
+     * Turns `instanceof` checks followed by casts into pattern matching
+     * `if (o instanceof String s)` style expressions.
+     *
      * [data.PatternMatchingInstanceofTestData]
      */
     @Test
@@ -464,6 +622,9 @@ staticMethod.newName = 'changedStaticMethod'
     }
 
     /**
+     * Summarizes overridden parent and interface methods in the class
+     * declaration header for quick reference.
+     *
      * [data.SummaryParentOverrideTestData]
      */
     @Test
@@ -472,6 +633,9 @@ staticMethod.newName = 'changedStaticMethod'
     }
 
     /**
+     * Replaces `new` instantiations with constructor references such as
+     * `ConstClass SELF = ::new;`.
+     *
      * [data.ConstructorReferenceNotationTestData]
      */
     @Test
@@ -480,6 +644,9 @@ staticMethod.newName = 'changedStaticMethod'
     }
 
     /**
+     * Same as above but confirms constructor references integrate with
+     * `const` folding for static fields.
+     *
      * [data.ConstructorReferenceNotationWithConstTestData]
      */
     @Test
@@ -489,6 +656,9 @@ staticMethod.newName = 'changedStaticMethod'
 
 
     /**
+     * Merges multiple overloads into a single method using default parameter
+     * values (`String name = "DESC"`).
+     *
      * [data.MethodDefaultParametersTestData]
      */
     @Test
@@ -497,6 +667,10 @@ staticMethod.newName = 'changedStaticMethod'
     }
 
     /**
+     * Ensures a custom `lombokPatternOff` regex disables folding for
+     * specific files even though the same annotations (`@Getter`,
+     * `@Setter`, `@Builder`, etc.) are folded elsewhere.
+     *
      * [data.LombokPatternOffTestData]
      */
     @Test
@@ -509,6 +683,9 @@ staticMethod.newName = 'changedStaticMethod'
         }
     }
     /**
+     * Verifies that excluding one file with `lombokPatternOff` does not
+     * affect folding of other files using the same Lombok annotations.
+     *
      * [data.LombokPatternOffNegativeTestData]
      */
     @Test
@@ -522,6 +699,9 @@ staticMethod.newName = 'changedStaticMethod'
     }
 
     /**
+     * Hides explicit `@Override` annotations when the override relationship
+     * is obvious from the context.
+     *
      * [data.OverrideHideTestData]
      */
     @Test
@@ -529,6 +709,9 @@ staticMethod.newName = 'changedStaticMethod'
         doFoldingTest(state::overrideHide)
     }
     /**
+     * Removes `@SuppressWarnings` annotations from generated code while
+     * keeping their effect.
+     *
      * [data.SuppressWarningsHideTestData]
      */
     @Test
@@ -538,6 +721,9 @@ staticMethod.newName = 'changedStaticMethod'
 
     // NEW OPTION
     /**
+     * Stress-tests the plugin by enabling several experimental options at
+     * once (nullable, const, Lombok, etc.).
+     *
      * [data.ExperimentalTestData]
      */
     @Test
