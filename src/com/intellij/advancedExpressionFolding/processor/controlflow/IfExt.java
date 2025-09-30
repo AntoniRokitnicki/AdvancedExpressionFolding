@@ -51,7 +51,12 @@ public class IfExt {
         if (settings.getState().getCheckExpressionsCollapse()
                 && element.getCondition() instanceof PsiBinaryExpression) {
             PsiBinaryExpression condition = (PsiBinaryExpression) element.getCondition();
-            if (isNullCheckWithoutElse(element, condition)) {
+            if (condition.getOperationSign().getText().equals("!=")
+                    && element.getElseBranch() == null
+                    && (BaseExtension.isNull(condition.getLOperand().getType())
+                    && condition.getROperand() != null
+                    || condition.getROperand() != null && BaseExtension.isNull(condition.getROperand().getType()))
+                    && element.getThenBranch() != null) {
                 PsiStatement thenStatement = element.getThenBranch();
                 if (thenStatement.getChildren().length == 1 && thenStatement
                         .getChildren()[0] instanceof PsiCodeBlock) {
@@ -92,7 +97,12 @@ public class IfExt {
         AdvancedExpressionFoldingSettings settings = AdvancedExpressionFoldingSettings.getInstance();
         if (settings.getState().getCheckExpressionsCollapse()
                 && element.getCondition() instanceof @NotNull PsiBinaryExpression condition) {
-            if (isNullCheckConditional(element, condition)) {
+            if (condition.getOperationSign().getText().equals("!=")
+                    && condition.getROperand() != null
+                    && (BaseExtension.isNull(condition.getLOperand().getType())
+                    || BaseExtension.isNull(condition.getROperand().getType()))
+                    && element.getThenExpression() != null
+                    && element.getElseExpression() != null) {
                 PsiElement qualifier = BaseExtension.isNull(condition.getLOperand().getType())
                         ? condition.getROperand()
                         : condition.getLOperand();
@@ -124,80 +134,84 @@ public class IfExt {
 
     @Nullable
     public static Expression getPolyadicExpression(@NotNull PsiPolyadicExpression element, @NotNull Document document) {
-        boolean add = true;
-        boolean string = false;
-        Expression[] operands = null;
+        Expression expression = getAndTwoBinaryExpressions(element, document);
+        if (expression != null) {
+            return expression;
+        }
+        expression = getAddExpression(element, document);
+        if (expression != null) {
+            return expression;
+        }
+        expression = getBinaryExpression(element, document);
+        if (expression != null) {
+            return expression;
+        }
+        return getNullSafeExpression(element, document);
+    }
+
+    @Nullable
+    private static Expression getAndTwoBinaryExpressions(@NotNull PsiPolyadicExpression element, @NotNull Document document) {
         for (int i = 0; i < element.getOperands().length - 1; i++) {
             PsiExpression a = element.getOperands()[i];
             PsiExpression b = element.getOperands()[i + 1];
             PsiJavaToken token = element.getTokenBeforeOperand(b);
-            if (token != null) {
-                if ("&&".equals(token.getText())
-                        && a instanceof PsiBinaryExpression
-                        && b instanceof PsiBinaryExpression) {
-                    Expression twoBinaryExpression = BinaryExpressionExt.getAndTwoBinaryExpressions(element,
-                            ((PsiBinaryExpression) a), ((PsiBinaryExpression) b), document);
-                    if (twoBinaryExpression != null) {
-                        return twoBinaryExpression;
-                    }
-                }
-                if (add && "+".equals(token.getText())) {
-                    if (operands == null) {
-                        operands = new Expression[element.getOperands().length];
-                    }
-                    operands[i] = BuildExpressionExt.getAnyExpression(element.getOperands()[i], document);
-                    if (operands[i] instanceof StringLiteral) {
-                        string = true;
-                    }
-                } else {
-                    add = false;
+            if (token != null && "&&".equals(token.getText())
+                    && a instanceof PsiBinaryExpression && b instanceof PsiBinaryExpression) {
+                Expression expression = BinaryExpressionExt.getAndTwoBinaryExpressions(element,
+                        (PsiBinaryExpression) a, (PsiBinaryExpression) b, document);
+                if (expression != null) {
+                    return expression;
                 }
             }
-        }
-        if (add && operands != null) {
-            operands[element.getOperands().length - 1] = BuildExpressionExt.getAnyExpression(
-                    element.getOperands()[element.getOperands().length - 1], document);
-            if (operands[element.getOperands().length - 1] instanceof StringLiteral) {
-                string = true;
-            }
-        }
-        AdvancedExpressionFoldingSettings settings = AdvancedExpressionFoldingSettings.getInstance();
-        if (add && operands != null && string && settings.getState().getConcatenationExpressionsCollapse()) {
-            return new InterpolatedString(element, element.getTextRange(), Arrays.asList(operands));
-        } else if (add && operands != null) {
-            return new Add(element, element.getTextRange(), Arrays.asList(operands)); // TODO: Support other operations as well
-        }
-        if (element instanceof PsiBinaryExpression) {
-            Expression binaryExpression = BinaryExpressionExt.getBinaryExpression((PsiBinaryExpression) element, document);
-            if (binaryExpression != null) {
-                return binaryExpression;
-            }
-        }
-        Expression expression = IfNullSafeExt.createExpression(element, document);
-        if (expression != null) {
-            return expression;
         }
         return null;
     }
 
-    private static boolean isNullCheckWithoutElse(
-            PsiIfStatement element, PsiBinaryExpression condition) {
-        return condition.getOperationSign().getText().equals("!=")
-                && element.getElseBranch() == null
-                && (BaseExtension.isNull(condition.getLOperand().getType())
-                && condition.getROperand() != null
-                || condition.getROperand() != null
-                && BaseExtension.isNull(condition.getROperand().getType()))
-                && element.getThenBranch() != null;
+    @Nullable
+    private static Expression getAddExpression(@NotNull PsiPolyadicExpression element, @NotNull Document document) {
+        boolean add = true;
+        boolean string = false;
+        Expression[] operands = null;
+        for (int i = 0; i < element.getOperands().length - 1; i++) {
+            PsiExpression b = element.getOperands()[i + 1];
+            PsiJavaToken token = element.getTokenBeforeOperand(b);
+            if (token != null && "+".equals(token.getText()) && add) {
+                if (operands == null) {
+                    operands = new Expression[element.getOperands().length];
+                }
+                operands[i] = BuildExpressionExt.getAnyExpression(element.getOperands()[i], document);
+                if (operands[i] instanceof StringLiteral) {
+                    string = true;
+                }
+            } else {
+                add = false;
+            }
+        }
+        if (add && operands != null) {
+            int last = element.getOperands().length - 1;
+            operands[last] = BuildExpressionExt.getAnyExpression(element.getOperands()[last], document);
+            if (operands[last] instanceof StringLiteral) {
+                string = true;
+            }
+            AdvancedExpressionFoldingSettings settings = AdvancedExpressionFoldingSettings.getInstance();
+            if (string && settings.getState().getConcatenationExpressionsCollapse()) {
+                return new InterpolatedString(element, element.getTextRange(), Arrays.asList(operands));
+            }
+            return new Add(element, element.getTextRange(), Arrays.asList(operands));
+        }
+        return null;
     }
 
-    private static boolean isNullCheckConditional(
-            PsiConditionalExpression element, PsiBinaryExpression condition) {
-        return condition.getOperationSign().getText().equals("!=")
-                && condition.getROperand() != null
-                && (BaseExtension.isNull(condition.getLOperand().getType())
-                || BaseExtension.isNull(condition.getROperand().getType()))
-                && element.getThenExpression() != null
-                && element.getElseExpression() != null;
+    @Nullable
+    private static Expression getBinaryExpression(@NotNull PsiPolyadicExpression element, @NotNull Document document) {
+        if (element instanceof PsiBinaryExpression) {
+            return BinaryExpressionExt.getBinaryExpression((PsiBinaryExpression) element, document);
+        }
+        return null;
+    }
+
+    @Nullable
+    private static Expression getNullSafeExpression(@NotNull PsiPolyadicExpression element, @NotNull Document document) {
+        return IfNullSafeExt.createExpression(element, document);
     }
 }
