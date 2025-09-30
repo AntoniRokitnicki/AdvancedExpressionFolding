@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable
 
 @EnabledIfEnvironmentVariable(named = "performance-mode", matches = "1")
-class MethodCallFactoryPerformanceTest {
+class MethodCallFactoryPerformanceTest : BaseTest() {
 
     companion object {
         private const val WARMUP_ITERATIONS = 2
@@ -62,8 +62,8 @@ class MethodCallFactoryPerformanceTest {
         override fun parse(): List<DynamicMethodCall> {
             invocation++
             return (1..size).map { index ->
-                val method = "m${'$'}{invocation}_${'$'}index"
-                DynamicMethodCall(DynamicMethodCallData(mapOf("method" to method, "newName" to "n${'$'}index")))
+                val method = $$"m${invocation}_$index"
+                DynamicMethodCall(DynamicMethodCallData(mapOf("method" to method, "newName" to $$"n$index")))
             }
         }
     }
