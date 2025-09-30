@@ -71,7 +71,7 @@ public class ConstTestData {
     default const VERSION_REF = VERSION;
 
     @SuppressWarnings("ALL")
-    class ConstsWithAnnotaiton {
+    class ConstsWithAnnotation {
         @Deprecated
         default const PATTERN = Pattern.compile(".*");
 

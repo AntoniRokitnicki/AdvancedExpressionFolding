@@ -11,18 +11,21 @@ import com.intellij.psi.*
 object PatternMatchingExt : BaseExtension() {
 
     @JvmStatic
-    fun PsiIfStatement.foldInstanceOf(
+    fun foldInstanceOf(
+        ifStatement: PsiIfStatement,
         instanceOfExpr: PsiInstanceOfExpression,
         document: Document,
         descriptors: ArrayList<FoldingDescriptor>,
     ) {
-        val element: PsiIfStatement = this
-        thenBranch.asInstance<PsiBlockStatement>()?.codeBlock?.statements?.firstOrNull()
-            .asInstance<PsiDeclarationStatement>()?.run {
-                val localVariable = declaredElements.firstOrNull().asInstance<PsiLocalVariable>() ?: return
-                validateInstanceOf(instanceOfExpr, localVariable, element) ?: return
-                appendDescriptors(instanceOfExpr, localVariable.name, element, document, descriptors)
-            }
+        ifStatement.run {
+            val element: PsiIfStatement = this
+            thenBranch.asInstance<PsiBlockStatement>()?.codeBlock?.statements?.firstOrNull()
+                .asInstance<PsiDeclarationStatement>()?.run {
+                    val localVariable = declaredElements.firstOrNull().asInstance<PsiLocalVariable>() ?: return
+                    validateInstanceOf(instanceOfExpr, localVariable, element) ?: return
+                    appendDescriptors(instanceOfExpr, localVariable.name, element, document, descriptors)
+                }
+        }
     }
 
     private fun PsiIfStatement.validateInstanceOf(

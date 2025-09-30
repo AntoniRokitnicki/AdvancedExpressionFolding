@@ -8,7 +8,6 @@ import com.intellij.psi.*
 
 object PsiKeywordExt : BaseExtension() {
 
-    @JvmStatic
     fun createExpression(keyword: PsiKeyword): Expression? =
         finalRemoval.on(keyword)?.finalRemoval() ?: finalEmoji.on(keyword)?.finalEmoji()
 

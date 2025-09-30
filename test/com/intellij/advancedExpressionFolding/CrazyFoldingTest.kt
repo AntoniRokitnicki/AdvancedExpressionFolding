@@ -20,6 +20,28 @@ import kotlin.reflect.KMutableProperty
 import kotlin.time.DurationUnit
 import kotlin.time.toDuration
 
+/**
+ * Exhaustive stress test that iterates through every combination of
+ * [AdvancedExpressionFoldingSettings] flags.
+ *
+ * Each permutation toggles the plugin's main settings, runs the folding engine on the
+ * `LombokTestData` file, and copies the resulting input and folded output into a directory
+ * named after the active configuration. Progress is stored in `crazy.properties` so the
+ * process can resume across JVM restarts, and each iteration writes a commit capturing the
+ * produced artifacts.
+ *
+ * With 22 boolean options there are 2^22 = 4,194,304 permutations. Running the folding
+ * engine on `LombokTestData` takes a median ~24 ms, so a full sweep requires about
+ * 100,663,296 ms (~28 h) of folding time and invokes 22 property setters per run
+ * (92,274,688 calls in total).
+ *
+ * After each permutation the generated artifacts are committed to Git. Even a modest
+ * estimate of 1 s per commit would add ~4.2 million seconds (~48 days), so the overall
+ * duration is dominated by Git operations and file I/O.
+ *
+ * The test is intentionally gated behind the environment variable `dev-mode=2` to avoid
+ * running during normal test execution due to its extremely long runtime.
+ */
 @EnabledIfEnvironmentVariable(named = "dev-mode", matches = "2")
 class CrazyFoldingTest : BaseTest() {
 

@@ -11,7 +11,7 @@ import com.intellij.openapi.editor.Document
 import com.intellij.openapi.editor.FoldingGroup
 import java.io.File
 
-class FoldingDataStorage : EmptyStorage() {
+class FoldingDataStorage : Storage {
     private lateinit var descriptors: Array<FoldingDescriptor>
     private lateinit var document: Document
 
@@ -21,13 +21,13 @@ class FoldingDataStorage : EmptyStorage() {
     class InvalidFoldingGroup(msg: String) : RuntimeException(msg)
 
     override fun store(
-        descriptors: Array<FoldingDescriptor>,
+        foldingDescriptors: Array<FoldingDescriptor>,
         document: Document
     ): Array<FoldingDescriptor> {
-        validateCorrectFoldingGroup(descriptors)
-        this.descriptors = descriptors
+        validateCorrectFoldingGroup(foldingDescriptors)
+        this.descriptors = foldingDescriptors
         this.document = document
-        return descriptors
+        return foldingDescriptors
     }
 
     private fun validateCorrectFoldingGroup(descriptors: Array<FoldingDescriptor>) = descriptors.forEach {
