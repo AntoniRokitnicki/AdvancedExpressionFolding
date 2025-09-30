@@ -4,6 +4,10 @@ import java.util.*;
 
 public class GetSetPutTestData {
     public static void main(String[] args) <fold text='{...}' expand='true'>{
+        int[] emptyArray = <fold text='[]' expand='false'>new int[] {}</fold>;
+        int[] numbers = <fold text='[' expand='false'>new int[] {</fold>1, 2, 3<fold text=']' expand='false'>}</fold>;
+        List<String> emptyList = <fold text='[]' expand='false'>new ArrayList<>()</fold>;
+        Set<String> emptySet = new HashSet<>();
         List<String> list = <fold text='[' expand='false'>Arrays.asList(</fold><fold text='"one"' expand='false'>"one"</fold>, <fold text='"two"' expand='false'>"two"</fold><fold text=']' expand='false'>)</fold>;
         list<fold text='[' expand='false'>.set(</fold>1<fold text='] = ' expand='false'>,</fold>"three"<fold text='' expand='false'> )</fold>;
         System.out.println(list<fold text='.getLast' expand='false'>.get</fold>(<fold text='' expand='false'>list.size() - 1</fold>));
