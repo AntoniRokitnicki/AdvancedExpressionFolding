@@ -44,60 +44,78 @@ public class LocalDateLiteral extends Expression {
     public FoldingDescriptor[] buildFoldRegions(@NotNull PsiElement element, @NotNull Document document, @Nullable Expression parent) {
         FoldingGroup group = FoldingGroup.newGroup(ListLiteral.class.getName());
         ArrayList<FoldingDescriptor> descriptors = new ArrayList<>();
-        descriptors.add(new FoldingDescriptor(element.getNode(), TextRange.create(textRange.getStartOffset(),
+        descriptors.add(createPrefixDescriptor(element, group));
+
+        boolean usePostfix = AdvancedExpressionFoldingSettings.getInstance().getState().getLocalDateLiteralPostfixCollapse();
+        String dateSep = DATE_SEPARATOR;
+        String yearPostfix = usePostfix ? YEAR_POSTFIX : "";
+        String monthPostfix = usePostfix ? MONTH_POSTFIX : "";
+        String dayPostfix = usePostfix ? DAY_POSTFIX : "";
+
+        descriptors.add(createYearMonthDescriptor(element, group, dateSep, yearPostfix));
+        descriptors.add(createMonthDayDescriptor(element, group, dateSep, monthPostfix));
+        descriptors.add(createDaySuffixDescriptor(element, group, dayPostfix));
+
+        return descriptors.toArray(new FoldingDescriptor[0]);
+    }
+
+    private FoldingDescriptor createPrefixDescriptor(@NotNull PsiElement element, @NotNull FoldingGroup group) {
+        return new FoldingDescriptor(element.getNode(), TextRange.create(textRange.getStartOffset(),
                 year.getTextRange().getStartOffset()), group) {
             @NotNull
             @Override
             public String getPlaceholderText() {
                 return "";
             }
-        });
+        };
+    }
 
-        boolean usePostfix = AdvancedExpressionFoldingSettings.getInstance().getState().getLocalDateLiteralPostfixCollapse();
-
-        final String dateSep = DATE_SEPARATOR;
-        final String yearPostfix = usePostfix ? YEAR_POSTFIX : "";
-        final String monthPostfix = usePostfix ? MONTH_POSTFIX : "";
-        final String dayPostfix = usePostfix ? DAY_POSTFIX : "";
-
-        descriptors.add(new FoldingDescriptor(element.getNode(), TextRange.create(year.getTextRange().getEndOffset(),
+    private FoldingDescriptor createYearMonthDescriptor(@NotNull PsiElement element,
+                                                        @NotNull FoldingGroup group,
+                                                        @NotNull String dateSep,
+                                                        @NotNull String yearPostfix) {
+        return new FoldingDescriptor(element.getNode(), TextRange.create(year.getTextRange().getEndOffset(),
                 month.getTextRange().getStartOffset()), group) {
             @NotNull
             @Override
             public String getPlaceholderText() {
-                // Add leading zero to month if month is only a single digit
                 if (month.getTextLength() == 1) {
                     return yearPostfix + dateSep + "0";
                 } else {
                     return yearPostfix + dateSep;
                 }
             }
-        });
+        };
+    }
 
-        descriptors.add(new FoldingDescriptor(element.getNode(), TextRange.create(month.getTextRange().getEndOffset(),
+    private FoldingDescriptor createMonthDayDescriptor(@NotNull PsiElement element,
+                                                       @NotNull FoldingGroup group,
+                                                       @NotNull String dateSep,
+                                                       @NotNull String monthPostfix) {
+        return new FoldingDescriptor(element.getNode(), TextRange.create(month.getTextRange().getEndOffset(),
                 day.getTextRange().getStartOffset()), group) {
             @NotNull
             @Override
             public String getPlaceholderText() {
-                // Add leading zero to day if day is only a single digit
                 if (day.getTextLength() == 1) {
                     return monthPostfix + dateSep + "0";
                 } else {
                     return monthPostfix + dateSep;
                 }
             }
-        });
+        };
+    }
 
-        descriptors.add(new FoldingDescriptor(element.getNode(), TextRange.create(day.getTextRange().getEndOffset(),
+    private FoldingDescriptor createDaySuffixDescriptor(@NotNull PsiElement element,
+                                                        @NotNull FoldingGroup group,
+                                                        @NotNull String dayPostfix) {
+        return new FoldingDescriptor(element.getNode(), TextRange.create(day.getTextRange().getEndOffset(),
                 textRange.getEndOffset()), group) {
             @NotNull
             @Override
             public String getPlaceholderText() {
                 return dayPostfix + "";
             }
-        });
-//        descriptors.add(year.buildFoldRegions(year.getElement(), document, this);
-//        descriptors.add(month.buildFoldRegions(month.getElement(), document, this);
-//        descriptors.add(day.buildFoldRegions(day.getElement(), document, this);
-        return descriptors.toArray(new FoldingDescriptor[0]);
-    }}
+        };
+    }
+}
