@@ -58,10 +58,12 @@ class FoldingService {
             return
         }
         val project = editor.project ?: return
-        runReadAction {
-            val psiFile = PsiDocumentManager.getInstance(project).getPsiFile(editor.document) ?: return@runReadAction
-            psiFile.accept(KeyCleanerPsiElementVisitor())
-        }
+        runReadAction { clearKeys(project, editor) }
+    }
+
+    private fun clearKeys(project: Project, editor: Editor) {
+        val psiFile = PsiDocumentManager.getInstance(project).getPsiFile(editor.document) ?: return
+        psiFile.accept(KeyCleanerPsiElementVisitor())
     }
 
     class KeyCleanerPsiElementVisitor : PsiRecursiveElementVisitor() {
