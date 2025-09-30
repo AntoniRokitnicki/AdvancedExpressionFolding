@@ -8,6 +8,9 @@ class PropertyUtilTest {
     @Test
     fun checkGuessPropertyName() {
         assertEquals("", guessPropertyName(""))
+        assertEquals("", guessPropertyName("get"))
+        assertEquals("", guessPropertyName("set"))
+        assertEquals("", guessPropertyName("is"))
         assertEquals("length", guessPropertyName("length"))
         assertEquals("name", guessPropertyName("getName"))
         assertEquals("name", guessPropertyName("setName"))

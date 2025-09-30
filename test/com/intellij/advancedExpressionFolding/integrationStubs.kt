@@ -1,5 +1,6 @@
 package com.intellij.advancedExpressionFolding
 
+import com.intellij.advancedExpressionFolding.settings.IConfig
 import com.intellij.advancedExpressionFolding.settings.IState
 import com.intellij.driver.client.Remote
 
@@ -10,7 +11,7 @@ interface SettingsStub {
 }
 
 @Remote($$"com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings$State", plugin = "com.github.advanced-java-folding2")
-interface ISettingsState : IState
+interface ISettingsState : IState, IConfig
 
 @Remote("com.intellij.advancedExpressionFolding.action.UpdateFoldedTextColorsAction", plugin = "com.github.advanced-java-folding2")
 interface ColorActionStub {
@@ -27,4 +28,10 @@ interface FoldingTestBridgeStub {
     fun snapshot(filePaths: List<String>): List<FoldingSnapshot>
     fun updateFoldRegions(filePaths: List<String>)
     fun fold(relativePath: String, collapse: Boolean)
+}
+
+@Remote("com.intellij.advancedExpressionFolding.integration.IntegrationTestApi", plugin = "com.github.advanced-java-folding2")
+interface FoldingIntegrationStub {
+    fun toggleGlobalFolding(state: Boolean)
+    fun countAdvancedFoldRegions(): Int
 }
