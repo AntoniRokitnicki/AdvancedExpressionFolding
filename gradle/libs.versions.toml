@@ -1,12 +1,12 @@
 [versions]
 # libraries
 annotations = "26.0.2-1"
-junit = "6.0.0-RC3"
+junit = "6.0.0"
 jackson = "2.20.0"
 jsr305 = "3.0.2"
 pioneer = "2.3.0"
 lombok = "1.18.42"
-kodein = "7.26.1"
+kodein = "7.28.0"
 # plugins
 changelog = "2.4.0"
 intelliJPlatform = "2.6.0"
