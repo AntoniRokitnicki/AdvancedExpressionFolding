@@ -1,27 +1,20 @@
 package com.intellij.advancedExpressionFolding
 
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
-import com.intellij.openapi.actionSystem.ActionManager
-import com.intellij.openapi.actionSystem.ActionPlaces
-import com.intellij.openapi.actionSystem.AnAction
-import com.intellij.openapi.actionSystem.AnActionEvent
-import com.intellij.openapi.actionSystem.ActionUpdateThread
-import com.intellij.openapi.actionSystem.ToggleAction
-import com.intellij.openapi.actionSystem.CommonDataKeys
+import com.intellij.openapi.actionSystem.*
 import com.intellij.openapi.actionSystem.impl.SimpleDataContext
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.editor.Editor
-import com.intellij.openapi.editor.FoldingGroup
 import com.intellij.openapi.editor.FoldRegion
+import com.intellij.openapi.editor.FoldingGroup
 import com.intellij.openapi.editor.ex.FoldingModelEx
 import com.intellij.testFramework.assertInstanceOf
 import org.junit.jupiter.api.AfterEach
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertFalse
-import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
+@Suppress("OverrideOnly")
 class FoldingActionsTest : BaseTest() {
 
     private val settings: AdvancedExpressionFoldingSettings
@@ -122,7 +115,7 @@ class FoldingActionsTest : BaseTest() {
             builder.add(CommonDataKeys.EDITOR, editor)
         }
         val dataContext = builder.build()
-        return AnActionEvent.createFromAnAction(action, null, ActionPlaces.UNKNOWN, dataContext)
+        return AnActionEvent.createEvent(action, dataContext, null, ActionPlaces.UNKNOWN, ActionUiKind.NONE, null)
     }
 
     private fun setUpEditorWithRegion(initiallyExpanded: Boolean): Pair<Editor, FoldRegion> {
