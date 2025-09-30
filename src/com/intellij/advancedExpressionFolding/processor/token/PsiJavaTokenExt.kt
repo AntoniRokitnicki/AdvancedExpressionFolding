@@ -9,7 +9,6 @@ import com.intellij.psi.PsiJavaToken
 
 object PsiJavaTokenExt : BaseExtension() {
 
-    @JvmStatic
     fun createExpression(element: PsiJavaToken): Expression? {
         emojify.on() ?: return null
 

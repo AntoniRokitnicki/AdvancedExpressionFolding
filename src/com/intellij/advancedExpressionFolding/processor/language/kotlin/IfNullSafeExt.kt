@@ -109,7 +109,6 @@ object IfNullSafeExt : BaseExtension() {
         return lists
     }
 
-    @JvmStatic
     fun singleChain(
         currentList: LinkedHashSet<PsiElement>,
         document: Document,
