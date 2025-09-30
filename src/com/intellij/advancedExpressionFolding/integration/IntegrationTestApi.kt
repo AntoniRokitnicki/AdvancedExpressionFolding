@@ -1,11 +1,7 @@
 package com.intellij.advancedExpressionFolding.integration
 
 import com.intellij.codeInsight.folding.CodeFoldingManager
-import com.intellij.openapi.actionSystem.ActionManager
-import com.intellij.openapi.actionSystem.ActionPlaces
-import com.intellij.openapi.actionSystem.AnActionEvent
-import com.intellij.openapi.actionSystem.DataContext
-import com.intellij.openapi.actionSystem.ToggleAction
+import com.intellij.openapi.actionSystem.*
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.application.ModalityState
 import com.intellij.openapi.application.runReadAction
@@ -23,11 +19,12 @@ object IntegrationTestApi {
         runOnEdt {
             val action = ActionManager.getInstance().getAction(GLOBAL_TOGGLE_ACTION_ID) as? ToggleAction
                 ?: error("Action $GLOBAL_TOGGLE_ACTION_ID not found")
-            val event = AnActionEvent.createFromAnAction(
-                action,
+            val event = AnActionEvent.createEvent(
+                DataContext.EMPTY_CONTEXT,
                 null,
                 ActionPlaces.UNKNOWN,
-                DataContext.EMPTY_CONTEXT
+                ActionUiKind.NONE,
+                null
             )
             action.setSelected(event, state)
             refreshOpenEditors()

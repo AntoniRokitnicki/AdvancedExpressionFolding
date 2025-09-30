@@ -62,7 +62,6 @@ class IntegrationTest {
         }
     }
 
-    //@Disabled
     @Test
     fun `make sure setting changes are persisted`() {
         init("settings").runIdeWithDriver().useDriverAndCloseIde {
@@ -147,11 +146,7 @@ class IntegrationTest {
                 "Global folding should be disabled after toggling off"
             }
 
-            execute {
-                it.openFile("data/OptionalTestData.java")
-            }
-
-            wait()
+            openOptionalTestData()
 
             val foldsWhenDisabled = utility<FoldingIntegrationStub>().countAdvancedFoldRegions()
             check(foldsWhenDisabled == 0) {
@@ -163,17 +158,22 @@ class IntegrationTest {
                 "Global folding should be enabled after toggling on"
             }
 
-            execute {
-                it.openFile("data/OptionalTestData.java")
-            }
-
-            wait()
-
+            openOptionalTestData()
             val foldsWhenEnabled = utility<FoldingIntegrationStub>().countAdvancedFoldRegions()
             check(foldsWhenEnabled > 0) {
                 "Expected advanced folds to return after re-enabling the global toggle, but found $foldsWhenEnabled"
             }
         }
+    }
+
+    private fun Driver.openOptionalTestData() {
+        execute {
+            it.closeAllTabs()
+        }
+        execute {
+            it.openFile("data/OptionalTestData.java")
+        }
+        wait()
     }
 
     private fun Driver.startZenMode() {
