@@ -1,37 +1,36 @@
 package com.intellij.advancedExpressionFolding
 
+import com.intellij.advancedExpressionFolding.processor.cache.Keys
+import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
 import com.intellij.openapi.application.ApplicationManager
+import com.intellij.openapi.application.runInEdt
 import com.intellij.openapi.application.runReadAction
 import com.intellij.openapi.application.runWriteAction
 import com.intellij.openapi.fileEditor.FileEditorManager
 import com.intellij.psi.PsiJavaFile
 import com.intellij.testFramework.PlatformTestUtil
-import org.junit.jupiter.api.Assertions.assertNotNull
-import org.junit.jupiter.api.Assertions.assertNull
-import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 class EditorLifecycleFoldingTest : BaseTest() {
+    //language=Java
     private val sample = """
         package data;
 
-        public class AssertTestData {
-            public static void main(String[] args) {
-                if (args.length == 0) {
-                    throw new IllegalArgumentException();
-                }
-                if (args.length == 1) {
-                    throw new IllegalArgumentException("...");
-                }
-                if (args.length == 2)
-                    throw new IllegalArgumentException("...");
-            }
+        public class SerialTestData {
+            private static final long serialVersionUID = 1234567L;
         }
     """.trimIndent()
 
+    @BeforeEach
+    fun setUp() {
+        AdvancedExpressionFoldingSettings.getInstance().enableAll()
+    }
+
     @Test
     fun `folding scheduled after editor creation`() {
-        val psiFile = fixture.configureByText("AssertTestData.java", sample)
+        fixture.configureByText("SerialTestData.java", sample)
         val editor = fixture.editor
 
         ApplicationManager.getApplication().invokeAndWait {
@@ -43,10 +42,14 @@ class EditorLifecycleFoldingTest : BaseTest() {
         }
 
         Thread.sleep(1500)
-        PlatformTestUtil.dispatchAllEventsInIdeEventQueue()
+        runInEdt {
+            PlatformTestUtil.dispatchAllEventsInIdeEventQueue()
+        }
 
-        val pluginRegions = editor.foldingModel.allFoldRegions.filter {
-            it.group?.toString()?.startsWith("com.intellij.advancedExpressionFolding") == true
+        val pluginRegions = runReadAction {
+            editor.foldingModel.allFoldRegions.filter {
+                it.group?.toString()?.startsWith("com.intellij.advancedExpressionFolding") == true
+            }
         }
         assertTrue(pluginRegions.isNotEmpty(), "No plugin fold regions found")
         assertTrue(pluginRegions.all { !it.isExpanded }, "Fold regions should be collapsed after delay")
@@ -54,7 +57,7 @@ class EditorLifecycleFoldingTest : BaseTest() {
 
     @Test
     fun `clears cached keys when editor closed`() {
-        val psiFile = fixture.configureByText("AssertTestData.java", sample) as PsiJavaFile
+        val psiFile = fixture.configureByText("SerialTestData.java", sample) as PsiJavaFile
         val editor = fixture.editor
         val document = editor.document
         val builder = AdvancedExpressionFoldingBuilder()
@@ -62,9 +65,11 @@ class EditorLifecycleFoldingTest : BaseTest() {
         assertNotNull(psiFile.getUserData(Keys.FULL_CACHE))
 
         ApplicationManager.getApplication().invokeAndWait {
-            FileEditorManager.getInstance(project).closeFile(psiFile.virtualFile)
+            FileEditorManager.getInstance(fixture.project).closeFile(psiFile.virtualFile)
         }
-        PlatformTestUtil.dispatchAllEventsInIdeEventQueue()
+        runInEdt {
+            PlatformTestUtil.dispatchAllEventsInIdeEventQueue()
+        }
         assertNull(psiFile.getUserData(Keys.FULL_CACHE))
     }
 }
