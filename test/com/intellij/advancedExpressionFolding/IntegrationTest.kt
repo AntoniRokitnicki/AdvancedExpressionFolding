@@ -96,11 +96,7 @@ class IntegrationTest {
             recorder = IDEScreenRecorder(it)
             IDECommandLine.OpenTestCaseProject(init)
         }).useDriverAndCloseIde {
-            execute {
-                it.importGradleProject()
-                it.awaitCompleteProjectConfiguration()
-                it.waitForSmartMode()
-            }
+            setupProjectWithGradle()
 
             println("changeFoldingColors=" + runCatching {
                 changeFoldingColors()
@@ -129,11 +125,7 @@ class IntegrationTest {
     fun `global toggle folding action switches setting`() {
         val init = init("globalToggleFolding")
         init.runIdeWithDriver().useDriverAndCloseIde {
-            execute {
-                it.importGradleProject()
-                it.awaitCompleteProjectConfiguration()
-                it.waitForSmartMode()
-            }
+            setupProjectWithGradle()
 
             check(service<SettingsStub>().getState().globalOn) { "globalOn should start enabled" }
 
@@ -151,11 +143,7 @@ class IntegrationTest {
     fun `find methods with default parameters action shows usage results`() {
         val init = init("findMethodsWithDefaultParameters")
         init.runIdeWithDriver().useDriverAndCloseIde {
-            execute {
-                it.importGradleProject()
-                it.awaitCompleteProjectConfiguration()
-                it.waitForSmartMode()
-            }
+            setupProjectWithGradle()
 
             execute { it.searchEverywhere(textToInsert = "Find Methods with Default Parameters", selectFirst = true) }
             wait()
@@ -362,3 +350,12 @@ private fun init(testName: String): IDETestContext = Starter.newContext(
 }
 
 typealias ErrorFileName = String
+
+
+private fun Driver.setupProjectWithGradle() {
+    execute {
+        it.importGradleProject()
+        it.awaitCompleteProjectConfiguration()
+        it.waitForSmartMode()
+    }
+}

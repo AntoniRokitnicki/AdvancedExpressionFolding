@@ -8,8 +8,10 @@ import com.intellij.openapi.application.runReadAction
 import com.intellij.openapi.fileEditor.FileEditorManager
 import com.intellij.openapi.fileEditor.TextEditor
 import com.intellij.openapi.project.ProjectManager
+import org.jetbrains.annotations.TestOnly
 import java.util.concurrent.atomic.AtomicReference
 
+@TestOnly
 object IntegrationTestApi {
     private const val GLOBAL_TOGGLE_ACTION_ID =
         "com.intellij.advancedExpressionFolding.action.GlobalToggleFoldingAction"
