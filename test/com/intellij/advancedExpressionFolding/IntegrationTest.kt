@@ -62,7 +62,6 @@ class IntegrationTest {
         }
     }
 
-    //@Disabled
     @Test
     fun `make sure setting changes are persisted`() {
         init("settings").runIdeWithDriver().useDriverAndCloseIde {
@@ -126,6 +125,56 @@ class IntegrationTest {
     }
 
     private fun Driver.changeFoldingColors() = utility<ColorActionStub>().changeFoldingColors()
+
+    @Test
+    fun `global toggle disables and restores folding`() {
+        val init = init("globalToggle")
+        init.runIdeWithDriver().useDriverAndCloseIde {
+            execute {
+                it.importGradleProject()
+                it.awaitCompleteProjectConfiguration()
+                it.waitForSmartMode()
+            }
+
+            service<SettingsStub>().enableEverything()
+            check(service<SettingsStub>().getState().optional) {
+                "Optional folding should stay enabled when testing the global toggle"
+            }
+
+            utility<FoldingIntegrationStub>().toggleGlobalFolding(false)
+            check(!service<SettingsStub>().getState().globalOn) {
+                "Global folding should be disabled after toggling off"
+            }
+
+            openOptionalTestData()
+
+            val foldsWhenDisabled = utility<FoldingIntegrationStub>().countAdvancedFoldRegions()
+            check(foldsWhenDisabled == 0) {
+                "Expected no advanced folds when global toggle is disabled, but found $foldsWhenDisabled"
+            }
+
+            utility<FoldingIntegrationStub>().toggleGlobalFolding(true)
+            check(service<SettingsStub>().getState().globalOn) {
+                "Global folding should be enabled after toggling on"
+            }
+
+            openOptionalTestData()
+            val foldsWhenEnabled = utility<FoldingIntegrationStub>().countAdvancedFoldRegions()
+            check(foldsWhenEnabled > 0) {
+                "Expected advanced folds to return after re-enabling the global toggle, but found $foldsWhenEnabled"
+            }
+        }
+    }
+
+    private fun Driver.openOptionalTestData() {
+        execute {
+            it.closeAllTabs()
+        }
+        execute {
+            it.openFile("data/OptionalTestData.java")
+        }
+        wait()
+    }
 
     private fun Driver.startZenMode() {
         execute {
