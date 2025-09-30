@@ -3,6 +3,7 @@ package com.intellij.advancedExpressionFolding
 import com.intellij.driver.client.Driver
 import com.intellij.driver.client.service
 import com.intellij.driver.client.utility
+import com.intellij.driver.sdk.singleProject
 import com.intellij.driver.sdk.ui.components.common.IdeaFrameUI
 import com.intellij.driver.sdk.ui.components.common.ideFrame
 import com.intellij.driver.sdk.ui.components.elements.JCheckBoxUi
@@ -155,10 +156,10 @@ class IntegrationTest {
                 it.waitForSmartMode()
             }
 
-            execute { it.searchEverywhere(textToType = "Find Methods with Default Parameters", selectFirst = true) }
+            execute { it.searchEverywhere(textToInsert = "Find Methods with Default Parameters", selectFirst = true) }
             wait()
-
-            val usageCount = service<UsageViewManagerStub>().getSelectedUsageView()?.getUsagesCount() ?: 0
+            wait()
+            val usageCount = service<UsageViewManagerStub>(singleProject()).getSelectedUsageView()?.getUsagesCount() ?: 0
             check(usageCount > 0) { "Expected to find usages but found $usageCount" }
         }
     }
