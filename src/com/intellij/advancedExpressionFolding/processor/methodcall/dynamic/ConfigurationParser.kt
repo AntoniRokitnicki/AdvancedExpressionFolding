@@ -8,7 +8,8 @@ import kotlin.io.path.readText
 
 object ConfigurationParser : IDynamicDataProvider {
 
-    private val filePath: Path = Paths.get(System.getProperty("user.home"), "dynamic-ajf2.toml")
+    private val filePath: Path
+        get() = Paths.get(System.getProperty("user.home"), "dynamic-ajf2.toml")
 
     override fun parse(): List<DynamicMethodCall> {
         if (!Files.exists(filePath)) {

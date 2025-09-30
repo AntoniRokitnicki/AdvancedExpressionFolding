@@ -12,7 +12,6 @@ import com.intellij.psi.PsiMethodCallExpression
 
 object PrintlnExt : BaseExtension() {
 
-    @JvmStatic
     fun createExpression(
         element: PsiMethodCallExpression,
         qualifierExpression: Expression,

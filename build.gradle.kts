@@ -32,6 +32,17 @@ kotlin {
         @Suppress("UnstableApiUsage")
         vendor = JvmVendorSpec.JETBRAINS
     }
+    compilerOptions {
+        // Enables Kotlin Context Parameters (Kotlin 2.2+ preview).
+        // Lets functions and properties declare implicit dependencies
+        // so we don’t need to pass them explicitly everywhere.
+        freeCompilerArgs.add("-Xcontext-parameters")
+
+        // Enables Nested Type Aliases (Kotlin preview).
+        // Lets us define type aliases inside other types (e.g. inside classes or objects),
+        // improving readability and encapsulation.
+        freeCompilerArgs.add("-Xnested-type-aliases")
+    }
 }
 
 idea {
@@ -58,6 +69,9 @@ sourceSets {
     }
 }
 
+evaluationDependsOn(":examples")
+val examplesTestOutput = project(":examples").extensions.getByType<SourceSetContainer>()["test"].output
+
 tasks.withType<JavaCompile> {
     options.encoding = "UTF-8"
 }
@@ -65,6 +79,7 @@ tasks.test {
     systemProperty("file.encoding", "UTF-8")
     systemProperty("line.separator", "\n")
     useJUnitPlatform()
+    dependsOn(":examples:testClasses")
 }
 
 // Configure project's dependencies
@@ -82,6 +97,8 @@ dependencies {
     implementation(libs.annotations)
     implementation(libs.jsr305)
     implementation(libs.jackson.dataformat.toml)
+
+    testImplementation(examplesTestOutput)
 
     testRuntimeOnly(libs.junit.jupiter.engine)
     testImplementation(libs.junit.jupiter.api)
