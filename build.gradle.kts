@@ -32,6 +32,17 @@ kotlin {
         @Suppress("UnstableApiUsage")
         vendor = JvmVendorSpec.JETBRAINS
     }
+    compilerOptions {
+        // Enables Kotlin Context Parameters (Kotlin 2.2+ preview).
+        // Lets functions and properties declare implicit dependencies
+        // so we don’t need to pass them explicitly everywhere.
+        freeCompilerArgs.add("-Xcontext-parameters")
+
+        // Enables Nested Type Aliases (Kotlin preview).
+        // Lets us define type aliases inside other types (e.g. inside classes or objects),
+        // improving readability and encapsulation.
+        freeCompilerArgs.add("-Xnested-type-aliases")
+    }
 }
 
 idea {

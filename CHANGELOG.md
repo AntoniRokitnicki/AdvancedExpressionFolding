@@ -4,6 +4,11 @@
 
 ## [Unreleased]
 
+## [4.2.0] - 2025-09-20
+
+- [Add setting to prevent collapsing Java text blocks in log folding](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/338)
+- [Bugfix/log folding strings no params](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/341)~~~~
+
 ## [4.0.0] - 2025-07-15
 
 - [[pseudo-annotations] @Main - method-level annotation that generates a main method invoking the annotated method.](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/PseudoAnnotations)
@@ -11,7 +16,7 @@
 
 ## [3.8.0] - 2025-07-07
 
-- make compatible with 252 eap
+- make compatible with 252 EAP
 - add button to apply folded text color based on current theme (blue/navy) in settings
 
 ## [3.7.0] - 2025-06-09
@@ -26,7 +31,7 @@
 ## [3.6.0] - 2025-05-11
 
 - [experimental] Add exception class to @SneakyThrows annotation
-- fix [expressionFunc] issue with when combining with [interfaceExtensionProperties]
+- fix [expressionFunc] issue when combining with [interfaceExtensionProperties]
 - [experimental] multi-line @SneakyThrows
 
 ## [3.5.0] - 2025-04-27
@@ -189,7 +194,7 @@ Destructuring assignment for array - preview
 
 ## [1.0.30] - 2024-03-14
 
-windows-compatible keyboard shortcuts for IntelliJ and Android Studio
+Windows-compatible keyboard shortcuts for IntelliJ and Android Studio
 
 ## [1.0.29] - 2024-03-13
 
@@ -299,7 +304,7 @@ Improved handling of multi-line log messages
 ### Added
 
 - Fix NPEs when calling isReferenceTo with r.resolve() that might return null
-- Better support for compareto folding
+- Better support for compareTo folding
 - Improve getter folding
 
 ## [1.0.3]
@@ -329,7 +334,8 @@ Improved handling of multi-line log messages
 
 ## [0.0.1]
 
-[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v4.0.0...HEAD
+[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v4.1.0...HEAD
+[4.1.0]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v4.0.0...v4.1.0
 [4.0.0]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v3.8.0...v4.0.0
 [3.8.0]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v3.7.0...v3.8.0
 [3.7.0]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v3.6.0...v3.7.0

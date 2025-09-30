@@ -16,7 +16,7 @@ class CollectionStreamMethodCall : AbstractCollectionMethodCall() {
         element: PsiMethodCallExpression,
         context: Context
     ): Expression? {
-        if (!context.className.equals("java.util.Optional") &&
+        if (context.className != "java.util.Optional" &&
             element.parent is PsiReferenceExpression &&
             (element.parent as PsiReferenceExpression).qualifierExpression == element) {
             
