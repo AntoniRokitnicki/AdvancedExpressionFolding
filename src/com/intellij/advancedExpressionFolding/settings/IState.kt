@@ -20,7 +20,10 @@ interface IState : ILessImportantState {
     val fieldShift: Boolean
     val kotlinQuickReturn: Boolean
     val ifNullSafe: Boolean
+
     val logFolding: Boolean
+    val logFoldingTextBlocks: Boolean
+
     val println: Boolean
     val const: Boolean
     val nullable: Boolean

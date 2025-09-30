@@ -123,6 +123,9 @@ abstract class CheckboxesProvider {
             example("LogBrackets.java")
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#logfolding")
         }
+        registerCheckbox(state::logFoldingTextBlocks, "Log folding: collapse Text Blocks") {
+            example("LogFoldingTextBlocksTestData.java")
+        }
 
         registerCheckbox(
             state::fieldShift,

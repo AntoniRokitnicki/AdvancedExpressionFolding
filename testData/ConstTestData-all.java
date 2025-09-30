@@ -6,8 +6,8 @@ import static data.ConstTestData.EOrder.SECOND;
 import static java.util.regex.Pattern.compile;</fold>
 
 
-<fold text='/** {@link com.intellij.advancedExpressionFolding.expression.custom.FieldConstExpression )} ...*/' expand='true'>/**
- * {@link com.intellij.advancedExpressionFolding.expression.custom.FieldConstExpression )}
+<fold text='/** {@link com.intellij.advancedExpressionFolding.expression.semantic.FieldConstExpression )} ...*/' expand='true'>/**
+ * {@link com.intellij.advancedExpressionFolding.expression.semantic.FieldConstExpression )}
  * {@link com.intellij.advancedExpressionFolding.FoldingTest#testConstTestData}
  */</fold>
 public class ConstTestData {
