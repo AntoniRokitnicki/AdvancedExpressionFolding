@@ -31,38 +31,58 @@ public class SetLiteral extends Function {
     public FoldingDescriptor[] buildFoldRegions(@NotNull PsiElement element, @NotNull Document document, @Nullable Expression parent) {
         FoldingGroup group = FoldingGroup.newGroup(getClass().getName());
         List<FoldingDescriptor> descriptors = new ArrayList<>();
-        int offset = getTextRange().getStartOffset();
-        descriptors.add(new FoldingDescriptor(element.getNode(),
-                TextRange.create(offset, firstBracesRange.getStartOffset()), group, "["));
-        if (firstBracesRange.getStartOffset() < secondBracesRange.getStartOffset()) {
-            descriptors.add(new FoldingDescriptor(element.getNode(),
-                    TextRange.create(firstBracesRange.getStartOffset(), secondBracesRange.getStartOffset()), group, ""));
+        if (operands.isEmpty()) {
+            descriptors.add(new FoldingDescriptor(element.getNode(), getTextRange(), group, "[]"));
+            return descriptors.toArray(EMPTY_ARRAY);
         }
-        if (secondBracesRange.getStartOffset() < operands.get(0).getTextRange().getStartOffset()) {
-            descriptors.add(new FoldingDescriptor(element.getNode(),
-                    TextRange.create(secondBracesRange.getStartOffset(),
-                            operands.get(0).getTextRange().getStartOffset()), group, ""));
+        int offset = getTextRange().getStartOffset();
+        int start = offset;
+        int end = firstBracesRange.getStartOffset();
+        if (start < end) {
+            descriptors.add(new FoldingDescriptor(element.getNode(), TextRange.create(start, end), group, "["));
+        }
+        start = firstBracesRange.getStartOffset();
+        end = secondBracesRange.getStartOffset();
+        if (start < end) {
+            descriptors.add(new FoldingDescriptor(element.getNode(), TextRange.create(start, end), group, ""));
+        }
+        start = secondBracesRange.getStartOffset();
+        end = operands.get(0).getTextRange().getStartOffset();
+        if (start < end) {
+            descriptors.add(new FoldingDescriptor(element.getNode(), TextRange.create(start, end), group, ""));
         }
         offset = operands.get(0).getTextRange().getEndOffset();
         for (int i = 1; i < operands.size(); i++) {
-            TextRange r = TextRange.create(offset, operands.get(i).getTextRange().getStartOffset());
-            String p = ", ";
-            if (!document.getText(r).equals(p)) {
-                descriptors.add(new FoldingDescriptor(element.getNode(), r, group, p));
+            start = offset;
+            end = operands.get(i).getTextRange().getStartOffset();
+            if (start < end) {
+                TextRange r = TextRange.create(start, end);
+                String p = ", ";
+                if (!document.getText(r).equals(p)) {
+                    descriptors.add(new FoldingDescriptor(element.getNode(), r, group, p));
+                }
             }
             offset = operands.get(i).getTextRange().getEndOffset();
         }
-        descriptors.add(new FoldingDescriptor(element.getNode(),
-                TextRange.create(offset, secondBracesRange.getEndOffset()), group, ""));
-        if (secondBracesRange.getEndOffset() < firstBracesRange.getEndOffset() - 1) {
-            descriptors.add(new FoldingDescriptor(element.getNode(),
-                    TextRange.create(secondBracesRange.getEndOffset(), firstBracesRange.getEndOffset() - 1), group, ""));
+        start = offset;
+        end = secondBracesRange.getEndOffset();
+        if (start < end) {
+            descriptors.add(new FoldingDescriptor(element.getNode(), TextRange.create(start, end), group, ""));
         }
-        descriptors.add(new FoldingDescriptor(element.getNode(),
-                TextRange.create(firstBracesRange.getEndOffset() - 1, firstBracesRange.getEndOffset()), group, "]"));
-        if (firstBracesRange.getEndOffset() < getTextRange().getEndOffset()) {
-            descriptors.add(new FoldingDescriptor(element.getNode(),
-                    TextRange.create(firstBracesRange.getEndOffset(), getTextRange().getEndOffset()), group, ""));
+        start = secondBracesRange.getEndOffset();
+        end = firstBracesRange.getEndOffset() - 1;
+        if (start < end) {
+            descriptors.add(new FoldingDescriptor(element.getNode(), TextRange.create(start, end), group, ""));
+        }
+        start = firstBracesRange.getEndOffset() - 1;
+        end = firstBracesRange.getEndOffset();
+        if (start < end) {
+            descriptors.add(new FoldingDescriptor(element.getNode(), TextRange.create(start, end), group, "]"));
+        }
+        start = firstBracesRange.getEndOffset();
+        end = getTextRange().getEndOffset();
+        if (start < end) {
+            descriptors.add(new FoldingDescriptor(element.getNode(), TextRange.create(start, end), group, ""));
         }
         for (Expression operand : operands) {
             if (operand.supportsFoldRegions(document, this)) {
