@@ -20,11 +20,15 @@ import com.intellij.ui.components.ActionLink
 import com.intellij.ui.components.JBCheckBox
 import com.intellij.ui.dsl.builder.Panel
 import com.intellij.ui.dsl.builder.panel
+import com.intellij.util.ui.JBUI
 import java.awt.Color.decode
 import java.awt.FlowLayout
 import java.net.URI
 import javax.swing.JButton
 import javax.swing.JPanel
+import javax.swing.SwingConstants
+import javax.swing.Icon
+import javax.swing.UIManager
 import kotlin.reflect.KMutableProperty0
 
 class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
@@ -166,6 +170,7 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
 
     companion object {
         private const val EXAMPLE_DIR = "data"
+        internal const val CHILD_ICON_PROPERTY = "advancedExpressionFolding.childIcon"
     }
     
     @CheckboxDsl
@@ -176,19 +181,40 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
     ) {
         val builder = CheckboxBuilder()
         block?.invoke(builder)
-        
+
+        val definition = builder.build(property, title)
+
         val checkbox = JBCheckBox(title)
         checkbox.isSelected = property.get()
         checkbox.addActionListener {
             pendingChanges[property] = checkbox.isSelected
         }
         propertyToCheckbox[property] = checkbox
-        
+
+        definition.icon?.let { overlayIcon ->
+            val laf = UIManager.getLookAndFeelDefaults()
+            val baseIcon = checkbox.icon ?: laf.getIcon("CheckBox.icon")
+            val baseSelectedIcon = checkbox.selectedIcon ?: laf.getIcon("CheckBox.selectedIcon") ?: baseIcon
+            val baseDisabledIcon = checkbox.disabledIcon ?: laf.getIcon("CheckBox.disabledIcon") ?: baseIcon
+            val baseDisabledSelectedIcon = checkbox.disabledSelectedIcon
+                ?: laf.getIcon("CheckBox.disabledSelectedIcon")
+                ?: baseSelectedIcon
+            val overlayGap = JBUI.scale(4)
+            val textGap = JBUI.scale(8)
+
+            checkbox.icon = composeCheckboxIcon(baseIcon, overlayIcon, overlayGap)
+            checkbox.selectedIcon = composeCheckboxIcon(baseSelectedIcon, overlayIcon, overlayGap)
+            checkbox.disabledIcon = composeCheckboxIcon(baseDisabledIcon, overlayIcon, overlayGap)
+            checkbox.disabledSelectedIcon = composeCheckboxIcon(baseDisabledSelectedIcon, overlayIcon, overlayGap)
+            checkbox.iconTextGap = textGap
+            checkbox.horizontalTextPosition = SwingConstants.RIGHT
+            checkbox.putClientProperty(CHILD_ICON_PROPERTY, overlayIcon)
+        }
+
         row {
             cell(checkbox)
         }
-        
-        val definition = builder.build(property, title)
+
         if (definition.exampleLinkMap != null || definition.docLink != null) {
             row {
                 cell(createExamplePanel(definition.exampleLinkMap, definition.docLink))
@@ -196,4 +222,28 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
         }
 
     }
+}
+
+private fun composeCheckboxIcon(base: Icon?, overlay: Icon, gap: Int): Icon {
+    return base?.let { CheckboxWithOverlayIcon(it, overlay, gap) } ?: overlay
+}
+
+internal class CheckboxWithOverlayIcon(
+    private val base: Icon,
+    private val overlay: Icon,
+    private val gap: Int,
+) : Icon {
+    private val overlayOffsetX = base.iconWidth + gap
+    private val height = maxOf(base.iconHeight, overlay.iconHeight)
+
+    override fun getIconWidth(): Int = overlayOffsetX + overlay.iconWidth
+
+    override fun getIconHeight(): Int = height
+
+    override fun paintIcon(c: java.awt.Component?, g: java.awt.Graphics?, x: Int, y: Int) {
+        base.paintIcon(c, g, x, y)
+        val overlayY = y + (height - overlay.iconHeight) / 2
+        overlay.paintIcon(c, g, x + overlayOffsetX, overlayY)
+    }
+
 }

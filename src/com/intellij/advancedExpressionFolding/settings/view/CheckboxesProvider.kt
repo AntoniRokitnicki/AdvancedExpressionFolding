@@ -1,5 +1,6 @@
 package com.intellij.advancedExpressionFolding.settings.view
 
+import com.intellij.advancedExpressionFolding.icons.AdvancedExpressionFoldingIcons
 import com.intellij.advancedExpressionFolding.processor.util.Consts.Emoji
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings.State
 import com.intellij.openapi.editor.event.DocumentEvent
@@ -120,10 +121,12 @@ abstract class CheckboxesProvider {
         }
 
         registerCheckbox(state::logFolding, "Log folding") {
+            icon(AdvancedExpressionFoldingIcons.LogFolding)
             example("LogBrackets.java")
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#logfolding")
         }
         registerCheckbox(state::logFoldingTextBlocks, "Log folding: collapse Text Blocks") {
+            icon(AdvancedExpressionFoldingIcons.LogFoldingTextBlocks)
             example("LogFoldingTextBlocksTestData.java")
         }
 
@@ -186,6 +189,7 @@ abstract class CheckboxesProvider {
         }
 
         registerCheckbox(state::finalEmoji, "Replace the 'final' modifier with ${Emoji.FINAL_LOCK}") {
+            icon(AdvancedExpressionFoldingIcons.FinalEmoji)
             example("FinalEmojiTestData.java")
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#finalemoji")
         }
@@ -223,6 +227,7 @@ abstract class CheckboxesProvider {
         }
 
         registerCheckbox(state::emojify, "Emojify code") {
+            icon(AdvancedExpressionFoldingIcons.Emojify)
             example("EmojifyTestData.java")
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#emojify")
         }
