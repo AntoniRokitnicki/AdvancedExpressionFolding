@@ -26,6 +26,7 @@ import com.intellij.ide.starter.runner.IDECommandLine
 import com.intellij.ide.starter.runner.Starter
 import com.intellij.ide.starter.screenRecorder.IDEScreenRecorder
 import com.intellij.tools.ide.performanceTesting.commands.*
+import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable
 import org.junit.jupiter.api.fail
@@ -203,6 +204,133 @@ class IntegrationTest {
             it.openFile("data/OptionalTestData.java")
         }
         wait()
+    }
+
+    @Test
+    fun `clear folding cache via driver`() {
+        val filesToCheck = listOf(
+            "data/AppendSetterInterpolatedStringTestData.java",
+            "data/AssertTestData.java",
+        )
+        val context = init("clearFoldingKeys")
+        context.runIdeWithDriver().useDriverAndCloseIde {
+            execute {
+                it.importGradleProject()
+                it.awaitCompleteProjectConfiguration()
+                it.waitForSmartMode()
+            }
+
+            service<SettingsStub>().enableEverything()
+
+            filesToCheck.forEach { file ->
+                execute { it.openFile(file) }
+            }
+
+            val foldingBridge = utility<FoldingTestBridgeStub>()
+            val foldingService = utility<FoldingServiceStub>()
+
+            foldingBridge.updateFoldRegions(filesToCheck)
+            wait()
+
+            val initialSnapshots = foldingBridge.snapshot(filesToCheck)
+            filesToCheck.forEach { file ->
+                val snapshot = initialSnapshots.single { it.filePath == file }
+                val descriptors = snapshot.cachedDescriptors
+                assertNotNull(descriptors) { "Expected cached descriptors to be initialized for $file" }
+                assertTrue(descriptors!!.isNotEmpty()) { "Expected fold descriptors for $file" }
+                assertTrue(snapshot.foldRegions.isNotEmpty()) { "Expected fold regions for $file" }
+                assertNotNull(snapshot.cacheIdentityHash) { "Expected cache identity for $file" }
+            }
+
+            foldingService.clearAllKeys()
+            waitForCondition(10_000) {
+                foldingBridge.snapshot(filesToCheck).all { it.cachedDescriptors == null }
+            }
+
+            val clearedSnapshots = foldingBridge.snapshot(filesToCheck)
+            filesToCheck.forEach { file ->
+                val snapshot = clearedSnapshots.single { it.filePath == file }
+                assertNull(snapshot.cachedDescriptors) { "Expected cache to be cleared for $file" }
+                assertTrue(snapshot.foldRegions.isNotEmpty()) { "Fold regions should remain present for $file" }
+            }
+
+            foldingBridge.updateFoldRegions(filesToCheck)
+
+            val recomputedSnapshots = foldingBridge.snapshot(filesToCheck)
+            filesToCheck.forEach { file ->
+                val before = initialSnapshots.single { it.filePath == file }
+                val after = recomputedSnapshots.single { it.filePath == file }
+                val beforeDescriptors = before.cachedDescriptors!!.map { it.signature }
+                val afterDescriptors = after.cachedDescriptors!!.map { it.signature }
+                assertEquals(beforeDescriptors, afterDescriptors) {
+                    "Fold descriptors should match after recomputation for $file"
+                }
+                val beforeIdentity = before.cacheIdentityHash
+                val afterIdentity = after.cacheIdentityHash
+                assertNotNull(beforeIdentity) { "Expected initial cache identity for $file" }
+                assertNotNull(afterIdentity) { "Expected recomputed cache identity for $file" }
+                assertNotEquals(beforeIdentity, afterIdentity) {
+                    "Cache identity should change after recomputation for $file"
+                }
+                assertEquals(
+                    before.foldRegions.map { it.signature },
+                    after.foldRegions.map { it.signature },
+                ) { "Fold region signatures should remain consistent for $file" }
+            }
+
+            filesToCheck.forEach { file ->
+                foldingBridge.fold(file, collapse = true)
+            }
+            val collapsedSnapshots = foldingBridge.snapshot(filesToCheck)
+            filesToCheck.forEach { file ->
+                val snapshot = collapsedSnapshots.single { it.filePath == file }
+                assertTrue(snapshot.foldRegions.all { !it.expanded }) {
+                    "Expected regions to be collapsed for $file"
+                }
+                val reference = recomputedSnapshots.single { it.filePath == file }
+                assertEquals(
+                    reference.cachedDescriptors!!.map { it.signature },
+                    snapshot.cachedDescriptors!!.map { it.signature },
+                ) { "Cache descriptors should remain stable when folding $file" }
+                assertEquals(reference.cacheIdentityHash, snapshot.cacheIdentityHash) {
+                    "Cache identity should remain stable when folding $file"
+                }
+            }
+
+            filesToCheck.forEach { file ->
+                foldingBridge.fold(file, collapse = false)
+            }
+            val expandedSnapshots = foldingBridge.snapshot(filesToCheck)
+            filesToCheck.forEach { file ->
+                val snapshot = expandedSnapshots.single { it.filePath == file }
+                assertTrue(snapshot.foldRegions.all { it.expanded }) {
+                    "Expected regions to be expanded for $file"
+                }
+                val reference = recomputedSnapshots.single { it.filePath == file }
+                assertEquals(
+                    reference.cachedDescriptors!!.map { it.signature },
+                    snapshot.cachedDescriptors!!.map { it.signature },
+                ) { "Cache descriptors should remain stable after expanding $file" }
+                assertEquals(reference.cacheIdentityHash, snapshot.cacheIdentityHash) {
+                    "Cache identity should remain stable after expanding $file"
+                }
+                assertEquals(
+                    reference.foldRegions.map { it.signature },
+                    snapshot.foldRegions.map { it.signature },
+                ) { "Fold region signatures should remain consistent after expanding $file" }
+            }
+        }
+    }
+
+    private fun waitForCondition(timeoutMs: Long, condition: () -> Boolean) {
+        val deadline = System.currentTimeMillis() + timeoutMs
+        while (System.currentTimeMillis() < deadline) {
+            if (condition()) {
+                return
+            }
+            sleep(100)
+        }
+        fail { "Condition was not met within ${timeoutMs}ms" }
     }
 
     private fun Driver.startZenMode() {
