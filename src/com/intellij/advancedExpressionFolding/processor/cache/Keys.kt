@@ -9,67 +9,55 @@ import com.intellij.psi.PsiField
 import com.intellij.psi.PsiMethod
 import com.intellij.psi.util.MethodSignature
 
-object Keys {
-    private const val PREFIX = "AEF-"
-    val BUILDER = Key<Boolean>("${PREFIX}builder")
-    val CLASS_TYPE_KEY = Key<PsiClassExt.ClassType>("${PREFIX}classType")
+private const val PREFIX = "AEF-"
 
-    val FIELD_KEY = Key<PsiField>("${PREFIX}field")
-    val FIELD_META_DATA_KEY = Key<FieldMetaData>("${PREFIX}field-metadata")
+enum class Keys(
+    suffix: String,
+    factory: (String) -> Key<*> = { Key<Any?>(it) }
+) {
+    BUILDER("builder"),
+    CLASS_TYPE_KEY("classType"),
+    FIELD_KEY("field"),
+    FIELD_META_DATA_KEY("field-metadata"),
+    IGNORED("ignored"),
+    SYNTHETIC_KEY("syn", { Key.create<Any?>(it) }),
+    NOT_SYNTHETIC_KEY("!syn", { Key.create<Any?>(it) }),
+    VERSION_SYNTHETIC_KEY("ver-syn", { Key.create<Any?>(it) }),
+    VERSION_NOT_SYNTHETIC_KEY("ver-!syn", { Key.create<Any?>(it) }),
+    FULL_CACHE("-full", { Key.create<Any?>(it) }),
+    METHOD_TO_PARENT_CLASS_KEY("methodToParentClass");
+
+    val key: Key<*> = factory(PREFIX + suffix)
+
     data class FieldMetaData(
         var getter: PsiMethod? = null,
         var setter: PsiMethod? = null,
     )
 
-    val IGNORED = Key<Boolean>("${PREFIX}ignored")
+    companion object {
+        @Suppress("UNCHECKED_CAST")
+        val ignoredKey: Key<Boolean> = IGNORED.key as Key<Boolean>
 
-    private val SYNTHETIC_KEY: Key<Expression> = Key.create("${PREFIX}syn")
-    private val NOT_SYNTHETIC_KEY: Key<Expression> = Key.create("${PREFIX}!syn")
-    private val VERSION_SYNTHETIC_KEY: Key<Int> = Key.create("${PREFIX}ver-syn")
-    private val VERSION_NOT_SYNTHETIC_KEY: Key<Int> = Key.create("${PREFIX}ver-!syn")
+        fun clearAllOnExpire(psiElement: PsiElement) = clearAll(psiElement)
 
-    val FULL_CACHE: Key<Array<FoldingDescriptor>> = Key.create("${PREFIX}-full")
+        fun clearAll(psiElement: PsiElement) {
+            entries.forEach { psiElement.putUserData(it.key, null) }
+        }
 
-    val METHOD_TO_PARENT_CLASS_KEY = Key<MutableMap<MethodSignature, String>>("${PREFIX}methodToParentClass")
+        @Suppress("UNCHECKED_CAST")
+        fun getVersionKey(synthetic: Boolean): Key<Int> = when {
+            synthetic -> VERSION_SYNTHETIC_KEY.key as Key<Int>
+            else -> VERSION_NOT_SYNTHETIC_KEY.key as Key<Int>
+        }
 
-    //TODO: convert Keys to enum
-    private val values: Set<Key<*>> by lazy {
-        setOf(
-            BUILDER,
-            CLASS_TYPE_KEY,
-            FIELD_META_DATA_KEY,
-            IGNORED,
-            SYNTHETIC_KEY,
-            NOT_SYNTHETIC_KEY,
-            VERSION_SYNTHETIC_KEY,
-            VERSION_NOT_SYNTHETIC_KEY,
-            FIELD_KEY,
-            FULL_CACHE,
-        )
-    }
-    fun clearAllOnExpire(psiElement: PsiElement) {
-        values.forEach {
-            psiElement.putUserData(it, null)
+        @Suppress("UNCHECKED_CAST")
+        fun getKey(synthetic: Boolean): Key<Expression> = when {
+            synthetic -> SYNTHETIC_KEY.key as Key<Expression>
+            else -> NOT_SYNTHETIC_KEY.key as Key<Expression>
         }
     }
-    fun clearAll(psiElement: PsiElement) {
-        values.forEach {
-            psiElement.putUserData(it, null)
-        }
-    }
-    fun getVersionKey(synthetic: Boolean): Key<Int> {
-        return when {
-            synthetic -> VERSION_SYNTHETIC_KEY
-            else -> VERSION_NOT_SYNTHETIC_KEY
-        }
-    }
-    fun getKey(synthetic: Boolean): Key<Expression> {
-        return when {
-            synthetic -> SYNTHETIC_KEY
-            else -> NOT_SYNTHETIC_KEY
-        }
-    }
-    fun Key<Boolean>.isOn(element: PsiElement) : Boolean = element.getUserData(this) ?: false
-    fun Key<Boolean>.turnOn(element: PsiElement)  = element.putUserData(this, true)
-
 }
+
+fun Key<Boolean>.isOn(element: PsiElement): Boolean = element.getUserData(this) ?: false
+fun Key<Boolean>.turnOn(element: PsiElement) = element.putUserData(this, true)
+

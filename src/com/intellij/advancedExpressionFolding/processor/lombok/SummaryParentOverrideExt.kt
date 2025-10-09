@@ -4,6 +4,7 @@ import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.semantic.SimpleExpression
 import com.intellij.advancedExpressionFolding.processor.*
 import com.intellij.advancedExpressionFolding.processor.cache.Keys.METHOD_TO_PARENT_CLASS_KEY
+import com.intellij.openapi.util.Key
 import com.intellij.advancedExpressionFolding.processor.core.BaseExtension
 import com.intellij.openapi.util.removeUserData
 import com.intellij.psi.*
@@ -47,10 +48,14 @@ object SummaryParentOverrideExt : BaseExtension() {
             }
             it.element.exprOnLastChar(overriddenMethodsLabel)
         }?.let {
-            this.putUserData(METHOD_TO_PARENT_CLASS_KEY, methodToParentClass)
+            @Suppress("UNCHECKED_CAST")
+            this.putUserData(
+                METHOD_TO_PARENT_CLASS_KEY.key as Key<MutableMap<MethodSignature, String>>, methodToParentClass
+            )
             return it.exprWrap(this)
         }
-        this.removeUserData(METHOD_TO_PARENT_CLASS_KEY)
+        @Suppress("UNCHECKED_CAST")
+        this.removeUserData(METHOD_TO_PARENT_CLASS_KEY.key as Key<MutableMap<MethodSignature, String>>)
         return null
     }
 
@@ -83,7 +88,10 @@ object SummaryParentOverrideExt : BaseExtension() {
             body.lBrace
         }?.let { brace ->
             val signature = element.getSignature()
-            element.containingClass?.getUserData(METHOD_TO_PARENT_CLASS_KEY)
+            @Suppress("UNCHECKED_CAST")
+            element.containingClass?.getUserData(
+                METHOD_TO_PARENT_CLASS_KEY.key as Key<MutableMap<MethodSignature, String>>
+            )
                 ?.get(signature)?.let {
                     val prefix = if (oneLiner) {
                         '}'
