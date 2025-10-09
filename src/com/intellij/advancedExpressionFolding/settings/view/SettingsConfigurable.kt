@@ -16,23 +16,30 @@ import com.intellij.openapi.ui.DialogPanel
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.openapi.vfs.encoding.EncodingProjectManager
 import com.intellij.ui.JBColor
+import com.intellij.ui.CheckboxTree
+import com.intellij.ui.CheckboxTree.CheckboxTreeCellRenderer
+import com.intellij.ui.CheckedTreeNode
 import com.intellij.ui.components.ActionLink
-import com.intellij.ui.components.JBCheckBox
 import com.intellij.ui.dsl.builder.Panel
 import com.intellij.ui.dsl.builder.panel
 import java.awt.Color.decode
+import java.awt.Dimension
 import java.awt.FlowLayout
 import java.net.URI
 import javax.swing.JButton
 import javax.swing.JPanel
+import javax.swing.JScrollPane
+import javax.swing.JTree
+import javax.swing.tree.DefaultMutableTreeNode
 import kotlin.reflect.KMutableProperty0
 
 class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
     private val state = AdvancedExpressionFoldingSettings.getInstance().state
     private lateinit var panel: DialogPanel
     private val allExampleFiles = mutableSetOf<ExampleFile>()
-    private val pendingChanges = mutableMapOf<KMutableProperty0<Boolean>, Boolean>()
-    private val propertyToCheckbox = mutableMapOf<KMutableProperty0<Boolean>, JBCheckBox>()
+    private lateinit var tree: CheckboxTree
+    private val nodes = mutableListOf<SettingNode>()
+    private val definitions = mutableListOf<CheckboxDefinition>()
 
     override fun getId() = "advanced.expression.folding"
 
@@ -106,29 +113,29 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
         row {
             cell(createDownloadExamplesLink())
         }
+        // collect definitions, adding additional UI rows such as text fields
         initialize(state)
+        row {
+            tree = buildTree()
+            val scroll = JScrollPane(tree)
+            scroll.preferredSize = Dimension(600, 400)
+            cell(scroll)
+        }
     }.also {
         panel = it
     }
 
     override fun isModified(): Boolean {
-        return panel.isModified() || pendingChanges.isNotEmpty()
+        return panel.isModified() || nodes.any { it.isModified() }
     }
 
     override fun apply() {
-        pendingChanges.forEach { (property, value) ->
-            property.set(value)
-        }
-        pendingChanges.clear()
-        
+        nodes.forEach { it.apply() }
         panel.apply()
     }
 
     override fun reset() {
-        pendingChanges.clear()
-        propertyToCheckbox.forEach { (property, checkbox) ->
-            checkbox.isSelected = property.get()
-        }
+        nodes.forEach { it.reset() }
     }
 
     private fun firstSourceRoot(project: Project) =
@@ -167,33 +174,71 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
     companion object {
         private const val EXAMPLE_DIR = "data"
     }
+
+    private fun buildTree(): CheckboxTree {
+        val root = CheckedTreeNode("root")
+        val main = CheckedTreeNode("Main")
+        val others = CheckedTreeNode("Additional")
+
+        val mainPropertyNames = AdvancedExpressionFoldingSettings.allMainProperties()
+            .map { it.name }
+            .toSet()
+
+        definitions.forEach { definition ->
+            val node = SettingNode(definition)
+            nodes.add(node)
+            val parent = if (mainPropertyNames.contains(definition.property.name)) main else others
+            parent.add(node)
+        }
+
+        root.add(main)
+        root.add(others)
+
+        val renderer = object : CheckboxTreeCellRenderer() {
+            override fun customizeRenderer(
+                tree: JTree,
+                value: Any,
+                selected: Boolean,
+                expanded: Boolean,
+                leaf: Boolean,
+                row: Int,
+                hasFocus: Boolean,
+            ) {
+                val node = value as? DefaultMutableTreeNode ?: return
+                val text = node.userObject?.toString() ?: ""
+                textRenderer.append(text)
+            }
+        }
+
+        return CheckboxTree(renderer, root).apply {
+            isRootVisible = false
+        }
+    }
+
+    private class SettingNode(
+        val definition: CheckboxDefinition,
+    ) : CheckedTreeNode(definition.title) {
+        private val property = definition.property
+
+        init {
+            isChecked = property.get()
+        }
+
+        fun apply() = property.set(isChecked)
+        fun reset() {
+            isChecked = property.get()
+        }
+        fun isModified() = isChecked != property.get()
+    }
     
     @CheckboxDsl
     override fun Panel.registerCheckbox(
         property: KMutableProperty0<Boolean>,
         title: String,
-        block: (CheckboxBuilder.() -> Unit)?
+        block: (CheckboxBuilder.() -> Unit)?,
     ) {
         val builder = CheckboxBuilder()
         block?.invoke(builder)
-        
-        val checkbox = JBCheckBox(title)
-        checkbox.isSelected = property.get()
-        checkbox.addActionListener {
-            pendingChanges[property] = checkbox.isSelected
-        }
-        propertyToCheckbox[property] = checkbox
-        
-        row {
-            cell(checkbox)
-        }
-        
-        val definition = builder.build(property, title)
-        if (definition.exampleLinkMap != null || definition.docLink != null) {
-            row {
-                cell(createExamplePanel(definition.exampleLinkMap, definition.docLink))
-            }
-        }
-
+        definitions += builder.build(property, title)
     }
 }
