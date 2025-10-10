@@ -3,6 +3,7 @@ package com.intellij.advancedExpressionFolding.processor.lombok
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.semantic.SimpleExpression
 import com.intellij.advancedExpressionFolding.processor.*
+import com.intellij.advancedExpressionFolding.processor.language.kotlin.NullableExt
 import com.intellij.advancedExpressionFolding.processor.lombok.AnnotationExt.ClassLevelAnnotation
 import com.intellij.advancedExpressionFolding.processor.lombok.LombokExt.findMethodType
 import com.intellij.advancedExpressionFolding.processor.lombok.LombokInterfaceFoldingAnnotation.*
@@ -77,7 +78,6 @@ object LombokMethodExt : GenericCallback<PsiMethod, List<MethodLevelAnnotation>>
         list: MutableList<Expression?>,
         type: LombokInterfaceFoldingAnnotation
     ) {
-        //TODO: support @Nullable?
         val name = this.guessPropertyName()
         val getName = id.text
 
@@ -86,6 +86,25 @@ object LombokMethodExt : GenericCallback<PsiMethod, List<MethodLevelAnnotation>>
             compressMethodNameByFirstChar(name, diffCount)
         }
         list += addAnnotationByLastCharOfPrevWhitespace(type)
+
+        val nullableExpression = when (type) {
+            LOMBOK_INTERFACE_GETTER -> NullableExt.fieldAnnotationExpression(
+                annotations,
+                returnTypeElement,
+                foldPrevWhiteSpace = true
+            )
+
+            LOMBOK_INTERFACE_SETTER -> parameterList.parameters.firstOrNull()?.let { parameter ->
+                NullableExt.fieldAnnotationExpression(
+                    parameter.annotations,
+                    returnTypeElement,
+                    foldPrevWhiteSpace = true
+                )
+            }
+
+            else -> null
+        }
+        list += nullableExpression
 
         if (type == LOMBOK_INTERFACE_GETTER) {
             list += this.parameterList.exprHide()
