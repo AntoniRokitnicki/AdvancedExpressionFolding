@@ -214,7 +214,7 @@ class MainAnnotationCompletionContributorTest : BaseTest() {
                 input = """
                     import java.time.LocalDate;
                     import java.time.ZonedDateTime;
-                    
+
                     public class Test {
                         @<caret>
                         public void dateParams(java.util.Date date, LocalDate ld, java.time.LocalDateTime ldt, ZonedDateTime zdt) {
@@ -223,17 +223,63 @@ class MainAnnotationCompletionContributorTest : BaseTest() {
                 """.trimIndent(),
                 expected = """
                     import java.time.LocalDate;
+                    import java.time.LocalDateTime;
                     import java.time.ZonedDateTime;
-                    
+                    import java.util.Date;
+
                     public class Test {
                         public static void main(String[] args) {
-                            Date date = new java.util.Date();
-                            LocalDate ld = java.time.LocalDate.now();
-                            LocalDateTime ldt = java.time.LocalDateTime.now();
-                            ZonedDateTime zdt = java.time.ZonedDateTime.now();
+                            Date date = new Date();
+                            LocalDate ld = LocalDate.now();
+                            LocalDateTime ldt = LocalDateTime.now();
+                            ZonedDateTime zdt = ZonedDateTime.now();
                             new Test().dateParams(date, ld, ldt, zdt);
                         }
                         public void dateParams(java.util.Date date, LocalDate ld, java.time.LocalDateTime ldt, ZonedDateTime zdt) {
+                        }
+                    }
+                """.trimIndent()
+            )),
+
+            Arguments.of(TestCase(
+                name = "Class With Trailing Comment",
+                input = """
+                    public class Test { // class level comment
+                        @<caret>
+                        public void testMethod() {
+                        }
+                    }
+                """.trimIndent(),
+                expected = """
+                    public class Test {
+                        public static void main(String[] args) {
+                            new Test().testMethod();
+                        }
+                        // class level comment
+                        public void testMethod() {
+                        }
+                    }
+                """.trimIndent()
+            )),
+
+            Arguments.of(TestCase(
+                name = "Unconventional Formatting",
+                input = """
+                    public class Test
+                    {
+                        @<caret>
+                        public void testMethod() {
+                        }
+                    }
+                """.trimIndent(),
+                expected = """
+                    public class Test
+                    {
+                        public static void main(String[] args) {
+                            new Test().testMethod();
+                        }
+
+                        public void testMethod() {
                         }
                     }
                 """.trimIndent()
