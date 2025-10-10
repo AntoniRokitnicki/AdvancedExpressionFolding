@@ -40,6 +40,10 @@
         <completion.contributor
                 language="JAVA"
                 implementationClass="com.intellij.advancedExpressionFolding.MainAnnotationCompletionContributor"/>
+
+        <notificationGroup id="AdvancedExpressionFolding"
+                           displayType="BALLOON"
+                           isLogByDefault="false"/>
     </extensions>
 
     <applicationListeners>
