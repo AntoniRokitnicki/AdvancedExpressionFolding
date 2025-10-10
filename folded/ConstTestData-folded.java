@@ -34,20 +34,20 @@ public class ConstTestData {
     protected const PROTECTED_FINAL_STATIC_VAR = "";
 
     const STATIC_PUBLIC_FINAL_VAR = "";
-    static private final String STATIC_PRIVATE_FINAL_VAR = "";
-    static protected final String STATIC_PROTECTED_FINAL_VAR = "";
+    const private STATIC_PRIVATE_FINAL_VAR = "";
+    const protected STATIC_PROTECTED_FINAL_VAR = "";
 
     const STATIC_FINAL_PUBLIC_VAR = "";
-    static final private String STATIC_FINAL_PRIVATE_VAR = "";
-    static final protected String STATIC_FINAL_PROTECTED_VAR = "";
+    const private STATIC_FINAL_PRIVATE_VAR = "";
+    const protected STATIC_FINAL_PROTECTED_VAR = "";
 
     const FINAL_PUBLIC_STATIC_VAR = "";
-    final private static String FINAL_PRIVATE_STATIC_VAR = "";
-    final protected static String FINAL_PROTECTED_STATIC_VAR = "";
+    const private FINAL_PRIVATE_STATIC_VAR = "";
+    const protected FINAL_PROTECTED_STATIC_VAR = "";
 
     const FINAL_STATIC_PUBLIC_VAR = "";
-    final static private String FINAL_STATIC_PRIVATE_VAR = "";
-    final static protected String FINAL_STATIC_PROTECTED_VAR = "";
+    const private FINAL_STATIC_PRIVATE_VAR = "";
+    const protected FINAL_STATIC_PROTECTED_VAR = "";
 
     public static String PUBLIC_STATIC_VAR = "";
     private static String PRIVATE_STATIC_VAR = "";
@@ -124,37 +124,37 @@ public class ConstTestData {
         const STATIC_PUBLIC_FINAL_VAR = "";
 
         @Deprecated
-        static private final String STATIC_PRIVATE_FINAL_VAR = "";
+        const private STATIC_PRIVATE_FINAL_VAR = "";
 
         @Deprecated
-        static protected final String STATIC_PROTECTED_FINAL_VAR = "";
+        const protected STATIC_PROTECTED_FINAL_VAR = "";
 
         @Deprecated
         const STATIC_FINAL_PUBLIC_VAR = "";
 
         @Deprecated
-        static final private String STATIC_FINAL_PRIVATE_VAR = "";
+        const private STATIC_FINAL_PRIVATE_VAR = "";
 
         @Deprecated
-        static final protected String STATIC_FINAL_PROTECTED_VAR = "";
+        const protected STATIC_FINAL_PROTECTED_VAR = "";
 
         @Deprecated
         const FINAL_PUBLIC_STATIC_VAR = "";
 
         @Deprecated
-        final private static String FINAL_PRIVATE_STATIC_VAR = "";
+        const private FINAL_PRIVATE_STATIC_VAR = "";
 
         @Deprecated
-        final protected static String FINAL_PROTECTED_STATIC_VAR = "";
+        const protected FINAL_PROTECTED_STATIC_VAR = "";
 
         @Deprecated
         const FINAL_STATIC_PUBLIC_VAR = "";
 
         @Deprecated
-        final static private String FINAL_STATIC_PRIVATE_VAR = "";
+        const private FINAL_STATIC_PRIVATE_VAR = "";
 
         @Deprecated
-        final static protected String FINAL_STATIC_PROTECTED_VAR = "";
+        const protected FINAL_STATIC_PROTECTED_VAR = "";
 
         @Deprecated
         public static String PUBLIC_STATIC_VAR = "";
