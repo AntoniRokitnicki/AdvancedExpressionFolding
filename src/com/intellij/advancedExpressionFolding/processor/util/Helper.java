@@ -145,16 +145,18 @@ public class Helper {
     }
 
     public static int findDot(@NotNull Document document, int position, int i, boolean includeNewLines) {
+        CharSequence text = document.getCharsSequence();
+        int textLength = text.length();
         int offset = 0;
         while (Math.abs(offset) < 100 &&
                 position > 0 &&
-                position < document.getText().length()) {
+                position < textLength) {
             position += i;
             offset += i;
-            if (charAt(document, position) == '.') {
+            if (charAt(text, position) == '.') {
                 break;
             }
-            if (!Character.isWhitespace(charAt(document, position))) {
+            if (!Character.isWhitespace(charAt(text, position))) {
                 return Integer.MAX_VALUE;
             }
         }
@@ -163,14 +165,14 @@ public class Helper {
             do {
                 position += i;
                 offsetWithNewLine += i;
-                if (i < 0 && charAt(document, position) == '\n') {
+                if (i < 0 && charAt(text, position) == '\n') {
                     offset = offsetWithNewLine;
-                } else if (i > 0 && Character.isWhitespace(charAt(document, position))) {
+                } else if (i > 0 && Character.isWhitespace(charAt(text, position))) {
                     offset = offsetWithNewLine;
                 }
             } while (Math.abs(offsetWithNewLine) < 100 && position > 0 &&
-                    position < document.getText().length() &&
-                    Character.isWhitespace(charAt(document, position)));
+                    position < textLength &&
+                    Character.isWhitespace(charAt(text, position)));
         }
         if (Math.abs(offset) >= 100) {
             return Integer.MAX_VALUE;
@@ -179,7 +181,14 @@ public class Helper {
     }
 
     public static char charAt(@NotNull Document document, int position) {
-        return document.getText(TextRange.create(position, position + 1)).charAt(0);
+        return charAt(document.getCharsSequence(), position);
+    }
+
+    private static char charAt(@NotNull CharSequence text, int position) {
+        if (position < 0 || position >= text.length()) {
+            throw new IndexOutOfBoundsException("Position " + position + " is out of bounds 0.." + text.length());
+        }
+        return text.charAt(position);
     }
 
     @Nullable
