@@ -2,6 +2,7 @@ import org.jetbrains.changelog.Changelog
 import org.jetbrains.changelog.markdownToHTML
 import org.jetbrains.changelog.tasks.PatchChangelogTask
 import org.jetbrains.intellij.platform.gradle.TestFrameworkType
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import java.io.ByteArrayOutputStream
 import java.io.InputStream
 import java.io.Writer
@@ -60,6 +61,11 @@ sourceSets {
 
 tasks.withType<JavaCompile> {
     options.encoding = "UTF-8"
+}
+tasks.withType<KotlinCompile>().configureEach {
+    compilerOptions {
+        freeCompilerArgs.add("-Xcontext-parameters")
+    }
 }
 tasks.test {
     systemProperty("file.encoding", "UTF-8")

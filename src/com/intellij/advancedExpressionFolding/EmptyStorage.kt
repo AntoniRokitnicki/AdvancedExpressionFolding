@@ -8,9 +8,8 @@ import com.intellij.openapi.editor.Document
  * Simply returns the provided folding descriptors without modification.
  */
 object EmptyStorage : Storage {
+    context(editorDocument: Document)
     override fun store(
-        foldingDescriptors: Array<FoldingDescriptor>,
-        document: Document
+        foldingDescriptors: Array<FoldingDescriptor>
     ): Array<FoldingDescriptor> = foldingDescriptors
 }
-

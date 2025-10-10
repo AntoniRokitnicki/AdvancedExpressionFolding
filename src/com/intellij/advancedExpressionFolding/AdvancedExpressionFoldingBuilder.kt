@@ -9,6 +9,7 @@ import com.intellij.advancedExpressionFolding.processor.cache.Keys
 import com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings.Companion.getInstance
 import com.intellij.advancedExpressionFolding.settings.IConfig
+import com.intellij.advancedExpressionFolding.util.withDocument
 import com.intellij.lang.ASTNode
 import com.intellij.lang.folding.FoldingBuilderEx
 import com.intellij.lang.folding.FoldingDescriptor
@@ -20,36 +21,45 @@ import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiJavaFile
 
 class AdvancedExpressionFoldingBuilder(private val config: IConfig = getInstance().state) : FoldingBuilderEx(), IConfig by config {
-    override fun buildFoldRegions(element: PsiElement, document: Document, quick: Boolean): Array<FoldingDescriptor> {
+    override fun buildFoldRegions(element: PsiElement, document: Document, quick: Boolean): Array<FoldingDescriptor> =
+        withDocument(document) {
+            buildFoldRegionsWithDocument(element, quick)
+        }
+
+    context(editorDocument: Document)
+    private fun buildFoldRegionsWithDocument(
+        element: PsiElement,
+        quick: Boolean,
+    ): Array<FoldingDescriptor> {
         if (!globalOn || isFoldingFile(element)) {
-            return store.store(Expression.EMPTY_ARRAY, document)
+            return store.store(Expression.EMPTY_ARRAY)
         }
         if (debugFolding) {
-            preview(element, document)
+            preview(element)
         }
 
         val cachedDescriptors = when {
-            memoryImprovement -> readCache(element, quick, document)
+            memoryImprovement -> readCache(element, quick)
             else -> null
         }
-        val foldingDescriptors = cachedDescriptors ?: collect(element, document)
+        val foldingDescriptors = cachedDescriptors ?: collect(element)
         if (memoryImprovement && !quick && cachedDescriptors !== foldingDescriptors) {
             writeCache(element, foldingDescriptors)
         }
-        return store.store(foldingDescriptors, document)
+        return store.store(foldingDescriptors)
     }
 
     private fun isFoldingFile(element: PsiElement) =
         element.asInstance<PsiJavaFile>()?.name?.endsWith("-folded.java") == true
 
+    context(editorDocument: Document)
     private fun readCache(
         element: PsiElement,
         quick: Boolean,
-        document: Document
     ): Array<FoldingDescriptor>? {
         if (!quick) {
             (element as? PsiJavaFile)?.let { file ->
-                if (!file.invalidateExpired(document, false)) {
+                if (!file.invalidateExpired(editorDocument, false)) {
                     return file.getUserData(Keys.FULL_CACHE)
                 }
             }
@@ -66,12 +76,13 @@ class AdvancedExpressionFoldingBuilder(private val config: IConfig = getInstance
         }
     }
 
-    fun preview(element: PsiElement, document: Document): List<String> {
+    context(editorDocument: Document)
+    fun preview(element: PsiElement): List<String> {
         val groupIds = Sets.newIdentityHashSet<FoldingGroup>()
-        return collect(element, document).map { descriptor ->
+        return collect(element).map { descriptor ->
             descriptor.group?.let(groupIds::add)
             buildString {
-                append(descriptor.range.substring(document.text))
+                append(descriptor.range.substring(editorDocument.text))
                 append(" => ")
                 append(descriptor.placeholderText)
                 append('[')
@@ -85,13 +96,13 @@ class AdvancedExpressionFoldingBuilder(private val config: IConfig = getInstance
         }
     }
 
+    context(editorDocument: Document)
     private fun collect(
         element: PsiElement,
-        document: Document
     ): Array<FoldingDescriptor> {
         //TODO: default list size based on file size
         val allDescriptors = Lists.newArrayListWithCapacity<FoldingDescriptor>(1_000)
-        BuildExpressionExt.collectFoldRegionsRecursively(element, document, Sets.newIdentityHashSet(), allDescriptors)
+        BuildExpressionExt.collectFoldRegionsRecursively(element, editorDocument, Sets.newIdentityHashSet(), allDescriptors)
         return allDescriptors.toTypedArray()
     }
 
