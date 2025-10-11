@@ -63,7 +63,7 @@ public class BuildExpressionExt {
             FoldingDescriptor[] descriptors = expression.buildFoldRegions(expression.getElement(), document, null);
             if (descriptors.length > 0) {
                 allDescriptors.addAll(Arrays.asList(descriptors));
-                UsageTelemetryService.recordUsage(expression.getClass());
+                UsageTelemetryService.recordUsageIfEnabled(expression.getClass());
             }
         }
         if (expression == null || (unique && expression.isNested())) {

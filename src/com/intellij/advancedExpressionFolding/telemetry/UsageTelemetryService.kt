@@ -8,12 +8,13 @@ import com.intellij.openapi.components.State
 import com.intellij.openapi.components.Storage
 import org.jetbrains.annotations.TestOnly
 import java.time.Clock
+import kotlin.jvm.JvmOverloads
 
 @State(
     name = "AdvancedExpressionFoldingUsageTelemetry",
     storages = [Storage("advanced-expression-folding-telemetry.xml")]
 )
-class UsageTelemetryService(
+class UsageTelemetryService @JvmOverloads constructor(
     private val clock: Clock = Clock.systemUTC()
 ) : PersistentStateComponent<UsageTelemetryState> {
 
@@ -48,7 +49,7 @@ class UsageTelemetryService(
             ApplicationManager.getApplication()?.getService(UsageTelemetryService::class.java)
 
         @JvmStatic
-        fun recordUsage(expressionClass: Class<out Expression>) {
+        fun recordUsageIfEnabled(expressionClass: Class<out Expression>) {
             val application = ApplicationManager.getApplication() ?: return
             if (!AdvancedExpressionFoldingSettings.getInstance().state.telemetryEnabled) {
                 return
@@ -57,7 +58,7 @@ class UsageTelemetryService(
         }
 
         @JvmStatic
-        fun reset() {
+        fun resetTelemetry() {
             getInstance()?.reset()
         }
     }

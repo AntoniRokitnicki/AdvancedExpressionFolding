@@ -31,7 +31,7 @@ class UsageTelemetryPanel : JPanel(BorderLayout()) {
     private val infoLabel = JBLabel()
     private val refreshLink = ActionLink("Refresh") { refresh() }
     private val resetLink = ActionLink("Reset telemetry") {
-        UsageTelemetryService.reset()
+        UsageTelemetryService.resetTelemetry()
         refresh()
     }
     private val tableModel = object : DefaultTableModel(arrayOf("Rule", "Activations", "Last used"), 0) {

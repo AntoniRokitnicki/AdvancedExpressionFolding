@@ -22,7 +22,6 @@ import com.intellij.ui.dsl.builder.Panel
 import com.intellij.ui.dsl.builder.panel
 import com.intellij.ui.dsl.builder.Align
 import com.intellij.ui.dsl.builder.bindSelected
-import com.intellij.ui.dsl.builder.onChanged
 import java.awt.Color.decode
 import java.awt.FlowLayout
 import java.net.URI
@@ -114,8 +113,8 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
             val checkbox = checkBox("Enable local usage telemetry")
                 .bindSelected(state::telemetryEnabled)
                 .comment("Counts folding activations on this machine only. No data ever leaves the IDE.")
-            checkbox.onChanged {
-                telemetryPanel.updateEnabled(it.isSelected)
+            checkbox.component.addChangeListener {
+                telemetryPanel.updateEnabled(checkbox.component.isSelected)
             }
         }
         row {
@@ -123,9 +122,7 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
                 .align(Align.FILL)
                 .resizableColumn()
         }.resizableRow()
-        row {
-            separator()
-        }
+        separator()
         initialize(state)
     }.also {
         panel = it
