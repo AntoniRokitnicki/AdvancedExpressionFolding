@@ -5,6 +5,7 @@ import com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt.
 import com.intellij.advancedExpressionFolding.settings.StateDelegate
 import com.intellij.openapi.editor.Document
 import com.intellij.psi.PsiElement
+import com.intellij.psi.util.PsiModificationTracker
 import org.jetbrains.annotations.Contract
 
 object CacheExt : StateDelegate() {
@@ -12,11 +13,12 @@ object CacheExt : StateDelegate() {
     fun PsiElement.invalidateExpired(document: Document, synthetic: Boolean): Boolean {
         val versionKey = Keys.getVersionKey(synthetic)
         val lastVersion = getUserData(versionKey)
-        val hashCode = document.text.hashCode()
-        val expired = lastVersion != hashCode
+        val currentVersion = containingFile?.modificationStamp
+            ?: PsiModificationTracker.getInstance(project).modificationCount
+        val expired = lastVersion != currentVersion
         if (expired) {
             Keys.clearAllOnExpire(this)
-            putUserData(versionKey, hashCode)
+            putUserData(versionKey, currentVersion)
         }
         return expired
     }
