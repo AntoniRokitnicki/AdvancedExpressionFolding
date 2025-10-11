@@ -92,6 +92,21 @@ public class LogFoldingTextBlocksTestData {
                 Root: ${data.name}
                 Child: ${data.data.name}
                 """);
+        log.debug("""
+                User summary:
+                Name: $name
+                Age: $age
+                City: $city
+                """);
+        log.warn("""
+                Nested data snapshot:
+                Parent: ${data.name}
+                Child: ${data.data.name}
+                """);
+        log.trace("""
+                Formatter contents:
+                $formatter
+                """);
         return data;
     }
 

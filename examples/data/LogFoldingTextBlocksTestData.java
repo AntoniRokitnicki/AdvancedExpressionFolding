@@ -102,6 +102,21 @@ public class LogFoldingTextBlocksTestData {
                 Root: {}
                 Child: {}
                 """, data.getName(), data.getData().getName());
+        log.debug("""
+                User summary:
+                Name: {}
+                Age: {}
+                City: {}
+                """, name, age, city);
+        log.warn("""
+                Nested data snapshot:
+                Parent: {}
+                Child: {}
+                """, data.getName(), data.getData().getName());
+        log.trace("""
+                Formatter contents:
+                {}
+                """, formatter);
         return data;
     }
 
