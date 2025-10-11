@@ -12,11 +12,13 @@ object CacheExt : StateDelegate() {
     fun PsiElement.invalidateExpired(document: Document, synthetic: Boolean): Boolean {
         val versionKey = Keys.getVersionKey(synthetic)
         val lastVersion = getUserData(versionKey)
-        val hashCode = document.text.hashCode()
-        val expired = lastVersion != hashCode
+        val currentStamp = document.modificationStamp
+        val expired = lastVersion != null && lastVersion != currentStamp
         if (expired) {
             Keys.clearAllOnExpire(this)
-            putUserData(versionKey, hashCode)
+        }
+        if (lastVersion != currentStamp) {
+            putUserData(versionKey, currentStamp)
         }
         return expired
     }
