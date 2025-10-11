@@ -19,6 +19,7 @@ import com.intellij.ui.JBColor
 import com.intellij.ui.components.ActionLink
 import com.intellij.ui.components.JBCheckBox
 import com.intellij.ui.dsl.builder.Panel
+import com.intellij.ui.dsl.builder.RightGap
 import com.intellij.ui.dsl.builder.panel
 import java.awt.Color.decode
 import java.awt.FlowLayout
@@ -104,6 +105,30 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
             cell(button)
         }
         row {
+            cell(presetButton("Enable core foldings") {
+                applyPreset {
+                    enableAll(state::experimental)
+                }
+            }).gap(RightGap.SMALL)
+            cell(presetButton("Enable everything") {
+                applyPreset {
+                    enableEverything()
+                }
+            }).gap(RightGap.SMALL)
+            cell(presetButton("Disable all foldings") {
+                applyPreset {
+                    disableAll()
+                }
+            })
+        }
+        row {
+            cell(presetButton("Disable experimental features") {
+                applyPreset {
+                    state.experimental = false
+                }
+            })
+        }
+        row {
             cell(createDownloadExamplesLink())
         }
         initialize(state)
@@ -167,7 +192,7 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
     companion object {
         private const val EXAMPLE_DIR = "data"
     }
-    
+
     @CheckboxDsl
     override fun Panel.registerCheckbox(
         property: KMutableProperty0<Boolean>,
@@ -196,4 +221,48 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
         }
 
     }
+
+    private fun presetButton(text: String, action: () -> Unit) = JButton(text).apply {
+        addActionListener { action() }
+    }
+
+    private fun applyPreset(modifier: AdvancedExpressionFoldingSettings.() -> Unit) {
+        updatePendingChanges(simulatePreset(modifier))
+    }
+
+    private fun simulatePreset(modifier: AdvancedExpressionFoldingSettings.() -> Unit): AdvancedExpressionFoldingSettings.State {
+        val temporarySettings = AdvancedExpressionFoldingSettings()
+        val baseState = state.copy().applyPendingChanges()
+        temporarySettings.loadState(baseState)
+        temporarySettings.modifier()
+        return temporarySettings.state.copy()
+    }
+
+    private fun AdvancedExpressionFoldingSettings.State.applyPendingChanges(): AdvancedExpressionFoldingSettings.State {
+        val propertiesByName = AdvancedExpressionFoldingSettings.allProperties().associateBy { it.name }
+        pendingChanges.forEach { (property, value) ->
+            propertiesByName[property.name]?.setter?.call(this, value)
+        }
+        return this
+    }
+
+    private fun updatePendingChanges(targetState: AdvancedExpressionFoldingSettings.State) {
+        val targetValues = targetState.booleanValuesByName()
+        propertyToCheckbox.forEach { (property, checkbox) ->
+            val name = property.name
+            val targetValue = targetValues[name] ?: return@forEach
+            checkbox.isSelected = targetValue
+            val currentValue = property.get()
+            if (currentValue != targetValue) {
+                pendingChanges[property] = targetValue
+            } else {
+                pendingChanges.remove(property)
+            }
+        }
+    }
+
+    private fun AdvancedExpressionFoldingSettings.State.booleanValuesByName(): Map<String, Boolean> =
+        AdvancedExpressionFoldingSettings.allProperties().associate { property ->
+            property.name to (property.getter.call(this) as Boolean)
+        }
 }
