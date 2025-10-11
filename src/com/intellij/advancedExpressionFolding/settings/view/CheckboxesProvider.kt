@@ -273,8 +273,13 @@ abstract class CheckboxesProvider {
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#pseudoAnnotations")
         }
         // NEW OPTION
-        registerCheckbox(state::memoryImprovement, "Memory improvements")
+        registerCheckbox(state::memoryImprovement, "Memory improvements") {
+            badge("New", FeatureBadgeStyle.NEW)
+            description("Lowers the plugin's memory footprint by tuning folding caches. Ideal for large projects—observe IDE usage after enabling.")
+        }
         registerCheckbox(state::experimental, "Experimental features") {
+            badge("Experimental", FeatureBadgeStyle.EXPERIMENTAL)
+            description("Unlocks in-progress foldings that may be unstable or change without notice. Expect occasional visual glitches while testing.")
             example("ExperimentalTestData.java")
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#experimental")
         }
