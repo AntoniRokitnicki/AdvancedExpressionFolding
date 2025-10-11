@@ -43,10 +43,15 @@ abstract class BaseTest : LightJavaCodeInsightFixtureTestCase5(TEST_JDK) {
     }
 
     protected open fun testWrapper(fileName: String, testName: String, action: () -> Unit) {
-        rewriteFileOnFailure(fileName, testName, action)
+        val artifacts = rewriteFileOnFailure(fileName, testName, action)
+        verifyGroupArtifact(fileName, artifacts)
     }
 
-    private inline fun rewriteFileOnFailure(fileName: String, testName: String, action: () -> Unit) {
+    private inline fun rewriteFileOnFailure(
+        fileName: String,
+        testName: String,
+        action: () -> Unit,
+    ): FoldingArtifacts {
         val testDataFile = File(fileName)
         if (devMode()) {
             replaceTestDataWithExample(testName, testDataFile)
@@ -56,10 +61,12 @@ abstract class BaseTest : LightJavaCodeInsightFixtureTestCase5(TEST_JDK) {
         com.intellij.advancedExpressionFolding.store = store
         try {
             action.invoke()
+            return FoldingArtifacts(store.createOrderedFoldingWrapper(), store.documentText())
         } catch (e: FileComparisonFailedError) {
             val actual = e.actual.stringRepresentation
             Files.writeString(testDataFile.toPath(), actual)
             val wrapper = store.createOrderedFoldingWrapper()
+            val documentText = store.documentText()
             saveFoldingsAsJson.off() ?: run {
                 val folderName = "wrappers"
                 val jsonFileName = fileName.replace("testData/", "$folderName/")
@@ -70,6 +77,7 @@ abstract class BaseTest : LightJavaCodeInsightFixtureTestCase5(TEST_JDK) {
             if (!all) {
                 replaceAllTestData(fileName, actual)
                 createFoldedFile(fileName, actual, wrapper)
+                createGroupFile(fileName, documentText, wrapper)
             }
             throw e
         }
@@ -78,6 +86,38 @@ abstract class BaseTest : LightJavaCodeInsightFixtureTestCase5(TEST_JDK) {
     private fun createFoldedFile(fileName: String, actual: String, wrapper: FoldingDescriptorExWrapper) {
         val foldingFile = fileName.replace("testData/", "folded/")
         Files.writeString(createOutputFile(foldingFile, "-folded.java").toPath(), FoldingTemporaryTestEditor.getFoldedText(actual, wrapper))
+    }
+
+    private fun createGroupFile(
+        fileName: String,
+        documentText: String,
+        wrapper: FoldingDescriptorExWrapper,
+    ) {
+        val groupFile = fileName.replace("testData/", "folded/")
+        Files.writeString(
+            createOutputFile(groupFile, "-group.java").toPath(),
+            FoldingGroupArtifactGenerator.render(documentText, wrapper)
+        )
+    }
+
+    private fun verifyGroupArtifact(fileName: String, artifacts: FoldingArtifacts) {
+        if (fileName.contains("-all")) {
+            return
+        }
+        val groupFile = fileName.replace("testData/", "folded/")
+        val expectedFile = createOutputFile(groupFile, "-group.java")
+        val actual = FoldingGroupArtifactGenerator.render(artifacts.documentText, artifacts.wrapper)
+        val expected = if (expectedFile.exists()) Files.readString(expectedFile.toPath()) else null
+        if (expected != actual) {
+            expectedFile.parentFile?.mkdirs()
+            Files.writeString(expectedFile.toPath(), actual)
+            throw FileComparisonFailedError(
+                expectedFile.name,
+                expected ?: "",
+                actual,
+                expectedFile.path
+            )
+        }
     }
 
     protected open fun getTestFileName(testName: String) = "testData/${testName.capitalize()}.java"
@@ -115,6 +155,11 @@ abstract class BaseTest : LightJavaCodeInsightFixtureTestCase5(TEST_JDK) {
             throw FileComparisonFailedError(verificationFile.name, expectedContent, actual, verificationFile.path)
         }
     }
+
+    private data class FoldingArtifacts(
+        val wrapper: FoldingDescriptorExWrapper,
+        val documentText: String,
+    )
 
     companion object {
         private const val FOLD = "fold"

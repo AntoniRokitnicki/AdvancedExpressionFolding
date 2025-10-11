@@ -75,6 +75,8 @@ class FoldingDataStorage : Storage {
         return FoldingDescriptorExWrapper(list.size, list)
     }
 
+    fun documentText(): String = document.text
+
     fun saveToJsonFile(
         file: File,
         foldingDescriptorExWrapper: FoldingDescriptorExWrapper
