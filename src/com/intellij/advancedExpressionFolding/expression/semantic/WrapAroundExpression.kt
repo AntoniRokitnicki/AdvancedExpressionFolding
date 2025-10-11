@@ -2,7 +2,9 @@ package com.intellij.advancedExpressionFolding.expression.semantic
 
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.processor.end
+import com.intellij.advancedExpressionFolding.processor.nextWhiteSpace
 import com.intellij.advancedExpressionFolding.processor.prevWhiteSpace
+import com.intellij.advancedExpressionFolding.processor.start
 import com.intellij.lang.folding.FoldingDescriptor
 import com.intellij.openapi.editor.FoldingGroup
 import com.intellij.openapi.util.TextRange
@@ -55,11 +57,28 @@ AbstractMultiExpression(element,
                 //TODO: else
             }
 
-            textAfter?.let {
-                TODO()
-            }
-            if (foldNextWhiteSpace) {
-                TODO()
+            element.nextWhiteSpace()?.let { nextWhiteSpace ->
+                when {
+                    textAfter != null && foldNextWhiteSpace -> {
+                        list += SimpleExpression(nextWhiteSpace, textRange = nextWhiteSpace.textRange, text = textAfter, group = group)
+                    }
+
+                    textAfter != null -> {
+                        val firstChar = nextWhiteSpace.text.firstOrNull()
+                        if (firstChar != null) {
+                            list += SimpleExpression(
+                                nextWhiteSpace,
+                                textRange = TextRange(nextWhiteSpace.start(), nextWhiteSpace.start() + 1),
+                                text = "$textAfter$firstChar",
+                                group = group,
+                            )
+                        }
+                    }
+
+                    foldNextWhiteSpace -> {
+                        list += SimpleExpression(nextWhiteSpace, textRange = nextWhiteSpace.textRange, text = "", group = group)
+                    }
+                }
             }
 
             return list
