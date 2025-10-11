@@ -97,6 +97,11 @@ public class LogFoldingTextBlocksTestData {
         log.error("""
                 Missing 1 parameter - 1: %s, 2: %d, 3: %s, empty: %s
                 """, name, age, city);
+        log.info("""
+                Data summary:
+                Root: {}
+                Child: {}
+                """, data.getName(), data.getData().getName());
         return data;
     }
 

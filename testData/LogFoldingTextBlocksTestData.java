@@ -98,6 +98,13 @@ public class LogFoldingTextBlocksTestData {
                 Missing 1 parameter - 1: <fold text='$' expand='false'>%s, 2: %d, 3: %s, empty: %s
                 """, </fold>name<fold text=', 2: $' expand='false'>, </fold>age<fold text=', 3: $' expand='false'>, </fold>city<fold text=', empty: %s
                 """)' expand='false'>)</fold>;
+        log.info("""
+                Data summary:
+                Root: <fold text='${' expand='false'>{}
+                Child: {}
+                """, </fold>data.<fold text='name' expand='false'>getName()</fold><fold text='}
+                Child: ${' expand='false'>, </fold>data.<fold text='data' expand='false'>getData()</fold>.<fold text='name' expand='false'>getName()</fold><fold text='}
+                """)' expand='false'>)</fold>;
         return data;
     }</fold>
 
