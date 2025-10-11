@@ -29,21 +29,25 @@ class FindUsageCustomView(project: Project, title: String) {
             usageViewPresentation,
             null
         ) as UsageViewImpl
+        FindUsageCustomViewTestHook.onUsageViewCreated(usageView)
     }
 
-    fun addToUsage(element: PsiElement, textRange: TextRange) {
-        ApplicationManager.getApplication().executeOnPooledThread {
-            ApplicationManager.getApplication().runReadAction {
-                usageView.appendUsage(
-                    UsageInfo2UsageAdapter(
-                        UsageInfo(
-                            element.containingFile, textRange, false
-                        )
-                    )
-                )
-                usageView.searchFinished()
-            }
+    fun addUsage(element: PsiElement, textRange: TextRange) {
+        val usageInfo = UsageInfo(
+            element.containingFile,
+            textRange,
+            false
+        )
+        ApplicationManager.getApplication().invokeLater {
+            usageView.appendUsage(UsageInfo2UsageAdapter(usageInfo))
+            FindUsageCustomViewTestHook.onUsageAppended(usageInfo, textRange)
         }
     }
 
+    fun finish() {
+        ApplicationManager.getApplication().invokeLater {
+            usageView.searchFinished()
+            FindUsageCustomViewTestHook.onSearchFinished()
+        }
+    }
 }
