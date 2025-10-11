@@ -49,8 +49,17 @@ class AdvancedExpressionFoldingBuilder(private val config: IConfig = getInstance
     ): Array<FoldingDescriptor>? {
         if (!quick) {
             (element as? PsiJavaFile)?.let { file ->
-                if (!file.invalidateExpired(document, false)) {
-                    return file.getUserData(Keys.FULL_CACHE)
+                val cached = with(document) {
+                    with(false) {
+                        if (!file.invalidateExpired()) {
+                            file.getUserData(Keys.FULL_CACHE)
+                        } else {
+                            null
+                        }
+                    }
+                }
+                if (cached != null) {
+                    return cached
                 }
             }
         }

@@ -56,6 +56,10 @@ object PsiMethodExt : BaseExtension() {
         return list.exprWrap(method)
     }
 
+    context(doc: Document)
+    fun createExpression(method: PsiMethod): Expression? =
+        createExpression(method = method, document = doc)
+
     fun createExpression(parameter: PsiParameter, document: Document): Expression? {
         if (interfaceExtensionProperties && InterfacePropertiesExt.ignoreFoldingParameter(parameter)) {
             return null
@@ -69,4 +73,8 @@ object PsiMethodExt : BaseExtension() {
         )
         return list.exprWrap(parameter)
     }
+
+    context(doc: Document)
+    fun createExpression(parameter: PsiParameter): Expression? =
+        createExpression(parameter = parameter, document = doc)
 }

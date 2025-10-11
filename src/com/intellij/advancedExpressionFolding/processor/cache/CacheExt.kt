@@ -9,36 +9,53 @@ import org.jetbrains.annotations.Contract
 
 object CacheExt : StateDelegate() {
 
-    fun PsiElement.invalidateExpired(document: Document, synthetic: Boolean): Boolean {
-        val versionKey = Keys.getVersionKey(synthetic)
-        val lastVersion = getUserData(versionKey)
-        val hashCode = document.text.hashCode()
+    context(doc: Document, isSynthetic: Boolean)
+    fun PsiElement.invalidateExpired(): Boolean {
+        val element = this
+        val versionKey = Keys.getVersionKey(isSynthetic)
+        val lastVersion = element.getUserData(versionKey)
+        val hashCode = doc.text.hashCode()
         val expired = lastVersion != hashCode
         if (expired) {
-            Keys.clearAllOnExpire(this)
-            putUserData(versionKey, hashCode)
+            Keys.clearAllOnExpire(element)
+            element.putUserData(versionKey, hashCode)
         }
         return expired
     }
 
+    fun PsiElement.invalidateExpired(document: Document, synthetic: Boolean): Boolean =
+        with(document) {
+            with(synthetic) {
+                invalidateExpired()
+            }
+        }
+
     // method is run from different threads
     @JvmStatic
     @Contract("_, _, true -> !null")
-    fun getExpression(element: PsiElement, document: Document, synthetic: Boolean): Expression? {
-            val key = Keys.getKey(synthetic)
-            val cachedExpression = if (element.invalidateExpired(document, synthetic)) {
-                null
-            } else {
-                element.getUserData(key)
+    fun getExpression(element: PsiElement, document: Document, synthetic: Boolean): Expression? =
+        with(document) {
+            with(synthetic) {
+                getExpression(element)
             }
-            return when (cachedExpression) {
-                null -> {
-                    val newExpression = buildExpression(element, document, synthetic)
-                    element.putUserData(key, newExpression.ofNullable())
-                    newExpression
-                }
-                else -> cachedExpression.getOrNull()
+        }
+
+    context(doc: Document, isSynthetic: Boolean)
+    fun getExpression(element: PsiElement): Expression? {
+        val key = Keys.getKey(isSynthetic)
+        val cachedExpression = if (element.invalidateExpired()) {
+            null
+        } else {
+            element.getUserData(key)
+        }
+        return when (cachedExpression) {
+            null -> {
+                val newExpression = buildExpression(element, doc, isSynthetic)
+                element.putUserData(key, newExpression.ofNullable())
+                newExpression
             }
+            else -> cachedExpression.getOrNull()
+        }
     }
 
     private val NULL_OBJECT: Expression = object : Expression() {

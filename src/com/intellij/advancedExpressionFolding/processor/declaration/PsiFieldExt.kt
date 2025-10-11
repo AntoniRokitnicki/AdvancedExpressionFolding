@@ -59,6 +59,10 @@ object PsiFieldExt : BaseExtension() {
         return list.exprWrap(field)
     }
 
+    context(doc: Document)
+    fun createExpression(field: PsiField): Expression? =
+        createExpression(field = field, document = doc)
+
     fun createExpression(psiRecordComponent: PsiRecordComponent): NullAnnotationExpression? {
         return fieldAnnotationExpression(psiRecordComponent.annotations, psiRecordComponent.typeElement, true)
     }

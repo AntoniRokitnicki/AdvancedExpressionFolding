@@ -23,36 +23,61 @@ import com.intellij.psi.*
 abstract class BuildExpression<T : PsiElement>(
     private val elementType: Class<T>
 ) : BaseExtension() {
-    abstract fun buildExpression(element: T, document: Document, synthetic: Boolean): Expression?
 
-    @Suppress("UNCHECKED_CAST")
-    private fun canProcess(element: PsiElement): Boolean =
-        elementType.isInstance(element) && checkConditions(element as T)
+    context(doc: Document, isSynthetic: Boolean)
+    protected abstract fun buildExpression(element: T): Expression?
 
     protected open fun checkConditions(element: T): Boolean = true
 
     @Suppress("UNCHECKED_CAST")
+    context(doc: Document, isSynthetic: Boolean)
+    private fun canProcess(element: PsiElement): Boolean =
+        elementType.isInstance(element) && checkConditions(element as T)
+
+    context(doc: Document, isSynthetic: Boolean)
+    protected fun build(element: T): Expression? = buildExpression(element)
+
+    fun buildExpression(element: T, document: Document, synthetic: Boolean): Expression? =
+        with(document) {
+            with(synthetic) {
+                build(element)
+            }
+        }
+
+    @Suppress("UNCHECKED_CAST")
+    context(doc: Document, isSynthetic: Boolean)
+    fun tryBuildExpression(element: PsiElement): Expression? =
+        if (canProcess(element)) build(element as T) else null
+
     fun tryBuildExpression(element: PsiElement, document: Document, synthetic: Boolean): Expression? =
-        if (canProcess(element)) buildExpression(element as T, document, synthetic) else null
+        with(document) {
+            with(synthetic) {
+                tryBuildExpression(element)
+            }
+        }
 }
 
 class ForStatementBuilder : BuildExpression<PsiForStatement>(PsiForStatement::class.java) {
-    override fun buildExpression(element: PsiForStatement, document: Document, synthetic: Boolean) =
-        ForStatementExpressionExt.getForStatementExpression(element, document)
+    context(doc: Document, isSynthetic: Boolean)
+    override fun buildExpression(element: PsiForStatement) =
+        ForStatementExpressionExt.getForStatementExpression(element, doc)
 }
 
 class ForEachStatementBuilder : BuildExpression<PsiForeachStatement>(PsiForeachStatement::class.java) {
-    override fun buildExpression(element: PsiForeachStatement, document: Document, synthetic: Boolean): Expression? =
+    context(doc: Document, isSynthetic: Boolean)
+    override fun buildExpression(element: PsiForeachStatement): Expression? =
         LoopExt.getForEachStatementExpression(element)
 }
 
 class IfStatementBuilder : BuildExpression<PsiIfStatement>(PsiIfStatement::class.java) {
-    override fun buildExpression(element: PsiIfStatement, document: Document, synthetic: Boolean) =
-        IfExt.getIfExpression(element, document)
+    context(doc: Document, isSynthetic: Boolean)
+    override fun buildExpression(element: PsiIfStatement) =
+        IfExt.getIfExpression(element, doc)
 }
 
 class WhileStatementBuilder : BuildExpression<PsiWhileStatement>(PsiWhileStatement::class.java) {
-    override fun buildExpression(element: PsiWhileStatement, document: Document, synthetic: Boolean): Expression? =
+    context(doc: Document, isSynthetic: Boolean)
+    override fun buildExpression(element: PsiWhileStatement): Expression? =
         LoopExt.getWhileStatement(element)
 }
 
@@ -62,7 +87,8 @@ class SemicolonBuilder : BuildExpression<PsiJavaToken>(PsiJavaToken::class.java)
                 semicolonsCollapse &&
                 !element.isWritable
 
-    override fun buildExpression(element: PsiJavaToken, document: Document, synthetic: Boolean) =
+    context(doc: Document, isSynthetic: Boolean)
+    override fun buildExpression(element: PsiJavaToken) =
         SemicolonExpression(
             element,
             element.textRange
@@ -73,7 +99,8 @@ class TokenBuilder : BuildExpression<PsiJavaToken>(PsiJavaToken::class.java) {
     override fun checkConditions(element: PsiJavaToken) =
         element.tokenType != JavaTokenType.SEMICOLON || element.isWritable
 
-    override fun buildExpression(element: PsiJavaToken, document: Document, synthetic: Boolean) =
+    context(doc: Document, isSynthetic: Boolean)
+    override fun buildExpression(element: PsiJavaToken) =
         PsiJavaTokenExt.createExpression(element)
 }
 
@@ -84,7 +111,8 @@ class CatchSectionBuilder : BuildExpression<PsiCatchSection>(PsiCatchSection::cl
                 element.lParenth != null &&
                 element.rParenth != null
 
-    override fun buildExpression(element: PsiCatchSection, document: Document, synthetic: Boolean): Expression? {
+    context(doc: Document, isSynthetic: Boolean)
+    override fun buildExpression(element: PsiCatchSection): Expression? {
         val l = element.lParenth ?: return null
         val r = element.rParenth ?: return null
         return CompactControlFlowExpression(
@@ -95,79 +123,90 @@ class CatchSectionBuilder : BuildExpression<PsiCatchSection>(PsiCatchSection::cl
 }
 
 class DoWhileStatementBuilder : BuildExpression<PsiDoWhileStatement>(PsiDoWhileStatement::class.java) {
-    override fun buildExpression(element: PsiDoWhileStatement, document: Document, synthetic: Boolean): Expression? =
+    context(doc: Document, isSynthetic: Boolean)
+    override fun buildExpression(element: PsiDoWhileStatement): Expression? =
         LoopExt.getDoWhileStatement(element)
 }
 
 class SwitchStatementBuilder : BuildExpression<PsiSwitchStatement>(PsiSwitchStatement::class.java) {
-    override fun buildExpression(element: PsiSwitchStatement, document: Document, synthetic: Boolean): Expression? =
+    context(doc: Document, isSynthetic: Boolean)
+    override fun buildExpression(element: PsiSwitchStatement): Expression? =
         IfExt.getSwitchStatement(element)
 }
 
 class ArrayAccessExpressionBuilder : BuildExpression<PsiArrayAccessExpression>(PsiArrayAccessExpression::class.java) {
     override fun checkConditions(element: PsiArrayAccessExpression) = getExpressionsCollapse
 
-    override fun buildExpression(element: PsiArrayAccessExpression, document: Document, synthetic: Boolean) =
-        PsiArrayAccessExpressionExt.getArrayAccessExpression(element, document)
+    context(doc: Document, isSynthetic: Boolean)
+    override fun buildExpression(element: PsiArrayAccessExpression) =
+        PsiArrayAccessExpressionExt.getArrayAccessExpression(element, doc)
 }
 
 class MethodCallExpressionBuilder : BuildExpression<PsiMethodCallExpression>(PsiMethodCallExpression::class.java) {
-    override fun buildExpression(element: PsiMethodCallExpression, document: Document, synthetic: Boolean) =
-        MethodCallExpressionExt.getMethodCallExpression(element, document)
+    context(doc: Document, isSynthetic: Boolean)
+    override fun buildExpression(element: PsiMethodCallExpression) =
+        MethodCallExpressionExt.getMethodCallExpression(element, doc)
 }
 
 class ReferenceExpressionBuilder : BuildExpression<PsiReferenceExpression>(PsiReferenceExpression::class.java) {
-    override fun buildExpression(element: PsiReferenceExpression, document: Document, synthetic: Boolean) =
+    context(doc: Document, isSynthetic: Boolean)
+    override fun buildExpression(element: PsiReferenceExpression) =
         ReferenceExpressionExt.getReferenceExpression(element)
 }
 
 class NewExpressionBuilder : BuildExpression<PsiNewExpression>(PsiNewExpression::class.java) {
-    override fun buildExpression(element: PsiNewExpression, document: Document, synthetic: Boolean) =
-        NewExpressionExt.getNewExpression(element, document)
+    context(doc: Document, isSynthetic: Boolean)
+    override fun buildExpression(element: PsiNewExpression) =
+        NewExpressionExt.getNewExpression(element, doc)
 }
 
 class LiteralExpressionBuilder : BuildExpression<PsiLiteralExpression>(PsiLiteralExpression::class.java) {
-    override fun buildExpression(element: PsiLiteralExpression, document: Document, synthetic: Boolean) =
+    context(doc: Document, isSynthetic: Boolean)
+    override fun buildExpression(element: PsiLiteralExpression) =
         LiteralExpressionExt.getLiteralExpression(element)
 }
 
 class AssignmentExpressionBuilder : BuildExpression<PsiAssignmentExpression>(PsiAssignmentExpression::class.java) {
-    override fun buildExpression(element: PsiAssignmentExpression, document: Document, synthetic: Boolean) =
-        AssignmentExpressionExt.getAssignmentExpression(element, document)
+    context(doc: Document, isSynthetic: Boolean)
+    override fun buildExpression(element: PsiAssignmentExpression) =
+        AssignmentExpressionExt.getAssignmentExpression(element, doc)
 }
 
 class PolyadicExpressionBuilder : BuildExpression<PsiPolyadicExpression>(PsiPolyadicExpression::class.java) {
-    override fun buildExpression(element: PsiPolyadicExpression, document: Document, synthetic: Boolean) =
-        IfExt.getPolyadicExpression(element, document)
+    context(doc: Document, isSynthetic: Boolean)
+    override fun buildExpression(element: PsiPolyadicExpression) =
+        IfExt.getPolyadicExpression(element, doc)
 }
 
 class BinaryExpressionBuilder : BuildExpression<PsiBinaryExpression>(PsiBinaryExpression::class.java) {
-    override fun buildExpression(element: PsiBinaryExpression, document: Document, synthetic: Boolean) =
-        BinaryExpressionExt.getBinaryExpression(element, document)
+    context(doc: Document, isSynthetic: Boolean)
+    override fun buildExpression(element: PsiBinaryExpression) =
+        BinaryExpressionExt.getBinaryExpression(element, doc)
 }
 
 class ConditionalExpressionBuilder : BuildExpression<PsiConditionalExpression>(PsiConditionalExpression::class.java) {
-    override fun buildExpression(element: PsiConditionalExpression, document: Document, synthetic: Boolean) =
-        IfExt.getConditionalExpression(element, document)
+    context(doc: Document, isSynthetic: Boolean)
+    override fun buildExpression(element: PsiConditionalExpression) =
+        IfExt.getConditionalExpression(element, doc)
 }
 
 class PrefixExpressionBuilder : BuildExpression<PsiPrefixExpression>(PsiPrefixExpression::class.java) {
-    override fun buildExpression(element: PsiPrefixExpression, document: Document, synthetic: Boolean) =
-        PrefixExpressionExt.getPrefixExpression(element, document)
+    context(doc: Document, isSynthetic: Boolean)
+    override fun buildExpression(element: PsiPrefixExpression) =
+        PrefixExpressionExt.getPrefixExpression(element, doc)
 }
 
 class ParenthesizedExpressionBuilder :
     BuildExpression<PsiParenthesizedExpression>(PsiParenthesizedExpression::class.java) {
     override fun checkConditions(element: PsiParenthesizedExpression) = castExpressionsCollapse
 
+    context(doc: Document, isSynthetic: Boolean)
     override fun buildExpression(
         element: PsiParenthesizedExpression,
-        document: Document,
-        synthetic: Boolean
     ): Expression? {
         val expression = element.expression
         if (expression is PsiTypeCastExpression) {
-            val typeCast = PsiTypeCastExpressionExt.getTypeCastExpression(expression, document)
+            val typeCast = PsiTypeCastExpressionExt.getTypeCastExpression(expression, doc)
             if (typeCast != null) {
                 return TypeCast(
                     element,
@@ -177,7 +216,7 @@ class ParenthesizedExpressionBuilder :
             }
         }
         if (expression != null) {
-            return CacheExt.getExpression(expression, document, synthetic)
+            return CacheExt.getExpression(expression)
         }
         return null
     }
@@ -186,12 +225,14 @@ class ParenthesizedExpressionBuilder :
 class TypeCastExpressionBuilder : BuildExpression<PsiTypeCastExpression>(PsiTypeCastExpression::class.java) {
     override fun checkConditions(element: PsiTypeCastExpression) = castExpressionsCollapse
 
-    override fun buildExpression(element: PsiTypeCastExpression, document: Document, synthetic: Boolean) =
-        PsiTypeCastExpressionExt.getTypeCastExpression(element, document)
+    context(doc: Document, isSynthetic: Boolean)
+    override fun buildExpression(element: PsiTypeCastExpression) =
+        PsiTypeCastExpressionExt.getTypeCastExpression(element, doc)
 }
 
 class DeclarationStatementBuilder : BuildExpression<PsiDeclarationStatement>(PsiDeclarationStatement::class.java) {
-    override fun buildExpression(element: PsiDeclarationStatement, document: Document, synthetic: Boolean) =
+    context(doc: Document, isSynthetic: Boolean)
+    override fun buildExpression(element: PsiDeclarationStatement) =
         PsiDeclarationStatementExt.createExpression(element)
 }
 
@@ -199,54 +240,71 @@ class VariableBuilder : BuildExpression<PsiVariable>(PsiVariable::class.java) {
     override fun checkConditions(element: PsiVariable) = varExpressionsCollapse &&
             (element.parent is PsiDeclarationStatement || element.parent is PsiForeachStatement)
 
-    override fun buildExpression(element: PsiVariable, document: Document, synthetic: Boolean) =
+    context(doc: Document, isSynthetic: Boolean)
+    override fun buildExpression(element: PsiVariable) =
         PsiVariableExt.getVariableDeclaration(element)
 }
 
 class CodeBlockBuilder : BuildExpression<PsiCodeBlock>(PsiCodeBlock::class.java) {
-    override fun buildExpression(element: PsiCodeBlock, document: Document, synthetic: Boolean) =
+    context(doc: Document, isSynthetic: Boolean)
+    override fun buildExpression(element: PsiCodeBlock) =
         PsiCodeBlockExt.getCodeBlockExpression(element)
 }
 
 class ClassBuilder : BuildExpression<PsiClass>(PsiClass::class.java) {
-    override fun buildExpression(element: PsiClass, document: Document, synthetic: Boolean) =
+    context(doc: Document, isSynthetic: Boolean)
+    override fun buildExpression(element: PsiClass) =
         PsiClassExt.createExpression(element)
 }
 
 class FieldBuilder : BuildExpression<PsiField>(PsiField::class.java) {
-    override fun buildExpression(element: PsiField, document: Document, synthetic: Boolean) =
-        PsiFieldExt.createExpression(element, document)
+    context(doc: Document, isSynthetic: Boolean)
+    override fun buildExpression(element: PsiField) =
+        PsiFieldExt.createExpression(element)
 }
 
 class ParameterBuilder : BuildExpression<PsiParameter>(PsiParameter::class.java) {
-    override fun buildExpression(element: PsiParameter, document: Document, synthetic: Boolean) =
-        PsiMethodExt.createExpression(element, document)
+    context(doc: Document, isSynthetic: Boolean)
+    override fun buildExpression(element: PsiParameter) =
+        PsiMethodExt.createExpression(element)
 }
 
 class RecordComponentBuilder : BuildExpression<PsiRecordComponent>(PsiRecordComponent::class.java) {
-    override fun buildExpression(element: PsiRecordComponent, document: Document, synthetic: Boolean) =
+    context(doc: Document, isSynthetic: Boolean)
+    override fun buildExpression(element: PsiRecordComponent) =
         PsiFieldExt.createExpression(element)
 }
 
 class MethodBuilder : BuildExpression<PsiMethod>(PsiMethod::class.java) {
-    override fun buildExpression(element: PsiMethod, document: Document, synthetic: Boolean) =
-        PsiMethodExt.createExpression(element, document)
+    context(doc: Document, isSynthetic: Boolean)
+    override fun buildExpression(element: PsiMethod) =
+        PsiMethodExt.createExpression(element)
 }
 
 class KeywordBuilder : BuildExpression<PsiKeyword>(PsiKeyword::class.java) {
-    override fun buildExpression(element: PsiKeyword, document: Document, synthetic: Boolean) =
+    context(doc: Document, isSynthetic: Boolean)
+    override fun buildExpression(element: PsiKeyword) =
         PsiKeywordExt.createExpression(element)
 }
 
 class TryStatementBuilder : BuildExpression<PsiTryStatement>(PsiTryStatement::class.java) {
-    override fun buildExpression(element: PsiTryStatement, document: Document, synthetic: Boolean) =
+    context(doc: Document, isSynthetic: Boolean)
+    override fun buildExpression(element: PsiTryStatement) =
         PsiTryStatementExt.createExpression(element)
 
 }
 
-fun tryBuildExpression(element: PsiElement, document: Document, synthetic: Boolean): Expression? {
+context(doc: Document, isSynthetic: Boolean)
+fun tryBuildExpression(element: PsiElement): Expression? {
     return ExpressionBuilderManager.Companion.expressionBuilders
         .firstNotNullOfOrNull {
-            it.tryBuildExpression(element, document, synthetic)
+            it.tryBuildExpression(element)
         }
 }
+
+fun tryBuildExpression(element: PsiElement, document: Document, synthetic: Boolean): Expression? =
+    with(document) {
+        with(synthetic) {
+            tryBuildExpression(element)
+        }
+    }
