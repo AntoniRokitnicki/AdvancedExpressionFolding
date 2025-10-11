@@ -44,22 +44,40 @@
 
 <p>For more information, read the <a href="https://medium.com/@andrey_cheptsov/making-java-code-easier-to-read-without-changing-it-adeebd5c36de" target="_blank">blog post</a>.</p>
 
-## Unreleased ##
+## Release history
 
-## 4.2.0 ##
+<details open>
+<summary><strong>Unreleased</strong></summary>
+
+_No entries yet._
+
+</details>
+
+<details>
+<summary><strong>4.2.0</strong></summary>
+
 - [Add setting to prevent collapsing Java text blocks in log folding](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/338)
 - [Bugfix/log folding strings no params](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/341)
 
-## 4.0.0 ##
+</details>
+
+<details>
+<summary><strong>4.0.0</strong></summary>
 
 - [[pseudo-annotations] @Main - method-level annotation that generates a main method invoking the annotated method.](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/PseudoAnnotations)
 - [[fieldshift] Preconditions.checkNotNull now supported](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/FieldShift#preconditionschecknotnull)
 
-## 3.8.0 ##
+</details>
+
+<details>
+<summary><strong>3.8.0</strong></summary>
 
 - add button to apply folded text color based on current theme (blue/navy) in settings
 
-## 3.7.0 ##
+</details>
+
+<details>
+<summary><strong>3.7.0</strong></summary>
 
 - [[expressionFunc] methods returning literals are now more compact](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/folded/ExpressionFuncTestData-folded.java)
 - [[summaryParentOverride] Improvement of summary parent override when no override exists](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/ec60ae57361709b9e5ff3d05da29923e9aedfe44/folded/SummaryParentOverrideTestData-folded.java#L40)
@@ -67,49 +85,126 @@
 - [suppressWarningsHide] hides @SuppressWarnings annotation at method level
 - [overrideHide] hides @Override annotation
 
-## 3.6.0 ##
+</details>
+
+<details>
+<summary><strong>3.6.0</strong></summary>
 
 - [[experimental] Add exception class to @SneakyThrows and support multiline](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/folded/ExperimentalTestData-folded.java)
 
-## 3.5.0 ##
+</details>
+
+<details>
+<summary><strong>3.5.0</strong></summary>
+
 - [[lombok] support more types of dirty getters: wrapper, lazy and dirtyNoReference](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/4ec74d4d7a40d22749e3e491baa604036f407bc4/folded/LombokTestData-folded.java#L168)
 
-## 3.4.1 ##
+</details>
+
+<details>
+<summary><strong>3.4.1</strong></summary>
+
 - [Prevents all Lombok folding for classes matching the regex pattern](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#lombokpatternoff)
 - [[experimental] - @SneakyThrows for single statement](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/folded/ExperimentalTestData-folded.java)
 
-## 3.3.0 ##
+</details>
+
+<details>
+<summary><strong>3.3.0</strong></summary>
+
 - [FieldShift - defensive copy support](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/FieldShift#defensive-copy-support)
 
-## 3.2.0 ##
+</details>
+
+<details>
+<summary><strong>3.2.0</strong></summary>
+
 - [New settings with downloadable examples and documentation](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/New-settings)
 
-## 3.1.0 ##
+</details>
+
+<details>
+<summary><strong>3.1.0</strong></summary>
+
 - [Method default parameters using an overloaded method](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/MethodDefaultParameters)
 
-## 3.0.0 ##
+</details>
+
+<details>
+<summary><strong>3.0.0</strong></summary>
+
 - [Dynamic names for methods](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/Dynamic-Folding)
 - [Constructor reference notation ::new and compact field initialization](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/ConstructorReferenceNotation)
 - [Improved log folding](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/Log-brackets-folding)
 - [Pattern Matching for `instanceof` (JEP 394)](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/PatternMatchingInstanceof)
 
+</details>
 
-## New features:
-- **Lombok Emulator & Validator**: [`@Data`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#data), [`@Getter`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#getter), [`@Setter`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#setter), [`@ToString`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#tostring), [`@EqualsAndHashCode`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#equalsandhashcode), [`@NoArgsConstructor`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#noargsconstructor), [`@AllArgsConstructor`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#allargsconstructor), [`@RequiredArgsConstructor`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#requiredargsconstructor), [`@Builder`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#builder), [`@Value`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#value), [`@Log`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#log), [`@Equals`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#equals), [`@HashCode`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#hashcode), [`@Serial`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#serial), [`@Constructor`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#constructor), [`@LightValue`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#lightvalue)
+
+## Feature overview
+
+<details open>
+<summary><strong>Lombok emulator &amp; validator</strong></summary>
+
+- [`@Data`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#data)
+- [`@Getter`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#getter)
+- [`@Setter`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#setter)
+- [`@ToString`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#tostring)
+- [`@EqualsAndHashCode`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#equalsandhashcode)
+- [`@NoArgsConstructor`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#noargsconstructor)
+- [`@AllArgsConstructor`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#allargsconstructor)
+- [`@RequiredArgsConstructor`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#requiredargsconstructor)
+- [`@Builder`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#builder)
+- [`@Value`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#value)
+- [`@Log`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#log)
+- [`@Equals`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#equals)
+- [`@HashCode`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#hashcode)
+- [`@Serial`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#serial)
+- [`@Constructor`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#constructor)
+- [`@LightValue`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#lightvalue)
+
+</details>
+
+<details>
+<summary><strong>Logging &amp; monitoring enhancements</strong></summary>
+
+- [Add setting to prevent collapsing Java text blocks in log folding](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/338)
+- [Bugfix/log folding strings no params](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/341)
+- [**Logger Brackets Folding** for SLF4J and other logging frameworks](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/Log-brackets-folding)
 - [Extended java time folding](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/Extended-java-time-folding)
-- [**Logger Brackets Folding**: For Slf4j and other logging framework](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/Log-brackets-folding)
+
+</details>
+
+<details>
+<summary><strong>Language-inspired folding</strong></summary>
+
 - [Extended null-safe ifs](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/Extended-null%E2%80%90safe-ifs)
 - [Display Optional as Kotlin Null-Safe](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/22)
 - [Groovy spread operator in streams](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/23)
-- [Display mapping of field with same name as << for builders](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/44)
-- [Display mapping of field with same name as << for setters](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/51)
-- [FieldShift for assignments](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/FieldShift)
-- [Actions for folding and unfolding with key-shortcuts](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/Actions-for-folding-and-unfolding-with-key%E2%80%90shortcuts)
 - [Kotlin quick return - ?.let { return it } and ?: return null](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/62)
-- [Folding of testData in diff](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/Folding-of-testData-in-diff)
-- [Destructuring assignment for array & list](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/Destructuring-assignment)
+- [Destructuring assignment for array &amp; list](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/Destructuring-assignment)
 - [Simplify System.out.println to println](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/Simplify-System.out.println-to-println)
 - [@Nullable and @NotNull annotations](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/@Nullable-and-@NotNull-annotations)
+
+</details>
+
+<details>
+<summary><strong>Builder, setter &amp; field utilities</strong></summary>
+
+- [Display mapping of field with same name as &lt;&lt; for builders](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/44)
+- [Display mapping of field with same name as &lt;&lt; for setters](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/51)
+- [FieldShift for assignments](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/FieldShift)
+- [FieldShift - defensive copy support](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/FieldShift#defensive-copy-support)
+
+</details>
+
+<details>
+<summary><strong>Productivity boosts</strong></summary>
+
+- [Actions for folding and unfolding with key-shortcuts](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/Actions-for-folding-and-unfolding-with-key%E2%80%90shortcuts)
+- [Folding of testData in diff](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/Folding-of-testData-in-diff)
+
+</details>
 
 <br />
 <p>For more clarity, you may try to adjust your color scheme: go to <strong>Settings</strong> | <strong>Editor</strong> |
