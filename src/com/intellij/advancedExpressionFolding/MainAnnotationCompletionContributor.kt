@@ -60,7 +60,11 @@ class MainAnnotationCompletionContributor(private val state: IState = getInstanc
 
     private fun findTopLevelClass(psiClass: PsiClass): PsiClass {
         var current = psiClass
-        while (current.containingClass != null) current = current.containingClass!!
+        while (true) {
+            current.containingClass?.let {
+                current = it
+            } ?: break
+        }
         return current
     }
 

@@ -54,11 +54,9 @@ abstract class AbstractSingleChildExpression(
             text,
         )
         val array = arrayOf(folding)
-        return if (child != null && child.supportsFoldRegions(document, this)) {
-            array + child.buildFoldRegions(child.element, document, this)
-        } else {
-            array
-        }
+        return child?.takeIf { it.supportsFoldRegions(document, this) }
+            ?.let { array + it.buildFoldRegions(it.element, document, this) }
+            ?: array
     }
 
     fun group(): FoldingGroup = this::class.group()

@@ -29,8 +29,7 @@ class Getter(
             FoldingGroup.newGroup(Getter::class.java.name),
             name
         )
-        val obj = `object`
-        if (obj != null && obj.supportsFoldRegions(document, this)) {
+        `object`?.takeIf { it.supportsFoldRegions(document, this) }?.let { obj ->
             descriptors += obj.buildFoldRegions(obj.element, document, this).toList()
         }
         return descriptors.toTypedArray()
