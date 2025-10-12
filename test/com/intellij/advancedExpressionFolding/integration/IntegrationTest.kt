@@ -1,4 +1,4 @@
-package com.intellij.advancedExpressionFolding
+package com.intellij.advancedExpressionFolding.integration
 
 import com.intellij.driver.client.Driver
 import com.intellij.driver.client.service

@@ -1,4 +1,4 @@
-package com.intellij.advancedExpressionFolding
+package com.intellij.advancedExpressionFolding.integration
 
 import com.intellij.advancedExpressionFolding.settings.IConfig
 import com.intellij.advancedExpressionFolding.settings.IState
