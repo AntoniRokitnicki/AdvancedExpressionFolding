@@ -44,8 +44,7 @@ class Setter(
                 )
             }
         }
-        val obj = `object`
-        if (obj != null && obj.supportsFoldRegions(document, this)) {
+        `object`?.takeIf { it.supportsFoldRegions(document, this) }?.let { obj ->
             descriptors += obj.buildFoldRegions(obj.element, document, this).toList()
         }
         if (value.supportsFoldRegions(document, this)) {

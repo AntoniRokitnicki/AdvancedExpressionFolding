@@ -24,8 +24,7 @@ class NumberLiteral(
         parent: Expression?
     ): Array<FoldingDescriptor> {
         val descriptors = mutableListOf<FoldingDescriptor>()
-        val highlightedRange = numberTextRange
-        if (highlightedRange != null) {
+        numberTextRange?.let { highlightedRange ->
             val group = FoldingGroup.newGroup(NumberLiteral::class.java.name + HIGHLIGHTED_GROUP_POSTFIX)
             if (textRange.startOffset < highlightedRange.startOffset) {
                 descriptors += FoldingDescriptor(

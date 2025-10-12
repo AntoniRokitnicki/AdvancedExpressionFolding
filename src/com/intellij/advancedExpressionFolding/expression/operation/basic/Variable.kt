@@ -25,8 +25,7 @@ class Variable(
         parent: Expression?
     ): Array<FoldingDescriptor> {
         val descriptors = mutableListOf<FoldingDescriptor>()
-        val highlightedRange = variableTextRange
-        if (highlightedRange != null) {
+        variableTextRange?.let { highlightedRange ->
             val group = FoldingGroup.newGroup(Variable::class.java.name + Expression.HIGHLIGHTED_GROUP_POSTFIX)
             if (textRange.startOffset < highlightedRange.startOffset) {
                 descriptors += FoldingDescriptor(
