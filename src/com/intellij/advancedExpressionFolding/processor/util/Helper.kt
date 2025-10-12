@@ -3,6 +3,7 @@ package com.intellij.advancedExpressionFolding.processor.util
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.literal.NumberLiteral
 import com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt
+import com.intellij.advancedExpressionFolding.processor.argumentExpressions
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.util.TextRange
@@ -242,7 +243,7 @@ object Helper {
     }
 
     fun isGetter(element: PsiElement, expression: PsiMethodCallExpression): Boolean {
-        return expression.argumentList.expressions.isEmpty() && isGetter(element.text)
+        return expression.argumentExpressions.isEmpty() && isGetter(element.text)
     }
 
     fun isGetter(name: String): Boolean = isGetterAux(name, "get") || isGetterAux(name, "is")

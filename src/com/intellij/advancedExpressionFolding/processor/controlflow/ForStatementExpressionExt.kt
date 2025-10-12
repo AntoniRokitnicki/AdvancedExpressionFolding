@@ -8,6 +8,8 @@ import com.intellij.advancedExpressionFolding.expression.controlflow.ForStatemen
 import com.intellij.advancedExpressionFolding.expression.literal.NumberLiteral
 import com.intellij.advancedExpressionFolding.expression.operation.basic.Variable
 import com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt.getAnyExpression
+import com.intellij.advancedExpressionFolding.processor.argumentExpressions
+import com.intellij.advancedExpressionFolding.processor.argumentCount
 import com.intellij.advancedExpressionFolding.processor.util.Helper
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
 import com.intellij.openapi.editor.Document
@@ -185,9 +187,9 @@ object ForStatementExpressionExt {
                 }
             }
         } else if (initializer is PsiMethodCallExpression &&
-            initializer.argumentList.expressions.size == 1 &&
-            initializer.argumentList.expressions[0] is PsiReferenceExpression &&
-            (initializer.argumentList.expressions[0] as PsiReferenceExpression).isReferenceTo(conditionVariable) &&
+            initializer.argumentCount == 1 &&
+            initializer.argumentExpressions[0] is PsiReferenceExpression &&
+            (initializer.argumentExpressions[0] as PsiReferenceExpression).isReferenceTo(conditionVariable) &&
             conditionROperand is PsiMethodCallExpression &&
             conditionROperand.methodExpression.qualifierExpression is PsiReferenceExpression &&
             initializer.methodExpression.qualifierExpression is PsiReferenceExpression &&

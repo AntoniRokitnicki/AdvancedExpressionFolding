@@ -7,6 +7,8 @@ import com.intellij.advancedExpressionFolding.expression.literal.NumberLiteral
 import com.intellij.advancedExpressionFolding.expression.literal.SetLiteral
 import com.intellij.advancedExpressionFolding.expression.literal.StringLiteral
 import com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt
+import com.intellij.advancedExpressionFolding.processor.argumentExpressions
+import com.intellij.advancedExpressionFolding.processor.argumentCount
 import com.intellij.advancedExpressionFolding.processor.expression.LiteralExpressionExt
 import com.intellij.advancedExpressionFolding.processor.methodcall.MethodCallExpressionExt
 import com.intellij.advancedExpressionFolding.processor.util.Consts
@@ -151,10 +153,10 @@ object NewExpressionExt {
         for (statement in statements) {
             if (statement is PsiExpressionStatement && statement.expression is PsiMethodCallExpression) {
                 val methodCall = statement.expression as PsiMethodCallExpression
-                if (methodCall.methodExpression.text == "add" && methodCall.argumentList.expressions.size == 1) {
+                if (methodCall.methodExpression.text == "add" && methodCall.argumentCount == 1) {
                     val method = methodCall.methodExpression.resolve() as? PsiMethod
                     if (method != null && method.containingClass?.qualifiedName == "java.util.HashSet") {
-                        arguments.add(methodCall.argumentList.expressions[0])
+                        arguments.add(methodCall.argumentExpressions[0])
                         continue
                     }
                 }
