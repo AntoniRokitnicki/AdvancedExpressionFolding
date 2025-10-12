@@ -1,5 +1,6 @@
-package com.intellij.advancedExpressionFolding
+package com.intellij.advancedExpressionFolding.performance
 
+import com.intellij.advancedExpressionFolding.FoldingTest
 import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable
 import kotlin.reflect.KFunction0
 
