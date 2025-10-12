@@ -40,6 +40,21 @@
         <completion.contributor
                 language="JAVA"
                 implementationClass="com.intellij.advancedExpressionFolding.MainAnnotationCompletionContributor"/>
+
+        <fileType name="FoldingGroup"
+                  language="FoldingGroupLang"
+                  extensions="group.java;group.sample"
+                  fieldName="INSTANCE"
+                  implementationClass="com.intellij.advancedExpressionFolding.foldingGroup.FoldingGroupFileType"/>
+        <lang.parserDefinition language="FoldingGroupLang"
+                                implementationClass="com.intellij.advancedExpressionFolding.foldingGroup.parser.FoldingGroupParserDefinition"/>
+        <lang.syntaxHighlighterFactory language="FoldingGroupLang"
+                                       implementationClass="com.intellij.advancedExpressionFolding.foldingGroup.highlighting.FoldingGroupSyntaxHighlighterFactory"/>
+        <annotator language="FoldingGroupLang"
+                   implementationClass="com.intellij.advancedExpressionFolding.foldingGroup.annotator.FoldingGroupAnnotator"/>
+        <lang.braceMatcher language="FoldingGroupLang"
+                           implementationClass="com.intellij.advancedExpressionFolding.foldingGroup.editor.FoldingGroupBraceMatcher"/>
+        <colorSettingsPage implementation="com.intellij.advancedExpressionFolding.foldingGroup.highlighting.FoldingGroupColorSettingsPage"/>
     </extensions>
 
     <applicationListeners>
