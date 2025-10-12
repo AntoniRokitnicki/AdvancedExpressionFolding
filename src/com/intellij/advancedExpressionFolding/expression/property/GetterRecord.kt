@@ -1,9 +1,7 @@
 package com.intellij.advancedExpressionFolding.expression.property
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.lang.folding.FoldingDescriptor
 import com.intellij.openapi.editor.Document
-import com.intellij.openapi.editor.FoldingGroup
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiElement
 
@@ -21,17 +19,6 @@ class GetterRecord(
         return true
     }
 
-    override fun buildFoldRegions(element: PsiElement, document: Document, parent: Expression?): Array<FoldingDescriptor> {
-        val descriptors = arrayListOf<FoldingDescriptor>()
-        descriptors += FoldingDescriptor(
-            element.node,
-            getterTextRange,
-            FoldingGroup.newGroup(GetterRecord::class.java.name),
-            name
-        )
-        `object`?.takeIf { it.supportsFoldRegions(document, this) }?.let { obj ->
-            descriptors += obj.buildFoldRegions(obj.element, document, this).toList()
-        }
-        return descriptors.toTypedArray()
-    }
+    override fun buildFoldRegions(element: PsiElement, document: Document, parent: Expression?) =
+        buildGetterFoldRegions(element, document)
 }
