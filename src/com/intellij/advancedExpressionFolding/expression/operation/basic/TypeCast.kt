@@ -1,74 +1,72 @@
-package com.intellij.advancedExpressionFolding.expression.operation.basic;
+package com.intellij.advancedExpressionFolding.expression.operation.basic
 
-import com.intellij.advancedExpressionFolding.expression.Expression;
-import com.intellij.lang.folding.FoldingDescriptor;
-import com.intellij.openapi.editor.Document;
-import com.intellij.openapi.editor.FoldingGroup;
-import com.intellij.openapi.util.TextRange;
-import com.intellij.psi.PsiElement;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.lang.folding.FoldingDescriptor
+import com.intellij.openapi.editor.Document
+import com.intellij.openapi.editor.FoldingGroup
+import com.intellij.openapi.util.TextRange
+import com.intellij.psi.PsiElement
 
-import java.util.ArrayList;
-import java.util.Collections;
+class TypeCast(
+    element: PsiElement,
+    textRange: TextRange,
+    private val objectExpression: Expression
+) : Expression(element, textRange) {
 
-public class TypeCast extends Expression {
-    private final @NotNull Expression object;
+    fun getObject(): Expression = objectExpression
 
-    public TypeCast(@NotNull PsiElement element, @NotNull TextRange textRange, @NotNull Expression object) {
-        super(element, textRange);
-        this.object = object;
-    }
+    override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean = true
 
-    @NotNull
-    public Expression getObject() {
-        return object;
-    }
-
-    @Override
-    public boolean supportsFoldRegions(@NotNull Document document,
-                                       @Nullable Expression parent) {
-        return true;
-    }
-
-    @Override
-    public FoldingDescriptor[] buildFoldRegions(@NotNull PsiElement element, @NotNull Document document, @Nullable Expression parent) {
-        boolean dotAccess = document.getTextLength() > getTextRange().getEndOffset()
-                && document.getText(TextRange.create(getTextRange().getEndOffset(), getTextRange().getEndOffset() + 1)).equals(".");
-        FoldingGroup group = FoldingGroup.newGroup(TypeCast.class.getName() + (dotAccess ? "" : HIGHLIGHTED_GROUP_POSTFIX));
-        ArrayList<FoldingDescriptor> descriptors = new ArrayList<>();
-        if (object.getTextRange().getEndOffset() < getTextRange().getEndOffset()) {
+    override fun buildFoldRegions(
+        element: PsiElement,
+        document: Document,
+        parent: Expression?
+    ): Array<FoldingDescriptor> {
+        val dotAccess = document.textLength > textRange.endOffset &&
+            document.getText(TextRange.create(textRange.endOffset, textRange.endOffset + 1)) == "."
+        val group = FoldingGroup.newGroup(TypeCast::class.java.name + if (dotAccess) "" else HIGHLIGHTED_GROUP_POSTFIX)
+        val descriptors = mutableListOf<FoldingDescriptor>()
+        if (objectExpression.textRange.endOffset < textRange.endOffset) {
             if (dotAccess) {
-                descriptors.add(new FoldingDescriptor(element.getNode(),
-                        TextRange.create(getTextRange().getStartOffset(),
-                                object.getTextRange().getStartOffset()), group, ""));
-                descriptors.add(new FoldingDescriptor(element.getNode(),
-                                        TextRange.create(object.getTextRange().getEndOffset(),
-                                                getTextRange().getEndOffset() + 1), group, ".")
-                );
+                descriptors += FoldingDescriptor(
+                    element.node,
+                    TextRange.create(textRange.startOffset, objectExpression.textRange.startOffset),
+                    group,
+                    ""
+                )
+                descriptors += FoldingDescriptor(
+                    element.node,
+                    TextRange.create(objectExpression.textRange.endOffset, textRange.endOffset + 1),
+                    group,
+                    "."
+                )
             } else {
-                descriptors.add(new FoldingDescriptor(element.getNode(),
-                                        TextRange.create(getTextRange().getStartOffset(),
-                                                object.getTextRange().getStartOffset()), group,
-                        "" /* TODO: It used to be  "~" */)
-                );
-                descriptors.add(new FoldingDescriptor(element.getNode(),
-                        TextRange.create(object.getTextRange().getEndOffset(),
-                                getTextRange().getEndOffset()), group, ""));
+                descriptors += FoldingDescriptor(
+                    element.node,
+                    TextRange.create(textRange.startOffset, objectExpression.textRange.startOffset),
+                    group,
+                    ""
+                )
+                descriptors += FoldingDescriptor(
+                    element.node,
+                    TextRange.create(objectExpression.textRange.endOffset, textRange.endOffset),
+                    group,
+                    ""
+                )
             }
         } else {
-            descriptors.add(new FoldingDescriptor(element.getNode(),
-                    TextRange.create(getTextRange().getStartOffset(),
-                            object.getTextRange().getStartOffset()), group, "" /* TODO: It used to be  "~" */));
+            descriptors += FoldingDescriptor(
+                element.node,
+                TextRange.create(textRange.startOffset, objectExpression.textRange.startOffset),
+                group,
+                ""
+            )
         }
-        if (object.supportsFoldRegions(document, this)) {
-            Collections.addAll(descriptors, object.buildFoldRegions(object.getElement(), document, this));
+        if (objectExpression.supportsFoldRegions(document, this)) {
+            descriptors += objectExpression.buildFoldRegions(objectExpression.element, document, this).toList()
         }
-        return descriptors.toArray(EMPTY_ARRAY);
+        return descriptors.toTypedArray()
     }
 
-    @Override
-    public boolean isHighlighted() {
-        return true;
-    }
+    override fun isHighlighted(): Boolean = true
 }

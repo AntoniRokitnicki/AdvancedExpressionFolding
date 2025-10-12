@@ -1,129 +1,108 @@
-package com.intellij.advancedExpressionFolding.expression.operation.basic;
+package com.intellij.advancedExpressionFolding.expression.operation.basic
 
-import com.intellij.advancedExpressionFolding.expression.Expression;
-import com.intellij.advancedExpressionFolding.expression.Operation;
-import com.intellij.advancedExpressionFolding.expression.literal.StringLiteral;
-import com.intellij.advancedExpressionFolding.expression.math.basic.Add;
-import com.intellij.lang.folding.FoldingDescriptor;
-import com.intellij.openapi.editor.Document;
-import com.intellij.openapi.editor.FoldingGroup;
-import com.intellij.openapi.util.TextRange;
-import com.intellij.psi.PsiElement;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.advancedExpressionFolding.expression.Operation
+import com.intellij.advancedExpressionFolding.expression.literal.StringLiteral
+import com.intellij.advancedExpressionFolding.expression.math.basic.Add
+import com.intellij.lang.folding.FoldingDescriptor
+import com.intellij.openapi.editor.Document
+import com.intellij.openapi.editor.FoldingGroup
+import com.intellij.openapi.util.TextRange
+import com.intellij.psi.PsiElement
 
 /**
  * TODO: sb.append(interpolatedString).append(x) - merge x into interpolatedString
  * TODO: merge multiple sb.append() into a single append(interpolatedString)
  */
-public class Append extends Operation {
-    private boolean assign;
+class Append(
+    element: PsiElement,
+    textRange: TextRange,
+    operands: List<Expression>,
+    private val assign: Boolean
+) : Operation(element, textRange, "+", 10, operands) {
 
-    public Append(@NotNull PsiElement element, @NotNull TextRange textRange, @NotNull List<Expression> operands,
-                  boolean assign) {
-        super(element, textRange, "+", 10, operands);
-        this.assign = assign;
-    }
-
-    @Override
-    public boolean isCollapsedByDefault() {
+    override fun isCollapsedByDefault(): Boolean {
         if (!super.isCollapsedByDefault()) {
-            return false;
+            return false
         }
-        for (Expression operand : operands) {
-            if (operand instanceof Add && ((Add) operand).getOperands().stream()
-                    .anyMatch(o -> !(o instanceof StringLiteral))) {
-                return false;
+        for (operand in operands) {
+            if (operand is Add && operand.operands.any { it !is StringLiteral }) {
+                return false
             }
         }
-        return true;
+        return true
     }
 
-    @Override
-    public boolean supportsFoldRegions(@NotNull Document document, @Nullable Expression parent) {
-        return operands.size() > 0 && super.supportsFoldRegions(document, parent);
+    override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean {
+        return operands.isNotEmpty() && super.supportsFoldRegions(document, parent)
     }
 
-    @Override
-    public FoldingDescriptor[] buildFoldRegions(@NotNull PsiElement element, @NotNull Document document, @Nullable Expression parent) {
-        // TODO: Generalize this code for Operation
-        FoldingGroup group = FoldingGroup.newGroup(Append.class.getName() +
-                (operands.size() == 1 ? HIGHLIGHTED_GROUP_POSTFIX : ""));
-        ArrayList<FoldingDescriptor> descriptors = new ArrayList<>();
-        Expression a = operands.get(0);
-        if (element.getTextRange().getStartOffset() < a.getTextRange().getStartOffset()) {
-            TextRange range = TextRange.create(
-                    element.getTextRange().getStartOffset(),
-                    a.getTextRange().getStartOffset() -
-                            (a.isLeftOverflow() ? 1 : 0)
-            );
-            if (!range.isEmpty()) {
-                descriptors.add(new FoldingDescriptor(element.getNode(),
-                        range, group, ""));
+    override fun buildFoldRegions(
+        element: PsiElement,
+        document: Document,
+        parent: Expression?
+    ): Array<FoldingDescriptor> {
+        val group = FoldingGroup.newGroup(Append::class.java.name + if (operands.size == 1) HIGHLIGHTED_GROUP_POSTFIX else "")
+        val descriptors = mutableListOf<FoldingDescriptor>()
+        val firstOperand = operands.first()
+        if (element.textRange.startOffset < firstOperand.textRange.startOffset) {
+            val range = TextRange.create(
+                element.textRange.startOffset,
+                firstOperand.textRange.startOffset - if (firstOperand.isLeftOverflow()) 1 else 0
+            )
+            if (!range.isEmpty) {
+                descriptors += FoldingDescriptor(element.node, range, group, "")
             }
         }
-        if (a.supportsFoldRegions(document, this)) {
-            if (a.isOverflow()) {
-                Collections.addAll(descriptors, a.buildFoldRegions(a.getElement(), document, this,
-                        group, "", ""));
+        if (firstOperand.supportsFoldRegions(document, this)) {
+            val regions = if (firstOperand.isOverflow()) {
+                firstOperand.buildFoldRegions(firstOperand.element, document, this, group, "", "")
             } else {
-                Collections.addAll(descriptors, a.buildFoldRegions(a.getElement(), document, this));
+                firstOperand.buildFoldRegions(firstOperand.element, document, this)
             }
+            descriptors += regions.toList()
         }
-        if (operands.size() > 1) {
-            for (int i = 0; i < operands.size() - 1; i++) {
-                Expression b = operands.get(i);
-                Expression c = operands.get(i + 1);
-                if (c.supportsFoldRegions(document, this)) {
-                    if (c.isOverflow()) {
-                        Collections.addAll(descriptors, c.buildFoldRegions(c.getElement(), document, this,
-                                group, "", ""));
+        if (operands.size > 1) {
+            for (i in 0 until operands.size - 1) {
+                val current = operands[i]
+                val next = operands[i + 1]
+                if (next.supportsFoldRegions(document, this)) {
+                    val regions = if (next.isOverflow()) {
+                        next.buildFoldRegions(next.element, document, this, group, "", "")
                     } else {
-                        Collections.addAll(descriptors, c.buildFoldRegions(c.getElement(), document, this));
+                        next.buildFoldRegions(next.element, document, this)
                     }
+                    descriptors += regions.toList()
                 }
-                descriptors.add(new FoldingDescriptor(element.getNode(),
-                        TextRange.create(
-                                b.getTextRange().getEndOffset() +
-                                        (b.isRightOverflow() ? 1 : 0),
-                                c.getTextRange().getStartOffset() -
-                                        (c.isLeftOverflow() ? 1 : 0)
-                        ), group, i == 0 && assign ? " += " : " + "));
+                descriptors += FoldingDescriptor(
+                    element.node,
+                    TextRange.create(
+                        current.textRange.endOffset + if (current.isRightOverflow()) 1 else 0,
+                        next.textRange.startOffset - if (next.isLeftOverflow()) 1 else 0
+                    ),
+                    group,
+                    if (i == 0 && assign) " += " else " + "
+                )
             }
         }
-        Expression d = operands.get(operands.size() - 1);
-        if (d.getTextRange().getEndOffset() < element.getTextRange().getEndOffset()) {
-            TextRange range = TextRange.create(
-                    d.getTextRange().getEndOffset() +
-                            (d.isRightOverflow() ? 1 : 0),
-                    element.getTextRange().getEndOffset()
-            );
-            if (!range.isEmpty()) {
-                descriptors.add(new FoldingDescriptor(element.getNode(),
-                        range, group, ""));
+        val lastOperand = operands.last()
+        if (lastOperand.textRange.endOffset < element.textRange.endOffset) {
+            val range = TextRange.create(
+                lastOperand.textRange.endOffset + if (lastOperand.isRightOverflow()) 1 else 0,
+                element.textRange.endOffset
+            )
+            if (!range.isEmpty) {
+                descriptors += FoldingDescriptor(element.node, range, group, "")
             }
         }
-        return descriptors.toArray(EMPTY_ARRAY);
+        return descriptors.toTypedArray()
     }
 
-    @Override
-    public boolean isHighlighted() {
-        return operands.size() == 1;
-    }
+    override fun isHighlighted(): Boolean = operands.size == 1
 
-    public static class Less extends Operation {
-        public Less(PsiElement element, TextRange textRange, List<Expression> operands) {
-            super(element, textRange, "<", 18, operands);
-        }
-    }
+    class Less(element: PsiElement, textRange: TextRange, operands: List<Expression>) :
+        Operation(element, textRange, "<", 18, operands)
 
-    public static class LessEqual extends Operation {
-        public LessEqual(PsiElement element, TextRange textRange, List<Expression> operands) {
-            super(element, textRange, "≤", 18, operands);
-        }
-    }
+    class LessEqual(element: PsiElement, textRange: TextRange, operands: List<Expression>) :
+        Operation(element, textRange, "≤", 18, operands)
 }

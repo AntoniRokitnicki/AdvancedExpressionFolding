@@ -6,29 +6,33 @@ import com.intellij.openapi.editor.Document
 import com.intellij.openapi.editor.FoldingGroup
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiElement
-import java.util.*
 
-class GetterRecord(element: PsiElement, textRange: TextRange, private var getterTextRange: TextRange, private val `object`: Expression?, private var name: String) : Expression(element, textRange),
-    IGetter {
-    override fun supportsFoldRegions(document: Document,
-                                     parent: Expression?): Boolean {
+class GetterRecord(
+    element: PsiElement,
+    textRange: TextRange,
+    override val getterTextRange: TextRange,
+    override val `object`: Expression?,
+    override val name: String
+) : Expression(element, textRange), IGetter {
+    override fun supportsFoldRegions(
+        document: Document,
+        parent: Expression?
+    ): Boolean {
         return true
     }
 
     override fun buildFoldRegions(element: PsiElement, document: Document, parent: Expression?): Array<FoldingDescriptor> {
-        val descriptors = ArrayList<FoldingDescriptor>()
-        descriptors.add(
-                FoldingDescriptor(element.node, getGetterTextRange(),
-                        FoldingGroup.newGroup(GetterRecord::class.java.name), getName()))
-        if (`object` != null && `object`.supportsFoldRegions(document, this)) {
-            Collections.addAll(descriptors, *`object`.buildFoldRegions(`object`.element, document, this))
+        val descriptors = arrayListOf<FoldingDescriptor>()
+        descriptors += FoldingDescriptor(
+            element.node,
+            getterTextRange,
+            FoldingGroup.newGroup(GetterRecord::class.java.name),
+            name
+        )
+        val obj = `object`
+        if (obj != null && obj.supportsFoldRegions(document, this)) {
+            descriptors += obj.buildFoldRegions(obj.element, document, this).toList()
         }
-        return descriptors.toArray(EMPTY_ARRAY)
+        return descriptors.toTypedArray()
     }
-
-    override fun getName(): String = name
-
-    override fun getGetterTextRange(): TextRange = getterTextRange
-
-    override fun getObject(): Expression? = `object`
 }

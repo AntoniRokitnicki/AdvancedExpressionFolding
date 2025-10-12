@@ -1,46 +1,54 @@
-package com.intellij.advancedExpressionFolding.processor.controlflow;
+package com.intellij.advancedExpressionFolding.processor.controlflow
 
-import com.intellij.advancedExpressionFolding.expression.Expression;
-import com.intellij.advancedExpressionFolding.expression.controlflow.CompactControlFlowExpression;
-import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings;
-import com.intellij.openapi.util.TextRange;
-import com.intellij.psi.PsiDoWhileStatement;
-import com.intellij.psi.PsiForeachStatement;
-import com.intellij.psi.PsiWhileStatement;
+import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.advancedExpressionFolding.expression.controlflow.CompactControlFlowExpression
+import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
+import com.intellij.openapi.util.TextRange
+import com.intellij.psi.PsiDoWhileStatement
+import com.intellij.psi.PsiForeachStatement
+import com.intellij.psi.PsiWhileStatement
 
-public class LoopExt {
-    public static Expression getForEachStatementExpression(PsiForeachStatement element) {
-        AdvancedExpressionFoldingSettings settings = AdvancedExpressionFoldingSettings.getInstance();
-        if (element.getIteratedValue() != null && element.getRParenth() != null &&
-                settings.getState().getCompactControlFlowSyntaxCollapse()) {
-            return new CompactControlFlowExpression(element,
-                    TextRange.create(element.getLParenth().getTextRange().getStartOffset(),
-                            element.getRParenth().getTextRange().getEndOffset()));
+object LoopExt {
+
+    fun getForEachStatementExpression(element: PsiForeachStatement): Expression? {
+        val settings = AdvancedExpressionFoldingSettings.getInstance()
+        val lParenth = element.lParenth ?: return null
+        val rParenth = element.rParenth ?: return null
+        return if (element.iteratedValue != null && settings.state.compactControlFlowSyntaxCollapse) {
+            CompactControlFlowExpression(
+                element,
+                TextRange.create(lParenth.textRange.startOffset, rParenth.textRange.endOffset)
+            )
+        } else {
+            null
         }
-        return null;
     }
 
-    public static Expression getWhileStatement(PsiWhileStatement element) {
-        AdvancedExpressionFoldingSettings settings = AdvancedExpressionFoldingSettings.getInstance();
-        if (element.getCondition() != null
-                && element.getLParenth() != null && element.getRParenth() != null
-                && settings.getState().getCompactControlFlowSyntaxCollapse()) {
-            return new CompactControlFlowExpression(element,
-                    TextRange.create(element.getLParenth().getTextRange().getStartOffset(),
-                            element.getRParenth().getTextRange().getEndOffset()));
+    fun getWhileStatement(element: PsiWhileStatement): Expression? {
+        val settings = AdvancedExpressionFoldingSettings.getInstance()
+        val lParenth = element.lParenth ?: return null
+        val rParenth = element.rParenth ?: return null
+        return if (element.condition != null && settings.state.compactControlFlowSyntaxCollapse) {
+            CompactControlFlowExpression(
+                element,
+                TextRange.create(lParenth.textRange.startOffset, rParenth.textRange.endOffset)
+            )
+        } else {
+            null
         }
-        return null;
     }
 
-    public static Expression getDoWhileStatement(PsiDoWhileStatement element) {
-        AdvancedExpressionFoldingSettings settings = AdvancedExpressionFoldingSettings.getInstance();
-        if (element.getCondition() != null
-                && element.getLParenth() != null && element.getRParenth() != null
-                && settings.getState().getCompactControlFlowSyntaxCollapse()) {
-            return new CompactControlFlowExpression(element,
-                    TextRange.create(element.getLParenth().getTextRange().getStartOffset(),
-                            element.getRParenth().getTextRange().getEndOffset()));
+    fun getDoWhileStatement(element: PsiDoWhileStatement): Expression? {
+        val settings = AdvancedExpressionFoldingSettings.getInstance()
+        val lParenth = element.lParenth ?: return null
+        val rParenth = element.rParenth ?: return null
+        return if (element.condition != null && settings.state.compactControlFlowSyntaxCollapse) {
+            CompactControlFlowExpression(
+                element,
+                TextRange.create(lParenth.textRange.startOffset, rParenth.textRange.endOffset)
+            )
+        } else {
+            null
         }
-        return null;
     }
 }

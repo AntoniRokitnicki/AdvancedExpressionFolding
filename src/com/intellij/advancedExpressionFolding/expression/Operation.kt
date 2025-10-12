@@ -1,139 +1,121 @@
-package com.intellij.advancedExpressionFolding.expression;
+package com.intellij.advancedExpressionFolding.expression
 
-import com.intellij.lang.folding.FoldingDescriptor;
-import com.intellij.openapi.editor.Document;
-import com.intellij.openapi.editor.FoldingGroup;
-import com.intellij.openapi.util.TextRange;
-import com.intellij.psi.PsiElement;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import com.intellij.lang.folding.FoldingDescriptor
+import com.intellij.openapi.editor.Document
+import com.intellij.openapi.editor.FoldingGroup
+import com.intellij.openapi.util.TextRange
+import com.intellij.psi.PsiElement
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+abstract class Operation(
+    element: PsiElement,
+    textRange: TextRange,
+    protected var characterValue: String,
+    private var priority: Int,
+    operands: List<Expression>
+) : Expression(element, textRange) {
 
-public abstract class Operation extends Expression {
-    protected @NotNull String character;
-    protected @NotNull List<Expression> operands;
-    private int priority;
+    private val operandsBacking: List<Expression> = operands
 
-    public Operation(@NotNull PsiElement element, @NotNull TextRange textRange, @NotNull String character, int priority, @NotNull List<Expression> operands) {
-        super(element, textRange);
-        this.character = character;
-        this.priority = priority;
-        this.operands = operands;
-    }
+    open val operands: List<Expression>
+        get() = operandsBacking
 
-    @Override
-    public boolean isCollapsedByDefault() {
-        for (Expression operand : operands) {
+    override fun isCollapsedByDefault(): Boolean {
+        for (operand in operands) {
             if (!operand.isCollapsedByDefault()) {
-                return false;
+                return false
             }
         }
-        return super.isCollapsedByDefault();
+        return super.isCollapsedByDefault()
     }
 
-    @NotNull
-    public List<Expression> getOperands() {
-        return operands;
-    }
+    fun getPriority(): Int = priority
 
-    public int getPriority() {
-        return priority;
-    }
+    fun getCharacter(): String = characterValue
 
-    @NotNull
-    public String getCharacter() {
-        return character;
-    }
-
-    @Override
-    public boolean supportsFoldRegions(@NotNull Document document,
-                                       @Nullable Expression parent) {
+    override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean {
         if (operands.isEmpty() || equalOrLessPriority(0)) {
-            return false;
+            return false
         }
-        for (int i = 1; i < operands.size(); i++) {
-            if (operands.get(i - 1).getTextRange().getEndOffset() >= operands.get(i).getTextRange().getStartOffset()
-                    || equalOrLessPriority(i)) {
-                return false;
+        for (i in 1 until operands.size) {
+            val previous = operands[i - 1]
+            val current = operands[i]
+            if (previous.textRange.endOffset >= current.textRange.startOffset || equalOrLessPriority(i)) {
+                return false
             }
         }
-        return true; // TODO no-format: ensure operands.supportFoldRegions
+        return true
     }
 
-    private boolean equalOrLessPriority(int index) {
-        return operands.get(index) instanceof Operation
-                && ((Operation) operands.get(index)).getPriority() < priority;
+    private fun equalOrLessPriority(index: Int): Boolean {
+        val operand = operands[index]
+        return operand is Operation && operand.getPriority() < priority
     }
 
-    @Override
-    public FoldingDescriptor[] buildFoldRegions(@NotNull PsiElement element, @NotNull Document document, @Nullable Expression parent) {
-        FoldingGroup group = FoldingGroup.newGroup(getClass().getName());
-        List<FoldingDescriptor> descriptors = new ArrayList<>();
-        int offset = getTextRange().getStartOffset();
-        if (operands.get(0).getTextRange().getStartOffset() > offset) {
-            descriptors.add(new FoldingDescriptor(element.getNode(),
-                    TextRange.create(offset, operands.get(0).getTextRange().getStartOffset()), group, ""));
+    override fun buildFoldRegions(
+        element: PsiElement,
+        document: Document,
+        parent: Expression?
+    ): Array<FoldingDescriptor> {
+        val group = FoldingGroup.newGroup(javaClass.name)
+        val descriptors = mutableListOf<FoldingDescriptor>()
+        var offset = textRange.startOffset
+        if (operands[0].textRange.startOffset > offset) {
+            descriptors += FoldingDescriptor(
+                element.node,
+                TextRange.create(offset, operands[0].textRange.startOffset),
+                group,
+                ""
+            )
         }
-        offset = operands.get(0).getTextRange().getEndOffset();
-        for (int i = 1; i < operands.size(); i++) {
-            TextRange r = TextRange.create(changeOperandsStartOffset(offset), changeOperandsEndOffset(operands.get(i).getTextRange().getStartOffset()));
-            String p = buildFolding(character);
-            if (!document.getText(r).equals(p)) {
-                descriptors.add(new FoldingDescriptor(element.getNode(),
-                        r, group, p));
+        offset = operands[0].textRange.endOffset
+        for (i in 1 until operands.size) {
+            val range = TextRange.create(
+                changeOperandsStartOffset(offset),
+                changeOperandsEndOffset(operands[i].textRange.startOffset)
+            )
+            val placeholder = buildFolding(characterValue)
+            if (document.getText(range) != placeholder) {
+                descriptors += FoldingDescriptor(element.node, range, group, placeholder)
             }
-            offset = operands.get(i).getTextRange().getEndOffset();
+            offset = operands[i].textRange.endOffset
         }
-        if (offset < getTextRange().getEndOffset()) {
-            descriptors.add(new FoldingDescriptor(element.getNode(),
-                    TextRange.create(offset, getTextRange().getEndOffset()), group, suffixText()));
+        if (offset < textRange.endOffset) {
+            descriptors += FoldingDescriptor(
+                element.node,
+                TextRange.create(offset, textRange.endOffset),
+                group,
+                suffixText()
+            )
         }
-        for (Expression operand : operands) {
+        for (operand in operands) {
             if (operand.supportsFoldRegions(document, this)) {
-                Collections.addAll(descriptors, operand.buildFoldRegions(operand.getElement(), document, this));
+                descriptors += operand.buildFoldRegions(operand.element, document, this).toList()
             }
         }
-        return descriptors.toArray(EMPTY_ARRAY);
+        return descriptors.toTypedArray()
     }
 
-    protected int changeOperandsEndOffset(int startOffset) {
-        return startOffset;
+    protected open fun changeOperandsEndOffset(startOffset: Int): Int = startOffset
+
+    protected open fun suffixText(): String = ""
+
+    protected open fun changeOperandsStartOffset(offset: Int): Int = offset
+
+    protected open fun buildFolding(character: String): String = " $character "
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is Operation) return false
+
+        return priority == other.priority &&
+            characterValue == other.characterValue &&
+            operands == other.operands
     }
 
-    @NotNull
-    protected String suffixText() {
-        return "";
-    }
-
-    protected int changeOperandsStartOffset(int offset) {
-        return offset;
-    }
-
-    @NotNull
-    protected String buildFolding(@NotNull String character) {
-        return " " + character + " ";
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Operation operation = (Operation) o;
-
-        return priority == operation.priority
-                && character.equals(operation.character)
-                && operands.equals(operation.operands);
-    }
-
-    @Override
-    public int hashCode() {
-        int result = character.hashCode();
-        result = 31 * result + priority;
-        result = 31 * result + operands.hashCode();
-        return result;
+    override fun hashCode(): Int {
+        var result = characterValue.hashCode()
+        result = 31 * result + priority
+        result = 31 * result + operands.hashCode()
+        return result
     }
 }

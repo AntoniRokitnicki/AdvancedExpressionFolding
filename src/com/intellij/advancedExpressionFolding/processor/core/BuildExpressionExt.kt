@@ -1,74 +1,66 @@
-package com.intellij.advancedExpressionFolding.processor.core;
+package com.intellij.advancedExpressionFolding.processor.core
 
-import com.intellij.advancedExpressionFolding.expression.Expression;
-import com.intellij.advancedExpressionFolding.expression.SyntheticExpressionImpl;
-import com.intellij.advancedExpressionFolding.processor.util.Helper;
-import com.intellij.lang.folding.FoldingDescriptor;
-import com.intellij.openapi.editor.Document;
-import com.intellij.openapi.project.IndexNotReadyException;
-import com.intellij.psi.PsiElement;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.advancedExpressionFolding.expression.SyntheticExpressionImpl
+import com.intellij.advancedExpressionFolding.processor.cache.CacheExt.getExpression
+import com.intellij.advancedExpressionFolding.processor.util.Helper
+import com.intellij.lang.folding.FoldingDescriptor
+import com.intellij.openapi.editor.Document
+import com.intellij.openapi.project.IndexNotReadyException
+import com.intellij.psi.PsiElement
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
+object BuildExpressionExt {
 
-import static com.intellij.advancedExpressionFolding.processor.cache.CacheExt.getExpression;
-import static com.intellij.advancedExpressionFolding.processor.core.BuildExpressionKt.tryBuildExpression;
-
-public class BuildExpressionExt {
-
-    @Contract("_, _, true -> !null")
-    public static Expression buildExpression(@NotNull PsiElement element, @NotNull Document document, boolean synthetic) {
-        var expression = tryBuildExpression(element, document, synthetic);
-        if (expression!= null) {
-            return expression;
+    @JvmStatic
+    fun buildExpression(element: PsiElement, document: Document, synthetic: Boolean): Expression? {
+        val expression = tryBuildExpression(element, document, synthetic)
+        if (expression != null) {
+            return expression
         }
-
         if (synthetic) {
-            ArrayList<Expression> children = new ArrayList<>();
-            Helper.findChildExpressions(element, children, document);
-            return new SyntheticExpressionImpl(element, element.getTextRange(), document.getText(element.getTextRange()), children);
+            val children = arrayListOf<Expression>()
+            Helper.findChildExpressions(element, children, document)
+            return SyntheticExpressionImpl(
+                element,
+                element.textRange,
+                document.getText(element.textRange),
+                children
+            )
         }
-        return null;
+        return null
     }
 
-    @SuppressWarnings("WeakerAccess")
-    @NotNull
-    public static Expression getAnyExpression(@NotNull PsiElement element, @Nullable Document document) throws IndexNotReadyException {
-        //noinspection ConstantConditions
-        return getExpression(element, document, true);
+    @JvmStatic
+    @Throws(IndexNotReadyException::class)
+    fun getAnyExpression(element: PsiElement, document: Document?): Expression {
+        return getExpression(element, document ?: element.containingFile.viewProvider.document, true)!!
     }
 
-    /**
-     * TODO: Think how we can prevent IndexNotReadyException (e.g. via "is dumb mode")
-     */
-    @SuppressWarnings("WeakerAccess")
-    @Nullable
-    public static Expression getNonSyntheticExpression(@NotNull PsiElement element, @Nullable Document document) throws IndexNotReadyException {
-        //noinspection ConstantConditions
-        return getExpression(element, document, false);
+    @JvmStatic
+    @Throws(IndexNotReadyException::class)
+    fun getNonSyntheticExpression(element: PsiElement, document: Document?): Expression? {
+        return getExpression(element, document ?: element.containingFile.viewProvider.document, false)
     }
 
-    public static void collectFoldRegionsRecursively(@NotNull PsiElement element, @NotNull Document document, Set<Expression> uniqueSet, List<FoldingDescriptor> allDescriptors) {
-        @Nullable Expression expression = getNonSyntheticExpression(element, document);
-
-        boolean unique = uniqueSet.add(expression);
+    @JvmStatic
+    fun collectFoldRegionsRecursively(
+        element: PsiElement,
+        document: Document,
+        uniqueSet: MutableSet<Expression>,
+        allDescriptors: MutableList<FoldingDescriptor>
+    ) {
+        val expression = getNonSyntheticExpression(element, document)
+        val unique = expression != null && uniqueSet.add(expression)
         if (expression != null && unique && expression.supportsFoldRegions(document, null)) {
-            //TODO: add to allDescriptors list instead of creating temporary arrays
-            FoldingDescriptor[] descriptors = expression.buildFoldRegions(expression.getElement(), document, null);
-            if (descriptors.length > 0) {
-                allDescriptors.addAll(Arrays.asList(descriptors));
+            val descriptors = expression.buildFoldRegions(expression.element, document, null)
+            if (descriptors.isNotEmpty()) {
+                allDescriptors.addAll(descriptors)
             }
         }
         if (expression == null || (unique && expression.isNested())) {
-            for (PsiElement child : element.getChildren()) {
-                collectFoldRegionsRecursively(child, document, uniqueSet, allDescriptors);
+            for (child in element.children) {
+                collectFoldRegionsRecursively(child, document, uniqueSet, allDescriptors)
             }
         }
     }
-
 }

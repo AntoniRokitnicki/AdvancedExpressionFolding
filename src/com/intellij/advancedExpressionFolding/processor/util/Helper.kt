@@ -1,288 +1,296 @@
-package com.intellij.advancedExpressionFolding.processor.util;
+package com.intellij.advancedExpressionFolding.processor.util
 
-import com.intellij.advancedExpressionFolding.expression.Expression;
-import com.intellij.advancedExpressionFolding.expression.literal.NumberLiteral;
-import com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt;
-import com.intellij.openapi.editor.Document;
-import com.intellij.openapi.project.Project;
-import com.intellij.openapi.util.TextRange;
-import com.intellij.psi.*;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.advancedExpressionFolding.expression.literal.NumberLiteral
+import com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt
+import com.intellij.openapi.editor.Document
+import com.intellij.openapi.project.Project
+import com.intellij.openapi.util.TextRange
+import com.intellij.psi.PsiAnonymousClass
+import com.intellij.psi.PsiAssignmentExpression
+import com.intellij.psi.PsiBinaryExpression
+import com.intellij.psi.PsiDeclarationStatement
+import com.intellij.psi.PsiDocumentManager
+import com.intellij.psi.PsiElement
+import com.intellij.psi.PsiExpression
+import com.intellij.psi.PsiExpressionList
+import com.intellij.psi.PsiExpressionStatement
+import com.intellij.psi.PsiField
+import com.intellij.psi.PsiIdentifier
+import com.intellij.psi.PsiLoopStatement
+import com.intellij.psi.PsiMethodCallExpression
+import com.intellij.psi.PsiMethodReferenceExpression
+import com.intellij.psi.PsiModifier
+import com.intellij.psi.PsiModifierList
+import com.intellij.psi.PsiPostfixExpression
+import com.intellij.psi.PsiReference
+import com.intellij.psi.PsiReferenceExpression
+import com.intellij.psi.PsiStatement
+import com.intellij.psi.PsiVariable
+import com.intellij.psi.SyntaxTraverser
 
-import java.util.*;
-import java.util.function.Predicate;
-import java.util.regex.Matcher;
-import java.util.stream.Stream;
+object Helper {
 
-public class Helper {
-
-    public static @Nullable Document getDocument(PsiElement element) {
-        Project project = element.getProject();
-        PsiFile psiFile = element.getContainingFile();
-        PsiDocumentManager psiDocumentManager = PsiDocumentManager.getInstance(project);
-        return psiDocumentManager.getDocument(psiFile);
+    fun getDocument(element: PsiElement): Document? {
+        val project: Project = element.project
+        val psiFile = element.containingFile
+        val psiDocumentManager = PsiDocumentManager.getInstance(project)
+        return psiDocumentManager.getDocument(psiFile)
     }
 
-
-    public static boolean isReferenceToReference(@Nullable PsiReferenceExpression referenceExpression, @Nullable PsiReference reference) {
-        if (reference != null) {
-            @Nullable PsiElement element = reference.resolve();
-            return referenceExpression != null && element != null && referenceExpression.isReferenceTo(element);
-        } else {
-            return false;
-        }
+    fun isReferenceToReference(referenceExpression: PsiReferenceExpression?, reference: PsiReference?): Boolean {
+        val element = reference?.resolve()
+        return referenceExpression != null && element != null && referenceExpression.isReferenceTo(element)
     }
 
-    @Nullable
-    public static PsiElement findSameQualifier(@NotNull PsiElement element, @NotNull PsiElement qualifier) {
-        if (element instanceof PsiStatement && element.getFirstChild() != null) {
-            return findSameQualifier(element.getFirstChild(), qualifier);
+    fun findSameQualifier(element: PsiElement, qualifier: PsiElement): PsiElement? {
+        if (element is PsiStatement && element.firstChild != null) {
+            return findSameQualifier(element.firstChild, qualifier)
         }
         if (equal(qualifier, element)) {
-            return element;
+            return element
         }
-        if (element instanceof PsiMethodCallExpression && ((PsiMethodCallExpression) element).getMethodExpression().getQualifierExpression() != null) {
-            @Nullable PsiExpression q = ((PsiMethodCallExpression) element).getMethodExpression().getQualifierExpression();
-            if (q != null) {
-                return findSameQualifier(q, qualifier);
+        if (element is PsiMethodCallExpression) {
+            val qualifierExpression = element.methodExpression.qualifierExpression
+            if (qualifierExpression != null) {
+                return findSameQualifier(qualifierExpression, qualifier)
             }
         }
-        if (element instanceof PsiReferenceExpression && ((PsiReferenceExpression) element).getQualifierExpression() != null) {
-            PsiExpression q = ((PsiReferenceExpression) element).getQualifierExpression();
-            if (q != null) {
-                return findSameQualifier(q, qualifier);
+        if (element is PsiReferenceExpression) {
+            val qualifierExpression = element.qualifierExpression
+            if (qualifierExpression != null) {
+                return findSameQualifier(qualifierExpression, qualifier)
             }
         }
-        return null;
+        return null
     }
 
-    public static boolean startsWith(@Nullable String string, @NotNull String prefix) {
-        return string != null && string.startsWith(prefix);
-    }
+    fun startsWith(string: String?, prefix: String): Boolean = string?.startsWith(prefix) == true
 
-    public static boolean equal(@Nullable PsiElement e1, @Nullable PsiElement e2) {
-        // TODO: Use a cache for the resolved instance
-        if (e2 instanceof PsiReferenceExpression && e1 instanceof PsiReferenceExpression) {
-            return Objects.equals(((PsiReferenceExpression) e2).getReferenceName(), ((PsiReferenceExpression) e1).getReferenceName())
-                    && isReferenceToReference((PsiReferenceExpression) e2, (PsiReferenceExpression) e1);
-        } else if (e2 instanceof PsiMethodCallExpression && e1 instanceof PsiMethodCallExpression) {
-            return equal(((PsiMethodCallExpression) e2).getMethodExpression(),
-                    ((PsiMethodCallExpression) e1).getMethodExpression())
-                    && equal(((PsiMethodCallExpression) e2).getMethodExpression().getQualifierExpression(),
-                    ((PsiMethodCallExpression) e1).getMethodExpression().getQualifierExpression());
+    fun equal(e1: PsiElement?, e2: PsiElement?): Boolean {
+        return when {
+            e2 is PsiReferenceExpression && e1 is PsiReferenceExpression ->
+                e2.referenceName == e1.referenceName && isReferenceToReference(e2, e1)
+
+            e2 is PsiMethodCallExpression && e1 is PsiMethodCallExpression ->
+                equal(e2.methodExpression, e1.methodExpression) &&
+                    equal(e2.methodExpression.qualifierExpression, e1.methodExpression.qualifierExpression)
+
+            else -> false
         }
-        return false;
     }
 
-    public static boolean calculateIfFinal(@NotNull PsiVariable element) {
-        PsiModifierList modifiers = element.getModifierList();
-        if (modifiers != null) {
-            boolean isFinal = modifiers.hasExplicitModifier(PsiModifier.FINAL);
-            if (!isFinal) {
-                PsiElement body = element.getParent() instanceof PsiDeclarationStatement
-                        ? element.getParent().getParent()
-                        : element.getParent() instanceof PsiLoopStatement
-                        ? ((PsiLoopStatement) element.getParent()).getBody()
-                        : element.getParent();
-                if (body instanceof PsiLoopStatement) {
-                    body = ((PsiLoopStatement) body).getBody();
+    fun calculateIfFinal(element: PsiVariable): Boolean {
+        val modifiers: PsiModifierList = element.modifierList ?: return false
+        var isFinal = modifiers.hasExplicitModifier(PsiModifier.FINAL)
+        if (!isFinal) {
+            var body: PsiElement? = when (val parent = element.parent) {
+                is PsiDeclarationStatement -> parent.parent
+                is PsiLoopStatement -> parent.body
+                else -> parent
+            }
+            if (body is PsiLoopStatement) {
+                body = body.body
+            }
+            val references = SyntaxTraverser.psiTraverser(body)
+                .filter { candidate ->
+                    when (candidate) {
+                        is PsiAssignmentExpression -> {
+                            val lExpression = candidate.lExpression
+                            lExpression is PsiReferenceExpression && lExpression.isReferenceTo(element)
+                        }
+                        is PsiPostfixExpression -> {
+                            val sign = candidate.operationSign.text
+                            (sign == "++" || sign == "--") &&
+                                candidate.operand is PsiReferenceExpression &&
+                                (candidate.operand as PsiReferenceExpression).isReferenceTo(element)
+                        }
+                        else -> false
+                    }
                 }
-                List<PsiElement> references = SyntaxTraverser.psiTraverser(body)
-                        .filter(e ->
-                                e instanceof PsiAssignmentExpression
-                                        && ((PsiAssignmentExpression) e).getLExpression() instanceof PsiReferenceExpression
-                                        && ((PsiReferenceExpression) ((PsiAssignmentExpression) e).getLExpression()).isReferenceTo(element)
-                                        || e instanceof PsiPostfixExpression
-                                        && (((PsiPostfixExpression) e).getOperationSign().getText().equals("++")
-                                        || ((PsiPostfixExpression) e).getOperationSign().getText().equals("--"))
-                                        && ((PsiPostfixExpression) e).getOperand() instanceof PsiReferenceExpression
-                                        && ((PsiReferenceExpression) ((PsiPostfixExpression) e).getOperand()).isReferenceTo(element)
-                        ).toList();
-                if (references.isEmpty()) {
-                    isFinal = true;
-                }
+                .toList()
+            if (references.isEmpty()) {
+                isFinal = true
             }
-            return isFinal;
         }
-        return false;
+        return isFinal
     }
 
-    public static void findChildExpressions(@NotNull PsiElement element, @NotNull List<Expression> expressions, @NotNull Document document) {
-        for (PsiElement child : element.getChildren()) {
-            @Nullable Expression expression = BuildExpressionExt.getNonSyntheticExpression(child, document);
+    fun findChildExpressions(element: PsiElement, expressions: MutableList<Expression>, document: Document) {
+        for (child in element.children) {
+            val expression = BuildExpressionExt.getNonSyntheticExpression(child, document)
             if (expression != null) {
-                expressions.add(expression);
+                expressions.add(expression)
             }
-            if (expression == null || !expression.getTextRange().equals(child.getTextRange())) {
-                findChildExpressions(child, expressions, document);
+            if (expression == null || expression.textRange != child.textRange) {
+                findChildExpressions(child, expressions, document)
             }
         }
     }
 
-    @NotNull
-    public static String eraseGenerics(@NotNull String signature) {
-        Matcher m = Consts.GENERICS_PATTERN.matcher(signature);
-        while (m.find()) {
-            signature = m.replaceAll("");
-            m = Consts.GENERICS_PATTERN.matcher(signature);
+    fun eraseGenerics(signature: String): String {
+        var result = signature
+        var matcher = Consts.GENERICS_PATTERN.matcher(result)
+        while (matcher.find()) {
+            result = matcher.replaceAll("")
+            matcher = Consts.GENERICS_PATTERN.matcher(result)
         }
-        return signature;
+        return result
     }
 
-    public static boolean isSupportedClass(@NotNull PsiElement element) {
-        PsiReference reference = element.getReference();
-        if (reference != null) {
-            PsiElement e = reference.resolve();
-            if (e instanceof PsiField field) {
-                PsiClass psiClass = field.getContainingClass();
-                if (psiClass != null && psiClass.getQualifiedName() != null) {
-                    return Consts.SUPPORTED_CLASSES.contains(eraseGenerics(psiClass.getQualifiedName()));
-                }
+    fun isSupportedClass(element: PsiElement): Boolean {
+        val resolved = element.reference?.resolve()
+        if (resolved is PsiField) {
+            val psiClass = resolved.containingClass
+            if (psiClass?.qualifiedName != null) {
+                return Consts.SUPPORTED_CLASSES.contains(eraseGenerics(psiClass.qualifiedName!!))
             }
         }
-        return false;
+        return false
     }
 
-    public static int findDot(@NotNull Document document, int position, int i, boolean includeNewLines) {
-        int offset = 0;
-        while (Math.abs(offset) < 100 &&
-                position > 0 &&
-                position < document.getText().length()) {
-            position += i;
-            offset += i;
+    @JvmStatic
+    fun findDot(document: Document, positionStart: Int, direction: Int, includeNewLines: Boolean): Int {
+        var position = positionStart
+        var offset = 0
+        while (kotlin.math.abs(offset) < 100 && position > 0 && position < document.text.length) {
+            position += direction
+            offset += direction
             if (charAt(document, position) == '.') {
-                break;
+                break
             }
-            if (!Character.isWhitespace(charAt(document, position))) {
-                return Integer.MAX_VALUE;
+            if (!charAt(document, position).isWhitespace()) {
+                return Int.MAX_VALUE
             }
         }
         if (includeNewLines) {
-            int offsetWithNewLine = offset;
+            var offsetWithNewLine = offset
             do {
-                position += i;
-                offsetWithNewLine += i;
-                if (i < 0 && charAt(document, position) == '\n') {
-                    offset = offsetWithNewLine;
-                } else if (i > 0 && Character.isWhitespace(charAt(document, position))) {
-                    offset = offsetWithNewLine;
+                position += direction
+                offsetWithNewLine += direction
+                if (direction < 0 && charAt(document, position) == '\n') {
+                    offset = offsetWithNewLine
+                } else if (direction > 0 && charAt(document, position).isWhitespace()) {
+                    offset = offsetWithNewLine
                 }
-            } while (Math.abs(offsetWithNewLine) < 100 && position > 0 &&
-                    position < document.getText().length() &&
-                    Character.isWhitespace(charAt(document, position)));
+            } while (kotlin.math.abs(offsetWithNewLine) < 100 && position > 0 && position < document.text.length &&
+                charAt(document, position).isWhitespace())
         }
-        if (Math.abs(offset) >= 100) {
-            return Integer.MAX_VALUE;
+        if (kotlin.math.abs(offset) >= 100) {
+            return Int.MAX_VALUE
         }
-        return offset;
+        return offset
     }
 
-    public static char charAt(@NotNull Document document, int position) {
-        return document.getText(TextRange.create(position, position + 1)).charAt(0);
+    fun charAt(document: Document, position: Int): Char {
+        return document.getText(TextRange.create(position, position + 1))[0]
     }
 
-    @Nullable
-    public static NumberLiteral getSlicePosition(@NotNull PsiElement parent, @NotNull Expression qualifierExpression,
-                                          @NotNull PsiBinaryExpression a2b, @NotNull Document document) {
-        PsiExpression rOperand = a2b.getROperand();
-        PsiExpression lOperand = a2b.getLOperand();
-        if (a2b.getOperationSign().getText().equals("-")
-                && rOperand != null
-                && (lOperand instanceof PsiMethodCallExpression
-                || lOperand instanceof PsiReferenceExpression)) {
-            @NotNull Expression s = BuildExpressionExt.getAnyExpression(rOperand, document);
-            if (s instanceof NumberLiteral) {
-                @NotNull PsiReferenceExpression a2me = lOperand instanceof PsiMethodCallExpression
-                        ? ((PsiMethodCallExpression) lOperand).getMethodExpression() : (PsiReferenceExpression) lOperand;
-                @NotNull Optional<PsiElement> a2i = Stream.of(a2me.getChildren())
-                        .filter(c -> c instanceof PsiIdentifier).findAny();
-                if (a2i.isPresent() && (a2i.get().getText().equals("length")
-                        || a2i.get().getText().equals("size")) && a2me.getQualifierExpression() != null) {
-                    @NotNull Expression a2qe = BuildExpressionExt.getAnyExpression(a2me.getQualifierExpression(), document);
-                    if (a2qe.equals(qualifierExpression)) {
-                        return new NumberLiteral(parent,
-                                TextRange.create(a2b.getOperationSign().getTextRange().getStartOffset(),
-                                        a2b.getTextRange().getEndOffset()), null, -((NumberLiteral) s).getNumber().intValue(), false);
+    fun getSlicePosition(
+        parent: PsiElement,
+        qualifierExpression: Expression,
+        a2b: PsiBinaryExpression,
+        document: Document
+    ): NumberLiteral? {
+        val rOperand = a2b.rOperand ?: return null
+        val lOperand = a2b.lOperand
+        if (a2b.operationSign.text == "-" &&
+            (lOperand is PsiMethodCallExpression || lOperand is PsiReferenceExpression)
+        ) {
+            val s = BuildExpressionExt.getAnyExpression(rOperand, document)
+            if (s is NumberLiteral) {
+                val methodExpression = when (lOperand) {
+                    is PsiMethodCallExpression -> lOperand.methodExpression
+                    is PsiReferenceExpression -> lOperand
+                    else -> return null
+                }
+                val identifier = methodExpression.children.firstOrNull { it is PsiIdentifier } as? PsiIdentifier
+                if (identifier != null && (identifier.text == "length" || identifier.text == "size") &&
+                    methodExpression.qualifierExpression != null
+                ) {
+                    val qualifier = BuildExpressionExt.getAnyExpression(methodExpression.qualifierExpression!!, document)
+                    if (qualifier == qualifierExpression) {
+                        return NumberLiteral(
+                            parent,
+                            TextRange.create(a2b.operationSign.textRange.startOffset, a2b.textRange.endOffset),
+                            null,
+                            -s.number.toInt(),
+                            false
+                        )
                     }
                 }
             }
         }
-        return null;
+        return null
     }
 
-    public static boolean isSetter(String text) {
-        return text.startsWith("set")
-                && text.length() > 3
-                && Character.isUpperCase(text.charAt(3));
+    fun isSetter(text: String): Boolean {
+        return text.startsWith("set") && text.length > 3 && text[3].isUpperCase()
     }
 
-    public static boolean isPureMethodReference(PsiMethodCallExpression element) {
-        return findChildByTypeHierarchy(element, PsiMethodReferenceExpression.class, PsiExpressionList.class, PsiMethodReferenceExpression.class)
-                .isPresent();
+    fun isPureMethodReference(element: PsiMethodCallExpression): Boolean {
+        return findChildByTypeHierarchy(
+            element,
+            PsiMethodReferenceExpression::class.java,
+            PsiExpressionList::class.java,
+            PsiMethodReferenceExpression::class.java
+        ) != null
     }
 
-    public static boolean hasOptionalChainOperations(PsiMethodCallExpression element) {
-        return findAncestorsUntilClass(element, PsiExpressionStatement.class).findAny().isPresent();
+    fun hasOptionalChainOperations(element: PsiMethodCallExpression): Boolean {
+        return findAncestorsUntilClass(element, PsiExpressionStatement::class.java).firstOrNull() != null
     }
 
-    public static boolean isGetter(@NotNull PsiElement element, @NotNull PsiMethodCallExpression expression) {
-        return expression.getArgumentList().getExpressions().length == 0
-                && isGetter(element.getText());
+    fun isGetter(element: PsiElement, expression: PsiMethodCallExpression): Boolean {
+        return expression.argumentList.expressions.isEmpty() && isGetter(element.text)
     }
 
-    public static boolean isGetter(@NotNull String name) {
-        return isGetterAux(name, "get") || isGetterAux(name, "is");
+    fun isGetter(name: String): Boolean = isGetterAux(name, "get") || isGetterAux(name, "is")
+
+    fun isGetterAux(name: String?, prefix: String): Boolean {
+        return startsWith(name, prefix) && name!!.length > prefix.length && name[prefix.length].isUpperCase()
     }
 
-    public static boolean isGetterAux(@Nullable String name, @NotNull String prefix) {
-        return startsWith(name, prefix)
-                && name.length() > prefix.length()
-                && Character.isUpperCase(name.charAt(prefix.length()));
+    fun findAncestorsUntilClass(element: PsiElement, ancestorClass: Class<out PsiElement>): Sequence<PsiElement> {
+        return findAncestorsUntil(element) { parent -> !ancestorClass.isInstance(parent) }
     }
 
-    public static <T extends PsiElement> Stream<PsiElement> findAncestorsUntilClass(PsiElement element, Class<T> ancestorClass) {
-        return findAncestorsUntil(element, (parent -> !ancestorClass.isInstance(parent)));
+    fun findAncestorsUntil(element: PsiElement, untilPredicate: (PsiElement) -> Boolean): Sequence<PsiElement> {
+        return generateSequence(element.parent) { it?.parent }
+            .takeWhile { it != null && untilPredicate(it) }
+            .filterNotNull()
     }
 
-    public static <T extends PsiElement> Stream<PsiElement> findAncestorsUntil(PsiElement element, Predicate<PsiElement> untilPredicate) {
-        return Stream.iterate(element.getParent(), Objects::nonNull, PsiElement::getParent)
-                .takeWhile(untilPredicate);
-    }
-
-    @SuppressWarnings("unchecked")
-    @SafeVarargs
-    public static <T extends PsiElement> Optional<T> findChildByTypeHierarchy(PsiElement element, Class<T> childClass, Class<? extends PsiElement>... children) {
-        LinkedList<Class<? extends PsiElement>> classQueue = new LinkedList<>(List.of(children));
-        Class<? extends PsiElement> next = classQueue.poll();
-
-        for (PsiElement child : element.getChildren()) {
-            if (next != null && next.isInstance(child)) {
-                if (classQueue.isEmpty()) {
-                    return Optional.of((T) child);
+    fun <T : PsiElement> findChildByTypeHierarchy(
+        element: PsiElement,
+        childClass: Class<T>,
+        vararg children: Class<out PsiElement>
+    ): T? {
+        val classQueue = children.toList()
+        val next = classQueue.firstOrNull() ?: return null
+        for (child in element.children) {
+            if (next.isInstance(child)) {
+                return if (classQueue.size == 1) {
+                    childClass.cast(child)
                 } else {
-                    return findChildByTypeHierarchy(child, childClass, classQueue.toArray(new Class[0]));
+                    val remaining = classQueue.drop(1).toTypedArray()
+                    findChildByTypeHierarchy(child, childClass, *remaining)
                 }
             }
         }
-        return Optional.empty();
+        return null
     }
 
-    @Nullable
-    public static String superscript(String str) {
-        return map(str, Consts.SUPERSCRIPT_MAPPING);
-    }
+    fun superscript(str: String): String? = map(str, Consts.SUPERSCRIPT_MAPPING)
 
-    private static String map(String str, Map<Character, Character> subscriptMapping) {
-        StringBuilder sb = new StringBuilder(str.length());
-        for (int i = 0; i < str.length(); i++) {
-            Character c = subscriptMapping.get(str.charAt(i));
-            if (c == null) {
-                return null;
-            } else if (!c.equals('❤')) {
-                sb.append((char) c);
+    private fun map(str: String, mapping: Map<Char, Char>): String? {
+        val builder = StringBuilder(str.length)
+        for (ch in str) {
+            val mapped = mapping[ch] ?: return null
+            if (mapped != '❤') {
+                builder.append(mapped)
             }
         }
-        return sb.toString();
+        return builder.toString()
     }
 }

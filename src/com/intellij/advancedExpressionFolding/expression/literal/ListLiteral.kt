@@ -1,56 +1,47 @@
-package com.intellij.advancedExpressionFolding.expression.literal;
+package com.intellij.advancedExpressionFolding.expression.literal
 
-import com.intellij.advancedExpressionFolding.expression.Expression;
-import com.intellij.lang.folding.FoldingDescriptor;
-import com.intellij.openapi.editor.Document;
-import com.intellij.openapi.editor.FoldingGroup;
-import com.intellij.openapi.util.TextRange;
-import com.intellij.psi.PsiElement;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.lang.folding.FoldingDescriptor
+import com.intellij.openapi.editor.Document
+import com.intellij.openapi.editor.FoldingGroup
+import com.intellij.openapi.util.TextRange
+import com.intellij.psi.PsiElement
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+class ListLiteral(
+    element: PsiElement,
+    textRange: TextRange,
+    val items: List<Expression>
+) : Expression(element, textRange) {
 
-public class ListLiteral extends Expression {
-    private final List<Expression> items;
+    override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean = true
 
-    public ListLiteral(@NotNull PsiElement element, @NotNull TextRange textRange, @NotNull List<Expression> items) {
-        super(element, textRange);
-        this.items = items;
-    }
-
-    @Override
-    public boolean supportsFoldRegions(@NotNull Document document,
-                                       @Nullable Expression parent) {
-        return true;
-    }
-
-    @Override
-    public FoldingDescriptor[] buildFoldRegions(@NotNull PsiElement element, @NotNull Document document, @Nullable Expression parent) {
-        FoldingGroup group = FoldingGroup.newGroup(ListLiteral.class.getName());
+    override fun buildFoldRegions(
+        element: PsiElement,
+        document: Document,
+        parent: Expression?
+    ): Array<FoldingDescriptor> {
+        val group = FoldingGroup.newGroup(ListLiteral::class.java.name)
         if (items.isEmpty()) {
-            return new FoldingDescriptor[]{
-                    new FoldingDescriptor(element.getNode(), textRange, group, "[]")
-            };
-        } else {
-            ArrayList<FoldingDescriptor> descriptors = new ArrayList<>();
-            descriptors.add(new FoldingDescriptor(element.getNode(), TextRange.create(textRange.getStartOffset(),
-                    items.get(0).getTextRange().getStartOffset()), group, "["));
-            if (items.get(items.size() - 1).getTextRange().getEndOffset() < textRange.getEndOffset()) {
-                descriptors.add(new FoldingDescriptor(element.getNode(), TextRange.create(
-                        items.get(items.size() - 1).getTextRange().getEndOffset(),
-                        textRange.getEndOffset()), group, "]"));
-            }
-            for (Expression item : items) {
-                Collections.addAll(descriptors, item.buildFoldRegions(item.getElement(), document, this));
-            }
-            return descriptors.toArray(new FoldingDescriptor[0]);
+            return arrayOf(FoldingDescriptor(element.node, textRange, group, "[]"))
         }
-    }
-
-    public List<Expression> getItems() {
-        return items;
+        val descriptors = mutableListOf<FoldingDescriptor>()
+        descriptors += FoldingDescriptor(
+            element.node,
+            TextRange.create(textRange.startOffset, items.first().textRange.startOffset),
+            group,
+            "["
+        )
+        if (items.last().textRange.endOffset < textRange.endOffset) {
+            descriptors += FoldingDescriptor(
+                element.node,
+                TextRange.create(items.last().textRange.endOffset, textRange.endOffset),
+                group,
+                "]"
+            )
+        }
+        for (item in items) {
+            descriptors += item.buildFoldRegions(item.element, document, this).toList()
+        }
+        return descriptors.toTypedArray()
     }
 }

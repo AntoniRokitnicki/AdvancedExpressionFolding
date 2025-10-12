@@ -1,36 +1,26 @@
-package com.intellij.advancedExpressionFolding.expression;
+package com.intellij.advancedExpressionFolding.expression
 
-import com.intellij.lang.folding.FoldingDescriptor;
-import com.intellij.openapi.editor.Document;
-import com.intellij.openapi.editor.FoldingGroup;
-import com.intellij.openapi.util.TextRange;
-import com.intellij.psi.PsiElement;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import com.intellij.lang.folding.FoldingDescriptor
+import com.intellij.openapi.editor.Document
+import com.intellij.openapi.editor.FoldingGroup
+import com.intellij.openapi.util.TextRange
+import com.intellij.psi.PsiElement
 
-public class VariableDeclarationImpl extends Expression {
-    private final boolean isFinal;
+class VariableDeclarationImpl(
+    element: PsiElement,
+    textRange: TextRange,
+    val isFinal: Boolean
+) : Expression(element, textRange) {
 
-    public VariableDeclarationImpl(@NotNull PsiElement element, @NotNull TextRange textRange, boolean isFinal) {
-        super(element, textRange);
-        this.isFinal = isFinal;
-    }
+    override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean = true
 
-    public boolean isFinal() {
-        return isFinal;
-    }
-
-    @Override
-    public boolean supportsFoldRegions(@NotNull Document document,
-                                       @Nullable Expression parent) {
-        return true;
-    }
-
-    @Override
-    public FoldingDescriptor[] buildFoldRegions(@NotNull PsiElement element, @NotNull Document document, @Nullable Expression parent) {
-        FoldingGroup group = FoldingGroup.newGroup(VariableDeclarationImpl.class.getName());
-        return new FoldingDescriptor[]{
-                new FoldingDescriptor(element.getNode(), textRange, group, isFinal ? "val" : "var")
-        };
+    override fun buildFoldRegions(
+        element: PsiElement,
+        document: Document,
+        parent: Expression?
+    ): Array<FoldingDescriptor> {
+        val group = FoldingGroup.newGroup(VariableDeclarationImpl::class.java.name)
+        val placeholder = if (isFinal) "val" else "var"
+        return arrayOf(FoldingDescriptor(element.node, textRange, group, placeholder))
     }
 }

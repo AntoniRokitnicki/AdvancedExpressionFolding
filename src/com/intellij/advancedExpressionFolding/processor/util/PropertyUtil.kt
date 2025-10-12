@@ -1,31 +1,21 @@
-package com.intellij.advancedExpressionFolding.processor.util;
+package com.intellij.advancedExpressionFolding.processor.util
 
-import org.jetbrains.annotations.NotNull;
-
-import static java.lang.Character.*;
-
-public class PropertyUtil {
-
-    @NotNull
-    public static String guessPropertyName(@NotNull String text) {
-        StringBuilder sb = new StringBuilder(text.length());
-        int startPos;
-        if (text.startsWith("get") || text.startsWith("set")) {
-            startPos = 3;
-        } else if (text.startsWith("is")) {
-            startPos = 2;
-        } else {
-            startPos = 0;
+object PropertyUtil {
+    fun guessPropertyName(text: String): String {
+        val startPos = when {
+            text.startsWith("get") || text.startsWith("set") -> 3
+            text.startsWith("is") -> 2
+            else -> 0
         }
-        sb.append(text, startPos, text.length());
-        for (int i = 0; i < sb.length(); i++) {
-            if (isUpperCase(sb.charAt(i)) &&
-                    (i == sb.length() - 1 || isUpperCase(sb.charAt(i + 1)) || i == 0)) {
-                sb.setCharAt(i, toLowerCase(sb.charAt(i)));
-            } else if (isLowerCase(sb.charAt(i))) {
-                break;
+        val builder = StringBuilder(text.substring(startPos))
+        for (i in builder.indices) {
+            val current = builder[i]
+            if (current.isUpperCase() && (i == builder.lastIndex || builder[i + 1].isUpperCase() || i == 0)) {
+                builder.setCharAt(i, current.lowercaseChar())
+            } else if (current.isLowerCase()) {
+                break
             }
         }
-        return sb.toString();
+        return builder.toString()
     }
 }

@@ -1,90 +1,73 @@
-package com.intellij.advancedExpressionFolding.expression.literal;
+package com.intellij.advancedExpressionFolding.expression.literal
 
-import com.intellij.advancedExpressionFolding.expression.Expression;
-import com.intellij.advancedExpressionFolding.expression.math.ArithmeticExpression;
-import com.intellij.lang.folding.FoldingDescriptor;
-import com.intellij.openapi.editor.Document;
-import com.intellij.openapi.editor.FoldingGroup;
-import com.intellij.openapi.util.TextRange;
-import com.intellij.psi.PsiElement;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.advancedExpressionFolding.expression.math.ArithmeticExpression
+import com.intellij.lang.folding.FoldingDescriptor
+import com.intellij.openapi.editor.Document
+import com.intellij.openapi.editor.FoldingGroup
+import com.intellij.openapi.util.TextRange
+import com.intellij.psi.PsiElement
 
-import java.util.ArrayList;
+class NumberLiteral(
+    element: PsiElement,
+    textRange: TextRange,
+    val numberTextRange: TextRange?,
+    val number: Number,
+    private val convert: Boolean
+) : Expression(element, textRange), ArithmeticExpression {
 
-public class NumberLiteral extends Expression implements ArithmeticExpression {
-    private @NotNull Number number;
-    private final boolean convert;
-    private @Nullable TextRange numberTextRange;
+    override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean = isHighlighted()
 
-    public NumberLiteral(@NotNull PsiElement element, @NotNull TextRange textRange, @Nullable TextRange numberTextRange, @NotNull Number number, boolean convert) {
-        super(element, textRange);
-        this.numberTextRange = numberTextRange;
-        this.number = number;
-        this.convert = convert;
-    }
-
-    @NotNull
-    public Number getNumber() {
-        return number;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        NumberLiteral numberLiteral = (NumberLiteral) o;
-
-        return number.toString().equals(numberLiteral.number.toString());
-    }
-
-    @Override
-    public int hashCode() {
-        return number.toString().hashCode();
-    }
-
-    @Override
-    public boolean supportsFoldRegions(@NotNull Document document,
-                                       @Nullable Expression parent) {
-        return isHighlighted();
-    }
-
-    @Override
-    public FoldingDescriptor[] buildFoldRegions(@NotNull PsiElement element, @NotNull Document document, @Nullable Expression parent) {
-        ArrayList<FoldingDescriptor> descriptors = new ArrayList<>();
-        //noinspection Duplicates
-        if (numberTextRange != null) {
-            FoldingGroup group = FoldingGroup
-                    .newGroup(NumberLiteral.class.getName() + HIGHLIGHTED_GROUP_POSTFIX);
-            if (textRange.getStartOffset() < numberTextRange.getStartOffset()) {
-                descriptors.add(new FoldingDescriptor(element.getNode(),
-                        TextRange.create(textRange.getStartOffset(), numberTextRange.getStartOffset()), group, ""));
+    override fun buildFoldRegions(
+        element: PsiElement,
+        document: Document,
+        parent: Expression?
+    ): Array<FoldingDescriptor> {
+        val descriptors = mutableListOf<FoldingDescriptor>()
+        val highlightedRange = numberTextRange
+        if (highlightedRange != null) {
+            val group = FoldingGroup.newGroup(NumberLiteral::class.java.name + HIGHLIGHTED_GROUP_POSTFIX)
+            if (textRange.startOffset < highlightedRange.startOffset) {
+                descriptors += FoldingDescriptor(
+                    element.node,
+                    TextRange.create(textRange.startOffset, highlightedRange.startOffset),
+                    group,
+                    ""
+                )
             }
             if (convert) {
-                descriptors.add(new FoldingDescriptor(element.getNode(), numberTextRange, group,
-                        number instanceof Float ?
-                                Float.toString(number.floatValue()) + "f":
-                                number instanceof Double ?
-                                        Double.toString(number.doubleValue()) :
-                                        number.toString()));
+                val placeholder = when (number) {
+                    is Float -> number.toFloat().toString() + "f"
+                    is Double -> number.toDouble().toString()
+                    else -> number.toString()
+                }
+                descriptors += FoldingDescriptor(element.node, highlightedRange, group, placeholder)
             }
-            if (numberTextRange.getEndOffset() < textRange.getEndOffset()) {
-                descriptors.add(new FoldingDescriptor(element.getNode(),
-                        TextRange.create(numberTextRange.getEndOffset(), textRange.getEndOffset()), group, ""));
+            if (highlightedRange.endOffset < textRange.endOffset) {
+                descriptors += FoldingDescriptor(
+                    element.node,
+                    TextRange.create(highlightedRange.endOffset, textRange.endOffset),
+                    group,
+                    ""
+                )
             }
         }
-        return descriptors.toArray(EMPTY_ARRAY);
+        return descriptors.toTypedArray()
     }
 
-    @Override
-    public boolean isHighlighted() {
-        return numberTextRange != null && numberTextRange.getStartOffset() >= textRange.getStartOffset()
-                && numberTextRange.getEndOffset() <= textRange.getEndOffset();
+    override fun isHighlighted(): Boolean {
+        val highlightedRange = numberTextRange ?: return false
+        return highlightedRange.startOffset >= textRange.startOffset &&
+            highlightedRange.endOffset <= textRange.endOffset
+    }
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as NumberLiteral
+
+        return number.toString() == other.number.toString()
     }
 
-    @Nullable
-    public TextRange getNumberTextRange() {
-        return numberTextRange;
-    }
+    override fun hashCode(): Int = number.toString().hashCode()
 }

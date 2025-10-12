@@ -1,103 +1,88 @@
-package com.intellij.advancedExpressionFolding.expression.literal;
+package com.intellij.advancedExpressionFolding.expression.literal
 
-import com.intellij.advancedExpressionFolding.expression.Expression;
-import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings;
-import com.intellij.lang.folding.FoldingDescriptor;
-import com.intellij.openapi.editor.Document;
-import com.intellij.openapi.editor.FoldingGroup;
-import com.intellij.openapi.util.TextRange;
-import com.intellij.psi.PsiElement;
-import com.intellij.psi.PsiLiteralExpression;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
+import com.intellij.lang.folding.FoldingDescriptor
+import com.intellij.openapi.editor.Document
+import com.intellij.openapi.editor.FoldingGroup
+import com.intellij.openapi.util.TextRange
+import com.intellij.psi.PsiElement
+import com.intellij.psi.PsiLiteralExpression
 
-import java.util.ArrayList;
+class LocalDateLiteral(
+    element: PsiElement,
+    textRange: TextRange,
+    private val year: PsiLiteralExpression,
+    private val month: PsiLiteralExpression,
+    private val day: PsiLiteralExpression
+) : Expression(element, textRange) {
 
-public class LocalDateLiteral extends Expression {
-    public static final String DATE_SEPARATOR = "-";
+    override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean = true
 
-    public static final String YEAR_POSTFIX = "Y";
-    public static final String MONTH_POSTFIX = "M";
-    public static final String DAY_POSTFIX = "D";
+    override fun buildFoldRegions(
+        element: PsiElement,
+        document: Document,
+        parent: Expression?
+    ): Array<FoldingDescriptor> {
+        val group = FoldingGroup.newGroup(ListLiteral::class.java.name)
+        val descriptors = mutableListOf<FoldingDescriptor>()
+        descriptors += object : FoldingDescriptor(
+            element.node,
+            TextRange.create(textRange.startOffset, year.textRange.startOffset),
+            group
+        ) {
+            override fun getPlaceholderText(): String = ""
+        }
 
-    @NotNull
-    private final PsiLiteralExpression year;
-    @NotNull
-    private final PsiLiteralExpression month;
-    @NotNull
-    private final PsiLiteralExpression day;
+        val usePostfix = AdvancedExpressionFoldingSettings.getInstance().state.localDateLiteralPostfixCollapse
+        val dateSep = DATE_SEPARATOR
+        val yearPostfix = if (usePostfix) YEAR_POSTFIX else ""
+        val monthPostfix = if (usePostfix) MONTH_POSTFIX else ""
+        val dayPostfix = if (usePostfix) DAY_POSTFIX else ""
 
-    public LocalDateLiteral(@NotNull PsiElement element, @NotNull TextRange textRange, @NotNull PsiLiteralExpression year, @NotNull PsiLiteralExpression month, @NotNull PsiLiteralExpression day) {
-        super(element, textRange);
-        this.year = year;
-        this.month = month;
-        this.day = day;
-    }
-
-    @Override
-    public boolean supportsFoldRegions(@NotNull Document document,
-                                       @Nullable Expression parent) {
-        return true;
-    }
-
-    @Override
-    public FoldingDescriptor[] buildFoldRegions(@NotNull PsiElement element, @NotNull Document document, @Nullable Expression parent) {
-        FoldingGroup group = FoldingGroup.newGroup(ListLiteral.class.getName());
-        ArrayList<FoldingDescriptor> descriptors = new ArrayList<>();
-        descriptors.add(new FoldingDescriptor(element.getNode(), TextRange.create(textRange.getStartOffset(),
-                year.getTextRange().getStartOffset()), group) {
-            @NotNull
-            @Override
-            public String getPlaceholderText() {
-                return "";
-            }
-        });
-
-        boolean usePostfix = AdvancedExpressionFoldingSettings.getInstance().getState().getLocalDateLiteralPostfixCollapse();
-
-        final String dateSep = DATE_SEPARATOR;
-        final String yearPostfix = usePostfix ? YEAR_POSTFIX : "";
-        final String monthPostfix = usePostfix ? MONTH_POSTFIX : "";
-        final String dayPostfix = usePostfix ? DAY_POSTFIX : "";
-
-        descriptors.add(new FoldingDescriptor(element.getNode(), TextRange.create(year.getTextRange().getEndOffset(),
-                month.getTextRange().getStartOffset()), group) {
-            @NotNull
-            @Override
-            public String getPlaceholderText() {
-                // Add leading zero to month if month is only a single digit
-                if (month.getTextLength() == 1) {
-                    return yearPostfix + dateSep + "0";
+        descriptors += object : FoldingDescriptor(
+            element.node,
+            TextRange.create(year.textRange.endOffset, month.textRange.startOffset),
+            group
+        ) {
+            override fun getPlaceholderText(): String {
+                return if (month.textLength == 1) {
+                    yearPostfix + dateSep + "0"
                 } else {
-                    return yearPostfix + dateSep;
+                    yearPostfix + dateSep
                 }
             }
-        });
+        }
 
-        descriptors.add(new FoldingDescriptor(element.getNode(), TextRange.create(month.getTextRange().getEndOffset(),
-                day.getTextRange().getStartOffset()), group) {
-            @NotNull
-            @Override
-            public String getPlaceholderText() {
-                // Add leading zero to day if day is only a single digit
-                if (day.getTextLength() == 1) {
-                    return monthPostfix + dateSep + "0";
+        descriptors += object : FoldingDescriptor(
+            element.node,
+            TextRange.create(month.textRange.endOffset, day.textRange.startOffset),
+            group
+        ) {
+            override fun getPlaceholderText(): String {
+                return if (day.textLength == 1) {
+                    monthPostfix + dateSep + "0"
                 } else {
-                    return monthPostfix + dateSep;
+                    monthPostfix + dateSep
                 }
             }
-        });
+        }
 
-        descriptors.add(new FoldingDescriptor(element.getNode(), TextRange.create(day.getTextRange().getEndOffset(),
-                textRange.getEndOffset()), group) {
-            @NotNull
-            @Override
-            public String getPlaceholderText() {
-                return dayPostfix + "";
-            }
-        });
-//        descriptors.add(year.buildFoldRegions(year.getElement(), document, this);
-//        descriptors.add(month.buildFoldRegions(month.getElement(), document, this);
-//        descriptors.add(day.buildFoldRegions(day.getElement(), document, this);
-        return descriptors.toArray(new FoldingDescriptor[0]);
-    }}
+        descriptors += object : FoldingDescriptor(
+            element.node,
+            TextRange.create(day.textRange.endOffset, textRange.endOffset),
+            group
+        ) {
+            override fun getPlaceholderText(): String = dayPostfix
+        }
+
+        return descriptors.toTypedArray()
+    }
+
+    companion object {
+        const val DATE_SEPARATOR: String = "-"
+        const val YEAR_POSTFIX: String = "Y"
+        const val MONTH_POSTFIX: String = "M"
+        const val DAY_POSTFIX: String = "D"
+    }
+}

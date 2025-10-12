@@ -1,81 +1,95 @@
-package com.intellij.advancedExpressionFolding.expression.operation.stream;
+package com.intellij.advancedExpressionFolding.expression.operation.stream
 
-import com.intellij.advancedExpressionFolding.expression.Expression;
-import com.intellij.advancedExpressionFolding.processor.util.Helper;
-import com.intellij.lang.folding.FoldingDescriptor;
-import com.intellij.openapi.editor.Document;
-import com.intellij.openapi.editor.FoldingGroup;
-import com.intellij.openapi.util.TextRange;
-import com.intellij.psi.PsiElement;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.advancedExpressionFolding.processor.util.Helper
+import com.intellij.lang.folding.FoldingDescriptor
+import com.intellij.openapi.editor.Document
+import com.intellij.openapi.editor.FoldingGroup
+import com.intellij.openapi.util.TextRange
+import com.intellij.psi.PsiElement
 
-public class StreamExpression extends Expression {
-    public StreamExpression(@NotNull PsiElement element, @NotNull TextRange textRange) {
-        super(element, textRange);
-    }
+class StreamExpression(
+    element: PsiElement,
+    textRange: TextRange
+) : Expression(element, textRange) {
 
-    @Override
-    public boolean supportsFoldRegions(@NotNull Document document,
-                                       @Nullable Expression parent) {
-        return true;
-    }
+    override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean = true
 
-    @Override
-    public FoldingDescriptor[] buildFoldRegions(@NotNull PsiElement element, @NotNull Document document, @Nullable Expression parent) {
-        int startOffset = Helper.findDot(document, textRange.getStartOffset(), -1, true);
-        int endOffset = Helper.findDot(document, textRange.getEndOffset() - 1, 1, false);
-        if (startOffset < -1
-                && document.getText(TextRange.create(textRange.getStartOffset() + startOffset, textRange.getStartOffset() + startOffset + 1)).equals("\n")
-                && endOffset > 1) {
-            int startOffsetNoWhitespace = Helper.findDot(document, textRange.getStartOffset(), -1, false);
-            int startOffsetFinal = textRange.getStartOffset() + startOffsetNoWhitespace;
-            int endOffsetFinal = textRange.getEndOffset() + endOffset;
-            if (endOffsetFinal <0) {
-                return EMPTY_ARRAY;
+    override fun buildFoldRegions(
+        element: PsiElement,
+        document: Document,
+        parent: Expression?
+    ): Array<FoldingDescriptor> {
+        val startOffset = Helper.findDot(document, textRange.startOffset, -1, true)
+        val endOffset = Helper.findDot(document, textRange.endOffset - 1, 1, false)
+        return when {
+            startOffset < -1 &&
+                document.getText(TextRange.create(textRange.startOffset + startOffset, textRange.startOffset + startOffset + 1)) == "\n" &&
+                endOffset > 1 -> {
+                val startOffsetNoWhitespace = Helper.findDot(document, textRange.startOffset, -1, false)
+                val startOffsetFinal = textRange.startOffset + startOffsetNoWhitespace
+                val endOffsetFinal = textRange.endOffset + endOffset
+                if (endOffsetFinal < 0) {
+                    EMPTY_ARRAY
+                } else {
+                    arrayOf(
+                        FoldingDescriptor(
+                            element.node,
+                            TextRange.create(startOffsetFinal, endOffsetFinal),
+                            FoldingGroup.newGroup(StreamExpression::class.java.name),
+                            "."
+                        )
+                    )
+                }
             }
-            return new FoldingDescriptor[]{
-                    new FoldingDescriptor(element.getNode(), TextRange.create(startOffsetFinal,
-                            endOffsetFinal),
-                            FoldingGroup.newGroup(StreamExpression.class.getName()), ".")
-            };
-        } else if (startOffset < -1
-                && document.getText(TextRange.create(textRange.getStartOffset() + startOffset, textRange.getStartOffset() + startOffset + 1)).equals(".")) {
-            int endOffsetWithWhitespace = Helper.findDot(document, textRange.getEndOffset() - 1, 1, true);
-            return new FoldingDescriptor[]{
-                    new FoldingDescriptor(element.getNode(), TextRange.create(textRange.getStartOffset(),
-                            textRange.getEndOffset() + endOffsetWithWhitespace),
-                            FoldingGroup.newGroup(StreamExpression.class.getName() + HIGHLIGHTED_GROUP_POSTFIX), "")
-            };
-        } else if (startOffset == -1
-                && endOffset > 1) {
-            return new FoldingDescriptor[]{
-                    new FoldingDescriptor(element.getNode(), TextRange.create(textRange.getStartOffset() + startOffset,
-                            textRange.getEndOffset()),
-                            FoldingGroup.newGroup(StreamExpression.class.getName() + Expression.HIGHLIGHTED_GROUP_POSTFIX), "")
-            };
-        } else if (startOffset < -1
-                && document.getText(TextRange.create(textRange.getStartOffset() - 1, textRange.getStartOffset())).equals(".")
-                && endOffset == 1) {
-            int endOffsetWithWhitespace = Helper.findDot(document, textRange.getEndOffset() - 1, 1, true);
-            return new FoldingDescriptor[]{
-                    new FoldingDescriptor(element.getNode(), TextRange.create(textRange.getStartOffset() - 1,
-                            textRange.getEndOffset() + endOffsetWithWhitespace),
-                            FoldingGroup.newGroup(StreamExpression.class.getName()), ".")
-            };
-        } else if (startOffset == -1
-                && endOffset == 1) {
-            return new FoldingDescriptor[]{
-                    new FoldingDescriptor(element.getNode(), TextRange.create(textRange.getStartOffset() - 1,
-                            textRange.getEndOffset() + 1),
-                            FoldingGroup.newGroup(StreamExpression.class.getName()), ".")
-            };
+            startOffset < -1 &&
+                document.getText(TextRange.create(textRange.startOffset + startOffset, textRange.startOffset + startOffset + 1)) == "." -> {
+                val endOffsetWithWhitespace = Helper.findDot(document, textRange.endOffset - 1, 1, true)
+                arrayOf(
+                    FoldingDescriptor(
+                        element.node,
+                        TextRange.create(textRange.startOffset, textRange.endOffset + endOffsetWithWhitespace),
+                        FoldingGroup.newGroup(StreamExpression::class.java.name + HIGHLIGHTED_GROUP_POSTFIX),
+                        ""
+                    )
+                )
+            }
+            startOffset == -1 && endOffset > 1 -> {
+                arrayOf(
+                    FoldingDescriptor(
+                        element.node,
+                        TextRange.create(textRange.startOffset + startOffset, textRange.endOffset),
+                        FoldingGroup.newGroup(StreamExpression::class.java.name + HIGHLIGHTED_GROUP_POSTFIX),
+                        ""
+                    )
+                )
+            }
+            startOffset < -1 &&
+                document.getText(TextRange.create(textRange.startOffset - 1, textRange.startOffset)) == "." &&
+                endOffset == 1 -> {
+                val endOffsetWithWhitespace = Helper.findDot(document, textRange.endOffset - 1, 1, true)
+                arrayOf(
+                    FoldingDescriptor(
+                        element.node,
+                        TextRange.create(textRange.startOffset - 1, textRange.endOffset + endOffsetWithWhitespace),
+                        FoldingGroup.newGroup(StreamExpression::class.java.name),
+                        "."
+                    )
+                )
+            }
+            startOffset == -1 && endOffset == 1 -> {
+                arrayOf(
+                    FoldingDescriptor(
+                        element.node,
+                        TextRange.create(textRange.startOffset - 1, textRange.endOffset + 1),
+                        FoldingGroup.newGroup(StreamExpression::class.java.name),
+                        "."
+                    )
+                )
+            }
+            else -> EMPTY_ARRAY
         }
-        return EMPTY_ARRAY;
     }
 
-    @Override
-    public boolean isHighlighted() {
-        return true;
-    }
+    override fun isHighlighted(): Boolean = true
 }

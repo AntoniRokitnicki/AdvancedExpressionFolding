@@ -1,52 +1,47 @@
-package com.intellij.advancedExpressionFolding.expression.operation.collection;
+package com.intellij.advancedExpressionFolding.expression.operation.collection
 
-import com.intellij.advancedExpressionFolding.expression.Expression;
-import com.intellij.advancedExpressionFolding.processor.util.Helper;
-import com.intellij.lang.folding.FoldingDescriptor;
-import com.intellij.openapi.editor.Document;
-import com.intellij.openapi.editor.FoldingGroup;
-import com.intellij.openapi.util.TextRange;
-import com.intellij.psi.PsiElement;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.advancedExpressionFolding.processor.util.Helper
+import com.intellij.lang.folding.FoldingDescriptor
+import com.intellij.openapi.editor.Document
+import com.intellij.openapi.editor.FoldingGroup
+import com.intellij.openapi.util.TextRange
+import com.intellij.psi.PsiElement
 
-import java.util.ArrayList;
-import java.util.Collections;
+class ArrayStream(
+    element: PsiElement,
+    textRange: TextRange,
+    val argument: Expression
+) : Expression(element, textRange) {
 
-public class ArrayStream extends Expression {
-    private final @NotNull Expression argument;
+    override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean = true
 
-    public ArrayStream(@NotNull PsiElement element, @NotNull TextRange textRange, @NotNull Expression argument) {
-        super(element, textRange);
-        this.argument = argument;
-    }
-
-    @Override
-    public boolean supportsFoldRegions(@NotNull Document document,
-                                       @Nullable Expression parent) {
-        return true;
-    }
-
-    @Override
-    public FoldingDescriptor[] buildFoldRegions(@NotNull PsiElement element, @NotNull Document document, @Nullable Expression parent) {
-        int offset = Helper.findDot(document, textRange.getEndOffset(), 1, false) + 1;
-        final boolean noSpaces = offset == 1;
-        FoldingGroup group = FoldingGroup.newGroup(ArrayStream.class.getName() + (noSpaces ? "" : Expression.HIGHLIGHTED_GROUP_POSTFIX));
-        ArrayList<FoldingDescriptor> descriptors = new ArrayList<>();
-        descriptors.add(new FoldingDescriptor(element.getNode(),
-                TextRange.create(textRange.getStartOffset(),
-                        argument.getTextRange().getStartOffset()), group, ""));
-        descriptors.add(new FoldingDescriptor(element.getNode(),
-                TextRange.create(argument.getTextRange().getEndOffset(),
-                        textRange.getEndOffset() + (noSpaces ? 1 : 0)), group, noSpaces ? "." : ""));
+    override fun buildFoldRegions(
+        element: PsiElement,
+        document: Document,
+        parent: Expression?
+    ): Array<FoldingDescriptor> {
+        val offset = Helper.findDot(document, textRange.endOffset, 1, false) + 1
+        val noSpaces = offset == 1
+        val group = FoldingGroup.newGroup(ArrayStream::class.java.name + if (noSpaces) "" else HIGHLIGHTED_GROUP_POSTFIX)
+        val descriptors = mutableListOf<FoldingDescriptor>()
+        descriptors += FoldingDescriptor(
+            element.node,
+            TextRange.create(textRange.startOffset, argument.textRange.startOffset),
+            group,
+            ""
+        )
+        descriptors += FoldingDescriptor(
+            element.node,
+            TextRange.create(argument.textRange.endOffset, textRange.endOffset + if (noSpaces) 1 else 0),
+            group,
+            if (noSpaces) "." else ""
+        )
         if (argument.supportsFoldRegions(document, this)) {
-            Collections.addAll(descriptors, argument.buildFoldRegions(argument.getElement(), document, this));
+            descriptors += argument.buildFoldRegions(argument.element, document, this).toList()
         }
-        return descriptors.toArray(EMPTY_ARRAY);
+        return descriptors.toTypedArray()
     }
 
-    @Override
-    public boolean isHighlighted() {
-        return true;
-    }
+    override fun isHighlighted(): Boolean = true
 }

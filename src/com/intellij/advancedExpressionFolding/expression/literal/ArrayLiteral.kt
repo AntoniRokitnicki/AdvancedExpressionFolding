@@ -1,55 +1,52 @@
-package com.intellij.advancedExpressionFolding.expression.literal;
+package com.intellij.advancedExpressionFolding.expression.literal
 
-import com.intellij.advancedExpressionFolding.expression.Expression;
-import com.intellij.lang.folding.FoldingDescriptor;
-import com.intellij.openapi.editor.Document;
-import com.intellij.openapi.editor.FoldingGroup;
-import com.intellij.openapi.util.TextRange;
-import com.intellij.psi.PsiElement;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.lang.folding.FoldingDescriptor
+import com.intellij.openapi.editor.Document
+import com.intellij.openapi.editor.FoldingGroup
+import com.intellij.openapi.util.TextRange
+import com.intellij.psi.PsiElement
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+class ArrayLiteral(
+    element: PsiElement,
+    textRange: TextRange,
+    val items: List<Expression>
+) : Expression(element, textRange) {
 
-public class ArrayLiteral extends Expression {
-    private final List<Expression> items;
-
-    public ArrayLiteral(@NotNull PsiElement element, @NotNull TextRange textRange, @NotNull List<Expression> items) {
-        super(element, textRange);
-        this.items = items;
+    override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean {
+        return (!textRange.isEmpty && items.isEmpty()) ||
+            (items.isNotEmpty() &&
+                textRange.startOffset < items.first().textRange.startOffset &&
+                items.last().textRange.endOffset < textRange.endOffset)
     }
 
-    @Override
-    public boolean supportsFoldRegions(@NotNull Document document,
-                                       @Nullable Expression parent) {
-        return !textRange.isEmpty() && items.isEmpty() ||
-                !items.isEmpty() && textRange.getStartOffset() < items.get(0).getTextRange().getStartOffset()
-                && items.get(items.size() - 1).getTextRange().getEndOffset() < textRange.getEndOffset();
-    }
-
-    @Override
-    public FoldingDescriptor[] buildFoldRegions(@NotNull PsiElement element, @NotNull Document document, @Nullable Expression parent) {
-        FoldingGroup group = FoldingGroup.newGroup(ArrayLiteral.class.getName());
+    override fun buildFoldRegions(
+        element: PsiElement,
+        document: Document,
+        parent: Expression?
+    ): Array<FoldingDescriptor> {
+        val group = FoldingGroup.newGroup(ArrayLiteral::class.java.name)
         if (items.isEmpty()) {
-            return new FoldingDescriptor[] {
-                    new FoldingDescriptor(element.getNode(), textRange,
-                            group, "[]")
-            };
-        } else {
-            ArrayList<FoldingDescriptor> descriptors = new ArrayList<>();
-            descriptors.add(new FoldingDescriptor(element.getNode(), TextRange.create(textRange.getStartOffset(),
-                    items.get(0).getTextRange().getStartOffset()), group, "["));
-            descriptors.add(new FoldingDescriptor(element.getNode(), TextRange.create(
-                    items.get(items.size() - 1).getTextRange().getEndOffset(),
-                    textRange.getEndOffset()), group, "]"));
-            for (Expression item : items) {
-                if (item.supportsFoldRegions(document, this)) {
-                    Collections.addAll(descriptors, item.buildFoldRegions(item.getElement(), document, this));
-                }
-            }
-            return descriptors.toArray(new FoldingDescriptor[0]);
+            return arrayOf(FoldingDescriptor(element.node, textRange, group, "[]"))
         }
+        val descriptors = mutableListOf<FoldingDescriptor>()
+        descriptors += FoldingDescriptor(
+            element.node,
+            TextRange.create(textRange.startOffset, items.first().textRange.startOffset),
+            group,
+            "["
+        )
+        descriptors += FoldingDescriptor(
+            element.node,
+            TextRange.create(items.last().textRange.endOffset, textRange.endOffset),
+            group,
+            "]"
+        )
+        for (item in items) {
+            if (item.supportsFoldRegions(document, this)) {
+                descriptors += item.buildFoldRegions(item.element, document, this).toList()
+            }
+        }
+        return descriptors.toTypedArray()
     }
 }

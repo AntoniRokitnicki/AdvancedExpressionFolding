@@ -1,60 +1,65 @@
-package com.intellij.advancedExpressionFolding.expression.controlflow;
+package com.intellij.advancedExpressionFolding.expression.controlflow
 
-import com.intellij.advancedExpressionFolding.expression.Expression;
-import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings;
-import com.intellij.lang.folding.FoldingDescriptor;
-import com.intellij.openapi.editor.Document;
-import com.intellij.openapi.editor.FoldingGroup;
-import com.intellij.openapi.util.TextRange;
-import com.intellij.psi.PsiElement;
-import com.intellij.psi.PsiForStatement;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
+import com.intellij.lang.folding.FoldingDescriptor
+import com.intellij.openapi.editor.Document
+import com.intellij.openapi.editor.FoldingGroup
+import com.intellij.openapi.util.TextRange
+import com.intellij.psi.PsiElement
+import com.intellij.psi.PsiForStatement
 
-import java.util.ArrayList;
+class ForEachStatement(
+    private val forStatement: PsiForStatement,
+    textRange: TextRange,
+    private val declarationTextRange: TextRange,
+    private val variableTextRange: TextRange,
+    private val arrayTextRange: TextRange
+) : Expression(forStatement, textRange) {
 
-public class ForEachStatement extends Expression {
-    @NotNull
-    private final PsiForStatement element;
-    private final @NotNull
-    TextRange declarationTextRange;
-    private final @NotNull
-    TextRange variableTextRange;
-    private final @NotNull
-    TextRange arrayTextRange;
+    override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean = true
 
-    public ForEachStatement(@NotNull PsiForStatement element, @NotNull TextRange textRange, @NotNull TextRange declarationTextRange,
-                            @NotNull TextRange variableTextRange, @NotNull TextRange arrayTextRange) {
-        super(element, textRange);
-        this.element = element;
-        this.declarationTextRange = declarationTextRange;
-        this.variableTextRange = variableTextRange;
-        this.arrayTextRange = arrayTextRange;
-    }
-
-    @Override
-    public boolean supportsFoldRegions(@NotNull Document document,
-                                       @Nullable Expression parent) {
-        return true;
-    }
-
-    @Override
-    public FoldingDescriptor[] buildFoldRegions(@NotNull PsiElement element, @NotNull Document document, @Nullable Expression parent) {
-        ArrayList<FoldingDescriptor> descriptors = new ArrayList<>();
-        FoldingGroup group = FoldingGroup.newGroup(ForEachStatement.class.getName());
-        if (AdvancedExpressionFoldingSettings.getInstance().getState().getCompactControlFlowSyntaxCollapse()
-                && this.element.getLParenth() != null) {
-            descriptors.add(new FoldingDescriptor(element.getNode(), TextRange.create(this.element.getLParenth().getTextRange().getStartOffset(),
-                    this.element.getLParenth().getTextRange().getStartOffset() + 1), group, ""));
+    override fun buildFoldRegions(
+        element: PsiElement,
+        document: Document,
+        parent: Expression?
+    ): Array<FoldingDescriptor> {
+        val descriptors = ArrayList<FoldingDescriptor>()
+        val group = FoldingGroup.newGroup(ForEachStatement::class.java.name)
+        if (AdvancedExpressionFoldingSettings.getInstance().state.compactControlFlowSyntaxCollapse &&
+            this.forStatement.lParenth != null
+        ) {
+            val startOffset = this.forStatement.lParenth!!.textRange.startOffset
+            descriptors += FoldingDescriptor(
+                element.node,
+                TextRange.create(startOffset, startOffset + 1),
+                group,
+                ""
+            )
         }
-        descriptors.add(new FoldingDescriptor(element.getNode(), TextRange.create(textRange.getStartOffset(),
-                declarationTextRange.getStartOffset()), group, ""));
-        descriptors.add(new FoldingDescriptor(element.getNode(), TextRange.create(variableTextRange.getEndOffset(),
-                arrayTextRange.getStartOffset()), group, " : "));
-        descriptors.add(new FoldingDescriptor(element.getNode(), TextRange.create(arrayTextRange.getEndOffset(),
-                declarationTextRange.getEndOffset()), group, AdvancedExpressionFoldingSettings.getInstance().getState().getCompactControlFlowSyntaxCollapse()
-                ? " {\n"
-                : ") {\n"));
-        return descriptors.toArray(EMPTY_ARRAY);
+        descriptors += FoldingDescriptor(
+            element.node,
+            TextRange.create(textRange.startOffset, declarationTextRange.startOffset),
+            group,
+            ""
+        )
+        descriptors += FoldingDescriptor(
+            element.node,
+            TextRange.create(variableTextRange.endOffset, arrayTextRange.startOffset),
+            group,
+            " : "
+        )
+        val placeholder = if (AdvancedExpressionFoldingSettings.getInstance().state.compactControlFlowSyntaxCollapse) {
+            " {\n"
+        } else {
+            ") {\n"
+        }
+        descriptors += FoldingDescriptor(
+            element.node,
+            TextRange.create(arrayTextRange.endOffset, declarationTextRange.endOffset),
+            group,
+            placeholder
+        )
+        return descriptors.toTypedArray()
     }
 }

@@ -1,5 +1,4 @@
-package com.intellij.advancedExpressionFolding.expression.math;
+package com.intellij.advancedExpressionFolding.expression.math
 
-@Deprecated
-public interface ArithmeticExpression {
-}
+@Deprecated("Replaced by Kotlin expressions")
+interface ArithmeticExpression

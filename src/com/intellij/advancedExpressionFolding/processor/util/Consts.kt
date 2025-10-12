@@ -1,185 +1,145 @@
-package com.intellij.advancedExpressionFolding.processor.util;
+package com.intellij.advancedExpressionFolding.processor.util
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-import java.util.regex.Pattern;
+import java.util.regex.Pattern
 
-public interface Consts {
+object Consts {
+    val SUPPORTED_CLASSES: Set<String> = setOf(
+        "java.math.BigDecimal",
+        "java.math.BigInteger",
+        "java.lang.Math",
+        "java.lang.Long",
+        "java.lang.Integer",
+        "java.lang.Float",
+        "java.lang.Double",
+        "java.lang.Character",
+        "java.lang.String",
+        "java.lang.StringBuilder",
+        "java.lang.AbstractStringBuilder",
+        "java.util.List",
+        "java.util.ArrayList",
+        "java.util.Map",
+        "java.util.HashMap",
+        "java.util.Set",
+        "java.util.HashSet",
+        "java.lang.Object",
+        "java.util.Arrays",
+        "java.util.Optional",
+        "java.util.Collection",
+        "java.util.Collections",
+        "java.util.Objects",
+        "java.util.stream.Stream",
+        "java.io.PrintStream"
+    )
 
-    Set<String> SUPPORTED_CLASSES = new HashSet<>() {
-        {
-            add("java.math.BigDecimal");
-            add("java.math.BigInteger");
-            add("java.lang.Math");
-            add("java.lang.Long");
-            add("java.lang.Integer");
-            add("java.lang.Float");
-            add("java.lang.Double");
-            add("java.lang.Character");
-            add("java.lang.String");
-            add("java.lang.StringBuilder");
-            add("java.lang.AbstractStringBuilder");
-            add("java.util.List");
-            add("java.util.ArrayList");
-            add("java.util.Map");
-            add("java.util.HashMap");
-            add("java.util.Set");
-            add("java.util.HashSet");
-            add("java.lang.Object");
-            add("java.util.Arrays");
-            add("java.util.Optional");
-            add("java.util.Collection");
-            add("java.util.Collections");
-            add("java.util.Objects");
-            add("java.util.stream.Stream");
-            add("java.io.PrintStream");
-        }
-    };
-    Set<String> UNSUPPORTED_CLASSES_METHODS_EXCEPTIONS = new HashSet<>() {
-        {
-            add("equals");
-            add("compareTo");
-        }
-    };
-    Set<String> SUPPORTED_PRIMITIVE_TYPES = new HashSet<String>() {
-        {
-            add("int");
-            add("long");
-            add("float");
-            add("double");
-            add("char");
-            add("java.lang.String");
-        }
-    };
-    Set<String> SUPPORTED_BINARY_OPERATORS = new HashSet<String>() {
-        {
-            add("+");
-            add("-");
-            add("*");
-            add("/");
-        }
-    };
-    Map<String, Object> SUPPORTED_CONSTANTS = new HashMap<>() {
-        {
-            put("ZERO", 0);
-            put("ONE", 1);
-            put("TEN", 10);
-            put("PI", "π");
-            put("E", "\uD835\uDC52");
-        }
-    };
-    Pattern GENERICS_PATTERN = Pattern.compile("<[^<>]*>");
-    Map<Character, Character> SUPERSCRIPT_MAPPING = new HashMap<>() {
-        {
-            put('0', '⁰');
-            put('1', '¹');
-            put('2', '²');
-            put('3', '³');
-            put('4', '⁴');
-            put('5', '⁵');
-            put('6', '⁶');
-            put('7', '⁷');
-            put('8', '⁸');
-            put('9', '⁹');
-            put('(', '⁽');
-            put(')', '⁾');
-            put('+', '⁺');
-            put('⁻', '⁻');
-            put('n', 'ⁿ');
-            put('i', 'ⁱ');
-            put('a', 'ᵃ');
-            put('b', 'ᵇ');
-            put('c', 'ᶜ');
-            put('d', 'ᵈ');
-            put('e', 'ᵉ');
-            put('f', 'ᶠ');
-            put('g', 'ᵍ');
-            put('h', 'ʰ');
-            put('j', 'ʲ');
-            put('k', 'ᵏ');
-            put('l', 'ˡ');
-            put('m', 'ᵐ');
-            put('o', 'ᵒ');
-            put('p', 'ᵖ');
-            put('r', 'ʳ');
-            put('s', 'ˢ');
-            put('t', 'ᵗ');
-            put('u', 'ᵘ');
-            put('w', 'ʷ');
-            put('*', 'ˣ');
-            put('x', 'ˣ');
-            put('y', 'ʸ');
-            put('z', 'ᶻ');
-            put('A', 'ᴬ');
-            put('B', 'ᴮ');
-            put('D', 'ᴰ');
-            put('E', 'ᴱ');
-            put('G', 'ᴳ');
-            put('H', 'ᴴ');
-            put('I', 'ᴵ');
-            put('J', 'ᴶ');
-            put('K', 'ᴷ');
-            put('L', 'ᴸ');
-            put('M', 'ᴹ');
-            put('N', 'ᴺ');
-            put('O', 'ᴼ');
-            put('P', 'ᴾ');
-            put('R', 'ᴿ');
-            put('T', 'ᵀ');
-            put('U', 'ᵁ');
-            put('V', 'ⱽ');
-            put('W', 'ᵂ');
-            put(' ', '❤');
-        }
-    };
+    val UNSUPPORTED_CLASSES_METHODS_EXCEPTIONS: Set<String> = setOf("equals", "compareTo")
 
-    Map<Character, Character> SUBSCRIPT_MAPPING = new HashMap<>() {
-        {
-            put('0', '₀');
-            put('1', '₁');
-            put('2', '₂');
-            put('3', '₃');
-            put('4', '₄');
-            put('5', '₅');
-            put('6', '₆');
-            put('7', '₇');
-            put('8', '₈');
-            put('9', '₉');
-            put('+', '₊');
-            put('-', '₋');
-            put('(', '₍');
-            put(')', '₎');
-            put('a', 'ₐ');
-            put('e', 'ₑ');
-            put('x', 'ₓ');
-            put('i', 'ᵢ');
-            put('j', 'ⱼ');
-            put('o', 'ₒ');
-            put('r', 'ᵣ');
-            put('u', 'ᵤ');
-            put('v', 'ᵥ');
-            put(' ', '❤');
-        }
-    };
+    val SUPPORTED_PRIMITIVE_TYPES: Set<String> = setOf("int", "long", "float", "double", "char", "java.lang.String")
 
+    val SUPPORTED_BINARY_OPERATORS: Set<String> = setOf("+", "-", "*", "/")
 
-    enum Emoji {
-        FINAL_LOCK("\uD83D\uDD12"), //🔒
-        SINGLETON_MAN_STANDING("\uD83E\uDDCD"),// 🧍
-        ;
+    val SUPPORTED_CONSTANTS: Map<String, Any> = mapOf(
+        "ZERO" to 0,
+        "ONE" to 1,
+        "TEN" to 10,
+        "PI" to "π",
+        "E" to "\uD835\uDC52"
+    )
 
-        private final String unicode;
+    val GENERICS_PATTERN: Pattern = Pattern.compile("<[^<>]*>")
 
-        Emoji(String unicode) {
-            this.unicode = unicode;
-        }
+    val SUPERSCRIPT_MAPPING: Map<Char, Char> = mapOf(
+        '0' to '⁰',
+        '1' to '¹',
+        '2' to '²',
+        '3' to '³',
+        '4' to '⁴',
+        '5' to '⁵',
+        '6' to '⁶',
+        '7' to '⁷',
+        '8' to '⁸',
+        '9' to '⁹',
+        '(' to '⁽',
+        ')' to '⁾',
+        '+' to '⁺',
+        '⁻' to '⁻',
+        'n' to 'ⁿ',
+        'i' to 'ⁱ',
+        'a' to 'ᵃ',
+        'b' to 'ᵇ',
+        'c' to 'ᶜ',
+        'd' to 'ᵈ',
+        'e' to 'ᵉ',
+        'f' to 'ᶠ',
+        'g' to 'ᵍ',
+        'h' to 'ʰ',
+        'j' to 'ʲ',
+        'k' to 'ᵏ',
+        'l' to 'ˡ',
+        'm' to 'ᵐ',
+        'o' to 'ᵒ',
+        'p' to 'ᵖ',
+        'r' to 'ʳ',
+        's' to 'ˢ',
+        't' to 'ᵗ',
+        'u' to 'ᵘ',
+        'w' to 'ʷ',
+        '*' to 'ˣ',
+        'x' to 'ˣ',
+        'y' to 'ʸ',
+        'z' to 'ᶻ',
+        'A' to 'ᴬ',
+        'B' to 'ᴮ',
+        'D' to 'ᴰ',
+        'E' to 'ᴱ',
+        'G' to 'ᴳ',
+        'H' to 'ᴴ',
+        'I' to 'ᴵ',
+        'J' to 'ᴶ',
+        'K' to 'ᴷ',
+        'L' to 'ᴸ',
+        'M' to 'ᴹ',
+        'N' to 'ᴺ',
+        'O' to 'ᴼ',
+        'P' to 'ᴾ',
+        'R' to 'ᴿ',
+        'T' to 'ᵀ',
+        'U' to 'ᵁ',
+        'V' to 'ⱽ',
+        'W' to 'ᵂ',
+        ' ' to '❤'
+    )
 
-        @Override
-        public String toString() {
-            return unicode;
-        }
+    val SUBSCRIPT_MAPPING: Map<Char, Char> = mapOf(
+        '0' to '₀',
+        '1' to '₁',
+        '2' to '₂',
+        '3' to '₃',
+        '4' to '₄',
+        '5' to '₅',
+        '6' to '₆',
+        '7' to '₇',
+        '8' to '₈',
+        '9' to '₉',
+        '+' to '₊',
+        '-' to '₋',
+        '(' to '₍',
+        ')' to '₎',
+        'a' to 'ₐ',
+        'e' to 'ₑ',
+        'x' to 'ₓ',
+        'i' to 'ᵢ',
+        'j' to 'ⱼ',
+        'o' to 'ₒ',
+        'r' to 'ᵣ',
+        'u' to 'ᵤ',
+        'v' to 'ᵥ',
+        ' ' to '❤'
+    )
+
+    enum class Emoji(private val unicode: String) {
+        FINAL_LOCK("\uD83D\uDD12"),
+        SINGLETON_MAN_STANDING("\uD83E\uDDCD");
+
+        override fun toString(): String = unicode
     }
-
 }

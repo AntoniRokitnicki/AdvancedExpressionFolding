@@ -1,126 +1,128 @@
-package com.intellij.advancedExpressionFolding.expression.controlflow;
+package com.intellij.advancedExpressionFolding.expression.controlflow
 
-import com.intellij.advancedExpressionFolding.expression.Expression;
-import com.intellij.lang.folding.FoldingDescriptor;
-import com.intellij.openapi.editor.Document;
-import com.intellij.openapi.editor.FoldingGroup;
-import com.intellij.openapi.util.TextRange;
-import com.intellij.psi.*;
-import com.intellij.psi.impl.source.codeStyle.IndentHelper;
-import com.intellij.psi.util.PsiTreeUtil;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.lang.folding.FoldingDescriptor
+import com.intellij.openapi.editor.Document
+import com.intellij.openapi.editor.FoldingGroup
+import com.intellij.openapi.util.TextRange
+import com.intellij.psi.JavaTokenType
+import com.intellij.psi.PsiCatchSection
+import com.intellij.psi.PsiCodeBlock
+import com.intellij.psi.PsiElement
+import com.intellij.psi.PsiIfStatement
+import com.intellij.psi.PsiKeyword
+import com.intellij.psi.PsiLoopStatement
+import com.intellij.psi.PsiSwitchStatement
+import com.intellij.psi.PsiTryStatement
+import com.intellij.psi.PsiWhiteSpace
+import com.intellij.psi.impl.source.codeStyle.IndentHelper
+import com.intellij.psi.util.PsiTreeUtil
 
-import java.util.ArrayList;
+abstract class AbstractControlFlowCodeBlock(
+    protected val codeBlock: PsiCodeBlock,
+    textRange: TextRange
+) : Expression(codeBlock, textRange) {
 
-public abstract class AbstractControlFlowCodeBlock extends Expression {
-    @NotNull
-    private final PsiCodeBlock element;
-    private IndentHelper indentHelper;
+    private val indentHelper: IndentHelper = IndentHelper.getInstance()
 
-    public AbstractControlFlowCodeBlock(@NotNull PsiCodeBlock element, @NotNull TextRange textRange) {
-        super(element, textRange);
-        this.element = element;
-        this.indentHelper = IndentHelper.getInstance();
+    override fun isNested(): Boolean = true
+
+    override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean {
+        return codeBlock.lBrace != null && codeBlock.rBrace != null
     }
 
-    @Override
-    public boolean isNested() {
-        return true;
-    }
-
-    @Override
-    public boolean supportsFoldRegions(@NotNull Document document, @Nullable Expression parent) {
-        return element.getLBrace() != null
-                && element.getRBrace() != null;
-    }
-
-    @Override
-    public FoldingDescriptor[] buildFoldRegions(@NotNull PsiElement element, @NotNull Document document,
-                                                @Nullable Expression parent) {
-        FoldingGroup group = FoldingGroup.newGroup(AbstractControlFlowCodeBlock.class.getName());
-        ArrayList<FoldingDescriptor> descriptors = new ArrayList<>();
-        if (this.element.getLBrace() != null) {
-            descriptors.add(new FoldingDescriptor(element.getNode(),
-                    this.element.getLBrace().getTextRange(), group, ""));
+    override fun buildFoldRegions(
+        element: PsiElement,
+        document: Document,
+        parent: Expression?
+    ): Array<FoldingDescriptor> {
+        val group = FoldingGroup.newGroup(AbstractControlFlowCodeBlock::class.java.name)
+        val descriptors = mutableListOf<FoldingDescriptor>()
+        codeBlock.lBrace?.let { lBrace ->
+            descriptors += FoldingDescriptor(element.node, lBrace.textRange, group, "")
         }
-        if (this.element.getRBrace() != null) {
-            boolean smart = false;
-            if (element.getParent() != null) {
-                PsiElement thisStatement;
-                if (element.getParent().getParent() instanceof PsiIfStatement ||
-                        element.getParent().getParent() instanceof PsiLoopStatement) {
-                    thisStatement = element.getParent().getParent();
-                } else if (element.getParent() instanceof PsiSwitchStatement ||
-                        element.getParent() instanceof PsiTryStatement ||
-                        element.getParent() instanceof PsiCatchSection) {
-                    thisStatement = element.getParent();
-                } else {
-                    thisStatement = null;
+        val rBrace = codeBlock.rBrace
+        if (rBrace != null) {
+            var smart = false
+            if (element.parent != null) {
+                val thisStatement = when {
+                    element.parent?.parent is PsiIfStatement || element.parent?.parent is PsiLoopStatement ->
+                        element.parent!!.parent
+                    element.parent is PsiSwitchStatement ||
+                        element.parent is PsiTryStatement ||
+                        element.parent is PsiCatchSection ->
+                        element.parent
+                    else -> null
                 }
                 if (thisStatement != null) {
-                    int thisStatementIndent = indentHelper.getIndent(thisStatement.getContainingFile(), thisStatement.getNode());
-                    PsiElement before = PsiTreeUtil.prevLeaf(this.element.getRBrace(), true);
-                    PsiElement after = PsiTreeUtil.prevLeaf(this.element.getRBrace(), true);
-                    if (before instanceof PsiWhiteSpace && after instanceof PsiWhiteSpace) {
-                        smart = true;
-                        int startOffset = this.element.getRBrace().getTextRange().getStartOffset();
-                        boolean newLine = false;
-                        int endOffset = this.element.getRBrace().getTextRange().getEndOffset();
-                        while (endOffset < document.getTextLength()) {
-                            endOffset++;
-                            char c = document.getText(TextRange.create(endOffset - 1, endOffset)).charAt(0);
+                    val thisStatementIndent = indentHelper.getIndent(thisStatement.containingFile, thisStatement.node)
+                    val before = PsiTreeUtil.prevLeaf(rBrace, true)
+                    val after = PsiTreeUtil.prevLeaf(rBrace, true)
+                    if (before is PsiWhiteSpace && after is PsiWhiteSpace) {
+                        smart = true
+                        var startOffset = rBrace.textRange.startOffset
+                        var newLine = false
+                        var endOffset = rBrace.textRange.endOffset
+                        while (endOffset < document.textLength) {
+                            endOffset++
+                            val c = document.getText(TextRange.create(endOffset - 1, endOffset))[0]
                             if (c != ' ' && c != '\t') {
                                 if (c != '\n') {
-                                    endOffset--;
+                                    endOffset--
                                 } else {
-                                    newLine = true;
+                                    newLine = true
                                 }
-                                break;
+                                break
                             }
                         }
                         if (newLine) {
-                            for (int i = 0; i < thisStatementIndent/* - parentStatementIndent*/; i++) {
-                                char c = document.getText(TextRange.create(startOffset - 1, startOffset)).charAt(0);
+                            var consumed = 0
+                            while (consumed < thisStatementIndent) {
+                                val c = document.getText(TextRange.create(startOffset - 1, startOffset))[0]
                                 if (c != ' ' && c != '\t') {
-                                    smart = false;
-                                    break;
+                                    smart = false
+                                    break
                                 }
-                                startOffset--;
+                                startOffset--
+                                consumed++
                             }
                         }
                         if (smart) {
-                            descriptors.add(new FoldingDescriptor(element.getNode(),
-                                    TextRange.create(startOffset, endOffset), group, ""));
+                            descriptors += FoldingDescriptor(
+                                element.node,
+                                TextRange.create(startOffset, endOffset),
+                                group,
+                                ""
+                            )
                         }
                     }
                 }
             }
             if (!smart) {
-                PsiElement siblingKeyword = PsiTreeUtil.nextLeaf(this.element.getRBrace(), true);
-                if (siblingKeyword instanceof PsiWhiteSpace) {
-                    siblingKeyword = PsiTreeUtil.nextLeaf(siblingKeyword, true);
+                var siblingKeyword: PsiElement? = PsiTreeUtil.nextLeaf(rBrace, true)
+                if (siblingKeyword is PsiWhiteSpace) {
+                    siblingKeyword = PsiTreeUtil.nextLeaf(siblingKeyword, true)
                 }
-                if (!(siblingKeyword instanceof PsiKeyword)) {
-                    siblingKeyword = null;
-                } else {
-                    PsiKeyword keyword = (PsiKeyword) siblingKeyword;
-                    if (keyword.getTokenType() != JavaTokenType.ELSE_KEYWORD
-                            && keyword.getTokenType() != JavaTokenType.WHILE_KEYWORD
-                            && keyword.getTokenType() != JavaTokenType.CATCH_KEYWORD
-                            && keyword.getTokenType() != JavaTokenType.FINALLY_KEYWORD) {
-                        siblingKeyword = null;
+                siblingKeyword = if (siblingKeyword is PsiKeyword) {
+                    val keyword = siblingKeyword
+                    if (keyword.tokenType == JavaTokenType.ELSE_KEYWORD ||
+                        keyword.tokenType == JavaTokenType.WHILE_KEYWORD ||
+                        keyword.tokenType == JavaTokenType.CATCH_KEYWORD ||
+                        keyword.tokenType == JavaTokenType.FINALLY_KEYWORD
+                    ) {
+                        keyword
+                    } else {
+                        null
                     }
+                } else {
+                    null
                 }
-                descriptors.add(new FoldingDescriptor(element.getNode(),
-                        siblingKeyword != null ?
-                                TextRange.create(this.element.getRBrace().getTextRange().getStartOffset(),
-                                        siblingKeyword.getTextRange().getStartOffset()) : this.element.getRBrace()
-                                .getTextRange(), group, ""));
+                val range = siblingKeyword?.let {
+                    TextRange.create(rBrace.textRange.startOffset, it.textRange.startOffset)
+                } ?: rBrace.textRange
+                descriptors += FoldingDescriptor(element.node, range, group, "")
             }
         }
-
-        return descriptors.toArray(EMPTY_ARRAY);
-
+        return descriptors.toTypedArray()
     }
 }

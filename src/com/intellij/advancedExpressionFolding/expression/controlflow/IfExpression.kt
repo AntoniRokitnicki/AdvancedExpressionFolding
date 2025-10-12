@@ -1,234 +1,286 @@
-package com.intellij.advancedExpressionFolding.expression.controlflow;
+package com.intellij.advancedExpressionFolding.expression.controlflow
 
-import com.intellij.advancedExpressionFolding.expression.Expression;
-import com.intellij.advancedExpressionFolding.processor.language.java.PatternMatchingExt;
-import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings;
-import com.intellij.lang.folding.FoldingDescriptor;
-import com.intellij.openapi.editor.Document;
-import com.intellij.openapi.editor.FoldingGroup;
-import com.intellij.openapi.util.TextRange;
-import com.intellij.psi.*;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.advancedExpressionFolding.processor.language.java.PatternMatchingExt
+import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
+import com.intellij.lang.folding.FoldingDescriptor
+import com.intellij.openapi.editor.Document
+import com.intellij.openapi.editor.FoldingGroup
+import com.intellij.openapi.util.TextRange
+import com.intellij.psi.PsiBinaryExpression
+import com.intellij.psi.PsiBlockStatement
+import com.intellij.psi.PsiElement
+import com.intellij.psi.PsiExpression
+import com.intellij.psi.PsiIfStatement
+import com.intellij.psi.PsiInstanceOfExpression
+import com.intellij.psi.PsiNewExpression
+import com.intellij.psi.PsiThrowStatement
+import java.util.ArrayList
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
+class IfExpression(
+    private val ifStatement: PsiIfStatement,
+    textRange: TextRange
+) : Expression(ifStatement, textRange) {
 
-public class IfExpression extends Expression {
-    private static final Set<String> supportedOperatorSigns = new HashSet<String>() {
-        {
-            add("==");
-            add("!=");
-            add(">");
-            add("<");
-            add(">=");
-            add("<=");
-        }
-    };
-    private final PsiIfStatement element;
-
-    public IfExpression(PsiIfStatement element, TextRange textRange) {
-        super(element, textRange);
-        this.element = element;
+    override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean {
+        val state = AdvancedExpressionFoldingSettings.getInstance().state
+        return isAssertExpression(state, ifStatement) || isCompactExpression(state, ifStatement)
     }
 
-    public static boolean isCompactExpression(AdvancedExpressionFoldingSettings.State state, PsiIfStatement element) {
-        return state.getCompactControlFlowSyntaxCollapse()
-                && element.getRParenth() != null
-                && element.getLParenth() != null
-                && element.getCondition() != null;
-    }
+    override fun isNested(): Boolean = true
 
-    public static boolean isAssertExpression(AdvancedExpressionFoldingSettings.State state, PsiIfStatement element) {
-        return state.getAssertsCollapse()
-                && element.getCondition() instanceof PsiBinaryExpression
-                && supportedOperatorSigns.contains(((PsiBinaryExpression) element.getCondition()).getOperationSign().getText())
-                && element.getElseBranch() == null
-                && (element.getThenBranch() instanceof PsiBlockStatement
-                && ((PsiBlockStatement) element.getThenBranch()).getCodeBlock().getStatements().length == 1
-                && ((PsiBlockStatement) element.getThenBranch()).getCodeBlock()
-                .getStatements()[0] instanceof PsiThrowStatement
-                || element.getThenBranch() instanceof PsiThrowStatement);
-    }
-
-    @Override
-    public boolean supportsFoldRegions(@NotNull Document document, @Nullable Expression parent) {
-        AdvancedExpressionFoldingSettings.State state = AdvancedExpressionFoldingSettings.getInstance().getState();
-        return isAssertExpression(state, element) || isCompactExpression(state, element);
-    }
-
-    @Override
-    public boolean isNested() {
-        return true;
-    }
-
-    @Override
-    public FoldingDescriptor[] buildFoldRegions(@NotNull PsiElement element, @NotNull Document document,
-                                                @Nullable Expression parent) {
-        AdvancedExpressionFoldingSettings.State state = AdvancedExpressionFoldingSettings.getInstance().getState();
-        FoldingGroup group = FoldingGroup.newGroup(IfExpression.class.getName()
-                + (!isAssertExpression(state, this.element) && isCompactExpression(state, this.element) ? HIGHLIGHTED_GROUP_POSTFIX : ""));
-        ArrayList<FoldingDescriptor> descriptors = new ArrayList<>();
-        if (this.element.getLParenth() != null && this.element.getRParenth() != null) {
-            if (isAssertExpression(state, this.element)) {
-                foldAssertion(element, document, descriptors, group, state);
-            } else if (isCompactExpression(state, this.element)) {
-                foldCompactExpr(element, document, group, descriptors);
-            } else if (state.getPatternMatchingInstanceof() && element instanceof PsiIfStatement ifStatement){
-                var instanceOfExpr = findInstanceOf(element);
-                if (instanceOfExpr != null) {
-                    PatternMatchingExt.foldInstanceOf(ifStatement, instanceOfExpr, document, descriptors);
-                }
-            }
-        }
-        return descriptors.toArray(EMPTY_ARRAY);
-    }
-
-    public static PsiInstanceOfExpression findInstanceOf(PsiElement element) {
-        if (element instanceof PsiIfStatement) {
-            PsiIfStatement ifStatement = (PsiIfStatement) element;
-            PsiExpression condition = ifStatement.getCondition();
-            if (condition instanceof PsiInstanceOfExpression) {
-                return (PsiInstanceOfExpression) condition;
-            }
-        }
-        return null;
-    }
-
-    private void foldCompactExpr(@NotNull PsiElement element, @NotNull Document document, FoldingGroup group, ArrayList<FoldingDescriptor> descriptors) {
-        TextRange textRange = TextRange.create(this.element.getLParenth().getTextRange().getStartOffset(),
-                this.element.getRParenth().getTextRange().getEndOffset());
-        if (CompactControlFlowExpression.supportsFoldRegions(document, textRange)) {
-            CompactControlFlowExpression.buildFoldRegions(element, group, descriptors, textRange);
-        }
-    }
-
-    private void foldAssertion(@NotNull PsiElement element, @NotNull Document document, ArrayList<FoldingDescriptor> descriptors, FoldingGroup group, AdvancedExpressionFoldingSettings.State state) {
-        @Nullable PsiThrowStatement throwStatement =
-                this.element.getThenBranch() instanceof PsiBlockStatement
-                        &&
-                        ((PsiBlockStatement) this.element.getThenBranch()).getCodeBlock().getStatements().length ==
-                                1
-                        ? ((PsiThrowStatement) ((PsiBlockStatement) this.element.getThenBranch()).getCodeBlock()
-                        .getStatements()[0]) : ((PsiThrowStatement) this.element.getThenBranch());
-        if (this.element.getCondition() != null && throwStatement != null) {
-            boolean trailingSpace = document.getText(TextRange.create(
-                    this.element.getLParenth().getTextRange().getStartOffset() - 1,
-                    this.element.getLParenth().getTextRange().getStartOffset()
-            )).equals(" ");
-            if (trailingSpace) {
-                descriptors.add(new FoldingDescriptor(element.getNode(),
-                        TextRange.create(this.element.getTextRange().getStartOffset(),
-                                this.element.getLParenth().getTextRange().getStartOffset() - 1), group, "assert"));
-                descriptors.add(new FoldingDescriptor(element.getNode(),
-                        TextRange.create(this.element.getLParenth().getTextRange().getStartOffset(),
-                                this.element.getCondition().getTextRange().getStartOffset()), group, ""));
-            } else {
-                descriptors.add(new FoldingDescriptor(element.getNode(),
-                        TextRange.create(this.element.getTextRange().getStartOffset(),
-                                this.element.getCondition().getTextRange().getStartOffset()), group, "assert "));
-            }
-            PsiBinaryExpression binaryExpression = ((PsiBinaryExpression) this.element.getCondition());
-            String p;
-            String text = binaryExpression.getOperationSign().getText();
-            if ("==".equals(text)) {
-                p = "!=";
-            } else if ("!=".equals(text)) {
-                p = "==";
-            } else if (">".equals(text)) {
-                p = "<=";
-            } else if ("<".equals(text)) {
-                p = ">=";
-            } else if (">=".equals(text)) {
-                p = "<";
-            } else if ("<=".equals(text)) {
-                p = ">";
-            } else {
-                throw new IllegalStateException("Unsupported operator: " + binaryExpression.getOperationSign().getText());
-            }
-            descriptors.add(new FoldingDescriptor(element.getNode(),
-                    binaryExpression.getOperationSign().getTextRange(), group, p));
-            @Nullable PsiNewExpression newException = throwStatement.getException() instanceof PsiNewExpression
-                    ? ((PsiNewExpression) throwStatement.getException())
-                    : null;
-            if (newException != null
-                    && newException.getArgumentList() != null
-                    && newException.getArgumentList().getExpressions().length > 0
-                    && newException.getArgumentList().getExpressions()[0] instanceof PsiLiteralExpression
-                    && newException.getArgumentList().getExpressions()[0].getType() != null
-                    && newException.getArgumentList().getExpressions()[0].getType().getCanonicalText().equals("java.lang.String")) {
-                boolean spacesAroundColon = document.getText(TextRange.create(
-                        throwStatement.getTextRange().getStartOffset() - 3,
-                        throwStatement.getTextRange().getStartOffset()
-                )).equals("   ");
-                if (spacesAroundColon) {
-                    descriptors.add(new FoldingDescriptor(element.getNode(),
-                            TextRange.create(this.element.getRParenth().getTextRange().getEndOffset() - 1,
-                                    throwStatement.getTextRange().getStartOffset() - 3), group, ""));
-                    descriptors.add(new FoldingDescriptor(element.getNode(),
-                            TextRange.create(throwStatement.getTextRange().getStartOffset() - 2,
-                                    throwStatement.getTextRange().getStartOffset() - 1), group, ":"));
-                    descriptors.add(new FoldingDescriptor(element.getNode(),
-                            TextRange.create(throwStatement.getTextRange().getStartOffset(),
-                                    newException.getArgumentList()
-                                            .getExpressions()[0]
-                                            .getTextRange().getStartOffset()), group, ""));
-                } else {
-                    descriptors.add(new FoldingDescriptor(element.getNode(),
-                            TextRange.create(this.element.getCondition().getTextRange().getEndOffset(),
-                                    newException.getArgumentList()
-                                            .getExpressions()[0]
-                                            .getTextRange().getStartOffset()), group, " : "));
-                }
-                if (!state.getSemicolonsCollapse() && throwStatement.getText().endsWith(";")) {
-                    descriptors.add(new FoldingDescriptor(element.getNode(),
-                            TextRange.create(newException.getArgumentList()
-                                            .getExpressions()[0].getTextRange().getEndOffset(),
-                                    throwStatement.getTextRange().getEndOffset() - 1), group, ""));
-                    if (this.element.getTextRange().getEndOffset() > throwStatement.getTextRange().getEndOffset()) {
-                        descriptors.add(new FoldingDescriptor(element.getNode(),
-                                TextRange.create(throwStatement.getTextRange().getEndOffset(),
-                                        this.element.getTextRange().getEndOffset()), group, ""));
-                    }
-                } else {
-                    descriptors.add(new FoldingDescriptor(element.getNode(),
-                            TextRange.create(newException.getArgumentList()
-                                            .getExpressions()[0].getTextRange().getEndOffset(),
-                                    this.element.getTextRange().getEndOffset()), group, state.getSemicolonsCollapse() ? "" : ";"));
-                }
-            } else {
-                if (!state.getSemicolonsCollapse() && throwStatement.getText().endsWith(";")) {
-                    descriptors.add(new FoldingDescriptor(element.getNode(),
-                            TextRange.create(this.element.getCondition().getTextRange().getEndOffset(),
-                                    throwStatement.getTextRange().getEndOffset() - 1), group, ""));
-                    if (this.element.getTextRange().getEndOffset() > throwStatement.getTextRange().getEndOffset()) {
-                        descriptors.add(new FoldingDescriptor(element.getNode(),
-                                TextRange.create(throwStatement.getTextRange().getEndOffset(),
-                                        this.element.getTextRange().getEndOffset()), group, ""));
-                    }
-                } else {
-                    descriptors.add(new FoldingDescriptor(element.getNode(),
-                            TextRange.create(this.element.getCondition().getTextRange().getEndOffset(),
-                                    this.element.getTextRange().getEndOffset()), group, state.getSemicolonsCollapse() ? "" : ";"));
-                }
-            }
-        }
-    }
-
-    @Override
-    public boolean isHighlighted() {
-        AdvancedExpressionFoldingSettings.State state = AdvancedExpressionFoldingSettings.getInstance().getState();
-        return !isAssertExpression(state, this.element) && isCompactExpression(state, this.element);
-    }
-
-    @Override
-    public TextRange getHighlightedTextRange() {
-        if (this.element.getLParenth() != null && this.element.getRParenth() != null) {
-            return TextRange.create(this.element.getLParenth().getTextRange().getStartOffset(),
-                    this.element.getRParenth().getTextRange().getEndOffset());
+    override fun buildFoldRegions(
+        element: PsiElement,
+        document: Document,
+        parent: Expression?
+    ): Array<FoldingDescriptor> {
+        val state = AdvancedExpressionFoldingSettings.getInstance().state
+        val highlightPostfix = if (!isAssertExpression(state, this.ifStatement) && isCompactExpression(state, this.ifStatement)) {
+            HIGHLIGHTED_GROUP_POSTFIX
         } else {
-            return super.getHighlightedTextRange();
+            ""
+        }
+        val group = FoldingGroup.newGroup(IfExpression::class.java.name + highlightPostfix)
+        val descriptors = ArrayList<FoldingDescriptor>()
+        val lParenth = this.ifStatement.lParenth
+        val rParenth = this.ifStatement.rParenth
+        if (lParenth != null && rParenth != null) {
+            when {
+                isAssertExpression(state, this.ifStatement) ->
+                    foldAssertion(element, document, descriptors, group, state)
+
+                isCompactExpression(state, this.ifStatement) ->
+                    foldCompactExpr(element, document, group, descriptors)
+
+                state.patternMatchingInstanceof && element is PsiIfStatement -> {
+                    val instanceOfExpr = findInstanceOf(element)
+                    if (instanceOfExpr != null) {
+                        PatternMatchingExt.foldInstanceOf(element, instanceOfExpr, document, descriptors)
+                    }
+                }
+            }
+        }
+        return descriptors.toTypedArray()
+    }
+
+    override fun isHighlighted(): Boolean {
+        val state = AdvancedExpressionFoldingSettings.getInstance().state
+        return !isAssertExpression(state, ifStatement) && isCompactExpression(state, ifStatement)
+    }
+
+    override fun getHighlightedTextRange(): TextRange {
+        val lParenth = ifStatement.lParenth
+        val rParenth = ifStatement.rParenth
+        return if (lParenth != null && rParenth != null) {
+            TextRange.create(lParenth.textRange.startOffset, rParenth.textRange.endOffset)
+        } else {
+            super.getHighlightedTextRange()
+        }
+    }
+
+    private fun foldCompactExpr(
+        psiElement: PsiElement,
+        document: Document,
+        group: FoldingGroup,
+        descriptors: MutableList<FoldingDescriptor>
+    ) {
+        val lParenth = ifStatement.lParenth ?: return
+        val rParenth = ifStatement.rParenth ?: return
+        val range = TextRange.create(lParenth.textRange.startOffset, rParenth.textRange.endOffset)
+        if (CompactControlFlowExpression.supportsFoldRegions(document, range)) {
+            CompactControlFlowExpression.buildFoldRegions(psiElement, group, descriptors, range)
+        }
+    }
+
+    private fun foldAssertion(
+        psiElement: PsiElement,
+        document: Document,
+        descriptors: MutableList<FoldingDescriptor>,
+        group: FoldingGroup,
+        state: AdvancedExpressionFoldingSettings.State
+    ) {
+        val throwStatement = when (val thenBranch = ifStatement.thenBranch) {
+            is PsiBlockStatement -> {
+                val statements = thenBranch.codeBlock.statements
+                if (statements.size == 1 && statements[0] is PsiThrowStatement) {
+                    statements[0] as PsiThrowStatement
+                } else {
+                    null
+                }
+            }
+            is PsiThrowStatement -> thenBranch
+            else -> null
+        } ?: return
+
+        val condition = ifStatement.condition ?: return
+        val lParenth = ifStatement.lParenth ?: return
+        val rParenth = ifStatement.rParenth ?: return
+        val trailingSpace = document.getText(
+            TextRange.create(lParenth.textRange.startOffset - 1, lParenth.textRange.startOffset)
+        ) == " "
+        if (trailingSpace) {
+            descriptors += FoldingDescriptor(
+                psiElement.node,
+                TextRange.create(ifStatement.textRange.startOffset, lParenth.textRange.startOffset - 1),
+                group,
+                "assert"
+            )
+            descriptors += FoldingDescriptor(
+                psiElement.node,
+                TextRange.create(lParenth.textRange.startOffset, condition.textRange.startOffset),
+                group,
+                ""
+            )
+        } else {
+            descriptors += FoldingDescriptor(
+                psiElement.node,
+                TextRange.create(ifStatement.textRange.startOffset, condition.textRange.startOffset),
+                group,
+                "assert "
+            )
+        }
+
+        val binaryExpression = condition as PsiBinaryExpression
+        val replacement = when (binaryExpression.operationSign.text) {
+            "==" -> "!="
+            "!=" -> "=="
+            ">" -> "<="
+            "<" -> ">="
+            ">=" -> "<"
+            "<=" -> ">"
+            else -> throw IllegalStateException("Unsupported operator: ${binaryExpression.operationSign.text}")
+        }
+        descriptors += FoldingDescriptor(
+            psiElement.node,
+            binaryExpression.operationSign.textRange,
+            group,
+            replacement
+        )
+
+        val newException = throwStatement.exception as? PsiNewExpression
+        val argumentList = newException?.argumentList
+        val messageExpression = argumentList?.expressions?.firstOrNull()
+        if (messageExpression != null && messageExpression.type?.canonicalText == "java.lang.String"
+        ) {
+            val spacesAroundColon = document.getText(
+                TextRange.create(throwStatement.textRange.startOffset - 3, throwStatement.textRange.startOffset)
+            ) == "   "
+            if (spacesAroundColon) {
+                descriptors += FoldingDescriptor(
+                    psiElement.node,
+                    TextRange.create(rParenth.textRange.endOffset - 1, throwStatement.textRange.startOffset - 3),
+                    group,
+                    ""
+                )
+                descriptors += FoldingDescriptor(
+                    psiElement.node,
+                    TextRange.create(throwStatement.textRange.startOffset - 2, throwStatement.textRange.startOffset - 1),
+                    group,
+                    ":"
+                )
+                descriptors += FoldingDescriptor(
+                    psiElement.node,
+                    TextRange.create(throwStatement.textRange.startOffset, messageExpression.textRange.startOffset),
+                    group,
+                    ""
+                )
+            } else {
+                descriptors += FoldingDescriptor(
+                    psiElement.node,
+                    TextRange.create(condition.textRange.endOffset, messageExpression.textRange.startOffset),
+                    group,
+                    " : "
+                )
+            }
+            if (!state.semicolonsCollapse && throwStatement.text.endsWith(";")) {
+                descriptors += FoldingDescriptor(
+                    psiElement.node,
+                    TextRange.create(messageExpression.textRange.endOffset, throwStatement.textRange.endOffset - 1),
+                    group,
+                    ""
+                )
+                if (element.textRange.endOffset > throwStatement.textRange.endOffset) {
+                    descriptors += FoldingDescriptor(
+                        psiElement.node,
+                        TextRange.create(throwStatement.textRange.endOffset, element.textRange.endOffset),
+                        group,
+                        ""
+                    )
+                }
+            } else {
+                descriptors += FoldingDescriptor(
+                    psiElement.node,
+                    TextRange.create(messageExpression.textRange.endOffset, element.textRange.endOffset),
+                    group,
+                    if (state.semicolonsCollapse) "" else ";"
+                )
+            }
+        } else {
+            if (!state.semicolonsCollapse && throwStatement.text.endsWith(";")) {
+                descriptors += FoldingDescriptor(
+                    psiElement.node,
+                    TextRange.create(condition.textRange.endOffset, throwStatement.textRange.endOffset - 1),
+                    group,
+                    ""
+                )
+                if (element.textRange.endOffset > throwStatement.textRange.endOffset) {
+                    descriptors += FoldingDescriptor(
+                        psiElement.node,
+                        TextRange.create(throwStatement.textRange.endOffset, element.textRange.endOffset),
+                        group,
+                        ""
+                    )
+                }
+            } else {
+                descriptors += FoldingDescriptor(
+                    psiElement.node,
+                    TextRange.create(condition.textRange.endOffset, element.textRange.endOffset),
+                    group,
+                    if (state.semicolonsCollapse) "" else ";"
+                )
+            }
+        }
+    }
+
+    companion object {
+        private val supportedOperatorSigns = setOf("==", "!=", ">", "<", ">=", "<=")
+
+        fun isCompactExpression(state: AdvancedExpressionFoldingSettings.State, element: PsiIfStatement): Boolean {
+            return state.compactControlFlowSyntaxCollapse &&
+                element.rParenth != null &&
+                element.lParenth != null &&
+                element.condition != null
+        }
+
+        fun isAssertExpression(state: AdvancedExpressionFoldingSettings.State, element: PsiIfStatement): Boolean {
+            val condition = element.condition
+            if (!state.assertsCollapse || condition !is PsiBinaryExpression) {
+                return false
+            }
+            if (!supportedOperatorSigns.contains(condition.operationSign.text)) {
+                return false
+            }
+            if (element.elseBranch != null) {
+                return false
+            }
+            return when (val thenBranch = element.thenBranch) {
+                is PsiBlockStatement -> {
+                    val statements = thenBranch.codeBlock.statements
+                    statements.size == 1 && statements[0] is PsiThrowStatement
+                }
+                is PsiThrowStatement -> true
+                else -> false
+            }
+        }
+
+        fun findInstanceOf(element: PsiElement): PsiInstanceOfExpression? {
+            if (element is PsiIfStatement) {
+                val condition: PsiExpression? = element.condition
+                if (condition is PsiInstanceOfExpression) {
+                    return condition
+                }
+            }
+            return null
         }
     }
 }

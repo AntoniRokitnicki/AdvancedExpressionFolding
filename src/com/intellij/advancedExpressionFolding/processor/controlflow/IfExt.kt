@@ -1,217 +1,221 @@
-package com.intellij.advancedExpressionFolding.processor.controlflow;
+package com.intellij.advancedExpressionFolding.processor.controlflow
 
-import com.intellij.advancedExpressionFolding.expression.Expression;
-import com.intellij.advancedExpressionFolding.expression.controlflow.CompactControlFlowExpression;
-import com.intellij.advancedExpressionFolding.expression.controlflow.ElvisExpression;
-import com.intellij.advancedExpressionFolding.expression.controlflow.IfExpression;
-import com.intellij.advancedExpressionFolding.expression.controlflow.ShortElvisExpression;
-import com.intellij.advancedExpressionFolding.expression.literal.InterpolatedString;
-import com.intellij.advancedExpressionFolding.expression.literal.StringLiteral;
-import com.intellij.advancedExpressionFolding.expression.math.basic.Add;
-import com.intellij.advancedExpressionFolding.processor.core.BaseExtension;
-import com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt;
-import com.intellij.advancedExpressionFolding.processor.expression.BinaryExpressionExt;
-import com.intellij.advancedExpressionFolding.processor.language.kotlin.IfNullSafeExt;
-import com.intellij.advancedExpressionFolding.processor.language.kotlin.LetReturnExt;
-import com.intellij.advancedExpressionFolding.processor.util.Helper;
-import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings;
-import com.intellij.openapi.editor.Document;
-import com.intellij.openapi.util.TextRange;
-import com.intellij.psi.*;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.advancedExpressionFolding.expression.controlflow.CompactControlFlowExpression
+import com.intellij.advancedExpressionFolding.expression.controlflow.ElvisExpression
+import com.intellij.advancedExpressionFolding.expression.controlflow.IfExpression
+import com.intellij.advancedExpressionFolding.expression.controlflow.ShortElvisExpression
+import com.intellij.advancedExpressionFolding.expression.literal.InterpolatedString
+import com.intellij.advancedExpressionFolding.expression.literal.StringLiteral
+import com.intellij.advancedExpressionFolding.expression.math.basic.Add
+import com.intellij.advancedExpressionFolding.processor.core.BaseExtension
+import com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt
+import com.intellij.advancedExpressionFolding.processor.expression.BinaryExpressionExt
+import com.intellij.advancedExpressionFolding.processor.language.kotlin.IfNullSafeExt
+import com.intellij.advancedExpressionFolding.processor.language.kotlin.LetReturnExt
+import com.intellij.advancedExpressionFolding.processor.util.Helper
+import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
+import com.intellij.openapi.editor.Document
+import com.intellij.openapi.util.TextRange
+import com.intellij.psi.PsiBinaryExpression
+import com.intellij.psi.PsiCodeBlock
+import com.intellij.psi.PsiConditionalExpression
+import com.intellij.psi.PsiElement
+import com.intellij.psi.PsiExpression
+import com.intellij.psi.PsiIfStatement
+import com.intellij.psi.PsiMethodCallExpression
+import com.intellij.psi.PsiPolyadicExpression
+import com.intellij.psi.PsiReference
+import com.intellij.psi.PsiReferenceExpression
+import com.intellij.psi.PsiStatement
+import com.intellij.psi.PsiSwitchStatement
+import com.intellij.psi.SyntaxTraverser
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
+object IfExt {
 
-public class IfExt {
-
-    public static Expression getSwitchStatement(PsiSwitchStatement element) {
-        AdvancedExpressionFoldingSettings settings = AdvancedExpressionFoldingSettings.getInstance();
-        if (element.getExpression() != null
-                && element.getLParenth() != null && element.getRParenth() != null
-                && settings.getState().getCompactControlFlowSyntaxCollapse()) {
-            return new CompactControlFlowExpression(element,
-                    TextRange.create(element.getLParenth().getTextRange().getStartOffset(),
-                            element.getRParenth().getTextRange().getEndOffset()));
+    fun getSwitchStatement(element: PsiSwitchStatement): Expression? {
+        val settings = AdvancedExpressionFoldingSettings.getInstance()
+        val lParenth = element.lParenth ?: return null
+        val rParenth = element.rParenth ?: return null
+        return if (element.expression != null && settings.state.compactControlFlowSyntaxCollapse) {
+            CompactControlFlowExpression(
+                element,
+                TextRange.create(lParenth.textRange.startOffset, rParenth.textRange.endOffset)
+            )
+        } else {
+            null
         }
-        return null;
     }
 
-    @Nullable
-    public static Expression getIfExpression(PsiIfStatement element, Document document) {
-        AdvancedExpressionFoldingSettings settings = AdvancedExpressionFoldingSettings.getInstance();
-        var getIfExpression = LetReturnExt.getIfExpression(element);
-        if (getIfExpression != null) {
-            return getIfExpression;
-        }
+    fun getIfExpression(element: PsiIfStatement, document: Document): Expression? {
+        val settings = AdvancedExpressionFoldingSettings.getInstance()
+        LetReturnExt.getIfExpression(element)?.let { return it }
 
-        if (settings.getState().getCheckExpressionsCollapse()
-                && element.getCondition() instanceof PsiBinaryExpression) {
-            PsiBinaryExpression condition = (PsiBinaryExpression) element.getCondition();
-            if (condition.getOperationSign().getText().equals("!=")
-                    && element.getElseBranch() == null
-                    && (BaseExtension.isNull(condition.getLOperand().getType())
-                    && condition.getROperand() != null
-                    || condition.getROperand() != null && BaseExtension.isNull(condition.getROperand().getType()))
-                    && element.getThenBranch() != null) {
-                PsiStatement thenStatement = element.getThenBranch();
-                if (thenStatement.getChildren().length == 1 && thenStatement
-                        .getChildren()[0] instanceof PsiCodeBlock) {
-                    PsiStatement[] statements = ((PsiCodeBlock) thenStatement.getChildren()[0]).getStatements();
-                    if (statements.length == 1) {
-                        thenStatement = statements[0];
-                    } else {
-                        return null;
+        val condition = element.condition
+        if (settings.state.checkExpressionsCollapse && condition is PsiBinaryExpression) {
+            if (condition.operationSign.text == "!=" && element.elseBranch == null && element.thenBranch != null) {
+                val lNull = BaseExtension.isNull(condition.lOperand.type)
+                val rNull = BaseExtension.isNull(condition.rOperand?.type)
+                if ((lNull && condition.rOperand != null) || (condition.rOperand != null && rNull)) {
+                    var thenStatement: PsiStatement? = element.thenBranch
+                    if (thenStatement != null && thenStatement.children.size == 1 && thenStatement.children[0] is PsiCodeBlock) {
+                        val statements = (thenStatement.children[0] as PsiCodeBlock).statements
+                        thenStatement = if (statements.size == 1) statements[0] else return null
                     }
-                }
-                PsiElement qualifier = BaseExtension.isNull(condition.getLOperand().getType())
-                        ? condition.getROperand()
-                        : condition.getLOperand();
-                if (qualifier instanceof PsiReferenceExpression
-                        || (qualifier instanceof PsiMethodCallExpression
-                        && Helper.startsWith(((PsiMethodCallExpression) qualifier).getMethodExpression().getReferenceName(), "get")
-                        && ((PsiMethodCallExpression) qualifier).getArgumentList().getExpressions().length == 0)) {
-                    PsiElement r = Helper.findSameQualifier(thenStatement, qualifier);
-                    if (r != null) {
-                        return new ShortElvisExpression(element, element.getTextRange(),
-                                BuildExpressionExt.getAnyExpression(thenStatement, document),
-                                Collections.singletonList(r.getTextRange()));
+                    val targetStatement = thenStatement ?: return null
+                    val qualifierElement = (if (lNull) condition.rOperand else condition.lOperand) ?: return IfExpression(
+                        element,
+                        element.textRange
+                    )
+                    val isSupportedQualifier = when (qualifierElement) {
+                        is PsiReferenceExpression -> true
+                        is PsiMethodCallExpression ->
+                            Helper.startsWith(qualifierElement.methodExpression.referenceName, "get") &&
+                                qualifierElement.argumentList.expressions.isEmpty()
+                        else -> false
                     }
-                }
-            }
-        }
-        /*if (element.getCondition() != null
-                && element.getLParenth() != null && element.getRParenth() != null) {
-            return new CompactControlFlowExpression(element,
-                    TextRange.create(element.getLParenth().getTextRange().getStartOffset(),
-                            element.getRParenth().getTextRange().getEndOffset()));
-        }*/
-        return new IfExpression(element, element.getTextRange());
-    }
-
-    @Nullable
-    public static Expression getConditionalExpression(@NotNull PsiConditionalExpression element, @NotNull Document document) {
-        AdvancedExpressionFoldingSettings settings = AdvancedExpressionFoldingSettings.getInstance();
-        if (settings.getState().getCheckExpressionsCollapse()
-                && element.getCondition() instanceof @NotNull PsiBinaryExpression condition) {
-            if (condition.getOperationSign().getText().equals("!=")
-                    && condition.getROperand() != null
-                    && (BaseExtension.isNull(condition.getLOperand().getType())
-                    || BaseExtension.isNull(condition.getROperand().getType()))
-                    && element.getThenExpression() != null
-                    && element.getElseExpression() != null) {
-                PsiElement qualifier = BaseExtension.isNull(condition.getLOperand().getType())
-                        ? condition.getROperand()
-                        : condition.getLOperand();
-                if (qualifier instanceof PsiReferenceExpression
-                        || (qualifier instanceof PsiMethodCallExpression
-                        && Helper.startsWith(((PsiMethodCallExpression) qualifier).getMethodExpression().getReferenceName(), "get")
-                        && ((PsiMethodCallExpression) qualifier).getArgumentList().getExpressions().length == 0)) {
-                    PsiReferenceExpression r = qualifier instanceof PsiReferenceExpression
-                            ? ((PsiReferenceExpression) qualifier)
-                            : ((PsiMethodCallExpression) qualifier).getMethodExpression();
-                    List<PsiElement> references = SyntaxTraverser.psiTraverser(element.getThenExpression())
-                            .filter(e ->
-                                    e instanceof PsiReferenceExpression
-                                            && !(e.getParent() instanceof PsiMethodCallExpression)
-                                            && Helper.isReferenceToReference((PsiReferenceExpression) e, r)
-                                            || e instanceof PsiMethodCallExpression && Helper.isReferenceToReference(((PsiMethodCallExpression) e).getMethodExpression(), r)
-                            ).toList();
-                    if (!references.isEmpty()) {
-                        return new ElvisExpression(element, element.getTextRange(),
-                                BuildExpressionExt.getAnyExpression(element.getThenExpression(), document),
-                                BuildExpressionExt.getAnyExpression(element.getElseExpression(), document),
-                                references.stream().map(PsiElement::getTextRange).collect(Collectors.toList()));
+                    if (isSupportedQualifier) {
+                        val sameQualifier = Helper.findSameQualifier(targetStatement, qualifierElement)
+                        if (sameQualifier != null) {
+                            return ShortElvisExpression(
+                                element,
+                                element.textRange,
+                                BuildExpressionExt.getAnyExpression(targetStatement, document),
+                                listOf(sameQualifier.textRange)
+                            )
+                        }
                     }
                 }
             }
         }
-        return null;
+        return IfExpression(element, element.textRange)
     }
 
-    @Nullable
-    public static Expression getPolyadicExpression(@NotNull PsiPolyadicExpression element, @NotNull Document document) {
-        Expression expression = getAndTwoBinaryExpressions(element, document);
-        if (expression != null) {
-            return expression;
+    fun getConditionalExpression(element: PsiConditionalExpression, document: Document): Expression? {
+        val settings = AdvancedExpressionFoldingSettings.getInstance()
+        val condition = element.condition
+        if (settings.state.checkExpressionsCollapse && condition is PsiBinaryExpression) {
+            if (condition.operationSign.text == "!=" && condition.rOperand != null &&
+                (BaseExtension.isNull(condition.lOperand.type) || BaseExtension.isNull(condition.rOperand?.type)) &&
+                element.thenExpression != null && element.elseExpression != null
+            ) {
+                val qualifier = if (BaseExtension.isNull(condition.lOperand.type)) {
+                    condition.rOperand
+                } else {
+                    condition.lOperand
+                }
+                val qualifierElement = qualifier ?: return null
+                val isSupportedQualifier = when (qualifierElement) {
+                    is PsiReferenceExpression -> true
+                    is PsiMethodCallExpression ->
+                        Helper.startsWith(qualifierElement.methodExpression.referenceName, "get") &&
+                            qualifierElement.argumentList.expressions.isEmpty()
+                    else -> false
+                }
+                if (isSupportedQualifier) {
+                    val reference: PsiReference? = when (qualifierElement) {
+                        is PsiReferenceExpression -> qualifierElement
+                        is PsiMethodCallExpression -> qualifierElement.methodExpression
+                        else -> return null
+                    }
+                    val references = SyntaxTraverser.psiTraverser(element.thenExpression)
+                        .filter { candidate ->
+                            when (candidate) {
+                                is PsiReferenceExpression -> candidate.parent !is PsiMethodCallExpression &&
+                                    Helper.isReferenceToReference(candidate, reference)
+                                is PsiMethodCallExpression ->
+                                    Helper.isReferenceToReference(candidate.methodExpression, reference)
+                                else -> false
+                            }
+                        }
+                        .toList()
+                    if (references.isNotEmpty()) {
+                        return ElvisExpression(
+                            element,
+                            element.textRange,
+                            BuildExpressionExt.getAnyExpression(element.thenExpression!!, document),
+                            BuildExpressionExt.getAnyExpression(element.elseExpression!!, document),
+                            references.map { it.textRange }
+                        )
+                    }
+                }
+            }
         }
-        expression = getAddExpression(element, document);
-        if (expression != null) {
-            return expression;
-        }
-        expression = getBinaryExpression(element, document);
-        if (expression != null) {
-            return expression;
-        }
-        return getNullSafeExpression(element, document);
+        return null
     }
 
-    @Nullable
-    private static Expression getAndTwoBinaryExpressions(@NotNull PsiPolyadicExpression element, @NotNull Document document) {
-        for (int i = 0; i < element.getOperands().length - 1; i++) {
-            PsiExpression a = element.getOperands()[i];
-            PsiExpression b = element.getOperands()[i + 1];
-            PsiJavaToken token = element.getTokenBeforeOperand(b);
-            if (token != null && "&&".equals(token.getText())
-                    && a instanceof PsiBinaryExpression && b instanceof PsiBinaryExpression) {
-                Expression expression = BinaryExpressionExt.getAndTwoBinaryExpressions(element,
-                        (PsiBinaryExpression) a, (PsiBinaryExpression) b, document);
+    fun getPolyadicExpression(element: PsiPolyadicExpression, document: Document): Expression? {
+        getAndTwoBinaryExpressions(element, document)?.let { return it }
+        getAddExpression(element, document)?.let { return it }
+        getBinaryExpression(element, document)?.let { return it }
+        return getNullSafeExpression(element, document)
+    }
+
+    private fun getAndTwoBinaryExpressions(
+        element: PsiPolyadicExpression,
+        document: Document
+    ): Expression? {
+        val operands = element.operands
+        for (i in 0 until operands.size - 1) {
+            val a = operands[i]
+            val b = operands[i + 1]
+            val token = element.getTokenBeforeOperand(b)
+            if (token != null && token.text == "&&" && a is PsiBinaryExpression && b is PsiBinaryExpression) {
+                val expression = BinaryExpressionExt.getAndTwoBinaryExpressions(element, a, b, document)
                 if (expression != null) {
-                    return expression;
+                    return expression
                 }
             }
         }
-        return null;
+        return null
     }
 
-    @Nullable
-    private static Expression getAddExpression(@NotNull PsiPolyadicExpression element, @NotNull Document document) {
-        boolean add = true;
-        boolean string = false;
-        Expression[] operands = null;
-        for (int i = 0; i < element.getOperands().length - 1; i++) {
-            PsiExpression b = element.getOperands()[i + 1];
-            PsiJavaToken token = element.getTokenBeforeOperand(b);
-            if (token != null && "+".equals(token.getText()) && add) {
+    private fun getAddExpression(element: PsiPolyadicExpression, document: Document): Expression? {
+        val psiOperands = element.operands
+        var add = true
+        var hasString = false
+        var operands: Array<Expression?>? = null
+        for (i in 0 until psiOperands.size - 1) {
+            val token = element.getTokenBeforeOperand(psiOperands[i + 1])
+            if (token != null && token.text == "+" && add) {
                 if (operands == null) {
-                    operands = new Expression[element.getOperands().length];
+                    operands = arrayOfNulls(psiOperands.size)
                 }
-                operands[i] = BuildExpressionExt.getAnyExpression(element.getOperands()[i], document);
-                if (operands[i] instanceof StringLiteral) {
-                    string = true;
+                val expr = BuildExpressionExt.getAnyExpression(psiOperands[i], document)
+                operands[i] = expr
+                if (expr is StringLiteral) {
+                    hasString = true
                 }
             } else {
-                add = false;
+                add = false
             }
         }
         if (add && operands != null) {
-            int last = element.getOperands().length - 1;
-            operands[last] = BuildExpressionExt.getAnyExpression(element.getOperands()[last], document);
-            if (operands[last] instanceof StringLiteral) {
-                string = true;
+            val lastIndex = psiOperands.size - 1
+            val lastExpr = BuildExpressionExt.getAnyExpression(psiOperands[lastIndex], document)
+            operands[lastIndex] = lastExpr
+            if (lastExpr is StringLiteral) {
+                hasString = true
             }
-            AdvancedExpressionFoldingSettings settings = AdvancedExpressionFoldingSettings.getInstance();
-            if (string && settings.getState().getConcatenationExpressionsCollapse()) {
-                return new InterpolatedString(element, element.getTextRange(), Arrays.asList(operands));
+            val operandList = operands.mapNotNull { it }
+            val settings = AdvancedExpressionFoldingSettings.getInstance()
+            if (hasString && settings.state.concatenationExpressionsCollapse) {
+                return InterpolatedString(element, element.textRange, operandList)
             }
-            return new Add(element, element.getTextRange(), Arrays.asList(operands));
+            return Add(element, element.textRange, operandList)
         }
-        return null;
+        return null
     }
 
-    @Nullable
-    private static Expression getBinaryExpression(@NotNull PsiPolyadicExpression element, @NotNull Document document) {
-        if (element instanceof PsiBinaryExpression) {
-            return BinaryExpressionExt.getBinaryExpression((PsiBinaryExpression) element, document);
+    private fun getBinaryExpression(element: PsiPolyadicExpression, document: Document): Expression? {
+        return if (element is PsiBinaryExpression) {
+            BinaryExpressionExt.getBinaryExpression(element, document)
+        } else {
+            null
         }
-        return null;
     }
 
-    @Nullable
-    private static Expression getNullSafeExpression(@NotNull PsiPolyadicExpression element, @NotNull Document document) {
-        return IfNullSafeExt.createExpression(element, document);
+    private fun getNullSafeExpression(element: PsiPolyadicExpression, document: Document): Expression? {
+        return IfNullSafeExt.createExpression(element, document)
     }
 }

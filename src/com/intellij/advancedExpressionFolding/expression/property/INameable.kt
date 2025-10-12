@@ -1,8 +1,5 @@
-package com.intellij.advancedExpressionFolding.expression.property;
+package com.intellij.advancedExpressionFolding.expression.property
 
-import org.jetbrains.annotations.NotNull;
-
-public interface INameable {
-    @NotNull
-    String getName();
+interface INameable {
+    val name: String
 }

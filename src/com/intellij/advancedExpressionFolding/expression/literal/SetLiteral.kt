@@ -1,104 +1,86 @@
-package com.intellij.advancedExpressionFolding.expression.literal;
+package com.intellij.advancedExpressionFolding.expression.literal
 
-import com.intellij.advancedExpressionFolding.expression.Expression;
-import com.intellij.advancedExpressionFolding.expression.Function;
-import com.intellij.lang.folding.FoldingDescriptor;
-import com.intellij.openapi.editor.Document;
-import com.intellij.openapi.editor.FoldingGroup;
-import com.intellij.openapi.util.TextRange;
-import com.intellij.psi.PsiElement;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.advancedExpressionFolding.expression.Function
+import com.intellij.lang.folding.FoldingDescriptor
+import com.intellij.openapi.editor.Document
+import com.intellij.openapi.editor.FoldingGroup
+import com.intellij.openapi.util.TextRange
+import com.intellij.psi.PsiElement
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+class SetLiteral(
+    element: PsiElement,
+    textRange: TextRange,
+    val firstBracesRange: TextRange,
+    val secondBracesRange: TextRange,
+    items: List<Expression>
+) : Function(element, textRange, "Set.of", items) {
 
-public class SetLiteral extends Function {
-    @NotNull
-    private final TextRange firstBracesRange;
-    @NotNull
-    private final TextRange secondBracesRange;
-
-    public SetLiteral(@NotNull PsiElement element, @NotNull TextRange textRange, @NotNull TextRange firstBracesRange,
-                      @NotNull TextRange secondBracesRange, @NotNull List<Expression> items) {
-        super(element, textRange, "Set.of", items);
-        this.firstBracesRange = firstBracesRange;
-        this.secondBracesRange = secondBracesRange;
-    }
-
-    @Override
-    public FoldingDescriptor[] buildFoldRegions(@NotNull PsiElement element, @NotNull Document document, @Nullable Expression parent) {
-        FoldingGroup group = FoldingGroup.newGroup(getClass().getName());
-        List<FoldingDescriptor> descriptors = new ArrayList<>();
+    override fun buildFoldRegions(
+        element: PsiElement,
+        document: Document,
+        parent: Expression?
+    ): Array<FoldingDescriptor> {
+        val group = FoldingGroup.newGroup(javaClass.name)
+        val descriptors = mutableListOf<FoldingDescriptor>()
         if (operands.isEmpty()) {
-            descriptors.add(new FoldingDescriptor(element.getNode(), getTextRange(), group, "[]"));
-            return descriptors.toArray(EMPTY_ARRAY);
+            descriptors += FoldingDescriptor(element.node, textRange, group, "[]")
+            return descriptors.toTypedArray()
         }
-        int offset = getTextRange().getStartOffset();
-        int start = offset;
-        int end = firstBracesRange.getStartOffset();
+        var offset = textRange.startOffset
+        var start = offset
+        var end = firstBracesRange.startOffset
         if (start < end) {
-            descriptors.add(new FoldingDescriptor(element.getNode(), TextRange.create(start, end), group, "["));
+            descriptors += FoldingDescriptor(element.node, TextRange.create(start, end), group, "[")
         }
-        start = firstBracesRange.getStartOffset();
-        end = secondBracesRange.getStartOffset();
+        start = firstBracesRange.startOffset
+        end = secondBracesRange.startOffset
         if (start < end) {
-            descriptors.add(new FoldingDescriptor(element.getNode(), TextRange.create(start, end), group, ""));
+            descriptors += FoldingDescriptor(element.node, TextRange.create(start, end), group, "")
         }
-        start = secondBracesRange.getStartOffset();
-        end = operands.get(0).getTextRange().getStartOffset();
+        start = secondBracesRange.startOffset
+        end = operands.first().textRange.startOffset
         if (start < end) {
-            descriptors.add(new FoldingDescriptor(element.getNode(), TextRange.create(start, end), group, ""));
+            descriptors += FoldingDescriptor(element.node, TextRange.create(start, end), group, "")
         }
-        offset = operands.get(0).getTextRange().getEndOffset();
-        for (int i = 1; i < operands.size(); i++) {
-            start = offset;
-            end = operands.get(i).getTextRange().getStartOffset();
+        offset = operands.first().textRange.endOffset
+        for (i in 1 until operands.size) {
+            start = offset
+            end = operands[i].textRange.startOffset
             if (start < end) {
-                TextRange r = TextRange.create(start, end);
-                String p = ", ";
-                if (!document.getText(r).equals(p)) {
-                    descriptors.add(new FoldingDescriptor(element.getNode(), r, group, p));
+                val range = TextRange.create(start, end)
+                val placeholder = ", "
+                if (document.getText(range) != placeholder) {
+                    descriptors += FoldingDescriptor(element.node, range, group, placeholder)
                 }
             }
-            offset = operands.get(i).getTextRange().getEndOffset();
+            offset = operands[i].textRange.endOffset
         }
-        start = offset;
-        end = secondBracesRange.getEndOffset();
+        start = offset
+        end = secondBracesRange.endOffset
         if (start < end) {
-            descriptors.add(new FoldingDescriptor(element.getNode(), TextRange.create(start, end), group, ""));
+            descriptors += FoldingDescriptor(element.node, TextRange.create(start, end), group, "")
         }
-        start = secondBracesRange.getEndOffset();
-        end = firstBracesRange.getEndOffset() - 1;
+        start = secondBracesRange.endOffset
+        end = firstBracesRange.endOffset - 1
         if (start < end) {
-            descriptors.add(new FoldingDescriptor(element.getNode(), TextRange.create(start, end), group, ""));
+            descriptors += FoldingDescriptor(element.node, TextRange.create(start, end), group, "")
         }
-        start = firstBracesRange.getEndOffset() - 1;
-        end = firstBracesRange.getEndOffset();
+        start = firstBracesRange.endOffset - 1
+        end = firstBracesRange.endOffset
         if (start < end) {
-            descriptors.add(new FoldingDescriptor(element.getNode(), TextRange.create(start, end), group, "]"));
+            descriptors += FoldingDescriptor(element.node, TextRange.create(start, end), group, "]")
         }
-        start = firstBracesRange.getEndOffset();
-        end = getTextRange().getEndOffset();
+        start = firstBracesRange.endOffset
+        end = textRange.endOffset
         if (start < end) {
-            descriptors.add(new FoldingDescriptor(element.getNode(), TextRange.create(start, end), group, ""));
+            descriptors += FoldingDescriptor(element.node, TextRange.create(start, end), group, "")
         }
-        for (Expression operand : operands) {
+        for (operand in operands) {
             if (operand.supportsFoldRegions(document, this)) {
-                Collections.addAll(descriptors, operand.buildFoldRegions(operand.getElement(), document, this));
+                descriptors += operand.buildFoldRegions(operand.element, document, this).toList()
             }
         }
-        return descriptors.toArray(EMPTY_ARRAY);
-    }
-
-    @NotNull
-    public TextRange getFirstBracesRange() {
-        return firstBracesRange;
-    }
-
-    @NotNull
-    public TextRange getSecondBracesRange() {
-        return secondBracesRange;
+        return descriptors.toTypedArray()
     }
 }

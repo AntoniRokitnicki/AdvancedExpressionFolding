@@ -1,82 +1,75 @@
-package com.intellij.advancedExpressionFolding.expression.operation;
+package com.intellij.advancedExpressionFolding.expression.operation
 
-import com.intellij.advancedExpressionFolding.expression.Expression;
-import com.intellij.lang.folding.FoldingDescriptor;
-import com.intellij.openapi.editor.Document;
-import com.intellij.openapi.editor.FoldingGroup;
-import com.intellij.openapi.util.TextRange;
-import com.intellij.psi.PsiElement;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.lang.folding.FoldingDescriptor
+import com.intellij.openapi.editor.Document
+import com.intellij.openapi.editor.FoldingGroup
+import com.intellij.openapi.util.TextRange
+import com.intellij.psi.PsiElement
 
-import java.util.ArrayList;
-import java.util.Collections;
+class Get(
+    element: PsiElement,
+    textRange: TextRange,
+    val `object`: Expression,
+    val key: Expression,
+    val style: Style
+) : Expression(element, textRange) {
 
-public class Get extends Expression {
-    private final @NotNull
-    Expression object;
-    private final @NotNull
-    Expression key;
-    private final @NotNull
-    Style style;
+    enum class Style { NORMAL, FIRST, LAST }
 
-    public enum Style {
-        NORMAL,
-        FIRST,
-        LAST
-    }
-
-    public Get(@NotNull PsiElement element, @NotNull TextRange textRange, @NotNull Expression object, @NotNull Expression key, @NotNull Style style) {
-        super(element, textRange);
-        this.object = object;
-        this.key = key;
-        this.style = style;
-    }
-
-    @Override
-    public boolean supportsFoldRegions(@NotNull Document document,
-                                       @Nullable Expression parent) {
-        var objectEnd = object.getTextRange().getEndOffset();
-        var keyStart = key.getTextRange().getStartOffset();
-        var keyEnd = key.getTextRange().getEndOffset();
-        var end = getTextRange().getEndOffset();
-        if (style == Style.NORMAL) {
-            return objectEnd < keyStart
-                    && keyEnd < end;
+    override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean {
+        val objectEnd = `object`.textRange.endOffset
+        val keyStart = key.textRange.startOffset
+        val keyEnd = key.textRange.endOffset
+        val end = textRange.endOffset
+        return if (style == Style.NORMAL) {
+            objectEnd < keyStart && keyEnd < end
         } else {
-            return objectEnd < keyStart - 1
-                    && keyStart < keyEnd;
+            objectEnd < keyStart - 1 && keyStart < keyEnd
         }
     }
 
-    @Override
-    public FoldingDescriptor[] buildFoldRegions(@NotNull PsiElement element, @NotNull Document document, @Nullable Expression parent) {
-        FoldingGroup group = FoldingGroup.newGroup(Get.class.getName());
-        ArrayList<FoldingDescriptor> descriptors = new ArrayList<>();
+    override fun buildFoldRegions(
+        element: PsiElement,
+        document: Document,
+        parent: Expression?
+    ): Array<FoldingDescriptor> {
+        val group = FoldingGroup.newGroup(Get::class.java.name)
+        val descriptors = mutableListOf<FoldingDescriptor>()
         if (style == Style.NORMAL) {
-            descriptors.add(new FoldingDescriptor(element.getNode(),
-                    TextRange.create(object.getTextRange().getEndOffset(),
-                            key.getTextRange().getStartOffset()), group, "["));
-            descriptors.add(new FoldingDescriptor(element.getNode(),
-                    TextRange.create(key.getTextRange().getEndOffset(),
-                            getTextRange().getEndOffset()), group, "]"));
+            descriptors += FoldingDescriptor(
+                element.node,
+                TextRange.create(`object`.textRange.endOffset, key.textRange.startOffset),
+                group,
+                "["
+            )
+            descriptors += FoldingDescriptor(
+                element.node,
+                TextRange.create(key.textRange.endOffset, textRange.endOffset),
+                group,
+                "]"
+            )
         } else {
-            descriptors.add(new FoldingDescriptor(element.getNode(),
-                    TextRange.create(object.getTextRange().getEndOffset(),
-                            key.getTextRange().getStartOffset() - 1), group, "." + (style == Style.FIRST ? "getFirst" : "getLast")));
-            descriptors.add(new FoldingDescriptor(element.getNode(),
-                    TextRange.create(key.getTextRange().getStartOffset(),
-                            key.getTextRange().getEndOffset()), group, ""));
+            val placeholder = "." + if (style == Style.FIRST) "getFirst" else "getLast"
+            descriptors += FoldingDescriptor(
+                element.node,
+                TextRange.create(`object`.textRange.endOffset, key.textRange.startOffset - 1),
+                group,
+                placeholder
+            )
+            descriptors += FoldingDescriptor(
+                element.node,
+                TextRange.create(key.textRange.startOffset, key.textRange.endOffset),
+                group,
+                ""
+            )
         }
-        // TODO: Generalize it
-        if (object.supportsFoldRegions(document, this)) {
-            Collections.addAll(descriptors, object.buildFoldRegions(object.getElement(), document, this));
+        if (`object`.supportsFoldRegions(document, this)) {
+            descriptors += `object`.buildFoldRegions(`object`.element, document, this).toList()
         }
-        if (style == Style.NORMAL) {
-            if (key.supportsFoldRegions(document, this)) {
-                Collections.addAll(descriptors, key.buildFoldRegions(key.getElement(), document, this));
-            }
+        if (style == Style.NORMAL && key.supportsFoldRegions(document, this)) {
+            descriptors += key.buildFoldRegions(key.element, document, this).toList()
         }
-        return descriptors.toArray(EMPTY_ARRAY);
+        return descriptors.toTypedArray()
     }
 }

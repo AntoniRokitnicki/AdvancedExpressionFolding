@@ -1,97 +1,85 @@
-package com.intellij.advancedExpressionFolding.expression;
+package com.intellij.advancedExpressionFolding.expression
 
-import com.intellij.lang.folding.FoldingDescriptor;
-import com.intellij.openapi.editor.Document;
-import com.intellij.openapi.editor.FoldingGroup;
-import com.intellij.openapi.util.TextRange;
-import com.intellij.psi.PsiElement;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import com.intellij.lang.folding.FoldingDescriptor
+import com.intellij.openapi.editor.Document
+import com.intellij.openapi.editor.FoldingGroup
+import com.intellij.openapi.util.TextRange
+import com.intellij.psi.PsiElement
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+abstract class Function(
+    element: PsiElement,
+    textRange: TextRange,
+    private val name: String,
+    open val operands: List<Expression>
+) : Expression(element, textRange) {
 
-public abstract class Function extends Expression {
-    protected final @NotNull
-    List<Expression> operands;
-    private final @NotNull
-    String name;
-
-    public Function(@NotNull PsiElement element, @NotNull TextRange textRange, @NotNull String name,
-                    @NotNull List<Expression> operands) {
-        super(element, textRange);
-        this.name = name;
-        this.operands = operands;
-    }
-
-    @Override
-    public boolean isCollapsedByDefault() {
-        for (Expression operand : operands) {
+    override fun isCollapsedByDefault(): Boolean {
+        for (operand in operands) {
             if (!operand.isCollapsedByDefault()) {
-                return false;
+                return false
             }
         }
-        return super.isCollapsedByDefault();
+        return super.isCollapsedByDefault()
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
 
-        Function function = (Function) o;
+        other as Function
 
-        return name.equals(function.name) && operands.equals(function.operands);
+        if (name != other.name) return false
+        if (operands != other.operands) return false
+
+        return true
     }
 
-    @Override
-    public int hashCode() {
-        int result = name.hashCode();
-        result = 31 * result + operands.hashCode();
-        return result;
+    override fun hashCode(): Int {
+        var result = name.hashCode()
+        result = 31 * result + operands.hashCode()
+        return result
     }
 
-    @Override
-    public boolean supportsFoldRegions(@NotNull Document document,
-                                       @Nullable Expression parent) {
-        // TODO: check if operands have text in between
-        return operands.size() > 0
-                && getTextRange().getStartOffset() < operands.get(0).getTextRange().getStartOffset()
-                && getTextRange().getEndOffset() > operands.get(operands.size() - 1).getTextRange().getEndOffset();
+    override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean {
+        return operands.isNotEmpty() &&
+            textRange.startOffset < operands.first().textRange.startOffset &&
+            textRange.endOffset > operands.last().textRange.endOffset
     }
 
-    @Override
-    public FoldingDescriptor[] buildFoldRegions(@NotNull PsiElement element, @NotNull Document document,
-                                                @Nullable Expression parent) {
-        FoldingGroup group = FoldingGroup.newGroup(getClass().getName());
-        List<FoldingDescriptor> descriptors = new ArrayList<>();
-        int offset = getTextRange().getStartOffset();
-        descriptors.add(new FoldingDescriptor(element.getNode(),
-                TextRange.create(offset, operands.get(0).getTextRange().getStartOffset()), group, name + "("));
-        offset = operands.get(0).getTextRange().getEndOffset();
-        //noinspection Duplicates
-        for (int i = 1; i < operands.size(); i++) {
-            TextRange r = TextRange.create(offset, operands.get(i).getTextRange().getStartOffset());
-            String p = ", ";
-            if (!document.getText(r).equals(p)) {
-                descriptors.add(new FoldingDescriptor(element.getNode(),
-                        r, group, p));
+    override fun buildFoldRegions(
+        element: PsiElement,
+        document: Document,
+        parent: Expression?
+    ): Array<FoldingDescriptor> {
+        val group = FoldingGroup.newGroup(javaClass.name)
+        val descriptors = mutableListOf<FoldingDescriptor>()
+        var offset = textRange.startOffset
+        descriptors += FoldingDescriptor(
+            element.node,
+            TextRange.create(offset, operands.first().textRange.startOffset),
+            group,
+            "$name("
+        )
+        offset = operands.first().textRange.endOffset
+        for (i in 1 until operands.size) {
+            val range = TextRange.create(offset, operands[i].textRange.startOffset)
+            val placeholder = ", "
+            if (document.getText(range) != placeholder) {
+                descriptors += FoldingDescriptor(element.node, range, group, placeholder)
             }
-            offset = operands.get(i).getTextRange().getEndOffset();
+            offset = operands[i].textRange.endOffset
         }
-        descriptors.add(new FoldingDescriptor(element.getNode(),
-                TextRange.create(offset, getTextRange().getEndOffset()), group, ")"));
-        for (Expression operand : operands) {
+        descriptors += FoldingDescriptor(
+            element.node,
+            TextRange.create(offset, textRange.endOffset),
+            group,
+            ")"
+        )
+        for (operand in operands) {
             if (operand.supportsFoldRegions(document, this)) {
-                Collections.addAll(descriptors, operand.buildFoldRegions(operand.getElement(), document, this));
+                descriptors += operand.buildFoldRegions(operand.element, document, this).toList()
             }
         }
-        return descriptors.toArray(EMPTY_ARRAY);
-    }
-
-    @NotNull
-    public List<Expression> getOperands() {
-        return operands;
+        return descriptors.toTypedArray()
     }
 }

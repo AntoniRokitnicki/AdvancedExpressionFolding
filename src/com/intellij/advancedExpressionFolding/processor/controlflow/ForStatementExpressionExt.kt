@@ -1,180 +1,239 @@
-package com.intellij.advancedExpressionFolding.processor.controlflow;
+package com.intellij.advancedExpressionFolding.processor.controlflow
 
-import com.intellij.advancedExpressionFolding.expression.Expression;
-import com.intellij.advancedExpressionFolding.expression.controlflow.CompactControlFlowExpression;
-import com.intellij.advancedExpressionFolding.expression.controlflow.ForEachIndexedStatement;
-import com.intellij.advancedExpressionFolding.expression.controlflow.ForEachStatement;
-import com.intellij.advancedExpressionFolding.expression.controlflow.ForStatement;
-import com.intellij.advancedExpressionFolding.expression.literal.NumberLiteral;
-import com.intellij.advancedExpressionFolding.expression.operation.basic.Variable;
-import com.intellij.advancedExpressionFolding.processor.util.Helper;
-import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings;
-import com.intellij.openapi.editor.Document;
-import com.intellij.openapi.util.TextRange;
-import com.intellij.psi.*;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.advancedExpressionFolding.expression.controlflow.CompactControlFlowExpression
+import com.intellij.advancedExpressionFolding.expression.controlflow.ForEachIndexedStatement
+import com.intellij.advancedExpressionFolding.expression.controlflow.ForEachStatement
+import com.intellij.advancedExpressionFolding.expression.controlflow.ForStatement
+import com.intellij.advancedExpressionFolding.expression.literal.NumberLiteral
+import com.intellij.advancedExpressionFolding.expression.operation.basic.Variable
+import com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt.getAnyExpression
+import com.intellij.advancedExpressionFolding.processor.util.Helper
+import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
+import com.intellij.openapi.editor.Document
+import com.intellij.openapi.util.TextRange
+import com.intellij.psi.PsiArrayAccessExpression
+import com.intellij.psi.PsiBinaryExpression
+import com.intellij.psi.PsiBlockStatement
+import com.intellij.psi.PsiDeclarationStatement
+import com.intellij.psi.PsiElement
+import com.intellij.psi.PsiExpression
+import com.intellij.psi.PsiForStatement
+import com.intellij.psi.PsiIdentifier
+import com.intellij.psi.PsiMethodCallExpression
+import com.intellij.psi.PsiPostfixExpression
+import com.intellij.psi.PsiReference
+import com.intellij.psi.PsiReferenceExpression
+import com.intellij.psi.PsiStatement
+import com.intellij.psi.PsiVariable
+import com.intellij.psi.SyntaxTraverser
 
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Stream;
+object ForStatementExpressionExt {
 
-import static com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt.getAnyExpression;
-
-public class ForStatementExpressionExt {
-    @Nullable
-    public static Expression getForStatementExpression(@NotNull PsiForStatement element, @NotNull Document document) {
-        AdvancedExpressionFoldingSettings settings = AdvancedExpressionFoldingSettings.getInstance();
-        @Nullable PsiJavaToken lParenth = element.getLParenth();
-        @Nullable PsiJavaToken rParenth = element.getRParenth();
-        @Nullable PsiStatement initialization = element.getInitialization();
-        @Nullable PsiStatement update = element.getUpdate();
-        @Nullable PsiExpression condition = element.getCondition();
-        if (settings.getState().getRangeExpressionsCollapse()
-            && lParenth != null && rParenth != null
-                && initialization instanceof PsiDeclarationStatement
-                && ((PsiDeclarationStatement) initialization).getDeclaredElements().length == 1
-                && ((PsiDeclarationStatement) initialization).getDeclaredElements()[0] instanceof PsiVariable
-                && ((PsiVariable) ((PsiDeclarationStatement) initialization).getDeclaredElements()[0]).getInitializer() != null
-                && update != null && update.getChildren().length == 1
-                && update.getChildren()[0] instanceof PsiPostfixExpression
-                && ((PsiPostfixExpression) update.getChildren()[0]).getOperand() instanceof PsiReferenceExpression
-                && ((PsiPostfixExpression) update.getChildren()[0]).getOperationSign().getText().equals("++")
-                && ((PsiPostfixExpression) update.getChildren()[0]).getOperand().getReference() != null
-                && condition instanceof PsiBinaryExpression
-                && ((PsiBinaryExpression) condition).getLOperand() instanceof PsiReferenceExpression
-                && ((PsiBinaryExpression) condition).getLOperand().getReference() != null
-                && ((PsiBinaryExpression) condition).getROperand() != null) {
-            @SuppressWarnings("ConstantConditions")
-            @Nullable PsiVariable updateVariable = (PsiVariable) ((PsiPostfixExpression) update.getChildren()[0]).getOperand().getReference().resolve();
-            @SuppressWarnings("ConstantConditions")
-            @Nullable PsiExpression conditionROperand = ((PsiBinaryExpression) condition).getROperand();
-            @Nullable PsiReference reference = ((PsiBinaryExpression) condition).getLOperand().getReference();
+    fun getForStatementExpression(element: PsiForStatement, document: Document): Expression? {
+        val settings = AdvancedExpressionFoldingSettings.getInstance()
+        val lParenth = element.lParenth
+        val rParenth = element.rParenth
+        val initialization = element.initialization
+        val update = element.update
+        val condition = element.condition
+        if (settings.state.rangeExpressionsCollapse &&
+            lParenth != null &&
+            rParenth != null &&
+            initialization is PsiDeclarationStatement &&
+            initialization.declaredElements.size == 1 &&
+            initialization.declaredElements[0] is PsiVariable &&
+            (initialization.declaredElements[0] as PsiVariable).initializer != null &&
+            update != null &&
+            update.children.size == 1 &&
+            update.children[0] is PsiPostfixExpression &&
+            (update.children[0] as PsiPostfixExpression).operand is PsiReferenceExpression &&
+            (update.children[0] as PsiPostfixExpression).operationSign.text == "++" &&
+            ((update.children[0] as PsiPostfixExpression).operand as PsiReferenceExpression).reference != null &&
+            condition is PsiBinaryExpression &&
+            condition.lOperand is PsiReferenceExpression &&
+            condition.lOperand.reference != null &&
+            condition.rOperand != null
+        ) {
+            val updateVariable = ((update.children[0] as PsiPostfixExpression).operand as PsiReferenceExpression).reference?.resolve() as? PsiVariable
+            val conditionROperand = condition.rOperand
+            val reference: PsiReference? = (condition.lOperand as PsiReferenceExpression).reference
             if (reference != null) {
-                PsiVariable conditionVariable = (PsiVariable) reference.resolve();
-                if (updateVariable != null && conditionROperand != null
-                        && updateVariable == ((PsiDeclarationStatement) initialization).getDeclaredElements()[0]
-                        && updateVariable == conditionVariable
-                        && ("int".equals(updateVariable.getType().getCanonicalText())
-                        || "long".equals(updateVariable.getType().getCanonicalText()))) {
-                    Optional<PsiElement> identifier = Stream.of(((PsiDeclarationStatement) initialization).getDeclaredElements()[0].getChildren())
-                            .filter(c -> c instanceof PsiIdentifier).findAny();
-                    if (identifier.isPresent()) {
-                        Variable variable = new Variable(identifier.get(), identifier.get().getTextRange(), null, identifier.get().getText(), false);
-                        //noinspection ConstantConditions
-                        @NotNull Expression start = getAnyExpression(
-                                ((PsiVariable) ((PsiDeclarationStatement) initialization).getDeclaredElements()[0]).getInitializer(), document);
-                        @NotNull Expression end = getAnyExpression(conditionROperand, document);
-                        String sign = ((PsiBinaryExpression) condition).getOperationSign().getText();
-                        if ("<".equals(sign) || "<=".equals(sign)) {
-                            if (element.getBody() instanceof PsiBlockStatement
-                                    && ((PsiBlockStatement) element.getBody()).getCodeBlock().getStatements().length > 0
-                                    && ((PsiBlockStatement) element.getBody()).getCodeBlock().getStatements()[0] instanceof PsiDeclarationStatement
-                                    && ((PsiDeclarationStatement) ((PsiBlockStatement) element.getBody()).getCodeBlock()
-                                    .getStatements()[0]).getDeclaredElements().length == 1) {
-                                if (start instanceof NumberLiteral && ((NumberLiteral) start).getNumber().equals(0)) {
-                                    PsiVariable declaration = (PsiVariable) ((PsiDeclarationStatement) ((PsiBlockStatement) element.getBody())
-                                            .getCodeBlock()
-                                            .getStatements()[0]).getDeclaredElements()[0];
-                                    @Nullable PsiIdentifier variableName = declaration.getNameIdentifier();
-                                    @Nullable PsiExpression initializer = declaration.getInitializer();
-                                    if (variableName != null
-                                            && initializer instanceof PsiArrayAccessExpression
-                                            && ((PsiArrayAccessExpression) initializer).getIndexExpression() instanceof PsiReferenceExpression
-                                            && isReferenceTo(((PsiReferenceExpression) ((PsiArrayAccessExpression) initializer).getIndexExpression()), conditionVariable)
-                                            && conditionROperand instanceof PsiReferenceExpression
-                                            && ((PsiReferenceExpression) conditionROperand).getQualifierExpression() instanceof PsiReferenceExpression
-                                            && ((PsiArrayAccessExpression) initializer).getArrayExpression() instanceof PsiReferenceExpression
-                                            && isReferenceTo((PsiReferenceExpression) ((PsiReferenceExpression) conditionROperand).getQualifierExpression(),
-                                            ((PsiReferenceExpression) ((PsiArrayAccessExpression) initializer).getArrayExpression()).resolve())) {
-                                        // TODO: ((PsiArrayAccessExpression) initializer).getArrayExpression() can be a method call expression, e.g. getArgs()
-                                        PsiExpression arrayExpression = ((PsiArrayAccessExpression) initializer)
-                                                .getArrayExpression();
-                                        List<PsiElement> references = SyntaxTraverser.psiTraverser(element.getBody()).filter(e -> e instanceof PsiReferenceExpression
-                                                && ((PsiReferenceExpression) e).isReferenceTo(conditionVariable)).toList();
-                                        //noinspection Duplicates
-                                        if (references.size() == 1) {
-                                            return new ForEachStatement(element, TextRange.create(
-                                                    initialization.getTextRange().getStartOffset(),
-                                                    declaration.getTextRange().getEndOffset()),
-                                                    declaration.getTextRange(), variableName.getTextRange(),
-                                                    arrayExpression.getTextRange()
-                                            );
-                                        } else {
-                                            @Nullable PsiIdentifier indexName = conditionVariable.getNameIdentifier();
-                                            boolean isFinal = Helper.calculateIfFinal(declaration) && Helper.calculateIfFinal(updateVariable);
-                                            if (indexName != null) {
-                                                return new ForEachIndexedStatement(element, TextRange.create(
-                                                        initialization.getTextRange().getStartOffset() - 1,
-                                                        declaration.getTextRange().getEndOffset()),
-                                                        declaration.getTextRange(),
-                                                        indexName.getTextRange(), variableName.getTextRange(),
-                                                        arrayExpression.getTextRange(),
-                                                        settings.getState().getVarExpressionsCollapse(),
-                                                        isFinal);
-                                            }
-                                        }
-                                    } else if (variableName != null
-                                            && initializer instanceof PsiMethodCallExpression
-                                            && ((PsiMethodCallExpression) initializer).getArgumentList().getExpressions().length == 1
-                                            && ((PsiMethodCallExpression) initializer).getArgumentList().getExpressions()[0] instanceof PsiReferenceExpression
-                                            && ((PsiReferenceExpression) ((PsiMethodCallExpression) initializer).getArgumentList().getExpressions()[0]).isReferenceTo(conditionVariable)
-                                            && conditionROperand instanceof PsiMethodCallExpression
-                                            && ((PsiMethodCallExpression) conditionROperand).getMethodExpression().getQualifierExpression() instanceof PsiReferenceExpression
-                                            && ((PsiMethodCallExpression) initializer).getMethodExpression().getQualifierExpression() instanceof PsiReferenceExpression
-                                            && Helper.isReferenceToReference((PsiReferenceExpression) ((PsiMethodCallExpression) conditionROperand).getMethodExpression().getQualifierExpression(), ((PsiReferenceExpression) ((PsiMethodCallExpression) initializer).getMethodExpression()
-                                            .getQualifierExpression()))) {
-                                        @Nullable PsiExpression arrayExpression = ((PsiMethodCallExpression) initializer).getMethodExpression().getQualifierExpression();
-                                        if (arrayExpression != null) {
-                                            List<PsiElement> references = SyntaxTraverser.psiTraverser(element.getBody()).filter(e -> e instanceof PsiReferenceExpression
-                                                    && ((PsiReferenceExpression) e).isReferenceTo(conditionVariable)).toList();
-                                            //noinspection Duplicates
-                                            if (references.size() == 1) {
-                                                return new ForEachStatement(element, TextRange.create(
-                                                        initialization.getTextRange().getStartOffset(),
-                                                        declaration.getTextRange().getEndOffset()),
-                                                        declaration.getTextRange(), variableName.getTextRange(),
-                                                        arrayExpression.getTextRange()
-                                                );
-                                            } else {
-                                                @Nullable PsiIdentifier indexName = conditionVariable.getNameIdentifier();
-                                                if (indexName != null) {
-                                                    boolean isFinal = Helper.calculateIfFinal(declaration) && Helper.calculateIfFinal(updateVariable);
-                                                    return new ForEachIndexedStatement(element, TextRange.create(
-                                                            initialization.getTextRange().getStartOffset() - 1,
-                                                            declaration.getTextRange().getEndOffset()),
-                                                            declaration.getTextRange(),
-                                                            indexName.getTextRange(), variableName.getTextRange(),
-                                                            arrayExpression.getTextRange(),
-                                                            settings.getState().getVarExpressionsCollapse(),
-                                                            isFinal);
-                                                }
+                val conditionVariable = reference.resolve() as? PsiVariable
+                val declaredVariable = initialization.declaredElements[0] as PsiVariable
+                if (updateVariable != null &&
+                    conditionROperand != null &&
+                    updateVariable == declaredVariable &&
+                    updateVariable == conditionVariable &&
+                    (updateVariable.type.canonicalText == "int" || updateVariable.type.canonicalText == "long")
+                ) {
+                    val identifier = declaredVariable.children.firstOrNull { it is PsiIdentifier } as? PsiIdentifier
+                    if (identifier != null) {
+                        val variable = Variable(identifier, identifier.textRange, null, identifier.text, false)
+                        val start = getAnyExpression(declaredVariable.initializer!!, document)
+                        val end = getAnyExpression(conditionROperand, document)
+                        val sign = condition.operationSign.text
+                        if (sign == "<" || sign == "<=") {
+                            val body = element.body
+                            if (body is PsiBlockStatement && body.codeBlock.statements.isNotEmpty()) {
+                                val firstStatement = body.codeBlock.statements[0]
+                                if (firstStatement is PsiDeclarationStatement && firstStatement.declaredElements.size == 1) {
+                                    val declaration = firstStatement.declaredElements[0] as? PsiVariable
+                                    if (declaration != null) {
+                                        val variableName = declaration.nameIdentifier
+                                        val initializerExpr = declaration.initializer
+                                        if (start is NumberLiteral && start.number == 0) {
+                                            val foreach = buildIndexedOrSimpleForEach(
+                                                element,
+                                                initialization,
+                                                declaration,
+                                                variableName,
+                                                initializerExpr,
+                                                conditionROperand,
+                                                conditionVariable,
+                                                updateVariable,
+                                                settings
+                                            )
+                                            if (foreach != null) {
+                                                return foreach
                                             }
                                         }
                                     }
-
                                 }
                             }
-                            int startOffset = lParenth.getTextRange().getStartOffset() + 1;
-                            int endOffset = rParenth.getTextRange().getEndOffset() - 1;
-                            return new ForStatement(element, TextRange.create(startOffset, endOffset), variable,
-                                    start, true, end, "<=".equals(sign));
+                            val startOffset = lParenth.textRange.startOffset + 1
+                            val endOffset = rParenth.textRange.endOffset - 1
+                            return ForStatement(
+                                element,
+                                TextRange.create(startOffset, endOffset),
+                                variable,
+                                start,
+                                true,
+                                end,
+                                sign == "<="
+                            )
                         }
                     }
                 }
             }
         }
-        if (element.getCondition() != null
-                && element.getLParenth() != null && element.getRParenth() != null
-                && settings.getState().getCompactControlFlowSyntaxCollapse()) {
-            return new CompactControlFlowExpression(element,
-                    TextRange.create(element.getLParenth().getTextRange().getStartOffset(),
-                            element.getRParenth().getTextRange().getEndOffset()));
+        if (element.condition != null && element.lParenth != null && element.rParenth != null &&
+            settings.state.compactControlFlowSyntaxCollapse
+        ) {
+            return CompactControlFlowExpression(
+                element,
+                TextRange.create(element.lParenth!!.textRange.startOffset, element.rParenth!!.textRange.endOffset)
+            )
         }
-        return null;
+        return null
     }
 
-    public static boolean isReferenceTo(@Nullable PsiReferenceExpression referenceExpression, @Nullable PsiElement element) {
-        return referenceExpression != null && element != null && referenceExpression.isReferenceTo(element);
+    private fun buildIndexedOrSimpleForEach(
+        element: PsiForStatement,
+        initialization: PsiStatement,
+        declaration: PsiVariable,
+        variableName: PsiIdentifier?,
+        initializer: PsiExpression?,
+        conditionROperand: PsiExpression,
+        conditionVariable: PsiVariable?,
+        updateVariable: PsiVariable,
+        settings: AdvancedExpressionFoldingSettings
+    ): Expression? {
+        if (variableName == null || conditionVariable == null) {
+            return null
+        }
+        if (initializer is PsiArrayAccessExpression &&
+            initializer.indexExpression is PsiReferenceExpression &&
+            isReferenceTo(initializer.indexExpression as PsiReferenceExpression?, conditionVariable) &&
+            conditionROperand is PsiReferenceExpression &&
+            conditionROperand.qualifierExpression is PsiReferenceExpression &&
+            initializer.arrayExpression is PsiReferenceExpression &&
+            isReferenceTo(
+                conditionROperand.qualifierExpression as PsiReferenceExpression?,
+                (initializer.arrayExpression as PsiReferenceExpression).resolve()
+            )
+        ) {
+            val arrayExpression = initializer.arrayExpression
+            val body = element.body ?: return null
+            val references = SyntaxTraverser.psiTraverser(body)
+                .filter { it is PsiReferenceExpression && (it as PsiReferenceExpression).isReferenceTo(conditionVariable) }
+                .toList()
+            return if (references.size == 1) {
+                ForEachStatement(
+                    element,
+                    TextRange.create(initialization.textRange.startOffset, declaration.textRange.endOffset),
+                    declaration.textRange,
+                    variableName.textRange,
+                    arrayExpression.textRange
+                )
+            } else {
+                val indexName = conditionVariable.nameIdentifier
+                if (indexName != null) {
+                    val isFinal = Helper.calculateIfFinal(declaration) && Helper.calculateIfFinal(updateVariable)
+                    ForEachIndexedStatement(
+                        element,
+                        TextRange.create(initialization.textRange.startOffset - 1, declaration.textRange.endOffset),
+                        declaration.textRange,
+                        indexName.textRange,
+                        variableName.textRange,
+                        arrayExpression.textRange,
+                        settings.state.varExpressionsCollapse,
+                        isFinal
+                    )
+                } else {
+                    null
+                }
+            }
+        } else if (initializer is PsiMethodCallExpression &&
+            initializer.argumentList.expressions.size == 1 &&
+            initializer.argumentList.expressions[0] is PsiReferenceExpression &&
+            (initializer.argumentList.expressions[0] as PsiReferenceExpression).isReferenceTo(conditionVariable) &&
+            conditionROperand is PsiMethodCallExpression &&
+            conditionROperand.methodExpression.qualifierExpression is PsiReferenceExpression &&
+            initializer.methodExpression.qualifierExpression is PsiReferenceExpression &&
+            Helper.isReferenceToReference(
+                conditionROperand.methodExpression.qualifierExpression as PsiReferenceExpression,
+                initializer.methodExpression.qualifierExpression as PsiReferenceExpression
+            )
+        ) {
+            val arrayExpression = initializer.methodExpression.qualifierExpression
+            if (arrayExpression != null) {
+                val body = element.body ?: return null
+                val references = SyntaxTraverser.psiTraverser(body)
+                    .filter { it is PsiReferenceExpression && (it as PsiReferenceExpression).isReferenceTo(conditionVariable) }
+                    .toList()
+                return if (references.size == 1) {
+                    ForEachStatement(
+                        element,
+                        TextRange.create(initialization.textRange.startOffset, declaration.textRange.endOffset),
+                        declaration.textRange,
+                        variableName.textRange,
+                        arrayExpression.textRange
+                    )
+                } else {
+                    val indexName = conditionVariable.nameIdentifier
+                    if (indexName != null) {
+                        val isFinal = Helper.calculateIfFinal(declaration) && Helper.calculateIfFinal(updateVariable)
+                        ForEachIndexedStatement(
+                            element,
+                            TextRange.create(initialization.textRange.startOffset - 1, declaration.textRange.endOffset),
+                            declaration.textRange,
+                            indexName.textRange,
+                            variableName.textRange,
+                            arrayExpression.textRange,
+                            settings.state.varExpressionsCollapse,
+                            isFinal
+                        )
+                    } else {
+                        null
+                    }
+                }
+            }
+        }
+        return null
+    }
+
+    fun isReferenceTo(referenceExpression: PsiReferenceExpression?, element: PsiElement?): Boolean {
+        return referenceExpression != null && element != null && referenceExpression.isReferenceTo(element)
     }
 }

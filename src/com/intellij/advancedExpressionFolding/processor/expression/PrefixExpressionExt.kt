@@ -1,118 +1,118 @@
-package com.intellij.advancedExpressionFolding.processor.expression;
+package com.intellij.advancedExpressionFolding.processor.expression
 
-import com.intellij.advancedExpressionFolding.expression.Expression;
-import com.intellij.advancedExpressionFolding.expression.math.basic.Negate;
-import com.intellij.advancedExpressionFolding.expression.math.basic.NotEqual;
-import com.intellij.advancedExpressionFolding.expression.operation.basic.Append;
-import com.intellij.advancedExpressionFolding.expression.operation.basic.Equal;
-import com.intellij.advancedExpressionFolding.expression.operation.basic.GreaterEqual;
-import com.intellij.advancedExpressionFolding.processor.util.Helper;
-import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings;
-import com.intellij.openapi.editor.Document;
-import com.intellij.psi.*;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.advancedExpressionFolding.expression.math.basic.Negate
+import com.intellij.advancedExpressionFolding.expression.math.basic.NotEqual
+import com.intellij.advancedExpressionFolding.expression.operation.basic.Append
+import com.intellij.advancedExpressionFolding.expression.operation.basic.Equal
+import com.intellij.advancedExpressionFolding.expression.operation.basic.GreaterEqual
+import com.intellij.advancedExpressionFolding.processor.util.Helper
+import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
+import com.intellij.openapi.editor.Document
+import com.intellij.psi.PsiClass
+import com.intellij.psi.PsiExpression
+import com.intellij.psi.PsiIdentifier
+import com.intellij.psi.PsiMethod
+import com.intellij.psi.PsiMethodCallExpression
+import com.intellij.psi.PsiPrefixExpression
+import com.intellij.psi.PsiReferenceExpression
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Optional;
-import java.util.function.BiPredicate;
-import java.util.function.Predicate;
-import java.util.stream.Stream;
+object PrefixExpressionExt {
 
-import static com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt.getAnyExpression;
-
-public class PrefixExpressionExt {
-
-    @Nullable
-    public static Expression getPrefixExpression(@NotNull PsiPrefixExpression element, @NotNull Document document) {
-        AdvancedExpressionFoldingSettings settings = AdvancedExpressionFoldingSettings.getInstance();
-        if (element.getOperand() != null) {
-            if (element.getOperationSign().getText().equals("!")) {
-                if (settings.getState().getComparingLocalDatesCollapse()) {
-                    if (element.getOperand() instanceof PsiMethodCallExpression operand) {
-                        Optional<MethodCallInformation> methodCallInformationOptional = MethodCallInformation.tryGet(operand, document, "isBefore", "isAfter", "before", "after");
-                        if (methodCallInformationOptional.isPresent()) {
-                            MethodCallInformation callInformation = methodCallInformationOptional.get();
-
-                            String methodName = callInformation.methodName;
-                            if (methodName.equals("isBefore") || methodName.equals("before")) {
-                                return new GreaterEqual(element, element.getTextRange(), Arrays.asList(callInformation.qualifierExpression, callInformation.getFoldedArgument(0)));
-                            }
-
-                            if (methodName.equals("isAfter") || methodName.equals("after")) {
-                                return new Append.LessEqual(element, element.getTextRange(), Arrays.asList(callInformation.qualifierExpression, callInformation.getFoldedArgument(0)));
-                            }
-                        }
-
-                    }
-                }
-                if (settings.getState().getComparingExpressionsCollapse()) {
-                    @NotNull Expression operand = getAnyExpression(element.getOperand(), document);
-                    if (operand instanceof Equal) {
-                        return new NotEqual(element, element.getTextRange(), ((Equal) operand).getOperands());
-                    }
-                } else if (element.getOperationSign().getText().equals("-")) {
-                    @NotNull Expression operand = getAnyExpression(element.getOperand(), document);
-                    return new Negate(element, element.getTextRange(), Collections.singletonList(operand));
-                }
-            } else if (element.getOperationSign().getText().equals("-")) {
-                @NotNull Expression operand = getAnyExpression(element.getOperand(), document);
-                return new Negate(element, element.getTextRange(), Collections.singletonList(operand));
+    fun getPrefixExpression(element: PsiPrefixExpression, document: Document): Expression? {
+        val settings = AdvancedExpressionFoldingSettings.getInstance()
+        val operand = element.operand ?: return null
+        val sign = element.operationSign.text
+        return when (sign) {
+            "!" -> handleNegation(element, operand, document, settings)
+            "-" -> {
+                val expression = com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt.getAnyExpression(operand, document)
+                Negate(element, element.textRange, listOf(expression))
             }
+            else -> null
         }
-        return null;
     }
 
-    private static class MethodCallInformation {
-        private final PsiMethodCallExpression element;
-        private final Expression qualifierExpression;
-        private final PsiExpression[] arguments;
-        private final Document document;
-        private final String methodName;
-        private final String className;
-        private final PsiClass psiClass;
-
-        public MethodCallInformation(PsiMethodCallExpression element, Expression qualifierExpression, String methodName, String className, PsiClass psiClass, Document document) {
-            this.element = element;
-            this.qualifierExpression = qualifierExpression;
-            this.methodName = methodName;
-            this.className = className;
-            this.psiClass = psiClass;
-            this.arguments = element.getArgumentList().getExpressions();
-            this.document = document;
-        }
-
-        Expression getFoldedArgument(int index) {
-            return getAnyExpression(element.getArgumentList().getExpressions()[index], document);
-        }
-
-        static Optional<MethodCallInformation> tryGet(PsiMethodCallExpression element, @NotNull Document document, String... methodNames) {
-            return tryGet(element, document, Arrays.asList(methodNames)::contains, (actualClassName, methodName) -> true);
-        }
-
-        static Optional<MethodCallInformation> tryGet(PsiMethodCallExpression element, @NotNull Document document, Predicate<String> isMethodNameSupported, BiPredicate<String, String> isMethodSupported) {
-            PsiReferenceExpression referenceExpression = element.getMethodExpression();
-            Optional<PsiElement> identifier = Stream.of(referenceExpression.getChildren())
-                    .filter(c -> c instanceof PsiIdentifier).findAny();
-            @Nullable PsiExpression qualifier = element.getMethodExpression().getQualifierExpression();
-
-            if (identifier.isPresent() && isMethodNameSupported.test(identifier.get().getText())) {
-                PsiMethod method = (PsiMethod) referenceExpression.resolve();
-                if (method != null) {
-                    PsiClass psiClass = method.getContainingClass();
-                    if (psiClass != null && psiClass.getQualifiedName() != null) {
-                        String className = Helper.eraseGenerics(psiClass.getQualifiedName());
-                        String methodName = identifier.get().getText();
-                        if (isMethodSupported.test(className, methodName)
-                                && qualifier != null) {
-                            @NotNull Expression qualifierExpression = getAnyExpression(qualifier, document);
-                            return Optional.of(new MethodCallInformation(element, qualifierExpression, methodName, className, psiClass, document));
-                        }
-                    }
+    private fun handleNegation(
+        element: PsiPrefixExpression,
+        operand: PsiExpression,
+        document: Document,
+        settings: AdvancedExpressionFoldingSettings
+    ): Expression? {
+        if (settings.state.comparingLocalDatesCollapse && operand is PsiMethodCallExpression) {
+            val info = MethodCallInformation.tryGet(operand, document, "isBefore", "isAfter", "before", "after")
+            if (info != null) {
+                return when (info.methodName) {
+                    "isBefore", "before" -> GreaterEqual(
+                        element,
+                        element.textRange,
+                        listOf(info.qualifierExpression, info.getFoldedArgument(0))
+                    )
+                    "isAfter", "after" -> Append.LessEqual(
+                        element,
+                        element.textRange,
+                        listOf(info.qualifierExpression, info.getFoldedArgument(0))
+                    )
+                    else -> null
                 }
             }
-            return Optional.empty();
+        }
+        if (settings.state.comparingExpressionsCollapse) {
+            val foldedOperand = com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt.getAnyExpression(operand, document)
+            if (foldedOperand is Equal) {
+                return NotEqual(element, element.textRange, foldedOperand.operands)
+            }
+        }
+        return null
+    }
+
+    private data class MethodCallInformation(
+        val element: PsiMethodCallExpression,
+        val qualifierExpression: Expression,
+        val methodName: String,
+        val className: String,
+        val psiClass: PsiClass,
+        val document: Document
+    ) {
+        fun getFoldedArgument(index: Int): Expression {
+            return com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt.getAnyExpression(
+                element.argumentList.expressions[index],
+                document
+            )
+        }
+
+        companion object {
+            fun tryGet(
+                element: PsiMethodCallExpression,
+                document: Document,
+                vararg methodNames: String
+            ): MethodCallInformation? {
+                return tryGet(element, document, methodNames::contains) { _, _ -> true }
+            }
+
+            private fun tryGet(
+                element: PsiMethodCallExpression,
+                document: Document,
+                isMethodNameSupported: (String) -> Boolean,
+                isMethodSupported: (String, String) -> Boolean
+            ): MethodCallInformation? {
+                val referenceExpression = element.methodExpression
+                val identifier = referenceExpression.children.firstOrNull { it is PsiIdentifier } as? PsiIdentifier ?: return null
+                val qualifier = referenceExpression.qualifierExpression ?: return null
+                if (!isMethodNameSupported(identifier.text)) {
+                    return null
+                }
+                val method = referenceExpression.resolve() as? PsiMethod ?: return null
+                val psiClass = method.containingClass ?: return null
+                val qualifiedName = psiClass.qualifiedName ?: return null
+                val className = Helper.eraseGenerics(qualifiedName)
+                val methodName = identifier.text
+                if (!isMethodSupported(className, methodName)) {
+                    return null
+                }
+                val qualifierExpression = com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt.getAnyExpression(qualifier, document)
+                return MethodCallInformation(element, qualifierExpression, methodName, className, psiClass, document)
+            }
         }
     }
 }

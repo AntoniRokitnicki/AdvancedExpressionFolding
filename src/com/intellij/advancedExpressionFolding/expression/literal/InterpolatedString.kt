@@ -1,158 +1,190 @@
-package com.intellij.advancedExpressionFolding.expression.literal;
+package com.intellij.advancedExpressionFolding.expression.literal
 
-import com.intellij.advancedExpressionFolding.expression.Expression;
-import com.intellij.advancedExpressionFolding.expression.operation.basic.Variable;
-import com.intellij.lang.folding.FoldingDescriptor;
-import com.intellij.openapi.editor.Document;
-import com.intellij.openapi.editor.FoldingGroup;
-import com.intellij.openapi.util.TextRange;
-import com.intellij.psi.PsiElement;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.advancedExpressionFolding.expression.operation.basic.Variable
+import com.intellij.lang.folding.FoldingDescriptor
+import com.intellij.openapi.editor.Document
+import com.intellij.openapi.editor.FoldingGroup
+import com.intellij.openapi.util.TextRange
+import com.intellij.psi.PsiElement
 
-import java.util.*;
+class InterpolatedString(
+    element: PsiElement,
+    textRange: TextRange,
+    private val operands: List<Expression>
+) : Expression(element, textRange) {
 
-public class InterpolatedString extends Expression {
-    private final @NotNull
-    List<Expression> operands;
+    override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean = true
 
-    public InterpolatedString(@NotNull PsiElement element, @NotNull TextRange textRange, @NotNull List<Expression> operands) {
-        super(element, textRange);
-        this.operands = operands;
+    override fun buildFoldRegions(
+        element: PsiElement,
+        document: Document,
+        parent: Expression?
+    ): Array<FoldingDescriptor> {
+        return buildFoldRegions(element, document, parent, null, null, null)
     }
 
-    @Override
-    public boolean supportsFoldRegions(@NotNull Document document,
-                                       @Nullable Expression parent) {
-        return true;
-    }
-
-    public static final Set<String> OVERFLOW_CHARACTERS = new HashSet<>() {
-        {
-            add(".");
-            add(";");
-            add(",");
-            add(")");
-            add("(");
-            add(" ");
-        }
-    };
-
-    @Override
-    public FoldingDescriptor[] buildFoldRegions(@NotNull PsiElement element, @NotNull Document document, @Nullable Expression parent) {
-        return buildFoldRegions(element, document, parent, null, null, null);
-    }
-
-    public FoldingDescriptor[] buildFoldRegions(@NotNull PsiElement element, @NotNull Document document, @Nullable Expression parent,
-                                                @Nullable FoldingGroup overflowGroup,
-                                                @Nullable String overflowLeftPlaceholder,
-                                                @Nullable String overflowRightPlaceholder) {
-        final Expression first = operands.get(0);
-        final Expression last = operands.get(operands.size() - 1);
-        FoldingGroup group = overflowGroup != null ? overflowGroup : FoldingGroup.newGroup(InterpolatedString.class.getName() + (isHighlighted() ? Expression.HIGHLIGHTED_GROUP_POSTFIX : ""));
-        ArrayList<FoldingDescriptor> descriptors = new ArrayList<>();
-        final String[] buf = {""};
-        if (!(first instanceof CharSequenceLiteral)) {
-            int startOffset = first.getTextRange().getStartOffset();
+    override fun buildFoldRegions(
+        element: PsiElement,
+        document: Document,
+        parent: Expression?,
+        overflowGroup: FoldingGroup?,
+        overflowLeftPlaceholder: String?,
+        overflowRightPlaceholder: String?
+    ): Array<FoldingDescriptor> {
+        val first = operands.first()
+        val last = operands.last()
+        val group = overflowGroup ?: FoldingGroup.newGroup(
+            InterpolatedString::class.java.name + if (isHighlighted()) Expression.HIGHLIGHTED_GROUP_POSTFIX else ""
+        )
+        val descriptors = mutableListOf<FoldingDescriptor>()
+        var suffix = ""
+        if (first !is CharSequenceLiteral) {
+            val startOffset = first.textRange.startOffset
             if (startOffset > 0) {
-                TextRange overflowLeftRange = TextRange.create(startOffset - 1, startOffset);
-                String overflowLeftText = document.getText(overflowLeftRange);
+                val overflowLeftRange = TextRange.create(startOffset - 1, startOffset)
+                val overflowLeftText = document.getText(overflowLeftRange)
                 if (OVERFLOW_CHARACTERS.contains(overflowLeftText)) {
-                    String overflowText = overflowLeftPlaceholder != null ? overflowLeftPlaceholder : overflowLeftText;
-                    if (first instanceof Variable) {
-                        descriptors.add(new FoldingDescriptor(element.getNode(), overflowLeftRange, group, overflowText + "\"$"));
+                    val overflowText = overflowLeftPlaceholder ?: overflowLeftText
+                    if (first is Variable) {
+                        descriptors += FoldingDescriptor(
+                            element.node,
+                            overflowLeftRange,
+                            group,
+                            overflowText + "\"${'$'}"
+                        )
                     } else {
-                        descriptors.add(new FoldingDescriptor(element.getNode(), overflowLeftRange, group, overflowText + "\"${"));
-                        buf[0] = "}";
+                        descriptors += FoldingDescriptor(
+                            element.node,
+                            overflowLeftRange,
+                            group,
+                            overflowText + "\"${'$'}{"
+                        )
+                        suffix = "}"
                     }
                 } else {
-                    String p;
-                    if (first instanceof Variable) {
-                        p = "\"$" + first.getElement().getText(); // TODO no-format: not sure
+                    val placeholder = if (first is Variable) {
+                        "\"${'$'}" + first.element.text
                     } else {
-                        p = "\"${" + first.getElement().getText() + "}"; // TODO no-format: not sure
+                        "\"${'$'}{" + first.element.text + "}"
                     }
-                    descriptors.add(new FoldingDescriptor(element.getNode(),
-                            TextRange.create(startOffset,
-                                    first.getTextRange().getEndOffset()), group, p));
+                    descriptors += FoldingDescriptor(
+                        element.node,
+                        TextRange.create(startOffset, first.textRange.endOffset),
+                        group,
+                        placeholder
+                    )
                 }
             }
-        } else if (first instanceof CharacterLiteral) {
-            descriptors.add(new FoldingDescriptor(element.getNode(), TextRange.create(first.getTextRange().getStartOffset(),
-                    first.getTextRange().getStartOffset() + 1), group, "\""));
+        } else if (first is CharacterLiteral) {
+            descriptors += FoldingDescriptor(
+                element.node,
+                TextRange.create(first.textRange.startOffset, first.textRange.startOffset + 1),
+                group,
+                "\""
+            )
         }
-        for (int i = 0; i < operands.size() - 1; i++) {
-            int s = operands.get(i) instanceof CharSequenceLiteral
-                    ? operands.get(i).getTextRange().getEndOffset() - 1
-                    : operands.get(i).getTextRange().getEndOffset();
-            int e = operands.get(i + 1) instanceof CharSequenceLiteral
-                    ? operands.get(i + 1).getTextRange().getStartOffset() + 1
-                    : operands.get(i + 1).getTextRange().getStartOffset();
-            StringBuilder sI = new StringBuilder().append(buf[0]);
-            if (!(operands.get(i + 1) instanceof CharSequenceLiteral)) {
-                sI.append('$');
-            }
-            if (!(operands.get(i + 1) instanceof Variable) && !(operands.get(i + 1) instanceof CharSequenceLiteral)) {
-                sI.append('{');
-                buf[0] = "}";
+        for (i in 0 until operands.size - 1) {
+            val start = if (operands[i] is CharSequenceLiteral) {
+                operands[i].textRange.endOffset - 1
             } else {
-                buf[0] = "";
+                operands[i].textRange.endOffset
             }
-            descriptors.add(new FoldingDescriptor(element.getNode(),
-                    TextRange.create(s, e), group, sI.toString()));
+            val end = if (operands[i + 1] is CharSequenceLiteral) {
+                operands[i + 1].textRange.startOffset + 1
+            } else {
+                operands[i + 1].textRange.startOffset
+            }
+            val placeholder = StringBuilder().append(suffix)
+            if (operands[i + 1] !is CharSequenceLiteral) {
+                placeholder.append('$')
+            }
+            if (operands[i + 1] !is Variable && operands[i + 1] !is CharSequenceLiteral) {
+                placeholder.append('{')
+                suffix = "}"
+            } else {
+                suffix = ""
+            }
+            descriptors += FoldingDescriptor(
+                element.node,
+                TextRange.create(start, end),
+                group,
+                placeholder.toString()
+            )
         }
-        if (!(last instanceof CharSequenceLiteral)
-                && document.getTextLength() > last.getTextRange().getEndOffset() + 1) {
-            TextRange overflowRightRange = TextRange.create(last.getTextRange().getEndOffset(), last.getTextRange().getEndOffset() + 1);
-            Expression beforeLast = operands.get(operands.size() - 2);
-            int s = beforeLast instanceof CharSequenceLiteral
-                    ? beforeLast.getTextRange().getEndOffset() - 1
-                    : beforeLast.getTextRange().getEndOffset();
-            int e = last.getTextRange().getStartOffset();
-            String overflowRightText = document.getText(overflowRightRange);
+        if (last !is CharSequenceLiteral && document.textLength > last.textRange.endOffset + 1) {
+            val overflowRightRange = TextRange.create(last.textRange.endOffset, last.textRange.endOffset + 1)
+            val beforeLast = operands[operands.size - 2]
+            val start = if (beforeLast is CharSequenceLiteral) {
+                beforeLast.textRange.endOffset - 1
+            } else {
+                beforeLast.textRange.endOffset
+            }
+            val end = last.textRange.startOffset
+            val overflowRightText = document.getText(overflowRightRange)
             if (OVERFLOW_CHARACTERS.contains(overflowRightText)) {
-                final String overflowText = overflowRightPlaceholder != null ? overflowRightPlaceholder : overflowRightText;
-                if (last instanceof Variable) {
-                    descriptors.add(new FoldingDescriptor(element.getNode(),
-                            TextRange.create(s, e), group, "$"));
-                    descriptors.add(new FoldingDescriptor(element.getNode(), overflowRightRange, group, "\"" + overflowText));
+                val overflowText = overflowRightPlaceholder ?: overflowRightText
+                if (last is Variable) {
+                    descriptors += FoldingDescriptor(
+                        element.node,
+                        TextRange.create(start, end),
+                        group,
+                        "$"
+                    )
+                    descriptors += FoldingDescriptor(
+                        element.node,
+                        overflowRightRange,
+                        group,
+                        "\"" + overflowText
+                    )
                 } else {
-                    descriptors.add(new FoldingDescriptor(element.getNode(),
-                            TextRange.create(s, e), group, "${"));
-                    descriptors.add(new FoldingDescriptor(element.getNode(), overflowRightRange, group, "}\"" + overflowText));
+                    descriptors += FoldingDescriptor(
+                        element.node,
+                        TextRange.create(start, end),
+                        group,
+                        "${'$'}{"
+                    )
+                    descriptors += FoldingDescriptor(
+                        element.node,
+                        overflowRightRange,
+                        group,
+                        "}\"" + overflowText
+                    )
                 }
             } else {
-                descriptors.add(new FoldingDescriptor(element.getNode(),
-                        TextRange.create(last.getTextRange().getStartOffset(),
-                                last.getTextRange().getEndOffset()), group,
-                        last.getElement().getText() + buf[0] + "\"" /* TODO no-format: not sure */));
+                descriptors += FoldingDescriptor(
+                    element.node,
+                    TextRange.create(last.textRange.startOffset, last.textRange.endOffset),
+                    group,
+                    last.element.text + suffix + "\""
+                )
             }
-        } else if (last instanceof CharacterLiteral) {
-            descriptors.add(new FoldingDescriptor(element.getNode(), TextRange.create(last.getTextRange().getEndOffset() - 1,
-                    last.getTextRange().getEndOffset()), group, "\""));
+        } else if (last is CharacterLiteral) {
+            descriptors += FoldingDescriptor(
+                element.node,
+                TextRange.create(last.textRange.endOffset - 1, last.textRange.endOffset),
+                group,
+                "\""
+            )
         }
-        for (Expression operand : operands) {
+        for (operand in operands) {
             if (operand.supportsFoldRegions(document, this)) {
-                Collections.addAll(descriptors, operand.buildFoldRegions(operand.getElement(), document, this));
+                descriptors += operand.buildFoldRegions(operand.element, document, this).toList()
             }
         }
-        return descriptors.toArray(EMPTY_ARRAY);
+        return descriptors.toTypedArray()
     }
 
-    @Override
-    public boolean isRightOverflow() {
-        return !(operands.get(operands.size() - 1) instanceof CharSequenceLiteral);
+    override fun isRightOverflow(): Boolean = operands.last() !is CharSequenceLiteral
+
+    override fun isLeftOverflow(): Boolean = operands.first() !is CharSequenceLiteral
+
+    override fun isHighlighted(): Boolean {
+        val literalCount = operands.count { it is CharSequenceLiteral }
+        return literalCount == operands.size && operands.first() is StringLiteral && operands.last() is StringLiteral
     }
 
-    @Override
-    public boolean isHighlighted() {
-        return operands.stream().filter(o -> o instanceof CharSequenceLiteral).count() == operands.size()
-                && operands.get(0) instanceof StringLiteral
-                && operands.get(operands.size() - 1) instanceof StringLiteral;
-    }
-
-    @Override
-    public boolean isLeftOverflow() {
-        return !(operands.get(0) instanceof CharSequenceLiteral);
+    companion object {
+        val OVERFLOW_CHARACTERS: Set<String> = setOf(".", ";", ",", ")", "(", " ")
     }
 }

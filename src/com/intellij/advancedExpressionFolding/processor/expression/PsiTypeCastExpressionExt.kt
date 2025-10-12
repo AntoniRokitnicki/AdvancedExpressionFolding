@@ -1,21 +1,15 @@
-package com.intellij.advancedExpressionFolding.processor.expression;
+package com.intellij.advancedExpressionFolding.processor.expression
 
-import com.intellij.advancedExpressionFolding.expression.operation.basic.TypeCast;
-import com.intellij.advancedExpressionFolding.processor.core.BaseExtension;
-import com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt;
-import com.intellij.openapi.editor.Document;
-import com.intellij.psi.PsiExpression;
-import com.intellij.psi.PsiTypeCastExpression;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import com.intellij.advancedExpressionFolding.expression.operation.basic.TypeCast
+import com.intellij.advancedExpressionFolding.processor.core.BaseExtension
+import com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt
+import com.intellij.openapi.editor.Document
+import com.intellij.psi.PsiTypeCastExpression
 
-public class PsiTypeCastExpressionExt extends BaseExtension {
+object PsiTypeCastExpressionExt : BaseExtension() {
 
-    @Nullable
-    public static TypeCast getTypeCastExpression(@NotNull PsiTypeCastExpression expression, @NotNull Document document) {
-        PsiExpression operand = expression.getOperand();
-        return operand != null
-                ? new TypeCast(expression, expression.getTextRange(), BuildExpressionExt.getAnyExpression(operand, document))
-                : null;
+    fun getTypeCastExpression(expression: PsiTypeCastExpression, document: Document): TypeCast? {
+        val operand = expression.operand ?: return null
+        return TypeCast(expression, expression.textRange, BuildExpressionExt.getAnyExpression(operand, document))
     }
 }

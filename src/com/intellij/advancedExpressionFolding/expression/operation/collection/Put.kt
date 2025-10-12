@@ -1,59 +1,60 @@
-package com.intellij.advancedExpressionFolding.expression.operation.collection;
+package com.intellij.advancedExpressionFolding.expression.operation.collection
 
-import com.intellij.advancedExpressionFolding.expression.Expression;
-import com.intellij.lang.folding.FoldingDescriptor;
-import com.intellij.openapi.editor.Document;
-import com.intellij.openapi.editor.FoldingGroup;
-import com.intellij.openapi.util.TextRange;
-import com.intellij.psi.PsiElement;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.lang.folding.FoldingDescriptor
+import com.intellij.openapi.editor.Document
+import com.intellij.openapi.editor.FoldingGroup
+import com.intellij.openapi.util.TextRange
+import com.intellij.psi.PsiElement
 
-import java.util.ArrayList;
-import java.util.Collections;
+class Put(
+    element: PsiElement,
+    textRange: TextRange,
+    val `object`: Expression,
+    val key: Expression,
+    val value: Expression
+) : Expression(element, textRange) {
 
-public class Put extends Expression {
-    private final @NotNull Expression object;
-    private final @NotNull Expression key;
-    private final @NotNull Expression value;
-
-    public Put(@NotNull PsiElement element, @NotNull TextRange textRange, @NotNull Expression object, @NotNull Expression key, @NotNull Expression value) {
-        super(element, textRange);
-        this.object = object;
-        this.key = key;
-        this.value = value;
+    override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean {
+        return `object`.textRange.endOffset < key.textRange.startOffset
     }
 
-    @Override
-    public boolean supportsFoldRegions(@NotNull Document document,
-                                       @Nullable Expression parent) {
-        return this.object.getTextRange().getEndOffset() < this.key.getTextRange().getStartOffset(); // TODO: Check how this is possible
-    }
-
-    @Override
-    public FoldingDescriptor[] buildFoldRegions(@NotNull PsiElement element, @NotNull Document document, @Nullable Expression parent) {
-        FoldingGroup group = FoldingGroup.newGroup(Put.class.getName());
-        ArrayList<FoldingDescriptor> descriptors = new ArrayList<>();
-        descriptors.add(new FoldingDescriptor(element.getNode(),
-                        TextRange.create(object.getTextRange().getEndOffset(),
-                                key.getTextRange().getStartOffset()), group, "["));
-        descriptors.add(new FoldingDescriptor(element.getNode(),
-                        TextRange.create(key.getTextRange().getEndOffset(),
-                                value.getTextRange().getStartOffset()), group, "] = "));
-        if (value.getTextRange().getEndOffset() < getTextRange().getEndOffset()) {
-            descriptors.add(new FoldingDescriptor(element.getNode(),
-                    TextRange.create(value.getTextRange().getEndOffset(),
-                            getTextRange().getEndOffset()), group, ""));
+    override fun buildFoldRegions(
+        element: PsiElement,
+        document: Document,
+        parent: Expression?
+    ): Array<FoldingDescriptor> {
+        val group = FoldingGroup.newGroup(Put::class.java.name)
+        val descriptors = mutableListOf<FoldingDescriptor>()
+        descriptors += FoldingDescriptor(
+            element.node,
+            TextRange.create(`object`.textRange.endOffset, key.textRange.startOffset),
+            group,
+            "["
+        )
+        descriptors += FoldingDescriptor(
+            element.node,
+            TextRange.create(key.textRange.endOffset, value.textRange.startOffset),
+            group,
+            "] = "
+        )
+        if (value.textRange.endOffset < textRange.endOffset) {
+            descriptors += FoldingDescriptor(
+                element.node,
+                TextRange.create(value.textRange.endOffset, textRange.endOffset),
+                group,
+                ""
+            )
         }
-        if (object.supportsFoldRegions(document, this)) {
-            Collections.addAll(descriptors, object.buildFoldRegions(object.getElement(), document, this));
+        if (`object`.supportsFoldRegions(document, this)) {
+            descriptors += `object`.buildFoldRegions(`object`.element, document, this).toList()
         }
         if (key.supportsFoldRegions(document, this)) {
-            Collections.addAll(descriptors, key.buildFoldRegions(key.getElement(), document, this));
+            descriptors += key.buildFoldRegions(key.element, document, this).toList()
         }
         if (value.supportsFoldRegions(document, this)) {
-            Collections.addAll(descriptors, value.buildFoldRegions(value.getElement(), document, this));
+            descriptors += value.buildFoldRegions(value.element, document, this).toList()
         }
-        return descriptors.toArray(EMPTY_ARRAY);
+        return descriptors.toTypedArray()
     }
 }

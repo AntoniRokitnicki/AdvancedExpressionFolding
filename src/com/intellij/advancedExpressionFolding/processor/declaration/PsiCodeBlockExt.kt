@@ -1,53 +1,65 @@
-package com.intellij.advancedExpressionFolding.processor.declaration;
+package com.intellij.advancedExpressionFolding.processor.declaration
 
-import com.intellij.advancedExpressionFolding.expression.Expression;
-import com.intellij.advancedExpressionFolding.expression.controlflow.ControlFlowMultiStatementCodeBlockExpression;
-import com.intellij.advancedExpressionFolding.expression.controlflow.ControlFlowSingleStatementCodeBlockExpression;
-import com.intellij.advancedExpressionFolding.expression.controlflow.IfExpression;
-import com.intellij.advancedExpressionFolding.processor.core.BaseExtension;
-import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings;
-import com.intellij.psi.*;
-import org.jetbrains.annotations.Nullable;
+import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.advancedExpressionFolding.expression.controlflow.ControlFlowMultiStatementCodeBlockExpression
+import com.intellij.advancedExpressionFolding.expression.controlflow.ControlFlowSingleStatementCodeBlockExpression
+import com.intellij.advancedExpressionFolding.expression.controlflow.IfExpression
+import com.intellij.advancedExpressionFolding.processor.core.BaseExtension
+import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
+import com.intellij.psi.PsiBlockStatement
+import com.intellij.psi.PsiCatchSection
+import com.intellij.psi.PsiCodeBlock
+import com.intellij.psi.PsiElement
+import com.intellij.psi.PsiIfStatement
+import com.intellij.psi.PsiLoopStatement
+import com.intellij.psi.PsiSwitchStatement
+import com.intellij.psi.PsiTryStatement
 
-public class PsiCodeBlockExt extends BaseExtension {
+object PsiCodeBlockExt : BaseExtension() {
 
-    @Nullable
-    public static Expression getCodeBlockExpression(PsiCodeBlock element) {
-        PsiElement parent = element.getParent();
-        AdvancedExpressionFoldingSettings settings = AdvancedExpressionFoldingSettings.getInstance();
-        if (isSupportedParent(parent, element)) {
-            if (element.getStatements().length == 1 || parent instanceof PsiSwitchStatement) {
-                if (shouldCollapseSingleStatement(element, parent, settings)) {
-                    return new ControlFlowSingleStatementCodeBlockExpression(element, element.getTextRange());
-                }
+    fun getCodeBlockExpression(element: PsiCodeBlock): Expression? {
+        val parent = element.parent
+        val settings = AdvancedExpressionFoldingSettings.getInstance()
+        if (!isSupportedParent(parent, element)) {
+            return null
+        }
+        return if (element.statements.size == 1 || parent is PsiSwitchStatement) {
+            if (shouldCollapseSingleStatement(element, parent, settings)) {
+                ControlFlowSingleStatementCodeBlockExpression(element, element.textRange)
             } else {
-                if (settings.getState().getControlFlowMultiStatementCodeBlockCollapse()
-                        && !element.isWritable()) {
-                    //noinspection deprecation
-                    return new ControlFlowMultiStatementCodeBlockExpression(element, element.getTextRange());
-                }
+                null
+            }
+        } else {
+            if (settings.state.controlFlowMultiStatementCodeBlockCollapse && !element.isWritable) {
+                @Suppress("DEPRECATION")
+                ControlFlowMultiStatementCodeBlockExpression(element, element.textRange)
+            } else {
+                null
             }
         }
-        return null;
     }
 
-    private static boolean isSupportedParent(PsiElement parent, PsiCodeBlock element) {
-        return parent instanceof PsiBlockStatement
-                && ((parent.getParent() instanceof PsiIfStatement
-                || parent.getParent() instanceof PsiLoopStatement)
-                && element.getRBrace() != null
-                && element.getLBrace() != null)
-                || parent instanceof PsiSwitchStatement
-                || parent instanceof PsiTryStatement
-                || parent instanceof PsiCatchSection;
+    private fun isSupportedParent(parent: PsiElement?, element: PsiCodeBlock): Boolean {
+        if (parent is PsiBlockStatement) {
+            val grandParent = parent.parent
+            val hasBraces = element.rBrace != null && element.lBrace != null
+            if ((grandParent is PsiIfStatement || grandParent is PsiLoopStatement) && hasBraces) {
+                return true
+            }
+        }
+        return parent is PsiSwitchStatement || parent is PsiTryStatement || parent is PsiCatchSection
     }
 
-    private static boolean shouldCollapseSingleStatement(
-            PsiCodeBlock element, PsiElement parent, AdvancedExpressionFoldingSettings settings) {
-        return settings.getState().getControlFlowSingleStatementCodeBlockCollapse()
-                && !element.isWritable()
-                && (!(parent.getParent() instanceof PsiIfStatement)
-                || !IfExpression.isAssertExpression(
-                settings.getState(), (PsiIfStatement) parent.getParent()));
+    private fun shouldCollapseSingleStatement(
+        element: PsiCodeBlock,
+        parent: PsiElement?,
+        settings: AdvancedExpressionFoldingSettings
+    ): Boolean {
+        if (!settings.state.controlFlowSingleStatementCodeBlockCollapse || element.isWritable) {
+            return false
+        }
+        val grandParent = parent?.parent
+        return grandParent !is PsiIfStatement ||
+            !IfExpression.isAssertExpression(settings.state, grandParent)
     }
 }

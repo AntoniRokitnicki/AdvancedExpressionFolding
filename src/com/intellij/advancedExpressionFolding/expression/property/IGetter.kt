@@ -1,21 +1,15 @@
-package com.intellij.advancedExpressionFolding.expression.property;
+package com.intellij.advancedExpressionFolding.expression.property
 
-import com.intellij.advancedExpressionFolding.expression.Expression;
-import com.intellij.lang.folding.FoldingDescriptor;
-import com.intellij.openapi.editor.Document;
-import com.intellij.openapi.util.TextRange;
-import com.intellij.psi.PsiElement;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.lang.folding.FoldingDescriptor
+import com.intellij.openapi.editor.Document
+import com.intellij.openapi.util.TextRange
+import com.intellij.psi.PsiElement
 
-public interface IGetter extends INameable  {
-    @NotNull
-    String getName();
+interface IGetter : INameable {
+    override val name: String
+    val getterTextRange: TextRange
+    val `object`: Expression?
 
-    @NotNull
-    TextRange getGetterTextRange();
-
-    Expression getObject();
-
-    FoldingDescriptor[] buildFoldRegions(@NotNull PsiElement element, @NotNull Document document, @Nullable Expression parent);
+    fun buildFoldRegions(element: PsiElement, document: Document, parent: Expression?): Array<FoldingDescriptor>
 }

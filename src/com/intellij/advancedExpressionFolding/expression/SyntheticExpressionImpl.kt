@@ -1,59 +1,40 @@
-package com.intellij.advancedExpressionFolding.expression;
+package com.intellij.advancedExpressionFolding.expression
 
-import com.intellij.lang.folding.FoldingDescriptor;
-import com.intellij.openapi.editor.Document;
-import com.intellij.openapi.util.TextRange;
-import com.intellij.psi.PsiElement;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import com.intellij.lang.folding.FoldingDescriptor
+import com.intellij.openapi.editor.Document
+import com.intellij.openapi.util.TextRange
+import com.intellij.psi.PsiElement
 
-import java.util.ArrayList;
-import java.util.Collections;
+class SyntheticExpressionImpl(
+    element: PsiElement,
+    textRange: TextRange,
+    val text: String,
+    private val children: List<Expression>
+) : Expression(element, textRange) {
 
-public class SyntheticExpressionImpl extends Expression {
-    private final String text;
-    private final ArrayList<Expression> children;
-
-    public SyntheticExpressionImpl(PsiElement element, TextRange textRange, String text,
-                                   ArrayList<Expression> children) {
-        super(element, textRange);
-        this.text = text;
-        this.children = children;
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is SyntheticExpressionImpl) return false
+        return text == other.text
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    override fun hashCode(): Int = text.hashCode()
 
-        SyntheticExpressionImpl that = (SyntheticExpressionImpl) o;
-
-        return text.equals(that.text);
+    override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean {
+        return children.isNotEmpty() && children.any { it.supportsFoldRegions(document, this) }
     }
 
-    @Override
-    public int hashCode() {
-        return text.hashCode();
-    }
-
-    @Override
-    public boolean supportsFoldRegions(@NotNull Document document,
-                                       @Nullable Expression parent) {
-        return children.size() > 0 && children.stream().anyMatch(e -> e.supportsFoldRegions(document, this));
-    }
-
-    @Override
-    public FoldingDescriptor[] buildFoldRegions(@NotNull PsiElement element, @NotNull Document document, @Nullable Expression parent) {
-        ArrayList<FoldingDescriptor> descriptors = new ArrayList<>();
-        for (Expression child : children) {
+    override fun buildFoldRegions(
+        element: PsiElement,
+        document: Document,
+        parent: Expression?
+    ): Array<FoldingDescriptor> {
+        val descriptors = mutableListOf<FoldingDescriptor>()
+        for (child in children) {
             if (child.supportsFoldRegions(document, this)) {
-                Collections.addAll(descriptors, child.buildFoldRegions(child.getElement(), document, this));
+                descriptors += child.buildFoldRegions(child.element, document, this).toList()
             }
         }
-        return descriptors.toArray(EMPTY_ARRAY);
-    }
-
-    public String getText() {
-        return text;
+        return descriptors.toTypedArray()
     }
 }

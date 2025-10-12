@@ -1,121 +1,127 @@
-package com.intellij.advancedExpressionFolding.processor.expression;
+package com.intellij.advancedExpressionFolding.processor.expression
 
-import com.intellij.advancedExpressionFolding.expression.Expression;
-import com.intellij.advancedExpressionFolding.expression.Operation;
-import com.intellij.advancedExpressionFolding.expression.math.basic.*;
-import com.intellij.advancedExpressionFolding.expression.math.bitwise.*;
-import com.intellij.advancedExpressionFolding.expression.operation.basic.Variable;
-import com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt;
-import com.intellij.advancedExpressionFolding.processor.language.FieldShiftExt;
-import com.intellij.openapi.editor.Document;
-import com.intellij.openapi.util.TextRange;
-import com.intellij.psi.PsiAssignmentExpression;
-import com.intellij.psi.PsiElement;
-import com.intellij.psi.PsiReference;
-import com.intellij.psi.PsiVariable;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.advancedExpressionFolding.expression.Operation
+import com.intellij.advancedExpressionFolding.expression.math.basic.Add
+import com.intellij.advancedExpressionFolding.expression.math.basic.AddAssign
+import com.intellij.advancedExpressionFolding.expression.math.basic.Divide
+import com.intellij.advancedExpressionFolding.expression.math.basic.DivideAssign
+import com.intellij.advancedExpressionFolding.expression.math.basic.Multiply
+import com.intellij.advancedExpressionFolding.expression.math.basic.MultiplyAssign
+import com.intellij.advancedExpressionFolding.expression.math.basic.Subtract
+import com.intellij.advancedExpressionFolding.expression.math.basic.SubtractAssign
+import com.intellij.advancedExpressionFolding.expression.math.bitwise.And
+import com.intellij.advancedExpressionFolding.expression.math.bitwise.AndAssign
+import com.intellij.advancedExpressionFolding.expression.math.bitwise.Or
+import com.intellij.advancedExpressionFolding.expression.math.bitwise.ShiftLeft
+import com.intellij.advancedExpressionFolding.expression.math.bitwise.ShiftLeftAssign
+import com.intellij.advancedExpressionFolding.expression.math.bitwise.ShiftRight
+import com.intellij.advancedExpressionFolding.expression.math.bitwise.ShiftRightAssign
+import com.intellij.advancedExpressionFolding.expression.math.bitwise.Xor
+import com.intellij.advancedExpressionFolding.expression.math.bitwise.Remainder
+import com.intellij.advancedExpressionFolding.expression.math.bitwise.RemainderAssign
+import com.intellij.advancedExpressionFolding.expression.operation.basic.Variable
+import com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt
+import com.intellij.advancedExpressionFolding.processor.language.FieldShiftExt
+import com.intellij.openapi.editor.Document
+import com.intellij.openapi.util.TextRange
+import com.intellij.psi.PsiAssignmentExpression
+import com.intellij.psi.PsiElement
+import com.intellij.psi.PsiReference
+import com.intellij.psi.PsiVariable
+import java.util.Objects
 
-import java.util.List;
-import java.util.Objects;
+object AssignmentExpressionExt {
 
-import static java.util.Arrays.asList;
-
-public class AssignmentExpressionExt {
-    @Nullable
-    public static Expression getAssignmentExpression(PsiAssignmentExpression element, @Nullable Document document) {
-        Variable leftVariable = getVariableExpression(element.getLExpression());
-        if (leftVariable != null && element.getRExpression() != null) {
-            @NotNull Expression leftExpression = BuildExpressionExt.getAnyExpression(element.getRExpression(), document);
-            if (leftExpression instanceof Operation operation) {
-                if (operation.getOperands().size() >= 2 && operation.getOperands().get(0).equals(leftVariable)) {
-                    Expression firstOperand = first(operation);
-                    if (operation instanceof Add) {
-                        return new AddAssign(element, element.getTextRange(), asList(leftVariable, atLeastTwoOperands(operation) ?
-                                new Add(element, getTextRange(operation), getOperands(operation)) : firstOperand));
-                    } else if (operation instanceof Subtract) {
-                        return new SubtractAssign(element, element.getTextRange(), asList(leftVariable, atLeastTwoOperands(operation) ?
-                                new Add(element, getTextRange(operation), getOperands(operation)) : firstOperand));
-                    } else if (operation instanceof And) {
-                        return new AndAssign(element, element.getTextRange(), asList(leftVariable, atLeastTwoOperands(operation) ?
-                                new And(element, getTextRange(operation), getOperands(operation)) : firstOperand));
-                    } else if (operation instanceof Or) {
-                        return new AndAssign(element, element.getTextRange(), asList(leftVariable, atLeastTwoOperands(operation) ?
-                                new Or(element, getTextRange(operation), getOperands(operation)) : firstOperand));
-                    } else if (operation instanceof Xor) {
-                        return new AndAssign(element, element.getTextRange(), asList(leftVariable, atLeastTwoOperands(operation) ?
-                                new Xor(element, getTextRange(operation), getOperands(operation)) : firstOperand));
-                    } else if (operation instanceof Multiply) {
-                        return new MultiplyAssign(element, element.getTextRange(), asList(leftVariable, atLeastTwoOperands(operation) ?
-                                new Multiply(element, getTextRange(operation), getOperands(operation)) : firstOperand));
-                    } else if (operation instanceof Divide) {
-                        return new DivideAssign(element, element.getTextRange(), asList(leftVariable, atLeastTwoOperands(operation) ?
-                                new Multiply(element, getTextRange(operation), getOperands(operation)) : firstOperand));
-                    } else if (operation instanceof ShiftRight && twoOperands(operation)) {
-                        return new ShiftRightAssign(element, element.getTextRange(), asList(leftVariable, firstOperand));
-                    } else if (operation instanceof ShiftLeft && twoOperands(operation)) {
-                        return new ShiftLeftAssign(element, element.getTextRange(), asList(leftVariable, firstOperand));
-                    } else if (operation instanceof Remainder && twoOperands(operation)) {
-                        return new RemainderAssign(element, element.getTextRange(), asList(leftVariable, firstOperand));
+    fun getAssignmentExpression(element: PsiAssignmentExpression, document: Document?): Expression? {
+        val leftVariable = getVariableExpression(element.lExpression)
+        val rightExpression = element.rExpression ?: return FieldShiftExt.createExpression(element, document)
+        if (leftVariable != null) {
+            val leftExpression = BuildExpressionExt.getAnyExpression(rightExpression, document)
+            if (leftExpression is Operation) {
+                val operands = leftExpression.operands
+                if (operands.size >= 2 && operands[0] == leftVariable) {
+                    val firstOperand = first(leftExpression)
+                    return when (leftExpression) {
+                        is Add -> AddAssign(
+                            element,
+                            element.textRange,
+                            listOf(leftVariable, if (atLeastTwoOperands(leftExpression)) Add(element, getTextRange(leftExpression), getOperands(leftExpression)) else firstOperand)
+                        )
+                        is Subtract -> SubtractAssign(
+                            element,
+                            element.textRange,
+                            listOf(leftVariable, if (atLeastTwoOperands(leftExpression)) Add(element, getTextRange(leftExpression), getOperands(leftExpression)) else firstOperand)
+                        )
+                        is And -> AndAssign(
+                            element,
+                            element.textRange,
+                            listOf(leftVariable, if (atLeastTwoOperands(leftExpression)) And(element, getTextRange(leftExpression), getOperands(leftExpression)) else firstOperand)
+                        )
+                        is Or -> AndAssign(
+                            element,
+                            element.textRange,
+                            listOf(leftVariable, if (atLeastTwoOperands(leftExpression)) Or(element, getTextRange(leftExpression), getOperands(leftExpression)) else firstOperand)
+                        )
+                        is Xor -> AndAssign(
+                            element,
+                            element.textRange,
+                            listOf(leftVariable, if (atLeastTwoOperands(leftExpression)) Xor(element, getTextRange(leftExpression), getOperands(leftExpression)) else firstOperand)
+                        )
+                        is Multiply -> MultiplyAssign(
+                            element,
+                            element.textRange,
+                            listOf(leftVariable, if (atLeastTwoOperands(leftExpression)) Multiply(element, getTextRange(leftExpression), getOperands(leftExpression)) else firstOperand)
+                        )
+                        is Divide -> DivideAssign(
+                            element,
+                            element.textRange,
+                            listOf(leftVariable, if (atLeastTwoOperands(leftExpression)) Multiply(element, getTextRange(leftExpression), getOperands(leftExpression)) else firstOperand)
+                        )
+                        is ShiftRight -> if (twoOperands(leftExpression)) {
+                            ShiftRightAssign(element, element.textRange, listOf(leftVariable, firstOperand))
+                        } else {
+                            null
+                        }
+                        is ShiftLeft -> if (twoOperands(leftExpression)) {
+                            ShiftLeftAssign(element, element.textRange, listOf(leftVariable, firstOperand))
+                        } else {
+                            null
+                        }
+                        is Remainder -> if (twoOperands(leftExpression)) {
+                            RemainderAssign(element, element.textRange, listOf(leftVariable, firstOperand))
+                        } else {
+                            null
+                        }
+                        else -> null
                     }
                 }
             }
         }
-        Expression expression = FieldShiftExt.createExpression(element, document);
-        if (expression != null) {
-            return expression;
+        FieldShiftExt.createExpression(element, document)?.let { return it }
+        return null
+    }
+
+    fun getVariableExpression(element: PsiElement, copy: Boolean = false): Variable? {
+        val reference: PsiReference? = element.reference
+        val resolved = reference?.resolve()
+        if (resolved is PsiVariable && resolved.name != null && Objects.equals(resolved.name, element.text)) {
+            val name = resolved.name ?: return null
+            return Variable(element, element.textRange, null, name, copy)
         }
-
-
-        return null;
+        return null
     }
 
-    @Nullable
-    public static Variable getVariableExpression(PsiElement element, boolean copy) {
-        PsiReference reference = element.getReference();
-        if (reference != null) {
-            PsiElement e = reference.resolve();
-            if (e instanceof PsiVariable variable && variable.getName() != null
-                    && Objects.equals(variable.getName(), element.getText())) {
-                String name = variable.getName();
-                if (name != null) {
-                    // TODO: Please make sure this fix works
-                    /*if (supportedClasses.contains(eraseGenerics(variable.getType().getCanonicalText()))) {
-                        return new Variable(element, element.getTextRange(), null, name, copy);
-                    } else if (supportedPrimitiveTypes
-                            .contains(eraseGenerics(variable.getType().getCanonicalText()))) {*/
-                    return new Variable(element, element.getTextRange(), null, name, copy);
-                    /*}*/
-                }
-            }
-        }
-        return null;
-    }
+    private fun twoOperands(operation: Operation): Boolean = operation.operands.size == 2
 
-    @Nullable
-    static Variable getVariableExpression(PsiElement element) {
-        return getVariableExpression(element, false);
-    }
+    private fun atLeastTwoOperands(operation: Operation): Boolean = operation.operands.size > 2
 
-    private static boolean twoOperands(Operation operation) {
-        return operation.getOperands().size() == 2;
-    }
+    private fun first(operation: Operation): Expression = operation.operands[1]
 
-    private static boolean atLeastTwoOperands(Operation operation) {
-        return operation.getOperands().size() > 2;
-    }
+    private fun getOperands(operation: Operation): List<Expression> = operation.operands.subList(1, operation.operands.size)
 
-    private static Expression first(Operation operation) {
-        return operation.getOperands().get(1);
+    private fun getTextRange(operation: Operation): TextRange {
+        val operands = operation.operands
+        return TextRange.create(first(operation).textRange.startOffset, operands.last().textRange.endOffset)
     }
-
-    private static @NotNull List<Expression> getOperands(Operation operation) {
-        return operation.getOperands().subList(1, operation.getOperands().size());
-    }
-
-    private static @NotNull TextRange getTextRange(Operation operation) {
-        return TextRange.create(first(operation).getTextRange().getStartOffset(),
-                operation.getOperands().get(operation.getOperands().size() - 1).getTextRange().getEndOffset());
-    }
-
 }

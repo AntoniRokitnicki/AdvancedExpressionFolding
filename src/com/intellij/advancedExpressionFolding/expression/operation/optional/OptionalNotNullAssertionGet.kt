@@ -1,47 +1,39 @@
-package com.intellij.advancedExpressionFolding.expression.operation.optional;
+package com.intellij.advancedExpressionFolding.expression.operation.optional
 
-import com.intellij.advancedExpressionFolding.expression.Expression;
-import com.intellij.advancedExpressionFolding.expression.property.Getter;
-import com.intellij.lang.folding.FoldingDescriptor;
-import com.intellij.openapi.editor.Document;
-import com.intellij.openapi.editor.FoldingGroup;
-import com.intellij.openapi.util.TextRange;
-import com.intellij.psi.PsiElement;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.advancedExpressionFolding.expression.property.Getter
+import com.intellij.lang.folding.FoldingDescriptor
+import com.intellij.openapi.editor.Document
+import com.intellij.openapi.editor.FoldingGroup
+import com.intellij.openapi.util.TextRange
+import com.intellij.psi.PsiElement
 
-import java.util.ArrayList;
-import java.util.Collections;
+class OptionalNotNullAssertionGet(
+    element: PsiElement,
+    textRange: TextRange,
+    private val `object`: Expression?
+) : Expression(element, TextRange.create(textRange.startOffset - 1, textRange.endOffset + 2)) {
 
-public class OptionalNotNullAssertionGet extends Expression {
-    private @Nullable Expression object;
-
-    public OptionalNotNullAssertionGet(@NotNull PsiElement element, @NotNull TextRange textRange, @Nullable Expression object) {
-        super(element, TextRange.create(textRange.getStartOffset()-1,
-                textRange.getEndOffset()+2));
-        this.object = object;
-    }
-
-    @Override
-    public FoldingDescriptor[] buildFoldRegions(@NotNull PsiElement element, @NotNull Document document, @Nullable Expression parent) {
-        ArrayList<FoldingDescriptor> descriptors = new ArrayList<>();
-        descriptors.add(
-                new FoldingDescriptor(element.getNode(), textRange,
-                        FoldingGroup.newGroup(Getter.class.getName()), "!!"));
-        if (object != null && object.supportsFoldRegions(document, this)) {
-            Collections.addAll(descriptors, object.buildFoldRegions(object.getElement(), document, this));
+    override fun buildFoldRegions(
+        element: PsiElement,
+        document: Document,
+        parent: Expression?
+    ): Array<FoldingDescriptor> {
+        val descriptors = mutableListOf<FoldingDescriptor>()
+        descriptors += FoldingDescriptor(
+            element.node,
+            textRange,
+            FoldingGroup.newGroup(Getter::class.java.name),
+            "!!"
+        )
+        val obj = `object`
+        if (obj != null && obj.supportsFoldRegions(document, this)) {
+            descriptors += obj.buildFoldRegions(obj.element, document, this).toList()
         }
-        return descriptors.toArray(EMPTY_ARRAY);
+        return descriptors.toTypedArray()
     }
 
-    @Override
-    public boolean isCollapsedByDefault() {
-        return true;
-    }
+    override fun isCollapsedByDefault(): Boolean = true
 
-    @Override
-    public boolean supportsFoldRegions(@NotNull Document document,
-                                       @Nullable Expression parent) {
-        return true;
-    }
+    override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean = true
 }

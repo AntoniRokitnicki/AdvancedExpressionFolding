@@ -1,74 +1,78 @@
-package com.intellij.advancedExpressionFolding.expression.operation.collection;
+package com.intellij.advancedExpressionFolding.expression.operation.collection
 
-import com.intellij.advancedExpressionFolding.expression.Expression;
-import com.intellij.advancedExpressionFolding.expression.Function;
-import com.intellij.advancedExpressionFolding.expression.literal.NumberLiteral;
-import com.intellij.lang.folding.FoldingDescriptor;
-import com.intellij.openapi.editor.Document;
-import com.intellij.openapi.editor.FoldingGroup;
-import com.intellij.openapi.util.TextRange;
-import com.intellij.psi.PsiElement;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.advancedExpressionFolding.expression.Function
+import com.intellij.advancedExpressionFolding.expression.literal.NumberLiteral
+import com.intellij.lang.folding.FoldingDescriptor
+import com.intellij.openapi.editor.Document
+import com.intellij.openapi.editor.FoldingGroup
+import com.intellij.openapi.util.TextRange
+import com.intellij.psi.PsiElement
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+class Slice(
+    element: PsiElement,
+    textRange: TextRange,
+    operands: List<Expression>
+) : Function(element, textRange, "slice", operands) {
 
-public class Slice extends Function {
-    public Slice(@NotNull PsiElement element, @NotNull TextRange textRange, @NotNull List<Expression> operands) {
-        super(element, textRange, "slice", operands);
-    }
+    override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean = true
 
-    @Override
-    public boolean supportsFoldRegions(@NotNull Document document,
-                                       @Nullable Expression parent) {
-        return true;
-    }
-
-    @Override
-    public FoldingDescriptor[] buildFoldRegions(@NotNull PsiElement element, @NotNull Document document, @Nullable Expression parent) {
-        FoldingGroup group = FoldingGroup.newGroup(Slice.class.getName());
-        ArrayList<FoldingDescriptor> descriptors = new ArrayList<>();
-        descriptors.add(new FoldingDescriptor(element.getNode(),
-                TextRange.create(operands.get(0).getTextRange().getEndOffset(),
-                        operands.get(1) instanceof NumberLiteral
-                                && ((NumberLiteral) operands.get(1)).getNumber().intValue() == 0
-                                    ? operands.get(1).getTextRange().getEndOffset()
-                                    : operands.get(1).getTextRange().getStartOffset()
-                ), group, "["));
-        if (operands.get(1) instanceof NumberLiteral
-                && ((NumberLiteral) operands.get(1)).getNumber().intValue() < 0
-                && document.getText(TextRange.create(operands.get(1).getTextRange().getStartOffset() + 1,
-                operands.get(1).getTextRange().getStartOffset() + 2)).equals(" ")) {
-            descriptors.add(new FoldingDescriptor(element.getNode(),
-                    TextRange.create(operands.get(1).getTextRange().getStartOffset() + 1,
-                            operands.get(1).getTextRange().getStartOffset() + 2), group, ""));
+    override fun buildFoldRegions(
+        element: PsiElement,
+        document: Document,
+        parent: Expression?
+    ): Array<FoldingDescriptor> {
+        val group = FoldingGroup.newGroup(Slice::class.java.name)
+        val descriptors = mutableListOf<FoldingDescriptor>()
+        val startOperand = operands[1]
+        val startRangeEnd = if (startOperand is NumberLiteral && startOperand.number.toInt() == 0) {
+            startOperand.textRange.endOffset
+        } else {
+            startOperand.textRange.startOffset
         }
-        if (operands.size() > 2) {
-            descriptors.add(new FoldingDescriptor(element.getNode(),
-                    TextRange.create(operands.get(1).getTextRange().getEndOffset(),
-                            operands.get(2).getTextRange().getStartOffset()), group, ":"));
-            if (operands.get(2) instanceof NumberLiteral
-                    && ((NumberLiteral) operands.get(2)).getNumber().intValue() < 0
-                    && document.getText(TextRange.create(operands.get(2).getTextRange().getStartOffset() + 1,
-                    operands.get(2).getTextRange().getStartOffset() + 2)).equals(" ")) {
-                descriptors.add(new FoldingDescriptor(element.getNode(),
-                        TextRange.create(operands.get(2).getTextRange().getStartOffset() + 1,
-                                operands.get(2).getTextRange().getStartOffset() + 2), group, ""));
+        descriptors += FoldingDescriptor(
+            element.node,
+            TextRange.create(operands[0].textRange.endOffset, startRangeEnd),
+            group,
+            "["
+        )
+        if (startOperand is NumberLiteral && startOperand.number.toInt() < 0) {
+            val whitespaceRange = TextRange.create(startOperand.textRange.startOffset + 1, startOperand.textRange.startOffset + 2)
+            if (document.getText(whitespaceRange) == " ") {
+                descriptors += FoldingDescriptor(element.node, whitespaceRange, group, "")
             }
         }
-        descriptors.add(new FoldingDescriptor(element.getNode(),
-                TextRange.create(
-                        operands.size() > 2
-                        ? getTextRange().getEndOffset() - 1
-                        : operands.get(1).getTextRange().getEndOffset(), getTextRange().getEndOffset()), group,
-                operands.size() == 2 ? ":]" : "]"));
-        for (Expression operand : operands) {
+        if (operands.size > 2) {
+            descriptors += FoldingDescriptor(
+                element.node,
+                TextRange.create(startOperand.textRange.endOffset, operands[2].textRange.startOffset),
+                group,
+                ":"
+            )
+            val endOperand = operands[2]
+            if (endOperand is NumberLiteral && endOperand.number.toInt() < 0) {
+                val whitespaceRange = TextRange.create(endOperand.textRange.startOffset + 1, endOperand.textRange.startOffset + 2)
+                if (document.getText(whitespaceRange) == " ") {
+                    descriptors += FoldingDescriptor(element.node, whitespaceRange, group, "")
+                }
+            }
+        }
+        val closingStart = if (operands.size > 2) {
+            textRange.endOffset - 1
+        } else {
+            startOperand.textRange.endOffset
+        }
+        descriptors += FoldingDescriptor(
+            element.node,
+            TextRange.create(closingStart, textRange.endOffset),
+            group,
+            if (operands.size == 2) ":]" else "]"
+        )
+        for (operand in operands) {
             if (operand.supportsFoldRegions(document, this)) {
-                Collections.addAll(descriptors, operand.buildFoldRegions(operand.getElement(), document, this));
+                descriptors += operand.buildFoldRegions(operand.element, document, this).toList()
             }
         }
-        return descriptors.toArray(EMPTY_ARRAY);
+        return descriptors.toTypedArray()
     }
 }

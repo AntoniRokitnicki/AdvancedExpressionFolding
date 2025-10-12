@@ -1,146 +1,112 @@
-package com.intellij.advancedExpressionFolding.expression.operation.collection;
+package com.intellij.advancedExpressionFolding.expression.operation.collection
 
-import com.intellij.advancedExpressionFolding.expression.Expression;
-import com.intellij.lang.folding.FoldingDescriptor;
-import com.intellij.openapi.editor.Document;
-import com.intellij.openapi.editor.FoldingGroup;
-import com.intellij.openapi.util.TextRange;
-import com.intellij.psi.PsiElement;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.lang.folding.FoldingDescriptor
+import com.intellij.openapi.editor.Document
+import com.intellij.openapi.editor.FoldingGroup
+import com.intellij.openapi.util.TextRange
+import com.intellij.psi.PsiElement
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+open class Range(
+    element: PsiElement,
+    textRange: TextRange,
+    val operand: Expression,
+    val start: Expression,
+    private val startInclusive: Boolean,
+    val end: Expression,
+    private val endInclusive: Boolean
+) : Expression(element, textRange) {
 
-public class Range extends Expression {
-    public static final String RANGE_COMMA_DELIMITER = ", ";
-    public static final String RANGE_IN_SEPARATOR = "in";
+    var separator: String = RANGE_IN_SEPARATOR
 
-    private @NotNull
-    Expression operand;
-    private @NotNull
-    Expression startRange;
-    private @NotNull
-    Expression endRange;
-    protected String separator;
-    private boolean startInclusive;
-    private boolean endInclusive;
+    fun isStartInclusive(): Boolean = startInclusive
 
-    public Range(@NotNull PsiElement element, @NotNull TextRange textRange, @NotNull Expression operand, @NotNull Expression startRange, boolean startInclusive,
-                 @NotNull Expression endRange, boolean endInclusive) {
-        super(element, textRange);
-        this.operand = operand;
-        this.startRange = startRange;
-        this.startInclusive = startInclusive;
-        this.endRange = endRange;
-        this.endInclusive = endInclusive;
-        this.separator = RANGE_IN_SEPARATOR;
+    fun isEndInclusive(): Boolean = endInclusive
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as Range
+
+        return startInclusive == other.startInclusive &&
+            endInclusive == other.endInclusive &&
+            operand == other.operand &&
+            start == other.start &&
+            end == other.end &&
+            separator == other.separator
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Range that = (Range) o;
-
-        if (startInclusive != that.startInclusive) return false;
-        if (endInclusive != that.endInclusive) return false;
-        if (!operand.equals(that.operand)) return false;
-        if (!startRange.equals(that.startRange)) return false;
-        if (!endRange.equals(that.endRange)) return false;
-        return separator.equals(that.separator);
+    override fun hashCode(): Int {
+        var result = operand.hashCode()
+        result = 31 * result + start.hashCode()
+        result = 31 * result + end.hashCode()
+        result = 31 * result + separator.hashCode()
+        result = 31 * result + if (startInclusive) 1 else 0
+        result = 31 * result + if (endInclusive) 1 else 0
+        return result
     }
 
-    @Override
-    public int hashCode() {
-        int result = operand.hashCode();
-        result = 31 * result + startRange.hashCode();
-        result = 31 * result + endRange.hashCode();
-        result = 31 * result + separator.hashCode();
-        result = 31 * result + (startInclusive ? 1 : 0);
-        result = 31 * result + (endInclusive ? 1 : 0);
-        return result;
+    override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean {
+        val startRange = start.textRange
+        val endRange = end.textRange
+        val endOffset = endRange.endOffset
+        val withinBounds = startRange.startOffset < endRange.startOffset &&
+            (endOffset < textRange.endOffset || SUPPORTED_OVERLAPPED_SYMBOLS.contains(
+                document.getText(TextRange.create(endOffset, endOffset + 1))
+            ))
+        return withinBounds
     }
 
-    public boolean isStartInclusive() {
-        return startInclusive;
-    }
-
-    public boolean isEndInclusive() {
-        return endInclusive;
-    }
-
-    @NotNull
-    public Expression getStart() {
-        return startRange;
-    }
-
-    @NotNull
-    public Expression getOperand() {
-        return operand;
-    }
-
-    @NotNull
-    public Expression getEnd() {
-        return endRange;
-    }
-
-    private static final Set<String> SUPPORTED_OVERLAPPED_SYMBOLS = new HashSet<>() {
-        {
-            add(" ");
-            add("&");
-            add("|");
-            add("(");
-            add(")");
+    override fun buildFoldRegions(
+        element: PsiElement,
+        document: Document,
+        parent: Expression?
+    ): Array<FoldingDescriptor> {
+        val group = FoldingGroup.newGroup(javaClass.name)
+        val prefix = buildString {
+            append(' ')
+            append(separator)
+            append(' ')
+            append(if (isStartInclusive()) '[' else '(')
         }
-    };
-
-    @Override
-    public boolean supportsFoldRegions(@NotNull Document document,
-                                       @Nullable Expression parent) {
-        return getStart().getTextRange().getStartOffset() < getEnd().getTextRange().getStartOffset()
-                && (getEnd().getTextRange().getEndOffset() < getTextRange().getEndOffset()
-                || SUPPORTED_OVERLAPPED_SYMBOLS.contains(document.getText(TextRange.create(getEnd().getTextRange().getEndOffset(), getEnd().getTextRange().getEndOffset() + 1))));
+        val suffix = if (isEndInclusive()) "]" else ")"
+        val descriptors = mutableListOf<FoldingDescriptor>()
+        descriptors += FoldingDescriptor(
+            element.node,
+            TextRange.create(operand.textRange.endOffset, start.textRange.startOffset),
+            group,
+            prefix
+        )
+        descriptors += FoldingDescriptor(
+            element.node,
+            TextRange.create(start.textRange.endOffset, end.textRange.startOffset),
+            group,
+            RANGE_COMMA_DELIMITER
+        )
+        val closingRange = if (textRange.endOffset > end.textRange.endOffset) {
+            TextRange.create(end.textRange.endOffset, textRange.endOffset)
+        } else {
+            TextRange.create(end.textRange.endOffset, end.textRange.endOffset + 1)
+        }
+        val closingPlaceholder = if (textRange.endOffset > end.textRange.endOffset) {
+            suffix
+        } else {
+            suffix + document.getText(TextRange.create(end.textRange.endOffset, end.textRange.endOffset + 1))
+        }
+        descriptors += FoldingDescriptor(element.node, closingRange, group, closingPlaceholder)
+        if (start.supportsFoldRegions(document, this)) {
+            descriptors += start.buildFoldRegions(start.element, document, this).toList()
+        }
+        if (end.supportsFoldRegions(document, this)) {
+            descriptors += end.buildFoldRegions(end.element, document, this).toList()
+        }
+        return descriptors.toTypedArray()
     }
 
-    @Override
-    public FoldingDescriptor[] buildFoldRegions(@NotNull PsiElement element, @NotNull Document document, @Nullable Expression parent) {
-        FoldingGroup group = FoldingGroup.newGroup(getClass().getName());
-        String p1 = new StringBuilder(separator.length() + 3)
-            .append(' ')
-            .append(separator)
-            .append(' ')
-            .append(isStartInclusive() ? '[' : '(')
-            .toString();
-        String p2 = isEndInclusive() ? "]" : ")";
-        ArrayList<FoldingDescriptor> descriptors = new ArrayList<>();
-        descriptors.add(new FoldingDescriptor(element.getNode(),
-                TextRange.create(getOperand().getTextRange().getEndOffset(),
-                        getStart().getTextRange().getStartOffset()),
-                group, p1));
-        descriptors.add(new FoldingDescriptor(element.getNode(),
-                TextRange.create(getStart().getTextRange().getEndOffset(),
-                        getEnd().getTextRange().getStartOffset()),
-                group, RANGE_COMMA_DELIMITER));
-        descriptors.add(getTextRange().getEndOffset() > getEnd().getTextRange().getEndOffset() ?
-                new FoldingDescriptor(element.getNode(),
-                        TextRange.create(getEnd().getTextRange().getEndOffset(),
-                                getTextRange().getEndOffset()),
-                        group, p2) : new FoldingDescriptor(element.getNode(),
-                TextRange.create(getEnd().getTextRange().getEndOffset(),
-                        getEnd().getTextRange().getEndOffset() + 1),
-                group, p2 + document.getText(TextRange
-                .create(getEnd().getTextRange().getEndOffset(), getEnd().getTextRange().getEndOffset() + 1)))
-        );
-        if (startRange.supportsFoldRegions(document, this)) {
-            Collections.addAll(descriptors, startRange.buildFoldRegions(startRange.getElement(), document, this));
-        }
-        if (endRange.supportsFoldRegions(document, this)) {
-            Collections.addAll(descriptors, endRange.buildFoldRegions(endRange.getElement(), document, this));
-        }
-        return descriptors.toArray(EMPTY_ARRAY);
+    companion object {
+        const val RANGE_COMMA_DELIMITER: String = ", "
+        const val RANGE_IN_SEPARATOR: String = "in"
+        private val SUPPORTED_OVERLAPPED_SYMBOLS: Set<String> = setOf(" ", "&", "|", "(", ")")
     }
 }
