@@ -1,25 +1,17 @@
-package com.intellij.advancedExpressionFolding.expression.math.advanced;
+package com.intellij.advancedExpressionFolding.expression.math.advanced
 
-import com.intellij.advancedExpressionFolding.expression.Expression;
-import com.intellij.advancedExpressionFolding.expression.Function;
-import com.intellij.advancedExpressionFolding.expression.math.ArithmeticExpression;
-import com.intellij.openapi.util.TextRange;
-import com.intellij.psi.PsiElement;
+import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.advancedExpressionFolding.expression.Function
+import com.intellij.advancedExpressionFolding.expression.math.ArithmeticExpression
+import com.intellij.openapi.util.TextRange
+import com.intellij.psi.PsiElement
 
-import java.util.List;
+class Random(
+    element: PsiElement,
+    textRange: TextRange,
+    operands: List<Expression>
+) : Function(element, textRange, "random", operands), ArithmeticExpression {
+    override fun equals(other: Any?): Boolean = false
 
-public class Random extends Function implements ArithmeticExpression {
-    public Random(PsiElement element, TextRange textRange, List<Expression> operands) {
-        super(element, textRange, "random", operands);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        return false;
-    }
-
-    @Override
-    public int hashCode() {
-        return (int) (Math.random() * Integer.MAX_VALUE);
-    }
+    override fun hashCode(): Int = (Math.random() * Int.MAX_VALUE).toInt()
 }

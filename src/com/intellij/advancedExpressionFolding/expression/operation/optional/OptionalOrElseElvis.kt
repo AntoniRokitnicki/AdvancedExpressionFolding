@@ -1,33 +1,19 @@
-package com.intellij.advancedExpressionFolding.expression.operation.optional;
+package com.intellij.advancedExpressionFolding.expression.operation.optional
 
-import com.intellij.advancedExpressionFolding.expression.Expression;
-import com.intellij.advancedExpressionFolding.expression.Operation;
-import com.intellij.openapi.editor.Document;
-import com.intellij.openapi.util.TextRange;
-import com.intellij.psi.PsiElement;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.advancedExpressionFolding.expression.Operation
+import com.intellij.openapi.editor.Document
+import com.intellij.openapi.util.TextRange
+import com.intellij.psi.PsiElement
 
-import java.util.List;
+class OptionalOrElseElvis(
+    element: PsiElement,
+    textRange: TextRange,
+    operands: List<Expression>
+) : Operation(element, textRange, " ?: ", 300, operands) {
+    override fun buildFolding(character: String): String = character
 
-public class OptionalOrElseElvis extends Operation {
-    public OptionalOrElseElvis(@NotNull PsiElement element, @NotNull TextRange textRange, @NotNull List<Expression> operands) {
-        super(element, textRange, " ?: ", 300, operands);
-    }
+    override fun isCollapsedByDefault(): Boolean = true
 
-    @Override
-    protected @NotNull String buildFolding(@NotNull String character) {
-        return character;
-    }
-
-    @Override
-    public boolean isCollapsedByDefault() {
-        return true;
-    }
-
-    @Override
-    public boolean supportsFoldRegions(@NotNull Document document,
-                                       @Nullable Expression parent) {
-        return true;
-    }
+    override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean = true
 }

@@ -1,39 +1,23 @@
-package com.intellij.advancedExpressionFolding.expression.operation.stream;
+package com.intellij.advancedExpressionFolding.expression.operation.stream
 
-import com.intellij.advancedExpressionFolding.expression.Expression;
-import com.intellij.advancedExpressionFolding.expression.Operation;
-import com.intellij.openapi.editor.Document;
-import com.intellij.openapi.util.TextRange;
-import com.intellij.psi.PsiElement;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.advancedExpressionFolding.expression.Operation
+import com.intellij.openapi.editor.Document
+import com.intellij.openapi.util.TextRange
+import com.intellij.psi.PsiElement
 
-import java.util.List;
+class StreamFilterNotNull(
+    element: PsiElement,
+    textRange: TextRange,
+    operands: List<Expression>
+) : Operation(element, textRange, ".filterNotNull()", 300, operands) {
+    override fun buildFolding(character: String): String = character
 
-public class StreamFilterNotNull extends Operation {
-    public StreamFilterNotNull(@NotNull PsiElement element, @NotNull TextRange textRange, @NotNull List<Expression> operands) {
-        super(element, textRange, ".filterNotNull()", 300, operands);
+    override fun changeOperandsEndOffset(startOffset: Int): Int {
+        return startOffset + "Objects::nonNull".length
     }
 
-    @Override
-    protected @NotNull String buildFolding(@NotNull String character) {
-        return character;
-    }
+    override fun isCollapsedByDefault(): Boolean = true
 
-    @Override
-    protected int changeOperandsEndOffset(int startOffset) {
-        return startOffset + "Objects::nonNull".length();
-    }
-
-    @Override
-    public boolean isCollapsedByDefault() {
-        return true;
-    }
-
-    @Override
-    public boolean supportsFoldRegions(@NotNull Document document,
-                                       @Nullable Expression parent) {
-        return true;
-    }
-
+    override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean = true
 }

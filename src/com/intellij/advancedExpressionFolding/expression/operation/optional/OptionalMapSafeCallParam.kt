@@ -1,45 +1,32 @@
-package com.intellij.advancedExpressionFolding.expression.operation.optional;
+package com.intellij.advancedExpressionFolding.expression.operation.optional
 
-import com.intellij.advancedExpressionFolding.expression.Expression;
-import com.intellij.lang.folding.FoldingDescriptor;
-import com.intellij.openapi.editor.Document;
-import com.intellij.openapi.editor.FoldingGroup;
-import com.intellij.openapi.util.TextRange;
-import com.intellij.psi.PsiElement;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.lang.folding.FoldingDescriptor
+import com.intellij.openapi.editor.Document
+import com.intellij.openapi.editor.FoldingGroup
+import com.intellij.openapi.util.TextRange
+import com.intellij.psi.PsiElement
+import java.util.ArrayList
 
-import java.util.ArrayList;
+class OptionalMapSafeCallParam(
+    element: PsiElement,
+    textRange: TextRange,
+    private val string: String
+) : Expression(element, textRange) {
+    fun getString(): String = string
 
-public class OptionalMapSafeCallParam extends Expression {
-    private @NotNull String string;
-
-    public OptionalMapSafeCallParam(@NotNull PsiElement element, @NotNull TextRange textRange, @NotNull String string) {
-        super(element, textRange);
-        this.string = string;
+    override fun buildFoldRegions(
+        element: PsiElement,
+        document: Document,
+        parent: Expression?
+    ): Array<FoldingDescriptor> {
+        val group = FoldingGroup.newGroup(OptionalMapSafeCallParam::class.java.name)
+        val descriptors = ArrayList<FoldingDescriptor>()
+        descriptors.add(FoldingDescriptor(element.node, element.textRange, group, string))
+        return descriptors.toTypedArray()
     }
 
-    @NotNull
-    public String getString() {
-        return string;
-    }
+    override fun isCollapsedByDefault(): Boolean = true
 
-    @Override
-    public FoldingDescriptor[] buildFoldRegions(@NotNull PsiElement element, @NotNull Document document, @Nullable Expression parent) {
-        FoldingGroup group = FoldingGroup.newGroup(OptionalMapSafeCallParam.class.getName());
-        ArrayList<FoldingDescriptor> descriptors = new ArrayList<>();
-        descriptors.add(new FoldingDescriptor(element.getNode(), element.getTextRange(), group, string));
-        return descriptors.toArray(EMPTY_ARRAY);
-    }
-
-    @Override
-    public boolean isCollapsedByDefault() {
-        return true;
-    }
-
-    @Override
-    public boolean supportsFoldRegions(@NotNull Document document,
-                                       @Nullable Expression parent) {
-        return true;
-    }
+    override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean = true
 }
