@@ -139,12 +139,12 @@ object IfNullSafeExt : BaseExtension() {
             }
 
         val iGetter = BuildExpressionExt.getAnyExpression(elementList.first(), document).asInstance<IGetter>()
-        val parentGetter = iGetter?.`object`
+        val parentGetter = iGetter?.receiver
         if (parentGetter != null) {
 
             var parent = parentGetter
             while (true) {
-                val expression = parent.asInstance<IGetter>()?.`object`
+                val expression = parent.asInstance<IGetter>()?.receiver
                 if (expression != null) {
                     parent = expression
                 } else {

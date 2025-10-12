@@ -11,7 +11,7 @@ import com.intellij.psi.PsiElement
 class OptionalNotNullAssertionGet(
     element: PsiElement,
     textRange: TextRange,
-    private val `object`: Expression?
+    private val receiver: Expression?
 ) : Expression(element, TextRange.create(textRange.startOffset - 1, textRange.endOffset + 2)) {
 
     override fun buildFoldRegions(
@@ -26,7 +26,7 @@ class OptionalNotNullAssertionGet(
             FoldingGroup.newGroup(Getter::class.java.name),
             "!!"
         )
-        `object`?.takeIf { it.supportsFoldRegions(document, this) }?.let { obj ->
+        receiver?.takeIf { it.supportsFoldRegions(document, this) }?.let { obj ->
             descriptors += obj.buildFoldRegions(obj.element, document, this).toList()
         }
         return descriptors.toTypedArray()

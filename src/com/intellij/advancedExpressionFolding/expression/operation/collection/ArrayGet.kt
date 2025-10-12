@@ -10,7 +10,7 @@ import com.intellij.psi.PsiElement
 class ArrayGet(
     element: PsiElement,
     textRange: TextRange,
-    val `object`: Expression
+    val receiver: Expression
 ) : Expression(element, textRange) {
 
     override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean = true
@@ -24,12 +24,12 @@ class ArrayGet(
         val descriptors = mutableListOf<FoldingDescriptor>()
         descriptors += FoldingDescriptor(
             element.node,
-            TextRange.create(`object`.textRange.endOffset, textRange.endOffset),
+            TextRange.create(receiver.textRange.endOffset, textRange.endOffset),
             group,
             ".last()"
         )
-        if (`object`.supportsFoldRegions(document, this)) {
-            descriptors += `object`.buildFoldRegions(`object`.element, document, this).toList()
+        if (receiver.supportsFoldRegions(document, this)) {
+            descriptors += receiver.buildFoldRegions(receiver.element, document, this).toList()
         }
         return descriptors.toTypedArray()
     }
