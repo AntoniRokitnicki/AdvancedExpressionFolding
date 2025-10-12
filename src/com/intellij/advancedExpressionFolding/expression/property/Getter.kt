@@ -7,26 +7,26 @@ import com.intellij.openapi.editor.FoldingGroup
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiElement
 
-class GetterRecord(
+class Getter(
     element: PsiElement,
     textRange: TextRange,
     override val getterTextRange: TextRange,
     override val `object`: Expression?,
     override val name: String
 ) : Expression(element, textRange), IGetter {
-    override fun supportsFoldRegions(
+
+    override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean = true
+
+    override fun buildFoldRegions(
+        element: PsiElement,
         document: Document,
         parent: Expression?
-    ): Boolean {
-        return true
-    }
-
-    override fun buildFoldRegions(element: PsiElement, document: Document, parent: Expression?): Array<FoldingDescriptor> {
-        val descriptors = arrayListOf<FoldingDescriptor>()
+    ): Array<FoldingDescriptor> {
+        val descriptors = mutableListOf<FoldingDescriptor>()
         descriptors += FoldingDescriptor(
             element.node,
             getterTextRange,
-            FoldingGroup.newGroup(GetterRecord::class.java.name),
+            FoldingGroup.newGroup(Getter::class.java.name),
             name
         )
         val obj = `object`

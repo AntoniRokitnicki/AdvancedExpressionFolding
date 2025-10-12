@@ -104,7 +104,7 @@ class AdvancedExpressionFoldingBuilder(private val config: IConfig = getInstance
             val document = PsiDocumentManager.getInstance(astNode.psi.project).getDocument(astNode.psi.containingFile)
             if (document != null) {
                 val expression = BuildExpressionExt.getNonSyntheticExpression(element, document)
-                return expression != null && expression.isCollapsedByDefault
+                return expression != null && expression.isCollapsedByDefault()
             }
         } catch (_: IndexNotReadyException) {
             return false
