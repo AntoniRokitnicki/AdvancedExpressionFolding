@@ -1,15 +1,13 @@
-package com.intellij.advancedExpressionFolding.expression.math.trig;
+package com.intellij.advancedExpressionFolding.expression.math.trig
 
-import com.intellij.advancedExpressionFolding.expression.Expression;
-import com.intellij.advancedExpressionFolding.expression.Function;
-import com.intellij.advancedExpressionFolding.expression.math.ArithmeticExpression;
-import com.intellij.openapi.util.TextRange;
-import com.intellij.psi.PsiElement;
+import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.advancedExpressionFolding.expression.Function
+import com.intellij.advancedExpressionFolding.expression.math.ArithmeticExpression
+import com.intellij.openapi.util.TextRange
+import com.intellij.psi.PsiElement
 
-import java.util.List;
-
-public class Sin extends Function implements ArithmeticExpression {
-    public Sin(PsiElement element, TextRange textRange, List<Expression> operands) {
-        super(element, textRange, "sin", operands);
-    }
-}
+class Sin(
+    element: PsiElement,
+    textRange: TextRange,
+    operands: List<Expression>
+) : Function(element, textRange, "sin", operands), ArithmeticExpression

@@ -1,16 +1,13 @@
-package com.intellij.advancedExpressionFolding.expression.math.basic;
+package com.intellij.advancedExpressionFolding.expression.math.basic
 
-import com.intellij.advancedExpressionFolding.expression.Expression;
-import com.intellij.advancedExpressionFolding.expression.Operation;
-import com.intellij.advancedExpressionFolding.expression.math.ArithmeticExpression;
-import com.intellij.openapi.util.TextRange;
-import com.intellij.psi.PsiElement;
-import org.jetbrains.annotations.NotNull;
+import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.advancedExpressionFolding.expression.Operation
+import com.intellij.advancedExpressionFolding.expression.math.ArithmeticExpression
+import com.intellij.openapi.util.TextRange
+import com.intellij.psi.PsiElement
 
-import java.util.List;
-
-public class Add extends Operation implements ArithmeticExpression {
-    public Add(@NotNull PsiElement element, @NotNull TextRange textRange, @NotNull List<Expression> operands) {
-        super(element, textRange, "+", 10, operands);
-    }
-}
+class Add(
+    element: PsiElement,
+    textRange: TextRange,
+    operands: List<Expression>
+) : Operation(element, textRange, "+", 10, operands), ArithmeticExpression

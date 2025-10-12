@@ -1,16 +1,13 @@
-package com.intellij.advancedExpressionFolding.expression.math.bitwise;
+package com.intellij.advancedExpressionFolding.expression.math.bitwise
 
-import com.intellij.advancedExpressionFolding.expression.Expression;
-import com.intellij.advancedExpressionFolding.expression.Operation;
-import com.intellij.advancedExpressionFolding.expression.math.ArithmeticExpression;
-import com.intellij.openapi.util.TextRange;
-import com.intellij.psi.PsiElement;
-import org.jetbrains.annotations.NotNull;
+import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.advancedExpressionFolding.expression.Operation
+import com.intellij.advancedExpressionFolding.expression.math.ArithmeticExpression
+import com.intellij.openapi.util.TextRange
+import com.intellij.psi.PsiElement
 
-import java.util.List;
-
-public class AndAssign extends Operation implements ArithmeticExpression {
-    public AndAssign(@NotNull PsiElement element, @NotNull TextRange textRange, @NotNull List<Expression> operands) {
-        super(element, textRange, "&=", 300, operands);
-    }
-}
+class AndAssign(
+    element: PsiElement,
+    textRange: TextRange,
+    operands: List<Expression>
+) : Operation(element, textRange, "&=", 300, operands), ArithmeticExpression

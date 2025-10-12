@@ -1,37 +1,40 @@
-package com.intellij.advancedExpressionFolding.expression.math.advanced;
+package com.intellij.advancedExpressionFolding.expression.math.advanced
 
-import com.intellij.advancedExpressionFolding.expression.Expression;
-import com.intellij.advancedExpressionFolding.expression.Function;
-import com.intellij.advancedExpressionFolding.expression.math.ArithmeticExpression;
-import com.intellij.advancedExpressionFolding.processor.util.Helper;
-import com.intellij.lang.folding.FoldingDescriptor;
-import com.intellij.openapi.editor.Document;
-import com.intellij.openapi.editor.FoldingGroup;
-import com.intellij.openapi.util.TextRange;
-import com.intellij.psi.PsiElement;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.advancedExpressionFolding.expression.Function
+import com.intellij.advancedExpressionFolding.expression.math.ArithmeticExpression
+import com.intellij.advancedExpressionFolding.processor.util.Helper
+import com.intellij.lang.folding.FoldingDescriptor
+import com.intellij.openapi.editor.Document
+import com.intellij.openapi.editor.FoldingGroup
+import com.intellij.openapi.util.TextRange
+import com.intellij.psi.PsiElement
+import java.util.ArrayList
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class Exp extends Function implements ArithmeticExpression {
-    public Exp(PsiElement element, TextRange textRange, List<Expression> operands) {
-        super(element, textRange, "exp", operands);
+class Exp(
+    element: PsiElement,
+    textRange: TextRange,
+    operands: List<Expression>
+) : Function(element, textRange, "exp", operands), ArithmeticExpression {
+    override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean {
+        return Helper.superscript(operands[0].element.text) != null
     }
 
-    @Override
-    public boolean supportsFoldRegions(@NotNull Document document,
-                                       @Nullable Expression parent) {
-        return Helper.superscript(operands.get(0).getElement().getText()) != null;
-    }
-
-    @Override
-    public FoldingDescriptor[] buildFoldRegions(@NotNull PsiElement element, @NotNull Document document, @Nullable Expression parent) {
-        ArrayList<FoldingDescriptor> descriptors = new ArrayList<>();
-        FoldingGroup group = FoldingGroup.newGroup(Exp.class.getName());
-        descriptors.add(new FoldingDescriptor(element.getNode(),
-                TextRange.create(textRange), group, "\uD835\uDC52" + Helper.superscript(operands.get(0).getElement().getText())));
-        return descriptors.toArray(EMPTY_ARRAY);
+    override fun buildFoldRegions(
+        element: PsiElement,
+        document: Document,
+        parent: Expression?
+    ): Array<FoldingDescriptor> {
+        val descriptors = ArrayList<FoldingDescriptor>()
+        val group = FoldingGroup.newGroup(Exp::class.java.name)
+        descriptors.add(
+            FoldingDescriptor(
+                element.node,
+                TextRange.create(textRange),
+                group,
+                "\uD835\uDC52" + Helper.superscript(operands[0].element.text)
+            )
+        )
+        return descriptors.toTypedArray()
     }
 }

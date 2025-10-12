@@ -1,15 +1,13 @@
-package com.intellij.advancedExpressionFolding.expression.math.bitwise;
+package com.intellij.advancedExpressionFolding.expression.math.bitwise
 
-import com.intellij.advancedExpressionFolding.expression.Expression;
-import com.intellij.advancedExpressionFolding.expression.Operation;
-import com.intellij.advancedExpressionFolding.expression.math.ArithmeticExpression;
-import com.intellij.openapi.util.TextRange;
-import com.intellij.psi.PsiElement;
+import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.advancedExpressionFolding.expression.Operation
+import com.intellij.advancedExpressionFolding.expression.math.ArithmeticExpression
+import com.intellij.openapi.util.TextRange
+import com.intellij.psi.PsiElement
 
-import java.util.List;
-
-public class Or extends Operation implements ArithmeticExpression {
-    public Or(PsiElement element, TextRange textRange, List<Expression> operands) {
-        super(element, textRange, "|", 49, operands);
-    }
-}
+class Or(
+    element: PsiElement,
+    textRange: TextRange,
+    operands: List<Expression>
+) : Operation(element, textRange, "|", 49, operands), ArithmeticExpression

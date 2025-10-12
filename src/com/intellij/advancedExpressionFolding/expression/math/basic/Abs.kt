@@ -1,47 +1,53 @@
-package com.intellij.advancedExpressionFolding.expression.math.basic;
+package com.intellij.advancedExpressionFolding.expression.math.basic
 
-import com.intellij.advancedExpressionFolding.expression.Expression;
-import com.intellij.advancedExpressionFolding.expression.Function;
-import com.intellij.advancedExpressionFolding.expression.math.ArithmeticExpression;
-import com.intellij.lang.folding.FoldingDescriptor;
-import com.intellij.openapi.editor.Document;
-import com.intellij.openapi.editor.FoldingGroup;
-import com.intellij.openapi.util.TextRange;
-import com.intellij.psi.PsiElement;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.advancedExpressionFolding.expression.Function
+import com.intellij.advancedExpressionFolding.expression.math.ArithmeticExpression
+import com.intellij.lang.folding.FoldingDescriptor
+import com.intellij.openapi.editor.Document
+import com.intellij.openapi.editor.FoldingGroup
+import com.intellij.openapi.util.TextRange
+import com.intellij.psi.PsiElement
+import java.util.ArrayList
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-public class Abs extends Function implements ArithmeticExpression {
-    public Abs(@NotNull PsiElement element, @NotNull TextRange textRange, @NotNull List<Expression> operands) {
-        super(element, textRange, "abs", operands);
+class Abs(
+    element: PsiElement,
+    textRange: TextRange,
+    operands: List<Expression>
+) : Function(element, textRange, "abs", operands), ArithmeticExpression {
+    override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean {
+        val operandRange = operands[0].textRange
+        return textRange.startOffset < operandRange.startOffset &&
+            operandRange.endOffset < textRange.endOffset
     }
 
-    @Override
-    public boolean supportsFoldRegions(@NotNull Document document,
-                                       @Nullable Expression parent) {
-        return textRange.getStartOffset() < operands.get(0).getTextRange().getStartOffset()
-                && operands.get(0).getTextRange().getEndOffset() < getTextRange().getEndOffset();
-    }
-
-    @Override
-    public FoldingDescriptor[] buildFoldRegions(@NotNull PsiElement element, @NotNull Document document,
-                                                @Nullable Expression parent) {
-        ArrayList<FoldingDescriptor> descriptors = new ArrayList<>();
-        FoldingGroup group = FoldingGroup.newGroup(Abs.class.getName());
-        descriptors.add(new FoldingDescriptor(element.getNode(),
-                TextRange.create(getTextRange().getStartOffset(),
-                        operands.get(0).getTextRange().getStartOffset()), group, "|"));
-        descriptors.add(new FoldingDescriptor(element.getNode(),
-                TextRange.create(operands.get(0).getTextRange().getEndOffset(),
-                        getTextRange().getEndOffset()), group, "|"));
-        if (operands.get(0).supportsFoldRegions(document, this)) {
-            Collections.addAll(descriptors,
-                    operands.get(0).buildFoldRegions(operands.get(0).getElement(), document, this));
+    override fun buildFoldRegions(
+        element: PsiElement,
+        document: Document,
+        parent: Expression?
+    ): Array<FoldingDescriptor> {
+        val descriptors = ArrayList<FoldingDescriptor>()
+        val group = FoldingGroup.newGroup(Abs::class.java.name)
+        val operand = operands[0]
+        descriptors.add(
+            FoldingDescriptor(
+                element.node,
+                TextRange.create(textRange.startOffset, operand.textRange.startOffset),
+                group,
+                "|"
+            )
+        )
+        descriptors.add(
+            FoldingDescriptor(
+                element.node,
+                TextRange.create(operand.textRange.endOffset, textRange.endOffset),
+                group,
+                "|"
+            )
+        )
+        if (operand.supportsFoldRegions(document, this)) {
+            descriptors.addAll(operand.buildFoldRegions(operand.element, document, this).toList())
         }
-        return descriptors.toArray(EMPTY_ARRAY);
+        return descriptors.toTypedArray()
     }
 }
