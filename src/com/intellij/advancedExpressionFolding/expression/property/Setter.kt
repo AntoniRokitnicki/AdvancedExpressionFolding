@@ -11,7 +11,7 @@ class Setter(
     element: PsiElement,
     textRange: TextRange,
     private val setterTextRange: TextRange,
-    private val `object`: Expression?,
+    private val receiver: Expression?,
     private val name: String,
     private val value: Expression
 ) : Expression(element, textRange) {
@@ -44,7 +44,7 @@ class Setter(
                 )
             }
         }
-        `object`?.takeIf { it.supportsFoldRegions(document, this) }?.let { obj ->
+        receiver?.takeIf { it.supportsFoldRegions(document, this) }?.let { obj ->
             descriptors += obj.buildFoldRegions(obj.element, document, this).toList()
         }
         if (value.supportsFoldRegions(document, this)) {

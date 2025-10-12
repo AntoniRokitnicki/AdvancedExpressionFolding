@@ -9,7 +9,7 @@ import com.intellij.psi.PsiElement
 interface IGetter : INameable {
     override val name: String
     val getterTextRange: TextRange
-    val `object`: Expression?
+    val receiver: Expression?
 
     fun buildFoldRegions(element: PsiElement, document: Document, parent: Expression?): Array<FoldingDescriptor>
 }
