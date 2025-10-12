@@ -3,11 +3,6 @@ package com.intellij.advancedExpressionFolding.processor
 import com.intellij.advancedExpressionFolding.processor.EModifier.*
 import com.intellij.advancedExpressionFolding.processor.cache.Keys
 import com.intellij.advancedExpressionFolding.processor.cache.Keys.IGNORED
-import com.intellij.advancedExpressionFolding.processor.core.BaseExtension.Companion.isBoolean
-import com.intellij.advancedExpressionFolding.processor.core.BaseExtension.Companion.isInt
-import com.intellij.advancedExpressionFolding.processor.core.BaseExtension.Companion.isObject
-import com.intellij.advancedExpressionFolding.processor.core.BaseExtension.Companion.isString
-import com.intellij.advancedExpressionFolding.processor.core.BaseExtension.Companion.isVoid
 import com.intellij.advancedExpressionFolding.processor.declaration.PsiClassExt
 import com.intellij.advancedExpressionFolding.processor.util.PropertyUtil
 import com.intellij.openapi.project.Project
@@ -24,6 +19,17 @@ val PsiField.typeResolved: PsiClass?
     get() = type.typeResolved
 val PsiType.typeResolved: PsiClass?
     get() = asInstance<PsiClassReferenceType>()?.resolve()
+
+// workaround for @ScheduledForRemoval on fields of PsiType since 231.* (a new class PsiTypes is not available in 211)
+fun PsiType?.isNull(): Boolean = (this as? PsiPrimitiveType)?.name == "null"
+
+fun PsiType?.isInt(): Boolean = (this as? PsiPrimitiveType)?.name == "int"
+fun PsiType?.isVoid(): Boolean = (this as? PsiPrimitiveType)?.name == "void"
+fun PsiType?.isBoolean(): Boolean = (this as? PsiPrimitiveType)?.name == "boolean"
+fun PsiType?.isString() = asInstance<PsiClassReferenceType>()?.name == "String"
+fun PsiType?.isPrimitive() = asInstance<PsiPrimitiveType>() != null
+fun PsiType?.isPrimitiveOrString() = isPrimitive() || isString()
+fun PsiType?.isObject() = this?.canonicalText == "java.lang.Object"
 
 val PsiField.singletonField: Boolean
     get() = type.asInstance<PsiClassReferenceType>()?.resolve() == containingClass
