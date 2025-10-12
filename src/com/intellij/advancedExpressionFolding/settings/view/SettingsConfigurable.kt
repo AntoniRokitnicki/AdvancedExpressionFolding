@@ -20,6 +20,8 @@ import com.intellij.ui.components.ActionLink
 import com.intellij.ui.components.JBCheckBox
 import com.intellij.ui.dsl.builder.Panel
 import com.intellij.ui.dsl.builder.panel
+import com.intellij.ui.dsl.builder.Align
+import com.intellij.ui.dsl.builder.bindSelected
 import java.awt.Color.decode
 import java.awt.FlowLayout
 import java.net.URI
@@ -33,6 +35,7 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
     private val allExampleFiles = mutableSetOf<ExampleFile>()
     private val pendingChanges = mutableMapOf<KMutableProperty0<Boolean>, Boolean>()
     private val propertyToCheckbox = mutableMapOf<KMutableProperty0<Boolean>, JBCheckBox>()
+    private val telemetryPanel = UsageTelemetryPanel()
 
     override fun getId() = "advanced.expression.folding"
 
@@ -106,9 +109,24 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
         row {
             cell(createDownloadExamplesLink())
         }
+        row {
+            val checkbox = checkBox("Enable local usage telemetry")
+                .bindSelected(state::telemetryEnabled)
+                .comment("Counts folding activations on this machine only. No data ever leaves the IDE.")
+            checkbox.component.addChangeListener {
+                telemetryPanel.updateEnabled(checkbox.component.isSelected)
+            }
+        }
+        row {
+            cell(telemetryPanel)
+                .align(Align.FILL)
+                .resizableColumn()
+        }.resizableRow()
+        separator()
         initialize(state)
     }.also {
         panel = it
+        telemetryPanel.updateEnabled(state.telemetryEnabled)
     }
 
     override fun isModified(): Boolean {
@@ -129,6 +147,7 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
         propertyToCheckbox.forEach { (property, checkbox) ->
             checkbox.isSelected = property.get()
         }
+        telemetryPanel.updateEnabled(state.telemetryEnabled)
     }
 
     private fun firstSourceRoot(project: Project) =

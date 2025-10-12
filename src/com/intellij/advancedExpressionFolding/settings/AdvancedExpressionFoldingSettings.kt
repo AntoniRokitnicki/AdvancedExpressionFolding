@@ -76,6 +76,8 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
         override var memoryImprovement: Boolean = true,
         override var experimental: Boolean = false,
 
+        var telemetryEnabled: Boolean = false,
+
         override var globalOn: Boolean = true,
 
         ) : IState, IConfig
@@ -106,10 +108,12 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
         fun getInstance(): AdvancedExpressionFoldingSettings =
             ApplicationManager.getApplication().getService(AdvancedExpressionFoldingSettings::class.java)
 
+        private val excludedPropertyNames = setOf("telemetryEnabled")
+
         fun allProperties() = State::class.memberProperties
             .filterIsInstance<KMutableProperty<Boolean>>()
             .filter { property ->
-                exclude(IConfig::class, property)
+                exclude(IConfig::class, property) && !excludedPropertyNames.contains(property.name)
             }
 
         fun allMainProperties() = allProperties().filter { property ->

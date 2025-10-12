@@ -3,6 +3,7 @@ package com.intellij.advancedExpressionFolding.processor.core;
 import com.intellij.advancedExpressionFolding.expression.Expression;
 import com.intellij.advancedExpressionFolding.expression.SyntheticExpressionImpl;
 import com.intellij.advancedExpressionFolding.processor.util.Helper;
+import com.intellij.advancedExpressionFolding.telemetry.UsageTelemetryService;
 import com.intellij.lang.folding.FoldingDescriptor;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.project.IndexNotReadyException;
@@ -62,6 +63,7 @@ public class BuildExpressionExt {
             FoldingDescriptor[] descriptors = expression.buildFoldRegions(expression.getElement(), document, null);
             if (descriptors.length > 0) {
                 allDescriptors.addAll(Arrays.asList(descriptors));
+                UsageTelemetryService.recordUsageIfEnabled(expression.getClass());
             }
         }
         if (expression == null || (unique && expression.isNested())) {
