@@ -9,6 +9,7 @@ import com.intellij.advancedExpressionFolding.diff.Range
 import com.intellij.lang.folding.FoldingDescriptor
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.editor.FoldingGroup
+import com.intellij.advancedExpressionFolding.isAdvancedExpressionFoldingGroup
 import java.io.File
 
 class FoldingDataStorage : Storage {
@@ -33,7 +34,7 @@ class FoldingDataStorage : Storage {
     private fun validateCorrectFoldingGroup(descriptors: Array<FoldingDescriptor>) = descriptors.forEach {
         if (it.group == null) {
             throw FoldingGroupNotFound("${it.placeholderText} - ${it.element}")
-        } else if (!it.group.toString().contains("com.intellij.advancedExpressionFolding")) {
+        } else if (!it.isAdvancedExpressionFoldingGroup) {
             throw InvalidFoldingGroup("${it.placeholderText} - ${it.element} - ${it.group}")
         }
     }

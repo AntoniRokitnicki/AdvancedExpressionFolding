@@ -17,7 +17,7 @@
         <list>
           <option value=":test" />
           <option value="--tests" />
-          <option value="&quot;com.intellij.advancedExpressionFolding.IntegrationTest&quot;" />
+          <option value="&quot;com.intellij.advancedExpressionFolding.integration.IntegrationTest&quot;" />
         </list>
       </option>
       <option name="vmOptions" />

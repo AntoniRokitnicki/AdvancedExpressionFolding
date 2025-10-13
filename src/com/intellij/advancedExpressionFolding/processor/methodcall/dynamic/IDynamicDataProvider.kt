@@ -11,7 +11,13 @@ interface IDynamicDataProvider {
     private val logger: Logger
         get() = Logger.getInstance(IDynamicDataProvider::class.java)
     val objectMapper: ObjectMapper
-        get() = ObjectMapper(TomlFactory())
+        get() = sharedObjectMapper
+
+    companion object {
+        private val sharedObjectMapper: ObjectMapper by lazy {
+            ObjectMapper(TomlFactory())
+        }
+    }
 
     fun parse(): List<DynamicMethodCall>
 
