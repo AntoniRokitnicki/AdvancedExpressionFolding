@@ -37,7 +37,7 @@ object CacheExt : StateDelegate() {
                     element.putUserData(key, newExpression.ofNullable())
                     newExpression
                 }
-                else -> cachedExpression.getOrNull()
+                else -> cachedExpression.orNull
             }
     }
 
@@ -45,9 +45,10 @@ object CacheExt : StateDelegate() {
         override fun toString(): String = "NULL_OBJECT"
     }
     private fun Expression?.ofNullable(): Expression = this ?: NULL_OBJECT
-    private fun Expression?.getOrNull(): Expression? = when {
-        this === NULL_OBJECT -> null
-        else -> this
-    }
+    private val Expression?.orNull: Expression?
+        get() = when {
+            this === NULL_OBJECT -> null
+            else -> this
+        }
 
 }

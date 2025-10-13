@@ -10,13 +10,13 @@ import com.intellij.psi.PsiElement
 class Put(
     element: PsiElement,
     textRange: TextRange,
-    val `object`: Expression,
+    val receiver: Expression,
     val key: Expression,
     val value: Expression
 ) : Expression(element, textRange) {
 
     override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean {
-        return `object`.textRange.endOffset < key.textRange.startOffset
+        return receiver.textRange.endOffset < key.textRange.startOffset
     }
 
     override fun buildFoldRegions(
@@ -28,7 +28,7 @@ class Put(
         val descriptors = mutableListOf<FoldingDescriptor>()
         descriptors += FoldingDescriptor(
             element.node,
-            TextRange.create(`object`.textRange.endOffset, key.textRange.startOffset),
+            TextRange.create(receiver.textRange.endOffset, key.textRange.startOffset),
             group,
             "["
         )
@@ -46,8 +46,8 @@ class Put(
                 ""
             )
         }
-        if (`object`.supportsFoldRegions(document, this)) {
-            descriptors += `object`.buildFoldRegions(`object`.element, document, this).toList()
+        if (receiver.supportsFoldRegions(document, this)) {
+            descriptors += receiver.buildFoldRegions(receiver.element, document, this).toList()
         }
         if (key.supportsFoldRegions(document, this)) {
             descriptors += key.buildFoldRegions(key.element, document, this).toList()

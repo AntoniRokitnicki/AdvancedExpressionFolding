@@ -5,6 +5,7 @@ import com.intellij.advancedExpressionFolding.expression.math.basic.Negate
 import com.intellij.advancedExpressionFolding.expression.math.basic.NotEqual
 import com.intellij.advancedExpressionFolding.expression.operation.basic.Append
 import com.intellij.advancedExpressionFolding.expression.operation.basic.Equal
+import com.intellij.advancedExpressionFolding.processor.argumentExpressions
 import com.intellij.advancedExpressionFolding.expression.operation.basic.GreaterEqual
 import com.intellij.advancedExpressionFolding.processor.util.Helper
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
@@ -76,7 +77,7 @@ object PrefixExpressionExt {
     ) {
         fun getFoldedArgument(index: Int): Expression {
             return com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt.getAnyExpression(
-                element.argumentList.expressions[index],
+                element.argumentExpressions[index],
                 document
             )
         }

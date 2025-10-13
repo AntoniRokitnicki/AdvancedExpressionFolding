@@ -139,12 +139,12 @@ object IfNullSafeExt : BaseExtension() {
             }
 
         val iGetter = BuildExpressionExt.getAnyExpression(elementList.first(), document).asInstance<IGetter>()
-        val parentGetter = iGetter?.`object`
+        val parentGetter = iGetter?.receiver
         if (parentGetter != null) {
 
             var parent = parentGetter
             while (true) {
-                val expression = parent.asInstance<IGetter>()?.`object`
+                val expression = parent.asInstance<IGetter>()?.receiver
                 if (expression != null) {
                     parent = expression
                 } else {
@@ -195,34 +195,36 @@ object IfNullSafeExt : BaseExtension() {
     }
 
 
-    private fun PsiExpression.getOperandReference(): PsiElement? {
-        if (this is PsiReferenceExpression) {
-            return this.resolve()
-        }
-        if (this is PsiMethodCallExpression) {
-            return this.firstChildQualifierExpression()
-        }
-        return null
-    }
-
-    private fun PsiExpression.getOperandParentReference(): PsiElement? {
-        if (this is PsiMethodCallExpression) {
-            val qualifierExpression = firstChildQualifierExpression()
-            if (qualifierExpression is PsiReferenceExpression) {
-                return qualifierExpression.getOperandReference()
-            } else if (qualifierExpression is PsiMethodCallExpression) {
-                return qualifierExpression.getOperandReference()
+    private val PsiExpression.operandReference: PsiElement?
+        get() {
+            if (this is PsiReferenceExpression) {
+                return this.resolve()
             }
+            if (this is PsiMethodCallExpression) {
+                return this.firstChildQualifierExpression()
+            }
+            return null
         }
-        return null
-    }
+
+    private val PsiExpression.operandParentReference: PsiElement?
+        get() {
+            if (this is PsiMethodCallExpression) {
+                val qualifierExpression = firstChildQualifierExpression()
+                if (qualifierExpression is PsiReferenceExpression) {
+                    return qualifierExpression.operandReference
+                } else if (qualifierExpression is PsiMethodCallExpression) {
+                    return qualifierExpression.operandReference
+                }
+            }
+            return null
+        }
 
     private fun isNext(
         prev: PsiExpression,
         curr: PsiExpression
     ): Boolean {
-        val first = prev.getOperandReference().toString()
-        val second = curr.getOperandParentReference().toString()
+        val first = prev.operandReference.toString()
+        val second = curr.operandParentReference.toString()
         return first == second
     }
 

@@ -8,6 +8,7 @@ import com.intellij.advancedExpressionFolding.expression.controlflow.ShortElvisE
 import com.intellij.advancedExpressionFolding.expression.literal.InterpolatedString
 import com.intellij.advancedExpressionFolding.expression.literal.StringLiteral
 import com.intellij.advancedExpressionFolding.expression.math.basic.Add
+import com.intellij.advancedExpressionFolding.processor.argumentExpressions
 import com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt
 import com.intellij.advancedExpressionFolding.processor.expression.BinaryExpressionExt
 import com.intellij.advancedExpressionFolding.processor.language.kotlin.IfNullSafeExt
@@ -71,7 +72,7 @@ object IfExt {
                         is PsiReferenceExpression -> true
                         is PsiMethodCallExpression ->
                             Helper.startsWith(qualifierElement.methodExpression.referenceName, "get") &&
-                                qualifierElement.argumentList.expressions.isEmpty()
+                                qualifierElement.argumentExpressions.isEmpty()
                         else -> false
                     }
                     if (isSupportedQualifier) {
@@ -109,7 +110,7 @@ object IfExt {
                     is PsiReferenceExpression -> true
                     is PsiMethodCallExpression ->
                         Helper.startsWith(qualifierElement.methodExpression.referenceName, "get") &&
-                            qualifierElement.argumentList.expressions.isEmpty()
+                            qualifierElement.argumentExpressions.isEmpty()
                     else -> false
                 }
                 if (isSupportedQualifier) {

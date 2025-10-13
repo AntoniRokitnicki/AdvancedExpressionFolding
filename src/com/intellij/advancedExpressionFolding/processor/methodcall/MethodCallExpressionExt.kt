@@ -6,6 +6,8 @@ import com.intellij.advancedExpressionFolding.expression.property.Getter
 import com.intellij.advancedExpressionFolding.expression.property.GetterRecord
 import com.intellij.advancedExpressionFolding.expression.property.Setter
 import com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt
+import com.intellij.advancedExpressionFolding.processor.argumentExpressions
+import com.intellij.advancedExpressionFolding.processor.argumentCount
 import com.intellij.advancedExpressionFolding.processor.language.FieldShiftExt
 import com.intellij.advancedExpressionFolding.processor.logger.LoggerBracketsExt
 import com.intellij.advancedExpressionFolding.processor.util.Helper
@@ -72,7 +74,7 @@ object MethodCallExpressionExt {
         val factory = MethodCallFoldingLoaderService.factory()
         val methodCalls = factory.findByMethodName(methodName) ?: return null
         for (methodCall in methodCalls) {
-            val args = element.argumentList.expressions.map { BuildExpressionExt.getAnyExpression(it, document) }
+            val args = element.argumentExpressions.map { BuildExpressionExt.getAnyExpression(it, document) }
             val context = Context(methodName, className, qualifierExpression, method, document, identifier, args)
             val expression = methodCall.execute(element, context)
             if (expression != null) {
@@ -110,7 +112,7 @@ object MethodCallExpressionExt {
         qualifier: PsiExpression?,
         identifier: PsiElement
     ): Expression? {
-        if (psiClass != null && psiClass.isRecord && element.argumentList.expressionCount == 0) {
+        if (psiClass != null && psiClass.isRecord && element.argumentCount == 0) {
             if (settings.state.getSetExpressionsCollapse) {
                 val expression = qualifier?.let { BuildExpressionExt.getAnyExpression(it, document) }
                 return GetterRecord(
@@ -144,7 +146,7 @@ object MethodCallExpressionExt {
         val text = identifier.text
         if (isSimpleSetter(text, element, qualifier)) {
             val qualifierExpression = qualifier?.let { BuildExpressionExt.getAnyExpression(it, document) }
-            val paramExpression = BuildExpressionExt.getAnyExpression(element.argumentList.expressions[0], document)
+            val paramExpression = BuildExpressionExt.getAnyExpression(element.argumentExpressions[0], document)
             val propertyName = guessPropertyName(text)
             return Setter(
                 element,
@@ -166,7 +168,7 @@ object MethodCallExpressionExt {
         if (!Helper.isSetter(text)) {
             return false
         }
-        if (element.argumentList.expressions.size != 1) {
+        if (element.argumentCount != 1) {
             return false
         }
         if (element.parent !is PsiStatement) {

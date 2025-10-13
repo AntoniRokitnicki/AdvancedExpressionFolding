@@ -2,6 +2,7 @@ package com.intellij.advancedExpressionFolding.processor.logger
 
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.processor.asInstance
+import com.intellij.advancedExpressionFolding.processor.firstArgument
 import com.intellij.advancedExpressionFolding.processor.core.BaseExtension
 import com.intellij.advancedExpressionFolding.processor.on
 import com.intellij.openapi.editor.Document
@@ -22,7 +23,7 @@ object LoggerBracketsExt : BaseExtension() {
 
         val extensionConstructor: (PsiMethodCallExpression, Document) -> LoggerBracketsExtensionBase = when {
             methodName == "formatted" -> ::StringFormattedLoggerBracketsExtension
-            element.argumentList.expressions.firstOrNull()?.isLogMarker() == true -> ::MarkerLoggerBracketsExtension
+            element.firstArgument?.isLogMarker() == true -> ::MarkerLoggerBracketsExtension
             else -> ::LoggerBracketsExtensionBase
         }
         return extensionConstructor(element, document).processExpression()

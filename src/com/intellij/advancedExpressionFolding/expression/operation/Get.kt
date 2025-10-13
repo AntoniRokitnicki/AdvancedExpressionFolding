@@ -10,7 +10,7 @@ import com.intellij.psi.PsiElement
 class Get(
     element: PsiElement,
     textRange: TextRange,
-    val `object`: Expression,
+    val receiver: Expression,
     val key: Expression,
     val style: Style
 ) : Expression(element, textRange) {
@@ -18,7 +18,7 @@ class Get(
     enum class Style { NORMAL, FIRST, LAST }
 
     override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean {
-        val objectEnd = `object`.textRange.endOffset
+        val objectEnd = receiver.textRange.endOffset
         val keyStart = key.textRange.startOffset
         val keyEnd = key.textRange.endOffset
         val end = textRange.endOffset
@@ -39,7 +39,7 @@ class Get(
         if (style == Style.NORMAL) {
             descriptors += FoldingDescriptor(
                 element.node,
-                TextRange.create(`object`.textRange.endOffset, key.textRange.startOffset),
+                TextRange.create(receiver.textRange.endOffset, key.textRange.startOffset),
                 group,
                 "["
             )
@@ -53,7 +53,7 @@ class Get(
             val placeholder = "." + if (style == Style.FIRST) "getFirst" else "getLast"
             descriptors += FoldingDescriptor(
                 element.node,
-                TextRange.create(`object`.textRange.endOffset, key.textRange.startOffset - 1),
+                TextRange.create(receiver.textRange.endOffset, key.textRange.startOffset - 1),
                 group,
                 placeholder
             )
@@ -64,8 +64,8 @@ class Get(
                 ""
             )
         }
-        if (`object`.supportsFoldRegions(document, this)) {
-            descriptors += `object`.buildFoldRegions(`object`.element, document, this).toList()
+        if (receiver.supportsFoldRegions(document, this)) {
+            descriptors += receiver.buildFoldRegions(receiver.element, document, this).toList()
         }
         if (style == Style.NORMAL && key.supportsFoldRegions(document, this)) {
             descriptors += key.buildFoldRegions(key.element, document, this).toList()

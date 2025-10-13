@@ -50,6 +50,16 @@ fun PsiElement.isIgnorable() = this is PsiJavaToken || isWhitespace()
 
 fun PsiElement.isWhitespace() = this is PsiWhiteSpace
 
+
+val PsiCall.argumentExpressions: Array<PsiExpression>
+    get() = argumentList?.expressions ?: PsiExpression.EMPTY_ARRAY
+
+val PsiCall.firstArgument: PsiExpression?
+    get() = argumentExpressions.firstOrNull()
+
+val PsiCall.singleArgument: PsiExpression?
+    get() = argumentExpressions.singleOrNull()
+
 val PsiElement.prevRealSibling: PsiElement?
     get() {
         return generateSequence(this.prevSibling) { it.prevSibling }
@@ -210,11 +220,13 @@ fun PsiCodeBlock.hasComments(): Boolean = children.any {
     it is PsiComment
 }
 
-fun PsiCodeBlock.getComment(): PsiElement? = children.firstOrNull {
-    it is PsiComment
-}
+val PsiCodeBlock.comment: PsiElement?
+    get() = children.firstOrNull {
+        it is PsiComment
+    }
 
-fun PsiMethod.getSignature(): MethodSignature = getSignature(PsiSubstitutor.EMPTY)
+val PsiMethod.signature: MethodSignature
+    get() = getSignature(PsiSubstitutor.EMPTY)
 
 fun VirtualFile.toJavaPsiFile(project: Project): PsiJavaFile? {
     if (!isValid) {
