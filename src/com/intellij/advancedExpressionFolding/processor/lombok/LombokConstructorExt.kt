@@ -15,7 +15,7 @@ object LombokConstructorExt : BaseExtension() {
                 val args = mutableListOf<String>()
                 it.modifierAsArgument().run(args::addAll)
                 if (it.modifier() != EModifier.PRIVATE) {
-                    it.body?.getComment()?.text?.run(args::add)
+                    it.body?.comment?.text?.run(args::add)
                 }
                 ClassLevelAnnotation(LOMBOK_NO_ARGS_CONSTRUCTOR, listOf(it), arguments = args)
             } else {

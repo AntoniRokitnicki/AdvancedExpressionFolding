@@ -17,7 +17,7 @@ class OptionalOrElseMethodCall : AbstractOptionalMethodCall() {
         argument: PsiExpression,
         argumentExpression: Expression
     ): Expression? {
-        if (Helper.findChildByTypeHierarchy(element, PsiExpressionList::class.java, PsiExpressionList::class.java).isPresent) {
+        if (Helper.findChildByTypeHierarchy(element, PsiExpressionList::class.java, PsiExpressionList::class.java) != null) {
             return OptionalOrElseElvis(
                 element,
                 element.textRange,
