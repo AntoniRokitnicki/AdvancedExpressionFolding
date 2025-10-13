@@ -288,6 +288,13 @@ open class FoldingTest : BaseTest() {
     open fun logBrackets() {
         doFoldingTest(state::getSetExpressionsCollapse, state::logFolding)
     }
+    /**
+     * [data.LogFoldingTextBlocksTestData]
+     */
+    @Test
+    fun logFoldingTextBlocksTestData() {
+        doFoldingTest(state::getSetExpressionsCollapse, state::logFolding, state::logFoldingTextBlocks)
+    }
 
     /**
      * [data.FieldShiftFields]
@@ -528,6 +535,7 @@ staticMethod.newName = 'changedStaticMethod'
     fun suppressWarningsHideTestData() {
         doFoldingTest(state::suppressWarningsHide)
     }
+
     // NEW OPTION
     /**
      * [data.ExperimentalTestData]

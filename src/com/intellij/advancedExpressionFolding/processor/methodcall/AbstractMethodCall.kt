@@ -2,6 +2,7 @@ package com.intellij.advancedExpressionFolding.processor.methodcall
 
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.processor.core.BaseExtension
+import com.intellij.advancedExpressionFolding.processor.argumentExpressions
 import com.intellij.psi.PsiExpression
 import com.intellij.psi.PsiMethodCallExpression
 
@@ -23,7 +24,7 @@ abstract class AbstractMethodCall : BaseExtension() {
         if (classNames.isNotEmpty() && !classNames.contains(context.className)) {
             return null
         }
-        val expressions = element.argumentList.expressions
+        val expressions = element.argumentExpressions
         return onAnyArguments(element, context, expressions)
     }
 

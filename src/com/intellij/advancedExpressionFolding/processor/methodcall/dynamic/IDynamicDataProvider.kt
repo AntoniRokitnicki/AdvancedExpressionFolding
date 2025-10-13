@@ -11,14 +11,28 @@ interface IDynamicDataProvider {
     private val logger: Logger
         get() = Logger.getInstance(IDynamicDataProvider::class.java)
     val objectMapper: ObjectMapper
-        get() = ObjectMapper(TomlFactory())
+        get() = sharedObjectMapper
+
+    companion object {
+        private val sharedObjectMapper: ObjectMapper by lazy {
+            ObjectMapper(TomlFactory())
+        }
+    }
 
     fun parse(): List<DynamicMethodCall>
 
     fun parseToml(text: String): List<DynamicMethodCall> {
         val listOfMaps = objectMapper.parseTomlValues(text)
-        return listOfMaps?.map {
-            DynamicMethodCall(DynamicMethodCallData(it))
+        return listOfMaps?.mapNotNull { entry ->
+            val method = entry["method"]
+            val newName = entry["newName"]
+
+            if (method.isNullOrBlank() || newName.isNullOrBlank()) {
+                logger.warn("Skipping dynamic method entry missing required keys: $entry")
+                null
+            } else {
+                DynamicMethodCall(DynamicMethodCallData(entry))
+            }
         } ?: emptyList()
     }
 

@@ -142,20 +142,21 @@ object MethodBodyInspector {
         !method.isDirtyAssignment(statement, field, param)
     }
 
-    fun PsiCatchSection.getRethrownException(): String? {
-        val param = parameter ?: return null
-        val statement = catchBlock?.statements?.singleOrNull()
+    val PsiCatchSection.rethrownException: String?
+        get() {
+            val param = parameter ?: return null
+            val statement = catchBlock?.statements?.singleOrNull()
 
-        val newExpression = statement.asInstance<PsiThrowStatement>()?.exception.asNewInstance()
-        val referenceName = newExpression?.classReference?.referenceName ?: return null
-        val args = newExpression.argumentList?.expressions
-        val referenceExpression = args?.singleOrNull().asReference()
-        return referenceExpression?.takeIf {
-            referenceExpression.isReferenceTo(param)
-        }?.let {
-            referenceName
+            val newExpression = statement.asInstance<PsiThrowStatement>()?.exception.asNewInstance()
+            val referenceName = newExpression?.classReference?.referenceName ?: return null
+            val args = newExpression.argumentList?.expressions
+            val referenceExpression = args?.singleOrNull().asReference()
+            return referenceExpression?.takeIf {
+                referenceExpression.isReferenceTo(param)
+            }?.let {
+                referenceName
+            }
         }
-    }
 
     fun PsiMethod.asWrapperGetter(field: PsiField): String? {
         val methodCall = body?.statements?.singleOrNull().asReturn()?.returnValue.asMethodCall()

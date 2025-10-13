@@ -5,7 +5,8 @@ import com.intellij.advancedExpressionFolding.expression.operation.basic.Variabl
 import com.intellij.advancedExpressionFolding.expression.semantic.logging.LoggerBracketExpression
 import com.intellij.advancedExpressionFolding.expression.semantic.logging.LoggerBracketParentExpression
 import com.intellij.advancedExpressionFolding.processor.asInstance
-import com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt.getAnyExpression
+import com.intellij.advancedExpressionFolding.processor.argumentExpressions
+import com.intellij.advancedExpressionFolding.processor.core.BaseExtension
 import com.intellij.advancedExpressionFolding.processor.end
 import com.intellij.advancedExpressionFolding.processor.start
 import com.intellij.advancedExpressionFolding.processor.toTextRange
@@ -19,16 +20,17 @@ import com.intellij.psi.PsiMethodCallExpression
 open class LoggerBracketsExtensionBase(
     protected val element: PsiMethodCallExpression,
     protected val document: Document
-) {
+) : BaseExtension(){
 
     fun processExpression(): Expression? {
-        val logLiteral = element.argumentList.expressions.takeIf {
+        val logLiteral = element.argumentExpressions.takeIf {
             it.hasEnoughElements()
         }?.extractLiteral() ?: return null
+        if (!logFoldingTextBlocks && logLiteral.isTextBlock) return null
         val logText = logLiteral.text ?: return null
         val split = logText.splitTextPattern() ?: return null
 
-        val arguments = element.argumentList.expressions.toMutableList().prepareArguments()
+        val arguments = element.argumentExpressions.toMutableList().prepareArguments()
         var nextStringAddon = ""
         val hasTooManyArguments = split.size <= arguments.size
         var hasLast = false
