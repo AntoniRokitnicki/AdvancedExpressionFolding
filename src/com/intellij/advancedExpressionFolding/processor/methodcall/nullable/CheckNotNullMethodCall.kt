@@ -6,6 +6,7 @@ import com.intellij.advancedExpressionFolding.expression.operation.basic.Variabl
 import com.intellij.advancedExpressionFolding.expression.property.INameable
 import com.intellij.advancedExpressionFolding.expression.semantic.kotlin.CheckNotNullExpression
 import com.intellij.advancedExpressionFolding.processor.asInstance
+import com.intellij.advancedExpressionFolding.processor.argumentExpressions
 import com.intellij.advancedExpressionFolding.processor.end
 import com.intellij.advancedExpressionFolding.processor.methodcall.AbstractMethodCall
 import com.intellij.advancedExpressionFolding.processor.methodcall.Context
@@ -54,8 +55,8 @@ class CheckNotNullMethodCall : AbstractMethodCall() {
         }?.takeIf {
             argumentExpression is Variable
         } != null
-        val preFirstArgumentRange = TextRange(element.start(), element.argumentList.expressions.first().start())
-        val postFirstArgumentRange = TextRange(element.argumentList.expressions.first().end(), element.end())
+        val preFirstArgumentRange = TextRange(element.start(), element.argumentExpressions.first().start())
+        val postFirstArgumentRange = TextRange(element.argumentExpressions.first().end(), element.end())
         val postFirstArgumentSuffix = CheckNotNullExpression(element, postFirstArgumentRange, "!!", argumentExpression)
         return CheckNotNullExpression(
             element,

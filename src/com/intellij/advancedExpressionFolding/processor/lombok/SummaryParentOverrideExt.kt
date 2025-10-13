@@ -28,7 +28,7 @@ object SummaryParentOverrideExt : BaseExtension() {
                         //TODO: support sharedMethod from GrandparentClass as well here
                         findMethodBySignature(method, false) != null
                     }?.map {
-                        val sig = it.getSignature()
+                        val sig = it.signature
                         methodToParentClass[sig] = className
                         it.name
                     } ?: emptyList()
@@ -82,7 +82,7 @@ object SummaryParentOverrideExt : BaseExtension() {
         } else {
             body.lBrace
         }?.let { brace ->
-            val signature = element.getSignature()
+            val signature = element.signature
             element.containingClass?.getUserData(METHOD_TO_PARENT_CLASS_KEY)
                 ?.get(signature)?.let {
                     val prefix = if (oneLiner) {

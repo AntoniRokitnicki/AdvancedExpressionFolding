@@ -1,6 +1,6 @@
 package com.intellij.advancedExpressionFolding
 
-import com.intellij.advancedExpressionFolding.processor.core.BaseExtension.Companion.isVoid
+import com.intellij.advancedExpressionFolding.processor.isVoid
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings.Companion.getInstance
 import com.intellij.advancedExpressionFolding.settings.IState
 import com.intellij.codeInsight.completion.*
@@ -62,7 +62,11 @@ class MainAnnotationCompletionContributor(private val state: IState = getInstanc
 
     private fun findTopLevelClass(psiClass: PsiClass): PsiClass {
         var current = psiClass
-        while (current.containingClass != null) current = current.containingClass!!
+        while (true) {
+            current.containingClass?.let {
+                current = it
+            } ?: break
+        }
         return current
     }
 
