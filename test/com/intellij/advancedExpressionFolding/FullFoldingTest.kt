@@ -1,12 +1,16 @@
 package com.intellij.advancedExpressionFolding
 
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings.Companion.getInstance
-import org.junit.jupiter.api.Test
 import java.io.File
 import java.nio.file.Files
 import kotlin.reflect.KMutableProperty0
 
 class FullFoldingTest : FoldingTest() {
+
+    override val skippedGeneratedTests: Set<String> = super.skippedGeneratedTests + setOf(
+        "destructuringAssignmentArrayWithoutValTestData",
+        "destructuringAssignmentListWithoutValTestData",
+    )
 
     @Suppress("DEPRECATION")
     override fun assignState(turnOnProperties: Array<out KMutableProperty0<Boolean>>) = getInstance().enableAll(state::emojify, state::finalEmoji, state::arithmeticExpressions)
@@ -20,17 +24,12 @@ class FullFoldingTest : FoldingTest() {
         return file.canonicalPath
     }
 
-    override fun destructuringAssignmentArrayWithoutValTestData() {
-        // ignored, already tested in destructuringAssignmentArrayTestData
-    }
-
-    override fun destructuringAssignmentListWithoutValTestData() {
-        // ignored, already tested in destructuringAssignmentListTestData
-    }
-
-    @Test
-    override fun lombokTestData() {
-        super.lombokTestData()
+    protected override fun registerGeneratedTests(builder: FoldingTestBuilder) {
+        super.registerGeneratedTests(builder)
+        builder.skip(
+            "destructuringAssignmentArrayWithoutValTestData",
+            "destructuringAssignmentListWithoutValTestData",
+        )
     }
 
 }

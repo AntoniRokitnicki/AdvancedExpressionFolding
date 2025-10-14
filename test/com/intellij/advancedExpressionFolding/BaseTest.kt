@@ -32,12 +32,16 @@ abstract class BaseTest : LightJavaCodeInsightFixtureTestCase5(TEST_JDK) {
     }
 
     protected fun doReadOnlyFoldingTest() {
-        val testName = getTestName(false)
-        val fileName = getTestFileName(testName)
-        testWrapper(fileName, testName) {
+        doReadOnlyFoldingTest(getTestName(false))
+    }
+
+    protected fun doReadOnlyFoldingTest(testNameArg: String) {
+        val fileName = getTestFileName(testNameArg)
+        testWrapper(fileName, testNameArg) {
             testReadOnlyFoldingRegions(
                 fileName,
-                null, true
+                null,
+                true,
             )
         }
     }
