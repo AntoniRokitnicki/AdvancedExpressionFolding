@@ -134,5 +134,27 @@ To disable certain types of folding, go to <strong>Settings</strong> | <strong>E
 ---
 Plugin based on the [IntelliJ Platform Plugin Template][template].
 
+## Contributing
+
+Bug reports and feature requests are tracked through the [GitHub Issues page](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/issues).
+Before opening a new ticket, please search for an existing report to avoid duplicates and include reproducible steps or sample code when possible.
+Pull requests are welcome—ensure the change is covered by tests where applicable and reference the related issue in the description.
+
+## Development setup
+
+This project uses the Gradle wrapper. The most common commands are:
+
+```bash
+./gradlew build         # compile the plugin and run unit tests
+./gradlew test          # execute the automated test suite
+./gradlew runIde        # launch a sandbox IDE with the plugin enabled
+```
+
+Run these commands from the repository root. See the [Gradle build documentation](https://docs.gradle.org/current/userguide/command_line_interface.html) for more options.
+
+## License
+
+This project is licensed under the terms of the [Apache License 2.0](LICENSE).
+
 [template]: https://github.com/JetBrains/intellij-platform-plugin-template
 [docs:plugin-description]: https://plugins.jetbrains.com/docs/intellij/plugin-user-experience.html#plugin-description-and-presentation
