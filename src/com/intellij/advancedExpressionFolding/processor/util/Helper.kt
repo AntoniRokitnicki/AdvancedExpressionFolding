@@ -152,15 +152,17 @@ object Helper {
 
     @JvmStatic
     fun findDot(document: Document, positionStart: Int, direction: Int, includeNewLines: Boolean): Int {
+        val chars = document.charsSequence
+        val length = chars.length
         var position = positionStart
         var offset = 0
-        while (kotlin.math.abs(offset) < 100 && position > 0 && position < document.text.length) {
+        while (kotlin.math.abs(offset) < 100 && position > 0 && position < length) {
             position += direction
             offset += direction
-            if (charAt(document, position) == '.') {
+            if (charAt(chars, position) == '.') {
                 break
             }
-            if (!charAt(document, position).isWhitespace()) {
+            if (!charAt(chars, position).isWhitespace()) {
                 return Int.MAX_VALUE
             }
         }
@@ -169,13 +171,13 @@ object Helper {
             do {
                 position += direction
                 offsetWithNewLine += direction
-                if (direction < 0 && charAt(document, position) == '\n') {
+                if (direction < 0 && charAt(chars, position) == '\n') {
                     offset = offsetWithNewLine
-                } else if (direction > 0 && charAt(document, position).isWhitespace()) {
+                } else if (direction > 0 && charAt(chars, position).isWhitespace()) {
                     offset = offsetWithNewLine
                 }
-            } while (kotlin.math.abs(offsetWithNewLine) < 100 && position > 0 && position < document.text.length &&
-                charAt(document, position).isWhitespace())
+            } while (kotlin.math.abs(offsetWithNewLine) < 100 && position > 0 && position < length &&
+                charAt(chars, position).isWhitespace())
         }
         if (kotlin.math.abs(offset) >= 100) {
             return Int.MAX_VALUE
@@ -183,8 +185,13 @@ object Helper {
         return offset
     }
 
-    fun charAt(document: Document, position: Int): Char {
-        return document.getText(TextRange.create(position, position + 1))[0]
+    fun charAt(document: Document, position: Int): Char = charAt(document.charsSequence, position)
+
+    private fun charAt(chars: CharSequence, position: Int): Char {
+        if (position < 0 || position >= chars.length) {
+            throw IndexOutOfBoundsException("Position $position is out of bounds for document length ${chars.length}")
+        }
+        return chars[position]
     }
 
     fun getSlicePosition(
