@@ -14,20 +14,20 @@ import java.io.File
 
 class FoldingDataStorage : Storage {
     private lateinit var descriptors: Array<FoldingDescriptor>
-    private lateinit var document: Document
+    private lateinit var storedDocument: Document
 
     private val showTextRangeIntersections = false
 
     class FoldingGroupNotFound(msg: String) : RuntimeException(msg)
     class InvalidFoldingGroup(msg: String) : RuntimeException(msg)
 
+    context(editorDocument: Document)
     override fun store(
-        foldingDescriptors: Array<FoldingDescriptor>,
-        document: Document
+        foldingDescriptors: Array<FoldingDescriptor>
     ): Array<FoldingDescriptor> {
         validateCorrectFoldingGroup(foldingDescriptors)
         this.descriptors = foldingDescriptors
-        this.document = document
+        this.storedDocument = editorDocument
         return foldingDescriptors
     }
 
@@ -53,7 +53,7 @@ class FoldingDataStorage : Storage {
         printWarningIfThereIsFoldingDuplicate(uniqueElements)
 
         val foldingGroupSet = mutableSetOf<FoldingGroup>()
-        val text = document.text
+        val text = storedDocument.text
 
         val list = descriptors.mapIndexed { index, foldingDescriptor ->
             foldingDescriptor.group?.let {
