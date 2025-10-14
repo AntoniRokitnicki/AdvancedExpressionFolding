@@ -1,8 +1,6 @@
 # Advanced Expression Folding 2 (Fork)​
 
-<p><a href="https://plugins.jetbrains.com/plugin/23659-advanced-java-folding-2-fork-">
-    <img src="https://yiiguxing.github.io/TranslationPlugin/img/ext/installation_button.svg" height="52" alt="Get from Marketplace" title="Get from Marketplace">
-</a></p>
+[![Get from Marketplace](https://yiiguxing.github.io/TranslationPlugin/img/ext/installation_button.svg)](https://plugins.jetbrains.com/plugin/23659-advanced-java-folding-2-fork-)
 
 
 
@@ -33,16 +31,16 @@
 ![Lines of Code Badge](https://raw.githubusercontent.com/AntoniRokitnicki/AdvancedExpressionFolding/lines-of-code-badge/badge.svg)
 
 <!-- Plugin description -->
-<p>Modern JVM languages such as Kotlin, Groovy, Scala and some others offer many language features that let you
-  write code in a more concise and expressive manner. These features include type inference, properties,
-  interpolated strings, range and tuple literals, enhanced operators, closures, implicits, smart casts and many more.</p>
+Modern JVM languages such as Kotlin, Groovy, Scala and some others offer many language features that let you
+write code in a more concise and expressive manner. These features include type inference, properties,
+interpolated strings, range and tuple literals, enhanced operators, closures, implicits, smart casts and many more.
 
-<p>This plugin extends the IDE’s folding features to emulate some of these modern languages’ features helping
-  fight verbosity.</p>
+This plugin extends the IDE’s folding features to emulate some of these modern languages’ features helping
+fight verbosity.
 
-<p>Fork of abandoned <a href="https://plugins.jetbrains.com/plugin/9320-advanced-java-folding">Advanced Java Folding</a></p>
+Fork of abandoned [Advanced Java Folding](https://plugins.jetbrains.com/plugin/9320-advanced-java-folding).
 
-<p>For more information, read the <a href="https://medium.com/@andrey_cheptsov/making-java-code-easier-to-read-without-changing-it-adeebd5c36de" target="_blank">blog post</a>.</p>
+For more information, read the [blog post](https://medium.com/@andrey_cheptsov/making-java-code-easier-to-read-without-changing-it-adeebd5c36de).
 
 ## Unreleased ##
 
@@ -111,14 +109,12 @@
 - [Simplify System.out.println to println](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/Simplify-System.out.println-to-println)
 - [@Nullable and @NotNull annotations](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/@Nullable-and-@NotNull-annotations)
 
-<br />
-<p>For more clarity, you may try to adjust your color scheme: go to <strong>Settings</strong> | <strong>Editor</strong> |
-<strong>Colors &amp; Fonts</strong> | <strong>General</strong> | <strong>Text</strong>, select <strong>Folded text</strong>
-uncheck the <strong>Background</strong> color, and change the
-<strong>Foreground</strong> color to #000091 for the default scheme and #7CA0BB for Darcula.</p>
+For more clarity, you may try to adjust your color scheme: go to **Settings** | **Editor** |
+**Colors & Fonts** | **General** | **Text**, select **Folded text**, uncheck the **Background** color, and change the
+**Foreground** color to #000091 for the default scheme and #7CA0BB for Darcula.
 
-To disable certain types of folding, go to <strong>Settings</strong> | <strong>Editor</strong> |
-<strong>General</strong> | <strong>Code Folding</strong>.
+To disable certain types of folding, go to **Settings** | **Editor** |
+**General** | **Code Folding**.
 <!-- Plugin description end -->
 
 
