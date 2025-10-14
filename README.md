@@ -1,7 +1,8 @@
 # Advanced Expression Folding 2 (Fork)​
 
-[![Get from Marketplace](https://yiiguxing.github.io/TranslationPlugin/img/ext/installation_button.svg)](https://plugins.jetbrains.com/plugin/23659-advanced-java-folding-2-fork-)
-
+<p><a href="https://plugins.jetbrains.com/plugin/23659-advanced-java-folding-2-fork-">
+    <img src="https://yiiguxing.github.io/TranslationPlugin/img/ext/installation_button.svg" height="52" alt="Get from Marketplace" title="Get from Marketplace">
+</a></p>
 
 
 [![Build](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/actions/workflows/build.yml/badge.svg)](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/actions/workflows/build.yml)
