@@ -9,6 +9,8 @@ import com.intellij.codeInsight.lookup.LookupElementBuilder
 import com.intellij.openapi.command.WriteCommandAction
 import com.intellij.patterns.PlatformPatterns
 import com.intellij.psi.*
+import com.intellij.psi.codeStyle.CodeStyleManager
+import com.intellij.psi.codeStyle.JavaCodeStyleManager
 import com.intellij.psi.util.PsiTreeUtil
 import com.intellij.util.ProcessingContext
 
@@ -138,12 +140,24 @@ class MainAnnotationCompletionContributor(private val state: IState = getInstanc
     }
 
     private fun insertFormatted(code: String, clazz: PsiClass, ctx: InsertionContext) {
+        val project = clazz.project
         val doc = ctx.document
-        val insertOffset = clazz.textRange.startOffset + clazz.text.indexOf('{') + 1
+        val insertOffset = clazz.lBrace?.textOffset?.plus(1) ?: clazz.textRange.endOffset
 
-        PsiDocumentManager.getInstance(clazz.project).doPostponedOperationsAndUnblockDocument(doc)
+        val documentManager = PsiDocumentManager.getInstance(project)
+        documentManager.doPostponedOperationsAndUnblockDocument(doc)
 
-        doc.insertString(insertOffset, "\n$code")
+        doc.insertString(insertOffset, "\n$code\n")
+        documentManager.commitDocument(doc)
+
+        val insertedMethod = clazz.findMethodsByName("main", false)
+            .maxByOrNull { it.textOffset }
+
+        if (insertedMethod != null) {
+            JavaCodeStyleManager.getInstance(project).shortenClassReferences(insertedMethod)
+            CodeStyleManager.getInstance(project).reformat(insertedMethod)
+        }
+
         positionCursorAtMainMethod(code, insertOffset, ctx)
     }
 
