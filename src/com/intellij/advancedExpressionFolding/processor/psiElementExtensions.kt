@@ -129,7 +129,7 @@ fun PsiClass?.isBuilder(): Boolean {
     if (this == null) {
         return false
     }
-    val userData = getClassType()
+    val userData = classType
     if (userData == null) {
         allMethods.forEach {
             if (it.name == "build") {
@@ -155,7 +155,8 @@ fun PsiElement.setClassType(type: PsiClassExt.ClassType) {
     putCopyableUserData(Keys.CLASS_TYPE_KEY, type)
 }
 
-fun PsiElement.getClassType(): PsiClassExt.ClassType? = getUserData(Keys.CLASS_TYPE_KEY)
+val PsiElement.classType: PsiClassExt.ClassType?
+    get() = getUserData(Keys.CLASS_TYPE_KEY)
 
 var PsiMethod.propertyField: PsiField?
     get() = getUserData(Keys.FIELD_KEY)
@@ -204,11 +205,13 @@ fun PsiCodeBlock.hasComments(): Boolean = children.any {
     it is PsiComment
 }
 
-fun PsiCodeBlock.getComment(): PsiElement? = children.firstOrNull {
-    it is PsiComment
-}
+val PsiCodeBlock.comment: PsiElement?
+    get() = children.firstOrNull {
+        it is PsiComment
+    }
 
-fun PsiMethod.getSignature(): MethodSignature = getSignature(PsiSubstitutor.EMPTY)
+val PsiMethod.signature: MethodSignature
+    get() = getSignature(PsiSubstitutor.EMPTY)
 
 fun VirtualFile.toJavaPsiFile(project: Project): PsiJavaFile? {
     if (!isValid) {

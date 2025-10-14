@@ -1,12 +1,13 @@
 package com.intellij.advancedExpressionFolding.integration
 
+import com.intellij.advancedExpressionFolding.isAdvancedExpressionFoldingGroup
+import com.intellij.advancedExpressionFolding.openTextEditors
 import com.intellij.codeInsight.folding.CodeFoldingManager
 import com.intellij.openapi.actionSystem.*
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.application.ModalityState
 import com.intellij.openapi.application.runReadAction
 import com.intellij.openapi.fileEditor.FileEditorManager
-import com.intellij.openapi.fileEditor.TextEditor
 import com.intellij.openapi.project.ProjectManager
 import org.jetbrains.annotations.TestOnly
 import java.util.concurrent.atomic.AtomicReference
@@ -45,9 +46,7 @@ object IntegrationTestApi {
                     .firstOrNull { !it.isDisposed }
                     ?.foldingModel
                     ?.allFoldRegions
-                    ?.count { fold ->
-                        fold.group?.toString()?.startsWith("com.intellij.advancedExpressionFolding") == true
-                    }
+                    ?.count { fold -> fold.isAdvancedExpressionFoldingGroup }
                     ?: 0
             }
         }
@@ -56,12 +55,9 @@ object IntegrationTestApi {
     private fun refreshOpenEditors() {
         ProjectManager.getInstance().openProjects.forEach { project ->
             val foldingManager = CodeFoldingManager.getInstance(project)
-            FileEditorManager.getInstance(project).allEditors
-                .mapNotNull { editor -> (editor as? TextEditor)?.editor }
-                .filterNot { it.isDisposed }
-                .forEach { editor ->
-                    foldingManager.updateFoldRegions(editor)
-                }
+            project.openTextEditors.forEach { editor ->
+                foldingManager.updateFoldRegions(editor)
+            }
         }
     }
 
