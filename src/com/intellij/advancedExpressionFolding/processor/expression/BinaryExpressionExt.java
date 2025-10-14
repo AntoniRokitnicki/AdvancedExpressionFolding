@@ -25,107 +25,33 @@ import static com.intellij.advancedExpressionFolding.processor.util.Helper.erase
 public class BinaryExpressionExt {
     @Nullable
     public static Expression getBinaryExpression(@NotNull PsiBinaryExpression element, @NotNull Document document) {
-        AdvancedExpressionFoldingSettings settings = AdvancedExpressionFoldingSettings.getInstance();
-        if ((element.getLOperand() instanceof PsiMethodCallExpression
-                && isLiteralOrNegatedLiteral(element.getROperand())
-                || element.getROperand() instanceof PsiMethodCallExpression &&
-                isLiteralOrNegatedLiteral(element.getLOperand()))
-                && settings.getState().getComparingExpressionsCollapse()) {
-            PsiMethodCallExpression methodCallExpression = (PsiMethodCallExpression) (element
-                    .getLOperand() instanceof PsiMethodCallExpression
-                    ? element.getLOperand() : element.getROperand());
-
-            @Nullable PsiExpression literalExpression = isLiteralOrNegatedLiteral(element.getLOperand())
-                    ? element.getLOperand() : element.getROperand();
-
-            if (literalExpression != null && literalExpression.getText().equals("0")
-                    || literalExpression != null && literalExpression.getText().equals("-1")
-                    || literalExpression != null && literalExpression.getText().equals("1")) {
-
-                @NotNull Optional<PsiElement> identifier = Stream.of(methodCallExpression.getMethodExpression().getChildren())
-                        .filter(c -> c instanceof PsiIdentifier).findAny();
-                if (identifier.isPresent() && identifier.get().getText().equals("compareTo") && methodCallExpression.getArgumentList().getExpressions().length == 1) {
-                    @Nullable PsiMethod method = (PsiMethod) methodCallExpression.getMethodExpression().resolve();
-                    if (method != null) {
-                        @Nullable PsiClass psiClass = method.getContainingClass();
-                        if (psiClass != null && (psiClass.getQualifiedName() != null && Consts.SUPPORTED_CLASSES.contains(eraseGenerics(psiClass.getQualifiedName()))
-                                || Consts.UNSUPPORTED_CLASSES_METHODS_EXCEPTIONS.contains(method.getName()))) {
-                            @Nullable Expression qualifier = methodCallExpression.getMethodExpression()
-                                    .getQualifierExpression() != null ? getAnyExpression(methodCallExpression.getMethodExpression()
-                                    .getQualifierExpression(), document) : null;
-                            if (qualifier != null) {
-                                @NotNull Expression argument = getAnyExpression(methodCallExpression.getArgumentList()
-                                        .getExpressions()[0], document);
-
-                                String operationSign = element.getOperationSign().getText();
-
-                                int expression = Integer.parseInt(literalExpression.getText());
-                                String lessOperation = "<";
-                                String greaterOperation = ">";
-                                if (literalExpression == element.getLOperand()) {
-                                    lessOperation = ">";
-                                    greaterOperation = "<";
-                                }
-
-                                if (operationSign.equals("==")) {
-                                    switch (expression) {
-                                        case -1:
-                                            return new Append.Less(element, element.getTextRange(), Arrays.asList(qualifier, argument));
-                                        case 0:
-                                            return new Equal(element, element.getTextRange(), Arrays.asList(qualifier, argument));
-                                        case 1:
-                                            return new Greater(element, element.getTextRange(), Arrays.asList(qualifier, argument));
-                                    }
-                                } else if (operationSign.equals("!=")) {
-                                    switch (expression) {
-                                        case 1:
-                                            return new Append.LessEqual(element, element.getTextRange(), Arrays.asList(qualifier, argument));
-                                        case 0:
-                                            return new NotEqual(element, element.getTextRange(), Arrays.asList(qualifier, argument));
-                                        case -1:
-                                            return new GreaterEqual(element, element.getTextRange(), Arrays.asList(qualifier, argument));
-                                    }
-
-                                }
-                                else if(operationSign.equals(lessOperation)) {
-                                    switch (expression) {
-                                        case 1:
-                                            return new Append.LessEqual(element, element.getTextRange(), Arrays.asList(qualifier, argument));
-                                        case 0:
-                                            return new Append.Less(element, element.getTextRange(), Arrays.asList(qualifier, argument));
-                                    }
-                                }
-                                else if(operationSign.equals(greaterOperation)) {
-                                    switch (expression) {
-                                        case -1:
-                                            return new GreaterEqual(element, element.getTextRange(), Arrays.asList(qualifier, argument));
-                                        case 0:
-                                            return new Greater(element, element.getTextRange(), Arrays.asList(qualifier, argument));
-                                    }
-                                }
-                                else if(operationSign.equals(lessOperation + "=")) {
-                                    switch (expression) {
-                                        case -1:
-                                            return new Append.Less(element, element.getTextRange(), Arrays.asList(qualifier, argument));
-                                        case 0:
-                                            return new Append.LessEqual(element, element.getTextRange(), Arrays.asList(qualifier, argument));
-                                    }
-                                }
-                                else if(operationSign.equals(greaterOperation + "=")) {
-                                    switch (expression) {
-                                        case 1:
-                                            return new Greater(element, element.getTextRange(), Arrays.asList(qualifier, argument));
-                                        case 0:
-                                            return new GreaterEqual(element, element.getTextRange(), Arrays.asList(qualifier, argument));
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+        Expression compareToExpression = tryBuildCompareToBasedExpression(element, document);
+        if (compareToExpression != null) {
+            return compareToExpression;
         }
-        if (Consts.SUPPORTED_BINARY_OPERATORS.contains(element.getOperationSign().getText()) && element.getROperand() != null) {
+        Expression basicBinary = tryBuildBasicBinaryOperation(element, document);
+        if (basicBinary != null) {
+            return basicBinary;
+        }
+        if (isAndOfBinaryExpressions(element)) {
+            return getAndTwoBinaryExpressions(element,
+                    ((PsiBinaryExpression) element.getLOperand()),
+                    ((PsiBinaryExpression) element.getROperand()), document);
+        }
+        return null;
+    }
+
+    private static boolean isAndOfBinaryExpressions(PsiBinaryExpression element) {
+        return "&&".equals(element.getOperationSign().getText())
+                && element.getLOperand() instanceof PsiBinaryExpression
+                && element.getROperand() instanceof PsiBinaryExpression;
+    }
+
+    @Nullable
+    private static Expression tryBuildBasicBinaryOperation(@NotNull PsiBinaryExpression element,
+                                                           @NotNull Document document) {
+        if (Consts.SUPPORTED_BINARY_OPERATORS.contains(element.getOperationSign().getText())
+                && element.getROperand() != null) {
             @NotNull Expression leftExpression = getAnyExpression(element.getLOperand(), document);
             @NotNull Expression rightExpression = getAnyExpression(element.getROperand(), document);
             switch (element.getOperationSign().getText()) {
@@ -137,15 +63,216 @@ public class BinaryExpressionExt {
                     return new Multiply(element, element.getTextRange(), Arrays.asList(leftExpression, rightExpression));
                 case "/":
                     return new Divide(element, element.getTextRange(), Arrays.asList(leftExpression, rightExpression));
+                default:
+                    return null;
             }
         }
-        if ("&&".equals(element.getOperationSign().getText())
-                && element.getLOperand() instanceof PsiBinaryExpression
-                && element.getROperand() instanceof PsiBinaryExpression) {
-            return getAndTwoBinaryExpressions(element,
-                    ((PsiBinaryExpression) element.getLOperand()), ((PsiBinaryExpression) element.getROperand()), document);
+        return null;
+    }
+
+    @Nullable
+    private static Expression tryBuildCompareToBasedExpression(@NotNull PsiBinaryExpression element,
+                                                               @NotNull Document document) {
+        AdvancedExpressionFoldingSettings settings = AdvancedExpressionFoldingSettings.getInstance();
+        if (!settings.getState().getComparingExpressionsCollapse()) {
+            return null;
+        }
+        PsiMethodCallExpression methodCall = getMethodCallOperand(element);
+        PsiExpression literal = getLiteralOperand(element);
+        if (!isSupportedCompareToPattern(methodCall, literal)) {
+            return null;
+        }
+        PsiMethod method = (PsiMethod) methodCall.getMethodExpression().resolve();
+        if (!isSupportedCompareToMethod(method)) {
+            return null;
+        }
+        Expression qualifier = getQualifierExpression(methodCall, document);
+        if (qualifier == null) {
+            return null;
+        }
+        @NotNull Expression argument = getAnyExpression(methodCall.getArgumentList().getExpressions()[0], document);
+        String operationSign = element.getOperationSign().getText();
+        int expressionValue = Integer.parseInt(literal.getText());
+        String lessOperation = "<";
+        String greaterOperation = ">";
+        if (literal == element.getLOperand()) {
+            lessOperation = ">";
+            greaterOperation = "<";
+        }
+        return buildCompareToExpression(element, qualifier, argument, operationSign,
+                expressionValue, lessOperation, greaterOperation);
+    }
+
+    @Nullable
+    private static PsiMethodCallExpression getMethodCallOperand(@NotNull PsiBinaryExpression element) {
+        if (element.getLOperand() instanceof PsiMethodCallExpression) {
+            return (PsiMethodCallExpression) element.getLOperand();
+        } else if (element.getROperand() instanceof PsiMethodCallExpression) {
+            return (PsiMethodCallExpression) element.getROperand();
         }
         return null;
+    }
+
+    @Nullable
+    private static PsiExpression getLiteralOperand(@NotNull PsiBinaryExpression element) {
+        if (isLiteralOrNegatedLiteral(element.getLOperand())) {
+            return element.getLOperand();
+        } else if (isLiteralOrNegatedLiteral(element.getROperand())) {
+            return element.getROperand();
+        }
+        return null;
+    }
+
+    private static boolean isSupportedCompareToPattern(@Nullable PsiMethodCallExpression methodCall,
+                                                       @Nullable PsiExpression literal) {
+        if (methodCall == null || literal == null) {
+            return false;
+        }
+        if (!(literal.getText().equals("0") || literal.getText().equals("1") || literal.getText().equals("-1"))) {
+            return false;
+        }
+        Optional<PsiElement> identifier = Stream.of(methodCall.getMethodExpression().getChildren())
+                .filter(c -> c instanceof PsiIdentifier).findAny();
+        return identifier.isPresent() && identifier.get().getText().equals("compareTo")
+                && methodCall.getArgumentList().getExpressions().length == 1;
+    }
+
+    private static boolean isSupportedCompareToMethod(@Nullable PsiMethod method) {
+        if (method == null) {
+            return false;
+        }
+        PsiClass psiClass = method.getContainingClass();
+        return psiClass != null
+                && ((psiClass.getQualifiedName() != null
+                && Consts.SUPPORTED_CLASSES.contains(eraseGenerics(psiClass.getQualifiedName())))
+                || Consts.UNSUPPORTED_CLASSES_METHODS_EXCEPTIONS.contains(method.getName()));
+    }
+
+    @Nullable
+    private static Expression getQualifierExpression(@NotNull PsiMethodCallExpression methodCall,
+                                                     @NotNull Document document) {
+        if (methodCall.getMethodExpression().getQualifierExpression() != null) {
+            return getAnyExpression(methodCall.getMethodExpression().getQualifierExpression(), document);
+        }
+        return null;
+    }
+
+    @Nullable
+    private static Expression buildCompareToExpression(@NotNull PsiBinaryExpression element,
+                                                       @NotNull Expression qualifier,
+                                                       @NotNull Expression argument,
+                                                       @NotNull String operationSign,
+                                                       int expressionValue,
+                                                       @NotNull String lessOperation,
+                                                       @NotNull String greaterOperation) {
+        if (operationSign.equals("==")) {
+            return buildEqualComparison(element, qualifier, argument, expressionValue);
+        } else if (operationSign.equals("!=")) {
+            return buildNotEqualComparison(element, qualifier, argument, expressionValue);
+        } else if (operationSign.equals(lessOperation)) {
+            return buildLessComparison(element, qualifier, argument, expressionValue);
+        } else if (operationSign.equals(greaterOperation)) {
+            return buildGreaterComparison(element, qualifier, argument, expressionValue);
+        } else if (operationSign.equals(lessOperation + "=")) {
+            return buildLessEqualComparison(element, qualifier, argument, expressionValue);
+        } else if (operationSign.equals(greaterOperation + "=")) {
+            return buildGreaterEqualComparison(element, qualifier, argument, expressionValue);
+        }
+        return null;
+    }
+
+    @Nullable
+    private static Expression buildEqualComparison(@NotNull PsiBinaryExpression element,
+                                                   @NotNull Expression qualifier,
+                                                   @NotNull Expression argument,
+                                                   int expressionValue) {
+        switch (expressionValue) {
+            case -1:
+                return new Append.Less(element, element.getTextRange(), Arrays.asList(qualifier, argument));
+            case 0:
+                return new Equal(element, element.getTextRange(), Arrays.asList(qualifier, argument));
+            case 1:
+                return new Greater(element, element.getTextRange(), Arrays.asList(qualifier, argument));
+            default:
+                return null;
+        }
+    }
+
+    @Nullable
+    private static Expression buildNotEqualComparison(@NotNull PsiBinaryExpression element,
+                                                      @NotNull Expression qualifier,
+                                                      @NotNull Expression argument,
+                                                      int expressionValue) {
+        switch (expressionValue) {
+            case 1:
+                return new Append.LessEqual(element, element.getTextRange(), Arrays.asList(qualifier, argument));
+            case 0:
+                return new NotEqual(element, element.getTextRange(), Arrays.asList(qualifier, argument));
+            case -1:
+                return new GreaterEqual(element, element.getTextRange(), Arrays.asList(qualifier, argument));
+            default:
+                return null;
+        }
+    }
+
+    @Nullable
+    private static Expression buildLessComparison(@NotNull PsiBinaryExpression element,
+                                                  @NotNull Expression qualifier,
+                                                  @NotNull Expression argument,
+                                                  int expressionValue) {
+        switch (expressionValue) {
+            case 1:
+                return new Append.LessEqual(element, element.getTextRange(), Arrays.asList(qualifier, argument));
+            case 0:
+                return new Append.Less(element, element.getTextRange(), Arrays.asList(qualifier, argument));
+            default:
+                return null;
+        }
+    }
+
+    @Nullable
+    private static Expression buildGreaterComparison(@NotNull PsiBinaryExpression element,
+                                                     @NotNull Expression qualifier,
+                                                     @NotNull Expression argument,
+                                                     int expressionValue) {
+        switch (expressionValue) {
+            case -1:
+                return new GreaterEqual(element, element.getTextRange(), Arrays.asList(qualifier, argument));
+            case 0:
+                return new Greater(element, element.getTextRange(), Arrays.asList(qualifier, argument));
+            default:
+                return null;
+        }
+    }
+
+    @Nullable
+    private static Expression buildLessEqualComparison(@NotNull PsiBinaryExpression element,
+                                                       @NotNull Expression qualifier,
+                                                       @NotNull Expression argument,
+                                                       int expressionValue) {
+        switch (expressionValue) {
+            case -1:
+                return new Append.Less(element, element.getTextRange(), Arrays.asList(qualifier, argument));
+            case 0:
+                return new Append.LessEqual(element, element.getTextRange(), Arrays.asList(qualifier, argument));
+            default:
+                return null;
+        }
+    }
+
+    @Nullable
+    private static Expression buildGreaterEqualComparison(@NotNull PsiBinaryExpression element,
+                                                          @NotNull Expression qualifier,
+                                                          @NotNull Expression argument,
+                                                          int expressionValue) {
+        switch (expressionValue) {
+            case 1:
+                return new Greater(element, element.getTextRange(), Arrays.asList(qualifier, argument));
+            case 0:
+                return new GreaterEqual(element, element.getTextRange(), Arrays.asList(qualifier, argument));
+            default:
+                return null;
+        }
     }
 
     static boolean isLiteralOrNegatedLiteral(PsiElement element) {

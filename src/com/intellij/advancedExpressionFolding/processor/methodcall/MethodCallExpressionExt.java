@@ -135,11 +135,7 @@ public class MethodCallExpressionExt {
                     guessPropertyName(identifier.getText()));
         } else {
             String text = identifier.getText();
-            if (Helper.isSetter(text)
-                    && element.getArgumentList().getExpressions().length == 1
-                    && element.getParent() instanceof PsiStatement
-                    && (!(qualifier instanceof PsiMethodCallExpression)
-                    || !(Helper.startsWith(((PsiMethodCallExpression) qualifier).getMethodExpression().getReferenceName(), "set")))) {
+            if (isSimpleSetter(text, element, qualifier)) {
                 Expression qualifierExpression = qualifier != null ? BuildExpressionExt.getAnyExpression(qualifier, document) : null;
                 Expression paramExpression = BuildExpressionExt.getAnyExpression(element.getArgumentList().getExpressions()[0], document);
                 String propertyName = guessPropertyName(text);
@@ -151,6 +147,14 @@ public class MethodCallExpressionExt {
             }
         }
         return null;
+    }
+
+    private static boolean isSimpleSetter(String text, PsiMethodCallExpression element, PsiExpression qualifier) {
+        return Helper.isSetter(text)
+                && element.getArgumentList().getExpressions().length == 1
+                && element.getParent() instanceof PsiStatement
+                && (!(qualifier instanceof PsiMethodCallExpression)
+                || !Helper.startsWith(((PsiMethodCallExpression) qualifier).getMethodExpression().getReferenceName(), "set"));
     }
 
 

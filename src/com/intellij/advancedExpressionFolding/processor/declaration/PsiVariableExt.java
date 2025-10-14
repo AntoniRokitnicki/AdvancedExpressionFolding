@@ -14,11 +14,7 @@ public class PsiVariableExt extends BaseExtension {
     @Nullable
     public static VariableDeclarationImpl getVariableDeclaration(PsiVariable element) {
         AdvancedExpressionFoldingSettings settings = AdvancedExpressionFoldingSettings.getInstance();
-        if (settings.getState().getVarExpressionsCollapse()
-                && element.getName() != null
-                && element.getTypeElement() != null
-                && (element.getInitializer() != null || element.getParent() instanceof PsiForeachStatement)
-                && element.getTextRange().getStartOffset() < element.getTypeElement().getTextRange().getEndOffset()) {
+        if (shouldCollapseVariableDeclaration(element, settings)) {
             boolean isFinal = Helper.calculateIfFinal(element);
             return new VariableDeclarationImpl(element, TextRange.create(
                     element.getTextRange().getStartOffset(),
@@ -26,5 +22,14 @@ public class PsiVariableExt extends BaseExtension {
                     element.getModifierList() != null && isFinal);
         }
         return null;
+    }
+
+    private static boolean shouldCollapseVariableDeclaration(
+            PsiVariable element, AdvancedExpressionFoldingSettings settings) {
+        return settings.getState().getVarExpressionsCollapse()
+                && element.getName() != null
+                && element.getTypeElement() != null
+                && (element.getInitializer() != null || element.getParent() instanceof PsiForeachStatement)
+                && element.getTextRange().getStartOffset() < element.getTypeElement().getTextRange().getEndOffset();
     }
 }
