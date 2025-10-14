@@ -89,7 +89,7 @@ Simplifies null-safe call operations.
 Provides extended null-safe if operations.
 - [Example](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/examples/data/IfNullSafeData.java)
 - [Folded](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/folded/IfNullSafeData-folded.java)
-- [Documentation](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/docs/features/extended-null-safe-ifs)
+- [Documentation](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/docs/features/ifNullSafe)
 
 ## kotlinQuickReturn
 ### Kotlin quick return
@@ -120,14 +120,14 @@ Represents Java stream operations using Groovy-style spread operator syntax.
 Represents Java beans using Lombok-style annotations.
 - [Example](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/examples/data/LombokTestData.java)
 - [Folded](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/folded/LombokTestData-folded.java)
-- [Documentation](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/docs/features/lombok-integration)
+- [Documentation](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/docs/features/lombok)
 
 ## logFolding
 ### Log folding
 Applies folding to log statements.
 - [Example](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/examples/data/LogBrackets.java)
 - [Folded](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/folded/LogBrackets-folded.java)
-- [Documentation](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/docs/features/log-bracket-folding)
+- [Documentation](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/docs/features/logFolding)
 
 ## logFoldingTextBlocks
 ### Log folding for Java text blocks
@@ -144,7 +144,7 @@ Transforms field initialization and builder patterns into more concise syntax.
 - [Fields Folded](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/folded/FieldShiftFields-folded.java)
 - [Setters Example](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/examples/data/FieldShiftSetters.java)
 - [Setters Folded](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/folded/FieldShiftSetters-folded.java)
-- [Documentation](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/docs/features/field-shift)
+- [Documentation](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/docs/features/fieldShift)
 
 ## destructuring
 ### Destructuring assignment for array & list
@@ -153,14 +153,14 @@ Implements destructuring assignments for arrays and lists.
 - [Array Folded](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/folded/DestructuringAssignmentArrayTestData-folded.java)
 - [List Example](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/examples/data/DestructuringAssignmentListTestData.java)
 - [List Folded](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/folded/DestructuringAssignmentListTestData-folded.java)
-- [Documentation](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/docs/features/destructuring-assignment)
+- [Documentation](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/docs/features/destructuring)
 
 ## println
 ### Simplify System.out.println to println
 Simplifies System.out.println calls to just println.
 - [Example](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/examples/data/PrintlnTestData.java)
 - [Folded](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/folded/PrintlnTestData-folded.java)
-- [Documentation](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/docs/features/simplify-system-out-println)
+- [Documentation](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/docs/features/println)
 
 ## controlFlowSingleStatementCodeBlockCollapse
 ### Control flow single-statement code block braces (read-only files)
@@ -193,7 +193,7 @@ Replaces `@NotNull`/`@Nonnull` and `@Nullable` annotations with the Kotlin-style
 - [Annotations Folded](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/folded/NullableAnnotationTestData-folded.java)
 - [checkNotNull Example](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/examples/data/NullableAnnotationCheckNotNullTestData.java)
 - [checkNotNull Folded](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/folded/NullableAnnotationCheckNotNullTestData-folded.java)
-- [Documentation](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/docs/features/nullable-and-notnull-annotations)
+- [Documentation](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/docs/features/nullable)
 
 ## finalRemoval
 ### Remove the 'final' modifier from all elements except fields
@@ -230,7 +230,7 @@ Simplifies single-expression functions.
 Applies dynamic naming to methods based on a configuration file.
 - [Example](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/examples/data/DynamicTestData.java)
 - [Folded](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/folded/DynamicTestData-folded.java)
-- [Documentation](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/docs/features/dynamic-folding)
+- [Documentation](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/docs/features/dynamic)
 
 ## arithmeticExpressions
 ### BigDecimal, BigInteger and Math
@@ -255,7 +255,7 @@ Applies conversions to interface extension properties.
 Applies pattern matching to `instanceof` checks for more concise and readable code.
 - [Example](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/examples/data/PatternMatchingInstanceofTestData.java)
 - [Folded](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/folded/PatternMatchingInstanceofTestData-folded.java)
-- [Documentation](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/docs/features/pattern-matching-instanceof)
+- [Documentation](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/docs/features/patternMatchingInstanceof)
 
 ## summaryParentOverride
 ### Displays a folded summary of overridden methods from parent classes and interfaces
@@ -268,20 +268,20 @@ Provides a concise view of inherited method overrides, reducing redundant code d
 Simplifies constructor references and inline field initialization.
 - [Example](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/examples/data/ConstructorReferenceNotationTestData.java)
 - [Folded](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/folded/ConstructorReferenceNotationTestData-folded.java)
-- [Documentation](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/docs/features/constructor-reference-notation)
+- [Documentation](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/docs/features/constructorReferenceNotation)
 
 ## methodDefaultParameters
 ### Default parameter values inline for overloaded method
 - [Example](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/examples/data/MethodDefaultParametersTestData.java)
 - [Folded](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/folded/MethodDefaultParametersTestData-folded.java)
-- [Documentation](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/docs/features/method-default-parameters)
+- [Documentation](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/docs/features/methodDefaultParameters)
 
 ## pseudoAnnotations
 ### Pseudo-annotations for main method generation
 Provides pseudo-annotations like @Main that automatically generate main methods for testing and prototyping.
 - [Example](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/examples/data/PseudoAnnotationsMainTestData.java)
 - [Test](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/test/com/intellij/advancedExpressionFolding/MainAnnotationCompletionContributorTest.kt)
-- [Documentation](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/docs/features/pseudo-annotations)
+- [Documentation](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/docs/features/pseudoAnnotations)
 
 ## overrideHide
 ### Hide @Override annotations
