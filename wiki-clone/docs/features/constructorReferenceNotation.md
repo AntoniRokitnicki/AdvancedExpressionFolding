@@ -1,0 +1,12 @@
+## constructorReferenceNotation
+### Constructor reference notation `::new` and compact field initialization
+Simplifies constructor references and inline field initialization.
+
+#### example:
+[example file](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/master/examples/data/ConstructorReferenceNotationTestData.java)
+
+[folded](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/master/folded/ConstructorReferenceNotationTestData-folded.java)
+
+![Constructor reference usage before folding](https://github.com/user-attachments/assets/2a139396-d7ea-43ae-b694-b10411e31c5a)
+
+![Constructor reference folded to ::new notation](https://github.com/user-attachments/assets/ae24c082-d070-46ef-a051-b4cc5ec56dfe)

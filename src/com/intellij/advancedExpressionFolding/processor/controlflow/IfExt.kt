@@ -8,10 +8,10 @@ import com.intellij.advancedExpressionFolding.expression.controlflow.ShortElvisE
 import com.intellij.advancedExpressionFolding.expression.literal.InterpolatedString
 import com.intellij.advancedExpressionFolding.expression.literal.StringLiteral
 import com.intellij.advancedExpressionFolding.expression.math.basic.Add
-import com.intellij.advancedExpressionFolding.processor.core.BaseExtension
 import com.intellij.advancedExpressionFolding.processor.argumentExpressions
 import com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt
 import com.intellij.advancedExpressionFolding.processor.expression.BinaryExpressionExt
+import com.intellij.advancedExpressionFolding.processor.isNull
 import com.intellij.advancedExpressionFolding.processor.language.kotlin.IfNullSafeExt
 import com.intellij.advancedExpressionFolding.processor.language.kotlin.LetReturnExt
 import com.intellij.advancedExpressionFolding.processor.util.Helper
@@ -55,8 +55,8 @@ object IfExt {
         val condition = element.condition
         if (settings.state.checkExpressionsCollapse && condition is PsiBinaryExpression) {
             if (condition.operationSign.text == "!=" && element.elseBranch == null && element.thenBranch != null) {
-                val lNull = BaseExtension.isNull(condition.lOperand.type)
-                val rNull = BaseExtension.isNull(condition.rOperand?.type)
+                val lNull = isNull(condition.lOperand.type)
+                val rNull = isNull(condition.rOperand?.type)
                 if ((lNull && condition.rOperand != null) || (condition.rOperand != null && rNull)) {
                     var thenStatement: PsiStatement? = element.thenBranch
                     if (thenStatement != null && thenStatement.children.size == 1 && thenStatement.children[0] is PsiCodeBlock) {
@@ -97,10 +97,10 @@ object IfExt {
         val condition = element.condition
         if (settings.state.checkExpressionsCollapse && condition is PsiBinaryExpression) {
             if (condition.operationSign.text == "!=" && condition.rOperand != null &&
-                (BaseExtension.isNull(condition.lOperand.type) || BaseExtension.isNull(condition.rOperand?.type)) &&
+                (isNull(condition.lOperand.type) || isNull(condition.rOperand?.type)) &&
                 element.thenExpression != null && element.elseExpression != null
             ) {
-                val qualifier = if (BaseExtension.isNull(condition.lOperand.type)) {
+                val qualifier = if (isNull(condition.lOperand.type)) {
                     condition.rOperand
                 } else {
                     condition.lOperand
