@@ -2,7 +2,7 @@ package com.intellij.advancedExpressionFolding
 
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
 import com.intellij.codeInsight.completion.CompletionType
-import com.intellij.openapi.application.runInEdt
+import com.intellij.openapi.application.ApplicationManager
 import org.intellij.lang.annotations.Language
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertTrue
@@ -31,14 +31,15 @@ class MainAnnotationCompletionContributorTest : BaseTest() {
                     }
                 """.trimIndent(),
                 expected = """
-                    public class Test {
-                        public static void main(String[] args) {
-                            int x = 0;
-                            staticMethod(x);
-                        }
-                        public static void staticMethod(int x) {
-                        }
+                public class Test {
+                    public static void main(String[] args) {
+                        int x = 0;
+                        staticMethod(x);
                     }
+                
+                    public static void staticMethod(int x) {
+                    }
+                }
                 """.trimIndent()
             )),
             
@@ -52,14 +53,15 @@ class MainAnnotationCompletionContributorTest : BaseTest() {
                     }
                 """.trimIndent(),
                 expected = """
-                    public class Test {
-                        public static void main(String[] args) {
-                            String s = null;
-                            new Test().instanceMethod(s);
-                        }
-                        public void instanceMethod(String s) {
-                        }
+                public class Test {
+                    public static void main(String[] args) {
+                        String s = null;
+                        new Test().instanceMethod(s);
                     }
+                
+                    public void instanceMethod(String s) {
+                    }
+                }
                 """.trimIndent()
             )),
             
@@ -74,14 +76,15 @@ class MainAnnotationCompletionContributorTest : BaseTest() {
                     }
                 """.trimIndent(),
                 expected = """
-                    public class Test {
-                        public static void main(String[] args) {
-                            System.out.println(new Test().getValue());
-                        }
-                        public String getValue() {
-                            return "";
-                        }
+                public class Test {
+                    public static void main(String[] args) {
+                        System.out.println(new Test().getValue());
                     }
+                
+                    public String getValue() {
+                        return "";
+                    }
+                }
                 """.trimIndent()
             )),
             
@@ -98,19 +101,20 @@ class MainAnnotationCompletionContributorTest : BaseTest() {
                     }
                 """.trimIndent(),
                 expected = """
-                    public class Test {
-                        public static void main(String[] args) {
-                            int param = 0;
-                    
-                            String s = null;
-                            new Test(param).testMethod(s);
-                        }
-                        public Test(int param) {
-                        }
-                        
-                        public void testMethod(String s) {
-                        }
+                public class Test {
+                    public static void main(String[] args) {
+                        int param = 0;
+                
+                        String s = null;
+                        new Test(param).testMethod(s);
                     }
+                
+                    public Test(int param) {
+                    }
+                    
+                    public void testMethod(String s) {
+                    }
+                }
                 """.trimIndent()
             )),
             
@@ -124,14 +128,15 @@ class MainAnnotationCompletionContributorTest : BaseTest() {
                     }
                 """.trimIndent(),
                 expected = """
-                    public class Test {
-                        public static void main(String[] args) {
-                            String[] args = new String[]{};
-                            new Test().stringVarargs(args);
-                        }
-                        public void stringVarargs(String... args) {
-                        }
+                public class Test {
+                    public static void main(String[] args) {
+                        String[] args = new String[]{};
+                        new Test().stringVarargs(args);
                     }
+                
+                    public void stringVarargs(String... args) {
+                    }
+                }
                 """.trimIndent()
             )),
 
@@ -145,14 +150,15 @@ class MainAnnotationCompletionContributorTest : BaseTest() {
                     }
                 """.trimIndent(),
                 expected = """
-                    public class Test {
-                        public static void main(String[] args) {
-                            int[] values = new int[]{};
-                            new Test().numbers(values);
-                        }
-                        public void numbers(int... values) {
-                        }
+                public class Test {
+                    public static void main(String[] args) {
+                        int[] values = new int[]{};
+                        new Test().numbers(values);
                     }
+                
+                    public void numbers(int... values) {
+                    }
+                }
                 """.trimIndent()
             )),
             
@@ -170,14 +176,15 @@ class MainAnnotationCompletionContributorTest : BaseTest() {
                     }
                 """.trimIndent(),
                 expected = """
-                    public class Test {
-                        public static void main(String[] args) {
-                            new Test().newMethod();
-                        }
-                    
-                        public void newMethod() {
-                        }
+                public class Test {
+                    public static void main(String[] args) {
+                        new Test().newMethod();
                     }
+                
+                
+                    public void newMethod() {
+                    }
+                }
                 """.trimIndent()
             )),
             
@@ -191,21 +198,22 @@ class MainAnnotationCompletionContributorTest : BaseTest() {
                     }
                 """.trimIndent(),
                 expected = """
-                    public class Test {
-                        public static void main(String[] args) {
-                            boolean b = false;
-                            char c = '\0';
-                            byte by = 0;
-                            short s = 0;
-                            int i = 0;
-                            long l = 0;
-                            float f = 0.0f;
-                            double d = 0.0;
-                            new Test().primitiveParams(b, c, by, s, i, l, f, d);
-                        }
-                        public void primitiveParams(boolean b, char c, byte by, short s, int i, long l, float f, double d) {
-                        }
+                public class Test {
+                    public static void main(String[] args) {
+                        boolean b = false;
+                        char c = '\0';
+                        byte by = 0;
+                        short s = 0;
+                        int i = 0;
+                        long l = 0;
+                        float f = 0.0f;
+                        double d = 0.0;
+                        new Test().primitiveParams(b, c, by, s, i, l, f, d);
                     }
+                
+                    public void primitiveParams(boolean b, char c, byte by, short s, int i, long l, float f, double d) {
+                    }
+                }
                 """.trimIndent()
             )),
             
@@ -222,22 +230,23 @@ class MainAnnotationCompletionContributorTest : BaseTest() {
                     }
                 """.trimIndent(),
                 expected = """
-                    import java.time.LocalDate;
-                    import java.time.LocalDateTime;
-                    import java.time.ZonedDateTime;
-                    import java.util.Date;
+                import java.time.LocalDate;
+                import java.time.LocalDateTime;
+                import java.time.ZonedDateTime;
+                import java.util.Date;
 
-                    public class Test {
-                        public static void main(String[] args) {
-                            Date date = new Date();
-                            LocalDate ld = LocalDate.now();
-                            LocalDateTime ldt = LocalDateTime.now();
-                            ZonedDateTime zdt = ZonedDateTime.now();
-                            new Test().dateParams(date, ld, ldt, zdt);
-                        }
-                        public void dateParams(java.util.Date date, LocalDate ld, java.time.LocalDateTime ldt, ZonedDateTime zdt) {
-                        }
+                public class Test {
+                    public static void main(String[] args) {
+                        Date date = new Date();
+                        LocalDate ld = LocalDate.now();
+                        LocalDateTime ldt = LocalDateTime.now();
+                        ZonedDateTime zdt = ZonedDateTime.now();
+                        new Test().dateParams(date, ld, ldt, zdt);
                     }
+
+                    public void dateParams(java.util.Date date, LocalDate ld, java.time.LocalDateTime ldt, ZonedDateTime zdt) {
+                    }
+                }
                 """.trimIndent()
             )),
 
@@ -251,14 +260,14 @@ class MainAnnotationCompletionContributorTest : BaseTest() {
                     }
                 """.trimIndent(),
                 expected = """
-                    public class Test {
-                        public static void main(String[] args) {
-                            new Test().testMethod();
-                        }
-                        // class level comment
-                        public void testMethod() {
-                        }
+                public class Test {
+                    public static void main(String[] args) {
+                        new Test().testMethod();
                     }
+                 // class level comment
+                    public void testMethod() {
+                    }
+                }
                 """.trimIndent()
             )),
 
@@ -273,15 +282,15 @@ class MainAnnotationCompletionContributorTest : BaseTest() {
                     }
                 """.trimIndent(),
                 expected = """
-                    public class Test
-                    {
-                        public static void main(String[] args) {
-                            new Test().testMethod();
-                        }
-
-                        public void testMethod() {
-                        }
+                public class Test
+                {
+                    public static void main(String[] args) {
+                        new Test().testMethod();
                     }
+                
+                    public void testMethod() {
+                    }
+                }
                 """.trimIndent()
             ))
         )
@@ -326,11 +335,11 @@ class MainAnnotationCompletionContributorTest : BaseTest() {
         val mainCompletion = completions.find { it.lookupString == "Main" }
         assertNotNull(mainCompletion)
 
-        runInEdt {
+        ApplicationManager.getApplication().invokeAndWait {
             fixture.lookup.currentItem = mainCompletion
             fixture.finishLookup('\n')
         }
-        
+
         fixture.checkResult(testCase.expected)
     }
 
