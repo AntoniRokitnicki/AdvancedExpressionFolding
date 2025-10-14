@@ -22,7 +22,8 @@ abstract class AbstractSingleChildExpression(
      * [com.intellij.advancedExpressionFolding.expression.ArrayLiteral.buildFoldRegions]
      * are using this offset
      */
-    override fun getTextRange(): TextRange = element.textRange
+    override val textRange: TextRange
+        get() = element.textRange
 
     protected var group: FoldingGroup? = null
 
@@ -48,16 +49,14 @@ abstract class AbstractSingleChildExpression(
             ?: group()
         val folding = FoldingDescriptor(
             element.node,
-            textRange,
+            super.textRange,
             group,
             text,
         )
         val array = arrayOf(folding)
-        return if (child != null && child.supportsFoldRegions(document, this)) {
-            array + child.buildFoldRegions(child.element, document, this)
-        } else {
-            array
-        }
+        return child?.takeIf { it.supportsFoldRegions(document, this) }
+            ?.let { array + it.buildFoldRegions(it.element, document, this) }
+            ?: array
     }
 
     fun group(): FoldingGroup = this::class.group()
