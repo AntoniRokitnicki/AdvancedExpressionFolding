@@ -37,8 +37,8 @@
   write code in a more concise and expressive manner. These features include type inference, properties,
   interpolated strings, range and tuple literals, enhanced operators, closures, implicits, smart casts and many more.</p>
 
-<p>This plugin extends the IDE’s folding features to emulate some of these modern languages’ features helping
-  fight verbosity.</p>
+<p>This plugin extends the IDE’s folding features to emulate capabilities from these modern languages, helping
+  reduce verbosity.</p>
 
 <p>Fork of abandoned <a href="https://plugins.jetbrains.com/plugin/9320-advanced-java-folding">Advanced Java Folding</a></p>
 
