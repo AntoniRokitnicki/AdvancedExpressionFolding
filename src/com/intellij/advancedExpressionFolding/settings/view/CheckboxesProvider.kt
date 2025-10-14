@@ -2,14 +2,19 @@ package com.intellij.advancedExpressionFolding.settings.view
 
 import com.intellij.advancedExpressionFolding.processor.util.Consts.Emoji
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings.State
+import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.editor.event.DocumentEvent
 import com.intellij.openapi.editor.event.DocumentListener
 import com.intellij.openapi.editor.ex.EditorEx
 import com.intellij.openapi.editor.highlighter.EditorHighlighterFactory
+import com.intellij.openapi.ui.ComponentValidator
+import com.intellij.openapi.ui.ValidationInfo
 import com.intellij.ui.components.JBLabel
 import com.intellij.ui.dsl.builder.Panel
 import org.intellij.lang.regexp.RegExpFileType
 import java.awt.Dimension
+import java.util.function.Supplier
+import java.util.regex.PatternSyntaxException
 import kotlin.reflect.KMutableProperty0
 
 abstract class CheckboxesProvider {
@@ -294,19 +299,34 @@ private fun createEditor(property: KMutableProperty0<String?>): EditorEx {
     val document = factory.createDocument(property.get() ?: "")
 
     val editor = factory.createEditor(document, null) as EditorEx
+    val validator = ComponentValidator(ApplicationManager.getApplication())
+        .withValidator(Supplier {
+            val text = document.text.trim()
+            if (text.isEmpty()) {
+                property.set(null)
+                return@Supplier null
+            }
+
+            try {
+                text.toPattern()
+                property.set(text)
+                null
+            } catch (exception: PatternSyntaxException) {
+                property.set(null)
+                ValidationInfo(
+                    exception.description ?: exception.message ?: "Invalid regular expression",
+                    editor.component
+                )
+            }
+        })
+        .installOn(editor.component)
+
     document.addDocumentListener(object : DocumentListener {
         override fun documentChanged(event: DocumentEvent) {
-            event.document.text.trim().takeIf {
-                it.isNotEmpty()
-            }?.let { text ->
-                runCatching {
-                    text.toPattern()
-                }.getOrNull()?.let {
-                    text
-                }
-            }.let(property::set)
+            validator.revalidate()
         }
     })
+    validator.revalidate()
     return editor.apply {
         settings.apply {
             isUseSoftWraps = true
