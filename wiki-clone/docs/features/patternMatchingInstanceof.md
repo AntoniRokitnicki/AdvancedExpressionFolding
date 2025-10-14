@@ -1,13 +1,29 @@
 ## patternMatchingInstanceof
+
 ### Pattern Matching for `instanceof` (JEP 394)
 Applies pattern matching to `instanceof` checks for more concise and readable code.
-- [Example](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/examples/data/PatternMatchingInstanceofTestData.java)
- 
-- [Folded](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/folded/PatternMatchingInstanceofTestData-folded.java)
 
+#### Example: PatternMatchingInstanceofTestData
 
-![Pattern matching instanceof code before folding](https://github.com/user-attachments/assets/5a53d3ac-f7c7-4df0-aae0-14eaf2322542)
+examples/data/PatternMatchingInstanceofTestData.java:
+```java
+        if (o instanceof String) {
+            String s = (String) o;
+// ...
+        if (o instanceof Integer) {
+            Integer num = (Integer) o;
+```
 
-=>
+folded/PatternMatchingInstanceofTestData-folded.java:
+```java
+        if (o instanceof String s) {
+// ...
+        if (o instanceof Integer num) {
+```
 
-![Pattern matching instanceof folded result](https://github.com/user-attachments/assets/652604c5-cd29-4be4-adac-8ee44e9a031d)
+Highlights PatternMatchingInstanceofTestData with pattern matching for `instanceof` (jep 394).
+Removes boilerplate while preserving behavior.
+
+Default: On
+Controlled by: `patternMatchingInstanceof`
+Related features: (none)
