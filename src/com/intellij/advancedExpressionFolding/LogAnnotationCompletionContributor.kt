@@ -16,12 +16,14 @@ import com.intellij.psi.JavaPsiFacade
 import com.intellij.psi.PsiAnnotation
 import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiCodeBlock
+import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiIdentifier
 import com.intellij.psi.PsiMethod
 import com.intellij.psi.PsiModifierList
 import com.intellij.psi.PsiParameter
 import com.intellij.psi.PsiDocumentManager
 import com.intellij.psi.codeStyle.CodeStyleManager
+import com.intellij.psi.PsiRecursiveElementVisitor
 import com.intellij.psi.PsiReturnStatement
 import com.intellij.psi.PsiThrowStatement
 import com.intellij.psi.util.PsiTreeUtil
@@ -101,11 +103,22 @@ class LogAnnotationCompletionContributor(private val state: IState = getInstance
         documentManager.commitDocument(ctx.document)
         val psiClass = PsiTreeUtil.getParentOfType(ctx.file.findElementAt(ctx.startOffset), PsiClass::class.java, false) ?: return
         WriteCommandAction.runWriteCommandAction(project) {
-            removeAnnotation(psiClass)
-            psiClass.methods.forEach { applyLogging(it) }
-            psiClass.constructors.forEach { applyLogging(it) }
+            applyLogging(psiClass)
             CodeStyleManager.getInstance(project).reformat(psiClass)
         }
+    }
+
+    private fun applyLogging(psiClass: PsiClass) {
+        psiClass.accept(object : PsiRecursiveElementVisitor() {
+            override fun visitElement(element: PsiElement) {
+                if (element is PsiClass) {
+                    removeAnnotation(element)
+                    element.methods.forEach { applyLogging(it) }
+                    element.constructors.forEach { applyLogging(it) }
+                }
+                super.visitElement(element)
+            }
+        })
     }
 
     private fun removeAnnotation(method: PsiMethod) {
