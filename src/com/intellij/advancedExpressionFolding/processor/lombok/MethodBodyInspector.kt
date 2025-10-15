@@ -207,6 +207,34 @@ object MethodBodyInspector {
         return "lazy = $className::new"
     }
 
+    fun PsiMethod.asOptionalGetter(field: PsiField): String? {
+        val returnType = returnType as? PsiClassType ?: return null
+        val optionalClass = returnType.resolve()?.qualifiedName ?: return null
+        if (optionalClass != "java.util.Optional") {
+            return null
+        }
+
+        val parameterType = returnType.parameters.singleOrNull() ?: return null
+        if (parameterType.canonicalText != field.type.canonicalText) {
+            return null
+        }
+
+        val returnStatement = body?.statements?.singleOrNull().asReturn() ?: return null
+        val callExpression = returnStatement.returnValue.asMethodCall() ?: return null
+
+        val resolvedMethod = callExpression.resolveMethod() ?: return null
+        if (resolvedMethod.containingClass?.qualifiedName != "java.util.Optional") {
+            return null
+        }
+        if (resolvedMethod.name != "ofNullable") {
+            return null
+        }
+
+        return "optional = true".takeIf {
+            callExpression.isArgumentReferencingElement(0, field)
+        }
+    }
+
     fun PsiMethod.asDirtyNoReference(field: PsiField): String? {
         var hasReference = false
         accept(object : PsiRecursiveElementVisitor() {
