@@ -5,11 +5,13 @@ sidebar_label: Pseudo-Annotations
 description: Generate throwaway entry points with `@Main` and other helper annotations.
 ---
 
-`@Main` is a pseudo-annotation that expands into a runnable `public static void main(String[] args)` method so you can try out API ideas without scaffolding boilerplate.
+`@Main` expands into a runnable `public static void main(String[] args)` method so you can try out API ideas without scaffolding boilerplate.
 
 ![Quickly generate a main method with @Main](https://github.com/user-attachments/assets/53ad15ef-2c32-4fe4-a857-d36114d020aa)
 
-## How it works
+## `@Main`
+
+### How it works
 
 1. Trigger code completion above any method and accept the `@Main` suggestion.
 2. The plugin inserts a `main` method at the top of the class.
@@ -53,7 +55,7 @@ public class Person {
 }
 ```
 
-## Parameter defaults
+### Parameter defaults
 
 - Numeric primitives → `0`
 - `boolean` → `false`
@@ -66,14 +68,46 @@ public class Person {
 - `java.time.ZonedDateTime` → `ZonedDateTime.now()`
 - Varargs → empty arrays (`new Type[]{}`)
 
-## Smart behaviour
+### Smart behaviour
 
 - Generates constructor arguments automatically when invoking instance methods.
 - Removes any pre-existing `main` method to avoid duplicates.
 - Cleans up the pseudo-annotation after expansion.
 - Formats the inserted code so spacing stays consistent with the project style.
 
+## `@Log`
+
+`@Log` instruments methods with `System.out.println` calls that trace execution.
+
+- Apply it above a method to insert entry and exit statements around the existing body.
+- Apply it above a class to update every method and constructor in the file.
+- Parameters are included in the entry log so you can see the values passed to the call.
+- Exit statements are placed before `return` / `throw` statements to ensure they always run.
+- The contributor removes the annotation after expansion and skips methods that are already logged.
+
+```java
+public class Test {
+    @Log
+    public String greet(String name) {
+        return "Hello " + name;
+    }
+}
+```
+
+becomes
+
+```java
+public class Test {
+    public String greet(String name) {
+        System.out.println("Entering Test.greet" + " with args: " + "name=" + name);
+        System.out.println("Exiting Test.greet");
+        return "Hello " + name;
+    }
+}
+```
+
 ## Example files
 
-- [Source sample](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/examples/data/PseudoAnnotationsMainTestData.java)
-- [Completion tests](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/test/com/intellij/advancedExpressionFolding/MainAnnotationCompletionContributorTest.kt)
+- [@Main source sample](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/examples/data/PseudoAnnotationsMainTestData.java)
+- [@Main completion tests](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/test/com/intellij/advancedExpressionFolding/MainAnnotationCompletionContributorTest.kt)
+- [@Log completion tests](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/test/com/intellij/advancedExpressionFolding/LogAnnotationCompletionContributorTest.kt)
