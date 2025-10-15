@@ -45,6 +45,42 @@ class LogAnnotationCompletionContributorTest : BaseTest() {
             ),
             Arguments.of(
                 TestCase(
+                    name = "Class-level logging applied to nested classes",
+                    input = @Language("JAVA") """
+                        @<caret>
+                        public class Outer {
+                            public void outerMethod() {
+                                System.out.println("work");
+                            }
+
+                            class Inner {
+                                public void innerMethod() {
+                                    System.out.println("inner");
+                                }
+                            }
+                        }
+                    """.trimIndent(),
+                    expected = @Language("JAVA") """
+                        public class Outer {
+                            public void outerMethod() {
+                                System.out.println("Entering Outer.outerMethod");
+                                System.out.println("work");
+                                System.out.println("Exiting Outer.outerMethod");
+                            }
+
+                            class Inner {
+                                public void innerMethod() {
+                                    System.out.println("Entering Inner.innerMethod");
+                                    System.out.println("inner");
+                                    System.out.println("Exiting Inner.innerMethod");
+                                }
+                            }
+                        }
+                    """.trimIndent()
+                )
+            ),
+            Arguments.of(
+                TestCase(
                     name = "Class-level logging applied to all methods",
                     input = @Language("JAVA") """
                         @<caret>
