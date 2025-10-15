@@ -1,30 +1,37 @@
-## constructorReferenceNotation
+# Const (State field: const)
 
-### Constructor reference notation `::new` and compact field initialization
-Simplifies constructor references and inline field initialization.
+### Const
+Folds static final fields into Kotlin-style const declarations.
 
-#### Example: ConstructorReferenceNotationTestData
+#### Example: ConstTestData
 
-examples/data/ConstructorReferenceNotationTestData.java:
+examples/data/ConstTestData.java:
 ```java
-        public static final ConstClass SELF = new ConstClass();
-        public static final ConstClass SELF_ANN = new ConstClass() {
-        };
+    static final Pattern PATTERN = Pattern.compile(".*");
+    static final Pattern PATTERN_STATIC_IMPORT = compile(".*");
+
 // ...
-        private static final HashMap<String, String> MAP = new HashMap<>();
-        private static final HashMap<String, String> MAP2 = new HashMap<String, String>();
+    protected final static String PROTECTED_FINAL_STATIC_VAR = "";
+
+    static public final String STATIC_PUBLIC_FINAL_VAR = "";
+// ...
+    static final public String STATIC_FINAL_PUBLIC_VAR = "";
 ```
 
-folded/ConstructorReferenceNotationTestData-folded.java:
+folded/ConstTestData-folded.java:
 ```java
-        public static final ConstClass SELF = ::new;
-        public static final ConstClass SELF_ANN = ::new{};
+    default const PATTERN = Pattern.compile(".*");
+    default const Pattern PATTERN_STATIC_IMPORT = compile(".*");
+
 // ...
-        private static final HashMap<String, String> MAP = ::new;
-        private static final HashMap<String, String> MAP2 = ::new;
+    protected const PROTECTED_FINAL_STATIC_VAR = "";
+
+    const STATIC_PUBLIC_FINAL_VAR = "";
+// ...
+    const STATIC_FINAL_PUBLIC_VAR = "";
 ```
 
-Highlights ConstructorReferenceNotationTestData with constructor reference notation `::new` and compact field initialization.
+Highlights ConstTestData with const.
 Removes boilerplate while preserving behavior.
 
 #### Example: ConstructorReferenceNotationWithConstTestData
@@ -58,9 +65,32 @@ folded/ConstructorReferenceNotationWithConstTestData-folded.java:
         private const Map<String, String> MAP4 = Map.of();
 ```
 
-Highlights ConstructorReferenceNotationWithConstTestData with constructor reference notation `::new` and compact field initialization.
+Highlights ConstructorReferenceNotationWithConstTestData with const.
+Removes boilerplate while preserving behavior.
+
+#### Example: ExperimentalTestData
+
+examples/data/ExperimentalTestData.java:
+```java
+            try {
+                byte[] bytez = System.getProperty("sort-desc").getBytes();
+// ...
+            } catch (UnsupportedEncodingException e) {
+                throw new RuntimeException(e);
+```
+
+folded/ExperimentalTestData-folded.java:
+```java
+            @SneakyThrows {
+                byte[] bytez = System["sort-desc"].getBytes();
+// ...
+            @SneakyThrows(IllegalArgumentException)
+            return Integer.parseInt(value);
+```
+
+Highlights ExperimentalTestData with const.
 Removes boilerplate while preserving behavior.
 
 Default: On
-Controlled by: `constructorReferenceNotation`
+Controlled by: `const`
 Related features: (none)
