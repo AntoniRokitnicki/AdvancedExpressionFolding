@@ -184,15 +184,17 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
         }
         propertyToCheckbox[property] = checkbox
         
+        val definition = builder.build(property, title)
+        val examplePanel =
+            if (definition.exampleLinkMap != null || definition.docLink != null) {
+                createExamplePanel(definition.exampleLinkMap, definition.docLink)
+            } else {
+                null
+            }
+
         row {
             cell(checkbox)
-        }
-        
-        val definition = builder.build(property, title)
-        if (definition.exampleLinkMap != null || definition.docLink != null) {
-            row {
-                cell(createExamplePanel(definition.exampleLinkMap, definition.docLink))
-            }
+            examplePanel?.let { cell(it) }
         }
 
     }
