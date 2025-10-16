@@ -1,5 +1,6 @@
-package com.intellij.advancedExpressionFolding
+package com.intellij.advancedExpressionFolding.pseudo
 
+import com.intellij.advancedExpressionFolding.BaseTest
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
 import com.intellij.codeInsight.completion.CompletionType
 import com.intellij.openapi.application.ApplicationManager
@@ -14,7 +15,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 import java.util.stream.Stream
 
-class LogAnnotationCompletionContributorTest : BaseTest() {
+class LoggableAnnotationCompletionContributorTest : BaseTest() {
 
     companion object {
         private var originalPseudoAnnotationsValue: Boolean = false
@@ -128,7 +129,7 @@ class LogAnnotationCompletionContributorTest : BaseTest() {
     }
 
     @Test
-    fun `should offer @Log in completion for annotation above method`() {
+    fun `should offer @Loggable in completion for annotation above method`() {
         fixture.configureByText(
             "Test.java",
             @Language("JAVA") """
@@ -143,18 +144,18 @@ class LogAnnotationCompletionContributorTest : BaseTest() {
 
         val completions = fixture.complete(CompletionType.BASIC)
         assertNotNull(completions)
-        assertTrue(completions.any { it.lookupString == "Log" })
+        assertTrue(completions.any { it.lookupString == "Loggable" })
     }
 
     @ParameterizedTest
     @MethodSource("testCases")
-    fun `should insert logging when selecting @Log from completion`(testCase: TestCase) {
+    fun `should insert logging when selecting @Loggable from completion`(testCase: TestCase) {
         fixture.configureByText("Test.java", testCase.input)
 
         val completions = fixture.complete(CompletionType.BASIC)
         assertNotNull(completions)
 
-        val logCompletion = completions.find { it.lookupString == "Log" }
+        val logCompletion = completions.find { it.lookupString == "Loggable" }
         assertNotNull(logCompletion)
 
         ApplicationManager.getApplication().invokeAndWait {

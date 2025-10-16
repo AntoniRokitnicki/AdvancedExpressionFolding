@@ -322,12 +322,12 @@ public static class RequiredArgs {
 
 ```java title="Original"
 public class LogJava {
-    Logger log = Logger.getLogger("LogAnnotation.class");
+    Logger log = Logger.getLogger("LoggableAnnotation.class");
 }
 ```
 
 ```java title="Folded"
-@Log public class LogJava {
+@Loggable public class LogJava {
 }
 ```
 

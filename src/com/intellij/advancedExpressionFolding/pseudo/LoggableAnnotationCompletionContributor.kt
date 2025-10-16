@@ -1,4 +1,4 @@
-package com.intellij.advancedExpressionFolding
+package com.intellij.advancedExpressionFolding.pseudo
 
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings.Companion.getInstance
 import com.intellij.advancedExpressionFolding.settings.IState
@@ -29,7 +29,7 @@ import com.intellij.psi.PsiThrowStatement
 import com.intellij.psi.util.PsiTreeUtil
 import com.intellij.util.ProcessingContext
 
-class LogAnnotationCompletionContributor(private val state: IState = getInstance().state) : CompletionContributor(), IState by state {
+class LoggableAnnotationCompletionContributor(private val state: IState = getInstance().state) : CompletionContributor(), IState by state {
 
     init {
         extend(
@@ -39,7 +39,7 @@ class LogAnnotationCompletionContributor(private val state: IState = getInstance
                 .withSuperParent(2, PsiAnnotation::class.java)
                 .withSuperParent(3, PsiModifierList::class.java)
                 .withSuperParent(4, PsiMethod::class.java),
-            MethodLogCompletionProvider()
+            MethodLoggableCompletionProvider()
         )
 
         extend(
@@ -49,17 +49,17 @@ class LogAnnotationCompletionContributor(private val state: IState = getInstance
                 .withSuperParent(2, PsiAnnotation::class.java)
                 .withSuperParent(3, PsiModifierList::class.java)
                 .withSuperParent(4, PsiClass::class.java),
-            ClassLogCompletionProvider()
+            ClassLoggableCompletionProvider()
         )
     }
 
-    private inner class MethodLogCompletionProvider : CompletionProvider<CompletionParameters>() {
+    private inner class MethodLoggableCompletionProvider : CompletionProvider<CompletionParameters>() {
         override fun addCompletions(parameters: CompletionParameters, context: ProcessingContext, result: CompletionResultSet) {
             if (!pseudoAnnotations) return
 
-            val lookup = LookupElementBuilder.create("Log")
-                .withLookupString("@Log")
-                .withPresentableText("@Log")
+            val lookup = LookupElementBuilder.create("Loggable")
+                .withLookupString("@Loggable")
+                .withPresentableText("@Loggable")
                 .withInsertHandler { ctx, _ ->
                     handleMethodInsert(ctx)
                 }
@@ -69,13 +69,13 @@ class LogAnnotationCompletionContributor(private val state: IState = getInstance
         }
     }
 
-    private inner class ClassLogCompletionProvider : CompletionProvider<CompletionParameters>() {
+    private inner class ClassLoggableCompletionProvider : CompletionProvider<CompletionParameters>() {
         override fun addCompletions(parameters: CompletionParameters, context: ProcessingContext, result: CompletionResultSet) {
             if (!pseudoAnnotations) return
 
-            val lookup = LookupElementBuilder.create("Log")
-                .withLookupString("@Log")
-                .withPresentableText("@Log")
+            val lookup = LookupElementBuilder.create("Loggable")
+                .withLookupString("@Loggable")
+                .withPresentableText("@Loggable")
                 .withInsertHandler { ctx, _ ->
                     handleClassInsert(ctx)
                 }
@@ -122,11 +122,11 @@ class LogAnnotationCompletionContributor(private val state: IState = getInstance
     }
 
     private fun removeAnnotation(method: PsiMethod) {
-        method.modifierList.findAnnotation("Log")?.delete()
+        method.modifierList.findAnnotation("Loggable")?.delete()
     }
 
     private fun removeAnnotation(psiClass: PsiClass) {
-        psiClass.modifierList?.findAnnotation("Log")?.delete()
+        psiClass.modifierList?.findAnnotation("Loggable")?.delete()
     }
 
     private fun applyLogging(method: PsiMethod) {
