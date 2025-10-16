@@ -44,7 +44,7 @@ Fork of abandoned [Advanced Java Folding](https://plugins.jetbrains.com/plugin/9
 For more information, read the [blog post](https://medium.com/@andrey_cheptsov/making-java-code-easier-to-read-without-changing-it-adeebd5c36de).
 
 ## Unreleased ##
-- [[pseudo-annotations] Quick completions like @Main (generate main method) and @Log (add System.out entry/exit logging).](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/PseudoAnnotations)
+- [[pseudo-annotations] Quick completions like @Main (generate main method) and @Loggable (add System.out entry/exit logging).](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/PseudoAnnotations)
 
 ## 4.2.0 ##
 - [Add setting to prevent collapsing Java text blocks in log folding](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/338)

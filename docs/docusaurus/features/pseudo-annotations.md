@@ -75,9 +75,9 @@ public class Person {
 - Cleans up the pseudo-annotation after expansion.
 - Formats the inserted code so spacing stays consistent with the project style.
 
-## `@Log`
+## `@Loggable`
 
-`@Log` instruments methods with `System.out.println` calls that trace execution.
+`@Loggable` instruments methods with `System.out.println` calls that trace execution.
 
 - Apply it above a method to insert entry and exit statements around the existing body.
 - Apply it above a class to update every method and constructor in the file.
@@ -87,7 +87,7 @@ public class Person {
 
 ```java
 public class Test {
-    @Log
+    @Loggable
     public String greet(String name) {
         return "Hello " + name;
     }
@@ -109,5 +109,5 @@ public class Test {
 ## Example files
 
 - [@Main source sample](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/examples/data/PseudoAnnotationsMainTestData.java)
-- [@Main completion tests](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/test/com/intellij/advancedExpressionFolding/MainAnnotationCompletionContributorTest.kt)
-- [@Log completion tests](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/test/com/intellij/advancedExpressionFolding/LogAnnotationCompletionContributorTest.kt)
+- [@Main completion tests](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/test/com/intellij/advancedExpressionFolding/pseudo/MainAnnotationCompletionContributorTest.kt)
+- [@Loggable completion tests](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/test/com/intellij/advancedExpressionFolding/pseudo/LoggableAnnotationCompletionContributorTest.kt)
