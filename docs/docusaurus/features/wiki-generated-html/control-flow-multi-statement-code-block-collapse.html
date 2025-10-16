@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Control Flow Multi Statement Code Block Collapse</title>
+    <meta name="description" content="Folds multi-statement control-flow braces in read-only files." />
+  </head>
+  <body>
+    <h1>Control Flow Multi Statement Code Block Collapse</h1>
+    <section aria-labelledby="feature-summary">
+      <h2 id="feature-summary">Summary</h2>
+      <dl>
+      <dt>State key</dt>
+      <dd><code>controlFlowMultiStatementCodeBlockCollapse</code></dd>
+      <dt>Default</dt>
+      <dd>Off</dd>
+      <dt>Controlled by</dt>
+      <dd><code>controlFlowMultiStatementCodeBlockCollapse</code></dd>
+      </dl>
+    </section>
+    <section aria-labelledby="feature-body">
+      <h2 id="feature-body">Details</h2>
+      <pre>:::info Toggle summary
+- **State key:** `controlFlowMultiStatementCodeBlockCollapse`
+- **Default:** Off
+- **Controlled by:** `controlFlowMultiStatementCodeBlockCollapse`
+:::
+
+## Control Flow Multi Statement Code Block Collapse
+Folds multi-statement control-flow braces in read-only files.
+
+### Example: ControlFlowMultiStatementTestData
+
+examples/data/ControlFlowMultiStatementTestData.java:
+```java
+        if (args.length &gt; 0) {
+// ...
+        }
+        if (args.length == 0) {
+```
+
+folded/ControlFlowMultiStatementTestData-folded.java:
+```java
+        if (args.length &gt; 0) 
+// ...
+        if (args.length == 0) 
+```
+
+Highlights ControlFlowMultiStatementTestData with control flow multi statement code block collapse.
+Removes boilerplate while preserving behavior.</pre>
+    </section>
+  </body>
+</html>

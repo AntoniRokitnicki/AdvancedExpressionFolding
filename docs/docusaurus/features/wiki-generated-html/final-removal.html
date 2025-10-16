@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Final Removal</title>
+    <meta name="description" content="Folds the final modifier away from non-field declarations." />
+  </head>
+  <body>
+    <h1>Final Removal</h1>
+    <section aria-labelledby="feature-summary">
+      <h2 id="feature-summary">Summary</h2>
+      <dl>
+      <dt>State key</dt>
+      <dd><code>finalRemoval</code></dd>
+      <dt>Default</dt>
+      <dd>Off</dd>
+      <dt>Controlled by</dt>
+      <dd><code>finalRemoval</code></dd>
+      </dl>
+    </section>
+    <section aria-labelledby="feature-body">
+      <h2 id="feature-body">Details</h2>
+      <pre>:::info Toggle summary
+- **State key:** `finalRemoval`
+- **Default:** Off
+- **Controlled by:** `finalRemoval`
+:::
+
+## Final Removal
+Folds the final modifier away from non-field declarations.
+
+### Example: FinalRemovalTestData
+
+examples/data/FinalRemovalTestData.java:
+```java
+    public final String m() {
+        final String s = &quot;1&quot;;
+        final var s2 = &quot;2&quot;;
+// ...
+        void main(final String arg, final int i, final Object o, Data data);
+```
+
+folded/FinalRemovalTestData-folded.java:
+```java
+    public  String m() {
+         String s = &quot;1&quot;;
+         var s2 = &quot;2&quot;;
+// ...
+        void main( String arg,  int i,  Object o, Data data);
+```
+
+Highlights FinalRemovalTestData with final removal.
+Removes boilerplate while preserving behavior.</pre>
+    </section>
+  </body>
+</html>

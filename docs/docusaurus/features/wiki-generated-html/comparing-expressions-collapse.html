@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Comparing Expressions Collapse</title>
+    <meta name="description" content="Folds equals and compareTo calls into direct comparison expressions." />
+  </head>
+  <body>
+    <h1>Comparing Expressions Collapse</h1>
+    <section aria-labelledby="feature-summary">
+      <h2 id="feature-summary">Summary</h2>
+      <dl>
+      <dt>State key</dt>
+      <dd><code>comparingExpressionsCollapse</code></dd>
+      <dt>Default</dt>
+      <dd>On</dd>
+      <dt>Controlled by</dt>
+      <dd><code>comparingExpressionsCollapse</code></dd>
+      </dl>
+    </section>
+    <section aria-labelledby="feature-body">
+      <h2 id="feature-body">Details</h2>
+      <pre>:::info Toggle summary
+- **State key:** `comparingExpressionsCollapse`
+- **Default:** On
+- **Controlled by:** `comparingExpressionsCollapse`
+:::
+
+## Comparing Expressions Collapse
+Folds equals and compareTo calls into direct comparison expressions.
+
+### Example: EqualsCompareTestData
+
+examples/data/EqualsCompareTestData.java:
+```java
+        System.out.println(a.equals(b));
+        System.out.println(!a.equals(b));
+        System.out.println(a.compareTo(b) == 0);
+        System.out.println(a.compareTo(b) != 0);
+// ...
+        System.out.println(a.compareTo(b) &gt; 0);
+        System.out.println(a.compareTo(b) == 1);
+        System.out.println(a.compareTo(b) &gt; -1);
+        System.out.println(a.compareTo(b) &gt;= 0); // Should be a &gt;= b
+```
+
+folded/EqualsCompareTestData-folded.java:
+```java
+        System.out.println(a ≡ b);
+        System.out.println(a ≢ b);
+        System.out.println(a ≡ b);
+        System.out.println(a ≢ b);
+// ...
+        System.out.println(a &gt; b);
+        System.out.println(a &gt; b);
+        System.out.println(a ≥ b);
+        System.out.println(a ≥ b); // Should be a &gt;= b
+```
+
+Highlights EqualsCompareTestData with comparing expressions collapse.
+Removes boilerplate while preserving behavior.</pre>
+    </section>
+  </body>
+</html>
