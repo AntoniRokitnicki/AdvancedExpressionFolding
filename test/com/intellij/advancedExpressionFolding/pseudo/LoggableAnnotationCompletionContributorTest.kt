@@ -166,6 +166,44 @@ class LoggableAnnotationCompletionContributorTest : BaseTest() {
         fixture.checkResult(testCase.expected)
     }
 
+    @Test
+    fun `should remove logging when selecting @Loggable on already logged method`() {
+        fixture.configureByText(
+            "Test.java",
+            @Language("JAVA") """
+                public class Test {
+                    @<caret>
+                    public void doWork(int value) {
+                        System.out.println("Entering Test.doWork" + " with args: " + "value=" + value);
+                        System.out.println(value);
+                        System.out.println("Exiting Test.doWork");
+                    }
+                }
+            """.trimIndent()
+        )
+
+        val completions = fixture.complete(CompletionType.BASIC)
+        assertNotNull(completions)
+
+        val logCompletion = completions.find { it.lookupString == "Loggable" }
+        assertNotNull(logCompletion)
+
+        ApplicationManager.getApplication().invokeAndWait {
+            fixture.lookup.currentItem = logCompletion
+            fixture.finishLookup('\n')
+        }
+
+        fixture.checkResult(
+            @Language("JAVA") """
+                public class Test {
+                    public void doWork(int value) {
+                        System.out.println(value);
+                    }
+                }
+            """.trimIndent()
+        )
+    }
+
     data class TestCase(
         val name: String,
         @param:Language("JAVA") val input: String,

@@ -27,6 +27,13 @@ class LoggableAnnotationCompletionContributor : AbstractLoggingAnnotationComplet
         insertLoggingStatements(body, entryStatement, exitStatement)
     }
 
+    override fun removeLogging(method: PsiMethod) {
+        val body = method.body ?: return
+
+        body.statements.firstOrNull { it.text.startsWith(printStatementPrefix(ENTERING)) }?.delete()
+        body.statements.firstOrNull { it.text.startsWith(printStatementPrefix(EXITING)) }?.delete()
+    }
+
     private fun insertLoggingStatements(body: PsiCodeBlock, entryStatement: PsiStatement, exitStatement: PsiStatement) {
         val originalStatements = body.statements
         val firstStatement = originalStatements.firstOrNull()
