@@ -114,8 +114,8 @@ abstract class AbstractLoggingAnnotationCompletionContributor(
             if (!pseudoAnnotations) return
 
             val lookup = LookupElementBuilder.create(annotationName)
-                .withLookupString("@" + annotationName)
-                .withPresentableText("@" + annotationName)
+                .withLookupString("@$annotationName")
+                .withPresentableText("@$annotationName")
                 .withInsertHandler { ctx, _ ->
                     handleMethodInsert(ctx)
                 }
@@ -130,8 +130,8 @@ abstract class AbstractLoggingAnnotationCompletionContributor(
             if (!pseudoAnnotations) return
 
             val lookup = LookupElementBuilder.create(annotationName)
-                .withLookupString("@" + annotationName)
-                .withPresentableText("@" + annotationName)
+                .withLookupString("@$annotationName")
+                .withPresentableText("@$annotationName")
                 .withInsertHandler { ctx, _ ->
                     handleClassInsert(ctx)
                 }

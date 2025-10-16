@@ -4,8 +4,8 @@ import com.intellij.psi.JavaPsiFacade
 import com.intellij.psi.PsiCodeBlock
 import com.intellij.psi.PsiMethod
 import com.intellij.psi.PsiParameter
-import com.intellij.psi.PsiStatement
 import com.intellij.psi.PsiReturnStatement
+import com.intellij.psi.PsiStatement
 import com.intellij.psi.PsiThrowStatement
 
 class LoggableAnnotationCompletionContributor : AbstractLoggingAnnotationCompletionContributor() {
@@ -16,18 +16,13 @@ class LoggableAnnotationCompletionContributor : AbstractLoggingAnnotationComplet
         val statements = body.statements
         if (statements.isEmpty()) return false
         val firstStatement = statements.first()
-        if (!firstStatement.text.startsWith("System.out.println(\"Entering ")) return false
-        return statements.any { it.text.startsWith("System.out.println(\"Exiting ") }
+        if (!firstStatement.text.startsWith(printStatementPrefix(ENTERING))) return false
+        return statements.any { it.text.startsWith(printStatementPrefix(EXITING)) }
     }
 
     override fun addLogging(method: PsiMethod, body: PsiCodeBlock) {
-        val project = method.project
-        val factory = JavaPsiFacade.getElementFactory(project)
-        val entryExpression = buildEntryExpression(method)
-        val exitExpression = buildExitExpression(method)
-
-        val entryStatement = factory.createStatementFromText("System.out.println($entryExpression);", method)
-        val exitStatement = factory.createStatementFromText("System.out.println($exitExpression);", method)
+        val entryStatement = createPrintStatement(method, buildEntryExpression(method))
+        val exitStatement = createPrintStatement(method, buildExitExpression(method))
 
         insertLoggingStatements(body, entryStatement, exitStatement)
     }
@@ -53,19 +48,19 @@ class LoggableAnnotationCompletionContributor : AbstractLoggingAnnotationComplet
     private fun buildEntryExpression(method: PsiMethod): String {
         val methodLabel = methodLabel(method)
         val parameterNames = method.parameterList.parameters.mapNotNull(PsiParameter::getName)
-        val base = "\"Entering $methodLabel\""
+        val base = "\"$ENTERING $methodLabel\""
         if (parameterNames.isEmpty()) {
             return base
         }
 
         val parameterExpressions = parameterNames.map { "\"$it=\" + $it" }
         val joinedParameters = parameterExpressions.joinToString(separator = " + \", \" + ")
-        return base + " + \" with args: \" + " + joinedParameters
+        return "$base + \" with args: \" + $joinedParameters"
     }
 
     private fun buildExitExpression(method: PsiMethod): String {
         val methodLabel = methodLabel(method)
-        return "\"Exiting $methodLabel\""
+        return "\"$EXITING $methodLabel\""
     }
 
     private fun methodLabel(method: PsiMethod): String {
@@ -75,5 +70,16 @@ class LoggableAnnotationCompletionContributor : AbstractLoggingAnnotationComplet
         } else {
             "$className.${method.name}"
         }
+    }
+
+    private fun printStatementPrefix(phase: String): String = "System.out.println(\"$phase "
+
+    private fun createPrintStatement(method: PsiMethod, expression: String) =
+        JavaPsiFacade.getElementFactory(method.project)
+            .createStatementFromText("System.out.println($expression);", method)
+
+    private companion object {
+        private const val ENTERING = "Entering"
+        private const val EXITING = "Exiting"
     }
 }
