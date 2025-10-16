@@ -1,6 +1,7 @@
 package com.intellij.advancedExpressionFolding
 
 import ai.grazie.utils.capitalize
+import com.intellij.advancedExpressionFolding.diff.FoldingDescriptorEx
 import com.intellij.advancedExpressionFolding.diff.FoldingDescriptorExWrapper
 import com.intellij.advancedExpressionFolding.processor.off
 import com.intellij.openapi.application.WriteAction
@@ -70,15 +71,80 @@ abstract class BaseTest : LightJavaCodeInsightFixtureTestCase5(TEST_JDK) {
             if (!all) {
                 replaceAllTestData(fileName, actual)
                 createFoldedFile(fileName, actual, wrapper)
+                createGroupFile(fileName, actual, wrapper)
             }
             throw e
         }
+
+        val wrapper = store.createOrderedFoldingWrapper()
+        assertGroupFile(fileName, wrapper)
     }
 
     private fun createFoldedFile(fileName: String, actual: String, wrapper: FoldingDescriptorExWrapper) {
         val foldingFile = fileName.replace("testData/", "folded/")
-        Files.writeString(createOutputFile(foldingFile, "-folded.java").toPath(), FoldingTemporaryTestEditor.getFoldedText(actual, wrapper))
+        Files.writeString(
+            createOutputFile(foldingFile, "-folded.java").toPath(),
+            FoldingTemporaryTestEditor.getFoldedText(actual, wrapper)
+        )
     }
+
+    private fun createGroupFile(fileName: String, actual: String, wrapper: FoldingDescriptorExWrapper) {
+        val foldingFile = fileName.replace("testData/", "folded/")
+        Files.writeString(
+            createOutputFile(foldingFile, "-group.java").toPath(),
+            getGroupFoldedText(actual, wrapper)
+        )
+    }
+
+    private fun assertGroupFile(fileName: String, wrapper: FoldingDescriptorExWrapper) {
+        val testDataFile = File(fileName)
+        val fileContent = normalizeLineEndings(FileUtil.loadFile(testDataFile))
+        val actual = getGroupFoldedText(fileContent, wrapper)
+        val foldingFile = fileName.replace("testData/", "folded/")
+        val groupFile = createOutputFile(foldingFile, "-group.java")
+        val expected = groupFile.takeIf(File::exists)?.let { normalizeLineEndings(FileUtil.loadFile(it)) }
+        if (expected != actual) {
+            Files.writeString(groupFile.toPath(), actual)
+            throw FileComparisonFailedError(groupFile.name, expected ?: "", actual, groupFile.path)
+        }
+    }
+
+    private fun getGroupFoldedText(actual: String, wrapper: FoldingDescriptorExWrapper): String {
+        val normalized = normalizeLineEndings(actual)
+        val groupWrapper = wrapper.withGroupPlaceholdersUsingReference()
+        return FoldingTemporaryTestEditor.getFoldedText(normalized, groupWrapper)
+    }
+
+    private fun FoldingDescriptorExWrapper.withGroupPlaceholdersUsingReference(): FoldingDescriptorExWrapper {
+        val newList = list.map { descriptor ->
+            val gid = descriptor.groupReference
+            descriptor.copy(placeholder = descriptor.toGroupPlaceholder(gid))
+        }
+        return FoldingDescriptorExWrapper(newList.size, newList)
+    }
+
+    private fun FoldingDescriptorEx.toGroupPlaceholder(groupId: Int): String {
+        val escapedText = escapeForGroupMarker(text)
+        return "[${groupId}:\"$escapedText\"]"
+    }
+
+    private fun escapeForGroupMarker(source: String): String {
+        val result = StringBuilder(source.length)
+        source.forEach { ch ->
+            when (ch) {
+                '\\' -> result.append("\\\\")
+                '"' -> result.append("\\\"")
+                '\n' -> result.append("\\n")
+                '\t' -> result.append("\\t")
+                '\r' -> Unit
+                else -> result.append(ch)
+            }
+        }
+        return result.toString()
+    }
+
+    private fun normalizeLineEndings(text: String): String =
+        text.replace("\r\n", "\n").replace("\r", "\n")
 
     protected open fun getTestFileName(testName: String) = "testData/${testName.capitalize()}.java"
 
