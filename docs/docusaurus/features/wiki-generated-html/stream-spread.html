@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Stream Spread</title>
+    <meta name="description" content="Displays stream pipelines using Groovy-style spread notation." />
+  </head>
+  <body>
+    <h1>Stream Spread</h1>
+    <section aria-labelledby="feature-summary">
+      <h2 id="feature-summary">Summary</h2>
+      <dl>
+      <dt>State key</dt>
+      <dd><code>streamSpread</code></dd>
+      <dt>Default</dt>
+      <dd>On</dd>
+      <dt>Controlled by</dt>
+      <dd><code>streamSpread</code></dd>
+      </dl>
+    </section>
+    <section aria-labelledby="feature-body">
+      <h2 id="feature-body">Details</h2>
+      <pre>:::info Toggle summary
+- **State key:** `streamSpread`
+- **Default:** On
+- **Controlled by:** `streamSpread`
+:::
+
+## Stream Spread
+Displays stream pipelines using Groovy-style spread notation.
+
+### Example: ConcatenationTestData
+
+examples/data/ConcatenationTestData.java:
+```java
+        list.add(&quot;one&quot;);
+        list.remove(&quot;one&quot;);
+// ...
+        list.addAll(singleton);
+        list.removeAll(singleton);
+        Collections.addAll(list, args);
+```
+
+folded/ConcatenationTestData-folded.java:
+```java
+        list += &quot;one&quot;;
+        list -= &quot;one&quot;;
+// ...
+        list += singleton;
+        list -= singleton;
+        list += args;
+```
+
+Highlights ConcatenationTestData with stream spread.
+Removes boilerplate while preserving behavior.
+
+### Example: OptionalTestData
+
+examples/data/OptionalTestData.java:
+```java
+            o = opt.get();
+// ...
+        o = opt.orElseThrow();
+```
+
+folded/OptionalTestData-folded.java:
+```java
+            o = opt!!;
+// ...
+        o = opt!!;
+```
+
+Highlights OptionalTestData with stream spread.
+Removes boilerplate while preserving behavior.
+
+### Example: SpreadTestData
+
+examples/data/SpreadTestData.java:
+```java
+        String empNames = list.stream()
+                .map(Data::getString)
+// ...
+        var p1 = data.getDataList().stream().map(Data::getData).toList();
+```
+
+folded/SpreadTestData-folded.java:
+```java
+        String empNames = list*.string()
+// ...
+        var p1 = data.getDataList().stream()*.data().toList();
+```
+
+Highlights SpreadTestData with stream spread.
+Removes boilerplate while preserving behavior.</pre>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Asserts Collapse</title>
+    <meta name="description" content="Folds assert statements into terse checks." />
+  </head>
+  <body>
+    <h1>Asserts Collapse</h1>
+    <section aria-labelledby="feature-summary">
+      <h2 id="feature-summary">Summary</h2>
+      <dl>
+      <dt>State key</dt>
+      <dd><code>assertsCollapse</code></dd>
+      <dt>Default</dt>
+      <dd>On</dd>
+      <dt>Controlled by</dt>
+      <dd><code>assertsCollapse</code></dd>
+      </dl>
+    </section>
+    <section aria-labelledby="feature-body">
+      <h2 id="feature-body">Details</h2>
+      <pre>:::info Toggle summary
+- **State key:** `assertsCollapse`
+- **Default:** On
+- **Controlled by:** `assertsCollapse`
+:::
+
+## Asserts Collapse
+Folds assert statements into terse checks.
+
+### Example: AssertTestData
+
+examples/data/AssertTestData.java:
+```java
+        if (args.length == 0) {
+            throw new IllegalArgumentException();
+        }
+// ...
+        }
+        if (args.length == 2)
+            throw new IllegalArgumentException(&quot;...&quot;);
+```
+
+folded/AssertTestData-folded.java:
+```java
+        assert args.length != 0;
+        assert args.length != 1 : &quot;...&quot;;
+        assert args.length != 2 : &quot;...&quot;;
+```
+
+Highlights AssertTestData with asserts collapse.
+Removes boilerplate while preserving behavior.</pre>
+    </section>
+  </body>
+</html>
