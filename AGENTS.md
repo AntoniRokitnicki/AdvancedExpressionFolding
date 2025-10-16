@@ -20,6 +20,10 @@
 ## Workflow
 - Before starting any work, rebase the `main` branch onto the latest `origin/main` to ensure you are working with the newest code.
 
+## Build Environment
+- The project targets **JDK 17** and relies on the **IntelliJ Platform Gradle plugin**; do not downgrade the toolchain or plugin version when configuring builds or CI.
+- Kotlin compilation uses preview flags such as `-Xcontext-parameters` and `-Xnested-type-aliases`. Preserve these compiler options so that newer language features continue to compile.
+
 ## Adding settings options
 - Prefer using the Kotlin script `./option-code-generator.main.kts` to scaffold a new toggle. It injects the property, checkbox, docs, and tests.
 - Execute the script with the desired option name and label, for example:
