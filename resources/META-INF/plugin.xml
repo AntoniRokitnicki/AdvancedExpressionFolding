@@ -10,6 +10,20 @@
     <resource-bundle>Bundle</resource-bundle>
 
     <extensions defaultExtensionNs="com.intellij">
+        <fileType name="FoldingGroup"
+                  language="FoldingGroupLang"
+                  extensions="group.java;group.sample;group"
+                  fieldName="INSTANCE"
+                  implementationClass="com.intellij.advancedExpressionFolding.foldingGroup.FoldingGroupFileType"/>
+        <lang.parserDefinition language="FoldingGroupLang"
+                               implementationClass="com.intellij.advancedExpressionFolding.foldingGroup.parser.FoldingGroupParserDefinition"/>
+        <lang.syntaxHighlighterFactory language="FoldingGroupLang"
+                                       implementationClass="com.intellij.advancedExpressionFolding.foldingGroup.highlighting.FoldingGroupSyntaxHighlighterFactory"/>
+        <annotator language="FoldingGroupLang"
+                   implementationClass="com.intellij.advancedExpressionFolding.foldingGroup.annotator.FoldingGroupAnnotator"/>
+        <lang.braceMatcher language="FoldingGroupLang"
+                            implementationClass="com.intellij.advancedExpressionFolding.foldingGroup.editor.FoldingGroupBraceMatcher"/>
+        <colorSettingsPage implementation="com.intellij.advancedExpressionFolding.foldingGroup.highlighting.FoldingGroupColorSettingsPage"/>
         <!-- Entry point: Java folding builder delegating to expressionBuilder extensions -->
         <lang.foldingBuilder language="JAVA"
                              implementationClass="com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingBuilder"/>
