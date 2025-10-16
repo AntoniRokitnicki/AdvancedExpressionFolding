@@ -46,6 +46,35 @@ class LoggableAnnotationCompletionContributorTest : BaseTest() {
             ),
             Arguments.of(
                 TestCase(
+                    name = "Method-level logging with multiple exits",
+                    input = @Language("JAVA") """
+                        public class Test {
+                            @<caret>
+                            public String compute(boolean flag) {
+                                if (flag) {
+                                    return "yes";
+                                }
+                                return "no";
+                            }
+                        }
+                    """.trimIndent(),
+                    expected = @Language("JAVA") """
+                        public class Test {
+                            public String compute(boolean flag) {
+                                System.out.println("Entering Test.compute" + " with args: " + "flag=" + flag);
+                                if (flag) {
+                                    System.out.println("Exiting Test.compute");
+                                    return "yes";
+                                }
+                                System.out.println("Exiting Test.compute");
+                                return "no";
+                            }
+                        }
+                    """.trimIndent()
+                )
+            ),
+            Arguments.of(
+                TestCase(
                     name = "Class-level logging applied to nested classes",
                     input = @Language("JAVA") """
                         @<caret>
