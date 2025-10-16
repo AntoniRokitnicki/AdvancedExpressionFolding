@@ -79,7 +79,10 @@ abstract class AbstractLoggingAnnotationCompletionContributor(
 
     private fun applyLogging(method: PsiMethod) {
         val body = method.body ?: return
-        if (isAlreadyLogged(body)) return
+        if (isAlreadyLogged(body)) {
+            removeLogging(method)
+            return
+        }
 
         addLogging(method, body)
     }
@@ -108,6 +111,8 @@ abstract class AbstractLoggingAnnotationCompletionContributor(
     protected abstract fun isAlreadyLogged(body: PsiCodeBlock): Boolean
 
     protected abstract fun addLogging(method: PsiMethod, body: PsiCodeBlock)
+
+    protected abstract fun removeLogging(method: PsiMethod)
 
     private inner class MethodAnnotationCompletionProvider : CompletionProvider<CompletionParameters>() {
         override fun addCompletions(parameters: CompletionParameters, context: ProcessingContext, result: CompletionResultSet) {
