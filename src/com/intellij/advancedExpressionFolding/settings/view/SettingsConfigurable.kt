@@ -18,11 +18,17 @@ import com.intellij.openapi.vfs.encoding.EncodingProjectManager
 import com.intellij.ui.JBColor
 import com.intellij.ui.components.ActionLink
 import com.intellij.ui.components.JBCheckBox
+import com.intellij.ui.components.JBLabel
 import com.intellij.ui.dsl.builder.Panel
 import com.intellij.ui.dsl.builder.panel
+import com.intellij.util.ui.JBUI
+import com.intellij.util.ui.UIUtil
 import java.awt.Color.decode
 import java.awt.FlowLayout
+import javax.swing.Box
+import javax.swing.BoxLayout
 import java.net.URI
+import javax.swing.JComponent
 import javax.swing.JButton
 import javax.swing.JPanel
 import kotlin.reflect.KMutableProperty0
@@ -40,7 +46,10 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
 
     override fun getHelpTopic() = null
 
-    private fun createExamplePanel(examples: Map<ExampleFile, Description?>? = null, docLink: UrlSuffix? = null): JPanel {
+    private fun createExamplePanel(
+        examples: Map<ExampleFile, ExampleDescription?>? = null,
+        docLink: UrlSuffix? = null
+    ): JPanel {
         val panel = JPanel(FlowLayout(FlowLayout.LEFT))
 
         examples?.forEach { (file, desc) ->
@@ -189,11 +198,62 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
         }
         
         val definition = builder.build(property, title)
+        createMetaPanel(definition)?.let { info ->
+            row {
+                cell(info)
+            }
+        }
         if (definition.exampleLinkMap != null || definition.docLink != null) {
             row {
                 cell(createExamplePanel(definition.exampleLinkMap, definition.docLink))
             }
         }
 
+    }
+
+    private fun createMetaPanel(definition: CheckboxDefinition): JComponent? {
+        val components = mutableListOf<JComponent>()
+
+        definition.badge?.let { badge ->
+            components += createBadgeLabel(badge)
+        }
+
+        definition.longDescription?.let { description ->
+            val label = JBLabel(description)
+            label.componentStyle = UIUtil.ComponentStyle.SMALL
+            label.foreground = UIUtil.getContextHelpForeground()
+            label.setAllowAutoWrapping(true)
+            components += label
+        }
+
+        if (components.isEmpty()) {
+            return null
+        }
+
+        return JPanel().apply {
+            layout = BoxLayout(this, BoxLayout.X_AXIS)
+            border = JBUI.Borders.empty(4, 0, 4, 0)
+            isOpaque = false
+
+            components.forEachIndexed { index, component ->
+                add(component)
+                if (index < components.lastIndex) {
+                    add(Box.createHorizontalStrut(JBUI.scale(8)))
+                }
+            }
+        }
+    }
+
+    private fun createBadgeLabel(badge: FeatureBadge): JComponent {
+        return JBLabel(badge.label.uppercase()).apply {
+            componentStyle = UIUtil.ComponentStyle.SMALL
+            foreground = badge.style.foreground
+            background = badge.style.background
+            border = JBUI.Borders.compound(
+                JBUI.Borders.customLine(badge.style.border, 1),
+                JBUI.Borders.empty(2, 8)
+            )
+            isOpaque = true
+        }
     }
 }
