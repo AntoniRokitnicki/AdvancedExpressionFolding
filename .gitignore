@@ -7,3 +7,6 @@ idea-sandbox
 .intellijPlatform
  .DS_Store
 /allure-results/
+
+# Integration test Gradle wrapper binaries
+integrationProjects/findDefaultParametersProject/gradle/wrapper/gradle-wrapper.jar

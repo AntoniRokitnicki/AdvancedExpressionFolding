@@ -1,6 +1,5 @@
 package com.intellij.advancedExpressionFolding.view
 
-import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiElement
@@ -29,21 +28,26 @@ class FindUsageCustomView(project: Project, title: String) {
             usageViewPresentation,
             null
         ) as UsageViewImpl
+        FindUsageCustomViewTestHook.onUsageViewCreated(usageView)
     }
 
     fun addToUsage(element: PsiElement, textRange: TextRange) {
-        ApplicationManager.getApplication().executeOnPooledThread {
-            ApplicationManager.getApplication().runReadAction {
-                usageView.appendUsage(
-                    UsageInfo2UsageAdapter(
-                        UsageInfo(
-                            element.containingFile, textRange, false
-                        )
-                    )
-                )
-                usageView.searchFinished()
-            }
-        }
+        val usageInfo = UsageInfo(
+            element.containingFile,
+            textRange,
+            false
+        )
+        usageView.appendUsage(
+            UsageInfo2UsageAdapter(
+                usageInfo
+            )
+        )
+        FindUsageCustomViewTestHook.onUsageAppended(usageInfo, textRange)
+    }
+
+    fun finish() {
+        usageView.searchFinished()
+        FindUsageCustomViewTestHook.onSearchFinished()
     }
 
 }
