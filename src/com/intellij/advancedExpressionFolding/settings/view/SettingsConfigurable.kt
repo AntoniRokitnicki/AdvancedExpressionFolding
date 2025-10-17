@@ -26,6 +26,8 @@ import java.net.URI
 import javax.swing.JButton
 import javax.swing.JPanel
 import kotlin.reflect.KMutableProperty0
+import kotlin.reflect.KMutableProperty1
+import kotlin.reflect.full.memberProperties
 
 class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
     private val state = AdvancedExpressionFoldingSettings.getInstance().state
@@ -33,6 +35,11 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
     private val allExampleFiles = mutableSetOf<ExampleFile>()
     private val pendingChanges = mutableMapOf<KMutableProperty0<Boolean>, Boolean>()
     private val propertyToCheckbox = mutableMapOf<KMutableProperty0<Boolean>, JBCheckBox>()
+    private val stateBooleanProperties: Map<String, KMutableProperty1<AdvancedExpressionFoldingSettings.State, Boolean>> =
+        AdvancedExpressionFoldingSettings.State::class.memberProperties
+            .filterIsInstance<KMutableProperty1<AdvancedExpressionFoldingSettings.State, Boolean>>()
+            .associateBy { it.name }
+    private var bulkUpdateInProgress = false
 
     override fun getId() = "advanced.expression.folding"
 
@@ -105,6 +112,19 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
         }
         row {
             cell(createDownloadExamplesLink())
+        }
+        row {
+            val enableAllButton = JButton("Enable all")
+            enableAllButton.addActionListener {
+                applyBulkChange { enableAll() }
+            }
+            cell(enableAllButton)
+
+            val disableAllButton = JButton("Disable all")
+            disableAllButton.addActionListener {
+                applyBulkChange { disableAll() }
+            }
+            cell(disableAllButton)
         }
         initialize(state)
     }.also {
@@ -180,7 +200,16 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
         val checkbox = JBCheckBox(title)
         checkbox.isSelected = property.get()
         checkbox.addActionListener {
-            pendingChanges[property] = checkbox.isSelected
+            if (bulkUpdateInProgress) {
+                return@addActionListener
+            }
+
+            val value = checkbox.isSelected
+            if (property.get() == value) {
+                pendingChanges.remove(property)
+            } else {
+                pendingChanges[property] = value
+            }
         }
         propertyToCheckbox[property] = checkbox
         
@@ -195,5 +224,29 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
             }
         }
 
+    }
+
+    private fun applyBulkChange(action: AdvancedExpressionFoldingSettings.() -> Unit) {
+        val currentState = AdvancedExpressionFoldingSettings.getInstance().state.copy()
+        val temporarySettings = AdvancedExpressionFoldingSettings()
+        temporarySettings.loadState(currentState)
+        temporarySettings.action()
+        val updatedState = temporarySettings.state
+
+        bulkUpdateInProgress = true
+        try {
+            propertyToCheckbox.forEach { (property, checkbox) ->
+                val stateProperty = stateBooleanProperties[property.name] ?: return@forEach
+                val newValue = stateProperty.get(updatedState)
+                checkbox.isSelected = newValue
+                if (property.get() == newValue) {
+                    pendingChanges.remove(property)
+                } else {
+                    pendingChanges[property] = newValue
+                }
+            }
+        } finally {
+            bulkUpdateInProgress = false
+        }
     }
 }
