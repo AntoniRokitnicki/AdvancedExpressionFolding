@@ -96,6 +96,9 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
 
     fun disableAll() = updateAllState(false)
     fun enableAll(vararg excludeProperties: KMutableProperty0<Boolean>) = updateAllState(true, *excludeProperties)
+    fun restoreDefaults() {
+        myState = State()
+    }
 
     // used in integrationStubs
     fun enableEverything() = updateAllState(true, state::emojify, state::finalEmoji)
