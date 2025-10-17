@@ -1,6 +1,7 @@
 package com.intellij.advancedExpressionFolding
 
 import ai.grazie.utils.capitalize
+import com.intellij.advancedExpressionFolding.diff.FoldingDescriptorEx
 import com.intellij.advancedExpressionFolding.diff.FoldingDescriptorExWrapper
 import com.intellij.advancedExpressionFolding.processor.off
 import com.intellij.openapi.application.WriteAction
@@ -70,14 +71,82 @@ abstract class BaseTest : LightJavaCodeInsightFixtureTestCase5(TEST_JDK) {
             if (!all) {
                 replaceAllTestData(fileName, actual)
                 createFoldedFile(fileName, actual, wrapper)
+                createGroupFile(fileName, actual, wrapper)
             }
             throw e
         }
+
+        val wrapper = store.createOrderedFoldingWrapper()
+        assertGroupFile(fileName, wrapper)
     }
 
     private fun createFoldedFile(fileName: String, actual: String, wrapper: FoldingDescriptorExWrapper) {
         val foldingFile = fileName.replace("testData/", "folded/")
-        Files.writeString(createOutputFile(foldingFile, "-folded.java").toPath(), FoldingTemporaryTestEditor.getFoldedText(actual, wrapper))
+        Files.writeString(
+            createOutputFile(foldingFile, "-folded.java").toPath(),
+            FoldingTemporaryTestEditor.getFoldedText(actual, wrapper)
+        )
+    }
+
+    private fun createGroupFile(fileName: String, actual: String, wrapper: FoldingDescriptorExWrapper) {
+        val foldingFile = fileName.replace("testData/", "folded/")
+        Files.writeString(
+            createOutputFile(foldingFile, "-group.java").toPath(),
+            getGroupFoldedText(actual, wrapper)
+        )
+    }
+
+    private fun assertGroupFile(fileName: String, wrapper: FoldingDescriptorExWrapper) {
+        val testDataFile = File(fileName)
+        val fileContent = FileUtil.loadFile(testDataFile).replace("\r", "")
+        val actual = getGroupFoldedText(fileContent, wrapper)
+        val foldingFile = fileName.replace("testData/", "folded/")
+        val groupFile = createOutputFile(foldingFile, "-group.java")
+        val expected = groupFile.takeIf(File::exists)?.let { FileUtil.loadFile(it).replace("\r", "") }
+        if (expected != actual) {
+            Files.writeString(groupFile.toPath(), actual)
+            throw FileComparisonFailedError(groupFile.name, expected ?: "", actual, groupFile.path)
+        }
+    }
+
+    private fun getGroupFoldedText(actual: String, wrapper: FoldingDescriptorExWrapper): String {
+        val groupWrapper = wrapper.withGroupPlaceholdersUsingReference()
+        val folded = FoldingTemporaryTestEditor.getFoldedText(actual, groupWrapper)
+        return folded.replace("\r\n", "\n").replace('\r', '\n')
+    }
+
+    private fun FoldingDescriptorExWrapper.withGroupPlaceholdersUsingReference(): FoldingDescriptorExWrapper {
+        val grouped = linkedMapOf<Pair<Int, Int>, MutableList<FoldingDescriptorEx>>()
+        for (descriptor in list) {
+            val key = descriptor.range.start to descriptor.range.end
+            grouped.getOrPut(key) { mutableListOf() }.add(descriptor)
+        }
+        val newList = grouped.values.map { descriptors ->
+            val combinedPlaceholder = buildString {
+                descriptors.forEach { descriptor ->
+                    val groupId = descriptor.groupReference.takeIf { it >= 0 } ?: 0
+                    append(descriptor.text.asGroupMarker(groupId))
+                }
+            }
+            val first = descriptors.first()
+            first.copy(placeholder = combinedPlaceholder)
+        }
+        return FoldingDescriptorExWrapper(newList.size, newList)
+    }
+
+    private fun String.asGroupMarker(groupId: Int): String {
+        val escaped = StringBuilder(length)
+        for (ch in this) {
+            when (ch) {
+                '\\' -> escaped.append("\\\\")
+                '"' -> escaped.append("\\\"")
+                '\n' -> escaped.append("\\n")
+                '\t' -> escaped.append("\\t")
+                '\r' -> Unit
+                else -> escaped.append(ch)
+            }
+        }
+        return "[${groupId}:\"$escaped\"]"
     }
 
     protected open fun getTestFileName(testName: String) = "testData/${testName.capitalize()}.java"
