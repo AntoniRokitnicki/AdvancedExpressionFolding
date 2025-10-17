@@ -10,11 +10,13 @@ import com.intellij.psi.PsiManager
 import com.intellij.xdebugger.XDebuggerManager
 import com.intellij.xdebugger.XDebuggerUtil
 import com.intellij.xdebugger.breakpoints.SuspendPolicy
+import com.intellij.xdebugger.breakpoints.XLineBreakpoint
 import com.intellij.xdebugger.evaluation.EvaluationMode
 import kotlin.math.max
 
 object BreakpointUtil {
-    fun toggleTracingBreakpoint(project: Project, file: VirtualFile, lineNumber: Int, logExpression: String) {
+
+    fun toggleBreakpoint(project: Project, file: VirtualFile, lineNumber: Int, logExpression: String?) {
         runReadAction {
             PsiManager.getInstance(project).findFile(file)?.let { psiFile ->
                 PsiDocumentManager.getInstance(project).getDocument(psiFile)
@@ -30,10 +32,37 @@ object BreakpointUtil {
             bpMgr.allBreakpoints.find { it.sourcePosition?.file == file && it.sourcePosition?.line == line }
                 ?.let { bpMgr.removeBreakpoint(it) }
                 ?: bpMgr.addLineBreakpoint(bpType, file.url, line, bpType.createBreakpointProperties(file, line)).apply {
+                    logExpression ?: return@apply
                     suspendPolicy = SuspendPolicy.NONE
                     isLogMessage = true
                     logExpressionObject = util.createExpression(logExpression, JavaLanguage.INSTANCE, null, EvaluationMode.EXPRESSION)
                 }
         }
+    }
+
+    fun removeClassLogBreakpoints(
+        project: Project,
+        file: VirtualFile,
+        className: String?,
+        vararg markers: String,
+    ) {
+        val breakpointManager = XDebuggerManager.getInstance(project).breakpointManager
+        val matchingBreakpoints = breakpointManager.allBreakpoints
+            .filterIsInstance<XLineBreakpoint<*>>()
+            .filter { breakpoint -> breakpoint.sourcePosition?.file == file }
+            .filter { breakpoint -> breakpoint.isLogMessage && breakpoint.suspendPolicy == SuspendPolicy.NONE }
+            .filter { breakpoint ->
+                if (className == null || markers.isEmpty()) {
+                    return@filter true
+                }
+
+                val expression = breakpoint.logExpressionObject?.expression ?: return@filter false
+                markers.any { marker ->
+                    val base = "\"$marker $className"
+                    expression.contains("$base.") || expression.contains("$base<")
+                }
+            }
+
+        matchingBreakpoints.forEach { breakpointManager.removeBreakpoint(it) }
     }
 }

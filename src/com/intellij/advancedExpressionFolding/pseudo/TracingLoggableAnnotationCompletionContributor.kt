@@ -2,10 +2,11 @@ package com.intellij.advancedExpressionFolding.pseudo
 
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.vfs.VirtualFile
+import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiCodeBlock
+import com.intellij.psi.PsiDocumentManager
 import com.intellij.psi.PsiMethod
 import com.intellij.psi.PsiParameter
-import com.intellij.psi.PsiDocumentManager
 import com.intellij.xdebugger.XDebuggerManager
 import com.intellij.xdebugger.breakpoints.SuspendPolicy
 import com.intellij.xdebugger.breakpoints.XLineBreakpoint
@@ -13,6 +14,38 @@ import com.intellij.xdebugger.breakpoints.XLineBreakpoint
 class TracingLoggableAnnotationCompletionContributor : AbstractLoggingAnnotationCompletionContributor() {
 
     override val annotationName: String = "TracingLoggable"
+
+    override fun shouldRemoveClassLogging(psiClass: PsiClass): Boolean {
+        val className = psiClass.name ?: return false
+        val virtualFile = psiClass.containingFile?.virtualFile ?: return false
+        val breakpointManager = XDebuggerManager.getInstance(psiClass.project).breakpointManager
+        return breakpointManager.allBreakpoints
+            .filterIsInstance<XLineBreakpoint<*>>()
+            .any { breakpoint ->
+                val position = breakpoint.sourcePosition ?: return@any false
+                if (position.file != virtualFile) return@any false
+                if (!breakpoint.isLogMessage || breakpoint.suspendPolicy != SuspendPolicy.NONE) return@any false
+                val expression = breakpoint.logExpressionObject?.expression ?: return@any false
+                val enteringMarker = "\"$ENTERING $className"
+                val exitingMarker = "\"$EXITING $className"
+                expression.contains("$enteringMarker.") ||
+                    expression.contains("$enteringMarker<") ||
+                    expression.contains("$exitingMarker.") ||
+                    expression.contains("$exitingMarker<")
+            }
+    }
+
+    override fun removeClassLogging(psiClass: PsiClass) {
+        val className = psiClass.name ?: return
+        val virtualFile = psiClass.containingFile?.virtualFile ?: return
+        BreakpointUtil.removeClassLogBreakpoints(
+            psiClass.project,
+            virtualFile,
+            className,
+            ENTERING,
+            EXITING,
+        )
+    }
 
     override fun isAlreadyLogged(body: PsiCodeBlock): Boolean {
         val method = body.parent as? PsiMethod ?: return false
@@ -25,9 +58,9 @@ class TracingLoggableAnnotationCompletionContributor : AbstractLoggingAnnotation
 
     override fun addLogging(method: PsiMethod, body: PsiCodeBlock) {
         val target = resolveTarget(method, body) ?: return
-        BreakpointUtil.toggleTracingBreakpoint(method.project, target.file, target.entryLine, buildEntryExpression(method))
+        BreakpointUtil.toggleBreakpoint(method.project, target.file, target.entryLine, buildEntryExpression(method))
         target.exitLine?.let { exitLine ->
-            BreakpointUtil.toggleTracingBreakpoint(method.project, target.file, exitLine, buildExitExpression(method))
+            BreakpointUtil.toggleBreakpoint(method.project, target.file, exitLine, buildExitExpression(method))
         }
     }
 
@@ -35,11 +68,11 @@ class TracingLoggableAnnotationCompletionContributor : AbstractLoggingAnnotation
         val body = method.body ?: return
         val target = resolveTarget(method, body) ?: return
         if (hasTracingBreakpoint(method.project, target.file, target.entryLine, buildEntryExpression(method))) {
-            BreakpointUtil.toggleTracingBreakpoint(method.project, target.file, target.entryLine, buildEntryExpression(method))
+            BreakpointUtil.toggleBreakpoint(method.project, target.file, target.entryLine, buildEntryExpression(method))
         }
         target.exitLine?.let { exitLine ->
             if (hasTracingBreakpoint(method.project, target.file, exitLine, buildExitExpression(method))) {
-                BreakpointUtil.toggleTracingBreakpoint(method.project, target.file, exitLine, buildExitExpression(method))
+                BreakpointUtil.toggleBreakpoint(method.project, target.file, exitLine, buildExitExpression(method))
             }
         }
     }

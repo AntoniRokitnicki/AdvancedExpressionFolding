@@ -87,13 +87,21 @@ abstract class AbstractLoggingAnnotationCompletionContributor(
         addLogging(method, body)
     }
 
+    protected open fun shouldRemoveClassLogging(psiClass: PsiClass): Boolean = false
+
+    protected open fun removeClassLogging(psiClass: PsiClass) {}
+
     protected fun applyLogging(psiClass: PsiClass) {
         psiClass.accept(object : PsiRecursiveElementVisitor() {
             override fun visitElement(element: PsiElement) {
                 if (element is PsiClass) {
                     removeAnnotation(element)
-                    element.methods.forEach { applyLogging(it) }
-                    element.constructors.forEach { applyLogging(it) }
+                    if (shouldRemoveClassLogging(element)) {
+                        removeClassLogging(element)
+                    } else {
+                        element.methods.forEach { applyLogging(it) }
+                        element.constructors.forEach { applyLogging(it) }
+                    }
                 }
                 super.visitElement(element)
             }
