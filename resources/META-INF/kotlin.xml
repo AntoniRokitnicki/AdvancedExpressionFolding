@@ -1,0 +1,7 @@
+<idea-plugin>
+    <extensions defaultExtensionNs="com.intellij">
+        <completion.contributor
+                language="kotlin"
+                implementationClass="com.intellij.advancedExpressionFolding.kotlin.pseudoAnnotations.KotlinMainAnnotationCompletionContributor"/>
+    </extensions>
+</idea-plugin>
