@@ -4,7 +4,18 @@
 
 ## [Unreleased]
 
+## Added
+
+- [pseudo-annotations] Introduce toggleable **@TracingLoggable** pseudo-annotation with control-flow analysis that uses XDebugger tracing breakpoints for expression logging, adds logging at method entry and all exits, supports grouped breakpoints by annotation and file, and includes full class-level toggling and cleanup logic. See [#447](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/447), [#448](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/448).
+- [pseudo-annotations] Introduce toggleable **@Loggable** pseudo-annotation with control-flow analysis that logs method entry and all exits, parameters, return values, and exceptions for methods or entire classes, with automatic removal of injected statements. See [#441](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/441), [#429](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/429), [#431](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/431), [#363](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/363).
+- [methodDefaultParameters] Skip folding of default parameters during debugging sessions to prevent interference with breakpoints. See [#424](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/424).
+- [log folding] Support variable folding inside Java text blocks, add `logFoldingTextBlocks` setting, and enable text block folding by default. See [#338](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/338), [#371](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/371).
+- [settings-ui] Add live validation for “Regex to disable Lombok folding” and warn instead of throwing when downloading examples without an open project. Invalid patterns now display inline errors and settings helpers are hardened with a dedicated notification group. See [#379](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/379), [#446](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/446).
 - Add compatibility with IntelliJ IDEA 2025.3 EAP (253.20558.43)
+
+### Changed
+
+- Internal refactoring and performance optimizations including faster helper lookups and shared extension utilities. See [#416](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/416), [#402](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/402), [#401](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/401), [#398](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/398).
 
 ## [4.2.0] - 2025-09-20
 
