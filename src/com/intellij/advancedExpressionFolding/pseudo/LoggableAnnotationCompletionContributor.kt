@@ -5,6 +5,8 @@ import com.intellij.psi.PsiCodeBlock
 import com.intellij.psi.PsiMethod
 import com.intellij.psi.PsiParameter
 import com.intellij.psi.PsiStatement
+import com.intellij.psi.util.PsiTreeUtil
+import java.util.LinkedHashSet
 
 class LoggableAnnotationCompletionContributor : AbstractLoggingAnnotationCompletionContributor() {
 
@@ -15,7 +17,19 @@ class LoggableAnnotationCompletionContributor : AbstractLoggingAnnotationComplet
         if (statements.isEmpty()) return false
         val firstStatement = statements.first()
         if (!firstStatement.text.startsWith(printStatementPrefix(ENTERING))) return false
-        return statements.any { it.text.startsWith(printStatementPrefix(EXITING)) }
+
+        val method = body.parent as? PsiMethod ?: return false
+        val exitStatements = PsiMethodExitUtil.findExitStatements(method)
+        val exitPrefix = printStatementPrefix(EXITING)
+
+        if (exitStatements.isEmpty()) {
+            return statements.any { it.text.startsWith(exitPrefix) }
+        }
+
+        return exitStatements.all { exitStatement ->
+            val previous = PsiTreeUtil.skipWhitespacesAndCommentsBackward(exitStatement)
+            previous is PsiStatement && previous.text.startsWith(exitPrefix)
+        }
     }
 
     override fun addLogging(method: PsiMethod, body: PsiCodeBlock) {
@@ -29,10 +43,34 @@ class LoggableAnnotationCompletionContributor : AbstractLoggingAnnotationComplet
 
     override fun removeLogging(method: PsiMethod) {
         val body = method.body ?: return
+        val entryPrefix = printStatementPrefix(ENTERING)
+        val exitPrefix = printStatementPrefix(EXITING)
+        val exitExpression = buildExitExpression(method)
+        val exitStatementText = "System.out.println($exitExpression);"
+
+        val statementsToDelete = LinkedHashSet<PsiStatement>()
 
         body.statements
-            .filter { it.text.startsWith(printStatementPrefix(ENTERING)) || it.text.startsWith(printStatementPrefix(EXITING)) }
-            .forEach { it.delete() }
+            .filter { it.text.startsWith(entryPrefix) }
+            .forEach { statementsToDelete += it }
+
+        val exitStatements = PsiMethodExitUtil.findExitStatements(method)
+
+        exitStatements.forEach { exitStatement ->
+            var previous = PsiTreeUtil.skipWhitespacesAndCommentsBackward(exitStatement)
+            while (previous is PsiStatement && previous.text.startsWith(exitPrefix)) {
+                statementsToDelete += previous
+                previous = PsiTreeUtil.skipWhitespacesAndCommentsBackward(previous)
+            }
+        }
+
+        if (exitStatements.isEmpty()) {
+            body.statements
+                .filter { it.text.startsWith(exitPrefix) || it.text == exitStatementText }
+                .forEach { statementsToDelete += it }
+        }
+
+        statementsToDelete.forEach { it.delete() }
     }
 
     private fun insertEntryStatement(body: PsiCodeBlock, entryStatement: PsiStatement) {

@@ -140,6 +140,44 @@ class LoggableAnnotationCompletionContributorTest : BaseTest() {
                         }
                     """.trimIndent()
                 )
+            ),
+            Arguments.of(
+                TestCase(
+                    name = "Method-level logging handles control flow exits",
+                    input = @Language("JAVA") """
+                        public class Test {
+                            @<caret>
+                            public void controlFlow(int[] values) {
+                                for (int value : values) {
+                                    if (value == 0) {
+                                        break;
+                                    }
+                                    if (value < 0) {
+                                        continue;
+                                    }
+                                }
+                                throw new IllegalStateException();
+                            }
+                        }
+                    """.trimIndent(),
+                    expected = @Language("JAVA") """
+                        public class Test {
+                            public void controlFlow(int[] values) {
+                                System.out.println("Entering Test.controlFlow" + " with args: " + "values=" + values);
+                                for (int value : values) {
+                                    if (value == 0) {
+                                        break;
+                                    }
+                                    if (value < 0) {
+                                        continue;
+                                    }
+                                }
+                                System.out.println("Exiting Test.controlFlow");
+                                throw new IllegalStateException();
+                            }
+                        }
+                    """.trimIndent()
+                )
             )
         )
     }
@@ -227,6 +265,53 @@ class LoggableAnnotationCompletionContributorTest : BaseTest() {
                 public class Test {
                     public void doWork(int value) {
                         System.out.println(value);
+                    }
+                }
+            """.trimIndent()
+        )
+    }
+
+    @Test
+    fun `should remove logging with nested exit statements`() {
+        fixture.configureByText(
+            "Test.java",
+            @Language("JAVA") """
+                public class Test {
+                    @<caret>
+                    public void check(boolean flag) {
+                        System.out.println("Entering Test.check" + " with args: " + "flag=" + flag);
+                        if (flag) {
+                            System.out.println("Exiting Test.check");
+                            return;
+                        } else {
+                            System.out.println("Exiting Test.check");
+                            return;
+                        }
+                    }
+                }
+            """.trimIndent()
+        )
+
+        val completions = fixture.complete(CompletionType.BASIC)
+        assertNotNull(completions)
+
+        val logCompletion = completions.find { it.lookupString == "Loggable" }
+        assertNotNull(logCompletion)
+
+        ApplicationManager.getApplication().invokeAndWait {
+            fixture.lookup.currentItem = logCompletion
+            fixture.finishLookup('\n')
+        }
+
+        fixture.checkResult(
+            @Language("JAVA") """
+                public class Test {
+                    public void check(boolean flag) {
+                        if (flag) {
+                            return;
+                        } else {
+                            return;
+                        }
                     }
                 }
             """.trimIndent()
