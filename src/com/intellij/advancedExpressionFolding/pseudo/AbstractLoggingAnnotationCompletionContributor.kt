@@ -22,6 +22,7 @@ import com.intellij.psi.PsiMethod
 import com.intellij.psi.PsiRecursiveElementVisitor
 import com.intellij.psi.PsiModifierList
 import com.intellij.psi.codeStyle.CodeStyleManager
+import com.intellij.psi.PsiStatement
 import com.intellij.psi.util.PsiTreeUtil
 import com.intellij.patterns.PlatformPatterns
 import com.intellij.util.ProcessingContext
@@ -79,12 +80,13 @@ abstract class AbstractLoggingAnnotationCompletionContributor(
 
     private fun applyLogging(method: PsiMethod) {
         val body = method.body ?: return
-        if (isAlreadyLogged(body)) {
-            removeLogging(method)
+        val exitStatements = PsiMethodExitUtil.findExitStatements(method)
+        if (isAlreadyLogged(method, body, exitStatements)) {
+            removeLogging(method, body, exitStatements)
             return
         }
 
-        addLogging(method, body)
+        addLogging(method, body, exitStatements)
     }
 
     protected fun applyLogging(psiClass: PsiClass) {
@@ -108,11 +110,23 @@ abstract class AbstractLoggingAnnotationCompletionContributor(
         psiClass.modifierList?.findAnnotation(annotationName)?.delete()
     }
 
-    protected abstract fun isAlreadyLogged(body: PsiCodeBlock): Boolean
+    protected abstract fun isAlreadyLogged(
+        method: PsiMethod,
+        body: PsiCodeBlock,
+        exitStatements: List<PsiStatement>,
+    ): Boolean
 
-    protected abstract fun addLogging(method: PsiMethod, body: PsiCodeBlock)
+    protected abstract fun addLogging(
+        method: PsiMethod,
+        body: PsiCodeBlock,
+        exitStatements: List<PsiStatement>,
+    )
 
-    protected abstract fun removeLogging(method: PsiMethod)
+    protected abstract fun removeLogging(
+        method: PsiMethod,
+        body: PsiCodeBlock,
+        exitStatements: List<PsiStatement>,
+    )
 
     private inner class MethodAnnotationCompletionProvider : CompletionProvider<CompletionParameters>() {
         override fun addCompletions(parameters: CompletionParameters, context: ProcessingContext, result: CompletionResultSet) {

@@ -4,51 +4,103 @@ import com.intellij.psi.JavaPsiFacade
 import com.intellij.psi.PsiCodeBlock
 import com.intellij.psi.PsiMethod
 import com.intellij.psi.PsiParameter
-import com.intellij.psi.PsiReturnStatement
 import com.intellij.psi.PsiStatement
-import com.intellij.psi.PsiThrowStatement
+import com.intellij.psi.util.PsiTreeUtil
+import java.util.LinkedHashSet
 
 class LoggableAnnotationCompletionContributor : AbstractLoggingAnnotationCompletionContributor() {
 
     override val annotationName: String = "Loggable"
 
-    override fun isAlreadyLogged(body: PsiCodeBlock): Boolean {
+    override fun isAlreadyLogged(
+        @Suppress("UNUSED_PARAMETER") method: PsiMethod,
+        body: PsiCodeBlock,
+        exitStatements: List<PsiStatement>,
+    ): Boolean {
         val statements = body.statements
         if (statements.isEmpty()) return false
         val firstStatement = statements.first()
         if (!firstStatement.text.startsWith(printStatementPrefix(ENTERING))) return false
-        return statements.any { it.text.startsWith(printStatementPrefix(EXITING)) }
+
+        val exitPrefix = printStatementPrefix(EXITING)
+
+        if (exitStatements.isEmpty()) {
+            return statements.any { it.text.startsWith(exitPrefix) }
+        }
+
+        return exitStatements.all { exitStatement ->
+            val previous = PsiTreeUtil.skipWhitespacesAndCommentsBackward(exitStatement)
+            previous is PsiStatement && previous.text.startsWith(exitPrefix)
+        }
     }
 
-    override fun addLogging(method: PsiMethod, body: PsiCodeBlock) {
+    override fun addLogging(
+        method: PsiMethod,
+        body: PsiCodeBlock,
+        exitStatements: List<PsiStatement>,
+    ) {
         val entryStatement = createPrintStatement(method, buildEntryExpression(method))
-        val exitStatement = createPrintStatement(method, buildExitExpression(method))
+        val exitExpression = buildExitExpression(method)
 
-        insertLoggingStatements(body, entryStatement, exitStatement)
+        insertEntryStatement(body, entryStatement)
+        insertExitStatements(method, body, exitStatements, exitExpression)
     }
 
-    override fun removeLogging(method: PsiMethod) {
-        val body = method.body ?: return
+    override fun removeLogging(
+        method: PsiMethod,
+        body: PsiCodeBlock,
+        exitStatements: List<PsiStatement>,
+    ) {
+        val entryPrefix = printStatementPrefix(ENTERING)
+        val exitPrefix = printStatementPrefix(EXITING)
+        val exitExpression = buildExitExpression(method)
+        val exitStatementText = "System.out.println($exitExpression);"
 
-        body.statements.firstOrNull { it.text.startsWith(printStatementPrefix(ENTERING)) }?.delete()
-        body.statements.firstOrNull { it.text.startsWith(printStatementPrefix(EXITING)) }?.delete()
+        val statementsToDelete = LinkedHashSet<PsiStatement>()
+
+        body.statements
+            .filter { it.text.startsWith(entryPrefix) }
+            .forEach { statementsToDelete += it }
+
+        exitStatements.forEach { exitStatement ->
+            var previous = PsiTreeUtil.skipWhitespacesAndCommentsBackward(exitStatement)
+            while (previous is PsiStatement && previous.text.startsWith(exitPrefix)) {
+                statementsToDelete += previous
+                previous = PsiTreeUtil.skipWhitespacesAndCommentsBackward(previous)
+            }
+        }
+
+        if (exitStatements.isEmpty()) {
+            body.statements
+                .filter { it.text.startsWith(exitPrefix) || it.text == exitStatementText }
+                .forEach { statementsToDelete += it }
+        }
+
+        statementsToDelete.forEach { it.delete() }
     }
 
-    private fun insertLoggingStatements(body: PsiCodeBlock, entryStatement: PsiStatement, exitStatement: PsiStatement) {
-        val originalStatements = body.statements
-        val firstStatement = originalStatements.firstOrNull()
+    private fun insertEntryStatement(body: PsiCodeBlock, entryStatement: PsiStatement) {
+        val firstStatement = body.statements.firstOrNull()
         if (firstStatement == null) {
             body.add(entryStatement)
-            body.add(exitStatement)
+        } else {
+            body.addBefore(entryStatement, firstStatement)
+        }
+    }
+
+    private fun insertExitStatements(
+        method: PsiMethod,
+        body: PsiCodeBlock,
+        exitStatements: List<PsiStatement>,
+        exitExpression: String,
+    ) {
+        if (exitStatements.isEmpty()) {
+            body.add(createPrintStatement(method, exitExpression))
             return
         }
 
-        body.addBefore(entryStatement, firstStatement)
-
-        val lastOriginalStatement = originalStatements.lastOrNull()
-        when (lastOriginalStatement) {
-            is PsiReturnStatement, is PsiThrowStatement -> body.addBefore(exitStatement, lastOriginalStatement)
-            else -> body.addAfter(exitStatement, lastOriginalStatement)
+        exitStatements.forEach { statement ->
+            statement.parent?.addBefore(createPrintStatement(method, exitExpression), statement)
         }
     }
 

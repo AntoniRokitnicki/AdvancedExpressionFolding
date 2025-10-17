@@ -46,6 +46,35 @@ class LoggableAnnotationCompletionContributorTest : BaseTest() {
             ),
             Arguments.of(
                 TestCase(
+                    name = "Method-level logging with multiple exits",
+                    input = @Language("JAVA") """
+                        public class Test {
+                            @<caret>
+                            public String compute(boolean flag) {
+                                if (flag) {
+                                    return "yes";
+                                }
+                                return "no";
+                            }
+                        }
+                    """.trimIndent(),
+                    expected = @Language("JAVA") """
+                        public class Test {
+                            public String compute(boolean flag) {
+                                System.out.println("Entering Test.compute" + " with args: " + "flag=" + flag);
+                                if (flag) {
+                                    System.out.println("Exiting Test.compute");
+                                    return "yes";
+                                }
+                                System.out.println("Exiting Test.compute");
+                                return "no";
+                            }
+                        }
+                    """.trimIndent()
+                )
+            ),
+            Arguments.of(
+                TestCase(
                     name = "Class-level logging applied to nested classes",
                     input = @Language("JAVA") """
                         @<caret>
@@ -111,6 +140,143 @@ class LoggableAnnotationCompletionContributorTest : BaseTest() {
                         }
                     """.trimIndent()
                 )
+            ),
+            Arguments.of(
+                TestCase(
+                    name = "Method-level logging handles control flow exits",
+                    input = @Language("JAVA") """
+                        public class Test {
+                            @<caret>
+                            public void controlFlow(int[] values) {
+                                for (int value : values) {
+                                    if (value == 0) {
+                                        break;
+                                    }
+                                    if (value < 0) {
+                                        continue;
+                                    }
+                                }
+                                throw new IllegalStateException();
+                            }
+                        }
+                    """.trimIndent(),
+                    expected = @Language("JAVA") """
+                        public class Test {
+                            public void controlFlow(int[] values) {
+                                System.out.println("Entering Test.controlFlow" + " with args: " + "values=" + values);
+                                for (int value : values) {
+                                    if (value == 0) {
+                                        System.out.println("Exiting Test.controlFlow");
+                                        break;
+                                    }
+                                    if (value < 0) {
+                                        System.out.println("Exiting Test.controlFlow");
+                                        continue;
+                                    }
+                                }
+                                System.out.println("Exiting Test.controlFlow");
+                                throw new IllegalStateException();
+                            }
+                        }
+                    """.trimIndent()
+                )
+            )
+        )
+
+        @JvmStatic
+        fun removalCases(): Stream<Arguments> = Stream.of(
+            Arguments.of(
+                TestCase(
+                    name = "Removes entry and trailing exit when no explicit exits",
+                    input = @Language("JAVA") """
+                        public class Test {
+                            @<caret>
+                            public void doWork(int value) {
+                                System.out.println("Entering Test.doWork" + " with args: " + "value=" + value);
+                                System.out.println(value);
+                                System.out.println("Exiting Test.doWork");
+                            }
+                        }
+                    """.trimIndent(),
+                    expected = @Language("JAVA") """
+                        public class Test {
+                            public void doWork(int value) {
+                                System.out.println(value);
+                            }
+                        }
+                    """.trimIndent()
+                )
+            ),
+            Arguments.of(
+                TestCase(
+                    name = "Removes logging inserted before multiple returns",
+                    input = @Language("JAVA") """
+                        public class Test {
+                            @<caret>
+                            public void check(boolean flag) {
+                                System.out.println("Entering Test.check" + " with args: " + "flag=" + flag);
+                                if (flag) {
+                                    System.out.println("Exiting Test.check");
+                                    return;
+                                } else {
+                                    System.out.println("Exiting Test.check");
+                                    return;
+                                }
+                            }
+                        }
+                    """.trimIndent(),
+                    expected = @Language("JAVA") """
+                        public class Test {
+                            public void check(boolean flag) {
+                                if (flag) {
+                                    return;
+                                } else {
+                                    return;
+                                }
+                            }
+                        }
+                    """.trimIndent()
+                )
+            ),
+            Arguments.of(
+                TestCase(
+                    name = "Removes logging before break, continue, and throw exits",
+                    input = @Language("JAVA") """
+                        public class Test {
+                            @<caret>
+                            public void controlFlow(int[] values) {
+                                System.out.println("Entering Test.controlFlow" + " with args: " + "values=" + values);
+                                for (int value : values) {
+                                    if (value == 0) {
+                                        System.out.println("Exiting Test.controlFlow");
+                                        break;
+                                    }
+                                    if (value < 0) {
+                                        System.out.println("Exiting Test.controlFlow");
+                                        continue;
+                                    }
+                                }
+                                System.out.println("Exiting Test.controlFlow");
+                                throw new IllegalStateException();
+                            }
+                        }
+                    """.trimIndent(),
+                    expected = @Language("JAVA") """
+                        public class Test {
+                            public void controlFlow(int[] values) {
+                                for (int value : values) {
+                                    if (value == 0) {
+                                        break;
+                                    }
+                                    if (value < 0) {
+                                        continue;
+                                    }
+                                }
+                                throw new IllegalStateException();
+                            }
+                        }
+                    """.trimIndent()
+                )
             )
         )
     }
@@ -166,21 +332,10 @@ class LoggableAnnotationCompletionContributorTest : BaseTest() {
         fixture.checkResult(testCase.expected)
     }
 
-    @Test
-    fun `should remove logging when selecting @Loggable on already logged method`() {
-        fixture.configureByText(
-            "Test.java",
-            @Language("JAVA") """
-                public class Test {
-                    @<caret>
-                    public void doWork(int value) {
-                        System.out.println("Entering Test.doWork" + " with args: " + "value=" + value);
-                        System.out.println(value);
-                        System.out.println("Exiting Test.doWork");
-                    }
-                }
-            """.trimIndent()
-        )
+    @ParameterizedTest
+    @MethodSource("removalCases")
+    fun `should remove logging when toggling @Loggable on already logged method`(testCase: TestCase) {
+        fixture.configureByText("Test.java", testCase.input)
 
         val completions = fixture.complete(CompletionType.BASIC)
         assertNotNull(completions)
@@ -193,15 +348,7 @@ class LoggableAnnotationCompletionContributorTest : BaseTest() {
             fixture.finishLookup('\n')
         }
 
-        fixture.checkResult(
-            @Language("JAVA") """
-                public class Test {
-                    public void doWork(int value) {
-                        System.out.println(value);
-                    }
-                }
-            """.trimIndent()
-        )
+        fixture.checkResult(testCase.expected)
     }
 
     data class TestCase(
