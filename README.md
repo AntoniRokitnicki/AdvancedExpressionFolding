@@ -44,7 +44,13 @@ Fork of abandoned [Advanced Java Folding](https://plugins.jetbrains.com/plugin/9
 For more information, read the [blog post](https://medium.com/@andrey_cheptsov/making-java-code-easier-to-read-without-changing-it-adeebd5c36de).
 
 ## Unreleased ##
-- [[pseudo-annotations] Quick completions like @Main (generate main method) and @Loggable (add System.out entry/exit logging).](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/PseudoAnnotations)
+
+## 5.0.0 ##
+- [[pseudo-annotations] @Loggable - toggleable pseudo-annotation with control-flow analysis for automatic method entry/exit logging, parameters, return values, and exceptions](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/PseudoAnnotations)
+- [[pseudo-annotations] @TracingLoggable - uses XDebugger tracing breakpoints for expression logging with grouped breakpoints and class-level toggling](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/PseudoAnnotations)
+- [Log folding now supports variable folding inside Java text blocks](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/371)
+- [Method default parameters skip folding during debugging to prevent breakpoint interference](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/424)
+- Complete Java→Kotlin migration of entire codebase
 
 ## 4.2.0 ##
 - [Add setting to prevent collapsing Java text blocks in log folding](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/338)
