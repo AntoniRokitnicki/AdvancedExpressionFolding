@@ -49,9 +49,6 @@
                 implementationClass="com.intellij.advancedExpressionFolding.pseudo.LoggableAnnotationCompletionContributor"/>
         <completion.contributor
                 language="JAVA"
-                implementationClass="com.intellij.advancedExpressionFolding.pseudo.BreakpointableAnnotationCompletionContributor"/>
-        <completion.contributor
-                language="JAVA"
                 implementationClass="com.intellij.advancedExpressionFolding.pseudo.TracingLoggableAnnotationCompletionContributor"/>
     </extensions>
 
