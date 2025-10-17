@@ -6,6 +6,26 @@
 
 - Add compatibility with IntelliJ IDEA 2025.3 EAP (253.20558.43)
 
+## Added
+
+- [pseudo-annotations] Introduce **@Log** pseudo-annotation to log entry and exit of methods. The annotation can be applied to individual methods or to an entire class, automatically logging parameters, return values and exceptions to `System.out`. See [#429](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/429).
+- [methodDefaultParameters] Skip folding of default parameters during debugging sessions to avoid interfering with breakpoints. See [#424](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/424).
+- [ui] Add live validation for the "Regex to disable Lombok folding" setting; malformed patterns now display an inline error instead of being silently discarded. See [#379](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/379).
+- [pseudo-annotations] Improve formatting of the generated `main` method for the **@Main** pseudo-annotation so indentation and imports are correctly formatted. See [#363](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/363).
+- [log folding] Support variable folding inside Java text blocks and introduce a `logFoldingTextBlocks` setting to toggle collapsing of multi-line text blocks. See [#338](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/338).
+- [log folding] Add coverage for SLF4J text blocks that contain parameter expressions and enable log text block folding by default so the feature is on out-of-the-box. See [#371](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/371).
+- [pseudo-annotations] Update **@Loggable** pseudo-annotation to log every method exit point by reusing Java control flow to collect exit statements and to remove all injected statements when toggling. See [#441](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/441).
+- [pseudo-annotations] Extend **@Log** pseudo-annotation support to nested classes by walking class bodies and add tests for class-level logging when inner classes are present. See [#431](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/431).
+- [pseudo-annotations] Introduce **@TracingLoggable** pseudo-annotation that uses XDebugger tracing breakpoints to log expressions and supports class-level cleanup and toggling logic. See [#447](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/447).
+- [debugger] Group tracing breakpoints by annotation name and file name to improve organization and pass parameters to the toggleBreakpoint method for grouped breakpoints. See [#448](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/448).
+- [settings-ui] Warn instead of throwing when downloading examples without an open project by hardening settings helpers and registering a notification group. See [#446](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/446).
+- [pseudo-annotations] Allow toggling of **@Loggable** completion logging by delegating to a removal hook and add regression tests covering toggle behavior.
+-
+### Changed
+
+- Performance improvements and internal refactoring, including optimized helper character lookups and shared extension helpers (see [#416](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/416), [#402](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/402), [#401](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/401), [#398](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/398)).
+
+
 ## [4.2.0] - 2025-09-20
 
 - [Add setting to prevent collapsing Java text blocks in log folding](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/338)
