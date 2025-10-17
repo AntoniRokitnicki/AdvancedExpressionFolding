@@ -2,12 +2,7 @@ package com.intellij.advancedExpressionFolding.pseudo
 
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.vfs.VirtualFile
-import com.intellij.psi.PsiClass
-import com.intellij.psi.PsiCodeBlock
-import com.intellij.psi.PsiDocumentManager
-import com.intellij.psi.PsiMethod
-import com.intellij.psi.PsiParameter
-import com.intellij.psi.PsiStatement
+import com.intellij.psi.*
 import com.intellij.xdebugger.XDebuggerManager
 import com.intellij.xdebugger.breakpoints.SuspendPolicy
 import com.intellij.xdebugger.breakpoints.XLineBreakpoint
@@ -66,9 +61,9 @@ class TracingLoggableAnnotationCompletionContributor : AbstractLoggingAnnotation
         @Suppress("UNUSED_PARAMETER") exitStatements: List<PsiStatement>,
     ) {
         val target = resolveTarget(method, body) ?: return
-        BreakpointUtil.toggleBreakpoint(method.project, target.file, target.entryLine, buildEntryExpression(method))
+        toggleBreakpoint(method.project, target.file, target.entryLine, buildEntryExpression(method))
         target.exitLine?.let { exitLine ->
-            BreakpointUtil.toggleBreakpoint(method.project, target.file, exitLine, buildExitExpression(method))
+            toggleBreakpoint(method.project, target.file, exitLine, buildExitExpression(method))
         }
     }
 
@@ -79,13 +74,22 @@ class TracingLoggableAnnotationCompletionContributor : AbstractLoggingAnnotation
     ) {
         val target = resolveTarget(method, body) ?: return
         if (hasTracingBreakpoint(method.project, target.file, target.entryLine, buildEntryExpression(method))) {
-            BreakpointUtil.toggleBreakpoint(method.project, target.file, target.entryLine, buildEntryExpression(method))
+            toggleBreakpoint(method.project, target.file, target.entryLine, buildEntryExpression(method))
         }
         target.exitLine?.let { exitLine ->
             if (hasTracingBreakpoint(method.project, target.file, exitLine, buildExitExpression(method))) {
-                BreakpointUtil.toggleBreakpoint(method.project, target.file, exitLine, buildExitExpression(method))
+                toggleBreakpoint(method.project, target.file, exitLine, buildExitExpression(method))
             }
         }
+    }
+
+    private fun toggleBreakpoint(
+        project: Project,
+        file: VirtualFile,
+        exitLine: Int,
+        buildExitExpression: String
+    ) {
+        BreakpointUtil.toggleBreakpoint(project, file, exitLine, buildExitExpression, groupName = "$annotationName-${file.name}")
     }
 
     private fun resolveTarget(method: PsiMethod, body: PsiCodeBlock): LoggingTarget? {

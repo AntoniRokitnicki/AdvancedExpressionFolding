@@ -12,11 +12,12 @@ import com.intellij.xdebugger.XDebuggerUtil
 import com.intellij.xdebugger.breakpoints.SuspendPolicy
 import com.intellij.xdebugger.breakpoints.XLineBreakpoint
 import com.intellij.xdebugger.evaluation.EvaluationMode
+import com.intellij.xdebugger.impl.breakpoints.XBreakpointBase
 import kotlin.math.max
 
 object BreakpointUtil {
 
-    fun toggleBreakpoint(project: Project, file: VirtualFile, lineNumber: Int, logExpression: String?) {
+    fun toggleBreakpoint(project: Project, file: VirtualFile, lineNumber: Int, logExpression: String? = null, groupName: String? = null) {
         runReadAction {
             PsiManager.getInstance(project).findFile(file)?.let { psiFile ->
                 PsiDocumentManager.getInstance(project).getDocument(psiFile)
@@ -32,6 +33,7 @@ object BreakpointUtil {
             bpMgr.allBreakpoints.find { it.sourcePosition?.file == file && it.sourcePosition?.line == line }
                 ?.let { bpMgr.removeBreakpoint(it) }
                 ?: bpMgr.addLineBreakpoint(bpType, file.url, line, bpType.createBreakpointProperties(file, line)).apply {
+                    (this as? XBreakpointBase<*, *, *>)?.group = groupName
                     logExpression ?: return@apply
                     suspendPolicy = SuspendPolicy.NONE
                     isLogMessage = true
