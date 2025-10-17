@@ -127,6 +127,12 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
                 applyBulkChange { disableAll() }
             }
             cell(disableAllButton)
+
+            val restoreDefaultsButton = JButton("Restore defaults")
+            restoreDefaultsButton.addActionListener {
+                applyBulkChange { restoreDefaults() }
+            }
+            cell(restoreDefaultsButton)
         }
         initialize(state)
     }.also {
