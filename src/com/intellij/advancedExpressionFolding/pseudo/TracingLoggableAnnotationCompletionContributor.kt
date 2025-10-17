@@ -7,7 +7,7 @@ import com.intellij.xdebugger.XDebuggerManager
 import com.intellij.xdebugger.breakpoints.SuspendPolicy
 import com.intellij.xdebugger.breakpoints.XLineBreakpoint
 
-class TracingLoggableAnnotationCompletionContributor : AbstractLoggingAnnotationCompletionContributor() {
+open class TracingLoggableAnnotationCompletionContributor : AbstractLoggingAnnotationCompletionContributor() {
 
     override val annotationName: String = "TracingLoggable"
 
@@ -83,13 +83,19 @@ class TracingLoggableAnnotationCompletionContributor : AbstractLoggingAnnotation
         }
     }
 
-    private fun toggleBreakpoint(
+    protected open fun toggleBreakpoint(
         project: Project,
         file: VirtualFile,
-        exitLine: Int,
-        buildExitExpression: String
+        lineNumber: Int,
+        logExpression: String,
     ) {
-        BreakpointUtil.toggleBreakpoint(project, file, exitLine, buildExitExpression, groupName = "$annotationName-${file.name}")
+        BreakpointUtil.toggleBreakpoint(
+            project,
+            file,
+            lineNumber,
+            logExpression,
+            groupName = "$annotationName-${file.name}",
+        )
     }
 
     private fun resolveTarget(method: PsiMethod, body: PsiCodeBlock): LoggingTarget? {
