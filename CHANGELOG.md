@@ -4,7 +4,7 @@
 
 ## [Unreleased]
 
-## Added
+### Added
 
 - [pseudo-annotations] Introduce toggleable **@TracingLoggable** pseudo-annotation with control-flow analysis that uses XDebugger tracing breakpoints for expression logging, adds logging at method entry and all exits, supports grouped breakpoints by annotation and file, and includes full class-level toggling and cleanup logic. See [#447](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/447), [#448](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/448).
 - [pseudo-annotations] Introduce toggleable **@Loggable** pseudo-annotation with control-flow analysis that logs method entry and all exits, parameters, return values, and exceptions for methods or entire classes, with automatic removal of injected statements. See [#441](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/441), [#429](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/429), [#431](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/431), [#363](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/363).
