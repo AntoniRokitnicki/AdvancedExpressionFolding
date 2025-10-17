@@ -1,6 +1,11 @@
 package data;
 
 public class PseudoAnnotationsLoggableTestData {
+    public static void main(String[] args) {
+        int value = 0;
+        System.out.println(new PseudoAnnotationsLoggableTestData().returnFromSwitch(value));
+    }
+
 
     public String conditionalReturn(boolean flag) {
         if (flag) {
