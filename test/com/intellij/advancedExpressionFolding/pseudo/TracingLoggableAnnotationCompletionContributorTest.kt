@@ -3,12 +3,14 @@ package com.intellij.advancedExpressionFolding.pseudo
 import com.intellij.advancedExpressionFolding.BaseTest
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
 import com.intellij.codeInsight.completion.CompletionType
+import com.intellij.debugger.ui.breakpoints.JavaLineBreakpointType
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.application.runReadAction
 import com.intellij.openapi.command.WriteCommandAction
 import com.intellij.psi.PsiDocumentManager
 import com.intellij.psi.PsiMethod
 import com.intellij.psi.util.PsiTreeUtil
+import com.intellij.xdebugger.XDebuggerUtil
 import com.intellij.xdebugger.XDebuggerManager
 import com.intellij.xdebugger.breakpoints.XLineBreakpoint
 import org.intellij.lang.annotations.Language
@@ -77,6 +79,32 @@ class TracingLoggableAnnotationCompletionContributorTest : BaseTest() {
         val expressions = breakpoints.mapNotNull { it.logExpressionObject?.expression }.toSet()
         assertTrue(expressions.contains("\"Entering Test.doWork\" + \" with args: \" + \"value=\" + value + \", \" + \"name=\" + name"))
         assertTrue(expressions.contains("\"Exiting Test.doWork\""))
+    }
+
+    @Test
+    fun `should preserve existing user breakpoints when selecting @TracingLoggable`() {
+        fixture.configureByText(
+            "Test.java",
+            @Language("JAVA") """
+                public class Test {
+                    @<caret>
+                    public void doWork(int value) {
+                        System.out.println(value);
+                    }
+                }
+            """.trimIndent(),
+        )
+
+        addUserBreakpointsForMethod("doWork")
+
+        selectTracingLoggableCompletion()
+
+        val breakpoints = fileBreakpoints()
+        val manualBreakpoints = breakpoints.filterNot { it.isLogMessage }
+        val tracingBreakpoints = breakpoints.filter { it.isLogMessage }
+
+        assertEquals(2, manualBreakpoints.size, "Expected manual breakpoints to be preserved")
+        assertEquals(2, tracingBreakpoints.size, "Expected tracing breakpoints to be created")
     }
 
     @Test
@@ -153,6 +181,48 @@ class TracingLoggableAnnotationCompletionContributorTest : BaseTest() {
             }
             fixture.editor.caretModel.moveToOffset(offset + 1)
             PsiDocumentManager.getInstance(fixture.project).commitAllDocuments()
+        }
+    }
+
+    private fun addUserBreakpointsForMethod(methodName: String) {
+        val project = fixture.project
+        val file = fixture.file
+        val document = PsiDocumentManager.getInstance(project).getDocument(file) ?: return
+        val (entryLine, exitLine) = runReadAction {
+            val method = PsiTreeUtil.findChildrenOfType(file, PsiMethod::class.java).first { it.name == methodName }
+            val entryElement = method.nameIdentifier ?: method
+            val entry = document.getLineNumber(entryElement.textRange.startOffset)
+            val statements = method.body?.statements.orEmpty()
+            val lastStatement = statements.lastOrNull()
+            val exit = when {
+                lastStatement != null -> document.getLineNumber(lastStatement.textRange.startOffset)
+                method.body?.rBrace != null -> document.getLineNumber(method.body!!.rBrace!!.textRange.startOffset)
+                else -> null
+            }
+            entry to exit
+        } ?: return
+
+        val breakpointManager = XDebuggerManager.getInstance(project).breakpointManager
+        val util = XDebuggerUtil.getInstance()
+        val breakpointType = util.findBreakpointType(JavaLineBreakpointType::class.java) ?: return
+
+        ApplicationManager.getApplication().invokeAndWait {
+            WriteCommandAction.runWriteCommandAction(project) {
+                breakpointManager.addLineBreakpoint(
+                    breakpointType,
+                    file.virtualFile.url,
+                    entryLine,
+                    breakpointType.createBreakpointProperties(file.virtualFile, entryLine),
+                )
+                exitLine?.let { exit ->
+                    breakpointManager.addLineBreakpoint(
+                        breakpointType,
+                        file.virtualFile.url,
+                        exit,
+                        breakpointType.createBreakpointProperties(file.virtualFile, exit),
+                    )
+                }
+            }
         }
     }
 

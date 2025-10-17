@@ -6,6 +6,7 @@ import com.intellij.psi.PsiCodeBlock
 import com.intellij.psi.PsiMethod
 import com.intellij.psi.PsiParameter
 import com.intellij.psi.PsiDocumentManager
+import com.intellij.psi.PsiClass
 import com.intellij.xdebugger.XDebuggerManager
 import com.intellij.xdebugger.breakpoints.SuspendPolicy
 import com.intellij.xdebugger.breakpoints.XLineBreakpoint
@@ -13,6 +14,26 @@ import com.intellij.xdebugger.breakpoints.XLineBreakpoint
 class TracingLoggableAnnotationCompletionContributor : AbstractLoggingAnnotationCompletionContributor() {
 
     override val annotationName: String = "TracingLoggable"
+
+    override fun shouldRemoveClassLogging(psiClass: PsiClass): Boolean {
+        if (psiClass.name == null) return false
+        val methodBodies = psiClass.methods.mapNotNull(PsiMethod::getBody)
+        val constructorBodies = psiClass.constructors.mapNotNull(PsiMethod::getBody)
+        if (methodBodies.isEmpty() && constructorBodies.isEmpty()) return false
+        return (methodBodies + constructorBodies).all(::isAlreadyLogged)
+    }
+
+    override fun removeClassLogging(psiClass: PsiClass) {
+        val className = psiClass.name ?: return
+        val virtualFile = psiClass.containingFile?.virtualFile ?: return
+        BreakpointUtil.removeTracingBreakpointsForClass(
+            psiClass.project,
+            virtualFile,
+            className,
+            BreakpointUtil.ENTERING,
+            BreakpointUtil.EXITING,
+        )
+    }
 
     override fun isAlreadyLogged(body: PsiCodeBlock): Boolean {
         val method = body.parent as? PsiMethod ?: return false
@@ -83,7 +104,7 @@ class TracingLoggableAnnotationCompletionContributor : AbstractLoggingAnnotation
     private fun buildEntryExpression(method: PsiMethod): String {
         val methodLabel = methodLabel(method)
         val parameterNames = method.parameterList.parameters.mapNotNull(PsiParameter::getName)
-        val base = "\"$ENTERING $methodLabel\""
+        val base = "\"${BreakpointUtil.ENTERING} $methodLabel\""
         if (parameterNames.isEmpty()) {
             return base
         }
@@ -95,7 +116,7 @@ class TracingLoggableAnnotationCompletionContributor : AbstractLoggingAnnotation
 
     private fun buildExitExpression(method: PsiMethod): String {
         val methodLabel = methodLabel(method)
-        return "\"$EXITING $methodLabel\""
+        return "\"${BreakpointUtil.EXITING} $methodLabel\""
     }
 
     private fun methodLabel(method: PsiMethod): String {
@@ -109,8 +130,4 @@ class TracingLoggableAnnotationCompletionContributor : AbstractLoggingAnnotation
 
     private data class LoggingTarget(val file: VirtualFile, val entryLine: Int, val exitLine: Int?)
 
-    private companion object {
-        private const val ENTERING = "Entering"
-        private const val EXITING = "Exiting"
-    }
 }
