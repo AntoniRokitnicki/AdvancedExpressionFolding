@@ -533,6 +533,7 @@ import java.util.logging.Logger;</fold>
         <fold text='@Getter(lazy = ArrayList::new) p' expand='false'>p</fold>rivate List<String> lazyLoadedList;
         <fold text='@Getter(lazy = ArrayList::new) p' expand='false'>p</fold>rivate List<String> oneLineLazyLoadedList;
         <fold text='@Getter(wrapper = ArrayList::new) p' expand='false'>p</fold>rivate List<String> defensiveCopyList;<fold text='' expand='false'>
+        <fold text='@Getter(optional = true) p' expand='false'>p</fold>rivate String optionalField;<fold text='' expand='false'>
 
         </fold><fold text='' expand='false'>public List<String> getWrapper()<fold text=' { ' expand='false'> {
             </fold>return Collections.unmodifiableList(wrapper);<fold text=' }' expand='false'>
@@ -575,6 +576,10 @@ import java.util.logging.Logger;</fold>
         </fold><fold text='' expand='false'>public List<String> getOneLineLazyLoadedList() <fold text='{...}' expand='true'>{
             if (oneLineLazyLoadedList == null) oneLineLazyLoadedList = new ArrayList<>();
             return oneLineLazyLoadedList;
+        }</fold></fold>
+
+        </fold><fold text='' expand='false'>public Optional<String> getOptionalField()<fold text=' { ' expand='false'> {
+            </fold>return Optional.ofNullable(optionalField);<fold text=' }' expand='false'>
         }</fold></fold>
 
         private List<String> localWrap(List<String> list)<fold text=' { ' expand='false'> {
