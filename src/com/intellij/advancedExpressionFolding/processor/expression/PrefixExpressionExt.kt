@@ -91,7 +91,7 @@ object PrefixExpressionExt {
                 return tryGet(element, document, methodNames::contains) { _, _ -> true }
             }
 
-            private fun tryGet(
+            private inline fun tryGet(
                 element: PsiMethodCallExpression,
                 document: Document,
                 isMethodNameSupported: (String) -> Boolean,
