@@ -12,14 +12,16 @@ class LoggableAnnotationCompletionContributor : AbstractLoggingAnnotationComplet
 
     override val annotationName: String = "Loggable"
 
-    override fun isAlreadyLogged(body: PsiCodeBlock): Boolean {
+    override fun isAlreadyLogged(
+        @Suppress("UNUSED_PARAMETER") method: PsiMethod,
+        body: PsiCodeBlock,
+        exitStatements: List<PsiStatement>,
+    ): Boolean {
         val statements = body.statements
         if (statements.isEmpty()) return false
         val firstStatement = statements.first()
         if (!firstStatement.text.startsWith(printStatementPrefix(ENTERING))) return false
 
-        val method = body.parent as? PsiMethod ?: return false
-        val exitStatements = PsiMethodExitUtil.findExitStatements(method)
         val exitPrefix = printStatementPrefix(EXITING)
 
         if (exitStatements.isEmpty()) {
@@ -32,8 +34,11 @@ class LoggableAnnotationCompletionContributor : AbstractLoggingAnnotationComplet
         }
     }
 
-    override fun addLogging(method: PsiMethod, body: PsiCodeBlock) {
-        val exitStatements = PsiMethodExitUtil.findExitStatements(method)
+    override fun addLogging(
+        method: PsiMethod,
+        body: PsiCodeBlock,
+        exitStatements: List<PsiStatement>,
+    ) {
         val entryStatement = createPrintStatement(method, buildEntryExpression(method))
         val exitExpression = buildExitExpression(method)
 
@@ -41,8 +46,11 @@ class LoggableAnnotationCompletionContributor : AbstractLoggingAnnotationComplet
         insertExitStatements(method, body, exitStatements, exitExpression)
     }
 
-    override fun removeLogging(method: PsiMethod) {
-        val body = method.body ?: return
+    override fun removeLogging(
+        method: PsiMethod,
+        body: PsiCodeBlock,
+        exitStatements: List<PsiStatement>,
+    ) {
         val entryPrefix = printStatementPrefix(ENTERING)
         val exitPrefix = printStatementPrefix(EXITING)
         val exitExpression = buildExitExpression(method)
@@ -53,8 +61,6 @@ class LoggableAnnotationCompletionContributor : AbstractLoggingAnnotationComplet
         body.statements
             .filter { it.text.startsWith(entryPrefix) }
             .forEach { statementsToDelete += it }
-
-        val exitStatements = PsiMethodExitUtil.findExitStatements(method)
 
         exitStatements.forEach { exitStatement ->
             var previous = PsiTreeUtil.skipWhitespacesAndCommentsBackward(exitStatement)

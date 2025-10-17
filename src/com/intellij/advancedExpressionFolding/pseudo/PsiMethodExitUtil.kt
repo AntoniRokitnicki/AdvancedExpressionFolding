@@ -1,5 +1,6 @@
 package com.intellij.advancedExpressionFolding.pseudo
 
+import com.intellij.psi.JavaRecursiveElementVisitor
 import com.intellij.psi.PsiBreakStatement
 import com.intellij.psi.PsiCodeBlock
 import com.intellij.psi.PsiContinueStatement
@@ -27,8 +28,30 @@ internal object PsiMethodExitUtil {
             *DEFAULT_EXIT_STATEMENTS
         )
 
-        return exitStatements
-            .asSequence()
+        val structuralExitStatements = mutableListOf<PsiStatement>()
+        body.accept(object : JavaRecursiveElementVisitor() {
+            override fun visitReturnStatement(statement: PsiReturnStatement) {
+                structuralExitStatements += statement
+                super.visitReturnStatement(statement)
+            }
+
+            override fun visitBreakStatement(statement: PsiBreakStatement) {
+                structuralExitStatements += statement
+                super.visitBreakStatement(statement)
+            }
+
+            override fun visitContinueStatement(statement: PsiContinueStatement) {
+                structuralExitStatements += statement
+                super.visitContinueStatement(statement)
+            }
+
+            override fun visitThrowStatement(statement: PsiThrowStatement) {
+                structuralExitStatements += statement
+                super.visitThrowStatement(statement)
+            }
+        })
+
+        return (exitStatements.asSequence() + structuralExitStatements.asSequence())
             .sortedBy { it.textRange?.startOffset ?: Int.MAX_VALUE }
             .distinct()
             .toList()
