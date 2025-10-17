@@ -8,6 +8,8 @@ import com.intellij.icons.AllIcons
 import com.intellij.ide.BrowserUtil
 import com.intellij.ide.HelpTooltip
 import com.intellij.ide.impl.ProjectUtil
+import com.intellij.notification.NotificationGroupManager
+import com.intellij.notification.NotificationType
 import com.intellij.openapi.command.WriteCommandAction
 import com.intellij.openapi.fileEditor.FileEditorManager
 import com.intellij.openapi.project.Project
@@ -40,7 +42,7 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
 
     override fun getHelpTopic() = null
 
-    private fun createExamplePanel(examples: Map<ExampleFile, Description?>? = null, docLink: UrlSuffix? = null): JPanel {
+    internal fun createExamplePanel(examples: Map<ExampleFile, Description?>? = null, docLink: UrlSuffix? = null): JPanel {
         val panel = JPanel(FlowLayout(FlowLayout.LEFT))
 
         examples?.forEach { (file, desc) ->
@@ -48,8 +50,8 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
             val description = "example$suffix"
 
             val actionLink = ActionLink(description) {
-                val project = selectedProject()
-                val sourceRoot = firstSourceRoot(project)
+                val project = selectedProject() ?: return@ActionLink
+                val sourceRoot = firstSourceRoot(project) ?: return@ActionLink
 
                 WriteCommandAction.runWriteCommandAction(project) {
                     val directory = sourceRoot.getOrCreatePackageDir()
@@ -75,10 +77,10 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
         return panel
     }
 
-    private fun createDownloadExamplesLink(): ActionLink {
+    internal fun createDownloadExamplesLink(): ActionLink {
         val actionLink = ActionLink("Checkout Examples to Current Project") {
-            val project = selectedProject()
-            val sourceRoot = firstSourceRoot(project)
+            val project = selectedProject() ?: return@ActionLink
+            val sourceRoot = firstSourceRoot(project) ?: return@ActionLink
 
             WriteCommandAction.runWriteCommandAction(project) {
                 val directory = sourceRoot.getOrCreatePackageDir()
@@ -131,10 +133,28 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
         }
     }
 
-    private fun firstSourceRoot(project: Project) =
-        ProjectRootManager.getInstance(project).contentSourceRoots.firstOrNull() ?: TODO("No sourceRoot found")
+    private fun firstSourceRoot(project: Project): VirtualFile? {
+        val sourceRoot = ProjectRootManager.getInstance(project).contentSourceRoots.firstOrNull()
+        if (sourceRoot == null) {
+            notifyWarning("No source roots found in project \"${project.name}\".", project)
+        }
+        return sourceRoot
+    }
 
-    private fun selectedProject(): Project = ProjectUtil.getActiveProject() ?: TODO("No project is opened")
+    private fun selectedProject(): Project? {
+        val project = ProjectUtil.getActiveProject()
+        if (project == null) {
+            notifyWarning("No open project found. Please open a project before checking out examples.")
+        }
+        return project
+    }
+
+    private fun notifyWarning(message: String, project: Project? = null) {
+        NotificationGroupManager.getInstance()
+            .getNotificationGroup(NOTIFICATION_GROUP_ID)
+            .createNotification(message, NotificationType.WARNING)
+            .notify(project)
+    }
 
     private fun createFile(
         directory: VirtualFile,
@@ -166,6 +186,7 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
 
     companion object {
         private const val EXAMPLE_DIR = "data"
+        private const val NOTIFICATION_GROUP_ID = "Advanced Expression Folding"
     }
     
     @CheckboxDsl
