@@ -36,6 +36,10 @@
                 key="editor.folding.advanced.expression.displayName"
                 bundle="Bundle"/>
 
+        <notificationGroup id="Advanced Expression Folding"
+                           displayType="BALLOON"
+                           isLogByDefault="true"/>
+
         <!-- Suggests pseudo-annotations supported by the plugin -->
         <completion.contributor
                 language="JAVA"
