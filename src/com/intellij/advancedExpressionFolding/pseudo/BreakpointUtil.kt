@@ -52,7 +52,6 @@ object BreakpointUtil {
         val matchingBreakpoints = breakpointManager.allBreakpoints
             .filterIsInstance<XLineBreakpoint<*>>()
             .filter { breakpoint -> breakpoint.sourcePosition?.file == file }
-            .filter { breakpoint -> breakpoint.isLogMessage && breakpoint.suspendPolicy == SuspendPolicy.NONE }
             .filter { breakpoint ->
                 if (className == null || markers.isEmpty()) {
                     return@filter true
