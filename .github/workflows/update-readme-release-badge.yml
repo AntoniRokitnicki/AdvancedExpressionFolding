@@ -1,0 +1,57 @@
+name: Update README release badge
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["Release"]
+    types:
+      - completed
+
+permissions:
+  contents: write
+
+jobs:
+  update-badge:
+    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success')
+    name: Update README badge
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Fetch latest release tag
+        id: release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          tag=$(gh release view --json tagName -q .tagName)
+          echo "Latest release tag: $tag"
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+
+      - name: Update README badge
+        id: update
+        run: |
+          set -euo pipefail
+          tag="${{ steps.release.outputs.tag }}"
+          perl -0pi -e "s|(compare/)[A-Za-z0-9._-]+(\.\.\.main)|\1${tag}\2|" README.md
+          if git diff --quiet README.md; then
+            echo "No badge update required"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "Badge updated to $tag"
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Commit and push changes
+        if: steps.update.outputs.changed == 'true'
+        env:
+          GIT_AUTHOR_NAME: github-actions[bot]
+          GIT_AUTHOR_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
+          GIT_COMMITTER_NAME: github-actions[bot]
+          GIT_COMMITTER_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
+        run: |
+          set -euo pipefail
+          git add README.md
+          git commit -m "Update README release badge"
+          git push

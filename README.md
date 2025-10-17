@@ -5,7 +5,6 @@
 </a></p>
 
 
-
 [![Build](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/actions/workflows/build.yml/badge.svg)](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/actions/workflows/build.yml)
 [![Release](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/actions/workflows/release.yml/badge.svg)](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/actions/workflows/release.yml)
 [![Canary Release](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/actions/workflows/release-canary.yml/badge.svg)](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/actions/workflows/release-canary.yml)
@@ -25,7 +24,7 @@
 [![Marketplace Version](https://img.shields.io/jetbrains/plugin/v/com.github.advanced-java-folding2.svg)](https://plugins.jetbrains.com/plugin/23659-advanced-java-folding-2-fork-)
 [![Downloads](https://img.shields.io/jetbrains/plugin/d/com.github.advanced-java-folding2.svg)](https://plugins.jetbrains.com/plugin/23659-advanced-java-folding-2-fork-)
 ![GitHub Release Date](https://img.shields.io/github/release-date/AntoniRokitnicki/AdvancedExpressionFolding)
-[![GitHub commits since latest release](https://img.shields.io/github/commits-since/AntoniRokitnicki/AdvancedExpressionFolding/latest)](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v3.8.0...main)
+[![GitHub commits since latest release](https://img.shields.io/github/commits-since/AntoniRokitnicki/AdvancedExpressionFolding/latest)](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v4.2.0...main)
 <!-- https://plugins.jetbrains.com/api/plugins/23659/updates?channel=&size=8 -->
 
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/AntoniRokitnicki/AdvancedExpressionFolding)
@@ -33,18 +32,19 @@
 ![Lines of Code Badge](https://raw.githubusercontent.com/AntoniRokitnicki/AdvancedExpressionFolding/lines-of-code-badge/badge.svg)
 
 <!-- Plugin description -->
-<p>Modern JVM languages such as Kotlin, Groovy, Scala and some others offer many language features that let you
-  write code in a more concise and expressive manner. These features include type inference, properties,
-  interpolated strings, range and tuple literals, enhanced operators, closures, implicits, smart casts and many more.</p>
+Modern JVM languages such as Kotlin, Groovy, Scala and some others offer many language features that let you
+write code in a more concise and expressive manner. These features include type inference, properties,
+interpolated strings, range and tuple literals, enhanced operators, closures, implicits, smart casts and many more.
 
-<p>This plugin extends the IDE’s folding features to emulate some of these modern languages’ features helping
-  fight verbosity.</p>
+This plugin extends the IDE’s folding features to emulate some of these modern languages’ features helping
+fight verbosity.
 
-<p>Fork of abandoned <a href="https://plugins.jetbrains.com/plugin/9320-advanced-java-folding">Advanced Java Folding</a></p>
+Fork of abandoned [Advanced Java Folding](https://plugins.jetbrains.com/plugin/9320-advanced-java-folding).
 
-<p>For more information, read the <a href="https://medium.com/@andrey_cheptsov/making-java-code-easier-to-read-without-changing-it-adeebd5c36de" target="_blank">blog post</a>.</p>
+For more information, read the [blog post](https://medium.com/@andrey_cheptsov/making-java-code-easier-to-read-without-changing-it-adeebd5c36de).
 
 ## Unreleased ##
+- [[pseudo-annotations] Quick completions like @Main (generate main method) and @Loggable (add System.out entry/exit logging).](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/PseudoAnnotations)
 
 ## 4.2.0 ##
 - [Add setting to prevent collapsing Java text blocks in log folding](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/338)
@@ -111,14 +111,12 @@
 - [Simplify System.out.println to println](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/Simplify-System.out.println-to-println)
 - [@Nullable and @NotNull annotations](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/@Nullable-and-@NotNull-annotations)
 
-<br />
-<p>For more clarity, you may try to adjust your color scheme: go to <strong>Settings</strong> | <strong>Editor</strong> |
-<strong>Colors &amp; Fonts</strong> | <strong>General</strong> | <strong>Text</strong>, select <strong>Folded text</strong>
-uncheck the <strong>Background</strong> color, and change the
-<strong>Foreground</strong> color to #000091 for the default scheme and #7CA0BB for Darcula.</p>
+For more clarity, you may try to adjust your color scheme: go to **Settings** | **Editor** |
+**Colors & Fonts** | **General** | **Text**, select **Folded text**, uncheck the **Background** color, and change the
+**Foreground** color to #000091 for the default scheme and #7CA0BB for Darcula.
 
-To disable certain types of folding, go to <strong>Settings</strong> | <strong>Editor</strong> |
-<strong>General</strong> | <strong>Code Folding</strong>.
+To disable certain types of folding, go to **Settings** | **Editor** |
+**General** | **Code Folding**.
 <!-- Plugin description end -->
 
 
@@ -133,6 +131,28 @@ To disable certain types of folding, go to <strong>Settings</strong> | <strong>E
 
 ---
 Plugin based on the [IntelliJ Platform Plugin Template][template].
+
+## Contributing
+
+Bug reports and feature requests are tracked through the [GitHub Issues page](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/issues).
+Before opening a new ticket, please search for an existing report to avoid duplicates and include reproducible steps or sample code when possible.
+Pull requests are welcome—ensure the change is covered by tests where applicable and reference the related issue in the description.
+
+## Development setup
+
+This project uses the Gradle wrapper. The most common commands are:
+
+```bash
+./gradlew build         # compile the plugin and run unit tests
+./gradlew test          # execute the automated test suite
+./gradlew runIde        # launch a sandbox IDE with the plugin enabled
+```
+
+Run these commands from the repository root. See the [Gradle build documentation](https://docs.gradle.org/current/userguide/command_line_interface.html) for more options.
+
+## License
+
+This project is licensed under the terms of the [Apache License 2.0](LICENSE).
 
 [template]: https://github.com/JetBrains/intellij-platform-plugin-template
 [docs:plugin-description]: https://plugins.jetbrains.com/docs/intellij/plugin-user-experience.html#plugin-description-and-presentation

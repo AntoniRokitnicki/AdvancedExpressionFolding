@@ -46,7 +46,7 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
         override var ifNullSafe: Boolean = true,
 
         override var logFolding: Boolean = true,
-        override var logFoldingTextBlocks: Boolean = false,
+        override var logFoldingTextBlocks: Boolean = true,
 
         override var destructuring: Boolean = false,
         override var println: Boolean = true,
