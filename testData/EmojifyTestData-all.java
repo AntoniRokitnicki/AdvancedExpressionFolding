@@ -5,23 +5,23 @@ import java.time.DayOfWeek;
 @SuppressWarnings("ALL")
 public class EmojifyTestData {
 
-    public <fold text='' expand='false'>final</fold> class FinalData <fold text='{...}' expand='true'>{
+    public<fold text='' expand='false'> final</fold> class FinalData <fold text='{...}' expand='true'>{
         private final int finalField = 10;
 
-        public <fold text='' expand='false'>final</fold> void finalMethod()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold><fold text='' expand='false'><fold text='val' expand='false'>final</fold> int</fold> localFinalVariable = 5;<fold text=' ' expand='true'><fold text=' }' expand='false'>
+        public<fold text='' expand='false'> final</fold> void finalMethod()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+            </fold></fold><fold text='' expand='false'><fold text='val' expand='false'>final </fold>int</fold> localFinalVariable = 5;<fold text=' ' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold>
 
-        public void methodWithFinalParam(<fold text='' expand='false'>final</fold> int param) <fold text='{}' expand='true'>{
+        public void methodWithFinalParam(<fold text='' expand='false'>final </fold>int param) <fold text='{}' expand='true'>{
         }</fold>
 
         public void anotherMethod() <fold text='{...}' expand='true'>{
-            <fold text='' expand='false'>final</fold> int anotherFinalVariable;
+            <fold text='' expand='false'>final </fold>int anotherFinalVariable;
             anotherFinalVariable = 20;
         }</fold>
 
         public FinalData()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold><fold text='' expand='false'><fold text='val' expand='false'>final</fold> int</fold> constructorFinalVariable = 30;<fold text=' ' expand='true'><fold text=' }' expand='false'>
+            </fold></fold><fold text='' expand='false'><fold text='val' expand='false'>final </fold>int</fold> constructorFinalVariable = 30;<fold text=' ' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold>
     }</fold>
 
@@ -405,7 +405,7 @@ public class EmojifyTestData {
         public abstract sealed class Shape permits Circle, Rectangle <fold text='{...}' expand='true'>{
         }</fold>
 
-        <fold text='@AllArgsConstructor @Getter p' expand='false'>p</fold>ublic <fold text='' expand='false'>final</fold> class Circle extends Shap<fold text='e(nothing overridden)' expand='true'>e</fold> <fold text='{...}' expand='true'>{
+        <fold text='@AllArgsConstructor @Getter p' expand='false'>p</fold>ublic<fold text='' expand='false'> final</fold> class Circle extends Shap<fold text='e(nothing overridden)' expand='true'>e</fold> <fold text='{...}' expand='true'>{
             private double radius;<fold text='' expand='false'>
 
             </fold><fold text='' expand='false'>public Circle(double radius)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
@@ -417,7 +417,7 @@ public class EmojifyTestData {
             </fold>}</fold></fold>
         }</fold>
 
-        <fold text='@AllArgsConstructor @Getter p' expand='false'>p</fold>ublic <fold text='' expand='false'>final</fold> class Rectangle extends Shap<fold text='e(nothing overridden)' expand='true'>e</fold> <fold text='{...}' expand='true'>{
+        <fold text='@AllArgsConstructor @Getter p' expand='false'>p</fold>ublic<fold text='' expand='false'> final</fold> class Rectangle extends Shap<fold text='e(nothing overridden)' expand='true'>e</fold> <fold text='{...}' expand='true'>{
             private double length;
             private double width;<fold text='' expand='false'>
 

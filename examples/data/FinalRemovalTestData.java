@@ -9,12 +9,39 @@ public class FinalRemovalTestData {
     public final String m() {
         final String s = "1";
         final var s2 = "2";
-        var s3 = "3";
+        final var s3 = "3";
+        @Deprecated final String annotated = "4";
         return s + s2 + s3;
+    }
+
+    public synchronized final String methodFinalLast() {
+        return "";
+    }
+
+    public final synchronized String methodFinalMiddle() {
+        return "";
+    }
+
+    final public synchronized String methodFinalFirst() {
+        return "";
+    }
+
+    public
+    final
+    String methodFinalSeparatedLines() {
+        return "";
     }
 
     interface A {
         void main(final String arg, final int i, final Object o, Data data);
+
+        void modifiers(final int first,
+                @Deprecated final String second,
+                final @Deprecated Object third,
+                Data data,
+                final
+                        String multilineFinal,
+                String plain);
     }
 
     final static class Data {

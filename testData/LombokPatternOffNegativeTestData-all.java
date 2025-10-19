@@ -907,7 +907,7 @@ import java.util.logging.Logger;</fold>
                 </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>field3<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold><fold text='' expand='false'></fold>
             </fold><fold text='' expand='true'><fold text='' expand='false'>@Override</fold><fold text='' expand='true'>
-            </fold>public <fold text='' expand='false'>final</fold> boolean equals(Object o) <fold text='{...}' expand='true'>{
+            </fold>public<fold text='' expand='false'> final</fold> boolean equals(Object o) <fold text='{...}' expand='true'>{
                 if <fold text='' expand='false'>(</fold>this == o<fold text='' expand='false'>)</fold> return true;
                 if <fold text='' expand='false'>(</fold>!(o instanceof ValueArgsSuper)<fold text='' expand='false'>)</fold> return false;
 
@@ -965,7 +965,7 @@ import java.util.logging.Logger;</fold>
                 </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>field1<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold><fold text='' expand='false'></fold>
             </fold><fold text='' expand='true'><fold text='' expand='false'>@Override</fold><fold text='' expand='true'>
-            </fold>public <fold text='' expand='false'>final</fold> boolean equals(Object o) <fold text='{...}' expand='true'>{
+            </fold>public<fold text='' expand='false'> final</fold> boolean equals(Object o) <fold text='{...}' expand='true'>{
                 if <fold text='' expand='false'>(</fold>this == o<fold text='' expand='false'>)</fold> return true;
                 if <fold text='' expand='false'>(</fold>!(o instanceof Value)<fold text='' expand='false'>)</fold> return false;
 
@@ -1021,7 +1021,7 @@ import java.util.logging.Logger;</fold>
         </fold>}</fold></fold><fold text='' expand='false'>
 
         </fold><fold text='' expand='true'><fold text='' expand='false'>@Override</fold><fold text='' expand='true'>
-        </fold>public <fold text='' expand='false'>final</fold> boolean equals(Object o) <fold text='{...}' expand='true'>{
+        </fold>public<fold text='' expand='false'> final</fold> boolean equals(Object o) <fold text='{...}' expand='true'>{
             if <fold text='' expand='false'>(</fold>this == o<fold text='' expand='false'>)</fold> return true;
             if <fold text='' expand='false'>(</fold>!(o instanceof FieldLevelData)<fold text='' expand='false'>)</fold> return false;
             <fold text='val' expand='false'>FieldLevelData</fold> that = <fold text='' expand='false'>(FieldLevelData) </fold>o;
@@ -1043,7 +1043,7 @@ import java.util.logging.Logger;</fold>
         </fold>}</fold><fold text='' expand='false'></fold>
 
         </fold><fold text='' expand='true'><fold text='' expand='false'>@Override</fold><fold text='' expand='true'>
-        </fold>public <fold text='' expand='false'>final</fold> boolean equals(Object o) <fold text='{...}' expand='true'>{
+        </fold>public<fold text='' expand='false'> final</fold> boolean equals(Object o) <fold text='{...}' expand='true'>{
             if <fold text='' expand='false'>(</fold>this == o<fold text='' expand='false'>)</fold> return true;
             if <fold text='' expand='false'>(</fold>!(o instanceof FieldLevelData)<fold text='' expand='false'>)</fold> return false;
             <fold text='val' expand='false'>FieldLevelData</fold> that = <fold text='' expand='false'>(FieldLevelData) </fold>o;
@@ -1064,7 +1064,7 @@ import java.util.logging.Logger;</fold>
         </fold>}</fold><fold text='' expand='false'></fold>
 
         </fold><fold text='' expand='true'><fold text='' expand='false'>@Override</fold><fold text='' expand='true'>
-        </fold>public <fold text='' expand='false'>final</fold> boolean equals(Object o) <fold text='{...}' expand='true'>{
+        </fold>public<fold text='' expand='false'> final</fold> boolean equals(Object o) <fold text='{...}' expand='true'>{
             if <fold text='' expand='false'>(</fold>this == o<fold text='' expand='false'>)</fold> return true;
             if <fold text='' expand='false'>(</fold>!(o instanceof FieldLevelData)<fold text='' expand='false'>)</fold> return false;
             <fold text='val' expand='false'>FieldLevelData</fold> that = <fold text='' expand='false'>(FieldLevelData) </fold>o;
