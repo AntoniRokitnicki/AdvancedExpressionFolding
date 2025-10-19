@@ -2,11 +2,13 @@ package com.intellij.advancedExpressionFolding.settings.view
 
 import com.intellij.advancedExpressionFolding.processor.util.Consts.Emoji
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings.State
+import com.intellij.icons.AllIcons
 import com.intellij.openapi.editor.event.DocumentEvent
 import com.intellij.openapi.editor.event.DocumentListener
 import com.intellij.openapi.editor.ex.EditorEx
 import com.intellij.openapi.editor.highlighter.EditorHighlighterFactory
 import com.intellij.ui.components.JBLabel
+import com.intellij.ui.dsl.builder.BottomGap
 import com.intellij.ui.dsl.builder.Panel
 import org.intellij.lang.regexp.RegExpFileType
 import java.awt.Dimension
@@ -185,11 +187,6 @@ abstract class CheckboxesProvider {
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#finalremoval")
         }
 
-        registerCheckbox(state::finalEmoji, "Replace the 'final' modifier with ${Emoji.FINAL_LOCK}") {
-            example("FinalEmojiTestData.java")
-            link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#finalemoji")
-        }
-
         registerCheckbox(state::lombok, "Display Java bean as Lombok") {
             example("LombokTestData.java")
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#lombok")
@@ -217,14 +214,26 @@ abstract class CheckboxesProvider {
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#dynamic")
         }
 
-        registerCheckbox(state::arithmeticExpressions, "BigDecimal, BigInteger and Math") {
-            example("ArithmeticExpressionsTestData.java")
-            link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#arithmeticexpressions")
-        }
+        group("Legacy (deprecated)") {
+            row {
+                icon(AllIcons.General.Warning)
+                label("Deprecated or niche options that may be removed in future releases.")
+            }.bottomGap(BottomGap.SMALL)
 
-        registerCheckbox(state::emojify, "Emojify code") {
-            example("EmojifyTestData.java")
-            link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#emojify")
+            registerCheckbox(state::finalEmoji, "Replace the 'final' modifier with ${Emoji.FINAL_LOCK}") {
+                example("FinalEmojiTestData.java")
+                link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#finalemoji")
+            }
+
+            registerCheckbox(state::arithmeticExpressions, "BigDecimal, BigInteger and Math") {
+                example("ArithmeticExpressionsTestData.java")
+                link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#arithmeticexpressions")
+            }
+
+            registerCheckbox(state::emojify, "Emojify code") {
+                example("EmojifyTestData.java")
+                link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#emojify")
+            }
         }
 
         registerCheckbox(
