@@ -1,7 +1,7 @@
 ## dynamic
 
-### Dynamic names for methods based on $user.home/dynamic-ajf2.toml
-Applies dynamic naming to methods based on a configuration file.
+### Dynamic names for methods based on IntelliJ config directory (PathManager.getConfigDir())/advanced-expression-folding/dynamic-ajf2.toml
+Applies dynamic naming to methods based on a configuration file stored under the IntelliJ config directory.
 
 #### Example: DynamicTestData
 
@@ -21,7 +21,7 @@ folded/DynamicTestData-folded.java:
                         changedStaticMethod(
 ```
 
-Highlights DynamicTestData with dynamic names for methods based on $user.home/dynamic-ajf2.toml.
+Highlights DynamicTestData with dynamic names for methods based on the file located at PathManager.getConfigDir()/advanced-expression-folding/dynamic-ajf2.toml.
 Removes boilerplate while preserving behavior.
 
 Default: On

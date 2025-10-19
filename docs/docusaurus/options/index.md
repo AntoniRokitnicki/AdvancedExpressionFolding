@@ -234,8 +234,8 @@ Simplifies single-expression functions.
 - [Folded](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/folded/ExpressionFuncTestData-folded.java)
 
 ## dynamic
-### Dynamic names for methods based on $user.home/dynamic-ajf2.toml
-Applies dynamic naming to methods based on a configuration file.
+### Dynamic names for methods based on IntelliJ config directory (PathManager.getConfigDir())/advanced-expression-folding/dynamic-ajf2.toml
+Applies dynamic naming to methods based on a configuration file stored under the IntelliJ config directory.
 - [Example](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/examples/data/DynamicTestData.java)
 - [Folded](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/folded/DynamicTestData-folded.java)
 - [Documentation](../features/dynamic-renaming.md)
