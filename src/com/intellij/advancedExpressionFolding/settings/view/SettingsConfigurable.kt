@@ -38,7 +38,7 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
 
     override fun getDisplayName() = "Advanced Expression Folding 2"
 
-    override fun getHelpTopic() = null
+    override fun getHelpTopic() = HELP_PAGE_URL
 
     private fun createExamplePanel(examples: Map<ExampleFile, Description?>? = null, docLink: UrlSuffix? = null): JPanel {
         val panel = JPanel(FlowLayout(FlowLayout.LEFT))
@@ -166,6 +166,7 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
 
     companion object {
         private const val EXAMPLE_DIR = "data"
+        private const val HELP_PAGE_URL = "https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki"
     }
     
     @CheckboxDsl
