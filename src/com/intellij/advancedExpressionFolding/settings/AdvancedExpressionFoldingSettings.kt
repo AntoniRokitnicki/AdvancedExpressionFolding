@@ -10,6 +10,7 @@ import kotlin.reflect.KMutableProperty
 import kotlin.reflect.KMutableProperty0
 import kotlin.reflect.full.memberProperties
 import kotlin.reflect.jvm.javaType
+import java.util.LinkedHashMap
 
 @State(name = "AdvancedExpressionFoldingSettings", storages = [Storage("editor.codeinsight.xml")])
 class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpressionFoldingSettings.State> {
@@ -17,7 +18,7 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
     override fun getState(): State = myState
 
     override fun loadState(state: State) {
-        myState = state.copy()
+        myState = state.deepCopy()
     }
 
     data class State(
@@ -76,9 +77,70 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
         override var memoryImprovement: Boolean = true,
         override var experimental: Boolean = false,
 
+        override var telemetryEnabled: Boolean = false,
+        var telemetry: TelemetryState = TelemetryState(),
+
         override var globalOn: Boolean = true,
 
-        ) : IState, IConfig
+        ) : IState, IConfig {
+        data class TelemetryState(
+            var totalFoldRegions: Long = 0,
+            var perRule: MutableMap<String, Long> = LinkedHashMap(),
+            var lastUpdatedTimestamp: Long = 0L,
+        ) {
+            fun snapshot(): TelemetrySnapshot = TelemetrySnapshot(
+                totalFoldRegions = totalFoldRegions,
+                perRule = LinkedHashMap(perRule),
+                lastUpdatedTimestamp = lastUpdatedTimestamp,
+            )
+
+            fun clear() {
+                totalFoldRegions = 0
+                perRule.clear()
+                lastUpdatedTimestamp = 0
+            }
+
+            fun deepCopy(): TelemetryState = TelemetryState(
+                totalFoldRegions = totalFoldRegions,
+                perRule = LinkedHashMap(perRule),
+                lastUpdatedTimestamp = lastUpdatedTimestamp,
+            )
+
+            data class TelemetrySnapshot(
+                val totalFoldRegions: Long,
+                val perRule: Map<String, Long>,
+                val lastUpdatedTimestamp: Long,
+            )
+        }
+
+        fun deepCopy(): State = copy(
+            telemetry = telemetry.deepCopy(),
+        )
+    }
+
+    @Synchronized
+    fun recordTelemetry(ruleCounts: Map<String, Int>) {
+        if (!state.telemetryEnabled || ruleCounts.isEmpty()) {
+            return
+        }
+        val telemetryState = myState.telemetry
+        val increment = ruleCounts.values.sumOf { it.toLong() }
+        if (increment == 0L) {
+            return
+        }
+        telemetryState.totalFoldRegions += increment
+        ruleCounts.forEach { (rule, count) ->
+            telemetryState.perRule[rule] = telemetryState.perRule.getOrDefault(rule, 0L) + count
+        }
+        telemetryState.lastUpdatedTimestamp = System.currentTimeMillis()
+    }
+
+    @Synchronized
+    fun clearTelemetry() {
+        myState.telemetry.clear()
+    }
+
+    fun telemetrySnapshot(): State.TelemetryState.TelemetrySnapshot = myState.telemetry.snapshot()
 
     private fun updateAllState(value: Boolean, vararg excludeProperties: KMutableProperty<Boolean>) {
         val excluded = excludeProperties.map { it.toString() }

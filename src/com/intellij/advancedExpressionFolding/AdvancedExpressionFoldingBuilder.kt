@@ -9,6 +9,7 @@ import com.intellij.advancedExpressionFolding.processor.cache.Keys
 import com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings.Companion.getInstance
 import com.intellij.advancedExpressionFolding.settings.IConfig
+import com.intellij.advancedExpressionFolding.telemetry.FoldingTelemetry.telemetryRuleId
 import com.intellij.lang.ASTNode
 import com.intellij.lang.folding.FoldingBuilderEx
 import com.intellij.lang.folding.FoldingDescriptor
@@ -35,6 +36,9 @@ class AdvancedExpressionFoldingBuilder(private val config: IConfig = getInstance
         val foldingDescriptors = cachedDescriptors ?: collect(element, document)
         if (memoryImprovement && !quick && cachedDescriptors !== foldingDescriptors) {
             writeCache(element, foldingDescriptors)
+        }
+        if (telemetryEnabled) {
+            collectTelemetry(foldingDescriptors)
         }
         return store.store(foldingDescriptors, document)
     }
@@ -93,6 +97,19 @@ class AdvancedExpressionFoldingBuilder(private val config: IConfig = getInstance
         val allDescriptors = Lists.newArrayListWithCapacity<FoldingDescriptor>(1_000)
         BuildExpressionExt.collectFoldRegionsRecursively(element, document, Sets.newIdentityHashSet(), allDescriptors)
         return allDescriptors.toTypedArray()
+    }
+
+    private fun collectTelemetry(descriptors: Array<FoldingDescriptor>) {
+        if (descriptors.isEmpty()) {
+            return
+        }
+        val ruleCounts = descriptors.asSequence()
+            .map { descriptor -> descriptor.telemetryRuleId() }
+            .groupingBy { it }
+            .eachCount()
+        if (ruleCounts.isNotEmpty()) {
+            getInstance().recordTelemetry(ruleCounts)
+        }
     }
 
     override fun getPlaceholderText(astNode: ASTNode) = null

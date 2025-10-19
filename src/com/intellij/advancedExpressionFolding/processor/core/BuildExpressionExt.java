@@ -3,6 +3,7 @@ package com.intellij.advancedExpressionFolding.processor.core;
 import com.intellij.advancedExpressionFolding.expression.Expression;
 import com.intellij.advancedExpressionFolding.expression.SyntheticExpressionImpl;
 import com.intellij.advancedExpressionFolding.processor.util.Helper;
+import com.intellij.advancedExpressionFolding.telemetry.FoldingTelemetry;
 import com.intellij.lang.folding.FoldingDescriptor;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.project.IndexNotReadyException;
@@ -61,6 +62,8 @@ public class BuildExpressionExt {
             //TODO: add to allDescriptors list instead of creating temporary arrays
             FoldingDescriptor[] descriptors = expression.buildFoldRegions(expression.getElement(), document, null);
             if (descriptors.length > 0) {
+                String ruleId = expression.getClass().getSimpleName();
+                FoldingTelemetry.tagElement(expression.getElement(), ruleId);
                 allDescriptors.addAll(Arrays.asList(descriptors));
             }
         }

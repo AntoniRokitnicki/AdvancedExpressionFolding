@@ -18,13 +18,25 @@ import com.intellij.openapi.vfs.encoding.EncodingProjectManager
 import com.intellij.ui.JBColor
 import com.intellij.ui.components.ActionLink
 import com.intellij.ui.components.JBCheckBox
+import com.intellij.ui.components.JBLabel
+import com.intellij.ui.components.JBScrollPane
+import com.intellij.ui.components.JBTabbedPane
 import com.intellij.ui.dsl.builder.Panel
 import com.intellij.ui.dsl.builder.panel
+import com.intellij.ui.table.JBTable
 import java.awt.Color.decode
+import java.awt.Dimension
 import java.awt.FlowLayout
 import java.net.URI
 import javax.swing.JButton
+import javax.swing.JComponent
 import javax.swing.JPanel
+import javax.swing.table.DefaultTableModel
+import java.time.Instant
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle
+import java.util.Locale
 import kotlin.reflect.KMutableProperty0
 
 class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
@@ -33,6 +45,18 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
     private val allExampleFiles = mutableSetOf<ExampleFile>()
     private val pendingChanges = mutableMapOf<KMutableProperty0<Boolean>, Boolean>()
     private val propertyToCheckbox = mutableMapOf<KMutableProperty0<Boolean>, JBCheckBox>()
+    private lateinit var telemetryPanel: DialogPanel
+    private lateinit var telemetryTableModel: DefaultTableModel
+    private lateinit var telemetryTable: JBTable
+    private lateinit var telemetryTotalLabel: JBLabel
+    private lateinit var telemetryLastUpdatedLabel: JBLabel
+    private lateinit var telemetryInfoLabel: JBLabel
+    private lateinit var telemetryClearButton: JButton
+    private lateinit var telemetryCheckbox: JBCheckBox
+    private val telemetryDateTimeFormatter: DateTimeFormatter =
+        DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM)
+            .withLocale(Locale.getDefault())
+            .withZone(ZoneId.systemDefault())
 
     override fun getId() = "advanced.expression.folding"
 
@@ -93,7 +117,7 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
         return actionLink
     }
 
-    override fun createComponent() = panel {
+    private fun createOptionsPanel(): DialogPanel = panel {
         row {
             val button =
                 JButton("Apply folded color: ${if (!JBColor.isBright()) "soft blue" else "dark navy"}")
@@ -107,12 +131,120 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
             cell(createDownloadExamplesLink())
         }
         initialize(state)
-    }.also {
-        panel = it
+    }
+
+    private fun createTelemetryPanel(): DialogPanel {
+        telemetryTableModel = object : DefaultTableModel(arrayOf("Rule", "Fold regions"), 0) {
+            override fun isCellEditable(row: Int, column: Int) = false
+            override fun getColumnClass(columnIndex: Int): Class<*> =
+                if (columnIndex == 1) java.lang.Long::class.java else String::class.java
+        }
+        telemetryTable = JBTable(telemetryTableModel).apply {
+            emptyText.text = "No telemetry data collected yet."
+            setShowGrid(false)
+            tableHeader.reorderingAllowed = false
+            autoCreateRowSorter = true
+            preferredScrollableViewportSize = Dimension(420, 220)
+        }
+        telemetryTotalLabel = JBLabel()
+        telemetryLastUpdatedLabel = JBLabel()
+        telemetryInfoLabel = JBLabel()
+        telemetryClearButton = JButton("Clear collected data").apply {
+            addActionListener {
+                AdvancedExpressionFoldingSettings.getInstance().clearTelemetry()
+                refreshTelemetryView()
+            }
+        }
+        val telemetryProperty = state::telemetryEnabled
+        telemetryCheckbox = JBCheckBox("Enable telemetry collection").apply {
+            isSelected = telemetryProperty.get()
+            addActionListener {
+                pendingChanges[telemetryProperty] = isSelected
+                updateTelemetryStatus(isSelected)
+            }
+        }
+        propertyToCheckbox[telemetryProperty] = telemetryCheckbox
+
+        return panel {
+            row {
+                cell(JBLabel("Share anonymous usage metrics to help improve folding heuristics."))
+            }
+            row {
+                cell(telemetryCheckbox)
+            }
+            row {
+                cell(telemetryInfoLabel)
+            }
+            row {
+                cell(JBScrollPane(telemetryTable)).resizableColumn()
+            }.resizableRow()
+            row {
+                cell(telemetryTotalLabel)
+            }
+            row {
+                cell(telemetryLastUpdatedLabel)
+            }
+            row {
+                cell(telemetryClearButton)
+            }
+        }
+    }
+
+    private fun refreshTelemetryView() {
+        if (!this::telemetryTableModel.isInitialized) {
+            return
+        }
+        val snapshot = AdvancedExpressionFoldingSettings.getInstance().telemetrySnapshot()
+        telemetryTableModel.rowCount = 0
+        snapshot.perRule.entries
+            .sortedByDescending { it.value }
+            .forEach { (rule, count) ->
+                telemetryTableModel.addRow(arrayOf<Any>(rule, count))
+            }
+        telemetryTable.emptyText.text = if (snapshot.perRule.isEmpty()) {
+            "No telemetry data collected yet."
+        } else {
+            ""
+        }
+        telemetryTotalLabel.text = "Total fold regions recorded: ${snapshot.totalFoldRegions}"
+        telemetryLastUpdatedLabel.text = if (snapshot.lastUpdatedTimestamp == 0L) {
+            "Last updated: —"
+        } else {
+            "Last updated: ${telemetryDateTimeFormatter.format(Instant.ofEpochMilli(snapshot.lastUpdatedTimestamp))}"
+        }
+        telemetryClearButton.isEnabled = snapshot.totalFoldRegions > 0
+        if (this::telemetryCheckbox.isInitialized) {
+            updateTelemetryStatus(telemetryCheckbox.isSelected)
+        }
+    }
+
+    private fun updateTelemetryStatus(isEnabled: Boolean) {
+        if (!this::telemetryInfoLabel.isInitialized) {
+            return
+        }
+        telemetryInfoLabel.text = if (isEnabled) {
+            "<html>Telemetry is enabled. Data is stored locally until you clear it.</html>"
+        } else {
+            "<html>Telemetry is disabled. Enable it to start collecting metrics.<br>Existing data remains stored locally.</html>"
+        }
+    }
+
+    override fun createComponent(): JComponent {
+        val optionsPanel = createOptionsPanel()
+        val metricsPanel = createTelemetryPanel()
+        panel = optionsPanel
+        telemetryPanel = metricsPanel
+        val tabbedPane = JBTabbedPane()
+        tabbedPane.addTab("Folding", optionsPanel)
+        tabbedPane.addTab("Telemetry", metricsPanel)
+        refreshTelemetryView()
+        return tabbedPane
     }
 
     override fun isModified(): Boolean {
-        return panel.isModified() || pendingChanges.isNotEmpty()
+        val optionsModified = if (this::panel.isInitialized) panel.isModified() else false
+        val metricsModified = if (this::telemetryPanel.isInitialized) telemetryPanel.isModified() else false
+        return optionsModified || metricsModified || pendingChanges.isNotEmpty()
     }
 
     override fun apply() {
@@ -120,8 +252,14 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
             property.set(value)
         }
         pendingChanges.clear()
-        
-        panel.apply()
+
+        if (this::panel.isInitialized) {
+            panel.apply()
+        }
+        if (this::telemetryPanel.isInitialized) {
+            telemetryPanel.apply()
+        }
+        refreshTelemetryView()
     }
 
     override fun reset() {
@@ -129,6 +267,10 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
         propertyToCheckbox.forEach { (property, checkbox) ->
             checkbox.isSelected = property.get()
         }
+        if (this::telemetryCheckbox.isInitialized) {
+            updateTelemetryStatus(telemetryCheckbox.isSelected)
+        }
+        refreshTelemetryView()
     }
 
     private fun firstSourceRoot(project: Project) =
