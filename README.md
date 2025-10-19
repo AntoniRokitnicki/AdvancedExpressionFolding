@@ -158,6 +158,23 @@ Run these commands from the repository root. See the [Gradle build documentation
 
 If you need to scaffold a new folding toggle, follow the [option generator guide](docs/option-generator.md) for the required JVM properties and review checklist.
 
+## Developer toggles
+
+The test suite exposes a few long-running or destructive behaviours behind environment variables so that routine `./gradlew test` executions stay fast and predictable.
+
+| Variable      | Supported values | Effect |
+|---------------|------------------|--------|
+| `dev-mode`    | `1`              | Enables the copy-on-write helper in [`BaseTest`](test/com/intellij/advancedExpressionFolding/BaseTest.kt), replacing fixtures under `testData/` with the matching sources from `examples/data/` before running a test. Disabled by default to prevent accidental overwrites of curated fixtures. |
+| `dev-mode`    | `2`              | Includes the behaviour above and additionally unlocks [`CrazyFoldingTest`](test/com/intellij/advancedExpressionFolding/CrazyFoldingTest.kt), an exhaustive stress test that takes many hours and writes commits for millions of permutations. This level stays disabled unless explicitly requested to avoid monopolising CI resources. |
+| `integration` | `1`              | Enables [`IntegrationTest`](test/com/intellij/advancedExpressionFolding/integration/IntegrationTest.kt), which spins up a full IDE via the IntelliJ Driver, downloads dependencies, and interacts with real UI components. It is skipped by default to keep local and CI runs lightweight. |
+
+### Sample invocations
+
+```bash
+DEV_MODE=1 ./gradlew test
+integration=1 ./gradlew test IntegrationTest
+```
+
 ## License
 
 This project is licensed under the terms of the [Apache License 2.0](LICENSE).
