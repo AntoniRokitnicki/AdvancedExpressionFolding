@@ -296,27 +296,45 @@ abstract class CheckboxesProvider {
 
 private fun createEditor(property: KMutableProperty0<String?>): EditorEx {
     val factory = com.intellij.openapi.editor.EditorFactory.getInstance()
-    val document = factory.createDocument(property.get() ?: "")
+    val initialValue = property.get()
+    val document = factory.createDocument(initialValue ?: "")
 
     val editor = factory.createEditor(document, null) as EditorEx
+    var lastValidPattern = initialValue?.takeUnless { it.isBlank() }
+
+    fun clearErrorDecoration() {
+        editor.component.putClientProperty("JComponent.outline", null)
+    }
+
+    fun applyErrorDecoration() {
+        editor.component.putClientProperty("JComponent.outline", "error")
+    }
+
     val validator = ComponentValidator(ApplicationManager.getApplication())
         .withValidator(Supplier {
             val text = document.text.trim()
             if (text.isEmpty()) {
+                lastValidPattern = null
                 property.set(null)
+                clearErrorDecoration()
                 return@Supplier null
             }
 
-            try {
+            return@Supplier try {
                 text.toPattern()
+                lastValidPattern = text
                 property.set(text)
+                clearErrorDecoration()
                 null
             } catch (exception: PatternSyntaxException) {
-                property.set(null)
+                applyErrorDecoration()
                 ValidationInfo(
                     exception.description ?: exception.message ?: "Invalid regular expression",
                     editor.component
-                )
+                ).also {
+                    // Keep previously valid value in the settings state.
+                    lastValidPattern?.let(property::set)
+                }
             }
         })
         .installOn(editor.component)
