@@ -32,7 +32,7 @@ class LetReturnIt {
         while <fold text='' expand='false'>(</fold>true<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
             if <fold text='' expand='false'>(</fold>LocalDate.now()<fold text=' > ' expand='false'>.isAfter(</fold>LocalDate.now()<fold text='' expand='false'>)</fold><fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
                 if <fold text='' expand='false'>(</fold>var6 == null<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
-                    <fold text='' expand='false'>System.out.</fold>println(<fold text='"1"' expand='false'>"1"</fold>);
+                    <fold text='' expand='false'>System.out.</fold>println(<fold text='"1"' expand='true'>"1"</fold>);
                 }</fold>
             }</fold>
             break;

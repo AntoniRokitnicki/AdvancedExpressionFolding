@@ -25,7 +25,21 @@ abstract class Expression protected constructor() {
         get() = textRangeBacking
 
     open fun supportsFoldRegions(document: Document, parent: Expression?): Boolean {
-        return false
+        val range = textRange
+        if (range.isEmpty) {
+            return false
+        }
+        if (range.startOffset < 0 || range.endOffset > document.textLength) {
+            return false
+        }
+        val parentRange = parent?.textRange ?: return true
+        if (range.startOffset < parentRange.startOffset || range.endOffset > parentRange.endOffset) {
+            return false
+        }
+        if (parentRange == range && !isHighlighted() && !isOverflow()) {
+            return false
+        }
+        return true
     }
 
     open fun buildFoldRegions(

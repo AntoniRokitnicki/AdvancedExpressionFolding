@@ -37,11 +37,11 @@ public class ExpressionFuncTestData {
     </fold>}</fold>
 
     public void assignField(String field)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-        </fold></fold>this.field = <fold text='<<' expand='false'>field</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+        </fold></fold>this.field = <fold text='<<' expand='true'>field</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
     </fold>}</fold>
 
     public String assignFieldAndReturn(String field)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-        </fold><fold text='' expand='true'></fold>return</fold><fold text='' expand='true'> </fold>this.field = <fold text='<<' expand='false'>field</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+        </fold><fold text='' expand='true'></fold>return</fold><fold text='' expand='true'> </fold>this.field = <fold text='<<' expand='true'>field</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
     </fold>}</fold>
 
     public String methodCall(String field)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>

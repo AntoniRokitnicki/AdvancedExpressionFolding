@@ -15,6 +15,10 @@ public class AppendSetterInterpolatedStringTestData {
 
         new AppendSetterInterpolatedStringTestData().setName("Hello, " + args[0]);
         new AppendSetterInterpolatedStringTestData().setName(args[0] + ", hello!");
+        AppendSetterInterpolatedStringTestData target = new AppendSetterInterpolatedStringTestData();
+        target.setName(
+                args[0] + ", newline"
+        );
     }
 
     public void setName(String name) {

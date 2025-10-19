@@ -65,7 +65,7 @@ public class LogFoldingTextBlocksTestData {
         System.out.printf("User: <fold text='$' expand='false'>%s, Age: %d, City: %s%n", </fold>name<fold text=', Age: $' expand='false'>, </fold>age<fold text=', City: $' expand='false'>, </fold>city<fold text='%n")' expand='false'>)</fold>;
 
         // 3. System.err.printf()
-        System.err.printf("Error scenario: User <fold text='$' expand='false'>%s not found in %s and ignore new-line break%n", </fold>name<fold text=' not found in $' expand='false'>, </fold>city<fold text=' and ignore new-line break%n",' expand='false'>,</fold> <fold text='"ignored"' expand='false'>"ignored"</fold>);
+        System.err.printf("Error scenario: User <fold text='$' expand='false'>%s not found in %s and ignore new-line break%n", </fold>name<fold text=' not found in $' expand='false'>, </fold>city<fold text=' and ignore new-line break%n",' expand='false'>,</fold> <fold text='"ignored"' expand='true'>"ignored"</fold>);
 
         // 4. Formatter class
         Formatter formatter = new Formatter();

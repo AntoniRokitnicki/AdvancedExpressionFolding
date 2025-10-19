@@ -16,5 +16,10 @@ public class InterpolatedStringTestData {
         System.out.println("Length: <fold text='${' expand='false'>" + </fold>args.length<fold text='}")' expand='false'>)</fold>;
         System.out.println("Sum: <fold text='${' expand='false'>" + </fold>(2 + 3)<fold text='}")' expand='false'>)</fold>;
         System.out.println("Upper: <fold text='${' expand='false'>" + </fold>name.toUpperCase()<fold text='}")' expand='false'>)</fold>;
+        System.out.println(
+               <fold text=' "${' expand='false'> </fold>args[0]<fold text='}' expand='false'> + "</fold> appended"
+        );
+        System.out.println("Hello, <fold text='${' expand='false'>" + </fold>args[0]<fold text='}"' expand='false'>
+</fold>        );
     }</fold>
 }

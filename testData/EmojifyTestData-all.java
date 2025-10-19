@@ -48,7 +48,7 @@ public class EmojifyTestData {
         </fold>}</fold><fold text='' expand='false'></fold>
 
         </fold><fold text='' expand='false'>public void setField(int field)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold>this.field = <fold text='<<' expand='false'>field</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+            </fold></fold>this.field = <fold text='<<' expand='true'>field</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold></fold>
 
         public void printField()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
@@ -98,7 +98,7 @@ public class EmojifyTestData {
         </fold>}</fold><fold text='' expand='false'>
 
         </fold><fold text='' expand='false'>public void setValue(int value)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold>this.value = <fold text='<<' expand='false'>value</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+            </fold></fold>this.value = <fold text='<<' expand='true'>value</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold></fold><fold text='' expand='false'>
 
         </fold><fold text='' expand='false'>public int getValue()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
@@ -133,8 +133,8 @@ public class EmojifyTestData {
         private volatile boolean volatileField;<fold text='' expand='false'>
 
         </fold><fold text='' expand='false'>public TransientVolatileData(int transientField, boolean volatileField) <fold text='{...}' expand='true'>{
-            this.transientField = <fold text='<<' expand='false'>transientField</fold>;
-            this.volatileField = <fold text='<<' expand='false'>volatileField</fold>;
+            this.transientField = <fold text='<<' expand='true'>transientField</fold>;
+            this.volatileField = <fold text='<<' expand='true'>volatileField</fold>;
         }</fold></fold><fold text='' expand='false'>
 
         </fold><fold text='' expand='false'>public int getTransientField()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
@@ -142,7 +142,7 @@ public class EmojifyTestData {
         </fold>}</fold></fold><fold text='' expand='false'>
 
         </fold><fold text='' expand='false'>public void setTransientField(int transientField)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold>this.transientField = <fold text='<<' expand='false'>transientField</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+            </fold></fold>this.transientField = <fold text='<<' expand='true'>transientField</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold><fold text='' expand='false'></fold>
 
         </fold><fold text='' expand='false'>public boolean isVolatileField()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
@@ -150,7 +150,7 @@ public class EmojifyTestData {
         </fold>}</fold></fold><fold text='' expand='false'>
 
         </fold><fold text='' expand='false'>public void setVolatileField(boolean volatileField)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold>this.volatileField = <fold text='<<' expand='false'>volatileField</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+            </fold></fold>this.volatileField = <fold text='<<' expand='true'>volatileField</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold></fold>
     }</fold>
 
@@ -162,7 +162,7 @@ public class EmojifyTestData {
         private int value;<fold text='' expand='false'>
 
         </fold><fold text='' expand='false'>public InterfaceUsage(int value)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold>this.value = <fold text='<<' expand='false'>value</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+            </fold></fold>this.value = <fold text='<<' expand='true'>value</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold></fold>
 
         <fold text='' expand='true'>@Override<fold text='' expand='true'></fold>
@@ -188,7 +188,7 @@ public class EmojifyTestData {
                 private int localValue;<fold text='' expand='false'>
 
                 </fold><fold text='' expand='false'>public LocalClass(int localValue)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                    </fold></fold>this.localValue = <fold text='<<' expand='false'>localValue</fold><fold text='' expand='true'>;<fold text=' ' expand='true'><fold text=' }' expand='false'></fold>
+                    </fold></fold>this.localValue = <fold text='<<' expand='true'>localValue</fold><fold text='' expand='true'>;<fold text=' ' expand='true'><fold text=' }' expand='false'></fold>
                 </fold>}</fold><fold text='' expand='false'></fold>
 
                 </fold><fold text='' expand='false'>public int getLocalValue()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
@@ -309,7 +309,7 @@ public class EmojifyTestData {
             private int value;<fold text='' expand='false'>
 
             <fold text='' expand='false'></fold>public InnerClass(int value)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold></fold>this.value = <fold text='<<' expand='false'>value</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+                </fold></fold>this.value = <fold text='<<' expand='true'>value</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold></fold><fold text='' expand='false'>
 
             </fold><fold text='' expand='false'>public int getValue()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
@@ -332,12 +332,12 @@ public class EmojifyTestData {
             private String field2;
 
             public Builder setField1(int field1) <fold text='{...}' expand='true'>{
-                this.field1 = <fold text='<<' expand='false'>field1</fold>;
+                this.field1 = <fold text='<<' expand='true'>field1</fold>;
                 return this;
             }</fold>
 
             public Builder setField2(String field2) <fold text='{...}' expand='true'>{
-                this.field2 = <fold text='<<' expand='false'>field2</fold>;
+                this.field2 = <fold text='<<' expand='true'>field2</fold>;
                 return this;
             }</fold>
 
@@ -357,8 +357,8 @@ public class EmojifyTestData {
         }<fold text='' expand='false'></fold>
 
         </fold><fold text='' expand='false'>public CopyConstructorUsage(int field1, String field2) <fold text='{...}' expand='true'>{
-            this.field1 = <fold text='<<' expand='false'>field1</fold>;
-            this.field2 = <fold text='<<' expand='false'>field2</fold>;
+            this.field1 = <fold text='<<' expand='true'>field1</fold>;
+            this.field2 = <fold text='<<' expand='true'>field2</fold>;
         }</fold></fold>
     }</fold>
 
@@ -409,7 +409,7 @@ public class EmojifyTestData {
             private double radius;<fold text='' expand='false'>
 
             </fold><fold text='' expand='false'>public Circle(double radius)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold></fold>this.radius = <fold text='<<' expand='false'>radius</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+                </fold></fold>this.radius = <fold text='<<' expand='true'>radius</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold><fold text='' expand='false'></fold>
 
             </fold><fold text='' expand='false'>public double getRadius()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
@@ -422,8 +422,8 @@ public class EmojifyTestData {
             private double width;<fold text='' expand='false'>
 
             <fold text='' expand='false'></fold>public Rectangle(double length, double width) <fold text='{...}' expand='true'>{
-                this.length = <fold text='<<' expand='false'>length</fold>;
-                this.width = <fold text='<<' expand='false'>width</fold>;
+                this.length = <fold text='<<' expand='true'>length</fold>;
+                this.width = <fold text='<<' expand='true'>width</fold>;
             }</fold></fold><fold text='' expand='false'>
 
             </fold><fold text='' expand='false'>public double getLength()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
@@ -477,7 +477,7 @@ public class EmojifyTestData {
             }</fold>
 
             public void methodWithNullInStream() <fold text='{...}' expand='true'>{
-                <fold text='val' expand='false'>java.util.List<String></fold> list = <fold text='[' expand='false'>java.util.Arrays.asList(</fold>null, <fold text='"value"' expand='false'>"value"</fold><fold text=']' expand='false'>)</fold>;
+                <fold text='val' expand='false'>java.util.List<String></fold> list = <fold text='[' expand='false'>java.util.Arrays.asList(</fold>null, <fold text='"value"' expand='true'>"value"</fold><fold text=']' expand='false'>)</fold>;
                 <fold text='val' expand='false'>long</fold> count = list<fold text='.' expand='false'>.stream().</fold>filter(java.util.Objects::isNull).count();
             }</fold>
 

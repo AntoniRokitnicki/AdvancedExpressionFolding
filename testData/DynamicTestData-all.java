@@ -31,7 +31,7 @@ public class DynamicTestData {
     </fold>}</fold></fold>
 
     private static String <fold text='changedStaticMethod' expand='true'>staticMethod</fold>(String args) <fold text='{...}' expand='true'>{
-        <fold text='' expand='false'>System.out.</fold>println(<fold text='"DynamicTestData.staticMethod"' expand='false'>"DynamicTestData.staticMethod"</fold>);
+        <fold text='' expand='false'>System.out.</fold>println(<fold text='"DynamicTestData.staticMethod"' expand='true'>"DynamicTestData.staticMethod"</fold>);
         return "";
     }</fold>
 

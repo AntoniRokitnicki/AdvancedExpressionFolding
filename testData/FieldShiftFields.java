@@ -15,10 +15,10 @@ public class FieldShiftFields {
     private List<String> list;
 
     public FieldShiftFields(String username, boolean active, String userIdentifier, FieldShiftFields child) <fold text='{...}' expand='true'>{
-        this.username = <fold text='<<' expand='false'>username</fold>;
-        this.active = <fold text='<<' expand='false'>active</fold>;
-        this.userIdentifier = <fold text='<<' expand='false'>userIdentifier</fold>;
-        this.child = <fold text='<<' expand='false'>child</fold>;
+        this.username = <fold text='<<' expand='true'>username</fold>;
+        this.active = <fold text='<<' expand='true'>active</fold>;
+        this.userIdentifier = <fold text='<<' expand='true'>userIdentifier</fold>;
+        this.child = <fold text='<<' expand='true'>child</fold>;
         this.userIdentifier = child.<fold text='<<' expand='true'>userIdentifier</fold>;
         this.userIdentifier = child.<fold text='<<' expand='false'>getUserIdentifier()</fold>;
     }</fold>

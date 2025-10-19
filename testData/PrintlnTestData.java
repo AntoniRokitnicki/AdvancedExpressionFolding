@@ -5,11 +5,11 @@ class PrintlnTestData {
     static final int CONST_VALUE = 0;
 
     void println(String string) <fold text='{...}' expand='true'>{
-        <fold text='' expand='false'>System.out.</fold>println(<fold text='"Hello"' expand='false'>"Hello"</fold>);
+        <fold text='' expand='false'>System.out.</fold>println(<fold text='"Hello"' expand='true'>"Hello"</fold>);
         <fold text='' expand='false'>System.out.</fold>println
                 (123);
         <fold text='' expand='false'>System.
-                out.</fold>println(<fold text='"Spacing"' expand='false'>"Spacing"</fold>);
+                out.</fold>println(<fold text='"Spacing"' expand='true'>"Spacing"</fold>);
         <fold text='' expand='false'>System.out.
                 </fold>println(3.14);
         <fold text='' expand='false'>System.out.</fold>println(string);

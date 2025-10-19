@@ -13,7 +13,7 @@ package data;
     private String name;<fold text='' expand='false'>
 
     </fold><fold text='' expand='false'>private void setParent(GetterSetterTestData parent)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-        </fold></fold>this.parent = <fold text='<<' expand='false'>parent</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+        </fold></fold>this.parent = <fold text='<<' expand='true'>parent</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
     </fold>}</fold></fold><fold text='' expand='false'>
 
     </fold><fold text='' expand='false'>private GetterSetterTestData getParent()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
@@ -25,6 +25,6 @@ package data;
     </fold>}</fold><fold text='' expand='false'></fold>
 
     </fold><fold text='' expand='false'>private void setName(String name)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-        </fold></fold>this.name = <fold text='<<' expand='false'>name</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+        </fold></fold>this.name = <fold text='<<' expand='true'>name</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
     </fold>}</fold></fold>
 }

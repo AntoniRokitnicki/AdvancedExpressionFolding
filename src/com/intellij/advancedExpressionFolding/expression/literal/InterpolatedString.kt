@@ -39,50 +39,51 @@ class InterpolatedString(
         )
         val descriptors = mutableListOf<FoldingDescriptor>()
         var suffix = ""
-        if (first !is CharSequenceLiteral) {
-            val startOffset = first.textRange.startOffset
-            if (startOffset > 0) {
-                val overflowLeftRange = TextRange.create(startOffset - 1, startOffset)
-                val overflowLeftText = document.getText(overflowLeftRange)
-                if (OVERFLOW_CHARACTERS.contains(overflowLeftText)) {
-                    val overflowText = overflowLeftPlaceholder ?: overflowLeftText
-                    if (first is Variable) {
-                        descriptors += FoldingDescriptor(
-                            element.node,
-                            overflowLeftRange,
-                            group,
-                            overflowText + "\"${'$'}"
-                        )
-                    } else {
-                        descriptors += FoldingDescriptor(
-                            element.node,
-                            overflowLeftRange,
-                            group,
-                            overflowText + "\"${'$'}{"
-                        )
-                        suffix = "}"
-                    }
-                } else {
-                    val placeholder = if (first is Variable) {
-                        "\"${'$'}" + first.element.text
-                    } else {
-                        "\"${'$'}{" + first.element.text + "}"
-                    }
-                    descriptors += FoldingDescriptor(
-                        element.node,
-                        TextRange.create(startOffset, first.textRange.endOffset),
-                        group,
-                        placeholder
-                    )
-                }
-            }
-        } else if (first is CharacterLiteral) {
-            descriptors += FoldingDescriptor(
+        when (first) {
+            is CharacterLiteral -> descriptors += FoldingDescriptor(
                 element.node,
                 TextRange.create(first.textRange.startOffset, first.textRange.startOffset + 1),
                 group,
                 "\""
             )
+            is CharSequenceLiteral -> Unit
+            else -> {
+                val startOffset = first.textRange.startOffset
+                if (startOffset > 0) {
+                    val overflowLeftRange = TextRange.create(startOffset - 1, startOffset)
+                    val overflowText = document.resolveOverflowPlaceholder(overflowLeftRange.startOffset, overflowLeftPlaceholder)
+                    if (overflowText != null) {
+                        if (first is Variable) {
+                            descriptors += FoldingDescriptor(
+                                element.node,
+                                overflowLeftRange,
+                                group,
+                                overflowText + "\"${'$'}"
+                            )
+                        } else {
+                            descriptors += FoldingDescriptor(
+                                element.node,
+                                overflowLeftRange,
+                                group,
+                                overflowText + "\"${'$'}{"
+                            )
+                            suffix = "}"
+                        }
+                    } else {
+                        val placeholder = if (first is Variable) {
+                            "\"${'$'}" + first.element.text
+                        } else {
+                            "\"${'$'}{" + first.element.text + "}"
+                        }
+                        descriptors += FoldingDescriptor(
+                            element.node,
+                            TextRange.create(startOffset, first.textRange.endOffset),
+                            group,
+                            placeholder
+                        )
+                    }
+                }
+            }
         }
         for (i in 0 until operands.size - 1) {
             val start = if (operands[i] is CharSequenceLiteral) {
@@ -112,55 +113,55 @@ class InterpolatedString(
                 placeholder.toString()
             )
         }
-        if (last !is CharSequenceLiteral && document.textLength > last.textRange.endOffset + 1) {
-            val overflowRightRange = TextRange.create(last.textRange.endOffset, last.textRange.endOffset + 1)
-            val beforeLast = operands[operands.size - 2]
-            val start = if (beforeLast is CharSequenceLiteral) {
-                beforeLast.textRange.endOffset - 1
-            } else {
-                beforeLast.textRange.endOffset
-            }
-            val end = last.textRange.startOffset
-            val overflowRightText = document.getText(overflowRightRange)
-            if (OVERFLOW_CHARACTERS.contains(overflowRightText)) {
-                val overflowText = overflowRightPlaceholder ?: overflowRightText
-                if (last is Variable) {
-                    descriptors += FoldingDescriptor(
-                        element.node,
-                        TextRange.create(start, end),
-                        group,
-                        "$"
-                    )
-                    descriptors += FoldingDescriptor(
-                        element.node,
-                        overflowRightRange,
-                        group,
-                        "\"" + overflowText
-                    )
+        when {
+            last !is CharSequenceLiteral && document.textLength > last.textRange.endOffset -> {
+                val overflowRightRange = TextRange.create(last.textRange.endOffset, last.textRange.endOffset + 1)
+                val beforeLast = operands[operands.size - 2]
+                val start = if (beforeLast is CharSequenceLiteral) {
+                    beforeLast.textRange.endOffset - 1
+                } else {
+                    beforeLast.textRange.endOffset
+                }
+                val end = last.textRange.startOffset
+                val overflowText = document.resolveOverflowPlaceholder(overflowRightRange.startOffset, overflowRightPlaceholder)
+                if (overflowText != null) {
+                    if (last is Variable) {
+                        descriptors += FoldingDescriptor(
+                            element.node,
+                            TextRange.create(start, end),
+                            group,
+                            "$"
+                        )
+                        descriptors += FoldingDescriptor(
+                            element.node,
+                            overflowRightRange,
+                            group,
+                            "\"" + overflowText
+                        )
+                    } else {
+                        descriptors += FoldingDescriptor(
+                            element.node,
+                            TextRange.create(start, end),
+                            group,
+                            "${'$'}{"
+                        )
+                        descriptors += FoldingDescriptor(
+                            element.node,
+                            overflowRightRange,
+                            group,
+                            "}\"" + overflowText
+                        )
+                    }
                 } else {
                     descriptors += FoldingDescriptor(
                         element.node,
-                        TextRange.create(start, end),
+                        TextRange.create(last.textRange.startOffset, last.textRange.endOffset),
                         group,
-                        "${'$'}{"
-                    )
-                    descriptors += FoldingDescriptor(
-                        element.node,
-                        overflowRightRange,
-                        group,
-                        "}\"" + overflowText
+                        last.element.text + suffix + "\""
                     )
                 }
-            } else {
-                descriptors += FoldingDescriptor(
-                    element.node,
-                    TextRange.create(last.textRange.startOffset, last.textRange.endOffset),
-                    group,
-                    last.element.text + suffix + "\""
-                )
             }
-        } else if (last is CharacterLiteral) {
-            descriptors += FoldingDescriptor(
+            last is CharacterLiteral -> descriptors += FoldingDescriptor(
                 element.node,
                 TextRange.create(last.textRange.endOffset - 1, last.textRange.endOffset),
                 group,
@@ -186,5 +187,19 @@ class InterpolatedString(
 
     companion object {
         val OVERFLOW_CHARACTERS: Set<String> = setOf(".", ";", ",", ")", "(", " ")
+    }
+}
+
+private fun Document.resolveOverflowPlaceholder(offset: Int, explicitPlaceholder: String?): String? {
+    if (offset < 0 || offset >= textLength) {
+        return null
+    }
+    explicitPlaceholder?.let { return it }
+    val boundary = charsSequence[offset]
+    return when {
+        boundary == '\n' || boundary == '\r' -> ""
+        boundary.isWhitespace() -> boundary.toString()
+        InterpolatedString.OVERFLOW_CHARACTERS.contains(boundary.toString()) -> boundary.toString()
+        else -> null
     }
 }

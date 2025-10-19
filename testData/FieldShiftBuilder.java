@@ -7,10 +7,10 @@ public class FieldShiftBuilder {
     private FieldShiftBuilder child;
 
     FieldShiftBuilder(String username, boolean active, String userIdentifier, FieldShiftBuilder child) <fold text='{...}' expand='true'>{
-        this.username = <fold text='<<' expand='false'>username</fold>;
-        this.active = <fold text='<<' expand='false'>active</fold>;
-        this.userIdentifier = <fold text='<<' expand='false'>userIdentifier</fold>;
-        this.child = <fold text='<<' expand='false'>child</fold>;
+        this.username = <fold text='<<' expand='true'>username</fold>;
+        this.active = <fold text='<<' expand='true'>active</fold>;
+        this.userIdentifier = <fold text='<<' expand='true'>userIdentifier</fold>;
+        this.child = <fold text='<<' expand='true'>child</fold>;
     }</fold>
 
 
@@ -84,9 +84,9 @@ public class FieldShiftBuilder {
         private String userIdentifier;
 
         UserData2(String username, boolean active, String userIdentifier) <fold text='{...}' expand='true'>{
-            this.username = <fold text='<<' expand='false'>username</fold>;
-            this.active = <fold text='<<' expand='false'>active</fold>;
-            this.userIdentifier = <fold text='<<' expand='false'>userIdentifier</fold>;
+            this.username = <fold text='<<' expand='true'>username</fold>;
+            this.active = <fold text='<<' expand='true'>active</fold>;
+            this.userIdentifier = <fold text='<<' expand='true'>userIdentifier</fold>;
         }</fold>
 
         public static UserData2Builder builder()<fold text=' { ' expand='false'> {
@@ -114,17 +114,17 @@ public class FieldShiftBuilder {
             }</fold>
 
             public UserData2Builder username(String username) <fold text='{...}' expand='true'>{
-                this.username = <fold text='<<' expand='false'>username</fold>;
+                this.username = <fold text='<<' expand='true'>username</fold>;
                 return this;
             }</fold>
 
             public UserData2Builder active(boolean active) <fold text='{...}' expand='true'>{
-                this.active = <fold text='<<' expand='false'>active</fold>;
+                this.active = <fold text='<<' expand='true'>active</fold>;
                 return this;
             }</fold>
 
             public UserData2Builder userIdentifier(String userIdentifier) <fold text='{...}' expand='true'>{
-                this.userIdentifier = <fold text='<<' expand='false'>userIdentifier</fold>;
+                this.userIdentifier = <fold text='<<' expand='true'>userIdentifier</fold>;
                 return this;
             }</fold>
 
@@ -151,22 +151,22 @@ public class FieldShiftBuilder {
         }</fold>
 
         public BuilderFieldShiftBuilder username(String username) <fold text='{...}' expand='true'>{
-            this.username = <fold text='<<' expand='false'>username</fold>;
+            this.username = <fold text='<<' expand='true'>username</fold>;
             return this;
         }</fold>
 
         public BuilderFieldShiftBuilder active(boolean active) <fold text='{...}' expand='true'>{
-            this.active = <fold text='<<' expand='false'>active</fold>;
+            this.active = <fold text='<<' expand='true'>active</fold>;
             return this;
         }</fold>
 
         public BuilderFieldShiftBuilder userIdentifier(String userIdentifier) <fold text='{...}' expand='true'>{
-            this.userIdentifier = <fold text='<<' expand='false'>userIdentifier</fold>;
+            this.userIdentifier = <fold text='<<' expand='true'>userIdentifier</fold>;
             return this;
         }</fold>
 
         public BuilderFieldShiftBuilder child(FieldShiftBuilder child) <fold text='{...}' expand='true'>{
-            this.child = <fold text='<<' expand='false'>child</fold>;
+            this.child = <fold text='<<' expand='true'>child</fold>;
             return this;
         }</fold>
 

@@ -19,13 +19,13 @@ public class IfNullSafeData {
                 data.<fold text='data1' expand='false'>getData1()</fold>.<fold text='data2' expand='false'>getData2()</fold> != null && data.<fold text='data1' expand='false'>getData1()</fold>.
                 <fold text='data2' expand='false'>getData2()</fold>
                 .<fold text='data3' expand='false'>getData3()</fold> != null</fold><fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
-            <fold text='' expand='false'>System.out.</fold>println(<fold text='"data?.data1?.data2?.data3 != null"' expand='false'>"data?.data1?.data2?.data3 != null"</fold>);
+            <fold text='' expand='false'>System.out.</fold>println(<fold text='"data?.data1?.data2?.data3 != null"' expand='true'>"data?.data1?.data2?.data3 != null"</fold>);
         }</fold>
         if <fold text='' expand='false'>(<fold text='data?.data1 != null' expand='false'></fold>data != null && data.<fold text='data1' expand='false'>getData1()</fold> != null</fold><fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
-            <fold text='' expand='false'>System.out.</fold>println(<fold text='"data?.data1 != null"' expand='false'>"data?.data1 != null"</fold>);
+            <fold text='' expand='false'>System.out.</fold>println(<fold text='"data?.data1 != null"' expand='true'>"data?.data1 != null"</fold>);
         }</fold>
         if <fold text='' expand='false'>(</fold><fold text='data?.active == true' expand='false'>data != null && data.<fold text='active' expand='false'>isActive()</fold></fold><fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
-            <fold text='' expand='false'>System.out.</fold>println(<fold text='"data?.active == true"' expand='false'>"data?.active == true"</fold>);
+            <fold text='' expand='false'>System.out.</fold>println(<fold text='"data?.active == true"' expand='true'>"data?.active == true"</fold>);
         }</fold>
         if <fold text='' expand='false'>(</fold><fold text='data?.data1?.data2?.data3?.data4 != null' expand='false'>data != null
                 && data.<fold text='data1' expand='false'>getData1()</fold> != null
@@ -37,7 +37,7 @@ public class IfNullSafeData {
                 && data.<fold text='data1' expand='false'>getData1()</fold> != null
                 && !data.<fold text='data1' expand='false'>getData1()</fold>.<fold text='active' expand='false'>isActive()</fold></fold>
         <fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
-            <fold text='' expand='false'>System.out.</fold>println(<fold text='"2chainz"' expand='false'>"2chainz"</fold>);
+            <fold text='' expand='false'>System.out.</fold>println(<fold text='"2chainz"' expand='true'>"2chainz"</fold>);
         }</fold>
         <fold text='val' expand='false'>boolean</fold> has = <fold text='data?.data1?.data2?.data3?.data4 != null' expand='false'>data != null
                 && data.<fold text='data1' expand='false'>getData1()</fold> != null
@@ -56,14 +56,14 @@ public class IfNullSafeData {
     public void equalsTrue(Data data, boolean flag) <fold text='{...}' expand='true'>{
         if <fold text='' expand='false'>(</fold>(<fold text='data?.data6?.active == true' expand='false'>data != null && data.getData6() != null &&
                 data.getData6().isActive()</fold>)<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
-            <fold text='' expand='false'>System.out.</fold>println(<fold text='"Conditions met!"' expand='false'>"Conditions met!"</fold>);
+            <fold text='' expand='false'>System.out.</fold>println(<fold text='"Conditions met!"' expand='true'>"Conditions met!"</fold>);
         }</fold>
     }</fold>
 
     public void equalsFalse(Data data, boolean flag) <fold text='{...}' expand='true'>{
         if <fold text='' expand='false'>(</fold>(<fold text='data?.data6?.active == false' expand='false'>data != null && data.getData6() != null &&
                 !data.getData6().isActive()</fold>)<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
-            <fold text='' expand='false'>System.out.</fold>println(<fold text='"Conditions met!"' expand='false'>"Conditions met!"</fold>);
+            <fold text='' expand='false'>System.out.</fold>println(<fold text='"Conditions met!"' expand='true'>"Conditions met!"</fold>);
         }</fold>
     }</fold>
 
@@ -91,7 +91,7 @@ public class IfNullSafeData {
                                 <fold text='data?.data6?.active == true' expand='false'>data != null &&
                                 data.<fold text='data6' expand='false'>getData6()</fold> != null &&
                                 data.<fold text='data6' expand='false'>getData6()</fold>.<fold text='active' expand='false'>isActive()</fold></fold>)<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
-            <fold text='' expand='false'>System.out.</fold>println(<fold text='"Conditions met!"' expand='false'>"Conditions met!"</fold>);
+            <fold text='' expand='false'>System.out.</fold>println(<fold text='"Conditions met!"' expand='true'>"Conditions met!"</fold>);
         }</fold>
     }</fold>
 

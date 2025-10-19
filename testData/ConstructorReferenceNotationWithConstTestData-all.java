@@ -76,12 +76,12 @@ public class ConstructorReferenceNotationWithConstTestData {
         }</fold></fold><fold text='' expand='false'>
 
         </fold><fold text='' expand='false'>public ConstClass(boolean ok)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold>this.ok = <fold text='<<' expand='false'>ok</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+            </fold></fold>this.ok = <fold text='<<' expand='true'>ok</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold><fold text='' expand='false'></fold>
 
         </fold><fold text='' expand='false'>public ConstClass(boolean ok, String string) <fold text='{...}' expand='true'>{
-            this.ok = <fold text='<<' expand='false'>ok</fold>;
-            this.string = <fold text='<<' expand='false'>string</fold>;
+            this.ok = <fold text='<<' expand='true'>ok</fold>;
+            this.string = <fold text='<<' expand='true'>string</fold>;
         }</fold></fold><fold text='' expand='false'>
 
         </fold><fold text='' expand='true'><fold text='' expand='false'>@Override</fold><fold text='' expand='true'>

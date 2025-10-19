@@ -29,7 +29,7 @@ public class SuppressWarningsHideTestData {
     }</fold>
 
     public void methodWithAnnotatedParam(@SuppressWarnings("unused") int unusedParam) <fold text='{...}' expand='true'>{<fold text=' ' expand='true'>
-        </fold><fold text='' expand='false'>System.out.</fold>println(<fold text='"Method called"' expand='false'>"Method called"</fold>)<fold text='' expand='true'>;</fold><fold text=' ' expand='true'>
+        </fold><fold text='' expand='false'>System.out.</fold>println(<fold text='"Method called"' expand='true'>"Method called"</fold>)<fold text='' expand='true'>;</fold><fold text=' ' expand='true'>
     </fold>}</fold>
 
     public void methodWithAnnotatedLocalVar() <fold text='{...}' expand='true'>{

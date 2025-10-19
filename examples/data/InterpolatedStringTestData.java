@@ -16,5 +16,10 @@ public class InterpolatedStringTestData {
         System.out.println("Length: " + args.length);
         System.out.println("Sum: " + (2 + 3));
         System.out.println("Upper: " + name.toUpperCase());
+        System.out.println(
+                args[0] + " appended"
+        );
+        System.out.println("Hello, " + args[0]
+        );
     }
 }

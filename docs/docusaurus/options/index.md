@@ -34,7 +34,8 @@ Simplifies list and map access and modification expressions, as well as array an
 
 ## concatenationExpressionsCollapse
 ### StringBuilder.append and Collection.add/remove expressions, interpolated Strings and Stream expressions
-Collapses various string and collection operations into more readable forms.
+Collapses various string and collection operations into more readable forms. Multi-line interpolated strings and setter invocations
+now keep their placeholders intact even when boundaries are split by whitespace.
 - [StringBuilder Example](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/examples/data/StringBuilderTestData.java)
 - [StringBuilder Folded](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/folded/StringBuilderTestData-folded.java)
 - [Interpolated String Example](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/examples/data/InterpolatedStringTestData.java)

@@ -15,6 +15,10 @@ public class AppendSetterInterpolatedStringTestData {
 
         new AppendSetterInterpolatedStringTestData().<fold text='name = ' expand='false'>setName(</fold>"Hello, <fold text='${' expand='false'>" + </fold>args[0]<fold text='}"' expand='false'>)</fold>;
         new AppendSetterInterpolatedStringTestData().<fold text='name = ' expand='false'>setName</fold><fold text='"${' expand='false'>(</fold>args[0]<fold text='}' expand='false'> + "</fold>, hello!"<fold text='' expand='false'>)</fold>;
+        AppendSetterInterpolatedStringTestData target = new AppendSetterInterpolatedStringTestData();
+        target.<fold text='name = ' expand='false'>setName(
+               </fold><fold text='"${' expand='false'> </fold>args[0]<fold text='}' expand='false'> + "</fold>, newline"<fold text='' expand='false'>
+        )</fold>;
     }</fold>
 
     public void setName(String name)<fold text=' { ' expand='false'> {

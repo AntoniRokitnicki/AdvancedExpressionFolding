@@ -15,6 +15,8 @@ public class AppendSetterInterpolatedStringTestData {
 
         new AppendSetterInterpolatedStringTestData().name = "Hello, ${args[0]}";
         new AppendSetterInterpolatedStringTestData().name = "${args[0]}, hello!";
+        AppendSetterInterpolatedStringTestData target = new AppendSetterInterpolatedStringTestData();
+        target.name = "${args[0]}, newline";
     }
 
     public void setName(String name) {

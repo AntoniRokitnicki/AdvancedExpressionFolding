@@ -89,22 +89,22 @@ class AdvancedExpressionFoldingBuilder(private val config: IConfig = getInstance
         element: PsiElement,
         document: Document
     ): Array<FoldingDescriptor> {
-        //TODO: default list size based on file size
-        val allDescriptors = Lists.newArrayListWithCapacity<FoldingDescriptor>(1_000)
+        val allDescriptors = Lists.newArrayListWithCapacity<FoldingDescriptor>(estimateDescriptorsCapacity(document))
         BuildExpressionExt.collectFoldRegionsRecursively(element, document, Sets.newIdentityHashSet(), allDescriptors)
         return allDescriptors.toTypedArray()
     }
 
     override fun getPlaceholderText(astNode: ASTNode) = null
 
-    // TODO: Collapse everything by default but use these settings when actually building the folding descriptors
     override fun isCollapsedByDefault(astNode: ASTNode): Boolean {
         try {
             val element = astNode.psi
             val document = PsiDocumentManager.getInstance(astNode.psi.project).getDocument(astNode.psi.containingFile)
             document?.let {
                 val expression = BuildExpressionExt.getNonSyntheticExpression(element, it)
-                return expression?.isCollapsedByDefault() == true
+                if (expression != null && expression.supportsFoldRegions(it, null)) {
+                    return expression.isCollapsedByDefault()
+                }
             }
         } catch (_: IndexNotReadyException) {
             return false
@@ -113,6 +113,12 @@ class AdvancedExpressionFoldingBuilder(private val config: IConfig = getInstance
     }
 
     private val debugFolding = false
+
+    private fun estimateDescriptorsCapacity(document: Document): Int {
+        val lineCount = document.lineCount
+        val estimated = lineCount * 4
+        return estimated.coerceIn(64, 16_384)
+    }
 }
 
 var store: Storage = EmptyStorage

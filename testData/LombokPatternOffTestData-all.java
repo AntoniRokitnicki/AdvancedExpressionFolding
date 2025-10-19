@@ -29,7 +29,7 @@ public class LombokPatternOffTestData {
     </fold>}</fold>
 
     public void setData(LombokPatternOffTestData data)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-        </fold></fold>this.data = <fold text='<<' expand='false'>data</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+        </fold></fold>this.data = <fold text='<<' expand='true'>data</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
     </fold>}</fold>
 
     public boolean isOk()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
@@ -37,7 +37,7 @@ public class LombokPatternOffTestData {
     </fold>}</fold>
 
     public void setOk(boolean ok)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-        </fold></fold>this.ok = <fold text='<<' expand='false'>ok<fold text='' expand='true'></fold>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+        </fold></fold>this.ok = <fold text='<<' expand='true'>ok<fold text='' expand='true'></fold>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
     </fold>}</fold>
 
     public String getString()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
@@ -45,7 +45,7 @@ public class LombokPatternOffTestData {
     </fold>}</fold>
 
     public void setString(String string)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-        </fold></fold>this.string = <fold text='<<' expand='false'>string</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+        </fold></fold>this.string = <fold text='<<' expand='true'>string</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
     </fold>}</fold>
 
     public Optional<LombokPatternOffTestData> asOptional()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
@@ -83,7 +83,7 @@ public class LombokPatternOffTestData {
         </fold>}</fold>
 
         public void setData(LombokPatternOffTestData data)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold>this.data = <fold text='<<' expand='false'>data</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+            </fold></fold>this.data = <fold text='<<' expand='true'>data</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold>
 
         public boolean isOk()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
@@ -91,7 +91,7 @@ public class LombokPatternOffTestData {
         </fold>}</fold>
 
         public void setOk(boolean ok)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold>this.ok = <fold text='<<' expand='false'>ok<fold text='' expand='true'></fold>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+            </fold></fold>this.ok = <fold text='<<' expand='true'>ok<fold text='' expand='true'></fold>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold>
 
         public class LombokSettersPartial <fold text='{...}' expand='true'>{
@@ -99,7 +99,7 @@ public class LombokPatternOffTestData {
             boolean ok;
 
             public void setData(LombokPatternOffTestData data)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold></fold>this.data = <fold text='<<' expand='false'>data</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+                </fold></fold>this.data = <fold text='<<' expand='true'>data</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold>
         }</fold>
 
@@ -108,7 +108,7 @@ public class LombokPatternOffTestData {
             final boolean ok = true;
 
             public void setData(LombokPatternOffTestData data)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold></fold>this.data = <fold text='<<' expand='false'>data</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+                </fold></fold>this.data = <fold text='<<' expand='true'>data</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold>
         }</fold>
     }</fold>
@@ -294,7 +294,7 @@ public class LombokPatternOffTestData {
         </fold>}</fold>
 
         public void setData(LombokPatternOffTestData data)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold>this.data = <fold text='<<' expand='false'>data<fold text='' expand='true'></fold>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+            </fold></fold>this.data = <fold text='<<' expand='true'>data<fold text='' expand='true'></fold>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold>
 
         public boolean isOk()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
@@ -302,7 +302,7 @@ public class LombokPatternOffTestData {
         </fold>}</fold>
 
         public void setOk(boolean ok)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold>this.ok = <fold text='<<' expand='false'>ok</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+            </fold></fold>this.ok = <fold text='<<' expand='true'>ok</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold>
 
         <fold text='' expand='true'>@Override</fold><fold text='' expand='true'>
@@ -335,7 +335,7 @@ public class LombokPatternOffTestData {
             </fold>}</fold>
 
             public void setData(LombokPatternOffTestData data)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold></fold>this.data = <fold text='<<' expand='false'>data</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+                </fold></fold>this.data = <fold text='<<' expand='true'>data</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold>
 
             public boolean isOk()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
@@ -343,7 +343,7 @@ public class LombokPatternOffTestData {
             </fold>}</fold>
 
             public void setOk(boolean ok)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold></fold>this.ok = <fold text='<<' expand='false'>ok</fold><fold text='' expand='true'>;<fold text=' ' expand='true'><fold text=' }' expand='false'></fold>
+                </fold></fold>this.ok = <fold text='<<' expand='true'>ok</fold><fold text='' expand='true'>;<fold text=' ' expand='true'><fold text=' }' expand='false'></fold>
             </fold>}</fold>
 
             <fold text='' expand='true'>@Override</fold><fold text='' expand='true'>
@@ -370,11 +370,11 @@ public class LombokPatternOffTestData {
             </fold>}</fold>
 
             public void setData(LombokPatternOffTestData data)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold></fold>this.data = <fold text='<<' expand='false'>data</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+                </fold></fold>this.data = <fold text='<<' expand='true'>data</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold>
 
             public void setOk(boolean ok)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold></fold>this.ok = <fold text='<<' expand='false'>ok</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+                </fold></fold>this.ok = <fold text='<<' expand='true'>ok</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold>
 
             <fold text='' expand='true'>@Override</fold><fold text='' expand='true'>
@@ -408,7 +408,7 @@ public class LombokPatternOffTestData {
             </fold>}</fold>
 
             public void setData(LombokPatternOffTestData data)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold></fold>this.data = <fold text='<<' expand='false'>data</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+                </fold></fold>this.data = <fold text='<<' expand='true'>data</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold>
 
             public boolean isOk()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
@@ -545,7 +545,7 @@ public class LombokPatternOffTestData {
             </fold>}</fold>
 
             public void setOk(boolean ok)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold></fold>this.ok = <fold text='<<' expand='false'>ok</fold><fold text='' expand='true'>;<fold text=' ' expand='true'><fold text=' }' expand='false'></fold>
+                </fold></fold>this.ok = <fold text='<<' expand='true'>ok</fold><fold text='' expand='true'>;<fold text=' ' expand='true'><fold text=' }' expand='false'></fold>
             </fold>}</fold>
 
             public boolean isDirty()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
@@ -582,7 +582,7 @@ public class LombokPatternOffTestData {
             boolean ok;
 
             public void setOk(boolean ok)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold></fold>this.ok = <fold text='<<' expand='false'>ok</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+                </fold></fold>this.ok = <fold text='<<' expand='true'>ok</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold>
 
             public void setDirty(boolean dirty)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
@@ -669,9 +669,9 @@ public class LombokPatternOffTestData {
             private int field2;
             private boolean field3;
             public AllArgs(String field1, int field2, boolean field3) <fold text='{...}' expand='true'>{
-                this.field1 = <fold text='<<' expand='false'>field1</fold>;
-                this.field2 = <fold text='<<' expand='false'>field2</fold>;
-                this.field3 = <fold text='<<' expand='false'>field3</fold>;
+                this.field1 = <fold text='<<' expand='true'>field1</fold>;
+                this.field2 = <fold text='<<' expand='true'>field2</fold>;
+                this.field3 = <fold text='<<' expand='true'>field3</fold>;
             }</fold>
         }</fold>
         public static class AllArgsBrokenFieldAssigmentLeft <fold text='{...}' expand='true'>{
@@ -679,9 +679,9 @@ public class LombokPatternOffTestData {
             private int field2;
             private boolean field3;
             public AllArgsBrokenFieldAssigmentLeft(int field1, int field2, boolean field3) <fold text='{...}' expand='true'>{
-                this.field1 = <fold text='<<' expand='false'>field1</fold>;
+                this.field1 = <fold text='<<' expand='true'>field1</fold>;
                 this.field2 = field1;
-                this.field3 = <fold text='<<' expand='false'>field3</fold>;
+                this.field3 = <fold text='<<' expand='true'>field3</fold>;
             }</fold>
         }</fold>
         public static class AllArgsBrokenFieldAssigmentRight <fold text='{...}' expand='true'>{
@@ -689,9 +689,9 @@ public class LombokPatternOffTestData {
             private int field2;
             private boolean field3;
             public AllArgsBrokenFieldAssigmentRight(int field1, int field2, boolean field3) <fold text='{...}' expand='true'>{
-                this.field1 = <fold text='<<' expand='false'>field1</fold>;
+                this.field1 = <fold text='<<' expand='true'>field1</fold>;
                 this.field1 = field2;
-                this.field3 = <fold text='<<' expand='false'>field3</fold>;
+                this.field3 = <fold text='<<' expand='true'>field3</fold>;
             }</fold>
         }</fold>
 
@@ -702,9 +702,9 @@ public class LombokPatternOffTestData {
             public AllArgsNoArgsConstructorSuperBefore(String field1, int field2, boolean field3) <fold text='{...}' expand='true'>{
                 // comment
                 super();
-                this.field1 = <fold text='<<' expand='false'>field1</fold>;
-                this.field2 = <fold text='<<' expand='false'>field2</fold>;
-                this.field3 = <fold text='<<' expand='false'>field3</fold>;
+                this.field1 = <fold text='<<' expand='true'>field1</fold>;
+                this.field2 = <fold text='<<' expand='true'>field2</fold>;
+                this.field3 = <fold text='<<' expand='true'>field3</fold>;
             }</fold>
         }</fold>
         public static class AllArgsNoArgsConstructorSuperAfter <fold text='{...}' expand='true'>{
@@ -713,9 +713,9 @@ public class LombokPatternOffTestData {
             private boolean field3;
             public AllArgsNoArgsConstructorSuperAfter(String field1, int field2, boolean field3) <fold text='{...}' expand='true'>{
                 super();
-                this.field1 = <fold text='<<' expand='false'>field1</fold>;
-                this.field2 = <fold text='<<' expand='false'>field2</fold>;
-                this.field3 = <fold text='<<' expand='false'>field3</fold>;
+                this.field1 = <fold text='<<' expand='true'>field1</fold>;
+                this.field2 = <fold text='<<' expand='true'>field2</fold>;
+                this.field3 = <fold text='<<' expand='true'>field3</fold>;
                 // comment
             }</fold>
         }</fold>
@@ -726,9 +726,9 @@ public class LombokPatternOffTestData {
             private boolean field3;
             public AllArgsSuper(String field1, int field2, boolean field3) <fold text='{...}' expand='true'>{
                 super();
-                this.field1 = <fold text='<<' expand='false'>field1</fold>;
-                this.field2 = <fold text='<<' expand='false'>field2</fold>;
-                this.field3 = <fold text='<<' expand='false'>field3</fold>;
+                this.field1 = <fold text='<<' expand='true'>field1</fold>;
+                this.field2 = <fold text='<<' expand='true'>field2</fold>;
+                this.field3 = <fold text='<<' expand='true'>field3</fold>;
             }</fold>
         }</fold>
 
@@ -737,9 +737,9 @@ public class LombokPatternOffTestData {
             private int field2;
             private boolean field3;
             private StaticNameArgs(String field1, int field2, boolean field3) <fold text='{...}' expand='true'>{
-                this.field1 = <fold text='<<' expand='false'>field1</fold>;
-                this.field2 = <fold text='<<' expand='false'>field2</fold>;
-                this.field3 = <fold text='<<' expand='false'>field3</fold>;
+                this.field1 = <fold text='<<' expand='true'>field1</fold>;
+                this.field2 = <fold text='<<' expand='true'>field2</fold>;
+                this.field3 = <fold text='<<' expand='true'>field3</fold>;
             }</fold>
             public static StaticNameArgs of(String field1, int field2, boolean field3) <fold text='{...}' expand='true'>{<fold text=' ' expand='true'>
                 </fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>new StaticNameArgs(field1, field2, field3)<fold text='' expand='true'>;</fold><fold text=' ' expand='true'>
@@ -751,9 +751,9 @@ public class LombokPatternOffTestData {
             private int field2;
             private boolean field3;
             protected ProtectedArgs(String field1, int field2, boolean field3) <fold text='{...}' expand='true'>{
-                this.field1 = <fold text='<<' expand='false'>field1</fold>;
-                this.field2 = <fold text='<<' expand='false'>field2</fold>;
-                this.field3 = <fold text='<<' expand='false'>field3</fold>;
+                this.field1 = <fold text='<<' expand='true'>field1</fold>;
+                this.field2 = <fold text='<<' expand='true'>field2</fold>;
+                this.field3 = <fold text='<<' expand='true'>field3</fold>;
             }</fold>
         }</fold>
     }</fold>
@@ -766,9 +766,9 @@ public class LombokPatternOffTestData {
             private final boolean field3;
 
             public RequiredArgs(String field1, int field2, boolean field3) <fold text='{...}' expand='true'>{
-                this.field1 = <fold text='<<' expand='false'>field1</fold>;
-                this.field2 = <fold text='<<' expand='false'>field2</fold>;
-                this.field3 = <fold text='<<' expand='false'>field3</fold>;
+                this.field1 = <fold text='<<' expand='true'>field1</fold>;
+                this.field2 = <fold text='<<' expand='true'>field2</fold>;
+                this.field3 = <fold text='<<' expand='true'>field3</fold>;
             }</fold>
         }</fold>
 
@@ -780,9 +780,9 @@ public class LombokPatternOffTestData {
             public RequiredArgsNoArgsConstructorSuperBefore(String field1, int field2, boolean field3) <fold text='{...}' expand='true'>{
                 // comment
                 super();
-                this.field1 = <fold text='<<' expand='false'>field1</fold>;
-                this.field2 = <fold text='<<' expand='false'>field2</fold>;
-                this.field3 = <fold text='<<' expand='false'>field3</fold>;
+                this.field1 = <fold text='<<' expand='true'>field1</fold>;
+                this.field2 = <fold text='<<' expand='true'>field2</fold>;
+                this.field3 = <fold text='<<' expand='true'>field3</fold>;
             }</fold>
         }</fold>
 
@@ -793,9 +793,9 @@ public class LombokPatternOffTestData {
 
             public RequiredArgsNoArgsConstructorSuperAfter(String field1, int field2, boolean field3) <fold text='{...}' expand='true'>{
                 super();
-                this.field1 = <fold text='<<' expand='false'>field1</fold>;
-                this.field2 = <fold text='<<' expand='false'>field2</fold>;
-                this.field3 = <fold text='<<' expand='false'>field3</fold>;
+                this.field1 = <fold text='<<' expand='true'>field1</fold>;
+                this.field2 = <fold text='<<' expand='true'>field2</fold>;
+                this.field3 = <fold text='<<' expand='true'>field3</fold>;
                 // comment
             }</fold>
         }</fold>
@@ -807,9 +807,9 @@ public class LombokPatternOffTestData {
 
             public RequiredArgsSuper(String field1, int field2, boolean field3) <fold text='{...}' expand='true'>{
                 super();
-                this.field1 = <fold text='<<' expand='false'>field1</fold>;
-                this.field2 = <fold text='<<' expand='false'>field2</fold>;
-                this.field3 = <fold text='<<' expand='false'>field3</fold>;
+                this.field1 = <fold text='<<' expand='true'>field1</fold>;
+                this.field2 = <fold text='<<' expand='true'>field2</fold>;
+                this.field3 = <fold text='<<' expand='true'>field3</fold>;
             }</fold>
         }</fold>
 
@@ -819,9 +819,9 @@ public class LombokPatternOffTestData {
             private final boolean field3;
 
             private StaticNameArgs(String field1, int field2, boolean field3) <fold text='{...}' expand='true'>{
-                this.field1 = <fold text='<<' expand='false'>field1</fold>;
-                this.field2 = <fold text='<<' expand='false'>field2</fold>;
-                this.field3 = <fold text='<<' expand='false'>field3</fold>;
+                this.field1 = <fold text='<<' expand='true'>field1</fold>;
+                this.field2 = <fold text='<<' expand='true'>field2</fold>;
+                this.field3 = <fold text='<<' expand='true'>field3</fold>;
             }</fold>
 
             public static StaticNameArgs of(String field1, int field2, boolean field3) <fold text='{...}' expand='true'>{<fold text=' ' expand='true'>
@@ -835,9 +835,9 @@ public class LombokPatternOffTestData {
             private final boolean field3;
 
             protected ProtectedArgs(String field1, int field2, boolean field3) <fold text='{...}' expand='true'>{
-                this.field1 = <fold text='<<' expand='false'>field1</fold>;
-                this.field2 = <fold text='<<' expand='false'>field2</fold>;
-                this.field3 = <fold text='<<' expand='false'>field3</fold>;
+                this.field1 = <fold text='<<' expand='true'>field1</fold>;
+                this.field2 = <fold text='<<' expand='true'>field2</fold>;
+                this.field3 = <fold text='<<' expand='true'>field3</fold>;
             }</fold>
         }</fold>
     }</fold>
@@ -848,9 +848,9 @@ public class LombokPatternOffTestData {
             private final int field2;
             private final boolean field3;
             public ValueArgs(String field1, int field2, boolean field3) <fold text='{...}' expand='true'>{
-                this.field1 = <fold text='<<' expand='false'>field1</fold>;
-                this.field2 = <fold text='<<' expand='false'>field2</fold>;
-                this.field3 = <fold text='<<' expand='false'>field3</fold>;
+                this.field1 = <fold text='<<' expand='true'>field1</fold>;
+                this.field2 = <fold text='<<' expand='true'>field2</fold>;
+                this.field3 = <fold text='<<' expand='true'>field3</fold>;
             }</fold>
             public String getField1()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
                 </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>field1<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
@@ -893,9 +893,9 @@ public class LombokPatternOffTestData {
             private final boolean field3;
             public ValueArgsSuper(String field1, int field2, boolean field3) <fold text='{...}' expand='true'>{
                 super();
-                this.field1 = <fold text='<<' expand='false'>field1</fold>;
-                this.field2 = <fold text='<<' expand='false'>field2</fold>;
-                this.field3 = <fold text='<<' expand='false'>field3</fold>;
+                this.field1 = <fold text='<<' expand='true'>field1</fold>;
+                this.field2 = <fold text='<<' expand='true'>field2</fold>;
+                this.field3 = <fold text='<<' expand='true'>field3</fold>;
             }</fold>
             public String getField1()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
                 </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>field1<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
@@ -928,9 +928,9 @@ public class LombokPatternOffTestData {
             private final int field2;
             private final boolean field3;
             public ValueWihhoutEqualsAndHashcode(String field1, int field2, boolean field3) <fold text='{...}' expand='true'>{
-                this.field1 = <fold text='<<' expand='false'>field1</fold>;
-                this.field2 = <fold text='<<' expand='false'>field2</fold>;
-                this.field3 = <fold text='<<' expand='false'>field3</fold>;
+                this.field1 = <fold text='<<' expand='true'>field1</fold>;
+                this.field2 = <fold text='<<' expand='true'>field2</fold>;
+                this.field3 = <fold text='<<' expand='true'>field3</fold>;
             }</fold>
             public String getField1()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
                 </fold></fold><fold text='' expand='true'>return<fold text='' expand='true'></fold> </fold>field1<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
@@ -947,19 +947,19 @@ public class LombokPatternOffTestData {
         public static class AllArgs <fold text='{...}' expand='true'>{
             private String field1;
             public AllArgs(String field1)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold></fold>this.field1 = <fold text='<<' expand='false'>field1</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+                </fold></fold>this.field1 = <fold text='<<' expand='true'>field1</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold>
         }</fold>
         public static class ReqArgs <fold text='{...}' expand='true'>{
             private final String field1;
             public ReqArgs(String field1)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold></fold>this.field1 = <fold text='<<' expand='false'>field1</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+                </fold></fold>this.field1 = <fold text='<<' expand='true'>field1</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold>
         }</fold>
         public static class Value <fold text='{...}' expand='true'>{
             private final String field1;
             public Value(String field1)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold></fold>this.field1 = <fold text='<<' expand='false'>field1</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+                </fold></fold>this.field1 = <fold text='<<' expand='true'>field1</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold>
             public String getField1()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
                 </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>field1<fold text='' expand='true'>;<fold text=' ' expand='true'><fold text=' }' expand='false'></fold>
@@ -980,7 +980,7 @@ public class LombokPatternOffTestData {
         public static class ValueWithoutEqualsAndHashCode <fold text='{...}' expand='true'>{
             private final String field1;
             public ValueWithoutEqualsAndHashCode(String field1)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold></fold>this.field1 = <fold text='<<' expand='false'>field1</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+                </fold></fold>this.field1 = <fold text='<<' expand='true'>field1</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold>
             public String getField1()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
                 </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>field1<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
@@ -990,19 +990,19 @@ public class LombokPatternOffTestData {
             static class AllArgsDefault <fold text='{...}' expand='true'>{
                 private String field1;
                 AllArgsDefault(String field1)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                    </fold></fold>this.field1 = <fold text='<<' expand='false'>field1</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+                    </fold></fold>this.field1 = <fold text='<<' expand='true'>field1</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
                 </fold>}</fold>
             }</fold>
             static class AllArgsPrivate <fold text='{...}' expand='true'>{
                 private String field1;
                 private AllArgsPrivate(String field1)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                    </fold></fold>this.field1 = <fold text='<<' expand='false'>field1</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+                    </fold></fold>this.field1 = <fold text='<<' expand='true'>field1</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
                 </fold>}</fold>
             }</fold>
             static class AllArgsProteced <fold text='{...}' expand='true'>{
                 private String field1;
                 protected AllArgsProteced(String field1)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                    </fold></fold>this.field1 = <fold text='<<' expand='false'>field1<fold text='' expand='true'></fold>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+                    </fold></fold>this.field1 = <fold text='<<' expand='true'>field1<fold text='' expand='true'></fold>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
                 </fold>}</fold>
             }</fold>
         }</fold>
@@ -1017,7 +1017,7 @@ public class LombokPatternOffTestData {
         </fold>}</fold>
 
         public void setName(String name)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold>this.name = <fold text='<<' expand='false'>name</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+            </fold></fold>this.name = <fold text='<<' expand='true'>name</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold>
 
         <fold text='' expand='true'>@Override<fold text='' expand='true'></fold>
@@ -1082,7 +1082,7 @@ public class LombokPatternOffTestData {
         class ClassWithBuilderBuilder <fold text='{...}' expand='true'>{
             private String name;
             public ClassWithBuilderBuilder name(String name) <fold text='{...}' expand='true'>{
-                this.name = <fold text='<<' expand='false'>name</fold>;
+                this.name = <fold text='<<' expand='true'>name</fold>;
                 return this;
             }</fold>
             public ClassWithBuilder build()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
@@ -1100,22 +1100,22 @@ public class LombokPatternOffTestData {
             public FiveConstructors() <fold text='{}' expand='true'>{
             }</fold>
             public FiveConstructors(int field1)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold></fold>this.field1 = <fold text='<<' expand='false'>field1</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+                </fold></fold>this.field1 = <fold text='<<' expand='true'>field1</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold>
             public FiveConstructors(int field1, String field2) <fold text='{...}' expand='true'>{
-                this.field1 = <fold text='<<' expand='false'>field1</fold>;
-                this.field2 = <fold text='<<' expand='false'>field2</fold>;
+                this.field1 = <fold text='<<' expand='true'>field1</fold>;
+                this.field2 = <fold text='<<' expand='true'>field2</fold>;
             }</fold>
             public FiveConstructors(int field1, String field2, double field3) <fold text='{...}' expand='true'>{
-                this.field1 = <fold text='<<' expand='false'>field1</fold>;
-                this.field2 = <fold text='<<' expand='false'>field2</fold>;
-                this.field3 = <fold text='<<' expand='false'>field3</fold>;
+                this.field1 = <fold text='<<' expand='true'>field1</fold>;
+                this.field2 = <fold text='<<' expand='true'>field2</fold>;
+                this.field3 = <fold text='<<' expand='true'>field3</fold>;
             }</fold>
             public FiveConstructors(int field1, String field2, double field3, boolean field4) <fold text='{...}' expand='true'>{
-                this.field1 = <fold text='<<' expand='false'>field1</fold>;
-                this.field2 = <fold text='<<' expand='false'>field2</fold>;
-                this.field3 = <fold text='<<' expand='false'>field3</fold>;
-                this.field4 = <fold text='<<' expand='false'>field4</fold>;
+                this.field1 = <fold text='<<' expand='true'>field1</fold>;
+                this.field2 = <fold text='<<' expand='true'>field2</fold>;
+                this.field3 = <fold text='<<' expand='true'>field3</fold>;
+                this.field4 = <fold text='<<' expand='true'>field4</fold>;
             }</fold>
         }</fold>
 
@@ -1127,22 +1127,22 @@ public class LombokPatternOffTestData {
             public FiveConstructorsMod() <fold text='{}' expand='true'>{
             }</fold>
             private FiveConstructorsMod(int field1)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold></fold>this.field1 = <fold text='<<' expand='false'>field1</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+                </fold></fold>this.field1 = <fold text='<<' expand='true'>field1</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold>
             FiveConstructorsMod(int field1, String field2) <fold text='{...}' expand='true'>{
-                this.field1 = <fold text='<<' expand='false'>field1</fold>;
-                this.field2 = <fold text='<<' expand='false'>field2</fold>;
+                this.field1 = <fold text='<<' expand='true'>field1</fold>;
+                this.field2 = <fold text='<<' expand='true'>field2</fold>;
             }</fold>
             protected FiveConstructorsMod(int field1, String field2, double field3) <fold text='{...}' expand='true'>{
-                this.field1 = <fold text='<<' expand='false'>field1</fold>;
-                this.field2 = <fold text='<<' expand='false'>field2</fold>;
-                this.field3 = <fold text='<<' expand='false'>field3</fold>;
+                this.field1 = <fold text='<<' expand='true'>field1</fold>;
+                this.field2 = <fold text='<<' expand='true'>field2</fold>;
+                this.field3 = <fold text='<<' expand='true'>field3</fold>;
             }</fold>
             public FiveConstructorsMod(int field1, String field2, double field3, boolean field4) <fold text='{...}' expand='true'>{
-                this.field1 = <fold text='<<' expand='false'>field1</fold>;
-                this.field2 = <fold text='<<' expand='false'>field2</fold>;
-                this.field3 = <fold text='<<' expand='false'>field3</fold>;
-                this.field4 = <fold text='<<' expand='false'>field4</fold>;
+                this.field1 = <fold text='<<' expand='true'>field1</fold>;
+                this.field2 = <fold text='<<' expand='true'>field2</fold>;
+                this.field3 = <fold text='<<' expand='true'>field3</fold>;
+                this.field4 = <fold text='<<' expand='true'>field4</fold>;
             }</fold>
         }</fold>
     }</fold>

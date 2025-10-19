@@ -29,7 +29,7 @@ class Setter(
             element.node,
             TextRange.create(
                 setterTextRange.startOffset,
-                value.textRange.startOffset - if (value.isLeftOverflow()) 1 else 0
+                (value.textRange.startOffset - if (value.isLeftOverflow()) 1 else 0).coerceAtLeast(setterTextRange.startOffset)
             ),
             group,
             "$name = "
