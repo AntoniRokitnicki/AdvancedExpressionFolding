@@ -17,8 +17,6 @@ import com.intellij.psi.impl.source.PsiClassReferenceType
 import com.intellij.psi.search.LocalSearchScope
 import com.intellij.psi.search.searches.ReferencesSearch
 import com.intellij.psi.util.MethodSignature
-import java.util.*
-
 
 val PsiField.enum: Boolean
     get() = (type as? PsiClassType)?.resolve()?.isEnum == true
@@ -183,22 +181,18 @@ fun <T : PsiElement> PsiElement.findParents(
     parentClass: Class<T>,
     vararg parents: Class<out PsiElement>
 ): T? {
-    val classQueue = LinkedList(parents.asList())
-    val next = classQueue.poll()
-    var parent = this.parent
-
-    while (parent != null) {
-        if (next != null && next.isInstance(parent)) {
-            return if (classQueue.isEmpty()) {
-                @Suppress("UNCHECKED_CAST")
-                parent as? T
-            } else {
-                findParents(parentClass, *classQueue.toTypedArray())
-            }
+    tailrec fun search(element: PsiElement, index: Int): T? {
+        val target = parents.getOrNull(index) ?: return null
+        val found = generateSequence(element.parent) { it.parent }
+            .firstOrNull { target.isInstance(it) }
+            ?: return null
+        return if (index == parents.lastIndex) {
+            parentClass.cast(found)
+        } else {
+            search(found, index + 1)
         }
-        parent = parent.parent
     }
-    return null
+    return search(this, 0)
 }
 
 val PsiElement.identifier: PsiIdentifier?

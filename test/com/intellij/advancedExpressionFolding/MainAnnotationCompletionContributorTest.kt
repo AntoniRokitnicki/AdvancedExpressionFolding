@@ -134,6 +134,27 @@ class MainAnnotationCompletionContributorTest : BaseTest() {
                     }
                 """.trimIndent()
             )),
+
+            Arguments.of(TestCase(
+                name = "Primitive Varargs",
+                input = """
+                    public class Test {
+                        @<caret>
+                        public void numbers(int... values) {
+                        }
+                    }
+                """.trimIndent(),
+                expected = """
+                    public class Test {
+                        public static void main(String[] args) {
+                            int[] values = new int[]{};
+                            new Test().numbers(values);
+                        }
+                        public void numbers(int... values) {
+                        }
+                    }
+                """.trimIndent()
+            )),
             
             Arguments.of(TestCase(
                 name = "Existing Main Method",
