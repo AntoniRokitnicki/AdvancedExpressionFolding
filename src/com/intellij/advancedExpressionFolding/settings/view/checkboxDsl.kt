@@ -1,5 +1,6 @@
 package com.intellij.advancedExpressionFolding.settings.view
 
+import kotlin.jvm.JvmInline
 import kotlin.reflect.KMutableProperty0
 
 @DslMarker
@@ -7,7 +8,10 @@ annotation class CheckboxDsl
 
 typealias Description = String
 typealias UrlSuffix = String
-typealias ExampleFile = String
+@JvmInline
+value class ExampleFile(val path: String) {
+    override fun toString(): String = path
+}
 
 data class CheckboxDefinition(
     val title: String,

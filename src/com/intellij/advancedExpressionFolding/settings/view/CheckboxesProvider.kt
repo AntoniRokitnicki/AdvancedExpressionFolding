@@ -23,12 +23,12 @@ abstract class CheckboxesProvider {
     @CheckboxDsl
     fun Panel.initialize(state: State) {
         registerCheckbox(state::getSetExpressionsCollapse, "Getters and setters as properties") {
-            example("GetterSetterTestData.java")
+            example(ExampleFile("GetterSetterTestData.java"))
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#getsetexpressionscollapse")
         }
 
         registerCheckbox(state::varExpressionsCollapse, "Variable declarations (var/val)") {
-            example("VarTestData.java")
+            example(ExampleFile("VarTestData.java"))
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#varexpressionscollapse")
         }
 
@@ -36,7 +36,7 @@ abstract class CheckboxesProvider {
             state::compactControlFlowSyntaxCollapse,
             "Compact control flow condition syntax (Golang ifs)"
         ) {
-            example("CompactControlFlowTestData.java")
+            example(ExampleFile("CompactControlFlowTestData.java"))
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#compactcontrolflowsyntaxcollapse")
         }
 
@@ -44,7 +44,7 @@ abstract class CheckboxesProvider {
             state::getExpressionsCollapse,
             "List.get, List.set, Map.get and Map.put expressions, array and list literals"
         ) {
-            example("GetSetPutTestData.java")
+            example(ExampleFile("GetSetPutTestData.java"))
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#getexpressionscollapse")
         }
 
@@ -52,104 +52,104 @@ abstract class CheckboxesProvider {
             state::concatenationExpressionsCollapse,
             "StringBuilder.append and Collection.add/remove expressions, interpolated Strings and Stream expressions"
         ) {
-            example("StringBuilderTestData.java", "StringBuilder")
-            example("InterpolatedStringTestData.java", "Interpolate")
-            example("AppendSetterInterpolatedStringTestData.java", "Append")
-            example("ConcatenationTestData.java", "Concatenation")
+            example(ExampleFile("StringBuilderTestData.java"), "StringBuilder")
+            example(ExampleFile("InterpolatedStringTestData.java"), "Interpolate")
+            example(ExampleFile("AppendSetterInterpolatedStringTestData.java"), "Append")
+            example(ExampleFile("ConcatenationTestData.java"), "Concatenation")
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#concatenationexpressionscollapse")
         }
 
         registerCheckbox(state::slicingExpressionsCollapse, "List.subList and String.substring expressions") {
-            example("SliceTestData.java")
+            example(ExampleFile("SliceTestData.java"))
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#slicingexpressionscollapse")
         }
 
         registerCheckbox(state::comparingExpressionsCollapse, "Object.equals and Comparable.compareTo expressions") {
-            example("EqualsCompareTestData.java")
+            example(ExampleFile("EqualsCompareTestData.java"))
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#comparingexpressionscollapse")
         }
 
         registerCheckbox(state::comparingLocalDatesCollapse, "Java.time isBefore/isAfter expressions") {
-            example("LocalDateTestData.java")
+            example(ExampleFile("LocalDateTestData.java"))
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#comparinglocaldatescollapse")
         }
 
         registerCheckbox(state::localDateLiteralCollapse, "LocalDate.of literals (e.g. 2018-02-12)") {
-            example("LocalDateLiteralTestData.java")
+            example(ExampleFile("LocalDateLiteralTestData.java"))
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#localdateliteralcollapse")
         }
 
         registerCheckbox(state::localDateLiteralPostfixCollapse, "Postfix LocalDate literals (e.g. 2018Y-02M-12D)") {
-            example("LocalDateLiteralPostfixTestData.java")
+            example(ExampleFile("LocalDateLiteralPostfixTestData.java"))
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#localdateliteralpostfixcollapse")
         }
 
         registerCheckbox(state::castExpressionsCollapse, "Type cast expressions") {
-            example("TypeCastTestData.java")
+            example(ExampleFile("TypeCastTestData.java"))
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#castexpressionscollapse")
         }
 
         registerCheckbox(state::rangeExpressionsCollapse, "For loops, range expressions") {
-            example("ForRangeTestData.java")
+            example(ExampleFile("ForRangeTestData.java"))
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#rangeexpressionscollapse")
         }
 
         registerCheckbox(state::checkExpressionsCollapse, "Null-safe calls") {
-            example("ElvisTestData.java")
+            example(ExampleFile("ElvisTestData.java"))
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#checkexpressionscollapse")
         }
 
         registerCheckbox(state::ifNullSafe, "Extended null-safe ifs") {
-            example("IfNullSafeData.java")
+            example(ExampleFile("IfNullSafeData.java"))
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#ifnullsafe")
         }
 
         registerCheckbox(state::kotlinQuickReturn, "Kotlin quick return") {
-            example("LetReturnIt.java")
+            example(ExampleFile("LetReturnIt.java"))
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#kotlinquickreturn")
         }
 
         registerCheckbox(state::assertsCollapse, "Asserts") {
-            example("AssertTestData.java")
+            example(ExampleFile("AssertTestData.java"))
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#asserts")
         }
 
         registerCheckbox(state::optional, "Display optional as Kotlin null-safe") {
-            example("OptionalTestData.java")
+            example(ExampleFile("OptionalTestData.java"))
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#optional")
         }
 
         registerCheckbox(state::streamSpread, "Display stream operations as Groovy's spread operator") {
-            example("SpreadTestData.java")
+            example(ExampleFile("SpreadTestData.java"))
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#streamspread")
         }
 
         registerCheckbox(state::logFolding, "Log folding") {
-            example("LogBrackets.java")
+            example(ExampleFile("LogBrackets.java"))
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#logfolding")
         }
         registerCheckbox(state::logFoldingTextBlocks, "Log folding: collapse Text Blocks") {
-            example("LogFoldingTextBlocksTestData.java")
+            example(ExampleFile("LogFoldingTextBlocksTestData.java"))
         }
 
         registerCheckbox(
             state::fieldShift,
             "Display mapping of field with same name as << (for builders, setters and assignments)"
         ) {
-            example("FieldShiftBuilder.java", "builders")
-            example("FieldShiftSetters.java", "setters")
-            example("FieldShiftFields.java", "fields")
+            example(ExampleFile("FieldShiftBuilder.java"), "builders")
+            example(ExampleFile("FieldShiftSetters.java"), "setters")
+            example(ExampleFile("FieldShiftFields.java"), "fields")
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#fieldshift")
         }
 
         registerCheckbox(state::destructuring, "Destructuring assignment for array & list") {
-            example("DestructuringAssignmentArrayTestData.java", "array")
-            example("DestructuringAssignmentListTestData.java", "list")
+            example(ExampleFile("DestructuringAssignmentArrayTestData.java"), "array")
+            example(ExampleFile("DestructuringAssignmentListTestData.java"), "list")
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#destructuring")
         }
 
         registerCheckbox(state::println, "Simplify System.out.println to println") {
-            example("PrintlnTestData.java")
+            example(ExampleFile("PrintlnTestData.java"))
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#println")
         }
 
@@ -157,7 +157,7 @@ abstract class CheckboxesProvider {
             state::controlFlowSingleStatementCodeBlockCollapse,
             "Control flow single-statement code block braces (read-only files)"
         ) {
-            example("ControlFlowSingleStatementTestData.java")
+            example(ExampleFile("ControlFlowSingleStatementTestData.java"))
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#controlflowsinglestatementcodeblockcollapse")
         }
 
@@ -165,43 +165,43 @@ abstract class CheckboxesProvider {
             state::controlFlowMultiStatementCodeBlockCollapse,
             "Control flow multi-statement code block braces (read-only files, deprecated)"
         ) {
-            example("ControlFlowMultiStatementTestData.java")
+            example(ExampleFile("ControlFlowMultiStatementTestData.java"))
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#controlflowmultistatementcodeblockcollapse")
         }
 
         registerCheckbox(state::semicolonsCollapse, "Semicolons (read-only files)") {
-            example("SemicolonTestData.java")
+            example(ExampleFile("SemicolonTestData.java"))
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#semicolonscollapse")
         }
 
         registerCheckbox(state::const, "Simplify * static final to const") {
-            example("ConstTestData.java")
+            example(ExampleFile("ConstTestData.java"))
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#const")
         }
 
         registerCheckbox(state::nullable, "Simplify @NotNull to Type!! and @Nullable to Type?") {
-            example("NullableAnnotationTestData.java", "annotations")
-            example("NullableAnnotationCheckNotNullTestData.java", "checkNotNull")
+            example(ExampleFile("NullableAnnotationTestData.java"), "annotations")
+            example(ExampleFile("NullableAnnotationCheckNotNullTestData.java"), "checkNotNull")
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#nullable")
         }
 
         registerCheckbox(state::finalRemoval, "Remove the 'final' modifier from all elements except fields") {
-            example("FinalRemovalTestData.java")
+            example(ExampleFile("FinalRemovalTestData.java"))
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#finalremoval")
         }
 
         registerCheckbox(state::finalEmoji, "Replace the 'final' modifier with ${Emoji.FINAL_LOCK}") {
-            example("FinalEmojiTestData.java")
+            example(ExampleFile("FinalEmojiTestData.java"))
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#finalemoji")
         }
 
         registerCheckbox(state::lombok, "Display Java bean as Lombok") {
-            example("LombokTestData.java")
+            example(ExampleFile("LombokTestData.java"))
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#lombok")
         }
 
         registerCheckbox(state::lombokDirtyOff, "Don't fold Lombok dirty getters/setters") {
-            example("LombokDirtyOffTestData.java")
+            example(ExampleFile("LombokDirtyOffTestData.java"))
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#lombokdirtyoff")
         }
 
@@ -213,22 +213,22 @@ abstract class CheckboxesProvider {
         }
 
         registerCheckbox(state::expressionFunc, "Single-Expression Function") {
-            example("ExpressionFuncTestData.java")
+            example(ExampleFile("ExpressionFuncTestData.java"))
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#expressionfunc")
         }
 
         registerCheckbox(state::dynamic, "Dynamic names for methods based on \$user.home/dynamic-ajf2.toml") {
-            example("DynamicTestData.java")
+            example(ExampleFile("DynamicTestData.java"))
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#dynamic")
         }
 
         registerCheckbox(state::arithmeticExpressions, "BigDecimal, BigInteger and Math") {
-            example("ArithmeticExpressionsTestData.java")
+            example(ExampleFile("ArithmeticExpressionsTestData.java"))
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#arithmeticexpressions")
         }
 
         registerCheckbox(state::emojify, "Emojify code") {
-            example("EmojifyTestData.java")
+            example(ExampleFile("EmojifyTestData.java"))
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#emojify")
         }
 
@@ -236,12 +236,12 @@ abstract class CheckboxesProvider {
             state::interfaceExtensionProperties,
             "Converts traditional getter and setter methods in interfaces into extension properties"
         ) {
-            example("InterfaceExtensionPropertiesTestData.java")
+            example(ExampleFile("InterfaceExtensionPropertiesTestData.java"))
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#interfaceextensionproperties")
         }
 
         registerCheckbox(state::patternMatchingInstanceof, "Pattern Matching for instanceof (JEP 394)") {
-            example("PatternMatchingInstanceofTestData.java")
+            example(ExampleFile("PatternMatchingInstanceofTestData.java"))
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#patternmatchinginstanceof")
         }
 
@@ -249,7 +249,7 @@ abstract class CheckboxesProvider {
             state::summaryParentOverride,
             "Displays a folded summary of overridden methods from parent classes and interfaces."
         ) {
-            example("SummaryParentOverrideTestData.java")
+            example(ExampleFile("SummaryParentOverrideTestData.java"))
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#summaryparentoverride")
         }
 
@@ -257,30 +257,30 @@ abstract class CheckboxesProvider {
             state::constructorReferenceNotation,
             "Constructor reference notation ::new and compact field initialization"
         ) {
-            example("ConstructorReferenceNotationTestData.java")
+            example(ExampleFile("ConstructorReferenceNotationTestData.java"))
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#constructorReferenceNotation")
         }
 
         registerCheckbox(state::methodDefaultParameters, "Default parameter values inline for overloaded method") {
-            example("MethodDefaultParametersTestData.java")
+            example(ExampleFile("MethodDefaultParametersTestData.java"))
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#methodDefaultParameters")
         }
         registerCheckbox(state::overrideHide, "Hide @Override annotation") {
-            example("OverrideHideTestData.java")
+            example(ExampleFile("OverrideHideTestData.java"))
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#overrideHide")
         }
         registerCheckbox(state::suppressWarningsHide, "Hide @SuppressWarnings annotation") {
-            example("SuppressWarningsHideTestData.java")
+            example(ExampleFile("SuppressWarningsHideTestData.java"))
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#suppressWarningsHide")
         }
         registerCheckbox(state::pseudoAnnotations, "Pseudo-annotations: @Main, @Loggable") {
-            example("PseudoAnnotationsMainTestData.java")
+            example(ExampleFile("PseudoAnnotationsMainTestData.java"))
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#pseudoAnnotations")
         }
         // NEW OPTION
         registerCheckbox(state::memoryImprovement, "Memory improvements")
         registerCheckbox(state::experimental, "Experimental features") {
-            example("ExperimentalTestData.java")
+            example(ExampleFile("ExperimentalTestData.java"))
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#experimental")
         }
     }

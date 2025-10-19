@@ -66,7 +66,7 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
                 }
             }
             actionLink.setIcon(AllIcons.Actions.CheckOut, true)
-            HelpTooltip().setDescription("WARNING: Clicking this button will checkout $file into your current project")
+            HelpTooltip().setDescription("WARNING: Clicking this button will checkout ${file.path} into your current project")
                 .installOn(actionLink)
             panel.add(actionLink)
 
@@ -189,10 +189,10 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
     ): VirtualFile? {
         val projectEncoding = EncodingProjectManager.getInstance(project).defaultCharset
         val lineSeparator = CodeStyle.getDefaultSettings().lineSeparator
-        return javaClass.classLoader.getResource("$EXAMPLE_DIR/$file")
+        return javaClass.classLoader.getResource("$EXAMPLE_DIR/${file.path}")
             ?.readText()
             ?.replace("\n", lineSeparator)?.let { fileContent ->
-                val newFile = directory.createChildData(null, file)
+                val newFile = directory.createChildData(null, file.path)
                 newFile.setBinaryContent(fileContent.toByteArray(charset = projectEncoding))
                 newFile
             }

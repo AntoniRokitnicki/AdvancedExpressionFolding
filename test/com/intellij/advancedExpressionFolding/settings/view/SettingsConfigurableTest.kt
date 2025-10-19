@@ -31,7 +31,10 @@ class SettingsConfigurableTest {
     }
 
     private fun createExamplePanel(configurable: SettingsConfigurable): JPanel {
-        return configurable.createExamplePanel(mapOf<ExampleFile, Description?>("Example.java" to null), null)
+        return configurable.createExamplePanel(
+            mapOf<ExampleFile, Description?>(ExampleFile("Example.java") to null),
+            null
+        )
     }
 
     private fun triggerAction(actionLink: ActionLink) {
