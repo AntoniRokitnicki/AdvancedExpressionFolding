@@ -21,12 +21,12 @@ public class NullableAnnotationTestData {
     <fold text='@Getter @Setter b' expand='false'>b</fold>oolean ok;
     <fold text='' expand='false'>@Nullable</fold>
     <fold text='@Getter @Setter S' expand='false'>S</fold>tring<fold text='? ' expand='false'> </fold>string;<fold text='' expand='false'>
-    </fold><fold text='' expand='false'>public NullableAnnotationTestData getData()<fold text=' { ' expand='false'> {
-        </fold>return data;<fold text=' }' expand='false'>
-    }</fold><fold text='' expand='false'></fold>
-    </fold><fold text='' expand='false'>public void setData(NullableAnnotationTestData data)<fold text=' { ' expand='false'> {
-        </fold>this.data = data;<fold text=' }' expand='false'>
-    }</fold></fold><fold text='' expand='false'>
+    <fold text='public NullableAnnotationTestData!! getData() { return data; }' expand='false'>public NullableAnnotationTestData getData() {
+        return data;
+    }</fold>
+    <fold text='public void setData(NullableAnnotationTestData!! data) { this.data = data; }' expand='false'>public void setData(NullableAnnotationTestData data) {
+        this.data = data;
+    }</fold><fold text='' expand='false'>
     </fold><fold text='' expand='false'>public boolean isOk()<fold text=' { ' expand='false'> {
         </fold>return ok;<fold text=' }' expand='false'>
     }</fold></fold><fold text='' expand='false'>

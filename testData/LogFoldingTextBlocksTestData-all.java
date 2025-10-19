@@ -13,9 +13,9 @@ import java.util.Formatter;</fold>
 @SuppressWarnings("ALL")
 <fold text='@Log p' expand='false'>p</fold>ublic class LogFoldingTextBlocksTestData {<fold text='' expand='false'>
 
-    </fold><fold text='' expand='false'>private <fold text='const' expand='false'>static final </fold><fold text='' expand='false'>Logger</fold> log = LoggerFactory.getLogger(LogFoldingTextBlocksTestData.class);</fold>
+    <fold text='private const Logger log = LoggerFactory.getLogger(LogFoldingTextBlocksTestData.class);' expand='false'>private static final Logger log = LoggerFactory.getLogger(LogFoldingTextBlocksTestData.class);</fold>
 
-    private <fold text='const' expand='false'>static final </fold><fold text='' expand='false'>Marker</fold> MY_MARKER = MarkerFactory.getMarker("MY_MARKER");
+    <fold text='private const Marker MY_MARKER = MarkerFactory.getMarker("MY_MARKER");' expand='false'>private static final Marker MY_MARKER = MarkerFactory.getMarker("MY_MARKER");</fold>
 
     public LogBrackets.Data logPrintfStyle(LogBrackets.Data data) <fold text='{...}' expand='true'>{
         <fold text='val' expand='false'>String</fold> name = "John";
