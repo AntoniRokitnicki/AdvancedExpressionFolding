@@ -13,10 +13,12 @@ class UpdateFoldedTextColorsAction : AnAction() {
 
     companion object {
 
-        fun changeFoldingColors() {
+        fun changeFoldingColors(colorHex: String? = null) {
             val scheme = EditorColorsManager.getInstance().globalScheme
             val textAttributes = scheme.getAttributes(EditorColors.FOLDED_TEXT_ATTRIBUTES)
-            val foregroundColor = if (!JBColor.isBright()) {
+            val foregroundColor = colorHex?.let {
+                runCatching { decode(it) }.getOrNull()
+            } ?: if (!JBColor.isBright()) {
                 decode("#7ca0bb")
             } else {
                 decode("#000091")

@@ -70,5 +70,36 @@ class AdvancedExpressionFoldingSettingsTest {
             }
         }
     }
+
+    @Test
+    fun personaProfilesInitializeWithDefaults() {
+        val settings = AdvancedExpressionFoldingSettings()
+
+        val personas = settings.personaDescriptors().associateBy { it.id }
+
+        assertTrue(personas.containsKey(AdvancedExpressionFoldingSettings.PersonaProfileState.DEFAULT_ID))
+        assertTrue(personas.containsKey("analyst"))
+        assertTrue(personas.containsKey("logger"))
+        assertTrue(personas.containsKey("reviewer"))
+    }
+
+    @Test
+    fun switchingPersonaChangesActiveId() {
+        val settings = AdvancedExpressionFoldingSettings()
+
+        settings.setActivePersona("logger", user = "test", applyColorScheme = false)
+
+        assertEquals("logger", settings.state.activePersonaId)
+    }
+
+    @Test
+    fun detectConflictsReportsCrossPersonaDifferences() {
+        val settings = AdvancedExpressionFoldingSettings()
+
+        settings.setActivePersona("analyst", user = "test", applyColorScheme = false)
+        val conflicts = settings.detectConflicts("analyst", mapOf("logFolding" to false))
+
+        assertTrue(conflicts.any { it.contains("Differs from Logger Persona") })
+    }
 }
 

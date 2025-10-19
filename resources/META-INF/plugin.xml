@@ -78,6 +78,33 @@
             <keyboard-shortcut first-keystroke="alt Y" keymap="Mac OS X 10.5+" replace-all="true"/>
         </action>
 
+        <group id="com.intellij.advancedExpressionFolding.action.PersonaSwitchActionGroup"
+               class="com.intellij.advancedExpressionFolding.action.PersonaSwitchActionGroup"
+               popup="true" text="Folding Personas">
+            <add-to-group group-id="MainToolbarRight" anchor="last"/>
+            <add-to-group group-id="CodeMenu" anchor="last"/>
+        </group>
+
+        <action id="com.intellij.advancedExpressionFolding.action.ActivateCorePersonaAction"
+                class="com.intellij.advancedExpressionFolding.action.ActivateCorePersonaAction">
+            <keyboard-shortcut first-keystroke="alt shift 0" keymap="$default" replace-all="true"/>
+        </action>
+
+        <action id="com.intellij.advancedExpressionFolding.action.ActivateAnalystPersonaAction"
+                class="com.intellij.advancedExpressionFolding.action.ActivateAnalystPersonaAction">
+            <keyboard-shortcut first-keystroke="alt shift 1" keymap="$default" replace-all="true"/>
+        </action>
+
+        <action id="com.intellij.advancedExpressionFolding.action.ActivateLoggerPersonaAction"
+                class="com.intellij.advancedExpressionFolding.action.ActivateLoggerPersonaAction">
+            <keyboard-shortcut first-keystroke="alt shift 2" keymap="$default" replace-all="true"/>
+        </action>
+
+        <action id="com.intellij.advancedExpressionFolding.action.ActivateReviewerPersonaAction"
+                class="com.intellij.advancedExpressionFolding.action.ActivateReviewerPersonaAction">
+            <keyboard-shortcut first-keystroke="alt shift 3" keymap="$default" replace-all="true"/>
+        </action>
+
         <!-- Hidden action invoked from settings to refresh folded text colors -->
         <action id="com.intellij.advancedExpressionFolding.action.UpdateFoldedTextColorsAction"
                 class="com.intellij.advancedExpressionFolding.action.UpdateFoldedTextColorsAction"/>

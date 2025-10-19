@@ -116,6 +116,21 @@ For more clarity, you may try to adjust your color scheme: go to **Settings** | 
 
 To disable certain types of folding, go to **Settings** | **Editor** |
 **General** | **Code Folding**.
+
+## Persona-aware onboarding
+
+Advanced Expression Folding now ships with curated personas that package folding presets, keyboard shortcuts, and color themes for common workflows:
+
+| Persona | Focus | Quick toggle |
+| --- | --- | --- |
+| Core Persona | Balanced defaults for general refactoring sessions. | `Alt+Shift+0` |
+| Analyst Persona | Keeps Optional/nullable folds visible while relaxing logging folds. | `Alt+Shift+1` |
+| Logger Persona | Aggressively collapses log statements (including text blocks) to let control flow pop. | `Alt+Shift+2` |
+| Reviewer Persona | Disables Lombok folding so generated code stays visible during code reviews. | `Alt+Shift+3` |
+
+Open **Settings | Editor | Code Folding | Advanced Expression Folding 2** to switch personas, preview diffs, and review audit history before applying changes. The settings dialog now surfaces persona-specific onboarding tips and example files that can be checked into your workspace.
+
+See [Multi-persona best practices](docs/multi-persona-best-practices.md) for guidance on mixing personas within a team and troubleshooting conflict warnings.
 <!-- Plugin description end -->
 
 
