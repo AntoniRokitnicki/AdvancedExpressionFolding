@@ -18,7 +18,7 @@ import java.util.logging.Logger;</fold>
 @SuppressWarnings("ALL")
 public class LombokPatternOffTestData {
 
-    private <fold text='const' expand='false'>static final </fold><fold text='' expand='false'>long</fold> serialVersionUID = 1234567L;
+    <fold text='private const' expand='false'>private static final </fold><fold text='' expand='false'>long</fold> serialVersionUID = 1234567L;
 
     LombokPatternOffTestData data;
     boolean ok;

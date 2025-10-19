@@ -13,8 +13,8 @@ import java.util.Formatter;</fold>
 @SuppressWarnings("ALL")
 <fold text='@Log p' expand='false'>p</fold>ublic class LogBrackets {<fold text='' expand='false'>
 
-    </fold><fold text='' expand='false'>private <fold text='const' expand='false'>static final </fold><fold text='' expand='false'>Logger</fold> log = LoggerFactory.getLogger(LogBrackets.class);</fold>
-    private <fold text='const' expand='false'>static final </fold><fold text='' expand='false'>Marker</fold> MY_MARKER = MarkerFactory.getMarker("MY_MARKER");
+    </fold><fold text='private const' expand='false'><fold text='' expand='false'>private static final </fold><fold text='' expand='false'>Logger</fold> log = LoggerFactory.getLogger(LogBrackets.class);</fold>
+    <fold text='private const' expand='false'>private static final </fold><fold text='' expand='false'>Marker</fold> MY_MARKER = MarkerFactory.getMarker("MY_MARKER");
 
     public Data logPrintfStyle(Data data) <fold text='{...}' expand='true'>{
         <fold text='val' expand='false'>String</fold> name = "John";
