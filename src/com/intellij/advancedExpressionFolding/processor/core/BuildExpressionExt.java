@@ -4,6 +4,7 @@ import com.intellij.advancedExpressionFolding.expression.Expression;
 import com.intellij.advancedExpressionFolding.expression.SyntheticExpressionImpl;
 import com.intellij.advancedExpressionFolding.processor.util.Helper;
 import com.intellij.lang.folding.FoldingDescriptor;
+import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.project.IndexNotReadyException;
 import com.intellij.psi.PsiElement;
@@ -20,6 +21,8 @@ import static com.intellij.advancedExpressionFolding.processor.cache.CacheExt.ge
 import static com.intellij.advancedExpressionFolding.processor.core.BuildExpressionKt.tryBuildExpression;
 
 public class BuildExpressionExt {
+
+    private static final Logger LOG = Logger.getInstance(BuildExpressionExt.class);
 
     @Contract("_, _, true -> !null")
     public static Expression buildExpression(@NotNull PsiElement element, @NotNull Document document, boolean synthetic) {
@@ -59,9 +62,14 @@ public class BuildExpressionExt {
         boolean unique = uniqueSet.add(expression);
         if (expression != null && unique && expression.supportsFoldRegions(document, null)) {
             //TODO: add to allDescriptors list instead of creating temporary arrays
-            FoldingDescriptor[] descriptors = expression.buildFoldRegions(expression.getElement(), document, null);
-            if (descriptors.length > 0) {
-                allDescriptors.addAll(Arrays.asList(descriptors));
+            try {
+                FoldingDescriptor[] descriptors = expression.buildFoldRegions(expression.getElement(), document, null);
+                if (descriptors.length > 0) {
+                    allDescriptors.addAll(Arrays.asList(descriptors));
+                }
+            } catch (AssertionError error) {
+                LOG.warn("Failed to build fold regions for " + expression.getClass().getSimpleName()
+                        + " at " + expression.getTextRange() + ": " + error.getMessage(), error);
             }
         }
         if (expression == null || (unique && expression.isNested())) {
