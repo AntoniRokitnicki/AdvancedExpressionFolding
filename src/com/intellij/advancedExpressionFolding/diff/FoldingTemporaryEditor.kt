@@ -9,7 +9,7 @@ import com.intellij.openapi.util.TextRange
 
 object FoldingTemporaryEditor {
 
-    fun foldInEditor(text: String, list: List<FoldingDescriptorEx>) : FoldedCode {
+    fun foldInEditor(text: String, list: List<FoldingDescriptorEx>): FoldedCode {
         val editorFactory = EditorFactory.getInstance()
         val document = editorFactory.createDocument(removeFoldingMarkers(text))
 
@@ -31,7 +31,7 @@ object FoldingTemporaryEditor {
     private fun getVisibleCode(editor: EditorEx): FoldedCode {
         val document = editor.document
         var offset = 0
-        return buildString(document.textLength) {
+        val visibleCode = buildString(document.textLength) {
             for (region in editor.foldingModel.allFoldRegions) {
                 if (region.isValid && region.isExpanded) {
                     val foldStart = region.startOffset
@@ -46,6 +46,7 @@ object FoldingTemporaryEditor {
             }
             append(document.getText(TextRange(offset, document.textLength)))
         }
+        return FoldedCode(visibleCode)
     }
 
     private const val FOLD = "fold"
@@ -56,4 +57,5 @@ object FoldingTemporaryEditor {
 
 }
 
-typealias FoldedCode = String
+@JvmInline
+value class FoldedCode(val value: String)
