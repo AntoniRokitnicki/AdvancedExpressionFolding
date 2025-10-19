@@ -11,6 +11,7 @@ import com.intellij.advancedExpressionFolding.processor.controlflow.LoopExt
 import com.intellij.advancedExpressionFolding.processor.controlflow.PsiTryStatementExt
 import com.intellij.advancedExpressionFolding.processor.declaration.*
 import com.intellij.advancedExpressionFolding.processor.expression.*
+import com.intellij.advancedExpressionFolding.processor.language.kotlin.FieldShiftKotlinExt
 import com.intellij.advancedExpressionFolding.processor.methodcall.MethodCallExpressionExt
 import com.intellij.advancedExpressionFolding.processor.reference.NewExpressionExt
 import com.intellij.advancedExpressionFolding.processor.reference.ReferenceExpressionExt
@@ -19,6 +20,8 @@ import com.intellij.advancedExpressionFolding.processor.token.PsiKeywordExt
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.*
+import org.jetbrains.kotlin.psi.KtBinaryExpression
+import org.jetbrains.kotlin.psi.KtCallExpression
 
 abstract class BuildExpression<T : PsiElement>(
     private val elementType: Class<T>
@@ -116,6 +119,11 @@ class MethodCallExpressionBuilder : BuildExpression<PsiMethodCallExpression>(Psi
         MethodCallExpressionExt.getMethodCallExpression(element, document)
 }
 
+class KtCallExpressionBuilder : BuildExpression<KtCallExpression>(KtCallExpression::class.java) {
+    override fun buildExpression(element: KtCallExpression, document: Document, synthetic: Boolean) =
+        FieldShiftKotlinExt.createExpression(element, document)
+}
+
 class ReferenceExpressionBuilder : BuildExpression<PsiReferenceExpression>(PsiReferenceExpression::class.java) {
     override fun buildExpression(element: PsiReferenceExpression, document: Document, synthetic: Boolean) =
         ReferenceExpressionExt.getReferenceExpression(element)
@@ -134,6 +142,11 @@ class LiteralExpressionBuilder : BuildExpression<PsiLiteralExpression>(PsiLitera
 class AssignmentExpressionBuilder : BuildExpression<PsiAssignmentExpression>(PsiAssignmentExpression::class.java) {
     override fun buildExpression(element: PsiAssignmentExpression, document: Document, synthetic: Boolean) =
         AssignmentExpressionExt.getAssignmentExpression(element, document)
+}
+
+class KtAssignmentExpressionBuilder : BuildExpression<KtBinaryExpression>(KtBinaryExpression::class.java) {
+    override fun buildExpression(element: KtBinaryExpression, document: Document, synthetic: Boolean) =
+        FieldShiftKotlinExt.createExpression(element, document)
 }
 
 class PolyadicExpressionBuilder : BuildExpression<PsiPolyadicExpression>(PsiPolyadicExpression::class.java) {
