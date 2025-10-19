@@ -54,7 +54,7 @@ class MainAnnotationCompletionContributorTest : BaseTest() {
                 expected = """
                     public class Test {
                         public static void main(String[] args) {
-                            String s = null;
+                            String s = "";
                             new Test().instanceMethod(s);
                         }
                         public void instanceMethod(String s) {
@@ -101,8 +101,8 @@ class MainAnnotationCompletionContributorTest : BaseTest() {
                     public class Test {
                         public static void main(String[] args) {
                             int param = 0;
-                    
-                            String s = null;
+
+                            String s = "";
                             new Test(param).testMethod(s);
                         }
                         public Test(int param) {
@@ -126,7 +126,7 @@ class MainAnnotationCompletionContributorTest : BaseTest() {
                 expected = """
                     public class Test {
                         public static void main(String[] args) {
-                            String[] args = new String[]{};
+                            String[] args = new String[]{""};
                             new Test().stringVarargs(args);
                         }
                         public void stringVarargs(String... args) {
@@ -134,7 +134,48 @@ class MainAnnotationCompletionContributorTest : BaseTest() {
                     }
                 """.trimIndent()
             )),
-            
+
+            Arguments.of(TestCase(
+                name = "Reference Defaults",
+                input = """
+                    import java.math.BigDecimal;
+                    import java.math.BigInteger;
+                    import java.time.LocalDate;
+                    import java.time.LocalDateTime;
+                    import java.time.ZonedDateTime;
+
+                    public class Test {
+                        @<caret>
+                        public void referenceParams(String s, StringBuilder sb, StringBuffer sbf, BigDecimal bd, BigInteger bi, java.util.Date date, LocalDate ld, LocalDateTime ldt, ZonedDateTime zdt) {
+                        }
+                    }
+                """.trimIndent(),
+                expected = """
+                    import java.math.BigDecimal;
+                    import java.math.BigInteger;
+                    import java.time.LocalDate;
+                    import java.time.LocalDateTime;
+                    import java.time.ZonedDateTime;
+
+                    public class Test {
+                        public static void main(String[] args) {
+                            String s = "";
+                            StringBuilder sb = new java.lang.StringBuilder();
+                            StringBuffer sbf = new java.lang.StringBuffer();
+                            BigDecimal bd = java.math.BigDecimal.ZERO;
+                            BigInteger bi = java.math.BigInteger.ZERO;
+                            Date date = new java.util.Date();
+                            LocalDate ld = java.time.LocalDate.now();
+                            LocalDateTime ldt = java.time.LocalDateTime.now();
+                            ZonedDateTime zdt = java.time.ZonedDateTime.now();
+                            new Test().referenceParams(s, sb, sbf, bd, bi, date, ld, ldt, zdt);
+                        }
+                        public void referenceParams(String s, StringBuilder sb, StringBuffer sbf, BigDecimal bd, BigInteger bi, java.util.Date date, LocalDate ld, LocalDateTime ldt, ZonedDateTime zdt) {
+                        }
+                    }
+                """.trimIndent()
+            )),
+
             Arguments.of(TestCase(
                 name = "Existing Main Method",
                 input = """

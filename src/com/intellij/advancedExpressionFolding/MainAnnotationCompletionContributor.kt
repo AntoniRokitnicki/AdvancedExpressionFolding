@@ -80,6 +80,11 @@ class MainAnnotationCompletionContributor(private val state: IState = getInstanc
             "byte", "short", "int", "long" -> "0"
             "float" -> "0.0f"
             "double" -> "0.0"
+            "java.lang.String" -> "\"\""
+            "java.lang.StringBuilder" -> "new java.lang.StringBuilder()"
+            "java.lang.StringBuffer" -> "new java.lang.StringBuffer()"
+            "java.math.BigDecimal" -> "java.math.BigDecimal.ZERO"
+            "java.math.BigInteger" -> "java.math.BigInteger.ZERO"
             "java.util.Date" -> "new java.util.Date()"
             "java.time.LocalDate" -> "java.time.LocalDate.now()"
             "java.time.LocalDateTime" -> "java.time.LocalDateTime.now()"
@@ -88,6 +93,21 @@ class MainAnnotationCompletionContributor(private val state: IState = getInstanc
         }
 
         return if (isEllipsis) "new ${effectiveType.presentableText}[]{}" else base
+    }
+
+    private fun initializerValue(type: PsiType): String {
+        return if (type is PsiEllipsisType) {
+            val componentType = type.componentType
+            val elementDefault = defaultValue(componentType)
+            val arrayContents = if (elementDefault == "null") "" else elementDefault
+            if (arrayContents.isEmpty()) {
+                "new ${componentType.presentableText}[]{}"
+            } else {
+                "new ${componentType.presentableText}[]{${elementDefault}}"
+            }
+        } else {
+            defaultValue(type)
+        }
     }
 
     private fun generateMainCode(method: PsiMethod, ownerClass: PsiClass): String {
@@ -105,13 +125,13 @@ class MainAnnotationCompletionContributor(private val state: IState = getInstanc
             constructorParams.forEach {
                 val type = it.type
                 val typeText = if (type is PsiEllipsisType) type.componentType.presentableText + "[]" else type.presentableText
-                add("        $typeText ${it.name} = ${defaultValue(type)};")
+                add("        $typeText ${it.name} = ${initializerValue(type)};")
             }
             if (constructorParams.isNotEmpty()) add("")
             methodParams.forEach {
                 val type = it.type
                 val typeText = if (type is PsiEllipsisType) type.componentType.presentableText + "[]" else type.presentableText
-                add("        $typeText ${it.name} = ${defaultValue(type)};")
+                add("        $typeText ${it.name} = ${initializerValue(type)};")
             }
         }.joinToString("\n")
 
