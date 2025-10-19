@@ -8,6 +8,9 @@ import com.intellij.icons.AllIcons
 import com.intellij.ide.BrowserUtil
 import com.intellij.ide.HelpTooltip
 import com.intellij.ide.impl.ProjectUtil
+import com.intellij.ide.ui.LafManager
+import com.intellij.ide.ui.LafManagerListener
+import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.command.WriteCommandAction
 import com.intellij.openapi.fileEditor.FileEditorManager
 import com.intellij.openapi.project.Project
@@ -20,8 +23,11 @@ import com.intellij.ui.components.ActionLink
 import com.intellij.ui.components.JBCheckBox
 import com.intellij.ui.dsl.builder.Panel
 import com.intellij.ui.dsl.builder.panel
+import com.intellij.util.ui.JBUI
+import com.intellij.util.messages.MessageBusConnection
 import java.awt.Color.decode
 import java.awt.FlowLayout
+import java.awt.Dimension
 import java.net.URI
 import javax.swing.JButton
 import javax.swing.JPanel
@@ -33,6 +39,7 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
     private val allExampleFiles = mutableSetOf<ExampleFile>()
     private val pendingChanges = mutableMapOf<KMutableProperty0<Boolean>, Boolean>()
     private val propertyToCheckbox = mutableMapOf<KMutableProperty0<Boolean>, JBCheckBox>()
+    private var themeChangeConnection: MessageBusConnection? = null
 
     override fun getId() = "advanced.expression.folding"
 
@@ -93,22 +100,69 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
         return actionLink
     }
 
-    override fun createComponent() = panel {
-        row {
-            val button =
-                JButton("Apply folded color: ${if (!JBColor.isBright()) "soft blue" else "dark navy"}")
-            button.foreground = if (!JBColor.isBright()) decode("#7ca0bb") else decode("#000091")
-            button.addActionListener {
-                UpdateFoldedTextColorsAction.changeFoldingColors()
+    override fun createComponent(): DialogPanel {
+        lateinit var refreshFoldedColorPresentation: () -> Unit
+
+        return panel {
+            row {
+                val button = JButton()
+                val colorPreview = JPanel()
+                colorPreview.isOpaque = true
+                val previewSize = Dimension(JBUI.scale(16), JBUI.scale(16))
+                colorPreview.preferredSize = previewSize
+                colorPreview.minimumSize = previewSize
+                colorPreview.border = JBUI.Borders.customLine(
+                    JBColor.namedColor("Component.borderColor", decode("#747474")),
+                    JBUI.scale(1)
+                )
+
+                val container = JPanel(FlowLayout(FlowLayout.LEFT, JBUI.scale(8), 0))
+                container.isOpaque = false
+                container.add(button)
+                container.add(colorPreview)
+
+                HelpTooltip()
+                    .setTitle("Folded text color")
+                    .setDescription("Updates the global folded text color to match the recommended shade for the current UI theme.")
+                    .installOn(button)
+
+                refreshFoldedColorPresentation = {
+                    val presentation = UpdateFoldedTextColorsAction.foldedTextColorPresentationForCurrentTheme()
+                    button.text = "Apply folded color: ${presentation.label}"
+                    button.foreground = presentation.color
+                    colorPreview.background = presentation.color
+                }
+                refreshFoldedColorPresentation.invoke()
+
+                button.addActionListener {
+                    UpdateFoldedTextColorsAction.changeFoldingColors()
+                    refreshFoldedColorPresentation.invoke()
+                }
+                cell(container)
             }
-            cell(button)
+            row {
+                cell(createDownloadExamplesLink())
+            }
+            initialize(state)
+        }.also {
+            panel = it
+            themeChangeConnection?.dispose()
+            themeChangeConnection = ApplicationManager.getApplication().messageBus.connect().apply {
+                subscribe(
+                    LafManagerListener.TOPIC,
+                    object : LafManagerListener {
+                        override fun lookAndFeelChanged(source: LafManager) {
+                            refreshFoldedColorPresentation.invoke()
+                        }
+                    }
+                )
+            }
         }
-        row {
-            cell(createDownloadExamplesLink())
-        }
-        initialize(state)
-    }.also {
-        panel = it
+    }
+
+    override fun disposeUIResources() {
+        themeChangeConnection?.dispose()
+        themeChangeConnection = null
     }
 
     override fun isModified(): Boolean {
