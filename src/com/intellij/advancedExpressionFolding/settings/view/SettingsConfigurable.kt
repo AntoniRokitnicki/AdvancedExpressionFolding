@@ -56,7 +56,7 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
         val panel = JPanel(FlowLayout(FlowLayout.LEFT))
 
         examples?.forEach { (file, desc) ->
-            val suffix = desc?.let { " $it" } ?: ""
+            val suffix = desc?.let { " ${it.text}" } ?: ""
             val description = "example$suffix"
 
             val actionLink = ActionLink(description) {

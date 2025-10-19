@@ -17,6 +17,8 @@ import java.util.stream.Stream
 
 class MainAnnotationCompletionContributorTest : BaseTest() {
 
+    private val annotationName = AnnotationName("Main")
+
     companion object {
         private var originalPseudoAnnotationsValue: Boolean = false
         
@@ -365,7 +367,7 @@ class MainAnnotationCompletionContributorTest : BaseTest() {
 
         val completions = fixture.complete(CompletionType.BASIC)
         assertNotNull(completions)
-        assertTrue(completions.any { it.lookupString == "Main" })
+        assertTrue(completions.any { it.lookupString == annotationName.value })
     }
 
     @ParameterizedTest
@@ -376,7 +378,7 @@ class MainAnnotationCompletionContributorTest : BaseTest() {
         val completions = fixture.complete(CompletionType.BASIC)
         assertNotNull(completions)
         
-        val mainCompletion = completions.find { it.lookupString == "Main" }
+        val mainCompletion = completions.find { it.lookupString == annotationName.value }
         assertNotNull(mainCompletion)
 
         ApplicationManager.getApplication().invokeAndWait {
