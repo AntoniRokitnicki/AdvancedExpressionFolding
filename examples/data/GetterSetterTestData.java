@@ -1,5 +1,7 @@
 package data;
 
+// Quick Doc screenshot: docs/images/getter-quick-doc.png
+
 public class GetterSetterTestData {
     public static void main(String[] args) {
         GetterSetterTestData d = new GetterSetterTestData();
