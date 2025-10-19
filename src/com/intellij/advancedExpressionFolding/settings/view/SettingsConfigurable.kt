@@ -49,7 +49,10 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
 
     override fun getHelpTopic() = null
 
-    internal fun createExamplePanel(examples: Map<ExampleFile, Description?>? = null, docLink: UrlSuffix? = null): JPanel {
+    internal fun createExamplePanel(
+        examples: Map<ExampleFile, Description?>? = null,
+        docLink: DocumentationUrl? = null
+    ): JPanel {
         val panel = JPanel(FlowLayout(FlowLayout.LEFT))
 
         examples?.forEach { (file, desc) ->
@@ -75,7 +78,7 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
 
         docLink?.let {
             val actionLink = ActionLink("doc") {
-                BrowserUtil.browse(URI(docLink))
+                BrowserUtil.browse(URI(it.toString()))
             }
             actionLink.setExternalLinkIcon()
             panel.add(actionLink)
