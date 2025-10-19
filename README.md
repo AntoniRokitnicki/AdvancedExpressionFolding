@@ -156,6 +156,8 @@ This project uses the Gradle wrapper. The most common commands are:
 
 Run these commands from the repository root. See the [Gradle build documentation](https://docs.gradle.org/current/userguide/command_line_interface.html) for more options.
 
+If you need to scaffold a new folding toggle, follow the [option generator guide](docs/option-generator.md) for the required JVM properties and review checklist.
+
 ## License
 
 This project is licensed under the terms of the [Apache License 2.0](LICENSE).
