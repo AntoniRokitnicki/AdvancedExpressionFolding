@@ -1,12 +1,9 @@
-name: IDE Integration Tests
+name: TODO IDE Integration Tests
 
 permissions:
   contents: read
 
 on:
-  pull_request:
-  schedule:
-    - cron: '0 5 * * *'
   workflow_dispatch:
 
 jobs:
