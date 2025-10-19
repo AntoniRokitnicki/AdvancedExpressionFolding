@@ -14,7 +14,7 @@ class FieldConstExpression(
     private val typeElement: PsiTypeElement?,
     private val modifiers: PsiElement,
     private val typeSuffix: String,
-    ) : Expression(modifiers, modifiers.textRange) {
+) : Expression(modifiers, modifiers.textRange) {
     override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean {
         return true
     }
@@ -26,59 +26,37 @@ class FieldConstExpression(
     ): Array<FoldingDescriptor> {
         val group = FieldConstExpression::class.group()
 
-
-
         val keywords = modifiers.children.filterIsInstance<PsiKeyword>()
-        
-        val sortedKeywords = keywords.map {
-            if (it.isPrivate() || it.isProtected()) {
-                null
-            } else {
-                it
-            }
-        }
-        val default = !sortedKeywords.any {
-            it == null || it.isPublic()
+        if (keywords.isEmpty()) {
+            return EMPTY_ARRAY
         }
 
-        val baseTextRange = if (sortedKeywords.firstOrNull() == null && keywords.isNotEmpty()) {
-            TextRange(keywords.first().end() + 1, modifiers.end())
-        } else if (keywords.isNotEmpty()){
-            if (sortedKeywords.any { it == null }) {
-                //TODO: add folding for private, protected not being first
-                //TODO: fold when in the middle and when its last
-                null
-            }  else { // public
-                TextRange(keywords.first().start() , modifiers.end())
-            }
+        val firstKeyword = keywords.minByOrNull { it.start() } ?: return EMPTY_ARRAY
+        val baseTextRange = TextRange(firstKeyword.start(), modifiers.end())
+
+        val visibilityPrefix = when {
+            keywords.any { it.isPrivate() } -> "private"
+            keywords.any { it.isProtected() } -> "protected"
+            keywords.any { it.isPublic() } -> null
+            else -> "default"
+        }
+
+        val constText = listOfNotNull(visibilityPrefix, typeSuffix).joinToString(" ")
+
+        val textRange = if (typeElement == null) {
+            baseTextRange
         } else {
-            null
+            baseTextRange + (0..1)
         }
 
-        if (baseTextRange != null) {
-            val textRange = if (typeElement == null) {
-                baseTextRange
-            } else {
-                baseTextRange + (0..1)
-            }
-
-            val constText = typeSuffix.takeIf {
-                default
-            }?.let {
-                "default $it"
-            } ?: typeSuffix
-
-            val typeSuffix =
-                fold(modifiers, textRange, constText, group)
-            val elements = mutableListOf(typeSuffix)
-            if (typeElement != null) {
-                elements += fold(typeElement, typeElement.textRange, "", group)
-            }
-
-            return elements.toTypedArray()
+        val modifiersFold =
+            fold(modifiers, textRange, constText, group)
+        val elements = mutableListOf(modifiersFold)
+        if (typeElement != null) {
+            elements += fold(typeElement, typeElement.textRange, "", group)
         }
 
-        return EMPTY_ARRAY
+        return elements.toTypedArray()
     }
 
     private fun fold(
