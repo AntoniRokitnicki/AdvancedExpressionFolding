@@ -77,6 +77,7 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
         override var experimental: Boolean = false,
 
         override var globalOn: Boolean = true,
+        var previewSnippet: String = FoldingPreviewDefaults.DEFAULT_SNIPPET,
 
         ) : IState, IConfig
 

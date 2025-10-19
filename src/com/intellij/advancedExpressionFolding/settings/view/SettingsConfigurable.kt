@@ -8,11 +8,14 @@ import com.intellij.icons.AllIcons
 import com.intellij.ide.BrowserUtil
 import com.intellij.ide.HelpTooltip
 import com.intellij.ide.impl.ProjectUtil
+import com.intellij.openapi.Disposable
 import com.intellij.openapi.command.WriteCommandAction
 import com.intellij.openapi.fileEditor.FileEditorManager
 import com.intellij.openapi.project.Project
+import com.intellij.openapi.project.ProjectManager
 import com.intellij.openapi.roots.ProjectRootManager
 import com.intellij.openapi.ui.DialogPanel
+import com.intellij.openapi.util.Disposer
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.openapi.vfs.encoding.EncodingProjectManager
 import com.intellij.ui.JBColor
@@ -26,13 +29,22 @@ import java.net.URI
 import javax.swing.JButton
 import javax.swing.JPanel
 import kotlin.reflect.KMutableProperty0
+import kotlin.reflect.KMutableProperty1
+import kotlin.reflect.full.memberProperties
+import org.jetbrains.annotations.TestOnly
 
-class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
+open class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
     private val state = AdvancedExpressionFoldingSettings.getInstance().state
     private lateinit var panel: DialogPanel
     private val allExampleFiles = mutableSetOf<ExampleFile>()
     private val pendingChanges = mutableMapOf<KMutableProperty0<Boolean>, Boolean>()
     private val propertyToCheckbox = mutableMapOf<KMutableProperty0<Boolean>, JBCheckBox>()
+    private lateinit var previewPanel: FoldingPreviewPanel
+    private var panelDisposable: Disposable? = null
+    private var pendingSnippet: String? = null
+    private val stateBooleanProperties = AdvancedExpressionFoldingSettings.State::class.memberProperties
+        .filterIsInstance<KMutableProperty1<AdvancedExpressionFoldingSettings.State, Boolean>>()
+        .associateBy { it.name }
 
     override fun getId() = "advanced.expression.folding"
 
@@ -93,26 +105,42 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
         return actionLink
     }
 
-    override fun createComponent() = panel {
-        row {
-            val button =
-                JButton("Apply folded color: ${if (!JBColor.isBright()) "soft blue" else "dark navy"}")
-            button.foreground = if (!JBColor.isBright()) decode("#7ca0bb") else decode("#000091")
-            button.addActionListener {
-                UpdateFoldedTextColorsAction.changeFoldingColors()
+    override fun createComponent(): DialogPanel {
+        panelDisposable?.let { Disposer.dispose(it) }
+        previewPanel = FoldingPreviewPanel(
+            state.copy().apply { memoryImprovement = false },
+            state.previewSnippet,
+            ::onSnippetChanged,
+            project = currentProjectOrDefault()
+        )
+        panelDisposable = Disposer.newDisposable("AdvancedExpressionFolding.SettingsPreview")
+        Disposer.register(panelDisposable!!, previewPanel)
+
+        return panel {
+            row {
+                val button =
+                    JButton("Apply folded color: ${if (!JBColor.isBright()) "soft blue" else "dark navy"}")
+                button.foreground = if (!JBColor.isBright()) decode("#7ca0bb") else decode("#000091")
+                button.addActionListener {
+                    UpdateFoldedTextColorsAction.changeFoldingColors()
+                }
+                cell(button)
             }
-            cell(button)
+            row {
+                cell(createDownloadExamplesLink())
+            }
+            row {
+                cell(previewPanel.component)
+            }
+            initialize(state)
+        }.also {
+            panel = it
+            previewPanel.updatePreview(previewState())
         }
-        row {
-            cell(createDownloadExamplesLink())
-        }
-        initialize(state)
-    }.also {
-        panel = it
     }
 
     override fun isModified(): Boolean {
-        return panel.isModified() || pendingChanges.isNotEmpty()
+        return panel.isModified() || pendingChanges.isNotEmpty() || pendingSnippet != null
     }
 
     override fun apply() {
@@ -120,8 +148,14 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
             property.set(value)
         }
         pendingChanges.clear()
-        
+
+        pendingSnippet?.let {
+            state.previewSnippet = it
+        }
+        pendingSnippet = null
+
         panel.apply()
+        previewPanel.updatePreview(previewState())
     }
 
     override fun reset() {
@@ -129,12 +163,45 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
         propertyToCheckbox.forEach { (property, checkbox) ->
             checkbox.isSelected = property.get()
         }
+        pendingSnippet = null
+        previewPanel.setSnippet(state.previewSnippet, trackModification = false)
+        previewPanel.updatePreview(state.copy().apply { memoryImprovement = false })
     }
+
+    private fun onSnippetChanged(snippet: String) {
+        pendingSnippet = snippet.takeIf { it != state.previewSnippet }
+    }
+
+    private fun previewState(): AdvancedExpressionFoldingSettings.State {
+        val previewState = state.copy()
+        pendingChanges.forEach { (property, value) ->
+            stateBooleanProperties[property.name]?.setter?.call(previewState, value)
+        }
+        previewState.memoryImprovement = false
+        return previewState
+    }
+
+    override fun disposeUIResources() {
+        super.disposeUIResources()
+        panelDisposable?.let { Disposer.dispose(it) }
+        panelDisposable = null
+    }
+
+    @TestOnly
+    internal fun previewTextForTests(): String = previewPanel.previewText
+
+    @TestOnly
+    internal fun previewDescriptorCountForTests(): Int = previewPanel.descriptorCountForTests()
+
+    @TestOnly
+    internal fun previewPlaceholdersForTests(): List<String?> = previewPanel.placeholdersForTests()
 
     private fun firstSourceRoot(project: Project) =
         ProjectRootManager.getInstance(project).contentSourceRoots.firstOrNull() ?: TODO("No sourceRoot found")
 
     private fun selectedProject(): Project = ProjectUtil.getActiveProject() ?: TODO("No project is opened")
+
+    protected open fun currentProjectOrDefault(): Project = ProjectUtil.getActiveProject() ?: ProjectManager.getInstance().defaultProject
 
     private fun createFile(
         directory: VirtualFile,
@@ -180,10 +247,16 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
         val checkbox = JBCheckBox(title)
         checkbox.isSelected = property.get()
         checkbox.addActionListener {
-            pendingChanges[property] = checkbox.isSelected
+            val value = checkbox.isSelected
+            if (value == property.get()) {
+                pendingChanges.remove(property)
+            } else {
+                pendingChanges[property] = value
+            }
+            previewPanel.updatePreview(previewState())
         }
         propertyToCheckbox[property] = checkbox
-        
+
         row {
             cell(checkbox)
         }
