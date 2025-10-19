@@ -1,5 +1,6 @@
 package com.intellij.advancedExpressionFolding.processor.lombok
 
+import com.intellij.advancedExpressionFolding.expression.semantic.lombok.CustomClassAnnotation
 import com.intellij.advancedExpressionFolding.processor.*
 import com.intellij.advancedExpressionFolding.processor.core.BaseExtension
 import com.intellij.advancedExpressionFolding.processor.lombok.AnnotationExt.ClassLevelAnnotation
@@ -97,13 +98,13 @@ object LombokFieldExt : BaseExtension(), GenericCallback<PsiField, List<FieldLev
         }
     }
 
-    fun FieldLevelAnnotation.createFieldLevelAnnotation(): String {
+    fun FieldLevelAnnotation.createFieldLevelAnnotation(): CustomClassAnnotation {
         val arguments = arguments.takeIf {
             it.isNotEmpty()
         }?.joinToString(separator = ",")?.let {
             "($it)"
         } ?: ""
-        return classAnnotation.annotation + arguments
+        return CustomClassAnnotation(classAnnotation.annotation + arguments)
     }
 
     fun foldProperties(
