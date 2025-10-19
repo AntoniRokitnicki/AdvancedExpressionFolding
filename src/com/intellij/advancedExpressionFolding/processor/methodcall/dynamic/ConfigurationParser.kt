@@ -1,21 +1,35 @@
 package com.intellij.advancedExpressionFolding.processor.methodcall.dynamic
 
 import com.intellij.advancedExpressionFolding.processor.methodcall.MethodName
+import com.intellij.openapi.application.PathManager
+import com.intellij.openapi.diagnostic.Logger
 import java.nio.file.Files
+import java.nio.file.LinkOption
 import java.nio.file.Path
-import java.nio.file.Paths
 import kotlin.io.path.readText
 
 object ConfigurationParser : IDynamicDataProvider {
 
+    private val logger = Logger.getInstance(ConfigurationParser::class.java)
+
     private val filePath: Path
-        get() = Paths.get(System.getProperty("user.home"), "dynamic-ajf2.toml")
+        get() {
+            val configDir = PathManager.getConfigDir()
+            val pluginConfigDir = configDir.resolve("advanced-expression-folding")
+            Files.createDirectories(pluginConfigDir)
+            return pluginConfigDir.resolve("dynamic-ajf2.toml")
+        }
 
     override fun parse(): List<DynamicMethodCall> {
-        if (!Files.exists(filePath)) {
+        val path = filePath
+        if (!Files.exists(path)) {
             return emptyList()
         }
-        val text = filePath.readText()
+        if (!Files.isRegularFile(path, LinkOption.NOFOLLOW_LINKS)) {
+            logger.warn("Dynamic configuration path is not a regular file: $path")
+            return emptyList()
+        }
+        val text = path.readText()
         return parseToml(text)
     }
 

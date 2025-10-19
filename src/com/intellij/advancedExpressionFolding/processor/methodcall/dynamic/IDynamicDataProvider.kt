@@ -4,8 +4,13 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.dataformat.toml.TomlFactory
 import com.intellij.advancedExpressionFolding.processor.asInstance
 import com.intellij.openapi.diagnostic.Logger
+import java.nio.channels.Channels
 import java.nio.file.Files
+import java.nio.file.LinkOption
 import java.nio.file.Path
+import java.nio.file.StandardOpenOption.CREATE
+import java.nio.file.StandardOpenOption.TRUNCATE_EXISTING
+import java.nio.file.StandardOpenOption.WRITE
 
 interface IDynamicDataProvider {
     private val logger: Logger
@@ -53,26 +58,41 @@ interface IDynamicDataProvider {
      * Returns an empty map if the file doesn't exist.
      */
     fun ObjectMapper.readTomlFile(path: Path): MutableMap<String, Any> {
-        return when {
-            !Files.exists(path) -> mutableMapOf()
-            else -> runCatching {
-                @Suppress("UNCHECKED_CAST")
-                this.readValue(path.toFile(), MutableMap::class.java) as MutableMap<String, Any>
-            }.getOrDefault(mutableMapOf())
+        if (!Files.exists(path)) {
+            return mutableMapOf()
         }
+        if (!Files.isRegularFile(path, LinkOption.NOFOLLOW_LINKS)) {
+            logger.warn("Skipping dynamic configuration because path is not a regular file: $path")
+            return mutableMapOf()
+        }
+        return runCatching {
+            @Suppress("UNCHECKED_CAST")
+            this.readValue(path.toFile(), MutableMap::class.java) as MutableMap<String, Any>
+        }.getOrDefault(mutableMapOf())
     }
 
     /**
      * Extension method to write a Map to a TOML file or delete file if empty.
      */
     fun ObjectMapper.writeTomlFile(path: Path, data: Map<String, Any>) {
-        val file = path.toFile()
         if (data.isEmpty()) {
             if (Files.exists(path)) {
-                Files.delete(path)
+                if (Files.isRegularFile(path, LinkOption.NOFOLLOW_LINKS)) {
+                    Files.delete(path)
+                } else {
+                    logger.warn("Refusing to delete dynamic configuration because path is not a regular file: $path")
+                }
             }
         } else {
-            this.writeValue(file, data)
+            if (Files.exists(path) && !Files.isRegularFile(path, LinkOption.NOFOLLOW_LINKS)) {
+                logger.warn("Refusing to write dynamic configuration because path is not a regular file: $path")
+                return
+            }
+            Channels.newOutputStream(
+                Files.newByteChannel(path, WRITE, CREATE, TRUNCATE_EXISTING, LinkOption.NOFOLLOW_LINKS)
+            ).use { outputStream ->
+                this.writeValue(outputStream, data)
+            }
         }
     }
 }
