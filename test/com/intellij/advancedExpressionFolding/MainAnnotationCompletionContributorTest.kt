@@ -193,7 +193,7 @@ class MainAnnotationCompletionContributorTest : BaseTest() {
                 input = """
                     import java.time.LocalDate;
                     import java.time.ZonedDateTime;
-                    
+
                     public class Test {
                         @<caret>
                         public void dateParams(java.util.Date date, LocalDate ld, java.time.LocalDateTime ldt, ZonedDateTime zdt) {
@@ -203,7 +203,7 @@ class MainAnnotationCompletionContributorTest : BaseTest() {
                 expected = """
                     import java.time.LocalDate;
                     import java.time.ZonedDateTime;
-                    
+
                     public class Test {
                         public static void main(String[] args) {
                             Date date = new java.util.Date();
@@ -213,6 +213,32 @@ class MainAnnotationCompletionContributorTest : BaseTest() {
                             new Test().dateParams(date, ld, ldt, zdt);
                         }
                         public void dateParams(java.util.Date date, LocalDate ld, java.time.LocalDateTime ldt, ZonedDateTime zdt) {
+                        }
+                    }
+                """.trimIndent()
+            )),
+
+            Arguments.of(TestCase(
+                name = "Class Javadoc With Code Tag",
+                input = """
+                    /**
+                     * Example {@code int x = 0;}
+                     */
+                    public class Test {
+                        @<caret>
+                        public void instanceMethod() {
+                        }
+                    }
+                """.trimIndent(),
+                expected = """
+                    /**
+                     * Example {@code int x = 0;}
+                     */
+                    public class Test {
+                        public static void main(String[] args) {
+                            new Test().instanceMethod();
+                        }
+                        public void instanceMethod() {
                         }
                     }
                 """.trimIndent()
