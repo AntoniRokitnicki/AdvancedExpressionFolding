@@ -1,6 +1,8 @@
 package com.intellij.advancedExpressionFolding
 
 import com.intellij.advancedExpressionFolding.processor.cache.Keys
+import com.intellij.lang.folding.FoldingDescriptor
+import com.intellij.openapi.application.ReadAction
 import com.intellij.openapi.components.Service
 import com.intellij.openapi.components.service
 import com.intellij.openapi.editor.Editor
@@ -8,6 +10,7 @@ import com.intellij.openapi.fileEditor.FileEditorManager
 import com.intellij.openapi.fileEditor.TextEditor
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.project.ProjectManager
+import com.intellij.openapi.project.IndexNotReadyException
 import com.intellij.psi.PsiDocumentManager
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiRecursiveElementVisitor
@@ -59,6 +62,25 @@ class FoldingService {
         val project = editor.project ?: return
         val psiFile = PsiDocumentManager.getInstance(project).getPsiFile(editor.document) ?: return
         psiFile.accept(KeyCleanerPsiElementVisitor())
+    }
+
+    fun descriptorsFor(editor: Editor): List<FoldingDescriptor> {
+        if (editor.isDisposed) {
+            return emptyList()
+        }
+        val project = editor.project ?: return emptyList()
+        return try {
+            ReadAction.compute<List<FoldingDescriptor>, RuntimeException> {
+                val psiDocumentManager = PsiDocumentManager.getInstance(project)
+                psiDocumentManager.commitDocument(editor.document)
+                val psiFile = psiDocumentManager.getPsiFile(editor.document) ?: return@compute emptyList()
+                AdvancedExpressionFoldingBuilder()
+                    .buildFoldRegions(psiFile, editor.document, false)
+                    .toList()
+            }
+        } catch (_: IndexNotReadyException) {
+            emptyList()
+        }
     }
 
     class KeyCleanerPsiElementVisitor : PsiRecursiveElementVisitor() {

@@ -40,6 +40,11 @@
         <completion.contributor
                 language="JAVA"
                 implementationClass="com.intellij.advancedExpressionFolding.MainAnnotationCompletionContributor"/>
+
+        <toolWindow id="Advanced Folding"
+                    anchor="right"
+                    factoryClass="com.intellij.advancedExpressionFolding.view.FoldingDescriptorsToolWindowFactory"
+                    icon="AllIcons.Actions.Preview"/>
     </extensions>
 
     <applicationListeners>
