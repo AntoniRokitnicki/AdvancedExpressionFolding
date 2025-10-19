@@ -21,6 +21,8 @@ import org.junit.jupiter.api.Test
 
 class TracingLoggableAnnotationCompletionContributorTest : BaseTest() {
 
+    private val annotationName = AnnotationName("TracingLoggable")
+
     private lateinit var settings: AdvancedExpressionFoldingSettings
     private var originalPseudoAnnotationsValue: Boolean = false
 
@@ -53,7 +55,7 @@ class TracingLoggableAnnotationCompletionContributorTest : BaseTest() {
         )
 
         val completions = fixture.complete(CompletionType.BASIC) ?: error("Expected completion results")
-        assertTrue(completions.any { it.lookupString == "TracingLoggable" })
+        assertTrue(completions.any { it.lookupString == annotationName.value })
     }
 
     @Test
@@ -159,7 +161,7 @@ class TracingLoggableAnnotationCompletionContributorTest : BaseTest() {
     private fun selectTracingLoggableCompletion() {
         val completions = fixture.complete(CompletionType.BASIC) ?: error("Expected completion results")
 
-        val tracingCompletion = completions.find { it.lookupString == "TracingLoggable" }
+        val tracingCompletion = completions.find { it.lookupString == annotationName.value }
             ?: error("TracingLoggable completion not found")
 
         ApplicationManager.getApplication().invokeAndWait {
