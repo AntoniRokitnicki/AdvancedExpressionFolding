@@ -11,7 +11,12 @@ import com.intellij.psi.PsiKeyword
 import com.intellij.psi.PsiModifierList
 import com.intellij.psi.PsiTypeElement
 
-typealias CustomClassAnnotation = String
+@JvmInline
+value class CustomClassAnnotation(val value: String) {
+    init {
+        require(value.startsWith("@")) { "CustomClassAnnotation must start with '@'" }
+    }
+}
 
 open class ClassAnnotationExpression(
     element: PsiElement,
@@ -53,7 +58,12 @@ open class ClassAnnotationExpression(
         val range = foldOn.textRange
         val newRange = TextRange.create(range.startOffset, range.startOffset + 1)
         val firstChar = newRange.substring(document.text)
-        return fold(foldOn, newRange, "${customClassAnnotations.joinToString(" ")} $firstChar", group)
+        return fold(
+            foldOn,
+            newRange,
+            "${customClassAnnotations.joinToString(" ") { it.value }} $firstChar",
+            group
+        )
     }
 
     private fun findAnnotationFoldOnElement(clazzOrField: PsiElement): PsiElement {
