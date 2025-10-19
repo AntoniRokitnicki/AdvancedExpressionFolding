@@ -18,8 +18,8 @@ public class CompactControlFlowTestData {
         do {
         break;
         } while true;
-        switch args.length {
-        case 0:
+        when args.length {
+        case 0 ->
             System.out.println("...");
         }
             try {

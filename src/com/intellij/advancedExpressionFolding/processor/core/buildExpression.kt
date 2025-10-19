@@ -104,6 +104,11 @@ class SwitchStatementBuilder : BuildExpression<PsiSwitchStatement>(PsiSwitchStat
         IfExt.getSwitchStatement(element)
 }
 
+class SwitchExpressionBuilder : BuildExpression<PsiSwitchExpression>(PsiSwitchExpression::class.java) {
+    override fun buildExpression(element: PsiSwitchExpression, document: Document, synthetic: Boolean): Expression? =
+        IfExt.getSwitchStatement(element)
+}
+
 class ArrayAccessExpressionBuilder : BuildExpression<PsiArrayAccessExpression>(PsiArrayAccessExpression::class.java) {
     override fun checkConditions(element: PsiArrayAccessExpression) = getExpressionsCollapse
 

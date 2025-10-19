@@ -197,6 +197,22 @@ open class FoldingTest : BaseTest() {
     }
 
     /**
+     * [data.SwitchExpressionTestData]
+     */
+    @Test
+    open fun switchExpressionTestData() {
+        doFoldingTest(state::compactControlFlowSyntaxCollapse)
+    }
+
+    /**
+     * [data.SwitchStatementTestData]
+     */
+    @Test
+    open fun switchStatementTestData() {
+        doFoldingTest(state::compactControlFlowSyntaxCollapse)
+    }
+
+    /**
      * [data.SemicolonTestData]
      */
     @Test

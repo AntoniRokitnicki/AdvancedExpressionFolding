@@ -40,6 +40,39 @@ public class IfExt {
         return null;
     }
 
+    public static Expression getSwitchStatement(PsiSwitchExpression element) {
+        AdvancedExpressionFoldingSettings settings = AdvancedExpressionFoldingSettings.getInstance();
+        if (element.getExpression() != null
+                && element.getLParenth() != null && element.getRParenth() != null
+                && settings.getState().getCompactControlFlowSyntaxCollapse()
+                && hasArrowStyleRules(element)) {
+            return new CompactControlFlowExpression(element,
+                    TextRange.create(element.getLParenth().getTextRange().getStartOffset(),
+                            element.getRParenth().getTextRange().getEndOffset()));
+        }
+        return null;
+    }
+
+    private static boolean hasArrowStyleRules(PsiSwitchExpression element) {
+        PsiCodeBlock body = element.getBody();
+        if (body == null) {
+            return false;
+        }
+        PsiStatement[] statements = body.getStatements();
+        if (statements.length == 0) {
+            return false;
+        }
+        for (PsiStatement statement : statements) {
+            if (!(statement instanceof PsiSwitchLabeledRuleStatement)) {
+                return false;
+            }
+            if (((PsiSwitchLabeledRuleStatement) statement).getBody() == null) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     @Nullable
     public static Expression getIfExpression(PsiIfStatement element, Document document) {
         AdvancedExpressionFoldingSettings settings = AdvancedExpressionFoldingSettings.getInstance();

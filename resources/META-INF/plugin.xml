@@ -213,6 +213,7 @@
         <!-- Control Flow Statements -->
         <expressionBuilder implementation="com.intellij.advancedExpressionFolding.processor.core.IfStatementBuilder"/>
         <expressionBuilder implementation="com.intellij.advancedExpressionFolding.processor.core.SwitchStatementBuilder"/>
+        <expressionBuilder implementation="com.intellij.advancedExpressionFolding.processor.core.SwitchExpressionBuilder"/>
         <expressionBuilder implementation="com.intellij.advancedExpressionFolding.processor.core.TryStatementBuilder"/>
         <expressionBuilder implementation="com.intellij.advancedExpressionFolding.processor.core.CatchSectionBuilder"/>
         <expressionBuilder implementation="com.intellij.advancedExpressionFolding.processor.core.ForStatementBuilder"/>

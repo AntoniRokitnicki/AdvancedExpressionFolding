@@ -18,8 +18,8 @@ public class CompactControlFlowTestData {
         do <fold text='{...}' expand='true'>{
         break;
         }</fold> while <fold text='' expand='false'>(</fold>true<fold text='' expand='false'>)</fold>;
-        switch <fold text='' expand='false'>(</fold>args.length<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
-        case 0:
+        <fold text='when' expand='false'>switch</fold> <fold text='' expand='false'>(</fold>args.length<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
+        <fold text='case 0 ->' expand='false'>case 0:</fold>
             <fold text='' expand='false'>System.out.</fold>println(<fold text='"..."' expand='false'>"..."</fold>);
         }</fold>
             try <fold text='{...}' expand='true'>{
