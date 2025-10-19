@@ -66,9 +66,10 @@ class AdvancedExpressionFoldingBuilder(private val config: IConfig = getInstance
         }
     }
 
-    fun preview(element: PsiElement, document: Document): List<String> {
+    fun preview(element: PsiElement, document: Document): PreviewResult {
         val groupIds = Sets.newIdentityHashSet<FoldingGroup>()
-        return collect(element, document).map { descriptor ->
+        val descriptors = collect(element, document)
+        val description = descriptors.map { descriptor ->
             descriptor.group?.let(groupIds::add)
             buildString {
                 append(descriptor.range.substring(document.text))
@@ -83,6 +84,7 @@ class AdvancedExpressionFoldingBuilder(private val config: IConfig = getInstance
                 append(']')
             }
         }
+        return PreviewResult(descriptors, description)
     }
 
     private fun collect(
@@ -113,6 +115,11 @@ class AdvancedExpressionFoldingBuilder(private val config: IConfig = getInstance
     }
 
     private val debugFolding = false
+
+    data class PreviewResult(
+        val descriptors: Array<FoldingDescriptor>,
+        val description: List<String>
+    )
 }
 
 var store: Storage = EmptyStorage
