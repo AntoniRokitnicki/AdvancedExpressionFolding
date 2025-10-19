@@ -196,6 +196,8 @@
         <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.optional.OptionalOfMethodCall"/>
         <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.optional.OptionalOfNullableMethodCall"/>
         <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.optional.OptionalOrElseMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.optional.OptionalIfPresentMethodCall"/>
+        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.optional.OptionalIfPresentOrElseMethodCall"/>
 
         <!-- Stream Method Calls -->
         <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.stream.StreamCollectMethodCall"/>

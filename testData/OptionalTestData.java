@@ -19,7 +19,7 @@ public class OptionalTestData {
         o = <fold text='' expand='false'>Optional.of(</fold>data<fold text='!!' expand='false'>)</fold>;
 
         o = <fold text='' expand='false'>Optional.ofNullable(</fold>dataNull<fold text='' expand='false'>)</fold><fold text=' ?: ' expand='false'>.orElseGet(</fold>this::orElseGetReturn<fold text='' expand='false'>)</fold>;
-        o = <fold text='' expand='false'>Optional.ofNullable(</fold>dataNull<fold text='' expand='false'>)<fold text=' ?: ' expand='false'></fold>.orElseGet(</fold>() -> data.getData().getData()<fold text='' expand='false'>)</fold>;
+        o = <fold text='' expand='false'>Optional.ofNullable(</fold>dataNull<fold text='' expand='false'>)</fold><fold text=' ?: ' expand='false'>.orElseGet(</fold>() -> data.getData().getData()<fold text='' expand='false'>)</fold>;
 
         o = <fold text='' expand='false'>Optional.of(</fold>data<fold text='!!' expand='false'>)</fold><fold text='.' expand='false'>.map(</fold><fold text='data' expand='false'>Data::getData</fold><fold text='' expand='false'>)</fold><fold text=' ?: ' expand='false'>.orElse(</fold>null<fold text='' expand='false'>)</fold>;
         o = <fold text='' expand='false'>Optional.ofNullable(</fold>dataNull<fold text='' expand='false'>)</fold>.map(OptionalTestData::getOutsideData)<fold text='!!' expand='false'>.get()</fold>;
@@ -48,6 +48,26 @@ public class OptionalTestData {
 
         Stream.of(data)<fold text='*.' expand='false'>.map(</fold><fold text='data()' expand='false'>Data::getData</fold><fold text='' expand='false'>)</fold><fold text='.filterNotNull()' expand='false'>.filter(Objects::nonNull</fold><fold text='' expand='false'>)</fold>;
         Stream.of(data)<fold text='*.' expand='false'>.map(</fold><fold text='data()' expand='false'>Data::getData</fold><fold text='' expand='false'>)</fold><fold text='.filterNotNull()' expand='false'> .filter(Objects::nonNull</fold><fold text='' expand='false'>)</fold><fold text='*.' expand='false'>.map(</fold><fold text='data()' expand='false'>Data::getData</fold><fold text='' expand='false'>)</fold>.findFirst()<fold text='!!' expand='false'>.orElseThrow()</fold>;
+
+        opt<fold text='?.let { … }' expand='false'>.ifPresent(value -> <fold text='{...}' expand='true'>{
+            value.setString(data.getString());
+        }</fold>)</fold>;
+
+        opt<fold text='?.let { … } ?: run { … }' expand='false'>.ifPresentOrElse(value -> <fold text='{...}' expand='true'>{
+            value.setString(data.getString());
+        }</fold>, () -> <fold text='{...}' expand='true'>{
+            System.out.println("missing");
+        }</fold>)</fold>;
+
+        <fold text='' expand='false'>Optional.ofNullable(</fold>dataNull<fold text='' expand='false'>)</fold><fold text='?.let { … }' expand='false'>.ifPresent(value -> <fold text='{...}' expand='true'>{
+            value.setOk(true);
+        }</fold>)</fold>;
+
+        <fold text='' expand='false'>Optional.ofNullable(</fold>dataNull<fold text='' expand='false'>)</fold><fold text='?.let { … } ?: run { … }' expand='false'>.ifPresentOrElse(value -> <fold text='{...}' expand='true'>{
+            value.setOk(true);
+        }</fold>, () -> <fold text='{...}' expand='true'>{
+            throw new IllegalStateException();
+        }</fold>)</fold>;
     }</fold>
 
     private Data orElseGetReturn()<fold text=' { ' expand='false'> {
