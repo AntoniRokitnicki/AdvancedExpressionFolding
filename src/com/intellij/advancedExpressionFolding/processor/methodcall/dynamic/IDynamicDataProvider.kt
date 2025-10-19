@@ -66,6 +66,7 @@ interface IDynamicDataProvider {
      * Extension method to write a Map to a TOML file or delete file if empty.
      */
     fun ObjectMapper.writeTomlFile(path: Path, data: Map<String, Any>) {
+        path.parent?.let { DynamicFileSecurity.ensureDirectorySecure(it) }
         val file = path.toFile()
         if (data.isEmpty()) {
             if (Files.exists(path)) {
@@ -73,6 +74,7 @@ interface IDynamicDataProvider {
             }
         } else {
             this.writeValue(file, data)
+            DynamicFileSecurity.ensureFileSecure(path)
         }
     }
 }

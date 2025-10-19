@@ -217,7 +217,10 @@ abstract class CheckboxesProvider {
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#expressionfunc")
         }
 
-        registerCheckbox(state::dynamic, "Dynamic names for methods based on \$user.home/dynamic-ajf2.toml") {
+        registerCheckbox(
+            state::dynamic,
+            "Dynamic names for methods based on IntelliJ config directory (PathManager.getConfigDir())/advanced-expression-folding/dynamic-ajf2.toml"
+        ) {
             example("DynamicTestData.java")
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#dynamic")
         }

@@ -1,21 +1,40 @@
 package com.intellij.advancedExpressionFolding.processor.methodcall.dynamic
 
 import com.intellij.advancedExpressionFolding.processor.methodcall.MethodName
+import com.intellij.openapi.application.PathManager
+import com.intellij.openapi.diagnostic.Logger
 import java.nio.file.Files
 import java.nio.file.Path
-import java.nio.file.Paths
 import kotlin.io.path.readText
 
 object ConfigurationParser : IDynamicDataProvider {
 
+    private val logger = Logger.getInstance(ConfigurationParser::class.java)
+
+    private val configurationDirectory: Path
+        get() {
+            val directory = PathManager.getConfigDir().resolve("advanced-expression-folding")
+            DynamicFileSecurity.ensureDirectorySecure(directory)
+            return directory
+        }
+
     private val filePath: Path
-        get() = Paths.get(System.getProperty("user.home"), "dynamic-ajf2.toml")
+        get() = configurationDirectory.resolve("dynamic-ajf2.toml")
 
     override fun parse(): List<DynamicMethodCall> {
-        if (!Files.exists(filePath)) {
+        val path = filePath
+        if (!Files.exists(path)) {
             return emptyList()
         }
-        val text = filePath.readText()
+        if (!DynamicFileSecurity.isOwnedByCurrentUser(path)) {
+            logger.warn("Ignoring dynamic configuration at $path because it is not owned by the current user")
+            return emptyList()
+        }
+        if (DynamicFileSecurity.hasWorldAccessiblePermissions(path)) {
+            logger.warn("Ignoring dynamic configuration at $path because it has world-accessible permissions")
+            return emptyList()
+        }
+        val text = path.readText()
         return parseToml(text)
     }
 
