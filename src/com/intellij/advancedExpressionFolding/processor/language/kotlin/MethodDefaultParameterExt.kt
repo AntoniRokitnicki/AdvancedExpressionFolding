@@ -52,7 +52,7 @@ object MethodDefaultParameterExt : BaseExtension(){
         defaultParamMethods.forEach { (method, params, duplicatedMethod) ->
             val group = group()
             params.map.forEach { (paramNr, value) ->
-                val paramWithValue = method.parameterList.parameters.getOrNull(paramNr)
+                val paramWithValue = method.parameterList.parameters.getOrNull(paramNr.value)
                 val paramNextElement = paramWithValue?.nextSibling
                 list += paramNextElement?.expr(" = $value${paramNextElement.text}", group = group)
             }
@@ -69,7 +69,7 @@ object MethodDefaultParameterExt : BaseExtension(){
             val expressions = methodCall?.argumentList?.expressions
             val params = expressions?.mapIndexedNotNull { index, psiExpression ->
                 if (asPsiParameter(psiExpression) == null) {
-                    index to psiExpression.text
+                    ParameterIndex(index) to psiExpression.text
                 } else {
                     null
                 }
@@ -128,6 +128,7 @@ object MethodDefaultParameterExt : BaseExtension(){
     }
 }
 
-typealias ParameterIndex = Int
+@JvmInline
+value class ParameterIndex(val value: Int)
 typealias ParameterDefaultValueAsString = String
 
