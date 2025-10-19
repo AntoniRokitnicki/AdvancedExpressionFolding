@@ -26,8 +26,8 @@ object Keys {
 
     private val SYNTHETIC_KEY: Key<Expression> = Key.create("${PREFIX}syn")
     private val NOT_SYNTHETIC_KEY: Key<Expression> = Key.create("${PREFIX}!syn")
-    private val VERSION_SYNTHETIC_KEY: Key<Int> = Key.create("${PREFIX}ver-syn")
-    private val VERSION_NOT_SYNTHETIC_KEY: Key<Int> = Key.create("${PREFIX}ver-!syn")
+    private val VERSION_SYNTHETIC_KEY: Key<Long> = Key.create("${PREFIX}ver-syn")
+    private val VERSION_NOT_SYNTHETIC_KEY: Key<Long> = Key.create("${PREFIX}ver-!syn")
 
     val FULL_CACHE: Key<Array<FoldingDescriptor>> = Key.create("${PREFIX}-full")
 
@@ -61,7 +61,7 @@ object Keys {
             psiElement.putUserData(it, null)
         }
     }
-    fun getVersionKey(synthetic: Boolean): Key<Int> {
+    fun getVersionKey(synthetic: Boolean): Key<Long> {
         return when {
             synthetic -> VERSION_SYNTHETIC_KEY
             else -> VERSION_NOT_SYNTHETIC_KEY

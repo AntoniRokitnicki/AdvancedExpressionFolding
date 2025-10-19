@@ -1,0 +1,63 @@
+name: Refactor Request
+description: Suggest code cleanup, structure improvement, or refactoring
+title: "Refactor: "
+labels: [refactor]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve Advanced Expression Folding code quality!
+        Use this form to describe areas of the codebase that should be refactored or simplified.
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Which part of the codebase needs refactoring and why?
+      placeholder: |
+        The folding engine for pseudo annotations is hard to extend because...
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Current Problem
+      description: What makes the current implementation problematic or hard to maintain?
+      placeholder: |
+        The code duplicates logic between MethodDelegate and ClassDelegate...
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Refactor Proposal
+      description: Describe your proposed structure or approach.
+      placeholder: |
+        Introduce a common AbstractDelegate and merge shared logic...
+    validations:
+      required: false
+  - type: textarea
+    id: impact
+    attributes:
+      label: Expected Impact
+      description: What benefits or risks do you foresee from this refactoring?
+      placeholder: |
+        Should reduce code duplication and make feature extensions easier.
+    validations:
+      required: false
+  - type: dropdown
+    id: priority
+    attributes:
+      label: How important is this refactor?
+      options:
+        - Low (nice cleanup)
+        - Medium (improves readability or structure)
+        - High (blocks future work)
+    validations:
+      required: true
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: Contribution
+      options:
+        - label: I can help implement this refactor
+          required: false
