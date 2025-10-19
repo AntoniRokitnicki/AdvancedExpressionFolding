@@ -30,6 +30,8 @@ object Keys {
 
     val FULL_CACHE: Key<Array<FoldingDescriptor>> = Key.create("${PREFIX}-full")
 
+    val RULE_FLAGS_KEY: Key<MutableSet<String>> = Key.create("${PREFIX}rule-flags")
+
     val METHOD_TO_PARENT_CLASS_KEY = Key<MutableMap<MethodSignature, String>>("${PREFIX}methodToParentClass")
 
     //TODO: convert Keys to enum
@@ -45,6 +47,7 @@ object Keys {
             VERSION_NOT_SYNTHETIC_KEY,
             FIELD_KEY,
             FULL_CACHE,
+            RULE_FLAGS_KEY,
         )
     }
     fun clearAllOnExpire(psiElement: PsiElement) {

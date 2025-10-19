@@ -11,6 +11,7 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <!-- Entry point: Java folding builder delegating to expressionBuilder extensions -->
+        <notificationGroup id="AdvancedExpressionFolding.Throttling" displayType="BALLOON" isLogByDefault="true"/>
         <lang.foldingBuilder language="JAVA"
                              implementationClass="com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingBuilder"/>
         <!-- Application-level service that persists plugin settings -->

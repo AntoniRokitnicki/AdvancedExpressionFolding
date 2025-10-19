@@ -1,5 +1,6 @@
 package com.intellij.advancedExpressionFolding.settings.view
 
+import com.intellij.advancedExpressionFolding.FoldingRuleExecutionGuard
 import com.intellij.advancedExpressionFolding.action.UpdateFoldedTextColorsAction
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
 import com.intellij.application.options.CodeStyle
@@ -18,6 +19,7 @@ import com.intellij.openapi.vfs.encoding.EncodingProjectManager
 import com.intellij.ui.JBColor
 import com.intellij.ui.components.ActionLink
 import com.intellij.ui.components.JBCheckBox
+import com.intellij.ui.components.JBLabel
 import com.intellij.ui.dsl.builder.Panel
 import com.intellij.ui.dsl.builder.panel
 import java.awt.Color.decode
@@ -183,9 +185,27 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
             pendingChanges[property] = checkbox.isSelected
         }
         propertyToCheckbox[property] = checkbox
-        
+
         row {
             cell(checkbox)
+        }
+
+        if (state.isAutoDisabled(property)) {
+            row {
+                val label = JBLabel("Temporarily paused due to performance.")
+                cell(label)
+                val resumeLink = ActionLink("Resume")
+                resumeLink.addActionListener {
+                    if (state.setAutoDisabled(property.name, false)) {
+                        FoldingRuleExecutionGuard.resetStats(property.name)
+                    }
+                    checkbox.isSelected = property.get()
+                    pendingChanges[property] = checkbox.isSelected
+                    resumeLink.isEnabled = false
+                    label.text = "Rule resumed"
+                }
+                cell(resumeLink)
+            }
         }
         
         val definition = builder.build(property, title)
