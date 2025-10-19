@@ -7,7 +7,7 @@ import com.intellij.psi.PsiMethodCallExpression
 import java.util.*
 
 class MathRandomMethodCall : AbstractMathMethodCall() {
-    override val methodNames by lazy { listOf("random") }
+    override val methodNames by lazy { methodNames("random") }
 
     override fun onNoArguments(
         element: PsiMethodCallExpression,

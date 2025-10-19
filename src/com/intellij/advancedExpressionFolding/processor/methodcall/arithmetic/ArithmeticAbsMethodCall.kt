@@ -6,7 +6,7 @@ import com.intellij.advancedExpressionFolding.processor.methodcall.Context
 import com.intellij.psi.PsiMethodCallExpression
 
 class ArithmeticAbsMethodCall : AbstractArithmeticMethodCall() {
-    override val methodNames by lazy { listOf("abs") }
+    override val methodNames by lazy { methodNames("abs") }
     
     override fun onNoArguments(
         element: PsiMethodCallExpression,

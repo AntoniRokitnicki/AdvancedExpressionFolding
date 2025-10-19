@@ -13,7 +13,7 @@ import com.intellij.psi.PsiReferenceExpression
 class StreamMethodCall : AbstractMethodCall(), NeedsQualifier {
     override fun canExecute() = concatenationExpressionsCollapse
 
-    override val methodNames by lazy { listOf("stream") }
+    override val methodNames by lazy { methodNames("stream") }
     
     override val classNames by lazy { listOf(
         "java.util.List", 

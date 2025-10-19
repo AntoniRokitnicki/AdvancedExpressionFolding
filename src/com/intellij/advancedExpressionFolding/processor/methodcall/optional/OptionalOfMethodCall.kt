@@ -7,7 +7,7 @@ import com.intellij.psi.PsiExpression
 import com.intellij.psi.PsiMethodCallExpression
 
 class OptionalOfMethodCall : AbstractOptionalMethodCall() {
-    override val methodNames by lazy { listOf("of") }
+    override val methodNames by lazy { methodNames("of") }
     
     override fun onSingleArgument(
         element: PsiMethodCallExpression,

@@ -7,7 +7,7 @@ import com.intellij.psi.PsiExpression
 import com.intellij.psi.PsiMethodCallExpression
 
 class ArithmeticShiftLeftMethodCall : AbstractArithmeticMethodCall() {
-    override val methodNames by lazy { listOf("shiftLeft") }
+    override val methodNames by lazy { methodNames("shiftLeft") }
     
     override fun onSingleArgument(
         element: PsiMethodCallExpression,

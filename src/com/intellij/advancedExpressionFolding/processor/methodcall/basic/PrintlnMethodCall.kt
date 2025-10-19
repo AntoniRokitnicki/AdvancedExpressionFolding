@@ -9,7 +9,7 @@ import com.intellij.psi.PsiExpression
 import com.intellij.psi.PsiMethodCallExpression
 
 class PrintlnMethodCall : AbstractMethodCall(), NeedsQualifier {
-    override val methodNames by lazy { listOf("println") }
+    override val methodNames by lazy { methodNames("println") }
     
     override val classNames by lazy { listOf("java.io.PrintStream") }
     

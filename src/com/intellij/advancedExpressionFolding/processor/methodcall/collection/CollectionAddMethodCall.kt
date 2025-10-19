@@ -10,7 +10,7 @@ import com.intellij.psi.PsiStatement
 class CollectionAddMethodCall : AbstractCollectionMethodCall() {
     override fun canExecute() = concatenationExpressionsCollapse
     
-    override val methodNames by lazy { listOf("add") }
+    override val methodNames by lazy { methodNames("add") }
     
     override fun onSingleArgument(
         element: PsiMethodCallExpression,

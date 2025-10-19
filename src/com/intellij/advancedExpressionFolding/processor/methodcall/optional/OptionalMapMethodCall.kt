@@ -10,7 +10,7 @@ import com.intellij.psi.PsiExpression
 import com.intellij.psi.PsiMethodCallExpression
 
 class OptionalMapMethodCall : AbstractOptionalMethodCall() {
-    override val methodNames by lazy { listOf("map", "flatMap") }
+    override val methodNames by lazy { methodNames("map", "flatMap") }
     
     override fun onSingleArgument(
         element: PsiMethodCallExpression,
@@ -19,7 +19,7 @@ class OptionalMapMethodCall : AbstractOptionalMethodCall() {
         argumentExpression: Expression
     ): Expression? {
         if (argumentExpression is OptionalMapSafeCallParam) {
-            val flatMap = context.methodName == "flatMap"
+            val flatMap = context.methodName == methodName("flatMap")
             val qualifier = context.qualifierExpr
             
             return if (qualifier is OptionalOf) {

@@ -7,7 +7,7 @@ import com.intellij.psi.PsiExpression
 import com.intellij.psi.PsiMethodCallExpression
 
 class MathMaxMethodCall : AbstractMathMethodCall() {
-    override val methodNames by lazy { listOf("max") }
+    override val methodNames by lazy { methodNames("max") }
     
     override fun onTwoArguments(
         element: PsiMethodCallExpression,

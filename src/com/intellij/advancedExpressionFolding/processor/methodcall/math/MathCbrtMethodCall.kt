@@ -8,7 +8,7 @@ import com.intellij.psi.PsiMethodCallExpression
 import java.util.*
 
 class MathCbrtMethodCall : AbstractMathMethodCall() {
-    override val methodNames by lazy { listOf("cbrt") }
+    override val methodNames by lazy { methodNames("cbrt") }
     
     override fun onSingleArgument(
         element: PsiMethodCallExpression,

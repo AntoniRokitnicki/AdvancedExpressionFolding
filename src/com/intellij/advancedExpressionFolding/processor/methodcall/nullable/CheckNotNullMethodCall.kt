@@ -18,7 +18,7 @@ class CheckNotNullMethodCall : AbstractMethodCall() {
 
     override fun canExecute() = nullable
 
-    override val methodNames by lazy { listOf("checkNotNull") }
+    override val methodNames by lazy { methodNames("checkNotNull") }
 
     override fun onTwoArguments(
         element: PsiMethodCallExpression,

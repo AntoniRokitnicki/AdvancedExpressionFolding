@@ -12,7 +12,7 @@ import com.intellij.psi.PsiMethodCallExpression
 class ArraysListMethodCall : AbstractMethodCall(), NeedsQualifier {
     override fun canExecute() = getExpressionsCollapse
 
-    override val methodNames by lazy { listOf("asList", "singletonList") }
+    override val methodNames by lazy { methodNames("asList", "singletonList") }
 
     override val classNames by lazy { listOf("java.util.Arrays", "java.util.Collections") }
 
@@ -21,7 +21,7 @@ class ArraysListMethodCall : AbstractMethodCall(), NeedsQualifier {
         context: Context,
         expressions: Array<PsiExpression>
     ): Expression? {
-        if (context.methodName != "asList" ||
+        if (context.methodName != methodName("asList") ||
             expressions.size != 1 ||
             expressions[0].type !is PsiArrayType
         ) {

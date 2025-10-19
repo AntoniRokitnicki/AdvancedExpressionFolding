@@ -9,7 +9,7 @@ import com.intellij.psi.PsiExpressionList
 import com.intellij.psi.PsiMethodCallExpression
 
 class OptionalOrElseMethodCall : AbstractOptionalMethodCall() {
-    override val methodNames by lazy { listOf("orElseGet", "orElse") }
+    override val methodNames by lazy { methodNames("orElseGet", "orElse") }
     
     override fun onSingleArgument(
         element: PsiMethodCallExpression,

@@ -23,11 +23,11 @@ object ConfigurationParser : IDynamicDataProvider {
         val tomlMap = objectMapper.readTomlFile(filePath)
 
         val methodDetails = mutableMapOf(
-            "method" to methodName,
-            "newName" to newName
+            "method" to methodName.value,
+            "newName" to newName.value
         )
 
-        tomlMap[methodName] = methodDetails
+        tomlMap[methodName.value] = methodDetails
 
         objectMapper.writeTomlFile(filePath, tomlMap)
     }
@@ -38,7 +38,7 @@ object ConfigurationParser : IDynamicDataProvider {
         }
 
         val tomlMap = objectMapper.readTomlFile(filePath)
-        tomlMap.remove(methodName)
+        tomlMap.remove(methodName.value)
 
         objectMapper.writeTomlFile(filePath, tomlMap)
     }

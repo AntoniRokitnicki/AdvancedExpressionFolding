@@ -8,7 +8,7 @@ import com.intellij.psi.PsiExpression
 import com.intellij.psi.PsiMethodCallExpression
 
 class OptionalOfNullableMethodCall : AbstractOptionalMethodCall() {
-    override val methodNames by lazy { listOf("ofNullable") }
+    override val methodNames by lazy { methodNames("ofNullable") }
     
     override fun onSingleArgument(
         element: PsiMethodCallExpression,

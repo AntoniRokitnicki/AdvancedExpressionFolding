@@ -34,7 +34,7 @@ class AddDynamicMethodFoldingIntention : IntentionAction {
         val element = file.findElementAt(editor.caretModel.offset)
         val methodCall = PsiTreeUtil.getParentOfType(element, PsiMethodCallExpression::class.java)
 
-        methodCall?.methodExpression?.referenceName?.let { methodName ->
+        methodCall?.methodExpression?.referenceName?.let(::MethodName)?.let { methodName ->
             when {
                 methodName.exists() -> {
                     val dialogResult = methodName.showRenameDialog()
@@ -68,14 +68,14 @@ class AddDynamicMethodFoldingIntention : IntentionAction {
         it is DynamicMethodCall
     } == true
 
-    private fun MethodName.getNewNameFromUser(): String? {
+    private fun MethodName.getNewNameFromUser(): MethodName? {
         return Messages.showInputDialog(
             "Enter new method name:",
             "Add Dynamic Method Folding",
             Messages.getQuestionIcon(),
-            this,
+            this.value,
             null
-        )
+        )?.let(::MethodName)
     }
 
     private fun MethodName.remove() = ConfigurationParser.remove(this)

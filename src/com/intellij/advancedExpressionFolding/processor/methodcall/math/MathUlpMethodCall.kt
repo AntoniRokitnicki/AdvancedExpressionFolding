@@ -8,7 +8,7 @@ import com.intellij.psi.PsiMethodCallExpression
 import java.util.*
 
 class MathUlpMethodCall : AbstractMathMethodCall() {
-    override val methodNames by lazy { listOf("ulp") }
+    override val methodNames by lazy { methodNames("ulp") }
     
     override fun onSingleArgument(
         element: PsiMethodCallExpression,

@@ -8,7 +8,7 @@ import com.intellij.psi.PsiMethodCallExpression
 import java.util.*
 
 class MathCeilMethodCall : AbstractMathMethodCall() {
-    override val methodNames by lazy { listOf("ceil") }
+    override val methodNames by lazy { methodNames("ceil") }
     
     override fun onSingleArgument(
         element: PsiMethodCallExpression,

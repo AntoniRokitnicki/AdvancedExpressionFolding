@@ -74,5 +74,7 @@ abstract class AbstractMethodCall : BaseExtension() {
     ): Expression? = null
 
     open val methodNames: List<MethodName> by lazy { emptyList() }
+    protected fun methodName(name: String): MethodName = MethodName(name)
+    protected fun methodNames(vararg names: String): List<MethodName> = names.map(::MethodName)
     open val classNames: List<ClassName> by lazy { emptyList() }
 }

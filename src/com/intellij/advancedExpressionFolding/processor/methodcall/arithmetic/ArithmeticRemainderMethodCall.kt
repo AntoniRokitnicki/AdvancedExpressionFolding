@@ -7,7 +7,7 @@ import com.intellij.psi.PsiExpression
 import com.intellij.psi.PsiMethodCallExpression
 
 class ArithmeticRemainderMethodCall : AbstractArithmeticMethodCall() {
-    override val methodNames by lazy { listOf("remainder", "mod") }
+    override val methodNames by lazy { methodNames("remainder", "mod") }
     
     override fun onSingleArgument(
         element: PsiMethodCallExpression,

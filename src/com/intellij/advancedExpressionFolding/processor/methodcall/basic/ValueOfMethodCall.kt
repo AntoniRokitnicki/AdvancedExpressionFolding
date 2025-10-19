@@ -13,7 +13,7 @@ import com.intellij.psi.PsiMethodCallExpression
 import com.intellij.psi.PsiReferenceExpression
 
 class ValueOfMethodCall : AbstractMethodCall(), NeedsQualifier {
-    override val methodNames by lazy { listOf("valueOf") }
+    override val methodNames by lazy { methodNames("valueOf") }
     
     override val classNames by lazy { listOf(
         "java.lang.String",

@@ -7,7 +7,7 @@ import com.intellij.psi.PsiExpression
 import com.intellij.psi.PsiMethodCallExpression
 
 class ArithmeticSubtractMethodCall : AbstractArithmeticMethodCall() {
-    override val methodNames by lazy { listOf("subtract") }
+    override val methodNames by lazy { methodNames("subtract") }
     
     override fun onSingleArgument(
         element: PsiMethodCallExpression,

@@ -7,7 +7,7 @@ import com.intellij.psi.PsiExpression
 import com.intellij.psi.PsiMethodCallExpression
 
 class ArithmeticMultiplyMethodCall : AbstractArithmeticMethodCall() {
-    override val methodNames by lazy { listOf("multiply") }
+    override val methodNames by lazy { methodNames("multiply") }
     
     override fun onSingleArgument(
         element: PsiMethodCallExpression,

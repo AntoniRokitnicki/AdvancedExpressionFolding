@@ -11,7 +11,7 @@ import com.intellij.psi.PsiMethodCallExpression
 class CollectionsUnmodifiableListMethodCall : AbstractMethodCall(), NeedsQualifier {
     override fun canExecute() = getExpressionsCollapse
 
-    override val methodNames by lazy { listOf("unmodifiableList") }
+    override val methodNames by lazy { methodNames("unmodifiableList") }
     
     override val classNames by lazy { listOf("java.util.Collections") }
     

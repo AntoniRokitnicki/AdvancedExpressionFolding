@@ -8,7 +8,7 @@ import com.intellij.psi.PsiMethodCallExpression
 import java.util.*
 
 class MathToDegreesMethodCall : AbstractMathMethodCall() {
-    override val methodNames by lazy { listOf("toDegrees") }
+    override val methodNames by lazy { methodNames("toDegrees") }
     
     override fun onSingleArgument(
         element: PsiMethodCallExpression,

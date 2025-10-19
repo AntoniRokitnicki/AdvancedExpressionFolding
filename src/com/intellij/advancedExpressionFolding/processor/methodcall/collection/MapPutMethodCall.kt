@@ -14,7 +14,7 @@ class MapPutMethodCall : AbstractMethodCall(), NeedsQualifier {
 
     override fun canExecute() = getExpressionsCollapse
 
-    override val methodNames by lazy { listOf("set", "put", "setProperty", "setAttribute", "setValue") }
+    override val methodNames by lazy { methodNames("set", "put", "setProperty", "setAttribute", "setValue") }
 
     override fun onTwoArguments(
         element: PsiMethodCallExpression,

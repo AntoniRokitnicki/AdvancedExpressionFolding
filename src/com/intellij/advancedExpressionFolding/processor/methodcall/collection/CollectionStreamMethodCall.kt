@@ -10,7 +10,7 @@ import com.intellij.psi.PsiReferenceExpression
 class CollectionStreamMethodCall : AbstractCollectionMethodCall() {
     override fun canExecute() = concatenationExpressionsCollapse
 
-    override val methodNames by lazy { listOf("stream") }
+    override val methodNames by lazy { methodNames("stream") }
     
     override fun onNoArguments(
         element: PsiMethodCallExpression,
