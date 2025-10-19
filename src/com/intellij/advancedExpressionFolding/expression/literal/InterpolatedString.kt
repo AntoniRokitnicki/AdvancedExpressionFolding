@@ -76,13 +76,6 @@ class InterpolatedString(
                     )
                 }
             }
-        } else if (first is CharacterLiteral) {
-            descriptors += FoldingDescriptor(
-                element.node,
-                TextRange.create(first.textRange.startOffset, first.textRange.startOffset + 1),
-                group,
-                "\""
-            )
         }
         for (i in 0 until operands.size - 1) {
             val start = if (operands[i] is CharSequenceLiteral) {
@@ -159,13 +152,6 @@ class InterpolatedString(
                     last.element.text + suffix + "\""
                 )
             }
-        } else if (last is CharacterLiteral) {
-            descriptors += FoldingDescriptor(
-                element.node,
-                TextRange.create(last.textRange.endOffset - 1, last.textRange.endOffset),
-                group,
-                "\""
-            )
         }
         for (operand in operands) {
             if (operand.supportsFoldRegions(document, this)) {

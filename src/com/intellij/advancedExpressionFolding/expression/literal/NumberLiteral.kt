@@ -1,3 +1,4 @@
+@file:Suppress("DEPRECATION")
 package com.intellij.advancedExpressionFolding.expression.literal
 
 import com.intellij.advancedExpressionFolding.expression.Expression
