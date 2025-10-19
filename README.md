@@ -144,17 +144,35 @@ Bug reports and feature requests are tracked through the [GitHub Issues page](ht
 Before opening a new ticket, please search for an existing report to avoid duplicates and include reproducible steps or sample code when possible.
 Pull requests are welcome—ensure the change is covered by tests where applicable and reference the related issue in the description.
 
-## Development setup
+## Development Setup
 
-This project uses the Gradle wrapper. The most common commands are:
+### Requirements
+- **JDK 17** – the plugin targets IntelliJ Platform releases that require Java 17.
+- **IntelliJ IDEA (Community or Ultimate)** – used to develop, run, and debug the plugin.
+- **Gradle Wrapper** – the repository ships with `./gradlew`; do not install or rely on a global Gradle.
 
-```bash
-./gradlew build         # compile the plugin and run unit tests
-./gradlew test          # execute the automated test suite
-./gradlew runIde        # launch a sandbox IDE with the plugin enabled
-```
+### Opening the Project
+1. Install the requirements listed above.
+2. Clone this repository and ensure submodules (if any) are initialized.
+3. Open the project directory in IntelliJ IDEA via **File | Open**; the IDE detects the Gradle build.
+4. When prompted, select the bundled Gradle wrapper and the JDK 17 SDK.
+5. Wait for indexing and Gradle sync to finish before running any tasks.
 
-Run these commands from the repository root. See the [Gradle build documentation](https://docs.gradle.org/current/userguide/command_line_interface.html) for more options.
+### `./gradlew build`
+Use this command before pushing changes to ensure the code compiles and all bundled verification tasks pass.
+
+### `./gradlew test`
+Run this command whenever you add or modify logic or tests. It executes the JUnit 5 suite under `test/com/intellij/advancedExpressionFolding`.
+
+### `./gradlew runIde`
+Launches a sandbox IntelliJ instance with the plugin installed. Use it for manual verification of folding behaviour and UI changes.
+
+### Test Data and Regression Safety
+- `testData/` contains Java input files for each folding scenario.
+- `folded/` stores the expected folded output snapshots that the tests assert against.
+- Each test method under `test/com/intellij/advancedExpressionFolding` follows the convention `fooBarTestData()` ↔ `FooBarTestData.java`; PascalCase file names map directly to the camelCase method name.
+- Parameterised helpers such as `doFoldingTest(state::concatenationExpressionsCollapse, state::getSetExpressionsCollapse)` declare which settings are active; these map to the generated snapshot metadata.
+- When adding or editing tests, update both the `testData` input and matching `folded` expectation to avoid regressions.
 
 ## License
 
