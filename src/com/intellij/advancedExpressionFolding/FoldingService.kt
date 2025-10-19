@@ -1,6 +1,7 @@
 package com.intellij.advancedExpressionFolding
 
 import com.intellij.advancedExpressionFolding.processor.cache.Keys
+import com.intellij.openapi.Disposable
 import com.intellij.openapi.components.Service
 import com.intellij.openapi.components.service
 import com.intellij.openapi.editor.Editor
@@ -12,10 +13,14 @@ import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiRecursiveElementVisitor
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 
 @Service
-class FoldingService {
+class FoldingService : Disposable {
+
+    private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
 
     fun fold(editor: Editor, state: Boolean) {
         if (editor.isDisposed) {
@@ -38,7 +43,7 @@ class FoldingService {
     fun clearAllKeys(project: Project) {
         val editors = project.openTextEditors
 
-        CoroutineScope(Dispatchers.Default).launch {
+        scope.launch {
             editors.forEach { editor ->
                 clearAllKeys(editor)
             }
@@ -63,5 +68,9 @@ class FoldingService {
 
     companion object {
         fun get() = service<FoldingService>()
+    }
+
+    override fun dispose() {
+        scope.cancel()
     }
 }
