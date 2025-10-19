@@ -4,6 +4,7 @@ import com.google.common.collect.Lists
 import com.google.common.collect.Sets
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.processor.asInstance
+import com.intellij.advancedExpressionFolding.processor.cache.CacheExt.getCachedExpression
 import com.intellij.advancedExpressionFolding.processor.cache.CacheExt.invalidateExpired
 import com.intellij.advancedExpressionFolding.processor.cache.Keys
 import com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt
@@ -15,7 +16,6 @@ import com.intellij.lang.folding.FoldingDescriptor
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.editor.FoldingGroup
 import com.intellij.openapi.project.IndexNotReadyException
-import com.intellij.psi.PsiDocumentManager
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiJavaFile
 
@@ -99,17 +99,18 @@ class AdvancedExpressionFoldingBuilder(private val config: IConfig = getInstance
 
     // TODO: Collapse everything by default but use these settings when actually building the folding descriptors
     override fun isCollapsedByDefault(astNode: ASTNode): Boolean {
-        try {
-            val element = astNode.psi
-            val document = PsiDocumentManager.getInstance(astNode.psi.project).getDocument(astNode.psi.containingFile)
-            if (document != null) {
-                val expression = BuildExpressionExt.getNonSyntheticExpression(element, document)
-                return expression != null && expression.isCollapsedByDefault
+        return try {
+            val element = astNode.psi ?: return false
+            if (!element.isValid) {
+                return false
             }
+            val document = element.containingFile?.viewProvider?.document ?: return false
+            val expression = getCachedExpression(element, document, false)
+                ?: BuildExpressionExt.getNonSyntheticExpression(element, document)
+            expression?.isCollapsedByDefault ?: false
         } catch (_: IndexNotReadyException) {
-            return false
+            false
         }
-        return false
     }
 
     private val debugFolding = false

@@ -221,6 +221,14 @@ open class FoldingTest : BaseTest() {
     }
 
     /**
+     * [data.CollapsedByDefaultTestData]
+     */
+    @Test
+    open fun collapsedByDefaultTestData() {
+        doFoldingTest(state::concatenationExpressionsCollapse, state::optional, state::streamSpread)
+    }
+
+    /**
      * [data.OptionalTestData]
      */
     @Test

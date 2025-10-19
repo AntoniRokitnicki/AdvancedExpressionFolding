@@ -25,20 +25,29 @@ object CacheExt : StateDelegate() {
     @JvmStatic
     @Contract("_, _, true -> !null")
     fun getExpression(element: PsiElement, document: Document, synthetic: Boolean): Expression? {
-            val key = Keys.getKey(synthetic)
-            val cachedExpression = if (element.invalidateExpired(document, synthetic)) {
-                null
-            } else {
-                element.getUserData(key)
+        val key = Keys.getKey(synthetic)
+        val cachedExpression = if (element.invalidateExpired(document, synthetic)) {
+            null
+        } else {
+            element.getUserData(key)
+        }
+        return when (cachedExpression) {
+            null -> {
+                val newExpression = buildExpression(element, document, synthetic)
+                element.putUserData(key, newExpression.ofNullable())
+                newExpression
             }
-            return when (cachedExpression) {
-                null -> {
-                    val newExpression = buildExpression(element, document, synthetic)
-                    element.putUserData(key, newExpression.ofNullable())
-                    newExpression
-                }
-                else -> cachedExpression.getOrNull()
-            }
+            else -> cachedExpression.getOrNull()
+        }
+    }
+
+    @JvmStatic
+    fun getCachedExpression(element: PsiElement, document: Document, synthetic: Boolean): Expression? {
+        if (element.invalidateExpired(document, synthetic)) {
+            return null
+        }
+        val cachedExpression = element.getUserData(Keys.getKey(synthetic))
+        return cachedExpression.getOrNull()
     }
 
     private val NULL_OBJECT: Expression = object : Expression() {
