@@ -11,7 +11,7 @@ import com.intellij.psi.PsiMethodCallExpression
 class CharAtMethodCall : AbstractMethodCall(), NeedsQualifier {
     override fun canExecute() = concatenationExpressionsCollapse
 
-    override val methodNames by lazy { listOf("charAt") }
+    override val methodNames by lazy { methodNames("charAt") }
     
     override val classNames by lazy { listOf("java.lang.String") }
     

@@ -16,7 +16,7 @@ class CollectionGetMethodCall : AbstractMethodCall(), NeedsQualifier {
 
     override fun canExecute() = getExpressionsCollapse
 
-    override val methodNames by lazy { listOf("get", "getProperty", "getAttribute", "getValue") }
+    override val methodNames by lazy { methodNames("get", "getProperty", "getAttribute", "getValue") }
 
     override fun onSingleArgument(
         element: PsiMethodCallExpression,

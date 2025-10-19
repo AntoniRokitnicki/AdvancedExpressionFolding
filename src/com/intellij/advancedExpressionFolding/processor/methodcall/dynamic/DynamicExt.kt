@@ -6,14 +6,15 @@ import com.intellij.advancedExpressionFolding.processor.expr
 import com.intellij.advancedExpressionFolding.processor.exprWrap
 import com.intellij.advancedExpressionFolding.processor.identifier
 import com.intellij.advancedExpressionFolding.processor.methodcall.MethodCallFactory
+import com.intellij.advancedExpressionFolding.processor.methodcall.MethodName
 import com.intellij.psi.PsiMethod
 
 object DynamicExt {
     fun createExpression(method: PsiMethod): Expression? {
-        return MethodCallFactory.findByMethodName(method.name)?.mapNotNull {
+        return MethodCallFactory.findByMethodName(MethodName(method.name))?.mapNotNull {
             it.asInstance<DynamicMethodCall>()
         }?.map {
-            val newName = it.data.newName
+            val newName = it.data.newName.value
             method.identifier?.expr(newName)
         }?.run {
             exprWrap(method)

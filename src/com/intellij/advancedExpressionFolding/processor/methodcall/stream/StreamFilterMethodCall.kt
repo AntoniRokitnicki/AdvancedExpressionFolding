@@ -9,7 +9,7 @@ import com.intellij.psi.PsiExpression
 import com.intellij.psi.PsiMethodCallExpression
 
 class StreamFilterMethodCall : AbstractStreamMethodCall() {
-    override val methodNames by lazy { listOf("filter") }
+    override val methodNames by lazy { methodNames("filter") }
     
     override fun onSingleArgument(
         element: PsiMethodCallExpression,

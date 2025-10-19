@@ -8,7 +8,7 @@ import com.intellij.psi.PsiMethodCallExpression
 import java.util.*
 
 class MathAtanMethodCall : AbstractMathMethodCall() {
-    override val methodNames by lazy { listOf("atan") }
+    override val methodNames by lazy { methodNames("atan") }
     
     override fun onSingleArgument(
         element: PsiMethodCallExpression,

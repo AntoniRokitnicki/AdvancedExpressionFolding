@@ -7,7 +7,7 @@ import com.intellij.psi.PsiExpression
 import com.intellij.psi.PsiMethodCallExpression
 
 class MathMinMethodCall : AbstractMathMethodCall() {
-    override val methodNames by lazy { listOf("min") }
+    override val methodNames by lazy { methodNames("min") }
     
     override fun onTwoArguments(
         element: PsiMethodCallExpression,

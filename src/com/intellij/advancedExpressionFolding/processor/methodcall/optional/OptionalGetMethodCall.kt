@@ -6,7 +6,7 @@ import com.intellij.advancedExpressionFolding.processor.methodcall.NeedsQualifie
 import com.intellij.psi.PsiMethodCallExpression
 
 class OptionalGetMethodCall : AbstractOptionalMethodCall(), NeedsQualifier {
-    override val methodNames = listOf("get", "orElseThrow")
+    override val methodNames = methodNames("get", "orElseThrow")
 
     override fun onNoArguments(element: PsiMethodCallExpression, context: Context): OptionalNotNullAssertionGet? {
         return OptionalNotNullAssertionGet(

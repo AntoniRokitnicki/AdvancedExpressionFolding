@@ -6,7 +6,7 @@ import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiMethod
 
 data class Context(
-    val methodName: String,
+    val methodName: MethodName,
     val className: String,
     val qualifierExprNullable: Expression?,
     val method: PsiMethod,

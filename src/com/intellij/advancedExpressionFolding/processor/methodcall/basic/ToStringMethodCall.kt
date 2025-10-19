@@ -12,7 +12,7 @@ import com.intellij.psi.PsiMethodCallExpression
 import com.intellij.psi.PsiStatement
 
 class ToStringMethodCall : AbstractMethodCall(), NeedsQualifier {
-    override val methodNames by lazy { listOf("toString") }
+    override val methodNames by lazy { methodNames("toString") }
     
     override val classNames by lazy { listOf(
         "java.lang.Object",

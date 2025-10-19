@@ -11,7 +11,7 @@ import com.intellij.psi.PsiStatement
 class CollectionRemoveMethodCall : AbstractCollectionMethodCall() {
     override fun canExecute() = concatenationExpressionsCollapse
     
-    override val methodNames by lazy { listOf("remove") }
+    override val methodNames by lazy { methodNames("remove") }
     
     override fun onSingleArgument(
         element: PsiMethodCallExpression,

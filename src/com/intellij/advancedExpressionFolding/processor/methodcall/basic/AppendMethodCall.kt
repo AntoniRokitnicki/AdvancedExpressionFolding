@@ -14,7 +14,7 @@ import java.util.*
 class AppendMethodCall : AbstractMethodCall(), NeedsQualifier {
     override fun canExecute() = concatenationExpressionsCollapse
 
-    override val methodNames by lazy { listOf("append") }
+    override val methodNames by lazy { methodNames("append") }
     
     override val classNames by lazy { listOf(
         "java.lang.StringBuilder", 

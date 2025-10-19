@@ -8,7 +8,7 @@ import com.intellij.psi.PsiMethodCallExpression
 import java.util.*
 
 class MathRoundMethodCall : AbstractMathMethodCall() {
-    override val methodNames by lazy { listOf("round") }
+    override val methodNames by lazy { methodNames("round") }
     
     override fun onSingleArgument(
         element: PsiMethodCallExpression,

@@ -14,7 +14,7 @@ class DynamicMethodCall(val data: DynamicMethodCallData) : AbstractMethodCall() 
 
     override val methodNames by lazy { listOf(data.method) }
 
-    private val dynamicGroup: FoldingGroup by lazy { this::class.group(data.method) }
+    private val dynamicGroup: FoldingGroup by lazy { this::class.group(data.method.value) }
 
     override fun onAnyArguments(
         element: PsiMethodCallExpression,
@@ -23,7 +23,7 @@ class DynamicMethodCall(val data: DynamicMethodCallData) : AbstractMethodCall() 
     ): DynamicExpression {
         return DynamicExpression(
             context.identifier,
-            text = data.newName,
+            text = data.newName.value,
             children = context.getOperands(),
             group = dynamicGroup
         )

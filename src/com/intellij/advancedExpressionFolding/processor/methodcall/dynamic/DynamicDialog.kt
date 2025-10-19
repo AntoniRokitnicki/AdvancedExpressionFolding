@@ -15,7 +15,7 @@ fun MethodName.showRenameDialog(): Pair<Action, MethodName>? {
     var newMethodName: MethodName? = null
 
     val name = this
-    val textField = JBTextField(name, 20)
+    val textField = JBTextField(name.value, 20)
 
     val dialogWrapper = object : DialogWrapper(true) {
         init {
@@ -41,7 +41,7 @@ fun MethodName.showRenameDialog(): Pair<Action, MethodName>? {
 
         override fun doOKAction() {
             selectedAction = Action.RENAME
-            newMethodName = textField.text
+            newMethodName = MethodName(textField.text)
             super.doOKAction()
         }
 
@@ -55,7 +55,7 @@ fun MethodName.showRenameDialog(): Pair<Action, MethodName>? {
 
     return when (selectedAction) {
         Action.RENAME -> newMethodName?.takeIf {
-            it.isNotBlank()
+            it.value.isNotBlank()
         }?.let {
             Action.RENAME to it
         }

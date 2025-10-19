@@ -7,7 +7,10 @@ import com.intellij.advancedExpressionFolding.processor.methodcall.dynamic.IDyna
 import com.intellij.advancedExpressionFolding.processor.on
 import com.intellij.advancedExpressionFolding.processor.util.Consts
 
-typealias MethodName = String
+@JvmInline
+value class MethodName(val value: String) {
+    override fun toString(): String = value
+}
 typealias ClassName = String
 
 /**
@@ -40,7 +43,7 @@ object MethodCallFactory : BaseExtension(){
     private var dynamicProvider: IDynamicDataProvider? = ConfigurationParser
 
     @Volatile
-    private var methodCallMap: Map<MethodName?, List<AbstractMethodCall>> = emptyMap()
+    private var methodCallMap: Map<MethodName, List<AbstractMethodCall>> = emptyMap()
     @Volatile
     var supportedClasses: Collection<ClassName> = emptyList()
     @Volatile
@@ -72,7 +75,7 @@ object MethodCallFactory : BaseExtension(){
         return this
     }
 
-    private fun createMethodCalls(): Map<MethodName?, List<AbstractMethodCall>> =
+    private fun createMethodCalls(): Map<MethodName, List<AbstractMethodCall>> =
         getAllMethodCalls().filter {
             it.canExecute()
         }.flatMap { methodCall ->
@@ -103,22 +106,21 @@ object MethodCallFactory : BaseExtension(){
             }.distinct().flatten()
             .toList()
 
-    private fun createSupportedMethods(): List<MethodName> =
-        methodCallMap.values
-            .flatten()
-            .map {
-                it.methodNames
-            }.flatten()
+    private fun createSupportedMethods(): Collection<MethodName> = methodCallMap.keys.toSet()
 
-    private fun createClasslessMethods(): List<MethodName> =
-        methodCallMap.values
+    private fun createClasslessMethods(): Collection<MethodName> {
+        val classless = methodCallMap.values
+            .asSequence()
             .flatten()
             .filter {
                 it.classNames.isEmpty()
-            }.map {
-                it.methodNames
-            }.flatten() + Consts.UNSUPPORTED_CLASSES_METHODS_EXCEPTIONS
+            }.flatMap {
+                it.methodNames.asSequence()
+            }.toMutableSet()
+        classless.addAll(Consts.UNSUPPORTED_CLASSES_METHODS_EXCEPTIONS.map(::MethodName))
+        return classless
+    }
 
-    fun findByMethodName(methodName: MethodName?): List<AbstractMethodCall>? =
+    fun findByMethodName(methodName: MethodName): List<AbstractMethodCall>? =
         methodCallMap[methodName]
 }

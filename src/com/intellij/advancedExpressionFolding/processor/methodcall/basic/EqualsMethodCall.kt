@@ -11,7 +11,7 @@ import com.intellij.psi.PsiMethodCallExpression
 class EqualsMethodCall : AbstractMethodCall(), NeedsQualifier {
     override fun canExecute() = comparingExpressionsCollapse
 
-    override val methodNames by lazy { listOf("equals") }
+    override val methodNames by lazy { methodNames("equals") }
     
     override val classNames by lazy { listOf(
         "java.lang.Object",

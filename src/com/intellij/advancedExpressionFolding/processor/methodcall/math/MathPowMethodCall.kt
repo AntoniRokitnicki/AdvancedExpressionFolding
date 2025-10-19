@@ -7,7 +7,7 @@ import com.intellij.psi.PsiExpression
 import com.intellij.psi.PsiMethodCallExpression
 
 class MathPowMethodCall : AbstractMathMethodCall() {
-    override val methodNames by lazy { listOf("pow") }
+    override val methodNames by lazy { methodNames("pow") }
     
     override fun onTwoArguments(
         element: PsiMethodCallExpression,

@@ -46,14 +46,14 @@ object MethodCallExpressionExt {
         element: PsiMethodCallExpression
     ): Expression? {
         val factory = MethodCallFoldingLoaderService.factory()
-        if (!factory.supportedMethods.contains(identifier.text)) {
+        if (!factory.supportedMethods.contains(MethodName(identifier.text))) {
             return null
         }
         val method = referenceExpression.resolve() as? PsiMethod ?: return null
         val psiClass = method.containingClass ?: return null
         val qualifiedName = psiClass.qualifiedName ?: return null
         val className = Helper.eraseGenerics(qualifiedName)
-        val supported = factory.supportedClasses.contains(className) || factory.classlessMethods.contains(method.name)
+        val supported = factory.supportedClasses.contains(className) || factory.classlessMethods.contains(MethodName(method.name))
         return if (supported) {
             onAnyExpression(element, document, qualifier, identifier, className, method)
         } else {
@@ -70,7 +70,7 @@ object MethodCallExpressionExt {
         method: PsiMethod
     ): Expression? {
         val qualifierExpression = qualifier?.let { BuildExpressionExt.getAnyExpression(it, document) }
-        val methodName = identifier.text
+        val methodName = MethodName(identifier.text)
         val factory = MethodCallFoldingLoaderService.factory()
         val methodCalls = factory.findByMethodName(methodName) ?: return null
         for (methodCall in methodCalls) {

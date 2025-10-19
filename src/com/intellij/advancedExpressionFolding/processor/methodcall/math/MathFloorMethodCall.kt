@@ -8,7 +8,7 @@ import com.intellij.psi.PsiMethodCallExpression
 import java.util.*
 
 class MathFloorMethodCall : AbstractMathMethodCall() {
-    override val methodNames by lazy { listOf("floor") }
+    override val methodNames by lazy { methodNames("floor") }
     
     override fun onSingleArgument(
         element: PsiMethodCallExpression,

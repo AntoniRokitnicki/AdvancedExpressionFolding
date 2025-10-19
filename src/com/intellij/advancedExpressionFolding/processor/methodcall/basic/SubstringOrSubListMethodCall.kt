@@ -16,7 +16,7 @@ import com.intellij.psi.PsiMethodCallExpression
 class SubstringOrSubListMethodCall : AbstractMethodCall(), NeedsQualifier {
     override fun canExecute() = slicingExpressionsCollapse
 
-    override val methodNames by lazy { listOf("substring", "subList") }
+    override val methodNames by lazy { methodNames("substring", "subList") }
     
     override val classNames by lazy { listOf(
         "java.lang.String",

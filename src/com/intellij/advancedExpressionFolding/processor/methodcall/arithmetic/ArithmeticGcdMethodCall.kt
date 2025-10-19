@@ -7,7 +7,7 @@ import com.intellij.psi.PsiExpression
 import com.intellij.psi.PsiMethodCallExpression
 
 class ArithmeticGcdMethodCall : AbstractArithmeticMethodCall() {
-    override val methodNames by lazy { listOf("gcd") }
+    override val methodNames by lazy { methodNames("gcd") }
     
     override fun onSingleArgument(
         element: PsiMethodCallExpression,

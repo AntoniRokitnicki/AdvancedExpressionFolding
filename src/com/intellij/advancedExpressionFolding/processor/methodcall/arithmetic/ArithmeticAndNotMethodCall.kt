@@ -9,7 +9,7 @@ import com.intellij.psi.PsiMethodCallExpression
 import java.util.*
 
 class ArithmeticAndNotMethodCall : AbstractArithmeticMethodCall() {
-    override val methodNames by lazy { listOf("andNot") }
+    override val methodNames by lazy { methodNames("andNot") }
     
     override fun onSingleArgument(
         element: PsiMethodCallExpression,

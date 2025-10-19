@@ -6,7 +6,7 @@ import com.intellij.advancedExpressionFolding.processor.methodcall.Context
 import com.intellij.psi.PsiMethodCallExpression
 
 class ArithmeticSignumMethodCall : AbstractArithmeticMethodCall() {
-    override val methodNames by lazy { listOf("signum") }
+    override val methodNames by lazy { methodNames("signum") }
     
     override fun onNoArguments(
         element: PsiMethodCallExpression,

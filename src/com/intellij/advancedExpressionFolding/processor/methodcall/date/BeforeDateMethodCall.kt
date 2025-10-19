@@ -10,7 +10,7 @@ import com.intellij.psi.PsiMethodCallExpression
 class BeforeDateMethodCall : AbstractMethodCall() {
     override fun canExecute() = comparingLocalDatesCollapse
 
-    override val methodNames by lazy { listOf("isBefore", "before") }
+    override val methodNames by lazy { methodNames("isBefore", "before") }
 
     override fun onSingleArgument(
         element: PsiMethodCallExpression,

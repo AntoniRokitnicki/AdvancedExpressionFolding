@@ -14,7 +14,7 @@ import java.util.Objects
 class StreamCollectMethodCall : AbstractStreamMethodCall() {
     override fun canExecute() = concatenationExpressionsCollapse
 
-    override val methodNames by lazy { listOf("collect") }
+    override val methodNames by lazy { methodNames("collect") }
     
     override fun onSingleArgument(
         element: PsiMethodCallExpression,
