@@ -1,5 +1,4 @@
 package com.intellij.advancedExpressionFolding.integration
-
 import com.intellij.driver.client.Driver
 import com.intellij.driver.client.service
 import com.intellij.driver.client.utility
@@ -170,7 +169,10 @@ class IntegrationTest {
                 "Optional folding should stay enabled when testing the global toggle"
             }
 
-            utility<FoldingIntegrationStub>().toggleGlobalFolding(false)
+            utility<FoldingIntegrationStub>().toggleGlobalFolding(
+                ActionId("com.intellij.advancedExpressionFolding.action.GlobalToggleFoldingAction"),
+                false
+            )
             check(!service<SettingsStub>().getState().globalOn) {
                 "Global folding should be disabled after toggling off"
             }
@@ -182,7 +184,10 @@ class IntegrationTest {
                 "Expected no advanced folds when global toggle is disabled, but found $foldsWhenDisabled"
             }
 
-            utility<FoldingIntegrationStub>().toggleGlobalFolding(true)
+            utility<FoldingIntegrationStub>().toggleGlobalFolding(
+                ActionId("com.intellij.advancedExpressionFolding.action.GlobalToggleFoldingAction"),
+                true
+            )
             check(service<SettingsStub>().getState().globalOn) {
                 "Global folding should be enabled after toggling on"
             }

@@ -1,5 +1,6 @@
 package com.intellij.advancedExpressionFolding.integration
 
+import com.intellij.advancedExpressionFolding.integration.ActionId
 import com.intellij.advancedExpressionFolding.settings.IConfig
 import com.intellij.advancedExpressionFolding.settings.IState
 import com.intellij.driver.client.Remote
@@ -20,7 +21,7 @@ interface ColorActionStub {
 
 @Remote("com.intellij.advancedExpressionFolding.integration.IntegrationTestApi", plugin = "com.github.advanced-java-folding2")
 interface FoldingIntegrationStub {
-    fun toggleGlobalFolding(state: Boolean)
+    fun toggleGlobalFolding(actionId: ActionId, state: Boolean)
     fun countAdvancedFoldRegions(): Int
 }
 

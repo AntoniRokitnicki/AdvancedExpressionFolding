@@ -1,5 +1,7 @@
 package com.intellij.advancedExpressionFolding
 
+import com.intellij.advancedExpressionFolding.integration.ActionId
+import com.intellij.advancedExpressionFolding.integration.getAction
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
 import com.intellij.openapi.actionSystem.*
 import com.intellij.openapi.actionSystem.impl.SimpleDataContext
@@ -34,7 +36,11 @@ class FoldingActionsTest : BaseTest() {
 
     @Test
     fun globalToggleActionFlipsStateThroughActionManager() {
-        val action = ActionManager.getInstance().getAction("com.intellij.advancedExpressionFolding.action.GlobalToggleFoldingAction")
+        val action = requireNotNull(
+            ActionManager.getInstance().getAction(
+                ActionId("com.intellij.advancedExpressionFolding.action.GlobalToggleFoldingAction")
+            )
+        ) { "Expected GlobalToggleFoldingAction to be registered" }
         val toggle = assertInstanceOf<ToggleAction>(action)
 
         val initialEvent = createEvent(toggle)
@@ -65,7 +71,11 @@ class FoldingActionsTest : BaseTest() {
         val (editor, region) = setUpEditorWithRegion(initiallyExpanded = true)
         settings.state.globalOn = false
 
-        val action = ActionManager.getInstance().getAction("com.intellij.advancedExpressionFolding.action.FoldingOnAction")
+        val action = requireNotNull(
+            ActionManager.getInstance().getAction(
+                ActionId("com.intellij.advancedExpressionFolding.action.FoldingOnAction")
+            )
+        ) { "Expected FoldingOnAction to be registered" }
         val event = createEvent(action, editor)
 
         ApplicationManager.getApplication().invokeAndWait {
@@ -89,7 +99,11 @@ class FoldingActionsTest : BaseTest() {
         val (editor, region) = setUpEditorWithRegion(initiallyExpanded = false)
         settings.state.globalOn = true
 
-        val action = ActionManager.getInstance().getAction("com.intellij.advancedExpressionFolding.action.FoldingOffAction")
+        val action = requireNotNull(
+            ActionManager.getInstance().getAction(
+                ActionId("com.intellij.advancedExpressionFolding.action.FoldingOffAction")
+            )
+        ) { "Expected FoldingOffAction to be registered" }
         val event = createEvent(action, editor)
 
         ApplicationManager.getApplication().invokeAndWait {

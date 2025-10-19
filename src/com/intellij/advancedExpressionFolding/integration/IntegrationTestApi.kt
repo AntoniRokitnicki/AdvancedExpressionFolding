@@ -14,14 +14,15 @@ import java.util.concurrent.atomic.AtomicReference
 
 @TestOnly
 object IntegrationTestApi {
-    private const val GLOBAL_TOGGLE_ACTION_ID =
-        "com.intellij.advancedExpressionFolding.action.GlobalToggleFoldingAction"
+    private val GLOBAL_TOGGLE_ACTION_ID =
+        ActionId("com.intellij.advancedExpressionFolding.action.GlobalToggleFoldingAction")
 
     @JvmStatic
-    fun toggleGlobalFolding(state: Boolean) {
+    fun toggleGlobalFolding(actionId: ActionId, state: Boolean) {
         runOnEdt {
-            val action = ActionManager.getInstance().getAction(GLOBAL_TOGGLE_ACTION_ID) as? ToggleAction
-                ?: error("Action $GLOBAL_TOGGLE_ACTION_ID not found")
+            val resolvedActionId = if (actionId == GLOBAL_TOGGLE_ACTION_ID) GLOBAL_TOGGLE_ACTION_ID else actionId
+            val action = ActionManager.getInstance().getAction(resolvedActionId) as? ToggleAction
+                ?: error("Action $resolvedActionId not found")
             val event = AnActionEvent.createEvent(
                 DataContext.EMPTY_CONTEXT,
                 null,
