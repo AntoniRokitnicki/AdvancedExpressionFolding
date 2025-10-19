@@ -6,6 +6,7 @@ import com.intellij.advancedExpressionFolding.processor.asInstance
 import com.intellij.openapi.diagnostic.Logger
 import java.nio.file.Files
 import java.nio.file.Path
+import kotlin.text.Charsets
 
 interface IDynamicDataProvider {
     private val logger: Logger
@@ -17,11 +18,16 @@ interface IDynamicDataProvider {
         private val sharedObjectMapper: ObjectMapper by lazy {
             ObjectMapper(TomlFactory())
         }
+        internal const val MAX_SUPPORTED_FILE_SIZE_BYTES: Long = 1024L * 1024L
+        internal const val CONFIGURATION_FILE_NAME: String = "dynamic-ajf2.toml"
     }
 
     fun parse(): List<DynamicMethodCall>
 
     fun parseToml(text: String): List<DynamicMethodCall> {
+        if (isOversized(text)) {
+            return emptyList()
+        }
         val listOfMaps = objectMapper.parseTomlValues(text)
         return listOfMaps?.mapNotNull { entry ->
             val method = entry["method"]
@@ -40,12 +46,26 @@ interface IDynamicDataProvider {
      * Extension method to parse TOML text into a Collection of Maps.
      */
     fun ObjectMapper.parseTomlValues(text: String): Collection<Map<String, String>>? {
+        if (isOversized(text)) {
+            return null
+        }
         return try {
             this.readValue(text, Map::class.java).values.asInstance<Collection<Map<String, String>>>()
         } catch (e: Exception) {
             logger.error("parseToml failed", e)
             null
         }
+    }
+
+    private fun isOversized(text: String): Boolean {
+        val size = text.toByteArray(Charsets.UTF_8).size.toLong()
+        if (size > MAX_SUPPORTED_FILE_SIZE_BYTES) {
+            logger.warn(
+                "Dynamic configuration input exceeds supported size of $MAX_SUPPORTED_FILE_SIZE_BYTES bytes (actual: $size bytes); skipping."
+            )
+            return true
+        }
+        return false
     }
 
     /**
