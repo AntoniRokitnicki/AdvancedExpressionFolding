@@ -5,6 +5,8 @@ import com.intellij.advancedExpressionFolding.expression.SyntheticExpressionImpl
 import com.intellij.advancedExpressionFolding.processor.util.Helper;
 import com.intellij.lang.folding.FoldingDescriptor;
 import com.intellij.openapi.editor.Document;
+import com.intellij.openapi.progress.ProgressManager;
+import com.intellij.openapi.project.DumbService;
 import com.intellij.openapi.project.IndexNotReadyException;
 import com.intellij.psi.PsiElement;
 import org.jetbrains.annotations.Contract;
@@ -49,6 +51,9 @@ public class BuildExpressionExt {
     @SuppressWarnings("WeakerAccess")
     @Nullable
     public static Expression getNonSyntheticExpression(@NotNull PsiElement element, @Nullable Document document) throws IndexNotReadyException {
+        if (DumbService.isDumb(element.getProject())) {
+            return null;
+        }
         //noinspection ConstantConditions
         return getExpression(element, document, false);
     }
@@ -66,6 +71,7 @@ public class BuildExpressionExt {
         }
         if (expression == null || (unique && expression.isNested())) {
             for (PsiElement child : element.getChildren()) {
+                ProgressManager.checkCanceled();
                 collectFoldRegionsRecursively(child, document, uniqueSet, allDescriptors);
             }
         }
