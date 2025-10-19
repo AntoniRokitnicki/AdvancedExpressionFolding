@@ -21,8 +21,16 @@ import com.intellij.psi.PsiJavaFile
 
 class AdvancedExpressionFoldingBuilder(private val config: IConfig = getInstance().state) : FoldingBuilderEx(), IConfig by config {
     override fun buildFoldRegions(element: PsiElement, document: Document, quick: Boolean): Array<FoldingDescriptor> {
+        return store.store(computeFoldDescriptors(element, document, quick), document)
+    }
+
+    fun computeFoldDescriptors(
+        element: PsiElement,
+        document: Document,
+        quick: Boolean
+    ): Array<FoldingDescriptor> {
         if (!globalOn || isFoldingFile(element)) {
-            return store.store(Expression.EMPTY_ARRAY, document)
+            return Expression.EMPTY_ARRAY
         }
         if (debugFolding) {
             preview(element, document)
@@ -36,8 +44,13 @@ class AdvancedExpressionFoldingBuilder(private val config: IConfig = getInstance
         if (memoryImprovement && !quick && cachedDescriptors !== foldingDescriptors) {
             writeCache(element, foldingDescriptors)
         }
-        return store.store(foldingDescriptors, document)
+        return foldingDescriptors
     }
+
+    fun computeFoldDescriptors(
+        element: PsiElement,
+        document: Document
+    ): Array<FoldingDescriptor> = computeFoldDescriptors(element, document, quick = false)
 
     private fun isFoldingFile(element: PsiElement) =
         element.asInstance<PsiJavaFile>()?.name?.endsWith("-folded.java") == true

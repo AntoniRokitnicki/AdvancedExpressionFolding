@@ -1,6 +1,7 @@
 package com.intellij.advancedExpressionFolding
 
 import com.intellij.advancedExpressionFolding.processor.cache.Keys
+import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.components.Service
 import com.intellij.openapi.components.service
 import com.intellij.openapi.editor.Editor
@@ -14,9 +15,16 @@ import com.intellij.psi.PsiRecursiveElementVisitor
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.util.concurrent.CopyOnWriteArrayList
 
 @Service
 class FoldingService {
+
+    fun interface FoldUpdateListener {
+        fun foldUpdated(editor: Editor)
+    }
+
+    private val foldListeners = CopyOnWriteArrayList<FoldUpdateListener>()
 
     fun fold(editor: Editor, state: Boolean) {
         if (editor.isDisposed) {
@@ -32,6 +40,8 @@ class FoldingService {
                     it.isExpanded = !state
                 }
             }
+
+        notifyFoldUpdated(editor)
     }
 
     fun clearAllKeys() {
@@ -59,12 +69,35 @@ class FoldingService {
         val project = editor.project ?: return
         val psiFile = PsiDocumentManager.getInstance(project).getPsiFile(editor.document) ?: return
         psiFile.accept(KeyCleanerPsiElementVisitor())
+        notifyFoldUpdated(editor)
     }
 
     class KeyCleanerPsiElementVisitor : PsiRecursiveElementVisitor() {
         override fun visitElement(element: PsiElement) {
             Keys.clearAll(element)
             super.visitElement(element)
+        }
+    }
+
+    fun addFoldUpdateListener(listener: FoldUpdateListener) {
+        foldListeners.add(listener)
+    }
+
+    fun removeFoldUpdateListener(listener: FoldUpdateListener) {
+        foldListeners.remove(listener)
+    }
+
+    private fun notifyFoldUpdated(editor: Editor) {
+        val application = ApplicationManager.getApplication()
+        val runnable = Runnable {
+            foldListeners.forEach { listener ->
+                listener.foldUpdated(editor)
+            }
+        }
+        if (application.isDispatchThread) {
+            runnable.run()
+        } else {
+            application.invokeLater(runnable)
         }
     }
 

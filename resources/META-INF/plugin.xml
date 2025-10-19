@@ -16,6 +16,8 @@
         <!-- Application-level service that persists plugin settings -->
         <applicationService
                 serviceImplementation="com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings"/>
+        <applicationService
+                serviceImplementation="com.intellij.advancedExpressionFolding.settings.FoldingMetricsSettings"/>
         <!-- Listens for editor lifecycle to fold code one second after the editor opens and clear on release -->
         <editorFactoryListener implementation="com.intellij.advancedExpressionFolding.FoldingEditorCreatedListener"/>
         <!-- Adds an Alt+Enter intention on method names to fold calls dynamically -->
@@ -35,6 +37,9 @@
                 id="editor.folding.advanced.expression"
                 key="editor.folding.advanced.expression.displayName"
                 bundle="Bundle"/>
+
+        <statusBarWidgetFactory
+                implementation="com.intellij.advancedExpressionFolding.view.FoldingStatusBarWidgetFactory"/>
 
         <!-- Suggests the pseudo-annotation @Main used by the plugin -->
         <completion.contributor
