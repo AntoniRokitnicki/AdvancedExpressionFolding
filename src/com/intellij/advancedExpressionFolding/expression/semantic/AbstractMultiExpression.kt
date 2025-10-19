@@ -41,9 +41,9 @@ abstract class AbstractMultiExpression(
         }
 
         children.forEach { child ->
-            if (child != null) {
-                assignGroupOnNotFound(child, parentGroup)
-                list += child.buildFoldRegions(child.element, document, this)
+            child?.let {
+                assignGroupOnNotFound(it, parentGroup)
+                list += it.buildFoldRegions(it.element, document, this)
             }
         }
         return list.toTypedArray()
