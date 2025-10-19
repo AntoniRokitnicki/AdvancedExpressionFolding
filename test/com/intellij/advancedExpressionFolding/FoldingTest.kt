@@ -7,6 +7,7 @@ import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFolding
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings.State
 import com.intellij.openapi.application.runInEdt
 import com.intellij.platform.testFramework.core.FileComparisonFailedError
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import org.junitpioneer.jupiter.Stopwatch
 import org.opentest4j.TestAbortedException
@@ -226,6 +227,17 @@ open class FoldingTest : BaseTest() {
     @Test
     open fun optionalTestData() {
         doFoldingTest(state::concatenationExpressionsCollapse, state::optional, state::streamSpread)
+
+        val storage = store as? FoldingDataStorage ?: return
+        val placeholders = storage.createOrderedFoldingWrapper().list.mapNotNull { it.placeholder }
+        assertTrue(
+            placeholders.contains("?.let { … }"),
+            "Expected Optional.ifPresent to fold into ?.let { … } placeholder",
+        )
+        assertTrue(
+            placeholders.any { it.contains("?: run { … }") },
+            "Expected Optional.ifPresentOrElse to expose ?: run { … } placeholder",
+        )
     }
 
     /**

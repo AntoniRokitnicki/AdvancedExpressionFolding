@@ -46,6 +46,14 @@ public class OptionalTestData {
 
         Stream.of(data)*.data().filterNotNull();
         Stream.of(data)*.data().filterNotNull()*.data().findFirst()!!;
+
+        opt?.let { … };
+
+        opt?.let { … } ?: run { … };
+
+        dataNull?.let { … };
+
+        dataNull?.let { … } ?: run { … };
     }
 
     private Data orElseGetReturn() {

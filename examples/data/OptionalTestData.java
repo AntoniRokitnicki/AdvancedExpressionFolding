@@ -48,6 +48,26 @@ public class OptionalTestData {
 
         Stream.of(data).map(Data::getData).filter(Objects::nonNull);
         Stream.of(data).map(Data::getData) .filter(Objects::nonNull).map(Data::getData).findFirst().orElseThrow();
+
+        opt.ifPresent(value -> {
+            value.setString(data.getString());
+        });
+
+        opt.ifPresentOrElse(value -> {
+            value.setString(data.getString());
+        }, () -> {
+            System.out.println("missing");
+        });
+
+        Optional.ofNullable(dataNull).ifPresent(value -> {
+            value.setOk(true);
+        });
+
+        Optional.ofNullable(dataNull).ifPresentOrElse(value -> {
+            value.setOk(true);
+        }, () -> {
+            throw new IllegalStateException();
+        });
     }
 
     private Data orElseGetReturn() {
