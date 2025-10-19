@@ -89,8 +89,9 @@ class AdvancedExpressionFoldingBuilder(private val config: IConfig = getInstance
         element: PsiElement,
         document: Document
     ): Array<FoldingDescriptor> {
-        //TODO: default list size based on file size
-        val allDescriptors = Lists.newArrayListWithCapacity<FoldingDescriptor>(1_000)
+        val allDescriptors = Lists.newArrayListWithCapacity<FoldingDescriptor>(
+            FoldingCapacityEstimator.estimateInitialCapacity(document.textLength)
+        )
         BuildExpressionExt.collectFoldRegionsRecursively(element, document, Sets.newIdentityHashSet(), allDescriptors)
         return allDescriptors.toTypedArray()
     }
