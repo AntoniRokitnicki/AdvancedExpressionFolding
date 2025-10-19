@@ -38,7 +38,7 @@ object MethodDefaultParameterExt : BaseExtension(){
     ): DefaultValue? {
         val paramMap = methodToDefaultValues(duplicates)
         return paramMap.entries.maxByOrNull { (_, paramsMap) ->
-            paramsMap.map.size
+            paramsMap.size
         }?.let { (method, params) ->
             DefaultValue(mainMethod, params, method)
         }
@@ -51,12 +51,12 @@ object MethodDefaultParameterExt : BaseExtension(){
         val list = exprList()
         defaultParamMethods.forEach { (method, params, duplicatedMethod) ->
             val group = group()
-            params.map.forEach { (paramNr, value) ->
+            params.forEach { paramNr, value ->
                 val paramWithValue = method.parameterList.parameters.getOrNull(paramNr)
                 val paramNextElement = paramWithValue?.nextSibling
-                list += paramNextElement?.expr(" = $value${paramNextElement.text}", group = group)
+                list += paramNextElement?.expr(" = ${value.text}${paramNextElement.text}", group = group)
             }
-            if (params.map.isNotEmpty()) {
+            if (params.isNotEmpty()) {
                 list += duplicatedMethod.exprHide(group = group)
             }
         }
@@ -67,13 +67,14 @@ object MethodDefaultParameterExt : BaseExtension(){
         return duplicates.associateWith { method ->
             val methodCall = getFirstMethodCallExpression(method)
             val expressions = methodCall?.argumentList?.expressions
-            val params = expressions?.mapIndexedNotNull { index, psiExpression ->
-                if (asPsiParameter(psiExpression) == null) {
-                    index to psiExpression.text
-                } else {
-                    null
-                }
-            }?.toMap() ?: emptyMap()
+            val params: Map<ParameterIndex, DefaultValueExpression> =
+                expressions?.mapIndexedNotNull { index, psiExpression ->
+                    if (asPsiParameter(psiExpression) == null) {
+                        index to DefaultValueExpression(psiExpression.text)
+                    } else {
+                        null
+                    }
+                }?.toMap() ?: emptyMap()
             DefaultParameterMap(params)
         }
     }
@@ -118,7 +119,9 @@ object MethodDefaultParameterExt : BaseExtension(){
     )
 
     @JvmInline
-    private value class DefaultParameterMap(val map: Map<ParameterIndex, ParameterDefaultValueAsString>)
+    private value class DefaultParameterMap(
+        private val map: Map<ParameterIndex, DefaultValueExpression>
+    ) : Map<ParameterIndex, DefaultValueExpression> by map
 
     private fun Project.isDebugSessionRunning(): Boolean {
         if (isDisposed || isDefault) {
@@ -129,5 +132,9 @@ object MethodDefaultParameterExt : BaseExtension(){
 }
 
 typealias ParameterIndex = Int
-typealias ParameterDefaultValueAsString = String
+
+@JvmInline
+private value class DefaultValueExpression(val text: String) {
+    override fun toString(): String = text
+}
 
