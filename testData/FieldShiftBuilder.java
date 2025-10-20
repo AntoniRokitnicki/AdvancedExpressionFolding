@@ -16,7 +16,8 @@ public class FieldShiftBuilder {
 
     public static FieldShiftBuilder map(UserData2 source, BuilderFieldShiftBuilder builder, UserDataRecord record) <fold text='{...}' expand='true'>{
         BuilderFieldShiftBuilder builder1 = builder
-                .username(record<fold text='<<' expand='false'>.username()</fold>);
+                .username(record<fold text='<<' expand='false'>.username()</fold>)
+                .withUserIdentifier(record<fold text='<<' expand='false'>.userIdentifier()</fold>);
         var builder2 = builder
                 .active(source<fold text='<<' expand='false'>.isActive()</fold>);
         return FieldShiftBuilder.builder().username(record.<fold text='userIdentifier' expand='false'>userIdentifier()</fold>).username(changer(record<fold text='<<' expand='false'>.username()</fold>))
@@ -47,6 +48,7 @@ public class FieldShiftBuilder {
         return FieldShiftBuilder.builder()
                 .username(source<fold text='<<' expand='false'>.getUsername()</fold>)
                 .userIdentifier(source<fold text='<<' expand='false'>.getUserIdentifier()</fold>)
+                .withUserIdentifier(source<fold text='<<' expand='false'>.getUserIdentifier()</fold>)
                 .build();
     }</fold>
 
@@ -55,6 +57,7 @@ public class FieldShiftBuilder {
                 .username(source<fold text='<<' expand='false'>.username()</fold>)
                 .active(source<fold text='<<' expand='false'>.active()</fold>)
                 .userIdentifier(source<fold text='<<' expand='false'>.userIdentifier()</fold>)
+                .withUserIdentifier(source<fold text='<<' expand='false'>.userIdentifier()</fold>)
                 .build();
     }</fold>
 
@@ -161,6 +164,11 @@ public class FieldShiftBuilder {
         }</fold>
 
         public BuilderFieldShiftBuilder userIdentifier(String userIdentifier) <fold text='{...}' expand='true'>{
+            this.userIdentifier = <fold text='<<' expand='false'>userIdentifier</fold>;
+            return this;
+        }</fold>
+
+        public BuilderFieldShiftBuilder withUserIdentifier(String userIdentifier) <fold text='{...}' expand='true'>{
             this.userIdentifier = <fold text='<<' expand='false'>userIdentifier</fold>;
             return this;
         }</fold>

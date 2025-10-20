@@ -12,6 +12,7 @@ import com.intellij.psi.impl.source.PsiClassReferenceType
 import com.intellij.psi.search.LocalSearchScope
 import com.intellij.psi.search.searches.ReferencesSearch
 import com.intellij.psi.util.MethodSignature
+import com.intellij.psi.util.PsiTypesUtil
 
 fun isNull(type: PsiType?): Boolean = (type as? PsiPrimitiveType)?.name == "null"
 
@@ -114,8 +115,32 @@ fun PsiAnnotation.isSuppressWarnings() = qualifiedName == "java.lang.SuppressWar
 fun PsiMethod.isSetterOrBuilder(): Boolean = isSetter() || isBuilder()
 
 fun PsiMethod.isSetter(): Boolean {
-    fun isSetter(text: String) = text.startsWith("set") && text.length > 3 && Character.isUpperCase(text[3])
-    return parameterList.parametersCount == 1 && returnType.isVoid() && isSetter(name)
+    if (parameterList.parametersCount != 1) {
+        return false
+    }
+    val methodName = name
+    fun hasSetterPrefix(prefix: String) =
+        methodName.startsWith(prefix) && methodName.length > prefix.length && Character.isUpperCase(methodName[prefix.length])
+
+    val hasSetPrefix = hasSetterPrefix("set")
+    val hasWithPrefix = hasSetterPrefix("with")
+    if (!hasSetPrefix && !hasWithPrefix) {
+        return false
+    }
+
+    val returnType = returnType
+    if (returnType.isVoid()) {
+        return true
+    }
+
+    if (hasWithPrefix) {
+        val containingType = containingClass?.let { PsiTypesUtil.getClassType(it) }
+        if (containingType != null && returnType == containingType) {
+            return true
+        }
+    }
+
+    return false
 }
 
 fun PsiMethod.isGetter(): Boolean {
