@@ -4,6 +4,8 @@ import kotlin.reflect.KMutableProperty0
 
 @DslMarker
 annotation class CheckboxDsl
+
+typealias Description = String
 typealias UrlSuffix = String
 typealias ExampleFile = String
 
@@ -19,8 +21,8 @@ class CheckboxBuilder {
     private val examples = mutableMapOf<ExampleFile, Description?>()
     private var docLink: UrlSuffix? = null
 
-    fun example(file: ExampleFile, description: String? = null) {
-        examples[file] = description?.let(::Description)
+    fun example(file: ExampleFile, description: Description? = null) {
+        examples[file] = description
     }
 
     fun link(documentationLink: UrlSuffix) {
