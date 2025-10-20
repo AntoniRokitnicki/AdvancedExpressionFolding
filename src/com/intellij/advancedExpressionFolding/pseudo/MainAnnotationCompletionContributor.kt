@@ -162,7 +162,7 @@ class MainAnnotationCompletionContributor(private val state: IState = getInstanc
     private fun insertFormatted(code: String, clazz: PsiClass, ctx: InsertionContext) {
         val project = clazz.project
         val doc = ctx.document
-        val insertOffset = clazz.lBrace?.textOffset?.plus(1) ?: clazz.textRange.endOffset
+        val insertOffset = clazz.lBrace?.let { it.textOffset + 1 } ?: clazz.textRange.endOffset
 
         val documentManager = PsiDocumentManager.getInstance(project)
         documentManager.doPostponedOperationsAndUnblockDocument(doc)
