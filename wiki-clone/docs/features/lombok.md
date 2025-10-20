@@ -12,7 +12,7 @@ Since v1.0.52
 Field level `@Getter` & `@Setter`. If method is doing something more that it should it's marked as dirty with `@Getter(dirty)` & `@Setter(dirty)`.
 
 
-### @Builder
+### @HasBuilder
 Folds a builder pattern implementation into a single annotation.
 
 LombokTestData.java:
@@ -34,7 +34,7 @@ class ClassWithBuilder {
 
 LombokTestData-folded.java:
 ```java
-@Builder class ClassWithBuilder {
+@HasBuilder class ClassWithBuilder {
     private String name;
 }
 ```

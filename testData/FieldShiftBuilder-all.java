@@ -1,6 +1,6 @@
 package data;
 
-<fold text='@Builder(BuilderFieldShiftBuilder) @AllArgsConstructor(default) @Getter p' expand='false'>p</fold>ublic class FieldShiftBuilder {
+<fold text='@HasBuilder(BuilderFieldShiftBuilder) @AllArgsConstructor(default) @Getter p' expand='false'>p</fold>ublic class FieldShiftBuilder {
     private String username;
     private boolean active;
     private String userIdentifier;
@@ -78,7 +78,7 @@ package data;
         </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>this.child<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
     </fold>}</fold></fold>
 
-    <fold text='@Builder @AllArgsConstructor(default) @Getter p' expand='false'>p</fold>ublic static class UserData2 <fold text='{...}' expand='true'>{
+    <fold text='@HasBuilder @AllArgsConstructor(default) @Getter p' expand='false'>p</fold>ublic static class UserData2 <fold text='{...}' expand='true'>{
         private String username;
         private boolean active;
         private String userIdentifier;<fold text='' expand='false'>
