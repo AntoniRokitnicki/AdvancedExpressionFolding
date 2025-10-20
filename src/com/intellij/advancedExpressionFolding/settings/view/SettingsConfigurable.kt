@@ -17,9 +17,9 @@ import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.openapi.vfs.encoding.EncodingProjectManager
 import com.intellij.ui.JBColor
 import com.intellij.ui.components.ActionLink
-import com.intellij.ui.components.JBCheckBox
 import com.intellij.ui.dsl.builder.Panel
 import com.intellij.ui.dsl.builder.panel
+import com.intellij.ui.dsl.builder.bindSelected
 import java.awt.Color.decode
 import java.awt.FlowLayout
 import java.net.URI
@@ -31,8 +31,6 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
     private val state = AdvancedExpressionFoldingSettings.getInstance().state
     private lateinit var panel: DialogPanel
     private val allExampleFiles = mutableSetOf<ExampleFile>()
-    private val pendingChanges = mutableMapOf<KMutableProperty0<Boolean>, Boolean>()
-    private val propertyToCheckbox = mutableMapOf<KMutableProperty0<Boolean>, JBCheckBox>()
 
     override fun getId() = "advanced.expression.folding"
 
@@ -111,24 +109,14 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
         panel = it
     }
 
-    override fun isModified(): Boolean {
-        return panel.isModified() || pendingChanges.isNotEmpty()
-    }
+    override fun isModified(): Boolean = panel.isModified()
 
     override fun apply() {
-        pendingChanges.forEach { (property, value) ->
-            property.set(value)
-        }
-        pendingChanges.clear()
-        
         panel.apply()
     }
 
     override fun reset() {
-        pendingChanges.clear()
-        propertyToCheckbox.forEach { (property, checkbox) ->
-            checkbox.isSelected = property.get()
-        }
+        panel.reset()
     }
 
     private fun firstSourceRoot(project: Project) =
@@ -177,15 +165,9 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
         val builder = CheckboxBuilder()
         block?.invoke(builder)
         
-        val checkbox = JBCheckBox(title)
-        checkbox.isSelected = property.get()
-        checkbox.addActionListener {
-            pendingChanges[property] = checkbox.isSelected
-        }
-        propertyToCheckbox[property] = checkbox
-        
         row {
-            cell(checkbox)
+            checkBox(title)
+                .bindSelected(property)
         }
         
         val definition = builder.build(property, title)
