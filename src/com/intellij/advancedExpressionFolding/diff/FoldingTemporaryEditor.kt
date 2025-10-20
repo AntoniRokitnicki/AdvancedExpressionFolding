@@ -30,22 +30,22 @@ object FoldingTemporaryEditor {
 
     private fun getVisibleCode(editor: EditorEx): FoldedCode {
         val document = editor.document
+        val foldedText = StringBuilder(document.textLength)
         var offset = 0
-        return buildString(document.textLength) {
-            for (region in editor.foldingModel.allFoldRegions) {
-                if (region.isValid && region.isExpanded) {
-                    val foldStart = region.startOffset
-                    try {
-                        append(document.getText(TextRange(offset, foldStart)))
-                        append(region.placeholderText)
-                        offset = region.endOffset
-                    } catch (_: IllegalArgumentException) {
-                        //ignore text that has already been folded
-                    }
+        for (region in editor.foldingModel.allFoldRegions) {
+            if (region.isValid && region.isExpanded) {
+                val foldStart = region.startOffset
+                try {
+                    foldedText.append(document.getText(TextRange(offset, foldStart)))
+                    foldedText.append(region.placeholderText)
+                    offset = region.endOffset
+                } catch (_: IllegalArgumentException) {
+                    //ignore text that has already been folded
                 }
             }
-            append(document.getText(TextRange(offset, document.textLength)))
         }
+        foldedText.append(document.getText(TextRange(offset, document.textLength)))
+        return foldedText.toString()
     }
 
     private const val FOLD = "fold"
