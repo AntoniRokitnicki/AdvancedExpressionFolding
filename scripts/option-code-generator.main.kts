@@ -2,7 +2,7 @@
 import java.io.File
 import java.util.*
 
-val basePath: String = System.getProperty("project.dir", ".")
+val basePath: String = System.getProperty("project.dir", "..")
 val varName = System.getProperty("varName") ?: "patternMatchingInstanceof"
 val varText = System.getProperty("varText") ?: "Pattern Matching for instanceof (JEP 394)"
 
