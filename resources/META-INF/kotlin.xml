@@ -1,0 +1,11 @@
+<idea-plugin>
+    <extensions defaultExtensionNs="com.intellij">
+        <lang.foldingBuilder language="kotlin"
+                             implementationClass="com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingBuilder"/>
+    </extensions>
+
+    <extensions defaultExtensionNs="com.github.advanced-java-folding2">
+        <expressionBuilder implementation="com.intellij.advancedExpressionFolding.processor.core.KtAssignmentExpressionBuilder"/>
+        <expressionBuilder implementation="com.intellij.advancedExpressionFolding.processor.core.KtCallExpressionBuilder"/>
+    </extensions>
+</idea-plugin>
