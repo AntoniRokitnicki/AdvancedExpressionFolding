@@ -11,10 +11,7 @@ import com.intellij.psi.PsiMethodReferenceExpression
 import com.intellij.psi.util.PsiTreeUtil
 import com.intellij.testFramework.fixtures.DefaultLightProjectDescriptor
 import com.intellij.testFramework.fixtures.LightJavaCodeInsightFixtureTestCase5
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertInstanceOf
-import org.junit.jupiter.api.Assertions.assertNull
-import org.junit.jupiter.api.Assertions.fail
+import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
 class MethodReferenceExtTest : LightJavaCodeInsightFixtureTestCase5(TEST_JDK) {
@@ -56,7 +53,7 @@ class MethodReferenceExtTest : LightJavaCodeInsightFixtureTestCase5(TEST_JDK) {
             settings.optional = false
             settings.streamSpread = false
 
-            assertNull(runReadAction { createExpression(methodReference) })
+            runReadAction { assertNull(createExpression(methodReference)) }
         } finally {
             settings.optional = originalOptional
             settings.streamSpread = originalStream
