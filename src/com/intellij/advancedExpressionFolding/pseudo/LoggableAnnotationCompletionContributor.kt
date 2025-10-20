@@ -10,7 +10,7 @@ import java.util.LinkedHashSet
 
 class LoggableAnnotationCompletionContributor : AbstractLoggingAnnotationCompletionContributor() {
 
-    override val annotationName: AnnotationName = AnnotationName("Loggable")
+    override val annotationName: String = "Loggable"
 
     override fun isAlreadyLogged(
         @Suppress("UNUSED_PARAMETER") method: PsiMethod,

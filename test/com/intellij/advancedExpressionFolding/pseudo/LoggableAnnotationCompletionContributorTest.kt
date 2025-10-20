@@ -17,8 +17,6 @@ import java.util.stream.Stream
 
 class LoggableAnnotationCompletionContributorTest : BaseTest() {
 
-    private val annotationName = AnnotationName("Loggable")
-
     companion object {
         private var originalPseudoAnnotationsValue: Boolean = false
 
@@ -312,7 +310,7 @@ class LoggableAnnotationCompletionContributorTest : BaseTest() {
 
         val completions = fixture.complete(CompletionType.BASIC)
         assertNotNull(completions)
-        assertTrue(completions.any { it.lookupString == annotationName.value })
+        assertTrue(completions.any { it.lookupString == "Loggable" })
     }
 
     @ParameterizedTest
@@ -323,7 +321,7 @@ class LoggableAnnotationCompletionContributorTest : BaseTest() {
         val completions = fixture.complete(CompletionType.BASIC)
         assertNotNull(completions)
 
-        val logCompletion = completions.find { it.lookupString == annotationName.value }
+        val logCompletion = completions.find { it.lookupString == "Loggable" }
         assertNotNull(logCompletion)
 
         ApplicationManager.getApplication().invokeAndWait {
@@ -342,7 +340,7 @@ class LoggableAnnotationCompletionContributorTest : BaseTest() {
         val completions = fixture.complete(CompletionType.BASIC)
         assertNotNull(completions)
 
-        val logCompletion = completions.find { it.lookupString == annotationName.value }
+        val logCompletion = completions.find { it.lookupString == "Loggable" }
         assertNotNull(logCompletion)
 
         ApplicationManager.getApplication().invokeAndWait {

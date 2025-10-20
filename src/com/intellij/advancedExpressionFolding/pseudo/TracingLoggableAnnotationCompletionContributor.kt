@@ -9,7 +9,7 @@ import com.intellij.xdebugger.breakpoints.XLineBreakpoint
 
 class TracingLoggableAnnotationCompletionContributor : AbstractLoggingAnnotationCompletionContributor() {
 
-    override val annotationName: AnnotationName = AnnotationName("TracingLoggable")
+    override val annotationName: String = "TracingLoggable"
 
     override fun shouldRemoveClassLogging(psiClass: PsiClass): Boolean {
         val className = psiClass.name ?: return false
@@ -89,13 +89,7 @@ class TracingLoggableAnnotationCompletionContributor : AbstractLoggingAnnotation
         exitLine: Int,
         buildExitExpression: String
     ) {
-        BreakpointUtil.toggleBreakpoint(
-            project,
-            file,
-            exitLine,
-            buildExitExpression,
-            groupName = "${annotationName.value}-${file.name}",
-        )
+        BreakpointUtil.toggleBreakpoint(project, file, exitLine, buildExitExpression, groupName = "$annotationName-${file.name}")
     }
 
     private fun resolveTarget(method: PsiMethod, body: PsiCodeBlock): LoggingTarget? {

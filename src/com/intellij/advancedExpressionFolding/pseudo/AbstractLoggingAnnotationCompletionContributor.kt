@@ -31,7 +31,7 @@ abstract class AbstractLoggingAnnotationCompletionContributor(
     private val state: IState = getInstance().state
 ) : CompletionContributor(), IState by state {
 
-    protected abstract val annotationName: AnnotationName
+    protected abstract val annotationName: String
 
     init {
         extend(
@@ -111,11 +111,11 @@ abstract class AbstractLoggingAnnotationCompletionContributor(
     }
 
     private fun removeAnnotation(method: PsiMethod) {
-        method.modifierList.findAnnotation(annotationName.value)?.delete()
+        method.modifierList.findAnnotation(annotationName)?.delete()
     }
 
     private fun removeAnnotation(psiClass: PsiClass) {
-        psiClass.modifierList?.findAnnotation(annotationName.value)?.delete()
+        psiClass.modifierList?.findAnnotation(annotationName)?.delete()
     }
 
     protected abstract fun isAlreadyLogged(
@@ -140,9 +140,9 @@ abstract class AbstractLoggingAnnotationCompletionContributor(
         override fun addCompletions(parameters: CompletionParameters, context: ProcessingContext, result: CompletionResultSet) {
             if (!pseudoAnnotations) return
 
-            val lookup = LookupElementBuilder.create(annotationName.value)
-                .withLookupString("@${annotationName.value}")
-                .withPresentableText("@${annotationName.value}")
+            val lookup = LookupElementBuilder.create(annotationName)
+                .withLookupString("@$annotationName")
+                .withPresentableText("@$annotationName")
                 .withInsertHandler { ctx, _ ->
                     handleMethodInsert(ctx)
                 }
@@ -156,9 +156,9 @@ abstract class AbstractLoggingAnnotationCompletionContributor(
         override fun addCompletions(parameters: CompletionParameters, context: ProcessingContext, result: CompletionResultSet) {
             if (!pseudoAnnotations) return
 
-            val lookup = LookupElementBuilder.create(annotationName.value)
-                .withLookupString("@${annotationName.value}")
-                .withPresentableText("@${annotationName.value}")
+            val lookup = LookupElementBuilder.create(annotationName)
+                .withLookupString("@$annotationName")
+                .withPresentableText("@$annotationName")
                 .withInsertHandler { ctx, _ ->
                     handleClassInsert(ctx)
                 }
