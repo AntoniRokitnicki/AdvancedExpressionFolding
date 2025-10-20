@@ -5,32 +5,22 @@ directory_structure:
   files:
     CLAUDE.md:
       purpose: Documentation CLAUDE.md.
-    option-code-generator.main.sh:
-      purpose: Script option-code-generator.main.sh.
     CHANGELOG.md:
       purpose: Documentation CHANGELOG.md.
     README.md:
       purpose: Documentation README.md.
-    changelog.sh:
-      purpose: Script changelog.sh.
     qodana.yaml:
       purpose: Configuration qodana.yaml.
     settings.gradle.kts:
       purpose: Script settings.gradle.kts.
-    doc-gen.main.kts:
-      purpose: Script doc-gen.main.kts.
     build.gradle.kts:
       purpose: Script build.gradle.kts.
     gradle.properties:
       purpose: Configuration gradle.properties.
-    complete-project-documentation.yaml:
-      purpose: Configuration complete-project-documentation.yaml.
     AGENTS.md:
       purpose: Documentation AGENTS.md.
     .gitignore:
       purpose: File .gitignore.
-    option-code-generator.main.kts:
-      purpose: Script option-code-generator.main.kts.
     .gitattributes:
       purpose: File .gitattributes.
     gradlew.bat:
@@ -41,6 +31,22 @@ directory_structure:
       purpose: File gradlew.
     LICENSE:
       purpose: File LICENSE.
+  docs/:
+    files:
+      complete-project-documentation.yaml:
+        purpose: Configuration complete-project-documentation.yaml.
+  scripts/:
+    files:
+      changelog.sh:
+        purpose: Script changelog.sh.
+      doc-gen.main.kts:
+        purpose: Script doc-gen.main.kts.
+      java2kotlin-rename-split.zsh:
+        purpose: Script java2kotlin-rename-split.zsh.
+      option-code-generator.main.kts:
+        purpose: Script option-code-generator.main.kts.
+      option-code-generator.main.sh:
+        purpose: Script option-code-generator.main.sh.
   .github/:
     files:
       pull_request_template.md:
