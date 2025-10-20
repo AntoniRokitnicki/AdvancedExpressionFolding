@@ -130,12 +130,14 @@ object IfExt {
                             }
                         }
                         .toList()
+                    val thenExpression = element.thenExpression ?: return null
+                    val elseExpression = element.elseExpression ?: return null
                     if (references.isNotEmpty()) {
                         return ElvisExpression(
                             element,
                             element.textRange,
-                            BuildExpressionExt.getAnyExpression(element.thenExpression!!, document),
-                            BuildExpressionExt.getAnyExpression(element.elseExpression!!, document),
+                            BuildExpressionExt.getAnyExpression(thenExpression, document),
+                            BuildExpressionExt.getAnyExpression(elseExpression, document),
                             references.map { it.textRange }
                         )
                     }

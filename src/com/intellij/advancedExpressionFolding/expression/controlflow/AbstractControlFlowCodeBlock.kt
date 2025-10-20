@@ -44,14 +44,16 @@ abstract class AbstractControlFlowCodeBlock(
         val rBrace = codeBlock.rBrace
         if (rBrace != null) {
             var smart = false
-            if (element.parent != null) {
+            val parent = element.parent
+            if (parent != null) {
+                val parentParent = parent.parent
                 val thisStatement = when {
-                    element.parent?.parent is PsiIfStatement || element.parent?.parent is PsiLoopStatement ->
-                        element.parent!!.parent
-                    element.parent is PsiSwitchStatement ||
-                        element.parent is PsiTryStatement ||
-                        element.parent is PsiCatchSection ->
-                        element.parent
+                    parentParent is PsiIfStatement || parentParent is PsiLoopStatement ->
+                        parentParent
+                    parent is PsiSwitchStatement ||
+                        parent is PsiTryStatement ||
+                        parent is PsiCatchSection ->
+                        parent
                     else -> null
                 }
                 if (thisStatement != null) {

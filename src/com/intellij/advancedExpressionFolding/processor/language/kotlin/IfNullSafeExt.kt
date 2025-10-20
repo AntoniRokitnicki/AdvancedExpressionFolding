@@ -114,16 +114,15 @@ object IfNullSafeExt : BaseExtension() {
         document: Document,
         element: PsiPolyadicExpression
     ): Expression? {
-        val elementList = currentList
-            .map {
-                if (it is PsiBinaryExpression) {
-                    it.lOperand
-                } else if (it is PsiPrefixExpression) {
-                    it.operand!!
-                } else {
-                    it
-                }
+        val elementList = mutableListOf<PsiElement>()
+        for (candidate in currentList) {
+            val element = when (candidate) {
+                is PsiBinaryExpression -> candidate.lOperand
+                is PsiPrefixExpression -> candidate.operand ?: return null
+                else -> candidate
             }
+            elementList += element
+        }
         var replacementText = elementList
             .map {
                 BuildExpressionExt.getAnyExpression(it, document)

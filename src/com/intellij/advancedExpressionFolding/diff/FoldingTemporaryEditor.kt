@@ -18,7 +18,8 @@ object FoldingTemporaryEditor {
             editor.caretModel.moveToLogicalPosition(LogicalPosition(0, 0))
             editor.foldingModel.runBatchFoldingOperation {
                 list.forEach {
-                    editor.foldingModel.createFoldRegion(it.range.start, it.range.end, it.placeholder!!,
+                    val placeholder = it.placeholder ?: ""
+                    editor.foldingModel.createFoldRegion(it.range.start, it.range.end, placeholder,
                         FoldingGroup.newGroup("${it.groupReference}"), false)
                 }
             }

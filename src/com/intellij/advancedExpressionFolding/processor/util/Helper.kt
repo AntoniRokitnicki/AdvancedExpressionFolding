@@ -142,10 +142,8 @@ object Helper {
     fun isSupportedClass(element: PsiElement): Boolean {
         val resolved = element.reference?.resolve()
         if (resolved is PsiField) {
-            val psiClass = resolved.containingClass
-            if (psiClass?.qualifiedName != null) {
-                return Consts.SUPPORTED_CLASSES.contains(eraseGenerics(psiClass.qualifiedName!!))
-            }
+            val qualifiedName = resolved.containingClass?.qualifiedName ?: return false
+            return Consts.SUPPORTED_CLASSES.contains(eraseGenerics(qualifiedName))
         }
         return false
     }
@@ -216,7 +214,8 @@ object Helper {
                 if (identifier != null && (identifier.text == "length" || identifier.text == "size") &&
                     methodExpression.qualifierExpression != null
                 ) {
-                    val qualifier = BuildExpressionExt.getAnyExpression(methodExpression.qualifierExpression!!, document)
+                    val qualifierExpression = methodExpression.qualifierExpression ?: return null
+                    val qualifier = BuildExpressionExt.getAnyExpression(qualifierExpression, document)
                     if (qualifier == qualifierExpression) {
                         return NumberLiteral(
                             parent,
@@ -256,7 +255,8 @@ object Helper {
     fun isGetter(name: String): Boolean = isGetterAux(name, "get") || isGetterAux(name, "is")
 
     fun isGetterAux(name: String?, prefix: String): Boolean {
-        return startsWith(name, prefix) && name!!.length > prefix.length && name[prefix.length].isUpperCase()
+        val actualName = name ?: return false
+        return startsWith(actualName, prefix) && actualName.length > prefix.length && actualName[prefix.length].isUpperCase()
     }
 
     fun findAncestorsUntilClass(element: PsiElement, ancestorClass: Class<out PsiElement>): Sequence<PsiElement> {

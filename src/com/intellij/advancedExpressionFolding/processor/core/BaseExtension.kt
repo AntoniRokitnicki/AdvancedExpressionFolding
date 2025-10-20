@@ -16,8 +16,13 @@ abstract class BaseExtension : StateDelegate() {
     fun <T : PsiElement?> getAnyExpressions(
         expressions: Array<T?>?,
         document: Document? = expressions?.firstOrNull()?.containingFile?.viewProvider?.document,
-    ): List<Expression> = expressions?.filterNotNull()?.map {
-        getAnyExpression(it, document!!)
-    } ?: emptyList()
+    ): List<Expression> {
+        val filtered = expressions?.filterNotNull() ?: return emptyList()
+        if (filtered.isEmpty()) {
+            return emptyList()
+        }
+        val resolvedDocument = document ?: filtered.first().containingFile.viewProvider.document
+        return filtered.map { getAnyExpression(it, resolvedDocument) }
+    }
 
 }

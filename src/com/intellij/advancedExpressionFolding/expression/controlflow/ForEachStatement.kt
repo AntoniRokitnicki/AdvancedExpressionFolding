@@ -26,10 +26,11 @@ class ForEachStatement(
     ): Array<FoldingDescriptor> {
         val descriptors = ArrayList<FoldingDescriptor>()
         val group = FoldingGroup.newGroup(ForEachStatement::class.java.name)
+        val lParenth = this.forStatement.lParenth
         if (AdvancedExpressionFoldingSettings.getInstance().state.compactControlFlowSyntaxCollapse &&
-            this.forStatement.lParenth != null
+            lParenth != null
         ) {
-            val startOffset = this.forStatement.lParenth!!.textRange.startOffset
+            val startOffset = lParenth.textRange.startOffset
             descriptors += FoldingDescriptor(
                 element.node,
                 TextRange.create(startOffset, startOffset + 1),

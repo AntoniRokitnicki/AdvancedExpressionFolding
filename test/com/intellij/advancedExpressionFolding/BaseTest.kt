@@ -104,8 +104,8 @@ abstract class BaseTest : LightJavaCodeInsightFixtureTestCase5(TEST_JDK) {
         } else {
             FileUtil.writeToFile(File(destinationFileName), cleanContent)
             val file = LocalFileSystem.getInstance().refreshAndFindFileByPath(destinationFileName)
-            assertNotNull(file)
-            fixture.configureFromExistingVirtualFile(file!!)
+            val virtualFile = requireNotNull(file)
+            fixture.configureFromExistingVirtualFile(virtualFile)
         }
         WriteAction.run<IOException> {
             fixture.file.virtualFile.isWritable = false

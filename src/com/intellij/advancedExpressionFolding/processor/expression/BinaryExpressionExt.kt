@@ -45,11 +45,12 @@ object BinaryExpressionExt {
     }
 
     private fun tryBuildBasicBinaryOperation(element: PsiBinaryExpression, document: Document): Expression? {
-        if (!Consts.SUPPORTED_BINARY_OPERATORS.contains(element.operationSign.text) || element.rOperand == null) {
+        val rightOperand = element.rOperand ?: return null
+        if (!Consts.SUPPORTED_BINARY_OPERATORS.contains(element.operationSign.text)) {
             return null
         }
         val leftExpression = com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt.getAnyExpression(element.lOperand, document)
-        val rightExpression = com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt.getAnyExpression(element.rOperand!!, document)
+        val rightExpression = com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt.getAnyExpression(rightOperand, document)
         return when (element.operationSign.text) {
             "+" -> Add(element, element.textRange, listOf(leftExpression, rightExpression))
             "-" -> Subtract(element, element.textRange, listOf(leftExpression, rightExpression))
@@ -69,14 +70,16 @@ object BinaryExpressionExt {
         if (!isSupportedCompareToPattern(methodCall, literal)) {
             return null
         }
-        val method = methodCall!!.methodExpression.resolve() as? PsiMethod ?: return null
+        val methodCallExpression = methodCall ?: return null
+        val method = methodCallExpression.methodExpression.resolve() as? PsiMethod ?: return null
         if (!isSupportedCompareToMethod(method)) {
             return null
         }
-        val qualifier = getQualifierExpression(methodCall, document) ?: return null
-        val argument = com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt.getAnyExpression(methodCall.argumentExpressions[0], document)
+        val qualifier = getQualifierExpression(methodCallExpression, document) ?: return null
+        val argument = com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt.getAnyExpression(methodCallExpression.argumentExpressions[0], document)
         val operationSign = element.operationSign.text
-        val expressionValue = literal!!.text.toInt()
+        val literalElement = literal ?: return null
+        val expressionValue = literalElement.text.toInt()
         var lessOperation = "<"
         var greaterOperation = ">"
         if (literal == element.lOperand) {
@@ -248,9 +251,11 @@ object BinaryExpressionExt {
             a.rOperand != null && b.rOperand != null
         ) {
             val e1 = com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt.getAnyExpression(a.lOperand, document)
-            val e2 = com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt.getAnyExpression(a.rOperand!!, document)
+            val e2Operand = a.rOperand ?: return null
+            val e2 = com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt.getAnyExpression(e2Operand, document)
             val e3 = com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt.getAnyExpression(b.lOperand, document)
-            val e4 = com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt.getAnyExpression(b.rOperand!!, document)
+            val e4Operand = b.rOperand ?: return null
+            val e4 = com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt.getAnyExpression(e4Operand, document)
             if (e1 == e3) {
                 return Range(
                     parent,
@@ -268,9 +273,11 @@ object BinaryExpressionExt {
             a.rOperand != null && b.rOperand != null
         ) {
             val e1 = com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt.getAnyExpression(a.lOperand, document)
-            val e2 = com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt.getAnyExpression(a.rOperand!!, document)
+            val e2Operand = a.rOperand ?: return null
+            val e2 = com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt.getAnyExpression(e2Operand, document)
             val e3 = com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt.getAnyExpression(b.lOperand, document)
-            val e4 = com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt.getAnyExpression(b.rOperand!!, document)
+            val e4Operand = b.rOperand ?: return null
+            val e4 = com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt.getAnyExpression(e4Operand, document)
             if (e1 == e3) {
                 return Range(
                     parent,

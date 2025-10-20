@@ -16,27 +16,31 @@ import com.intellij.psi.*
 object NullableExt : BaseExtension() {
 
     fun findPropertyAnnotation(field: PsiField, typeElement: PsiTypeElement?): Expression? {
-        return field.metadata.getter
+        val propertyTypeElement = typeElement ?: return null
+        field.metadata.getter
             ?.takeIf {
                 it.annotations.firstOrNull() != null
             }?.let { method ->
-                fieldAnnotationExpression(method.annotations, method.returnTypeElement!!)?.let {
+                val returnTypeElement = method.returnTypeElement ?: return@let null
+                fieldAnnotationExpression(method.annotations, returnTypeElement)?.let {
                     method.markIgnored()
-                    NullAnnotationExpression(typeElement!!, null, it.typeSuffix)
+                    return NullAnnotationExpression(propertyTypeElement, null, it.typeSuffix)
                 }
             }
-            ?: field.metadata.setter?.let { method ->
-                val second =
-                    method.parameterList.parameters.firstOrNull()?.annotations.asInstance<Array<out PsiAnnotation>>()
-                second?.firstOrNull()?.let {
-                    Pair(method, second)
-                }
-            }?.let { (method, ann) ->
-                fieldAnnotationExpression(ann, method.returnTypeElement!!)?.let {
-                    method.markIgnored()
-                    NullAnnotationExpression(typeElement!!, null, it.typeSuffix)
-                }
+        val setterAnnotations = field.metadata.setter?.let { method ->
+            val parameter = method.parameterList.parameters.firstOrNull() ?: return@let null
+            val annotations = parameter.annotations.asInstance<Array<out PsiAnnotation>>() ?: return@let null
+            annotations.firstOrNull()?.let {
+                method to annotations
             }
+        }
+        return setterAnnotations?.let { (method, annotations) ->
+            val returnTypeElement = method.returnTypeElement ?: return@let null
+            fieldAnnotationExpression(annotations, returnTypeElement)?.let {
+                method.markIgnored()
+                NullAnnotationExpression(propertyTypeElement, null, it.typeSuffix)
+            }
+        }
     }
 
     fun readCheckNotNullMethods(element: PsiParameter, document: Document): Expression? {
@@ -45,13 +49,10 @@ object NullableExt : BaseExtension() {
         return element.parent.parent.asInstance<PsiMethod>()?.let {
             it.body?.statements
         }?.let { statements ->
-            val expressionMutableList = statements.asSequence().map {
-                it.firstChild.asInstance<PsiMethodCallExpression>()
-            }.takeWhile {
-                it != null
-            }.map {
-                getAnyExpression(it!!, document)
-            }.toMutableList<Expression?>()
+            val expressionMutableList = statements.asSequence()
+                .mapNotNull { it.firstChild.asInstance<PsiMethodCallExpression>() }
+                .map { getAnyExpression(it, document) }
+                .toMutableList<Expression?>()
 
             val methodCallFound = expressionMutableList.mapNotNull {
                 it.asInstance<CheckNotNullExpression>()

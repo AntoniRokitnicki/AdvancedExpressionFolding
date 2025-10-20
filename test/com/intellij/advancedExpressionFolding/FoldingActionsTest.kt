@@ -139,9 +139,9 @@ class FoldingActionsTest : BaseTest() {
             ApplicationManager.getApplication().runWriteAction {
                 val foldingModel = editor.foldingModel as FoldingModelEx
                 foldingModel.runBatchFoldingOperation {
-                    region = foldingModel.createFoldRegion(expressionOffset, endOffset, "...", group, false)
-                    requireNotNull(region) { "Failed to create test folding region" }
-                    region!!.isExpanded = initiallyExpanded
+                    val createdRegion = foldingModel.createFoldRegion(expressionOffset, endOffset, "...", group, false)
+                    region = requireNotNull(createdRegion) { "Failed to create test folding region" }
+                    region?.isExpanded = initiallyExpanded
                 }
             }
         }

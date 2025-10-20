@@ -139,10 +139,12 @@ object NewExpressionExt {
             return null
         }
         val items = arguments.map { BuildExpressionExt.getAnyExpression(it, document) }
+        val lBrace = anonymousClass.lBrace ?: return null
+        val rBrace = anonymousClass.rBrace ?: return null
         return SetLiteral(
             element,
             element.textRange,
-            TextRange.create(anonymousClass.lBrace!!.textRange.startOffset, anonymousClass.rBrace!!.textRange.endOffset),
+            TextRange.create(lBrace.textRange.startOffset, rBrace.textRange.endOffset),
             initializer.textRange,
             items
         )

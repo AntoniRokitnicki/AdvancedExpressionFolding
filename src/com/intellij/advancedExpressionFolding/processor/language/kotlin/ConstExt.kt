@@ -36,8 +36,8 @@ object ConstExt : BaseExtension() {
 
     private fun PsiField.createConst(
         typeElement: PsiTypeElement?,
-    ): FieldConstExpression {
-        val modifiers = modifierList!!
+    ): FieldConstExpression? {
+        val modifiers = modifierList ?: return null
         return FieldConstExpression(typeElement, modifiers, constText())
     }
 

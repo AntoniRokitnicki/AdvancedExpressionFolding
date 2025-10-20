@@ -9,24 +9,25 @@ import com.intellij.psi.*
 object SingleExpressionFunctionExt : BaseExtension() {
 
     fun createSingleExpressionFunctions(method: PsiMethod, document: Document): Expression? {
-        val single = method.body?.statements?.singleOrNull()
+        val body = method.body ?: return null
+        val single = body.statements.singleOrNull()
         val statement = single?.takeIf {
-            method.body!!.text.length < 145
+            body.text.length < 145
         } ?: return null
 
         val singleExpression = getAnyExpression(single.children.first(), document)
 
         return statement.asInstance<PsiReturnStatement>()?.let {
             onSingleExpressionReturn(it, method, singleExpression)
-        } ?: onSingleExpressionNoReturn(statement, method, singleExpression)
+        } ?: onSingleExpressionNoReturn(statement, method, singleExpression, body)
     }
 
     private fun onSingleExpressionNoReturn(
         statement: PsiStatement,
         method: PsiMethod,
-        singleExpression: Expression
+        singleExpression: Expression,
+        body: PsiCodeBlock
     ): Expression? {
-        val body = method.body!!
         val whitespaces = body.children.filter {
             it.isWhitespace()
         }.map {

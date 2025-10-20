@@ -20,11 +20,13 @@ object MethodDefaultParameterExt : BaseExtension(){
     }.values.mapNotNull { methods ->
         methods.groupBy {
             getParentMethod(it)
-        }.filterKeys {
-            it != null
-        }.firstOrNull()?.let { (mainMethod, duplicates) ->
-            findDefaultValuesForMostParams(mainMethod!!, duplicates)
-        }
+        }.filterKeys { it != null }
+            .entries
+            .firstOrNull()
+            ?.let { (mainMethod, duplicates) ->
+                val parentMethod = mainMethod ?: return@let null
+                findDefaultValuesForMostParams(parentMethod, duplicates)
+            }
     }
 
     private fun findDefaultValuesForMostParams(
