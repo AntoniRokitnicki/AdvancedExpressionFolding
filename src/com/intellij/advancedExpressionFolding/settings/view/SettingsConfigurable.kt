@@ -53,7 +53,7 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
         val panel = JPanel(FlowLayout(FlowLayout.LEFT))
 
         examples?.forEach { (file, desc) ->
-            val suffix = desc?.let { " $it" } ?: ""
+            val suffix = desc?.let { " ${it.text}" } ?: ""
             val description = "example$suffix"
 
             val actionLink = ActionLink(description) {
@@ -66,7 +66,9 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
                 }
             }
             actionLink.setIcon(AllIcons.Actions.CheckOut, true)
-            HelpTooltip().setDescription("WARNING: Clicking this button will checkout ${file.path} into your current project")
+            HelpTooltip().setDescription(
+                "WARNING: Clicking this button will checkout ${file.path} into your current project"
+            )
                 .installOn(actionLink)
             panel.add(actionLink)
 

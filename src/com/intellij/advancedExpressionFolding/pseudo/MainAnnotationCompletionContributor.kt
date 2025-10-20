@@ -14,7 +14,11 @@ import com.intellij.psi.codeStyle.JavaCodeStyleManager
 import com.intellij.psi.util.PsiTreeUtil
 import com.intellij.util.ProcessingContext
 
-class MainAnnotationCompletionContributor(private val state: IState = getInstance().state) : CompletionContributor(), IState by state {
+class MainAnnotationCompletionContributor(
+    private val state: IState = getInstance().state,
+) : CompletionContributor(), IState by state {
+
+    private val annotationName = AnnotationName("Main")
     init {
         extend(
             CompletionType.BASIC,
@@ -31,9 +35,9 @@ class MainAnnotationCompletionContributor(private val state: IState = getInstanc
                 ) {
                     if (!pseudoAnnotations) return
 
-                    val lookup = LookupElementBuilder.create("Main")
-                        .withLookupString("@Main")
-                        .withPresentableText("@Main")
+                    val lookup = LookupElementBuilder.create(annotationName.value)
+                        .withLookupString("@${annotationName.value}")
+                        .withPresentableText("@${annotationName.value}")
                         .withInsertHandler { ctx, _ ->
                             handleMainInsert(ctx)
                         }
@@ -53,7 +57,7 @@ class MainAnnotationCompletionContributor(private val state: IState = getInstanc
         val topClass = findTopLevelClass(immediateClass)
 
         WriteCommandAction.runWriteCommandAction(project) {
-            method.modifierList.findAnnotation("Main")?.delete()
+            method.modifierList.findAnnotation(annotationName.value)?.delete()
             removeExistingMain(topClass)
             val mainCode = generateMainCode(method, immediateClass).trimEnd()
             insertFormatted(mainCode, topClass, ctx)

@@ -1,6 +1,7 @@
 package com.intellij.advancedExpressionFolding.processor.lombok
 
 import com.intellij.advancedExpressionFolding.expression.semantic.lombok.ClassAnnotationExpression
+import com.intellij.advancedExpressionFolding.expression.semantic.lombok.CustomClassAnnotation
 import com.intellij.advancedExpressionFolding.processor.*
 import com.intellij.advancedExpressionFolding.processor.lombok.LombokExt.addLombokSupport
 import com.intellij.advancedExpressionFolding.processor.lombok.LombokExt.lombokPatternOff
@@ -51,7 +52,7 @@ object AnnotationExt {
         val classLevelAnnotations = ClassAnnotationExpression(clazz, changes.map { hidingAnnotation ->
             val notPureSuffix = createNotPureSuffix(hidingAnnotation)
             val args = argsAsString(hidingAnnotation)
-            hidingAnnotation.classAnnotation.annotation + notPureSuffix + args
+            CustomClassAnnotation(hidingAnnotation.classAnnotation.annotation + notPureSuffix + args)
         }, elementsToFold)
         return classLevelAnnotations
     }
