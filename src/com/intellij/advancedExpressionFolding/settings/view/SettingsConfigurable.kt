@@ -20,12 +20,18 @@ import com.intellij.openapi.vfs.encoding.EncodingProjectManager
 import com.intellij.ui.JBColor
 import com.intellij.ui.components.ActionLink
 import com.intellij.ui.components.JBCheckBox
+import com.intellij.ui.components.JBLabel
 import com.intellij.ui.dsl.builder.Panel
 import com.intellij.ui.dsl.builder.panel
+import com.intellij.util.ui.JBFont
+import com.intellij.util.ui.JBUI
+import com.intellij.util.ui.UIUtil
 import java.awt.Color.decode
 import java.awt.FlowLayout
+import java.awt.Font
 import java.net.URI
 import javax.swing.JButton
+import javax.swing.JComponent
 import javax.swing.JPanel
 import kotlin.reflect.KMutableProperty0
 import kotlin.reflect.KMutableProperty1
@@ -223,7 +229,9 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
     ) {
         val builder = CheckboxBuilder()
         block?.invoke(builder)
-        
+
+        val definition = builder.build(property, title)
+
         val checkbox = JBCheckBox(title)
         checkbox.isSelected = property.get()
         checkbox.addActionListener {
@@ -239,12 +247,21 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
             }
         }
         propertyToCheckbox[property] = checkbox
-        
+
+        val decoratedCheckbox = definition.status?.let { status ->
+            createCheckboxWithBadge(checkbox, status)
+        } ?: checkbox
+
         row {
-            cell(checkbox)
+            cell(decoratedCheckbox)
         }
-        
-        val definition = builder.build(property, title)
+
+        definition.status?.let { status ->
+            row {
+                cell(createStatusDescriptionLabel(status))
+            }
+        }
+
         if (definition.exampleLinkMap != null || definition.docLink != null) {
             row {
                 cell(createExamplePanel(definition.exampleLinkMap, definition.docLink))
@@ -275,5 +292,36 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
         } finally {
             bulkUpdateInProgress = false
         }
+    }
+}
+
+private fun createCheckboxWithBadge(
+    checkbox: JBCheckBox,
+    status: CheckboxStatusDefinition
+): JComponent {
+    val panel = JPanel(FlowLayout(FlowLayout.LEFT, JBUI.scale(8), 0))
+    panel.isOpaque = false
+    panel.add(checkbox)
+    panel.add(createStatusBadge(status))
+    return panel
+}
+
+private fun createStatusBadge(status: CheckboxStatusDefinition): JBLabel {
+    return JBLabel(status.badgeText).apply {
+        font = JBFont.small()
+        font = font.deriveFont(Font.BOLD)
+        border = JBUI.Borders.empty(2, 8)
+        foreground = status.foreground
+        background = status.background
+        isOpaque = true
+        toolTipText = status.tooltip
+    }
+}
+
+private fun createStatusDescriptionLabel(status: CheckboxStatusDefinition): JBLabel {
+    return JBLabel("<html>${status.description}</html>").apply {
+        font = JBFont.small()
+        foreground = UIUtil.getContextHelpForeground()
+        border = JBUI.Borders.empty(0, JBUI.scale(24), JBUI.scale(8), 0)
     }
 }
