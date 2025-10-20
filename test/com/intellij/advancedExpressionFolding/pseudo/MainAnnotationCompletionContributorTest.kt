@@ -1,5 +1,6 @@
-package com.intellij.advancedExpressionFolding
+package com.intellij.advancedExpressionFolding.pseudo
 
+import com.intellij.advancedExpressionFolding.BaseTest
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
 import com.intellij.codeInsight.completion.CompletionType
 import com.intellij.openapi.application.ApplicationManager
@@ -55,7 +56,7 @@ class MainAnnotationCompletionContributorTest : BaseTest() {
                 expected = """
                 public class Test {
                     public static void main(String[] args) {
-                        String s = null;
+                        String s = "";
                         new Test().instanceMethod(s);
                     }
                 
@@ -101,20 +102,20 @@ class MainAnnotationCompletionContributorTest : BaseTest() {
                     }
                 """.trimIndent(),
                 expected = """
-                public class Test {
-                    public static void main(String[] args) {
-                        int param = 0;
-                
-                        String s = null;
-                        new Test(param).testMethod(s);
+                    public class Test {
+                        public static void main(String[] args) {
+                            int param = 0;
+
+                            String s = "";
+                            new Test(param).testMethod(s);
+                        }
+
+                        public Test(int param) {
+                        }
+                    ${"    "}
+                        public void testMethod(String s) {
+                        }
                     }
-                
-                    public Test(int param) {
-                    }
-                    
-                    public void testMethod(String s) {
-                    }
-                }
                 """.trimIndent()
             )),
             
@@ -130,13 +131,56 @@ class MainAnnotationCompletionContributorTest : BaseTest() {
                 expected = """
                 public class Test {
                     public static void main(String[] args) {
-                        String[] args = new String[]{};
+                        String[] args = new String[]{""};
                         new Test().stringVarargs(args);
                     }
-                
+
                     public void stringVarargs(String... args) {
                     }
                 }
+                """.trimIndent()
+            )),
+
+            Arguments.of(TestCase(
+                name = "Reference Defaults",
+                input = """
+                    import java.math.BigDecimal;
+                    import java.math.BigInteger;
+                    import java.time.LocalDate;
+                    import java.time.LocalDateTime;
+                    import java.time.ZonedDateTime;
+
+                    public class Test {
+                        @<caret>
+                        public void referenceParams(String s, StringBuilder sb, StringBuffer sbf, BigDecimal bd, BigInteger bi, java.util.Date date, LocalDate ld, LocalDateTime ldt, ZonedDateTime zdt) {
+                        }
+                    }
+                """.trimIndent(),
+                expected = """
+                    import java.math.BigDecimal;
+                    import java.math.BigInteger;
+                    import java.time.LocalDate;
+                    import java.time.LocalDateTime;
+                    import java.time.ZonedDateTime;
+                    import java.util.Date;
+
+                    public class Test {
+                        public static void main(String[] args) {
+                            String s = "";
+                            StringBuilder sb = new StringBuilder();
+                            StringBuffer sbf = new StringBuffer();
+                            BigDecimal bd = BigDecimal.ZERO;
+                            BigInteger bi = BigInteger.ZERO;
+                            Date date = new Date();
+                            LocalDate ld = LocalDate.now();
+                            LocalDateTime ldt = LocalDateTime.now();
+                            ZonedDateTime zdt = ZonedDateTime.now();
+                            new Test().referenceParams(s, sb, sbf, bd, bi, date, ld, ldt, zdt);
+                        }
+
+                        public void referenceParams(String s, StringBuilder sb, StringBuffer sbf, BigDecimal bd, BigInteger bi, java.util.Date date, LocalDate ld, LocalDateTime ldt, ZonedDateTime zdt) {
+                        }
+                    }
                 """.trimIndent()
             )),
 
@@ -152,10 +196,10 @@ class MainAnnotationCompletionContributorTest : BaseTest() {
                 expected = """
                 public class Test {
                     public static void main(String[] args) {
-                        int[] values = new int[]{};
+                        int[] values = new int[]{0};
                         new Test().numbers(values);
                     }
-                
+
                     public void numbers(int... values) {
                     }
                 }
