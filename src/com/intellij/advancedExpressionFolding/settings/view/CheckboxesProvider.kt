@@ -6,10 +6,15 @@ import com.intellij.openapi.editor.event.DocumentEvent
 import com.intellij.openapi.editor.event.DocumentListener
 import com.intellij.openapi.editor.ex.EditorEx
 import com.intellij.openapi.editor.highlighter.EditorHighlighterFactory
+import com.intellij.ui.JBColor
 import com.intellij.ui.components.JBLabel
 import com.intellij.ui.dsl.builder.Panel
+import com.intellij.util.ui.JBUI
 import org.intellij.lang.regexp.RegExpFileType
+import java.awt.BorderLayout
 import java.awt.Dimension
+import javax.swing.JComponent
+import javax.swing.JPanel
 import kotlin.reflect.KMutableProperty0
 
 abstract class CheckboxesProvider {
@@ -204,7 +209,7 @@ abstract class CheckboxesProvider {
             cell(JBLabel("Regex to disable Lombok folding (matched classes won’t be folded)"))
         }
         row {
-            cell(createEditor(state::lombokPatternOff).component)
+            cell(createRegexEditor(state::lombokPatternOff))
         }
 
         registerCheckbox(state::expressionFunc, "Single-Expression Function") {
@@ -289,32 +294,55 @@ abstract class CheckboxesProvider {
 }
 
 
-private fun createEditor(property: KMutableProperty0<String?>): EditorEx {
+private fun createRegexEditor(property: KMutableProperty0<String?>): JComponent {
     val factory = com.intellij.openapi.editor.EditorFactory.getInstance()
     val document = factory.createDocument(property.get() ?: "")
 
     val editor = factory.createEditor(document, null) as EditorEx
+    val indicator = JBLabel().apply {
+        border = JBUI.Borders.emptyLeft(8)
+    }
+    val defaultColor = indicator.foreground
+
+    fun updateValidation(text: String) {
+        val trimmed = text.trim()
+        val (value, message, color) = when {
+            trimmed.isEmpty() -> Triple(null, "Pattern is empty", defaultColor)
+            runCatching { trimmed.toPattern() }.isSuccess -> Triple(
+                trimmed,
+                "Valid regex",
+                JBColor(0x2E7D32, 0x81C784)
+            )
+            else -> Triple(null, "Invalid regex", JBColor(0xC62828, 0xEF5350))
+        }
+
+        indicator.text = message
+        indicator.foreground = color
+        indicator.toolTipText = message
+        property.set(value)
+    }
+
     document.addDocumentListener(object : DocumentListener {
         override fun documentChanged(event: DocumentEvent) {
-            event.document.text.trim().takeIf {
-                it.isNotEmpty()
-            }?.let { text ->
-                runCatching {
-                    text.toPattern()
-                }.getOrNull()?.let {
-                    text
-                }
-            }.let(property::set)
+            updateValidation(event.document.text)
         }
     })
-    return editor.apply {
-        settings.apply {
-            isUseSoftWraps = true
-            isUseCustomSoftWrapIndent = true
-            isLineNumbersShown = false
-            isLineMarkerAreaShown = false
-        }
-        highlighter = EditorHighlighterFactory.getInstance().createEditorHighlighter(null, RegExpFileType.INSTANCE)
-        component.preferredSize = Dimension(500, 50)
+    updateValidation(document.text)
+
+    editor.settings.apply {
+        isUseSoftWraps = true
+        isUseCustomSoftWrapIndent = true
+        isLineNumbersShown = false
+        isLineMarkerAreaShown = false
+    }
+    editor.highlighter = EditorHighlighterFactory.getInstance().createEditorHighlighter(
+        null,
+        RegExpFileType.INSTANCE
+    )
+    editor.component.preferredSize = Dimension(500, 50)
+
+    return JPanel(BorderLayout()).apply {
+        add(editor.component, BorderLayout.CENTER)
+        add(indicator, BorderLayout.EAST)
     }
 }
