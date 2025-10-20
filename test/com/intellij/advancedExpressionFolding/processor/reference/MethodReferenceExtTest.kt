@@ -53,7 +53,7 @@ class MethodReferenceExtTest : LightJavaCodeInsightFixtureTestCase5(TEST_JDK) {
             settings.optional = false
             settings.streamSpread = false
 
-            runReadAction { assertNull(createExpression(methodReference)) }
+            assertNull(runReadAction { createExpression(methodReference)})
         } finally {
             settings.optional = originalOptional
             settings.streamSpread = originalStream
