@@ -295,6 +295,33 @@ class MainAnnotationCompletionContributorTest : BaseTest() {
             )),
 
             Arguments.of(TestCase(
+                name = "Class Javadoc With Code Tag",
+                input = """
+                    /**
+                     * Example {@code int x = 0;}
+                     */
+                    public class Test {
+                        @<caret>
+                        public void instanceMethod() {
+                        }
+                    }
+                """.trimIndent(),
+                expected = """
+                    /**
+                     * Example {@code int x = 0;}
+                     */
+                    public class Test {
+                        public static void main(String[] args) {
+                            new Test().instanceMethod();
+                        }
+
+                        public void instanceMethod() {
+                        }
+                    }
+                """.trimIndent()
+            )),
+
+            Arguments.of(TestCase(
                 name = "Class With Trailing Comment",
                 input = """
                     public class Test { // class level comment
