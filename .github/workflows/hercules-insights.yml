@@ -14,5 +14,10 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Setup Python deps for labours
+        run: |
+          python3 -m pip install --upgrade pip
+          pip install "matplotlib<3.3" "labours==10.7.2"
+
       - name: Hercules Insights
         uses: src-d/hercules@v10.7.2
