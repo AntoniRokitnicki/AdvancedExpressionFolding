@@ -54,7 +54,7 @@ object MethodDefaultParameterExt : BaseExtension(){
             params.map.forEach { (paramNr, value) ->
                 val paramWithValue = method.parameterList.parameters.getOrNull(paramNr.value)
                 val paramNextElement = paramWithValue?.nextSibling
-                list += paramNextElement?.expr(" = $value${paramNextElement.text}", group = group)
+                list += paramNextElement?.expr(" = ${value.value}${paramNextElement.text}", group = group)
             }
             if (params.map.isNotEmpty()) {
                 list += duplicatedMethod.exprHide(group = group)
@@ -69,7 +69,8 @@ object MethodDefaultParameterExt : BaseExtension(){
             val expressions = methodCall?.argumentList?.expressions
             val params = expressions?.mapIndexedNotNull { index, psiExpression ->
                 if (asPsiParameter(psiExpression) == null) {
-                    ParameterIndex(index) to psiExpression.text
+                    val literal = psiExpression.text.trim()
+                    literal.takeIf { it.isNotEmpty() }?.let { index to DefaultParameterLiteral(it) }
                 } else {
                     null
                 }
@@ -118,7 +119,7 @@ object MethodDefaultParameterExt : BaseExtension(){
     )
 
     @JvmInline
-    private value class DefaultParameterMap(val map: Map<ParameterIndex, ParameterDefaultValueAsString>)
+    private value class DefaultParameterMap(val map: Map<ParameterIndex, DefaultParameterLiteral>)
 
     private fun Project.isDebugSessionRunning(): Boolean {
         if (isDisposed || isDefault) {
@@ -128,7 +129,12 @@ object MethodDefaultParameterExt : BaseExtension(){
     }
 }
 
+typealias ParameterIndex = Int
+
 @JvmInline
-value class ParameterIndex(val value: Int)
-typealias ParameterDefaultValueAsString = String
+value class DefaultParameterLiteral(val value: String) {
+    init {
+        require(value.isNotBlank())
+    }
+}
 
