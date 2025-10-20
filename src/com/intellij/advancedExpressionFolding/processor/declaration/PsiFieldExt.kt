@@ -1,7 +1,6 @@
 package com.intellij.advancedExpressionFolding.processor.declaration
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.expression.semantic.lombok.CustomClassAnnotation
 import com.intellij.advancedExpressionFolding.expression.semantic.lombok.FieldAnnotationExpression
 import com.intellij.advancedExpressionFolding.expression.semantic.lombok.NullAnnotationExpression
 import com.intellij.advancedExpressionFolding.processor.*
@@ -29,7 +28,7 @@ object PsiFieldExt : BaseExtension() {
 
         field.callback?.invoke()?.let { annotations: List<FieldLevelAnnotation> ->
 
-            val annotationsAsString = mutableListOf<CustomClassAnnotation>()
+            val annotationsAsString = mutableListOf<String>()
             val elementsToHide = mutableListOf<PsiElement?>()
             annotations.forEach { fieldLevelAnnotation ->
                 elementsToHide += fieldLevelAnnotation.method
