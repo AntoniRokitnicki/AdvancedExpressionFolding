@@ -2,18 +2,22 @@ package com.intellij.advancedExpressionFolding.settings.view
 
 import com.intellij.advancedExpressionFolding.action.UpdateFoldedTextColorsAction
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
-import com.intellij.application.options.CodeStyle
 import com.intellij.application.options.editor.EditorOptionsProvider
 import com.intellij.icons.AllIcons
 import com.intellij.ide.BrowserUtil
 import com.intellij.ide.HelpTooltip
 import com.intellij.ide.impl.ProjectUtil
+import com.intellij.openapi.application.ApplicationManager
+import com.intellij.application.options.CodeStyle
 import com.intellij.openapi.command.WriteCommandAction
 import com.intellij.openapi.fileEditor.FileEditorManager
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.roots.ProjectRootManager
 import com.intellij.openapi.ui.DialogPanel
+import com.intellij.openapi.ui.Messages
+import com.intellij.openapi.util.io.FileUtil
 import com.intellij.openapi.vfs.VirtualFile
+import com.intellij.openapi.vfs.LocalFileSystem
 import com.intellij.openapi.vfs.encoding.EncodingProjectManager
 import com.intellij.ui.JBColor
 import com.intellij.ui.components.ActionLink
@@ -22,6 +26,7 @@ import com.intellij.ui.dsl.builder.Panel
 import com.intellij.ui.dsl.builder.panel
 import java.awt.Color.decode
 import java.awt.FlowLayout
+import java.io.File
 import java.net.URI
 import javax.swing.JButton
 import javax.swing.JPanel
@@ -49,15 +54,10 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
 
             val actionLink = ActionLink(description) {
                 val project = selectedProject()
-                val sourceRoot = firstSourceRoot(project)
-
-                WriteCommandAction.runWriteCommandAction(project) {
-                    val directory = sourceRoot.getOrCreatePackageDir()
-                    createFile(directory, file, project)?.open(project)
-                }
+                showExamplePreview(project, file, desc)
             }
             actionLink.setIcon(AllIcons.Actions.CheckOut, true)
-            HelpTooltip().setDescription("WARNING: Clicking this button will checkout $file into your current project")
+            HelpTooltip().setDescription("Preview $file before choosing whether to download it or check it out")
                 .installOn(actionLink)
             panel.add(actionLink)
 
@@ -78,6 +78,19 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
     private fun createDownloadExamplesLink(): ActionLink {
         val actionLink = ActionLink("Checkout Examples to Current Project") {
             val project = selectedProject()
+            val confirmed = Messages.showOkCancelDialog(
+                project,
+                "Checkout all examples into your current project? Existing files with the same name will be overwritten.",
+                "Checkout Examples",
+                "Checkout",
+                Messages.getCancelButton(),
+                null
+            ) == Messages.OK
+
+            if (!confirmed) {
+                return@ActionLink
+            }
+
             val sourceRoot = firstSourceRoot(project)
 
             WriteCommandAction.runWriteCommandAction(project) {
@@ -88,9 +101,34 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
             }
         }
         actionLink.setIcon(AllIcons.Actions.CheckOut, true)
-        HelpTooltip().setDescription("WARNING: Clicking this button will checkout examples into your current project")
+        HelpTooltip().setDescription("Checkout all examples into your current project after confirmation")
             .installOn(actionLink)
         return actionLink
+    }
+
+    private fun showExamplePreview(project: Project, file: ExampleFile, description: Description?) {
+        val exampleContent = loadExampleContent(file)
+        if (exampleContent == null) {
+            Messages.showErrorDialog(project, "Unable to load example file $file.", "Example Not Available")
+            return
+        }
+
+        ExamplePreviewDialog(
+            project = project,
+            fileName = file,
+            description = description,
+            exampleContent = exampleContent,
+            onCheckout = {
+                val sourceRoot = firstSourceRoot(project)
+                WriteCommandAction.runWriteCommandAction(project) {
+                    val directory = sourceRoot.getOrCreatePackageDir()
+                    createFile(directory, file, project, exampleContent)?.open(project)
+                }
+            },
+            onDownloadToTemp = {
+                downloadExampleToTemp(project, file, exampleContent)
+            }
+        ).show()
     }
 
     override fun createComponent() = panel {
@@ -139,17 +177,18 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
     private fun createFile(
         directory: VirtualFile,
         file: ExampleFile,
-        project: Project
+        project: Project,
+        providedContent: String? = null
     ): VirtualFile? {
         val projectEncoding = EncodingProjectManager.getInstance(project).defaultCharset
-        val lineSeparator = CodeStyle.getDefaultSettings().lineSeparator
-        return javaClass.classLoader.getResource("$EXAMPLE_DIR/$file")
-            ?.readText()
-            ?.replace("\n", lineSeparator)?.let { fileContent ->
-                val newFile = directory.createChildData(null, file)
-                newFile.setBinaryContent(fileContent.toByteArray(charset = projectEncoding))
-                newFile
-            }
+        val lineSeparator = CodeStyle.getDefaultSettings().lineSeparator ?: System.lineSeparator()
+        val originalContent = providedContent ?: loadExampleContent(file)
+        val normalisedContent = originalContent?.replace("\n", lineSeparator) ?: return null
+        val bytes = normalisedContent.toByteArray(charset = projectEncoding)
+
+        val target = directory.findChild(file) ?: directory.createChildData(null, file)
+        target.setBinaryContent(bytes)
+        return target
     }
 
     private fun VirtualFile.getOrCreatePackageDir(): VirtualFile {
@@ -157,6 +196,37 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
             it.exists()
         } ?: this.createChildDirectory(null, EXAMPLE_DIR)
         return directory
+    }
+
+    private fun loadExampleContent(file: ExampleFile): String? {
+        return javaClass.classLoader.getResource("$EXAMPLE_DIR/$file")?.readText()
+    }
+
+    private fun downloadExampleToTemp(project: Project, file: ExampleFile, content: String) {
+        try {
+            val tempDir = FileUtil.createTempDirectory("advanced-expression-folding-example", null, false)
+            val tempFile = File(tempDir, file)
+            FileUtil.writeToFile(tempFile, content)
+
+            val virtualFile = LocalFileSystem.getInstance().refreshAndFindFileByIoFile(tempFile)
+            if (virtualFile != null) {
+                ApplicationManager.getApplication().invokeLater {
+                    FileEditorManager.getInstance(project).openFile(virtualFile, true)
+                }
+            }
+
+            Messages.showInfoMessage(
+                project,
+                "Example saved to ${tempFile.absolutePath}",
+                "Download Complete"
+            )
+        } catch (t: Throwable) {
+            Messages.showErrorDialog(
+                project,
+                "Unable to download example: ${t.message}",
+                "Download Failed"
+            )
+        }
     }
 
     private fun VirtualFile.open(project: Project) {
