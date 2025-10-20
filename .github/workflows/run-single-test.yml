@@ -1,0 +1,123 @@
+name: Run single test
+
+on:
+  workflow_dispatch:
+    inputs:
+      test_ref:
+        description: Fully qualified test with method: com.example.Class#method
+        required: true
+        default: com.intellij.advancedExpressionFolding.FoldingTest#appendSetterInterpolatedStringTestData
+      gradle_args:
+        description: Extra Gradle args
+        required: false
+        default: ""
+
+concurrency:
+  group: single-test-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  run-single:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup Java 17
+        uses: actions/setup-java@v5
+        with:
+          distribution: zulu
+          java-version: 17
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v5
+        with:
+          gradle-home-cache-cleanup: true
+
+      - name: Parse test selector
+        id: selector
+        shell: bash
+        run: |
+          ref="${{ github.event.inputs.test_ref }}"
+          [[ "$ref" == *"#"* ]] && ref="${ref//#/.}"
+          echo "selector=$ref" >> "$GITHUB_OUTPUT"
+          echo "### Selector" >> "$GITHUB_STEP_SUMMARY"
+          echo "\`$ref\`" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Run single test
+        run: ./gradlew test --tests "${{ steps.selector.outputs.selector }}" -i ${{ github.event.inputs.gradle_args }}
+
+      - name: Summarize and annotate results
+        id: summarize
+        shell: bash
+        run: |
+          echo "### Test results" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          python3 - << 'PY'
+import os, glob, xml.etree.ElementTree as ET, sys
+
+results = glob.glob("**/build/test-results/test/*.xml", recursive=True)
+total=fail=err=skip=0
+failed_cases=[]
+
+for p in results:
+    try:
+        root = ET.parse(p).getroot()
+    except Exception:
+        continue
+    total += int(root.attrib.get("tests", 0))
+    fail  += int(root.attrib.get("failures", 0))
+    err   += int(root.attrib.get("errors", 0))
+    skip  += int(root.attrib.get("skipped", 0))
+    for tc in root.iter("testcase"):
+        # any failure or error children
+        fe = [c for c in list(tc) if c.tag in ("failure","error")]
+        if fe:
+            cls = tc.attrib.get("classname","")
+            name = tc.attrib.get("name","")
+            msg = fe[0].attrib.get("message","")
+            failed_cases.append((cls,name,msg))
+
+# write summary
+summary = []
+summary.append(f"Total: {total}")
+summary.append(f"Failed: {fail}")
+summary.append(f"Errors: {err}")
+summary.append(f"Skipped: {skip}")
+print("\n".join(summary))
+
+# step summary markdown
+with open(os.environ["GITHUB_STEP_SUMMARY"],"a",encoding="utf-8") as f:
+    f.write(f"Total: {total}\n\n")
+    f.write(f"Failed: {fail}\n\n")
+    f.write(f"Errors: {err}\n\n")
+    f.write(f"Skipped: {skip}\n\n")
+    if failed_cases:
+        f.write("\n#### Failed cases\n\n")
+        for cls,name,msg in failed_cases:
+            f.write(f"- {cls}.{name}: {msg}\n")
+
+# annotations
+for cls,name,msg in failed_cases:
+    title = f"Test failed: {cls}.{name}"
+    # error annotation
+    print(f"::error title={title}::{msg}")
+
+# set an output status
+status = "success" if (fail==0 and err==0) else "failure"
+print(f"status={status}")
+with open(os.environ["GITHUB_OUTPUT"],"a") as g:
+    g.write(f"status={status}\n")
+PY
+
+      - name: Upload test results
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: |
+            **/build/reports/tests/**
+            **/build/test-results/**
+
+    outputs:
+      status: ${{ steps.summarize.outputs.status }}
