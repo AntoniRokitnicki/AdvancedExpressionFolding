@@ -17,7 +17,7 @@ val checkboxFile = "$basePath/src/com/intellij/advancedExpressionFolding/setting
 checkboxFile.doInFile {
     it.insertBeforeMarker("// NEW OPTION", """        registerCheckbox(state::$varName, "$varText") {
             example("$exampleFileName.java")
-            link(DocumentationUrl("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#$varName"))
+            link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#$varName")
         }""")
 }
 

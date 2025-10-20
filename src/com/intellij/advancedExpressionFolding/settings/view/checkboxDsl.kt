@@ -1,6 +1,5 @@
 package com.intellij.advancedExpressionFolding.settings.view
 
-import kotlin.jvm.JvmInline
 import kotlin.reflect.KMutableProperty0
 
 @DslMarker
@@ -12,19 +11,19 @@ data class CheckboxDefinition(
     val title: String,
     val property: KMutableProperty0<Boolean>,
     val exampleLinkMap: Map<ExampleFile, Description?>? = null,
-    val docLink: DocumentationUrl? = null
+    val docLink: UrlSuffix? = null
 )
 
 @CheckboxDsl
 class CheckboxBuilder {
     private val examples = mutableMapOf<ExampleFile, Description?>()
-    private var docLink: DocumentationUrl? = null
+    private var docLink: UrlSuffix? = null
 
     fun example(file: ExampleFile, description: String? = null) {
         examples[file] = description?.let(::Description)
     }
 
-    fun link(documentationLink: DocumentationUrl) {
+    fun link(documentationLink: UrlSuffix) {
         docLink = documentationLink
     }
 
