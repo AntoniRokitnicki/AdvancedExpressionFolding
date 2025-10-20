@@ -1,0 +1,1 @@
+https://plugins.jetbrains.com/plugin/23659-advanced-java-folding-2-fork-

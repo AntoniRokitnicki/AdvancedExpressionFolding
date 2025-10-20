@@ -33,7 +33,7 @@
 - Every PR must include a description and reason for change.
 
 ## Testing
-- Always run `./gradlew test` **after** making code changes.
+- Always run `./gradlew clean build test` **after** making code changes.
 - If tests fail, fix the code until all tests pass.
 - Do not run tests if only documentation files (e.g. `.md`) are modified.
 - **Test Data Mapping**: Test methods use camelCase names mapped to PascalCase file names, e.g.
