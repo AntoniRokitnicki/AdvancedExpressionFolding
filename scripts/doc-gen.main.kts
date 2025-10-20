@@ -1,9 +1,9 @@
 #!/usr/bin/env -S kotlinc -script --
 import java.io.File
 
-val exampleFolder = "examples/data"
-val foldedFolder = "folded"
-val wikiFolder = "wiki/new-doc"
+val exampleFolder = "../examples/data"
+val foldedFolder = "../folded"
+val wikiFolder = "../wiki/new-doc"
 val excludedFeatures = listOf(
     "ConstructorReferenceNotationWithConst",
     "FieldShiftBuilder",
@@ -38,7 +38,7 @@ fun createFilesPerConfig() {
 }
 
 fun updateWikiHomeWithFeatures() {
-    val homeFile = File("wiki/Home.md")
+    val homeFile = File("../wiki/Home.md")
     if (homeFile.exists()) {
         val homeContent = homeFile.readText()
         val toAdd = StringBuilder()
@@ -59,7 +59,6 @@ fun updateWikiHomeWithFeatures() {
                 }
 
                 toAdd.append("""
-                
                 ## ${baseName.lowercase()}
                 ### $featureDescription
                 $featureExplanation
