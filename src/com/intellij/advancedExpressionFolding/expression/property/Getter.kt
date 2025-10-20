@@ -11,7 +11,7 @@ class Getter(
     element: PsiElement,
     textRange: TextRange,
     override val getterTextRange: TextRange,
-    override val `object`: Expression?,
+    override val receiver: Expression?,
     override val name: String
 ) : Expression(element, textRange), IGetter {
 
@@ -29,7 +29,7 @@ class Getter(
             FoldingGroup.newGroup(Getter::class.java.name),
             name
         )
-        `object`?.takeIf { it.supportsFoldRegions(document, this) }?.let { obj ->
+        receiver?.takeIf { it.supportsFoldRegions(document, this) }?.let { obj ->
             descriptors += obj.buildFoldRegions(obj.element, document, this).toList()
         }
         return descriptors.toTypedArray()

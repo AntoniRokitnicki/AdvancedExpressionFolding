@@ -12,6 +12,8 @@ import com.intellij.advancedExpressionFolding.expression.operation.basic.Greater
 import com.intellij.advancedExpressionFolding.expression.operation.basic.GreaterEqual
 import com.intellij.advancedExpressionFolding.expression.operation.collection.Range
 import com.intellij.advancedExpressionFolding.processor.util.Consts
+import com.intellij.advancedExpressionFolding.processor.argumentExpressions
+import com.intellij.advancedExpressionFolding.processor.argumentCount
 import com.intellij.advancedExpressionFolding.processor.util.Helper.eraseGenerics
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
 import com.intellij.openapi.editor.Document
@@ -72,7 +74,7 @@ object BinaryExpressionExt {
             return null
         }
         val qualifier = getQualifierExpression(methodCall, document) ?: return null
-        val argument = com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt.getAnyExpression(methodCall.argumentList.expressions[0], document)
+        val argument = com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt.getAnyExpression(methodCall.argumentExpressions[0], document)
         val operationSign = element.operationSign.text
         val expressionValue = literal!!.text.toInt()
         var lessOperation = "<"
@@ -108,7 +110,7 @@ object BinaryExpressionExt {
             return false
         }
         val identifier = methodCall.methodExpression.children.firstOrNull { it is PsiIdentifier } as? PsiIdentifier
-        return identifier != null && identifier.text == "compareTo" && methodCall.argumentList.expressions.size == 1
+        return identifier != null && identifier.text == "compareTo" && methodCall.argumentCount == 1
     }
 
     private fun isSupportedCompareToMethod(method: PsiMethod?): Boolean {

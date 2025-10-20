@@ -3,11 +3,6 @@ package com.intellij.advancedExpressionFolding.processor
 import com.intellij.advancedExpressionFolding.processor.EModifier.*
 import com.intellij.advancedExpressionFolding.processor.cache.Keys
 import com.intellij.advancedExpressionFolding.processor.cache.Keys.IGNORED
-import com.intellij.advancedExpressionFolding.processor.core.BaseExtension.Companion.isBoolean
-import com.intellij.advancedExpressionFolding.processor.core.BaseExtension.Companion.isInt
-import com.intellij.advancedExpressionFolding.processor.core.BaseExtension.Companion.isObject
-import com.intellij.advancedExpressionFolding.processor.core.BaseExtension.Companion.isString
-import com.intellij.advancedExpressionFolding.processor.core.BaseExtension.Companion.isVoid
 import com.intellij.advancedExpressionFolding.processor.declaration.PsiClassExt
 import com.intellij.advancedExpressionFolding.processor.util.PropertyUtil
 import com.intellij.openapi.project.Project
@@ -17,6 +12,16 @@ import com.intellij.psi.impl.source.PsiClassReferenceType
 import com.intellij.psi.search.LocalSearchScope
 import com.intellij.psi.search.searches.ReferencesSearch
 import com.intellij.psi.util.MethodSignature
+
+fun isNull(type: PsiType?): Boolean = (type as? PsiPrimitiveType)?.name == "null"
+
+fun PsiType?.isInt(): Boolean = (this as? PsiPrimitiveType)?.name == "int"
+fun PsiType?.isVoid(): Boolean = (this as? PsiPrimitiveType)?.name == "void"
+fun PsiType?.isBoolean(): Boolean = (this as? PsiPrimitiveType)?.name == "boolean"
+fun PsiType?.isString() = asInstance<PsiClassReferenceType>()?.name == "String"
+fun PsiType?.isPrimitive() = asInstance<PsiPrimitiveType>() != null
+fun PsiType?.isPrimitiveOrString() = isPrimitive() || isString()
+fun PsiType?.isObject() = this?.canonicalText == "java.lang.Object"
 
 val PsiField.enum: Boolean
     get() = (type as? PsiClassType)?.resolve()?.isEnum == true
@@ -43,6 +48,16 @@ fun PsiExpressionList.filterOutWhiteSpaceAndTokens() = children.filter {
 fun PsiElement.isIgnorable() = this is PsiJavaToken || isWhitespace()
 
 fun PsiElement.isWhitespace() = this is PsiWhiteSpace
+
+
+val PsiCall.argumentExpressions: Array<PsiExpression>
+    get() = argumentList?.expressions ?: PsiExpression.EMPTY_ARRAY
+
+val PsiCall.firstArgument: PsiExpression?
+    get() = argumentExpressions.firstOrNull()
+
+val PsiCall.singleArgument: PsiExpression?
+    get() = argumentExpressions.singleOrNull()
 
 val PsiElement.prevRealSibling: PsiElement?
     get() {

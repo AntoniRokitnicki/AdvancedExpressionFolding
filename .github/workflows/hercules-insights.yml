@@ -1,0 +1,18 @@
+name: Hercules Insights
+
+on:
+  workflow_dispatch:
+
+jobs:
+  hercules-insights:
+    name: Run Hercules Insights
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Hercules Insights
+        uses: src-d/hercules@v10.7.2
