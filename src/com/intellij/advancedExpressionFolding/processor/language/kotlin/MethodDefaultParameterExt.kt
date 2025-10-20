@@ -3,12 +3,17 @@ package com.intellij.advancedExpressionFolding.processor.language.kotlin
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.processor.*
 import com.intellij.advancedExpressionFolding.processor.core.BaseExtension
+import com.intellij.openapi.project.Project
 import com.intellij.psi.*
 import com.jetbrains.rd.util.firstOrNull
+import com.intellij.xdebugger.XDebuggerManager
 
 object MethodDefaultParameterExt : BaseExtension(){
 
     fun enhanceMethodsWithDefaultParams(clazz: PsiClass): Expression? {
+        if (clazz.project.isDebugSessionRunning()) {
+            return null
+        }
         val defaultParamMethods = findMethodsWithDefaultParams(clazz)
         return buildExpressions(defaultParamMethods, clazz)
     }
@@ -114,6 +119,13 @@ object MethodDefaultParameterExt : BaseExtension(){
 
     @JvmInline
     private value class DefaultParameterMap(val map: Map<ParameterIndex, ParameterDefaultValueAsString>)
+
+    private fun Project.isDebugSessionRunning(): Boolean {
+        if (isDisposed || isDefault) {
+            return false
+        }
+        return XDebuggerManager.getInstance(this).currentSession != null
+    }
 }
 
 typealias ParameterIndex = Int
