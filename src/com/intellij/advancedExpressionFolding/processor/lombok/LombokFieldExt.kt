@@ -114,6 +114,7 @@ object LombokFieldExt : BaseExtension(), GenericCallback<PsiField, List<FieldLev
         return mapOf(
             GETTER to LOMBOK_GETTER,
             SETTER to LOMBOK_SETTER,
+            WITH to LOMBOK_WITH,
         ).mapNotNull { (methodType, annotation) ->
             val methods = methodTypeToMethodsMap.getMethodsOfType(methodType)
             return@mapNotNull methods.mapNotNull { method ->

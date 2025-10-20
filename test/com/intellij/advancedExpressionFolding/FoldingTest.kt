@@ -249,6 +249,11 @@ open class FoldingTest : BaseTest() {
         doFoldingTest(state::lombok)
     }
 
+    @Test
+    open fun lombokWithTestData() {
+        doFoldingTest(state::lombok)
+    }
+
     /**
      * [data.FieldShiftBuilder]
      */
