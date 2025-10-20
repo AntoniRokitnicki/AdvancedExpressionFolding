@@ -10,7 +10,7 @@ import java.util.HashMap;
 /**
  * {@link com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.IState#getNullable()}
  * <p>
- *  {@link com.intellij.advancedExpressionFolding.processor.NullableExt#createExpression(com.intellij.psi.PsiMethod)}
+ *  {@link com.intellij.advancedExpressionFolding.processor.language.kotlin.NullableExt#createExpression(com.intellij.psi.PsiMethod)}
  * <p>
  * {@link com.intellij.advancedExpressionFolding.FoldingTest#testNullableAnnotationTestData()}
  */
