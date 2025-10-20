@@ -1,19 +1,19 @@
 package com.intellij.advancedExpressionFolding.processor.methodcall.arithmetic
 
-import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.math.basic.Signum
 import com.intellij.advancedExpressionFolding.processor.methodcall.Context
-import com.intellij.psi.PsiMethodCallExpression
+import com.intellij.advancedExpressionFolding.processor.methodcall.MethodCallBuilder
 
 class ArithmeticSignumMethodCall : AbstractArithmeticMethodCall() {
-    override val methodNames by lazy { listOf("signum") }
-    
-    override fun onNoArguments(
-        element: PsiMethodCallExpression,
-        context: Context
-    ): Expression? = Signum(
-        element,
-        element.textRange,
-        context.getOperands()
-    )
+    override fun configure(builder: MethodCallBuilder) {
+        super.configure(builder)
+        builder.methods("signum")
+        builder.onNoArguments { element, context ->
+            Signum(
+                element,
+                element.textRange,
+                context.getOperands()
+            )
+        }
+    }
 }
