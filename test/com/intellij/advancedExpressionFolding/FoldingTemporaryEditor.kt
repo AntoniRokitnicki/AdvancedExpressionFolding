@@ -7,7 +7,7 @@ import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.util.Computable
 import com.intellij.testFramework.runInEdtAndGet
 
-object FoldingTemporaryTestEditor {
+object FoldingTemporaryEditor {
     fun getFoldedText(
         text: String,
         wrapper: FoldingDescriptorExWrapper

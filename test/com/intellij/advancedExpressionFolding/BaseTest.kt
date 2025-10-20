@@ -77,7 +77,9 @@ abstract class BaseTest : LightJavaCodeInsightFixtureTestCase5(TEST_JDK) {
 
     private fun createFoldedFile(fileName: String, actual: String, wrapper: FoldingDescriptorExWrapper) {
         val foldingFile = fileName.replace("testData/", "folded/")
-        Files.writeString(createOutputFile(foldingFile, "-folded.java").toPath(), FoldingTemporaryTestEditor.getFoldedText(actual, wrapper))
+        val csq = FoldingTemporaryEditor.getFoldedText(actual, wrapper)
+        val path = createOutputFile(foldingFile, "-folded.java").toPath()
+        Files.writeString(path, csq)
     }
 
     protected open fun getTestFileName(testName: String) = "testData/${testName.capitalize()}.java"
