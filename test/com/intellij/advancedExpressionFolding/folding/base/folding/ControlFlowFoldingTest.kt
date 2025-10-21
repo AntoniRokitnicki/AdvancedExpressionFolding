@@ -16,6 +16,9 @@ interface ControlFlowFoldingTest : FoldingTestSection {
 
     @Test
     fun compactControlFlowTestData() = testCase.runFoldingTest(foldingState()::compactControlFlowSyntaxCollapse)
+
+    @Test
+    fun assertTestData() = testCase.runReadOnlyFoldingTest(foldingState()::assertsCollapse)
 }
 
 @Disabled("Split from FoldingTest")

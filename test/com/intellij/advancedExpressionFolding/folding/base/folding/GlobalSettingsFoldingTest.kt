@@ -5,25 +5,7 @@ import com.intellij.advancedExpressionFolding.processor.methodcall.dynamic.IDyna
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 
-interface StandaloneFoldingTest : FoldingTestSection {
-    @Test
-    fun fieldShiftBuilder() = testCase.runFoldingTest(
-        foldingState()::fieldShift,
-        foldingState()::getSetExpressionsCollapse,
-    )
-
-    @Test
-    fun fieldShiftSetters() = testCase.runFoldingTest(
-        foldingState()::fieldShift,
-        foldingState()::getSetExpressionsCollapse,
-    )
-
-    @Test
-    fun fieldShiftFields() = testCase.runFoldingTest(
-        foldingState()::getSetExpressionsCollapse,
-        foldingState()::fieldShift,
-    )
-
+interface GlobalSettingsFoldingTest : FoldingTestSection {
     @Test
     fun dynamicTestData() {
         val state = foldingState()
@@ -54,10 +36,7 @@ staticMethod.newName = 'changedStaticMethod'
         foldingState()::lombok,
         foldingState()::getExpressionsCollapse,
     )
-
-    @Test
-    fun semicolonTestData() = testCase.runReadOnlyFoldingTest(foldingState()::semicolonsCollapse)
 }
 
 @Disabled("Split from FoldingTest")
-open class StandaloneFoldingTestCase : FoldingFeatureTestCase(), StandaloneFoldingTest
+open class GlobalSettingsFoldingTestCase : FoldingFeatureTestCase(), GlobalSettingsFoldingTest
