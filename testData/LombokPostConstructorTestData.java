@@ -9,17 +9,43 @@ public class LombokPostConstructorTestData {
 
         public DataProcessor(int value1, int value2) <fold text='{...}' expand='true'>{
             this.value1 = value1;
-            this.value2 = value2;<fold text='' expand='false'>
-            </fold><fold text='' expand='false'>initialize();</fold>
+            this.value2 = value2;
+            initialize();
         }</fold>
 
         public DataProcessor() <fold text='{...}' expand='true'>{
-            this(0, 0);<fold text='' expand='false'>
-            </fold><fold text='' expand='false'>initialize();</fold>
+            this(0, 0);
+            initialize();
         }</fold>
 
         <fold text='@PostConstructor p' expand='false'>p</fold>rivate void initialize()<fold text=' { ' expand='false'> {
             </fold>computedResult = value1 + value2;<fold text=' }' expand='false'>
+        }</fold>
+    }</fold>
+
+    public static class TaskPipeline <fold text='{...}' expand='true'>{
+        private final int seed;
+        private boolean prepared;
+        private boolean executed;
+
+        public TaskPipeline() <fold text='{...}' expand='true'>{
+            this.seed = -1;
+            prepare();
+            execute();
+        }</fold>
+
+        public TaskPipeline(int seed) <fold text='{...}' expand='true'>{
+            this.seed = seed;
+            prepare();
+            execute();
+        }</fold>
+
+        <fold text='@PostConstructor(1) p' expand='false'>p</fold>rivate void prepare()<fold text=' { ' expand='false'> {
+            </fold>prepared = true;<fold text=' }' expand='false'>
+        }</fold>
+
+        <fold text='@PostConstructor(2) p' expand='false'>p</fold>rivate void execute()<fold text=' { ' expand='false'> {
+            </fold>executed = prepared;<fold text=' }' expand='false'>
         }</fold>
     }</fold>
 }
