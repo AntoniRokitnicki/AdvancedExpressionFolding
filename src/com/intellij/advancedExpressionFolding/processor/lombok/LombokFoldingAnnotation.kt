@@ -13,7 +13,7 @@ enum class LombokFoldingAnnotation(val annotation: String) {
     LOMBOK_EQUALS("@Equals"),
     LOMBOK_HASHCODE("@HashCode"),
     LOMBOK_TO_STRING("@ToString"),
-    LOMBOK_BUILDER("@Builder"),
+    LOMBOK_BUILDER("@HasBuilder"),
 
     LOMBOK_NO_ARGS_CONSTRUCTOR("@NoArgsConstructor"),
     LOMBOK_ALL_ARGS_CONSTRUCTOR("@AllArgsConstructor"),
