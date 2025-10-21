@@ -41,7 +41,22 @@ interface ExpressionCollapseFoldingTest : FoldingTestSection {
     fun getterSetterTestData() = testCase.runFoldingTest(foldingState()::getSetExpressionsCollapse)
 
     @Test
-    fun assertTestData() = testCase.runReadOnlyFoldingTest(foldingState()::assertsCollapse)
+    fun fieldShiftBuilder() = testCase.runFoldingTest(
+        foldingState()::fieldShift,
+        foldingState()::getSetExpressionsCollapse,
+    )
+
+    @Test
+    fun fieldShiftSetters() = testCase.runFoldingTest(
+        foldingState()::fieldShift,
+        foldingState()::getSetExpressionsCollapse,
+    )
+
+    @Test
+    fun fieldShiftFields() = testCase.runFoldingTest(
+        foldingState()::getSetExpressionsCollapse,
+        foldingState()::fieldShift,
+    )
 }
 
 @Disabled("Split from FoldingTest")
