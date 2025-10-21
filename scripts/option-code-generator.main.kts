@@ -6,10 +6,14 @@ val basePath: String = System.getProperty("project.dir", "..")
 val varName = System.getProperty("varName") ?: "patternMatchingInstanceof"
 val varText = System.getProperty("varText") ?: "Pattern Matching for instanceof (JEP 394)"
 
-val propertyFile = "$basePath/src/com/intellij/advancedExpressionFolding/settings/AdvancedExpressionFoldingSettings.kt"
-propertyFile.doInFile {
+val settingsFile = "$basePath/src/com/intellij/advancedExpressionFolding/settings/AdvancedExpressionFoldingSettings.kt"
+settingsFile.doInFile {
     it.insertBeforeMarker("// NEW OPTION VAR", "        override var $varName: Boolean = true,")
-        .insertBeforeMarker("// NEW OPTION VAL", "        val $varName: Boolean")
+}
+
+val stateInterfaceFile = "$basePath/src/com/intellij/advancedExpressionFolding/settings/IState.kt"
+stateInterfaceFile.doInFile {
+    it.insertBeforeMarker("// NEW OPTION VAL", "    val $varName: Boolean")
 }
 
 val exampleFileName = "${varName.replaceFirstChar(Char::titlecase)}TestData"
