@@ -2,10 +2,7 @@ package com.intellij.advancedExpressionFolding
 
 import com.intellij.advancedExpressionFolding.processor.takeIfTrue
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings.Companion.allMainProperties
-import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings.Companion.getInstance
-import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings.State
 import junit.framework.ComparisonFailure
-import org.junit.AssumptionViolatedException
 import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
@@ -44,12 +41,6 @@ import kotlin.time.toDuration
  */
 @EnabledIfEnvironmentVariable(named = "dev-mode", matches = "2")
 class CrazyFoldingTest : BaseTest() {
-
-    class TooComplexException : AssumptionViolatedException("TOO COMPLEX FOLDING")
-
-    private val state: State by lazy {
-        getInstance().state
-    }
 
     private fun File.saveCounterAndFilename(counter: Long, filename: String) {
         val properties = Properties()

@@ -1,62 +1,12 @@
 package com.intellij.advancedExpressionFolding
 
-import com.intellij.advancedExpressionFolding.processor.methodcall.MethodCallFactory
 import com.intellij.advancedExpressionFolding.processor.methodcall.dynamic.DynamicMethodCall
 import com.intellij.advancedExpressionFolding.processor.methodcall.dynamic.IDynamicDataProvider
-import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings.Companion.getInstance
-import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings.State
-import com.intellij.openapi.application.runInEdt
-import com.intellij.platform.testFramework.core.FileComparisonFailedError
 import org.junit.jupiter.api.Test
 import org.junitpioneer.jupiter.Stopwatch
-import org.opentest4j.TestAbortedException
-import kotlin.reflect.KMutableProperty0
 
 @Stopwatch
-//TODO: maybe use @RetryingTest(maxAttempts = 3, suspendForMs = 100, onExceptions = <FindName>.class) when rarely IDE can't be start
 open class FoldingTest : BaseTest() {
-
-    class TooComplexException : TestAbortedException("TOO COMPLEX FOLDING")
-    class FoldingChangedException : AssertionError()
-
-    protected val state: State by lazy {
-        getInstance().state
-    }
-
-    open fun assignState(vararg turnOnProperties: KMutableProperty0<Boolean>,) {
-        getInstance().disableAll()
-        turnOnProperties.forEach {
-            it.set(true)
-        }
-    }
-
-    open fun doFoldingTest(
-        vararg turnOnProperties: KMutableProperty0<Boolean>,
-        dynamic: IDynamicDataProvider = TestDynamicDataProvider(),
-    ) {
-        assignState(*turnOnProperties)
-        MethodCallFactory.initialize(dynamic)
-        try {
-            super.doFoldingTest(null)
-        } catch (_: FileComparisonFailedError) {
-            throw FoldingChangedException()
-        } catch (e: IllegalArgumentException) {
-            if (e.message == "Comparison method violates its general contract!") {
-                throw TooComplexException()
-            }
-        }
-    }
-
-    private fun doReadOnlyFoldingTest(
-        vararg turnOnProperties: KMutableProperty0<Boolean>,
-        dynamic: IDynamicDataProvider = TestDynamicDataProvider()
-    ) {
-        assignState(*turnOnProperties)
-        MethodCallFactory.initialize(dynamic)
-        runInEdt {
-            super.doReadOnlyFoldingTest()
-        }
-    }
 
     /**
      * [data.ElvisTestData]

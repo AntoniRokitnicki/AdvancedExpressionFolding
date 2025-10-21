@@ -2,8 +2,13 @@ package com.intellij.advancedExpressionFolding
 
 import ai.grazie.utils.capitalize
 import com.intellij.advancedExpressionFolding.diff.FoldingDescriptorExWrapper
+import com.intellij.advancedExpressionFolding.processor.methodcall.MethodCallFactory
+import com.intellij.advancedExpressionFolding.processor.methodcall.dynamic.IDynamicDataProvider
 import com.intellij.advancedExpressionFolding.processor.takeIfFalse
+import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings.Companion.getInstance
+import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings.State
 import com.intellij.openapi.application.WriteAction
+import com.intellij.openapi.application.runInEdt
 import com.intellij.openapi.fileTypes.FileTypeManager
 import com.intellij.openapi.projectRoots.JavaSdk
 import com.intellij.openapi.projectRoots.Sdk
@@ -15,13 +20,57 @@ import com.intellij.testFramework.fixtures.DefaultLightProjectDescriptor
 import com.intellij.testFramework.fixtures.LightJavaCodeInsightFixtureTestCase5
 import com.intellij.testFramework.fixtures.impl.CodeInsightTestFixtureImpl
 import org.junit.jupiter.api.Assertions.assertNotNull
+import org.opentest4j.TestAbortedException
 import java.io.File
 import java.io.IOException
 import java.nio.file.Files
+import kotlin.reflect.KMutableProperty0
 
 abstract class BaseTest : LightJavaCodeInsightFixtureTestCase5(TEST_JDK) {
     override fun getTestDataPath() = "testData"
     private val saveFoldingsAsJson = false
+
+    class TooComplexException : TestAbortedException("TOO COMPLEX FOLDING")
+    class FoldingChangedException : AssertionError()
+
+    protected val state: State by lazy {
+        getInstance().state
+    }
+
+    open fun assignState(vararg turnOnProperties: KMutableProperty0<Boolean>,) {
+        getInstance().disableAll()
+        turnOnProperties.forEach {
+            it.set(true)
+        }
+    }
+
+    open fun doFoldingTest(
+        vararg turnOnProperties: KMutableProperty0<Boolean>,
+        dynamic: IDynamicDataProvider = TestDynamicDataProvider(),
+    ) {
+        assignState(*turnOnProperties)
+        MethodCallFactory.initialize(dynamic)
+        try {
+            doFoldingTest(null)
+        } catch (_: FileComparisonFailedError) {
+            throw FoldingChangedException()
+        } catch (e: IllegalArgumentException) {
+            if (e.message == "Comparison method violates its general contract!") {
+                throw TooComplexException()
+            }
+        }
+    }
+
+    protected fun doReadOnlyFoldingTest(
+        vararg turnOnProperties: KMutableProperty0<Boolean>,
+        dynamic: IDynamicDataProvider = TestDynamicDataProvider()
+    ) {
+        assignState(*turnOnProperties)
+        MethodCallFactory.initialize(dynamic)
+        runInEdt {
+            doReadOnlyFoldingTest()
+        }
+    }
 
     protected open fun doFoldingTest(testNameArg: String? = null) {
         val testName = testNameArg ?: getTestName(false)
