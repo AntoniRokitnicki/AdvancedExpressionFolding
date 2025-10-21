@@ -25,6 +25,21 @@ object MethodBodyInspector {
         return isDirtyAssignment(statement, field, firstParam)
     }
 
+    fun PsiMethod.isDirtyWith(): Boolean {
+        val field: PsiField = this.propertyField ?: return true
+        val statements = body?.statements ?: return true
+        val firstParam = parameterList.parameters.singleOrNull() ?: return true
+
+        val assignment = statements.getOrNull(0)
+        val returnStatement = statements.getOrNull(1).asReturn()
+
+        if (returnStatement?.returnValue.asInstance<PsiThisExpression>() == null) {
+            return true
+        }
+
+        return isDirtyAssignment(assignment, field, firstParam)
+    }
+
     private fun PsiMethod.isDirtyAssignment(
         statement: PsiStatement?,
         field: PsiField,

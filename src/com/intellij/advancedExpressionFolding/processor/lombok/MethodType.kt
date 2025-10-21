@@ -6,6 +6,7 @@ import com.intellij.advancedExpressionFolding.processor.lombok.MethodBodyInspect
 import com.intellij.advancedExpressionFolding.processor.lombok.MethodBodyInspector.asWrapperGetter
 import com.intellij.advancedExpressionFolding.processor.lombok.MethodBodyInspector.isDirtyGetter
 import com.intellij.advancedExpressionFolding.processor.lombok.MethodBodyInspector.isDirtySetter
+import com.intellij.advancedExpressionFolding.processor.lombok.MethodBodyInspector.isDirtyWith
 import com.intellij.psi.PsiField
 import com.intellij.psi.PsiMethod
 
@@ -34,6 +35,16 @@ enum class MethodType {
             null
         }
     },
+    WITH {
+        override fun isDirty(method: PsiMethod) = method.isDirtyWith()
+
+        override fun createFieldArgument(dirty: Boolean, field: PsiField, method: PsiMethod): String? = if (dirty) {
+            method.asDirtyNoReference(field) ?:
+            "dirty"
+        } else {
+            null
+        }
+    },
     TO_STRING,
     EQUALS,
     HASHCODE,
@@ -44,7 +55,7 @@ enum class MethodType {
     ;
 
     open fun isDirty(method: PsiMethod): Boolean = false
-    open fun createFieldArgument(dirty: Boolean, method: PsiField, method1: PsiMethod): String? = null
+    open fun createFieldArgument(dirty: Boolean, field: PsiField, method: PsiMethod): String? = null
 }
 
 

@@ -79,7 +79,7 @@ object LombokExt : BaseExtension() {
         }.map { logField ->
             val dirty = logField.name != "log"
             logField.markIgnored()
-            val arguments = dirty.on(logField.name)?.let {
+            val arguments = dirty.takeIfTrue(logField.name)?.let {
                 listOf(it)
             } ?: emptyList()
             ClassLevelAnnotation(LOMBOK_LOG, listOf(logField), arguments = arguments)
@@ -122,6 +122,7 @@ object LombokExt : BaseExtension() {
         when {
             isGetter() -> GETTER
             isSetter() -> SETTER
+            isWith() -> WITH
             isToString() -> TO_STRING
             isEquals() -> EQUALS
             isHashCode() -> HASHCODE
