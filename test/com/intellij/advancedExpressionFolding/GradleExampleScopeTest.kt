@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Test
 import data.VarTestData
 
-class ExamplesScopeTest {
+class GradleExampleScopeTest {
     @Test
     fun `examples classes accessible`() {
         assertDoesNotThrow { VarTestData.main(arrayOf()) }
