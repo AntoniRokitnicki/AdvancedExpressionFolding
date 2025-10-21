@@ -1,11 +1,10 @@
-package com.intellij.advancedExpressionFolding
+package com.intellij.advancedExpressionFolding.folding.crazy
 
+import com.intellij.advancedExpressionFolding.folding.util.GitUtils
+import com.intellij.advancedExpressionFolding.folding.BaseTest
 import com.intellij.advancedExpressionFolding.processor.takeIfTrue
-import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings.Companion.allMainProperties
-import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings.Companion.getInstance
-import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings.State
+import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
 import junit.framework.ComparisonFailure
-import org.junit.AssumptionViolatedException
 import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
@@ -13,7 +12,7 @@ import org.junit.jupiter.params.provider.MethodSource
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
-import java.util.*
+import java.util.Properties
 import java.util.stream.Stream
 import kotlin.math.pow
 import kotlin.reflect.KMutableProperty
@@ -42,14 +41,8 @@ import kotlin.time.toDuration
  * The test is intentionally gated behind the environment variable `dev-mode=2` to avoid
  * running during normal test execution due to its extremely long runtime.
  */
-@EnabledIfEnvironmentVariable(named = "dev-mode", matches = "2")
+@EnabledIfEnvironmentVariable(named = "crazy-mode", matches = "1")
 class CrazyFoldingTest : BaseTest() {
-
-    class TooComplexException : AssumptionViolatedException("TOO COMPLEX FOLDING")
-
-    private val state: State by lazy {
-        getInstance().state
-    }
 
     private fun File.saveCounterAndFilename(counter: Long, filename: String) {
         val properties = Properties()
@@ -115,7 +108,7 @@ class CrazyFoldingTest : BaseTest() {
             CONFIG_FILE.readCounterAndFilename()?.let { (count: Long, _: String) ->
                 counter = count
             }
-            val props: List<KMutableProperty<*>> = allMainProperties()
+            val props: List<KMutableProperty<*>> = AdvancedExpressionFoldingSettings.Companion.allMainProperties()
             val numBooleans = props.size
             return Stream.iterate(BooleanArray(numBooleans)) { prev ->
                 val next = prev.clone()
@@ -152,4 +145,3 @@ class CrazyFoldingTest : BaseTest() {
     }
 
 }
-
