@@ -5,11 +5,9 @@ import com.intellij.advancedExpressionFolding.expression.semantic.lombok.MethodA
 import com.intellij.advancedExpressionFolding.processor.asInstance
 import com.intellij.advancedExpressionFolding.processor.core.BaseExtension
 import com.intellij.advancedExpressionFolding.processor.group
-import com.intellij.advancedExpressionFolding.processor.prevWhiteSpace
 import com.intellij.advancedExpressionFolding.processor.util.GenericCallback
 import com.intellij.openapi.editor.FoldingGroup
 import com.intellij.openapi.util.Key
-import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiExpressionStatement
 import com.intellij.psi.PsiMethod
 import com.intellij.psi.PsiMethodCallExpression
@@ -20,7 +18,7 @@ import com.intellij.psi.PsiType
 object LombokPostConstructorExt : BaseExtension() {
 
     private data class PostConstructorAnnotation(
-        val elementsToHide: List<PsiElement?>,
+        val annotationText: String,
         val group: FoldingGroup,
     )
 
@@ -40,40 +38,80 @@ object LombokPostConstructorExt : BaseExtension() {
         }
 
         val methodCalls = mutableMapOf<PsiMethod, MutableList<PsiExpressionStatement>>()
+        var orderedMethods: List<PsiMethod>? = null
 
         constructors.forEach { constructor ->
-            val callStatement = constructor.body?.statements?.lastOrNull()
-                .asInstance<PsiExpressionStatement>() ?: return@forEach
-            val callExpression = callStatement.expression.asInstance<PsiMethodCallExpression>() ?: return@forEach
+            val calls = constructor.collectTrailingPostConstructorCalls(clazz)
+            if (orderedMethods == null && calls.isNotEmpty()) {
+                orderedMethods = calls.map { it.first }
+            }
+            calls.forEach { (method, statement) ->
+                methodCalls.getOrPut(method) { mutableListOf() }.add(statement)
+            }
+        }
+
+        val validMethods = methodCalls.filter { (method, statements) ->
+            method.isValidPostConstructor(constructors.size, statements.size)
+        }
+
+        if (validMethods.isEmpty()) {
+            return
+        }
+
+        val validMethodSet = validMethods.keys
+        val canonicalOrder = orderedMethods?.filter { it in validMethodSet }.orEmpty()
+
+        val baseAnnotation = LombokFoldingAnnotation.LOMBOK_POST_CONSTRUCTOR.annotation
+        val annotationTexts = mutableMapOf<PsiMethod, String>()
+        if (validMethodSet.size <= 1 || canonicalOrder.isEmpty()) {
+            validMethodSet.forEach { method ->
+                annotationTexts[method] = baseAnnotation
+            }
+        } else {
+            canonicalOrder.forEachIndexed { index, method ->
+                annotationTexts[method] = "$baseAnnotation(${index + 1})"
+            }
+            validMethodSet
+                .filterNot { it in annotationTexts }
+                .forEach { method -> annotationTexts[method] = baseAnnotation }
+        }
+
+        annotationTexts.forEach { (method, annotationText) ->
+            val group = group("@PostConstructor-${method.hashCode()}")
+            MethodCallback.initCallback(method, PostConstructorAnnotation(annotationText, group))
+        }
+    }
+
+    private fun PsiMethod.collectTrailingPostConstructorCalls(
+        clazz: com.intellij.psi.PsiClass,
+    ): List<Pair<PsiMethod, PsiExpressionStatement>> {
+        val body = body ?: return emptyList()
+        val statements = body.statements
+        if (statements.isEmpty()) {
+            return emptyList()
+        }
+
+        val calls = mutableListOf<Pair<PsiMethod, PsiExpressionStatement>>()
+        for (statement in statements.reversed()) {
+            val expressionStatement = statement.asInstance<PsiExpressionStatement>() ?: break
+            val callExpression = expressionStatement.expression.asInstance<PsiMethodCallExpression>() ?: break
             if (callExpression.argumentList.expressionCount != 0) {
-                return@forEach
+                break
             }
 
             val qualifier = callExpression.methodExpression.qualifierExpression
             if (qualifier != null && qualifier !is PsiThisExpression) {
-                return@forEach
+                break
             }
 
-            val resolved = callExpression.methodExpression.resolve().asInstance<PsiMethod>() ?: return@forEach
+            val resolved = callExpression.methodExpression.resolve().asInstance<PsiMethod>() ?: break
             if (resolved.containingClass != clazz) {
-                return@forEach
+                break
             }
 
-            methodCalls.getOrPut(resolved) { mutableListOf() }.add(callStatement)
+            calls.add(0, resolved to expressionStatement)
         }
-
-        methodCalls.forEach { (method, statements) ->
-            if (!method.isValidPostConstructor(constructors.size, statements.size)) {
-                return@forEach
-            }
-
-            val group = group("@PostConstructor-${method.hashCode()}")
-            val elementsToHide = statements.flatMap { statement ->
-                listOf(statement.prevWhiteSpace(), statement)
-            }
-
-            MethodCallback.initCallback(method, PostConstructorAnnotation(elementsToHide, group))
-        }
+        return calls
     }
 
     private fun PsiMethod.isValidPostConstructor(
@@ -93,11 +131,10 @@ object LombokPostConstructorExt : BaseExtension() {
 
     fun methodAnnotation(method: PsiMethod): Expression? {
         val annotation = with(MethodCallback) { method.callback?.invoke() } ?: return null
-        val annotationText = LombokFoldingAnnotation.LOMBOK_POST_CONSTRUCTOR.annotation
         return MethodAnnotationExpression(
             method,
-            listOf(annotationText),
-            annotation.elementsToHide,
+            listOf(annotation.annotationText),
+            emptyList(),
             group = annotation.group,
         )
     }
