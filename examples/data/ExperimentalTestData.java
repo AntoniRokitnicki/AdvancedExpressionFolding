@@ -103,4 +103,27 @@ public class ExperimentalTestData {
         }
     }
 
+
+    static class NamelessAccessorExample {
+
+        private String state;
+
+        void set(String value) {
+            this.state = value;
+        }
+
+        String get() {
+            return state;
+        }
+
+        void demo() {
+            NamelessAccessorExample example = new NamelessAccessorExample();
+            example.set("ok");
+            String current = example.get();
+            System.out.println(example.get().isEmpty());
+            example.set(example.get());
+            String duplicate = example.get() + example.get();
+        }
+    }
+
 }

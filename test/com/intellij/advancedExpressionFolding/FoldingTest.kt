@@ -542,7 +542,14 @@ staticMethod.newName = 'changedStaticMethod'
      */
     @Test
     open fun experimentalTestData() {
-        doFoldingTest(state::experimental, state::nullable, state::const, state::lombok, state::getExpressionsCollapse)
+        doFoldingTest(
+            state::experimental,
+            state::nullable,
+            state::const,
+            state::lombok,
+            state::getExpressionsCollapse,
+            state::getSetExpressionsCollapse
+        )
     }
 
 }

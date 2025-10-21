@@ -19,6 +19,7 @@ import com.intellij.psi.PsiExpressionStatement
 import com.intellij.psi.PsiField
 import com.intellij.psi.PsiIdentifier
 import com.intellij.psi.PsiLoopStatement
+import com.intellij.psi.PsiMethod
 import com.intellij.psi.PsiMethodCallExpression
 import com.intellij.psi.PsiMethodReferenceExpression
 import com.intellij.psi.PsiModifier
@@ -26,6 +27,7 @@ import com.intellij.psi.PsiModifierList
 import com.intellij.psi.PsiPostfixExpression
 import com.intellij.psi.PsiReference
 import com.intellij.psi.PsiReferenceExpression
+import com.intellij.psi.PsiTypes
 import com.intellij.psi.PsiStatement
 import com.intellij.psi.PsiVariable
 import com.intellij.psi.SyntaxTraverser
@@ -258,6 +260,38 @@ object Helper {
     fun isGetterAux(name: String?, prefix: String): Boolean {
         return startsWith(name, prefix) && name!!.length > prefix.length && name[prefix.length].isUpperCase()
     }
+
+    fun isNamelessGetter(name: String, expression: PsiMethodCallExpression, method: PsiMethod?): Boolean {
+        if (name != "get") {
+            return false
+        }
+        if (expression.argumentExpressions.isNotEmpty()) {
+            return false
+        }
+        return hasNonVoidReturn(expression, method)
+    }
+
+    fun isNamelessSetter(name: String, expression: PsiMethodCallExpression, method: PsiMethod?): Boolean {
+        if (name != "set") {
+            return false
+        }
+        if (expression.argumentExpressions.size != 1) {
+            return false
+        }
+        return hasVoidReturn(expression, method)
+    }
+
+    fun hasVoidReturn(expression: PsiMethodCallExpression, method: PsiMethod?): Boolean {
+        val returnType = method?.returnType ?: expression.type ?: return false
+        return returnType == PsiTypes.voidType()
+    }
+
+    fun hasNonVoidReturn(expression: PsiMethodCallExpression, method: PsiMethod?): Boolean {
+        val returnType = method?.returnType ?: expression.type ?: return false
+        return returnType != PsiTypes.voidType()
+    }
+
+    fun guessNamelessPropertyName(method: PsiMethod?): String = "!!"
 
     fun findAncestorsUntilClass(element: PsiElement, ancestorClass: Class<out PsiElement>): Sequence<PsiElement> {
         return findAncestorsUntil(element) { parent -> !ancestorClass.isInstance(parent) }

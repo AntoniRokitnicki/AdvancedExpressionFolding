@@ -103,4 +103,27 @@ public class ExperimentalTestData {
         }</fold>
     }</fold>
 
+
+    static class NamelessAccessorExample <fold text='{...}' expand='true'>{
+
+        private String state;
+
+        void set(String value)<fold text=' { ' expand='false'> {
+            </fold>this.state = value;<fold text=' }' expand='false'>
+        }</fold>
+
+        String get()<fold text=' { ' expand='false'> {
+            </fold>return state;<fold text=' }' expand='false'>
+        }</fold>
+
+        void demo() <fold text='{...}' expand='true'>{
+            NamelessAccessorExample example = new NamelessAccessorExample();
+            example<fold text='!! = ' expand='false'>.set(</fold>"ok"<fold text='' expand='false'>)</fold>;
+            String current = example<fold text='!!' expand='false'>.get()</fold>;
+            System.out.println(example<fold text='!!' expand='false'>.get()</fold>.<fold text='empty' expand='false'>isEmpty()</fold>);
+            example<fold text='!! = ' expand='false'>.set(</fold>example<fold text='!!' expand='false'>.get()</fold><fold text='' expand='false'>)</fold>;
+            String duplicate = example<fold text='!!' expand='false'>.get()</fold> + example<fold text='!!' expand='false'>.get()</fold>;
+        }</fold>
+    }</fold>
+
 }
