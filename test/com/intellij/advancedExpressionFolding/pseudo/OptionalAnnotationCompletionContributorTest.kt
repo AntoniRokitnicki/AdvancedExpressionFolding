@@ -101,7 +101,25 @@ class OptionalAnnotationCompletionContributorTest : BaseTest() {
                 """.trimIndent()
             )),
             Arguments.of(TestCase(
-                name = "Skips generation when wrapper already exists",
+                name = "Skips methods that already return Optional",
+                input = @Language("JAVA") """
+                    @<caret>
+                    public class Test {
+                        public java.util.Optional<String> value() {
+                            return java.util.Optional.empty();
+                        }
+                    }
+                """.trimIndent(),
+                expected = @Language("JAVA") """
+                    public class Test {
+                        public java.util.Optional<String> value() {
+                            return java.util.Optional.empty();
+                        }
+                    }
+                """.trimIndent()
+            )),
+            Arguments.of(TestCase(
+                name = "Refreshes existing wrapper when wrapper already exists",
                 input = @Language("JAVA") """
                     @<caret>
                     public class Test {
@@ -114,16 +132,18 @@ class OptionalAnnotationCompletionContributorTest : BaseTest() {
                         }
                     }
                 """.trimIndent(),
-                // The wrapper is already present and uses fully-qualified Optional references,
-                // so the contributor must leave the code unchanged (no added import).
+                // The wrapper is already present but uses fully-qualified Optional references,
+                // so the contributor should refresh it to use the Optional import for consistency.
                 expected = @Language("JAVA") """
+                    import java.util.Optional;
+
                     public class Test {
                         public String value() {
                             return "";
                         }
 
-                        public java.util.Optional<String> optionalValue() {
-                            return java.util.Optional.ofNullable(value());
+                        public Optional<String> optionalValue() {
+                            return Optional.ofNullable(value());
                         }
                     }
                 """.trimIndent()

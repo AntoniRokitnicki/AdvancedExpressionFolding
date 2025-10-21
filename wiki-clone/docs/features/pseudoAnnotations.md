@@ -41,7 +41,7 @@ https://github.com/user-attachments/assets/9dca58be-1d1f-40ed-8d8d-55f3b21339f5
 2. **Wrapper generation**: Selecting `@Optional` removes the annotation and generates wrapper methods named `optionalXxx`
 3. **Method coverage**: Every method with a non-void return type gets a wrapper that delegates to the original method and wraps the result in `Optional.ofNullable(...)`
 4. **Signature parity**: Wrapper methods keep the original modifiers, type parameters, parameters, and `throws` clauses
-5. **Idempotent**: Existing wrapper methods with matching signatures are left untouched to avoid duplicates
+5. **Idempotent**: Existing wrapper methods with matching signatures are refreshed to ensure they use the `Optional` import while avoiding duplicates
 
 #### Code example:
 ```java
@@ -84,7 +84,7 @@ public class Repository {
 - Maintains `static`, visibility, `final`, `synchronized`, and `strictfp` modifiers on generated wrappers
 - Copies generic type parameters, parameter lists (including varargs), and declared exceptions
 - Automatically boxes primitive return types before wrapping them in `Optional`
-- Skips constructors, `void` methods, abstract/native methods, and pre-existing wrappers with the same signature
+- Skips constructors, `void` methods, abstract/native methods, and methods that already return `Optional`
 
 #### Notes:
 - Works only when the `pseudoAnnotations` setting is enabled
