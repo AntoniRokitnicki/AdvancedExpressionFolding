@@ -206,6 +206,14 @@ open class FoldingTest : BaseTest() {
     }
 
     /**
+     * [data.LombokPostConstructorTestData]
+     */
+    @Test
+    open fun lombokPostConstructorTestData() {
+        doFoldingTest(state::lombok)
+    }
+
+    /**
      * [data.FieldShiftBuilder]
      */
     @Test
