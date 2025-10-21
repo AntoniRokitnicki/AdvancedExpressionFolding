@@ -6,18 +6,34 @@
 
 ## example Structural Searches
 
-`$Instance$ != null && $Instance$.$MethodCall$() != null`
+### If Null Safe
+Extends null-safe folding to if statements and guard clauses.
 
-![Structural search template for null-safe guard with method call](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/assets/3055326/ce93188e-72bf-4a5b-8bff-cc6fb8fb3c76)
+#### Example: IfNullSafeData
 
+examples/data/IfNullSafeData.java:
+```java
+        var threeChains = data != null
+                && data.getData1() != null
+// ...
+                && data.getData1() != null
+                && data != null
+                && data != null
+                && data.getData1() != null
+                && data.getData1().isActive();
+```
 
-`$Instance$ != null && $Instance$.$MethodCall$()`
+folded/IfNullSafeData-folded.java:
+```java
+        var threeChains = data?.data1 != null
+                && data?.data1 != null
+// ...
+                && data?.data1?.active == true;
+```
 
-![Structural search template for null-check followed by usage](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/assets/3055326/3eb6192c-b69e-4841-b28f-8edae3a95636)
+Highlights IfNullSafeData with if null safe.
+Removes boilerplate while preserving behavior.
 
-
-## example
-
-[example file](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/master/examples/data/IfNullSafeData.java)
-
-[folded](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/master/folded/IfNullSafeData-folded.java)
+Default: On
+Controlled by: `ifNullSafe`
+Related features: (none)

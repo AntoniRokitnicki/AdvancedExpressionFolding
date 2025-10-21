@@ -1,6 +1,6 @@
 package com.intellij.advancedExpressionFolding
 
-import com.intellij.advancedExpressionFolding.processor.on
+import com.intellij.advancedExpressionFolding.processor.takeIfTrue
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings.Companion.allMainProperties
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings.Companion.getInstance
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings.State
@@ -136,7 +136,7 @@ class CrazyFoldingTest : BaseTest() {
 
 
         private fun File.readCounterAndFilename(): Pair<Long, String>? {
-            exists().on() ?: return null
+            exists().takeIfTrue() ?: return null
             val properties = Properties()
             FileInputStream(this).use {
                 properties.load(it)
