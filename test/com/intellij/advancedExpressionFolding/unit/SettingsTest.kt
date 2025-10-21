@@ -1,4 +1,4 @@
-package com.intellij.advancedExpressionFolding
+package com.intellij.advancedExpressionFolding.unit
 
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
 import org.junit.jupiter.api.Assertions.assertEquals
