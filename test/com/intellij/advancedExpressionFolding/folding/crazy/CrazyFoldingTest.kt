@@ -108,7 +108,11 @@ class CrazyFoldingTest : BaseTest() {
             CONFIG_FILE.readCounterAndFilename()?.let { (count: Long, _: String) ->
                 counter = count
             }
-            val props: List<KMutableProperty<*>> = AdvancedExpressionFoldingSettings.Companion.allMainProperties()
+            val props: List<KMutableProperty<*>> =
+                AdvancedExpressionFoldingSettings.Companion.allProperties().filter { property ->
+                    //TODO: for crazy test implement after IState segregation exclude less important states
+                    true
+                }
             val numBooleans = props.size
             return Stream.iterate(BooleanArray(numBooleans)) { prev ->
                 val next = prev.clone()
