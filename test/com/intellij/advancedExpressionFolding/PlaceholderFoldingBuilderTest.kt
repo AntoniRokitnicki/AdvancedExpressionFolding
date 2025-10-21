@@ -1,5 +1,7 @@
 package com.intellij.advancedExpressionFolding
 
+import com.intellij.advancedExpressionFolding.folding.BaseTest
+import com.intellij.advancedExpressionFolding.folding.util.FoldingDataStorage
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings.Companion.getInstance
 import com.intellij.openapi.application.ReadAction
 import org.junit.jupiter.api.Assertions.assertTrue

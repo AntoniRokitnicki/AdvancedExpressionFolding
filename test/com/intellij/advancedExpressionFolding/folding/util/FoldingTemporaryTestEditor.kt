@@ -1,4 +1,4 @@
-package com.intellij.advancedExpressionFolding
+package com.intellij.advancedExpressionFolding.folding.util
 
 import com.intellij.advancedExpressionFolding.diff.DiffFoldingTemporaryEditor
 import com.intellij.advancedExpressionFolding.diff.FoldedCode

@@ -1,5 +1,6 @@
-package com.intellij.advancedExpressionFolding
+package com.intellij.advancedExpressionFolding.folding.base
 
+import com.intellij.advancedExpressionFolding.folding.BaseTest
 import com.intellij.advancedExpressionFolding.processor.methodcall.dynamic.DynamicMethodCall
 import com.intellij.advancedExpressionFolding.processor.methodcall.dynamic.IDynamicDataProvider
 import org.junit.jupiter.api.Test

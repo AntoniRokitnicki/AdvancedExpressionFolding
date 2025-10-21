@@ -1,6 +1,6 @@
 package com.intellij.advancedExpressionFolding.performance
 
-import com.intellij.advancedExpressionFolding.FoldingTest
+import com.intellij.advancedExpressionFolding.folding.base.FoldingTest
 import com.intellij.platform.testFramework.core.FileComparisonFailedError
 import com.intellij.testFramework.PlatformTestUtil
 import org.junit.jupiter.api.AfterAll
@@ -57,7 +57,7 @@ class PerformanceTest : FoldingTest() {
             val content = """
 package com.intellij.advancedExpressionFolding.performance
 
-import com.intellij.advancedExpressionFolding.FoldingTest
+import com.intellij.advancedExpressionFolding.folding.base.FoldingTest
 import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable
 import kotlin.reflect.KFunction0
 

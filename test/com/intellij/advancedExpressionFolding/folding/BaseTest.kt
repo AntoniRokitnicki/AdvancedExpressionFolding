@@ -1,6 +1,9 @@
-package com.intellij.advancedExpressionFolding
+package com.intellij.advancedExpressionFolding.folding
 
 import ai.grazie.utils.capitalize
+import com.intellij.advancedExpressionFolding.folding.util.FoldingDataStorage
+import com.intellij.advancedExpressionFolding.folding.util.FoldingTemporaryTestEditor
+import com.intellij.advancedExpressionFolding.folding.util.TestDynamicDataProvider
 import com.intellij.advancedExpressionFolding.diff.FoldingDescriptorExWrapper
 import com.intellij.advancedExpressionFolding.processor.methodcall.MethodCallFactory
 import com.intellij.advancedExpressionFolding.processor.methodcall.dynamic.IDynamicDataProvider

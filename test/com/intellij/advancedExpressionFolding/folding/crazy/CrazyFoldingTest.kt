@@ -1,7 +1,9 @@
-package com.intellij.advancedExpressionFolding
+package com.intellij.advancedExpressionFolding.folding.crazy
 
+import com.intellij.advancedExpressionFolding.folding.util.GitUtils
+import com.intellij.advancedExpressionFolding.folding.BaseTest
 import com.intellij.advancedExpressionFolding.processor.takeIfTrue
-import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings.Companion.allMainProperties
+import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
 import junit.framework.ComparisonFailure
 import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable
 import org.junit.jupiter.params.ParameterizedTest
@@ -10,7 +12,7 @@ import org.junit.jupiter.params.provider.MethodSource
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
-import java.util.*
+import java.util.Properties
 import java.util.stream.Stream
 import kotlin.math.pow
 import kotlin.reflect.KMutableProperty
@@ -106,7 +108,7 @@ class CrazyFoldingTest : BaseTest() {
             CONFIG_FILE.readCounterAndFilename()?.let { (count: Long, _: String) ->
                 counter = count
             }
-            val props: List<KMutableProperty<*>> = allMainProperties()
+            val props: List<KMutableProperty<*>> = AdvancedExpressionFoldingSettings.Companion.allMainProperties()
             val numBooleans = props.size
             return Stream.iterate(BooleanArray(numBooleans)) { prev ->
                 val next = prev.clone()
@@ -143,4 +145,3 @@ class CrazyFoldingTest : BaseTest() {
     }
 
 }
-

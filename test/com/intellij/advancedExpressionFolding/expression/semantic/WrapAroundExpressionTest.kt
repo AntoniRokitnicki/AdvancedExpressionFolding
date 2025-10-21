@@ -1,6 +1,6 @@
 package com.intellij.advancedExpressionFolding.expression.semantic
 
-import com.intellij.advancedExpressionFolding.BaseTest
+import com.intellij.advancedExpressionFolding.folding.BaseTest
 import com.intellij.advancedExpressionFolding.processor.nextWhiteSpace
 import com.intellij.advancedExpressionFolding.processor.prevWhiteSpace
 import com.intellij.openapi.application.runReadAction

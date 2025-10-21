@@ -1,5 +1,6 @@
 package com.intellij.advancedExpressionFolding
 
+import com.intellij.advancedExpressionFolding.folding.BaseTest
 import com.intellij.openapi.components.service
 import com.intellij.openapi.fileEditor.FileEditorManager
 import com.intellij.testFramework.LoggedErrorProcessor

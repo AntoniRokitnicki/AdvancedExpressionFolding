@@ -1,5 +1,6 @@
 package com.intellij.advancedExpressionFolding
 
+import com.intellij.advancedExpressionFolding.folding.BaseTest
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
 import com.intellij.openapi.actionSystem.*
 import com.intellij.openapi.actionSystem.impl.SimpleDataContext
