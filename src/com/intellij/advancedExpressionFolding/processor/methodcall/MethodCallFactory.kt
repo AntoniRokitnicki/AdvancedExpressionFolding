@@ -4,7 +4,7 @@ import com.intellij.advancedExpressionFolding.processor.core.BaseExtension
 import com.intellij.advancedExpressionFolding.processor.methodcall.dynamic.ConfigurationParser
 import com.intellij.advancedExpressionFolding.processor.methodcall.dynamic.DynamicMethodCall
 import com.intellij.advancedExpressionFolding.processor.methodcall.dynamic.IDynamicDataProvider
-import com.intellij.advancedExpressionFolding.processor.on
+import com.intellij.advancedExpressionFolding.processor.takeIfTrue
 import com.intellij.advancedExpressionFolding.processor.util.Consts
 
 typealias MethodName = String
@@ -90,7 +90,7 @@ object MethodCallFactory : BaseExtension(){
 
     private fun getAllMethodCalls(): List<AbstractMethodCall> = MethodCallManager.methodCalls + loadDynamicMethods().orEmpty()
 
-    private fun loadDynamicMethods(): List<DynamicMethodCall>? = dynamic.on()?.let { dynamicProvider?.parse() }
+    private fun loadDynamicMethods(): List<DynamicMethodCall>? = dynamic.takeIfTrue()?.let { dynamicProvider?.parse() }
 
     private fun createSupportedClasses(): Collection<ClassName> =
         methodCallMap.values
