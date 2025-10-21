@@ -1,13 +1,12 @@
-package com.intellij.advancedExpressionFolding
+package com.intellij.advancedExpressionFolding.pseudo
 
+import com.intellij.advancedExpressionFolding.BaseTest
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
 import com.intellij.codeInsight.completion.CompletionType
 import com.intellij.openapi.application.ApplicationManager
 import org.intellij.lang.annotations.Language
 import org.junit.jupiter.api.AfterEach
-import org.junit.jupiter.api.Assertions.assertFalse
-import org.junit.jupiter.api.Assertions.assertNotNull
-import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
@@ -132,14 +131,14 @@ class OptionalAnnotationCompletionContributorTest : BaseTest() {
 
     @BeforeEach
     fun setUp() {
-        val settings = AdvancedExpressionFoldingSettings.getInstance()
+        val settings = AdvancedExpressionFoldingSettings.Companion.getInstance()
         originalPseudoAnnotationsValue = settings.state.pseudoAnnotations
         settings.state.pseudoAnnotations = true
     }
 
     @AfterEach
     fun tearDown() {
-        val settings = AdvancedExpressionFoldingSettings.getInstance()
+        val settings = AdvancedExpressionFoldingSettings.Companion.getInstance()
         settings.state.pseudoAnnotations = originalPseudoAnnotationsValue
     }
 
@@ -155,9 +154,9 @@ class OptionalAnnotationCompletionContributorTest : BaseTest() {
         """.trimIndent())
 
         val completions = fixture.complete(CompletionType.BASIC)
-        assertNotNull(completions)
-        assertTrue(completions.any { it.lookupString == "Optional" })
-        assertFalse(completions.any { it.lookupString == "Main" })
+        Assertions.assertNotNull(completions)
+        Assertions.assertTrue(completions.any { it.lookupString == "Optional" })
+        Assertions.assertFalse(completions.any { it.lookupString == "Main" })
     }
 
     @ParameterizedTest(name = "{0}")
@@ -166,10 +165,10 @@ class OptionalAnnotationCompletionContributorTest : BaseTest() {
         fixture.configureByText("Test.java", testCase.input)
 
         val completions = fixture.complete(CompletionType.BASIC)
-        assertNotNull(completions)
+        Assertions.assertNotNull(completions)
 
         val optionalCompletion = completions.find { it.lookupString == "Optional" }
-        assertNotNull(optionalCompletion)
+        Assertions.assertNotNull(optionalCompletion)
 
         ApplicationManager.getApplication().invokeAndWait {
             fixture.lookup.currentItem = optionalCompletion

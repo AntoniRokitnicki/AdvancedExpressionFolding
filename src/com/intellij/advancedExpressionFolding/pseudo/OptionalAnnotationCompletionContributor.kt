@@ -1,6 +1,6 @@
-package com.intellij.advancedExpressionFolding
+package com.intellij.advancedExpressionFolding.pseudo
 
-import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings.Companion.getInstance
+import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
 import com.intellij.advancedExpressionFolding.settings.IState
 import com.intellij.codeInsight.completion.CompletionContributor
 import com.intellij.codeInsight.completion.CompletionParameters
@@ -35,7 +35,7 @@ import com.intellij.util.ProcessingContext
 import java.util.Locale
 
 class OptionalAnnotationCompletionContributor(
-    private val state: IState = getInstance().state
+    private val state: IState = AdvancedExpressionFoldingSettings.Companion.getInstance().state
 ) : CompletionContributor(), IState by state {
 
     init {
@@ -144,7 +144,7 @@ class OptionalAnnotationCompletionContributor(
         copyThrowsList(method, optionalMethod)
 
         val arguments = method.parameterList.parameters.withIndex().joinToString(", ") { (index, parameter) ->
-            parameter.name ?: "p$index"
+            parameter.name
         }
         val call = "${method.name}(${arguments})"
         val bodyText = "{\n    return java.util.Optional.ofNullable($call);\n}"
