@@ -13,7 +13,7 @@ object CodeGenerationUtil {
     }
 
     private fun generatePsiElementFromCode(any: PsiClass) {
-        val code = any.codeStringToPsiElement("code")!!.parent // top level element is whitespace
+        val code = any.codeStringToPsiElement("code")?.parent ?: return // top level element is whitespace
 
         class KeyCleanerPsiElementVisitor : JavaRecursiveElementVisitor() {
             val elements = mutableListOf<PsiElement>()

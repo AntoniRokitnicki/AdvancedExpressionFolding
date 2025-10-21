@@ -33,7 +33,7 @@ class WrapAroundExpressionTest : BaseTest() {
                 file.findElementAt(file.text.indexOf("new Object()")),
                 PsiNewExpression::class.java,
                 false,
-            )!!
+            ) ?: error("Expected new expression")
 
             val expressions = WrapAroundExpression.Companion.modifyChildren(
                 emptyList(),
@@ -47,7 +47,7 @@ class WrapAroundExpressionTest : BaseTest() {
 
             val simpleExpression = expressions.single() as SimpleExpression
             val descriptor = simpleExpression.buildFoldRegions(simpleExpression.element, document, null).single()
-            val whiteSpace = newExpression.prevWhiteSpace()!!
+            val whiteSpace = newExpression.prevWhiteSpace() ?: error("Expected whitespace before expression")
             Triple(
                 descriptor.placeholderText,
                 TextRange(whiteSpace.textRange.endOffset - 1, whiteSpace.textRange.endOffset),
@@ -68,7 +68,7 @@ class WrapAroundExpressionTest : BaseTest() {
                 file.findElementAt(file.text.indexOf("new Object()")),
                 PsiNewExpression::class.java,
                 false,
-            )!!
+            ) ?: error("Expected new expression")
 
             val expressions = WrapAroundExpression.Companion.modifyChildren(
                 emptyList(),
@@ -82,7 +82,7 @@ class WrapAroundExpressionTest : BaseTest() {
 
             val simpleExpression = expressions.single() as SimpleExpression
             val descriptor = simpleExpression.buildFoldRegions(simpleExpression.element, document, null).single()
-            val whiteSpace = newExpression.nextWhiteSpace()!!
+            val whiteSpace = newExpression.nextWhiteSpace() ?: error("Expected whitespace after expression")
             val startOffset = whiteSpace.textRange.startOffset
             Triple(descriptor.placeholderText, TextRange(startOffset, startOffset + 1), descriptor.range)
         }
@@ -100,7 +100,7 @@ class WrapAroundExpressionTest : BaseTest() {
                 file.findElementAt(file.text.indexOf("new Object()")),
                 PsiNewExpression::class.java,
                 false,
-            )!!
+            ) ?: error("Expected new expression")
 
             val expressions = WrapAroundExpression.Companion.modifyChildren(
                 emptyList(),
@@ -114,7 +114,7 @@ class WrapAroundExpressionTest : BaseTest() {
 
             val simpleExpression = expressions.single() as SimpleExpression
             val descriptor = simpleExpression.buildFoldRegions(simpleExpression.element, document, null).single()
-            val whiteSpace = newExpression.nextWhiteSpace()!!
+            val whiteSpace = newExpression.nextWhiteSpace() ?: error("Expected whitespace after expression")
             Triple(descriptor.placeholderText, descriptor.range, whiteSpace.textRange)
         }
 
@@ -131,7 +131,7 @@ class WrapAroundExpressionTest : BaseTest() {
                 file.findElementAt(file.text.indexOf("new Object()")),
                 PsiNewExpression::class.java,
                 false,
-            )!!
+            ) ?: error("Expected new expression")
 
             val expressions = WrapAroundExpression.Companion.modifyChildren(
                 emptyList(),
@@ -147,7 +147,7 @@ class WrapAroundExpressionTest : BaseTest() {
             Assertions.assertTrue(expression is SimpleExpression)
             val simpleExpression = expression as SimpleExpression
             val descriptor = simpleExpression.buildFoldRegions(simpleExpression.element, document, null).single()
-            val whiteSpace = newExpression.nextWhiteSpace()!!
+            val whiteSpace = newExpression.nextWhiteSpace() ?: error("Expected whitespace after expression")
             Triple(descriptor.placeholderText, descriptor.range, whiteSpace.textRange)
         }
 
@@ -164,7 +164,7 @@ class WrapAroundExpressionTest : BaseTest() {
                 file.findElementAt(file.text.indexOf("new Object()")),
                 PsiNewExpression::class.java,
                 false,
-            )!!
+            ) ?: error("Expected new expression")
 
             val expressions = WrapAroundExpression.Companion.modifyChildren(
                 emptyList(),
@@ -180,8 +180,8 @@ class WrapAroundExpressionTest : BaseTest() {
             val afterExpression = expressions[1] as SimpleExpression
             val beforeDescriptor = beforeExpression.buildFoldRegions(beforeExpression.element, document, null).single()
             val afterDescriptor = afterExpression.buildFoldRegions(afterExpression.element, document, null).single()
-            val prevWhiteSpace = newExpression.prevWhiteSpace()!!
-            val nextWhiteSpace = newExpression.nextWhiteSpace()!!
+            val prevWhiteSpace = newExpression.prevWhiteSpace() ?: error("Expected whitespace before expression")
+            val nextWhiteSpace = newExpression.nextWhiteSpace() ?: error("Expected whitespace after expression")
 
             listOf(
                 Triple(beforeDescriptor.placeholderText, beforeDescriptor.range, prevWhiteSpace.textRange),

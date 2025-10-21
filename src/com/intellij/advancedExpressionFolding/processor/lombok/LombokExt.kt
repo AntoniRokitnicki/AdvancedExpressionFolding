@@ -61,13 +61,12 @@ object LombokExt : BaseExtension() {
         return allInnerClasses.filter {
             it.name?.endsWith("Builder") == true
         }.mapNotNull {
-            val namelessBuilder = it.name == "${name}Builder"
+            val builderName = it.name ?: return@mapNotNull null
+            val namelessBuilder = builderName == "${name}Builder"
             if (namelessBuilder) {
                 ClassLevelAnnotation(LOMBOK_BUILDER, emptyList())
-            } else if (it.name != null){
-                ClassLevelAnnotation(LOMBOK_BUILDER, emptyList(), arguments = listOf(it.name!!))
             } else {
-                null
+                ClassLevelAnnotation(LOMBOK_BUILDER, emptyList(), arguments = listOf(builderName))
             }
         }
     }

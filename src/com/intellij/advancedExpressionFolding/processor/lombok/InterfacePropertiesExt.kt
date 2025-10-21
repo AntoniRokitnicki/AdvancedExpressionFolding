@@ -20,11 +20,10 @@ object InterfacePropertiesExt : BaseExtension() {
 
     fun foldProperties(method: PsiMethod): Expression? {
         val group = group("interfaceExtensionProperties")
-        val list = method.callback?.invoke()?.takeIf {
-            method.identifier != null
-        }?.let { annotations ->
+        val identifier = method.identifier ?: return null
+        val list = method.callback?.invoke()?.let { annotations ->
             annotations.flatMap { methodLevelAnnotation ->
-                method.addInterfaceAnnotations(methodLevelAnnotation, method.identifier!!)
+                method.addInterfaceAnnotations(methodLevelAnnotation, identifier)
                     .plus(getNullableInterfaceProperty(method, methodLevelAnnotation, group))
             }
         }

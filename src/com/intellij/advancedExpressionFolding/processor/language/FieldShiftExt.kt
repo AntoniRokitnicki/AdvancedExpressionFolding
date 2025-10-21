@@ -61,8 +61,9 @@ object FieldShiftExt : BaseExtension() {
         document: Document,
         qualifier: PsiExpression?
     ): Expression? {
+        val qualifierExpression = qualifier ?: return null
         fieldShift.takeIf {
-            it && qualifier != null && getterElement.argumentList.isEmpty
+            it && getterElement.argumentList.isEmpty
         } ?: return null
 
         val expressionList = getterElement.parent.asExprList() ?: return null
@@ -88,7 +89,7 @@ object FieldShiftExt : BaseExtension() {
             if (propertyName == parameter.name) {
                 if (parameters.size == 1) {
                     if (parentMethod.guessPropertyName() == propertyName) {
-                        val qualifierExpr = getAnyExpression(qualifier!!, document)
+                        val qualifierExpr = getAnyExpression(qualifierExpression, document)
                         return FieldShiftMethod(
                             getterElement, getterElement.textRange, listOf(qualifierExpr),
                             FIELD_SHIFT

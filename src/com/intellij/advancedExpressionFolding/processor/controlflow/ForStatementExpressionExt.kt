@@ -72,7 +72,8 @@ object ForStatementExpressionExt {
                     val identifier = declaredVariable.children.firstOrNull { it is PsiIdentifier } as? PsiIdentifier
                     if (identifier != null) {
                         val variable = Variable(identifier, identifier.textRange, null, identifier.text, false)
-                        val start = getAnyExpression(declaredVariable.initializer!!, document)
+                        val initializerExpression = declaredVariable.initializer ?: return null
+                        val start = getAnyExpression(initializerExpression, document)
                         val end = getAnyExpression(conditionROperand, document)
                         val sign = condition.operationSign.text
                         if (sign == "<" || sign == "<=") {
@@ -119,12 +120,14 @@ object ForStatementExpressionExt {
                 }
             }
         }
-        if (element.condition != null && element.lParenth != null && element.rParenth != null &&
+        val lParenthElement = element.lParenth
+        val rParenthElement = element.rParenth
+        if (element.condition != null && lParenthElement != null && rParenthElement != null &&
             settings.state.compactControlFlowSyntaxCollapse
         ) {
             return CompactControlFlowExpression(
                 element,
-                TextRange.create(element.lParenth!!.textRange.startOffset, element.rParenth!!.textRange.endOffset)
+                TextRange.create(lParenthElement.textRange.startOffset, rParenthElement.textRange.endOffset)
             )
         }
         return null

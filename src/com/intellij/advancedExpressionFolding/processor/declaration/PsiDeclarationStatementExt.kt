@@ -96,9 +96,10 @@ object PsiDeclarationStatementExt : BaseExtension() {
                 "1-prefix-$varType"
             )
         } else {
-            val variable = statement.asVariable()!!
+            val variable = statement.asVariable() ?: return methodCallExclusion
             val whiteSpaceAfterType = variable.typeElement?.nextSibling
-                ?: variable.children[0] // should never happen
+                ?: variable.children.getOrNull(0)
+                ?: return methodCallExclusion
             DestructuringExpression(
                 whiteSpaceAfterType,
                 (whiteSpaceAfterType.start()..whiteSpaceAfterType.end()),
@@ -152,7 +153,7 @@ object PsiDeclarationStatementExt : BaseExtension() {
         index: Int
     ): DestructuringExpression {
         val typeSpecificExclusion = if (collection is PsiMethodCallExpression) {
-            val start = collection.methodExpression.qualifierExpression!!.end()
+            val start = collection.methodExpression.qualifierExpression?.end() ?: collection.start()
             DestructuringExpression(
                 statement,
                 (start..collection.end()),

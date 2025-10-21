@@ -23,16 +23,16 @@ enum class LombokFoldingAnnotation(val annotation: String) {
     LOMBOK_POST_CONSTRUCTOR("@PostConstructor"),
 
     LOMBOK_DATA("@Data") {
-        override fun children() = of(LOMBOK_GETTER, LOMBOK_SETTER, LOMBOK_EQUALS, LOMBOK_HASHCODE)!!
+        override fun children() = of(LOMBOK_GETTER, LOMBOK_SETTER, LOMBOK_EQUALS, LOMBOK_HASHCODE)
     },
     LOMBOK_VALUE("@Value") {
-        override fun children() = of(LOMBOK_GETTER, LOMBOK_REQUIRED_ARGS_CONSTRUCTOR, LOMBOK_EQUALS, LOMBOK_HASHCODE)!!
+        override fun children() = of(LOMBOK_GETTER, LOMBOK_REQUIRED_ARGS_CONSTRUCTOR, LOMBOK_EQUALS, LOMBOK_HASHCODE)
     },
     LOMBOK_VALUE_SIMPLE("@LightValue") {
-        override fun children() = of(LOMBOK_GETTER, LOMBOK_REQUIRED_ARGS_CONSTRUCTOR)!!
+        override fun children() = of(LOMBOK_GETTER, LOMBOK_REQUIRED_ARGS_CONSTRUCTOR)
     },
     LOMBOK_EQUALS_AND_HASHCODE("@EqualsAndHashCode") {
-        override fun children() = of(LOMBOK_EQUALS, LOMBOK_HASHCODE)!!
+        override fun children() = of(LOMBOK_EQUALS, LOMBOK_HASHCODE)
     },
 
 

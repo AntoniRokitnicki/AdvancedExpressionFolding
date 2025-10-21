@@ -31,10 +31,12 @@ class ForStatement(
     ): Array<FoldingDescriptor> {
         val descriptors = mutableListOf(*super.buildFoldRegions(element, document, parent))
         val state = AdvancedExpressionFoldingSettings.getInstance().state
-        if (state.compactControlFlowSyntaxCollapse && statement.lParenth != null && statement.rParenth != null) {
+        val lParenth = statement.lParenth
+        val rParenth = statement.rParenth
+        if (state.compactControlFlowSyntaxCollapse && lParenth != null && rParenth != null) {
             val parenthesesRange = TextRange.create(
-                statement.lParenth!!.textRange.startOffset,
-                statement.rParenth!!.textRange.endOffset
+                lParenth.textRange.startOffset,
+                rParenth.textRange.endOffset
             )
             if (CompactControlFlowExpression.supportsFoldRegions(document, parenthesesRange)) {
                 val group = descriptors.firstOrNull()?.group ?: FoldingGroup.newGroup(CompactControlFlowExpression::class.java.name)

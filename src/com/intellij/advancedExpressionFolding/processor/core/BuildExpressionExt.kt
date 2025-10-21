@@ -33,7 +33,8 @@ object BuildExpressionExt {
     @JvmStatic
     @Throws(IndexNotReadyException::class)
     fun getAnyExpression(element: PsiElement, document: Document?): Expression {
-        return getExpression(element, document ?: element.containingFile.viewProvider.document, true)!!
+        return getExpression(element, document ?: element.containingFile.viewProvider.document, true)
+            ?: error("Unable to build expression for ${element.text}")
     }
 
     @JvmStatic
