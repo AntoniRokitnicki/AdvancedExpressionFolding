@@ -259,11 +259,14 @@ object Helper {
         return startsWith(name, prefix) && name!!.length > prefix.length && name[prefix.length].isUpperCase()
     }
 
-    fun findAncestorsUntilClass(element: PsiElement, ancestorClass: Class<out PsiElement>): Sequence<PsiElement> {
+    inline fun findAncestorsUntilClass(element: PsiElement, ancestorClass: Class<out PsiElement>): Sequence<PsiElement> {
         return findAncestorsUntil(element) { parent -> !ancestorClass.isInstance(parent) }
     }
 
-    fun findAncestorsUntil(element: PsiElement, untilPredicate: (PsiElement) -> Boolean): Sequence<PsiElement> {
+    inline fun findAncestorsUntil(
+        element: PsiElement,
+        crossinline untilPredicate: (PsiElement) -> Boolean
+    ): Sequence<PsiElement> {
         return generateSequence(element.parent) { it?.parent }
             .takeWhile { it != null && untilPredicate(it) }
             .filterNotNull()

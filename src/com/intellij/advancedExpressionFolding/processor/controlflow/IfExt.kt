@@ -96,7 +96,10 @@ object IfExt {
         val settings = AdvancedExpressionFoldingSettings.getInstance()
         val condition = element.condition
         if (settings.state.checkExpressionsCollapse && condition is PsiBinaryExpression) {
-            if (condition.operationSign.text == "!=" && condition.rOperand != null &&
+            val operationSign = condition.operationSign.text
+            val isInvertedElvis = operationSign == "=="
+            val isStandardElvis = operationSign == "!="
+            if ((isStandardElvis || isInvertedElvis) && condition.rOperand != null &&
                 (isNull(condition.lOperand.type) || isNull(condition.rOperand?.type)) &&
                 element.thenExpression != null && element.elseExpression != null
             ) {
@@ -114,12 +117,22 @@ object IfExt {
                     else -> false
                 }
                 if (isSupportedQualifier) {
+                    val nonNullExpression = if (isInvertedElvis) {
+                        element.elseExpression
+                    } else {
+                        element.thenExpression
+                    } ?: return null
+                    val fallbackExpression = if (isInvertedElvis) {
+                        element.thenExpression
+                    } else {
+                        element.elseExpression
+                    } ?: return null
                     val reference: PsiReference? = when (qualifierElement) {
                         is PsiReferenceExpression -> qualifierElement
                         is PsiMethodCallExpression -> qualifierElement.methodExpression
                         else -> return null
                     }
-                    val references = SyntaxTraverser.psiTraverser(element.thenExpression)
+                    val references = SyntaxTraverser.psiTraverser(nonNullExpression)
                         .filter { candidate ->
                             when (candidate) {
                                 is PsiReferenceExpression -> candidate.parent !is PsiMethodCallExpression &&
@@ -134,9 +147,10 @@ object IfExt {
                         return ElvisExpression(
                             element,
                             element.textRange,
-                            BuildExpressionExt.getAnyExpression(element.thenExpression!!, document),
-                            BuildExpressionExt.getAnyExpression(element.elseExpression!!, document),
-                            references.map { it.textRange }
+                            BuildExpressionExt.getAnyExpression(nonNullExpression, document),
+                            BuildExpressionExt.getAnyExpression(fallbackExpression, document),
+                            references.map { it.textRange },
+                            isInvertedElvis
                         )
                     }
                 }

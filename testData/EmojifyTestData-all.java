@@ -514,7 +514,7 @@ public class EmojifyTestData {
 
             public void methodWithNullDefaultValue() <fold text='{...}' expand='true'>{
                 <fold text='val' expand='false'>String</fold> value = null;
-                <fold text='val' expand='false'>String</fold> result = value == null ? "default" : value;
+                <fold text='val' expand='false'>String</fold> result = <fold text='value ?: "default"' expand='false'>value == null ? "default" : value</fold>;
             }</fold>
 
             public void methodWithNullAssert() <fold text='{...}' expand='true'>{
@@ -546,7 +546,7 @@ public class EmojifyTestData {
         }</fold>
 
         static class Singleton <fold text='{...}' expand='true'>{
-            static Singleton INSTANCE =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> </fold><fold text='' expand='true'>Singleton</fold><fold text='' expand='true'>()</fold>;
+            static Singleton INSTANCE =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> </fold><fold text='' expand='true'>Singleton<fold text='' expand='true'></fold>()</fold>;
             Singleton OTHER_NAME =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> </fold><fold text='' expand='true'>Singleton</fold><fold text='' expand='true'>()</fold>;
             <fold text='@Getter b' expand='false'>b</fold>oolean ok;
 
@@ -555,7 +555,7 @@ public class EmojifyTestData {
             </fold>}</fold><fold text='' expand='false'>
 
             </fold><fold text='' expand='false'>public boolean isOk()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>ok<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+                </fold></fold><fold text='' expand='true'>return<fold text='' expand='true'></fold> </fold>ok<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold></fold>
 
             public static Singleton getInstance()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
