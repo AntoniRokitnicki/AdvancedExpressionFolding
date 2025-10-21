@@ -7,7 +7,7 @@ import com.intellij.openapi.editor.LogicalPosition
 import com.intellij.openapi.editor.ex.EditorEx
 import com.intellij.openapi.util.TextRange
 
-object FoldingTemporaryEditor {
+object DiffFoldingTemporaryEditor {
 
     fun foldInEditor(text: String, list: List<FoldingDescriptorEx>) : FoldedCode {
         val editorFactory = EditorFactory.getInstance()

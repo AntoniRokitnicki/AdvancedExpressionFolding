@@ -1,4 +1,4 @@
-package com.intellij.advancedExpressionFolding
+package com.intellij.advancedExpressionFolding.unit
 
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test
 import kotlin.reflect.KMutableProperty1
 import kotlin.reflect.full.memberProperties
 
-class AdvancedExpressionFoldingSettingsTest {
+class SettingsTest {
 
     private fun booleanProperties(): List<KMutableProperty1<AdvancedExpressionFoldingSettings.State, Boolean>> =
         AdvancedExpressionFoldingSettings.State::class.memberProperties

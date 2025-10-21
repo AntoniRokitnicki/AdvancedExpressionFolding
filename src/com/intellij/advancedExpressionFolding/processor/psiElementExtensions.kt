@@ -118,6 +118,13 @@ fun PsiMethod.isSetter(): Boolean {
     return parameterList.parametersCount == 1 && returnType.isVoid() && isSetter(name)
 }
 
+fun PsiMethod.isWith(): Boolean {
+    fun isWith(text: String) = text.startsWith("with") && text.length > 4 && Character.isUpperCase(text[4])
+    val containing = containingClass ?: return false
+    val returnType = returnType as? PsiClassType ?: return false
+    return parameterList.parametersCount == 1 && isWith(name) && returnType.resolve() == containing
+}
+
 fun PsiMethod.isGetter(): Boolean {
     fun isGetterAux(name: String, prefix: String) =
         name.startsWith(prefix) && name.length > prefix.length && Character.isUpperCase(name[prefix.length])
@@ -191,7 +198,12 @@ fun PsiField.hasLiteralConstInitializer() = initializer is PsiLiteralExpression
 
 fun PsiMethod.isBuilder(): Boolean = containingClass?.isBuilder() == true
 
-fun PsiMethod.guessPropertyName(): String = PropertyUtil.guessPropertyName(name)
+fun PsiMethod.guessPropertyName(): String {
+    if (name.startsWith("with") && name.length > 4 && Character.isUpperCase(name[4])) {
+        return name.substring(4).replaceFirstChar(Char::lowercase)
+    }
+    return PropertyUtil.guessPropertyName(name)
+}
 
 fun <T : PsiElement> PsiElement.findParents(
     parentClass: Class<T>,
