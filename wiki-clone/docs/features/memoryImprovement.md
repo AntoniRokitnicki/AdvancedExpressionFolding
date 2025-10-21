@@ -8,3 +8,14 @@
 
 ![Diff view after folding a testData file](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/assets/3055326/440c30a8-1088-4e6a-bf25-bde6627aa7af)
 
+# Memory Improvement (State field: memoryImprovement)
+
+### Memory Improvement
+Caches folding descriptors for large test data files.
+
+_No bundled example for this setting._
+This option affects editor behaviour without a dedicated sample file.
+
+Default: On
+Controlled by: `memoryImprovement`
+Related features: (none)

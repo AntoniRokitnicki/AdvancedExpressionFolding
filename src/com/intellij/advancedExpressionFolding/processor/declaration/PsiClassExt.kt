@@ -7,6 +7,7 @@ import com.intellij.advancedExpressionFolding.processor.exprList
 import com.intellij.advancedExpressionFolding.processor.exprWrap
 import com.intellij.advancedExpressionFolding.processor.language.kotlin.MethodDefaultParameterExt
 import com.intellij.advancedExpressionFolding.processor.lombok.AnnotationExt
+import com.intellij.advancedExpressionFolding.processor.lombok.LombokPostConstructorExt
 import com.intellij.advancedExpressionFolding.processor.lombok.SummaryParentOverrideExt.addParentSummary
 import com.intellij.psi.PsiClass
 
@@ -25,6 +26,7 @@ object PsiClassExt : BaseExtension() {
             MethodDefaultParameterExt.enhanceMethodsWithDefaultParams(clazz)
         }
         list.addIfEnabled(lombok) {
+            LombokPostConstructorExt.prepare(clazz)
             AnnotationExt.addClassLevelAnnotations(clazz)
         }
         return list.exprWrap(clazz)
