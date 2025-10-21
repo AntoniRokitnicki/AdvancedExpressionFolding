@@ -114,6 +114,8 @@ class OptionalAnnotationCompletionContributorTest : BaseTest() {
                         }
                     }
                 """.trimIndent(),
+                // The wrapper is already present and uses fully-qualified Optional references,
+                // so the contributor must leave the code unchanged (no added import).
                 expected = @Language("JAVA") """
                     public class Test {
                         public String value() {
