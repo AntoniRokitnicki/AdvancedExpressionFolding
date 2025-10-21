@@ -87,6 +87,26 @@ public class LogFoldingTextBlocksTestData {
         log.error("""
                 Missing 1 parameter - 1: $name, 2: $age, 3: $city, empty: %s
                 """);
+        log.info("""
+                Data summary:
+                Root: ${data.name}
+                Child: ${data.data.name}
+                """);
+        log.debug("""
+                User summary:
+                Name: $name
+                Age: $age
+                City: $city
+                """);
+        log.warn("""
+                Nested data snapshot:
+                Parent: ${data.name}
+                Child: ${data.data.name}
+                """);
+        log.trace("""
+                Formatter contents:
+                $formatter
+                """);
         return data;
     }
 

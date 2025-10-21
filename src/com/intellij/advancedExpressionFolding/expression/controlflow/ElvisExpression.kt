@@ -13,7 +13,8 @@ class ElvisExpression(
     textRange: TextRange,
     private val thenExpression: Expression,
     private val elseExpression: Expression,
-    private val elements: List<TextRange>
+    private val elements: List<TextRange>,
+    private val inverted: Boolean = false
 ) : Expression(element, textRange) {
 
     override fun buildFoldRegions(
@@ -23,26 +24,39 @@ class ElvisExpression(
     ): Array<FoldingDescriptor> {
         val descriptors = ArrayList<FoldingDescriptor>()
         val group = FoldingGroup.newGroup(ElvisExpression::class.java.name)
-        descriptors += FoldingDescriptor(
-            element.node,
-            TextRange.create(textRange.startOffset, thenExpression.textRange.startOffset),
-            group,
-            ""
-        )
-        descriptors += FoldingDescriptor(
-            element.node,
-            TextRange.create(thenExpression.textRange.endOffset, elseExpression.textRange.startOffset),
-            group,
-            " ?: "
-        )
-        ShortElvisExpression.nullify(
-            element,
-            document,
-            descriptors,
-            group,
-            elements,
-            !(elements.size == 1 && elements[0] == thenExpression.textRange)
-        )
+        val thenRange = thenExpression.textRange
+        val elseRange = elseExpression.textRange
+        if (!inverted) {
+            descriptors += FoldingDescriptor(
+                element.node,
+                TextRange.create(textRange.startOffset, thenRange.startOffset),
+                group,
+                ""
+            )
+            descriptors += FoldingDescriptor(
+                element.node,
+                TextRange.create(thenRange.endOffset, elseRange.startOffset),
+                group,
+                " ?: "
+            )
+        } else {
+            descriptors += FoldingDescriptor(
+                element.node,
+                TextRange.create(textRange.startOffset, thenRange.endOffset),
+                group,
+                "${buildInvertedNonNullText(document, thenRange)} ?: ${document.getText(elseRange)}"
+            )
+        }
+        if (!inverted) {
+            ShortElvisExpression.nullify(
+                element,
+                document,
+                descriptors,
+                group,
+                elements,
+                !(elements.size == 1 && elements[0] == thenExpression.textRange)
+            )
+        }
         if (thenExpression.supportsFoldRegions(document, this)) {
             descriptors += thenExpression.buildFoldRegions(thenExpression.element, document, this).toList()
         }
@@ -53,4 +67,13 @@ class ElvisExpression(
     }
 
     override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean = true
+
+    private fun buildInvertedNonNullText(document: Document, range: TextRange): String {
+        return ShortElvisExpression.buildNullifiedText(
+            document,
+            range,
+            elements,
+            !(elements.size == 1 && elements[0] == thenExpression.textRange)
+        )
+    }
 }

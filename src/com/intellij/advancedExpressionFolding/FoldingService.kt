@@ -10,8 +10,6 @@ import com.intellij.openapi.project.ProjectManager
 import com.intellij.psi.PsiDocumentManager
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiRecursiveElementVisitor
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @Service
@@ -38,7 +36,8 @@ class FoldingService {
     fun clearAllKeys(project: Project) {
         val editors = project.openTextEditors
 
-        CoroutineScope(Dispatchers.Default).launch {
+        val coroutineScope = project.service<FoldingServiceCoroutineScope>()
+        coroutineScope.launch {
             editors.forEach { editor ->
                 clearAllKeys(editor)
             }

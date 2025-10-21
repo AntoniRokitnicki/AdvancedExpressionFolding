@@ -5,7 +5,7 @@ import com.intellij.advancedExpressionFolding.expression.operation.collection.Pu
 import com.intellij.advancedExpressionFolding.processor.methodcall.AbstractMethodCall
 import com.intellij.advancedExpressionFolding.processor.methodcall.Context
 import com.intellij.advancedExpressionFolding.processor.methodcall.NeedsQualifier
-import com.intellij.advancedExpressionFolding.processor.on
+import com.intellij.advancedExpressionFolding.processor.takeIfTrue
 import com.intellij.psi.PsiExpression
 import com.intellij.psi.PsiMethodCallExpression
 import com.intellij.psi.PsiStatement
@@ -24,7 +24,7 @@ class MapPutMethodCall : AbstractMethodCall(), NeedsQualifier {
         a1Expression: Expression,
         a2Expression: Expression
     ): Expression? {
-        return (element.parent is PsiStatement).on()?.let {
+        return (element.parent is PsiStatement).takeIfTrue()?.let {
             Put(
                 element,
                 element.textRange,

@@ -65,7 +65,7 @@ object SummaryParentOverrideExt : BaseExtension() {
         val hasOverride = method.annotations.any {
             it.isOverride()
         }
-        list += hasOverride.on()?.let {
+        list += hasOverride.takeIfTrue()?.let {
             method.body
         }?.let { body ->
             createOverridesComment(method, body)
