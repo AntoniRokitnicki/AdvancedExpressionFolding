@@ -318,7 +318,7 @@ public class EmojifyTestData {
         }</fold>
     }</fold>
 
-    <fold text='@Builder(Builder) p' expand='false'>p</fold>ublic class BuilderPatternUsage <fold text='{...}' expand='true'>{
+    <fold text='@HasBuilder(Builder) p' expand='false'>p</fold>ublic class BuilderPatternUsage <fold text='{...}' expand='true'>{
         private final int field1;
         private final String field2;
 

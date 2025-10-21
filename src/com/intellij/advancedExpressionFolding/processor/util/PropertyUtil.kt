@@ -4,6 +4,7 @@ object PropertyUtil {
     fun guessPropertyName(text: String): String {
         val startPos = when {
             text.startsWith("get") || text.startsWith("set") -> 3
+            text.startsWith("with") -> 4
             text.startsWith("is") -> 2
             else -> 0
         }

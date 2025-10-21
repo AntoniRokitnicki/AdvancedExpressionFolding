@@ -36,6 +36,20 @@ public class FieldShiftSetters {
         </fold>this.list = <fold text='<<' expand='false'>list</fold>;<fold text=' }' expand='false'>
     }</fold>
 
+    public void withUsername(String username)<fold text=' { ' expand='false'> {
+        </fold>this.username = <fold text='<<' expand='false'>username</fold>;<fold text=' }' expand='false'>
+    }</fold>
+
+    public FieldShiftSetters withActive(boolean active) <fold text='{...}' expand='true'>{
+        this.active = <fold text='<<' expand='false'>active</fold>;
+        return this;
+    }</fold>
+
+    public FieldShiftSetters withUserIdentifier(String userIdentifier) <fold text='{...}' expand='true'>{
+        this.userIdentifier = <fold text='<<' expand='false'>userIdentifier</fold>;
+        return this;
+    }</fold>
+
     public static FieldShiftSetters mapPojoChain(FieldShiftSetters source) <fold text='{...}' expand='true'>{
         FieldShiftSetters result = new FieldShiftSetters();
         result.<fold text='username = ' expand='false'>setUsername(</fold>source.<fold text='child' expand='false'>getChild()</fold><fold text='<<' expand='false'>.getUsername()</fold><fold text='' expand='false'>)</fold>;
@@ -50,6 +64,9 @@ public class FieldShiftSetters {
         result.<fold text='userIdentifier = ' expand='false'>setUserIdentifier(</fold>source<fold text='<<' expand='false'>.getUserIdentifier()</fold><fold text='' expand='false'>)</fold>;
         result.<fold text='active = ' expand='false'>setActive(</fold>source<fold text='<<' expand='false'>.isActive()</fold><fold text='' expand='false'>)</fold>;
         result.<fold text='list = ' expand='false'>setList(</fold>List.copyOf(source<fold text='<<' expand='false'>.getList()</fold>)<fold text='' expand='false'>)</fold>;
+        result.withUsername(source<fold text='<<' expand='false'>.getUsername()</fold>);
+        result.withActive(source<fold text='<<' expand='false'>.isActive()</fold>);
+        result.withUserIdentifier(source<fold text='<<' expand='false'>.getUserIdentifier()</fold>);
         return result;
     }</fold>
 
@@ -58,6 +75,9 @@ public class FieldShiftSetters {
         result.<fold text='username = ' expand='false'>setUsername(</fold>source<fold text='<<' expand='false'>.username()</fold><fold text='' expand='false'>)</fold>;
         result.<fold text='active = ' expand='false'>setActive(</fold>source<fold text='<<' expand='false'>.active()</fold><fold text='' expand='false'>)</fold>;
         result.<fold text='userIdentifier = ' expand='false'>setUserIdentifier(</fold>source<fold text='<<' expand='false'>.userIdentifier()</fold><fold text='' expand='false'>)</fold>;
+        result.withUsername(source<fold text='<<' expand='false'>.username()</fold>);
+        result.withActive(source<fold text='<<' expand='false'>.active()</fold>);
+        result.withUserIdentifier(source<fold text='<<' expand='false'>.userIdentifier()</fold>);
         return result;
     }</fold>
 
