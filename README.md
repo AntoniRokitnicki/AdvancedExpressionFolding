@@ -178,16 +178,13 @@ integration=1 ./gradlew test IntegrationTest
 ```
 
 ## Charts
-
-
-## License
 <img width="1600" height="1200" alt="people" src="https://github.com/user-attachments/assets/502f4edb-f1c9-4b00-9e6f-f704c060aeed" />
 <img width="3200" height="1600" alt="time_series" src="https://github.com/user-attachments/assets/796061b4-3a9a-4586-aaf7-1d957c859e38" />
 <img width="1600" height="1200" alt="project" src="https://github.com/user-attachments/assets/2fe2e9f8-683b-4a0e-b7f9-c6c99b19d107" />
 <img width="1600" height="1200" alt="matrix" src="https://github.com/user-attachments/assets/4b330319-b3d4-4a0c-a57a-3768c7f1c29c" />
 <img width="1600" height="1000" alt="efforts" src="https://github.com/user-attachments/assets/bd95b502-c8d8-4255-95ce-d75ba2d10c48" />
 
-
+## License
 This project is licensed under the terms of the [Apache License 2.0](LICENSE).
 
 [template]: https://github.com/JetBrains/intellij-platform-plugin-template
