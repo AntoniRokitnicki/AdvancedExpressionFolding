@@ -14,18 +14,52 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Create people mapping
+        run: |
+          cat > people.txt << 'EOF'
+          Antoni|antoni2ee@gmail.com|antoni2work@gmail.com|antoni
+          GitHub Actions Bot|41898282+github-actions[bot]@users.noreply.github.com|github-actions[bot]
+          Dependabot|49699333+dependabot[bot]@users.noreply.github.com|dependabot[bot]
+          Ondrej Schrek|ondrej.schrek@gmail.com|ondrej schrek
+          GitHub Action|action@github.com|github action
+          Peter Schmidt|andrey.cheptsov+dstackai@gmail.com|peterschmidt85
+          Andrey Cheptsov|andrey.cheptsov@jetbrains.com|cheptsov
+          Tagir Valeev|tagir.valeev@jetbrains.com|tagir valeev
+          Christian Vonrüti|christian@vonrueti.ch|christian vonrüti
+          Sergey Ponomarev|stokito@gmail.com|sergey ponomarev
+          Michal Fudala|mfudala@akamai.com|michal fudala
+          João Almeida|joao267@gmail.com|joão francisco almeida
+          EOF
+
       - name: Hercules Insights
         run: |
           docker run --rm -v $(pwd):/repo srcd/hercules:latest \
             /bin/bash -c "pip install matplotlib==3.2.0 && \
-            hercules --devs --burndown --burndown-people --couples --pb /repo | \
+            hercules --devs --burndown --burndown-people --couples --people-dict=/repo/people.txt --pb /repo | \
             labours -m all -f pb --disable-projector -o /repo/hercules_charts && \
             cd /repo/hercules_charts && \
             tar -cf ../hercules_charts.tar * ../hercules_charts_* && \
             cd .. && rm -r hercules_charts"
 
+      - name: Display results
+        run: |
+          mkdir -p hercules_output
+          tar -xf hercules_charts.tar -C hercules_output
+          
+          echo "## Hercules Insights Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          for file in hercules_output/*.png; do
+            if [ -f "$file" ]; then
+              filename=$(basename "$file")
+              echo "### $filename" >> $GITHUB_STEP_SUMMARY
+              echo "![${filename}](data:image/png;base64,$(base64 -w 0 "$file"))" >> $GITHUB_STEP_SUMMARY
+              echo "" >> $GITHUB_STEP_SUMMARY
+            fi
+          done
+
       - name: Upload insights artifact
         uses: actions/upload-artifact@v4
         with:
           name: hercules-insights
-          path: hercules_charts.tar
+          path: hercules_output/
