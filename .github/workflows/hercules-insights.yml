@@ -15,4 +15,10 @@ jobs:
           fetch-depth: 0
 
       - name: Hercules Insights
-        uses: src-d/hercules@v10.7.2
+        uses: src-d/hercules@v10.7.1
+
+      - name: Upload insights artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: hercules-insights
+          path: hercules_charts.tar
