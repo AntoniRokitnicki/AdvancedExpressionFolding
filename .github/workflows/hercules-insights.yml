@@ -24,8 +24,23 @@ jobs:
             tar -cf ../hercules_charts.tar * ../hercules_charts_* && \
             cd .. && rm -r hercules_charts"
 
+      - name: Extract and display results
+        run: |
+          mkdir -p hercules_output
+          tar -xf hercules_charts.tar -C hercules_output
+          
+          echo "## Hercules Insights Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          for file in hercules_output/*.png; do
+            if [ -f "$file" ]; then
+              filename=$(basename "$file")
+              echo "- ✅ $filename" >> $GITHUB_STEP_SUMMARY
+            fi
+          done
+
       - name: Upload insights artifact
         uses: actions/upload-artifact@v4
         with:
           name: hercules-insights
-          path: hercules_charts.tar
+          path: hercules_output/
