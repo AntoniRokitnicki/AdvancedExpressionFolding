@@ -167,7 +167,7 @@ The test suite exposes a few long-running or destructive behaviours behind envir
 | Variable      | Supported values | Effect |
 |---------------|------------------|--------|
 | `dev-mode`    | `1`              | Enables the copy-on-write helper in [`BaseTest`](test/com/intellij/advancedExpressionFolding/BaseTest.kt), replacing fixtures under `testData/` with the matching sources from `examples/data/` before running a test. Disabled by default to prevent accidental overwrites of curated fixtures. |
-| `dev-mode`    | `2`              | Includes the behaviour above and additionally unlocks [`CrazyFoldingTest`](test/com/intellij/advancedExpressionFolding/CrazyFoldingTest.kt), an exhaustive stress test that takes many hours and writes commits for millions of permutations. This level stays disabled unless explicitly requested to avoid monopolising CI resources. |
+| `crazy-mode`  | `1`              | *(Work in progress — has never finished successfully.)* Includes the behaviour above and additionally unlocks [`CrazyFoldingTest`](test/com/intellij/advancedExpressionFolding/CrazyFoldingTest.kt), an exhaustive stress test that demands extremely long runtimes and writes commits for millions of permutations. This level stays disabled unless explicitly requested to avoid monopolising CI resources. |
 | `integration` | `1`              | Enables [`IntegrationTest`](test/com/intellij/advancedExpressionFolding/integration/IntegrationTest.kt), which spins up a full IDE via the IntelliJ Driver, downloads dependencies, and interacts with real UI components. It is skipped by default to keep local and CI runs lightweight. |
 
 ### Sample invocations
