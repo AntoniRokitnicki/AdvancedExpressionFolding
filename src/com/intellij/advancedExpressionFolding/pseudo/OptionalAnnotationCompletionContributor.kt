@@ -85,36 +85,43 @@ class OptionalAnnotationCompletionContributor(
         WriteCommandAction.runWriteCommandAction(project) {
             annotation.delete()
 
-            val methodsToWrap = psiClass.methods.filter { shouldGenerateWrapper(it, psiClass) }
+            val methodsToWrap = psiClass.methods.filter(::shouldGenerateWrapper)
             if (methodsToWrap.isEmpty()) return@runWriteCommandAction
 
             methodsToWrap.forEach { method ->
                 val optionalMethod = createOptionalWrapperMethod(psiClass, method, factory)
-                val added = psiClass.addAfter(optionalMethod, method)
-                javaCodeStyleManager.shortenClassReferences(added)
-                codeStyleManager.reformat(added)
+                val existingWrapper = findExistingWrapper(psiClass, method)
+                val inserted = when (existingWrapper) {
+                    null -> psiClass.addAfter(optionalMethod, method)
+                    else -> existingWrapper.replace(optionalMethod)
+                } as PsiMethod
+
+                val shortened = javaCodeStyleManager.shortenClassReferences(inserted) as PsiMethod
+                codeStyleManager.reformat(shortened)
             }
         }
     }
 
-    private fun shouldGenerateWrapper(method: PsiMethod, psiClass: PsiClass): Boolean {
+    private fun findExistingWrapper(psiClass: PsiClass, method: PsiMethod): PsiMethod? {
+        val optionalMethodName = buildOptionalMethodName(method.name)
+        val parameterTypes = method.parameterList.parameters.map { parameter ->
+            parameter.type.canonicalText
+        }
+
+        return psiClass.findMethodsByName(optionalMethodName, false)
+            .firstOrNull { candidate ->
+                hasSameParameterTypes(candidate, parameterTypes) && isOptionalType(candidate.returnType)
+            }
+    }
+
+    private fun shouldGenerateWrapper(method: PsiMethod): Boolean {
         if (method.isConstructor) return false
         if (method.hasModifierProperty(PsiModifier.ABSTRACT)) return false
         if (method.hasModifierProperty(PsiModifier.NATIVE)) return false
 
         val returnType = method.returnType ?: return false
         if (returnType == PsiTypes.voidType()) return false
-        if (returnType is PsiClassType && returnType.resolve()?.qualifiedName == "java.util.Optional") return false
-
-        val optionalMethodName = buildOptionalMethodName(method.name)
-        val parameterTypes = method.parameterList.parameters.map { parameter ->
-            parameter.type.canonicalText
-        }
-
-        val existing = psiClass.findMethodsByName(optionalMethodName, false)
-        if (existing.any { hasSameParameterTypes(it, parameterTypes) }) {
-            return false
-        }
+        if (isOptionalType(returnType)) return false
 
         return true
     }
@@ -202,6 +209,11 @@ class OptionalAnnotationCompletionContributor(
 
         val copy = throwsList.copy() as PsiReferenceList
         target.throwsList.replace(copy)
+    }
+
+    private fun isOptionalType(type: PsiType?): Boolean {
+        if (type !is PsiClassType) return false
+        return type.resolve()?.qualifiedName == "java.util.Optional"
     }
 
     private fun buildOptionalMethodName(methodName: String): String {
