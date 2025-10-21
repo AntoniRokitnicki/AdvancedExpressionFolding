@@ -39,7 +39,7 @@ import kotlin.time.toDuration
  * The test is intentionally gated behind the environment variable `dev-mode=2` to avoid
  * running during normal test execution due to its extremely long runtime.
  */
-@EnabledIfEnvironmentVariable(named = "dev-mode", matches = "2")
+@EnabledIfEnvironmentVariable(named = "crazy-mode", matches = "1")
 class CrazyFoldingTest : BaseTest() {
 
     private fun File.saveCounterAndFilename(counter: Long, filename: String) {
