@@ -1,5 +1,8 @@
-package com.intellij.advancedExpressionFolding
+package com.intellij.advancedExpressionFolding.unit
 
+import com.intellij.advancedExpressionFolding.FoldingService
+import com.intellij.advancedExpressionFolding.FoldingServiceCoroutineScope
+import com.intellij.advancedExpressionFolding.folding.BaseTest
 import com.intellij.openapi.components.service
 import com.intellij.openapi.fileEditor.FileEditorManager
 import com.intellij.testFramework.LoggedErrorProcessor
@@ -19,7 +22,7 @@ class FoldingServiceTest : BaseTest() {
         val virtualFile = psiFile.virtualFile
         val warnings = mutableListOf<String>()
         val project = fixture.project
-        val foldingService = FoldingService.get()
+        val foldingService = FoldingService.Companion.get()
         val scope = project.service<FoldingServiceCoroutineScope>()
         val scopeJob = scope.coroutineContext.job
 

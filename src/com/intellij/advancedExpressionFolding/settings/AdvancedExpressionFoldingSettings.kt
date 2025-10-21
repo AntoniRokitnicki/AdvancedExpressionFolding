@@ -115,10 +115,6 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
                 exclude(IConfig::class, property)
             }
 
-        fun allMainProperties() = allProperties().filter { property ->
-            exclude(ILessImportantState::class, property)
-        }
-
         private fun exclude(
             kClass: KClass<*>,
             property: KMutableProperty<*>
