@@ -6,11 +6,12 @@ import com.intellij.advancedExpressionFolding.folding.base.folding.DateOperation
 import com.intellij.advancedExpressionFolding.folding.base.folding.EmojiVisibilityFoldingTest
 import com.intellij.advancedExpressionFolding.folding.base.folding.ExpressionCollapseFoldingTest
 import com.intellij.advancedExpressionFolding.folding.base.folding.FoldingFeatureTestCase
+import com.intellij.advancedExpressionFolding.folding.base.folding.GlobalSettingsFoldingTest
 import com.intellij.advancedExpressionFolding.folding.base.folding.HidingSuppressionFoldingTest
 import com.intellij.advancedExpressionFolding.folding.base.folding.KotlinLanguageFoldingTest
 import com.intellij.advancedExpressionFolding.folding.base.folding.LogFoldingTest
 import com.intellij.advancedExpressionFolding.folding.base.folding.LombokFoldingTest
-import com.intellij.advancedExpressionFolding.folding.base.folding.StandaloneFoldingTest
+import com.intellij.advancedExpressionFolding.folding.base.folding.UnclassifiedFeatureFoldingTest
 import org.junitpioneer.jupiter.Stopwatch
 
 @Stopwatch
@@ -20,9 +21,10 @@ open class FoldingTest : FoldingFeatureTestCase(),
     DateOperationsFoldingTest,
     CollectionsStreamsFoldingTest,
     LombokFoldingTest,
-    StandaloneFoldingTest,
     KotlinLanguageFoldingTest,
     LogFoldingTest,
     EmojiVisibilityFoldingTest,
-    HidingSuppressionFoldingTest
+    HidingSuppressionFoldingTest,
+    GlobalSettingsFoldingTest,
+    UnclassifiedFeatureFoldingTest
 
