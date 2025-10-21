@@ -8,6 +8,7 @@ public class ElvisTestData {
         <fold text='val' expand='false'>ElvisTestData</fold> e = create();
         <fold text='' expand='false'>System.out.</fold>println(<fold text='' expand='false'>e != null ? </fold>e<fold text=' ?: ' expand='false'> : </fold>"");
         <fold text='' expand='false'>System.out.</fold>println(<fold text='' expand='false'>e != null ? </fold>e<fold text='?.' expand='false'>.</fold>sayHello()<fold text=' ?: ' expand='false'> : </fold>"");
+        <fold text='' expand='false'>System.out.</fold>println(<fold text='' expand='false'>e == null ? ""</fold><fold text='' expand='false'> : </fold>e<fold text=' ?: ""' expand='false'></fold>);
         <fold text='' expand='false'>System.out.</fold>println(<fold text='e?.get != null' expand='false'>e != null && e.get() != null</fold> ? e.get() : ""); // Should be System.out.println(e?.get ?: "")
         <fold text='' expand='false'>System.out.</fold>println(<fold text='e?.get != null' expand='false'>e != null && e.get() != null</fold> ? e.get().sayHello() : ""); // Should be System.out.println(e?.get?.sayHello() ?: "")
         if (e != null) <fold text='{...}' expand='true'>{
