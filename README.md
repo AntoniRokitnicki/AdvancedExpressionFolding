@@ -173,6 +173,15 @@ DEV_MODE=1 ./gradlew test
 integration=1 ./gradlew test IntegrationTest
 ```
 
+## Charts
+<img width="1600" height="1200" alt="people" src="https://github.com/user-attachments/assets/4a55dedc-5feb-4f7d-9130-9e31e1e8c66d" />
+
+<img width="1600" height="1200" alt="project" src="https://github.com/user-attachments/assets/afece959-6f75-47d8-b56e-3a457be1d61f" />
+
+<img width="3200" height="1600" alt="time_series" src="https://github.com/user-attachments/assets/ab03884d-448c-4256-8272-4b4e476bcaeb" />
+
+<img width="1600" height="1000" alt="efforts" src="https://github.com/user-attachments/assets/9bef6318-8f37-43ba-85fd-c6980c1f0d53" />
+
 ## License
 
 This project is licensed under the terms of the [Apache License 2.0](LICENSE).
