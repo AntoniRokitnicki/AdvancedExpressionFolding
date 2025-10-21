@@ -104,7 +104,7 @@
 
 ### Added
 
-- [lombok] - @Builder - marker annotation when class has inner class with name *Builder
+- [lombok] - @HasBuilder - marker annotation when class has inner class with name *Builder
 - [lombok] - @Value and @LightValue(without @EqualsAndHashCode)
 - [lombok] - @NoArgsConstructor, @NoArgsConstructor(protected), etc.
 - [lombok] - @AllArgsConstructor, @AllArgsConstructor(protected), etc.
