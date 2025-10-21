@@ -46,6 +46,7 @@ For more information, read the [blog post](https://medium.com/@andrey_cheptsov/m
 ## Unreleased ##
 
 - [[lombok] Add folding support for Lombok @With, including examples and folded previews](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/537).
+- [[lombok] Add @PostConstructor marker annotation for constructor method calls without hiding methods](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/546).
 - [[pseudo-annotations] Improve @Main completion defaults and fix insertion when class Javadoc contains braces](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/495) ([#547](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/547)).
 - [Use the project coroutine scope for folding clean-up to avoid leaking background jobs](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/365).
 
