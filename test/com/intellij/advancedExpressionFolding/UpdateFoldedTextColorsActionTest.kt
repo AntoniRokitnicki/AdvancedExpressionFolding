@@ -1,6 +1,7 @@
 package com.intellij.advancedExpressionFolding
 
 import com.intellij.advancedExpressionFolding.action.UpdateFoldedTextColorsAction
+import com.intellij.advancedExpressionFolding.folding.BaseTest
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.editor.colors.EditorColors
 import com.intellij.openapi.editor.colors.EditorColorsManager
