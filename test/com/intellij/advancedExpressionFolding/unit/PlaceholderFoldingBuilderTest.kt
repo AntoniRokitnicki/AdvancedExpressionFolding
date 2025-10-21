@@ -1,8 +1,10 @@
-package com.intellij.advancedExpressionFolding
+package com.intellij.advancedExpressionFolding.unit
 
+import com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingBuilder
 import com.intellij.advancedExpressionFolding.folding.BaseTest
 import com.intellij.advancedExpressionFolding.folding.util.FoldingDataStorage
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings.Companion.getInstance
+import com.intellij.advancedExpressionFolding.store
 import com.intellij.openapi.application.ReadAction
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test

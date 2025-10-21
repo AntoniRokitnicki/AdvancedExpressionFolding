@@ -1,5 +1,7 @@
-package com.intellij.advancedExpressionFolding.expression.semantic
+package com.intellij.advancedExpressionFolding.unit
 
+import com.intellij.advancedExpressionFolding.expression.semantic.SimpleExpression
+import com.intellij.advancedExpressionFolding.expression.semantic.WrapAroundExpression
 import com.intellij.advancedExpressionFolding.folding.BaseTest
 import com.intellij.advancedExpressionFolding.processor.nextWhiteSpace
 import com.intellij.advancedExpressionFolding.processor.prevWhiteSpace
@@ -7,8 +9,7 @@ import com.intellij.openapi.application.runReadAction
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiNewExpression
 import com.intellij.psi.util.PsiTreeUtil
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
 class WrapAroundExpressionTest : BaseTest() {
@@ -34,7 +35,7 @@ class WrapAroundExpressionTest : BaseTest() {
                 false,
             )!!
 
-            val expressions = WrapAroundExpression.modifyChildren(
+            val expressions = WrapAroundExpression.Companion.modifyChildren(
                 emptyList(),
                 newExpression,
                 textBefore = "::",
@@ -54,8 +55,8 @@ class WrapAroundExpressionTest : BaseTest() {
             )
         }
 
-        assertEquals(" ::", placeholder)
-        assertEquals(expectedRange, actualRange)
+        Assertions.assertEquals(" ::", placeholder)
+        Assertions.assertEquals(expectedRange, actualRange)
     }
 
     @Test
@@ -69,7 +70,7 @@ class WrapAroundExpressionTest : BaseTest() {
                 false,
             )!!
 
-            val expressions = WrapAroundExpression.modifyChildren(
+            val expressions = WrapAroundExpression.Companion.modifyChildren(
                 emptyList(),
                 newExpression,
                 textBefore = null,
@@ -86,8 +87,8 @@ class WrapAroundExpressionTest : BaseTest() {
             Triple(descriptor.placeholderText, TextRange(startOffset, startOffset + 1), descriptor.range)
         }
 
-        assertEquals("::\n", placeholder)
-        assertEquals(expectedRange, range)
+        Assertions.assertEquals("::\n", placeholder)
+        Assertions.assertEquals(expectedRange, range)
     }
 
     @Test
@@ -101,7 +102,7 @@ class WrapAroundExpressionTest : BaseTest() {
                 false,
             )!!
 
-            val expressions = WrapAroundExpression.modifyChildren(
+            val expressions = WrapAroundExpression.Companion.modifyChildren(
                 emptyList(),
                 newExpression,
                 textBefore = null,
@@ -117,8 +118,8 @@ class WrapAroundExpressionTest : BaseTest() {
             Triple(descriptor.placeholderText, descriptor.range, whiteSpace.textRange)
         }
 
-        assertEquals("::", placeholder)
-        assertEquals(expectedRange, actualRange)
+        Assertions.assertEquals("::", placeholder)
+        Assertions.assertEquals(expectedRange, actualRange)
     }
 
     @Test
@@ -132,7 +133,7 @@ class WrapAroundExpressionTest : BaseTest() {
                 false,
             )!!
 
-            val expressions = WrapAroundExpression.modifyChildren(
+            val expressions = WrapAroundExpression.Companion.modifyChildren(
                 emptyList(),
                 newExpression,
                 textBefore = null,
@@ -143,15 +144,15 @@ class WrapAroundExpressionTest : BaseTest() {
             )
 
             val expression = expressions.single()
-            assertTrue(expression is SimpleExpression)
+            Assertions.assertTrue(expression is SimpleExpression)
             val simpleExpression = expression as SimpleExpression
             val descriptor = simpleExpression.buildFoldRegions(simpleExpression.element, document, null).single()
             val whiteSpace = newExpression.nextWhiteSpace()!!
             Triple(descriptor.placeholderText, descriptor.range, whiteSpace.textRange)
         }
 
-        assertEquals("", placeholder)
-        assertEquals(expectedRange, actualRange)
+        Assertions.assertEquals("", placeholder)
+        Assertions.assertEquals(expectedRange, actualRange)
     }
 
     @Test
@@ -165,7 +166,7 @@ class WrapAroundExpressionTest : BaseTest() {
                 false,
             )!!
 
-            val expressions = WrapAroundExpression.modifyChildren(
+            val expressions = WrapAroundExpression.Companion.modifyChildren(
                 emptyList(),
                 newExpression,
                 textBefore = "::",
@@ -189,10 +190,9 @@ class WrapAroundExpressionTest : BaseTest() {
         }
 
         val (beforeResult, afterResult) = result
-        assertEquals("::", beforeResult.first)
-        assertEquals(beforeResult.third, beforeResult.second)
-        assertEquals("##", afterResult.first)
-        assertEquals(afterResult.third, afterResult.second)
+        Assertions.assertEquals("::", beforeResult.first)
+        Assertions.assertEquals(beforeResult.third, beforeResult.second)
+        Assertions.assertEquals("##", afterResult.first)
+        Assertions.assertEquals(afterResult.third, afterResult.second)
     }
 }
-

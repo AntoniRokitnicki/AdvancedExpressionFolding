@@ -1,7 +1,7 @@
-package com.intellij.advancedExpressionFolding.folding
+package com.intellij.advancedExpressionFolding.folding.base.full
 
 import com.intellij.advancedExpressionFolding.folding.base.FoldingTest
-import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings.Companion.getInstance
+import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
 import org.junit.jupiter.api.Test
 import java.io.File
 import java.nio.file.Files
@@ -10,7 +10,8 @@ import kotlin.reflect.KMutableProperty0
 class FullFoldingTest : FoldingTest() {
 
     @Suppress("DEPRECATION")
-    override fun assignState(turnOnProperties: Array<out KMutableProperty0<Boolean>>) = getInstance().enableAll(state::emojify, state::finalEmoji, state::arithmeticExpressions)
+    override fun assignState(turnOnProperties: Array<out KMutableProperty0<Boolean>>) = AdvancedExpressionFoldingSettings.Companion.getInstance()
+        .enableAll(state::emojify, state::finalEmoji, state::arithmeticExpressions)
 
     override fun getTestFileName(testName: String): String {
         val baseFile = super.getTestFileName(testName)
