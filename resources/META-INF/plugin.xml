@@ -36,9 +36,20 @@
                 key="editor.folding.advanced.expression.displayName"
                 bundle="Bundle"/>
 
-        <!-- Suggests the pseudo-annotations used by the plugin -->
+        <notificationGroup id="Advanced Expression Folding"
+                           displayType="BALLOON"
+                           isLogByDefault="true"/>
+
+        <!-- Suggests pseudo-annotations supported by the plugin -->
         <completion.contributor
                 language="JAVA"
+                implementationClass="com.intellij.advancedExpressionFolding.pseudo.MainAnnotationCompletionContributor"/>
+        <completion.contributor
+                language="JAVA"
+                implementationClass="com.intellij.advancedExpressionFolding.pseudo.LoggableAnnotationCompletionContributor"/>
+        <completion.contributor
+                language="JAVA"
+                implementationClass="com.intellij.advancedExpressionFolding.pseudo.TracingLoggableAnnotationCompletionContributor"/>
                 implementationClass="com.intellij.advancedExpressionFolding.MainAnnotationCompletionContributor"/>
         <completion.contributor
                 language="JAVA"

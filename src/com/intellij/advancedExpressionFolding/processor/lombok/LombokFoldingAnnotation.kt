@@ -9,6 +9,7 @@ enum class LombokFoldingAnnotation(val annotation: String) {
 
     LOMBOK_GETTER("@Getter"),
     LOMBOK_SETTER("@Setter"),
+    LOMBOK_WITH("@With"),
     LOMBOK_EQUALS("@Equals"),
     LOMBOK_HASHCODE("@HashCode"),
     LOMBOK_TO_STRING("@ToString"),

@@ -2,9 +2,9 @@ package com.intellij.advancedExpressionFolding.processor.logger
 
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.processor.asInstance
-import com.intellij.advancedExpressionFolding.processor.firstArgument
 import com.intellij.advancedExpressionFolding.processor.core.BaseExtension
-import com.intellij.advancedExpressionFolding.processor.on
+import com.intellij.advancedExpressionFolding.processor.firstArgument
+import com.intellij.advancedExpressionFolding.processor.takeIfTrue
 import com.intellij.openapi.editor.Document
 import com.intellij.psi.PsiExpression
 import com.intellij.psi.PsiMethodCallExpression
@@ -19,7 +19,7 @@ object LoggerBracketsExt : BaseExtension() {
         methodName: String,
         document: Document
     ): Expression? {
-        logFolding.on() ?: return null
+        logFolding.takeIfTrue() ?: return null
 
         val extensionConstructor: (PsiMethodCallExpression, Document) -> LoggerBracketsExtensionBase = when {
             methodName == "formatted" -> ::StringFormattedLoggerBracketsExtension

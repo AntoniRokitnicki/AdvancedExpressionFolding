@@ -2,7 +2,7 @@ package com.intellij.advancedExpressionFolding
 
 import ai.grazie.utils.capitalize
 import com.intellij.advancedExpressionFolding.diff.FoldingDescriptorExWrapper
-import com.intellij.advancedExpressionFolding.processor.off
+import com.intellij.advancedExpressionFolding.processor.takeIfFalse
 import com.intellij.openapi.application.WriteAction
 import com.intellij.openapi.fileTypes.FileTypeManager
 import com.intellij.openapi.projectRoots.JavaSdk
@@ -60,7 +60,7 @@ abstract class BaseTest : LightJavaCodeInsightFixtureTestCase5(TEST_JDK) {
             val actual = e.actual.stringRepresentation
             Files.writeString(testDataFile.toPath(), actual)
             val wrapper = store.createOrderedFoldingWrapper()
-            saveFoldingsAsJson.off() ?: run {
+            saveFoldingsAsJson.takeIfFalse() ?: run {
                 val folderName = "wrappers"
                 val jsonFileName = fileName.replace("testData/", "$folderName/")
                 File(folderName).mkdirs()

@@ -5,14 +5,119 @@
 
 ## for assignments
 
-![Field assignment folded into property-style access](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/assets/3055326/9b44c642-0edf-408f-98f2-5eae06b1216b)
+### Field Shift
+Folds builder, setter, and assignment patterns into the << shorthand.
 
+#### Example: FieldShiftBuilder
 
-## defensive copy support
-![Defensive copy highlighting before applying folding](https://github.com/user-attachments/assets/25ef4342-a83d-44f1-9af5-ef2fb83de0fb)
+examples/data/FieldShiftBuilder.java:
+```java
+        this.username = username;
+        this.active = active;
+        this.userIdentifier = userIdentifier;
+        this.child = child;
+// ...
+                .username(record.username());
+```
 
-![Defensive copy collapsed by field shift folding](https://github.com/user-attachments/assets/52b5d9b8-afed-4310-a309-8f4016433540)
+folded/FieldShiftBuilder-folded.java:
+```java
+        this.username = <<;
+        this.active = <<;
+        this.userIdentifier = <<;
+        this.child = <<;
+// ...
+                .username(record<<);
+```
 
-## Preconditions.checkNotNull
-<img alt="Preconditions.checkNotNull folding preview" src="https://github.com/user-attachments/assets/345f1c8d-3487-49b7-a384-f5875dd69458" />
+Highlights FieldShiftBuilder with field shift.
+Removes boilerplate while preserving behavior.
 
+#### Example: FieldShiftSetters
+
+examples/data/FieldShiftSetters.java:
+```java
+        this.username = username;
+// ...
+        this.active = active;
+```
+
+folded/FieldShiftSetters-folded.java:
+```java
+        this.username = <<;
+// ...
+        this.active = <<;
+```
+
+Highlights FieldShiftSetters with field shift.
+Removes boilerplate while preserving behavior.
+
+#### Example: FieldShiftFields
+
+examples/data/FieldShiftFields.java:
+```java
+        this.username = username;
+        this.active = active;
+        this.userIdentifier = userIdentifier;
+        this.child = child;
+        this.userIdentifier = child.userIdentifier;
+        this.userIdentifier = child.getUserIdentifier();
+// ...
+        result.username = source.child.username;
+        result.userIdentifier = source.child.child.child.userIdentifier;
+        result.active = source.child.active;
+        result.list = List.copyOf(source.list);
+```
+
+folded/FieldShiftFields-folded.java:
+```java
+        this.username = <<;
+        this.active = <<;
+        this.userIdentifier = <<;
+        this.child = <<;
+        this.userIdentifier = child.<<;
+        this.userIdentifier = child.<<;
+// ...
+        result.username = source.child.<<;
+        result.userIdentifier = source.child.child.child.<<;
+        result.active = source.child.<<;
+        result.list = List.copyOf(source.<<);
+```
+
+Highlights FieldShiftFields with field shift.
+Removes boilerplate while preserving behavior.
+
+#### Example: NullableAnnotationCheckNotNullFieldShiftTestData
+
+examples/data/NullableAnnotationCheckNotNullFieldShiftTestData.java:
+```java
+            this.args = Preconditions.checkNotNull(args);
+            this.l = Preconditions.checkNotNull(l);
+            this.data = Preconditions.checkNotNull(z.getData());
+            this.o = Preconditions.checkNotNull(o);
+// ...
+            this.args = Preconditions.checkNotNull(args, "args are null");
+            this.l = Preconditions.checkNotNull(l, "l is null");
+            this.data = Preconditions.checkNotNull(z.getData(), "saaa is null");
+            this.o = Preconditions.checkNotNull(o, "o is null");
+```
+
+folded/NullableAnnotationCheckNotNullFieldShiftTestData-folded.java:
+```java
+            this.args = <<!!;
+            this.l = <<!!;
+            this.data = z.<<!!;
+            this.o = <<!!;
+// ...
+            this.args = <<!!;
+            this.l = <<!!;
+            this.data = z.<<!!;
+            this.o = <<!!;
+```
+
+Highlights NullableAnnotationCheckNotNullFieldShiftTestData with field shift.
+Removes boilerplate while preserving behavior.
+
+Default: On
+Controlled by: `fieldShift`
+Related features: (none)

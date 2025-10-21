@@ -46,7 +46,7 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
         override var ifNullSafe: Boolean = true,
 
         override var logFolding: Boolean = true,
-        override var logFoldingTextBlocks: Boolean = false,
+        override var logFoldingTextBlocks: Boolean = true,
 
         override var destructuring: Boolean = false,
         override var println: Boolean = true,
@@ -96,6 +96,9 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
 
     fun disableAll() = updateAllState(false)
     fun enableAll(vararg excludeProperties: KMutableProperty0<Boolean>) = updateAllState(true, *excludeProperties)
+    fun restoreDefaults() {
+        myState = State()
+    }
 
     // used in integrationStubs
     fun enableEverything() = updateAllState(true, state::emojify, state::finalEmoji)
