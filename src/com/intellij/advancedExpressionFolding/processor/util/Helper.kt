@@ -214,8 +214,8 @@ object Helper {
                 if (identifier != null && (identifier.text == "length" || identifier.text == "size") &&
                     methodExpression.qualifierExpression != null
                 ) {
-                    val qualifierExpression = methodExpression.qualifierExpression ?: return null
-                    val qualifier = BuildExpressionExt.getAnyExpression(qualifierExpression, document)
+                    val qualifierPsiExpression = methodExpression.qualifierExpression ?: return null
+                    val qualifier = BuildExpressionExt.getAnyExpression(qualifierPsiExpression, document)
                     if (qualifier == qualifierExpression) {
                         return NumberLiteral(
                             parent,
