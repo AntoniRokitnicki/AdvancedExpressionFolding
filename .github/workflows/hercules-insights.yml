@@ -15,7 +15,14 @@ jobs:
           fetch-depth: 0
 
       - name: Hercules Insights
-        uses: src-d/hercules@v10.6.3
+        run: |
+          docker run --rm -v $(pwd):/repo srcd/hercules:latest \
+            /bin/bash -c "pip install matplotlib==3.2.0 && \
+            hercules --devs --burndown --burndown-people --couples --pb /repo | \
+            labours -m all -f pb --disable-projector -o /repo/hercules_charts && \
+            cd /repo/hercules_charts && \
+            tar -cf ../hercules_charts.tar * ../hercules_charts_* && \
+            cd .. && rm -r hercules_charts"
 
       - name: Upload insights artifact
         uses: actions/upload-artifact@v4
