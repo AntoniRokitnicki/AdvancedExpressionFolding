@@ -123,6 +123,7 @@ object LombokExt : BaseExtension() {
         when {
             isGetter() -> GETTER
             isSetter() -> SETTER
+            isWith() -> WITH
             isToString() -> TO_STRING
             isEquals() -> EQUALS
             isHashCode() -> HASHCODE

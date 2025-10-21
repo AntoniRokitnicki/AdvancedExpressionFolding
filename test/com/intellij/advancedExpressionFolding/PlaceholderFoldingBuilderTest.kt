@@ -1,12 +1,11 @@
 package com.intellij.advancedExpressionFolding
 
-import com.intellij.advancedExpressionFolding.FoldingDataStorage
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings.Companion.getInstance
 import com.intellij.openapi.application.ReadAction
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 
-class AdvancedExpressionFoldingBuilderTest : BaseTest() {
+class PlaceholderFoldingBuilderTest : BaseTest() {
 
     @Test
     fun previewShowsOptionalElvisFold() {
