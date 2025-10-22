@@ -40,6 +40,10 @@
         <completion.contributor
                 language="JAVA"
                 implementationClass="com.intellij.advancedExpressionFolding.MainAnnotationCompletionContributor"/>
+        <!-- Suggests the pseudo-annotation @PropertyChangeListener -->
+        <completion.contributor
+                language="JAVA"
+                implementationClass="com.intellij.advancedExpressionFolding.PropertyChangeListenerAnnotationCompletionContributor"/>
     </extensions>
 
     <applicationListeners>

@@ -51,7 +51,7 @@ For more information, read the [blog post](https://medium.com/@andrey_cheptsov/m
 
 ## 4.0.0 ##
 
-- [[pseudo-annotations] @Main - method-level annotation that generates a main method invoking the annotated method.](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/PseudoAnnotations)
+- [[pseudo-annotations] @Main, @PropertyChangeListener - helpers for generating boilerplate code.](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/PseudoAnnotations)
 - [[fieldshift] Preconditions.checkNotNull now supported](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/FieldShift#preconditionschecknotnull)
 
 ## 3.8.0 ##
