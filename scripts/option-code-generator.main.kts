@@ -11,9 +11,28 @@ settingsFile.doInFile {
     it.insertBeforeMarker("// NEW OPTION VAR", "        override var $varName: Boolean = true,")
 }
 
-val stateInterfaceFile = "$basePath/src/com/intellij/advancedExpressionFolding/settings/IState.kt"
-stateInterfaceFile.doInFile {
-    it.insertBeforeMarker("// NEW OPTION VAL", "    val $varName: Boolean")
+val unclassifiedStateFile =
+    "$basePath/src/com/intellij/advancedExpressionFolding/settings/UnclassifiedFeatureState.kt"
+unclassifiedStateFile.doInFile { lines ->
+    val result = mutableListOf<String>()
+    var markerCount = 0
+
+    lines.forEach { line ->
+        if (line.trim().startsWith("// NEW OPTION VAR")) {
+            markerCount += 1
+            when (markerCount) {
+                1 -> result.add("    val $varName: Boolean")
+                2 -> result.add("    override val $varName: Boolean = true,")
+            }
+        }
+        result.add(line)
+    }
+
+    if (markerCount < 2) {
+        error("Expected two '// NEW OPTION VAR' markers in UnclassifiedFeatureState.kt")
+    }
+
+    result
 }
 
 val exampleFileName = "${varName.replaceFirstChar(Char::titlecase)}TestData"

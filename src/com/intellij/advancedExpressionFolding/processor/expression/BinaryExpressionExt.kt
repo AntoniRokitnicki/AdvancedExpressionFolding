@@ -15,7 +15,7 @@ import com.intellij.advancedExpressionFolding.processor.util.Consts
 import com.intellij.advancedExpressionFolding.processor.argumentExpressions
 import com.intellij.advancedExpressionFolding.processor.argumentCount
 import com.intellij.advancedExpressionFolding.processor.util.Helper.eraseGenerics
-import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
+import com.intellij.advancedExpressionFolding.settings.StateDelegate
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiBinaryExpression
@@ -26,7 +26,7 @@ import com.intellij.psi.PsiMethod
 import com.intellij.psi.PsiMethodCallExpression
 import com.intellij.psi.PsiPrefixExpression
 
-object BinaryExpressionExt {
+object BinaryExpressionExt : StateDelegate() {
 
     fun getBinaryExpression(element: PsiBinaryExpression, document: Document): Expression? {
         tryBuildCompareToBasedExpression(element, document)?.let { return it }
@@ -60,8 +60,7 @@ object BinaryExpressionExt {
     }
 
     private fun tryBuildCompareToBasedExpression(element: PsiBinaryExpression, document: Document): Expression? {
-        val settings = AdvancedExpressionFoldingSettings.getInstance()
-        if (!settings.state.comparingExpressionsCollapse) {
+        if (!comparingExpressionsCollapse) {
             return null
         }
         val methodCall = getMethodCallOperand(element)
@@ -239,8 +238,7 @@ object BinaryExpressionExt {
         b: PsiBinaryExpression,
         document: Document
     ): Expression? {
-        val settings = AdvancedExpressionFoldingSettings.getInstance()
-        if (!settings.state.rangeExpressionsCollapse) {
+        if (!rangeExpressionsCollapse) {
             return null
         }
         if ((a.operationSign.text == "<" || a.operationSign.text == "<=") &&

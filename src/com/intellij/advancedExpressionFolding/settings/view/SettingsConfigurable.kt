@@ -259,7 +259,6 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
         temporarySettings.loadState(currentState)
         temporarySettings.action()
         val updatedState = temporarySettings.state
-
         bulkUpdateInProgress = true
         try {
             propertyToCheckbox.forEach { (property, checkbox) ->
