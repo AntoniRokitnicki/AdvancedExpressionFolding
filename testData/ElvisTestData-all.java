@@ -9,16 +9,16 @@ public class ElvisTestData {
         <fold text='' expand='false'>System.out.</fold>println(<fold text='' expand='false'>e != null ? </fold>e<fold text=' ?: ' expand='false'> : </fold>"");
         <fold text='' expand='false'>System.out.</fold>println(<fold text='' expand='false'>e != null ? </fold>e<fold text='?.' expand='false'>.</fold>sayHello()<fold text=' ?: ' expand='false'> : </fold>"");
         <fold text='' expand='false'>System.out.</fold>println(<fold text='e ?: ""' expand='false'>e == null ? "" : e</fold>); // Inverted Elvis should also fold to e ?: ""
-        <fold text='' expand='false'>System.out.</fold>println(<fold text='e?.get != null' expand='false'>e != null && e.get() != null</fold> ? e.get() : ""); // Should be System.out.println(e?.get ?: "")
-        <fold text='' expand='false'>System.out.</fold>println(<fold text='e?.get != null' expand='false'>e != null && e.get() != null</fold> ? e.get().sayHello() : ""); // Should be System.out.println(e?.get?.sayHello() ?: "")
+        <fold text='' expand='false'>System.out.</fold>println(<fold text='e?.!! != null' expand='false'>e != null && e.<fold text='!!' expand='false'>get()</fold> != null</fold> ? e.<fold text='!!' expand='false'>get()</fold> : ""); // Should be System.out.println(e?.!! != null ? e!! : "")
+        <fold text='' expand='false'>System.out.</fold>println(<fold text='e?.!! != null' expand='false'>e != null && e.<fold text='!!' expand='false'>get()</fold> != null</fold> ? e.<fold text='!!' expand='false'>get()</fold>.sayHello() : ""); // Should be System.out.println(e?.!! != null ? e!!.sayHello() : "")
         if (e != null) <fold text='{...}' expand='true'>{
-                e<fold text='?.' expand='false'>.</fold>get().sayHello();<fold text='' expand='false'>
+                e<fold text='?.' expand='false'>.</fold><fold text='!!' expand='false'>get()</fold>.sayHello();<fold text='' expand='false'>
         }</fold></fold>
         if (e.get() != null) <fold text='{...}' expand='true'>{
-                e.get()<fold text='?.' expand='false'>.</fold>sayHello();<fold text='' expand='false'>
+                e.<fold text='!!' expand='false'>get()</fold><fold text='?.' expand='false'>.</fold>sayHello();<fold text='' expand='false'>
         }</fold></fold>
-        if <fold text='' expand='false'>(</fold><fold text='e?.get != null' expand='false'>e != null && e.get() != null<fold text='' expand='false'></fold>)</fold> <fold text='{...}' expand='true'>{
-                e.get().sayHello();
+        if <fold text='' expand='false'>(</fold><fold text='e?.!! != null' expand='false'>e != null && e.<fold text='!!' expand='false'>get()</fold> != null</fold><fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
+                e.<fold text='!!' expand='false'>get()</fold>.sayHello();
         }</fold>
     }</fold>
 

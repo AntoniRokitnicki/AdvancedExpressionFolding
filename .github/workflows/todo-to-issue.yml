@@ -1,0 +1,63 @@
+name: "TODO to Issue Creator"
+
+on:
+  workflow_dispatch:
+    inputs:
+      INSERT_ISSUE_URLS:
+        description: "Insert issue URLs back to code"
+        type: boolean
+        default: true
+      AUTO_ASSIGN:
+        description: "Auto-assign issues to actor"
+        type: boolean
+        default: true
+      CLOSE_ISSUES:
+        description: "Close issues when TODO removed"
+        type: boolean
+        default: true
+      AUTO_P:
+        description: "Auto-format issue body"
+        type: boolean
+        default: true
+
+jobs:
+  build:
+    runs-on: "ubuntu-latest"
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+    steps:
+      - uses: "actions/checkout@v4"
+      - name: "TODO to Issue"
+        id: todo-to-issue
+        uses: "alstr/todo-to-issue-action@v5.1.13"
+        with:
+          AUTO_ASSIGN: "${{ inputs.AUTO_ASSIGN }}"
+          CLOSE_ISSUES: "${{ inputs.CLOSE_ISSUES }}"
+          AUTO_P: "${{ inputs.AUTO_P }}"
+          INSERT_ISSUE_URLS: "${{ inputs.INSERT_ISSUE_URLS }}"
+          IDENTIFIERS: '[{"name": "TODO", "labels": ["TODO"]}]'
+          ISSUE_TEMPLATE: |
+            ## TODO
+            
+            **Commit:** ${{ github.sha }}
+            **Author:** @{{ github.actor }}
+            
+            {{ body }}
+            
+            {{ url }}
+
+            {{ snippet }}
+      - name: Set Git user
+        if: steps.todo-to-issue.outputs.changes == 'true'
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+      - name: Commit and Push Changes
+        if: steps.todo-to-issue.outputs.changes == 'true'
+        run: |
+          git pull --rebase origin ${{ github.ref_name }}
+          git add -A
+          git commit -m "Add GitHub issue links to TODOs"
+          git push origin ${{ github.ref_name }} || exit 1
