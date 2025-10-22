@@ -37,36 +37,25 @@ collapse-slicing:
 field-shift:
 - changed-files:
   - any-glob-to-any-file:
-    - '**/FieldShiftBuilder.kt'
-
-kotlin:
-- changed-files:
-  - any-glob-to-any-file:
-    - '**/kotlin.xml'
-    - '**/KotlinPluginUtils.kt'
+    - '**/FieldShift*'
 
 lombok:
 - changed-files:
   - any-glob-to-any-file:
     - '**/LombokState.kt'
     - '**/PsiMethodExt.kt'
-    - 'processor/lombok/**'
+    - '**/lombok/**'
 
-pseudoAnnotations:
+pseudo-annotations:
 - changed-files:
   - any-glob-to-any-file:
     - 'pseudo/**'
-
-settings-ui:
-- changed-files:
-  - any-glob-to-any-file:
-    - '**/CheckboxesProvider.kt'
 
 state:
 - changed-files:
   - any-glob-to-any-file:
     - '**/AdvancedExpressionFoldingSettings.kt'
-    - '**/State.kt'
+    - '**/*State.kt'
 
 tests:
 - changed-files:
@@ -83,24 +72,67 @@ github-actions:
   - any-glob-to-any-file:
     - '.github/workflows/**'
 
-build-system:
+gradle:
 - changed-files:
   - any-glob-to-any-file:
     - 'build.gradle.kts'
     - 'settings.gradle.kts'
-    - 'gradle/**'
 
-advanced-expression-folding-builder:
+integration-layer:
 - changed-files:
   - any-glob-to-any-file:
-    - '**/AdvancedExpressionFoldingBuilder.kt'
+    - '**/integration/**'
 
-global-toggle-action:
+action:
 - changed-files:
   - any-glob-to-any-file:
-    - '**/GlobalToggleFoldingAction.kt'
+    - 'src/com/intellij/advancedExpressionFolding/action/**'
 
-settings-configurable:
+settings-ui:
 - changed-files:
   - any-glob-to-any-file:
-    - '**/SettingsConfigurable.kt'
+    - 'src/com/intellij/advancedExpressionFolding/view/**'
+
+plugin-xml:
+- changed-files:
+  - any-glob-to-any-file:
+    - 'resources/META-INF/*.xml'
+
+scripts:
+- changed-files:
+  - any-glob-to-any-file:
+    - 'scripts/**'
+
+examples-data:
+- changed-files:
+  - any-glob-to-any-file:
+    - 'examples/data/**'
+
+test-data:
+- changed-files:
+  - any-glob-to-any-file:
+    - 'testData/**'
+
+folded-expected:
+- changed-files:
+  - any-glob-to-any-file:
+    - 'folded/**'
+
+wiki:
+- changed-files:
+  - any-glob-to-any-file:
+    - 'wiki/**'
+    - 'wiki-clone/**'
+
+labeler:
+- changed-files:
+  - any-glob-to-any-file:
+    - '.github/labeler.yml'
+
+gradle-wrapper:
+- changed-files:
+  - any-glob-to-any-file:
+    - 'gradlew'
+    - 'gradlew.bat'
+    - 'gradle/wrapper/**'
+
