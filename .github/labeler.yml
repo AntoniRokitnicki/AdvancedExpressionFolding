@@ -4,6 +4,15 @@ collapse-control-flow:
     - '**/IfExpressionExt.kt'
     - '**/TernaryExpressionExt.kt'
 
+collapse-pattern-matching:
+- changed-files:
+  - any-glob-to-any-file:
+    - '**/PatternMatchingExt.kt'
+collapse-try-statements:
+- changed-files:
+  - any-glob-to-any-file:
+    - '**/PsiTryStatementExt.kt'
+
 collapse-declaration:
 - changed-files:
   - any-glob-to-any-file:
@@ -22,6 +31,11 @@ collapse-methods:
   - any-glob-to-any-file:
     - '**/MethodCallExpressionExt.kt'
 
+collapse-single-expression-functions:
+- changed-files:
+  - any-glob-to-any-file:
+    - '**/SingleExpressionFunctionExt.kt'
+
 collapse-operators:
 - changed-files:
   - any-glob-to-any-file:
@@ -33,11 +47,20 @@ collapse-println:
 - changed-files:
   - any-glob-to-any-file:
     - '**/PrintlnExt.kt'
+collapse-type-casts:
+- changed-files:
+  - any-glob-to-any-file:
+    - '**/PsiTypeCastExpressionExt.kt'
 
 collapse-slicing:
 - changed-files:
   - any-glob-to-any-file:
     - '**/ArrayAccessExpressionExt.kt'
+
+collapse-logger-brackets:
+- changed-files:
+  - any-glob-to-any-file:
+    - '**/LoggerBracketsExt.kt'
 
 field-shift:
 - changed-files:
