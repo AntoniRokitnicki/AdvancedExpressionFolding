@@ -3,6 +3,7 @@ package com.intellij.advancedExpressionFolding.expression.controlflow
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.operation.collection.Range
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
+import com.intellij.advancedExpressionFolding.settings.IState
 import com.intellij.lang.folding.FoldingDescriptor
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.editor.FoldingGroup
@@ -17,8 +18,9 @@ class ForStatement(
     startRange: Expression,
     startInclusive: Boolean,
     endRange: Expression,
-    endInclusive: Boolean
-) : Range(statement, textRange, operand, startRange, startInclusive, endRange, endInclusive) {
+    endInclusive: Boolean,
+    private val state: AdvancedExpressionFoldingSettings.State = AdvancedExpressionFoldingSettings.getInstance().state
+) : Range(statement, textRange, operand, startRange, startInclusive, endRange, endInclusive), IState by state {
 
     init {
         separator = FOR_SEPARATOR
@@ -30,8 +32,7 @@ class ForStatement(
         parent: Expression?
     ): Array<FoldingDescriptor> {
         val descriptors = mutableListOf(*super.buildFoldRegions(element, document, parent))
-        val state = AdvancedExpressionFoldingSettings.getInstance().state
-        if (state.compactControlFlowSyntaxCollapse && statement.lParenth != null && statement.rParenth != null) {
+        if (compactControlFlowSyntaxCollapse && statement.lParenth != null && statement.rParenth != null) {
             val parenthesesRange = TextRange.create(
                 statement.lParenth!!.textRange.startOffset,
                 statement.rParenth!!.textRange.endOffset
