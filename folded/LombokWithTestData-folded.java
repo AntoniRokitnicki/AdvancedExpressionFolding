@@ -1,11 +1,11 @@
 package data;
 
-@Getter public class LombokWithTestData {
-    @Setter(dirty) LombokWithTestData data;
-    @Setter(dirty) boolean ok;
+@Getter @With public class LombokWithTestData {
+    LombokWithTestData data;
+    boolean ok;
 
     public class PartialWith {
-        @Setter(dirty) LombokWithTestData data;
+        @With LombokWithTestData data;
         boolean ok;
     }
 }
