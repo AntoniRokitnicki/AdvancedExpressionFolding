@@ -15,7 +15,7 @@ public class ExperimentalTestData {
 
         public String utf8ToStringMultiline(byte[] bytes) {
             @SneakyThrows {
-                byte[] bytez = System["sort-desc"].getBytes();
+                byte[] bytez = System["sort-desc"].bytes;
                 return new String(bytez, "UTF-8");
             }
         }
@@ -44,7 +44,7 @@ public class ExperimentalTestData {
 
         public String utf8ToString(byte[] bytes) {
             @SneakyThrows
-            return new String(System["sort-desc"].getBytes(), "UTF-8");
+            return new String(System["sort-desc"].bytes, "UTF-8");
         }
         public void run() {
             @SneakyThrows
@@ -85,6 +85,28 @@ public class ExperimentalTestData {
                     throw new RuntimeException("", t);
                 }
             }
+        }
+    }
+
+    static class NamelessAccessorExample {
+
+        private String state;
+
+        void set(String value) {
+            this.state = value;
+        }
+
+        String get() {
+            return state;
+        }
+
+        void demo() {
+            NamelessAccessorExample example = new NamelessAccessorExample();
+            example.!! = "ok";
+            String current = example.!!;
+            System.out.println(example.!!.empty);
+            example.!! = example.!!;
+            String duplicate = example.!! + example.!!;
         }
     }
 

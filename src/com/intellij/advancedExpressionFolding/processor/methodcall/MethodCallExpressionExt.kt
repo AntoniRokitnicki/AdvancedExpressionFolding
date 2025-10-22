@@ -5,14 +5,14 @@ import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.property.Getter
 import com.intellij.advancedExpressionFolding.expression.property.GetterRecord
 import com.intellij.advancedExpressionFolding.expression.property.Setter
-import com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt
 import com.intellij.advancedExpressionFolding.processor.argumentExpressions
 import com.intellij.advancedExpressionFolding.processor.argumentCount
+import com.intellij.advancedExpressionFolding.processor.core.BaseExtension
+import com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt
 import com.intellij.advancedExpressionFolding.processor.language.FieldShiftExt
 import com.intellij.advancedExpressionFolding.processor.logger.LoggerBracketsExt
 import com.intellij.advancedExpressionFolding.processor.util.Helper
 import com.intellij.advancedExpressionFolding.processor.util.PropertyUtil.guessPropertyName
-import com.intellij.advancedExpressionFolding.settings.StateDelegate
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiElement
@@ -23,7 +23,7 @@ import com.intellij.psi.PsiMethodCallExpression
 import com.intellij.psi.PsiReferenceExpression
 import com.intellij.psi.PsiStatement
 
-object MethodCallExpressionExt : StateDelegate() {
+object MethodCallExpressionExt : BaseExtension() {
 
     fun getMethodCallExpression(element: PsiMethodCallExpression, document: Document): Expression? {
         val referenceExpression = element.methodExpression
@@ -91,7 +91,7 @@ object MethodCallExpressionExt : StateDelegate() {
         referenceExpression: PsiReferenceExpression
     ): Expression? {
         if (getSetExpressionsCollapse) {
-            onGetterSetter(element, document, identifier, qualifier)?.let { return it }
+            onGetterSetter(element, document, identifier, qualifier, experimental)?.let { return it }
         }
         val resolved = referenceExpression.resolve()
         if (resolved is PsiMethod) {
@@ -128,23 +128,33 @@ object MethodCallExpressionExt : StateDelegate() {
         element: PsiMethodCallExpression,
         document: Document,
         identifier: PsiElement,
-        qualifier: PsiExpression?
+        qualifier: PsiExpression?,
+        experimental: Boolean
     ): Expression? {
-        if (Helper.isGetter(identifier, element)) {
+        val resolvedMethod = element.resolveMethod()
+        if (
+            Helper.isGetter(identifier, element) ||
+            experimental && Helper.isNamelessGetter(identifier.text, element, resolvedMethod)
+        ) {
             val expression = qualifier?.let { BuildExpressionExt.getAnyExpression(it, document) }
+            val propertyName = guessPropertyName(identifier.text).ifBlank {
+                Helper.guessNamelessPropertyName(resolvedMethod)
+            }
             return Getter(
                 element,
                 element.textRange,
                 TextRange.create(identifier.textRange.startOffset, element.textRange.endOffset),
                 expression,
-                guessPropertyName(identifier.text)
+                propertyName
             )
         }
         val text = identifier.text
-        if (isSimpleSetter(text, element, qualifier)) {
+        if (isSimpleSetter(text, element, qualifier, experimental, resolvedMethod)) {
             val qualifierExpression = qualifier?.let { BuildExpressionExt.getAnyExpression(it, document) }
             val paramExpression = BuildExpressionExt.getAnyExpression(element.argumentExpressions[0], document)
-            val propertyName = guessPropertyName(text)
+            val propertyName = guessPropertyName(text).ifBlank {
+                Helper.guessNamelessPropertyName(resolvedMethod)
+            }
             return Setter(
                 element,
                 element.textRange,
@@ -160,9 +170,12 @@ object MethodCallExpressionExt : StateDelegate() {
     private fun isSimpleSetter(
         text: String,
         element: PsiMethodCallExpression,
-        qualifier: PsiExpression?
+        qualifier: PsiExpression?,
+        experimental: Boolean,
+        method: PsiMethod?
     ): Boolean {
-        if (!Helper.isSetter(text)) {
+        val isNamelessSetter = experimental && Helper.isNamelessSetter(text, element, method)
+        if (!Helper.isSetter(text) && !isNamelessSetter) {
             return false
         }
         if (element.argumentCount != 1) {
