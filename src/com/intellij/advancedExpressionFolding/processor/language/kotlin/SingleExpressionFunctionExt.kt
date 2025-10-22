@@ -9,6 +9,9 @@ import com.intellij.psi.*
 object SingleExpressionFunctionExt : BaseExtension() {
 
     fun createSingleExpressionFunctions(method: PsiMethod, document: Document): Expression? {
+        if (isDebugSessionActive(method)) {
+            return null
+        }
         val single = method.body?.statements?.singleOrNull()
         val statement = single?.takeIf {
             method.body!!.text.length < 145
