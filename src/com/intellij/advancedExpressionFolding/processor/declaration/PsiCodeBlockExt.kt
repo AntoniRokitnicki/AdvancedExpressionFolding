@@ -5,6 +5,7 @@ import com.intellij.advancedExpressionFolding.expression.controlflow.ControlFlow
 import com.intellij.advancedExpressionFolding.expression.controlflow.ControlFlowSingleStatementCodeBlockExpression
 import com.intellij.advancedExpressionFolding.expression.controlflow.IfExpression
 import com.intellij.advancedExpressionFolding.processor.core.BaseExtension
+import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
 import com.intellij.psi.PsiBlockStatement
 import com.intellij.psi.PsiCatchSection
 import com.intellij.psi.PsiCodeBlock
@@ -18,17 +19,18 @@ object PsiCodeBlockExt : BaseExtension() {
 
     fun getCodeBlockExpression(element: PsiCodeBlock): Expression? {
         val parent = element.parent
+        val settings = AdvancedExpressionFoldingSettings.getInstance()
         if (!isSupportedParent(parent, element)) {
             return null
         }
         return if (element.statements.size == 1 || parent is PsiSwitchStatement) {
-            if (shouldCollapseSingleStatement(element, parent)) {
+            if (shouldCollapseSingleStatement(element, parent, settings)) {
                 ControlFlowSingleStatementCodeBlockExpression(element, element.textRange)
             } else {
                 null
             }
         } else {
-            if (controlFlowMultiStatementCodeBlockCollapse && !element.isWritable) {
+            if (settings.state.controlFlowMultiStatementCodeBlockCollapse && !element.isWritable) {
                 @Suppress("DEPRECATION")
                 ControlFlowMultiStatementCodeBlockExpression(element, element.textRange)
             } else {
@@ -51,12 +53,13 @@ object PsiCodeBlockExt : BaseExtension() {
     private fun shouldCollapseSingleStatement(
         element: PsiCodeBlock,
         parent: PsiElement?,
+        settings: AdvancedExpressionFoldingSettings
     ): Boolean {
-        if (!controlFlowSingleStatementCodeBlockCollapse || element.isWritable) {
+        if (!settings.state.controlFlowSingleStatementCodeBlockCollapse || element.isWritable) {
             return false
         }
         val grandParent = parent?.parent
         return grandParent !is PsiIfStatement ||
-            !IfExpression.isAssertExpression(this, grandParent)
+            !IfExpression.isAssertExpression(settings.state, grandParent)
     }
 }
