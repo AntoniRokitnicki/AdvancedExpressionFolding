@@ -4,6 +4,11 @@ collapse-control-flow:
     - '**/IfExpressionExt.kt'
     - '**/TernaryExpressionExt.kt'
 
+collapse-pattern-matching:
+- changed-files:
+  - any-glob-to-any-file:
+    - '**/PatternMatchingExt.kt'
+
 collapse-declaration:
 - changed-files:
   - any-glob-to-any-file:
