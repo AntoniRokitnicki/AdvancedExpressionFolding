@@ -4,6 +4,28 @@ collapse-control-flow:
     - '**/IfExpressionExt.kt'
     - '**/TernaryExpressionExt.kt'
 
+collapse-loop-statements:
+- changed-files:
+  - any-glob-to-any-file:
+    - '**/LoopExt.kt'
+    - '**/ForStatementExpressionExt.kt'
+    
+collapse-constructor-references:
+- changed-files:
+  - any-glob-to-any-file:
+    - '**/ConstructorReferenceExt.kt'
+    - '**/MethodReferenceExt.kt'
+    
+collapse-pattern-matching:
+- changed-files:
+  - any-glob-to-any-file:
+    - '**/PatternMatchingExt.kt'
+    
+collapse-try-statements:
+- changed-files:
+  - any-glob-to-any-file:
+    - '**/PsiTryStatementExt.kt'
+
 collapse-declaration:
 - changed-files:
   - any-glob-to-any-file:
@@ -22,6 +44,22 @@ collapse-methods:
   - any-glob-to-any-file:
     - '**/MethodCallExpressionExt.kt'
 
+collapse-default-params:
+- changed-files:
+  - any-glob-to-any-file:
+    - '**/MethodDefaultParameterExt.kt'
+    
+collapse-null-safety:
+- changed-files:
+  - any-glob-to-any-file:
+    - '**/IfNullSafeExt.kt'
+    - '**/NullableExt.kt'
+    
+collapse-single-expression-functions:
+- changed-files:
+  - any-glob-to-any-file:
+    - '**/SingleExpressionFunctionExt.kt'
+
 collapse-operators:
 - changed-files:
   - any-glob-to-any-file:
@@ -29,46 +67,124 @@ collapse-operators:
     - '**/PolyadicExpressionExt.kt'
     - '**/PrefixExpressionExt.kt'
 
+collapse-println:
+- changed-files:
+  - any-glob-to-any-file:
+    - '**/PrintlnExt.kt'
+collapse-type-casts:
+- changed-files:
+  - any-glob-to-any-file:
+    - '**/PsiTypeCastExpressionExt.kt'
+
 collapse-slicing:
 - changed-files:
   - any-glob-to-any-file:
     - '**/ArrayAccessExpressionExt.kt'
 
+collapse-logger-brackets:
+- changed-files:
+  - any-glob-to-any-file:
+    - '**/LoggerBracketsExt.kt'
+
 field-shift:
 - changed-files:
   - any-glob-to-any-file:
-    - '**/FieldShiftBuilder.kt'
-
-kotlin:
-- changed-files:
-  - any-glob-to-any-file:
-    - '**/kotlin.xml'
-    - '**/KotlinPluginUtils.kt'
+    - '**/FieldShift*'
 
 lombok:
 - changed-files:
   - any-glob-to-any-file:
     - '**/LombokState.kt'
     - '**/PsiMethodExt.kt'
-    - 'processor/lombok/**'
+    - '**/lombok/**'
 
-pseudoAnnotations:
+pseudo-annotations:
 - changed-files:
   - any-glob-to-any-file:
     - 'pseudo/**'
-
-settings-ui:
-- changed-files:
-  - any-glob-to-any-file:
-    - '**/CheckboxesProvider.kt'
 
 state:
 - changed-files:
   - any-glob-to-any-file:
     - '**/AdvancedExpressionFoldingSettings.kt'
-    - '**/State.kt'
+    - '**/*State.kt'
 
 tests:
 - changed-files:
   - any-glob-to-any-file:
     - '**/*Test*'
+
+documentation:
+- changed-files:
+  - any-glob-to-any-file:
+    - '**/*.md'
+
+github-actions:
+- changed-files:
+  - any-glob-to-any-file:
+    - '.github/workflows/**'
+
+gradle:
+- changed-files:
+  - any-glob-to-any-file:
+    - 'build.gradle.kts'
+    - 'settings.gradle.kts'
+
+integration-layer:
+- changed-files:
+  - any-glob-to-any-file:
+    - '**/integration/**'
+
+action:
+- changed-files:
+  - any-glob-to-any-file:
+    - 'src/com/intellij/advancedExpressionFolding/action/**'
+
+settings-ui:
+- changed-files:
+  - any-glob-to-any-file:
+    - 'src/com/intellij/advancedExpressionFolding/view/**'
+
+plugin-xml:
+- changed-files:
+  - any-glob-to-any-file:
+    - 'resources/META-INF/*.xml'
+
+scripts:
+- changed-files:
+  - any-glob-to-any-file:
+    - 'scripts/**'
+
+examples-data:
+- changed-files:
+  - any-glob-to-any-file:
+    - 'examples/data/**'
+
+test-data:
+- changed-files:
+  - any-glob-to-any-file:
+    - 'testData/**'
+
+folded-expected:
+- changed-files:
+  - any-glob-to-any-file:
+    - 'folded/**'
+
+wiki:
+- changed-files:
+  - any-glob-to-any-file:
+    - 'wiki/**'
+    - 'wiki-clone/**'
+
+labeler:
+- changed-files:
+  - any-glob-to-any-file:
+    - '.github/labeler.yml'
+
+gradle-wrapper:
+- changed-files:
+  - any-glob-to-any-file:
+    - 'gradlew'
+    - 'gradlew.bat'
+    - 'gradle/wrapper/**'
+

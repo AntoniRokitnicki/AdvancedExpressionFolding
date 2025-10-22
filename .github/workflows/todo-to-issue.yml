@@ -1,11 +1,22 @@
-name: "Run TODO to Issue"
+name: "TODO to Issue Creator"
 
 on:
-  push:
   workflow_dispatch:
     inputs:
       INSERT_ISSUE_URLS:
         description: "Insert issue URLs back to code"
+        type: boolean
+        default: true
+      AUTO_ASSIGN:
+        description: "Auto-assign issues to actor"
+        type: boolean
+        default: true
+      CLOSE_ISSUES:
+        description: "Close issues when TODO removed"
+        type: boolean
+        default: true
+      AUTO_P:
+        description: "Auto-format issue body"
         type: boolean
         default: true
 
@@ -22,23 +33,22 @@ jobs:
         id: todo-to-issue
         uses: "alstr/todo-to-issue-action@v5.1.13"
         with:
-          AUTO_ASSIGN: "true"
-          CLOSE_ISSUES: "true"
-          AUTO_P: "true"
-          INSERT_ISSUE_URLS: "${{ github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.INSERT_ISSUE_URLS) }}"
+          AUTO_ASSIGN: "${{ inputs.AUTO_ASSIGN }}"
+          CLOSE_ISSUES: "${{ inputs.CLOSE_ISSUES }}"
+          AUTO_P: "${{ inputs.AUTO_P }}"
+          INSERT_ISSUE_URLS: "${{ inputs.INSERT_ISSUE_URLS }}"
           IDENTIFIERS: '[{"name": "TODO", "labels": ["TODO"]}]'
           ISSUE_TEMPLATE: |
-            ## Nowe TODO
+            ## TODO
             
             **Commit:** ${{ github.sha }}
-            **Autor:** @{{ github.actor }}
+            **Author:** @{{ github.actor }}
             
             {{ body }}
             
-            [Link do pliku]({{ url }})
-            ```
+            {{ url }}
+
             {{ snippet }}
-            ```
       - name: Set Git user
         if: steps.todo-to-issue.outputs.changes == 'true'
         run: |
@@ -47,8 +57,7 @@ jobs:
       - name: Commit and Push Changes
         if: steps.todo-to-issue.outputs.changes == 'true'
         run: |
+          git pull --rebase origin ${{ github.ref_name }}
           git add -A
-          if [[ `git status --porcelain` ]]; then
-            git commit -m "Add GitHub issue links to TODOs"
-            git push origin ${{ github.ref_name }}
-          fi
+          git commit -m "Add GitHub issue links to TODOs"
+          git push origin ${{ github.ref_name }} || exit 1
