@@ -32,6 +32,7 @@ open class LoggerBracketsExtensionBase(
         val split = logText.splitTextPattern() ?: return null
 
         val arguments = element.argumentExpressions.toMutableList().prepareArguments()
+        if (arguments.isEmpty()) return null
         var nextStringAddon = ""
         val hasTooManyArguments = split.size <= arguments.size
         var hasLast = false
