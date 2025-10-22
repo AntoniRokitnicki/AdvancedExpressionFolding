@@ -16,6 +16,9 @@ object LetReturnExt : IKotlinLanguageState by StateDelegate() {
         if (!kotlinQuickReturn) {
             return null
         }
+        if (isDebugSessionActive(element)) {
+            return null
+        }
         /*
         Expression expression = ForStatementExpressionExt.getForStatementExpression((PsiForStatement) element, document);
         if (expression != null) {
