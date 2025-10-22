@@ -9,6 +9,9 @@ import com.jetbrains.rd.util.firstOrNull
 object MethodDefaultParameterExt : BaseExtension(){
 
     fun enhanceMethodsWithDefaultParams(clazz: PsiClass): Expression? {
+        if (isDebugSessionActive(clazz)) {
+            return null
+        }
         val defaultParamMethods = findMethodsWithDefaultParams(clazz)
         return buildExpressions(defaultParamMethods, clazz)
     }
