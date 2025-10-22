@@ -78,7 +78,7 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
 
         override var globalOn: Boolean = true,
 
-        ) : IState, IConfig
+        ) : IState
 
     private fun updateAllState(value: Boolean, vararg excludeProperties: KMutableProperty<Boolean>) {
         val excluded = excludeProperties.map { it.toString() }
