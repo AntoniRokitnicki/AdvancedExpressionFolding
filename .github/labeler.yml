@@ -34,6 +34,11 @@ collapse-slicing:
   - any-glob-to-any-file:
     - '**/ArrayAccessExpressionExt.kt'
 
+collapse-logger-brackets:
+- changed-files:
+  - any-glob-to-any-file:
+    - '**/LoggerBracketsExt.kt'
+
 field-shift:
 - changed-files:
   - any-glob-to-any-file:
