@@ -1,0 +1,54 @@
+name: "Run TODO to Issue"
+
+on:
+  push:
+  workflow_dispatch:
+    inputs:
+      INSERT_ISSUE_URLS:
+        description: "Insert issue URLs back to code"
+        type: boolean
+        default: true
+
+jobs:
+  build:
+    runs-on: "ubuntu-latest"
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+    steps:
+      - uses: "actions/checkout@v4"
+      - name: "TODO to Issue"
+        id: todo-to-issue
+        uses: "alstr/todo-to-issue-action@v5.1.13"
+        with:
+          AUTO_ASSIGN: "true"
+          CLOSE_ISSUES: "true"
+          AUTO_P: "true"
+          INSERT_ISSUE_URLS: "${{ github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.INSERT_ISSUE_URLS) }}"
+          IDENTIFIERS: '[{"name": "TODO", "labels": ["TODO"]}]'
+          ISSUE_TEMPLATE: |
+            ## Nowe TODO
+            
+            **Commit:** ${{ github.sha }}
+            **Autor:** @{{ github.actor }}
+            
+            {{ body }}
+            
+            [Link do pliku]({{ url }})
+            ```
+            {{ snippet }}
+            ```
+      - name: Set Git user
+        if: steps.todo-to-issue.outputs.changes == 'true'
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+      - name: Commit and Push Changes
+        if: steps.todo-to-issue.outputs.changes == 'true'
+        run: |
+          git add -A
+          if [[ `git status --porcelain` ]]; then
+            git commit -m "Add GitHub issue links to TODOs"
+            git push origin ${{ github.ref_name }}
+          fi
