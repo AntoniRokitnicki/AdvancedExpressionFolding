@@ -5,20 +5,26 @@ import com.intellij.openapi.components.PersistentStateComponent
 import com.intellij.openapi.components.State
 import com.intellij.openapi.components.Storage
 import org.jetbrains.annotations.NotNull
+import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KClass
 import kotlin.reflect.KMutableProperty
 import kotlin.reflect.KMutableProperty0
+import kotlin.reflect.KProperty
 import kotlin.reflect.full.memberProperties
 import kotlin.reflect.jvm.javaType
 
 @State(name = "AdvancedExpressionFoldingSettings", storages = [Storage("editor.codeinsight.xml")])
-class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpressionFoldingSettings.State> {
+class AdvancedExpressionFoldingSettings :
+    PersistentStateComponent<AdvancedExpressionFoldingSettings.State>,
+    ReadOnlyProperty<Any?, AdvancedExpressionFoldingSettings.State> {
     private var myState = State()
     override fun getState(): State = myState
 
     override fun loadState(state: State) {
         myState = state.copy()
     }
+
+    override fun getValue(thisRef: Any?, property: KProperty<*>) = getInstance().state
 
     data class State(
         override var concatenationExpressionsCollapse: Boolean = true,
