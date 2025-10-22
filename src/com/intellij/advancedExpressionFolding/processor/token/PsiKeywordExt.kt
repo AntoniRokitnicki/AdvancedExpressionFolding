@@ -9,7 +9,7 @@ import com.intellij.psi.*
 object PsiKeywordExt : BaseExtension() {
 
     fun createExpression(keyword: PsiKeyword): Expression? =
-        finalRemoval.on(keyword)?.finalRemoval() ?: finalEmoji.on(keyword)?.finalEmoji()
+        finalRemoval.takeIfTrue(keyword)?.finalRemoval() ?: finalEmoji.takeIfTrue(keyword)?.finalEmoji()
 
     private fun PsiKeyword.finalEmoji(): Expression? = foldFinalsExceptFields { expr(Emoji.FINAL_LOCK.toString()) }
 

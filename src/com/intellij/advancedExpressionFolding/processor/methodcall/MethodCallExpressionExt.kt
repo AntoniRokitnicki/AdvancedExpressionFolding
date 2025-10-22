@@ -12,7 +12,7 @@ import com.intellij.advancedExpressionFolding.processor.language.FieldShiftExt
 import com.intellij.advancedExpressionFolding.processor.logger.LoggerBracketsExt
 import com.intellij.advancedExpressionFolding.processor.util.Helper
 import com.intellij.advancedExpressionFolding.processor.util.PropertyUtil.guessPropertyName
-import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
+import com.intellij.advancedExpressionFolding.settings.StateDelegate
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiElement
@@ -23,10 +23,9 @@ import com.intellij.psi.PsiMethodCallExpression
 import com.intellij.psi.PsiReferenceExpression
 import com.intellij.psi.PsiStatement
 
-object MethodCallExpressionExt {
+object MethodCallExpressionExt : StateDelegate() {
 
     fun getMethodCallExpression(element: PsiMethodCallExpression, document: Document): Expression? {
-        val settings = AdvancedExpressionFoldingSettings.getInstance()
         val referenceExpression = element.methodExpression
         val identifier = referenceExpression.children.firstOrNull { it is PsiIdentifier } ?: return null
         val qualifier = referenceExpression.qualifierExpression
@@ -35,7 +34,7 @@ object MethodCallExpressionExt {
 
         useMethodCallFactory(identifier, referenceExpression, document, qualifier, element)?.let { return it }
 
-        return onAnyArguments(element, settings, document, identifier, qualifier, referenceExpression)
+        return onAnyArguments(element, document, identifier, qualifier, referenceExpression)
     }
 
     private fun useMethodCallFactory(
@@ -86,19 +85,18 @@ object MethodCallExpressionExt {
 
     private fun onAnyArguments(
         element: PsiMethodCallExpression,
-        settings: AdvancedExpressionFoldingSettings,
         document: Document,
         identifier: PsiElement,
         qualifier: PsiExpression?,
         referenceExpression: PsiReferenceExpression
     ): Expression? {
-        if (settings.state.getSetExpressionsCollapse) {
+        if (getSetExpressionsCollapse) {
             onGetterSetter(element, document, identifier, qualifier)?.let { return it }
         }
         val resolved = referenceExpression.resolve()
         if (resolved is PsiMethod) {
             val psiClass = resolved.containingClass
-            onGetterRecord(element, settings, document, psiClass, qualifier, identifier)?.let { return it }
+            onGetterRecord(element, document, psiClass, qualifier, identifier)?.let { return it }
         }
         val text = identifier.text
         return LoggerBracketsExt.createExpression(element, text, document)
@@ -106,14 +104,13 @@ object MethodCallExpressionExt {
 
     private fun onGetterRecord(
         element: PsiMethodCallExpression,
-        settings: AdvancedExpressionFoldingSettings,
         document: Document,
         psiClass: com.intellij.psi.PsiClass?,
         qualifier: PsiExpression?,
         identifier: PsiElement
     ): Expression? {
         if (psiClass != null && psiClass.isRecord && element.argumentCount == 0) {
-            if (settings.state.getSetExpressionsCollapse) {
+            if (getSetExpressionsCollapse) {
                 val expression = qualifier?.let { BuildExpressionExt.getAnyExpression(it, document) }
                 return GetterRecord(
                     element,

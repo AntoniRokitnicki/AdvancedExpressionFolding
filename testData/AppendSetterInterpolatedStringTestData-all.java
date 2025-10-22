@@ -4,7 +4,7 @@ public class AppendSetterInterpolatedStringTestData {
     private String name;
 
     public static void main(String[] args) <fold text='{...}' expand='true'>{
-        StringBuilder sb1 = <fold text='' expand='false'>new StringBuilder().append(</fold>args[0]<fold text='' expand='false'>)</fold>;
+        StringBuilder sb1 = <fold text='args[0]' expand='false'>new StringBuilder().append(args[0])</fold>;
         sb1<fold text=' += ' expand='false'>.append(</fold>"Hello, <fold text='${' expand='false'>" + </fold>args[0]<fold text='}"' expand='false'>)</fold>;
         System.out.println(sb1<fold text='' expand='false'>.toString()</fold>);
         StringBuilder sb2 = <fold text='""' expand='false'>new StringBuilder("")</fold>;

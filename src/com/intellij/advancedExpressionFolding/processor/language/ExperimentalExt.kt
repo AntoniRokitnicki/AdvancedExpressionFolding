@@ -11,7 +11,7 @@ object ExperimentalExt : BaseExtension() {
 
     @JvmStatic
     fun createExpression(element: PsiReferenceExpression): Expression? {
-        return emojify.on(element)?.singletonField()
+        return emojify.takeIfTrue(element)?.singletonField()
     }
 
     private fun PsiReferenceExpression.singletonField(): Expression? {
