@@ -104,3 +104,117 @@ settings-configurable:
 - changed-files:
   - any-glob-to-any-file:
     - '**/SettingsConfigurable.kt'
+
+folding-service:
+- changed-files:
+  - any-glob-to-any-file:
+    - '**/FoldingService.kt'
+    - '**/FoldingServiceCoroutineScope.kt'
+
+folding-storage:
+- changed-files:
+  - any-glob-to-any-file:
+    - '**/Storage.kt'
+    - '**/EmptyStorage.kt'
+
+editor-listener:
+- changed-files:
+  - any-glob-to-any-file:
+    - '**/FoldingEditorCreatedListener.kt'
+
+plugin-unloading:
+- changed-files:
+  - any-glob-to-any-file:
+    - '**/PluginUnloadingListener.kt'
+
+integration-layer:
+- changed-files:
+  - any-glob-to-any-file:
+    - 'src/com/intellij/advancedExpressionFolding/integration/**'
+
+expression-processor:
+- changed-files:
+  - any-glob-to-any-file:
+    - 'src/com/intellij/advancedExpressionFolding/expression/**'
+
+action-handlers:
+- changed-files:
+  - any-glob-to-any-file:
+    - 'src/com/intellij/advancedExpressionFolding/action/**'
+
+diff-tools:
+- changed-files:
+  - any-glob-to-any-file:
+    - 'src/com/intellij/advancedExpressionFolding/diff/**'
+
+view-layer:
+- changed-files:
+  - any-glob-to-any-file:
+    - 'src/com/intellij/advancedExpressionFolding/view/**'
+
+resources-meta-inf:
+- changed-files:
+  - any-glob-to-any-file:
+    - 'resources/META-INF/**'
+
+scripts:
+- changed-files:
+  - any-glob-to-any-file:
+    - 'scripts/**'
+
+examples-data:
+- changed-files:
+  - any-glob-to-any-file:
+    - 'examples/data/**'
+
+test-data:
+- changed-files:
+  - any-glob-to-any-file:
+    - 'testData/**'
+
+folded-expected:
+- changed-files:
+  - any-glob-to-any-file:
+    - 'folded/**'
+
+documentation-top-level:
+- changed-files:
+  - any-glob-to-any-file:
+    - 'README.md'
+    - 'CHANGELOG.md'
+    - 'CONTRIBUTING.md'
+    - 'CODE_OF_CONDUCT.md'
+    - 'SUPPORT.md'
+    - 'SECURITY.md'
+
+wiki-docs:
+- changed-files:
+  - any-glob-to-any-file:
+    - 'wiki/**'
+    - 'wiki-clone/**'
+
+github-templates:
+- changed-files:
+  - any-glob-to-any-file:
+    - '.github/ISSUE_TEMPLATE/**'
+    - '.github/pull_request_template.md'
+
+github-config:
+- changed-files:
+  - any-glob-to-any-file:
+    - '.github/CODEOWNERS'
+    - '.github/dependabot.yml'
+    - '.github/labeler.yml'
+
+gradle-wrapper:
+- changed-files:
+  - any-glob-to-any-file:
+    - 'gradlew'
+    - 'gradlew.bat'
+    - 'gradle/wrapper/**'
+
+inspection-config:
+- changed-files:
+  - any-glob-to-any-file:
+    - 'qodana.yaml'
+    - '.editorconfig'
