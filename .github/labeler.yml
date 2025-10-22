@@ -1,0 +1,74 @@
+collapse-control-flow:
+- changed-files:
+  - any-glob-to-any-file:
+    - '**/IfExpressionExt.kt'
+    - '**/TernaryExpressionExt.kt'
+
+collapse-declaration:
+- changed-files:
+  - any-glob-to-any-file:
+    - '**/AssignmentExpressionExt.kt'
+    - '**/VariableDeclarationExpressionExt.kt'
+
+collapse-literals:
+- changed-files:
+  - any-glob-to-any-file:
+    - '**/ConcatenationExpressionExt.kt'
+    - '**/NumberLiteralExpressionExt.kt'
+    - '**/StringLiteralExpressionExt.kt'
+
+collapse-methods:
+- changed-files:
+  - any-glob-to-any-file:
+    - '**/MethodCallExpressionExt.kt'
+
+collapse-operators:
+- changed-files:
+  - any-glob-to-any-file:
+    - '**/BinaryExpressionExt.kt'
+    - '**/PolyadicExpressionExt.kt'
+    - '**/PrefixExpressionExt.kt'
+
+collapse-slicing:
+- changed-files:
+  - any-glob-to-any-file:
+    - '**/ArrayAccessExpressionExt.kt'
+
+field-shift:
+- changed-files:
+  - any-glob-to-any-file:
+    - '**/FieldShiftBuilder.kt'
+
+kotlin:
+- changed-files:
+  - any-glob-to-any-file:
+    - '**/kotlin.xml'
+    - '**/KotlinPluginUtils.kt'
+
+lombok:
+- changed-files:
+  - any-glob-to-any-file:
+    - '**/LombokState.kt'
+    - '**/PsiMethodExt.kt'
+    - 'processor/lombok/**'
+
+pseudoAnnotations:
+- changed-files:
+  - any-glob-to-any-file:
+    - 'pseudo/**'
+
+settings-ui:
+- changed-files:
+  - any-glob-to-any-file:
+    - '**/CheckboxesProvider.kt'
+
+state:
+- changed-files:
+  - any-glob-to-any-file:
+    - '**/AdvancedExpressionFoldingSettings.kt'
+    - '**/State.kt'
+
+tests:
+- changed-files:
+  - any-glob-to-any-file:
+    - '**/*Test*'
