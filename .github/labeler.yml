@@ -72,3 +72,35 @@ tests:
 - changed-files:
   - any-glob-to-any-file:
     - '**/*Test*'
+
+documentation:
+- changed-files:
+  - any-glob-to-any-file:
+    - '**/*.md'
+
+github-actions:
+- changed-files:
+  - any-glob-to-any-file:
+    - '.github/workflows/**'
+
+build-system:
+- changed-files:
+  - any-glob-to-any-file:
+    - 'build.gradle.kts'
+    - 'settings.gradle.kts'
+    - 'gradle/**'
+
+advanced-expression-folding-builder:
+- changed-files:
+  - any-glob-to-any-file:
+    - '**/AdvancedExpressionFoldingBuilder.kt'
+
+global-toggle-action:
+- changed-files:
+  - any-glob-to-any-file:
+    - '**/GlobalToggleFoldingAction.kt'
+
+settings-configurable:
+- changed-files:
+  - any-glob-to-any-file:
+    - '**/SettingsConfigurable.kt'
