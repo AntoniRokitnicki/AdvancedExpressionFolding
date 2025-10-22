@@ -4,6 +4,11 @@ collapse-control-flow:
     - '**/IfExpressionExt.kt'
     - '**/TernaryExpressionExt.kt'
 
+collapse-try-statements:
+- changed-files:
+  - any-glob-to-any-file:
+    - '**/PsiTryStatementExt.kt'
+
 collapse-declaration:
 - changed-files:
   - any-glob-to-any-file:
