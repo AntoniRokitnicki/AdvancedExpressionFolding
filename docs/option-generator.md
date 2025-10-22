@@ -31,6 +31,7 @@ The following JVM properties must be provided for meaningful output:
 The script uses comment markers such as `// NEW OPTION` to inject code in several existing files. Expect edits in the following locations:
 
 - `src/com/intellij/advancedExpressionFolding/settings/AdvancedExpressionFoldingSettings.kt`
+- `src/com/intellij/advancedExpressionFolding/settings/UnclassifiedFeatureState.kt`
 - `src/com/intellij/advancedExpressionFolding/settings/view/CheckboxesProvider.kt`
 - `examples/data/<VarName>TestData.java`
 - `test/com/intellij/advancedExpressionFolding/FoldingTest.kt`
