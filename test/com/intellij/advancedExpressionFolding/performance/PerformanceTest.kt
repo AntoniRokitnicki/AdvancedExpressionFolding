@@ -1,19 +1,44 @@
 package com.intellij.advancedExpressionFolding.performance
 
-import com.intellij.advancedExpressionFolding.FoldingTest
+import com.intellij.advancedExpressionFolding.FoldingTestCase
+import com.intellij.advancedExpressionFolding.registerStandardFoldingTests
 import com.intellij.platform.testFramework.core.FileComparisonFailedError
 import com.intellij.testFramework.PlatformTestUtil
-import org.junit.jupiter.api.AfterAll
-import org.junit.jupiter.api.MethodOrderer
-import org.junit.jupiter.api.TestMethodOrder
-import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable
+import io.kotest.core.spec.style.FunSpec
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.PrintStream
 
-@TestMethodOrder(MethodOrderer.DisplayName::class)
-@EnabledIfEnvironmentVariable(named = "performance-mode", matches = "1")
-class PerformanceTest : FoldingTest() {
+class PerformanceTest : FunSpec({
+    val enabled = System.getenv("performance-mode") == "1"
+    if (enabled) {
+        registerStandardFoldingTests(::PerformanceFoldingTestCase)
+
+        afterSpec {
+            if (methodNameToExecutionTimeMap.isEmpty()) return@afterSpec
+            val sum = methodNameToExecutionTimeMap.values.sum()
+            println("sum = $sum")
+            val results = buildString {
+                methodNameToExecutionTimeMap.toSortedMap().forEach { (name, time) ->
+                    append("        \"$name\" to $time\n")
+                }
+            }
+            val content = """
+package com.intellij.advancedExpressionFolding.performance
+
+object PerformanceResult {
+
+    @Suppress("unused")
+    val result = mapOf(
+$results    )
+}
+""".trimIndent()
+            File("test/com/intellij/advancedExpressionFolding/performance/performanceResult.kt").writeText(content)
+        }
+    }
+})
+
+private class PerformanceFoldingTestCase : FoldingTestCase() {
 
     private inline fun captureSystemOut(action: () -> Unit): String {
         val originalOut = System.out
@@ -39,53 +64,8 @@ class PerformanceTest : FoldingTest() {
         }
         val executionTime = output.substringAfter("attempt.median.ms").trim().substringBefore("\n").toLong()
         println("executionTime = $executionTime")
-        methodNameToExecutionTimeMap[testNameRule.methodName] = executionTime
+        methodNameToExecutionTimeMap[testName] = executionTime
     }
-
-    companion object {
-        @JvmStatic
-        @AfterAll
-        fun after() {
-            val sum = methodNameToExecutionTimeMap.values.sum()
-            println("sum = $sum")
-            val results = buildString {
-                methodNameToExecutionTimeMap.toSortedMap().forEach { (name, time) ->
-                    append("        ::$name to $time")
-                    append("\n")
-                }
-            }
-            val content = """
-package com.intellij.advancedExpressionFolding.performance
-
-import com.intellij.advancedExpressionFolding.FoldingTest
-import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable
-import kotlin.reflect.KFunction0
-
-@EnabledIfEnvironmentVariable(named = "run-mode", matches = "never")
-object PerformanceResult : FoldingTest() {
-
-    @Suppress("unused")
-    val result = performance { // sum=$sum
-$results
-    }
-
-    class PerformanceDSL {
-        infix fun (KFunction0<Unit>).to(@Suppress("UNUSED_PARAMETER") expectedValue: Int) {
-            // ignore
-        }
-    }
-
-    private fun performance(block: PerformanceDSL.() -> Unit) {
-        val dsl = PerformanceDSL()
-        dsl.block()
-    }
-
-}
-""".trimIndent()
-            File("test/com/intellij/advancedExpressionFolding/performance/performanceResult.kt").writeText(content)
-        }
-    }
-
 }
 
 val methodNameToExecutionTimeMap = mutableMapOf<String, Long>()

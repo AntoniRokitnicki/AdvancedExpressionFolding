@@ -7,23 +7,350 @@ import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFolding
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings.State
 import com.intellij.openapi.application.runInEdt
 import com.intellij.platform.testFramework.core.FileComparisonFailedError
-import org.junit.jupiter.api.Test
-import org.junitpioneer.jupiter.Stopwatch
+import io.kotest.core.spec.style.FunSpec
 import org.opentest4j.TestAbortedException
+import java.lang.reflect.InvocationTargetException
 import kotlin.reflect.KMutableProperty0
 
-@Stopwatch
-//TODO: maybe use @RetryingTest(maxAttempts = 3, suspendForMs = 100, onExceptions = <FindName>.class) when rarely IDE can't be start
-open class FoldingTest : BaseTest() {
+class FoldingTest : FunSpec({
+    registerStandardFoldingTests()
+})
+
+internal fun FunSpec.registerStandardFoldingTests(
+    caseFactory: () -> FoldingTestCase = ::FoldingTestCase,
+    excludedTests: Set<String> = emptySet(),
+) {
+    fun register(name: String, block: FoldingTestCase.() -> Unit) {
+        if (name in excludedTests) return
+        registerFoldingTest(name, caseFactory, block)
+    }
+
+    register("elvisTestData") {
+        doFoldingTest(state::checkExpressionsCollapse)
+    }
+
+    register("forRangeTestData") {
+        doFoldingTest(state::rangeExpressionsCollapse)
+    }
+
+    register("stringBuilderTestData") {
+        doFoldingTest(state::concatenationExpressionsCollapse)
+    }
+
+    register("interpolatedStringTestData") {
+        doFoldingTest(state::concatenationExpressionsCollapse)
+    }
+
+    register("getSetPutTestData") {
+        doFoldingTest(state::getExpressionsCollapse)
+    }
+
+    register("sliceTestData") {
+        doFoldingTest(state::slicingExpressionsCollapse)
+    }
+
+    register("appendSetterInterpolatedStringTestData") {
+        doFoldingTest(state::concatenationExpressionsCollapse, state::getSetExpressionsCollapse)
+    }
+
+    register("equalsCompareTestData") {
+        doFoldingTest(state::comparingExpressionsCollapse)
+    }
+
+    register("typeCastTestData") {
+        doFoldingTest(state::castExpressionsCollapse)
+    }
+
+    register("varTestData") {
+        doFoldingTest(state::varExpressionsCollapse)
+    }
+
+    register("getterSetterTestData") {
+        doFoldingTest(state::getSetExpressionsCollapse)
+    }
+
+    register("controlFlowSingleStatementTestData") {
+        doReadOnlyFoldingTest(state::controlFlowSingleStatementCodeBlockCollapse)
+    }
+
+    register("controlFlowMultiStatementTestData") {
+        doReadOnlyFoldingTest(state::controlFlowMultiStatementCodeBlockCollapse)
+    }
+
+    register("localDateTestData") {
+        doReadOnlyFoldingTest(state::comparingLocalDatesCollapse)
+    }
+
+    register("localDateLiteralTestData") {
+        doReadOnlyFoldingTest(state::localDateLiteralCollapse)
+    }
+
+    register("localDateLiteralPostfixTestData") {
+        doReadOnlyFoldingTest(state::localDateLiteralCollapse, state::localDateLiteralPostfixCollapse)
+    }
+
+    register("compactControlFlowTestData") {
+        doFoldingTest(state::compactControlFlowSyntaxCollapse)
+    }
+
+    register("semicolonTestData") {
+        doReadOnlyFoldingTest(state::semicolonsCollapse)
+    }
+
+    register("assertTestData") {
+        doReadOnlyFoldingTest(state::assertsCollapse)
+    }
+
+    register("concatenationTestData") {
+        doFoldingTest(state::concatenationExpressionsCollapse, state::optional, state::streamSpread)
+    }
+
+    register("optionalTestData") {
+        doFoldingTest(state::concatenationExpressionsCollapse, state::optional, state::streamSpread)
+    }
+
+    register("spreadTestData") {
+        doFoldingTest(state::concatenationExpressionsCollapse, state::optional, state::streamSpread)
+    }
+
+    register("lombokTestData") {
+        doFoldingTest(state::lombok)
+    }
+
+    register("lombokUsageTestData") {
+        doFoldingTest(state::lombok)
+    }
+
+    register("fieldShiftBuilder") {
+        doFoldingTest(state::fieldShift, state::getSetExpressionsCollapse)
+    }
+
+    register("fieldShiftSetters") {
+        doFoldingTest(state::fieldShift, state::getSetExpressionsCollapse)
+    }
+
+    register("letReturnIt") {
+        doFoldingTest(state::varExpressionsCollapse, state::kotlinQuickReturn)
+    }
+
+    register("ifNullSafeData") {
+        doFoldingTest(state::checkExpressionsCollapse, state::getSetExpressionsCollapse, state::ifNullSafe)
+    }
+
+    register("logBrackets") {
+        doFoldingTest(state::getSetExpressionsCollapse, state::logFolding)
+    }
+
+    register("logFoldingTextBlocksTestData") {
+        doFoldingTest(state::getSetExpressionsCollapse, state::logFolding, state::logFoldingTextBlocks)
+    }
+
+    register("fieldShiftFields") {
+        doFoldingTest(state::getSetExpressionsCollapse, state::fieldShift)
+    }
+
+    register("destructuringAssignmentArrayTestData") {
+        doFoldingTest(state::destructuring, state::getSetExpressionsCollapse, state::varExpressionsCollapse)
+    }
+
+    register("destructuringAssignmentArrayWithoutValTestData") {
+        doFoldingTest(state::destructuring, state::getSetExpressionsCollapse)
+    }
+
+    register("destructuringAssignmentListTestData") {
+        doFoldingTest(state::destructuring, state::getSetExpressionsCollapse, state::varExpressionsCollapse)
+    }
+
+    register("destructuringAssignmentListWithoutValTestData") {
+        doFoldingTest(state::destructuring, state::getSetExpressionsCollapse)
+    }
+
+    register("printlnTestData") {
+        doFoldingTest(state::println)
+    }
+
+    register("nullableAnnotationTestData") {
+        doFoldingTest(state::nullable, state::lombok)
+    }
+
+    register("nullableAnnotationCheckNotNullTestData") {
+        doFoldingTest(state::nullable, state::getSetExpressionsCollapse)
+    }
+
+    register("nullableAnnotationCheckNotNullFieldShiftTestData") {
+        doFoldingTest(state::nullable, state::getSetExpressionsCollapse, state::fieldShift)
+    }
+
+    register("constTestData") {
+        doFoldingTest(state::const)
+    }
+
+    register("finalRemovalTestData") {
+        doFoldingTest(state::finalRemoval)
+    }
+
+    register("finalEmojiTestData") {
+        @Suppress("DEPRECATION")
+        doFoldingTest(state::finalEmoji)
+    }
+
+    register("lombokDirtyOffTestData") {
+        doFoldingTest(state::lombok, state::lombokDirtyOff)
+    }
+
+    register("expressionFuncTestData") {
+        doFoldingTest(state::expressionFunc)
+    }
+
+    register("dynamicTestData") {
+        val dynamicProvider = object : IDynamicDataProvider {
+            override fun parse(): List<DynamicMethodCall> {
+                return parseToml(
+                    """
+normalMethod.method = 'normalMethod'
+normalMethod.newName = 'changedNormalMethod'
+staticMethod.method = 'staticMethod'
+staticMethod.newName = 'changedStaticMethod'
+                    """.trimIndent(),
+                )
+            }
+        }
+        doFoldingTest(state::dynamic, state::getSetExpressionsCollapse, dynamic = dynamicProvider)
+    }
+
+    register("arithmeticExpressionsTestData") {
+        @Suppress("DEPRECATION")
+        doFoldingTest(state::arithmeticExpressions)
+    }
+
+    register("emojifyTestData") {
+        @Suppress("DEPRECATION")
+        doFoldingTest(state::emojify)
+    }
+
+    register("interfaceExtensionPropertiesTestData") {
+        doFoldingTest(state::interfaceExtensionProperties, state::lombok, state::nullable)
+    }
+
+    register("patternMatchingInstanceofTestData") {
+        doFoldingTest(state::patternMatchingInstanceof)
+    }
+
+    register("summaryParentOverrideTestData") {
+        doFoldingTest(state::summaryParentOverride)
+    }
+
+    register("constructorReferenceNotationTestData") {
+        doFoldingTest(state::constructorReferenceNotation)
+    }
+
+    register("constructorReferenceNotationWithConstTestData") {
+        doFoldingTest(state::constructorReferenceNotation, state::const)
+    }
+
+    register("methodDefaultParametersTestData") {
+        doFoldingTest(state::methodDefaultParameters)
+    }
+
+    register("lombokPatternOffTestData") {
+        state.lombokPatternOff = "LombokPa[t]{2}ernOffTestData"
+        try {
+            doFoldingTest(state::lombok)
+        } finally {
+            state.lombokPatternOff = null
+        }
+    }
+
+    register("lombokPatternOffNegativeTestData") {
+        state.lombokPatternOff = "LombokPatternOffTestData"
+        try {
+            doFoldingTest(state::lombok)
+        } finally {
+            state.lombokPatternOff = null
+        }
+    }
+
+    register("overrideHideTestData") {
+        doFoldingTest(state::overrideHide)
+    }
+
+    register("suppressWarningsHideTestData") {
+        doFoldingTest(state::suppressWarningsHide)
+    }
+
+    register("experimentalTestData") {
+        doFoldingTest(state::experimental, state::nullable, state::const, state::lombok, state::getExpressionsCollapse)
+    }
+}
+
+internal fun FunSpec.registerFoldingTest(
+    name: String,
+    caseFactory: () -> FoldingTestCase = ::FoldingTestCase,
+    testBody: FoldingTestCase.() -> Unit,
+) {
+    test(name) {
+        withFoldingTestCase(name, caseFactory, testBody)
+    }
+}
+
+internal suspend fun withFoldingTestCase(
+    name: String,
+    caseFactory: () -> FoldingTestCase = ::FoldingTestCase,
+    testBody: FoldingTestCase.() -> Unit,
+) {
+    val testCase = caseFactory()
+    testCase.initializeTestName(name)
+    var beforeSucceeded = false
+    try {
+        testCase.beforeTest()
+        beforeSucceeded = true
+        testCase.testBody()
+    } finally {
+        if (beforeSucceeded) {
+            testCase.afterTest()
+        }
+    }
+}
+
+open class FoldingTestCase : BaseTest() {
 
     class TooComplexException : TestAbortedException("TOO COMPLEX FOLDING")
     class FoldingChangedException : AssertionError()
 
-    protected val state: State by lazy {
-        getInstance().state
+    val state: State by lazy { getInstance().state }
+
+    fun initializeTestName(name: String) {
+        val testCase = getUnderlyingTestCase()
+        val method = findLifecycleMethod(testCase.javaClass, "setName", String::class.java)
+        invokeLifecycle(testCase, method, name)
+        val testNameRuleField = findLifecycleFieldOrNull(javaClass, "testNameRule")
+        val testNameRule = testNameRuleField?.get(this)
+        if (testNameRule != null) {
+            val setMethodName = runCatching {
+                findLifecycleMethod(testNameRule.javaClass, "setMethodName", String::class.java)
+            }.getOrNull()
+            if (setMethodName != null) {
+                invokeLifecycle(testNameRule, setMethodName, name)
+            } else {
+                val methodNameField = findLifecycleFieldOrNull(testNameRule.javaClass, "methodName")
+                methodNameField?.set(testNameRule, name)
+            }
+        }
     }
 
-    open fun assignState(vararg turnOnProperties: KMutableProperty0<Boolean>,) {
+    open fun beforeTest() {
+        val testCase = getUnderlyingTestCase()
+        val method = findLifecycleMethod(testCase.javaClass, "setUp")
+        invokeLifecycle(testCase, method)
+    }
+
+    open fun afterTest() {
+        val testCase = getUnderlyingTestCase()
+        val method = findLifecycleMethod(testCase.javaClass, "tearDown")
+        invokeLifecycle(testCase, method)
+    }
+
+    open fun assignState(vararg turnOnProperties: KMutableProperty0<Boolean>) {
         getInstance().disableAll()
         turnOnProperties.forEach {
             it.set(true)
@@ -47,9 +374,9 @@ open class FoldingTest : BaseTest() {
         }
     }
 
-    private fun doReadOnlyFoldingTest(
+    open fun doReadOnlyFoldingTest(
         vararg turnOnProperties: KMutableProperty0<Boolean>,
-        dynamic: IDynamicDataProvider = TestDynamicDataProvider()
+        dynamic: IDynamicDataProvider = TestDynamicDataProvider(),
     ) {
         assignState(*turnOnProperties)
         MethodCallFactory.initialize(dynamic)
@@ -58,491 +385,60 @@ open class FoldingTest : BaseTest() {
         }
     }
 
-    /**
-     * [data.ElvisTestData]
-     */
-    @Test
-    open fun elvisTestData() {
-        doFoldingTest(state::checkExpressionsCollapse)
-    }
-
-    /**
-     * [data.ForRangeTestData]
-     */
-    @Test
-    open fun forRangeTestData() {
-        doFoldingTest(state::rangeExpressionsCollapse)
-    }
-
-    /**
-     * [data.StringBuilderTestData]
-     */
-    @Test
-    open fun stringBuilderTestData() {
-        doFoldingTest(state::concatenationExpressionsCollapse)
-    }
-
-    /**
-     * [data.InterpolatedStringTestData]
-     */
-    @Test
-    open fun interpolatedStringTestData() {
-        doFoldingTest(state::concatenationExpressionsCollapse)
-    }
-
-    /**
-     * [data.GetSetPutTestData]
-     */
-    @Test
-    open fun getSetPutTestData() {
-        doFoldingTest(state::getExpressionsCollapse)
-    }
-
-    /**
-     * [data.SliceTestData]
-     */
-    @Test
-    open fun sliceTestData() {
-        doFoldingTest(state::slicingExpressionsCollapse)
-    }
-
-    /**
-     * [data.AppendSetterInterpolatedStringTestData]
-     */
-    @Test
-    open fun appendSetterInterpolatedStringTestData() {
-        doFoldingTest(state::concatenationExpressionsCollapse, state::getSetExpressionsCollapse)
-    }
-
-    /**
-     * [data.EqualsCompareTestData]
-     */
-    @Test
-    open fun equalsCompareTestData() {
-        doFoldingTest(state::comparingExpressionsCollapse)
-    }
-
-    /**
-     * [data.TypeCastTestData]
-     */
-    @Test
-    open fun typeCastTestData() {
-        doFoldingTest(state::castExpressionsCollapse)
-    }
-
-    /**
-     * [data.VarTestData]
-     */
-    @Test
-    open fun varTestData() {
-        doFoldingTest(state::varExpressionsCollapse)
-    }
-
-    /**
-     * [data.GetterSetterTestData]
-     */
-    @Test
-    open fun getterSetterTestData() {
-        doFoldingTest(state::getSetExpressionsCollapse)
-    }
-
-    /**
-     * [data.ControlFlowSingleStatementTestData]
-     */
-    @Test
-    open fun controlFlowSingleStatementTestData() {
-        // TODO: Test with different indentation settings
-        doReadOnlyFoldingTest(state::controlFlowSingleStatementCodeBlockCollapse)
-    }
-
-    /**
-     * [data.ControlFlowMultiStatementTestData]
-     */
-    @Test
-    open fun controlFlowMultiStatementTestData() {
-        // TODO: Test with different indentation settings
-        doReadOnlyFoldingTest(state::controlFlowMultiStatementCodeBlockCollapse)
-    }
-
-    /**
-     * [data.LocalDateTestData]
-     */
-    @Test
-    open fun localDateTestData() {
-        doReadOnlyFoldingTest(state::comparingLocalDatesCollapse)
-    }
-
-    /**
-     * [data.LocalDateLiteralTestData]
-     */
-    @Test
-    open fun localDateLiteralTestData() {
-        doReadOnlyFoldingTest(state::localDateLiteralCollapse)
-    }
-
-    /**
-     * [data.LocalDateLiteralPostfixTestData]
-     */
-    @Test
-    open fun localDateLiteralPostfixTestData() {
-        doReadOnlyFoldingTest(state::localDateLiteralCollapse, state::localDateLiteralPostfixCollapse)
-    }
-
-    /**
-     * [data.CompactControlFlowTestData]
-     */
-    @Test
-    open fun compactControlFlowTestData() {
-        doFoldingTest(state::compactControlFlowSyntaxCollapse)
-    }
-
-    /**
-     * [data.SemicolonTestData]
-     */
-    @Test
-    open fun semicolonTestData() {
-        doReadOnlyFoldingTest(state::semicolonsCollapse)
-    }
-
-    /**
-     * [data.AssertTestData]
-     */
-    @Test
-    open fun assertTestData() {
-        doReadOnlyFoldingTest(state::assertsCollapse)
-    }
-
-    /**
-     * [data.ConcatenationTestData]
-     */
-    @Test
-    open fun concatenationTestData() {
-        doFoldingTest(state::concatenationExpressionsCollapse, state::optional, state::streamSpread)
-    }
-
-    /**
-     * [data.OptionalTestData]
-     */
-    @Test
-    open fun optionalTestData() {
-        doFoldingTest(state::concatenationExpressionsCollapse, state::optional, state::streamSpread)
-    }
-
-    /**
-     * [data.SpreadTestData]
-     */
-    @Test
-    open fun spreadTestData() {
-        doFoldingTest(state::concatenationExpressionsCollapse, state::optional, state::streamSpread)
-    }
-
-    /**
-     * [data.LombokTestData]
-     */
-    @Test
-    open fun lombokTestData() {
-        doFoldingTest(state::lombok)
-    }
-
-    @Test
-    open fun lombokUsageTestData() {
-        doFoldingTest(state::lombok)
-    }
-
-    /**
-     * [data.FieldShiftBuilder]
-     */
-    @Test
-    open fun fieldShiftBuilder() {
-        doFoldingTest(state::fieldShift, state::getSetExpressionsCollapse)
-    }
-
-    /**
-     * [data.FieldShiftSetters]
-     */
-    @Test
-    open fun fieldShiftSetters() {
-        doFoldingTest(state::fieldShift, state::getSetExpressionsCollapse)
-    }
-
-    /**
-     * [data.LetReturnIt]
-     */
-    @Test
-    open fun letReturnIt() {
-        doFoldingTest(state::varExpressionsCollapse, state::kotlinQuickReturn)
-    }
-
-    /**
-     * [data.IfNullSafeData]
-     */
-    @Test
-    open fun ifNullSafeData() {
-        doFoldingTest(state::checkExpressionsCollapse, state::getSetExpressionsCollapse, state::ifNullSafe)
-    }
-
-    /**
-     * [data.LogBrackets]
-     */
-    @Test
-    open fun logBrackets() {
-        doFoldingTest(state::getSetExpressionsCollapse, state::logFolding)
-    }
-    /**
-     * [data.LogFoldingTextBlocksTestData]
-     */
-    @Test
-    fun logFoldingTextBlocksTestData() {
-        doFoldingTest(state::getSetExpressionsCollapse, state::logFolding, state::logFoldingTextBlocks)
-    }
-
-    /**
-     * [data.FieldShiftFields]
-     */
-    @Test
-    open fun fieldShiftFields() {
-        doFoldingTest(state::getSetExpressionsCollapse, state::fieldShift)
-    }
-
-    /**
-     * [data.DestructuringAssignmentArrayTestData]
-     */
-    @Test
-    open fun destructuringAssignmentArrayTestData() {
-        doFoldingTest(state::destructuring, state::getSetExpressionsCollapse, state::varExpressionsCollapse)
-    }
-
-    /**
-     * [data.DestructuringAssignmentArrayWithoutValTestData]
-     */
-    @Test
-    open fun destructuringAssignmentArrayWithoutValTestData() {
-        doFoldingTest(state::destructuring, state::getSetExpressionsCollapse)
-    }
-
-    /**
-     * [data.DestructuringAssignmentListTestData]
-     */
-    @Test
-    open fun destructuringAssignmentListTestData() {
-        doFoldingTest(state::destructuring, state::getSetExpressionsCollapse, state::varExpressionsCollapse)
-    }
-
-    /**
-     * [data.DestructuringAssignmentListWithoutValTestData]
-     */
-    @Test
-    open fun destructuringAssignmentListWithoutValTestData() {
-        doFoldingTest(state::destructuring, state::getSetExpressionsCollapse)
-    }
-
-    /**
-     * [data.PrintlnTestData]
-     */
-    @Test
-    open fun printlnTestData() {
-        doFoldingTest(state::println)
-    }
-
-    /**
-     * [data.NullableAnnotationTestData]
-     */
-    @Test
-    open fun nullableAnnotationTestData() {
-        doFoldingTest(state::nullable, state::lombok)
-    }
-
-    /**
-     * [data.NullableAnnotationCheckNotNullTestData]
-     */
-    @Test
-    open fun nullableAnnotationCheckNotNullTestData() {
-        doFoldingTest(state::nullable, state::getSetExpressionsCollapse)
-    }
-    /**
-     * [data.NullableAnnotationCheckNotNullFieldShiftTestData]
-     */
-    @Test
-    open fun nullableAnnotationCheckNotNullFieldShiftTestData() {
-        doFoldingTest(state::nullable, state::getSetExpressionsCollapse, state::fieldShift)
-    }
-
-    /**
-     * [data.ConstTestData]
-     */
-    @Test
-    open fun constTestData() {
-        doFoldingTest(state::const)
-    }
-
-    /**
-     * [data.FinalRemovalTestData]
-     */
-    @Test
-    open fun finalRemovalTestData() {
-        doFoldingTest(state::finalRemoval)
-    }
-
-    /**
-     * [data.FinalEmojiTestData]
-     */
-    @Test
-    open fun finalEmojiTestData() {
-        @Suppress("DEPRECATION")
-        doFoldingTest(state::finalEmoji)
-    }
-
-    /**
-     * [data.LombokDirtyOffTestData]
-     */
-    @Test
-    open fun lombokDirtyOffTestData() {
-        doFoldingTest(state::lombok, state::lombokDirtyOff)
-    }
-
-    /**
-     * [data.Expressionopen funcTestData]
-     */
-    @Test
-    open fun expressionFuncTestData() {
-        doFoldingTest(state::expressionFunc)
-    }
-
-    /**
-     * [data.DynamicTestData]
-     */
-    @Test
-    open fun dynamicTestData() {
-        val dynamicProvider = object : IDynamicDataProvider {
-            override fun parse(): List<DynamicMethodCall> {
-                return parseToml(
-                    """
-normalMethod.method = 'normalMethod'
-normalMethod.newName = 'changedNormalMethod'
-staticMethod.method = 'staticMethod'
-staticMethod.newName = 'changedStaticMethod'
-                """.trimIndent()
-                )
+    private fun findLifecycleMethod(targetClass: Class<*>, name: String, vararg parameterTypes: Class<*>): java.lang.reflect.Method {
+        var type: Class<*>? = targetClass
+        while (type != null) {
+            try {
+                return type.getDeclaredMethod(name, *parameterTypes).apply {
+                    isAccessible = true
+                }
+            } catch (_: NoSuchMethodException) {
+                type = type.superclass
             }
-
         }
-        doFoldingTest(state::dynamic, state::getSetExpressionsCollapse, dynamic = dynamicProvider)
+        error("Method $name not found on ${targetClass.name}")
     }
 
-    /**
-     * [data.ArithmeticExpressionsTestData]
-     */
-    @Test
-    open fun arithmeticExpressionsTestData() {
-        @Suppress("DEPRECATION")
-        doFoldingTest(state::arithmeticExpressions)
+    private fun findLifecycleFieldOrNull(targetClass: Class<*>, name: String): java.lang.reflect.Field? {
+        var type: Class<*>? = targetClass
+        while (type != null) {
+            try {
+                return type.getDeclaredField(name).apply {
+                    isAccessible = true
+                }
+            } catch (_: NoSuchFieldException) {
+                type = type.superclass
+            }
+        }
+        return null
     }
 
-    /**
-     * [data.EmojifyTestData]
-     */
-    @Test
-    open fun emojifyTestData() {
-        @Suppress("DEPRECATION")
-        doFoldingTest(state::emojify)
-    }
-
-    /**
-     * [data.InterfaceExtensionPropertiesTestData]
-     */
-    @Test
-    open fun interfaceExtensionPropertiesTestData() {
-        doFoldingTest(state::interfaceExtensionProperties, state::lombok, state::nullable)
-    }
-
-    /**
-     * [data.PatternMatchingInstanceofTestData]
-     */
-    @Test
-    open fun patternMatchingInstanceofTestData() {
-        doFoldingTest(state::patternMatchingInstanceof)
-    }
-
-    /**
-     * [data.SummaryParentOverrideTestData]
-     */
-    @Test
-    open fun summaryParentOverrideTestData() {
-        doFoldingTest(state::summaryParentOverride)
-    }
-
-    /**
-     * [data.ConstructorReferenceNotationTestData]
-     */
-    @Test
-    open fun constructorReferenceNotationTestData() {
-        doFoldingTest(state::constructorReferenceNotation)
-    }
-
-    /**
-     * [data.ConstructorReferenceNotationWithConstTestData]
-     */
-    @Test
-    open fun constructorReferenceNotationWithConstTestData() {
-        doFoldingTest(state::constructorReferenceNotation, state::const)
-    }
-
-
-    /**
-     * [data.MethodDefaultParametersTestData]
-     */
-    @Test
-    open fun methodDefaultParametersTestData() {
-        doFoldingTest(state::methodDefaultParameters)
-    }
-
-    /**
-     * [data.LombokPatternOffTestData]
-     */
-    @Test
-    open fun lombokPatternOffTestData() {
-        state.lombokPatternOff = "LombokPa[t]{2}ernOffTestData"
+    private fun invokeLifecycle(target: Any, method: java.lang.reflect.Method, vararg args: Any?) {
+        val targetMethod = if (method.declaringClass.isInstance(target)) {
+            method
+        } else {
+            val compatibleDeclaringClass = Class.forName(method.declaringClass.name, false, target.javaClass.classLoader)
+            compatibleDeclaringClass.getDeclaredMethod(method.name, *method.parameterTypes).apply {
+                isAccessible = true
+            }
+        }
         try {
-            doFoldingTest(state::lombok)
-        } finally {
-            state.lombokPatternOff = null
-        }
-    }
-    /**
-     * [data.LombokPatternOffNegativeTestData]
-     */
-    @Test
-    open fun lombokPatternOffNegativeTestData() {
-        state.lombokPatternOff = "LombokPatternOffTestData"
-        try {
-            doFoldingTest(state::lombok)
-        } finally {
-            state.lombokPatternOff = null
+            targetMethod.invoke(target, *args)
+        } catch (e: InvocationTargetException) {
+            val cause = e.targetException ?: e
+            when (cause) {
+                is RuntimeException -> throw cause
+                is Error -> throw cause
+                else -> throw RuntimeException(cause)
+            }
+        } catch (e: IllegalAccessException) {
+            throw RuntimeException(e)
         }
     }
 
-    /**
-     * [data.OverrideHideTestData]
-     */
-    @Test
-    fun overrideHideTestData() {
-        doFoldingTest(state::overrideHide)
-    }
-    /**
-     * [data.SuppressWarningsHideTestData]
-     */
-    @Test
-    fun suppressWarningsHideTestData() {
-        doFoldingTest(state::suppressWarningsHide)
-    }
-
-    // NEW OPTION
-    /**
-     * [data.ExperimentalTestData]
-     */
-    @Test
-    open fun experimentalTestData() {
-        doFoldingTest(state::experimental, state::nullable, state::const, state::lombok, state::getExpressionsCollapse)
+    private fun getUnderlyingTestCase(): Any {
+        val testCase = findLifecycleFieldOrNull(javaClass, "testCase")?.get(this)
+        return testCase ?: error("JUnit testCase field is not initialized")
     }
 
 }
