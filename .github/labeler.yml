@@ -29,6 +29,11 @@ collapse-operators:
     - '**/PolyadicExpressionExt.kt'
     - '**/PrefixExpressionExt.kt'
 
+collapse-type-casts:
+- changed-files:
+  - any-glob-to-any-file:
+    - '**/PsiTypeCastExpressionExt.kt'
+
 collapse-slicing:
 - changed-files:
   - any-glob-to-any-file:
