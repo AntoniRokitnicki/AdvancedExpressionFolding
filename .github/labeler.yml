@@ -4,12 +4,27 @@ collapse-control-flow:
     - '**/IfExpressionExt.kt'
     - '**/TernaryExpressionExt.kt'
 
-
 collapse-loop-statements:
 - changed-files:
   - any-glob-to-any-file:
     - '**/LoopExt.kt'
     - '**/ForStatementExpressionExt.kt'
+    
+collapse-constructor-references:
+- changed-files:
+  - any-glob-to-any-file:
+    - '**/ConstructorReferenceExt.kt'
+    - '**/MethodReferenceExt.kt'
+    
+collapse-pattern-matching:
+- changed-files:
+  - any-glob-to-any-file:
+    - '**/PatternMatchingExt.kt'
+    
+collapse-try-statements:
+- changed-files:
+  - any-glob-to-any-file:
+    - '**/PsiTryStatementExt.kt'
 
 collapse-declaration:
 - changed-files:
@@ -29,6 +44,17 @@ collapse-methods:
   - any-glob-to-any-file:
     - '**/MethodCallExpressionExt.kt'
 
+collapse-null-safety:
+- changed-files:
+  - any-glob-to-any-file:
+    - '**/IfNullSafeExt.kt'
+    - '**/NullableExt.kt'
+    
+collapse-single-expression-functions:
+- changed-files:
+  - any-glob-to-any-file:
+    - '**/SingleExpressionFunctionExt.kt'
+
 collapse-operators:
 - changed-files:
   - any-glob-to-any-file:
@@ -36,10 +62,24 @@ collapse-operators:
     - '**/PolyadicExpressionExt.kt'
     - '**/PrefixExpressionExt.kt'
 
+collapse-println:
+- changed-files:
+  - any-glob-to-any-file:
+    - '**/PrintlnExt.kt'
+collapse-type-casts:
+- changed-files:
+  - any-glob-to-any-file:
+    - '**/PsiTypeCastExpressionExt.kt'
+
 collapse-slicing:
 - changed-files:
   - any-glob-to-any-file:
     - '**/ArrayAccessExpressionExt.kt'
+
+collapse-logger-brackets:
+- changed-files:
+  - any-glob-to-any-file:
+    - '**/LoggerBracketsExt.kt'
 
 field-shift:
 - changed-files:
