@@ -38,6 +38,12 @@ collapse-methods:
   - any-glob-to-any-file:
     - '**/MethodCallExpressionExt.kt'
 
+collapse-null-safety:
+- changed-files:
+  - any-glob-to-any-file:
+    - '**/IfNullSafeExt.kt'
+    - '**/NullableExt.kt'
+    
 collapse-single-expression-functions:
 - changed-files:
   - any-glob-to-any-file:
