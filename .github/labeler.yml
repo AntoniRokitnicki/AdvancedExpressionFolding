@@ -44,6 +44,11 @@ collapse-methods:
   - any-glob-to-any-file:
     - '**/MethodCallExpressionExt.kt'
 
+collapse-default-params:
+- changed-files:
+  - any-glob-to-any-file:
+    - '**/MethodDefaultParameterExt.kt'
+    
 collapse-null-safety:
 - changed-files:
   - any-glob-to-any-file:
