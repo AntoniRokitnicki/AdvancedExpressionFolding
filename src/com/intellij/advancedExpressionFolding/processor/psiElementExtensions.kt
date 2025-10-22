@@ -13,6 +13,7 @@ import com.intellij.psi.search.LocalSearchScope
 import com.intellij.psi.search.searches.ReferencesSearch
 import com.intellij.psi.util.MethodSignature
 import com.intellij.psi.util.PsiTypesUtil
+import com.intellij.xdebugger.XDebuggerManager
 
 fun isNull(type: PsiType?): Boolean = (type as? PsiPrimitiveType)?.name == "null"
 
@@ -49,6 +50,10 @@ fun PsiExpressionList.filterOutWhiteSpaceAndTokens() = children.filter {
 fun PsiElement.isIgnorable() = this is PsiJavaToken || isWhitespace()
 
 fun PsiElement.isWhitespace() = this is PsiWhiteSpace
+
+
+fun isDebugSessionActive(element: PsiElement): Boolean =
+    XDebuggerManager.getInstance(element.project).currentSession != null
 
 
 val PsiCall.argumentExpressions: Array<PsiExpression>
