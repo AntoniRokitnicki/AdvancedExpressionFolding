@@ -22,6 +22,11 @@ collapse-methods:
   - any-glob-to-any-file:
     - '**/MethodCallExpressionExt.kt'
 
+collapse-single-expression-functions:
+- changed-files:
+  - any-glob-to-any-file:
+    - '**/SingleExpressionFunctionExt.kt'
+
 collapse-operators:
 - changed-files:
   - any-glob-to-any-file:
