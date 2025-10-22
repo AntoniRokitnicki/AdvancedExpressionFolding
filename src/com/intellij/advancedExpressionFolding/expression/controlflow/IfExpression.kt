@@ -3,7 +3,6 @@ package com.intellij.advancedExpressionFolding.expression.controlflow
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.processor.language.java.PatternMatchingExt
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
-import com.intellij.advancedExpressionFolding.settings.IControlFlowState
 import com.intellij.lang.folding.FoldingDescriptor
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.editor.FoldingGroup
@@ -253,7 +252,7 @@ class IfExpression(
                 element.condition != null
         }
 
-        fun isAssertExpression(state: IControlFlowState, element: PsiIfStatement): Boolean {
+        fun isAssertExpression(state: AdvancedExpressionFoldingSettings.State, element: PsiIfStatement): Boolean {
             val condition = element.condition
             if (!state.assertsCollapse || condition !is PsiBinaryExpression) {
                 return false
