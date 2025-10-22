@@ -5,10 +5,10 @@ import com.intellij.advancedExpressionFolding.expression.math.basic.Negate
 import com.intellij.advancedExpressionFolding.expression.math.basic.NotEqual
 import com.intellij.advancedExpressionFolding.expression.operation.basic.Append
 import com.intellij.advancedExpressionFolding.expression.operation.basic.Equal
-import com.intellij.advancedExpressionFolding.processor.argumentExpressions
 import com.intellij.advancedExpressionFolding.expression.operation.basic.GreaterEqual
+import com.intellij.advancedExpressionFolding.processor.argumentExpressions
 import com.intellij.advancedExpressionFolding.processor.util.Helper
-import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
+import com.intellij.advancedExpressionFolding.settings.StateDelegate
 import com.intellij.openapi.editor.Document
 import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiExpression
@@ -16,16 +16,14 @@ import com.intellij.psi.PsiIdentifier
 import com.intellij.psi.PsiMethod
 import com.intellij.psi.PsiMethodCallExpression
 import com.intellij.psi.PsiPrefixExpression
-import com.intellij.psi.PsiReferenceExpression
 
-object PrefixExpressionExt {
+object PrefixExpressionExt : StateDelegate() {
 
     fun getPrefixExpression(element: PsiPrefixExpression, document: Document): Expression? {
-        val settings = AdvancedExpressionFoldingSettings.getInstance()
         val operand = element.operand ?: return null
         val sign = element.operationSign.text
         return when (sign) {
-            "!" -> handleNegation(element, operand, document, settings)
+            "!" -> handleNegation(element, operand, document)
             "-" -> {
                 val expression = com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt.getAnyExpression(operand, document)
                 Negate(element, element.textRange, listOf(expression))
@@ -37,10 +35,9 @@ object PrefixExpressionExt {
     private fun handleNegation(
         element: PsiPrefixExpression,
         operand: PsiExpression,
-        document: Document,
-        settings: AdvancedExpressionFoldingSettings
+        document: Document
     ): Expression? {
-        if (settings.state.comparingLocalDatesCollapse && operand is PsiMethodCallExpression) {
+        if (comparingLocalDatesCollapse && operand is PsiMethodCallExpression) {
             val info = MethodCallInformation.tryGet(operand, document, "isBefore", "isAfter", "before", "after")
             if (info != null) {
                 return when (info.methodName) {
@@ -58,7 +55,7 @@ object PrefixExpressionExt {
                 }
             }
         }
-        if (settings.state.comparingExpressionsCollapse) {
+        if (comparingExpressionsCollapse) {
             val foldedOperand = com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt.getAnyExpression(operand, document)
             if (foldedOperand is Equal) {
                 return NotEqual(element, element.textRange, foldedOperand.operands)

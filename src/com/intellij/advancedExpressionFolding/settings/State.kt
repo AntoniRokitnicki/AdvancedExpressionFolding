@@ -1,6 +1,6 @@
 package com.intellij.advancedExpressionFolding.settings
 
-class State(
+data class State(
     private val lombokState: ILombokState = LombokState(),
     private val logFoldingState: ILogFoldingState = LogFoldingState(),
     private val controlFlowState: IControlFlowState = ControlFlowState(),
@@ -20,7 +20,8 @@ class State(
     IKotlinLanguageState by kotlinLanguageState,
     ICollectionsStreamsState by collectionsStreamsState,
     IExpressionCollapseState by expressionCollapseState,
-    IGlobalSettingsState by globalSettingsState,
     IEmojiVisibilityState by emojiVisibilityState,
     IHidingSuppressionState by hidingSuppressionState,
+    
+    IGlobalSettingsState by globalSettingsState,
     IUnclassifiedFeatureState by unclassifiedFeatureState

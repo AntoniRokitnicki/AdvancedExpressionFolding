@@ -35,6 +35,7 @@ staticMethod.newName = 'changedStaticMethod'
         foldingState()::const,
         foldingState()::lombok,
         foldingState()::getExpressionsCollapse,
+        foldingState()::getSetExpressionsCollapse,
     )
 }
 
