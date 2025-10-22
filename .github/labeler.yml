@@ -4,6 +4,12 @@ collapse-control-flow:
     - '**/IfExpressionExt.kt'
     - '**/TernaryExpressionExt.kt'
 
+collapse-loop-statements:
+- changed-files:
+  - any-glob-to-any-file:
+    - '**/LoopExt.kt'
+    - '**/ForStatementExpressionExt.kt'
+    
 collapse-constructor-references:
 - changed-files:
   - any-glob-to-any-file:
