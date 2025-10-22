@@ -16,6 +16,7 @@ import com.intellij.advancedExpressionFolding.processor.lombok.LombokMethodExt.i
 import com.intellij.advancedExpressionFolding.processor.lombok.LombokMethodExt.isFinder
 import com.intellij.advancedExpressionFolding.processor.lombok.MethodType.*
 import com.intellij.psi.PsiClass
+import com.intellij.psi.PsiClassType
 import com.intellij.psi.PsiField
 import com.intellij.psi.PsiMethod
 import com.intellij.psi.impl.source.PsiClassReferenceType
@@ -31,10 +32,13 @@ object LombokExt : BaseExtension() {
         val fieldLevelAnnotations = mutableListOf<FieldLevelAnnotation>()
 
         classLevelAnnotations += foldLog(this.fields)
-        classLevelAnnotations += foldBuilder()
+
+        val fieldsMap = createFieldMap(this)
+
+        classLevelAnnotations += foldBuilder(fieldsMap, fieldLevelAnnotations)
         classLevelAnnotations += foldNoArgsConstructor(this.constructors)
 
-        createFieldMap(this)?.let { fieldsMap ->
+        fieldsMap?.let { fieldsMap ->
             classLevelAnnotations += foldArgsConstructor(this.constructors, fieldsMap.values, fieldLevelAnnotations)
 
             val methodTypeToMethodsMap = methodsNotStatic.groupBy {
@@ -57,19 +61,62 @@ object LombokExt : BaseExtension() {
         return classLevelAnnotations
     }
 
-    private fun PsiClass.foldBuilder(): List<ClassLevelAnnotation> {
-        return allInnerClasses.filter {
-            it.name?.endsWith("Builder") == true
-        }.mapNotNull {
-            val namelessBuilder = it.name == "${name}Builder"
-            if (namelessBuilder) {
-                ClassLevelAnnotation(LOMBOK_BUILDER, emptyList())
-            } else if (it.name != null){
-                ClassLevelAnnotation(LOMBOK_BUILDER, emptyList(), arguments = listOf(it.name!!))
-            } else {
-                null
+    private fun PsiClass.foldBuilder(
+        fieldsMap: Map<String, PsiField>?,
+        fieldLevelAnnotations: MutableList<FieldLevelAnnotation>
+    ): List<ClassLevelAnnotation> {
+        val builderFieldAnnotations = linkedMapOf<PsiField, FieldLevelAnnotation>()
+        val classAnnotations = allInnerClasses.asSequence()
+            .filter { it.name?.endsWith("Builder") == true && it.isBuilder() }
+            .mapNotNull { builderClass ->
+                val matchedFields = fieldsMap?.let { map ->
+                    builderClass.collectBuilderFields(map)
+                } ?: emptyList()
+
+                if (fieldsMap != null) {
+                    if (matchedFields.isEmpty()) {
+                        return@mapNotNull null
+                    }
+
+                    if (matchedFields.size < fieldsMap.size) {
+                        matchedFields.forEach { (field, method) ->
+                            builderFieldAnnotations.merge(field, FieldLevelAnnotation(LOMBOK_BUILDER, field, listOf(method))) { existing, new ->
+                                existing.copy(method = existing.method + new.method)
+                            }
+                        }
+                    }
+                }
+
+                val namelessBuilder = builderClass.name == "${name}Builder"
+                when {
+                    namelessBuilder -> ClassLevelAnnotation(LOMBOK_BUILDER, emptyList())
+                    builderClass.name != null -> ClassLevelAnnotation(LOMBOK_BUILDER, emptyList(), arguments = listOf(builderClass.name!!))
+                    else -> null
+                }
             }
+            .toList()
+
+        if (fieldsMap != null && builderFieldAnnotations.isNotEmpty() && builderFieldAnnotations.size < fieldsMap.size) {
+            fieldLevelAnnotations += builderFieldAnnotations.values
         }
+
+        return classAnnotations
+    }
+
+    private fun PsiClass.collectBuilderFields(
+        fieldsMap: Map<String, PsiField>
+    ): List<Pair<PsiField, PsiMethod>> {
+        return methods.asSequence()
+            .filter { method ->
+                method.parameterList.parametersCount == 1 &&
+                        (method.returnType as? PsiClassType)?.resolve() == this
+            }
+            .mapNotNull { method ->
+                val propertyName = method.guessPropertyName()
+                val field = fieldsMap[propertyName] ?: fieldsMap[method.name]
+                field?.let { it to method }
+            }
+            .toList()
     }
 
     private fun foldLog(

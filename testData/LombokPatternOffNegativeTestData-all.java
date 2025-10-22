@@ -16,7 +16,7 @@ import java.util.logging.Logger;</fold>
  * {@link com.intellij.advancedExpressionFolding.FoldingTest#testLombokPatternOffTestData()}
  */</fold>
 @SuppressWarnings("ALL")
-<fold text='@Builder(ClassWithBuilder) @Getter @Setter @Serial p' expand='false'>p</fold>ublic class LombokPatternOffNegativeTestData {<fold text='' expand='false'>
+<fold text='@Getter @Setter @Serial p' expand='false'>p</fold>ublic class LombokPatternOffNegativeTestData {<fold text='' expand='false'>
 
     </fold><fold text='' expand='false'>private <fold text='const' expand='false'>static final </fold><fold text='' expand='false'>long</fold> serialVersionUID = 1234567L;</fold>
 

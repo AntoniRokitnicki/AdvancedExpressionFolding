@@ -15,7 +15,7 @@ import java.util.logging.Logger;</fold>
  * {@link com.intellij.advancedExpressionFolding.FoldingTest#testLombokTestData()}
  */</fold>
 @SuppressWarnings("ALL")
-<fold text='@Builder(ClassWithBuilder) @Getter @Setter @Serial p' expand='false'>p</fold>ublic class LombokTestData {<fold text='' expand='false'>
+<fold text='@Getter @Setter @Serial p' expand='false'>p</fold>ublic class LombokTestData {<fold text='' expand='false'>
 
     </fold><fold text='' expand='false'>private static final long serialVersionUID = 1234567L;</fold>
 
@@ -1259,7 +1259,7 @@ import java.util.logging.Logger;</fold>
 
     }</fold>
 
-    <fold text='@Builder(FirstBuilder) @Builder(SecondBuilder) @Builder c' expand='false'>c</fold>lass Builders <fold text='{...}' expand='true'>{
+    class Builders <fold text='{...}' expand='true'>{
 
         class FirstBuilder <fold text='{...}' expand='true'>{
 
