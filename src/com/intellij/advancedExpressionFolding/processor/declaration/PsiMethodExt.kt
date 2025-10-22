@@ -7,6 +7,7 @@ import com.intellij.advancedExpressionFolding.processor.language.kotlin.Nullable
 import com.intellij.advancedExpressionFolding.processor.language.kotlin.NullableExt.readCheckNotNullMethods
 import com.intellij.advancedExpressionFolding.processor.language.kotlin.SingleExpressionFunctionExt
 import com.intellij.advancedExpressionFolding.processor.lombok.InterfacePropertiesExt
+import com.intellij.advancedExpressionFolding.processor.lombok.LombokPostConstructorExt
 import com.intellij.advancedExpressionFolding.processor.lombok.SummaryParentOverrideExt
 import com.intellij.advancedExpressionFolding.processor.methodcall.dynamic.DynamicExt
 import com.intellij.openapi.editor.Document
@@ -31,6 +32,10 @@ object PsiMethodExt : BaseExtension() {
 
         list.addIfEnabled(dynamic) {
             DynamicExt.createExpression(method)
+        }
+
+        list.addIfEnabled(lombok) {
+            LombokPostConstructorExt.methodAnnotation(method)
         }
 
         list.forwardIfEnabled(overrideHide) {

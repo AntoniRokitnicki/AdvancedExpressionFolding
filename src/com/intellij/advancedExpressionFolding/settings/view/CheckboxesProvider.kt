@@ -273,7 +273,7 @@ abstract class CheckboxesProvider {
             example("SuppressWarningsHideTestData.java")
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#suppressWarningsHide")
         }
-        registerCheckbox(state::pseudoAnnotations, "Pseudo-annotations: @Main") {
+        registerCheckbox(state::pseudoAnnotations, "Pseudo-annotations: @Main, @Loggable") {
             example("PseudoAnnotationsMainTestData.java")
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#pseudoAnnotations")
         }
@@ -299,34 +299,48 @@ private fun createEditor(property: KMutableProperty0<String?>): EditorEx {
     val document = factory.createDocument(property.get() ?: "")
 
     val editor = factory.createEditor(document, null) as EditorEx
-    val validator = ComponentValidator(ApplicationManager.getApplication())
-        .withValidator(Supplier {
-            val text = document.text.trim()
-            if (text.isEmpty()) {
-                property.set(null)
-                return@Supplier null
-            }
+    val application = ApplicationManager.getApplication()
 
-            try {
-                text.toPattern()
-                property.set(text)
-                null
-            } catch (exception: PatternSyntaxException) {
-                property.set(null)
-                ValidationInfo(
-                    exception.description ?: exception.message ?: "Invalid regular expression",
-                    editor.component
-                )
-            }
-        })
-        .installOn(editor.component)
+    fun validateDocument(): ValidationInfo? {
+        val text = document.text.trim()
+        if (text.isEmpty()) {
+            property.set(null)
+            return null
+        }
+
+        return try {
+            text.toPattern()
+            property.set(text)
+            null
+        } catch (exception: PatternSyntaxException) {
+            property.set(null)
+            ValidationInfo(
+                exception.description ?: exception.message ?: "Invalid regular expression",
+                editor.component
+            )
+        }
+    }
+
+    val validator = application?.let {
+        ComponentValidator(it)
+            .withValidator(Supplier { validateDocument() })
+            .installOn(editor.component)
+    }
 
     document.addDocumentListener(object : DocumentListener {
         override fun documentChanged(event: DocumentEvent) {
-            validator.revalidate()
+            if (validator != null) {
+                validator.revalidate()
+            } else {
+                validateDocument()
+            }
         }
     })
-    validator.revalidate()
+    if (validator != null) {
+        validator.revalidate()
+    } else {
+        validateDocument()
+    }
     return editor.apply {
         settings.apply {
             isUseSoftWraps = true

@@ -36,6 +36,20 @@ public class FieldShiftSetters {
         this.list = list;
     }
 
+    public void withUsername(String username) {
+        this.username = username;
+    }
+
+    public FieldShiftSetters withActive(boolean active) {
+        this.active = active;
+        return this;
+    }
+
+    public FieldShiftSetters withUserIdentifier(String userIdentifier) {
+        this.userIdentifier = userIdentifier;
+        return this;
+    }
+
     public static FieldShiftSetters mapPojoChain(FieldShiftSetters source) {
         FieldShiftSetters result = new FieldShiftSetters();
         result.setUsername(source.getChild().getUsername());
@@ -50,6 +64,9 @@ public class FieldShiftSetters {
         result.setUserIdentifier(source.getUserIdentifier());
         result.setActive(source.isActive());
         result.setList(List.copyOf(source.getList()));
+        result.withUsername(source.getUsername());
+        result.withActive(source.isActive());
+        result.withUserIdentifier(source.getUserIdentifier());
         return result;
     }
 
@@ -58,6 +75,9 @@ public class FieldShiftSetters {
         result.setUsername(source.username());
         result.setActive(source.active());
         result.setUserIdentifier(source.userIdentifier());
+        result.withUsername(source.username());
+        result.withActive(source.active());
+        result.withUserIdentifier(source.userIdentifier());
         return result;
     }
 

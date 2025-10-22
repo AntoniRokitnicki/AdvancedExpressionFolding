@@ -15,7 +15,7 @@ import com.intellij.advancedExpressionFolding.processor.isNull
 import com.intellij.advancedExpressionFolding.processor.language.kotlin.IfNullSafeExt
 import com.intellij.advancedExpressionFolding.processor.language.kotlin.LetReturnExt
 import com.intellij.advancedExpressionFolding.processor.util.Helper
-import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
+import com.intellij.advancedExpressionFolding.settings.StateDelegate
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiBinaryExpression
@@ -32,13 +32,12 @@ import com.intellij.psi.PsiStatement
 import com.intellij.psi.PsiSwitchStatement
 import com.intellij.psi.SyntaxTraverser
 
-object IfExt {
+object IfExt : StateDelegate() {
 
     fun getSwitchStatement(element: PsiSwitchStatement): Expression? {
-        val settings = AdvancedExpressionFoldingSettings.getInstance()
         val lParenth = element.lParenth ?: return null
         val rParenth = element.rParenth ?: return null
-        return if (element.expression != null && settings.state.compactControlFlowSyntaxCollapse) {
+        return if (element.expression != null && compactControlFlowSyntaxCollapse) {
             CompactControlFlowExpression(
                 element,
                 TextRange.create(lParenth.textRange.startOffset, rParenth.textRange.endOffset)
@@ -49,11 +48,10 @@ object IfExt {
     }
 
     fun getIfExpression(element: PsiIfStatement, document: Document): Expression? {
-        val settings = AdvancedExpressionFoldingSettings.getInstance()
         LetReturnExt.getIfExpression(element)?.let { return it }
 
         val condition = element.condition
-        if (settings.state.checkExpressionsCollapse && condition is PsiBinaryExpression) {
+        if (checkExpressionsCollapse && condition is PsiBinaryExpression) {
             if (condition.operationSign.text == "!=" && element.elseBranch == null && element.thenBranch != null) {
                 val lNull = isNull(condition.lOperand.type)
                 val rNull = isNull(condition.rOperand?.type)
@@ -93,10 +91,12 @@ object IfExt {
     }
 
     fun getConditionalExpression(element: PsiConditionalExpression, document: Document): Expression? {
-        val settings = AdvancedExpressionFoldingSettings.getInstance()
         val condition = element.condition
-        if (settings.state.checkExpressionsCollapse && condition is PsiBinaryExpression) {
-            if (condition.operationSign.text == "!=" && condition.rOperand != null &&
+        if (checkExpressionsCollapse && condition is PsiBinaryExpression) {
+            val operationSign = condition.operationSign.text
+            val isInvertedElvis = operationSign == "=="
+            val isStandardElvis = operationSign == "!="
+            if ((isStandardElvis || isInvertedElvis) && condition.rOperand != null &&
                 (isNull(condition.lOperand.type) || isNull(condition.rOperand?.type)) &&
                 element.thenExpression != null && element.elseExpression != null
             ) {
@@ -114,12 +114,22 @@ object IfExt {
                     else -> false
                 }
                 if (isSupportedQualifier) {
+                    val nonNullExpression = if (isInvertedElvis) {
+                        element.elseExpression
+                    } else {
+                        element.thenExpression
+                    } ?: return null
+                    val fallbackExpression = if (isInvertedElvis) {
+                        element.thenExpression
+                    } else {
+                        element.elseExpression
+                    } ?: return null
                     val reference: PsiReference? = when (qualifierElement) {
                         is PsiReferenceExpression -> qualifierElement
                         is PsiMethodCallExpression -> qualifierElement.methodExpression
                         else -> return null
                     }
-                    val references = SyntaxTraverser.psiTraverser(element.thenExpression)
+                    val references = SyntaxTraverser.psiTraverser(nonNullExpression)
                         .filter { candidate ->
                             when (candidate) {
                                 is PsiReferenceExpression -> candidate.parent !is PsiMethodCallExpression &&
@@ -134,9 +144,10 @@ object IfExt {
                         return ElvisExpression(
                             element,
                             element.textRange,
-                            BuildExpressionExt.getAnyExpression(element.thenExpression!!, document),
-                            BuildExpressionExt.getAnyExpression(element.elseExpression!!, document),
-                            references.map { it.textRange }
+                            BuildExpressionExt.getAnyExpression(nonNullExpression, document),
+                            BuildExpressionExt.getAnyExpression(fallbackExpression, document),
+                            references.map { it.textRange },
+                            isInvertedElvis
                         )
                     }
                 }
@@ -199,8 +210,7 @@ object IfExt {
                 hasString = true
             }
             val operandList = operands.mapNotNull { it }
-            val settings = AdvancedExpressionFoldingSettings.getInstance()
-            if (hasString && settings.state.concatenationExpressionsCollapse) {
+            if (hasString && concatenationExpressionsCollapse) {
                 return InterpolatedString(element, element.textRange, operandList)
             }
             return Add(element, element.textRange, operandList)

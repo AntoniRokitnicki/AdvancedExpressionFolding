@@ -1,12 +1,66 @@
 ## constructorReferenceNotation
+
 ### Constructor reference notation `::new` and compact field initialization
 Simplifies constructor references and inline field initialization.
 
-#### example:
-[example file](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/master/examples/data/ConstructorReferenceNotationTestData.java)
+#### Example: ConstructorReferenceNotationTestData
 
-[folded](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/master/folded/ConstructorReferenceNotationTestData-folded.java)
+examples/data/ConstructorReferenceNotationTestData.java:
+```java
+        public static final ConstClass SELF = new ConstClass();
+        public static final ConstClass SELF_ANN = new ConstClass() {
+        };
+// ...
+        private static final HashMap<String, String> MAP = new HashMap<>();
+        private static final HashMap<String, String> MAP2 = new HashMap<String, String>();
+```
 
-![Constructor reference usage before folding](https://github.com/user-attachments/assets/2a139396-d7ea-43ae-b694-b10411e31c5a)
+folded/ConstructorReferenceNotationTestData-folded.java:
+```java
+        public static final ConstClass SELF = ::new;
+        public static final ConstClass SELF_ANN = ::new{};
+// ...
+        private static final HashMap<String, String> MAP = ::new;
+        private static final HashMap<String, String> MAP2 = ::new;
+```
 
-![Constructor reference folded to ::new notation](https://github.com/user-attachments/assets/ae24c082-d070-46ef-a051-b4cc5ec56dfe)
+Highlights ConstructorReferenceNotationTestData with constructor reference notation `::new` and compact field initialization.
+Removes boilerplate while preserving behavior.
+
+#### Example: ConstructorReferenceNotationWithConstTestData
+
+examples/data/ConstructorReferenceNotationWithConstTestData.java:
+```java
+        public static final ConstClass SELF = new ConstClass();
+        public static final ConstClass SELF_ANN = new ConstClass() {
+        };
+        public static final ConstClass SELF_SUB = new SubConstClass();
+        public static final ConstClass SELF_SUB_ANN = new SubConstClass() {
+// ...
+        private static final HashMap<String, String> MAP = new HashMap<>();
+        private static final HashMap<String, String> MAP2 = new HashMap<String, String>();
+        private static final Map<String, String> MAP3 = new HashMap<>();
+        private static final Map<String, String> MAP_TREE = new TreeMap<>();
+        private static final Map<String, String> MAP4 = Map.of();
+```
+
+folded/ConstructorReferenceNotationWithConstTestData-folded.java:
+```java
+        const ConstClass SELF = ::new;
+        const ConstClass SELF_ANN = ::new{};
+        const ConstClass SELF_SUB = new SubConstClass();
+        const ConstClass SELF_SUB_ANN = new SubConstClass() {
+// ...
+        private const HashMap<String, String> MAP = ::new;
+        private const HashMap<String, String> MAP2 = ::new;
+        private const Map<String, String> MAP3 = new HashMap<>();
+        private const Map<String, String> MAP_TREE = new TreeMap<>();
+        private const Map<String, String> MAP4 = Map.of();
+```
+
+Highlights ConstructorReferenceNotationWithConstTestData with constructor reference notation `::new` and compact field initialization.
+Removes boilerplate while preserving behavior.
+
+Default: On
+Controlled by: `constructorReferenceNotation`
+Related features: (none)

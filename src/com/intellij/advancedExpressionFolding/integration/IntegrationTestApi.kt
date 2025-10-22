@@ -61,16 +61,16 @@ object IntegrationTestApi {
         }
     }
 
-    private fun runOnEdt(action: () -> Unit) {
+    private inline fun runOnEdt(crossinline action: () -> Unit) {
         val application = ApplicationManager.getApplication()
         if (application.isDispatchThread) {
             action()
         } else {
-            application.invokeAndWait(action, ModalityState.defaultModalityState())
+            application.invokeAndWait({ action() }, ModalityState.defaultModalityState())
         }
     }
 
-    private fun <T> computeOnEdt(action: () -> T): T {
+    private inline fun <T> computeOnEdt(noinline action: () -> T): T {
         val reference = AtomicReference<T?>()
         runOnEdt {
             reference.set(action())
