@@ -2,6 +2,7 @@ package com.intellij.advancedExpressionFolding.expression.literal
 
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
+import com.intellij.advancedExpressionFolding.settings.IState
 import com.intellij.lang.folding.FoldingDescriptor
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.editor.FoldingGroup
@@ -14,8 +15,9 @@ class LocalDateLiteral(
     textRange: TextRange,
     private val year: PsiLiteralExpression,
     private val month: PsiLiteralExpression,
-    private val day: PsiLiteralExpression
-) : Expression(element, textRange) {
+    private val day: PsiLiteralExpression,
+    private val state: AdvancedExpressionFoldingSettings.State = AdvancedExpressionFoldingSettings.getInstance().state,
+) : Expression(element, textRange), IState by state {
 
     override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean = true
 
@@ -34,7 +36,7 @@ class LocalDateLiteral(
             override fun getPlaceholderText(): String = ""
         }
 
-        val usePostfix = AdvancedExpressionFoldingSettings.getInstance().state.localDateLiteralPostfixCollapse
+        val usePostfix = localDateLiteralPostfixCollapse
         val dateSep = DATE_SEPARATOR
         val yearPostfix = if (usePostfix) YEAR_POSTFIX else ""
         val monthPostfix = if (usePostfix) MONTH_POSTFIX else ""

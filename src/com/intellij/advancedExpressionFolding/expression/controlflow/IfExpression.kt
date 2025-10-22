@@ -3,6 +3,7 @@ package com.intellij.advancedExpressionFolding.expression.controlflow
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.processor.language.java.PatternMatchingExt
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
+import com.intellij.advancedExpressionFolding.settings.IState
 import com.intellij.lang.folding.FoldingDescriptor
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.editor.FoldingGroup
@@ -19,11 +20,11 @@ import java.util.ArrayList
 
 class IfExpression(
     private val ifStatement: PsiIfStatement,
-    textRange: TextRange
-) : Expression(ifStatement, textRange) {
+    textRange: TextRange,
+    private val state: AdvancedExpressionFoldingSettings.State = AdvancedExpressionFoldingSettings.getInstance().state
+) : Expression(ifStatement, textRange), IState by state {
 
     override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean {
-        val state = AdvancedExpressionFoldingSettings.getInstance().state
         return isAssertExpression(state, ifStatement) || isCompactExpression(state, ifStatement)
     }
 
@@ -34,7 +35,6 @@ class IfExpression(
         document: Document,
         parent: Expression?
     ): Array<FoldingDescriptor> {
-        val state = AdvancedExpressionFoldingSettings.getInstance().state
         val highlightPostfix = if (!isAssertExpression(state, this.ifStatement) && isCompactExpression(state, this.ifStatement)) {
             HIGHLIGHTED_GROUP_POSTFIX
         } else {
@@ -47,12 +47,12 @@ class IfExpression(
         if (lParenth != null && rParenth != null) {
             when {
                 isAssertExpression(state, this.ifStatement) ->
-                    foldAssertion(element, document, descriptors, group, state)
+                    foldAssertion(element, document, descriptors, group)
 
                 isCompactExpression(state, this.ifStatement) ->
                     foldCompactExpr(element, document, group, descriptors)
 
-                state.patternMatchingInstanceof && element is PsiIfStatement -> {
+                patternMatchingInstanceof && element is PsiIfStatement -> {
                     val instanceOfExpr = findInstanceOf(element)
                     if (instanceOfExpr != null) {
                         PatternMatchingExt.foldInstanceOf(element, instanceOfExpr, document, descriptors)
@@ -64,7 +64,6 @@ class IfExpression(
     }
 
     override fun isHighlighted(): Boolean {
-        val state = AdvancedExpressionFoldingSettings.getInstance().state
         return !isAssertExpression(state, ifStatement) && isCompactExpression(state, ifStatement)
     }
 
@@ -96,8 +95,7 @@ class IfExpression(
         psiElement: PsiElement,
         document: Document,
         descriptors: MutableList<FoldingDescriptor>,
-        group: FoldingGroup,
-        state: AdvancedExpressionFoldingSettings.State
+        group: FoldingGroup
     ) {
         val throwStatement = when (val thenBranch = ifStatement.thenBranch) {
             is PsiBlockStatement -> {
@@ -192,7 +190,7 @@ class IfExpression(
                     " : "
                 )
             }
-            if (!state.semicolonsCollapse && throwStatement.text.endsWith(";")) {
+            if (!semicolonsCollapse && throwStatement.text.endsWith(";")) {
                 descriptors += FoldingDescriptor(
                     psiElement.node,
                     TextRange.create(messageExpression.textRange.endOffset, throwStatement.textRange.endOffset - 1),
@@ -212,11 +210,11 @@ class IfExpression(
                     psiElement.node,
                     TextRange.create(messageExpression.textRange.endOffset, element.textRange.endOffset),
                     group,
-                    if (state.semicolonsCollapse) "" else ";"
+                    if (semicolonsCollapse) "" else ";"
                 )
             }
         } else {
-            if (!state.semicolonsCollapse && throwStatement.text.endsWith(";")) {
+            if (!semicolonsCollapse && throwStatement.text.endsWith(";")) {
                 descriptors += FoldingDescriptor(
                     psiElement.node,
                     TextRange.create(condition.textRange.endOffset, throwStatement.textRange.endOffset - 1),
@@ -236,7 +234,7 @@ class IfExpression(
                     psiElement.node,
                     TextRange.create(condition.textRange.endOffset, element.textRange.endOffset),
                     group,
-                    if (state.semicolonsCollapse) "" else ";"
+                    if (semicolonsCollapse) "" else ";"
                 )
             }
         }
