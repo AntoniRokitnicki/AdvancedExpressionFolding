@@ -42,7 +42,7 @@ jobs:
             ## TODO
             
             **Commit:** ${{ github.sha }}
-            **Autor:** @{{ github.actor }}
+            **Author:** @{{ github.actor }}
             
             {{ body }}
             
