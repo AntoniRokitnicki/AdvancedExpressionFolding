@@ -15,7 +15,7 @@ import com.intellij.advancedExpressionFolding.processor.isNull
 import com.intellij.advancedExpressionFolding.processor.language.kotlin.IfNullSafeExt
 import com.intellij.advancedExpressionFolding.processor.language.kotlin.LetReturnExt
 import com.intellij.advancedExpressionFolding.processor.util.Helper
-import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
+import com.intellij.advancedExpressionFolding.settings.StateDelegate
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiBinaryExpression
@@ -32,13 +32,12 @@ import com.intellij.psi.PsiStatement
 import com.intellij.psi.PsiSwitchStatement
 import com.intellij.psi.SyntaxTraverser
 
-object IfExt {
+object IfExt : StateDelegate() {
 
     fun getSwitchStatement(element: PsiSwitchStatement): Expression? {
-        val settings = AdvancedExpressionFoldingSettings.getInstance()
         val lParenth = element.lParenth ?: return null
         val rParenth = element.rParenth ?: return null
-        return if (element.expression != null && settings.state.compactControlFlowSyntaxCollapse) {
+        return if (element.expression != null && compactControlFlowSyntaxCollapse) {
             CompactControlFlowExpression(
                 element,
                 TextRange.create(lParenth.textRange.startOffset, rParenth.textRange.endOffset)
@@ -49,11 +48,10 @@ object IfExt {
     }
 
     fun getIfExpression(element: PsiIfStatement, document: Document): Expression? {
-        val settings = AdvancedExpressionFoldingSettings.getInstance()
         LetReturnExt.getIfExpression(element)?.let { return it }
 
         val condition = element.condition
-        if (settings.state.checkExpressionsCollapse && condition is PsiBinaryExpression) {
+        if (checkExpressionsCollapse && condition is PsiBinaryExpression) {
             if (condition.operationSign.text == "!=" && element.elseBranch == null && element.thenBranch != null) {
                 val lNull = isNull(condition.lOperand.type)
                 val rNull = isNull(condition.rOperand?.type)
@@ -93,9 +91,8 @@ object IfExt {
     }
 
     fun getConditionalExpression(element: PsiConditionalExpression, document: Document): Expression? {
-        val settings = AdvancedExpressionFoldingSettings.getInstance()
         val condition = element.condition
-        if (settings.state.checkExpressionsCollapse && condition is PsiBinaryExpression) {
+        if (checkExpressionsCollapse && condition is PsiBinaryExpression) {
             val operationSign = condition.operationSign.text
             val isInvertedElvis = operationSign == "=="
             val isStandardElvis = operationSign == "!="
@@ -213,8 +210,7 @@ object IfExt {
                 hasString = true
             }
             val operandList = operands.mapNotNull { it }
-            val settings = AdvancedExpressionFoldingSettings.getInstance()
-            if (hasString && settings.state.concatenationExpressionsCollapse) {
+            if (hasString && concatenationExpressionsCollapse) {
                 return InterpolatedString(element, element.textRange, operandList)
             }
             return Add(element, element.textRange, operandList)

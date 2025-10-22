@@ -253,6 +253,7 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
 
     }
 
+    //TODO: this got broken, we should not create a new state, but use existing one. this breaks how Delegates work.
     private fun applyBulkChange(action: AdvancedExpressionFoldingSettings.() -> Unit) {
         val currentState = AdvancedExpressionFoldingSettings.getInstance().state.copy()
         val temporarySettings = AdvancedExpressionFoldingSettings()
