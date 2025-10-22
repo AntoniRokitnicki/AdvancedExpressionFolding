@@ -37,36 +37,25 @@ collapse-slicing:
 field-shift:
 - changed-files:
   - any-glob-to-any-file:
-    - '**/FieldShiftBuilder.kt'
-
-kotlin:
-- changed-files:
-  - any-glob-to-any-file:
-    - '**/kotlin.xml'
-    - '**/KotlinPluginUtils.kt'
+    - '**/FieldShift*'
 
 lombok:
 - changed-files:
   - any-glob-to-any-file:
     - '**/LombokState.kt'
     - '**/PsiMethodExt.kt'
-    - 'processor/lombok/**'
+    - '**/lombok/**'
 
-pseudoAnnotations:
+pseudo-annotations:
 - changed-files:
   - any-glob-to-any-file:
     - 'pseudo/**'
-
-settings-ui:
-- changed-files:
-  - any-glob-to-any-file:
-    - '**/CheckboxesProvider.kt'
 
 state:
 - changed-files:
   - any-glob-to-any-file:
     - '**/AdvancedExpressionFoldingSettings.kt'
-    - '**/State.kt'
+    - '**/*State.kt'
 
 tests:
 - changed-files:
@@ -83,79 +72,31 @@ github-actions:
   - any-glob-to-any-file:
     - '.github/workflows/**'
 
-build-system:
+gradle:
 - changed-files:
   - any-glob-to-any-file:
     - 'build.gradle.kts'
     - 'settings.gradle.kts'
-    - 'gradle/**'
-
-advanced-expression-folding-builder:
-- changed-files:
-  - any-glob-to-any-file:
-    - '**/AdvancedExpressionFoldingBuilder.kt'
-
-global-toggle-action:
-- changed-files:
-  - any-glob-to-any-file:
-    - '**/GlobalToggleFoldingAction.kt'
-
-settings-configurable:
-- changed-files:
-  - any-glob-to-any-file:
-    - '**/SettingsConfigurable.kt'
-
-folding-service:
-- changed-files:
-  - any-glob-to-any-file:
-    - '**/FoldingService.kt'
-    - '**/FoldingServiceCoroutineScope.kt'
-
-folding-storage:
-- changed-files:
-  - any-glob-to-any-file:
-    - '**/Storage.kt'
-    - '**/EmptyStorage.kt'
-
-editor-listener:
-- changed-files:
-  - any-glob-to-any-file:
-    - '**/FoldingEditorCreatedListener.kt'
-
-plugin-unloading:
-- changed-files:
-  - any-glob-to-any-file:
-    - '**/PluginUnloadingListener.kt'
 
 integration-layer:
 - changed-files:
   - any-glob-to-any-file:
-    - 'src/com/intellij/advancedExpressionFolding/integration/**'
+    - '**/integration/**'
 
-expression-processor:
-- changed-files:
-  - any-glob-to-any-file:
-    - 'src/com/intellij/advancedExpressionFolding/expression/**'
-
-action-handlers:
+action:
 - changed-files:
   - any-glob-to-any-file:
     - 'src/com/intellij/advancedExpressionFolding/action/**'
 
-diff-tools:
-- changed-files:
-  - any-glob-to-any-file:
-    - 'src/com/intellij/advancedExpressionFolding/diff/**'
-
-view-layer:
+settings-ui:
 - changed-files:
   - any-glob-to-any-file:
     - 'src/com/intellij/advancedExpressionFolding/view/**'
 
-resources-meta-inf:
+plugin-xml:
 - changed-files:
   - any-glob-to-any-file:
-    - 'resources/META-INF/**'
+    - 'resources/META-INF/*.xml'
 
 scripts:
 - changed-files:
@@ -177,33 +118,15 @@ folded-expected:
   - any-glob-to-any-file:
     - 'folded/**'
 
-documentation-top-level:
-- changed-files:
-  - any-glob-to-any-file:
-    - 'README.md'
-    - 'CHANGELOG.md'
-    - 'CONTRIBUTING.md'
-    - 'CODE_OF_CONDUCT.md'
-    - 'SUPPORT.md'
-    - 'SECURITY.md'
-
-wiki-docs:
+wiki:
 - changed-files:
   - any-glob-to-any-file:
     - 'wiki/**'
     - 'wiki-clone/**'
 
-github-templates:
+labeler:
 - changed-files:
   - any-glob-to-any-file:
-    - '.github/ISSUE_TEMPLATE/**'
-    - '.github/pull_request_template.md'
-
-github-config:
-- changed-files:
-  - any-glob-to-any-file:
-    - '.github/CODEOWNERS'
-    - '.github/dependabot.yml'
     - '.github/labeler.yml'
 
 gradle-wrapper:
@@ -213,8 +136,3 @@ gradle-wrapper:
     - 'gradlew.bat'
     - 'gradle/wrapper/**'
 
-inspection-config:
-- changed-files:
-  - any-glob-to-any-file:
-    - 'qodana.yaml'
-    - '.editorconfig'
