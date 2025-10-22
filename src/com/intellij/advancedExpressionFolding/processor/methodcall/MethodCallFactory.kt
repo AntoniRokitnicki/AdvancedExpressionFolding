@@ -6,6 +6,7 @@ import com.intellij.advancedExpressionFolding.processor.methodcall.dynamic.Dynam
 import com.intellij.advancedExpressionFolding.processor.methodcall.dynamic.IDynamicDataProvider
 import com.intellij.advancedExpressionFolding.processor.takeIfTrue
 import com.intellij.advancedExpressionFolding.processor.util.Consts
+import kotlin.properties.Delegates
 
 typealias MethodName = String
 typealias ClassName = String
@@ -48,6 +49,13 @@ object MethodCallFactory : BaseExtension(){
     @Volatile
     var classlessMethods: Collection<MethodName> = emptyList()
 
+    private var observedMethodCallMap: Map<MethodName?, List<AbstractMethodCall>> by Delegates.observable(emptyMap()) { _, _, newMap ->
+        methodCallMap = newMap
+        supportedClasses = createSupportedClasses(newMap)
+        supportedMethods = createSupportedMethods(newMap)
+        classlessMethods = createClasslessMethods(newMap)
+    }
+
     fun refreshMethodCallMappings(dynamicProvider: IDynamicDataProvider? = null) {
         synchronized(this) {
             if (dynamicProvider != null) {
@@ -55,12 +63,7 @@ object MethodCallFactory : BaseExtension(){
                 this.dynamicProvider = dynamicProvider
             }
 
-            methodCallMap = createMethodCalls()
-
-            supportedClasses = createSupportedClasses()
-            supportedMethods = createSupportedMethods()
-
-            classlessMethods = createClasslessMethods()
+            observedMethodCallMap = createMethodCalls()
         }
     }
 
@@ -92,8 +95,8 @@ object MethodCallFactory : BaseExtension(){
 
     private fun loadDynamicMethods(): List<DynamicMethodCall>? = dynamic.takeIfTrue()?.let { dynamicProvider?.parse() }
 
-    private fun createSupportedClasses(): Collection<ClassName> =
-        methodCallMap.values
+    private fun createSupportedClasses(methodCalls: Map<MethodName?, List<AbstractMethodCall>>): Collection<ClassName> =
+        methodCalls.values
             .asSequence()
             .flatten()
             .filter {
@@ -103,15 +106,15 @@ object MethodCallFactory : BaseExtension(){
             }.distinct().flatten()
             .toList()
 
-    private fun createSupportedMethods(): List<MethodName> =
-        methodCallMap.values
+    private fun createSupportedMethods(methodCalls: Map<MethodName?, List<AbstractMethodCall>>): List<MethodName> =
+        methodCalls.values
             .flatten()
             .map {
                 it.methodNames
             }.flatten()
 
-    private fun createClasslessMethods(): List<MethodName> =
-        methodCallMap.values
+    private fun createClasslessMethods(methodCalls: Map<MethodName?, List<AbstractMethodCall>>): List<MethodName> =
+        methodCalls.values
             .flatten()
             .filter {
                 it.classNames.isEmpty()
