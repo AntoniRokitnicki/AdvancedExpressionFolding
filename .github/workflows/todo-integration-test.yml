@@ -49,7 +49,7 @@ jobs:
           sleep 3
 
       - name: Run IDE integration tests
-        run: ./gradlew test --tests "*IntegrationTest"
+        run: ./gradlew test
 
       - name: Upload integration artifacts
         if: always()
