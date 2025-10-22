@@ -7,6 +7,7 @@ import com.intellij.advancedExpressionFolding.expression.semantic.logging.Logger
 import com.intellij.advancedExpressionFolding.processor.asInstance
 import com.intellij.advancedExpressionFolding.processor.argumentExpressions
 import com.intellij.advancedExpressionFolding.processor.core.BaseExtension
+import com.intellij.advancedExpressionFolding.processor.core.getAnyExpression
 import com.intellij.advancedExpressionFolding.processor.end
 import com.intellij.advancedExpressionFolding.processor.start
 import com.intellij.advancedExpressionFolding.processor.toTextRange
