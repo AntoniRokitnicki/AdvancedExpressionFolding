@@ -43,6 +43,10 @@ collapse-operators:
     - '**/PolyadicExpressionExt.kt'
     - '**/PrefixExpressionExt.kt'
 
+collapse-println:
+- changed-files:
+  - any-glob-to-any-file:
+    - '**/PrintlnExt.kt'
 collapse-type-casts:
 - changed-files:
   - any-glob-to-any-file:
