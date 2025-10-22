@@ -23,6 +23,7 @@ public class LogBrackets {
         log.debug("Debug message with 1 parameter - Name: $name");
 
         log.info(MY_MARKER, "Info message with 2 parameters - Name: $name, Age: $age");
+        log.info(MY_MARKER, "Marker missing parameters {} {}");
 
         log.info("Info message with 2 parameters - Name: $name, Age: $age    ");
         log.info("Info message with 2 parameters - Name: $name, Age: $age");
