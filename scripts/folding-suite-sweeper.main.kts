@@ -128,7 +128,8 @@ private fun nonEmptySubsets(): Sequence<List<String>> = sequence {
     }
 }
 
-private fun buildExcludePattern(subset: List<String>): String = subset.joinToString(separator = "|") { ".*${'$'}it" }
+private fun buildExcludePattern(subset: List<String>): String =
+    subset.joinToString(separator = "|") { ".*${Regex.escape(it)}\$" }
 
 fun main() {
     println("Project directory: ${projectDir.pathString}")
