@@ -122,8 +122,8 @@ object LombokExt : BaseExtension() {
     fun PsiMethod.findMethodType(): MethodType =
         when {
             isGetter() -> GETTER
-            isSetter() -> SETTER
             isWith() -> WITH
+            isSetter() -> SETTER
             isToString() -> TO_STRING
             isEquals() -> EQUALS
             isHashCode() -> HASHCODE
