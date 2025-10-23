@@ -9,9 +9,11 @@ import com.intellij.advancedExpressionFolding.expression.literal.NumberLiteral
 import com.intellij.advancedExpressionFolding.expression.operation.basic.Variable
 import com.intellij.advancedExpressionFolding.processor.argumentExpressions
 import com.intellij.advancedExpressionFolding.processor.argumentCount
-import com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt.getAnyExpression
+import com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt
 import com.intellij.advancedExpressionFolding.processor.util.Helper
-import com.intellij.advancedExpressionFolding.settings.StateDelegate
+import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
+import com.intellij.advancedExpressionFolding.settings.IControlFlowState
+import com.intellij.advancedExpressionFolding.settings.IExpressionCollapseState
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiArrayAccessExpression
@@ -30,7 +32,9 @@ import com.intellij.psi.PsiStatement
 import com.intellij.psi.PsiVariable
 import com.intellij.psi.SyntaxTraverser
 
-object ForStatementExpressionExt : StateDelegate() {
+object ForStatementExpressionExt :
+    IExpressionCollapseState by AdvancedExpressionFoldingSettings.State()(),
+    IControlFlowState by AdvancedExpressionFoldingSettings.State()() {
 
     fun getForStatementExpression(element: PsiForStatement, document: Document): Expression? {
         val lParenth = element.lParenth
@@ -71,8 +75,8 @@ object ForStatementExpressionExt : StateDelegate() {
                     val identifier = declaredVariable.children.firstOrNull { it is PsiIdentifier } as? PsiIdentifier
                     if (identifier != null) {
                         val variable = Variable(identifier, identifier.textRange, null, identifier.text, false)
-                        val start = getAnyExpression(declaredVariable.initializer!!, document)
-                        val end = getAnyExpression(conditionROperand, document)
+                        val start = BuildExpressionExt.getAnyExpression(declaredVariable.initializer!!, document)
+                        val end = BuildExpressionExt.getAnyExpression(conditionROperand, document)
                         val sign = condition.operationSign.text
                         if (sign == "<" || sign == "<=") {
                             val body = element.body
