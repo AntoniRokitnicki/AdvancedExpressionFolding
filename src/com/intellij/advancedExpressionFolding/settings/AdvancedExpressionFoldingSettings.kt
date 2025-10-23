@@ -15,8 +15,7 @@ import kotlin.reflect.jvm.javaType
 
 @State(name = "AdvancedExpressionFoldingSettings", storages = [Storage("editor.codeinsight.xml")])
 class AdvancedExpressionFoldingSettings :
-    PersistentStateComponent<AdvancedExpressionFoldingSettings.State>,
-    ReadOnlyProperty<Any?, AdvancedExpressionFoldingSettings.State> {
+    PersistentStateComponent<AdvancedExpressionFoldingSettings.State> {
     private var myState = State()
     override fun getState(): State = myState
 
@@ -24,8 +23,25 @@ class AdvancedExpressionFoldingSettings :
         myState = state.copy()
     }
 
-    override fun getValue(thisRef: Any?, property: KProperty<*>) = getInstance().state
-
+    /**
+     * Property delegate providing access to global settings state with interface delegation support.
+     *
+     * Usage patterns:
+     *
+     * 1. Object with interface delegation:
+     * ```kotlin
+     * object DelegatedObject : IGlobalSettingsState by AdvancedExpressionFoldingSettings.State()() {
+     *     fun process() = if (experimental) ... else ...
+     * }
+     * ```
+     *
+     * 2. Class with interface delegation:
+     * ```kotlin
+     * class DelegatedClass : IGlobalSettingsState by AdvancedExpressionFoldingSettings.State()() {
+     *     fun analyze() = experimental
+     * }
+     * ```
+     */
     data class State(
         override var concatenationExpressionsCollapse: Boolean = true,
         override var slicingExpressionsCollapse: Boolean = true,
@@ -83,8 +99,14 @@ class AdvancedExpressionFoldingSettings :
         override var experimental: Boolean = false,
 
         override var globalOn: Boolean = true,
+        ) : IState, ReadOnlyProperty<Any?, State> {
+        override fun getValue(
+            thisRef: Any?,
+            property: KProperty<*>
+        ): State = getInstance().state
 
-        ) : IState
+        operator fun invoke(): State = getInstance().state
+    }
 
     private fun updateAllState(value: Boolean, vararg excludeProperties: KMutableProperty<Boolean>) {
         val excluded = excludeProperties.map { it.toString() }
