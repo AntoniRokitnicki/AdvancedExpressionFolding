@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.intellij.advancedExpressionFolding.expression.controlflow
 
 import com.intellij.openapi.util.TextRange
