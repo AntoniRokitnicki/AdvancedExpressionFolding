@@ -34,12 +34,21 @@ class InterpolatedString(
     ): Array<FoldingDescriptor> {
         val first = operands.first()
         val last = operands.last()
+        val firstIsQuoteCharacter = first is CharacterLiteral && first.character == '"'
+        val lastIsQuoteCharacter = last is CharacterLiteral && last.character == '"'
         val group = overflowGroup ?: FoldingGroup.newGroup(
             InterpolatedString::class.java.name + if (isHighlighted()) Expression.HIGHLIGHTED_GROUP_POSTFIX else ""
         )
         val descriptors = mutableListOf<FoldingDescriptor>()
         var suffix = ""
-        if (first !is CharSequenceLiteral) {
+        if (firstIsQuoteCharacter) {
+            descriptors += FoldingDescriptor(
+                element.node,
+                TextRange.create(first.textRange.startOffset, first.textRange.endOffset),
+                group,
+                "\""
+            )
+        } else if (first !is CharSequenceLiteral) {
             val startOffset = first.textRange.startOffset
             if (startOffset > 0) {
                 val overflowLeftRange = TextRange.create(startOffset - 1, startOffset)
@@ -76,13 +85,6 @@ class InterpolatedString(
                     )
                 }
             }
-        } else if (first is CharacterLiteral) {
-            descriptors += FoldingDescriptor(
-                element.node,
-                TextRange.create(first.textRange.startOffset, first.textRange.startOffset + 1),
-                group,
-                "\""
-            )
         }
         for (i in 0 until operands.size - 1) {
             val start = if (operands[i] is CharSequenceLiteral) {
@@ -95,11 +97,17 @@ class InterpolatedString(
             } else {
                 operands[i + 1].textRange.startOffset
             }
+            val next = operands[i + 1]
+            val nextIsQuoteCharacter = next is CharacterLiteral && next.character == '"'
             val placeholder = StringBuilder().append(suffix)
-            if (operands[i + 1] !is CharSequenceLiteral) {
+            if (next !is CharSequenceLiteral && !nextIsQuoteCharacter) {
                 placeholder.append('$')
             }
-            if (operands[i + 1] !is Variable && operands[i + 1] !is CharSequenceLiteral) {
+            if (
+                next !is Variable &&
+                next !is CharSequenceLiteral &&
+                !nextIsQuoteCharacter
+            ) {
                 placeholder.append('{')
                 suffix = "}"
             } else {
@@ -112,7 +120,14 @@ class InterpolatedString(
                 placeholder.toString()
             )
         }
-        if (last !is CharSequenceLiteral && document.textLength > last.textRange.endOffset + 1) {
+        if (lastIsQuoteCharacter) {
+            descriptors += FoldingDescriptor(
+                element.node,
+                TextRange.create(last.textRange.startOffset, last.textRange.endOffset),
+                group,
+                "\""
+            )
+        } else if (last !is CharSequenceLiteral && document.textLength > last.textRange.endOffset + 1) {
             val overflowRightRange = TextRange.create(last.textRange.endOffset, last.textRange.endOffset + 1)
             val beforeLast = operands[operands.size - 2]
             val start = if (beforeLast is CharSequenceLiteral) {
@@ -159,13 +174,6 @@ class InterpolatedString(
                     last.element.text + suffix + "\""
                 )
             }
-        } else if (last is CharacterLiteral) {
-            descriptors += FoldingDescriptor(
-                element.node,
-                TextRange.create(last.textRange.endOffset - 1, last.textRange.endOffset),
-                group,
-                "\""
-            )
         }
         for (operand in operands) {
             if (operand.supportsFoldRegions(document, this)) {
