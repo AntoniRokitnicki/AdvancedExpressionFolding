@@ -9,7 +9,7 @@ import com.intellij.advancedExpressionFolding.processor.nextWhiteSpace
 import com.intellij.advancedExpressionFolding.processor.prevWhiteSpace
 import com.intellij.advancedExpressionFolding.processor.takeIfTrue
 import com.intellij.advancedExpressionFolding.processor.util.Consts.Emoji
-import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
+import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings.State
 import com.intellij.advancedExpressionFolding.settings.IEmojiVisibilityState
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiField
@@ -18,7 +18,7 @@ import com.intellij.psi.PsiLocalVariable
 import com.intellij.psi.PsiMethod
 import com.intellij.psi.PsiParameter
 
-object PsiKeywordExt : IEmojiVisibilityState by AdvancedExpressionFoldingSettings.getInstance().state {
+object PsiKeywordExt : IEmojiVisibilityState by State()() {
 
     fun createExpression(keyword: PsiKeyword): Expression? =
         finalRemoval.takeIfTrue(keyword)?.finalRemoval() ?: finalEmoji.takeIfTrue(keyword)?.finalEmoji()

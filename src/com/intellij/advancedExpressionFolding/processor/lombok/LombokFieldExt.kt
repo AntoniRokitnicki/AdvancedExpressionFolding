@@ -1,19 +1,21 @@
 package com.intellij.advancedExpressionFolding.processor.lombok
 
 import com.intellij.advancedExpressionFolding.processor.*
-import com.intellij.advancedExpressionFolding.processor.core.BaseExtension
 import com.intellij.advancedExpressionFolding.processor.lombok.AnnotationExt.ClassLevelAnnotation
 import com.intellij.advancedExpressionFolding.processor.lombok.LombokConstructorExt.singleConstructor
 import com.intellij.advancedExpressionFolding.processor.lombok.LombokConstructorExt.singleConstructorManyFields
 import com.intellij.advancedExpressionFolding.processor.lombok.LombokFoldingAnnotation.*
 import com.intellij.advancedExpressionFolding.processor.lombok.MethodType.*
 import com.intellij.advancedExpressionFolding.processor.util.GenericCallback
+import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
+import com.intellij.advancedExpressionFolding.settings.ILombokState
 import com.intellij.openapi.util.Key
 import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiField
 import com.intellij.psi.PsiMethod
 
-object LombokFieldExt : BaseExtension(), GenericCallback<PsiField, List<FieldLevelAnnotation>> {
+object LombokFieldExt : ILombokState by AdvancedExpressionFoldingSettings.State()(),
+    GenericCallback<PsiField, List<FieldLevelAnnotation>> {
 
     override val callbackKey: Key<() -> List<FieldLevelAnnotation>> by lazy {
         Key.create("lombok-field-callback")

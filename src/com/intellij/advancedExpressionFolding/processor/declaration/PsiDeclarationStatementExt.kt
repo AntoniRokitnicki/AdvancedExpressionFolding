@@ -9,16 +9,14 @@ import com.intellij.advancedExpressionFolding.processor.realNextSibling
 import com.intellij.advancedExpressionFolding.processor.singleArgument
 import com.intellij.advancedExpressionFolding.processor.start
 import com.intellij.advancedExpressionFolding.processor.util.Helper
+import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
 import com.intellij.advancedExpressionFolding.settings.IExpressionCollapseState
 import com.intellij.advancedExpressionFolding.settings.IKotlinLanguageState
-import com.intellij.advancedExpressionFolding.settings.StateDelegate
 import com.intellij.psi.*
 
-private val declarationStateDelegate = StateDelegate()
-
 object PsiDeclarationStatementExt :
-    IKotlinLanguageState by declarationStateDelegate,
-    IExpressionCollapseState by declarationStateDelegate {
+    IKotlinLanguageState by AdvancedExpressionFoldingSettings.State()(),
+    IExpressionCollapseState by AdvancedExpressionFoldingSettings.State()() {
 
     fun createExpression(
         element: PsiDeclarationStatement

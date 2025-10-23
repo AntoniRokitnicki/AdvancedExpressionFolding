@@ -2,13 +2,14 @@ package com.intellij.advancedExpressionFolding.processor.controlflow
 
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.controlflow.CompactControlFlowExpression
-import com.intellij.advancedExpressionFolding.settings.StateDelegate
+import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
+import com.intellij.advancedExpressionFolding.settings.IControlFlowState
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiDoWhileStatement
 import com.intellij.psi.PsiForeachStatement
 import com.intellij.psi.PsiWhileStatement
 
-object LoopExt : StateDelegate() {
+object LoopExt : IControlFlowState by AdvancedExpressionFoldingSettings.State()() {
 
     fun getForEachStatementExpression(element: PsiForeachStatement): Expression? {
         val lParenth = element.lParenth ?: return null

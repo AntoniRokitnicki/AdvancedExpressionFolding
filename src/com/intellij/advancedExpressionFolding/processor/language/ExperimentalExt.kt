@@ -2,12 +2,13 @@ package com.intellij.advancedExpressionFolding.processor.language
 
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.processor.*
-import com.intellij.advancedExpressionFolding.processor.core.BaseExtension
 import com.intellij.advancedExpressionFolding.processor.util.Consts
+import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
+import com.intellij.advancedExpressionFolding.settings.IEmojiVisibilityState
 import com.intellij.psi.PsiField
 import com.intellij.psi.PsiReferenceExpression
 
-object ExperimentalExt : BaseExtension() {
+object ExperimentalExt : IEmojiVisibilityState by AdvancedExpressionFoldingSettings.State()() {
 
     @JvmStatic
     fun createExpression(element: PsiReferenceExpression): Expression? {
