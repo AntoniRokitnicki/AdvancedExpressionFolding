@@ -4,7 +4,8 @@ import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.processor.language.java.PatternMatchingExt
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
 import com.intellij.advancedExpressionFolding.settings.IControlFlowState
-import com.intellij.advancedExpressionFolding.settings.IState
+import com.intellij.advancedExpressionFolding.settings.IKotlinLanguageState
+import com.intellij.advancedExpressionFolding.settings.IUnclassifiedFeatureState
 import com.intellij.lang.folding.FoldingDescriptor
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.editor.FoldingGroup
@@ -23,7 +24,10 @@ class IfExpression(
     private val ifStatement: PsiIfStatement,
     textRange: TextRange,
     private val state: AdvancedExpressionFoldingSettings.State = AdvancedExpressionFoldingSettings.getInstance().state
-) : Expression(ifStatement, textRange), IState by state {
+) : Expression(ifStatement, textRange),
+    IControlFlowState by state,
+    IKotlinLanguageState by state,
+    IUnclassifiedFeatureState by state {
 
     override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean {
         return isAssertExpression(ifStatement) || isCompactExpression(ifStatement)

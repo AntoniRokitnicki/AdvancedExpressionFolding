@@ -3,13 +3,23 @@ package com.intellij.advancedExpressionFolding.processor.methodcall
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.processor.argumentExpressions
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
+import com.intellij.advancedExpressionFolding.settings.ICollectionsStreamsState
+import com.intellij.advancedExpressionFolding.settings.IDateOperationsState
+import com.intellij.advancedExpressionFolding.settings.IExpressionCollapseState
+import com.intellij.advancedExpressionFolding.settings.IGlobalSettingsState
+import com.intellij.advancedExpressionFolding.settings.IKotlinLanguageState
 import com.intellij.advancedExpressionFolding.settings.IState
 import com.intellij.psi.PsiExpression
 import com.intellij.psi.PsiMethodCallExpression
 
 abstract class AbstractMethodCall(
     private val state: IState = AdvancedExpressionFoldingSettings.getInstance().state,
-) : IState by state {
+) :
+    ICollectionsStreamsState by state,
+    IDateOperationsState by state,
+    IKotlinLanguageState by state,
+    IExpressionCollapseState by state,
+    IGlobalSettingsState by state {
     open fun canExecute(): Boolean = true
 
     open fun execute(
