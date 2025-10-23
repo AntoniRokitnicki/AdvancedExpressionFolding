@@ -177,6 +177,30 @@ object MethodBodyInspector {
     }
 
 
+    fun PsiMethod.asFluentSetter(field: PsiField): String? {
+        val containingClass = containingClass ?: return null
+        val returnType = returnType.asInstance<PsiClassType>() ?: return null
+        if (returnType.resolve() != containingClass) {
+            return null
+        }
+
+        val statements = body?.statements ?: return null
+        if (statements.size != 2) {
+            return null
+        }
+
+        val parameter = parameterList.parameters.singleOrNull() ?: return null
+        if (isDirtyAssignment(statements[0], field, parameter)) {
+            return null
+        }
+
+        val returnStatement = statements[1].asInstance<PsiReturnStatement>() ?: return null
+        return returnStatement.returnValue.asInstance<PsiThisExpression>()?.let {
+            "fluent"
+        }
+    }
+
+
     /**
      * if (lazyLoadedList == null) {
      *     lazyLoadedList = new ArrayList<>();

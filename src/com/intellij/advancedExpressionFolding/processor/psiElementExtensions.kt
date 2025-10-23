@@ -115,7 +115,8 @@ fun PsiMethod.isSetterOrBuilder(): Boolean = isSetter() || isBuilder()
 
 fun PsiMethod.isSetter(): Boolean {
     fun isSetter(text: String) = text.startsWith("set") && text.length > 3 && Character.isUpperCase(text[3])
-    return parameterList.parametersCount == 1 && returnType.isVoid() && isSetter(name)
+    val matchesReturnType = returnType.isVoid() || returnType?.typeResolved == containingClass
+    return parameterList.parametersCount == 1 && matchesReturnType && isSetter(name)
 }
 
 fun PsiMethod.isGetter(): Boolean {
