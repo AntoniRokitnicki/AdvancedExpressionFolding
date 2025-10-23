@@ -3,6 +3,7 @@ package com.intellij.advancedExpressionFolding
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
+import com.intellij.advancedExpressionFolding.application.port.out.Storage
 import com.intellij.advancedExpressionFolding.diff.FoldingDescriptorEx
 import com.intellij.advancedExpressionFolding.diff.FoldingDescriptorExWrapper
 import com.intellij.advancedExpressionFolding.diff.Range
