@@ -75,3 +75,42 @@ public class Person {
 - The generated main method is fully functional and can be run immediately
 - Only works when `pseudoAnnotations` setting is enabled
 - Designed for rapid prototyping and testing
+
+### @InheritConstructors
+
+Generates constructors in the current class that mirror accessible constructors from the superclass. Ideal for quickly wiring up custom `Exception` types or other subclasses that simply delegate to their parent constructors.
+
+#### How it works:
+1. **Completion trigger**: Type `@InheritConstructors` above a class declaration to see the completion suggestion
+2. **Constructor replication**: Selecting the annotation generates constructors matching each accessible superclass constructor
+3. **Visibility preservation**: Keeps `public` and `protected` visibility modifiers when copying constructors
+4. **Exception propagation**: Copies `throws` clauses so the generated constructors compile immediately
+5. **Duplicate avoidance**: Skips constructors that already exist with the same parameter list in the subclass
+
+#### Example:
+```java
+class BaseError extends Exception {
+    public BaseError() {}
+    public BaseError(String message, Throwable cause) throws java.io.IOException {}
+    protected BaseError(int status) {}
+}
+
+class DerivedError extends BaseError {
+    public DerivedError() {
+        super();
+    }
+
+    public DerivedError(String message, Throwable cause) throws java.io.IOException {
+        super(message, cause);
+    }
+
+    protected DerivedError(int status) {
+        super(status);
+    }
+}
+```
+
+#### Notes:
+- Only generates constructors that are accessible from the subclass (skips `private` and package-private constructors from other packages)
+- Maintains parameter annotations and `final` modifiers when present
+- Available when the `pseudoAnnotations` setting is enabled

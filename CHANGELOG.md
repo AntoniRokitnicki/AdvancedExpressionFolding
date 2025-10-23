@@ -14,6 +14,7 @@
 ## [4.0.0] - 2025-07-15
 
 - [[pseudo-annotations] @Main - method-level annotation that generates a main method invoking the annotated method.](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/PseudoAnnotations)
+- [[pseudo-annotations] @InheritConstructors - class-level annotation that copies accessible constructors from the superclass.](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/PseudoAnnotations)
 - [[fieldshift] Preconditions.checkNotNull now supported](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/FieldShift#preconditionschecknotnull)
 
 ## [3.8.0] - 2025-07-07
