@@ -277,10 +277,12 @@ Simplifies constructor references and inline field initialization.
 - [Documentation](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/docs/features/methodDefaultParameters)
 
 ## pseudoAnnotations
-### Pseudo-annotations for main method generation
-Provides pseudo-annotations like @Main that automatically generate main methods for testing and prototyping.
-- [Example](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/examples/data/PseudoAnnotationsMainTestData.java)
-- [Test](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/test/com/intellij/advancedExpressionFolding/MainAnnotationCompletionContributorTest.kt)
+### Pseudo-annotations for rapid method and visitor scaffolding
+Provides pseudo-annotations like @Main and @Visitor that automatically generate runnable entry points and visitor boilerplate.
+- [@Main example](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/examples/data/PseudoAnnotationsMainTestData.java)
+- [@Visitor example](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/examples/data/PseudoAnnotationsVisitorTestData.java)
+- [@Main test](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/test/com/intellij/advancedExpressionFolding/MainAnnotationCompletionContributorTest.kt)
+- [@Visitor test](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/test/com/intellij/advancedExpressionFolding/VisitorAnnotationCompletionContributorTest.kt)
 - [Documentation](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/docs/features/pseudoAnnotations)
 
 ## overrideHide

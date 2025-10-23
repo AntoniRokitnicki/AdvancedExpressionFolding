@@ -5,6 +5,7 @@
 ## [Unreleased]
 
 - Add compatibility with IntelliJ IDEA 2025.3 EAP (253.20558.43)
+- [pseudo-annotations] Introduce @Visitor to generate visitor interfaces and accept methods
 
 ## [4.2.0] - 2025-09-20
 

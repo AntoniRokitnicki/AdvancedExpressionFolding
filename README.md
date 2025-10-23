@@ -45,6 +45,8 @@ For more information, read the [blog post](https://medium.com/@andrey_cheptsov/m
 
 ## Unreleased ##
 
+- [[pseudo-annotations] @Visitor - class-level annotation that injects visitor boilerplate and updates the target interface.](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/PseudoAnnotations)
+
 ## 4.2.0 ##
 - [Add setting to prevent collapsing Java text blocks in log folding](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/338)
 - [Bugfix/log folding strings no params](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/341)
