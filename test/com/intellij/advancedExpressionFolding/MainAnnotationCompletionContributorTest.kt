@@ -328,7 +328,7 @@ class MainAnnotationCompletionContributorTest : BaseTest() {
     @MethodSource("testCases")
     fun `should generate main method when selecting @Main from completion`(testCase: TestCase) {
         fixture.configureByText("Test.java", testCase.input)
-        
+
         val completions = fixture.complete(CompletionType.BASIC)
         assertNotNull(completions)
         
@@ -341,6 +341,102 @@ class MainAnnotationCompletionContributorTest : BaseTest() {
         }
 
         fixture.checkResult(testCase.expected)
+    }
+
+    @Test
+    fun `should offer @NotFullyImplemented in completion for annotation above class`() {
+        fixture.configureByText("Test.java", @Language("JAVA") """
+            public class Test implements Runnable {
+                @<caret>
+            }
+        """.trimIndent())
+
+        val completions = fixture.complete(CompletionType.BASIC)
+        assertNotNull(completions)
+        assertTrue(completions.any { it.lookupString == "NotFullyImplemented" })
+    }
+
+    @Test
+    fun `should generate stub methods when selecting @NotFullyImplemented from completion`() {
+        fixture.configureByText("Test.java", @Language("JAVA") """
+            public interface Task {
+                void execute();
+            }
+
+            public class Test implements Task {
+                @<caret>
+            }
+        """.trimIndent())
+
+        val completions = fixture.complete(CompletionType.BASIC)
+        assertNotNull(completions)
+
+        val completion = completions.find { it.lookupString == "NotFullyImplemented" }
+        assertNotNull(completion)
+
+        ApplicationManager.getApplication().invokeAndWait {
+            fixture.lookup.currentItem = completion
+            fixture.finishLookup('\n')
+        }
+
+        fixture.checkResult(@Language("JAVA") """
+            public interface Task {
+                void execute();
+            }
+
+            public class Test implements Task {
+
+                @Override
+                public void execute() {
+                    throw new NotImplementedException();
+                }
+            }
+        """.trimIndent())
+    }
+
+    @Test
+    fun `should replace return stubs with NotImplementedException`() {
+        fixture.configureByText("Test.java", @Language("JAVA") """
+            public interface Calculator {
+                int add(int left, int right);
+                String describe();
+            }
+
+            public class Test implements Calculator {
+                @<caret>
+            }
+        """.trimIndent())
+
+        val completions = fixture.complete(CompletionType.BASIC)
+        assertNotNull(completions)
+
+        val completion = completions.find { it.lookupString == "NotFullyImplemented" }
+        assertNotNull(completion)
+
+        ApplicationManager.getApplication().invokeAndWait {
+            fixture.lookup.currentItem = completion
+            fixture.finishLookup('\n')
+        }
+
+        fixture.checkResult(@Language("JAVA") """
+            public interface Calculator {
+                int add(int left, int right);
+                String describe();
+            }
+
+            public class Test implements Calculator {
+
+                @Override
+                public int add(int left, int right) {
+                    throw new NotImplementedException();
+                }
+
+                @Override
+                public String describe() {
+                    throw new NotImplementedException();
+                }
+            }
+        """.trimIndent())
     }
 
     data class TestCase(

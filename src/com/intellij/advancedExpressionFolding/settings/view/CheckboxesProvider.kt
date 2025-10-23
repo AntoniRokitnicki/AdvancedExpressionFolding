@@ -273,7 +273,7 @@ abstract class CheckboxesProvider {
             example("SuppressWarningsHideTestData.java")
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#suppressWarningsHide")
         }
-        registerCheckbox(state::pseudoAnnotations, "Pseudo-annotations: @Main") {
+        registerCheckbox(state::pseudoAnnotations, "Pseudo-annotations: @Main, @NotFullyImplemented") {
             example("PseudoAnnotationsMainTestData.java")
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#pseudoAnnotations")
         }

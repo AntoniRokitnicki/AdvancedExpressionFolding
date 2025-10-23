@@ -75,3 +75,39 @@ public class Person {
 - The generated main method is fully functional and can be run immediately
 - Only works when `pseudoAnnotations` setting is enabled
 - Designed for rapid prototyping and testing
+
+### @NotFullyImplemented
+
+Fills in all missing interface methods with a body that throws `new NotImplementedException()`.
+
+#### How it works:
+1. **Completion trigger**: Type `@NotFullyImplemented` inside the modifier list of a class that implements interfaces
+2. **Method generation**: Selecting the completion removes the pseudo-annotation and inserts implementations for every unimplemented interface method
+3. **Method bodies**: Each generated method contains a single `throw new NotImplementedException();` statement so the class remains compilable
+4. **Overrides**: Adds the `@Override` annotation when applicable to keep the class aligned with the Java style settings
+
+#### Code example:
+```java
+public interface Service {
+    void start();
+    String status();
+}
+
+public class DemoService implements Service {
+
+    @Override
+    public void start() {
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public String status() {
+        throw new NotImplementedException();
+    }
+}
+```
+
+#### Notes:
+- Works only when the `pseudoAnnotations` setting is enabled
+- Leaves existing implementations untouched—only missing interface methods are generated
+- Ideal for sketching class outlines before writing the real logic
