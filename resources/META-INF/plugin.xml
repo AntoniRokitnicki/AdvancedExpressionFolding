@@ -40,6 +40,9 @@
         <completion.contributor
                 language="JAVA"
                 implementationClass="com.intellij.advancedExpressionFolding.MainAnnotationCompletionContributor"/>
+        <completion.contributor
+                language="JAVA"
+                implementationClass="com.intellij.advancedExpressionFolding.Slf4jAnnotationCompletionContributor"/>
     </extensions>
 
     <applicationListeners>
