@@ -36,10 +36,13 @@
                 key="editor.folding.advanced.expression.displayName"
                 bundle="Bundle"/>
 
-        <!-- Suggests the pseudo-annotation @Main used by the plugin -->
+        <!-- Suggests pseudo-annotations used by the plugin -->
         <completion.contributor
                 language="JAVA"
                 implementationClass="com.intellij.advancedExpressionFolding.MainAnnotationCompletionContributor"/>
+        <completion.contributor
+                language="JAVA"
+                implementationClass="com.intellij.advancedExpressionFolding.AdapterAnnotationCompletionContributor"/>
     </extensions>
 
     <applicationListeners>

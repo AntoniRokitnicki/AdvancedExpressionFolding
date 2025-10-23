@@ -75,3 +75,90 @@ public class Person {
 - The generated main method is fully functional and can be run immediately
 - Only works when `pseudoAnnotations` setting is enabled
 - Designed for rapid prototyping and testing
+
+### @Adapter
+
+Generates a default adapter implementation for interfaces and abstract classes so you can override only the methods you care about.
+
+#### How it works:
+1. **Completion trigger**: Type `@Adapter` above an interface or abstract class to see the completion suggestion
+2. **Class generation**: Selecting `@Adapter` creates a sibling `<TypeName>Adapter` class that implements or extends the annotated type
+3. **Method stubs**: Every abstract method is overridden with a stub that either returns default values or throws
+4. **Cleanup**: The pseudo-annotation is removed after generation and existing adapter classes with the same name are replaced
+
+#### Configuration options:
+- `@Adapter(throw = true)` – Generates bodies that throw `UnsupportedOperationException`
+- `@Adapter(primitiveWrapperReturns = DEFAULT)` – Returns default primitive values for wrapper types (e.g., `Integer` → `0`)
+
+#### Return value defaults:
+- Primitives (`boolean`, `int`, `long`, etc.) → Same defaults as the language (`false`, `0`, `0L`, `0.0f`, `0.0d`)
+- Primitive wrappers (`Boolean`, `Integer`, etc.) → `null` unless `primitiveWrapperReturns = DEFAULT` is set
+- Other reference types → `null`
+- `void` methods → Empty body
+
+#### Example:
+```java
+@Adapter(primitiveWrapperReturns = DEFAULT)
+public interface ChangeListener {
+    void onCreated();
+    Integer onUpdated();
+}
+```
+
+After accepting the completion:
+
+```java
+public interface ChangeListener {
+    void onCreated();
+    Integer onUpdated();
+}
+
+public class ChangeListenerAdapter implements ChangeListener {
+
+    @Override
+    public void onCreated() {
+    }
+
+    @Override
+    public Integer onUpdated() {
+        return 0;
+    }
+}
+```
+
+You can also combine flags. The snippet below generates stubs that both throw and return wrapper defaults:
+
+```java
+@Adapter(throw = true, primitiveWrapperReturns = DEFAULT)
+public abstract class SafeProcessor {
+    public abstract Integer execute();
+    protected abstract boolean enabled();
+}
+```
+
+After completion the adapter looks like this:
+
+```java
+public abstract class SafeProcessor {
+    public abstract Integer execute();
+    protected abstract boolean enabled();
+}
+
+public class SafeProcessorAdapter extends SafeProcessor {
+
+    @Override
+    public Integer execute() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    protected boolean enabled() {
+        throw new UnsupportedOperationException();
+    }
+}
+```
+
+#### Notes:
+- Works for both interfaces and abstract classes
+- Generated classes inherit generic type parameters from the source type
+- Only available when the `pseudoAnnotations` setting is enabled
