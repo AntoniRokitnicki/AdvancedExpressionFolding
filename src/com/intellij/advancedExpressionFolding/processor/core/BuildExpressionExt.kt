@@ -5,7 +5,10 @@ import com.intellij.advancedExpressionFolding.expression.SyntheticExpressionImpl
 import com.intellij.advancedExpressionFolding.processor.cache.CacheExt.getExpression
 import com.intellij.advancedExpressionFolding.processor.util.Helper
 import com.intellij.lang.folding.FoldingDescriptor
+import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.editor.Document
+import com.intellij.openapi.progress.ProgressManager
+import com.intellij.openapi.project.DumbService
 import com.intellij.openapi.project.IndexNotReadyException
 import com.intellij.psi.PsiElement
 
@@ -39,7 +42,14 @@ object BuildExpressionExt {
     @JvmStatic
     @Throws(IndexNotReadyException::class)
     fun getNonSyntheticExpression(element: PsiElement, document: Document?): Expression? {
-        return getExpression(element, document ?: element.containingFile.viewProvider.document, false)
+        if (!ApplicationManager.getApplication().isUnitTestMode && DumbService.isDumb(element.project)) {
+            return null
+        }
+        return try {
+            getExpression(element, document ?: element.containingFile.viewProvider.document, false)
+        } catch (e: IndexNotReadyException) {
+            null
+        }
     }
 
     @JvmStatic
@@ -59,6 +69,7 @@ object BuildExpressionExt {
         }
         if (expression == null || (unique && expression.isNested())) {
             for (child in element.children) {
+                ProgressManager.checkCanceled()
                 collectFoldRegionsRecursively(child, document, uniqueSet, allDescriptors)
             }
         }
