@@ -5,6 +5,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.util.*;
+import java.util.function.Supplier;
 import java.util.logging.Logger;</fold>
 
 <fold text='/** {@link com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.IState#getLombok()} ...*/' expand='true'>/**
@@ -532,6 +533,10 @@ import java.util.logging.Logger;</fold>
         <fold text='@Getter(wrapper = this::localWrap) p' expand='false'>p</fold>rivate List<String> thisLocalMethodWrappedList;
         <fold text='@Getter(lazy = ArrayList::new) p' expand='false'>p</fold>rivate List<String> lazyLoadedList;
         <fold text='@Getter(lazy = ArrayList::new) p' expand='false'>p</fold>rivate List<String> oneLineLazyLoadedList;
+        private Supplier<List<String>> lazyLoadedListSupplier;
+        <fold text='@Getter(lazy = lazyLoadedListSupplier::get) p' expand='false'>p</fold>rivate List<String> lazyLoadedListFromSupplier;
+        private Supplier<List<String>> oneLineLazyLoadedListSupplier;
+        <fold text='@Getter(lazy = oneLineLazyLoadedListSupplier::get) p' expand='false'>p</fold>rivate List<String> oneLineLazyLoadedListFromSupplier;
         <fold text='@Getter(wrapper = ArrayList::new) p' expand='false'>p</fold>rivate List<String> defensiveCopyList;<fold text='' expand='false'>
 
         </fold><fold text='' expand='false'>public List<String> getWrapper()<fold text=' { ' expand='false'> {
@@ -568,6 +573,13 @@ import java.util.logging.Logger;</fold>
             return lazyLoadedList;
         }</fold></fold><fold text='' expand='false'>
 
+        </fold><fold text='' expand='false'>public List<String> getLazyLoadedListFromSupplier() <fold text='{...}' expand='true'>{
+            if (lazyLoadedListFromSupplier == null) <fold text='{...}' expand='true'>{
+                lazyLoadedListFromSupplier = lazyLoadedListSupplier.get();
+            }</fold>
+            return lazyLoadedListFromSupplier;
+        }</fold></fold><fold text='' expand='false'>
+
         </fold><fold text='' expand='false'>public List<String> getDefensiveCopyList()<fold text=' { ' expand='false'> {
             </fold>return new ArrayList<>(defensiveCopyList);<fold text=' }' expand='false'>
         }</fold></fold><fold text='' expand='false'>
@@ -575,6 +587,11 @@ import java.util.logging.Logger;</fold>
         </fold><fold text='' expand='false'>public List<String> getOneLineLazyLoadedList() <fold text='{...}' expand='true'>{
             if (oneLineLazyLoadedList == null) oneLineLazyLoadedList = new ArrayList<>();
             return oneLineLazyLoadedList;
+        }</fold></fold><fold text='' expand='false'>
+
+        </fold><fold text='' expand='false'>public List<String> getOneLineLazyLoadedListFromSupplier() <fold text='{...}' expand='true'>{
+            if (oneLineLazyLoadedListFromSupplier == null) oneLineLazyLoadedListFromSupplier = oneLineLazyLoadedListSupplier.get();
+            return oneLineLazyLoadedListFromSupplier;
         }</fold></fold>
 
         private List<String> localWrap(List<String> list)<fold text=' { ' expand='false'> {

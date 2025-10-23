@@ -66,6 +66,31 @@ LombokTestData-folded.java:
 }
 ```
 
+Additional lazy getter example using a supplier:
+
+LombokTestData.java:
+```java
+public class SupportedDirtyLombokGetters {
+    private Supplier<List<String>> lazyLoadedListSupplier;
+    private List<String> lazyLoadedListFromSupplier;
+
+    public List<String> getLazyLoadedListFromSupplier() {
+        if (lazyLoadedListFromSupplier == null) {
+            lazyLoadedListFromSupplier = lazyLoadedListSupplier.get();
+        }
+        return lazyLoadedListFromSupplier;
+    }
+}
+```
+
+LombokTestData-folded.java:
+```java
+public class SupportedDirtyLombokGetters {
+    private Supplier<List<String>> lazyLoadedListSupplier;
+    @Getter(lazy = lazyLoadedListSupplier::get) private List<String> lazyLoadedListFromSupplier;
+}
+```
+
 ### @Setter
 Folds setter methods into a single annotation.
 

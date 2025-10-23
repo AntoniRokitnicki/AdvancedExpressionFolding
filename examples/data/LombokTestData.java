@@ -5,6 +5,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.util.*;
+import java.util.function.Supplier;
 import java.util.logging.Logger;
 
 /**
@@ -532,6 +533,10 @@ public class LombokTestData {
         private List<String> thisLocalMethodWrappedList;
         private List<String> lazyLoadedList;
         private List<String> oneLineLazyLoadedList;
+        private Supplier<List<String>> lazyLoadedListSupplier;
+        private List<String> lazyLoadedListFromSupplier;
+        private Supplier<List<String>> oneLineLazyLoadedListSupplier;
+        private List<String> oneLineLazyLoadedListFromSupplier;
         private List<String> defensiveCopyList;
 
         public List<String> getWrapper() {
@@ -568,6 +573,13 @@ public class LombokTestData {
             return lazyLoadedList;
         }
 
+        public List<String> getLazyLoadedListFromSupplier() {
+            if (lazyLoadedListFromSupplier == null) {
+                lazyLoadedListFromSupplier = lazyLoadedListSupplier.get();
+            }
+            return lazyLoadedListFromSupplier;
+        }
+
         public List<String> getDefensiveCopyList() {
             return new ArrayList<>(defensiveCopyList);
         }
@@ -575,6 +587,11 @@ public class LombokTestData {
         public List<String> getOneLineLazyLoadedList() {
             if (oneLineLazyLoadedList == null) oneLineLazyLoadedList = new ArrayList<>();
             return oneLineLazyLoadedList;
+        }
+
+        public List<String> getOneLineLazyLoadedListFromSupplier() {
+            if (oneLineLazyLoadedListFromSupplier == null) oneLineLazyLoadedListFromSupplier = oneLineLazyLoadedListSupplier.get();
+            return oneLineLazyLoadedListFromSupplier;
         }
 
         private List<String> localWrap(List<String> list) {

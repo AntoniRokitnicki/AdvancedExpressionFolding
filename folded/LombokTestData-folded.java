@@ -5,6 +5,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.util.*;
+import java.util.function.Supplier;
 import java.util.logging.Logger;
 
 /**
@@ -174,6 +175,10 @@ import java.util.logging.Logger;
         @Getter(wrapper = this::localWrap) private List<String> thisLocalMethodWrappedList;
         @Getter(lazy = ArrayList::new) private List<String> lazyLoadedList;
         @Getter(lazy = ArrayList::new) private List<String> oneLineLazyLoadedList;
+        private Supplier<List<String>> lazyLoadedListSupplier;
+        @Getter(lazy = lazyLoadedListSupplier::get) private List<String> lazyLoadedListFromSupplier;
+        private Supplier<List<String>> oneLineLazyLoadedListSupplier;
+        @Getter(lazy = oneLineLazyLoadedListSupplier::get) private List<String> oneLineLazyLoadedListFromSupplier;
         @Getter(wrapper = ArrayList::new) private List<String> defensiveCopyList;
 
         private List<String> localWrap(List<String> list) {
