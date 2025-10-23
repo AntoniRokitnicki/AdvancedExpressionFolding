@@ -96,6 +96,7 @@
 - [lombok] - @AllArgsConstructor, @AllArgsConstructor(protected), etc.
 - [lombok] - @RequiredArgsConstructor, @RequiredArgsConstructor(protected), etc.
 - [lombok] - @Log and @Log(logger) - present for every Logger field
+- [lombok] - @UtilityClass - mark final static-only classes
 - [expressionFunc] - Kotlin's Single-expression functions for with single statement body with size < 145 characters. {} used instead of =, because of default method folding.
 - [dynamic] - dynamic names for methods based on file $HOME/dynamic-ajf2.toml works only for methods with qualifier
 - [const] - show modifiers for fields and hide types for enums(not statically imported) and factory methods

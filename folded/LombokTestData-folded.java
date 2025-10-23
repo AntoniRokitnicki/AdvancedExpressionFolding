@@ -245,6 +245,18 @@ import java.util.logging.Logger;
 
     }
 
+    public class UtilityClassAnnotation {
+        @UtilityClass public static final class UtilityClassWithField {
+            public static final String NAME = "utility";
+        }
+
+        @UtilityClass public static final class UtilityClassWithMethod {
+            public static String greet() {
+                return "hello";
+            }
+        }
+    }
+
     public class AllArgsConstructorAnnotation {
         @AllArgsConstructor public static class AllArgs {
             private String field1;

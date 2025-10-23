@@ -55,6 +55,17 @@ object MethodBodyInspector {
         return (body.statementCount == 0) || isSuperNoArgsConstructor(body)
     }
 
+    fun isUtilityClassConstructor(method: PsiMethod): Boolean {
+        val body = method.body ?: return false
+        val statement = body.statements.singleOrNull()?.asInstance<PsiThrowStatement>() ?: return false
+        val newExpression = statement.exception.asNewInstance() ?: return false
+        val arguments = newExpression.argumentList?.expressions ?: PsiExpression.EMPTY_ARRAY
+        if (arguments.size > 1) {
+            return false
+        }
+        return true
+    }
+
     private fun isSuperNoArgsConstructor(body: PsiCodeBlock): Boolean {
         val statement = body.statements
             .takeIfSize(1)

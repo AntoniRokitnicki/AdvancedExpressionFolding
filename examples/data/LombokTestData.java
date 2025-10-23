@@ -731,6 +731,26 @@ public class LombokTestData {
 
     }
 
+    public class UtilityClassAnnotation {
+        public static final class UtilityClassWithField {
+            public static final String NAME = "utility";
+
+            private UtilityClassWithField() {
+                throw new UnsupportedOperationException("This is a utility class and cannot be instantiated");
+            }
+        }
+
+        public static final class UtilityClassWithMethod {
+            public static String greet() {
+                return "hello";
+            }
+
+            private UtilityClassWithMethod() {
+                throw new AssertionError("No instances for you");
+            }
+        }
+    }
+
     public class AllArgsConstructorAnnotation {
         public static class AllArgs {
             private String field1;

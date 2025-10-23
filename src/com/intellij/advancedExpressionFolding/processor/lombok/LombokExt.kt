@@ -12,6 +12,7 @@ import com.intellij.advancedExpressionFolding.processor.lombok.LombokFieldExt.fi
 import com.intellij.advancedExpressionFolding.processor.lombok.LombokFieldExt.foldData
 import com.intellij.advancedExpressionFolding.processor.lombok.LombokFieldExt.foldProperties
 import com.intellij.advancedExpressionFolding.processor.lombok.LombokFoldingAnnotation.*
+import com.intellij.advancedExpressionFolding.processor.lombok.LombokUtilityClassExt
 import com.intellij.advancedExpressionFolding.processor.lombok.LombokMethodExt.interfaceSupport
 import com.intellij.advancedExpressionFolding.processor.lombok.LombokMethodExt.isFinder
 import com.intellij.advancedExpressionFolding.processor.lombok.MethodType.*
@@ -33,6 +34,7 @@ object LombokExt : BaseExtension() {
         classLevelAnnotations += foldLog(this.fields)
         classLevelAnnotations += foldBuilder()
         classLevelAnnotations += foldNoArgsConstructor(this.constructors)
+        classLevelAnnotations += LombokUtilityClassExt.foldUtilityClass(this)
 
         createFieldMap(this)?.let { fieldsMap ->
             classLevelAnnotations += foldArgsConstructor(this.constructors, fieldsMap.values, fieldLevelAnnotations)

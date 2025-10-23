@@ -731,6 +731,26 @@ import java.util.logging.Logger;</fold>
 
     }</fold>
 
+    public class UtilityClassAnnotation <fold text='{...}' expand='true'>{
+        <fold text='@UtilityClass p' expand='false'>p</fold>ublic static <fold text='' expand='false'>final</fold> class UtilityClassWithField <fold text='{...}' expand='true'>{
+            <fold text='const' expand='false'>public static final </fold><fold text='' expand='false'>String</fold> NAME = "utility";<fold text='' expand='false'>
+
+            </fold><fold text='' expand='false'>private UtilityClassWithField() <fold text='{...}' expand='true'>{<fold text=' ' expand='true'>
+                </fold>throw new UnsupportedOperationException("This is a utility class and cannot be instantiated")<fold text='' expand='true'>;</fold><fold text=' ' expand='true'></fold>
+            </fold>}</fold></fold>
+        }</fold>
+
+        <fold text='@UtilityClass p' expand='false'>p</fold>ublic static <fold text='' expand='false'>final</fold> class UtilityClassWithMethod <fold text='{...}' expand='true'>{
+            public static String greet()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+                </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>"hello"<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+            </fold>}</fold><fold text='' expand='false'>
+
+            </fold><fold text='' expand='false'>private UtilityClassWithMethod()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+                </fold></fold>throw new AssertionError("No instances for you")<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+            </fold>}</fold></fold>
+        }</fold>
+    }</fold>
+
     public class AllArgsConstructorAnnotation <fold text='{...}' expand='true'>{
         <fold text='@AllArgsConstructor p' expand='false'>p</fold>ublic static class AllArgs <fold text='{...}' expand='true'>{
             private String field1;
