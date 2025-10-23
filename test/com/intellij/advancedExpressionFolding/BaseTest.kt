@@ -1,6 +1,7 @@
 package com.intellij.advancedExpressionFolding
 
 import ai.grazie.utils.capitalize
+import com.intellij.advancedExpressionFolding.adapter.storage.StorageRegistry
 import com.intellij.advancedExpressionFolding.diff.FoldingDescriptorExWrapper
 import com.intellij.advancedExpressionFolding.processor.off
 import com.intellij.openapi.application.WriteAction
@@ -53,7 +54,7 @@ abstract class BaseTest : LightJavaCodeInsightFixtureTestCase5(TEST_JDK) {
         }
 
         val store = FoldingDataStorage()
-        com.intellij.advancedExpressionFolding.store = store
+        StorageRegistry.use(store)
         try {
             action.invoke()
         } catch (e: FileComparisonFailedError) {
@@ -72,6 +73,8 @@ abstract class BaseTest : LightJavaCodeInsightFixtureTestCase5(TEST_JDK) {
                 createFoldedFile(fileName, actual, wrapper)
             }
             throw e
+        } finally {
+            StorageRegistry.reset()
         }
     }
 
