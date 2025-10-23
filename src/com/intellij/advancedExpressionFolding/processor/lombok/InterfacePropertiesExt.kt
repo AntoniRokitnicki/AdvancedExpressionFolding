@@ -5,6 +5,7 @@ import com.intellij.advancedExpressionFolding.expression.semantic.lombok.Interfa
 import com.intellij.advancedExpressionFolding.expression.semantic.lombok.NullAnnotationExpression
 import com.intellij.advancedExpressionFolding.processor.asInstance
 import com.intellij.advancedExpressionFolding.processor.core.BaseExtension
+import com.intellij.advancedExpressionFolding.processor.core.getNonSyntheticExpression
 import com.intellij.advancedExpressionFolding.processor.exprWrap
 import com.intellij.advancedExpressionFolding.processor.group
 import com.intellij.advancedExpressionFolding.processor.identifier
