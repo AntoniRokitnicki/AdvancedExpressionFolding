@@ -1,6 +1,9 @@
 package com.intellij.advancedExpressionFolding.settings
 
-data class State(
+/**
+ * New version of [AdvancedExpressionFoldingSettings.State] that will replace it.
+ */
+data class NewState(
     private val lombokState: ILombokState = LombokState(),
     private val logFoldingState: ILogFoldingState = LogFoldingState(),
     private val controlFlowState: IControlFlowState = ControlFlowState(),

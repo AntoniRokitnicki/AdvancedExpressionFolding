@@ -3,6 +3,7 @@ package com.intellij.advancedExpressionFolding.processor.language.java
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.processor.*
 import com.intellij.advancedExpressionFolding.processor.core.BaseExtension
+import com.intellij.advancedExpressionFolding.processor.core.getAnyExpression
 import com.intellij.openapi.editor.Document
 import com.intellij.psi.PsiField
 import com.intellij.psi.PsiNewExpression
