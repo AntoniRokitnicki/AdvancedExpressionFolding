@@ -41,3 +41,18 @@ Removes boilerplate while preserving behavior.
 Default: On
 Controlled by: `interfaceExtensionProperties`
 Related features: (none)
+---
+
+#### Folding catalogue
+
+##### InterfaceExtensionPropertiesTestData mappings
+| Before | After |
+| --- | --- |
+| `String getName();` | `@Getter String name;` |
+| `void setName(String name);` | `@Setter String name;` |
+| `int getAge();` | `@Getter int age;` |
+| `void setAge(int age);` | `@Setter int age;` |
+| `public String getName();` | `@Getter public String name;` |
+| `public void setName(String name);` | `@Setter public String name;` |
+| `public int getAge();` | `@Getter public int age;` |
+| `public void setAge(int age);` | `@Setter public int age;` |

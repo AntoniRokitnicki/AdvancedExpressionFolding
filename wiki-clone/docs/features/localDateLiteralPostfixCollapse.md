@@ -31,3 +31,15 @@ Removes boilerplate while preserving behavior.
 Default: Off
 Controlled by: `localDateLiteralPostfixCollapse`
 Related features: (none)
+---
+
+#### Folding catalogue
+
+##### LocalDateLiteralPostfixTestData mappings
+| Before | After |
+| --- | --- |
+| `LocalDate d1 = LocalDate.of(2018, 01, 10);` | `LocalDate d1 = 2018Y-01M-10D;` |
+| `LocalDate d4 = LocalDate.of(2018, 01, 10);` | `LocalDate d4 = 2018Y-01M-10D;` |
+| `LocalDate d2 = LocalDate.of(2018, 12, 10);` | `LocalDate d2 = 2018Y-12M-10D;` |
+| `LocalDate d3 = LocalDate.of(2018,  4 ,  4   );` | `LocalDate d3 = 2018Y-04M-04D;` |
+| `boolean d1SmallerOrEqualD2 = !d1.isAfter(LocalDate.of(2013, 1, 10));` | `boolean d1SmallerOrEqualD2 = !d1.isAfter(2013Y-01M-10D);` |

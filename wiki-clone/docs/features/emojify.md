@@ -101,3 +101,12 @@ folded/EmojifyTestData-folded.java:
         }
 ```
 Emojify replaces the `void` return type and `int` local with their emoji counterparts while leaving `Math.max` untouched.
+
+#### Integration coverage
+
+The `testData/EmojifyTestData-all.java` fixture runs the emoji substitutions across every context used in integration tests. The folded output shows:
+
+* Namespace keywords (`package`, `import`), declaration modifiers (`final`, `static`, `abstract`, `transient`, `volatile`, `native`), and type keywords (`void`, `int`, `boolean`, etc.) all render with their emoji replacements inside class headers, fields, constructors, and method signatures.
+* Control-flow tokens like `try`, `catch`, `return`, `for`, `switch`, and `default` pick up their glyphs even when nested inside anonymous classes, lambdas, or enhanced for-loops.
+* The singleton access rewrite converts `Singleton.INSTANCE` into `Singleton.🧍`, matching the integration scenarios that assign or return the singleton reference.
+* Because the processor operates after other folds, Lombok-generated getters/setters, builder patterns, and other feature rewrites coexist with the emoji tokens—ensuring the emoji version of each keyword appears alongside any additional folding.

@@ -27,3 +27,19 @@ Removes boilerplate while preserving behavior.
 Default: On
 Controlled by: `dynamic`
 Related features: (none)
+---
+
+#### Folding catalogue
+
+##### DynamicTestData mappings
+| Before | After |
+| --- | --- |
+| `public static void staticMethod(Data data) {` | `public static void changedStaticMethod(Data data) {` |
+| `.normalMethod(` | `.changedNormalMethod(` |
+| `staticMethod(` | `changedStaticMethod(` |
+| `new DynamicTestData().staticMethod(` | `new DynamicTestData().changedStaticMethod(` |
+| `data.getData()` | `data.data` |
+| `staticMethod(data.getData());` | `changedStaticMethod(data.data);` |
+| `private String normalMethod(String args) {` | `private String changedNormalMethod(String args) {` |
+| `return normalMethod(args.substring(1));` | `return changedNormalMethod(args.substring(1));` |
+| `private static String staticMethod(String args) {` | `private static String changedStaticMethod(String args) {` |

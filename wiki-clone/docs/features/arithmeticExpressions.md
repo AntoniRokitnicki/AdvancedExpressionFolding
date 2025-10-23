@@ -740,3 +740,17 @@ folded/ArithmeticExpressionsTestData-folded.java:
 ```
 Collapses `Double.valueOf` to the source string.
 
+
+---
+
+#### Processor summary based on implementation
+
+The arithmetic processors register against `java.math.BigDecimal` and `java.math.BigInteger` receivers, then replace fluent method calls with the matching arithmetic syntax:
+
+* `add`, `subtract`, `multiply`, and `divide` fold into infix `+`, `-`, `*`, and `/` expressions by rewriting the qualifier and single argument into a binary operand list.
+* `remainder` and `mod` share the same handler, producing `%` expressions, while `pow` converts the exponent into a superscript when the value can be rendered that way.
+* `abs`, `negate`, `plus`, and `signum` collapse unary calls: absolute value surrounds the operand with `|…|`, `negate` prepends a minus, `plus` returns the qualifier unchanged, and `signum` emits the compact `signum` helper call.
+* `and`, `or`, `xor`, `andNot`, and `not` are mapped onto the bitwise operators. `andNot` expands to `qualifier & ~argument` by composing an explicit negation of the parameter before applying the `&` expression.
+* `shiftLeft` and `shiftRight` become bitwise shift expressions, `gcd` becomes the infix-style `gcd` call, and `atan2` folds the two-argument form into a concise `atan2` expression.
+
+These behaviours come directly from the method-call processors under `processor/methodcall/arithmetic`, which wrap the qualifier and arguments in the corresponding math `Expression` classes (for example `Add`, `Subtract`, `Multiply`, `Divide`, `Remainder`, `Pow`, `Abs`, `Negate`, `Signum`, `And`, `Or`, `Xor`, `Not`, `ShiftLeft`, `ShiftRight`, `Gcd`, and `Atan2`).

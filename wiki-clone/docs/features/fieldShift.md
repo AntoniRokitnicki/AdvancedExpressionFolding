@@ -121,3 +121,42 @@ Removes boilerplate while preserving behavior.
 Default: On
 Controlled by: `fieldShift`
 Related features: (none)
+---
+
+#### Folding catalogue
+
+##### FieldShiftBuilder adjustments
+| Before | After |
+| --- | --- |
+| `this.username = username;` | `this.username = <<;` |
+| `.username(record.username())` | `.username(record<<)` |
+| `.active(source.isActive())` | `.active(source<<)` |
+| `.userIdentifier(source.getUserIdentifier())` | `.userIdentifier(source<<)` |
+| `.child(builder1 ... .build().getChild())` | `.child(builder1 ... .build()<<)` |
+| `.username(source.getUsername() + source.getUserIdentifier())` | `.username(source.username + source.userIdentifier)` |
+
+##### FieldShiftSetters adjustments
+| Before | After |
+| --- | --- |
+| `result.setUsername(source.getUsername());` | `result.username = source<<;` |
+| `result.setActive(source.isActive());` | `result.active = source<<;` |
+| `result.setUserIdentifier(source.getUserIdentifier());` | `result.userIdentifier = source<<;` |
+| `setters2.setActive(setters.isActive());` | `setters2.active = setters<<;` |
+| `childBuilder2.setUsername(source.getUsername());` | `childBuilder2.username = source<<;` |
+
+##### FieldShiftFields adjustments
+| Before | After |
+| --- | --- |
+| `this.userIdentifier = child.userIdentifier;` | `this.userIdentifier = child.<<;` |
+| `result.username = source.child.username;` | `result.username = source.child.<<;` |
+| `result.userIdentifier = source.userIdentifier;` | `result.userIdentifier = source.<<;` |
+| `setters2.userIdentifier = record.userIdentifier();` | `setters2.userIdentifier = record.<<;` |
+| `result.child = childBuilder2.child.child.child.child;` | `result.child = childBuilder2.child.child.child.<<;` |
+
+##### NullableAnnotationCheckNotNullFieldShiftTestData adjustments
+| Before | After |
+| --- | --- |
+| `this.args = Preconditions.checkNotNull(args);` | `this.args = <<!!;` |
+| `this.l = Preconditions.checkNotNull(l);` | `this.l = <<!!;` |
+| `this.data = Preconditions.checkNotNull(z.getData());` | `this.data = z.<<!!;` |
+| `this.o = Preconditions.checkNotNull(o);` | `this.o = <<!!;` |
