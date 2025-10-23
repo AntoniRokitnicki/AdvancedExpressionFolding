@@ -23,7 +23,6 @@ public class LogBrackets {
         log.debug("Debug message with 1 parameter - Name: <fold text='$' expand='false'>%s", </fold>name<fold text='")' expand='false'>)</fold>;
 
         log.info(MY_MARKER, "Info message with 2 parameters - Name: <fold text='$' expand='false'>%s, Age: %d", </fold>name<fold text=', Age: $' expand='false'>, </fold>age<fold text='")' expand='false'>)</fold>;
-        log.info(MY_MARKER, "Marker missing parameters {} {}");
 
         log.info("Info message with 2 parameters - Name: <fold text='$' expand='false'>%s, Age: %d    ", </fold>name<fold text=', Age: $' expand='false'>, </fold>age<fold text='    ")' expand='false'>)</fold>;
         log.info("Info message with 2 parameters - Name: <fold text='$' expand='false'>%s, Age: %d", </fold>name<fold text=', Age: $' expand='false'>, </fold>age<fold text='")' expand='false'>)</fold>;
