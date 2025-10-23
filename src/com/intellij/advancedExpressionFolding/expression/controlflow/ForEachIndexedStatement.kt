@@ -2,6 +2,7 @@ package com.intellij.advancedExpressionFolding.expression.controlflow
 
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
+import com.intellij.advancedExpressionFolding.settings.IState
 import com.intellij.lang.folding.FoldingDescriptor
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.editor.FoldingGroup
@@ -17,8 +18,9 @@ class ForEachIndexedStatement(
     private val variableTextRange: TextRange,
     private val arrayTextRange: TextRange,
     private val varSyntax: Boolean,
-    private val isFinal: Boolean
-) : Expression(statement, textRange) {
+    private val isFinal: Boolean,
+    private val state: AdvancedExpressionFoldingSettings.State = AdvancedExpressionFoldingSettings.getInstance().state
+) : Expression(statement, textRange), IState by state {
 
     override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean = true
 
@@ -31,7 +33,7 @@ class ForEachIndexedStatement(
         val group = FoldingGroup.newGroup(ForEachIndexedStatement::class.java.name)
         val prefixRange = TextRange.create(textRange.startOffset, textRange.startOffset + 1)
         var prefix = document.getText(prefixRange)
-        if (AdvancedExpressionFoldingSettings.getInstance().state.compactControlFlowSyntaxCollapse && prefix == "(") {
+        if (compactControlFlowSyntaxCollapse && prefix == "(") {
             prefix = ""
         }
         if (varSyntax) {
@@ -56,8 +58,7 @@ class ForEachIndexedStatement(
                 ", "
             )
         }
-        val state = AdvancedExpressionFoldingSettings.getInstance().state
-        val middlePlaceholder = if (state.compactControlFlowSyntaxCollapse) " : " else ") : "
+        val middlePlaceholder = if (compactControlFlowSyntaxCollapse) " : " else ") : "
         descriptors += FoldingDescriptor(
             element.node,
             TextRange.create(variableTextRange.endOffset, arrayTextRange.startOffset),

@@ -4,15 +4,19 @@ import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.semantic.kotlin.ElvisReturnNull
 import com.intellij.advancedExpressionFolding.expression.semantic.kotlin.LetReturnIt
 import com.intellij.advancedExpressionFolding.processor.*
-import com.intellij.advancedExpressionFolding.processor.core.BaseExtension
+import com.intellij.advancedExpressionFolding.settings.IKotlinLanguageState
+import com.intellij.advancedExpressionFolding.settings.StateDelegate
 import com.intellij.psi.*
 
 
-object LetReturnExt : BaseExtension() {
+object LetReturnExt : IKotlinLanguageState by StateDelegate() {
 
     @JvmStatic
     fun getIfExpression(element: PsiIfStatement): Expression? {
         if (!kotlinQuickReturn) {
+            return null
+        }
+        if (isDebugSessionActive(element)) {
             return null
         }
         /*

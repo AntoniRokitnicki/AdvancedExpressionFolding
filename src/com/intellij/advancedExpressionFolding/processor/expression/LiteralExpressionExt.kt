@@ -5,10 +5,10 @@ import com.intellij.advancedExpressionFolding.expression.literal.CharacterLitera
 import com.intellij.advancedExpressionFolding.expression.literal.NumberLiteral
 import com.intellij.advancedExpressionFolding.expression.literal.StringLiteral
 import com.intellij.advancedExpressionFolding.processor.util.Consts
-import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
+import com.intellij.advancedExpressionFolding.settings.StateDelegate
 import com.intellij.psi.PsiLiteralExpression
 
-object LiteralExpressionExt {
+object LiteralExpressionExt : StateDelegate() {
 
     fun getLiteralExpression(element: PsiLiteralExpression): Expression? {
         val type = element.type ?: return null
@@ -18,7 +18,7 @@ object LiteralExpressionExt {
         val value = element.value
         return when (value) {
             is Number -> NumberLiteral(element, element.textRange, null, value, false)
-            is String -> if (!element.isTextBlock || AdvancedExpressionFoldingSettings.getInstance().state.logFoldingTextBlocks) {
+            is String -> if (!element.isTextBlock || logFoldingTextBlocks) {
                 StringLiteral(element, element.textRange, value)
             } else {
                 null
