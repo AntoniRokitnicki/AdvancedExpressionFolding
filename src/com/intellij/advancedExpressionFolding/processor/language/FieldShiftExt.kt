@@ -8,12 +8,14 @@ import com.intellij.advancedExpressionFolding.expression.property.INameable
 import com.intellij.advancedExpressionFolding.expression.semantic.BuilderShiftExpression
 import com.intellij.advancedExpressionFolding.expression.semantic.kotlin.CheckNotNullExpression
 import com.intellij.advancedExpressionFolding.processor.*
-import com.intellij.advancedExpressionFolding.processor.core.BaseExtension
 import com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt
+import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
+import com.intellij.advancedExpressionFolding.settings.IExpressionCollapseState
 import com.intellij.openapi.editor.Document
 import com.intellij.psi.*
 
-object FieldShiftExt : BaseExtension() {
+object FieldShiftExt :
+    IExpressionCollapseState by AdvancedExpressionFoldingSettings.getInstance().state {
     private const val FIELD_SHIFT = "<<"
 
     @JvmStatic
@@ -88,7 +90,7 @@ object FieldShiftExt : BaseExtension() {
             if (propertyName == parameter.name) {
                 if (parameters.size == 1) {
                     if (parentMethod.guessPropertyName() == propertyName) {
-                        val qualifierExpr = getAnyExpression(qualifier!!, document)
+                        val qualifierExpr = BuildExpressionExt.getAnyExpression(qualifier!!, document)
                         return FieldShiftMethod(
                             getterElement, getterElement.textRange, listOf(qualifierExpr),
                             FIELD_SHIFT
