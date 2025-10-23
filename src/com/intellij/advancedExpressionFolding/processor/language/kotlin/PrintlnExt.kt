@@ -6,12 +6,12 @@ import com.intellij.advancedExpressionFolding.processor.end
 import com.intellij.advancedExpressionFolding.processor.equalsIgnoreSpaces
 import com.intellij.advancedExpressionFolding.processor.isWhitespace
 import com.intellij.advancedExpressionFolding.processor.start
+import com.intellij.advancedExpressionFolding.processor.toTextRange
+import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
 import com.intellij.advancedExpressionFolding.settings.IKotlinLanguageState
-import com.intellij.advancedExpressionFolding.settings.StateDelegate
-import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiMethodCallExpression
 
-object PrintlnExt : IKotlinLanguageState by StateDelegate() {
+object PrintlnExt : IKotlinLanguageState by AdvancedExpressionFoldingSettings.State()() {
 
     fun createExpression(
         element: PsiMethodCallExpression,
@@ -30,7 +30,7 @@ object PrintlnExt : IKotlinLanguageState by StateDelegate() {
         } ?: dotElement
         val start = element.start()
         val end = endSibling.end()
-        return PrintlnExpression(element, TextRange(start, end), argumentExpression)
+        return PrintlnExpression(element, (start to end).toTextRange(), argumentExpression)
     }
 
 }
