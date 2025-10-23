@@ -6,14 +6,14 @@ import com.intellij.advancedExpressionFolding.expression.operation.stream.Stream
 import com.intellij.advancedExpressionFolding.processor.filter
 import com.intellij.advancedExpressionFolding.processor.findParents
 import com.intellij.advancedExpressionFolding.processor.guessPropertyName
-import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
+import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings.State
 import com.intellij.advancedExpressionFolding.settings.ICollectionsStreamsState
 import com.intellij.psi.PsiExpressionList
 import com.intellij.psi.PsiMethod
 import com.intellij.psi.PsiMethodCallExpression
 import com.intellij.psi.PsiMethodReferenceExpression
 
-object MethodReferenceExt : ICollectionsStreamsState by AdvancedExpressionFoldingSettings.getInstance().state {
+object MethodReferenceExt : ICollectionsStreamsState by State()() {
     @JvmStatic
     fun createExpression(element: PsiMethodReferenceExpression): Expression? {
         if (!(optional || streamSpread)) {
