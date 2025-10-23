@@ -25,6 +25,45 @@ object MethodBodyInspector {
         return isDirtyAssignment(statement, field, firstParam)
     }
 
+    fun PsiMethod.hasSetterNullCheck(): Boolean {
+        val param = parameterList.parameters.singleOrNull() ?: return false
+        val statements = body?.statements ?: return false
+
+        if (statements.any { it.isThrowingNullCheck(param) }) {
+            return true
+        }
+
+        var hasRequireNonNull = false
+        body?.accept(object : JavaRecursiveElementVisitor() {
+            override fun visitMethodCallExpression(expression: PsiMethodCallExpression) {
+                if (hasRequireNonNull) {
+                    return
+                }
+                val resolved = expression.resolveMethod()
+                if (resolved?.name == "requireNonNull" &&
+                    resolved.containingClass?.qualifiedName == "java.util.Objects"
+                ) {
+                    val argument = expression.argumentList.expressions.firstOrNull()
+                    if (argument.asReference()?.resolve() == param) {
+                        hasRequireNonNull = true
+                        return
+                    }
+                }
+                super.visitMethodCallExpression(expression)
+            }
+        })
+
+        return hasRequireNonNull
+    }
+
+    private fun PsiStatement.isThrowingNullCheck(param: PsiParameter): Boolean {
+        val ifStatement = this.asSimpleIf()?.takeIf {
+            it.asSimpleCondition().asEqualsNull().isReference(param)
+        } ?: return false
+        val thenStatement = ifStatement.thenBranch.asSingleStatement()
+        return thenStatement.asInstance<PsiThrowStatement>()?.exception != null
+    }
+
     private fun PsiMethod.isDirtyAssignment(
         statement: PsiStatement?,
         field: PsiField,
