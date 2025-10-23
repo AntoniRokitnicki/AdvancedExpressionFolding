@@ -3,6 +3,7 @@ package com.intellij.advancedExpressionFolding.processor.lombok
 import com.intellij.advancedExpressionFolding.processor.lombok.MethodBodyInspector.asDirtyNoReference
 import com.intellij.advancedExpressionFolding.processor.lombok.MethodBodyInspector.asLazyGetter
 import com.intellij.advancedExpressionFolding.processor.lombok.MethodBodyInspector.asNewInstanceWrapperGetter
+import com.intellij.advancedExpressionFolding.processor.lombok.MethodBodyInspector.asOptionalGetter
 import com.intellij.advancedExpressionFolding.processor.lombok.MethodBodyInspector.asWrapperGetter
 import com.intellij.advancedExpressionFolding.processor.lombok.MethodBodyInspector.isDirtyGetter
 import com.intellij.advancedExpressionFolding.processor.lombok.MethodBodyInspector.isDirtySetter
@@ -15,6 +16,7 @@ enum class MethodType {
         override fun isDirty(method: PsiMethod) = method.isDirtyGetter()
 
         override fun createFieldArgument(dirty: Boolean, field: PsiField, method: PsiMethod): String? = if (dirty) {
+            method.asOptionalGetter(field) ?:
             method.asWrapperGetter(field) ?:
             method.asNewInstanceWrapperGetter(field) ?:
             method.asLazyGetter(field) ?:

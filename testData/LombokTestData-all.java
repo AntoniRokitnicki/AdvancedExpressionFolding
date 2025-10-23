@@ -533,6 +533,7 @@ import java.util.logging.Logger;</fold>
         private List<String> lazyLoadedList;
         private List<String> oneLineLazyLoadedList;
         private List<String> defensiveCopyList;
+        private String optionalField;
 
         public List<String> getWrapper()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
             </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>Collections.unmodifiableList(wrapper)<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
@@ -576,6 +577,10 @@ import java.util.logging.Logger;</fold>
             if <fold text='' expand='false'>(</fold>oneLineLazyLoadedList == null<fold text='' expand='false'>)</fold> oneLineLazyLoadedList = <fold text='[]' expand='false'>new ArrayList<>()</fold>;
             return oneLineLazyLoadedList;
         }</fold>
+
+        public Optional<String> getOptionalField()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>Optional.ofNullable(optionalField)<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+        </fold>}</fold>
 
         private List<String> localWrap(List<String> list)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
             </fold><fold text='' expand='true'></fold>return</fold><fold text='' expand='true'> </fold>null<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
