@@ -1,13 +1,14 @@
 package com.intellij.advancedExpressionFolding.processor.declaration
 
 import com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl
-import com.intellij.advancedExpressionFolding.processor.core.BaseExtension
 import com.intellij.advancedExpressionFolding.processor.util.Helper
+import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
+import com.intellij.advancedExpressionFolding.settings.IExpressionCollapseState
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiForeachStatement
 import com.intellij.psi.PsiVariable
 
-object PsiVariableExt : BaseExtension() {
+object PsiVariableExt : IExpressionCollapseState by AdvancedExpressionFoldingSettings.State()() {
 
     fun getVariableDeclaration(element: PsiVariable): VariableDeclarationImpl? {
         if (!shouldCollapseVariableDeclaration(element)) {
