@@ -3,6 +3,7 @@ package com.intellij.advancedExpressionFolding.expression.controlflow
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.processor.language.java.PatternMatchingExt
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
+import com.intellij.advancedExpressionFolding.settings.IControlFlowState
 import com.intellij.advancedExpressionFolding.settings.IState
 import com.intellij.lang.folding.FoldingDescriptor
 import com.intellij.openapi.editor.Document
@@ -25,7 +26,7 @@ class IfExpression(
 ) : Expression(ifStatement, textRange), IState by state {
 
     override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean {
-        return isAssertExpression(state, ifStatement) || isCompactExpression(state, ifStatement)
+        return isAssertExpression(ifStatement) || isCompactExpression(ifStatement)
     }
 
     override fun isNested(): Boolean = true
@@ -35,7 +36,7 @@ class IfExpression(
         document: Document,
         parent: Expression?
     ): Array<FoldingDescriptor> {
-        val highlightPostfix = if (!isAssertExpression(state, this.ifStatement) && isCompactExpression(state, this.ifStatement)) {
+        val highlightPostfix = if (!isAssertExpression(this.ifStatement) && isCompactExpression(this.ifStatement)) {
             HIGHLIGHTED_GROUP_POSTFIX
         } else {
             ""
@@ -46,10 +47,10 @@ class IfExpression(
         val rParenth = this.ifStatement.rParenth
         if (lParenth != null && rParenth != null) {
             when {
-                isAssertExpression(state, this.ifStatement) ->
+                isAssertExpression(this.ifStatement) ->
                     foldAssertion(element, document, descriptors, group)
 
-                isCompactExpression(state, this.ifStatement) ->
+                isCompactExpression(this.ifStatement) ->
                     foldCompactExpr(element, document, group, descriptors)
 
                 patternMatchingInstanceof && element is PsiIfStatement -> {
@@ -64,7 +65,7 @@ class IfExpression(
     }
 
     override fun isHighlighted(): Boolean {
-        return !isAssertExpression(state, ifStatement) && isCompactExpression(state, ifStatement)
+        return !isAssertExpression(ifStatement) && isCompactExpression(ifStatement)
     }
 
     override fun getHighlightedTextRange(): TextRange {
@@ -240,19 +241,19 @@ class IfExpression(
         }
     }
 
-    companion object {
+    companion object : IControlFlowState by AdvancedExpressionFoldingSettings.State()() {
         private val supportedOperatorSigns = setOf("==", "!=", ">", "<", ">=", "<=")
 
-        fun isCompactExpression(state: AdvancedExpressionFoldingSettings.State, element: PsiIfStatement): Boolean {
-            return state.compactControlFlowSyntaxCollapse &&
+        fun isCompactExpression(element: PsiIfStatement): Boolean {
+            return compactControlFlowSyntaxCollapse &&
                 element.rParenth != null &&
                 element.lParenth != null &&
                 element.condition != null
         }
 
-        fun isAssertExpression(state: AdvancedExpressionFoldingSettings.State, element: PsiIfStatement): Boolean {
+        fun isAssertExpression(element: PsiIfStatement): Boolean {
             val condition = element.condition
-            if (!state.assertsCollapse || condition !is PsiBinaryExpression) {
+            if (!assertsCollapse || condition !is PsiBinaryExpression) {
                 return false
             }
             if (!supportedOperatorSigns.contains(condition.operationSign.text)) {
