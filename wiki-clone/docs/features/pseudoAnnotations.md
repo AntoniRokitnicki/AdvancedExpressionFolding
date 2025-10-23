@@ -75,3 +75,51 @@ public class Person {
 - The generated main method is fully functional and can be run immediately
 - Only works when `pseudoAnnotations` setting is enabled
 - Designed for rapid prototyping and testing
+
+### @Observator
+
+Scaffolds property-change helpers for fields to make it easy to observe updates in plain Java classes.
+
+#### How it works:
+1. **Completion trigger**: Type `@Observator` above a field or at the class declaration to see completion suggestion.
+2. **Support field**: Injects a `java.beans.PropertyChangeSupport` instance named `observatorSupport` if missing.
+3. **Setter generation**: Produces a setter that fires a property-change event when the field value changes.
+4. **Listener helpers**: Adds `add<Field>Listener` and `remove<Field>Listener` methods that delegate to the support field.
+5. **Class annotation**: When used on the class, it applies the helpers to every non-static, non-final field.
+
+#### Code example:
+
+```java
+public class CounterViewModel {
+    private int count;
+}
+```
+
+After `@Observator` on the field:
+
+```java
+public class CounterViewModel {
+    private final java.beans.PropertyChangeSupport observatorSupport = new java.beans.PropertyChangeSupport(this);
+
+    private int count;
+
+    public void setCount(int count) {
+        int oldValue = this.count;
+        this.count = count;
+        observatorSupport.firePropertyChange("count", oldValue, count);
+    }
+
+    public void addCountListener(java.beans.PropertyChangeListener listener) {
+        observatorSupport.addPropertyChangeListener("count", listener);
+    }
+
+    public void removeCountListener(java.beans.PropertyChangeListener listener) {
+        observatorSupport.removePropertyChangeListener("count", listener);
+    }
+}
+```
+
+#### Notes:
+- The annotation is removed after generation just like a live template.
+- Existing setters or listener helpers are preserved and not duplicated.
+- Fields marked `static` or `final` are skipped when generating helpers.

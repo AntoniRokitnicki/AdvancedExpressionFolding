@@ -44,6 +44,7 @@ Fork of abandoned [Advanced Java Folding](https://plugins.jetbrains.com/plugin/9
 For more information, read the [blog post](https://medium.com/@andrey_cheptsov/making-java-code-easier-to-read-without-changing-it-adeebd5c36de).
 
 ## Unreleased ##
+- [[pseudo-annotations] @Observator - field-level annotation that scaffolds property-change listeners.](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/PseudoAnnotations)
 
 ## 4.2.0 ##
 - [Add setting to prevent collapsing Java text blocks in log folding](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/338)

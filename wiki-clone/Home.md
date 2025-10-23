@@ -277,10 +277,11 @@ Simplifies constructor references and inline field initialization.
 - [Documentation](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/docs/features/methodDefaultParameters)
 
 ## pseudoAnnotations
-### Pseudo-annotations for main method generation
-Provides pseudo-annotations like @Main that automatically generate main methods for testing and prototyping.
-- [Example](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/examples/data/PseudoAnnotationsMainTestData.java)
-- [Test](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/test/com/intellij/advancedExpressionFolding/MainAnnotationCompletionContributorTest.kt)
+### Pseudo-annotations for quick scaffolding helpers
+Provides pseudo-annotations like @Main and @Observator that generate boilerplate helpers for rapid prototyping.
+- [Example - Main](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/examples/data/PseudoAnnotationsMainTestData.java)
+- [Example - Observator](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/examples/data/PseudoAnnotationsObservatorTestData.java)
+- [Tests](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/test/com/intellij/advancedExpressionFolding)
 - [Documentation](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/docs/features/pseudoAnnotations)
 
 ## overrideHide
