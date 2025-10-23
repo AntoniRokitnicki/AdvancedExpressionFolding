@@ -7,12 +7,20 @@ import com.intellij.advancedExpressionFolding.expression.property.GetterRecord
 import com.intellij.advancedExpressionFolding.expression.property.Setter
 import com.intellij.advancedExpressionFolding.processor.argumentExpressions
 import com.intellij.advancedExpressionFolding.processor.argumentCount
-import com.intellij.advancedExpressionFolding.processor.core.BaseExtension
 import com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt
 import com.intellij.advancedExpressionFolding.processor.language.FieldShiftExt
 import com.intellij.advancedExpressionFolding.processor.logger.LoggerBracketsExt
-import com.intellij.advancedExpressionFolding.processor.util.Helper
+import com.intellij.advancedExpressionFolding.processor.util.Helper.eraseGenerics
+import com.intellij.advancedExpressionFolding.processor.util.Helper.guessNamelessPropertyName
+import com.intellij.advancedExpressionFolding.processor.util.Helper.isGetter
+import com.intellij.advancedExpressionFolding.processor.util.Helper.isNamelessGetter
+import com.intellij.advancedExpressionFolding.processor.util.Helper.isNamelessSetter
+import com.intellij.advancedExpressionFolding.processor.util.Helper.isSetter
+import com.intellij.advancedExpressionFolding.processor.util.Helper.startsWith
 import com.intellij.advancedExpressionFolding.processor.util.PropertyUtil.guessPropertyName
+import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
+import com.intellij.advancedExpressionFolding.settings.IExpressionCollapseState
+import com.intellij.advancedExpressionFolding.settings.IGlobalSettingsState
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiElement
@@ -23,7 +31,9 @@ import com.intellij.psi.PsiMethodCallExpression
 import com.intellij.psi.PsiReferenceExpression
 import com.intellij.psi.PsiStatement
 
-object MethodCallExpressionExt : BaseExtension() {
+object MethodCallExpressionExt :
+    IExpressionCollapseState by AdvancedExpressionFoldingSettings.State()(),
+    IGlobalSettingsState by AdvancedExpressionFoldingSettings.State()() {
 
     fun getMethodCallExpression(element: PsiMethodCallExpression, document: Document): Expression? {
         val referenceExpression = element.methodExpression
@@ -51,7 +61,7 @@ object MethodCallExpressionExt : BaseExtension() {
         val method = referenceExpression.resolve() as? PsiMethod ?: return null
         val psiClass = method.containingClass ?: return null
         val qualifiedName = psiClass.qualifiedName ?: return null
-        val className = Helper.eraseGenerics(qualifiedName)
+        val className = eraseGenerics(qualifiedName)
         val supported = factory.supportedClasses.contains(className) || factory.classlessMethods.contains(method.name)
         return if (supported) {
             onAnyExpression(element, document, qualifier, identifier, className, method)
@@ -133,12 +143,12 @@ object MethodCallExpressionExt : BaseExtension() {
     ): Expression? {
         val resolvedMethod = element.resolveMethod()
         if (
-            Helper.isGetter(identifier, element) ||
-            experimental && Helper.isNamelessGetter(identifier.text, element, resolvedMethod)
+            isGetter(identifier, element) ||
+            experimental && isNamelessGetter(identifier.text, element, resolvedMethod)
         ) {
             val expression = qualifier?.let { BuildExpressionExt.getAnyExpression(it, document) }
             val propertyName = guessPropertyName(identifier.text).ifBlank {
-                Helper.guessNamelessPropertyName(resolvedMethod)
+                guessNamelessPropertyName(resolvedMethod)
             }
             return Getter(
                 element,
@@ -153,7 +163,7 @@ object MethodCallExpressionExt : BaseExtension() {
             val qualifierExpression = qualifier?.let { BuildExpressionExt.getAnyExpression(it, document) }
             val paramExpression = BuildExpressionExt.getAnyExpression(element.argumentExpressions[0], document)
             val propertyName = guessPropertyName(text).ifBlank {
-                Helper.guessNamelessPropertyName(resolvedMethod)
+                guessNamelessPropertyName(resolvedMethod)
             }
             return Setter(
                 element,
@@ -174,8 +184,8 @@ object MethodCallExpressionExt : BaseExtension() {
         experimental: Boolean,
         method: PsiMethod?
     ): Boolean {
-        val isNamelessSetter = experimental && Helper.isNamelessSetter(text, element, method)
-        if (!Helper.isSetter(text) && !isNamelessSetter) {
+        val isNamelessSetter = experimental && isNamelessSetter(text, element, method)
+        if (!isSetter(text) && !isNamelessSetter) {
             return false
         }
         if (element.argumentCount != 1) {
@@ -186,7 +196,7 @@ object MethodCallExpressionExt : BaseExtension() {
         }
         if (qualifier is PsiMethodCallExpression) {
             val referenceName = qualifier.methodExpression.referenceName
-            if (referenceName != null && Helper.startsWith(referenceName, "set")) {
+            if (referenceName != null && startsWith(referenceName, "set")) {
                 return false
             }
         }
