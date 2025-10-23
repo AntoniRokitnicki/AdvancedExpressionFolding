@@ -196,15 +196,25 @@ object MethodBodyInspector {
             } ?: return null
 
         //lazyLoadedList = new ArrayList<>();
-        val className = ifExp?.thenBranch.asSingleStatement().asAssignment()?.let { (left, right) ->
+        val lazyInitializer = ifExp?.thenBranch.asSingleStatement().asAssignment()?.let { (left, right) ->
+            if (!left.isReference(field)) {
+                return null
+            }
+
             right.asNewInstance()?.takeIf {
                 it.argumentCount == 0
-            }?.takeIf {
-                left.isReference(field)
-            }?.className
+            }?.className?.let {
+                "$it::new"
+            } ?: right.asMethodCall()?.takeIf { methodCall ->
+                methodCall.argumentCount == 0 && !methodCall.className.isReference(field)
+            }?.let { methodCall ->
+                val qualifier = methodCall.className?.text ?: "this"
+                val method = methodCall.methodName?.text ?: return null
+                "$qualifier::$method"
+            }
         } ?: return null
 
-        return "lazy = $className::new"
+        return "lazy = $lazyInitializer"
     }
 
     fun PsiMethod.asDirtyNoReference(field: PsiField): String? {

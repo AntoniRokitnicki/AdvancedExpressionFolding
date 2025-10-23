@@ -66,6 +66,27 @@ LombokTestData-folded.java:
 }
 ```
 
+Lazy getters that delegate to an existing supplier are folded with a method reference:
+
+LombokTestData.java:
+```java
+private Supplier<List<String>> listSupplier;
+private List<String> supplierLazyLoadedList;
+
+public List<String> getSupplierLazyLoadedList() {
+    if (supplierLazyLoadedList == null) {
+        supplierLazyLoadedList = listSupplier.get();
+    }
+    return supplierLazyLoadedList;
+}
+```
+
+LombokTestData-folded.java:
+```java
+private Supplier<List<String>> listSupplier;
+@Getter(lazy = listSupplier::get) private List<String> supplierLazyLoadedList;
+```
+
 ### @Setter
 Folds setter methods into a single annotation.
 
