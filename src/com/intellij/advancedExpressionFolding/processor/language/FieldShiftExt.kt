@@ -8,13 +8,14 @@ import com.intellij.advancedExpressionFolding.expression.property.INameable
 import com.intellij.advancedExpressionFolding.expression.semantic.BuilderShiftExpression
 import com.intellij.advancedExpressionFolding.expression.semantic.kotlin.CheckNotNullExpression
 import com.intellij.advancedExpressionFolding.processor.*
-import com.intellij.advancedExpressionFolding.processor.core.BaseExtension
 import com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt
 import com.intellij.advancedExpressionFolding.processor.core.getAnyExpression
+import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
+import com.intellij.advancedExpressionFolding.settings.IExpressionCollapseState
 import com.intellij.openapi.editor.Document
 import com.intellij.psi.*
 
-object FieldShiftExt : BaseExtension() {
+object FieldShiftExt : IExpressionCollapseState by AdvancedExpressionFoldingSettings.State()() {
     private const val FIELD_SHIFT = "<<"
 
     @JvmStatic
