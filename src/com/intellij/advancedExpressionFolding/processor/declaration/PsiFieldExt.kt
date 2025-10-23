@@ -23,7 +23,7 @@ import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiField
 import com.intellij.psi.PsiRecordComponent
 
-object PsiFieldExt : IKotlinLanguageState by AdvancedExpressionFoldingSettings.getInstance().state {
+object PsiFieldExt : IKotlinLanguageState by AdvancedExpressionFoldingSettings.State()() {
 
     fun createExpression(field: PsiField, document: Document): Expression? {
         val typeElement = field.typeElement.takeIf {
