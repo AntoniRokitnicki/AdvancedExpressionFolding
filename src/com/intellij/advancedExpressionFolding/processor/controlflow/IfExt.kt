@@ -9,20 +9,21 @@ import com.intellij.advancedExpressionFolding.expression.literal.InterpolatedStr
 import com.intellij.advancedExpressionFolding.expression.literal.StringLiteral
 import com.intellij.advancedExpressionFolding.expression.math.basic.Add
 import com.intellij.advancedExpressionFolding.processor.argumentExpressions
-import com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt
+import com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt.getAnyExpression
 import com.intellij.advancedExpressionFolding.processor.expression.BinaryExpressionExt
 import com.intellij.advancedExpressionFolding.processor.isNull
 import com.intellij.advancedExpressionFolding.processor.language.kotlin.IfNullSafeExt
 import com.intellij.advancedExpressionFolding.processor.language.kotlin.LetReturnExt
 import com.intellij.advancedExpressionFolding.processor.util.Helper
-import com.intellij.advancedExpressionFolding.settings.StateDelegate
+import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
+import com.intellij.advancedExpressionFolding.settings.IControlFlowState
+import com.intellij.advancedExpressionFolding.settings.IExpressionCollapseState
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiBinaryExpression
 import com.intellij.psi.PsiCodeBlock
 import com.intellij.psi.PsiConditionalExpression
 import com.intellij.psi.PsiElement
-import com.intellij.psi.PsiExpression
 import com.intellij.psi.PsiIfStatement
 import com.intellij.psi.PsiMethodCallExpression
 import com.intellij.psi.PsiPolyadicExpression
@@ -32,7 +33,9 @@ import com.intellij.psi.PsiStatement
 import com.intellij.psi.PsiSwitchStatement
 import com.intellij.psi.SyntaxTraverser
 
-object IfExt : StateDelegate() {
+object IfExt :
+    IControlFlowState by AdvancedExpressionFoldingSettings.State()(),
+    IExpressionCollapseState by AdvancedExpressionFoldingSettings.State()() {
 
     fun getSwitchStatement(element: PsiSwitchStatement): Expression? {
         val lParenth = element.lParenth ?: return null
@@ -79,7 +82,7 @@ object IfExt : StateDelegate() {
                             return ShortElvisExpression(
                                 element,
                                 element.textRange,
-                                BuildExpressionExt.getAnyExpression(targetStatement, document),
+                                getAnyExpression(targetStatement, document),
                                 listOf(sameQualifier.textRange)
                             )
                         }
@@ -144,8 +147,8 @@ object IfExt : StateDelegate() {
                         return ElvisExpression(
                             element,
                             element.textRange,
-                            BuildExpressionExt.getAnyExpression(nonNullExpression, document),
-                            BuildExpressionExt.getAnyExpression(fallbackExpression, document),
+                            getAnyExpression(nonNullExpression, document),
+                            getAnyExpression(fallbackExpression, document),
                             references.map { it.textRange },
                             isInvertedElvis
                         )
@@ -193,7 +196,7 @@ object IfExt : StateDelegate() {
                 if (operands == null) {
                     operands = arrayOfNulls(psiOperands.size)
                 }
-                val expr = BuildExpressionExt.getAnyExpression(psiOperands[i], document)
+                val expr = getAnyExpression(psiOperands[i], document)
                 operands[i] = expr
                 if (expr is StringLiteral) {
                     hasString = true
@@ -204,7 +207,7 @@ object IfExt : StateDelegate() {
         }
         if (add && operands != null) {
             val lastIndex = psiOperands.size - 1
-            val lastExpr = BuildExpressionExt.getAnyExpression(psiOperands[lastIndex], document)
+            val lastExpr = getAnyExpression(psiOperands[lastIndex], document)
             operands[lastIndex] = lastExpr
             if (lastExpr is StringLiteral) {
                 hasString = true
