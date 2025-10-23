@@ -9,6 +9,7 @@ import com.intellij.codeInsight.lookup.LookupElementBuilder
 import com.intellij.openapi.command.WriteCommandAction
 import com.intellij.patterns.PlatformPatterns
 import com.intellij.psi.*
+import com.intellij.psi.PsiParserFacade
 import com.intellij.psi.codeStyle.CodeStyleManager
 import com.intellij.psi.codeStyle.JavaCodeStyleManager
 import com.intellij.psi.util.PsiTreeUtil
@@ -31,15 +32,30 @@ class MainAnnotationCompletionContributor(private val state: IState = getInstanc
                 ) {
                     if (!pseudoAnnotations) return
 
-                    val lookup = LookupElementBuilder.create("Main")
-                        .withLookupString("@Main")
-                        .withPresentableText("@Main")
-                        .withInsertHandler { ctx, _ ->
-                            handleMainInsert(ctx)
-                        }
-                        .withAutoCompletionPolicy(AutoCompletionPolicy.NEVER_AUTOCOMPLETE)
-
-                    result.addElement(lookup)
+                    listOf(
+                        LookupElementBuilder.create("Main")
+                            .withLookupString("@Main")
+                            .withPresentableText("@Main")
+                            .withInsertHandler { ctx, _ ->
+                                handleMainInsert(ctx)
+                            },
+                        LookupElementBuilder.create("Cache")
+                            .withLookupString("@Cache")
+                            .withPresentableText("@Cache")
+                            .withInsertHandler { ctx, _ ->
+                                handleCacheInsert(ctx, "Cache")
+                            },
+                        LookupElementBuilder.create("Memoize")
+                            .withLookupString("@Memoize")
+                            .withPresentableText("@Memoize")
+                            .withInsertHandler { ctx, _ ->
+                                handleCacheInsert(ctx, "Memoize")
+                            }
+                    ).forEach { lookup ->
+                        result.addElement(
+                            lookup.withAutoCompletionPolicy(AutoCompletionPolicy.NEVER_AUTOCOMPLETE)
+                        )
+                    }
                 }
             }
         )
@@ -164,5 +180,127 @@ class MainAnnotationCompletionContributor(private val state: IState = getInstanc
     private fun positionCursorAtMainMethod(code: String, insertOffset: Int, ctx: InsertionContext) {
         val mainMethodOffset = insertOffset + 1 + code.indexOf("public static void main")
         ctx.editor.caretModel.moveToOffset(mainMethodOffset)
+    }
+
+    private fun handleCacheInsert(ctx: InsertionContext, annotationName: String) {
+        val project = ctx.project
+        val element = ctx.file.findElementAt(ctx.startOffset) ?: return
+        val method = PsiTreeUtil.getParentOfType(element, PsiMethod::class.java, false) ?: return
+        val containingClass = method.containingClass ?: return
+        val body = method.body ?: return
+        val returnType = method.returnType ?: return
+        if (returnType == PsiType.VOID) return
+
+        WriteCommandAction.runWriteCommandAction(project) {
+            method.modifierList.findAnnotation(annotationName)?.delete()
+
+            val elementFactory = JavaPsiFacade.getElementFactory(project)
+            val codeStyleManager = CodeStyleManager.getInstance(project)
+            val javaStyleManager = JavaCodeStyleManager.getInstance(project)
+            val parserFacade = PsiParserFacade.SERVICE.getInstance(project)
+
+            val methodName = method.name
+            val implementationName = "${methodName}\$impl"
+            val isStatic = method.hasModifierProperty(PsiModifier.STATIC)
+            val parameters = method.parameterList.parameters
+            val parameterNames = parameters.joinToString(", ") { it.name }
+            val cacheFieldName = "${methodName}Cache"
+            val boxedReturnTypeName = (returnType as? PsiPrimitiveType)?.boxedTypeName ?: returnType.presentableText
+
+            fun ensureWhitespaceBefore(target: PsiElement) {
+                val prev = target.prevSibling
+                if (prev == null || prev.text.isNotBlank()) {
+                    target.parent.addBefore(parserFacade.createWhiteSpaceFromText("\n"), target)
+                }
+            }
+
+            fun ensureField(fieldName: String, fieldText: String) {
+                if (containingClass.fields.any { it.name == fieldName }) return
+                val field = elementFactory.createFieldFromText(fieldText, containingClass)
+                val added = containingClass.addBefore(field, method)
+                ensureWhitespaceBefore(method)
+                javaStyleManager.shortenClassReferences(added)
+                codeStyleManager.reformat(added)
+            }
+
+            val fieldModifiers = buildString {
+                append("private ")
+                if (isStatic) append("static ")
+            }
+
+            if (parameters.isEmpty()) {
+                ensureField(
+                    cacheFieldName,
+                    "$fieldModifiers${returnType.presentableText} $cacheFieldName;"
+                )
+                ensureField(
+                    "${methodName}CacheInitialized",
+                    "$fieldModifiers boolean ${methodName}CacheInitialized;"
+                )
+            } else {
+                val mapFieldModifiers = buildString {
+                    append(fieldModifiers)
+                    append("final ")
+                }
+                ensureField(
+                    cacheFieldName,
+                    "$mapFieldModifiers java.util.Map<java.util.List<Object>, $boxedReturnTypeName> $cacheFieldName = new java.util.HashMap<>();"
+                )
+            }
+
+            if (containingClass.findMethodsByName(implementationName, false).isEmpty()) {
+                val implementationMethod = method.copy() as PsiMethod
+                implementationMethod.setName(implementationName)
+                val modifiers = implementationMethod.modifierList
+                modifiers.setModifierProperty(PsiModifier.PUBLIC, false)
+                modifiers.setModifierProperty(PsiModifier.PROTECTED, false)
+                modifiers.setModifierProperty(PsiModifier.PRIVATE, true)
+                if (isStatic) {
+                    modifiers.setModifierProperty(PsiModifier.STATIC, true)
+                } else {
+                    modifiers.setModifierProperty(PsiModifier.STATIC, false)
+                }
+                containingClass.addAfter(implementationMethod, method)
+                val inserted = containingClass.findMethodsByName(implementationName, false)
+                    .maxByOrNull { it.textOffset }
+                if (inserted != null) {
+                    javaStyleManager.shortenClassReferences(inserted)
+                    codeStyleManager.reformat(inserted)
+                }
+            }
+
+            val methodBodyText = buildString {
+                appendLine("{")
+                if (parameters.isEmpty()) {
+                    appendLine("    if (${methodName}CacheInitialized) {")
+                    appendLine("        return $cacheFieldName;")
+                    appendLine("    }")
+                    appendLine("    ${returnType.presentableText} __result = $implementationName();")
+                    appendLine("    $cacheFieldName = __result;")
+                    appendLine("    ${methodName}CacheInitialized = true;")
+                    appendLine("    return __result;")
+                } else {
+                    val keyExpression = parameters.joinToString(", ") { it.name }
+                    appendLine("    java.util.List<Object> __cacheKey = java.util.Arrays.asList($keyExpression);")
+                    appendLine("    java.util.Map<java.util.List<Object>, $boxedReturnTypeName> __cache = $cacheFieldName;")
+                    appendLine("    $boxedReturnTypeName __cachedValue = __cache.get(__cacheKey);")
+                    appendLine("    if (__cachedValue != null || __cache.containsKey(__cacheKey)) {")
+                    appendLine("        return __cachedValue;")
+                    appendLine("    }")
+                    appendLine("    ${returnType.presentableText} __result = $implementationName($parameterNames);")
+                    appendLine("    __cache.put(__cacheKey, __result);")
+                    appendLine("    return __result;")
+                }
+                append("}")
+            }
+
+            val newBody = elementFactory.createCodeBlockFromText(methodBodyText, body)
+            body.replace(newBody)
+            javaStyleManager.shortenClassReferences(method)
+            codeStyleManager.reformat(method)
+
+            javaStyleManager.shortenClassReferences(containingClass)
+            codeStyleManager.reformat(containingClass)
+        }
     }
 }

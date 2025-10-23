@@ -294,6 +294,84 @@ class MainAnnotationCompletionContributorTest : BaseTest() {
                 """.trimIndent()
             ))
         )
+
+        @JvmStatic
+        fun cacheTestCases(): Stream<Arguments> = Stream.of(
+            Arguments.of(
+                CacheTestCase(
+                    name = "Cache Parameterless Method",
+                    lookup = "Cache",
+                    input = """
+                        public class Test {
+                            @<caret>
+                            public int compute() {
+                                return 42;
+                            }
+                        }
+                    """.trimIndent(),
+                    expected = """
+                    public class Test {
+                        private int computeCache;
+                        private boolean computeCacheInitialized;
+
+                        public int compute() {
+                            if (computeCacheInitialized) {
+                                return computeCache;
+                            }
+                            int __result = compute${'$'}impl();
+                            computeCache = __result;
+                            computeCacheInitialized = true;
+                            return __result;
+                        }
+
+                        private int compute${'$'}impl() {
+                                return 42;
+                            }
+                    }
+                    """.trimIndent()
+                )
+            ),
+            Arguments.of(
+                CacheTestCase(
+                    name = "Memoize Static Method With Parameters",
+                    lookup = "Memoize",
+                    input = """
+                        public class Test {
+                            @<caret>
+                            public static String compose(String prefix, int value) {
+                                return prefix + value;
+                            }
+                        }
+                    """.trimIndent(),
+                    expected = """
+                    import java.util.Arrays;
+                    import java.util.HashMap;
+                    import java.util.List;
+                    import java.util.Map;
+
+                    public class Test {
+                        private static final Map<List<Object>, String> composeCache = new HashMap<>();
+
+                        public static String compose(String prefix, int value) {
+                            List<Object> __cacheKey = Arrays.asList(prefix, value);
+                            Map<List<Object>, String> __cache = composeCache;
+                            String __cachedValue = __cache.get(__cacheKey);
+                            if (__cachedValue != null || __cache.containsKey(__cacheKey)) {
+                                return __cachedValue;
+                            }
+                            String __result = compose${'$'}impl(prefix, value);
+                            __cache.put(__cacheKey, __result);
+                            return __result;
+                        }
+
+                        private static String compose${'$'}impl(String prefix, int value) {
+                                return prefix + value;
+                            }
+                    }
+                    """.trimIndent()
+                )
+            )
+        )
     }
 
     @BeforeEach
@@ -322,6 +400,8 @@ class MainAnnotationCompletionContributorTest : BaseTest() {
         val completions = fixture.complete(CompletionType.BASIC)
         assertNotNull(completions)
         assertTrue(completions.any { it.lookupString == "Main" })
+        assertTrue(completions.any { it.lookupString == "Cache" })
+        assertTrue(completions.any { it.lookupString == "Memoize" })
     }
 
     @ParameterizedTest
@@ -343,8 +423,36 @@ class MainAnnotationCompletionContributorTest : BaseTest() {
         fixture.checkResult(testCase.expected)
     }
 
+    @ParameterizedTest
+    @MethodSource("cacheTestCases")
+    fun `should wrap method with memoization when selecting pseudo-annotation`(testCase: CacheTestCase) {
+        fixture.configureByText("Test.java", testCase.input)
+
+        val completions = fixture.complete(CompletionType.BASIC)
+        assertNotNull(completions)
+
+        val cacheCompletion = completions.find { it.lookupString == testCase.lookup }
+        assertNotNull(cacheCompletion)
+
+        ApplicationManager.getApplication().invokeAndWait {
+            fixture.lookup.currentItem = cacheCompletion
+            fixture.finishLookup('\n')
+        }
+
+        fixture.checkResult(testCase.expected)
+    }
+
     data class TestCase(
         val name: String,
+        @param:Language("JAVA") val input: String,
+        @param:Language("JAVA") val expected: String
+    ) {
+        override fun toString() = name
+    }
+
+    data class CacheTestCase(
+        val name: String,
+        val lookup: String,
         @param:Language("JAVA") val input: String,
         @param:Language("JAVA") val expected: String
     ) {

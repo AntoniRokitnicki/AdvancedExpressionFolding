@@ -277,9 +277,10 @@ Simplifies constructor references and inline field initialization.
 - [Documentation](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/docs/features/methodDefaultParameters)
 
 ## pseudoAnnotations
-### Pseudo-annotations for main method generation
-Provides pseudo-annotations like @Main that automatically generate main methods for testing and prototyping.
-- [Example](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/examples/data/PseudoAnnotationsMainTestData.java)
+### Pseudo-annotations for main method generation and memoization
+Provides pseudo-annotations like @Main that automatically generate main methods and @Cache/@Memoize that add memoization helpers.
+- [Example - @Main](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/examples/data/PseudoAnnotationsMainTestData.java)
+- [Example - @Cache/@Memoize](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/examples/data/PseudoAnnotationsCacheTestData.java)
 - [Test](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/test/com/intellij/advancedExpressionFolding/MainAnnotationCompletionContributorTest.kt)
 - [Documentation](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/docs/features/pseudoAnnotations)
 

@@ -75,3 +75,93 @@ public class Person {
 - The generated main method is fully functional and can be run immediately
 - Only works when `pseudoAnnotations` setting is enabled
 - Designed for rapid prototyping and testing
+
+### @Cache / @Memoize
+
+Adds memoization to an existing method so that the body executes only once per input set. Typing `@Cache` or `@Memoize` above a
+method offers completion that rewrites the method and introduces helper members.
+
+#### How it works:
+1. **Field generation**:
+   - Parameterless methods get two fields: `<Type> methodNameCache` and `boolean methodNameCacheInitialized`
+   - Methods with parameters get a `Map<List<Object>, Type>` cache that stores results per argument list
+2. **Method wrapping**: The original method body is moved into a private helper `methodName$impl`
+3. **Lookup logic**:
+   - For parameterless methods, the rewritten method checks `methodNameCacheInitialized`
+   - For methods with parameters, the rewritten method builds a `List<Object>` key using `Arrays.asList(...)`
+4. **Result storage**: The computed result is stored in the cache field and returned immediately on subsequent calls
+5. **Alias**: `@Memoize` is an alias of `@Cache`
+
+#### Example (parameterless method):
+```java
+public class Calculator {
+    public int randomOnce() {
+        return compute();
+    }
+}
+```
+
+After `@Cache` on `randomOnce()`:
+```java
+public class Calculator {
+    private int randomOnceCache;
+    private boolean randomOnceCacheInitialized;
+
+    public int randomOnce() {
+        if (randomOnceCacheInitialized) {
+            return randomOnceCache;
+        }
+        int __result = randomOnce$impl();
+        randomOnceCache = __result;
+        randomOnceCacheInitialized = true;
+        return __result;
+    }
+
+    private int randomOnce$impl() {
+        return compute();
+    }
+}
+```
+
+#### Example (method with parameters):
+```java
+public class Formatter {
+    public static String render(String template, int value) {
+        return template + value;
+    }
+}
+```
+
+After `@Memoize` on `render(...)`:
+```java
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class Formatter {
+    private static final Map<List<Object>, String> renderCache = new HashMap<>();
+
+    public static String render(String template, int value) {
+        List<Object> __cacheKey = Arrays.asList(template, value);
+        Map<List<Object>, String> __cache = renderCache;
+        String __cachedValue = __cache.get(__cacheKey);
+        if (__cachedValue != null || __cache.containsKey(__cacheKey)) {
+            return __cachedValue;
+        }
+        String __result = render$impl(template, value);
+        __cache.put(__cacheKey, __result);
+        return __result;
+    }
+
+    private static String render$impl(String template, int value) {
+        return template + value;
+    }
+}
+```
+
+#### Notes:
+- Works only for non-void methods with concrete bodies
+- Uses `List<Object>` cache keys and relies on `equals`/`hashCode` of parameters
+- Automatically preserves `static` modifier and throws clause
+- Requires the `pseudoAnnotations` setting to be enabled

@@ -36,7 +36,7 @@
                 key="editor.folding.advanced.expression.displayName"
                 bundle="Bundle"/>
 
-        <!-- Suggests the pseudo-annotation @Main used by the plugin -->
+        <!-- Suggests pseudo-annotations like @Main and @Cache/@Memoize used by the plugin -->
         <completion.contributor
                 language="JAVA"
                 implementationClass="com.intellij.advancedExpressionFolding.MainAnnotationCompletionContributor"/>
