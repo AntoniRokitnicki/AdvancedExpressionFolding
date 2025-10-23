@@ -181,6 +181,15 @@ import java.util.logging.Logger;
         }
     }
 
+    public class SupportedDirtyLombokSetters {
+        @Setter(wrapper = Collections::unmodifiableList) private List<String> setterWrapper;
+        @Setter(wrapper = this::localWrap) private List<String> setterLocalWrapper;
+
+        private List<String> localWrap(List<String> list) {
+            return list;
+        }
+    }
+
     public class DirtyLombokSetters {
         @Setter(dirtyNoReference) boolean dirty;
         @Setter(dirtyNoReference) private boolean dirty2;
