@@ -15,7 +15,8 @@ import com.intellij.advancedExpressionFolding.processor.util.Consts
 import com.intellij.advancedExpressionFolding.processor.argumentExpressions
 import com.intellij.advancedExpressionFolding.processor.argumentCount
 import com.intellij.advancedExpressionFolding.processor.util.Helper.eraseGenerics
-import com.intellij.advancedExpressionFolding.settings.StateDelegate
+import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
+import com.intellij.advancedExpressionFolding.settings.IExpressionCollapseState
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiBinaryExpression
@@ -26,7 +27,7 @@ import com.intellij.psi.PsiMethod
 import com.intellij.psi.PsiMethodCallExpression
 import com.intellij.psi.PsiPrefixExpression
 
-object BinaryExpressionExt : StateDelegate() {
+object BinaryExpressionExt : IExpressionCollapseState by AdvancedExpressionFoldingSettings.State()() {
 
     fun getBinaryExpression(element: PsiBinaryExpression, document: Document): Expression? {
         tryBuildCompareToBasedExpression(element, document)?.let { return it }
