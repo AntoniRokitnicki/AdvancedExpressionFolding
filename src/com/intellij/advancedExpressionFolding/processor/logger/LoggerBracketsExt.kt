@@ -2,16 +2,17 @@ package com.intellij.advancedExpressionFolding.processor.logger
 
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.processor.asInstance
-import com.intellij.advancedExpressionFolding.processor.core.BaseExtension
 import com.intellij.advancedExpressionFolding.processor.firstArgument
 import com.intellij.advancedExpressionFolding.processor.takeIfTrue
+import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
+import com.intellij.advancedExpressionFolding.settings.ILogFoldingState
 import com.intellij.openapi.editor.Document
 import com.intellij.psi.PsiExpression
 import com.intellij.psi.PsiMethodCallExpression
 import com.intellij.psi.PsiReferenceExpression
 import com.intellij.psi.impl.source.PsiClassReferenceType
 
-object LoggerBracketsExt : BaseExtension() {
+object LoggerBracketsExt : ILogFoldingState by AdvancedExpressionFoldingSettings.State()() {
 
     @JvmStatic
     fun createExpression(
