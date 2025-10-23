@@ -2,7 +2,7 @@ package com.intellij.advancedExpressionFolding.expression.literal
 
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
-import com.intellij.advancedExpressionFolding.settings.IState
+import com.intellij.advancedExpressionFolding.settings.IDateOperationsState
 import com.intellij.lang.folding.FoldingDescriptor
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.editor.FoldingGroup
@@ -17,7 +17,7 @@ class LocalDateLiteral(
     private val month: PsiLiteralExpression,
     private val day: PsiLiteralExpression,
     private val state: AdvancedExpressionFoldingSettings.State = AdvancedExpressionFoldingSettings.getInstance().state,
-) : Expression(element, textRange), IState by state {
+) : Expression(element, textRange), IDateOperationsState by state {
 
     override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean = true
 

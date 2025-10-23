@@ -1,6 +1,7 @@
 package com.intellij.advancedExpressionFolding.pseudo
 
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings.Companion.getInstance
+import com.intellij.advancedExpressionFolding.settings.ILombokState
 import com.intellij.advancedExpressionFolding.settings.IState
 import com.intellij.codeInsight.completion.CompletionContributor
 import com.intellij.codeInsight.completion.CompletionParameters
@@ -29,7 +30,7 @@ import com.intellij.util.ProcessingContext
 
 abstract class AbstractLoggingAnnotationCompletionContributor(
     private val state: IState = getInstance().state
-) : CompletionContributor(), IState by state {
+) : CompletionContributor(), ILombokState by state {
 
     protected abstract val annotationName: String
 
