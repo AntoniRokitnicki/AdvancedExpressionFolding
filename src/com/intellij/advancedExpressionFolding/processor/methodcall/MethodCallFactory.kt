@@ -35,7 +35,7 @@ typealias ClassName = String
  * - Reads: O(1) HashMap lookup, no synchronization overhead
  * - Writes: O(n) reconstruction of all mappings, synchronized but infrequent
  */
-object MethodCallFactory : IGlobalSettingsState by AdvancedExpressionFoldingSettings.getInstance().state {
+object MethodCallFactory : IGlobalSettingsState by AdvancedExpressionFoldingSettings.State()() {
 
     @Volatile
     private var dynamicProvider: IDynamicDataProvider? = ConfigurationParser
