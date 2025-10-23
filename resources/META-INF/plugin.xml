@@ -46,6 +46,9 @@
                 implementationClass="com.intellij.advancedExpressionFolding.pseudo.MainAnnotationCompletionContributor"/>
         <completion.contributor
                 language="JAVA"
+                implementationClass="com.intellij.advancedExpressionFolding.pseudo.OptionalAnnotationCompletionContributor"/>
+        <completion.contributor
+                language="JAVA"
                 implementationClass="com.intellij.advancedExpressionFolding.pseudo.LoggableAnnotationCompletionContributor"/>
         <completion.contributor
                 language="JAVA"
