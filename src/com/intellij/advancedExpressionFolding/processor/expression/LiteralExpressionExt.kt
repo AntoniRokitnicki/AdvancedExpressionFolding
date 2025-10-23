@@ -5,10 +5,11 @@ import com.intellij.advancedExpressionFolding.expression.literal.CharacterLitera
 import com.intellij.advancedExpressionFolding.expression.literal.NumberLiteral
 import com.intellij.advancedExpressionFolding.expression.literal.StringLiteral
 import com.intellij.advancedExpressionFolding.processor.util.Consts
-import com.intellij.advancedExpressionFolding.settings.StateDelegate
+import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
+import com.intellij.advancedExpressionFolding.settings.ILogFoldingState
 import com.intellij.psi.PsiLiteralExpression
 
-object LiteralExpressionExt : StateDelegate() {
+object LiteralExpressionExt : ILogFoldingState by AdvancedExpressionFoldingSettings.State()() {
 
     fun getLiteralExpression(element: PsiLiteralExpression): Expression? {
         val type = element.type ?: return null
