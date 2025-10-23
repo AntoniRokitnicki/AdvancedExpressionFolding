@@ -41,3 +41,63 @@ Removes boilerplate while preserving behavior.
 Default: Off
 Controlled by: `emojify`
 Related features: (none)
+
+#### Keyword and literal replacements
+
+The emojify processor scans every `PsiJavaToken` that survives other folds and swaps specific keyword tokens for fixed emoji glyphs. The mapping is hard-coded in `PsiJavaTokenExt` and covers null literals, modifiers, control-flow keywords, and primitive types, ensuring that the emoji replaces only the token text while leaving surrounding punctuation intact.【F:src/com/intellij/advancedExpressionFolding/processor/token/PsiJavaTokenExt.kt†L12-L58】
+
+| Category | Java tokens | Emoji replacement |
+| --- | --- | --- |
+| Literals | `null` | `🕳️` |
+| Modifiers | `final`, `static`, `abstract`, `native`, `transient`, `volatile`, `protected`, `private` | `🔒`, `⚡`, `🎨`, `🏕️`, `🚂`, `☢️`, `🛡️`, `🚫` |
+| Type keywords | `void`, `boolean`, `byte`, `char`, `int`, `long`, `float`, `double` | `💀`, `🔘`, `💾`, `🅲`, `🔢`, `📏`, `🏊`, `⚖️` |
+| Namespace keywords | `package`, `import`, `exports`, `requires`, `record`, `interface`, `enum`, `class` | `📦`, `🚢`, `🚢`, `🚧`, `📀`, `🖥️`, `📊`, `🏛️` |
+| Flow-control keywords | `try`, `catch`, `throw`, `throws`, `return`, `break`, `case`, `do`, `else`, `for`, `while`, `switch`, `yield` | `🤞`, `🎣`, `🪃`, `🪃`, `🔙`, `✋`, `📦`, `▶️`, `🔄`, `🔁`, `♾️`, `🔀`, `🚸` |
+| References | `this`, `super`, `instanceof` | `📍`, `💪`, `is` |
+
+These substitutions explain why the folded example shows emoji versions of `package`, modifiers such as `final`, primitive declarations like `int`, and flow statements like the `try`/`catch` blocks inside the null-handling scenarios.
+
+#### Singleton field aliasing
+
+When the emojify toggle is active, reference expressions that resolve to a static singleton field named `INSTANCE` are rewrapped so that the identifier itself renders as the standing-person emoji. The check verifies that the field is static, refers to its declaring class (`singletonField` helper), and is accessed through the class literal, preventing unrelated identifiers from being touched.【F:src/com/intellij/advancedExpressionFolding/processor/language/ExperimentalExt.kt†L12-L29】【F:src/com/intellij/advancedExpressionFolding/processor/psiElementExtensions.kt†L33-L35】
+
+examples/data/EmojifyTestData.java:
+```java
+    class SingletonUsage {
+        void main() {
+            var s = Singleton.INSTANCE;
+        }
+    }
+```
+
+folded/EmojifyTestData-folded.java:
+```java
+    🏛️ SingletonUsage {
+        💀 main() {
+            var s = Singleton.🧍;
+        }
+    }
+```
+
+Singleton references therefore collapse to `Singleton.🧍` throughout the example while preserving non-singleton members like `OTHER_NAME`.
+
+---
+
+#### Arithmetic Helper Folding
+
+##### StaticImportUsage
+
+**useStaticImport**
+examples/data/EmojifyTestData.java:
+```java
+        public void useStaticImport() {
+            int max = java.lang.Math.max(5, 10);
+        }
+```
+folded/EmojifyTestData-folded.java:
+```java
+        public 💀 useStaticImport() {
+            🔢 max = java.lang.Math.max(5, 10);
+        }
+```
+Emojify replaces the `void` return type and `int` local with their emoji counterparts while leaving `Math.max` untouched.

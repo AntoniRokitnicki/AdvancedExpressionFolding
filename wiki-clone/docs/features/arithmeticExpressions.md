@@ -739,3 +739,4 @@ folded/ArithmeticExpressionsTestData-folded.java:
             blackhole = a;
 ```
 Collapses `Double.valueOf` to the source string.
+
