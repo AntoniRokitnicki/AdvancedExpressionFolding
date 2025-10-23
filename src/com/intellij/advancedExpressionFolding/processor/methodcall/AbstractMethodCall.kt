@@ -1,12 +1,15 @@
 package com.intellij.advancedExpressionFolding.processor.methodcall
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.processor.core.BaseExtension
 import com.intellij.advancedExpressionFolding.processor.argumentExpressions
+import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
+import com.intellij.advancedExpressionFolding.settings.IState
 import com.intellij.psi.PsiExpression
 import com.intellij.psi.PsiMethodCallExpression
 
-abstract class AbstractMethodCall : BaseExtension() {
+abstract class AbstractMethodCall(
+    private val state: IState = AdvancedExpressionFoldingSettings.getInstance().state,
+) : IState by state {
     open fun canExecute(): Boolean = true
 
     open fun execute(
