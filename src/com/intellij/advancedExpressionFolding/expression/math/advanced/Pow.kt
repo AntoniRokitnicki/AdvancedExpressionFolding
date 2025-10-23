@@ -4,7 +4,7 @@ import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.Function
 import com.intellij.advancedExpressionFolding.expression.Operation
 import com.intellij.advancedExpressionFolding.expression.math.ArithmeticExpression
-import com.intellij.advancedExpressionFolding.processor.util.Helper
+import com.intellij.advancedExpressionFolding.processor.util.SuperscriptUtil
 import com.intellij.lang.folding.FoldingDescriptor
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.editor.FoldingGroup
@@ -19,7 +19,7 @@ class Pow(
 ) : Function(element, textRange, "pow", operands), ArithmeticExpression {
     override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean {
         return operands[0].textRange.endOffset < textRange.endOffset &&
-            Helper.superscript(operands[1].element.text) != null
+            SuperscriptUtil.superscript(operands[1].element.text) != null
     }
 
     override fun buildFoldRegions(
@@ -44,7 +44,7 @@ class Pow(
         if (base.supportsFoldRegions(document, this)) {
             descriptors.addAll(base.buildFoldRegions(base.element, document, this).toList())
         }
-        val superscript = Helper.superscript(operands[1].element.text)
+        val superscript = SuperscriptUtil.superscript(operands[1].element.text)
         if (superscript != null) {
             val placeholder = if (base is Operation) ")" + superscript else superscript
             descriptors.add(

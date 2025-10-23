@@ -1,7 +1,7 @@
 package com.intellij.advancedExpressionFolding.expression.operation.collection
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.processor.util.Helper
+import com.intellij.advancedExpressionFolding.processor.util.DocumentUtil
 import com.intellij.lang.folding.FoldingDescriptor
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.editor.FoldingGroup
@@ -21,7 +21,7 @@ class ArrayStream(
         document: Document,
         parent: Expression?
     ): Array<FoldingDescriptor> {
-        val offset = Helper.findDot(document, textRange.endOffset, 1, false) + 1
+        val offset = DocumentUtil.findDot(document, textRange.endOffset, 1, false) + 1
         val noSpaces = offset == 1
         val group = FoldingGroup.newGroup(ArrayStream::class.java.name + if (noSpaces) "" else HIGHLIGHTED_GROUP_POSTFIX)
         val descriptors = mutableListOf<FoldingDescriptor>()

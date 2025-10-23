@@ -1,7 +1,7 @@
 package com.intellij.advancedExpressionFolding.expression.operation.collection
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.processor.util.Helper
+import com.intellij.advancedExpressionFolding.processor.util.DocumentUtil
 import com.intellij.lang.folding.FoldingDescriptor
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.editor.FoldingGroup
@@ -16,7 +16,7 @@ class Collect(
 ) : Expression(element, textRange) {
 
     override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean {
-        val offset = Helper.findDot(document, textRange.startOffset, -1, false)
+        val offset = DocumentUtil.findDot(document, textRange.startOffset, -1, false)
         return textRange.startOffset + offset < collectorTextRange.startOffset &&
             collectorTextRange.endOffset < textRange.endOffset
     }
@@ -28,7 +28,7 @@ class Collect(
     ): Array<FoldingDescriptor> {
         val group = FoldingGroup.newGroup(Collect::class.java.name)
         val descriptors = mutableListOf<FoldingDescriptor>()
-        val offset = Helper.findDot(document, textRange.startOffset, -1, false)
+        val offset = DocumentUtil.findDot(document, textRange.startOffset, -1, false)
         descriptors += FoldingDescriptor(
             element.node,
             TextRange.create(textRange.startOffset + offset, collectorTextRange.startOffset),

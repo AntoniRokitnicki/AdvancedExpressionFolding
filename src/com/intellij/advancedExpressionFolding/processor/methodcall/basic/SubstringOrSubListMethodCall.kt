@@ -7,7 +7,7 @@ import com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt
 import com.intellij.advancedExpressionFolding.processor.methodcall.AbstractMethodCall
 import com.intellij.advancedExpressionFolding.processor.methodcall.Context
 import com.intellij.advancedExpressionFolding.processor.methodcall.NeedsQualifier
-import com.intellij.advancedExpressionFolding.processor.util.Helper
+import com.intellij.advancedExpressionFolding.processor.util.PsiTreeUtilEx
 import com.intellij.psi.PsiBinaryExpression
 import com.intellij.psi.PsiExpression
 import com.intellij.psi.PsiIdentifier
@@ -33,7 +33,7 @@ class SubstringOrSubListMethodCall : AbstractMethodCall(), NeedsQualifier {
         val qualifier = context.qualifierExpr
         
         if (argument is PsiBinaryExpression) {
-            val position = Helper.getSlicePosition(element, qualifier, argument, context.document)
+            val position = PsiTreeUtilEx.getSlicePosition(element, qualifier, argument, context.document)
             if (position != null) {
                 return Slice(
                     element,
@@ -61,7 +61,7 @@ class SubstringOrSubListMethodCall : AbstractMethodCall(), NeedsQualifier {
         val document = context.document
 
         if (a1 is PsiBinaryExpression) {
-            val p1 = Helper.getSlicePosition(element, qualifierExpression, a1, document)
+            val p1 = PsiTreeUtilEx.getSlicePosition(element, qualifierExpression, a1, document)
             if (p1 != null) {
                 when {
                     a2Expression is NumberLiteral -> {
@@ -73,7 +73,7 @@ class SubstringOrSubListMethodCall : AbstractMethodCall(), NeedsQualifier {
                     }
 
                     a2 is PsiBinaryExpression -> {
-                        val p2 = Helper.getSlicePosition(element, qualifierExpression, a2, document)
+                        val p2 = PsiTreeUtilEx.getSlicePosition(element, qualifierExpression, a2, document)
                         if (p2 != null) {
                             return Slice(
                                 element,
@@ -107,7 +107,7 @@ class SubstringOrSubListMethodCall : AbstractMethodCall(), NeedsQualifier {
         }
 
         if (a2 is PsiBinaryExpression) {
-            val position = Helper.getSlicePosition(element, qualifierExpression, a2, document)
+            val position = PsiTreeUtilEx.getSlicePosition(element, qualifierExpression, a2, document)
             if (position != null) {
                 return Slice(
                     element,

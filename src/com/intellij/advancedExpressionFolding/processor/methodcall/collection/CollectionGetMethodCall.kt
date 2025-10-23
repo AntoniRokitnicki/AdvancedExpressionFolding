@@ -7,7 +7,7 @@ import com.intellij.advancedExpressionFolding.expression.operation.Get.Style
 import com.intellij.advancedExpressionFolding.processor.methodcall.AbstractMethodCall
 import com.intellij.advancedExpressionFolding.processor.methodcall.Context
 import com.intellij.advancedExpressionFolding.processor.methodcall.NeedsQualifier
-import com.intellij.advancedExpressionFolding.processor.util.Helper.getSlicePosition
+import com.intellij.advancedExpressionFolding.processor.util.PsiTreeUtilEx.getSlicePosition
 import com.intellij.psi.PsiBinaryExpression
 import com.intellij.psi.PsiExpression
 import com.intellij.psi.PsiMethodCallExpression

@@ -2,7 +2,7 @@ package com.intellij.advancedExpressionFolding.processor.declaration
 
 import com.intellij.advancedExpressionFolding.expression.VariableDeclarationImpl
 import com.intellij.advancedExpressionFolding.processor.core.BaseExtension
-import com.intellij.advancedExpressionFolding.processor.util.Helper
+import com.intellij.advancedExpressionFolding.processor.util.PsiVariableUtil
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiForeachStatement
@@ -15,7 +15,7 @@ object PsiVariableExt : BaseExtension() {
         if (!shouldCollapseVariableDeclaration(element, settings)) {
             return null
         }
-        val isFinal = Helper.calculateIfFinal(element)
+        val isFinal = PsiVariableUtil.calculateIfFinal(element)
         val endOffset = element.typeElement?.textRange?.endOffset ?: return null
         return VariableDeclarationImpl(
             element,

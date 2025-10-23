@@ -3,7 +3,7 @@ package com.intellij.advancedExpressionFolding.processor.methodcall.stream
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.operation.collection.Collect
 import com.intellij.advancedExpressionFolding.processor.methodcall.Context
-import com.intellij.advancedExpressionFolding.processor.util.Helper
+import com.intellij.advancedExpressionFolding.processor.util.MethodNameUtil
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiExpression
 import com.intellij.psi.PsiIdentifier
@@ -23,7 +23,7 @@ class StreamCollectMethodCall : AbstractStreamMethodCall() {
         argumentExpression: Expression
     ): Expression? {
         if (argument is PsiMethodCallExpression
-            && Helper.startsWith((argument.methodExpression).referenceName, "to")) {
+            && MethodNameUtil.startsWith((argument.methodExpression).referenceName, "to")) {
             val q = argument.methodExpression.qualifierExpression
             if (q is PsiReferenceExpression && Objects.equals(q.referenceName, "Collectors")) {
                 val identifier = argument.methodExpression.children

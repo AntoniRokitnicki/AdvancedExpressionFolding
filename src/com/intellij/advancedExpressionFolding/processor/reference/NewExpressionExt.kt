@@ -12,7 +12,7 @@ import com.intellij.advancedExpressionFolding.processor.argumentCount
 import com.intellij.advancedExpressionFolding.processor.expression.LiteralExpressionExt
 import com.intellij.advancedExpressionFolding.processor.methodcall.MethodCallExpressionExt
 import com.intellij.advancedExpressionFolding.processor.util.Consts
-import com.intellij.advancedExpressionFolding.processor.util.Helper
+import com.intellij.advancedExpressionFolding.processor.util.TypeUtil
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.util.TextRange
@@ -37,7 +37,7 @@ object NewExpressionExt {
     fun getNewExpression(element: PsiNewExpression, document: Document): Expression? {
         val settings = AdvancedExpressionFoldingSettings.getInstance()
         val type = element.type
-        val erasedType = type?.canonicalText?.let { Helper.eraseGenerics(it) }
+        val erasedType = type?.canonicalText?.let { TypeUtil.eraseGenerics(it) }
         if (type != null && Consts.SUPPORTED_CLASSES.contains(erasedType)) {
             val argumentList = element.argumentList
             handleConstructorArguments(element, document, settings, erasedType, argumentList)?.let { return it }

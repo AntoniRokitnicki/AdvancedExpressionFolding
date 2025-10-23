@@ -10,7 +10,8 @@ import com.intellij.advancedExpressionFolding.processor.argumentExpressions
 import com.intellij.advancedExpressionFolding.processor.argumentCount
 import com.intellij.advancedExpressionFolding.processor.language.FieldShiftExt
 import com.intellij.advancedExpressionFolding.processor.logger.LoggerBracketsExt
-import com.intellij.advancedExpressionFolding.processor.util.Helper
+import com.intellij.advancedExpressionFolding.processor.util.MethodNameUtil
+import com.intellij.advancedExpressionFolding.processor.util.TypeUtil
 import com.intellij.advancedExpressionFolding.processor.util.PropertyUtil.guessPropertyName
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
 import com.intellij.openapi.editor.Document
@@ -52,7 +53,7 @@ object MethodCallExpressionExt {
         val method = referenceExpression.resolve() as? PsiMethod ?: return null
         val psiClass = method.containingClass ?: return null
         val qualifiedName = psiClass.qualifiedName ?: return null
-        val className = Helper.eraseGenerics(qualifiedName)
+        val className = TypeUtil.eraseGenerics(qualifiedName)
         val supported = factory.supportedClasses.contains(className) || factory.classlessMethods.contains(method.name)
         return if (supported) {
             onAnyExpression(element, document, qualifier, identifier, className, method)
@@ -133,7 +134,7 @@ object MethodCallExpressionExt {
         identifier: PsiElement,
         qualifier: PsiExpression?
     ): Expression? {
-        if (Helper.isGetter(identifier, element)) {
+        if (MethodNameUtil.isGetter(identifier, element)) {
             val expression = qualifier?.let { BuildExpressionExt.getAnyExpression(it, document) }
             return Getter(
                 element,
@@ -165,7 +166,7 @@ object MethodCallExpressionExt {
         element: PsiMethodCallExpression,
         qualifier: PsiExpression?
     ): Boolean {
-        if (!Helper.isSetter(text)) {
+        if (!MethodNameUtil.isSetter(text)) {
             return false
         }
         if (element.argumentCount != 1) {
@@ -176,7 +177,7 @@ object MethodCallExpressionExt {
         }
         if (qualifier is PsiMethodCallExpression) {
             val referenceName = qualifier.methodExpression.referenceName
-            if (referenceName != null && Helper.startsWith(referenceName, "set")) {
+            if (referenceName != null && MethodNameUtil.startsWith(referenceName, "set")) {
                 return false
             }
         }

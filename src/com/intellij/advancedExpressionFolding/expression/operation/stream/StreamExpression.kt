@@ -1,7 +1,7 @@
 package com.intellij.advancedExpressionFolding.expression.operation.stream
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.processor.util.Helper
+import com.intellij.advancedExpressionFolding.processor.util.DocumentUtil
 import com.intellij.lang.folding.FoldingDescriptor
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.editor.FoldingGroup
@@ -20,13 +20,13 @@ class StreamExpression(
         document: Document,
         parent: Expression?
     ): Array<FoldingDescriptor> {
-        val startOffset = Helper.findDot(document, textRange.startOffset, -1, true)
-        val endOffset = Helper.findDot(document, textRange.endOffset - 1, 1, false)
+        val startOffset = DocumentUtil.findDot(document, textRange.startOffset, -1, true)
+        val endOffset = DocumentUtil.findDot(document, textRange.endOffset - 1, 1, false)
         return when {
             startOffset < -1 &&
                 document.getText(TextRange.create(textRange.startOffset + startOffset, textRange.startOffset + startOffset + 1)) == "\n" &&
                 endOffset > 1 -> {
-                val startOffsetNoWhitespace = Helper.findDot(document, textRange.startOffset, -1, false)
+                val startOffsetNoWhitespace = DocumentUtil.findDot(document, textRange.startOffset, -1, false)
                 val startOffsetFinal = textRange.startOffset + startOffsetNoWhitespace
                 val endOffsetFinal = textRange.endOffset + endOffset
                 if (endOffsetFinal < 0) {
@@ -44,7 +44,7 @@ class StreamExpression(
             }
             startOffset < -1 &&
                 document.getText(TextRange.create(textRange.startOffset + startOffset, textRange.startOffset + startOffset + 1)) == "." -> {
-                val endOffsetWithWhitespace = Helper.findDot(document, textRange.endOffset - 1, 1, true)
+                val endOffsetWithWhitespace = DocumentUtil.findDot(document, textRange.endOffset - 1, 1, true)
                 arrayOf(
                     FoldingDescriptor(
                         element.node,
@@ -67,7 +67,7 @@ class StreamExpression(
             startOffset < -1 &&
                 document.getText(TextRange.create(textRange.startOffset - 1, textRange.startOffset)) == "." &&
                 endOffset == 1 -> {
-                val endOffsetWithWhitespace = Helper.findDot(document, textRange.endOffset - 1, 1, true)
+                val endOffsetWithWhitespace = DocumentUtil.findDot(document, textRange.endOffset - 1, 1, true)
                 arrayOf(
                     FoldingDescriptor(
                         element.node,

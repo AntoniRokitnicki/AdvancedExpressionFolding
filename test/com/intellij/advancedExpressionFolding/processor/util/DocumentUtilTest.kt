@@ -4,7 +4,7 @@ import com.intellij.openapi.editor.impl.DocumentImpl
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
-class HelperTest {
+class DocumentUtilTest {
 
     @Test
     fun findDotSkipsWhitespaceWhenSearchingForward() {
@@ -12,7 +12,7 @@ class HelperTest {
         val document = DocumentImpl(content)
 
         val startOffset = content.indexOf('o', startIndex = 2)
-        val result = Helper.findDot(document, startOffset, 1, false)
+        val result = DocumentUtil.findDot(document, startOffset, 1, false)
 
         assertEquals(4, result)
     }
@@ -23,7 +23,7 @@ class HelperTest {
         val document = DocumentImpl(content)
 
         val startOffset = content.indexOf('b')
-        val result = Helper.findDot(document, startOffset, -1, false)
+        val result = DocumentUtil.findDot(document, startOffset, -1, false)
 
         assertEquals(-1, result)
     }
@@ -34,7 +34,7 @@ class HelperTest {
         val document = DocumentImpl(content)
 
         val startOffset = content.indexOf('o', startIndex = 2)
-        val result = Helper.findDot(document, startOffset, 1, false)
+        val result = DocumentUtil.findDot(document, startOffset, 1, false)
 
         assertEquals(Int.MAX_VALUE, result)
     }
@@ -45,7 +45,7 @@ class HelperTest {
         val document = DocumentImpl(content)
 
         val startOffset = content.indexOf('o', startIndex = 2)
-        val result = Helper.findDot(document, startOffset, 1, true)
+        val result = DocumentUtil.findDot(document, startOffset, 1, true)
 
         assertEquals(4, result)
     }

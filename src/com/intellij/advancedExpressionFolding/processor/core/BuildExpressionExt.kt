@@ -3,7 +3,7 @@ package com.intellij.advancedExpressionFolding.processor.core
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.SyntheticExpressionImpl
 import com.intellij.advancedExpressionFolding.processor.cache.CacheExt.getExpression
-import com.intellij.advancedExpressionFolding.processor.util.Helper
+import com.intellij.advancedExpressionFolding.processor.util.PsiTreeUtilEx
 import com.intellij.lang.folding.FoldingDescriptor
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.project.IndexNotReadyException
@@ -19,7 +19,7 @@ object BuildExpressionExt {
         }
         if (synthetic) {
             val children = arrayListOf<Expression>()
-            Helper.findChildExpressions(element, children, document)
+            PsiTreeUtilEx.findChildExpressions(element, children, document)
             return SyntheticExpressionImpl(
                 element,
                 element.textRange,

@@ -10,7 +10,8 @@ import com.intellij.advancedExpressionFolding.expression.operation.basic.Variabl
 import com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt.getAnyExpression
 import com.intellij.advancedExpressionFolding.processor.argumentExpressions
 import com.intellij.advancedExpressionFolding.processor.argumentCount
-import com.intellij.advancedExpressionFolding.processor.util.Helper
+import com.intellij.advancedExpressionFolding.processor.util.PsiReferenceUtil
+import com.intellij.advancedExpressionFolding.processor.util.PsiVariableUtil
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.util.TextRange
@@ -171,7 +172,7 @@ object ForStatementExpressionExt {
             } else {
                 val indexName = conditionVariable.nameIdentifier
                 if (indexName != null) {
-                    val isFinal = Helper.calculateIfFinal(declaration) && Helper.calculateIfFinal(updateVariable)
+                    val isFinal = PsiVariableUtil.calculateIfFinal(declaration) && PsiVariableUtil.calculateIfFinal(updateVariable)
                     ForEachIndexedStatement(
                         element,
                         TextRange.create(initialization.textRange.startOffset - 1, declaration.textRange.endOffset),
@@ -193,7 +194,7 @@ object ForStatementExpressionExt {
             conditionROperand is PsiMethodCallExpression &&
             conditionROperand.methodExpression.qualifierExpression is PsiReferenceExpression &&
             initializer.methodExpression.qualifierExpression is PsiReferenceExpression &&
-            Helper.isReferenceToReference(
+            PsiReferenceUtil.isReferenceToReference(
                 conditionROperand.methodExpression.qualifierExpression as PsiReferenceExpression,
                 initializer.methodExpression.qualifierExpression as PsiReferenceExpression
             )
@@ -215,7 +216,7 @@ object ForStatementExpressionExt {
                 } else {
                     val indexName = conditionVariable.nameIdentifier
                     if (indexName != null) {
-                        val isFinal = Helper.calculateIfFinal(declaration) && Helper.calculateIfFinal(updateVariable)
+                        val isFinal = PsiVariableUtil.calculateIfFinal(declaration) && PsiVariableUtil.calculateIfFinal(updateVariable)
                         ForEachIndexedStatement(
                             element,
                             TextRange.create(initialization.textRange.startOffset - 1, declaration.textRange.endOffset),

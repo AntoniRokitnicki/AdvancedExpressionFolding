@@ -7,7 +7,7 @@ import com.intellij.advancedExpressionFolding.expression.operation.basic.Append
 import com.intellij.advancedExpressionFolding.expression.operation.basic.Equal
 import com.intellij.advancedExpressionFolding.processor.argumentExpressions
 import com.intellij.advancedExpressionFolding.expression.operation.basic.GreaterEqual
-import com.intellij.advancedExpressionFolding.processor.util.Helper
+import com.intellij.advancedExpressionFolding.processor.util.TypeUtil
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
 import com.intellij.openapi.editor.Document
 import com.intellij.psi.PsiClass
@@ -106,7 +106,7 @@ object PrefixExpressionExt {
                 val method = referenceExpression.resolve() as? PsiMethod ?: return null
                 val psiClass = method.containingClass ?: return null
                 val qualifiedName = psiClass.qualifiedName ?: return null
-                val className = Helper.eraseGenerics(qualifiedName)
+                val className = TypeUtil.eraseGenerics(qualifiedName)
                 val methodName = identifier.text
                 if (!isMethodSupported(className, methodName)) {
                     return null

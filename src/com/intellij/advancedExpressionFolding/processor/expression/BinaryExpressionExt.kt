@@ -14,7 +14,7 @@ import com.intellij.advancedExpressionFolding.expression.operation.collection.Ra
 import com.intellij.advancedExpressionFolding.processor.util.Consts
 import com.intellij.advancedExpressionFolding.processor.argumentExpressions
 import com.intellij.advancedExpressionFolding.processor.argumentCount
-import com.intellij.advancedExpressionFolding.processor.util.Helper.eraseGenerics
+import com.intellij.advancedExpressionFolding.processor.util.TypeUtil.eraseGenerics
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.util.TextRange

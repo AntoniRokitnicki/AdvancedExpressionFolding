@@ -14,7 +14,8 @@ import com.intellij.advancedExpressionFolding.processor.expression.BinaryExpress
 import com.intellij.advancedExpressionFolding.processor.isNull
 import com.intellij.advancedExpressionFolding.processor.language.kotlin.IfNullSafeExt
 import com.intellij.advancedExpressionFolding.processor.language.kotlin.LetReturnExt
-import com.intellij.advancedExpressionFolding.processor.util.Helper
+import com.intellij.advancedExpressionFolding.processor.util.MethodNameUtil
+import com.intellij.advancedExpressionFolding.processor.util.PsiReferenceUtil
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.util.TextRange
@@ -71,12 +72,12 @@ object IfExt {
                     val isSupportedQualifier = when (qualifierElement) {
                         is PsiReferenceExpression -> true
                         is PsiMethodCallExpression ->
-                            Helper.startsWith(qualifierElement.methodExpression.referenceName, "get") &&
+                            MethodNameUtil.startsWith(qualifierElement.methodExpression.referenceName, "get") &&
                                 qualifierElement.argumentExpressions.isEmpty()
                         else -> false
                     }
                     if (isSupportedQualifier) {
-                        val sameQualifier = Helper.findSameQualifier(targetStatement, qualifierElement)
+                        val sameQualifier = PsiReferenceUtil.findSameQualifier(targetStatement, qualifierElement)
                         if (sameQualifier != null) {
                             return ShortElvisExpression(
                                 element,
@@ -112,7 +113,7 @@ object IfExt {
                 val isSupportedQualifier = when (qualifierElement) {
                     is PsiReferenceExpression -> true
                     is PsiMethodCallExpression ->
-                        Helper.startsWith(qualifierElement.methodExpression.referenceName, "get") &&
+                        MethodNameUtil.startsWith(qualifierElement.methodExpression.referenceName, "get") &&
                             qualifierElement.argumentExpressions.isEmpty()
                     else -> false
                 }
@@ -136,9 +137,9 @@ object IfExt {
                         .filter { candidate ->
                             when (candidate) {
                                 is PsiReferenceExpression -> candidate.parent !is PsiMethodCallExpression &&
-                                    Helper.isReferenceToReference(candidate, reference)
+                                    PsiReferenceUtil.isReferenceToReference(candidate, reference)
                                 is PsiMethodCallExpression ->
-                                    Helper.isReferenceToReference(candidate.methodExpression, reference)
+                                    PsiReferenceUtil.isReferenceToReference(candidate.methodExpression, reference)
                                 else -> false
                             }
                         }

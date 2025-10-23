@@ -9,7 +9,7 @@ import com.intellij.advancedExpressionFolding.processor.end
 import com.intellij.advancedExpressionFolding.processor.realNextSibling
 import com.intellij.advancedExpressionFolding.processor.singleArgument
 import com.intellij.advancedExpressionFolding.processor.start
-import com.intellij.advancedExpressionFolding.processor.util.Helper
+import com.intellij.advancedExpressionFolding.processor.util.PsiVariableUtil
 import com.intellij.psi.*
 
 object PsiDeclarationStatementExt : BaseExtension() {
@@ -82,7 +82,7 @@ object PsiDeclarationStatementExt : BaseExtension() {
             val notFinal = list.mapNotNull {
                 it.first.asVariable()
             }.any {
-                !Helper.calculateIfFinal(it)
+                !PsiVariableUtil.calculateIfFinal(it)
             }
             val varType = when (notFinal) {
                 true -> "var"
