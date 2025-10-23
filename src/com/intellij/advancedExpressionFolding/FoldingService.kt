@@ -1,15 +1,19 @@
 package com.intellij.advancedExpressionFolding
 
-import com.intellij.advancedExpressionFolding.processor.cache.Keys
+import com.intellij.advancedExpressionFolding.application.service.FoldingToggleApplicationService
+import com.intellij.advancedExpressionFolding.application.service.KeyCleanupApplicationService
+import com.intellij.advancedExpressionFolding.domain.model.FoldingToggleState
+import com.intellij.advancedExpressionFolding.domain.service.FoldingDomainService
+import com.intellij.advancedExpressionFolding.domain.service.KeyClearanceDomainService
+import com.intellij.advancedExpressionFolding.infrastructure.editor.EditorFoldingBatchExecutor
+import com.intellij.advancedExpressionFolding.infrastructure.editor.EditorFoldingGroupFactory
+import com.intellij.advancedExpressionFolding.infrastructure.editor.ProjectOpenEditorsProvider
+import com.intellij.advancedExpressionFolding.infrastructure.psi.PsiKeyAwareElementProvider
 import com.intellij.openapi.components.Service
 import com.intellij.openapi.components.service
 import com.intellij.openapi.editor.Editor
-import com.intellij.openapi.editor.FoldRegion
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.project.ProjectManager
-import com.intellij.psi.PsiDocumentManager
-import com.intellij.psi.PsiElement
-import com.intellij.psi.PsiRecursiveElementVisitor
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -17,18 +21,20 @@ import kotlinx.coroutines.launch
 @Service
 class FoldingService {
 
-    fun fold(editor: Editor, state: Boolean) {
-        if (editor.isDisposed) {
-            return
-        }
-        val regions = editor.foldingModel.allFoldRegions.filter(FoldRegion::isAdvancedExpressionFoldingGroup)
+    private val foldingToggleService = FoldingToggleApplicationService(
+        EditorFoldingBatchExecutor(),
+        EditorFoldingGroupFactory(),
+        FoldingDomainService()
+    )
 
-        editor.foldingModel
-            .runBatchFoldingOperation {
-                regions.forEach {
-                    it.isExpanded = !state
-                }
-            }
+    private val keyCleanupService = KeyCleanupApplicationService(
+        ProjectOpenEditorsProvider(),
+        PsiKeyAwareElementProvider(),
+        KeyClearanceDomainService()
+    )
+
+    fun fold(editor: Editor, state: Boolean) {
+        foldingToggleService.toggle(editor, FoldingToggleState.from(state))
     }
 
     fun clearAllKeys() {
@@ -36,29 +42,13 @@ class FoldingService {
     }
 
     fun clearAllKeys(project: Project) {
-        val editors = project.openTextEditors
-
         CoroutineScope(Dispatchers.Default).launch {
-            editors.forEach { editor ->
-                clearAllKeys(editor)
-            }
+            keyCleanupService.clear(project)
         }
     }
 
     fun clearAllKeys(editor: Editor) {
-        if (editor.isDisposed) {
-            return
-        }
-        val project = editor.project ?: return
-        val psiFile = PsiDocumentManager.getInstance(project).getPsiFile(editor.document) ?: return
-        psiFile.accept(KeyCleanerPsiElementVisitor())
-    }
-
-    class KeyCleanerPsiElementVisitor : PsiRecursiveElementVisitor() {
-        override fun visitElement(element: PsiElement) {
-            Keys.clearAll(element)
-            super.visitElement(element)
-        }
+        keyCleanupService.clear(editor)
     }
 
     companion object {
