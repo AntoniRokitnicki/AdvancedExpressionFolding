@@ -1,0 +1,144 @@
+name: Pull Request size labeler
+
+description: "Label pull requests based on their size"
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - ready_for_review
+      - edited
+  workflow_dispatch:
+    inputs:
+      pull_request_number:
+        description: "Pull request number to relabel (defaults to the PR opened from the selected branch if omitted)."
+        required: false
+        default: ""
+      xs_label:
+        description: "Label used for extra small pull requests."
+        required: false
+        default: "size/xs"
+      xs_max_size:
+        description: "Maximum number of modified lines for an extra small pull request."
+        required: false
+        default: "10"
+      s_label:
+        description: "Label used for small pull requests."
+        required: false
+        default: "size/s"
+      s_max_size:
+        description: "Maximum number of modified lines for a small pull request."
+        required: false
+        default: "100"
+      m_label:
+        description: "Label used for medium pull requests."
+        required: false
+        default: "size/m"
+      m_max_size:
+        description: "Maximum number of modified lines for a medium pull request."
+        required: false
+        default: "500"
+      l_label:
+        description: "Label used for large pull requests."
+        required: false
+        default: "size/l"
+      l_max_size:
+        description: "Maximum number of modified lines for a large pull request."
+        required: false
+        default: "1000"
+      xl_label:
+        description: "Label used for extra large pull requests."
+        required: false
+        default: "size/xl"
+      fail_if_xl:
+        description: "Fail the workflow if the pull request is extra large."
+        required: false
+        default: "false"
+      message_if_xl:
+        description: "Comment posted when the pull request is extra large."
+        required: false
+        default: >-
+          This PR exceeds the recommended size of 1000 lines.
+          Please make sure you are NOT addressing multiple issues with one PR.
+          Note this PR might be rejected due to its size.
+      github_api_url:
+        description: "GitHub API URL to use when contacting the server."
+        required: false
+        default: "https://api.github.com"
+      files_to_ignore:
+        description: "Whitespace or newline separated glob patterns to ignore."
+        required: false
+        default: ""
+      ignore_line_deletions:
+        description: "Ignore deleted lines when computing the size."
+        required: false
+        default: "false"
+      ignore_file_deletions:
+        description: "Ignore removed files when computing the size."
+        required: false
+        default: "false"
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+
+jobs:
+  labeler:
+    runs-on: ubuntu-latest
+    env:
+      DEFAULT_MESSAGE_IF_XL: |-
+        This PR exceeds the recommended size of 1000 lines.
+        Please make sure you are NOT addressing multiple issues with one PR.
+        Note this PR might be rejected due to its size.
+    steps:
+      - name: Resolve pull request number for manual runs
+        if: github.event_name == 'workflow_dispatch'
+        env:
+          INPUT_PR_NUMBER: ${{ github.event.inputs.pull_request_number }}
+          REPO: ${{ github.repository }}
+          API_URL: ${{ github.event.inputs.github_api_url || github.api_url }}
+          TOKEN: ${{ github.token }}
+          BRANCH: ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+
+          pr_number="$INPUT_PR_NUMBER"
+
+          if [ -z "$pr_number" ]; then
+            encoded_head=$(python -c 'import urllib.parse, os; print(urllib.parse.quote(f"{os.environ[\'REPO\']}:" + os.environ[\'BRANCH\'], safe=""))')
+            response=$(curl -sSf -H "Authorization: Bearer $TOKEN" -H "Accept: application/vnd.github+json" "$API_URL/repos/$REPO/pulls?head=$encoded_head&state=open")
+            pr_number=$(echo "$response" | jq '.[0].number // empty' -r)
+          fi
+
+          if [ -z "$pr_number" ]; then
+            echo "Unable to determine pull request number. Provide it explicitly when triggering the workflow." >&2
+            exit 1
+          fi
+
+          cat <<JSON > "$RUNNER_TEMP/pr-event.json"
+          {"pull_request":{"number":$pr_number}}
+          JSON
+
+          echo "GITHUB_EVENT_PATH=$RUNNER_TEMP/pr-event.json" >> "$GITHUB_ENV"
+
+      - name: Label pull request size
+        uses: CodelyTV/pr-size-labeler@v1.10.3
+        with:
+          xs_label: ${{ github.event.inputs.xs_label || 'size/xs' }}
+          xs_max_size: ${{ github.event.inputs.xs_max_size || '10' }}
+          s_label: ${{ github.event.inputs.s_label || 'size/s' }}
+          s_max_size: ${{ github.event.inputs.s_max_size || '100' }}
+          m_label: ${{ github.event.inputs.m_label || 'size/m' }}
+          m_max_size: ${{ github.event.inputs.m_max_size || '500' }}
+          l_label: ${{ github.event.inputs.l_label || 'size/l' }}
+          l_max_size: ${{ github.event.inputs.l_max_size || '1000' }}
+          xl_label: ${{ github.event.inputs.xl_label || 'size/xl' }}
+          fail_if_xl: ${{ github.event.inputs.fail_if_xl || 'false' }}
+          message_if_xl: ${{ github.event.inputs.message_if_xl || env.DEFAULT_MESSAGE_IF_XL }}
+          github_api_url: ${{ github.event.inputs.github_api_url || github.api_url }}
+          files_to_ignore: ${{ github.event.inputs.files_to_ignore || '' }}
+          ignore_line_deletions: ${{ github.event.inputs.ignore_line_deletions || 'false' }}
+          ignore_file_deletions: ${{ github.event.inputs.ignore_file_deletions || 'false' }}
