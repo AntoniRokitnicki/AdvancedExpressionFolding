@@ -23,11 +23,10 @@ import java.util.ArrayList
 class IfExpression(
     private val ifStatement: PsiIfStatement,
     textRange: TextRange,
-    private val state: AdvancedExpressionFoldingSettings.State = AdvancedExpressionFoldingSettings.getInstance().state
 ) : Expression(ifStatement, textRange),
-    IControlFlowState by state,
-    IKotlinLanguageState by state,
-    IUnclassifiedFeatureState by state {
+    IControlFlowState by AdvancedExpressionFoldingSettings.State()(),
+    IKotlinLanguageState by AdvancedExpressionFoldingSettings.State()(),
+    IUnclassifiedFeatureState by AdvancedExpressionFoldingSettings.State()() {
 
     override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean {
         return isAssertExpression(ifStatement) || isCompactExpression(ifStatement)

@@ -1,9 +1,8 @@
 package com.intellij.advancedExpressionFolding.pseudo
 
 import com.intellij.advancedExpressionFolding.processor.isVoid
-import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings.Companion.getInstance
+import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
 import com.intellij.advancedExpressionFolding.settings.ILombokState
-import com.intellij.advancedExpressionFolding.settings.IState
 import com.intellij.codeInsight.completion.*
 import com.intellij.codeInsight.lookup.AutoCompletionPolicy
 import com.intellij.codeInsight.lookup.LookupElementBuilder
@@ -15,8 +14,8 @@ import com.intellij.psi.codeStyle.JavaCodeStyleManager
 import com.intellij.psi.util.PsiTreeUtil
 import com.intellij.util.ProcessingContext
 
-class MainAnnotationCompletionContributor(private val state: IState = getInstance().state) : CompletionContributor(),
-    ILombokState by state {
+class MainAnnotationCompletionContributor : CompletionContributor(),
+    ILombokState by AdvancedExpressionFoldingSettings.State()() {
     init {
         extend(
             CompletionType.BASIC,

@@ -36,9 +36,7 @@ abstract class BaseTest : LightJavaCodeInsightFixtureTestCase5(TEST_JDK) {
     class TooComplexException : TestAbortedException("TOO COMPLEX FOLDING")
     class FoldingChangedException : AssertionError()
 
-    protected val state: State by lazy {
-        getInstance().state
-    }
+    protected val state: State by State()
 
     open fun assignState(vararg turnOnProperties: KMutableProperty0<Boolean>,) {
         getInstance().disableAll()
