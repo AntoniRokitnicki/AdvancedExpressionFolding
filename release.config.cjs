@@ -10,6 +10,8 @@ module.exports = {
           { type: 'release', scope: 'major', release: 'major' },
           { type: 'release', scope: 'minor', release: 'minor' },
           { type: 'release', scope: 'release', release: 'patch' },
+          { breaking: true, release: false },
+          { type: '*', release: false },
         ],
       },
     ],
