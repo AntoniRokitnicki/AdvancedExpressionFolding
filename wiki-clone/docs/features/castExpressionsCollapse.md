@@ -25,3 +25,25 @@ Removes boilerplate while preserving behavior.
 Default: On
 Controlled by: `castExpressionsCollapse`
 Related features: (none)
+
+---
+### Folding catalogue
+
+#### TypeCastTestData
+
+##### Scenario 1
+
+**Before**
+```java
+                ((TypeCastTestData) t.getObject()).getObject() instanceof TypeCastTestData) {
+                System.out.println(((TypeCastTestData) ((TypeCastTestData) t.getObject()).getObject()).getObject());
+        handle(((TypeCastTestData) ((TypeCastTestData) t.getObject()).getObject()));
+```
+
+**After**
+```java
+                t.getObject().getObject() instanceof TypeCastTestData) {
+                System.out.println(t.getObject().getObject().getObject());
+        handle(t.getObject().getObject());
+```
+
