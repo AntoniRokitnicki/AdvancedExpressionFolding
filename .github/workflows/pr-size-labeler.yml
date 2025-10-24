@@ -1,0 +1,183 @@
+name: Pull Request size labeler
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+  workflow_dispatch:
+    inputs:
+      pull_request_number:
+        description: 'Pull request number to label manually'
+        required: false
+        default: ''
+      xs_label:
+        description: 'Label for very small-sized PRs'
+        required: false
+        default: 'size/xs'
+      xs_max_size:
+        description: 'Maximum number of changes for size XS'
+        required: false
+        default: '10'
+      s_label:
+        description: 'Label for small-sized PRs'
+        required: false
+        default: 'size/s'
+      s_max_size:
+        description: 'Maximum number of changes for size S'
+        required: false
+        default: '100'
+      m_label:
+        description: 'Label for medium-sized PRs'
+        required: false
+        default: 'size/m'
+      m_max_size:
+        description: 'Maximum number of changes for size M'
+        required: false
+        default: '500'
+      l_label:
+        description: 'Label for large-sized PRs'
+        required: false
+        default: 'size/l'
+      l_max_size:
+        description: 'Maximum number of changes for size L'
+        required: false
+        default: '1000'
+      xl_label:
+        description: 'Label for extra-large PRs'
+        required: false
+        default: 'size/xl'
+      fail_if_xl:
+        description: "Fail the workflow when the PR is extra-large"
+        required: false
+        default: 'false'
+      message_if_xl:
+        description: 'Message displayed when the PR exceeds the XL size limit'
+        required: false
+        default: |
+          This PR exceeds the recommended size of 1000 lines.
+          Please make sure you are NOT addressing multiple issues with one PR.
+          Note this PR might be rejected due to its size.
+      github_api_url:
+        description: 'GitHub API URL override (needed for GitHub Enterprise)'
+        required: false
+        default: 'https://api.github.com'
+      files_to_ignore:
+        description: 'Files ignored when computing the PR size'
+        required: false
+        default: ''
+      ignore_line_deletions:
+        description: 'Ignore deleted lines when calculating size'
+        required: false
+        default: 'false'
+      ignore_file_deletions:
+        description: 'Ignore completely deleted files when calculating size'
+        required: false
+        default: 'false'
+
+jobs:
+  label:
+    permissions:
+      pull-requests: write
+      contents: read
+      issues: write
+    runs-on: ubuntu-latest
+    env:
+      XS_LABEL: ${{ github.event.inputs.xs_label || 'size/xs' }}
+      XS_MAX_SIZE: ${{ github.event.inputs.xs_max_size || '10' }}
+      S_LABEL: ${{ github.event.inputs.s_label || 'size/s' }}
+      S_MAX_SIZE: ${{ github.event.inputs.s_max_size || '100' }}
+      M_LABEL: ${{ github.event.inputs.m_label || 'size/m' }}
+      M_MAX_SIZE: ${{ github.event.inputs.m_max_size || '500' }}
+      L_LABEL: ${{ github.event.inputs.l_label || 'size/l' }}
+      L_MAX_SIZE: ${{ github.event.inputs.l_max_size || '1000' }}
+      XL_LABEL: ${{ github.event.inputs.xl_label || 'size/xl' }}
+      FAIL_IF_XL: ${{ github.event.inputs.fail_if_xl || 'false' }}
+      GITHUB_API_URL_INPUT: ${{ github.event.inputs.github_api_url || github.api_url }}
+      FILES_TO_IGNORE: ${{ github.event.inputs.files_to_ignore || '' }}
+      IGNORE_LINE_DELETIONS: ${{ github.event.inputs.ignore_line_deletions || 'false' }}
+      IGNORE_FILE_DELETIONS: ${{ github.event.inputs.ignore_file_deletions || 'false' }}
+      PULL_REQUEST_NUMBER_INPUT: ${{ github.event.inputs.pull_request_number || '' }}
+    steps:
+      - name: Resolve XL limit message
+        env:
+          MESSAGE_IF_XL_INPUT: ${{ github.event.inputs.message_if_xl || '' }}
+        run: |
+          if [ -n "${MESSAGE_IF_XL_INPUT}" ]; then
+            message="${MESSAGE_IF_XL_INPUT}"
+          else
+            message=$'This PR exceeds the recommended size of 1000 lines.\nPlease make sure you are NOT addressing multiple issues with one PR.\nNote this PR might be rejected due to its size.'
+          fi
+
+          {
+            echo 'MESSAGE_IF_XL<<EOF'
+            echo "${message}"
+            echo 'EOF'
+          } >> "${GITHUB_ENV}"
+
+      - name: Prepare pull request context for manual runs
+        id: manual_event
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          if [ -z "${PULL_REQUEST_NUMBER_INPUT}" ]; then
+            echo "The pull_request_number input is required when manually triggering this workflow." >&2
+            exit 1
+          fi
+
+          if ! [[ "${PULL_REQUEST_NUMBER_INPUT}" =~ ^[0-9]+$ ]]; then
+            echo "The pull_request_number input must be a positive integer." >&2
+            exit 1
+          fi
+
+          cat <<JSON > "${RUNNER_TEMP}/manual-event.json"
+          {
+            "pull_request": {
+              "number": ${PULL_REQUEST_NUMBER_INPUT}
+            }
+          }
+JSON
+
+          echo "event_path=${RUNNER_TEMP}/manual-event.json" >> "${GITHUB_OUTPUT}"
+
+      - name: Label pull request size
+        if: github.event_name != 'workflow_dispatch'
+        uses: CodelyTV/pr-size-labeler@v1.10.3
+        with:
+          xs_label: ${{ env.XS_LABEL }}
+          xs_max_size: ${{ env.XS_MAX_SIZE }}
+          s_label: ${{ env.S_LABEL }}
+          s_max_size: ${{ env.S_MAX_SIZE }}
+          m_label: ${{ env.M_LABEL }}
+          m_max_size: ${{ env.M_MAX_SIZE }}
+          l_label: ${{ env.L_LABEL }}
+          l_max_size: ${{ env.L_MAX_SIZE }}
+          xl_label: ${{ env.XL_LABEL }}
+          fail_if_xl: ${{ env.FAIL_IF_XL }}
+          message_if_xl: ${{ env.MESSAGE_IF_XL }}
+          github_api_url: ${{ env.GITHUB_API_URL_INPUT }}
+          files_to_ignore: ${{ env.FILES_TO_IGNORE }}
+          ignore_line_deletions: ${{ env.IGNORE_LINE_DELETIONS }}
+          ignore_file_deletions: ${{ env.IGNORE_FILE_DELETIONS }}
+
+      - name: Label existing pull request size
+        if: github.event_name == 'workflow_dispatch'
+        uses: CodelyTV/pr-size-labeler@v1.10.3
+        env:
+          GITHUB_EVENT_PATH: ${{ steps.manual_event.outputs.event_path }}
+        with:
+          xs_label: ${{ env.XS_LABEL }}
+          xs_max_size: ${{ env.XS_MAX_SIZE }}
+          s_label: ${{ env.S_LABEL }}
+          s_max_size: ${{ env.S_MAX_SIZE }}
+          m_label: ${{ env.M_LABEL }}
+          m_max_size: ${{ env.M_MAX_SIZE }}
+          l_label: ${{ env.L_LABEL }}
+          l_max_size: ${{ env.L_MAX_SIZE }}
+          xl_label: ${{ env.XL_LABEL }}
+          fail_if_xl: ${{ env.FAIL_IF_XL }}
+          message_if_xl: ${{ env.MESSAGE_IF_XL }}
+          github_api_url: ${{ env.GITHUB_API_URL_INPUT }}
+          files_to_ignore: ${{ env.FILES_TO_IGNORE }}
+          ignore_line_deletions: ${{ env.IGNORE_LINE_DELETIONS }}
+          ignore_file_deletions: ${{ env.IGNORE_FILE_DELETIONS }}
