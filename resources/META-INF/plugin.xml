@@ -88,6 +88,13 @@
             <keyboard-shortcut first-keystroke="alt Y" keymap="Mac OS X 10.5+" replace-all="true"/>
         </action>
 
+        <action id="com.intellij.advancedExpressionFolding.action.ReportBrokenFoldingAction"
+                class="com.intellij.advancedExpressionFolding.action.ReportBrokenFoldingAction"
+                text="Report Broken Folding..."
+                description="Describe the folding problem for the selected code">
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+        </action>
+
         <!-- Hidden action invoked from settings to refresh folded text colors -->
         <action id="com.intellij.advancedExpressionFolding.action.UpdateFoldedTextColorsAction"
                 class="com.intellij.advancedExpressionFolding.action.UpdateFoldedTextColorsAction"/>
