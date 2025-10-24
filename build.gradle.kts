@@ -97,8 +97,7 @@ dependencies {
     implementation(libs.annotations)
     implementation(libs.jsr305)
     implementation(libs.jackson.dataformat.toml)
-
-    testImplementation(examplesTestOutput)
+    implementation(examplesTestOutput)
 
     testRuntimeOnly(libs.junit.jupiter.engine)
     testImplementation(libs.junit.jupiter.api)
