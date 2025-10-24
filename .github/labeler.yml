@@ -145,6 +145,7 @@ settings-ui:
 - changed-files:
   - any-glob-to-any-file:
     - 'src/com/intellij/advancedExpressionFolding/view/**'
+    - 'src/com/intellij/advancedExpressionFolding/settings/view/**'
 
 plugin-xml:
 - changed-files:
