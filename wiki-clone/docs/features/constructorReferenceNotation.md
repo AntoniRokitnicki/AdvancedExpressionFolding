@@ -1,7 +1,17 @@
-## constructorReferenceNotation
+# Constructor reference notation
+
+## Overview
+
+Simplifies constructor references and inline field initialization.
+
+## Configuration
+
+- **Toggle ID:** `constructorReferenceNotation`
+- **Default state:** On
+- **IDE path:** Settings/Preferences → Editor → General → Code Folding → Advanced Expression Folding
+- **Related toggles:** None
 
 ### Constructor reference notation `::new` and compact field initialization
-Simplifies constructor references and inline field initialization.
 
 #### Example: ConstructorReferenceNotationTestData
 
@@ -61,9 +71,6 @@ folded/ConstructorReferenceNotationWithConstTestData-folded.java:
 Highlights ConstructorReferenceNotationWithConstTestData with constructor reference notation `::new` and compact field initialization.
 Removes boilerplate while preserving behavior.
 
-Default: On
-Controlled by: `constructorReferenceNotation`
-Related features: (none)
 
 ---
 ### Folding catalogue
@@ -309,4 +316,3 @@ Related features: (none)
         public final ConstClass SELF_PARAM_1 = ::new(true);
         public final ConstClass SELF_PARAM_2 = ::new(false, LIST2.get(0));
 ```
-

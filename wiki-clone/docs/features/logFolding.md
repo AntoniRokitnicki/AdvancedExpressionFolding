@@ -1,11 +1,23 @@
-![Log statement before folding its bracketed payload](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/assets/3055326/948c1f47-9185-4b7c-a8d0-d72f3d064fa5)
+# Log Folding
 
+## Overview
+
+![Log statement before folding its bracketed payload](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/assets/3055326/948c1f47-9185-4b7c-a8d0-d72f3d064fa5)
+*Figure 1. Verbose SLF4J call before the plugin rewrites the argument list.*
+
+## Configuration
+
+- **Toggle ID:** `logFolding`
+- **Default state:** On
+- **IDE path:** Settings/Preferences → Editor → General → Code Folding → Advanced Expression Folding
+- **Related toggles:** None
 
 ![Log bracket content folded into a compact placeholder](https://github.com/user-attachments/assets/b1bc0d45-d06d-4f25-a16c-82b9c9fdc31b)
+*Figure 2. The same statement with placeholders collapsed to `$name`, `$age`, etc.*
 
 ![Log bracket content expanded after unfolding](https://github.com/user-attachments/assets/5dd3e36f-7c4a-45cf-bcb0-3e838e79e3f7)
+*Figure 3. Expanded view after pressing `Expand recursively` to reveal original arguments.*
 
-# Log Folding (State field: logFolding)
 
 ### Log Folding
 Folds log statements into compact placeholders with arguments.
@@ -48,9 +60,6 @@ folded/LogFoldingTextBlocksTestData-folded.java:
 Highlights LogFoldingTextBlocksTestData with log folding.
 Removes boilerplate while preserving behavior.
 
-Default: On
-Controlled by: `logFolding`
-Related features: (none)
 
 ---
 ### Folding catalogue
@@ -651,4 +660,3 @@ Related features: (none)
                 $formatter
                 """);
 ```
-

@@ -1,7 +1,17 @@
-## comparingLocalDatesCollapse
+# Local date comparisons
+
+## Overview
+
+Folds java.time isBefore/isAfter checks into readable date comparisons.
+
+## Configuration
+
+- **Toggle ID:** `comparingLocalDatesCollapse`
+- **Default state:** On
+- **IDE path:** Settings/Preferences → Editor → General → Code Folding → Advanced Expression Folding
+- **Related toggles:** None
 
 ### Comparing Local Dates Collapse
-Folds java.time isBefore/isAfter checks into readable date comparisons.
 
 #### Example: LocalDateTestData
 
@@ -28,9 +38,6 @@ folded/LocalDateTestData-folded.java:
 Highlights LocalDateTestData with comparing local dates collapse.
 Removes boilerplate while preserving behavior.
 
-Default: On
-Controlled by: `comparingLocalDatesCollapse`
-Related features: (none)
 
 ---
 ### Folding catalogue
@@ -288,4 +295,3 @@ Related features: (none)
 ```java
             return this.minguoDate > other.minguoDate;
 ```
-

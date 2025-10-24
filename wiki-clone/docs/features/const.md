@@ -1,7 +1,16 @@
-# Const (State field: const)
+# Constant fields
 
-### Const
+## Overview
+
 Folds static final fields into Kotlin-style const declarations.
+
+
+## Configuration
+
+- **Toggle ID:** `const`
+- **Default state:** On
+- **IDE path:** Settings/Preferences → Editor → General → Code Folding → Advanced Expression Folding
+- **Related toggles:** None
 
 #### Example: ConstTestData
 
@@ -91,9 +100,6 @@ folded/ExperimentalTestData-folded.java:
 Highlights ExperimentalTestData with const.
 Removes boilerplate while preserving behavior.
 
-Default: On
-Controlled by: `const`
-Related features: (none)
 
 ---
 ### Folding catalogue
@@ -683,4 +689,3 @@ Related features: (none)
             example.!! = example.!!;
             String duplicate = example.!! + example.!!;
 ```
-

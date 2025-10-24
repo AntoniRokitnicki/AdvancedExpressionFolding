@@ -1,6 +1,18 @@
-## memoryImprovement
+# Memory Improvement
+
+## Overview
 
 * only for files in **testData** folder
+
+## Configuration
+
+- **Toggle ID:** `memoryImprovement`
+- **Default state:** On
+- **IDE path:** Settings/Preferences → Editor → General → Code Folding → Advanced Expression Folding
+- **Related toggles:** None
+
+## memoryImprovement
+
 
 ![Diff view before folding a testData file](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/assets/3055326/89ccca5b-92ce-47ad-b051-7eabb39f94c2)
 
@@ -8,7 +20,6 @@
 
 ![Diff view after folding a testData file](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/assets/3055326/440c30a8-1088-4e6a-bf25-bde6627aa7af)
 
-# Memory Improvement (State field: memoryImprovement)
 
 ### Memory Improvement
 Caches folding descriptors for large test data files.
@@ -16,9 +27,6 @@ Caches folding descriptors for large test data files.
 _No bundled example for this setting._
 This option affects editor behaviour without a dedicated sample file.
 
-Default: On
-Controlled by: `memoryImprovement`
-Related features: (none)
 
 #### Descriptor reuse behaviour
 

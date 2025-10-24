@@ -1,6 +1,15 @@
+# System.out.println simplification
+
+## Overview
+
 ![System.out.println call folded to println](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/assets/3055326/75a5224f-7b52-4b71-9774-2814e8a867ba)
 
-# Println (State field: println)
+## Configuration
+
+- **Toggle ID:** `println`
+- **Default state:** On
+- **IDE path:** Settings/Preferences → Editor → General → Code Folding → Advanced Expression Folding
+- **Related toggles:** None
 
 ### Println
 Folds System.out.println calls into println.
@@ -38,9 +47,6 @@ folded/PrintlnTestData-folded.java:
 Highlights PrintlnTestData with println.
 Removes boilerplate while preserving behavior.
 
-Default: On
-Controlled by: `println`
-Related features: (none)
 
 ---
 ### Folding catalogue
@@ -96,4 +102,3 @@ this.getClass());
         println("Passed as parameter: " + this.getClass());
         println("""
 ```
-

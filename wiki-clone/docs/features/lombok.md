@@ -1,9 +1,19 @@
+# Lombok-style beans
+
+## Overview
+
 ![Animated overview of Lombok folding support](https://github.com/user-attachments/assets/7d2bdcf7-15ad-45a2-9aad-1f596443c4d7)
+
+## Configuration
+
+- **Toggle ID:** `lombok`
+- **Default state:** On
+- **IDE path:** Settings/Preferences → Editor → General → Code Folding → Advanced Expression Folding
+- **Related toggles:** None
 
 old video:
 [video](https://www.youtube.com/watch?v=dKMWL3YJacU)
 
-# Lombok (State field: lombok)
 
 ### Lombok
 Folds Java bean patterns into Lombok-style annotations.
@@ -307,9 +317,6 @@ folded/ExperimentalTestData-folded.java:
 Highlights ExperimentalTestData with lombok.
 Removes boilerplate while preserving behavior.
 
-Default: On
-Controlled by: `lombok`
-Related features: (none)
 
 ---
 ### Folding catalogue
@@ -4611,4 +4618,3 @@ public class LombokPatternOffNegativeTestData {
             example.!! = example.!!;
             String duplicate = example.!! + example.!!;
 ```
-

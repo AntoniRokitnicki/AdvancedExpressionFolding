@@ -1,7 +1,16 @@
-# Lombok Dirty Off (State field: lombokDirtyOff)
+# Lombok Dirty Off
 
-### Lombok Dirty Off
+## Overview
+
 Skips folding Lombok accessors marked as dirty.
+
+
+## Configuration
+
+- **Toggle ID:** `lombokDirtyOff`
+- **Default state:** Off
+- **IDE path:** Settings/Preferences → Editor → General → Code Folding → Advanced Expression Folding
+- **Related toggles:** None
 
 #### Example: LombokDirtyOffTestData
 
@@ -22,9 +31,6 @@ folded/LombokDirtyOffTestData-folded.java:
 Highlights LombokDirtyOffTestData with lombok dirty off.
 Removes boilerplate while preserving behavior.
 
-Default: Off
-Controlled by: `lombokDirtyOff`
-Related features: (none)
 
 ---
 ### Folding catalogue
@@ -185,4 +191,3 @@ Related features: (none)
 ```java
             @Setter boolean ok;
 ```
-

@@ -1,7 +1,16 @@
-# Emojify (State field: emojify)
+# Emojify code elements
 
-### Emojify
+## Overview
+
 Replaces select syntax elements with emoji equivalents.
+
+
+## Configuration
+
+- **Toggle ID:** `emojify`
+- **Default state:** Off
+- **IDE path:** Settings/Preferences → Editor → General → Code Folding → Advanced Expression Folding
+- **Related toggles:** None
 
 #### Example: EmojifyTestData
 
@@ -38,9 +47,6 @@ public 🏛️ EmojifyTestData {
 Highlights EmojifyTestData with emojify.
 Removes boilerplate while preserving behavior.
 
-Default: Off
-Controlled by: `emojify`
-Related features: (none)
 
 #### Keyword and literal replacements
 

@@ -1,7 +1,16 @@
-# Var Expressions Collapse (State field: varExpressionsCollapse)
+# Var Expressions Collapse
 
-### Var Expressions Collapse
+## Overview
+
 Folds variable declarations into val/var style declarations.
+
+
+## Configuration
+
+- **Toggle ID:** `varExpressionsCollapse`
+- **Default state:** On
+- **IDE path:** Settings/Preferences → Editor → General → Code Folding → Advanced Expression Folding
+- **Related toggles:** None
 
 #### Example: VarTestData
 
@@ -97,9 +106,6 @@ folded/DestructuringAssignmentListTestData-folded.java:
 Highlights DestructuringAssignmentListTestData with var expressions collapse.
 Removes boilerplate while preserving behavior.
 
-Default: On
-Controlled by: `varExpressionsCollapse`
-Related features: (none)
 
 ---
 ### Folding catalogue
@@ -395,4 +401,3 @@ Related features: (none)
         val wrongParent1 = data.list.get(0);
         val wrongParent2 = data.data.list.get(1);
 ```
-

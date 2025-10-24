@@ -1,7 +1,16 @@
-# Experimental (State field: experimental)
+# Experimental features
 
-### Experimental
+## Overview
+
 Enables experimental folding prototypes.
+
+
+## Configuration
+
+- **Toggle ID:** `experimental`
+- **Default state:** Off
+- **IDE path:** Settings/Preferences → Editor → General → Code Folding → Advanced Expression Folding
+- **Related toggles:** None
 
 #### Example: ExperimentalTestData
 
@@ -26,9 +35,6 @@ folded/ExperimentalTestData-folded.java:
 Highlights ExperimentalTestData with experimental.
 Removes boilerplate while preserving behavior.
 
-Default: Off
-Controlled by: `experimental`
-Related features: (none)
 
 ---
 ### Folding catalogue
@@ -181,4 +187,3 @@ Related features: (none)
             example.!! = example.!!;
             String duplicate = example.!! + example.!!;
 ```
-

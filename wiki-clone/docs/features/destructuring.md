@@ -1,7 +1,17 @@
-## for array
+# for array
+
+## Overview
+
+![Array destructuring without var/val folded inline](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/assets/3055326/3391702f-8632-4539-9e81-60f52f7ee006)
+
+## Configuration
+
+- **Toggle ID:** `destructuring`
+- **Default state:** Off
+- **IDE path:** Settings/Preferences → Editor → General → Code Folding → Advanced Expression Folding
+- **Related toggles:** None
 
 ### for array without _Variable declarations (var/val)_
-![Array destructuring without var/val folded inline](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/assets/3055326/3391702f-8632-4539-9e81-60f52f7ee006)
 
 #### Example: DestructuringAssignmentArrayTestData
 
@@ -90,9 +100,6 @@ folded/DestructuringAssignmentListWithoutValTestData-folded.java:
 Highlights DestructuringAssignmentListWithoutValTestData with for array without _variable declarations (var/val)_.
 Removes boilerplate while preserving behavior.
 
-Default: Off
-Controlled by: `destructuring`
-Related features: (none)
 
 ---
 ### Folding catalogue
@@ -430,4 +437,3 @@ Related features: (none)
         Data wrongParent1 = data.list.get(0);
         Data wrongParent2 = data.data.list.get(1);
 ```
-

@@ -1,7 +1,16 @@
-# Local Date Literal Postfix Collapse (State field: localDateLiteralPostfixCollapse)
+# Local Date Literal Postfix Collapse
 
-### Local Date Literal Postfix Collapse
+## Overview
+
 Folds postfix LocalDate literals such as 2018Y-02M-12D.
+
+
+## Configuration
+
+- **Toggle ID:** `localDateLiteralPostfixCollapse`
+- **Default state:** Off
+- **IDE path:** Settings/Preferences → Editor → General → Code Folding → Advanced Expression Folding
+- **Related toggles:** None
 
 #### Example: LocalDateLiteralPostfixTestData
 
@@ -28,9 +37,6 @@ folded/LocalDateLiteralPostfixTestData-folded.java:
 Highlights LocalDateLiteralPostfixTestData with local date literal postfix collapse.
 Removes boilerplate while preserving behavior.
 
-Default: Off
-Controlled by: `localDateLiteralPostfixCollapse`
-Related features: (none)
 
 ---
 ### Folding catalogue
@@ -67,4 +73,3 @@ Related features: (none)
 ```java
         boolean d1SmallerOrEqualD2 = !d1.isAfter(2013Y-01M-10D);
 ```
-

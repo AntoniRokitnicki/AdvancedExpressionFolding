@@ -1,7 +1,16 @@
-# Final Removal (State field: finalRemoval)
+# Final Removal
 
-### Final Removal
+## Overview
+
 Folds the final modifier away from non-field declarations.
+
+
+## Configuration
+
+- **Toggle ID:** `finalRemoval`
+- **Default state:** Off
+- **IDE path:** Settings/Preferences → Editor → General → Code Folding → Advanced Expression Folding
+- **Related toggles:** None
 
 #### Example: FinalRemovalTestData
 
@@ -26,9 +35,6 @@ folded/FinalRemovalTestData-folded.java:
 Highlights FinalRemovalTestData with final removal.
 Removes boilerplate while preserving behavior.
 
-Default: Off
-Controlled by: `finalRemoval`
-Related features: (none)
 
 ---
 ### Folding catalogue
@@ -91,4 +97,3 @@ Related features: (none)
      public record UserDataRecord(String username, boolean active, String userIdentifier) {
          void main( String arg,  int i,  Object o, Data data) {
 ```
-

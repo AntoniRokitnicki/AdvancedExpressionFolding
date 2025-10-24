@@ -1,7 +1,16 @@
-# Summary Parent Override (State field: summaryParentOverride)
+# Summary Parent Override
 
-### Summary Parent Override
+## Overview
+
 Folds overridden methods into parent summary stubs.
+
+
+## Configuration
+
+- **Toggle ID:** `summaryParentOverride`
+- **Default state:** Off
+- **IDE path:** Settings/Preferences → Editor → General → Code Folding → Advanced Expression Folding
+- **Related toggles:** None
 
 #### Example: SummaryParentOverrideTestData
 
@@ -22,9 +31,6 @@ folded/SummaryParentOverrideTestData-folded.java:
 Highlights SummaryParentOverrideTestData with summary parent override.
 Removes boilerplate while preserving behavior.
 
-Default: Off
-Controlled by: `summaryParentOverride`
-Related features: (none)
 
 ---
 ### Folding catalogue
@@ -107,4 +113,3 @@ Related features: (none)
 ```java
         } // overrides from ParentClass
 ```
-

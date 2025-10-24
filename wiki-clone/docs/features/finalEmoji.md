@@ -1,7 +1,16 @@
-# Final Emoji (State field: finalEmoji)
+# Final Emoji
 
-### Final Emoji
+## Overview
+
 Replaces final modifiers with lock emoji markers.
+
+
+## Configuration
+
+- **Toggle ID:** `finalEmoji`
+- **Default state:** Off
+- **IDE path:** Settings/Preferences → Editor → General → Code Folding → Advanced Expression Folding
+- **Related toggles:** None
 
 #### Example: FinalEmojiTestData
 
@@ -26,9 +35,6 @@ folded/FinalEmojiTestData-folded.java:
 Highlights FinalEmojiTestData with final emoji.
 Removes boilerplate while preserving behavior.
 
-Default: Off
-Controlled by: `finalEmoji`
-Related features: (none)
 
 ---
 ### Folding catalogue
@@ -91,4 +97,3 @@ Related features: (none)
     🔒 public record UserDataRecord(String username, boolean active, String userIdentifier) {
         🔒 void main(🔒 String arg, 🔒 int i, 🔒 Object o, Data data) {
 ```
-

@@ -1,7 +1,16 @@
-# Interface Extension Properties (State field: interfaceExtensionProperties)
+# Interface Extension Properties
 
-### Interface Extension Properties
+## Overview
+
 Folds interface getters and setters into Kotlin extension properties.
+
+
+## Configuration
+
+- **Toggle ID:** `interfaceExtensionProperties`
+- **Default state:** On
+- **IDE path:** Settings/Preferences → Editor → General → Code Folding → Advanced Expression Folding
+- **Related toggles:** None
 
 #### Example: InterfaceExtensionPropertiesTestData
 
@@ -38,9 +47,6 @@ folded/InterfaceExtensionPropertiesTestData-folded.java:
 Highlights InterfaceExtensionPropertiesTestData with interface extension properties.
 Removes boilerplate while preserving behavior.
 
-Default: On
-Controlled by: `interfaceExtensionProperties`
-Related features: (none)
 
 ---
 ### Folding catalogue
@@ -334,4 +340,3 @@ Related features: (none)
        @Setter String!! name;
        @Getter int age;
 ```
-

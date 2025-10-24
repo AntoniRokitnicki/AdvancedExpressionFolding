@@ -1,7 +1,16 @@
-# Expression Func (State field: expressionFunc)
+# Expression Func
 
-### Expression Func
+## Overview
+
 Folds single-expression methods into expression-bodied functions.
+
+
+## Configuration
+
+- **Toggle ID:** `expressionFunc`
+- **Default state:** On
+- **IDE path:** Settings/Preferences → Editor → General → Code Folding → Advanced Expression Folding
+- **Related toggles:** None
 
 #### Example: ExpressionFuncTestData
 
@@ -26,9 +35,6 @@ folded/ExpressionFuncTestData-folded.java:
 Highlights ExpressionFuncTestData with expression func.
 Removes boilerplate while preserving behavior.
 
-Default: On
-Controlled by: `expressionFunc`
-Related features: (none)
 
 ---
 ### Folding catalogue
@@ -258,4 +264,3 @@ Related features: (none)
 ```java
         getId { 1L }
 ```
-

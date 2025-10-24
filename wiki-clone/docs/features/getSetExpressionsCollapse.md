@@ -1,7 +1,16 @@
-# Get Set Expressions Collapse (State field: getSetExpressionsCollapse)
+# Get Set Expressions Collapse
 
-### Get Set Expressions Collapse
+## Overview
+
 Folds Java getter and setter calls into property-style access.
+
+
+## Configuration
+
+- **Toggle ID:** `getSetExpressionsCollapse`
+- **Default state:** On
+- **IDE path:** Settings/Preferences → Editor → General → Code Folding → Advanced Expression Folding
+- **Related toggles:** None
 
 #### Example: AppendSetterInterpolatedStringTestData
 
@@ -369,9 +378,6 @@ folded/DynamicTestData-folded.java:
 Highlights DynamicTestData with get set expressions collapse.
 Removes boilerplate while preserving behavior.
 
-Default: On
-Controlled by: `getSetExpressionsCollapse`
-Related features: (none)
 
 ---
 ### Folding catalogue
@@ -2771,4 +2777,3 @@ Related features: (none)
 ```java
     private static String changedStaticMethod(String args) {
 ```
-

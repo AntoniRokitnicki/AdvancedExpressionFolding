@@ -1,7 +1,16 @@
-# Suppress Warnings Hide (State field: suppressWarningsHide)
+# Suppress Warnings Hide
 
-### Suppress Warnings Hide
+## Overview
+
 Hides @SuppressWarnings annotations from view.
+
+
+## Configuration
+
+- **Toggle ID:** `suppressWarningsHide`
+- **Default state:** On
+- **IDE path:** Settings/Preferences → Editor → General → Code Folding → Advanced Expression Folding
+- **Related toggles:** None
 
 #### Example: SuppressWarningsHideTestData
 
@@ -24,9 +33,6 @@ import java.util.List;
 Highlights SuppressWarningsHideTestData with suppress warnings hide.
 Removes boilerplate while preserving behavior.
 
-Default: On
-Controlled by: `suppressWarningsHide`
-Related features: (none)
 
 ---
 ### Folding catalogue
@@ -47,4 +53,3 @@ Related features: (none)
 ```java
     @SuppressWarnings({"rawtypes", "unchecked"})
 ```
-

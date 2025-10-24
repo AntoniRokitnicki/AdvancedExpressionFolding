@@ -1,7 +1,16 @@
-# Check Expressions Collapse (State field: checkExpressionsCollapse)
+# Check Expressions Collapse
 
-### Check Expressions Collapse
+## Overview
+
 Folds null checks and Elvis patterns into safe-call expressions.
+
+
+## Configuration
+
+- **Toggle ID:** `checkExpressionsCollapse`
+- **Default state:** On
+- **IDE path:** Settings/Preferences → Editor → General → Code Folding → Advanced Expression Folding
+- **Related toggles:** None
 
 #### Example: ElvisTestData
 
@@ -55,9 +64,6 @@ folded/IfNullSafeData-folded.java:
 Highlights IfNullSafeData with check expressions collapse.
 Removes boilerplate while preserving behavior.
 
-Default: On
-Controlled by: `checkExpressionsCollapse`
-Related features: (none)
 
 ---
 ### Folding catalogue
@@ -396,4 +402,3 @@ Related features: (none)
 ```java
         if (data2.data1?.active == true) {
 ```
-

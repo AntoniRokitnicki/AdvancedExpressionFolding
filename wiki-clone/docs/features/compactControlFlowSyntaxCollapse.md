@@ -1,7 +1,16 @@
-# Compact Control Flow Syntax Collapse (State field: compactControlFlowSyntaxCollapse)
+# Compact Control Flow Syntax Collapse
 
-### Compact Control Flow Syntax Collapse
+## Overview
+
 Folds compact if/else syntax inspired by Go.
+
+
+## Configuration
+
+- **Toggle ID:** `compactControlFlowSyntaxCollapse`
+- **Default state:** Off
+- **IDE path:** Settings/Preferences → Editor → General → Code Folding → Advanced Expression Folding
+- **Related toggles:** None
 
 #### Example: CompactControlFlowTestData
 
@@ -22,9 +31,6 @@ folded/CompactControlFlowTestData-folded.java:
 Highlights CompactControlFlowTestData with compact control flow syntax collapse.
 Removes boilerplate while preserving behavior.
 
-Default: Off
-Controlled by: `compactControlFlowSyntaxCollapse`
-Related features: (none)
 
 ---
 ### Folding catalogue
@@ -109,4 +115,3 @@ Related features: (none)
 ```java
         } catch Exception e {
 ```
-
