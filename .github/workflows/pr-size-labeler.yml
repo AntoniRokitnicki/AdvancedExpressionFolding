@@ -99,6 +99,7 @@ jobs:
 
       - name: Prepare labeler configuration
         id: prepare
+        shell: python
         env:
           XS_CONFIGURATION: ${{ github.event.inputs.xs_configuration }}
           S_CONFIGURATION: ${{ github.event.inputs.s_configuration }}
@@ -111,100 +112,104 @@ jobs:
           GITHUB_API_URL_INPUT: ${{ github.event.inputs.github_api_url }}
           DEFAULT_GITHUB_API_URL: ${{ github.api_url }}
         run: |
-          set -euo pipefail
-
-          python <<'PY'
-import json
-import os
-import sys
+          import json
+          import os
+          import sys
 
 
-def parse_json(name: str, defaults: dict) -> dict:
-    raw = (os.environ.get(name) or "").strip()
-    if not raw:
-        return dict(defaults)
+          def parse_json(name: str, defaults: dict) -> dict:
+              raw = (os.environ.get(name) or "").strip()
+              if not raw:
+                  return dict(defaults)
 
-    try:
-        parsed = json.loads(raw)
-    except json.JSONDecodeError as exc:
-        print(f"::error title=Invalid JSON input::{name.replace('_', ' ').lower()} is not valid JSON: {exc}", file=sys.stderr)
-        raise SystemExit(1)
+              try:
+                  parsed = json.loads(raw)
+              except json.JSONDecodeError as exc:
+                  print(
+                      f"::error title=Invalid JSON input::{name.replace('_', ' ').lower()} is not valid JSON: {exc}",
+                      file=sys.stderr,
+                  )
+                  raise SystemExit(1)
 
-    if not isinstance(parsed, dict):
-        print(f"::error title=Invalid configuration::{name.replace('_', ' ').lower()} must be a JSON object.", file=sys.stderr)
-        raise SystemExit(1)
+              if not isinstance(parsed, dict):
+                  print(
+                      f"::error title=Invalid configuration::{name.replace('_', ' ').lower()} must be a JSON object.",
+                      file=sys.stderr,
+                  )
+                  raise SystemExit(1)
 
-    merged = dict(defaults)
-    for key, value in parsed.items():
-        if value is None:
-            continue
-        merged[key] = value
-    return merged
+              merged = dict(defaults)
+              for key, value in parsed.items():
+                  if value is None:
+                      continue
+                  merged[key] = value
+              return merged
 
 
-size_defaults = {
-    "XS": {"label": "size/xs", "max_size": 10},
-    "S": {"label": "size/s", "max_size": 100},
-    "M": {"label": "size/m", "max_size": 500},
-    "L": {"label": "size/l", "max_size": 1000},
-    "XL": {"label": "size/xl"},
-}
+          size_defaults = {
+              "XS": {"label": "size/xs", "max_size": 10},
+              "S": {"label": "size/s", "max_size": 100},
+              "M": {"label": "size/m", "max_size": 500},
+              "L": {"label": "size/l", "max_size": 1000},
+              "XL": {"label": "size/xl"},
+          }
 
-outputs: list[tuple[str, str]] = []
+          outputs: list[tuple[str, str]] = []
 
-for key, defaults in size_defaults.items():
-    config = parse_json(f"{key}_CONFIGURATION", defaults)
-    label = str(config.get("label", defaults["label"]))
-    outputs.append((f"{key.lower()}_label", label))
+          for key, defaults in size_defaults.items():
+              config = parse_json(f"{key}_CONFIGURATION", defaults)
+              label = str(config.get("label", defaults["label"]))
+              outputs.append((f"{key.lower()}_label", label))
 
-    if "max_size" in defaults:
-        max_size = str(config.get("max_size", defaults["max_size"]))
-        outputs.append((f"{key.lower()}_max_size", max_size))
+              if "max_size" in defaults:
+                  max_size = str(config.get("max_size", defaults["max_size"]))
+                  outputs.append((f"{key.lower()}_max_size", max_size))
 
-behavior_defaults = {"fail": False, "message": ""}
-behavior = parse_json("XL_BEHAVIOR", behavior_defaults)
+          behavior_defaults = {"fail": False, "message": ""}
+          behavior = parse_json("XL_BEHAVIOR", behavior_defaults)
 
-fail_value = behavior.get("fail", False)
-fail_if_xl = "true" if str(fail_value).lower() in {"true", "1", "yes", "y"} else "false"
+          fail_value = behavior.get("fail", False)
+          fail_if_xl = "true" if str(fail_value).lower() in {"true", "1", "yes", "y"} else "false"
 
-message = str(behavior.get("message", "")).strip()
-if not message:
-    message = os.environ["DEFAULT_MESSAGE_IF_XL"]
+          message = str(behavior.get("message", "")).strip()
+          if not message:
+              message = os.environ["DEFAULT_MESSAGE_IF_XL"]
 
-ignore_defaults = {"ignore_line_deletions": False, "ignore_file_deletions": False}
-ignore = parse_json("IGNORE_CONFIGURATION", ignore_defaults)
+          ignore_defaults = {"ignore_line_deletions": False, "ignore_file_deletions": False}
+          ignore = parse_json("IGNORE_CONFIGURATION", ignore_defaults)
 
-ignore_line_value = ignore.get("ignore_line_deletions", False)
-ignore_file_value = ignore.get("ignore_file_deletions", False)
+          ignore_line_value = ignore.get("ignore_line_deletions", False)
+          ignore_file_value = ignore.get("ignore_file_deletions", False)
 
-ignore_line = "true" if str(ignore_line_value).lower() in {"true", "1", "yes", "y"} else "false"
-ignore_file = "true" if str(ignore_file_value).lower() in {"true", "1", "yes", "y"} else "false"
+          ignore_line = "true" if str(ignore_line_value).lower() in {"true", "1", "yes", "y"} else "false"
+          ignore_file = "true" if str(ignore_file_value).lower() in {"true", "1", "yes", "y"} else "false"
 
-files_to_ignore = os.environ.get("FILES_TO_IGNORE", "")
+          files_to_ignore = os.environ.get("FILES_TO_IGNORE", "")
 
-github_api_url = (os.environ.get("GITHUB_API_URL_INPUT") or "").strip() or os.environ["DEFAULT_GITHUB_API_URL"]
+          github_api_url = (os.environ.get("GITHUB_API_URL_INPUT") or "").strip() or os.environ[
+              "DEFAULT_GITHUB_API_URL"
+          ]
 
-outputs.extend(
-    [
-        ("fail_if_xl", fail_if_xl),
-        ("message_if_xl", message),
-        ("ignore_line_deletions", ignore_line),
-        ("ignore_file_deletions", ignore_file),
-        ("files_to_ignore", files_to_ignore),
-        ("github_api_url", github_api_url),
-    ]
-)
+          outputs.extend(
+              [
+                  ("fail_if_xl", fail_if_xl),
+                  ("message_if_xl", message),
+                  ("ignore_line_deletions", ignore_line),
+                  ("ignore_file_deletions", ignore_file),
+                  ("files_to_ignore", files_to_ignore),
+                  ("github_api_url", github_api_url),
+              ]
+          )
 
-output_path = os.environ["GITHUB_OUTPUT"]
+          output_path = os.environ["GITHUB_OUTPUT"]
 
-with open(output_path, "a", encoding="utf-8") as fh:
-    for key, value in outputs:
-        value_str = str(value)
-        if "\n" in value_str:
-            fh.write(f"{key}<<EOF\n{value_str}\nEOF\n")
-        else:
-            fh.write(f"{key}={value_str}\n")
-PY
+          with open(output_path, "a", encoding="utf-8") as fh:
+              for key, value in outputs:
+                  value_str = str(value)
+                  if "\n" in value_str:
+                      fh.write(f"{key}<<EOF\n{value_str}\nEOF\n")
+                  else:
+                      fh.write(f"{key}={value_str}\n")
 
       - name: Label pull request size
         uses: CodelyTV/pr-size-labeler@v1.10.3
