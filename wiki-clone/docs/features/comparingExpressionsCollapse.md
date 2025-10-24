@@ -37,3 +37,22 @@ Removes boilerplate while preserving behavior.
 Default: On
 Controlled by: `comparingExpressionsCollapse`
 Related features: (none)
+---
+
+#### Folding catalogue
+
+##### EqualsCompareTestData mappings
+| Before | After |
+| --- | --- |
+| `System.out.println(a.equals(b));` | `System.out.println(a ≡ b);` |
+| `System.out.println(!a.equals(b));` | `System.out.println(a ≢ b);` |
+| `System.out.println(a.compareTo(b) == 0);` | `System.out.println(a ≡ b);` |
+| `System.out.println(a.compareTo(b) != 0);` | `System.out.println(a ≢ b);` |
+| `System.out.println(a.compareTo(b) > 0);` | `System.out.println(a > b);` |
+| `System.out.println(a.compareTo(b) == 1);` | `System.out.println(a > b);` |
+| `System.out.println(a.compareTo(b) > -1);` | `System.out.println(a ≥ b);` |
+| `System.out.println(a.compareTo(b) >= 0);` | `System.out.println(a ≥ b);` |
+| `System.out.println(a.compareTo(b) < 0);` | `System.out.println(a < b);` |
+| `System.out.println(a.compareTo(b) == -1);` | `System.out.println(a < b);` |
+| `System.out.println(a.compareTo(b) < 1);` | `System.out.println(a ≤ b);` |
+| `System.out.println(a.compareTo(b) <= 0);` | `System.out.println(a ≤ b);` |

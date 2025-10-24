@@ -310,3 +310,52 @@ Removes boilerplate while preserving behavior.
 Default: On
 Controlled by: `lombok`
 Related features: (none)
+---
+
+#### Folding catalogue
+
+##### LombokTestData annotations
+| Before | After |
+| --- | --- |
+| `public class LombokTestData {` | `@HasBuilder(ClassWithBuilder) @Getter @Setter @Serial public class LombokTestData {` |
+| `class LombokGetters {` with explicit getters | `@Getter public class LombokGetters {` |
+| `class LombokGettersPartial {` with `isOk` getter | `public class LombokGettersPartial { @Getter boolean ok; }` |
+| `class LombokSetters {` with getters/setters | `@Getter @Setter public class LombokSetters {` |
+| `class LombokSettersPartial {` with setter | `public class LombokSettersPartial { @Setter LombokTestData data; }` |
+| `class LombokSettersFinalField {` with setter | `public class LombokSettersFinalField { @Setter LombokTestData data; final boolean ok = true; }` |
+| `class ToStringFull {` overriding `toString` | `@ToString public class ToStringFull {` |
+| `class ToStringPartial {` overriding `toString` | `@ToString(of = "data") public class ToStringPartial {` |
+| `class EqualsAndHashCodeFull {` overriding equals/hashCode | `@EqualsAndHashCode public class EqualsAndHashCodeFull {` |
+| `class EqualsAndHashCodePartial {` overriding equals/hashCode | `@EqualsAndHashCode(of = "data") public class EqualsAndHashCodePartial {` |
+
+##### NullableAnnotationTestData Lombok integration
+| Before | After |
+| --- | --- |
+| `@NotNull NullableAnnotationTestData data;` with manual accessors | `@Getter @Setter NullableAnnotationTestData!! data;` |
+| `boolean ok;` with manual accessors | `@Getter @Setter boolean ok;` |
+| `@Nullable String string;` with manual accessors | `@Getter @Setter String? string;` |
+| `@Nonnull private NullableAnnotationTestData data2;` | `private NullableAnnotationTestData!! data2;` |
+| Manual getter/setter inner classes | `@Getter` / `@Setter` applied to fields in inner classes |
+
+##### LombokDirtyOffTestData targeted annotations
+| Before | After |
+| --- | --- |
+| `public class DirtyData { ... equals/hashCode ... }` | `@EqualsAndHashCode public class DirtyData {` |
+| `boolean ok;` with accessor | `@Getter private boolean ok;` |
+| `public class DirtySingle { boolean ok; public boolean isOk() { ... } }` | `public class DirtySingle { @Getter boolean ok; ... }` |
+| `public class DirtyData { ... setOk(...) { ... } }` | `@Getter @EqualsAndHashCode public class DirtyData { @Setter private boolean ok; ... }` |
+| `public class DirtySingle { boolean ok; public void setOk(boolean ok) { ... } }` | `public class DirtySingle { @Setter boolean ok; ... }` |
+
+##### InterfaceExtensionPropertiesTestData interface properties
+| Before | After |
+| --- | --- |
+| `String getName(); void setName(String name);` | `@Getter String name; @Setter String name;` |
+| `int getAge(); void setAge(int age);` | `@Getter int age; @Setter int age;` |
+| Public interface variants with explicit modifiers | `@Getter/@Setter applied to public property declarations` |
+| Text-block documented interfaces with getters/setters | `Documentation preserved with @Getter/@Setter replacing method pairs` |
+
+##### LombokPatternOffTestData formatting tweaks
+| Before | After |
+| --- | --- |
+| `return "ToStringFull{" + "data=" + data + ", ok=" + ok + '}';` (multiline) | `return "ToStringFull{" + "data=" + data + ", ok=" + ok + '}';` (single line) |
+| `return "ToStringPartial{" + "data=" + data + '}';` | `return "ToStringPartial{" + "data=" + data + '}';` (compact) |

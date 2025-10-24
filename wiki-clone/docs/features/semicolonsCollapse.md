@@ -25,3 +25,14 @@ Removes boilerplate while preserving behavior.
 Default: Off
 Controlled by: `semicolonsCollapse`
 Related features: (none)
+---
+
+#### Folding catalogue
+
+##### SemicolonTestData mappings
+| Before | After |
+| --- | --- |
+| `package data;` | `package data` |
+| `import java.util.Arrays;` | `import java.util.Arrays` |
+| `System.out.println(arg);` | `System.out.println(arg)` |
+| `Arrays.stream(args).forEach(System.out::println);` | `Arrays.stream(args).forEach(System.out::println)` |
