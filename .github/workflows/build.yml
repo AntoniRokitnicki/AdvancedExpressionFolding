@@ -11,7 +11,7 @@ on:
       - 'complete-project-documentation.yaml'
       - '**/*.sh'
       - '**/*.main.kts'
-  pull_request:
+  pull_request_target:
     paths-ignore:
       - 'wiki'
       - 'wiki/**'
@@ -36,7 +36,7 @@ jobs:
         !contains(github.event.head_commit.message, '[skip actions]') &&
         !contains(github.event.head_commit.message, '[actions skip]')
       ) ||
-      (github.event_name == 'pull_request' &&
+      (github.event_name == 'pull_request_target' &&
         !contains(github.event.pull_request.labels.*.name, 'skip-build') &&
         !contains(github.event.pull_request.title || '', '[skip ci]') &&
         !contains(github.event.pull_request.body  || '', '[skip ci]')
@@ -49,6 +49,8 @@ jobs:
     steps:
       - name: Fetch Sources
         uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
 
       - name: Gradle Wrapper Validation
         uses: gradle/actions/wrapper-validation@v5
@@ -108,15 +110,20 @@ jobs:
         !contains(github.event.head_commit.message, '[skip actions]') &&
         !contains(github.event.head_commit.message, '[actions skip]')
       ) ||
-      (github.event_name == 'pull_request' &&
+      (github.event_name == 'pull_request_target' &&
         !contains(github.event.pull_request.labels.*.name, 'skip-build') &&
         !contains(github.event.pull_request.title || '', '[skip ci]') &&
         !contains(github.event.pull_request.body  || '', '[skip ci]')
       )
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
     steps:
       - name: Fetch Sources
         uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
 
       - name: Setup Java
         uses: actions/setup-java@v5
@@ -146,7 +153,7 @@ jobs:
           files: ${{ github.workspace }}/build/reports/kover/report.xml
 
       - name: Find test summary comment
-        if: ${{ always() && github.event_name == 'pull_request' }}
+        if: ${{ always() && github.event_name == 'pull_request_target' }}
         uses: peter-evans/find-comment@v3
         id: find_test_summary_comment
         with:
@@ -155,7 +162,7 @@ jobs:
           body-includes: '`./gradlew check` summary'
 
       - name: Prepare test summary
-        if: ${{ always() && github.event_name == 'pull_request' }}
+        if: ${{ always() && github.event_name == 'pull_request_target' }}
         id: test_summary
         run: |
           if [ "${TEST_OUTCOME}" = "success" ]; then
@@ -169,7 +176,7 @@ jobs:
           TEST_OUTCOME: ${{ steps.tests.outcome }}
 
       - name: Post test summary comment
-        if: ${{ always() && github.event_name == 'pull_request' }}
+        if: ${{ always() && github.event_name == 'pull_request_target' }}
         uses: peter-evans/create-or-update-comment@v5
         with:
           comment-id: ${{ steps.find_test_summary_comment.outputs.comment-id }}
@@ -248,7 +255,7 @@ jobs:
 
   releaseDraft:
     name: Release draft
-    if: github.event_name != 'pull_request'
+    if: github.event_name == 'push'
     needs: [ build, test ]
     runs-on: ubuntu-latest
     permissions:
