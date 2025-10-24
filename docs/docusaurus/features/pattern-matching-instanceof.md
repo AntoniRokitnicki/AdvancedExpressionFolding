@@ -1,7 +1,7 @@
 ---
 title: Pattern Matching for instanceof
 slug: /features/pattern-matching-instanceof
-sidebar_label: `instanceof` Pattern Matching
+sidebar_label: Pattern Matching instanceof
 description: Display Java 16 style pattern matching in earlier codebases without changing source.
 ---
 
