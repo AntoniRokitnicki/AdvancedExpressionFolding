@@ -1,7 +1,17 @@
-#### example:
+# Method default parameters
+
+## Overview
+
+Folds overloads into default-parameter annotations.
+
+## Configuration
+
+- **Toggle ID:** `methodDefaultParameters`
+- **Default state:** On
+- **IDE path:** Settings/Preferences → Editor → General → Code Folding → Advanced Expression Folding
+- **Related toggles:** None
 
 ### Method Default Parameters
-Folds overloads into default-parameter annotations.
 
 #### Example: MethodDefaultParametersTestData
 
@@ -24,9 +34,6 @@ folded/MethodDefaultParametersTestData-folded.java:
 Highlights MethodDefaultParametersTestData with method default parameters.
 Removes boilerplate while preserving behavior.
 
-Default: On
-Controlled by: `methodDefaultParameters`
-Related features: (none)
 
 ---
 ### Folding catalogue
@@ -339,4 +346,3 @@ Related features: (none)
 ```java
         
 ```
-

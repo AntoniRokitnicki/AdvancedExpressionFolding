@@ -1,7 +1,16 @@
-# Slicing Expressions Collapse (State field: slicingExpressionsCollapse)
+# Slicing Expressions Collapse
 
-### Slicing Expressions Collapse
+## Overview
+
 Folds List.subList and String.substring calls into concise slice notation.
+
+
+## Configuration
+
+- **Toggle ID:** `slicingExpressionsCollapse`
+- **Default state:** On
+- **IDE path:** Settings/Preferences → Editor → General → Code Folding → Advanced Expression Folding
+- **Related toggles:** None
 
 #### Example: SliceTestData
 
@@ -42,9 +51,6 @@ folded/SliceTestData-folded.java:
 Highlights SliceTestData with slicing expressions collapse.
 Removes boilerplate while preserving behavior.
 
-Default: On
-Controlled by: `slicingExpressionsCollapse`
-Related features: (none)
 
 ---
 ### Folding catalogue
@@ -95,4 +101,3 @@ Related features: (none)
         System.out.println(f[1:-2]);
         System.out.println(f[:-2]);
 ```
-

@@ -1,11 +1,16 @@
-# Arithmetic Expressions (State field: arithmeticExpressions)
+# Arithmetic Expressions
 
-### Arithmetic Expressions
+## Overview
+
 Folds BigDecimal, BigInteger, and Math operations into infix math.
 
-Default: Off
-Controlled by: `arithmeticExpressions`
-Related features: (none)
+
+## Configuration
+
+- **Toggle ID:** `arithmeticExpressions`
+- **Default state:** Off
+- **IDE path:** Settings/Preferences → Editor → General → Code Folding → Advanced Expression Folding
+- **Related toggles:** None
 
 ---
 

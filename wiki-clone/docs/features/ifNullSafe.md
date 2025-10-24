@@ -1,10 +1,19 @@
+# If null-safe guards
+
+## Overview
+
 [video](https://www.youtube.com/watch?v=zvpvhn7ISAw)
 
+## Configuration
+
+- **Toggle ID:** `ifNullSafe`
+- **Default state:** On
+- **IDE path:** Settings/Preferences → Editor → General → Code Folding → Advanced Expression Folding
+- **Related toggles:** None
 
 ![Null-safe if folding showcased on chained access](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/assets/3055326/56aa2dbb-0aa1-4143-a296-801ffb0668cd)
 
 
-## example Structural Searches
 
 ### If Null Safe
 Extends null-safe folding to if statements and guard clauses.
@@ -34,9 +43,6 @@ folded/IfNullSafeData-folded.java:
 Highlights IfNullSafeData with if null safe.
 Removes boilerplate while preserving behavior.
 
-Default: On
-Controlled by: `ifNullSafe`
-Related features: (none)
 
 ---
 ### Folding catalogue
@@ -337,4 +343,3 @@ Related features: (none)
 ```java
         if (data2.data1?.active == true) {
 ```
-

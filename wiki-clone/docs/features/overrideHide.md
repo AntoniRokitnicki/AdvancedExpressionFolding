@@ -1,7 +1,16 @@
-# Override Hide (State field: overrideHide)
+# Override Hide
 
-### Override Hide
+## Overview
+
 Hides @Override annotations from view.
+
+
+## Configuration
+
+- **Toggle ID:** `overrideHide`
+- **Default state:** On
+- **IDE path:** Settings/Preferences → Editor → General → Code Folding → Advanced Expression Folding
+- **Related toggles:** None
 
 #### Example: OverrideHideTestData
 
@@ -24,9 +33,6 @@ import java.util.List;
 Highlights OverrideHideTestData with override hide.
 Removes boilerplate while preserving behavior.
 
-Default: On
-Controlled by: `overrideHide`
-Related features: (none)
 
 ---
 ### Folding catalogue
@@ -47,4 +53,3 @@ Related features: (none)
 ```java
         @Override
 ```
-

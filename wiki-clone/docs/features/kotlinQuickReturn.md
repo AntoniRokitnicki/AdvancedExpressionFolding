@@ -1,7 +1,16 @@
-# Kotlin Quick Return (State field: kotlinQuickReturn)
+# Kotlin Quick Return
 
-### Kotlin Quick Return
+## Overview
+
 Folds Kotlin let/return idioms into quick-return expressions.
+
+
+## Configuration
+
+- **Toggle ID:** `kotlinQuickReturn`
+- **Default state:** On
+- **IDE path:** Settings/Preferences → Editor → General → Code Folding → Advanced Expression Folding
+- **Related toggles:** None
 
 #### Example: LetReturnIt
 
@@ -35,9 +44,6 @@ folded/LetReturnIt-folded.java:
 Highlights LetReturnIt with kotlin quick return.
 Removes boilerplate while preserving behavior.
 
-Default: On
-Controlled by: `kotlinQuickReturn`
-Related features: (none)
 
 ---
 ### Folding catalogue
@@ -107,4 +113,3 @@ Related features: (none)
 ```java
         val var7 = getData(someString)?.let { return it }
 ```
-

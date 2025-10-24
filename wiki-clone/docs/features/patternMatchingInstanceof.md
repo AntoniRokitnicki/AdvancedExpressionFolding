@@ -1,7 +1,17 @@
-## patternMatchingInstanceof
+# Pattern matching for instanceof
+
+## Overview
+
+Applies pattern matching to `instanceof` checks for more concise and readable code.
+
+## Configuration
+
+- **Toggle ID:** `patternMatchingInstanceof`
+- **Default state:** On
+- **IDE path:** Settings/Preferences → Editor → General → Code Folding → Advanced Expression Folding
+- **Related toggles:** None
 
 ### Pattern Matching for `instanceof` (JEP 394)
-Applies pattern matching to `instanceof` checks for more concise and readable code.
 
 #### Example: PatternMatchingInstanceofTestData
 
@@ -24,9 +34,6 @@ folded/PatternMatchingInstanceofTestData-folded.java:
 Highlights PatternMatchingInstanceofTestData with pattern matching for `instanceof` (jep 394).
 Removes boilerplate while preserving behavior.
 
-Default: On
-Controlled by: `patternMatchingInstanceof`
-Related features: (none)
 
 ---
 ### Folding catalogue
@@ -115,4 +122,3 @@ Related features: (none)
 ```java
             if (o instanceof String s) {
 ```
-

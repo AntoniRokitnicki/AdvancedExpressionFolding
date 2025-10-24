@@ -1,7 +1,16 @@
-# Cast Expressions Collapse (State field: castExpressionsCollapse)
+# Cast Expressions Collapse
 
-### Cast Expressions Collapse
+## Overview
+
 Folds explicit type cast calls into concise Kotlin-style expressions.
+
+
+## Configuration
+
+- **Toggle ID:** `castExpressionsCollapse`
+- **Default state:** On
+- **IDE path:** Settings/Preferences → Editor → General → Code Folding → Advanced Expression Folding
+- **Related toggles:** None
 
 #### Example: TypeCastTestData
 
@@ -22,9 +31,6 @@ folded/TypeCastTestData-folded.java:
 Highlights TypeCastTestData with cast expressions collapse.
 Removes boilerplate while preserving behavior.
 
-Default: On
-Controlled by: `castExpressionsCollapse`
-Related features: (none)
 
 ---
 ### Folding catalogue
@@ -46,4 +52,3 @@ Related features: (none)
                 System.out.println(t.getObject().getObject().getObject());
         handle(t.getObject().getObject());
 ```
-

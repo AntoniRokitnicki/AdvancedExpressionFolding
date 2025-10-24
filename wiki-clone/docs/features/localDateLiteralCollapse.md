@@ -1,7 +1,16 @@
-# Local Date Literal Collapse (State field: localDateLiteralCollapse)
+# Local Date Literal Collapse
 
-### Local Date Literal Collapse
+## Overview
+
 Folds LocalDate.of(...) literals into inline YYYY-MM-DD forms.
+
+
+## Configuration
+
+- **Toggle ID:** `localDateLiteralCollapse`
+- **Default state:** Off
+- **IDE path:** Settings/Preferences → Editor → General → Code Folding → Advanced Expression Folding
+- **Related toggles:** None
 
 #### Example: LocalDateLiteralTestData
 
@@ -53,9 +62,6 @@ folded/LocalDateLiteralPostfixTestData-folded.java:
 Highlights LocalDateLiteralPostfixTestData with local date literal collapse.
 Removes boilerplate while preserving behavior.
 
-Default: Off
-Controlled by: `localDateLiteralCollapse`
-Related features: (none)
 
 ---
 ### Folding catalogue
@@ -126,4 +132,3 @@ Related features: (none)
 ```java
         boolean d1SmallerOrEqualD2 = !d1.isAfter(2013Y-01M-10D);
 ```
-

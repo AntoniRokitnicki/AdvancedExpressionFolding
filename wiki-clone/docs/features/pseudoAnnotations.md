@@ -1,6 +1,15 @@
+# Pseudo Annotations
+
+## Overview
+
 https://github.com/user-attachments/assets/53ad15ef-2c32-4fe4-a857-d36114d020aa
 
-# Pseudo Annotations (State field: pseudoAnnotations)
+## Configuration
+
+- **Toggle ID:** `pseudoAnnotations`
+- **Default state:** On
+- **IDE path:** Settings/Preferences → Editor → General → Code Folding → Advanced Expression Folding
+- **Related toggles:** None
 
 ### Pseudo Annotations
 Folds entry points into an @Main pseudo-annotation.
@@ -26,9 +35,6 @@ folded/PseudoAnnotationsMainTestData-folded.java:
 Highlights PseudoAnnotationsMainTestData with pseudo annotations.
 Removes boilerplate while preserving behavior.
 
-Default: On
-Controlled by: `pseudoAnnotations`
-Related features: (none)
 
 #### Generated entry points
 

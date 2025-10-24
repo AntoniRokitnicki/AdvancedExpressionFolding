@@ -1,7 +1,16 @@
-# Comparing Expressions Collapse (State field: comparingExpressionsCollapse)
+# Comparing Expressions Collapse
 
-### Comparing Expressions Collapse
+## Overview
+
 Folds equals and compareTo calls into direct comparison expressions.
+
+
+## Configuration
+
+- **Toggle ID:** `comparingExpressionsCollapse`
+- **Default state:** On
+- **IDE path:** Settings/Preferences → Editor → General → Code Folding → Advanced Expression Folding
+- **Related toggles:** None
 
 #### Example: EqualsCompareTestData
 
@@ -34,9 +43,6 @@ folded/EqualsCompareTestData-folded.java:
 Highlights EqualsCompareTestData with comparing expressions collapse.
 Removes boilerplate while preserving behavior.
 
-Default: On
-Controlled by: `comparingExpressionsCollapse`
-Related features: (none)
 
 ---
 ### Folding catalogue
@@ -98,4 +104,3 @@ Related features: (none)
         System.out.println(a ≤ b);
         System.out.println(a ≤ b); // Should be a <= b
 ```
-

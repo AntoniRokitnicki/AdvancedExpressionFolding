@@ -1,7 +1,17 @@
-## dynamic
+# Dynamic method aliases
+
+## Overview
+
+Applies dynamic naming to methods based on a configuration file.
+
+## Configuration
+
+- **Toggle ID:** `dynamic`
+- **Default state:** On
+- **IDE path:** Settings/Preferences → Editor → General → Code Folding → Advanced Expression Folding
+- **Related toggles:** None
 
 ### Dynamic names for methods based on $user.home/dynamic-ajf2.toml
-Applies dynamic naming to methods based on a configuration file.
 
 #### Example: DynamicTestData
 
@@ -24,9 +34,6 @@ folded/DynamicTestData-folded.java:
 Highlights DynamicTestData with dynamic names for methods based on $user.home/dynamic-ajf2.toml.
 Removes boilerplate while preserving behavior.
 
-Default: On
-Controlled by: `dynamic`
-Related features: (none)
 
 ---
 ### Folding catalogue
@@ -117,4 +124,3 @@ Related features: (none)
 ```java
     private static String changedStaticMethod(String args) {
 ```
-

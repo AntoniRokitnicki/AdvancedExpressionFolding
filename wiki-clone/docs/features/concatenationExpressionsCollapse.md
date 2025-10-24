@@ -1,7 +1,16 @@
-# Concatenation Expressions Collapse (State field: concatenationExpressionsCollapse)
+# Concatenation Expressions Collapse
 
-### Concatenation Expressions Collapse
+## Overview
+
 Folds StringBuilder append chains, collection add/remove calls, interpolated strings, and stream collectors into compact expressions.
+
+
+## Configuration
+
+- **Toggle ID:** `concatenationExpressionsCollapse`
+- **Default state:** On
+- **IDE path:** Settings/Preferences → Editor → General → Code Folding → Advanced Expression Folding
+- **Related toggles:** None
 
 #### Example: StringBuilderTestData
 
@@ -156,9 +165,6 @@ folded/SpreadTestData-folded.java:
 Highlights SpreadTestData with concatenation expressions collapse.
 Removes boilerplate while preserving behavior.
 
-Default: On
-Controlled by: `concatenationExpressionsCollapse`
-Related features: (none)
 
 ---
 ### Folding catalogue
@@ -876,4 +882,3 @@ Related features: (none)
 ```java
                 return data.stream().toList();
 ```
-

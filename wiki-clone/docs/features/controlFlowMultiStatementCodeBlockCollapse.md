@@ -1,7 +1,16 @@
-# Control Flow Multi Statement Code Block Collapse (State field: controlFlowMultiStatementCodeBlockCollapse)
+# Control Flow Multi Statement Code Block Collapse
 
-### Control Flow Multi Statement Code Block Collapse
+## Overview
+
 Folds multi-statement control-flow braces in read-only files.
+
+
+## Configuration
+
+- **Toggle ID:** `controlFlowMultiStatementCodeBlockCollapse`
+- **Default state:** Off
+- **IDE path:** Settings/Preferences → Editor → General → Code Folding → Advanced Expression Folding
+- **Related toggles:** None
 
 #### Example: ControlFlowMultiStatementTestData
 
@@ -23,9 +32,6 @@ folded/ControlFlowMultiStatementTestData-folded.java:
 Highlights ControlFlowMultiStatementTestData with control flow multi statement code block collapse.
 Removes boilerplate while preserving behavior.
 
-Default: Off
-Controlled by: `controlFlowMultiStatementCodeBlockCollapse`
-Related features: (none)
 
 ---
 ### Folding catalogue
@@ -171,4 +177,3 @@ Related features: (none)
 ```java
         while (true);
 ```
-

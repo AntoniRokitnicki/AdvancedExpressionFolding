@@ -1,7 +1,16 @@
-# Stream Spread (State field: streamSpread)
+# Stream Spread
 
-### Stream Spread
+## Overview
+
 Displays stream pipelines using Groovy-style spread notation.
+
+
+## Configuration
+
+- **Toggle ID:** `streamSpread`
+- **Default state:** On
+- **IDE path:** Settings/Preferences → Editor → General → Code Folding → Advanced Expression Folding
+- **Related toggles:** None
 
 #### Example: ConcatenationTestData
 
@@ -67,9 +76,6 @@ folded/SpreadTestData-folded.java:
 Highlights SpreadTestData with stream spread.
 Removes boilerplate while preserving behavior.
 
-Default: On
-Controlled by: `streamSpread`
-Related features: (none)
 
 ---
 ### Folding catalogue
@@ -533,4 +539,3 @@ Related features: (none)
 ```java
                 return data.stream().toList();
 ```
-

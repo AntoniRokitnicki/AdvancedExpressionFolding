@@ -1,7 +1,16 @@
-# Optional (State field: optional)
+# Optional to Kotlin style
 
-### Optional
+## Overview
+
 Displays java.util.Optional flows as Kotlin-style null-safe chains.
+
+
+## Configuration
+
+- **Toggle ID:** `optional`
+- **Default state:** On
+- **IDE path:** Settings/Preferences → Editor → General → Code Folding → Advanced Expression Folding
+- **Related toggles:** None
 
 #### Example: ConcatenationTestData
 
@@ -67,9 +76,6 @@ folded/SpreadTestData-folded.java:
 Highlights SpreadTestData with optional.
 Removes boilerplate while preserving behavior.
 
-Default: On
-Controlled by: `optional`
-Related features: (none)
 
 ---
 ### Folding catalogue
@@ -533,4 +539,3 @@ Related features: (none)
 ```java
                 return data.stream().toList();
 ```
-

@@ -1,9 +1,19 @@
+# for assignments
+
+## Overview
+
 [video](https://youtu.be/qANBuozPpvM)
+
+## Configuration
+
+- **Toggle ID:** `fieldShift`
+- **Default state:** On
+- **IDE path:** Settings/Preferences → Editor → General → Code Folding → Advanced Expression Folding
+- **Related toggles:** None
 
 ![Animated preview of field shift folding](https://github.com/user-attachments/assets/1e314518-72a3-445f-a966-e13608a3c678)
 
 
-## for assignments
 
 ### Field Shift
 Folds builder, setter, and assignment patterns into the << shorthand.
@@ -118,9 +128,6 @@ folded/NullableAnnotationCheckNotNullFieldShiftTestData-folded.java:
 Highlights NullableAnnotationCheckNotNullFieldShiftTestData with field shift.
 Removes boilerplate while preserving behavior.
 
-Default: On
-Controlled by: `fieldShift`
-Related features: (none)
 
 ---
 ### Folding catalogue
@@ -980,4 +987,3 @@ Related features: (none)
             this.data = z.<<!!;
             this.o = <<!!;
 ```
-

@@ -1,7 +1,16 @@
-# Semicolons Collapse (State field: semicolonsCollapse)
+# Semicolons Collapse
 
-### Semicolons Collapse
+## Overview
+
 Folds redundant semicolons inside read-only files.
+
+
+## Configuration
+
+- **Toggle ID:** `semicolonsCollapse`
+- **Default state:** Off
+- **IDE path:** Settings/Preferences → Editor → General → Code Folding → Advanced Expression Folding
+- **Related toggles:** None
 
 #### Example: SemicolonTestData
 
@@ -22,9 +31,6 @@ import java.util.Arrays
 Highlights SemicolonTestData with semicolons collapse.
 Removes boilerplate while preserving behavior.
 
-Default: Off
-Controlled by: `semicolonsCollapse`
-Related features: (none)
 
 ---
 ### Folding catalogue
@@ -81,4 +87,3 @@ import java.util.Arrays
 ```java
                 Arrays.stream(args).forEach(System.out::println)
 ```
-

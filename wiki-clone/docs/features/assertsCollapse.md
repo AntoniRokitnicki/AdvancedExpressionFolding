@@ -1,7 +1,16 @@
-# Asserts Collapse (State field: assertsCollapse)
+# Asserts Collapse
 
-### Asserts Collapse
+## Overview
+
 Folds assert statements into terse checks.
+
+
+## Configuration
+
+- **Toggle ID:** `assertsCollapse`
+- **Default state:** On
+- **IDE path:** Settings/Preferences → Editor → General → Code Folding → Advanced Expression Folding
+- **Related toggles:** None
 
 #### Example: AssertTestData
 
@@ -26,9 +35,6 @@ folded/AssertTestData-folded.java:
 Highlights AssertTestData with asserts collapse.
 Removes boilerplate while preserving behavior.
 
-Default: On
-Controlled by: `assertsCollapse`
-Related features: (none)
 
 ---
 ### Folding catalogue
@@ -55,4 +61,3 @@ Related features: (none)
         assert args.length != 1 : "...";
         assert args.length != 2 : "...";
 ```
-

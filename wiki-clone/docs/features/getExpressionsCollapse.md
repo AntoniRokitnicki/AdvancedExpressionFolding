@@ -1,7 +1,16 @@
-# Get Expressions Collapse (State field: getExpressionsCollapse)
+# Get Expressions Collapse
 
-### Get Expressions Collapse
+## Overview
+
 Folds collection access and literal builders into indexed or map-style expressions.
+
+
+## Configuration
+
+- **Toggle ID:** `getExpressionsCollapse`
+- **Default state:** On
+- **IDE path:** Settings/Preferences → Editor → General → Code Folding → Advanced Expression Folding
+- **Related toggles:** None
 
 #### Example: GetSetPutTestData
 
@@ -55,9 +64,6 @@ folded/ExperimentalTestData-folded.java:
 Highlights ExperimentalTestData with get expressions collapse.
 Removes boilerplate while preserving behavior.
 
-Default: On
-Controlled by: `getExpressionsCollapse`
-Related features: (none)
 
 ---
 ### Folding catalogue
@@ -362,4 +368,3 @@ Related features: (none)
             example.!! = example.!!;
             String duplicate = example.!! + example.!!;
 ```
-

@@ -1,7 +1,16 @@
-# Lombok Pattern Off (State field: lombokPatternOff)
+# Lombok Pattern Off
 
-### Lombok Pattern Off
+## Overview
+
 Uses a regex to disable Lombok folding for matching classes.
+
+
+## Configuration
+
+- **Toggle ID:** `lombokPatternOff`
+- **Default state:** Off
+- **IDE path:** Settings/Preferences → Editor → General → Code Folding → Advanced Expression Folding
+- **Related toggles:** None
 
 #### Example: LombokPatternOffTestData
 
@@ -55,9 +64,6 @@ folded/LombokPatternOffNegativeTestData-folded.java:
 Highlights LombokPatternOffNegativeTestData with lombok pattern off.
 Removes boilerplate while preserving behavior.
 
-Default: Off
-Controlled by: `lombokPatternOff`
-Related features: (none)
 
 ---
 ### Folding catalogue
@@ -1633,4 +1639,3 @@ public class LombokPatternOffNegativeTestData {
                 this.field4 = field4;
             }
 ```
-

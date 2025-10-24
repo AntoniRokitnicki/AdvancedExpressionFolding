@@ -1,7 +1,16 @@
-# Log Folding Text Blocks (State field: logFoldingTextBlocks)
+# Log Folding Text Blocks
 
-### Log Folding Text Blocks
+## Overview
+
 Folds log Text Blocks into compact placeholders.
+
+
+## Configuration
+
+- **Toggle ID:** `logFoldingTextBlocks`
+- **Default state:** Off
+- **IDE path:** Settings/Preferences → Editor → General → Code Folding → Advanced Expression Folding
+- **Related toggles:** None
 
 #### Example: LogFoldingTextBlocksTestData
 
@@ -22,9 +31,6 @@ folded/LogFoldingTextBlocksTestData-folded.java:
 Highlights LogFoldingTextBlocksTestData with log folding text blocks.
 Removes boilerplate while preserving behavior.
 
-Default: Off
-Controlled by: `logFoldingTextBlocks`
-Related features: (none)
 
 ---
 ### Folding catalogue
@@ -367,4 +373,3 @@ Related features: (none)
                 $formatter
                 """);
 ```
-

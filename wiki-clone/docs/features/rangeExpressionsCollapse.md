@@ -1,7 +1,16 @@
-# Range Expressions Collapse (State field: rangeExpressionsCollapse)
+# Range Expressions Collapse
 
-### Range Expressions Collapse
+## Overview
+
 Folds indexed loops into Kotlin-style range expressions.
+
+
+## Configuration
+
+- **Toggle ID:** `rangeExpressionsCollapse`
+- **Default state:** On
+- **IDE path:** Settings/Preferences → Editor → General → Code Folding → Advanced Expression Folding
+- **Related toggles:** None
 
 #### Example: ForRangeTestData
 
@@ -26,9 +35,6 @@ folded/ForRangeTestData-folded.java:
 Highlights ForRangeTestData with range expressions collapse.
 Removes boilerplate while preserving behavior.
 
-Default: On
-Controlled by: `rangeExpressionsCollapse`
-Related features: (none)
 
 ---
 ### Folding catalogue
@@ -132,4 +138,3 @@ Related features: (none)
 ```java
                 if (args.length in (0, 2)) {
 ```
-
