@@ -1,0 +1,76 @@
+name: Documentation hints
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  docs-hints:
+    name: Suggest documentation updates
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+      - name: Fetch sources
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Collect documentation targets
+        id: docs
+        env:
+          BASE_REF: ${{ github.event.pull_request.base.ref }}
+        run: |
+          set -eo pipefail
+          git fetch origin "${BASE_REF}" --depth=1
+          git diff --name-only FETCH_HEAD...HEAD > changed-files.txt
+
+          declare -a docs_to_update=()
+
+          add_doc() {
+            for existing in "${docs_to_update[@]}"; do
+              if [ "${existing}" = "$1" ]; then
+                return
+              fi
+            done
+            docs_to_update+=("$1")
+          }
+
+          if grep -E '^(src/main/|resources/META-INF/)' changed-files.txt >/dev/null; then
+            add_doc "- wiki-clone/Home.md"
+          fi
+
+          if grep -E '^(examples/|folded/|testData/)' changed-files.txt >/dev/null; then
+            add_doc "- wiki-clone/docs/features/"
+          fi
+
+          if [ "${#docs_to_update[@]}" -gt 0 ]; then
+            {
+              echo "docs<<EOF"
+              for entry in "${docs_to_update[@]}"; do
+                echo "${entry}"
+              done
+              echo "EOF"
+            } >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Find documentation reminder comment
+        if: ${{ steps.docs.outputs.docs != '' }}
+        uses: peter-evans/find-comment@v3
+        id: find_docs_comment
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: 'github-actions[bot]'
+          body-includes: 'Documentation to double-check'
+
+      - name: Post documentation reminder
+        if: ${{ steps.docs.outputs.docs != '' }}
+        uses: peter-evans/create-or-update-comment@v5
+        with:
+          comment-id: ${{ steps.find_docs_comment.outputs.comment-id }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            ### Documentation to double-check
+            The following documentation locations might need updates alongside this change:
+
+            ${{ steps.docs.outputs.docs }}

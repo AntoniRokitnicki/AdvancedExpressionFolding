@@ -130,6 +130,7 @@ jobs:
           gradle-home-cache-cleanup: true
 
       - name: Run Tests
+        id: tests
         run: ./gradlew check
 
       - name: Collect Tests Result
@@ -143,6 +144,42 @@ jobs:
         uses: codecov/codecov-action@v5
         with:
           files: ${{ github.workspace }}/build/reports/kover/report.xml
+
+      - name: Find test summary comment
+        if: ${{ always() && github.event_name == 'pull_request' }}
+        uses: peter-evans/find-comment@v3
+        id: find_test_summary_comment
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: 'github-actions[bot]'
+          body-includes: '`./gradlew check` summary'
+
+      - name: Prepare test summary
+        if: ${{ always() && github.event_name == 'pull_request' }}
+        id: test_summary
+        run: |
+          if [ "${TEST_OUTCOME}" = "success" ]; then
+            echo "status_icon=✅" >> "$GITHUB_OUTPUT"
+            echo "status_message=completed successfully" >> "$GITHUB_OUTPUT"
+          else
+            echo "status_icon=❌" >> "$GITHUB_OUTPUT"
+            echo "status_message=failed" >> "$GITHUB_OUTPUT"
+          fi
+        env:
+          TEST_OUTCOME: ${{ steps.tests.outcome }}
+
+      - name: Post test summary comment
+        if: ${{ always() && github.event_name == 'pull_request' }}
+        uses: peter-evans/create-or-update-comment@v5
+        with:
+          comment-id: ${{ steps.find_test_summary_comment.outputs.comment-id }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            ### `./gradlew check` summary
+            ${{ steps.test_summary.outputs.status_icon }} `./gradlew check` ${{ steps.test_summary.outputs.status_message }}.
+
+            - Reports: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}#artifacts
+            - Coverage XML: `build/reports/kover/report.xml`
 
   inspectCode:
     name: Inspect code
