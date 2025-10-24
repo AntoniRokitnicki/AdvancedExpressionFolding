@@ -37,3 +37,65 @@ Removes boilerplate while preserving behavior.
 Default: On
 Controlled by: `comparingExpressionsCollapse`
 Related features: (none)
+
+---
+### Folding catalogue
+
+#### EqualsCompareTestData
+
+##### Scenario 1
+
+**Before**
+```java
+        System.out.println(a.equals(b));
+        System.out.println(!a.equals(b));
+        System.out.println(a.compareTo(b) == 0);
+        System.out.println(a.compareTo(b) != 0);
+```
+
+**After**
+```java
+        System.out.println(a ≡ b);
+        System.out.println(a ≢ b);
+        System.out.println(a ≡ b);
+        System.out.println(a ≢ b);
+```
+
+
+##### Scenario 2
+
+**Before**
+```java
+        System.out.println(a.compareTo(b) > 0);
+        System.out.println(a.compareTo(b) == 1);
+        System.out.println(a.compareTo(b) > -1);
+        System.out.println(a.compareTo(b) >= 0); // Should be a >= b
+```
+
+**After**
+```java
+        System.out.println(a > b);
+        System.out.println(a > b);
+        System.out.println(a ≥ b);
+        System.out.println(a ≥ b); // Should be a >= b
+```
+
+
+##### Scenario 3
+
+**Before**
+```java
+        System.out.println(a.compareTo(b) < 0);
+        System.out.println(a.compareTo(b) == -1);
+        System.out.println(a.compareTo(b) < 1);
+        System.out.println(a.compareTo(b) <= 0); // Should be a <= b
+```
+
+**After**
+```java
+        System.out.println(a < b);
+        System.out.println(a < b);
+        System.out.println(a ≤ b);
+        System.out.println(a ≤ b); // Should be a <= b
+```
+

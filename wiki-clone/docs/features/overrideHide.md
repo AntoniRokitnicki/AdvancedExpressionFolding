@@ -27,3 +27,24 @@ Removes boilerplate while preserving behavior.
 Default: On
 Controlled by: `overrideHide`
 Related features: (none)
+
+---
+### Folding catalogue
+
+#### OverrideHideTestData
+
+##### Scenario 1
+
+**Before**
+```java
+            @Override
+```
+
+
+##### Scenario 2
+
+**Before**
+```java
+        @Override
+```
+
