@@ -130,10 +130,11 @@ gradle:
     - 'build.gradle.kts'
     - 'settings.gradle.kts'
 
-integration-layer:
+integration-test:
 - changed-files:
   - any-glob-to-any-file:
     - '**/integration/**'
+    - '.github/workflows/integration-test.yml'
 
 action:
 - changed-files:
