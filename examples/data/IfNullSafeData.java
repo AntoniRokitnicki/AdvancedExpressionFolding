@@ -3,6 +3,7 @@ package data;
 @SuppressWarnings("ALL")
 public class IfNullSafeData {
     public void enter(Data data) {
+        User user = null;
         var threeChains = data != null
                 && data.getData1() != null
                 && data != null
@@ -23,6 +24,21 @@ public class IfNullSafeData {
         }
         if (data != null && data.getData1() != null) {
             System.out.println("data?.data1 != null");
+        }
+        if (user != null
+                && user.getProfile() != null
+                && user.getProfile().getName() != null) {
+            System.out.println(user.getProfile().getName());
+        }
+        if (user != null
+                && user.getProfile() != null
+                && user.getProfile().getName() != null) {
+            System.out.println("Name: " + user.getProfile().getName());
+        }
+        if (user != null
+                && user.getProfile() != null
+                && user.getProfile().getName() != null) {
+            System.out.println(user.getProfile().getName().trim());
         }
         if (data != null && data.isActive()) {
             System.out.println("data?.active == true");
@@ -141,6 +157,18 @@ public class IfNullSafeData {
 
         public boolean isActive() {
             return true;
+        }
+    }
+
+    static class User {
+        public Profile getProfile() {
+            return null;
+        }
+    }
+
+    static class Profile {
+        public String getName() {
+            return null;
         }
     }
 }
