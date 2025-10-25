@@ -207,6 +207,9 @@ tasks {
         from("examples/data") {
             into("data")
         }
+        from("folded") {
+            into("folded")
+        }
     }
 }
 

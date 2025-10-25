@@ -16,7 +16,9 @@ import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.command.WriteCommandAction
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.editor.EditorFactory
+import com.intellij.openapi.editor.ScrollType
 import com.intellij.openapi.editor.ex.EditorEx
+import com.intellij.openapi.editor.highlighter.EditorHighlighterFactory
 import com.intellij.openapi.fileEditor.FileEditorManager
 import com.intellij.openapi.ide.CopyPasteManager
 import com.intellij.openapi.project.DumbAwareAction
@@ -62,13 +64,16 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
     private val pendingChanges = mutableMapOf<KMutableProperty0<Boolean>, Boolean>()
     private val propertyToCheckbox = mutableMapOf<KMutableProperty0<Boolean>, JBCheckBox>()
     private val previewExampleFiles: List<ExampleFile> by lazy { loadPreviewExampleFiles() }
-    private val loadedSnippets = mutableMapOf<ExampleFile, String>()
+    private val loadedOriginalSnippets = mutableMapOf<ExampleFile, PreparedSnippet>()
+    private val loadedFoldedSnippets = mutableMapOf<ExampleFile, PreparedSnippet?>()
     private var currentSnippet: ExampleFile = DEFAULT_SNIPPET
-    private var previewDocument: Document? = null
+    private var originalDocument: Document? = null
+    private var foldedDocument: Document? = null
     private var beforeEditor: EditorEx? = null
     private var afterEditor: EditorEx? = null
     private var snippetSelector: ComboBox<ExampleFile>? = null
     private var previewInitialized = false
+    private var currentSnippetCaretLineIndex: Int = 0
 
     override fun getId() = "advanced.expression.folding"
 
@@ -228,6 +233,7 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
 
     companion object {
         private const val EXAMPLE_DIR = "data"
+        private const val FOLDED_DIR = "folded"
         private const val DEFAULT_SNIPPET = "OptionalTestData.java"
     }
     
@@ -326,17 +332,12 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
             })
             add(object : DumbAwareAction("Copy original", "Copy the original snippet", AllIcons.Actions.Copy) {
                 override fun actionPerformed(event: com.intellij.openapi.actionSystem.AnActionEvent) {
-                    previewDocument?.let {
-                        CopyPasteManager.getInstance().setContents(StringSelection(it.text))
-                    }
+                    originalDocument?.let { CopyPasteManager.getInstance().setContents(StringSelection(it.text)) }
                 }
             })
             add(object : DumbAwareAction("Copy folded", "Copy the folded preview", AllIcons.Actions.Copy) {
                 override fun actionPerformed(event: com.intellij.openapi.actionSystem.AnActionEvent) {
-                    afterEditor?.let { editor ->
-                        val foldedText = editor.foldedText()
-                        CopyPasteManager.getInstance().setContents(StringSelection(foldedText))
-                    }
+                    foldedDocument?.let { CopyPasteManager.getInstance().setContents(StringSelection(it.text)) }
                 }
             })
         }
@@ -352,9 +353,9 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
     }
 
     private fun createPreviewEditors(): JComponent {
-        val document = previewDocument ?: createPreviewDocument()
-        val before = beforeEditor ?: createEditor(document)
-        val after = afterEditor ?: createEditor(document)
+        val (sourceDocument, foldedDocument) = ensurePreviewDocuments()
+        val before = beforeEditor ?: createEditor(sourceDocument)
+        val after = afterEditor ?: createEditor(foldedDocument)
 
         beforeEditor = before
         afterEditor = after
@@ -377,14 +378,9 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
             preferredSize = com.intellij.util.ui.JBUI.size(0, 320)
         }
 
-        return splitter
-    }
+        updateCaretPosition()
 
-    private fun createPreviewDocument(): Document {
-        val text = loadSnippetText(currentSnippet)
-        return EditorFactory.getInstance().createDocument(text).also {
-            previewDocument = it
-        }
+        return splitter
     }
 
     private fun createEditor(document: Document): EditorEx {
@@ -396,30 +392,128 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
             isRightMarginShown = false
             isUseSoftWraps = true
         }
+        val highlighter = EditorHighlighterFactory.getInstance().createEditorHighlighter(
+            previewProject(),
+            JavaFileType.INSTANCE
+        )
+        editor.highlighter = highlighter
         editor.setCaretEnabled(false)
         editor.component.border = com.intellij.util.ui.JBUI.Borders.empty()
         return editor
     }
 
     private fun setSnippet(exampleFile: ExampleFile) {
-        val document = previewDocument ?: return
-        val text = loadSnippetText(exampleFile)
+        val sourceDocument = originalDocument ?: return
+        val foldedDocument = this.foldedDocument ?: return
+        val preparedSource = loadPreparedSnippet(exampleFile)
+        val preparedFolded = loadPreparedFoldedSnippet(exampleFile) ?: preparedSource
         ApplicationManager.getApplication().runWriteAction {
-            document.setText(text)
-            beforeEditor?.caretModel?.moveToOffset(0)
-            afterEditor?.caretModel?.moveToOffset(0)
+            sourceDocument.setText(preparedSource.text)
+            foldedDocument.setText(preparedFolded.text)
         }
         currentSnippet = exampleFile
+        currentSnippetCaretLineIndex = caretLineIndex(exampleFile, preparedSource)
+        updateCaretPosition()
         updatePreviewFromUi()
     }
 
-    private fun loadSnippetText(exampleFile: ExampleFile): String {
-        return loadedSnippets.getOrPut(exampleFile) {
-            javaClass.classLoader.getResource("$EXAMPLE_DIR/$exampleFile")?.readText()
-                ?: "// Unable to load $exampleFile"
+    private fun loadPreparedSnippet(exampleFile: ExampleFile): PreparedSnippet {
+        return loadedOriginalSnippets.getOrPut(exampleFile) {
+            val rawText = readResource("$EXAMPLE_DIR/$exampleFile")
+            prepareSnippet(exampleFile, rawText ?: "// Unable to load $exampleFile")
         }
     }
 
+    private fun loadPreparedFoldedSnippet(exampleFile: ExampleFile): PreparedSnippet? {
+        return loadedFoldedSnippets.getOrPut(exampleFile) {
+            val foldedFile = foldedFileName(exampleFile)
+            val rawText = readResource("$FOLDED_DIR/$foldedFile") ?: return@getOrPut null
+            prepareSnippet(exampleFile, rawText)
+        }
+    }
+
+    private fun readResource(path: String): String? {
+        return runCatching {
+            javaClass.classLoader.getResource(path)?.readText()
+        }.getOrNull()
+    }
+
+    private fun prepareSnippet(exampleFile: ExampleFile, text: String): PreparedSnippet {
+        val configuration = snippetPreviewConfigurations[exampleFile]
+        val normalized = text.replace("\r\n", "\n").replace('\r', '\n')
+        val lines = normalized.splitToSequence('\n').toList()
+        if (lines.isEmpty()) {
+            return PreparedSnippet(text, emptyList())
+        }
+        val (startIndex, endExclusive) = configuration?.lineRange?.let { range ->
+            val start = (range.first - 1).coerceIn(0, lines.size)
+            val end = (range.last + 1).coerceIn(0, lines.size)
+            start to end
+        } ?: (0 to lines.size)
+        val selected = lines.subList(startIndex, endExclusive)
+        val indexedSelection = selected.mapIndexed { index, line ->
+            (startIndex + index + 1) to line
+        }
+        val trimmedPairs = indexedSelection.dropWhile { (_, line) ->
+            val trimmed = line.trim()
+            trimmed.isEmpty() || trimmed.startsWith("package ") || trimmed.startsWith("import ")
+        }
+        val effectivePairs = if (trimmedPairs.isNotEmpty()) trimmedPairs else indexedSelection
+        val normalizedText = effectivePairs.joinToString(separator = "\n") { it.second }.trimEnd()
+        val lineNumbers = effectivePairs.map { it.first }
+        return PreparedSnippet(normalizedText, lineNumbers)
+    }
+
+    private fun caretLineIndex(exampleFile: ExampleFile, snippet: PreparedSnippet): Int {
+        val targetLine = snippetPreviewConfigurations[exampleFile]?.caretLine ?: return 0
+        if (snippet.lineNumbers.isEmpty()) {
+            return 0
+        }
+        val index = snippet.lineNumbers.indexOfFirst { it >= targetLine }
+        return if (index >= 0) index else 0
+    }
+
+    private fun updateCaretPosition() {
+        val lineIndex = currentSnippetCaretLineIndex.coerceAtLeast(0)
+        beforeEditor?.let { editor ->
+            val document = editor.document
+            if (document.lineCount > 0) {
+                val targetLine = lineIndex.coerceAtMost(document.lineCount - 1)
+                val offset = document.getLineStartOffset(targetLine)
+                editor.caretModel.moveToOffset(offset)
+                editor.scrollingModel.scrollToCaret(ScrollType.CENTER_UP)
+            }
+        }
+        afterEditor?.let { editor ->
+            val document = editor.document
+            if (document.lineCount > 0) {
+                val targetLine = lineIndex.coerceAtMost(document.lineCount - 1)
+                val offset = document.getLineStartOffset(targetLine)
+                editor.caretModel.moveToOffset(offset)
+                editor.scrollingModel.scrollToCaret(ScrollType.CENTER_UP)
+            }
+        }
+    }
+
+    private fun foldedFileName(exampleFile: ExampleFile): String {
+        return exampleFile.removeSuffix(".java") + "-folded.java"
+    }
+
+    private fun ensurePreviewDocuments(): Pair<Document, Document> {
+        val source = originalDocument
+        val folded = foldedDocument
+        if (source != null && folded != null) {
+            return source to folded
+        }
+        val factory = EditorFactory.getInstance()
+        val sourceDocument = factory.createDocument("")
+        val foldedDocument = factory.createDocument("")
+        originalDocument = sourceDocument
+        this.foldedDocument = foldedDocument
+        currentSnippetCaretLineIndex = 0
+        setSnippet(currentSnippet)
+        return sourceDocument to foldedDocument
+    }
     private fun loadPreviewExampleFiles(): List<ExampleFile> {
         val discovered = collectExampleFiles()
 
@@ -512,50 +606,63 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
         if (!previewInitialized) {
             return
         }
-        val editor = afterEditor ?: return
-        if (editor.isDisposed) {
-            return
-        }
-        val document = previewDocument ?: return
+        val sourceDocument = originalDocument ?: return
+        val foldedDocument = this.foldedDocument ?: return
         val project = previewProject()
 
-        val descriptors = ApplicationManager.getApplication().runReadAction(Computable {
+        val computation = ApplicationManager.getApplication().runReadAction(Computable {
+            if (sourceDocument.textLength == 0) {
+                return@Computable null
+            }
             val psiFile = PsiFileFactory.getInstance(project).createFileFromText(
                 "PreviewSnippet.java",
                 JavaFileType.INSTANCE,
-                document.text
+                sourceDocument.text
             )
-            val psiDocument = PsiDocumentManager.getInstance(project).getDocument(psiFile) ?: return@Computable emptyArray()
-            withPreviewState {
+            val psiDocument = PsiDocumentManager.getInstance(project).getDocument(psiFile) ?: return@Computable null
+            val descriptors = withPreviewState {
                 AdvancedExpressionFoldingBuilder().buildFoldRegions(psiFile, psiDocument, false)
             }
-        })
+            descriptors to psiDocument
+        }) ?: return
+
+        val (descriptors, psiDocument) = computation
+        val foldedText = applyFoldDescriptorsToText(psiDocument, descriptors)
 
         ApplicationManager.getApplication().runWriteAction {
-            applyFoldRegions(editor, descriptors)
+            foldedDocument.setText(foldedText)
         }
+        updateCaretPosition()
     }
 
-    private fun applyFoldRegions(editor: EditorEx, descriptors: Array<com.intellij.lang.folding.FoldingDescriptor>) {
-        val foldingModel = editor.foldingModel
-        foldingModel.runBatchFoldingOperation {
-            foldingModel.allFoldRegions.toList().forEach { region ->
-                foldingModel.removeFoldRegion(region)
-            }
-            descriptors.forEach { descriptor ->
-                val placeholder = descriptor.placeholderText ?: return@forEach
-                val foldRegion = foldingModel.createFoldRegion(
-                    descriptor.range.startOffset,
-                    descriptor.range.endOffset,
-                    placeholder,
-                    descriptor.group,
-                    false
-                )
-                foldRegion?.isExpanded = false
-            }
+    private fun applyFoldDescriptorsToText(
+        document: Document,
+        descriptors: Array<com.intellij.lang.folding.FoldingDescriptor>
+    ): String {
+        if (descriptors.isEmpty()) {
+            return document.text
         }
-        editor.caretModel.moveToOffset(0)
-        editor.scrollingModel.scrollToCaret(com.intellij.openapi.editor.ScrollType.CENTER_UP)
+        val sortedDescriptors = descriptors
+            .filter { it.placeholderText != null }
+            .sortedWith(compareBy<com.intellij.lang.folding.FoldingDescriptor> { it.range.startOffset }
+                .thenByDescending { it.range.endOffset })
+        val builder = StringBuilder(document.textLength)
+        var offset = 0
+        sortedDescriptors.forEach { descriptor ->
+            val start = descriptor.range.startOffset
+            if (start < offset) {
+                return@forEach
+            }
+            val end = descriptor.range.endOffset
+            val placeholder = descriptor.placeholderText ?: return@forEach
+            builder.append(document.charsSequence.subSequence(offset, start))
+            builder.append(placeholder)
+            offset = end
+        }
+        if (offset < document.textLength) {
+            builder.append(document.charsSequence.subSequence(offset, document.textLength))
+        }
+        return builder.toString()
     }
 
     private fun withPreviewState(action: () -> Array<com.intellij.lang.folding.FoldingDescriptor>): Array<com.intellij.lang.folding.FoldingDescriptor> {
@@ -594,36 +701,31 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
         afterEditor?.let(factory::releaseEditor)
         beforeEditor = null
         afterEditor = null
-        previewDocument = null
+        originalDocument = null
+        foldedDocument = null
         previewInitialized = false
-    }
-
-    private fun EditorEx.foldedText(): String {
-        val doc = document
-        val regions = foldingModel.allFoldRegions
-            .filter { it.isValid && !it.isExpanded }
-            .sortedBy { it.startOffset }
-        if (regions.isEmpty()) {
-            return doc.text
-        }
-        var offset = 0
-        val builder = StringBuilder(doc.textLength)
-        regions.forEach { region ->
-            val start = region.startOffset
-            if (start >= offset) {
-                builder.append(doc.charsSequence.subSequence(offset, start))
-                builder.append(region.placeholderText)
-                offset = region.endOffset
-            }
-        }
-        if (offset < doc.textLength) {
-            builder.append(doc.charsSequence.subSequence(offset, doc.textLength))
-        }
-        return builder.toString()
+        currentSnippetCaretLineIndex = 0
     }
 
     override fun disposeUIResources() {
         disposePreviewEditors()
         snippetSelector = null
     }
+    
+    private data class PreparedSnippet(
+        val text: String,
+        val lineNumbers: List<Int>
+    )
+
+    private data class SnippetPreviewConfig(
+        val lineRange: IntRange? = null,
+        val caretLine: Int? = null
+    )
+
+    private val snippetPreviewConfigurations = mapOf(
+        DEFAULT_SNIPPET to SnippetPreviewConfig(
+            lineRange = 11..50,
+            caretLine = 21
+        )
+    )
 }
