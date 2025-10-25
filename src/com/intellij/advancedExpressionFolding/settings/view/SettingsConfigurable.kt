@@ -20,6 +20,7 @@ import com.intellij.openapi.vfs.encoding.EncodingProjectManager
 import com.intellij.ui.JBColor
 import com.intellij.ui.components.ActionLink
 import com.intellij.ui.components.JBCheckBox
+import com.intellij.ui.dsl.builder.AlignX
 import com.intellij.ui.dsl.builder.Panel
 import com.intellij.ui.dsl.builder.panel
 import java.awt.Color.decode
@@ -103,6 +104,9 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
     }
 
     override fun createComponent() = panel {
+        row {
+            cell(SettingsBannerPanel()).align(AlignX.FILL).resizableColumn()
+        }
         row {
             val button =
                 JButton("Apply folded color: ${if (!JBColor.isBright()) "soft blue" else "dark navy"}")
