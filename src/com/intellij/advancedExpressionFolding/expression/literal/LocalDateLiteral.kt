@@ -16,8 +16,7 @@ class LocalDateLiteral(
     private val year: PsiLiteralExpression,
     private val month: PsiLiteralExpression,
     private val day: PsiLiteralExpression,
-    private val state: AdvancedExpressionFoldingSettings.State = AdvancedExpressionFoldingSettings.getInstance().state,
-) : Expression(element, textRange), IDateOperationsState by state {
+) : Expression(element, textRange), IDateOperationsState by AdvancedExpressionFoldingSettings.State()() {
 
     override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean = true
 

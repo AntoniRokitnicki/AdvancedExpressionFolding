@@ -37,7 +37,7 @@ class PlaceholderFoldingBuilderTest : BaseTest() {
             val file = fixture.file
             val document = fixture.getDocument(file)
 
-            val builder = AdvancedExpressionFoldingBuilder(settings.state)
+            val builder = AdvancedExpressionFoldingBuilder()
             val preview = ReadAction.compute<List<String>, RuntimeException> {
                 builder.preview(file, document)
             }

@@ -19,8 +19,7 @@ class ForEachIndexedStatement(
     private val arrayTextRange: TextRange,
     private val varSyntax: Boolean,
     private val isFinal: Boolean,
-    private val state: AdvancedExpressionFoldingSettings.State = AdvancedExpressionFoldingSettings.getInstance().state
-) : Expression(statement, textRange), IControlFlowState by state {
+) : Expression(statement, textRange), IControlFlowState by AdvancedExpressionFoldingSettings.State()() {
 
     override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean = true
 

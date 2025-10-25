@@ -19,9 +19,8 @@ class ForStatement(
     startInclusive: Boolean,
     endRange: Expression,
     endInclusive: Boolean,
-    private val state: AdvancedExpressionFoldingSettings.State = AdvancedExpressionFoldingSettings.getInstance().state
 ) : Range(statement, textRange, operand, startRange, startInclusive, endRange, endInclusive),
-    IControlFlowState by state {
+    IControlFlowState by AdvancedExpressionFoldingSettings.State()() {
 
     init {
         separator = FOR_SEPARATOR
