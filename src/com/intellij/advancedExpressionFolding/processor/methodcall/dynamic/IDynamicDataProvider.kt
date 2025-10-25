@@ -41,17 +41,17 @@ interface IDynamicDataProvider {
      * Extension method to parse TOML text into a Collection of Maps.
      */
     fun ObjectMapper.parseTomlValues(text: String): Collection<Map<String, String>>? {
-        return try {
+        return runCatching {
             this.readValue(text, Map::class.java)
                 .values
                 .asInstance<Collection<Map<String, String>>>()
-        } catch (e: IOException) {
-            logger.error("parseToml failed: unable to read TOML content", e)
-            null
-        } catch (e: ClassCastException) {
-            logger.error("parseToml failed: unexpected data shape", e)
-            null
-        }
+        }.onFailure { throwable ->
+            when (throwable) {
+                is IOException -> logger.error("parseToml failed: unable to read TOML content", throwable)
+                is ClassCastException -> logger.error("parseToml failed: unexpected data shape", throwable)
+                else -> logger.error("parseToml failed: unexpected error", throwable)
+            }
+        }.getOrNull()
     }
 
     /**
