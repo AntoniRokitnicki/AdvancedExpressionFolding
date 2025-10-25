@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.dataformat.toml.TomlFactory
 import com.intellij.advancedExpressionFolding.processor.asInstance
 import com.intellij.openapi.diagnostic.Logger
+import java.io.IOException
 import java.nio.file.Files
 import java.nio.file.Path
 
@@ -41,9 +42,14 @@ interface IDynamicDataProvider {
      */
     fun ObjectMapper.parseTomlValues(text: String): Collection<Map<String, String>>? {
         return try {
-            this.readValue(text, Map::class.java).values.asInstance<Collection<Map<String, String>>>()
-        } catch (e: Exception) {
-            logger.error("parseToml failed", e)
+            this.readValue(text, Map::class.java)
+                .values
+                .asInstance<Collection<Map<String, String>>>()
+        } catch (e: IOException) {
+            logger.error("parseToml failed: unable to read TOML content", e)
+            null
+        } catch (e: ClassCastException) {
+            logger.error("parseToml failed: unexpected data shape", e)
             null
         }
     }
