@@ -209,9 +209,11 @@ tasks {
     }
 
     processResources {
+        dependsOn(":examples:testClasses")
         from("examples/data") {
             into("data")
         }
+        from(examplesTestOutput.classesDirs)
     }
 }
 
