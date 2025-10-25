@@ -151,17 +151,11 @@ github-actions:
   - any-glob-to-any-file:
     - '.github/workflows/**'
 
-github-config:
+github-templates:
 - changed-files:
   - any-glob-to-any-file:
-    - '.github/CODEOWNERS'
-    - '.github/dependabot.yml'
-    - '.github/pull_request_template.md'
-
-github-issue-templates:
-- changed-files:
-  - any-glob-to-any-file:
-    - '.github/ISSUE_TEMPLATE/**'
+    - '.github/*.md'
+    - '.github/**/*.md'
 
 gradle:
 - changed-files:
