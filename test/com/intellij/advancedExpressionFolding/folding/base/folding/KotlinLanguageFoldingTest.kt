@@ -78,6 +78,10 @@ interface KotlinLanguageFoldingTest : FoldingTestSection {
     fun patternMatchingRecordPatternTestData() = testCase.runFoldingTest(foldingState()::patternMatchingInstanceof)
 
     @Test
+    fun patternMatchingRecordPatternEdgeCasesTestData() =
+        testCase.runFoldingTest(foldingState()::patternMatchingInstanceof)
+
+    @Test
     fun constructorReferenceNotationTestData() = testCase.runFoldingTest(foldingState()::constructorReferenceNotation)
 
     @Test
