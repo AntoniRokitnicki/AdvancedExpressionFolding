@@ -243,6 +243,7 @@ abstract class CheckboxesProvider {
 
         registerCheckbox(state::patternMatchingInstanceof, "Pattern Matching for instanceof (JEP 394)") {
             example(PatternMatchingInstanceofTestData::class)
+            example(PatternMatchingRecordPatternTestData::class)
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#patternmatchinginstanceof")
         }
 
