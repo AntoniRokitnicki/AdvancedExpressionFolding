@@ -338,3 +338,55 @@ Related features: (none)
         if (data2.data1?.active == true) {
 ```
 
+
+##### Scenario 20
+
+**Before**
+```java
+        if (user != null
+                && user.getProfile() != null
+                && user.getProfile().getName() != null) {
+            System.out.println(user.getProfile().getName());
+        }
+```
+
+**After**
+```java
+        System.out.println(user?.profile?.name);
+```
+
+##### Scenario 21
+
+**Before**
+```java
+        if (user != null
+                && user.getProfile() != null
+                && user.getProfile().getName() != null) {
+            System.out.println("Name: " + user.getProfile().getName());
+        }
+```
+
+**After**
+```java
+        if (user?.profile?.name != null) {
+            System.out.println("Name: " + user.profile.name);
+        }
+```
+
+##### Scenario 22
+
+**Before**
+```java
+        if (user != null
+                && user.getProfile() != null
+                && user.getProfile().getName() != null) {
+            System.out.println(user.getProfile().getName().trim());
+        }
+```
+
+**After**
+```java
+        if (user?.profile?.name != null) {
+            System.out.println(user.profile.name.trim());
+        }
+```
