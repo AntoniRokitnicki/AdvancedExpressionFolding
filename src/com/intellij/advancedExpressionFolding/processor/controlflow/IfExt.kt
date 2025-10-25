@@ -13,11 +13,13 @@ import com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt.
 import com.intellij.advancedExpressionFolding.processor.expression.BinaryExpressionExt
 import com.intellij.advancedExpressionFolding.processor.isNull
 import com.intellij.advancedExpressionFolding.processor.language.kotlin.IfNullSafeExt
+import com.intellij.advancedExpressionFolding.processor.language.kotlin.IfNullSafePrintlnExt
 import com.intellij.advancedExpressionFolding.processor.language.kotlin.LetReturnExt
 import com.intellij.advancedExpressionFolding.processor.util.Helper
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
 import com.intellij.advancedExpressionFolding.settings.IControlFlowState
 import com.intellij.advancedExpressionFolding.settings.IExpressionCollapseState
+import com.intellij.advancedExpressionFolding.settings.IKotlinLanguageState
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiBinaryExpression
@@ -35,7 +37,8 @@ import com.intellij.psi.SyntaxTraverser
 
 object IfExt :
     IControlFlowState by AdvancedExpressionFoldingSettings.State()(),
-    IExpressionCollapseState by AdvancedExpressionFoldingSettings.State()() {
+    IExpressionCollapseState by AdvancedExpressionFoldingSettings.State()(),
+    IKotlinLanguageState by AdvancedExpressionFoldingSettings.State()() {
 
     fun getSwitchStatement(element: PsiSwitchStatement): Expression? {
         val lParenth = element.lParenth ?: return null
@@ -52,6 +55,8 @@ object IfExt :
 
     fun getIfExpression(element: PsiIfStatement, document: Document): Expression? {
         LetReturnExt.getIfExpression(element)?.let { return it }
+
+        IfNullSafePrintlnExt.createExpression(element)?.let { return it }
 
         val condition = element.condition
         if (checkExpressionsCollapse && condition is PsiBinaryExpression) {
