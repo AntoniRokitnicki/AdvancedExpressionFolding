@@ -17,7 +17,7 @@ import com.intellij.psi.*
 import com.intellij.psi.util.elementType
 
 
-object IfNullSafeExt : IKotlinLanguageState by AdvancedExpressionFoldingSettings.getInstance().state {
+object IfNullSafeExt : IKotlinLanguageState by AdvancedExpressionFoldingSettings.State()() {
 
     @JvmStatic
     fun createExpression(element: PsiPolyadicExpression, document: Document): Expression? {
