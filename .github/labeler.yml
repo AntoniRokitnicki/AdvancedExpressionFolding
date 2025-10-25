@@ -119,10 +119,49 @@ documentation:
   - any-glob-to-any-file:
     - '**/*.md'
 
+docs-readme:
+- changed-files:
+  - any-glob-to-any-file:
+    - 'README.md'
+
+docs-changelog:
+- changed-files:
+  - any-glob-to-any-file:
+    - 'CHANGELOG.md'
+
+docs-contributing:
+- changed-files:
+  - any-glob-to-any-file:
+    - 'CONTRIBUTING.md'
+
+docs-policy:
+- changed-files:
+  - any-glob-to-any-file:
+    - 'CODE_OF_CONDUCT.md'
+    - 'SECURITY.md'
+    - 'SUPPORT.md'
+
+docs-guides:
+- changed-files:
+  - any-glob-to-any-file:
+    - 'docs/**'
+
 github-actions:
 - changed-files:
   - any-glob-to-any-file:
     - '.github/workflows/**'
+
+github-config:
+- changed-files:
+  - any-glob-to-any-file:
+    - '.github/CODEOWNERS'
+    - '.github/dependabot.yml'
+    - '.github/pull_request_template.md'
+
+github-issue-templates:
+- changed-files:
+  - any-glob-to-any-file:
+    - '.github/ISSUE_TEMPLATE/**'
 
 gradle:
 - changed-files:
@@ -152,6 +191,16 @@ plugin-xml:
   - any-glob-to-any-file:
     - 'resources/META-INF/*.xml'
 
+resources-bundle:
+- changed-files:
+  - any-glob-to-any-file:
+    - 'resources/Bundle.properties'
+
+resources-intentions:
+- changed-files:
+  - any-glob-to-any-file:
+    - 'resources/intentionDescriptions/**'
+
 scripts:
 - changed-files:
   - any-glob-to-any-file:
@@ -161,6 +210,13 @@ examples-data:
 - changed-files:
   - any-glob-to-any-file:
     - 'examples/data/**'
+
+examples-gradle:
+- changed-files:
+  - any-glob-to-any-file:
+    - 'examples/gradlew'
+    - 'examples/gradlew.bat'
+    - 'examples/settings.gradle.kts'
 
 test-data:
 - changed-files:
@@ -189,4 +245,29 @@ gradle-wrapper:
     - 'gradlew'
     - 'gradlew.bat'
     - 'gradle/wrapper/**'
+
+class-advanced-expression-folding-builder:
+- changed-files:
+  - any-glob-to-any-file:
+    - 'src/com/intellij/advancedExpressionFolding/AdvancedExpressionFoldingBuilder.kt'
+
+class-advanced-expression-folding-settings:
+- changed-files:
+  - any-glob-to-any-file:
+    - 'src/com/intellij/advancedExpressionFolding/settings/AdvancedExpressionFoldingSettings.kt'
+
+class-settings-configurable:
+- changed-files:
+  - any-glob-to-any-file:
+    - 'src/com/intellij/advancedExpressionFolding/settings/view/SettingsConfigurable.kt'
+
+class-checkboxes-provider:
+- changed-files:
+  - any-glob-to-any-file:
+    - 'src/com/intellij/advancedExpressionFolding/settings/view/CheckboxesProvider.kt'
+
+class-dynamic-data-provider:
+- changed-files:
+  - any-glob-to-any-file:
+    - 'src/com/intellij/advancedExpressionFolding/processor/methodcall/dynamic/IDynamicDataProvider.kt'
 
