@@ -3,11 +3,10 @@ package com.intellij.advancedExpressionFolding.folding.base.folding
 import com.intellij.advancedExpressionFolding.folding.BaseTest
 import com.intellij.advancedExpressionFolding.folding.util.TestDynamicDataProvider
 import com.intellij.advancedExpressionFolding.processor.methodcall.dynamic.IDynamicDataProvider
-import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings.State
 import kotlin.reflect.KMutableProperty0
 
-internal fun foldingState(): State = AdvancedExpressionFoldingSettings.getInstance().state
+internal fun foldingState(): State = State()()
 
 interface FoldingTestSection {
     val testCase: FoldingFeatureTestCase
