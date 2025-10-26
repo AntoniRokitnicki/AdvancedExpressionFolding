@@ -44,6 +44,7 @@ on:
 
 jobs:
   manual-release:
+    if: github.event_name == 'workflow_dispatch'
     name: Manual Semantic Release
     runs-on: ubuntu-latest
     permissions:
