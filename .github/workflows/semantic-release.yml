@@ -108,7 +108,9 @@ jobs:
           semantic_version: ${{ inputs.semantic_version }}
           branches: ${{ inputs.branches }}
           branch: ${{ inputs.branch }}
-          extra_plugins: ${{ inputs.extra_plugins }}
+          extra_plugins: |
+            conventional-changelog-conventionalcommits
+            ${{ inputs.extra_plugins }}
           dry_run: ${{ inputs.dry_run }}
           ci: ${{ inputs.ci }}
           unset_gha_env: ${{ inputs.unset_gha_env }}
