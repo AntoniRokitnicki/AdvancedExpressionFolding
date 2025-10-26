@@ -20,14 +20,17 @@ object IntegrationTestApi {
     @JvmStatic
     fun toggleGlobalFolding(state: Boolean) {
         runOnEdt {
-            val action = ActionManager.getInstance().getAction(GLOBAL_TOGGLE_ACTION_ID) as? ToggleAction
+            val actionManager = ActionManager.getInstance()
+            val action = actionManager.getAction(GLOBAL_TOGGLE_ACTION_ID) as? ToggleAction
                 ?: error("Action $GLOBAL_TOGGLE_ACTION_ID not found")
-            val event = AnActionEvent.createEvent(
-                DataContext.EMPTY_CONTEXT,
+            val presentation = action.templatePresentation.clone()
+            val event = AnActionEvent(
                 null,
+                DataContext.EMPTY_CONTEXT,
                 ActionPlaces.UNKNOWN,
-                ActionUiKind.NONE,
-                null
+                presentation,
+                actionManager,
+                0
             )
             action.setSelected(event, state)
             refreshOpenEditors()
