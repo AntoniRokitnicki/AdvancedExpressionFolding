@@ -22,11 +22,10 @@ import com.intellij.ui.components.ActionLink
 import com.intellij.ui.components.JBCheckBox
 import com.intellij.ui.dsl.builder.Panel
 import com.intellij.ui.dsl.builder.panel
-import java.awt.Color.decode
 import java.awt.FlowLayout
 import java.net.URI
-import javax.swing.JButton
 import javax.swing.JPanel
+import javax.swing.JButton
 import kotlin.reflect.KMutableProperty0
 import kotlin.reflect.KMutableProperty1
 import kotlin.reflect.full.memberProperties
@@ -104,13 +103,11 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
 
     override fun createComponent() = panel {
         row {
-            val button =
-                JButton("Apply folded color: ${if (!JBColor.isBright()) "soft blue" else "dark navy"}")
-            button.foreground = if (!JBColor.isBright()) decode("#7ca0bb") else decode("#000091")
-            button.addActionListener {
+            val linkText = "Apply folded color: ${if (!JBColor.isBright()) "soft blue" else "dark navy"}"
+            val actionLink = ActionLink(linkText) {
                 UpdateFoldedTextColorsAction.changeFoldingColors()
             }
-            cell(button)
+            cell(actionLink)
         }
         row {
             cell(createDownloadExamplesLink())
