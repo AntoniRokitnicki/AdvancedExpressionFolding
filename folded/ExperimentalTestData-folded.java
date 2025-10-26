@@ -3,6 +3,11 @@ package data;
 import java.io.UnsupportedEncodingException;
 import java.util.function.Function;
 
+/**
+ * {@link com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.IState#getExperimental()}
+ * <p>
+ * {@link com.intellij.advancedExpressionFolding.FoldingTest#testExperimentalTestData()}
+ */
 @SuppressWarnings("ALL")
 public class ExperimentalTestData {
 

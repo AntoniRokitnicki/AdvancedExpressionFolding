@@ -7,6 +7,13 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import java.util.*;
 import java.util.logging.Logger;
 
+/**
+ * {@link com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.IState#getLombok()}
+ * <p>
+ * {@link com.intellij.advancedExpressionFolding.processor.lombok.LombokExt#addLombokSupport(com.intellij.psi.PsiClass)}
+ * <p>
+ * {@link com.intellij.advancedExpressionFolding.FoldingTest#testLombokTestData()}
+ */
 @SuppressWarnings("ALL")
 @Builder(ClassWithBuilder) @Getter @Setter @Serial public class LombokTestData {
 
@@ -207,6 +214,7 @@ import java.util.logging.Logger;
         }
     }
 
+
     public class Parent {
         public Parent(String child) {
         }
@@ -310,6 +318,7 @@ import java.util.logging.Logger;
             private boolean field3;
         }
     }
+
 
     public class RequiredArgsConstructorAnnotation {
         @RequiredArgsConstructor public static class RequiredArgs {
