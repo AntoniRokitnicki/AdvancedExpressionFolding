@@ -7,13 +7,13 @@ public class PatternMatchingRecordPatternEdgeCasesTestData {
     record IntBox(int value) {}
 
     public void componentMethodVariants(Object o) {
-        if (o instanceof ComponentAlias(final Box<String> box, final int count)) {
+        if (o instanceof ComponentAlias(final Box<String> box, final int count))) {
             System.out.println(box + " " + count);
         }
     }
 
     public void finalBinding(Object o) {
-        if (o instanceof IntBox(final int value)) {
+        if (o instanceof IntBox(final int value))) {
             System.out.println(value);
         }
     }

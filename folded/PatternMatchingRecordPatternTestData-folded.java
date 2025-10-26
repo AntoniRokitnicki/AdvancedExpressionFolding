@@ -6,11 +6,11 @@ public class PatternMatchingRecordPatternTestData {
     record Purchase(Customer customer, double total) {}
 
     public void main(Object o) {
-        if (o instanceof Customer(String name, int age)) {
+        if (o instanceof Customer(String name, int age))) {
             System.out.println(name + age);
         }
 
-        if (o instanceof Purchase(var buyer, double total)) {
+        if (o instanceof Purchase(var buyer, double total))) {
             System.out.println(buyer + " " + total);
         }
     }

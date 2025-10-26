@@ -14,7 +14,7 @@ public class ElvisTestData {
         e?.get().sayHello();
         e.get()?.sayHello();
         e?.get()?.sayHello();
-        e?.get()?.get()?.sayHello();
+        e?.get()?.get()?.sayHello(); // Should be e?.get()?.get()?.sayHello();
     }
 
     private String sayHello() {

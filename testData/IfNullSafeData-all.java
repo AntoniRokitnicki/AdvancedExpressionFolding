@@ -176,5 +176,4 @@ public class IfNullSafeData {
             </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>null<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold>
     }</fold>
-
 }
