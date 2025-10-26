@@ -143,6 +143,7 @@ class IntegrationTest {
     fun `find methods with default parameters action shows usage results`() {
         val init = init("findMethodsWithDefaultParameters")
         init.runIdeWithDriver().useDriverAndCloseIde {
+            wait()
             setupProjectWithGradle()
 
             execute { it.searchEverywhere(textToInsert = "Find Methods with Default Parameters", selectFirst = true) }
