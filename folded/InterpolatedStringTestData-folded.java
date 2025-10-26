@@ -11,8 +11,8 @@ public class InterpolatedStringTestData {
         System.out.println("Hello, $name!");
         System.out.println("$name, hello!");
         System.out.println("$name, $name");
-        System.out.println("$name says hi"); //TODO: it should be folded as "\"$name says hi"
-        System.out.println("Hi $name");      //TODO: it should be folded as "Hi $name\""
+        System.out.println("\"$name says hi");
+        System.out.println("Hi $name\"");
         System.out.println("Unicode: ${'\u0041'}");
         System.out.println("Next: ${(char)('A' + 1)}");
         System.out.println("Length: ${args.length}");
