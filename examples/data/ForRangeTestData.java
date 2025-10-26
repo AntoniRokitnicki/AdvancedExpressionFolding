@@ -28,6 +28,12 @@ public class ForRangeTestData {
                                 .get(i);
                 System.out.println(a);
         }
+                for (int i = 0; i < list.size(); i++)
+        {
+                        String b = list
+                                .get(i);
+                System.out.println(b);
+        }
                 for (int i = 0; i < list.size(); i++) {
                         String a = list
                                 .get(i);
