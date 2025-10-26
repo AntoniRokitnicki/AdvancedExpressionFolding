@@ -8,13 +8,6 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.logging.Logger;</fold>
 
-<fold text='/** {@link com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.IState#getLombokPatternOff()} ...*/' expand='true'>/**
- * {@link com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.IState#getLombokPatternOff()}
- * <p>
- * {@link com.intellij.advancedExpressionFolding.processor.lombok.LombokExt#addLombokSupport(com.intellij.psi.PsiClass)}
- * <p>
- * {@link com.intellij.advancedExpressionFolding.FoldingTest#testLombokPatternOffTestData()}
- */</fold>
 @SuppressWarnings("ALL")
 <fold text='@Builder(ClassWithBuilder) @Getter @Setter @Serial p' expand='false'>p</fold>ublic class LombokPatternOffNegativeTestData {<fold text='' expand='false'>
 
@@ -616,7 +609,6 @@ import java.util.logging.Logger;</fold>
         }</fold>
     }</fold>
 
-
     public class Parent <fold text='{...}' expand='true'>{
         public Parent(String child) <fold text='{}' expand='true'>{
         }</fold>
@@ -757,7 +749,6 @@ import java.util.logging.Logger;</fold>
             }</fold></fold>
         }</fold>
     }</fold>
-
 
     public class RequiredArgsConstructorAnnotation <fold text='{...}' expand='true'>{
         <fold text='@RequiredArgsConstructor p' expand='false'>p</fold>ublic static class RequiredArgs <fold text='{...}' expand='true'>{

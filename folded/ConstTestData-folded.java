@@ -5,11 +5,6 @@ import java.util.regex.Pattern;
 import static data.ConstTestData.EOrder.SECOND;
 import static java.util.regex.Pattern.compile;
 
-
-/**
- * {@link com.intellij.advancedExpressionFolding.expression.semantic.FieldConstExpression )}
- * {@link com.intellij.advancedExpressionFolding.FoldingTest#testConstTestData}
- */
 public class ConstTestData {
 
     default const PATTERN = Pattern.compile(".*");
@@ -201,7 +196,6 @@ public class ConstTestData {
         @Deprecated
         default const VERSION_REF = VERSION;
     }
-
 
     public interface Orderable {}
     enum EOrder implements Orderable {

@@ -3,11 +3,6 @@ package data;
 import <fold text='...' expand='false'>java.io.UnsupportedEncodingException;
 import java.util.function.Function;</fold>
 
-<fold text='/** {@link com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.IState#getExperimental()} ...*/' expand='true'>/**
- * {@link com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.IState#getExperimental()}
- * <p>
- * {@link com.intellij.advancedExpressionFolding.FoldingTest#testExperimentalTestData()}
- */</fold>
 @SuppressWarnings("ALL")
 public class ExperimentalTestData {
 

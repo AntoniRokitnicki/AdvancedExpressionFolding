@@ -1,10 +1,5 @@
 package data;
 
-/**
- * {@link com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.IState#getMethodDefaultParameters()}
- * <p>
- * {@link com.intellij.advancedExpressionFolding.FoldingTest#testMethodDefaultParametersTestData()}
- */
 public class MethodDefaultParametersTestData {
 
     class OverloadedMethodAsDefaultParam {
@@ -14,12 +9,10 @@ public class MethodDefaultParametersTestData {
         public String applySort1(String criterionName = "DESC", boolean descending = false) {
             return criterionName;
         }
-        
 
         public String applySort2(String criterionName, boolean descending = System.getProperty("sort-desc") != null) {
             return criterionName;
         }
-        
 
         public String applySortWrongFirstType(int criterionName) {
             return applySortWrongFirstType(criterionName, false);
@@ -43,14 +36,14 @@ public class MethodDefaultParametersTestData {
         public String multipleDefaults(String name, int count) {
             return multipleDefaults(name, count, false);
         }
-        
+
     }
 
     class ChainedDefaults {
         public String chainedDefaults(String name, int count, boolean flag = true) {
             return name + count + flag;
         }
-        
+
         public String chainedDefaults(String name) {
             return chainedDefaults(name, 5);
         }
@@ -60,14 +53,14 @@ public class MethodDefaultParametersTestData {
         public String expressionDefaults(String name, int count = "test".length() + 2) {
             return name + count;
         }
-        
+
     }
 
     class StaticDefaults {
         public static String staticWithDefaults(String name, boolean flag = true) {
             return name + flag;
         }
-        
+
     }
 
     class DifferentReturnTypes {
@@ -83,7 +76,7 @@ public class MethodDefaultParametersTestData {
         public String mixedTypes(String text, int number, boolean flag, double value = 1.0) {
             return text + number + flag + value;
         }
-        
+
         public String mixedTypes(String text, int number) {
             return mixedTypes(text, number, false);
         }
@@ -96,21 +89,21 @@ public class MethodDefaultParametersTestData {
         public String varargMethod(String prefix, String... items = "default") {
             return prefix + String.join(",", items);
         }
-        
+
     }
 
     class DifferentParameterNames {
         public String differentParamNames(String name, boolean enabled = true) {
             return name + enabled;
         }
-        
+
     }
 
     class GenericMethodDefaults {
         public <T> String genericMethod(T item, boolean flag = false) {
             return item + flag;
         }
-        
+
     }
 
     class ComplexBodyCase {

@@ -1,10 +1,5 @@
 package data;
 
-/**
- * {@link com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.IState#getMethodDefaultParameters()}
- * <p>
- * {@link com.intellij.advancedExpressionFolding.FoldingTest#testMethodDefaultParametersTestData()}
- */
 public class MethodDefaultParametersTestData {
 
     class OverloadedMethodAsDefaultParam {

@@ -1,10 +1,5 @@
 package data;
 
-<fold text='/** {@link com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.IState#getMethodDefaultParameters()} ...*/' expand='true'>/**
- * {@link com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.IState#getMethodDefaultParameters()}
- * <p>
- * {@link com.intellij.advancedExpressionFolding.FoldingTest#testMethodDefaultParametersTestData()}
- */</fold>
 public class MethodDefaultParametersTestData {
 
     class OverloadedMethodAsDefaultParam <fold text='{...}' expand='true'>{

@@ -8,13 +8,6 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.logging.Logger;
 
-/**
- * {@link com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.IState#getLombokPatternOff()}
- * <p>
- * {@link com.intellij.advancedExpressionFolding.processor.lombok.LombokExt#addLombokSupport(com.intellij.psi.PsiClass)}
- * <p>
- * {@link com.intellij.advancedExpressionFolding.FoldingTest#testLombokPatternOffTestData()}
- */
 @SuppressWarnings("ALL")
 public class LombokPatternOffTestData {
 
@@ -609,7 +602,6 @@ public class LombokPatternOffTestData {
         }
     }
 
-
     public class Parent {
         public Parent(String child) {
         }
@@ -750,7 +742,6 @@ public class LombokPatternOffTestData {
             }
         }
     }
-
 
     public class RequiredArgsConstructorAnnotation {
         public static class RequiredArgs {

@@ -7,13 +7,6 @@ import javax.annotation.Nonnull;
 import java.time.LocalDate;
 import java.util.HashMap;</fold>
 
-<fold text='/** {@link com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.IState#getNullable()} ...*/' expand='true'>/**
- * {@link com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.IState#getNullable()}
- * <p>
- *  {@link com.intellij.advancedExpressionFolding.extension.NullableExt#createExpression(com.intellij.psi.PsiMethod)}
- * <p>
- * {@link com.intellij.advancedExpressionFolding.FoldingTest#testNullableAnnotationTestData()}
- */</fold>
 @SuppressWarnings("ALL")
 public class NullableAnnotationTestData {
     <fold text='' expand='false'>@NotNull</fold>
@@ -192,6 +185,5 @@ public class NullableAnnotationTestData {
             }</fold></fold>
         }</fold>
     }</fold>
-
 
 }
