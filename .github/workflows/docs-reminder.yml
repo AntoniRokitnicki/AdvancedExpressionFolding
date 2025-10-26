@@ -40,8 +40,64 @@ jobs:
             add_doc "- wiki-clone/Home.md"
           fi
 
+          state_settings_dir='src/com/intellij/advancedExpressionFolding/settings'
+
+          readarray -t changed_state_files < <(grep -E "^${state_settings_dir}/.*State\\.kt$" changed-files.txt || true)
+
+          collect_state_docs() {
+            local state_file
+            for state_file in "${changed_state_files[@]}"; do
+              if [ ! -f "${state_file}" ]; then
+                continue
+              fi
+
+              local state_features=()
+              readarray -t state_features < <(
+                awk '
+                  $1 == "interface" && $2 ~ /^I/ {
+                    in_interface = 1
+                    next
+                  }
+                  in_interface && $1 == "}" {
+                    exit
+                  }
+                  in_interface && $1 == "override" && ($2 == "val" || $2 == "var") {
+                    name = $3
+                    sub(/:.*/, "", name)
+                    print name
+                    next
+                  }
+                  in_interface && ($1 == "val" || $1 == "var") {
+                    name = $2
+                    sub(/:.*/, "", name)
+                    print name
+                  }
+                ' "${state_file}"
+              )
+
+              local feature
+              for feature in "${state_features[@]}"; do
+                local doc_path="wiki-clone/docs/features/${feature}.md"
+                if [ -f "${doc_path}" ]; then
+                  add_doc "- ${doc_path}"
+                fi
+              done
+            done
+          }
+
+          state_docs_collected=0
+          if [ "${#changed_state_files[@]}" -gt 0 ]; then
+            docs_count_before=${#docs_to_update[@]}
+            collect_state_docs
+            if [ ${#docs_to_update[@]} -gt "${docs_count_before}" ]; then
+              state_docs_collected=1
+            fi
+          fi
+
           if grep -E '^(examples/|folded/|testData/)' changed-files.txt >/dev/null; then
-            add_doc "- wiki-clone/docs/features/"
+            if [ "${state_docs_collected}" -eq 0 ]; then
+              add_doc "- wiki-clone/docs/features/"
+            fi
           fi
 
           if [ "${#docs_to_update[@]}" -gt 0 ]; then

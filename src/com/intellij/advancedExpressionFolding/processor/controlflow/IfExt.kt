@@ -26,6 +26,7 @@ import com.intellij.psi.PsiBinaryExpression
 import com.intellij.psi.PsiCodeBlock
 import com.intellij.psi.PsiConditionalExpression
 import com.intellij.psi.PsiElement
+import com.intellij.psi.PsiExpression
 import com.intellij.psi.PsiIfStatement
 import com.intellij.psi.PsiMethodCallExpression
 import com.intellij.psi.PsiPolyadicExpression
@@ -59,37 +60,164 @@ object IfExt :
         IfNullSafePrintlnExt.createExpression(element)?.let { return it }
 
         val condition = element.condition
-        if (checkExpressionsCollapse && condition is PsiBinaryExpression) {
-            if (condition.operationSign.text == "!=" && element.elseBranch == null && element.thenBranch != null) {
-                val lNull = isNull(condition.lOperand.type)
-                val rNull = isNull(condition.rOperand?.type)
-                if ((lNull && condition.rOperand != null) || (condition.rOperand != null && rNull)) {
-                    var thenStatement: PsiStatement? = element.thenBranch
-                    if (thenStatement != null && thenStatement.children.size == 1 && thenStatement.children[0] is PsiCodeBlock) {
-                        val statements = (thenStatement.children[0] as PsiCodeBlock).statements
-                        thenStatement = if (statements.size == 1) statements[0] else return null
+        if (checkExpressionsCollapse) {
+            fun isSupportedQualifier(qualifierElement: PsiElement?): Boolean {
+                return when (qualifierElement) {
+                    is PsiReferenceExpression -> true
+                    is PsiMethodCallExpression ->
+                        Helper.startsWith(qualifierElement.methodExpression.referenceName, "get") &&
+                            qualifierElement.argumentExpressions.isEmpty()
+                    else -> false
+                }
+            }
+
+            fun unwrapThenBranch(statement: PsiStatement?): PsiStatement? {
+                var current = statement ?: return null
+                if (current.children.size == 1 && current.children[0] is PsiCodeBlock) {
+                    val statements = (current.children[0] as PsiCodeBlock).statements
+                    current = if (statements.size == 1) statements[0] else return null
+                }
+                return current
+            }
+
+            fun qualifierBase(qualifierElement: PsiElement): PsiElement? {
+                return when (qualifierElement) {
+                    is PsiMethodCallExpression -> qualifierElement.methodExpression.qualifierExpression
+                    is PsiReferenceExpression -> qualifierElement.qualifierExpression
+                    else -> null
+                }
+            }
+
+            fun flattenGuardExpressions(condition: PsiExpression?): List<PsiBinaryExpression>? {
+                return when (condition) {
+                    is PsiBinaryExpression -> {
+                        when (condition.operationSign.text) {
+                            "&&" -> {
+                                val left = flattenGuardExpressions(condition.lOperand) ?: return null
+                                val right = flattenGuardExpressions(condition.rOperand) ?: return null
+                                left + right
+                            }
+                            "!=" -> listOf(condition)
+                            else -> null
+                        }
                     }
-                    val targetStatement = thenStatement ?: return null
-                    val qualifierElement = (if (lNull) condition.rOperand else condition.lOperand) ?: return IfExpression(
-                        element,
-                        element.textRange
-                    )
-                    val isSupportedQualifier = when (qualifierElement) {
-                        is PsiReferenceExpression -> true
-                        is PsiMethodCallExpression ->
-                            Helper.startsWith(qualifierElement.methodExpression.referenceName, "get") &&
-                                qualifierElement.argumentExpressions.isEmpty()
-                        else -> false
+
+                    is PsiPolyadicExpression -> {
+                        if (condition.operands.isEmpty()) {
+                            return null
+                        }
+                        for (index in 1 until condition.operands.size) {
+                            val token = condition.getTokenBeforeOperand(condition.operands[index])?.text
+                            if (token != "&&") {
+                                return null
+                            }
+                        }
+                        val result = mutableListOf<PsiBinaryExpression>()
+                        for (operand in condition.operands) {
+                            val guards = flattenGuardExpressions(operand) ?: return null
+                            result += guards
+                        }
+                        result
                     }
-                    if (isSupportedQualifier) {
-                        val sameQualifier = Helper.findSameQualifier(targetStatement, qualifierElement)
-                        if (sameQualifier != null) {
-                            return ShortElvisExpression(
+
+                    else -> null
+                }
+            }
+
+            fun collectGuardedQualifiers(condition: PsiExpression): List<PsiElement>? {
+                val guardExpressions = flattenGuardExpressions(condition) ?: return null
+                if (guardExpressions.size < 2) {
+                    return null
+                }
+                val qualifiers = mutableListOf<PsiElement>()
+                for ((index, guard) in guardExpressions.withIndex()) {
+                    if (guard.operationSign.text != "!=") {
+                        return null
+                    }
+                    val lNull = isNull(guard.lOperand.type)
+                    val rNull = isNull(guard.rOperand?.type)
+                    val qualifierElement = when {
+                        lNull -> guard.rOperand
+                        rNull -> guard.lOperand
+                        else -> null
+                    } ?: return null
+                    if (!isSupportedQualifier(qualifierElement)) {
+                        return null
+                    }
+                    val baseQualifier = qualifierBase(qualifierElement)
+                    if (index == 0) {
+                        if (baseQualifier != null) {
+                            return null
+                        }
+                    } else {
+                        val previousQualifier = qualifiers.last()
+                        if (baseQualifier == null || !Helper.equal(baseQualifier, previousQualifier)) {
+                            return null
+                        }
+                    }
+                    qualifiers += qualifierElement
+                }
+                return qualifiers
+            }
+
+            when (condition) {
+                is PsiBinaryExpression -> {
+                    if (condition.operationSign.text == "!=" && element.elseBranch == null && element.thenBranch != null) {
+                        val lNull = isNull(condition.lOperand.type)
+                        val rNull = isNull(condition.rOperand?.type)
+                        if ((lNull && condition.rOperand != null) || (condition.rOperand != null && rNull)) {
+                            val targetStatement = unwrapThenBranch(element.thenBranch) ?: return null
+                            val qualifierElement = (if (lNull) condition.rOperand else condition.lOperand) ?: return IfExpression(
                                 element,
-                                element.textRange,
-                                getAnyExpression(targetStatement, document),
-                                listOf(sameQualifier.textRange)
+                                element.textRange
                             )
+                            if (isSupportedQualifier(qualifierElement)) {
+                                val sameQualifier = Helper.findSameQualifier(targetStatement, qualifierElement)
+                                if (sameQualifier != null) {
+                                    return ShortElvisExpression(
+                                        element,
+                                        element.textRange,
+                                        getAnyExpression(targetStatement, document),
+                                        listOf(sameQualifier.textRange)
+                                    )
+                                }
+                            }
+                        }
+                    } else if (condition.operationSign.text == "&&" && element.elseBranch == null && element.thenBranch != null) {
+                        val qualifiers = collectGuardedQualifiers(condition)
+                        if (qualifiers != null) {
+                            val targetStatement = unwrapThenBranch(element.thenBranch) ?: return null
+                            val ranges = qualifiers.mapNotNull { qualifier ->
+                                Helper.findSameQualifier(targetStatement, qualifier)?.textRange
+                            }
+                            if (ranges.size == qualifiers.size && ranges.isNotEmpty()) {
+                                return ShortElvisExpression(
+                                    element,
+                                    element.textRange,
+                                    getAnyExpression(targetStatement, document),
+                                    ranges
+                                )
+                            }
+                        }
+                    }
+                }
+
+                is PsiPolyadicExpression -> {
+                    if (element.elseBranch == null && element.thenBranch != null) {
+                        val qualifiers = collectGuardedQualifiers(condition)
+                        if (qualifiers != null) {
+                            val targetStatement = unwrapThenBranch(element.thenBranch) ?: return null
+                            val ranges = qualifiers.mapNotNull { qualifier ->
+                                Helper.findSameQualifier(targetStatement, qualifier)?.textRange
+                            }
+                            if (ranges.size == qualifiers.size && ranges.isNotEmpty()) {
+                                return ShortElvisExpression(
+                                    element,
+                                    element.textRange,
+                                    getAnyExpression(targetStatement, document),
+                                    ranges
+                                )
+                            }
                         }
                     }
                 }
