@@ -50,6 +50,9 @@
         <completion.contributor
                 language="JAVA"
                 implementationClass="com.intellij.advancedExpressionFolding.pseudo.TracingLoggableAnnotationCompletionContributor"/>
+
+        <documentationTargetProvider
+                implementation="com.intellij.advancedExpressionFolding.documentation.FoldingDocTargetProvider"/>
     </extensions>
 
     <applicationListeners>
