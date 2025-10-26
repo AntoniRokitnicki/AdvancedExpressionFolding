@@ -1,0 +1,35 @@
+name: validate examples
+on:
+  pull_request:
+    branches: [ main ]
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: ensure examples updated for folded changes
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.sha }}
+          FOLDED_DIR: folded/
+          EXAMPLES_DIR: examples/
+        run: |
+          set -euo pipefail
+
+          changed=$(git diff --name-only "$BASE_SHA" "$HEAD_SHA" || true)
+          folded=$(echo "$changed" | grep -E "^${FOLDED_DIR}" || true)
+
+          if [ -z "$folded" ]; then
+            exit 0
+          fi
+
+          examples=$(echo "$changed" | grep -E "^${EXAMPLES_DIR}" || true)
+
+          if [ -z "$examples" ]; then
+            echo "Error: folded changed without matching examples"
+            echo "$folded"
+            exit 1
+          fi
+
