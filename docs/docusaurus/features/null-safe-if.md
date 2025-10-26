@@ -27,6 +27,38 @@ $Instance$ != null && $Instance$.$MethodCall$()
 
 ![Structural search template for null-check followed by usage](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/assets/3055326/3eb6192c-b69e-4841-b28f-8edae3a95636)
 
+## Guarded println examples
+
+When the guarded branch only prints the dereferenced value, the plugin can drop the whole `if` statement and emit a single null-safe call:
+
+```java title="Before"
+if (user != null
+        && user.getProfile() != null
+        && user.getProfile().getName() != null) {
+    System.out.println(user.getProfile().getName());
+}
+```
+
+```java title="After"
+System.out.println(user?.profile?.name);
+```
+
+If the println body performs extra work (for example, string concatenation), the guard remains while dereferences inside the block adopt safe-call syntax:
+
+```java title="Before"
+if (user != null
+        && user.getProfile() != null
+        && user.getProfile().getName() != null) {
+    System.out.println("Name: " + user.getProfile().getName());
+}
+```
+
+```java title="After"
+if (user?.profile?.name != null) {
+    System.out.println("Name: " + user.profile.name);
+}
+```
+
 ## Example files
 
 - [Source sample](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/master/examples/data/IfNullSafeData.java)
