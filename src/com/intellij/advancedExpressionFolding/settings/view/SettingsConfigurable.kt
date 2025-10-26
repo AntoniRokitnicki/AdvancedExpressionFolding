@@ -459,9 +459,32 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
             trimmed.isEmpty() || trimmed.startsWith("package ") || trimmed.startsWith("import ")
         }
         val effectivePairs = if (trimmedPairs.isNotEmpty()) trimmedPairs else indexedSelection
-        val normalizedText = effectivePairs.joinToString(separator = "\n") { it.second }.trimEnd()
-        val lineNumbers = effectivePairs.map { it.first }
+        val commentStrippedPairs = stripLeadingDocComment(effectivePairs)
+        val normalizedText = commentStrippedPairs.joinToString(separator = "\n") { it.second }.trimEnd()
+        val lineNumbers = commentStrippedPairs.map { it.first }
         return PreparedSnippet(normalizedText, lineNumbers)
+    }
+
+    private fun stripLeadingDocComment(pairs: List<Pair<Int, String>>): List<Pair<Int, String>> {
+        if (pairs.isEmpty()) {
+            return pairs
+        }
+        val firstLine = pairs.first().second.trimStart()
+        if (!firstLine.startsWith("/**")) {
+            return pairs
+        }
+        var endIndex = -1
+        for ((index, pair) in pairs.withIndex()) {
+            if (pair.second.contains("*/")) {
+                endIndex = index
+                break
+            }
+        }
+        if (endIndex == -1) {
+            return pairs
+        }
+        val remaining = pairs.drop(endIndex + 1).dropWhile { it.second.trim().isEmpty() }
+        return if (remaining.isNotEmpty()) remaining else pairs
     }
 
     private fun caretLineIndex(exampleFile: ExampleFile, snippet: PreparedSnippet): Int {
