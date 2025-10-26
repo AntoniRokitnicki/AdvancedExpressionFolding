@@ -46,7 +46,7 @@ class InterpolatedString(
                 element.node,
                 TextRange.create(first.textRange.startOffset, first.textRange.endOffset),
                 group,
-                "\""
+                "\\\""
             )
         } else if (first !is CharSequenceLiteral) {
             val startOffset = first.textRange.startOffset
@@ -125,7 +125,7 @@ class InterpolatedString(
                 element.node,
                 TextRange.create(last.textRange.startOffset, last.textRange.endOffset),
                 group,
-                "\""
+                "\\\""
             )
         } else if (last !is CharSequenceLiteral && document.textLength > last.textRange.endOffset + 1) {
             val overflowRightRange = TextRange.create(last.textRange.endOffset, last.textRange.endOffset + 1)
