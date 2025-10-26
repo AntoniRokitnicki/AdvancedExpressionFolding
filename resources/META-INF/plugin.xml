@@ -52,12 +52,6 @@
                 implementationClass="com.intellij.advancedExpressionFolding.pseudo.TracingLoggableAnnotationCompletionContributor"/>
     </extensions>
 
-    <applicationListeners>
-        <!-- Releases plugin resources on unload to support dynamic updates -->
-        <listener class="com.intellij.advancedExpressionFolding.PluginUnloadingListener"
-                  topic="com.intellij.ide.plugins.DynamicPluginListener"/>
-    </applicationListeners>
-
     <actions>
         <group id="com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingGroup"
                popup="true">
