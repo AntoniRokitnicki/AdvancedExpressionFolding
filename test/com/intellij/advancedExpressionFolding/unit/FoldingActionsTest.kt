@@ -116,7 +116,12 @@ class FoldingActionsTest : BaseTest() {
             builder.add(CommonDataKeys.EDITOR, editor)
         }
         val dataContext = builder.build()
-        return AnActionEvent.createEvent(action, dataContext, null, ActionPlaces.UNKNOWN, ActionUiKind.NONE, null)
+        return AnActionEvent.createFromAnAction(
+            action,
+            null,
+            ActionPlaces.UNKNOWN,
+            dataContext
+        )
     }
 
     private fun setUpEditorWithRegion(initiallyExpanded: Boolean): Pair<Editor, FoldRegion> {
