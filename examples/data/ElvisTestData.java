@@ -20,6 +20,9 @@ public class ElvisTestData {
         if (e != null && e.get() != null) {
                 e.get().sayHello();
         }
+        if (e != null && e.get() != null && e.get().get() != null) {
+                e.get().get().sayHello(); // Should be e?.get()?.get()?.sayHello();
+        }
     }
 
     private String sayHello() {

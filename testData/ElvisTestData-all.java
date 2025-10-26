@@ -17,9 +17,12 @@ public class ElvisTestData {
         if (e.get() != null) <fold text='{...}' expand='true'>{
                 e.<fold text='!!' expand='false'>get()</fold><fold text='?.' expand='false'>.</fold>sayHello();<fold text='' expand='false'>
         }</fold></fold>
-        if <fold text='' expand='false'>(</fold><fold text='e?.!! != null' expand='false'>e != null && e.<fold text='!!' expand='false'>get()</fold> != null</fold><fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
-                e.<fold text='!!' expand='false'>get()</fold>.sayHello();
-        }</fold>
+        if (e != null && e.get() != null) <fold text='{...}' expand='true'>{
+                e<fold text='?.' expand='false'>.</fold><fold text='!!' expand='false'>get()<fold text='?.' expand='false'></fold>.</fold>sayHello();<fold text='' expand='false'>
+        }</fold></fold>
+        if (e != null && e.get() != null && e.get().get() != null) <fold text='{...}' expand='true'>{
+                e<fold text='?.' expand='false'>.</fold><fold text='!!' expand='false'>get()</fold><fold text='?.' expand='false'>.</fold><fold text='!!' expand='false'>get()</fold><fold text='?.' expand='false'>.</fold>sayHello();<fold text='' expand='false'>
+        }</fold></fold>
     }</fold>
 
     private String sayHello()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
