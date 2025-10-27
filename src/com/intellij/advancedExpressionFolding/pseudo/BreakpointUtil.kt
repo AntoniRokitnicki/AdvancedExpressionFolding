@@ -12,7 +12,6 @@ import com.intellij.xdebugger.XDebuggerUtil
 import com.intellij.xdebugger.breakpoints.SuspendPolicy
 import com.intellij.xdebugger.breakpoints.XLineBreakpoint
 import com.intellij.xdebugger.evaluation.EvaluationMode
-import com.intellij.xdebugger.impl.breakpoints.XBreakpointBase
 import kotlin.math.max
 
 object BreakpointUtil {
@@ -33,12 +32,22 @@ object BreakpointUtil {
             bpMgr.allBreakpoints.find { it.sourcePosition?.file == file && it.sourcePosition?.line == line }
                 ?.let { bpMgr.removeBreakpoint(it) }
                 ?: bpMgr.addLineBreakpoint(bpType, file.url, line, bpType.createBreakpointProperties(file, line)).apply {
-                    (this as? XBreakpointBase<*, *, *>)?.group = groupName
+                    addGroup(groupName)
                     logExpression ?: return@apply
                     suspendPolicy = SuspendPolicy.NONE
                     isLogMessage = true
                     logExpressionObject = util.createExpression(logExpression, JavaLanguage.INSTANCE, null, EvaluationMode.EXPRESSION)
                 }
+        }
+    }
+
+    fun XLineBreakpoint<*>.addGroup(groupName: String?) {
+        try {
+            val method = javaClass.getMethod("setGroup", String::class.java)
+            method.isAccessible = true
+            method.invoke(this, groupName)
+        } catch (_: Exception) {
+            // ignore
         }
     }
 
