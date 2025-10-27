@@ -103,7 +103,7 @@ jobs:
           git push origin HEAD:${{ github.ref_name }}
 
       - name: Semantic Release
-        uses: cycjimmy/semantic-release-action@v5.0.0
+        uses: cycjimmy/semantic-release-action@v5.0.2
         with:
           semantic_version: ${{ inputs.semantic_version }}
           branches: ${{ inputs.branches }}
