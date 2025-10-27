@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Suppress Warnings Hide</title>
+    <meta name="description" content="Hides @SuppressWarnings annotations from view." />
+  </head>
+  <body>
+    <h1>Suppress Warnings Hide</h1>
+    <section aria-labelledby="feature-summary">
+      <h2 id="feature-summary">Summary</h2>
+      <dl>
+      <dt>State key</dt>
+      <dd><code>suppressWarningsHide</code></dd>
+      <dt>Default</dt>
+      <dd>On</dd>
+      <dt>Controlled by</dt>
+      <dd><code>suppressWarningsHide</code></dd>
+      </dl>
+    </section>
+    <section aria-labelledby="feature-body">
+      <h2 id="feature-body">Details</h2>
+      <pre>:::info Toggle summary
+- **State key:** `suppressWarningsHide`
+- **Default:** On
+- **Controlled by:** `suppressWarningsHide`
+:::
+
+## Suppress Warnings Hide
+Hides @SuppressWarnings annotations from view.
+
+### Example: SuppressWarningsHideTestData
+
+examples/data/SuppressWarningsHideTestData.java:
+```java
+    @SuppressWarnings(&quot;deprecation&quot;)
+// ...
+    @SuppressWarnings({&quot;rawtypes&quot;, &quot;unchecked&quot;})
+```
+
+folded/SuppressWarningsHideTestData-folded.java:
+```java
+package data;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+```
+
+Highlights SuppressWarningsHideTestData with suppress warnings hide.
+Removes boilerplate while preserving behavior.</pre>
+    </section>
+  </body>
+</html>

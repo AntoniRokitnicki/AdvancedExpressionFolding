@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Concatenation Expressions Collapse</title>
+    <meta name="description" content="Folds StringBuilder append chains, collection add/remove calls, interpolated strings, and stream collectors into compact expressions." />
+  </head>
+  <body>
+    <h1>Concatenation Expressions Collapse</h1>
+    <section aria-labelledby="feature-summary">
+      <h2 id="feature-summary">Summary</h2>
+      <dl>
+      <dt>State key</dt>
+      <dd><code>concatenationExpressionsCollapse</code></dd>
+      <dt>Default</dt>
+      <dd>On</dd>
+      <dt>Controlled by</dt>
+      <dd><code>concatenationExpressionsCollapse</code></dd>
+      </dl>
+    </section>
+    <section aria-labelledby="feature-body">
+      <h2 id="feature-body">Details</h2>
+      <pre>:::info Toggle summary
+- **State key:** `concatenationExpressionsCollapse`
+- **Default:** On
+- **Controlled by:** `concatenationExpressionsCollapse`
+:::
+
+## Concatenation Expressions Collapse
+Folds StringBuilder append chains, collection add/remove calls, interpolated strings, and stream collectors into compact expressions.
+
+### Example: StringBuilderTestData
+
+examples/data/StringBuilderTestData.java:
+```java
+        StringBuilder sb1 = new StringBuilder(&quot;[&quot;);
+// ...
+        sb1.append(arg);
+```
+
+folded/StringBuilderTestData-folded.java:
+```java
+        StringBuilder sb1 = &quot;[&quot;;
+// ...
+        sb1 += arg;
+```
+
+Highlights StringBuilderTestData with concatenation expressions collapse.
+Removes boilerplate while preserving behavior.
+
+### Example: InterpolatedStringTestData
+
+examples/data/InterpolatedStringTestData.java:
+```java
+        System.out.println(&quot;Hello, &quot; + args[0]);
+        System.out.println(&quot;Hello, &quot; + args[0] + &quot;!&quot;);
+        System.out.println(args[0] + &quot;, hello!&quot;);
+        System.out.println(args[0] + &quot;, &quot; + args[0]);
+// ...
+        System.out.println(&quot;Hello, &quot; + name);
+        System.out.println(&quot;Hello, &quot; + name + &quot;!&quot;);
+        System.out.println(name + &quot;, hello!&quot;);
+// ...
+        System.out.println(&quot;Length: &quot; + args.length);
+        System.out.println(&quot;Sum: &quot; + (2 + 3));
+        System.out.println(&quot;Upper: &quot; + name.toUpperCase());
+```
+
+folded/InterpolatedStringTestData-folded.java:
+```java
+        System.out.println(&quot;Hello, ${args[0]}&quot;);
+        System.out.println(&quot;Hello, ${args[0]}!&quot;);
+        System.out.println(&quot;${args[0]}, hello!&quot;);
+        System.out.println(&quot;${args[0]}, ${args[0]}&quot;);
+// ...
+        System.out.println(&quot;Hello, $name&quot;);
+        System.out.println(&quot;Hello, $name!&quot;);
+        System.out.println(&quot;$name, hello!&quot;);
+// ...
+        System.out.println(&quot;Length: ${args.length}&quot;);
+        System.out.println(&quot;Sum: ${(2 + 3)}&quot;);
+        System.out.println(&quot;Upper: ${name.toUpperCase()}&quot;);
+```
+
+Highlights InterpolatedStringTestData with concatenation expressions collapse.
+Removes boilerplate while preserving behavior.
+
+### Example: AppendSetterInterpolatedStringTestData
+
+examples/data/AppendSetterInterpolatedStringTestData.java:
+```java
+        StringBuilder sb1 = new StringBuilder().append(args[0]);
+        sb1.append(&quot;Hello, &quot; + args[0]);
+        System.out.println(sb1.toString());
+// ...
+        sb2.append(args[0] + &quot;, hello!&quot;);
+        System.out.println(sb2.toString());
+        StringBuilder sb3 = new StringBuilder(&quot;Hello, &quot;).append(args[0]); // Should be StringBuilder sb3 = &quot;Hello, $(args[0)&quot;:
+// ...
+        new AppendSetterInterpolatedStringTestData().setName(&quot;Hello, &quot; + args[0]);
+        new AppendSetterInterpolatedStringTestData().setName(args[0] + &quot;, hello!&quot;);
+```
+
+folded/AppendSetterInterpolatedStringTestData-folded.java:
+```java
+        StringBuilder sb1 = args[0];
+        sb1 += &quot;Hello, ${args[0]}&quot;;
+        System.out.println(sb1);
+// ...
+        sb2 += &quot;${args[0]}, hello!&quot;;
+        System.out.println(sb2);
+        StringBuilder sb3 = &quot;Hello, &quot; + args[0]; // Should be StringBuilder sb3 = &quot;Hello, $(args[0)&quot;:
+// ...
+        new AppendSetterInterpolatedStringTestData().name = &quot;Hello, ${args[0]}&quot;;
+        new AppendSetterInterpolatedStringTestData().name = &quot;${args[0]}, hello!&quot;;
+```
+
+Highlights AppendSetterInterpolatedStringTestData with concatenation expressions collapse.
+Removes boilerplate while preserving behavior.
+
+### Example: ConcatenationTestData
+
+examples/data/ConcatenationTestData.java:
+```java
+        list.add(&quot;one&quot;);
+        list.remove(&quot;one&quot;);
+// ...
+        list.addAll(singleton);
+        list.removeAll(singleton);
+        Collections.addAll(list, args);
+```
+
+folded/ConcatenationTestData-folded.java:
+```java
+        list += &quot;one&quot;;
+        list -= &quot;one&quot;;
+// ...
+        list += singleton;
+        list -= singleton;
+        list += args;
+```
+
+Highlights ConcatenationTestData with concatenation expressions collapse.
+Removes boilerplate while preserving behavior.
+
+### Example: OptionalTestData
+
+examples/data/OptionalTestData.java:
+```java
+            o = opt.get();
+// ...
+        o = opt.orElseThrow();
+```
+
+folded/OptionalTestData-folded.java:
+```java
+            o = opt!!;
+// ...
+        o = opt!!;
+```
+
+Highlights OptionalTestData with concatenation expressions collapse.
+Removes boilerplate while preserving behavior.
+
+### Example: SpreadTestData
+
+examples/data/SpreadTestData.java:
+```java
+        String empNames = list.stream()
+                .map(Data::getString)
+// ...
+        var p1 = data.getDataList().stream().map(Data::getData).toList();
+```
+
+folded/SpreadTestData-folded.java:
+```java
+        String empNames = list*.string()
+// ...
+        var p1 = data.getDataList().stream()*.data().toList();
+```
+
+Highlights SpreadTestData with concatenation expressions collapse.
+Removes boilerplate while preserving behavior.</pre>
+    </section>
+  </body>
+</html>

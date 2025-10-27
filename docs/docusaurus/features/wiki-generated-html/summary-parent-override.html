@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Summary Parent Override</title>
+    <meta name="description" content="Folds overridden methods into parent summary stubs." />
+  </head>
+  <body>
+    <h1>Summary Parent Override</h1>
+    <section aria-labelledby="feature-summary">
+      <h2 id="feature-summary">Summary</h2>
+      <dl>
+      <dt>State key</dt>
+      <dd><code>summaryParentOverride</code></dd>
+      <dt>Default</dt>
+      <dd>Off</dd>
+      <dt>Controlled by</dt>
+      <dd><code>summaryParentOverride</code></dd>
+      </dl>
+    </section>
+    <section aria-labelledby="feature-body">
+      <h2 id="feature-body">Details</h2>
+      <pre>:::info Toggle summary
+- **State key:** `summaryParentOverride`
+- **Default:** Off
+- **Controlled by:** `summaryParentOverride`
+:::
+
+## Summary Parent Override
+Folds overridden methods into parent summary stubs.
+
+### Example: SummaryParentOverrideTestData
+
+examples/data/SummaryParentOverrideTestData.java:
+```java
+    class ParentClass extends GrandparentClass {
+// ...
+        public void grandparentMethod() {
+```
+
+folded/SummaryParentOverrideTestData-folded.java:
+```java
+    class ParentClass extends GrandparentClass(1-grandparentMethod) {
+// ...
+        public void grandparentMethod() { // overrides from GrandparentClass
+```
+
+Highlights SummaryParentOverrideTestData with summary parent override.
+Removes boilerplate while preserving behavior.</pre>
+    </section>
+  </body>
+</html>

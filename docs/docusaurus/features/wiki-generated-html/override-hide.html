@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Override Hide</title>
+    <meta name="description" content="Hides @Override annotations from view." />
+  </head>
+  <body>
+    <h1>Override Hide</h1>
+    <section aria-labelledby="feature-summary">
+      <h2 id="feature-summary">Summary</h2>
+      <dl>
+      <dt>State key</dt>
+      <dd><code>overrideHide</code></dd>
+      <dt>Default</dt>
+      <dd>On</dd>
+      <dt>Controlled by</dt>
+      <dd><code>overrideHide</code></dd>
+      </dl>
+    </section>
+    <section aria-labelledby="feature-body">
+      <h2 id="feature-body">Details</h2>
+      <pre>:::info Toggle summary
+- **State key:** `overrideHide`
+- **Default:** On
+- **Controlled by:** `overrideHide`
+:::
+
+## Override Hide
+Hides @Override annotations from view.
+
+### Example: OverrideHideTestData
+
+examples/data/OverrideHideTestData.java:
+```java
+            @Override
+// ...
+            @Override
+```
+
+folded/OverrideHideTestData-folded.java:
+```java
+package data;
+
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+```
+
+Highlights OverrideHideTestData with override hide.
+Removes boilerplate while preserving behavior.</pre>
+    </section>
+  </body>
+</html>
