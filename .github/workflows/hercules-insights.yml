@@ -25,7 +25,7 @@ jobs:
             cd .. && rm -r hercules_charts"
 
       - name: Upload insights artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: hercules-insights
           path: hercules_charts.tar
