@@ -363,13 +363,16 @@ public class EmojifyTestData {
     }
 
     public class FinalizerUsage {
-        @Override
-        protected void finalize() throws Throwable {
+        protected void performCleanup() {
             try {
-                // Finalization logic
+                // Cleanup logic
             } finally {
-                super.finalize();
+                completeCleanup();
             }
+        }
+
+        protected void completeCleanup() {
+            // Base cleanup logic
         }
     }
 
