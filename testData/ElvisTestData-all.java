@@ -21,7 +21,7 @@ public class ElvisTestData {
                 e<fold text='?.' expand='false'>.</fold><fold text='!!' expand='false'>get()<fold text='?.' expand='false'></fold>.</fold>sayHello();<fold text='' expand='false'>
         }</fold></fold>
         if (e != null && e.get() != null && e.get().get() != null) <fold text='{...}' expand='true'>{
-                e<fold text='?.' expand='false'>.</fold><fold text='!!' expand='false'>get()</fold><fold text='?.' expand='false'>.</fold><fold text='!!' expand='false'>get()</fold><fold text='?.' expand='false'>.</fold>sayHello();<fold text='' expand='false'>
+                e<fold text='?.' expand='false'>.</fold><fold text='!!' expand='false'>get()</fold><fold text='?.' expand='false'>.</fold><fold text='!!' expand='false'>get()</fold><fold text='?.' expand='false'>.</fold>sayHello(); // Should be e?.get()?.get()?.sayHello();<fold text='' expand='false'>
         }</fold></fold>
     }</fold>
 

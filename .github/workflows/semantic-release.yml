@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       release_type:
-        description: 'Select release type (release = patch)'
+        description: 'Select release type: release = patch'
         type: choice
         default: release
         options:
@@ -15,13 +15,13 @@ on:
         description: 'Version range for semantic-release'
         default: ''
       branches:
-        description: 'Override branches configuration (JSON)'
+        description: 'Override branches configuration JSON'
         default: ''
       branch:
-        description: 'Override single branch (semantic-release < v16)'
+        description: 'Override single branch for semantic-release < v16'
         default: ''
       extra_plugins:
-        description: 'Extra plugins to pre-install (one per line)'
+        description: 'Extra plugins to pre-install one per line'
         default: ''
       dry_run:
         description: 'Run semantic-release in dry-run mode'
@@ -36,20 +36,15 @@ on:
         type: boolean
         default: false
       extends:
-        description: 'Shareable configurations to extend (one per line)'
+        description: 'Shareable configurations to extend one per line'
         default: ''
       working_directory:
         description: 'Working directory for semantic-release'
         default: '.'
-      tag_format:
-        description: 'Custom tag format'
-        default: ''
-      repository_url:
-        description: 'Repository URL override'
-        default: ''
 
 jobs:
   manual-release:
+    if: github.event_name == 'workflow_dispatch'
     name: Manual Semantic Release
     runs-on: ubuntu-latest
     permissions:
@@ -75,21 +70,14 @@ jobs:
 
           case "${{ inputs.release_type }}" in
             major)
-              major=$((major + 1))
-              minor=0
-              patch=0
-              ;;
+              major=$((major + 1)); minor=0; patch=0;;
             minor)
-              minor=$((minor + 1))
-              patch=0
-              ;;
+              minor=$((minor + 1)); patch=0;;
             release)
-              patch=$((patch + 1))
-              ;;
+              patch=$((patch + 1));;
             *)
               echo "Unsupported release type: ${{ inputs.release_type }}" >&2
-              exit 1
-              ;;
+              exit 1;;
           esac
 
           next="${major}.${minor}.${patch}"
@@ -120,14 +108,14 @@ jobs:
           semantic_version: ${{ inputs.semantic_version }}
           branches: ${{ inputs.branches }}
           branch: ${{ inputs.branch }}
-          extra_plugins: ${{ inputs.extra_plugins }}
+          extra_plugins: |
+            conventional-changelog-conventionalcommits
+            ${{ inputs.extra_plugins }}
           dry_run: ${{ inputs.dry_run }}
           ci: ${{ inputs.ci }}
           unset_gha_env: ${{ inputs.unset_gha_env }}
           extends: ${{ inputs.extends }}
           working_directory: ${{ inputs.working_directory }}
-          tag_format: ${{ inputs.tag_format }}
-          repository_url: ${{ inputs.repository_url }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

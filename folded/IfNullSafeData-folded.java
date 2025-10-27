@@ -133,5 +133,4 @@ public class IfNullSafeData {
             return null;
         }
     }
-
 }

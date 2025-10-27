@@ -34,8 +34,8 @@ class InterpolatedString(
     ): Array<FoldingDescriptor> {
         val first = operands.first()
         val last = operands.last()
-        val firstIsQuoteCharacter = first is CharacterLiteral && first.character == '"'
-        val lastIsQuoteCharacter = last is CharacterLiteral && last.character == '"'
+        val firstIsQuoteCharacter = first.isQuoteCharacter()
+        val lastIsQuoteCharacter = last.isQuoteCharacter()
         val group = overflowGroup ?: FoldingGroup.newGroup(
             InterpolatedString::class.java.name + if (isHighlighted()) Expression.HIGHLIGHTED_GROUP_POSTFIX else ""
         )
@@ -97,9 +97,14 @@ class InterpolatedString(
             } else {
                 operands[i + 1].textRange.startOffset
             }
+            val current = operands[i]
+            val currentIsQuoteCharacter = current.isQuoteCharacter()
             val next = operands[i + 1]
-            val nextIsQuoteCharacter = next is CharacterLiteral && next.character == '"'
+            val nextIsQuoteCharacter = next.isQuoteCharacter()
             val placeholder = StringBuilder().append(suffix)
+            if (currentIsQuoteCharacter) {
+                placeholder.append("\\\"")
+            }
             if (next !is CharSequenceLiteral && !nextIsQuoteCharacter) {
                 placeholder.append('$')
             }
@@ -125,7 +130,7 @@ class InterpolatedString(
                 element.node,
                 TextRange.create(last.textRange.startOffset, last.textRange.endOffset),
                 group,
-                "\""
+                "\\\""
             )
         } else if (last !is CharSequenceLiteral && document.textLength > last.textRange.endOffset + 1) {
             val overflowRightRange = TextRange.create(last.textRange.endOffset, last.textRange.endOffset + 1)
@@ -190,6 +195,10 @@ class InterpolatedString(
     override fun isHighlighted(): Boolean {
         val literalCount = operands.count { it is CharSequenceLiteral }
         return literalCount == operands.size && operands.first() is StringLiteral && operands.last() is StringLiteral
+    }
+
+    private fun Expression.isQuoteCharacter(): Boolean {
+        return this is CharacterLiteral && this.character == '"'
     }
 
     companion object {

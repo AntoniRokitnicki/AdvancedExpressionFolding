@@ -40,6 +40,11 @@ public class IfNullSafeData {
                 && user.getProfile().getName() != null) {
             System.out.println(user.getProfile().getName().trim());
         }
+        if (user.getProfile() != null
+                && user != null
+                && user.getProfile().getName() != null) {
+            System.out.println(user.getProfile().getName());
+        }
         if (data != null && data.isActive()) {
             System.out.println("data?.active == true");
         }
