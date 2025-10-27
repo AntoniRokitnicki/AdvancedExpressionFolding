@@ -33,6 +33,7 @@ import org.kodein.di.DI
 import org.kodein.di.bindSingleton
 import java.io.File
 import java.lang.Thread.sleep
+import kotlin.jvm.JvmInline
 import kotlin.io.path.Path
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Duration.Companion.seconds
@@ -113,7 +114,7 @@ class IntegrationTest {
                 next()
             }
             errorList.forEach { (filename, errors) ->
-                println("File: $filename")
+                println("File: ${filename.value}")
                 errors.forEach { error ->
                     println(error.stackTraceContent)
                 }
@@ -292,7 +293,7 @@ class IntegrationTest {
                     seenErrors.add(error)
                 }.toList()
                 if (errors.isNotEmpty()) {
-                    file.name to errors
+                    ErrorFileName(file.name) to errors
                 } else {
                     null
                 }
@@ -350,7 +351,14 @@ private fun init(testName: String): IDETestContext = Starter.newContext(
     PluginConfigurator(this).installPluginFromPath(Path(latestZipFile))
 }
 
-typealias ErrorFileName = String
+@JvmInline
+value class ErrorFileName(val value: String) {
+    init {
+        require(value.endsWith(".java") && !value.contains("..")) {
+            "Invalid error file name: $value"
+        }
+    }
+}
 
 
 private fun Driver.setupProjectWithGradle() {
