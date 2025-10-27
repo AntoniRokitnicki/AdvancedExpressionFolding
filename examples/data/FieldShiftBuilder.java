@@ -16,7 +16,8 @@ public class FieldShiftBuilder {
 
     public static FieldShiftBuilder map(UserData2 source, BuilderFieldShiftBuilder builder, UserDataRecord record) {
         BuilderFieldShiftBuilder builder1 = builder
-                .username(record.username());
+                .username(record.username())
+                .withUserIdentifier(record.userIdentifier());
         var builder2 = builder
                 .active(source.isActive());
         return FieldShiftBuilder.builder().username(record.userIdentifier()).username(changer(record.username()))
@@ -47,6 +48,7 @@ public class FieldShiftBuilder {
         return FieldShiftBuilder.builder()
                 .username(source.getUsername())
                 .userIdentifier(source.getUserIdentifier())
+                .withUserIdentifier(source.getUserIdentifier())
                 .build();
     }
 
@@ -55,6 +57,7 @@ public class FieldShiftBuilder {
                 .username(source.username())
                 .active(source.active())
                 .userIdentifier(source.userIdentifier())
+                .withUserIdentifier(source.userIdentifier())
                 .build();
     }
 
@@ -161,6 +164,11 @@ public class FieldShiftBuilder {
         }
 
         public BuilderFieldShiftBuilder userIdentifier(String userIdentifier) {
+            this.userIdentifier = userIdentifier;
+            return this;
+        }
+
+        public BuilderFieldShiftBuilder withUserIdentifier(String userIdentifier) {
             this.userIdentifier = userIdentifier;
             return this;
         }

@@ -1,5 +1,6 @@
 package com.intellij.advancedExpressionFolding.settings.view
 
+import kotlin.reflect.KClass
 import kotlin.reflect.KMutableProperty0
 
 @DslMarker
@@ -25,6 +26,14 @@ class CheckboxBuilder {
         examples[file] = description
     }
 
+    fun example(exampleClass: Class<*>, description: Description? = null) {
+        example(exampleClass.exampleFileName(), description)
+    }
+
+    fun example(exampleClass: KClass<*>, description: Description? = null) {
+        example(exampleClass.java, description)
+    }
+
     fun link(documentationLink: UrlSuffix) {
         docLink = documentationLink
     }
@@ -41,4 +50,11 @@ class CheckboxBuilder {
         )
     }
 
+}
+
+
+private fun Class<*>.exampleFileName(): ExampleFile {
+    val simpleName = simpleName
+    require(simpleName.isNotEmpty()) { "Example class must have a simple name" }
+    return "${'$'}simpleName.java"
 }

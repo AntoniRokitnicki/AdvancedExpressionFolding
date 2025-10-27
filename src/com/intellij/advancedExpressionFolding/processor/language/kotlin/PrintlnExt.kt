@@ -2,15 +2,16 @@ package com.intellij.advancedExpressionFolding.processor.language.kotlin
 
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.semantic.kotlin.PrintlnExpression
-import com.intellij.advancedExpressionFolding.processor.core.BaseExtension
 import com.intellij.advancedExpressionFolding.processor.end
 import com.intellij.advancedExpressionFolding.processor.equalsIgnoreSpaces
 import com.intellij.advancedExpressionFolding.processor.isWhitespace
 import com.intellij.advancedExpressionFolding.processor.start
-import com.intellij.openapi.util.TextRange
+import com.intellij.advancedExpressionFolding.processor.toTextRange
+import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
+import com.intellij.advancedExpressionFolding.settings.IKotlinLanguageState
 import com.intellij.psi.PsiMethodCallExpression
 
-object PrintlnExt : BaseExtension() {
+object PrintlnExt : IKotlinLanguageState by AdvancedExpressionFoldingSettings.State()() {
 
     fun createExpression(
         element: PsiMethodCallExpression,
@@ -29,7 +30,7 @@ object PrintlnExt : BaseExtension() {
         } ?: dotElement
         val start = element.start()
         val end = endSibling.end()
-        return PrintlnExpression(element, TextRange(start, end), argumentExpression)
+        return PrintlnExpression(element, (start to end).toTextRange(), argumentExpression)
     }
 
 }

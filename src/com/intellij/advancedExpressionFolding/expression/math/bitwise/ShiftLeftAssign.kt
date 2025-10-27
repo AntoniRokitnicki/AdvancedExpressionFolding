@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.intellij.advancedExpressionFolding.expression.math.bitwise
 
 import com.intellij.advancedExpressionFolding.expression.Expression

@@ -1,0 +1,120 @@
+name: Pull Request screenshot labeler
+
+description: "Label pull requests with a screenshot"
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - ready_for_review
+      - edited
+      - synchronize
+  workflow_dispatch:
+    inputs:
+      all_open_prs:
+        description: "Run on all open pull requests"
+        type: boolean
+        default: false
+      pull_request_number:
+        description: "Pull request number to process when not running on all open PRs."
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+
+jobs:
+  label:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Apply screenshot label when needed
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const LABEL_NAME = 'screenshot';
+
+            const hasScreenshot = (body) => {
+              if (!body) {
+                return false;
+              }
+
+              const patterns = [
+                /!\[[^\]]*\]\([^\)]+\)/i,
+                /<img\s[^>]*src=["'][^"']+["']/i,
+                /https?:\/\/\S+\.(?:png|jpe?g|gif|webp)/i,
+              ];
+
+              return patterns.some((pattern) => pattern.test(body));
+            };
+
+            const normalizeBoolean = (value) => String(value || '').toLowerCase() === 'true';
+
+            const allOpen = normalizeBoolean(core.getInput('all_open_prs'));
+            const prNumberInput = (core.getInput('pull_request_number') || '').trim();
+
+            let prNumbers = [];
+
+            if (context.eventName === 'pull_request' && context.payload.pull_request) {
+              prNumbers = [context.payload.pull_request.number];
+            } else if (allOpen) {
+              const openPrs = await github.paginate(github.rest.pulls.list, {
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                state: 'open',
+                per_page: 100,
+              });
+              prNumbers = openPrs.map((pr) => pr.number);
+            } else if (prNumberInput) {
+              const parsed = Number(prNumberInput);
+              if (!Number.isInteger(parsed) || parsed <= 0) {
+                core.setFailed(`Invalid pull request number: "${prNumberInput}".`);
+                return;
+              }
+              prNumbers = [parsed];
+            } else {
+              core.setFailed('No pull request number provided and "all_open_prs" was not enabled.');
+              return;
+            }
+
+            prNumbers = Array.from(new Set(prNumbers));
+
+            if (prNumbers.length === 0) {
+              core.info('No pull requests to process.');
+              return;
+            }
+
+            for (const number of prNumbers) {
+              const { data: issue } = await github.rest.issues.get({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: number,
+              });
+
+              if (!issue.pull_request) {
+                core.info(`Issue #${number} is not a pull request. Skipping.`);
+                continue;
+              }
+
+              const labels = new Set((issue.labels || []).map((label) => label.name));
+              if (labels.has(LABEL_NAME)) {
+                core.info(`PR #${number} already has the "${LABEL_NAME}" label. Skipping.`);
+                continue;
+              }
+
+              if (!hasScreenshot(issue.body)) {
+                core.info(`PR #${number} does not contain a screenshot. Skipping.`);
+                continue;
+              }
+
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: number,
+                labels: [LABEL_NAME],
+              });
+
+              core.info(`Applied "${LABEL_NAME}" label to PR #${number}.`);
+            }

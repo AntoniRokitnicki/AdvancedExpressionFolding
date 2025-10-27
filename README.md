@@ -24,7 +24,7 @@
 [![Marketplace Version](https://img.shields.io/jetbrains/plugin/v/com.github.advanced-java-folding2.svg)](https://plugins.jetbrains.com/plugin/23659-advanced-java-folding-2-fork-)
 [![Downloads](https://img.shields.io/jetbrains/plugin/d/com.github.advanced-java-folding2.svg)](https://plugins.jetbrains.com/plugin/23659-advanced-java-folding-2-fork-)
 ![GitHub Release Date](https://img.shields.io/github/release-date/AntoniRokitnicki/AdvancedExpressionFolding)
-[![GitHub commits since latest release](https://img.shields.io/github/commits-since/AntoniRokitnicki/AdvancedExpressionFolding/latest)](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v4.2.0...main)
+[![GitHub commits since latest release](https://img.shields.io/github/commits-since/AntoniRokitnicki/AdvancedExpressionFolding/latest)](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v5.0.0...main)
 <!-- https://plugins.jetbrains.com/api/plugins/23659/updates?channel=&size=8 -->
 
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/AntoniRokitnicki/AdvancedExpressionFolding)
@@ -44,7 +44,18 @@ Fork of abandoned [Advanced Java Folding](https://plugins.jetbrains.com/plugin/9
 For more information, read the [blog post](https://medium.com/@andrey_cheptsov/making-java-code-easier-to-read-without-changing-it-adeebd5c36de).
 
 ## Unreleased ##
-- [[pseudo-annotations] Quick completions like @Main (generate main method) and @Loggable (add System.out entry/exit logging).](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/PseudoAnnotations)
+
+- [[lombok] Add folding support for Lombok @With, including examples and folded previews](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/537).
+- [[lombok] Add @PostConstructor marker annotation for constructor method calls without hiding methods](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/546).
+- [[pseudo-annotations] Improve @Main completion defaults and fix insertion when class Javadoc contains braces](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/495) ([#547](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/547)).
+- [Use the project coroutine scope for folding clean-up to avoid leaking background jobs](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/365).
+
+## 5.0.0 ##
+- [[pseudo-annotations] @Loggable - toggleable pseudo-annotation with control-flow analysis for automatic method entry/exit logging, parameters, return values, and exceptions](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/PseudoAnnotations)
+- [[pseudo-annotations] @TracingLoggable - uses XDebugger tracing breakpoints for expression logging with grouped breakpoints and class-level toggling](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/PseudoAnnotations)
+- [Log folding now supports variable folding inside Java text blocks](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/371)
+- [Method default parameters skip folding during debugging to prevent breakpoint interference](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/424)
+- Complete Java→Kotlin migration of entire codebase
 
 ## 4.2.0 ##
 - [Add setting to prevent collapsing Java text blocks in log folding](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/338)
@@ -95,7 +106,7 @@ For more information, read the [blog post](https://medium.com/@andrey_cheptsov/m
 
 
 ## New features:
-- **Lombok Emulator & Validator**: [`@Data`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#data), [`@Getter`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#getter), [`@Setter`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#setter), [`@ToString`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#tostring), [`@EqualsAndHashCode`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#equalsandhashcode), [`@NoArgsConstructor`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#noargsconstructor), [`@AllArgsConstructor`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#allargsconstructor), [`@RequiredArgsConstructor`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#requiredargsconstructor), [`@Builder`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#builder), [`@Value`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#value), [`@Log`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#log), [`@Equals`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#equals), [`@HashCode`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#hashcode), [`@Serial`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#serial), [`@Constructor`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#constructor), [`@LightValue`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#lightvalue)
+- **Lombok Emulator & Validator**: [`@Data`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#data), [`@Getter`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#getter), [`@Setter`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#setter), [`@With`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#with), [`@ToString`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#tostring), [`@EqualsAndHashCode`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#equalsandhashcode), [`@NoArgsConstructor`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#noargsconstructor), [`@AllArgsConstructor`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#allargsconstructor), [`@RequiredArgsConstructor`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#requiredargsconstructor), [`@HasBuilder`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#hasbuilder), [`@Value`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#value), [`@Log`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#log), [`@Equals`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#equals), [`@HashCode`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#hashcode), [`@Serial`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#serial), [`@Constructor`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#constructor), [`@LightValue`](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/lombok#lightvalue)
 - [Extended java time folding](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/Extended-java-time-folding)
 - [**Logger Brackets Folding**: For Slf4j and other logging framework](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/Log-brackets-folding)
 - [Extended null-safe ifs](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/Extended-null%E2%80%90safe-ifs)
@@ -150,8 +161,31 @@ This project uses the Gradle wrapper. The most common commands are:
 
 Run these commands from the repository root. See the [Gradle build documentation](https://docs.gradle.org/current/userguide/command_line_interface.html) for more options.
 
-## License
+## Developer toggles
 
+The test suite exposes a few long-running or destructive behaviours behind environment variables so that routine `./gradlew test` executions stay fast and predictable.
+
+| Variable      | Supported values | Effect |
+|---------------|------------------|--------|
+| `dev-mode`    | `1`              | Enables the copy-on-write helper in [`BaseTest`](test/com/intellij/advancedExpressionFolding/BaseTest.kt), replacing fixtures under `testData/` with the matching sources from `examples/data/` before running a test. Disabled by default to prevent accidental overwrites of curated fixtures. |
+| `crazy-mode`  | `1`              | *(Work in progress — has never finished successfully.)* Includes the behaviour above and additionally unlocks [`CrazyFoldingTest`](test/com/intellij/advancedExpressionFolding/CrazyFoldingTest.kt), an exhaustive stress test that demands extremely long runtimes and writes commits for millions of permutations. This level stays disabled unless explicitly requested to avoid monopolising CI resources. |
+| `integration` | `1`              | Enables [`IntegrationTest`](test/com/intellij/advancedExpressionFolding/integration/IntegrationTest.kt), which spins up a full IDE via the IntelliJ Driver, downloads dependencies, and interacts with real UI components. It is skipped by default to keep local and CI runs lightweight. |
+
+### Sample invocations
+
+```bash
+DEV_MODE=1 ./gradlew test
+integration=1 ./gradlew test IntegrationTest
+```
+
+## Charts
+<img width="1600" height="1200" alt="people" src="https://github.com/user-attachments/assets/502f4edb-f1c9-4b00-9e6f-f704c060aeed" />
+<img width="3200" height="1600" alt="time_series" src="https://github.com/user-attachments/assets/796061b4-3a9a-4586-aaf7-1d957c859e38" />
+<img width="1600" height="1200" alt="project" src="https://github.com/user-attachments/assets/2fe2e9f8-683b-4a0e-b7f9-c6c99b19d107" />
+<img width="1600" height="1200" alt="matrix" src="https://github.com/user-attachments/assets/4b330319-b3d4-4a0c-a57a-3768c7f1c29c" />
+<img width="1600" height="1000" alt="efforts" src="https://github.com/user-attachments/assets/bd95b502-c8d8-4255-95ce-d75ba2d10c48" />
+
+## License
 This project is licensed under the terms of the [Apache License 2.0](LICENSE).
 
 [template]: https://github.com/JetBrains/intellij-platform-plugin-template

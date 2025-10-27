@@ -5,14 +5,17 @@ import com.intellij.openapi.components.PersistentStateComponent
 import com.intellij.openapi.components.State
 import com.intellij.openapi.components.Storage
 import org.jetbrains.annotations.NotNull
+import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KClass
 import kotlin.reflect.KMutableProperty
 import kotlin.reflect.KMutableProperty0
+import kotlin.reflect.KProperty
 import kotlin.reflect.full.memberProperties
 import kotlin.reflect.jvm.javaType
 
 @State(name = "AdvancedExpressionFoldingSettings", storages = [Storage("editor.codeinsight.xml")])
-class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpressionFoldingSettings.State> {
+class AdvancedExpressionFoldingSettings :
+    PersistentStateComponent<AdvancedExpressionFoldingSettings.State> {
     private var myState = State()
     override fun getState(): State = myState
 
@@ -20,6 +23,25 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
         myState = state.copy()
     }
 
+    /**
+     * Property delegate providing access to global settings state with interface delegation support.
+     *
+     * Usage patterns:
+     *
+     * 1. Object with interface delegation:
+     * ```kotlin
+     * object DelegatedObject : IGlobalSettingsState by AdvancedExpressionFoldingSettings.State()() {
+     *     fun process() = if (experimental) ... else ...
+     * }
+     * ```
+     *
+     * 2. Class with interface delegation:
+     * ```kotlin
+     * class DelegatedClass : IGlobalSettingsState by AdvancedExpressionFoldingSettings.State()() {
+     *     fun analyze() = experimental
+     * }
+     * ```
+     */
     data class State(
         override var concatenationExpressionsCollapse: Boolean = true,
         override var slicingExpressionsCollapse: Boolean = true,
@@ -77,8 +99,14 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
         override var experimental: Boolean = false,
 
         override var globalOn: Boolean = true,
+        ) : IState, ReadOnlyProperty<Any?, State> {
+        override fun getValue(
+            thisRef: Any?,
+            property: KProperty<*>
+        ): State = getInstance().state
 
-        ) : IState, IConfig
+        operator fun invoke(): State = getInstance().state
+    }
 
     private fun updateAllState(value: Boolean, vararg excludeProperties: KMutableProperty<Boolean>) {
         val excluded = excludeProperties.map { it.toString() }
@@ -96,6 +124,9 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
 
     fun disableAll() = updateAllState(false)
     fun enableAll(vararg excludeProperties: KMutableProperty0<Boolean>) = updateAllState(true, *excludeProperties)
+    fun restoreDefaults() {
+        myState = State()
+    }
 
     // used in integrationStubs
     fun enableEverything() = updateAllState(true, state::emojify, state::finalEmoji)
@@ -111,10 +142,6 @@ class AdvancedExpressionFoldingSettings : PersistentStateComponent<AdvancedExpre
             .filter { property ->
                 exclude(IConfig::class, property)
             }
-
-        fun allMainProperties() = allProperties().filter { property ->
-            exclude(ILessImportantState::class, property)
-        }
 
         private fun exclude(
             kClass: KClass<*>,

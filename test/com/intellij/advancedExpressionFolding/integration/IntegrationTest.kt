@@ -129,11 +129,11 @@ class IntegrationTest {
 
             check(service<SettingsStub>().getState().globalOn) { "globalOn should start enabled" }
 
-            execute { it.searchEverywhere(textToType = "Advanced Folding: Global", selectFirst = true) }
+            execute { it.searchEverywhere(textToInsert = "Advanced Folding: Global", selectFirst = true, startThoughAction = true) }
             wait()
             check(!service<SettingsStub>().getState().globalOn) { "globalOn should be disabled after toggle" }
 
-            execute { it.searchEverywhere(textToType = "Advanced Folding: Global", selectFirst = true) }
+            execute { it.searchEverywhere(textToInsert = "Advanced Folding: Global", selectFirst = true, startThoughAction = true) }
             wait()
             check(service<SettingsStub>().getState().globalOn) { "globalOn should be re-enabled after second toggle" }
         }
@@ -143,6 +143,7 @@ class IntegrationTest {
     fun `find methods with default parameters action shows usage results`() {
         val init = init("findMethodsWithDefaultParameters")
         init.runIdeWithDriver().useDriverAndCloseIde {
+            wait()
             setupProjectWithGradle()
 
             execute { it.searchEverywhere(textToInsert = "Find Methods with Default Parameters", selectFirst = true) }

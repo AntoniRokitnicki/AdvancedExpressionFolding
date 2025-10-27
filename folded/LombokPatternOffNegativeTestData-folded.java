@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  * {@link com.intellij.advancedExpressionFolding.FoldingTest#testLombokPatternOffTestData()}
  */
 @SuppressWarnings("ALL")
-@Builder(ClassWithBuilder) @Getter @Setter @Serial public class LombokPatternOffNegativeTestData {
+@HasBuilder(ClassWithBuilder) @Getter @Setter @Serial public class LombokPatternOffNegativeTestData {
 
     LombokPatternOffNegativeTestData data;
     boolean ok;
@@ -417,7 +417,7 @@ import java.util.logging.Logger;
         private String ignored;
     }
 
-    @Builder class ClassWithBuilder {
+    @HasBuilder class ClassWithBuilder {
         private String name;
         class ClassWithBuilderBuilder {
             private String name;

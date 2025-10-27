@@ -3,7 +3,7 @@ package data;
 import java.time.LocalDate;
 
 @SuppressWarnings("ALL")
-class LetReturnIt {
+public class LetReturnIt {
     static String buildExpression(String someString) <fold text='{...}' expand='true'>{
         <fold text='val' expand='false'><fold text='' expand='true'>String</fold> var1 = </fold>getData(someString)<fold text='?.let { return it }' expand='true'>;
         if (var1 != null) <fold text='{...}' expand='true'>{
