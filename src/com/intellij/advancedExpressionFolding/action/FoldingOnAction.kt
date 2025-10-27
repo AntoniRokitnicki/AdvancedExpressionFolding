@@ -7,12 +7,13 @@ import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
 
-class FoldingOnAction(private val state: IConfig = AdvancedExpressionFoldingSettings.getInstance().state) :
-    AnAction(), IConfig by state {
+class FoldingOnAction :
+    AnAction(),
+    IConfig by AdvancedExpressionFoldingSettings.State()() {
 
     override fun actionPerformed(e: AnActionEvent) {
-        if (!state.globalOn) {
-            state.globalOn = true
+        if (!globalOn) {
+            globalOn = true
         }
         e.getData(CommonDataKeys.EDITOR)?.let {
             FoldingService.get().fold(it, true)

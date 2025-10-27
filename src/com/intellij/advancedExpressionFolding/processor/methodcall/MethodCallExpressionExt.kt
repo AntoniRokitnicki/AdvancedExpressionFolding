@@ -5,14 +5,22 @@ import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.property.Getter
 import com.intellij.advancedExpressionFolding.expression.property.GetterRecord
 import com.intellij.advancedExpressionFolding.expression.property.Setter
-import com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt
 import com.intellij.advancedExpressionFolding.processor.argumentExpressions
 import com.intellij.advancedExpressionFolding.processor.argumentCount
+import com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt
 import com.intellij.advancedExpressionFolding.processor.language.FieldShiftExt
 import com.intellij.advancedExpressionFolding.processor.logger.LoggerBracketsExt
-import com.intellij.advancedExpressionFolding.processor.util.Helper
+import com.intellij.advancedExpressionFolding.processor.util.Helper.eraseGenerics
+import com.intellij.advancedExpressionFolding.processor.util.Helper.guessNamelessPropertyName
+import com.intellij.advancedExpressionFolding.processor.util.Helper.isGetter
+import com.intellij.advancedExpressionFolding.processor.util.Helper.isNamelessGetter
+import com.intellij.advancedExpressionFolding.processor.util.Helper.isNamelessSetter
+import com.intellij.advancedExpressionFolding.processor.util.Helper.isSetter
+import com.intellij.advancedExpressionFolding.processor.util.Helper.startsWith
 import com.intellij.advancedExpressionFolding.processor.util.PropertyUtil.guessPropertyName
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
+import com.intellij.advancedExpressionFolding.settings.IExpressionCollapseState
+import com.intellij.advancedExpressionFolding.settings.IGlobalSettingsState
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiElement
@@ -23,10 +31,11 @@ import com.intellij.psi.PsiMethodCallExpression
 import com.intellij.psi.PsiReferenceExpression
 import com.intellij.psi.PsiStatement
 
-object MethodCallExpressionExt {
+object MethodCallExpressionExt :
+    IExpressionCollapseState by AdvancedExpressionFoldingSettings.State()(),
+    IGlobalSettingsState by AdvancedExpressionFoldingSettings.State()() {
 
     fun getMethodCallExpression(element: PsiMethodCallExpression, document: Document): Expression? {
-        val settings = AdvancedExpressionFoldingSettings.getInstance()
         val referenceExpression = element.methodExpression
         val identifier = referenceExpression.children.firstOrNull { it is PsiIdentifier } ?: return null
         val qualifier = referenceExpression.qualifierExpression
@@ -35,7 +44,7 @@ object MethodCallExpressionExt {
 
         useMethodCallFactory(identifier, referenceExpression, document, qualifier, element)?.let { return it }
 
-        return onAnyArguments(element, settings, document, identifier, qualifier, referenceExpression)
+        return onAnyArguments(element, document, identifier, qualifier, referenceExpression)
     }
 
     private fun useMethodCallFactory(
@@ -52,7 +61,7 @@ object MethodCallExpressionExt {
         val method = referenceExpression.resolve() as? PsiMethod ?: return null
         val psiClass = method.containingClass ?: return null
         val qualifiedName = psiClass.qualifiedName ?: return null
-        val className = Helper.eraseGenerics(qualifiedName)
+        val className = eraseGenerics(qualifiedName)
         val supported = factory.supportedClasses.contains(className) || factory.classlessMethods.contains(method.name)
         return if (supported) {
             onAnyExpression(element, document, qualifier, identifier, className, method)
@@ -86,19 +95,18 @@ object MethodCallExpressionExt {
 
     private fun onAnyArguments(
         element: PsiMethodCallExpression,
-        settings: AdvancedExpressionFoldingSettings,
         document: Document,
         identifier: PsiElement,
         qualifier: PsiExpression?,
         referenceExpression: PsiReferenceExpression
     ): Expression? {
-        if (settings.state.getSetExpressionsCollapse) {
-            onGetterSetter(element, document, identifier, qualifier)?.let { return it }
+        if (getSetExpressionsCollapse) {
+            onGetterSetter(element, document, identifier, qualifier, experimental)?.let { return it }
         }
         val resolved = referenceExpression.resolve()
         if (resolved is PsiMethod) {
             val psiClass = resolved.containingClass
-            onGetterRecord(element, settings, document, psiClass, qualifier, identifier)?.let { return it }
+            onGetterRecord(element, document, psiClass, qualifier, identifier)?.let { return it }
         }
         val text = identifier.text
         return LoggerBracketsExt.createExpression(element, text, document)
@@ -106,14 +114,13 @@ object MethodCallExpressionExt {
 
     private fun onGetterRecord(
         element: PsiMethodCallExpression,
-        settings: AdvancedExpressionFoldingSettings,
         document: Document,
         psiClass: com.intellij.psi.PsiClass?,
         qualifier: PsiExpression?,
         identifier: PsiElement
     ): Expression? {
         if (psiClass != null && psiClass.isRecord && element.argumentCount == 0) {
-            if (settings.state.getSetExpressionsCollapse) {
+            if (getSetExpressionsCollapse) {
                 val expression = qualifier?.let { BuildExpressionExt.getAnyExpression(it, document) }
                 return GetterRecord(
                     element,
@@ -131,23 +138,33 @@ object MethodCallExpressionExt {
         element: PsiMethodCallExpression,
         document: Document,
         identifier: PsiElement,
-        qualifier: PsiExpression?
+        qualifier: PsiExpression?,
+        experimental: Boolean
     ): Expression? {
-        if (Helper.isGetter(identifier, element)) {
+        val resolvedMethod = element.resolveMethod()
+        if (
+            isGetter(identifier, element) ||
+            experimental && isNamelessGetter(identifier.text, element, resolvedMethod)
+        ) {
             val expression = qualifier?.let { BuildExpressionExt.getAnyExpression(it, document) }
+            val propertyName = guessPropertyName(identifier.text).ifBlank {
+                guessNamelessPropertyName(resolvedMethod)
+            }
             return Getter(
                 element,
                 element.textRange,
                 TextRange.create(identifier.textRange.startOffset, element.textRange.endOffset),
                 expression,
-                guessPropertyName(identifier.text)
+                propertyName
             )
         }
         val text = identifier.text
-        if (isSimpleSetter(text, element, qualifier)) {
+        if (isSimpleSetter(text, element, qualifier, experimental, resolvedMethod)) {
             val qualifierExpression = qualifier?.let { BuildExpressionExt.getAnyExpression(it, document) }
             val paramExpression = BuildExpressionExt.getAnyExpression(element.argumentExpressions[0], document)
-            val propertyName = guessPropertyName(text)
+            val propertyName = guessPropertyName(text).ifBlank {
+                guessNamelessPropertyName(resolvedMethod)
+            }
             return Setter(
                 element,
                 element.textRange,
@@ -163,9 +180,12 @@ object MethodCallExpressionExt {
     private fun isSimpleSetter(
         text: String,
         element: PsiMethodCallExpression,
-        qualifier: PsiExpression?
+        qualifier: PsiExpression?,
+        experimental: Boolean,
+        method: PsiMethod?
     ): Boolean {
-        if (!Helper.isSetter(text)) {
+        val isNamelessSetter = experimental && isNamelessSetter(text, element, method)
+        if (!isSetter(text) && !isNamelessSetter) {
             return false
         }
         if (element.argumentCount != 1) {
@@ -176,7 +196,7 @@ object MethodCallExpressionExt {
         }
         if (qualifier is PsiMethodCallExpression) {
             val referenceName = qualifier.methodExpression.referenceName
-            if (referenceName != null && Helper.startsWith(referenceName, "set")) {
+            if (referenceName != null && startsWith(referenceName, "set")) {
                 return false
             }
         }

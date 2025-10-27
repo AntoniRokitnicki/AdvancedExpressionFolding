@@ -6,10 +6,12 @@ import com.intellij.advancedExpressionFolding.expression.semantic.logging.Logger
 import com.intellij.advancedExpressionFolding.expression.semantic.logging.LoggerBracketParentExpression
 import com.intellij.advancedExpressionFolding.processor.asInstance
 import com.intellij.advancedExpressionFolding.processor.argumentExpressions
-import com.intellij.advancedExpressionFolding.processor.core.BaseExtension
+import com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt
 import com.intellij.advancedExpressionFolding.processor.end
 import com.intellij.advancedExpressionFolding.processor.start
 import com.intellij.advancedExpressionFolding.processor.toTextRange
+import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
+import com.intellij.advancedExpressionFolding.settings.ILogFoldingState
 import com.intellij.openapi.editor.Document
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiExpression
@@ -20,7 +22,7 @@ import com.intellij.psi.PsiMethodCallExpression
 open class LoggerBracketsExtensionBase(
     protected val element: PsiMethodCallExpression,
     protected val document: Document
-) : BaseExtension(){
+) : ILogFoldingState by AdvancedExpressionFoldingSettings.State()() {
 
     fun processExpression(): Expression? {
         val logLiteral = element.argumentExpressions.takeIf {
@@ -31,6 +33,7 @@ open class LoggerBracketsExtensionBase(
         val split = logText.splitTextPattern() ?: return null
 
         val arguments = element.argumentExpressions.toMutableList().prepareArguments()
+        if (arguments.isEmpty()) return null
         var nextStringAddon = ""
         val hasTooManyArguments = split.size <= arguments.size
         var hasLast = false
@@ -60,7 +63,7 @@ open class LoggerBracketsExtensionBase(
                     null
                 }
             } else {
-                val expression = getAnyExpression(argument, document)
+                val expression = BuildExpressionExt.getAnyExpression(argument, document)
                 val text = if (expression is Variable) {
                     "\$"
                 } else {
@@ -89,7 +92,7 @@ open class LoggerBracketsExtensionBase(
     ): LoggerBracketParentExpression {
         val finalExpressions = if (hasTooManyArguments) {
             this + arguments.subList(split.size - 1, arguments.size).map { expr ->
-                getAnyExpression(expr, document)
+                BuildExpressionExt.getAnyExpression(expr, document)
             }
         } else {
             this

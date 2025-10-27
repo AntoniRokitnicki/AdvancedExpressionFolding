@@ -27,3 +27,24 @@ Removes boilerplate while preserving behavior.
 Default: On
 Controlled by: `suppressWarningsHide`
 Related features: (none)
+
+---
+### Folding catalogue
+
+#### SuppressWarningsHideTestData
+
+##### Scenario 1
+
+**Before**
+```java
+    @SuppressWarnings("deprecation")
+```
+
+
+##### Scenario 2
+
+**Before**
+```java
+    @SuppressWarnings({"rawtypes", "unchecked"})
+```
+

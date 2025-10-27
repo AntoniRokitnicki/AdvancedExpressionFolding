@@ -1,11 +1,13 @@
+@file:Suppress("DEPRECATION")
+
 package com.intellij.advancedExpressionFolding.processor.declaration
 
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.controlflow.ControlFlowMultiStatementCodeBlockExpression
 import com.intellij.advancedExpressionFolding.expression.controlflow.ControlFlowSingleStatementCodeBlockExpression
 import com.intellij.advancedExpressionFolding.expression.controlflow.IfExpression
-import com.intellij.advancedExpressionFolding.processor.core.BaseExtension
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
+import com.intellij.advancedExpressionFolding.settings.IControlFlowState
 import com.intellij.psi.PsiBlockStatement
 import com.intellij.psi.PsiCatchSection
 import com.intellij.psi.PsiCodeBlock
@@ -15,22 +17,21 @@ import com.intellij.psi.PsiLoopStatement
 import com.intellij.psi.PsiSwitchStatement
 import com.intellij.psi.PsiTryStatement
 
-object PsiCodeBlockExt : BaseExtension() {
+object PsiCodeBlockExt : IControlFlowState by AdvancedExpressionFoldingSettings.State()() {
 
     fun getCodeBlockExpression(element: PsiCodeBlock): Expression? {
         val parent = element.parent
-        val settings = AdvancedExpressionFoldingSettings.getInstance()
         if (!isSupportedParent(parent, element)) {
             return null
         }
         return if (element.statements.size == 1 || parent is PsiSwitchStatement) {
-            if (shouldCollapseSingleStatement(element, parent, settings)) {
+            if (shouldCollapseSingleStatement(element, parent)) {
                 ControlFlowSingleStatementCodeBlockExpression(element, element.textRange)
             } else {
                 null
             }
         } else {
-            if (settings.state.controlFlowMultiStatementCodeBlockCollapse && !element.isWritable) {
+            if (controlFlowMultiStatementCodeBlockCollapse && !element.isWritable) {
                 @Suppress("DEPRECATION")
                 ControlFlowMultiStatementCodeBlockExpression(element, element.textRange)
             } else {
@@ -52,14 +53,13 @@ object PsiCodeBlockExt : BaseExtension() {
 
     private fun shouldCollapseSingleStatement(
         element: PsiCodeBlock,
-        parent: PsiElement?,
-        settings: AdvancedExpressionFoldingSettings
+        parent: PsiElement?
     ): Boolean {
-        if (!settings.state.controlFlowSingleStatementCodeBlockCollapse || element.isWritable) {
+        if (!controlFlowSingleStatementCodeBlockCollapse || element.isWritable) {
             return false
         }
         val grandParent = parent?.parent
         return grandParent !is PsiIfStatement ||
-            !IfExpression.isAssertExpression(settings.state, grandParent)
+            !IfExpression.isAssertExpression(grandParent)
     }
 }

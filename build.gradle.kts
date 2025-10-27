@@ -97,8 +97,7 @@ dependencies {
     implementation(libs.annotations)
     implementation(libs.jsr305)
     implementation(libs.jackson.dataformat.toml)
-
-    testImplementation(examplesTestOutput)
+    implementation(examplesTestOutput)
 
     testRuntimeOnly(libs.junit.jupiter.engine)
     testImplementation(libs.junit.jupiter.api)
@@ -210,9 +209,11 @@ tasks {
     }
 
     processResources {
+        dependsOn(":examples:testClasses")
         from("examples/data") {
             into("data")
         }
+        from(examplesTestOutput.classesDirs)
     }
 }
 

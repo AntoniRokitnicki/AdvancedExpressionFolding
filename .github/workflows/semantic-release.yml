@@ -1,0 +1,121 @@
+name: Semantic Release Action
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_type:
+        description: 'Select release type: release = patch'
+        type: choice
+        default: release
+        options:
+          - release
+          - minor
+          - major
+      semantic_version:
+        description: 'Version range for semantic-release'
+        default: ''
+      branches:
+        description: 'Override branches configuration JSON'
+        default: ''
+      branch:
+        description: 'Override single branch for semantic-release < v16'
+        default: ''
+      extra_plugins:
+        description: 'Extra plugins to pre-install one per line'
+        default: ''
+      dry_run:
+        description: 'Run semantic-release in dry-run mode'
+        type: boolean
+        default: false
+      ci:
+        description: 'Run semantic-release with CI support'
+        type: boolean
+        default: true
+      unset_gha_env:
+        description: 'Unset the GITHUB_ACTIONS environment variable'
+        type: boolean
+        default: false
+      extends:
+        description: 'Shareable configurations to extend one per line'
+        default: ''
+      working_directory:
+        description: 'Working directory for semantic-release'
+        default: '.'
+
+jobs:
+  manual-release:
+    if: github.event_name == 'workflow_dispatch'
+    name: Manual Semantic Release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Configure Git user
+        run: |
+          git config user.name "${GITHUB_ACTOR}"
+          git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+
+      - name: Bump plugin version
+        id: bump
+        shell: bash
+        run: |
+          set -euo pipefail
+          current=$(grep '^pluginVersion =' gradle.properties | awk '{print $3}')
+          IFS='.' read -r major minor patch <<<"$current"
+
+          case "${{ inputs.release_type }}" in
+            major)
+              major=$((major + 1)); minor=0; patch=0;;
+            minor)
+              minor=$((minor + 1)); patch=0;;
+            release)
+              patch=$((patch + 1));;
+            *)
+              echo "Unsupported release type: ${{ inputs.release_type }}" >&2
+              exit 1;;
+          esac
+
+          next="${major}.${minor}.${patch}"
+          sed -i "s/^pluginVersion = .*/pluginVersion = ${next}/" gradle.properties
+
+          echo "next=${next}" >> "$GITHUB_OUTPUT"
+          echo "type=${{ inputs.release_type }}" >> "$GITHUB_OUTPUT"
+
+      - name: Commit version bump
+        if: ${{ inputs.dry_run != 'true' }}
+        run: |
+          set -euo pipefail
+          git add gradle.properties
+          if git diff --cached --quiet; then
+            echo 'No changes to commit.' >&2
+            exit 1
+          fi
+          git commit -m "release(${{ steps.bump.outputs.type }}): bump version to ${{ steps.bump.outputs.next }}"
+
+      - name: Push changes
+        if: ${{ inputs.dry_run != 'true' }}
+        run: |
+          git push origin HEAD:${{ github.ref_name }}
+
+      - name: Semantic Release
+        uses: cycjimmy/semantic-release-action@v5.0.0
+        with:
+          semantic_version: ${{ inputs.semantic_version }}
+          branches: ${{ inputs.branches }}
+          branch: ${{ inputs.branch }}
+          extra_plugins: |
+            conventional-changelog-conventionalcommits
+            ${{ inputs.extra_plugins }}
+          dry_run: ${{ inputs.dry_run }}
+          ci: ${{ inputs.ci }}
+          unset_gha_env: ${{ inputs.unset_gha_env }}
+          extends: ${{ inputs.extends }}
+          working_directory: ${{ inputs.working_directory }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -1,6 +1,6 @@
 package com.intellij.advancedExpressionFolding.pseudo
 
-import com.intellij.advancedExpressionFolding.BaseTest
+import com.intellij.advancedExpressionFolding.folding.BaseTest
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
 import com.intellij.codeInsight.completion.CompletionType
 import com.intellij.openapi.application.ApplicationManager

@@ -1,6 +1,6 @@
 package com.intellij.advancedExpressionFolding.performance
 
-import com.intellij.advancedExpressionFolding.BaseTest
+import com.intellij.advancedExpressionFolding.folding.BaseTest
 import com.intellij.advancedExpressionFolding.processor.methodcall.MethodCallFactory
 import com.intellij.advancedExpressionFolding.processor.methodcall.dynamic.DynamicMethodCall
 import com.intellij.advancedExpressionFolding.processor.methodcall.dynamic.DynamicMethodCallData

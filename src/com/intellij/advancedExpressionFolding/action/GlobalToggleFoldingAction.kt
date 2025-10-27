@@ -7,8 +7,10 @@ import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.ToggleAction
 import com.intellij.openapi.project.DumbAware
 
-class GlobalToggleFoldingAction(private val state: IConfig = AdvancedExpressionFoldingSettings.getInstance().state) :
-    ToggleAction(), IConfig by state, DumbAware {
+class GlobalToggleFoldingAction :
+    ToggleAction(),
+    IConfig by AdvancedExpressionFoldingSettings.State()(),
+    DumbAware {
 
     override fun isSelected(e: AnActionEvent): Boolean = globalOn
 

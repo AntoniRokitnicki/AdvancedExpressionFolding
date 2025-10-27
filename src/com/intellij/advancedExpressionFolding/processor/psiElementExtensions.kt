@@ -12,6 +12,8 @@ import com.intellij.psi.impl.source.PsiClassReferenceType
 import com.intellij.psi.search.LocalSearchScope
 import com.intellij.psi.search.searches.ReferencesSearch
 import com.intellij.psi.util.MethodSignature
+import com.intellij.psi.util.PsiTypesUtil
+import com.intellij.xdebugger.XDebuggerManager
 
 fun isNull(type: PsiType?): Boolean = (type as? PsiPrimitiveType)?.name == "null"
 
@@ -48,6 +50,10 @@ fun PsiExpressionList.filterOutWhiteSpaceAndTokens() = children.filter {
 fun PsiElement.isIgnorable() = this is PsiJavaToken || isWhitespace()
 
 fun PsiElement.isWhitespace() = this is PsiWhiteSpace
+
+
+fun isDebugSessionActive(element: PsiElement): Boolean =
+    XDebuggerManager.getInstance(element.project).currentSession != null
 
 
 val PsiCall.argumentExpressions: Array<PsiExpression>
@@ -114,8 +120,39 @@ fun PsiAnnotation.isSuppressWarnings() = qualifiedName == "java.lang.SuppressWar
 fun PsiMethod.isSetterOrBuilder(): Boolean = isSetter() || isBuilder()
 
 fun PsiMethod.isSetter(): Boolean {
-    fun isSetter(text: String) = text.startsWith("set") && text.length > 3 && Character.isUpperCase(text[3])
-    return parameterList.parametersCount == 1 && returnType.isVoid() && isSetter(name)
+    if (parameterList.parametersCount != 1) {
+        return false
+    }
+    val methodName = name
+    fun hasSetterPrefix(prefix: String) =
+        methodName.startsWith(prefix) && methodName.length > prefix.length && Character.isUpperCase(methodName[prefix.length])
+
+    val hasSetPrefix = hasSetterPrefix("set")
+    val hasWithPrefix = hasSetterPrefix("with")
+    if (!hasSetPrefix && !hasWithPrefix) {
+        return false
+    }
+
+    val returnType = returnType
+    if (returnType.isVoid()) {
+        return true
+    }
+
+    if (hasWithPrefix) {
+        val containingType = containingClass?.let { PsiTypesUtil.getClassType(it) }
+        if (containingType != null && returnType == containingType) {
+            return true
+        }
+    }
+
+    return false
+}
+
+fun PsiMethod.isWith(): Boolean {
+    fun isWith(text: String) = text.startsWith("with") && text.length > 4 && Character.isUpperCase(text[4])
+    val containing = containingClass ?: return false
+    val returnType = returnType as? PsiClassType ?: return false
+    return parameterList.parametersCount == 1 && isWith(name) && returnType.resolve() == containing
 }
 
 fun PsiMethod.isGetter(): Boolean {
@@ -191,7 +228,12 @@ fun PsiField.hasLiteralConstInitializer() = initializer is PsiLiteralExpression
 
 fun PsiMethod.isBuilder(): Boolean = containingClass?.isBuilder() == true
 
-fun PsiMethod.guessPropertyName(): String = PropertyUtil.guessPropertyName(name)
+fun PsiMethod.guessPropertyName(): String {
+    if (name.startsWith("with") && name.length > 4 && Character.isUpperCase(name[4])) {
+        return name.substring(4).replaceFirstChar(Char::lowercase)
+    }
+    return PropertyUtil.guessPropertyName(name)
+}
 
 fun <T : PsiElement> PsiElement.findParents(
     parentClass: Class<T>,

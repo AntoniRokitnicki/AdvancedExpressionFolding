@@ -1,7 +1,6 @@
 package com.intellij.advancedExpressionFolding.processor.lombok
 
 import com.intellij.advancedExpressionFolding.processor.*
-import com.intellij.advancedExpressionFolding.processor.core.BaseExtension
 import com.intellij.advancedExpressionFolding.processor.lombok.AnnotationExt.ClassLevelAnnotation
 import com.intellij.advancedExpressionFolding.processor.lombok.LombokConstructorExt.foldArgsConstructor
 import com.intellij.advancedExpressionFolding.processor.lombok.LombokConstructorExt.foldNoArgsConstructor
@@ -15,12 +14,14 @@ import com.intellij.advancedExpressionFolding.processor.lombok.LombokFoldingAnno
 import com.intellij.advancedExpressionFolding.processor.lombok.LombokMethodExt.interfaceSupport
 import com.intellij.advancedExpressionFolding.processor.lombok.LombokMethodExt.isFinder
 import com.intellij.advancedExpressionFolding.processor.lombok.MethodType.*
+import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
+import com.intellij.advancedExpressionFolding.settings.ILombokState
 import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiField
 import com.intellij.psi.PsiMethod
 import com.intellij.psi.impl.source.PsiClassReferenceType
 
-object LombokExt : BaseExtension() {
+object LombokExt : ILombokState by AdvancedExpressionFoldingSettings.State()() {
 
     fun PsiClass.addLombokSupport(): List<ClassLevelAnnotation> {
         if (isInterface) {
@@ -80,7 +81,7 @@ object LombokExt : BaseExtension() {
         }.map { logField ->
             val dirty = logField.name != "log"
             logField.markIgnored()
-            val arguments = dirty.on(logField.name)?.let {
+            val arguments = dirty.takeIfTrue(logField.name)?.let {
                 listOf(it)
             } ?: emptyList()
             ClassLevelAnnotation(LOMBOK_LOG, listOf(logField), arguments = arguments)
@@ -122,6 +123,7 @@ object LombokExt : BaseExtension() {
     fun PsiMethod.findMethodType(): MethodType =
         when {
             isGetter() -> GETTER
+            isWith() -> WITH
             isSetter() -> SETTER
             isToString() -> TO_STRING
             isEquals() -> EQUALS

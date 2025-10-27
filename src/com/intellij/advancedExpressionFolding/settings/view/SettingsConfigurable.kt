@@ -127,6 +127,12 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
                 applyBulkChange { disableAll() }
             }
             cell(disableAllButton)
+
+            val restoreDefaultsButton = JButton("Restore defaults")
+            restoreDefaultsButton.addActionListener {
+                applyBulkChange { restoreDefaults() }
+            }
+            cell(restoreDefaultsButton)
         }
         initialize(state)
     }.also {
@@ -253,7 +259,6 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
         temporarySettings.loadState(currentState)
         temporarySettings.action()
         val updatedState = temporarySettings.state
-
         bulkUpdateInProgress = true
         try {
             propertyToCheckbox.forEach { (property, checkbox) ->

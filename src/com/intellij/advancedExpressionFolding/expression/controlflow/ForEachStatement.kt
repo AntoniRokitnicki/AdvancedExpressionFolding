@@ -2,6 +2,7 @@ package com.intellij.advancedExpressionFolding.expression.controlflow
 
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
+import com.intellij.advancedExpressionFolding.settings.IControlFlowState
 import com.intellij.lang.folding.FoldingDescriptor
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.editor.FoldingGroup
@@ -14,8 +15,8 @@ class ForEachStatement(
     textRange: TextRange,
     private val declarationTextRange: TextRange,
     private val variableTextRange: TextRange,
-    private val arrayTextRange: TextRange
-) : Expression(forStatement, textRange) {
+    private val arrayTextRange: TextRange,
+) : Expression(forStatement, textRange), IControlFlowState by AdvancedExpressionFoldingSettings.State()() {
 
     override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean = true
 
@@ -26,7 +27,7 @@ class ForEachStatement(
     ): Array<FoldingDescriptor> {
         val descriptors = ArrayList<FoldingDescriptor>()
         val group = FoldingGroup.newGroup(ForEachStatement::class.java.name)
-        if (AdvancedExpressionFoldingSettings.getInstance().state.compactControlFlowSyntaxCollapse &&
+        if (compactControlFlowSyntaxCollapse &&
             this.forStatement.lParenth != null
         ) {
             val startOffset = this.forStatement.lParenth!!.textRange.startOffset
@@ -49,7 +50,7 @@ class ForEachStatement(
             group,
             " : "
         )
-        val placeholder = if (AdvancedExpressionFoldingSettings.getInstance().state.compactControlFlowSyntaxCollapse) {
+        val placeholder = if (compactControlFlowSyntaxCollapse) {
             " {\n"
         } else {
             ") {\n"

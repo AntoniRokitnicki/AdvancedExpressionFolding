@@ -1,6 +1,6 @@
 package data;
 
-import <fold text='...' expand='false'>org.slf4j.Logger;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Marker;
 import org.slf4j.MarkerFactory;
@@ -8,138 +8,129 @@ import org.slf4j.MarkerFactory;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-import java.util.Formatter;</fold>
+import java.util.Formatter;
 
 @SuppressWarnings("ALL")
-<fold text='@Log p' expand='false'>p</fold>ublic class LogFoldingTextBlocksTestData {<fold text='' expand='false'>
+public class LogFoldingTextBlocksTestData {
 
-    </fold><fold text='' expand='false'>private <fold text='const' expand='false'>static final </fold><fold text='' expand='false'>Logger</fold> log = LoggerFactory.getLogger(LogFoldingTextBlocksTestData.class);</fold>
+    private static final Logger log = LoggerFactory.getLogger(LogFoldingTextBlocksTestData.class);
 
-    private <fold text='const' expand='false'>static final </fold><fold text='' expand='false'>Marker</fold> MY_MARKER = MarkerFactory.getMarker("MY_MARKER");
+    private static final Marker MY_MARKER = MarkerFactory.getMarker("MY_MARKER");
 
-    public LogBrackets.Data logPrintfStyle(LogBrackets.Data data) <fold text='{...}' expand='true'>{
-        <fold text='val' expand='false'>String</fold> name = "John";
-        <fold text='val' expand='false'>int</fold> age = 30;
-        <fold text='val' expand='false'>String</fold> city = "New York";
-        log.debug("Debug message with 1 parameter - Name: <fold text='$' expand='false'>%s", </fold>name<fold text='")' expand='false'>)</fold>;
+    public LogBrackets.Data logPrintfStyle(LogBrackets.Data data) {
+        String name = "John";
+        int age = 30;
+        String city = "New York";
+        log.debug("Debug message with 1 parameter - Name: %s", name);
 
-        log.info(MY_MARKER, "Info message with 2 parameters - Name: <fold text='$' expand='false'>%s, Age: %d", </fold>name<fold text=', Age: $' expand='false'>, </fold>age<fold text='")' expand='false'>)</fold>;
+        log.info(MY_MARKER, "Info message with 2 parameters - Name: %s, Age: %d", name, age);
 
-        log.info("Info message with 2 parameters - Name: <fold text='$' expand='false'>%s, Age: %d    ", </fold>name<fold text=', Age: $' expand='false'>, </fold>age<fold text='    ")' expand='false'>)</fold>;
-        log.info("Info message with 2 parameters - Name: <fold text='$' expand='false'>%s, Age: %d", </fold>name<fold text=', Age: $' expand='false'>, </fold>age<fold text='")' expand='false'>)</fold>;
+        log.info("Info message with 2 parameters - Name: %s, Age: %d    ", name, age);
+        log.info("Info message with 2 parameters - Name: %s, Age: %d", name, age);
 
 
-        log.debug("Debug message with 1 parameter - Name: <fold text='$' expand='false'>" + </fold>name<fold text='")' expand='false'>)</fold>;
-        log.trace("Trace message - Name: <fold text='${' expand='false'>%s, log:%s    $", </fold>data.<fold text='name' expand='false'>getName()</fold><fold text='}, log:${' expand='false'>, </fold>logPrintfStyle(data)<fold text='}    $")' expand='false'>)</fold>;
-        log.warn("Warning message with three parameters - Name: <fold text='$' expand='false'>%s, Age: %s, City: %s", </fold>name<fold text=', Age: ${' expand='false'>, </fold>data.<fold text='data' expand='false'>getData()</fold>.<fold text='name' expand='false'>getName()</fold><fold text='}, City: $' expand='false'>, </fold>city<fold text='")' expand='false'>)</fold>;
+        log.debug("Debug message with 1 parameter - Name: " + name);
+        log.trace("Trace message - Name: %s, log:%s    $", data.getName(), logPrintfStyle(data));
+        log.warn("Warning message with three parameters - Name: %s, Age: %s, City: %s", name, data.getData().getName(), city);
 
-        log.error("Missing 1 parameter - 1: <fold text='$' expand='false'>%s, 2: %d, 3: %s, empty: %s", </fold>name<fold text=', 2: $' expand='false'>, </fold>age<fold text=', 3: $' expand='false'>, </fold>city<fold text=', empty: %s")' expand='false'>)</fold>;
-        log.error("Missing 2 parameters - 1: <fold text='$' expand='false'>%s, 2: %d, empty: %s, empty: %s", </fold>name<fold text=', 2: $' expand='false'>, </fold>age<fold text=', empty: %s, empty: %s")' expand='false'>)</fold>;
-        log.error("Missing 3 parameters - 1: <fold text='$' expand='false'>%s, empty: %s, empty: %s, empty: %s", </fold>name<fold text=', empty: %s, empty: %s, empty: %s")' expand='false'>)</fold>;
+        log.error("Missing 1 parameter - 1: %s, 2: %d, 3: %s, empty: %s", name, age, city);
+        log.error("Missing 2 parameters - 1: %s, 2: %d, empty: %s, empty: %s", name, age);
+        log.error("Missing 3 parameters - 1: %s, empty: %s, empty: %s, empty: %s", name);
         log.error("Missing all parameters - - empty: %s, empty: %s, empty: %s, empty: %s");
 
-        try <fold text='{...}' expand='true'>{
-            log.warn("Warning message with 3 parameters and formatting - 1: <fold text='$' expand='false'>%s, 2: %s, 3: %s",
-                    </fold>name<fold text=', 2: ${' expand='false'>,
+        try {
+            log.warn("Warning message with 3 parameters and formatting - 1: %s, 2: %s, 3: %s",
+                    name,
 
-                    </fold>data.<fold text='data' expand='false'>getData()</fold>.<fold text='name' expand='false'>getName()</fold><fold text='}, 3: $' expand='false'>,
+                    data.getData().getName(),
 
-                    </fold>city<fold text='"' expand='false'>
-            </fold>);
+                    city
+            );
 
-            log.warn("Warning message with 3 parameters and formatting - 1: <fold text='${' expand='false'>%s, 2: %s, 3: %s",
-                    </fold>data.<fold text='data' expand='false'>getData()</fold>.<fold text='name' expand='false'>getName()</fold><fold text='}, 2: $' expand='false'>,
-                    </fold>name<fold text=', 3: ${' expand='false'>,
-                    </fold>data.<fold text='data' expand='false'>getData()</fold>.<fold text='name' expand='false'>getName()</fold><fold text='}"' expand='false'>
-            </fold>);
-        }</fold> catch <fold text='' expand='false'>(</fold>Exception e<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
-            log.error("error1 <fold text='$' expand='false'>%s", </fold>e<fold text='",' expand='false'>,</fold> e.<fold text='message' expand='false'>getMessage()</fold>, e);
-            log.error("error2 <fold text='${' expand='false'>%s", </fold>data.<fold text='data' expand='false'>getData()</fold>.<fold text='name' expand='false'>getName()</fold><fold text='}",' expand='false'>,</fold> data.<fold text='data' expand='false'>getData()</fold>.<fold text='name' expand='false'>getName()</fold>, data.<fold text='data' expand='false'>getData()</fold>.<fold text='name' expand='false'>getName()</fold>);
-        }</fold>
+            log.warn("Warning message with 3 parameters and formatting - 1: %s, 2: %s, 3: %s",
+                    data.getData().getName(),
+                    name,
+                    data.getData().getName()
+            );
+        } catch (Exception e) {
+            log.error("error1 %s", e, e.getMessage(), e);
+            log.error("error2 %s", data.getData().getName(), data.getData().getName(), data.getData().getName());
+        }
 
         // 1. String.format()
-        <fold text='val' expand='false'>String</fold> formatted = String.format("Hello, <fold text='$' expand='false'>%s! Your age is %d", </fold>name<fold text='! Your age is $' expand='false'>, </fold>age<fold text='")' expand='false'>)</fold>;
-        log.info("String.format example: <fold text='$' expand='false'>{}", </fold>formatted<fold text='")' expand='false'>)</fold>;
+        String formatted = String.format("Hello, %s! Your age is %d", name, age);
+        log.info("String.format example: {}", formatted);
 
         // 2. System.out.printf()
-        System.out.printf("User: <fold text='$' expand='false'>%s, Age: %d, City: %s%n", </fold>name<fold text=', Age: $' expand='false'>, </fold>age<fold text=', City: $' expand='false'>, </fold>city<fold text='%n")' expand='false'>)</fold>;
+        System.out.printf("User: %s, Age: %d, City: %s%n", name, age, city);
 
         // 3. System.err.printf()
-        System.err.printf("Error scenario: User <fold text='$' expand='false'>%s not found in %s and ignore new-line break%n", </fold>name<fold text=' not found in $' expand='false'>, </fold>city<fold text=' and ignore new-line break%n",' expand='false'>,</fold> <fold text='"ignored"' expand='false'>"ignored"</fold>);
+        System.err.printf("Error scenario: User %s not found in %s and ignore new-line break%n", name, city, "ignored");
 
         // 4. Formatter class
-        <fold text='val' expand='false'>Formatter</fold> formatter = new Formatter();
-        formatter.format("User details - Name: <fold text='$' expand='false'>%s, Age: %d, City: %s", </fold>name<fold text=', Age: $' expand='false'>, </fold>age<fold text=', City: $' expand='false'>, </fold>city<fold text='")' expand='false'>)</fold>;
-        log.info("Formatter example: <fold text='${' expand='false'>{}", </fold>formatter.toString()<fold text='}")' expand='false'>)</fold>;
+        Formatter formatter = new Formatter();
+        formatter.format("User details - Name: %s, Age: %d, City: %s", name, age, city);
+        log.info("Formatter example: {}", formatter.toString());
 
         // 5. PrintWriter with printf
-        try <fold text='{...}' expand='true'>{
-            <fold text='val' expand='false'>PrintWriter</fold> writer = new PrintWriter(new File("log.txt"));
-            writer.printf("Log entry: User <fold text='$' expand='false'>%s, Age %d, accessed from %s", </fold>name<fold text=', Age $' expand='false'>, </fold>age<fold text=', accessed from $' expand='false'>, </fold>city<fold text='")' expand='false'>)</fold>;
+        try {
+            PrintWriter writer = new PrintWriter(new File("log.txt"));
+            writer.printf("Log entry: User %s, Age %d, accessed from %s", name, age, city);
             writer.close();
-        }</fold> catch <fold text='' expand='false'>(</fold>FileNotFoundException e<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
-            log.error("Failed to write to log file: <fold text='${' expand='false'>%s", </fold>e.<fold text='message' expand='false'>getMessage()</fold><fold text='}")' expand='false'>)</fold>;
-        }</fold>
+        } catch (FileNotFoundException e) {
+            log.error("Failed to write to log file: %s", e.getMessage());
+        }
 
         // 6. String with formatted
-        <fold text='' expand='false'>System.out.</fold>println("Debug message with 1 parameter - Name: <fold text='$' expand='false'>%s".formatted(</fold>name<fold text='".formatted()' expand='false'>)</fold>);
-        <fold text='' expand='false'>System.out.</fold>println("Trace message - Name: <fold text='${' expand='false'>%s, log:%s    $".formatted(</fold>data.<fold text='name' expand='false'>getName()</fold><fold text='}, log:${' expand='false'>, </fold>logPrintfStyle(data)<fold text='}    $".formatted()' expand='false'>)</fold>);
-        <fold text='' expand='false'>System.out.</fold>println("Warning message with three parameters - Name: <fold text='$' expand='false'>%s, Age: %s, City: %s".formatted(</fold>name<fold text=', Age: ${' expand='false'>, </fold>data.<fold text='data' expand='false'>getData()</fold>.<fold text='name' expand='false'>getName()</fold><fold text='}, City: $' expand='false'>, </fold>city<fold text='".formatted()' expand='false'>)</fold>);
+        System.out.println("Debug message with 1 parameter - Name: %s".formatted(name));
+        System.out.println("Trace message - Name: %s, log:%s    $".formatted(data.getName(), logPrintfStyle(data)));
+        System.out.println("Warning message with three parameters - Name: %s, Age: %s, City: %s".formatted(name, data.getData().getName(), city));
 
-        <fold text='' expand='false'>System.out.</fold>println("Missing 1 parameter - 1: <fold text='$' expand='false'>%s, 2: %d, 3: %s, empty: %s".formatted(</fold>name<fold text=', 2: $' expand='false'>, </fold>age<fold text=', 3: $' expand='false'>, </fold>city<fold text=', empty: %s".formatted()' expand='false'>)</fold>);
-        <fold text='' expand='false'>System.out.</fold>println("Missing 2 parameters - 1: <fold text='$' expand='false'>%s, 2: %d, empty: %s, empty: %s".formatted(</fold>name<fold text=', 2: $' expand='false'>, </fold>age<fold text=', empty: %s, empty: %s".formatted()' expand='false'>)</fold>);
-        <fold text='' expand='false'>System.out.</fold>println("Missing 3 parameters - 1: <fold text='$' expand='false'>%s, empty: %s, empty: %s, empty: %s".formatted(</fold>name<fold text=', empty: %s, empty: %s, empty: %s".formatted()' expand='false'>)</fold>);
-        <fold text='' expand='false'>System.out.</fold>println("Missing all parameters - - empty: %s, empty: %s, empty: %s, empty: %s".formatted());
-        <fold text='' expand='false'>System.out.</fold>println("Additional 1 parameter - Name: <fold text='$' expand='false'>%s".formatted(</fold>name<fold text='".formatted(' expand='false'>,</fold> data));
-        <fold text='' expand='false'>System.out.</fold>println("Additional 2 parameters - Name: <fold text='$' expand='false'>%s".formatted(</fold>name<fold text='".formatted(' expand='false'>,</fold> data, logPrintfStyle(data)));
+        System.out.println("Missing 1 parameter - 1: %s, 2: %d, 3: %s, empty: %s".formatted(name, age, city));
+        System.out.println("Missing 2 parameters - 1: %s, 2: %d, empty: %s, empty: %s".formatted(name, age));
+        System.out.println("Missing 3 parameters - 1: %s, empty: %s, empty: %s, empty: %s".formatted(name));
+        System.out.println("Missing all parameters - - empty: %s, empty: %s, empty: %s, empty: %s".formatted());
+        System.out.println("Additional 1 parameter - Name: %s".formatted(name, data));
+        System.out.println("Additional 2 parameters - Name: %s".formatted(name, data, logPrintfStyle(data)));
 
         // 7. Text Block examples (Java 15+)
         log.error("""
-                Missing 1 parameter - 1: <fold text='$' expand='false'>%s, 2: %d, 3: %s, empty: %s
-                """, </fold>name<fold text=', 2: $' expand='false'>, </fold>age<fold text=', 3: $' expand='false'>, </fold>city<fold text=', empty: %s
-                """)' expand='false'>)</fold>;
+                Missing 1 parameter - 1: %s, 2: %d, 3: %s, empty: %s
+                """, name, age, city);
         log.info("""
                 Data summary:
-                Root: <fold text='${' expand='false'>{}
+                Root: {}
                 Child: {}
-                """, </fold>data.<fold text='name' expand='false'>getName()</fold><fold text='}
-                Child: ${' expand='false'>, </fold>data.<fold text='data' expand='false'>getData()</fold>.<fold text='name' expand='false'>getName()</fold><fold text='}
-                """)' expand='false'>)</fold>;
+                """, data.getName(), data.getData().getName());
         log.debug("""
                 User summary:
-                Name: <fold text='$' expand='false'>{}
+                Name: {}
                 Age: {}
                 City: {}
-                """, </fold>name<fold text='
-                Age: $' expand='false'>, </fold>age<fold text='
-                City: $' expand='false'>, </fold>city<fold text='
-                """)' expand='false'>)</fold>;
+                """, name, age, city);
         log.warn("""
                 Nested data snapshot:
-                Parent: <fold text='${' expand='false'>{}
+                Parent: {}
                 Child: {}
-                """, </fold>data.<fold text='name' expand='false'>getName()</fold><fold text='}
-                Child: ${' expand='false'>, </fold>data.<fold text='data' expand='false'>getData()</fold>.<fold text='name' expand='false'>getName()</fold><fold text='}
-                """)' expand='false'>)</fold>;
+                """, data.getName(), data.getData().getName());
         log.trace("""
                 Formatter contents:
-                <fold text='$' expand='false'>{}
-                """, </fold>formatter<fold text='
-                """)' expand='false'>)</fold>;
+                {}
+                """, formatter);
         return data;
-    }</fold>
+    }
 
-    <fold text='@Getter p' expand='false'>p</fold>ublic static class Data <fold text='{...}' expand='true'>{
+    public static class Data {
         private LogBrackets.Data data;
-        private String name;<fold text='' expand='false'>
+        private String name;
 
-        </fold><fold text='' expand='false'>public String getName()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>name<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
-        </fold>}</fold></fold><fold text='' expand='false'>
+        public String getName() {
+            return name;
+        }
 
-        </fold><fold text='' expand='false'>public LogBrackets.Data getData()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>data<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
-        </fold>}</fold></fold>
-    }</fold>
+        public LogBrackets.Data getData() {
+            return data;
+        }
+    }
 
 }
