@@ -3,6 +3,7 @@ package com.intellij.advancedExpressionFolding.processor.lombok
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.semantic.lombok.MethodAnnotationExpression
 import com.intellij.advancedExpressionFolding.processor.asInstance
+import com.intellij.advancedExpressionFolding.processor.isVoid
 import com.intellij.advancedExpressionFolding.processor.core.BaseExtension
 import com.intellij.advancedExpressionFolding.processor.group
 import com.intellij.advancedExpressionFolding.processor.util.GenericCallback
@@ -13,7 +14,6 @@ import com.intellij.psi.PsiMethod
 import com.intellij.psi.PsiMethodCallExpression
 import com.intellij.psi.PsiModifier
 import com.intellij.psi.PsiThisExpression
-import com.intellij.psi.PsiType
 
 object LombokPostConstructorExt : BaseExtension() {
 
@@ -125,7 +125,7 @@ object LombokPostConstructorExt : BaseExtension() {
         if (parameterList.parametersCount != 0) return false
         if (throwsList.referenceElements.isNotEmpty()) return false
         val type = returnType
-        if (type != null && type != PsiType.VOID) return false
+        if (type != null && !type.isVoid()) return false
         return true
     }
 
