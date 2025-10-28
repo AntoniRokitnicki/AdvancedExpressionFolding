@@ -7,6 +7,7 @@ import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.editor.event.DocumentEvent
 import com.intellij.openapi.editor.event.DocumentListener
 import com.intellij.openapi.editor.ex.EditorEx
+import com.intellij.openapi.editor.impl.EditorImpl
 import com.intellij.openapi.editor.highlighter.EditorHighlighterFactory
 import com.intellij.openapi.ui.ComponentValidator
 import com.intellij.openapi.ui.ValidationInfo
@@ -329,7 +330,7 @@ private fun createEditor(property: KMutableProperty0<String?>): EditorEx {
             .installOn(editor.component)
     }
 
-    document.addDocumentListener(object : DocumentListener {
+    val documentListener = object : DocumentListener {
         override fun documentChanged(event: DocumentEvent) {
             if (validator != null) {
                 validator.revalidate()
@@ -337,7 +338,8 @@ private fun createEditor(property: KMutableProperty0<String?>): EditorEx {
                 validateDocument()
             }
         }
-    })
+    }
+    document.addDocumentListener(documentListener, (editor as EditorImpl).disposable)
     if (validator != null) {
         validator.revalidate()
     } else {
