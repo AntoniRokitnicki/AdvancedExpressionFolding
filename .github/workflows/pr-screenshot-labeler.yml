@@ -31,7 +31,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Apply screenshot label when needed
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             const LABEL_NAME = 'screenshot';
