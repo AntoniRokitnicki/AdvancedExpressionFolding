@@ -7,14 +7,14 @@ You wanted a single entry point. Here it is—no fluff, just what you need to st
 ```mermaid
 flowchart TD
     A[Editor opens] --> B[AdvancedExpressionFoldingBuilder]
-    B -->|globalOff or *-folded.java| C[Bail]
+    B -->|globalOff or matches *-folded.java| C[Bail]
     B --> D{memoryImprovement?}
-    D -- Yes --> E[readCache()]
-    E --> F[collect() via BuildExpressionExt]
-    D -- No --> F
+    D -->|Yes| E[readCache]
+    E --> F[collect via BuildExpressionExt]
+    D -->|No| F
     F --> G[collectFoldRegionsRecursively]
-    G --> H[Expression.buildFoldRegions()]
-    H --> I[store.store(...) returns descriptors]
+    G --> H[Expression.buildFoldRegions]
+    H --> I[store.store returns descriptors]
 ```
 
 * `AdvancedExpressionFoldingBuilder` wires everything together—if you break it, nothing folds.【F:src/com/intellij/advancedExpressionFolding/AdvancedExpressionFoldingBuilder.kt†L7-L80】
@@ -25,12 +25,14 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    A[PsiElement] --> B[Keys.getKey(synthetic)]
-    A --> C[Keys.getVersionKey(synthetic)]
-    C --> D[CacheExt.invalidateExpired()]
-    D --> E{Version matches?}
-    E -- No --> F[Clear Keys & rebuild]
-    E -- Yes --> G[Reuse cached Expression]
+    A[PsiElement arrives] --> B{Cached Expression exists?}
+    B -->|Yes| C[Return cached Expression]
+    B -->|No| D{synthetic flag set?}
+    D -->|Yes| E[SyntheticExpressionImpl]
+    D -->|No| F[Build real Expression]
+    E --> G[Store in cache]
+    F --> G
+    G --> H[Proceed to folding]
 ```
 
 * `Keys` stores per-element metadata: synthetic/non-synthetic `Expression`s, version stamps, and the full-descriptor cache.【F:src/com/intellij/advancedExpressionFolding/processor/cache/Keys.kt†L12-L62】
@@ -66,8 +68,8 @@ flowchart TD
 ```mermaid
 flowchart TD
     A[IState]
-    A --> B[AdvancedExpressionFoldingSettings.State\n(persistent delegate)]
-    B --> C[NewState\n(composed delegates)]
+    A --> B[AdvancedExpressionFoldingSettings.State<br/>persistent delegate]
+    B --> C[NewState<br/>composed delegates]
 ```
 
 * `IState` is just an interface that aggregates the feature-specific state interfaces (`ILombokState`, `ILogFoldingState`, etc.).【F:src/com/intellij/advancedExpressionFolding/settings/IState.kt†L1-L14】
@@ -83,14 +85,18 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    A[Editor] --> B[AdvancedExpressionFoldingBuilder]
-    B --> C[BuildExpressionExt.getNonSyntheticExpression()]
-    C --> D{Cache hit?}
-    D -- Yes --> E[Use cached Expression tree]
-    D -- No --> F[Builders & processors synthesize Expressions]
-    E --> G[Expressions emit FoldingDescriptor[]]
-    F --> G
-    G --> H[IDEA renders folded regions + placeholders]
+    A[AdvancedExpressionFoldingBuilder] --> B[BuildExpressionExt]
+    B --> C[runSyntheticExpression]
+    C --> D{Cache entry exists}
+    D -->|Yes| E[Return cached Expression]
+    D -->|No| F{synthetic flag}
+    F -->|Yes| G[Create SyntheticExpressionImpl]
+    F -->|No| H[Build real Expression]
+    G --> I[Store in cache]
+    H --> I
+    I --> J[collectFoldRegionsRecursively]
+    J --> K[Expression.buildFoldRegions]
+    K --> L[Register descriptors]
 ```
 
 If any builder returns garbage, folding stops there. Keep the tree consistent.
