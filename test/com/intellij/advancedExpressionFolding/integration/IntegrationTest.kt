@@ -33,6 +33,7 @@ import org.kodein.di.DI
 import org.kodein.di.bindSingleton
 import java.io.File
 import java.lang.Thread.sleep
+import java.util.NoSuchElementException
 import kotlin.io.path.Path
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Duration.Companion.seconds
@@ -212,7 +213,18 @@ class IntegrationTest {
         }
     }
 
-    private fun Driver.wait() = waitForIndicators(5.minutes)
+    private fun Driver.wait() {
+        try {
+            waitForIndicators(5.minutes)
+        } catch (exception: NoSuchElementException) {
+            val fromTimeoutAnalyzer = exception.stackTrace.any { it.className.endsWith("TimeoutAnalyzer") }
+            if (fromTimeoutAnalyzer) {
+                sleep(1.seconds.inWholeMilliseconds)
+            } else {
+                throw exception
+            }
+        }
+    }
 
     fun IdeaFrameUI.toggleCheckbox(
         driver: Driver,
