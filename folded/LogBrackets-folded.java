@@ -23,6 +23,7 @@ public class LogBrackets {
         log.debug("Debug message with 1 parameter - Name: $name");
 
         log.info(MY_MARKER, "Info message with 2 parameters - Name: $name, Age: $age");
+        log.info(MY_MARKER, "Marker missing parameters {} {}");
 
         log.info("Info message with 2 parameters - Name: $name, Age: $age    ");
         log.info("Info message with 2 parameters - Name: $name, Age: $age");
@@ -81,6 +82,11 @@ public class LogBrackets {
         System.out.println("Missing all parameters - - empty: %s, empty: %s, empty: %s, empty: %s".formatted());
         System.out.println("Additional 1 parameter - Name: $name".formatted( data));
         System.out.println("Additional 2 parameters - Name: $name".formatted( data, logPrintfStyle(data)));
+
+        // 7. Text Block examples (Java 15+)
+        log.error("""
+                Missing 1 parameter - 1: %s, 2: %d, 3: %s, empty: %s
+                """, name, age, city);
         return data;
     }
 

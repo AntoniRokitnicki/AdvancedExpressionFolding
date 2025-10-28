@@ -7,7 +7,7 @@ import com.intellij.advancedExpressionFolding.processor.asInstance
 import com.intellij.advancedExpressionFolding.processor.cache.CacheExt.invalidateExpired
 import com.intellij.advancedExpressionFolding.processor.cache.Keys
 import com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt
-import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings.Companion.getInstance
+import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
 import com.intellij.advancedExpressionFolding.settings.IConfig
 import com.intellij.lang.ASTNode
 import com.intellij.lang.folding.FoldingBuilderEx
@@ -19,7 +19,7 @@ import com.intellij.psi.PsiDocumentManager
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiJavaFile
 
-class AdvancedExpressionFoldingBuilder(private val config: IConfig = getInstance().state) : FoldingBuilderEx(), IConfig by config {
+class AdvancedExpressionFoldingBuilder : FoldingBuilderEx(), IConfig by AdvancedExpressionFoldingSettings.State()() {
     override fun buildFoldRegions(element: PsiElement, document: Document, quick: Boolean): Array<FoldingDescriptor> {
         if (!globalOn || isFoldingFile(element)) {
             return store.store(Expression.EMPTY_ARRAY, document)
@@ -102,9 +102,9 @@ class AdvancedExpressionFoldingBuilder(private val config: IConfig = getInstance
         try {
             val element = astNode.psi
             val document = PsiDocumentManager.getInstance(astNode.psi.project).getDocument(astNode.psi.containingFile)
-            if (document != null) {
-                val expression = BuildExpressionExt.getNonSyntheticExpression(element, document)
-                return expression != null && expression.isCollapsedByDefault
+            document?.let {
+                val expression = BuildExpressionExt.getNonSyntheticExpression(element, it)
+                return expression?.isCollapsedByDefault() == true
             }
         } catch (_: IndexNotReadyException) {
             return false

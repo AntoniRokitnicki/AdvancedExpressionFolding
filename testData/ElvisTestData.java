@@ -8,6 +8,7 @@ public class ElvisTestData {
         ElvisTestData e = create();
         System.out.println(<fold text='' expand='false'>e != null ? </fold>e<fold text=' ?: ' expand='false'> : </fold>"");
         System.out.println(<fold text='' expand='false'>e != null ? </fold>e<fold text='?.' expand='false'>.</fold>sayHello()<fold text=' ?: ' expand='false'> : </fold>"");
+        System.out.println(<fold text='e ?: ""' expand='false'>e == null ? "" : e</fold>); // Inverted Elvis should also fold to e ?: ""
         System.out.println(e != null && e.get() != null ? e.get() : ""); // Should be System.out.println(e?.get ?: "")
         System.out.println(e != null && e.get() != null ? e.get().sayHello() : ""); // Should be System.out.println(e?.get?.sayHello() ?: "")
         if (e != null) <fold text='{...}' expand='true'>{
@@ -17,8 +18,11 @@ public class ElvisTestData {
                 e.get()<fold text='?.' expand='false'>.</fold>sayHello();<fold text='' expand='false'>
         }</fold></fold>
         if (e != null && e.get() != null) <fold text='{...}' expand='true'>{
-                e.get().sayHello();
-        }</fold>
+                e<fold text='?.' expand='false'>.</fold>get()<fold text='?.' expand='false'>.</fold>sayHello();<fold text='' expand='false'>
+        }</fold></fold>
+        if (e != null && e.get() != null && e.get().get() != null) <fold text='{...}' expand='true'>{
+                e<fold text='?.' expand='false'>.</fold>get()<fold text='?.' expand='false'>.</fold>get()<fold text='?.' expand='false'>.</fold>sayHello(); // Should be e?.get()?.get()?.sayHello();<fold text='' expand='false'>
+        }</fold></fold>
     }</fold>
 
     private String sayHello()<fold text=' { ' expand='false'> {

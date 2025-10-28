@@ -10,12 +10,12 @@ import java.util.logging.Logger;
 /**
  * {@link com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.IState#getLombok()}
  * <p>
- * {@link com.intellij.advancedExpressionFolding.extension.clazz.LombokExt#addLombokSupport(com.intellij.psi.PsiClass)}
+ * {@link com.intellij.advancedExpressionFolding.processor.lombok.LombokExt#addLombokSupport(com.intellij.psi.PsiClass)}
  * <p>
  * {@link com.intellij.advancedExpressionFolding.FoldingTest#testLombokTestData()}
  */
 @SuppressWarnings("ALL")
-@Builder(ClassWithBuilder) @Getter @Setter @Serial public class LombokTestData {
+@HasBuilder(ClassWithBuilder) @Getter @Setter @Serial public class LombokTestData {
 
     LombokTestData data;
     boolean ok;
@@ -435,7 +435,7 @@ import java.util.logging.Logger;
         private String ignored;
     }
 
-    @Builder class ClassWithBuilder {
+    @HasBuilder class ClassWithBuilder {
         private String name;
         class ClassWithBuilderBuilder {
             private String name;
@@ -488,7 +488,7 @@ import java.util.logging.Logger;
 
     }
 
-    @Builder(FirstBuilder) @Builder(SecondBuilder) @Builder class Builders {
+    @HasBuilder(FirstBuilder) @HasBuilder(SecondBuilder) @HasBuilder class Builders {
 
         class FirstBuilder {
 

@@ -21,7 +21,7 @@ object AnnotationExt {
     )
 
     fun addClassLevelAnnotations(clazz: PsiClass): ClassAnnotationExpression? {
-        (clazz.isIgnored() || clazz.isRecord).off() ?: return null
+        (clazz.isIgnored() || clazz.isRecord).takeIfFalse() ?: return null
 
         lombokPatternOff?.run {
             val regex = patternAsRegex()

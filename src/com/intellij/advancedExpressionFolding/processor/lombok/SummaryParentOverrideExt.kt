@@ -2,9 +2,15 @@ package com.intellij.advancedExpressionFolding.processor.lombok
 
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.semantic.SimpleExpression
-import com.intellij.advancedExpressionFolding.processor.*
+import com.intellij.advancedExpressionFolding.processor.asInstance
+import com.intellij.advancedExpressionFolding.processor.expr
+import com.intellij.advancedExpressionFolding.processor.exprOnLastChar
+import com.intellij.advancedExpressionFolding.processor.exprWrap
+import com.intellij.advancedExpressionFolding.processor.isOverride
+import com.intellij.advancedExpressionFolding.processor.one
+import com.intellij.advancedExpressionFolding.processor.signature
+import com.intellij.advancedExpressionFolding.processor.takeIfTrue
 import com.intellij.advancedExpressionFolding.processor.cache.Keys.METHOD_TO_PARENT_CLASS_KEY
-import com.intellij.advancedExpressionFolding.processor.core.BaseExtension
 import com.intellij.openapi.util.removeUserData
 import com.intellij.psi.*
 import com.intellij.psi.util.MethodSignature
@@ -14,7 +20,7 @@ private data class ReferenceWithMethods(
     val methods: List<String>
 )
 
-object SummaryParentOverrideExt : BaseExtension() {
+object SummaryParentOverrideExt {
 
     fun PsiClass.addParentSummary(): Expression? {
         val parentToMethods = mutableMapOf<String, List<String>>()
@@ -28,7 +34,7 @@ object SummaryParentOverrideExt : BaseExtension() {
                         //TODO: support sharedMethod from GrandparentClass as well here
                         findMethodBySignature(method, false) != null
                     }?.map {
-                        val sig = it.getSignature()
+                        val sig = it.signature
                         methodToParentClass[sig] = className
                         it.name
                     } ?: emptyList()
@@ -65,7 +71,7 @@ object SummaryParentOverrideExt : BaseExtension() {
         val hasOverride = method.annotations.any {
             it.isOverride()
         }
-        list += hasOverride.on()?.let {
+        list += hasOverride.takeIfTrue()?.let {
             method.body
         }?.let { body ->
             createOverridesComment(method, body)
@@ -82,7 +88,7 @@ object SummaryParentOverrideExt : BaseExtension() {
         } else {
             body.lBrace
         }?.let { brace ->
-            val signature = element.getSignature()
+            val signature = element.signature
             element.containingClass?.getUserData(METHOD_TO_PARENT_CLASS_KEY)
                 ?.get(signature)?.let {
                     val prefix = if (oneLiner) {

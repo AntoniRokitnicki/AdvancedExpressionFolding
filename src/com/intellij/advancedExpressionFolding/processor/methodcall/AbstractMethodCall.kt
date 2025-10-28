@@ -1,11 +1,22 @@
 package com.intellij.advancedExpressionFolding.processor.methodcall
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.processor.core.BaseExtension
+import com.intellij.advancedExpressionFolding.processor.argumentExpressions
+import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
+import com.intellij.advancedExpressionFolding.settings.ICollectionsStreamsState
+import com.intellij.advancedExpressionFolding.settings.IDateOperationsState
+import com.intellij.advancedExpressionFolding.settings.IExpressionCollapseState
+import com.intellij.advancedExpressionFolding.settings.IGlobalSettingsState
+import com.intellij.advancedExpressionFolding.settings.IKotlinLanguageState
 import com.intellij.psi.PsiExpression
 import com.intellij.psi.PsiMethodCallExpression
 
-abstract class AbstractMethodCall : BaseExtension() {
+abstract class AbstractMethodCall :
+    ICollectionsStreamsState by AdvancedExpressionFoldingSettings.State()(),
+    IDateOperationsState by AdvancedExpressionFoldingSettings.State()(),
+    IKotlinLanguageState by AdvancedExpressionFoldingSettings.State()(),
+    IExpressionCollapseState by AdvancedExpressionFoldingSettings.State()(),
+    IGlobalSettingsState by AdvancedExpressionFoldingSettings.State()() {
     open fun canExecute(): Boolean = true
 
     open fun execute(
@@ -23,7 +34,7 @@ abstract class AbstractMethodCall : BaseExtension() {
         if (classNames.isNotEmpty() && !classNames.contains(context.className)) {
             return null
         }
-        val expressions = element.argumentList.expressions
+        val expressions = element.argumentExpressions
         return onAnyArguments(element, context, expressions)
     }
 

@@ -2,15 +2,17 @@ package com.intellij.advancedExpressionFolding.processor.logger
 
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.processor.asInstance
-import com.intellij.advancedExpressionFolding.processor.core.BaseExtension
-import com.intellij.advancedExpressionFolding.processor.on
+import com.intellij.advancedExpressionFolding.processor.firstArgument
+import com.intellij.advancedExpressionFolding.processor.takeIfTrue
+import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
+import com.intellij.advancedExpressionFolding.settings.ILogFoldingState
 import com.intellij.openapi.editor.Document
 import com.intellij.psi.PsiExpression
 import com.intellij.psi.PsiMethodCallExpression
 import com.intellij.psi.PsiReferenceExpression
 import com.intellij.psi.impl.source.PsiClassReferenceType
 
-object LoggerBracketsExt : BaseExtension() {
+object LoggerBracketsExt : ILogFoldingState by AdvancedExpressionFoldingSettings.State()() {
 
     @JvmStatic
     fun createExpression(
@@ -18,11 +20,11 @@ object LoggerBracketsExt : BaseExtension() {
         methodName: String,
         document: Document
     ): Expression? {
-        logFolding.on() ?: return null
+        logFolding.takeIfTrue() ?: return null
 
         val extensionConstructor: (PsiMethodCallExpression, Document) -> LoggerBracketsExtensionBase = when {
             methodName == "formatted" -> ::StringFormattedLoggerBracketsExtension
-            element.argumentList.expressions.firstOrNull()?.isLogMarker() == true -> ::MarkerLoggerBracketsExtension
+            element.firstArgument?.isLogMarker() == true -> ::MarkerLoggerBracketsExtension
             else -> ::LoggerBracketsExtensionBase
         }
         return extensionConstructor(element, document).processExpression()

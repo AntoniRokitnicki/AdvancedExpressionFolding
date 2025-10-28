@@ -23,6 +23,7 @@ import java.util.Formatter;</fold>
         log.debug("Debug message with 1 parameter - Name: <fold text='$' expand='false'>%s", </fold>name<fold text='")' expand='false'>)</fold>;
 
         log.info(MY_MARKER, "Info message with 2 parameters - Name: <fold text='$' expand='false'>%s, Age: %d", </fold>name<fold text=', Age: $' expand='false'>, </fold>age<fold text='")' expand='false'>)</fold>;
+        log.info(MY_MARKER, "Marker missing parameters {} {}");
 
         log.info("Info message with 2 parameters - Name: <fold text='$' expand='false'>%s, Age: %d    ", </fold>name<fold text=', Age: $' expand='false'>, </fold>age<fold text='    ")' expand='false'>)</fold>;
         log.info("Info message with 2 parameters - Name: <fold text='$' expand='false'>%s, Age: %d", </fold>name<fold text=', Age: $' expand='false'>, </fold>age<fold text='")' expand='false'>)</fold>;
@@ -77,7 +78,7 @@ import java.util.Formatter;</fold>
             writer.printf("Log entry: User <fold text='$' expand='false'>%s, Age %d, accessed from %s", </fold>name<fold text=', Age $' expand='false'>, </fold>age<fold text=', accessed from $' expand='false'>, </fold>city<fold text='")' expand='false'>)</fold>;
             writer.close();
         }</fold> catch <fold text='' expand='false'>(</fold>FileNotFoundException e<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
-            log.error("Failed to write to log file: <fold text='${' expand='false'>%s", </fold>e.<fold text='message' expand='false'>getMessage()<fold text='}")' expand='false'></fold>)</fold>;
+            log.error("Failed to write to log file: <fold text='${' expand='false'>%s", </fold>e.<fold text='message' expand='false'>getMessage()</fold><fold text='}")' expand='false'>)</fold>;
         }</fold>
 
         // 6. String with formatted
@@ -91,6 +92,12 @@ import java.util.Formatter;</fold>
         <fold text='' expand='false'>System.out.</fold>println("Missing all parameters - - empty: %s, empty: %s, empty: %s, empty: %s".formatted());
         <fold text='' expand='false'>System.out.</fold>println("Additional 1 parameter - Name: <fold text='$' expand='false'>%s".formatted(</fold>name<fold text='".formatted(' expand='false'>,</fold> data));
         <fold text='' expand='false'>System.out.</fold>println("Additional 2 parameters - Name: <fold text='$' expand='false'>%s".formatted(</fold>name<fold text='".formatted(' expand='false'>,</fold> data, logPrintfStyle(data)));
+
+        // 7. Text Block examples (Java 15+)
+        log.error("""
+                Missing 1 parameter - 1: <fold text='$' expand='false'>%s, 2: %d, 3: %s, empty: %s
+                """, </fold>name<fold text=', 2: $' expand='false'>, </fold>age<fold text=', 3: $' expand='false'>, </fold>city<fold text=', empty: %s
+                """)' expand='false'>)</fold>;
         return data;
     }</fold>
 

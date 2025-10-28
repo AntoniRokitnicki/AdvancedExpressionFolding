@@ -11,7 +11,7 @@ on:
       - 'complete-project-documentation.yaml'
       - '**/*.sh'
       - '**/*.main.kts'
-  pull_request:
+  pull_request_target:
     paths-ignore:
       - 'wiki'
       - 'wiki/**'
@@ -36,7 +36,7 @@ jobs:
         !contains(github.event.head_commit.message, '[skip actions]') &&
         !contains(github.event.head_commit.message, '[actions skip]')
       ) ||
-      (github.event_name == 'pull_request' &&
+      (github.event_name == 'pull_request_target' &&
         !contains(github.event.pull_request.labels.*.name, 'skip-build') &&
         !contains(github.event.pull_request.title || '', '[skip ci]') &&
         !contains(github.event.pull_request.body  || '', '[skip ci]')
@@ -49,9 +49,11 @@ jobs:
     steps:
       - name: Fetch Sources
         uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
 
       - name: Gradle Wrapper Validation
-        uses: gradle/actions/wrapper-validation@v4
+        uses: gradle/actions/wrapper-validation@v5
 
       - name: Setup Java
         uses: actions/setup-java@v5
@@ -60,7 +62,7 @@ jobs:
           java-version: 17
 
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
+        uses: gradle/actions/setup-gradle@v5
         with:
           gradle-home-cache-cleanup: true
 
@@ -92,7 +94,7 @@ jobs:
           echo "filename=${FILENAME:0:-4}" >> $GITHUB_OUTPUT
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: ${{ steps.artifact.outputs.filename }}
           path: ./build/distributions/content/*/*
@@ -108,15 +110,20 @@ jobs:
         !contains(github.event.head_commit.message, '[skip actions]') &&
         !contains(github.event.head_commit.message, '[actions skip]')
       ) ||
-      (github.event_name == 'pull_request' &&
+      (github.event_name == 'pull_request_target' &&
         !contains(github.event.pull_request.labels.*.name, 'skip-build') &&
         !contains(github.event.pull_request.title || '', '[skip ci]') &&
         !contains(github.event.pull_request.body  || '', '[skip ci]')
       )
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
     steps:
       - name: Fetch Sources
         uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
 
       - name: Setup Java
         uses: actions/setup-java@v5
@@ -125,16 +132,17 @@ jobs:
           java-version: 17
 
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
+        uses: gradle/actions/setup-gradle@v5
         with:
           gradle-home-cache-cleanup: true
 
       - name: Run Tests
+        id: tests
         run: ./gradlew check
 
       - name: Collect Tests Result
         if: ${{ failure() }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: tests-result
           path: ${{ github.workspace }}/build/reports/tests
@@ -143,6 +151,42 @@ jobs:
         uses: codecov/codecov-action@v5
         with:
           files: ${{ github.workspace }}/build/reports/kover/report.xml
+
+      - name: Find test summary comment
+        if: ${{ always() && github.event_name == 'pull_request_target' }}
+        uses: peter-evans/find-comment@v4
+        id: find_test_summary_comment
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: 'github-actions[bot]'
+          body-includes: '`./gradlew check` summary'
+
+      - name: Prepare test summary
+        if: ${{ always() && github.event_name == 'pull_request_target' }}
+        id: test_summary
+        run: |
+          if [ "${TEST_OUTCOME}" = "success" ]; then
+            echo "status_icon=✅" >> "$GITHUB_OUTPUT"
+            echo "status_message=completed successfully" >> "$GITHUB_OUTPUT"
+          else
+            echo "status_icon=❌" >> "$GITHUB_OUTPUT"
+            echo "status_message=failed" >> "$GITHUB_OUTPUT"
+          fi
+        env:
+          TEST_OUTCOME: ${{ steps.tests.outcome }}
+
+      - name: Post test summary comment
+        if: ${{ always() && github.event_name == 'pull_request_target' }}
+        uses: peter-evans/create-or-update-comment@v5
+        with:
+          comment-id: ${{ steps.find_test_summary_comment.outputs.comment-id }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            ### `./gradlew check` summary
+            ${{ steps.test_summary.outputs.status_icon }} `./gradlew check` ${{ steps.test_summary.outputs.status_message }}.
+
+            - Reports: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}#artifacts
+            - Coverage XML: `build/reports/kover/report.xml`
 
   inspectCode:
     name: Inspect code
@@ -192,7 +236,7 @@ jobs:
           distribution: zulu
           java-version: 17
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
+        uses: gradle/actions/setup-gradle@v5
         with:
           gradle-home-cache-cleanup: true
       - name: Setup Plugin Verifier IDEs Cache
@@ -204,14 +248,14 @@ jobs:
         run: ./gradlew verifyPlugin -Dplugin.verifier.home.dir=${{ needs.build.outputs.pluginVerifierHomeDir }}
       - name: Collect Plugin Verifier Result
         if: ${{ always() }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: pluginVerifier-result
           path: ${{ github.workspace }}/build/reports/pluginVerifier
 
   releaseDraft:
     name: Release draft
-    if: github.event_name != 'pull_request'
+    if: github.event_name == 'push'
     needs: [ build, test ]
     runs-on: ubuntu-latest
     permissions:

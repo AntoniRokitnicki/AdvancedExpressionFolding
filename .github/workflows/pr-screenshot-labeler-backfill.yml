@@ -1,0 +1,74 @@
+name: Backfill PR screenshot labels
+
+description: "Label existing pull requests that already include screenshots"
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+
+jobs:
+  label-open-prs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Label open pull requests with screenshots
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const LABEL_NAME = 'screenshot';
+
+            const hasScreenshot = (body) => {
+              if (!body) {
+                return false;
+              }
+
+              const patterns = [
+                /!\[[^\]]*\]\([^\)]+\)/i,
+                /<img\s[^>]*src=["'][^"']+["']/i,
+                /https?:\/\/\S+\.(?:png|jpe?g|gif|webp)/i,
+              ];
+
+              return patterns.some((pattern) => pattern.test(body));
+            };
+
+            const openItems = await github.paginate(github.rest.issues.listForRepo, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              per_page: 100,
+            });
+
+            const pullRequests = openItems.filter((item) => Boolean(item.pull_request));
+
+            if (pullRequests.length === 0) {
+              core.info('No open pull requests found.');
+              return;
+            }
+
+            for (const pr of pullRequests) {
+              const labels = new Set((pr.labels || []).map((label) => label.name || label));
+
+              if (labels.has(LABEL_NAME)) {
+                core.info(`PR #${pr.number} already has the "${LABEL_NAME}" label. Skipping.`);
+                continue;
+              }
+
+              if (!hasScreenshot(pr.body)) {
+                core.info(`PR #${pr.number} does not contain a screenshot. Skipping.`);
+                continue;
+              }
+
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: pr.number,
+                labels: [LABEL_NAME],
+              });
+
+              core.info(`Applied "${LABEL_NAME}" label to PR #${pr.number}.`);
+            }
+
+            core.info('Completed backfill of screenshot labels.');
