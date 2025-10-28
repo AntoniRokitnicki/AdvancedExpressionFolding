@@ -68,8 +68,8 @@ flowchart TD
 ```mermaid
 flowchart TD
     A[IState]
-    A --> B[AdvancedExpressionFoldingSettings.State\n(persistent delegate)]
-    B --> C[NewState\n(composed delegates)]
+    A --> B[AdvancedExpressionFoldingSettings.State<br/>persistent delegate]
+    B --> C[NewState<br/>composed delegates]
 ```
 
 * `IState` is just an interface that aggregates the feature-specific state interfaces (`ILombokState`, `ILogFoldingState`, etc.).【F:src/com/intellij/advancedExpressionFolding/settings/IState.kt†L1-L14】
