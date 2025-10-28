@@ -170,16 +170,22 @@ object Helper {
         }
         if (includeNewLines) {
             var offsetWithNewLine = offset
-            do {
+            while (kotlin.math.abs(offsetWithNewLine) < 100) {
                 position += direction
                 offsetWithNewLine += direction
-                if (direction < 0 && charAt(chars, position) == '\n') {
+                if (position <= 0 || position >= length) {
+                    break
+                }
+                val currentChar = charAt(chars, position)
+                if (direction < 0 && currentChar == '\n') {
                     offset = offsetWithNewLine
-                } else if (direction > 0 && charAt(chars, position).isWhitespace()) {
+                } else if (direction > 0 && currentChar.isWhitespace()) {
                     offset = offsetWithNewLine
                 }
-            } while (kotlin.math.abs(offsetWithNewLine) < 100 && position > 0 && position < length &&
-                charAt(chars, position).isWhitespace())
+                if (!currentChar.isWhitespace()) {
+                    break
+                }
+            }
         }
         if (kotlin.math.abs(offset) >= 100) {
             return Int.MAX_VALUE
