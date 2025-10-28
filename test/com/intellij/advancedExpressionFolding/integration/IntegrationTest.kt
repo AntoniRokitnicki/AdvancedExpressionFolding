@@ -23,6 +23,7 @@ import com.intellij.ide.starter.project.LocalProjectInfo
 import com.intellij.ide.starter.report.Error
 import com.intellij.ide.starter.report.ErrorReporterToCI
 import com.intellij.ide.starter.runner.IDECommandLine
+import com.intellij.ide.starter.runner.IDERunContext
 import com.intellij.ide.starter.runner.Starter
 import com.intellij.ide.starter.screenRecorder.IDEScreenRecorder
 import com.intellij.tools.ide.performanceTesting.commands.*
@@ -33,6 +34,7 @@ import org.kodein.di.DI
 import org.kodein.di.bindSingleton
 import java.io.File
 import java.lang.Thread.sleep
+import java.nio.file.Files
 import kotlin.io.path.Path
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Duration.Companion.seconds
@@ -141,7 +143,7 @@ open class IntegrationTest {
                 service<SettingsStub>().enableEverything()
                 startZenMode()
 
-                val next = { openFiles() }
+                val next = { openFiles(context) }
                 val errorList = if (record) {
                     recorder.record {
                         next()
@@ -292,7 +294,7 @@ open class IntegrationTest {
         }.click()
     }
 
-    private fun Driver.openFiles(): List<Pair<ErrorFileName, List<Error>>> {
+    private fun Driver.openFiles(context: IDETestContext): List<Pair<ErrorFileName, List<Error>>> {
         val seenErrors = HashSet<Error>()
 
         val excludedFiles = setOf(
@@ -329,7 +331,7 @@ open class IntegrationTest {
                     showWholeFile(file)
                 }
 
-                val errors = allErrors().filter { error ->
+                val errors = allErrors(context).filter { error ->
                     seenErrors.add(error)
                 }.toList()
                 if (errors.isNotEmpty()) {
@@ -341,12 +343,13 @@ open class IntegrationTest {
             }
     }
 
-    private fun allErrors(): Sequence<Error> {
-        val file = File("out/ide-tests/tests/IC-251.26094.121/openAllFiles/log/errors")
-        if (!file.exists()) {
+    private fun allErrors(context: IDETestContext): Sequence<Error> {
+        val logsDir = IDERunContext(context, launchName = context.testName).logsDir
+        val errorsPath = logsDir.resolve("errors")
+        if (!Files.exists(errorsPath)) {
             return emptySequence()
         }
-        return ErrorReporterToCI.collectErrors(file.toPath())
+        return ErrorReporterToCI.collectErrors(errorsPath)
             .asSequence()
             .filter {
                 it.stackTraceContent.contains("advancedExpressionFolding")
