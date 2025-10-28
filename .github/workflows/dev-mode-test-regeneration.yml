@@ -29,22 +29,47 @@ jobs:
           DEV_MODE: "1"
         run: ./gradlew clean build --no-daemon --console=plain
 
-      - name: Report changed file count
+      - name: Calculate change statistics
+        id: change_stats
         run: |
-          set -eo pipefail
-          changed=$(git status --short | wc -l | tr -d ' ')
-          echo "Changed files: ${changed}"
+          set -euo pipefail
+          mapfile -t status < <(git status --short)
+          total=${#status[@]}
+          new_files=0
+          for entry in "${status[@]}"; do
+            if [[ "${entry}" == '??'* ]]; then
+              new_files=$((new_files + 1))
+            fi
+          done
+          echo "modified=${total}" >> "$GITHUB_OUTPUT"
+          echo "new=${new_files}" >> "$GITHUB_OUTPUT"
+
+      - name: Changed files
+        run: echo "${{ steps.change_stats.outputs.modified }}"
+
+      - name: New files created
+        run: echo "${{ steps.change_stats.outputs.new }}"
+
+      - name: Summarize change statistics
+        run: |
           {
             echo "### Dev mode regeneration"
             echo ""
-            echo "${changed} file(s) changed after regeneration."
+            echo "* Total files changed: ${{ steps.change_stats.outputs.modified }}"
+            echo "* New files created: ${{ steps.change_stats.outputs.new }}"
           } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: No changes detected
+        if: steps.change_stats.outputs.modified == '0'
+        run: echo "No changes detected; skipping commit and PR." >> "$GITHUB_STEP_SUMMARY"
 
       - name: Determine branch name
         id: branch
         run: echo "name=dev-mode-regeneration-$(date +%Y%m%d)" >> "$GITHUB_OUTPUT"
 
       - name: Create pull request
+        if: steps.change_stats.outputs.modified != '0'
+        id: cpr
         uses: peter-evans/create-pull-request@v6
         with:
           commit-message: "Regenerate tests in dev mode"
@@ -57,3 +82,19 @@ jobs:
 
             ## Testing
             - ./gradlew clean build --no-daemon --console=plain
+
+      - name: Report pull request result
+        if: steps.change_stats.outputs.modified != '0'
+        run: |
+          {
+            echo "### Pull request"
+            echo ""
+            echo "* Branch: ${{ steps.branch.outputs.name }}"
+            echo "* Operation: ${{ steps.cpr.outputs.pull-request-operation }}"
+            echo "* Commits pushed: ${{ steps.cpr.outputs.commits }}"
+            if [ -n "${{ steps.cpr.outputs.pull-request-url }}" ]; then
+              echo "* URL: ${{ steps.cpr.outputs.pull-request-url }}"
+            else
+              echo "* URL: (not created)"
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
