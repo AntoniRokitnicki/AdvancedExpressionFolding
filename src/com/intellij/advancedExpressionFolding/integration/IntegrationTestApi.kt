@@ -3,7 +3,11 @@ package com.intellij.advancedExpressionFolding.integration
 import com.intellij.advancedExpressionFolding.isAdvancedExpressionFoldingGroup
 import com.intellij.advancedExpressionFolding.openTextEditors
 import com.intellij.codeInsight.folding.CodeFoldingManager
-import com.intellij.openapi.actionSystem.*
+import com.intellij.openapi.actionSystem.ActionManager
+import com.intellij.openapi.actionSystem.ActionPlaces
+import com.intellij.openapi.actionSystem.AnActionEvent
+import com.intellij.openapi.actionSystem.DataContext
+import com.intellij.openapi.actionSystem.ToggleAction
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.application.ModalityState
 import com.intellij.openapi.application.runReadAction
@@ -22,13 +26,13 @@ object IntegrationTestApi {
         runOnEdt {
             val action = ActionManager.getInstance().getAction(GLOBAL_TOGGLE_ACTION_ID) as? ToggleAction
                 ?: error("Action $GLOBAL_TOGGLE_ACTION_ID not found")
-            val event = AnActionEvent.createEvent(
-                DataContext.EMPTY_CONTEXT,
+            val event = AnActionEvent.createFromAnAction(
+                action,
                 null,
                 ActionPlaces.UNKNOWN,
-                ActionUiKind.NONE,
-                null
+                DataContext.EMPTY_CONTEXT
             )
+            action.update(event)
             action.setSelected(event, state)
             refreshOpenEditors()
         }
