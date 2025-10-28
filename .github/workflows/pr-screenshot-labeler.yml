@@ -29,12 +29,16 @@ permissions:
 jobs:
   label:
     runs-on: ubuntu-latest
+    outputs:
+      screenshot_labels_added: ${{ steps.apply.outputs.labels_added }}
     steps:
       - name: Apply screenshot label when needed
+        id: apply
         uses: actions/github-script@v8
         with:
           script: |
             const LABEL_NAME = 'screenshot';
+            let appliedCount = 0;
 
             const hasScreenshot = (body) => {
               if (!body) {
@@ -83,6 +87,7 @@ jobs:
 
             if (prNumbers.length === 0) {
               core.info('No pull requests to process.');
+              core.setOutput('labels_added', String(appliedCount));
               return;
             }
 
@@ -117,4 +122,9 @@ jobs:
               });
 
               core.info(`Applied "${LABEL_NAME}" label to PR #${number}.`);
+              appliedCount += 1;
             }
+
+            core.setOutput('labels_added', String(appliedCount));
+      - name: Display screenshot labels added
+        run: echo "Screenshot labels added: ${{ steps.apply.outputs.labels_added }}"
