@@ -85,14 +85,18 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    A[Editor] --> B[AdvancedExpressionFoldingBuilder]
-    B --> C[BuildExpressionExt.getNonSyntheticExpression()]
-    C --> D{Cache hit?}
-    D -- Yes --> E[Use cached Expression tree]
-    D -- No --> F[Builders & processors synthesize Expressions]
-    E --> G[Expressions emit FoldingDescriptor[]]
-    F --> G
-    G --> H[IDEA renders folded regions + placeholders]
+    A[AdvancedExpressionFoldingBuilder] --> B[BuildExpressionExt]
+    B --> C[runSyntheticExpression]
+    C --> D{Cache entry exists}
+    D -->|Yes| E[Return cached Expression]
+    D -->|No| F{synthetic flag}
+    F -->|Yes| G[Create SyntheticExpressionImpl]
+    F -->|No| H[Build real Expression]
+    G --> I[Store in cache]
+    H --> I
+    I --> J[collectFoldRegionsRecursively]
+    J --> K[Expression.buildFoldRegions]
+    K --> L[Register descriptors]
 ```
 
 If any builder returns garbage, folding stops there. Keep the tree consistent.
