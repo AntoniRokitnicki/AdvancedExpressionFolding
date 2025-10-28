@@ -363,13 +363,16 @@ public <fold text='🏛️' expand='false'>class</fold> EmojifyTestData {
     }</fold>
 
     public <fold text='🏛️' expand='false'>class</fold> FinalizerUsage <fold text='{...}' expand='true'>{
-        @Override
-        <fold text='🛡️' expand='false'>protected</fold> <fold text='💀' expand='false'>void</fold> finalize() <fold text='🪃' expand='false'>throws</fold> Throwable <fold text='{...}' expand='true'>{
+        <fold text='🛡️' expand='false'>protected</fold> <fold text='💀' expand='false'>void</fold> performCleanup() <fold text='{...}' expand='true'>{
             <fold text='🤞' expand='false'>try</fold> {
-                // Finalization logic
+                // Cleanup logic
             } <fold text='🏁' expand='false'>finally</fold> <fold text='{...}' expand='true'>{
-                <fold text='💪' expand='false'>super</fold>.finalize();
+                completeCleanup();
             }</fold>
+        }</fold>
+
+        <fold text='🛡️' expand='false'>protected</fold> <fold text='💀' expand='false'>void</fold> completeCleanup() <fold text='{}' expand='true'>{
+            // Base cleanup logic
         }</fold>
     }</fold>
 
@@ -413,7 +416,7 @@ public <fold text='🏛️' expand='false'>class</fold> EmojifyTestData {
             }</fold>
 
             public <fold text='⚖️' expand='false'>double</fold> getRadius()<fold text=' { ' expand='false'> {
-                <fold text='🔙' expand='false'></fold>return</fold> radius;<fold text=' }' expand='false'>
+                </fold><fold text='🔙' expand='false'>return</fold> radius;<fold text=' }' expand='false'>
             }</fold>
         }</fold>
 
@@ -427,7 +430,7 @@ public <fold text='🏛️' expand='false'>class</fold> EmojifyTestData {
             }</fold>
 
             public <fold text='⚖️' expand='false'>double</fold> getLength()<fold text=' { ' expand='false'> {
-                <fold text='🔙' expand='false'></fold>return</fold> length;<fold text=' }' expand='false'>
+                </fold><fold text='🔙' expand='false'>return</fold> length;<fold text=' }' expand='false'>
             }</fold>
 
             public <fold text='⚖️' expand='false'>double</fold> getWidth()<fold text=' { ' expand='false'> {

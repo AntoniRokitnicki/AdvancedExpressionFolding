@@ -4,15 +4,12 @@ import com.intellij.advancedExpressionFolding.processor.cache.Keys
 import com.intellij.openapi.components.Service
 import com.intellij.openapi.components.service
 import com.intellij.openapi.editor.Editor
-import com.intellij.openapi.fileEditor.FileEditorManager
-import com.intellij.openapi.fileEditor.TextEditor
+import com.intellij.openapi.editor.FoldRegion
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.project.ProjectManager
 import com.intellij.psi.PsiDocumentManager
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiRecursiveElementVisitor
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @Service
@@ -22,9 +19,7 @@ class FoldingService {
         if (editor.isDisposed) {
             return
         }
-        val regions = editor.foldingModel.allFoldRegions.filter {
-            it.group?.toString()?.startsWith("com.intellij.advancedExpressionFolding") ?: false
-        }
+        val regions = editor.foldingModel.allFoldRegions.filter(FoldRegion::isAdvancedExpressionFoldingGroup)
 
         editor.foldingModel
             .runBatchFoldingOperation {
@@ -39,17 +34,26 @@ class FoldingService {
     }
 
     fun clearAllKeys(project: Project) {
-        val editors = FileEditorManager.getInstance(project).allEditors.mapNotNull {
-            (it as? TextEditor)?.editor
-        }.filter {
-            !it.isDisposed
-        }
+        val editors = project.openTextEditors
 
-        CoroutineScope(Dispatchers.Default).launch {
-            editors.forEach { editor ->
-                clearAllKeys(editor)
-            }
+        val coroutineScope = FoldingServiceCoroutineScope.get()
+        //its cut, because verification throws for it seems to be no reason:
+        // Invocation of unresolved method ServicesKt.serviceNotFoundError(...) (1)
+        // Method FoldingService.clearAllKeys(Project) contains an invokestatic instruction referencing an unresolved method ServicesKt.serviceNotFoundError(...). This can lead to NoSuchMethodError exception at runtime.
+        clearAllKeysStart(coroutineScope, editors)
+    }
+
+    private fun FoldingService.clearAllKeysStart(
+        coroutineScope: FoldingServiceCoroutineScope,
+        editors: List<Editor>
+    ) {
+        coroutineScope.launch {
+            clearAllKeysForEditors(editors)
         }
+    }
+
+    private fun FoldingService.clearAllKeysForEditors(editors: List<Editor>) {
+        editors.forEach(::clearAllKeys)
     }
 
     fun clearAllKeys(editor: Editor) {

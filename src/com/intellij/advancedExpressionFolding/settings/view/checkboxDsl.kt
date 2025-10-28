@@ -1,6 +1,10 @@
 package com.intellij.advancedExpressionFolding.settings.view
 
+import kotlin.reflect.KClass
 import kotlin.reflect.KMutableProperty0
+
+@DslMarker
+annotation class CheckboxDsl
 
 typealias Description = String
 typealias UrlSuffix = String
@@ -13,12 +17,21 @@ data class CheckboxDefinition(
     val docLink: UrlSuffix? = null
 )
 
+@CheckboxDsl
 class CheckboxBuilder {
     private val examples = mutableMapOf<ExampleFile, Description?>()
     private var docLink: UrlSuffix? = null
 
     fun example(file: ExampleFile, description: Description? = null) {
         examples[file] = description
+    }
+
+    fun example(exampleClass: Class<*>, description: Description? = null) {
+        example(exampleClass.exampleFileName(), description)
+    }
+
+    fun example(exampleClass: KClass<*>, description: Description? = null) {
+        example(exampleClass.java, description)
     }
 
     fun link(documentationLink: UrlSuffix) {
@@ -37,4 +50,11 @@ class CheckboxBuilder {
         )
     }
 
+}
+
+
+private fun Class<*>.exampleFileName(): ExampleFile {
+    val simpleName = simpleName
+    require(simpleName.isNotEmpty()) { "Example class must have a simple name" }
+    return "${'$'}simpleName.java"
 }

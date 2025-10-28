@@ -3,8 +3,12 @@ package com.intellij.advancedExpressionFolding.processor.declaration
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.semantic.lombok.FieldAnnotationExpression
 import com.intellij.advancedExpressionFolding.expression.semantic.lombok.NullAnnotationExpression
-import com.intellij.advancedExpressionFolding.processor.*
-import com.intellij.advancedExpressionFolding.processor.core.BaseExtension
+import com.intellij.advancedExpressionFolding.processor.addIfEnabled
+import com.intellij.advancedExpressionFolding.processor.exprList
+import com.intellij.advancedExpressionFolding.processor.exprWrap
+import com.intellij.advancedExpressionFolding.processor.isIgnored
+import com.intellij.advancedExpressionFolding.processor.prevWhiteSpace
+import com.intellij.advancedExpressionFolding.processor.takeIfSizeNot
 import com.intellij.advancedExpressionFolding.processor.language.java.ConstructorReferenceExt
 import com.intellij.advancedExpressionFolding.processor.language.kotlin.ConstExt
 import com.intellij.advancedExpressionFolding.processor.language.kotlin.NullableExt.fieldAnnotationExpression
@@ -12,12 +16,14 @@ import com.intellij.advancedExpressionFolding.processor.language.kotlin.Nullable
 import com.intellij.advancedExpressionFolding.processor.lombok.FieldLevelAnnotation
 import com.intellij.advancedExpressionFolding.processor.lombok.LombokFieldExt.callback
 import com.intellij.advancedExpressionFolding.processor.lombok.LombokFieldExt.createFieldLevelAnnotation
+import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
+import com.intellij.advancedExpressionFolding.settings.IKotlinLanguageState
 import com.intellij.openapi.editor.Document
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiField
 import com.intellij.psi.PsiRecordComponent
 
-object PsiFieldExt : BaseExtension() {
+object PsiFieldExt : IKotlinLanguageState by AdvancedExpressionFoldingSettings.State()() {
 
     fun createExpression(field: PsiField, document: Document): Expression? {
         val typeElement = field.typeElement.takeIf {

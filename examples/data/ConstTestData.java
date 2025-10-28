@@ -71,7 +71,7 @@ public class ConstTestData {
     static final int VERSION_REF = VERSION;
 
     @SuppressWarnings("ALL")
-    class ConstsWithAnnotaiton {
+    class ConstsWithAnnotation {
         @Deprecated
         static final Pattern PATTERN = Pattern.compile(".*");
 

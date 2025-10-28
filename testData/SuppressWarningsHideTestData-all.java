@@ -32,12 +32,12 @@ public class SuppressWarningsHideTestData {
         </fold><fold text='' expand='false'>System.out.</fold>println(<fold text='"Method called"' expand='false'>"Method called"</fold>)<fold text='' expand='true'>;</fold><fold text=' ' expand='true'>
     </fold>}</fold>
 
-    public void methodWithAnnotatedLocalVar() <fold text='{...}' expand='true'>{
+    <fold text='' expand='true'>@SuppressWarnings("deprecation")</fold><fold text='' expand='true'>
+    </fold>public void methodWithAnnotatedLocalVar() <fold text='{...}' expand='true'>{
         <fold text='val' expand='false'>@SuppressWarnings("unused")
         int</fold> unusedLocalVar = 42;
 
-        <fold text='val' expand='false'>@SuppressWarnings("deprecation")
-        Date</fold> oldDate = new Date();
+        <fold text='val' expand='false'>Date</fold> oldDate = new Date();
         oldDate.<fold text='month' expand='false'>getMonth()</fold>;
     }</fold>
 

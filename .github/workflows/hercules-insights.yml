@@ -1,0 +1,31 @@
+name: Hercules Insights
+
+on:
+  workflow_dispatch:
+
+jobs:
+  hercules-insights:
+    name: Run Hercules Insights
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Hercules Insights
+        run: |
+          docker run --rm -v $(pwd):/repo srcd/hercules:latest \
+            /bin/bash -c "pip install matplotlib==3.2.0 && \
+            hercules --devs --burndown --burndown-people --couples --pb /repo | \
+            labours -m all -f pb --disable-projector -o /repo/hercules_charts && \
+            cd /repo/hercules_charts && \
+            tar -cf ../hercules_charts.tar * ../hercules_charts_* && \
+            cd .. && rm -r hercules_charts"
+
+      - name: Upload insights artifact
+        uses: actions/upload-artifact@v5
+        with:
+          name: hercules-insights
+          path: hercules_charts.tar

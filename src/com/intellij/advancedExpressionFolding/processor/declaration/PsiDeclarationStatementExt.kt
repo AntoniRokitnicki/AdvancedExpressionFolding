@@ -4,16 +4,20 @@ import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.semantic.WrapperExpression
 import com.intellij.advancedExpressionFolding.expression.semantic.kotlin.DestructuringExpression
 import com.intellij.advancedExpressionFolding.processor.asInstance
-import com.intellij.advancedExpressionFolding.processor.core.BaseExtension
 import com.intellij.advancedExpressionFolding.processor.end
 import com.intellij.advancedExpressionFolding.processor.realNextSibling
+import com.intellij.advancedExpressionFolding.processor.singleArgument
 import com.intellij.advancedExpressionFolding.processor.start
 import com.intellij.advancedExpressionFolding.processor.util.Helper
+import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
+import com.intellij.advancedExpressionFolding.settings.IExpressionCollapseState
+import com.intellij.advancedExpressionFolding.settings.IKotlinLanguageState
 import com.intellij.psi.*
 
-object PsiDeclarationStatementExt : BaseExtension() {
+object PsiDeclarationStatementExt :
+    IKotlinLanguageState by AdvancedExpressionFoldingSettings.State()(),
+    IExpressionCollapseState by AdvancedExpressionFoldingSettings.State()() {
 
-    @JvmStatic
     fun createExpression(
         element: PsiDeclarationStatement
     ): Expression? {
@@ -214,7 +218,7 @@ object PsiDeclarationStatementExt : BaseExtension() {
     private fun PsiExpression.index(): Int? = when (this) {
         is PsiArrayAccessExpression -> indexExpression.asInstance<PsiLiteralExpression>()?.value.asInstance<Int>()
 
-        is PsiMethodCallExpression -> argumentList.expressions.singleOrNull()
+        is PsiMethodCallExpression -> singleArgument
             .asInstance<PsiLiteralExpression>()?.value.asInstance<Int>()
 
         else -> null

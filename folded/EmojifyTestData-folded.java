@@ -363,13 +363,16 @@ public 🏛️ EmojifyTestData {
     }
 
     public 🏛️ FinalizerUsage {
-        @Override
-        🛡️ 💀 finalize() 🪃 Throwable {
+        🛡️ 💀 performCleanup() {
             🤞 {
-                // Finalization logic
+                // Cleanup logic
             } 🏁 {
-                💪.finalize();
+                completeCleanup();
             }
+        }
+
+        🛡️ 💀 completeCleanup() {
+            // Base cleanup logic
         }
     }
 

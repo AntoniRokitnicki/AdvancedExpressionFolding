@@ -10,12 +10,12 @@ import java.util.logging.Logger;</fold>
 <fold text='/** {@link com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.IState#getLombok()} ...*/' expand='true'>/**
  * {@link com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingSettings.IState#getLombok()}
  * <p>
- * {@link com.intellij.advancedExpressionFolding.extension.clazz.LombokExt#addLombokSupport(com.intellij.psi.PsiClass)}
+ * {@link com.intellij.advancedExpressionFolding.processor.lombok.LombokExt#addLombokSupport(com.intellij.psi.PsiClass)}
  * <p>
  * {@link com.intellij.advancedExpressionFolding.FoldingTest#testLombokTestData()}
  */</fold>
 @SuppressWarnings("ALL")
-<fold text='@Builder(ClassWithBuilder) @Getter @Setter @Serial p' expand='false'>p</fold>ublic class LombokTestData {<fold text='' expand='false'>
+<fold text='@HasBuilder(ClassWithBuilder) @Getter @Setter @Serial p' expand='false'>p</fold>ublic class LombokTestData {<fold text='' expand='false'>
 
     </fold><fold text='' expand='false'>private static final long serialVersionUID = 1234567L;</fold>
 
@@ -1145,7 +1145,7 @@ import java.util.logging.Logger;</fold>
         }</fold></fold>
     }</fold>
 
-    <fold text='@Builder c' expand='false'>c</fold>lass ClassWithBuilder <fold text='{...}' expand='true'>{
+    <fold text='@HasBuilder c' expand='false'>c</fold>lass ClassWithBuilder <fold text='{...}' expand='true'>{
         private String name;
         class ClassWithBuilderBuilder <fold text='{...}' expand='true'>{
             private String name;
@@ -1259,7 +1259,7 @@ import java.util.logging.Logger;</fold>
 
     }</fold>
 
-    <fold text='@Builder(FirstBuilder) @Builder(SecondBuilder) @Builder c' expand='false'>c</fold>lass Builders <fold text='{...}' expand='true'>{
+    <fold text='@HasBuilder(FirstBuilder) @HasBuilder(SecondBuilder) @HasBuilder c' expand='false'>c</fold>lass Builders <fold text='{...}' expand='true'>{
 
         class FirstBuilder <fold text='{...}' expand='true'>{
 

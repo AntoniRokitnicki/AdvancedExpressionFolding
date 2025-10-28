@@ -4,6 +4,43 @@
 
 ## [Unreleased]
 
+## [6.0.0] - 2025-10-28
+
+### Added
+
+- [[lombok] Add folding support for Lombok @With, including examples and folded previews](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/537)
+- [Inverted Elvis folding support](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/556)
+- [Pattern matching `instanceof` folding](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/735)
+- [[lombok] Add @PostConstructor marker annotation for constructor method calls without hiding methods](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/565)
+- [Support nameless accessor placeholder folding](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/612)
+- [Null-safe `println` folding](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/737)
+
+### Changed
+
+- [[lombok] Rename @builder annotation to @HasBuilder](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/544)
+- [[fieldshift] Support `*with*` setters when shifting fields](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/549)
+
+## [5.0.0] - 2025-10-17
+
+### Added
+
+- [pseudo-annotations] Introduce toggleable **@Loggable** pseudo-annotation with control-flow analysis that logs method entry and all exits, parameters, return values, and exceptions for methods or entire classes. Logging statements are automatically inserted and removed without modifying user code permanently. See [#441](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/441), [#429](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/429), [#431](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/431), [#363](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/363).
+- [pseudo-annotations] Introduce toggleable **@TracingLoggable** pseudo-annotation with control-flow analysis that uses XDebugger tracing breakpoints for expression logging, adds logging at method entry and all exits, supports grouped breakpoints by annotation and file, and provides full class-level toggling and cleanup logic. See [#447](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/447), [#448](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/448).
+- [methodDefaultParameters] Skip folding of default parameters during debugging sessions to prevent interference with breakpoints. See [#424](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/424).
+- [log folding] Support variable folding inside Java text blocks, add `logFoldingTextBlocks` setting, and enable text block folding by default. See [#338](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/338), [#371](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/371).
+- [settings-ui] Add live validation for “Regex to disable Lombok folding” and warn instead of throwing when downloading examples without an open project. Invalid patterns now display inline errors and settings helpers are hardened with a dedicated notification group. See [#379](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/379), [#446](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/446).
+- Add compatibility with IntelliJ IDEA 2025.3 EAP (253.20558.43)
+
+### Changed
+
+- Internal refactoring and performance optimizations including faster helper lookups and shared extension utilities. See [#416](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/416), [#402](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/402), [#401](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/401), [#398](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/398).
+- Complete Java→Kotlin migration of the entire codebase. All remaining Java sources were converted to Kotlin, improving null-safety, readability, and modern language integration across the plugin. See [#394](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/394), [#397](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/397).
+
+## [4.2.0] - 2025-09-20
+
+- [Add setting to prevent collapsing Java text blocks in log folding](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/338)
+- [Bugfix/log folding strings no params](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/341)
+
 ## [4.0.0] - 2025-07-15
 
 - [[pseudo-annotations] @Main - method-level annotation that generates a main method invoking the annotated method.](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/PseudoAnnotations)
@@ -11,7 +48,7 @@
 
 ## [3.8.0] - 2025-07-07
 
-- make compatible with 252 eap
+- make compatible with 252 EAP
 - add button to apply folded text color based on current theme (blue/navy) in settings
 
 ## [3.7.0] - 2025-06-09
@@ -26,7 +63,7 @@
 ## [3.6.0] - 2025-05-11
 
 - [experimental] Add exception class to @SneakyThrows annotation
-- fix [expressionFunc] issue with when combining with [interfaceExtensionProperties]
+- fix [expressionFunc] issue when combining with [interfaceExtensionProperties]
 - [experimental] multi-line @SneakyThrows
 
 ## [3.5.0] - 2025-04-27
@@ -83,7 +120,7 @@
 
 ### Added
 
-- [lombok] - @Builder - marker annotation when class has inner class with name *Builder
+- [lombok] - @HasBuilder - marker annotation when class has inner class with name *Builder
 - [lombok] - @Value and @LightValue(without @EqualsAndHashCode)
 - [lombok] - @NoArgsConstructor, @NoArgsConstructor(protected), etc.
 - [lombok] - @AllArgsConstructor, @AllArgsConstructor(protected), etc.
@@ -189,7 +226,7 @@ Destructuring assignment for array - preview
 
 ## [1.0.30] - 2024-03-14
 
-windows-compatible keyboard shortcuts for IntelliJ and Android Studio
+Windows-compatible keyboard shortcuts for IntelliJ and Android Studio
 
 ## [1.0.29] - 2024-03-13
 
@@ -299,7 +336,7 @@ Improved handling of multi-line log messages
 ### Added
 
 - Fix NPEs when calling isReferenceTo with r.resolve() that might return null
-- Better support for compareto folding
+- Better support for compareTo folding
 - Improve getter folding
 
 ## [1.0.3]
@@ -329,7 +366,11 @@ Improved handling of multi-line log messages
 
 ## [0.0.1]
 
-[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v4.0.0...HEAD
+[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v6.0.0...HEAD
+[6.0.0]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v5.0.0...v6.0.0
+[5.0.0]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v4.2.0...v5.0.0
+[4.2.0]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v4.0.0...v4.2.0
+[4.1.0]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v4.0.0...v4.1.0
 [4.0.0]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v3.8.0...v4.0.0
 [3.8.0]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v3.7.0...v3.8.0
 [3.7.0]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v3.6.0...v3.7.0

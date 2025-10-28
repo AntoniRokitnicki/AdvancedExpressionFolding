@@ -1,16 +1,41 @@
 package com.intellij.advancedExpressionFolding.processor.methodcall
 
-import com.intellij.advancedExpressionFolding.processor.core.BaseExtension
 import com.intellij.advancedExpressionFolding.processor.methodcall.dynamic.ConfigurationParser
 import com.intellij.advancedExpressionFolding.processor.methodcall.dynamic.DynamicMethodCall
 import com.intellij.advancedExpressionFolding.processor.methodcall.dynamic.IDynamicDataProvider
-import com.intellij.advancedExpressionFolding.processor.on
+import com.intellij.advancedExpressionFolding.processor.takeIfTrue
 import com.intellij.advancedExpressionFolding.processor.util.Consts
+import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
+import com.intellij.advancedExpressionFolding.settings.IGlobalSettingsState
 
 typealias MethodName = String
 typealias ClassName = String
 
-object MethodCallFactory : BaseExtension(){
+/**
+ * Thread-safe singleton factory for method call folding definitions.
+ *
+ * **Threading Model:**
+ * - Uses @Volatile fields for lock-free reads (frequent folding operations)
+ * - Uses synchronized for atomic multi-field updates (rare configuration changes)
+ * - This dual approach optimizes for the read-heavy/write-rare access pattern
+ * - Direct @Volatile field access is faster than AtomicReference.get() for reads
+ *
+ * **Why both @Volatile AND synchronized:**
+ * - @Volatile: Ensures immediate visibility of updates to all reader threads
+ * - synchronized: Ensures atomicity when updating multiple related fields together
+ * - Reader threads (folding builders) never block and always see consistent state
+ * - Writer threads (configuration changes) update all fields atomically
+ *
+ * **Lifecycle:**
+ * 1. Lazy initialization during first PsiMethodCallExpression folding
+ * 2. Background reads during method call folding operations
+ * 3. Runtime updates via AddDynamicMethodFoldingIntention
+ *
+ * **Performance characteristics:**
+ * - Reads: O(1) HashMap lookup, no synchronization overhead
+ * - Writes: O(n) reconstruction of all mappings, synchronized but infrequent
+ */
+object MethodCallFactory : IGlobalSettingsState by AdvancedExpressionFoldingSettings.State()() {
 
     @Volatile
     private var dynamicProvider: IDynamicDataProvider? = ConfigurationParser
@@ -18,11 +43,11 @@ object MethodCallFactory : BaseExtension(){
     @Volatile
     private var methodCallMap: Map<MethodName?, List<AbstractMethodCall>> = emptyMap()
     @Volatile
-    lateinit var supportedClasses: Collection<ClassName>
+    var supportedClasses: Collection<ClassName> = emptyList()
     @Volatile
-    lateinit var supportedMethods: Collection<MethodName>
+    var supportedMethods: Collection<MethodName> = emptyList()
     @Volatile
-    lateinit var classlessMethods: Collection<MethodName>
+    var classlessMethods: Collection<MethodName> = emptyList()
 
     fun refreshMethodCallMappings(dynamicProvider: IDynamicDataProvider? = null) {
         synchronized(this) {
@@ -66,7 +91,7 @@ object MethodCallFactory : BaseExtension(){
 
     private fun getAllMethodCalls(): List<AbstractMethodCall> = MethodCallManager.methodCalls + loadDynamicMethods().orEmpty()
 
-    private fun loadDynamicMethods(): List<DynamicMethodCall>? = dynamic.on()?.let { dynamicProvider?.parse() }
+    private fun loadDynamicMethods(): List<DynamicMethodCall>? = dynamic.takeIfTrue()?.let { dynamicProvider?.parse() }
 
     private fun createSupportedClasses(): Collection<ClassName> =
         methodCallMap.values

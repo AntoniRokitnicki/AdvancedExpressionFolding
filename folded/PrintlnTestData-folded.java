@@ -1,7 +1,7 @@
 package data;
 
 @SuppressWarnings("unused")
-class PrintlnTestData {
+public class PrintlnTestData {
     static final int CONST_VALUE = 0;
 
     void println(String string) {
@@ -17,9 +17,10 @@ class PrintlnTestData {
         println("Divided: " + "" + "into" + " multiple" + " " + "strings");
         println("Passed as parameter: " + string);
         println("Passed as parameter: " + this.getClass());
-        println("text
-block
-");
+        println("""
+                text
+                block
+                """);
     }
 
 }

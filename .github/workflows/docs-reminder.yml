@@ -1,0 +1,132 @@
+name: Documentation hints
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  docs-hints:
+    name: Suggest documentation updates
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+      - name: Fetch sources
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Collect documentation targets
+        id: docs
+        env:
+          BASE_REF: ${{ github.event.pull_request.base.ref }}
+        run: |
+          set -eo pipefail
+          git fetch origin "${BASE_REF}" --depth=1
+          git diff --name-only FETCH_HEAD...HEAD > changed-files.txt
+
+          declare -a docs_to_update=()
+
+          add_doc() {
+            for existing in "${docs_to_update[@]}"; do
+              if [ "${existing}" = "$1" ]; then
+                return
+              fi
+            done
+            docs_to_update+=("$1")
+          }
+
+          if grep -E '^(src/main/|resources/META-INF/)' changed-files.txt >/dev/null; then
+            add_doc "- wiki-clone/Home.md"
+          fi
+
+          state_settings_dir='src/com/intellij/advancedExpressionFolding/settings'
+
+          readarray -t changed_state_files < <(grep -E "^${state_settings_dir}/.*State\\.kt$" changed-files.txt || true)
+
+          collect_state_docs() {
+            local state_file
+            for state_file in "${changed_state_files[@]}"; do
+              if [ ! -f "${state_file}" ]; then
+                continue
+              fi
+
+              local state_features=()
+              readarray -t state_features < <(
+                awk '
+                  $1 == "interface" && $2 ~ /^I/ {
+                    in_interface = 1
+                    next
+                  }
+                  in_interface && $1 == "}" {
+                    exit
+                  }
+                  in_interface && $1 == "override" && ($2 == "val" || $2 == "var") {
+                    name = $3
+                    sub(/:.*/, "", name)
+                    print name
+                    next
+                  }
+                  in_interface && ($1 == "val" || $1 == "var") {
+                    name = $2
+                    sub(/:.*/, "", name)
+                    print name
+                  }
+                ' "${state_file}"
+              )
+
+              local feature
+              for feature in "${state_features[@]}"; do
+                local doc_path="wiki-clone/docs/features/${feature}.md"
+                if [ -f "${doc_path}" ]; then
+                  add_doc "- ${doc_path}"
+                fi
+              done
+            done
+          }
+
+          state_docs_collected=0
+          if [ "${#changed_state_files[@]}" -gt 0 ]; then
+            docs_count_before=${#docs_to_update[@]}
+            collect_state_docs
+            if [ ${#docs_to_update[@]} -gt "${docs_count_before}" ]; then
+              state_docs_collected=1
+            fi
+          fi
+
+          if grep -E '^(examples/|folded/|testData/)' changed-files.txt >/dev/null; then
+            if [ "${state_docs_collected}" -eq 0 ]; then
+              add_doc "- wiki-clone/docs/features/"
+            fi
+          fi
+
+          if [ "${#docs_to_update[@]}" -gt 0 ]; then
+            {
+              echo "docs<<EOF"
+              for entry in "${docs_to_update[@]}"; do
+                echo "${entry}"
+              done
+              echo "EOF"
+            } >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Find documentation reminder comment
+        if: ${{ steps.docs.outputs.docs != '' }}
+        uses: peter-evans/find-comment@v4
+        id: find_docs_comment
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: 'github-actions[bot]'
+          body-includes: 'Documentation to double-check'
+
+      - name: Post documentation reminder
+        if: ${{ steps.docs.outputs.docs != '' }}
+        uses: peter-evans/create-or-update-comment@v5
+        with:
+          comment-id: ${{ steps.find_docs_comment.outputs.comment-id }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            ### Documentation to double-check
+            The following documentation locations might need updates alongside this change:
+
+            ${{ steps.docs.outputs.docs }}

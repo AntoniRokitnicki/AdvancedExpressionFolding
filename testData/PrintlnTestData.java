@@ -1,7 +1,7 @@
 package data;
 
 @SuppressWarnings("unused")
-class PrintlnTestData {
+public class PrintlnTestData {
     static final int CONST_VALUE = 0;
 
     void println(String string) <fold text='{...}' expand='true'>{
@@ -22,12 +22,10 @@ class PrintlnTestData {
         <fold text='' expand='false'>System.out.</fold>println("Passed as parameter: " + string);
         <fold text='' expand='false'>System.out.</fold>println("Passed as parameter: "<fold text=' + ' expand='false'> +
 </fold>this.getClass());
-        <fold text='' expand='false'>System.out.</fold>println(<fold text='"text
-block
-"' expand='false'>"""
+        <fold text='' expand='false'>System.out.</fold>println("""
                 text
                 block
-                """</fold>);
+                """);
     }</fold>
 
 }

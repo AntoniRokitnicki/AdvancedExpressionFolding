@@ -3,6 +3,7 @@ package com.intellij.advancedExpressionFolding.processor.methodcall.date
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.literal.LocalDateLiteral
 import com.intellij.advancedExpressionFolding.processor.methodcall.AbstractMethodCall
+import com.intellij.advancedExpressionFolding.processor.argumentExpressions
 import com.intellij.advancedExpressionFolding.processor.methodcall.Context
 import com.intellij.psi.PsiExpression
 import com.intellij.psi.PsiLiteralExpression
@@ -20,7 +21,7 @@ class CreateDateFactoryMethodCall : AbstractMethodCall() {
         context: Context,
         expressions: Array<PsiExpression>
     ): Expression? {
-        val literals = element.argumentList.expressions.takeIf {
+        val literals = element.argumentExpressions.takeIf {
             it.size == 3
         }?.let { array ->
             array.mapNotNull {

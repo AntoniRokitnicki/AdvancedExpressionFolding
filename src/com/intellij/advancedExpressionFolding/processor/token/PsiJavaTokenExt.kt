@@ -1,17 +1,17 @@
 package com.intellij.advancedExpressionFolding.processor.token
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.processor.core.BaseExtension
 import com.intellij.advancedExpressionFolding.processor.expr
-import com.intellij.advancedExpressionFolding.processor.on
+import com.intellij.advancedExpressionFolding.processor.takeIfTrue
+import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
+import com.intellij.advancedExpressionFolding.settings.IEmojiVisibilityState
 import com.intellij.psi.JavaTokenType.*
 import com.intellij.psi.PsiJavaToken
 
-object PsiJavaTokenExt : BaseExtension() {
+object PsiJavaTokenExt : IEmojiVisibilityState by AdvancedExpressionFoldingSettings.State()() {
 
-    @JvmStatic
     fun createExpression(element: PsiJavaToken): Expression? {
-        emojify.on() ?: return null
+        emojify.takeIfTrue() ?: return null
 
         val emoji = when (element.tokenType) {
             NULL_KEYWORD -> "🕳️"

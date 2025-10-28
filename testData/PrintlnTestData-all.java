@@ -1,7 +1,7 @@
 package data;
 
 @SuppressWarnings("unused")
-class PrintlnTestData {
+public class PrintlnTestData {
     <fold text='default const' expand='false'>static final </fold><fold text='' expand='false'>int</fold> CONST_VALUE = 0;
 
     void println(String string) <fold text='{...}' expand='true'>{
