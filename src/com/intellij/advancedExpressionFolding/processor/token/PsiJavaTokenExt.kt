@@ -6,6 +6,8 @@ import com.intellij.advancedExpressionFolding.processor.takeIfTrue
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
 import com.intellij.advancedExpressionFolding.settings.IEmojiVisibilityState
 import com.intellij.psi.JavaTokenType.*
+import com.intellij.psi.PsiClass
+import com.intellij.psi.PsiJavaCodeReferenceElement
 import com.intellij.psi.PsiJavaToken
 
 object PsiJavaTokenExt : IEmojiVisibilityState by AdvancedExpressionFoldingSettings.State()() {
@@ -60,6 +62,17 @@ object PsiJavaTokenExt : IEmojiVisibilityState by AdvancedExpressionFoldingSetti
             EXPORTS_KEYWORD -> "🚢"
             YIELD_KEYWORD -> "🚸"
             RECORD_KEYWORD -> "📀"
+            IDENTIFIER -> run {
+                if (!element.textMatches("String")) return@run null
+
+                val reference = element.parent as? PsiJavaCodeReferenceElement ?: return@run null
+                val resolved = reference.resolve()
+                if (resolved is PsiClass && resolved.qualifiedName == "java.lang.String") {
+                    "🪡"
+                } else {
+                    null
+                }
+            }
             //IF_KEYWORD -> "🤔"
             //ANDAND -> "🤝"
             //OROR -> "🚪"
