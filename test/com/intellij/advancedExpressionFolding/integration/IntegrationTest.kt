@@ -217,8 +217,8 @@ class IntegrationTest {
         try {
             waitForIndicators(5.minutes)
         } catch (exception: NoSuchElementException) {
-            val fromTimeoutAnalyzer = exception.stackTrace.any { it.className.endsWith("TimeoutAnalyzer") }
-            if (fromTimeoutAnalyzer) {
+            val isTimeoutAnalyzerFailure = exception.stackTrace.any { it.className.endsWith("TimeoutAnalyzer") }
+            if (isTimeoutAnalyzerFailure) {
                 sleep(1.seconds.inWholeMilliseconds)
             } else {
                 throw exception
