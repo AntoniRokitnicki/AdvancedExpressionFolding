@@ -57,7 +57,7 @@ For more information, read the [blog post](https://medium.com/@andrey_cheptsov/m
 ### Changed
 
 - [[lombok] Rename @builder annotation to @HasBuilder](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/544).
-- [[fieldshift] Support `with*` setters when shifting fields](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/549).
+- [[fieldshift] Support `*with*` setters when shifting fields](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/549).
 
 ## 5.0.0 ##
 - [[pseudo-annotations] @Loggable - toggleable pseudo-annotation with control-flow analysis for automatic method entry/exit logging, parameters, return values, and exceptions](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/PseudoAnnotations)
