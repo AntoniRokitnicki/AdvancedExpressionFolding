@@ -29,6 +29,17 @@ jobs:
           DEV_MODE: "1"
         run: ./gradlew clean build --no-daemon --console=plain
 
+      - name: Report changed file count
+        run: |
+          set -eo pipefail
+          changed=$(git status --short | wc -l | tr -d ' ')
+          echo "Changed files: ${changed}"
+          {
+            echo "### Dev mode regeneration"
+            echo ""
+            echo "${changed} file(s) changed after regeneration."
+          } >> "$GITHUB_STEP_SUMMARY"
+
       - name: Determine branch name
         id: branch
         run: echo "name=dev-mode-regeneration-$(date +%Y%m%d)" >> "$GITHUB_OUTPUT"
