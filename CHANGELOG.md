@@ -4,6 +4,10 @@
 
 ## [Unreleased]
 
+## [6.0.0] - 2025-10-28
+
+- Bugfix/log folding strings no params
+
 ## [5.0.0] - 2025-10-17
 
 ### Added
@@ -350,7 +354,8 @@ Improved handling of multi-line log messages
 
 ## [0.0.1]
 
-[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v5.0.0...HEAD
+[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v6.0.0...HEAD
+[6.0.0]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v5.0.0...v6.0.0
 [5.0.0]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v4.2.0...v5.0.0
 [4.2.0]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v4.0.0...v4.2.0
 [4.1.0]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v4.0.0...v4.1.0
