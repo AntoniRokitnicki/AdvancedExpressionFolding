@@ -4,6 +4,7 @@ import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.components.PersistentStateComponent
 import com.intellij.openapi.components.State
 import com.intellij.openapi.components.Storage
+import com.intellij.util.xmlb.XmlSerializerUtil
 import org.jetbrains.annotations.NotNull
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KClass
@@ -16,11 +17,11 @@ import kotlin.reflect.jvm.javaType
 @State(name = "AdvancedExpressionFoldingSettings", storages = [Storage("editor.codeinsight.xml")])
 class AdvancedExpressionFoldingSettings :
     PersistentStateComponent<AdvancedExpressionFoldingSettings.State> {
-    private var myState = State()
+    private val myState = State()
     override fun getState(): State = myState
 
     override fun loadState(state: State) {
-        myState = state.copy()
+        XmlSerializerUtil.copyBean(state, myState)
     }
 
     /**
@@ -125,7 +126,7 @@ class AdvancedExpressionFoldingSettings :
     fun disableAll() = updateAllState(false)
     fun enableAll(vararg excludeProperties: KMutableProperty0<Boolean>) = updateAllState(true, *excludeProperties)
     fun restoreDefaults() {
-        myState = State()
+        XmlSerializerUtil.copyBean(State(), myState)
     }
 
     // used in integrationStubs
