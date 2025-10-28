@@ -21,81 +21,104 @@ jobs:
         env:
           BASE_REF: ${{ github.event.pull_request.base.ref }}
         run: |
-          set -eo pipefail
+          set -euo pipefail
+
           git fetch origin "${BASE_REF}" --depth=1
-          git diff --name-only FETCH_HEAD...HEAD > changed-files.txt
+          BASE_SHA=$(git rev-parse FETCH_HEAD)
+          HEAD_SHA=$(git rev-parse HEAD)
 
           declare -a docs_to_update=()
 
           add_doc() {
+            local candidate="$1"
             for existing in "${docs_to_update[@]}"; do
-              if [ "${existing}" = "$1" ]; then
+              if [ "${existing}" = "${candidate}" ]; then
                 return
               fi
             done
-            docs_to_update+=("$1")
+            docs_to_update+=("${candidate}")
           }
 
-          if grep -E '^(src/main/|resources/META-INF/)' changed-files.txt >/dev/null; then
+          declare -A MAP=(
+            [arithmeticExpressions]="wiki-clone/docs/features/arithmeticExpressions.md"
+            [assertsCollapse]="wiki-clone/docs/features/assertsCollapse.md"
+            [castExpressionsCollapse]="wiki-clone/docs/features/castExpressionsCollapse.md"
+            [checkExpressionsCollapse]="wiki-clone/docs/features/checkExpressionsCollapse.md"
+            [compactControlFlowSyntaxCollapse]="wiki-clone/docs/features/compactControlFlowSyntaxCollapse.md"
+            [comparingExpressionsCollapse]="wiki-clone/docs/features/comparingExpressionsCollapse.md"
+            [comparingLocalDatesCollapse]="wiki-clone/docs/features/comparingLocalDatesCollapse.md"
+            [concatenationExpressionsCollapse]="wiki-clone/docs/features/concatenationExpressionsCollapse.md"
+            [const]="wiki-clone/docs/features/const.md"
+            [constructorReferenceNotation]="wiki-clone/docs/features/constructorReferenceNotation.md"
+            [controlFlowMultiStatementCodeBlockCollapse]="wiki-clone/docs/features/controlFlowMultiStatementCodeBlockCollapse.md"
+            [controlFlowSingleStatementCodeBlockCollapse]="wiki-clone/docs/features/controlFlowSingleStatementCodeBlockCollapse.md"
+            [destructuring]="wiki-clone/docs/features/destructuring.md"
+            [dynamic]="wiki-clone/docs/features/dynamic.md"
+            [emojify]="wiki-clone/docs/features/emojify.md"
+            [experimental]="wiki-clone/docs/features/experimental.md"
+            [expressionFunc]="wiki-clone/docs/features/expressionFunc.md"
+            [fieldShift]="wiki-clone/docs/features/fieldShift.md"
+            [finalEmoji]="wiki-clone/docs/features/finalEmoji.md"
+            [finalRemoval]="wiki-clone/docs/features/finalRemoval.md"
+            [getExpressionsCollapse]="wiki-clone/docs/features/getExpressionsCollapse.md"
+            [getSetExpressionsCollapse]="wiki-clone/docs/features/getSetExpressionsCollapse.md"
+            [globalOn]="wiki-clone/docs/features/globalOn.md"
+            [ifNullSafe]="wiki-clone/docs/features/ifNullSafe.md"
+            [interfaceExtensionProperties]="wiki-clone/docs/features/interfaceExtensionProperties.md"
+            [kotlinQuickReturn]="wiki-clone/docs/features/kotlinQuickReturn.md"
+            [localDateLiteralCollapse]="wiki-clone/docs/features/localDateLiteralCollapse.md"
+            [localDateLiteralPostfixCollapse]="wiki-clone/docs/features/localDateLiteralPostfixCollapse.md"
+            [logFolding]="wiki-clone/docs/features/logFolding.md"
+            [logFoldingTextBlocks]="wiki-clone/docs/features/logFoldingTextBlocks.md"
+            [lombok]="wiki-clone/docs/features/lombok.md"
+            [lombokDirtyOff]="wiki-clone/docs/features/lombokDirtyOff.md"
+            [lombokPatternOff]="wiki-clone/docs/features/lombokPatternOff.md"
+            [memoryImprovement]="wiki-clone/docs/features/memoryImprovement.md"
+            [methodDefaultParameters]="wiki-clone/docs/features/methodDefaultParameters.md"
+            [nullable]="wiki-clone/docs/features/nullable.md"
+            [optional]="wiki-clone/docs/features/optional.md"
+            [overrideHide]="wiki-clone/docs/features/overrideHide.md"
+            [patternMatchingInstanceof]="wiki-clone/docs/features/patternMatchingInstanceof.md"
+            [println]="wiki-clone/docs/features/println.md"
+            [pseudoAnnotations]="wiki-clone/docs/features/pseudoAnnotations.md"
+            [rangeExpressionsCollapse]="wiki-clone/docs/features/rangeExpressionsCollapse.md"
+            [semicolonsCollapse]="wiki-clone/docs/features/semicolonsCollapse.md"
+            [slicingExpressionsCollapse]="wiki-clone/docs/features/slicingExpressionsCollapse.md"
+            [streamSpread]="wiki-clone/docs/features/streamSpread.md"
+            [summaryParentOverride]="wiki-clone/docs/features/summaryParentOverride.md"
+            [suppressWarningsHide]="wiki-clone/docs/features/suppressWarningsHide.md"
+            [varExpressionsCollapse]="wiki-clone/docs/features/varExpressionsCollapse.md"
+          )
+
+          feature_doc_added=0
+          diff_output=$(git diff -U0 "${BASE_SHA}" "${HEAD_SHA}" || true)
+          if [ -n "${diff_output}" ]; then
+            for key in "${!MAP[@]}"; do
+              doc_path="${MAP[${key}]}"
+              if [ -z "${doc_path}" ]; then
+                continue
+              fi
+              if grep -q -E "^[+-].*\\b${key}\\b" <<< "${diff_output}"; then
+                add_doc "- ${doc_path}"
+                feature_doc_added=1
+              fi
+            done
+          fi
+
+          changed_files=$(git diff --name-only "${BASE_SHA}" "${HEAD_SHA}" || true)
+
+          if [ -n "${changed_files}" ] && printf '%s\n' "${changed_files}" | grep -E '^(src/main/|resources/META-INF/)' >/dev/null; then
             add_doc "- wiki-clone/Home.md"
           fi
 
-          state_settings_dir='src/com/intellij/advancedExpressionFolding/settings'
-
-          readarray -t changed_state_files < <(grep -E "^${state_settings_dir}/.*State\\.kt$" changed-files.txt || true)
-
-          collect_state_docs() {
-            local state_file
-            for state_file in "${changed_state_files[@]}"; do
-              if [ ! -f "${state_file}" ]; then
-                continue
-              fi
-
-              local state_features=()
-              readarray -t state_features < <(
-                awk '
-                  $1 == "interface" && $2 ~ /^I/ {
-                    in_interface = 1
-                    next
-                  }
-                  in_interface && $1 == "}" {
-                    exit
-                  }
-                  in_interface && $1 == "override" && ($2 == "val" || $2 == "var") {
-                    name = $3
-                    sub(/:.*/, "", name)
-                    print name
-                    next
-                  }
-                  in_interface && ($1 == "val" || $1 == "var") {
-                    name = $2
-                    sub(/:.*/, "", name)
-                    print name
-                  }
-                ' "${state_file}"
-              )
-
-              local feature
-              for feature in "${state_features[@]}"; do
-                local doc_path="wiki-clone/docs/features/${feature}.md"
-                if [ -f "${doc_path}" ]; then
-                  add_doc "- ${doc_path}"
-                fi
-              done
-            done
-          }
-
-          state_docs_collected=0
-          if [ "${#changed_state_files[@]}" -gt 0 ]; then
-            docs_count_before=${#docs_to_update[@]}
-            collect_state_docs
-            if [ ${#docs_to_update[@]} -gt "${docs_count_before}" ]; then
-              state_docs_collected=1
-            fi
+          if [ -n "${changed_files}" ]; then
+            while IFS= read -r doc; do
+              [ -n "${doc}" ] && add_doc "- ${doc}"
+            done < <(printf '%s\n' "${changed_files}" | grep -E '^wiki-clone/docs/features/' || true)
           fi
 
-          if grep -E '^(examples/|folded/|testData/)' changed-files.txt >/dev/null; then
-            if [ "${state_docs_collected}" -eq 0 ]; then
+          if [ -n "${changed_files}" ] && printf '%s\n' "${changed_files}" | grep -E '^(examples/|folded/|testData/)' >/dev/null; then
+            if [ "${feature_doc_added}" -eq 0 ]; then
               add_doc "- wiki-clone/docs/features/"
             fi
           fi
@@ -107,7 +130,7 @@ jobs:
                 echo "${entry}"
               done
               echo "EOF"
-            } >> "$GITHUB_OUTPUT"
+            } >> "${GITHUB_OUTPUT}"
           fi
 
       - name: Find documentation reminder comment
