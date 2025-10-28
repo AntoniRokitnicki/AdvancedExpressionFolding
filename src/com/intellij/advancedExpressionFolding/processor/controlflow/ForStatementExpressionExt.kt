@@ -7,11 +7,13 @@ import com.intellij.advancedExpressionFolding.expression.controlflow.ForEachStat
 import com.intellij.advancedExpressionFolding.expression.controlflow.ForStatement
 import com.intellij.advancedExpressionFolding.expression.literal.NumberLiteral
 import com.intellij.advancedExpressionFolding.expression.operation.basic.Variable
-import com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt.getAnyExpression
 import com.intellij.advancedExpressionFolding.processor.argumentExpressions
 import com.intellij.advancedExpressionFolding.processor.argumentCount
+import com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt
 import com.intellij.advancedExpressionFolding.processor.util.Helper
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
+import com.intellij.advancedExpressionFolding.settings.IControlFlowState
+import com.intellij.advancedExpressionFolding.settings.IExpressionCollapseState
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiArrayAccessExpression
@@ -30,16 +32,17 @@ import com.intellij.psi.PsiStatement
 import com.intellij.psi.PsiVariable
 import com.intellij.psi.SyntaxTraverser
 
-object ForStatementExpressionExt {
+object ForStatementExpressionExt :
+    IExpressionCollapseState by AdvancedExpressionFoldingSettings.State()(),
+    IControlFlowState by AdvancedExpressionFoldingSettings.State()() {
 
     fun getForStatementExpression(element: PsiForStatement, document: Document): Expression? {
-        val settings = AdvancedExpressionFoldingSettings.getInstance()
         val lParenth = element.lParenth
         val rParenth = element.rParenth
         val initialization = element.initialization
         val update = element.update
         val condition = element.condition
-        if (settings.state.rangeExpressionsCollapse &&
+        if (rangeExpressionsCollapse &&
             lParenth != null &&
             rParenth != null &&
             initialization is PsiDeclarationStatement &&
@@ -72,8 +75,8 @@ object ForStatementExpressionExt {
                     val identifier = declaredVariable.children.firstOrNull { it is PsiIdentifier } as? PsiIdentifier
                     if (identifier != null) {
                         val variable = Variable(identifier, identifier.textRange, null, identifier.text, false)
-                        val start = getAnyExpression(declaredVariable.initializer!!, document)
-                        val end = getAnyExpression(conditionROperand, document)
+                        val start = BuildExpressionExt.getAnyExpression(declaredVariable.initializer!!, document)
+                        val end = BuildExpressionExt.getAnyExpression(conditionROperand, document)
                         val sign = condition.operationSign.text
                         if (sign == "<" || sign == "<=") {
                             val body = element.body
@@ -93,8 +96,7 @@ object ForStatementExpressionExt {
                                                 initializerExpr,
                                                 conditionROperand,
                                                 conditionVariable,
-                                                updateVariable,
-                                                settings
+                                                updateVariable
                                             )
                                             if (foreach != null) {
                                                 return foreach
@@ -120,7 +122,7 @@ object ForStatementExpressionExt {
             }
         }
         if (element.condition != null && element.lParenth != null && element.rParenth != null &&
-            settings.state.compactControlFlowSyntaxCollapse
+            compactControlFlowSyntaxCollapse
         ) {
             return CompactControlFlowExpression(
                 element,
@@ -138,8 +140,7 @@ object ForStatementExpressionExt {
         initializer: PsiExpression?,
         conditionROperand: PsiExpression,
         conditionVariable: PsiVariable?,
-        updateVariable: PsiVariable,
-        settings: AdvancedExpressionFoldingSettings
+        updateVariable: PsiVariable
     ): Expression? {
         if (variableName == null || conditionVariable == null) {
             return null
@@ -179,7 +180,7 @@ object ForStatementExpressionExt {
                         indexName.textRange,
                         variableName.textRange,
                         arrayExpression.textRange,
-                        settings.state.varExpressionsCollapse,
+                        varExpressionsCollapse,
                         isFinal
                     )
                 } else {
@@ -223,7 +224,7 @@ object ForStatementExpressionExt {
                             indexName.textRange,
                             variableName.textRange,
                             arrayExpression.textRange,
-                            settings.state.varExpressionsCollapse,
+                            varExpressionsCollapse,
                             isFinal
                         )
                     } else {

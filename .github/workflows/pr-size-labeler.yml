@@ -1,0 +1,231 @@
+name: Pull Request size labeler
+
+description: "Label pull requests based on their size"
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - ready_for_review
+      - edited
+  workflow_dispatch:
+    inputs:
+      pull_request_number:
+        description: "Pull request number to relabel (defaults to the PR opened from the selected branch if omitted)."
+        required: false
+        default: ""
+      github_api_url:
+        description: "GitHub API URL to use when contacting the server."
+        required: false
+        default: "https://api.github.com"
+      xs_configuration:
+        description: "JSON object configuring the extra small label (fields: label, max_size)."
+        required: false
+        default: '{"label":"size/xs","max_size":10}'
+      s_configuration:
+        description: "JSON object configuring the small label (fields: label, max_size)."
+        required: false
+        default: '{"label":"size/s","max_size":100}'
+      m_configuration:
+        description: "JSON object configuring the medium label (fields: label, max_size)."
+        required: false
+        default: '{"label":"size/m","max_size":500}'
+      l_configuration:
+        description: "JSON object configuring the large label (fields: label, max_size)."
+        required: false
+        default: '{"label":"size/l","max_size":1000}'
+      xl_configuration:
+        description: "JSON object configuring the extra large label (field: label)."
+        required: false
+        default: '{"label":"size/xl"}'
+      xl_behavior:
+        description: "JSON object configuring extra large behavior (fields: fail, message)."
+        required: false
+        default: '{"fail":false,"message":""}'
+      ignore_configuration:
+        description: "JSON object configuring ignore options (fields: ignore_line_deletions, ignore_file_deletions)."
+        required: false
+        default: '{"ignore_line_deletions":false,"ignore_file_deletions":false}'
+      files_to_ignore:
+        description: "Whitespace or newline separated glob patterns to ignore."
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+
+jobs:
+  labeler:
+    runs-on: ubuntu-latest
+    env:
+      DEFAULT_MESSAGE_IF_XL: |-
+        This PR exceeds the recommended size of 1000 lines.
+        Please make sure you are NOT addressing multiple issues with one PR.
+        Note this PR might be rejected due to its size.
+    steps:
+      - name: Resolve pull request number for manual runs
+        if: github.event_name == 'workflow_dispatch'
+        env:
+          INPUT_PR_NUMBER: ${{ github.event.inputs.pull_request_number }}
+          REPO: ${{ github.repository }}
+          API_URL: ${{ github.event.inputs.github_api_url || github.api_url }}
+          TOKEN: ${{ github.token }}
+          BRANCH: ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+
+          pr_number="$INPUT_PR_NUMBER"
+
+          if [ -z "$pr_number" ]; then
+            encoded_head=$(python -c 'import urllib.parse, os; print(urllib.parse.quote(f"{os.environ[\'REPO\']}:" + os.environ[\'BRANCH\'], safe=""))')
+            response=$(curl -sSf -H "Authorization: Bearer $TOKEN" -H "Accept: application/vnd.github+json" "$API_URL/repos/$REPO/pulls?head=$encoded_head&state=open")
+            pr_number=$(echo "$response" | jq '.[0].number // empty' -r)
+          fi
+
+          if [ -z "$pr_number" ]; then
+            echo "Unable to determine pull request number. Provide it explicitly when triggering the workflow." >&2
+            exit 1
+          fi
+
+          cat <<JSON > "$RUNNER_TEMP/pr-event.json"
+          {"pull_request":{"number":$pr_number}}
+          JSON
+
+          echo "GITHUB_EVENT_PATH=$RUNNER_TEMP/pr-event.json" >> "$GITHUB_ENV"
+
+      - name: Prepare labeler configuration
+        id: prepare
+        shell: python
+        env:
+          XS_CONFIGURATION: ${{ github.event.inputs.xs_configuration }}
+          S_CONFIGURATION: ${{ github.event.inputs.s_configuration }}
+          M_CONFIGURATION: ${{ github.event.inputs.m_configuration }}
+          L_CONFIGURATION: ${{ github.event.inputs.l_configuration }}
+          XL_CONFIGURATION: ${{ github.event.inputs.xl_configuration }}
+          XL_BEHAVIOR: ${{ github.event.inputs.xl_behavior }}
+          IGNORE_CONFIGURATION: ${{ github.event.inputs.ignore_configuration }}
+          FILES_TO_IGNORE: ${{ github.event.inputs.files_to_ignore }}
+          GITHUB_API_URL_INPUT: ${{ github.event.inputs.github_api_url }}
+          DEFAULT_GITHUB_API_URL: ${{ github.api_url }}
+        run: |
+          import json
+          import os
+          import sys
+
+
+          def parse_json(name: str, defaults: dict) -> dict:
+              raw = (os.environ.get(name) or "").strip()
+              if not raw:
+                  return dict(defaults)
+
+              try:
+                  parsed = json.loads(raw)
+              except json.JSONDecodeError as exc:
+                  print(
+                      f"::error title=Invalid JSON input::{name.replace('_', ' ').lower()} is not valid JSON: {exc}",
+                      file=sys.stderr,
+                  )
+                  raise SystemExit(1)
+
+              if not isinstance(parsed, dict):
+                  print(
+                      f"::error title=Invalid configuration::{name.replace('_', ' ').lower()} must be a JSON object.",
+                      file=sys.stderr,
+                  )
+                  raise SystemExit(1)
+
+              merged = dict(defaults)
+              for key, value in parsed.items():
+                  if value is None:
+                      continue
+                  merged[key] = value
+              return merged
+
+
+          size_defaults = {
+              "XS": {"label": "size/xs", "max_size": 10},
+              "S": {"label": "size/s", "max_size": 100},
+              "M": {"label": "size/m", "max_size": 500},
+              "L": {"label": "size/l", "max_size": 1000},
+              "XL": {"label": "size/xl"},
+          }
+
+          outputs: list[tuple[str, str]] = []
+
+          for key, defaults in size_defaults.items():
+              config = parse_json(f"{key}_CONFIGURATION", defaults)
+              label = str(config.get("label", defaults["label"]))
+              outputs.append((f"{key.lower()}_label", label))
+
+              if "max_size" in defaults:
+                  max_size = str(config.get("max_size", defaults["max_size"]))
+                  outputs.append((f"{key.lower()}_max_size", max_size))
+
+          behavior_defaults = {"fail": False, "message": ""}
+          behavior = parse_json("XL_BEHAVIOR", behavior_defaults)
+
+          fail_value = behavior.get("fail", False)
+          fail_if_xl = "true" if str(fail_value).lower() in {"true", "1", "yes", "y"} else "false"
+
+          message = str(behavior.get("message", "")).strip()
+          if not message:
+              message = os.environ["DEFAULT_MESSAGE_IF_XL"]
+
+          ignore_defaults = {"ignore_line_deletions": False, "ignore_file_deletions": False}
+          ignore = parse_json("IGNORE_CONFIGURATION", ignore_defaults)
+
+          ignore_line_value = ignore.get("ignore_line_deletions", False)
+          ignore_file_value = ignore.get("ignore_file_deletions", False)
+
+          ignore_line = "true" if str(ignore_line_value).lower() in {"true", "1", "yes", "y"} else "false"
+          ignore_file = "true" if str(ignore_file_value).lower() in {"true", "1", "yes", "y"} else "false"
+
+          files_to_ignore = os.environ.get("FILES_TO_IGNORE", "")
+
+          github_api_url = (os.environ.get("GITHUB_API_URL_INPUT") or "").strip() or os.environ[
+              "DEFAULT_GITHUB_API_URL"
+          ]
+
+          outputs.extend(
+              [
+                  ("fail_if_xl", fail_if_xl),
+                  ("message_if_xl", message),
+                  ("ignore_line_deletions", ignore_line),
+                  ("ignore_file_deletions", ignore_file),
+                  ("files_to_ignore", files_to_ignore),
+                  ("github_api_url", github_api_url),
+              ]
+          )
+
+          output_path = os.environ["GITHUB_OUTPUT"]
+
+          with open(output_path, "a", encoding="utf-8") as fh:
+              for key, value in outputs:
+                  value_str = str(value)
+                  if "\n" in value_str:
+                      fh.write(f"{key}<<EOF\n{value_str}\nEOF\n")
+                  else:
+                      fh.write(f"{key}={value_str}\n")
+
+      - name: Label pull request size
+        uses: CodelyTV/pr-size-labeler@v1.10.3
+        with:
+          xs_label: ${{ steps.prepare.outputs.xs_label }}
+          xs_max_size: ${{ steps.prepare.outputs.xs_max_size }}
+          s_label: ${{ steps.prepare.outputs.s_label }}
+          s_max_size: ${{ steps.prepare.outputs.s_max_size }}
+          m_label: ${{ steps.prepare.outputs.m_label }}
+          m_max_size: ${{ steps.prepare.outputs.m_max_size }}
+          l_label: ${{ steps.prepare.outputs.l_label }}
+          l_max_size: ${{ steps.prepare.outputs.l_max_size }}
+          xl_label: ${{ steps.prepare.outputs.xl_label }}
+          fail_if_xl: ${{ steps.prepare.outputs.fail_if_xl }}
+          message_if_xl: ${{ steps.prepare.outputs.message_if_xl }}
+          github_api_url: ${{ steps.prepare.outputs.github_api_url }}
+          files_to_ignore: ${{ steps.prepare.outputs.files_to_ignore }}
+          ignore_line_deletions: ${{ steps.prepare.outputs.ignore_line_deletions }}
+          ignore_file_deletions: ${{ steps.prepare.outputs.ignore_file_deletions }}

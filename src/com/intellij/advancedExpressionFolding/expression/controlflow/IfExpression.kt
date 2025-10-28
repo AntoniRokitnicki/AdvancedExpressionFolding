@@ -3,6 +3,9 @@ package com.intellij.advancedExpressionFolding.expression.controlflow
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.processor.language.java.PatternMatchingExt
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
+import com.intellij.advancedExpressionFolding.settings.IControlFlowState
+import com.intellij.advancedExpressionFolding.settings.IKotlinLanguageState
+import com.intellij.advancedExpressionFolding.settings.IUnclassifiedFeatureState
 import com.intellij.lang.folding.FoldingDescriptor
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.editor.FoldingGroup
@@ -19,12 +22,14 @@ import java.util.ArrayList
 
 class IfExpression(
     private val ifStatement: PsiIfStatement,
-    textRange: TextRange
-) : Expression(ifStatement, textRange) {
+    textRange: TextRange,
+) : Expression(ifStatement, textRange),
+    IControlFlowState by AdvancedExpressionFoldingSettings.State()(),
+    IKotlinLanguageState by AdvancedExpressionFoldingSettings.State()(),
+    IUnclassifiedFeatureState by AdvancedExpressionFoldingSettings.State()() {
 
     override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean {
-        val state = AdvancedExpressionFoldingSettings.getInstance().state
-        return isAssertExpression(state, ifStatement) || isCompactExpression(state, ifStatement)
+        return isAssertExpression(ifStatement) || isCompactExpression(ifStatement)
     }
 
     override fun isNested(): Boolean = true
@@ -34,8 +39,7 @@ class IfExpression(
         document: Document,
         parent: Expression?
     ): Array<FoldingDescriptor> {
-        val state = AdvancedExpressionFoldingSettings.getInstance().state
-        val highlightPostfix = if (!isAssertExpression(state, this.ifStatement) && isCompactExpression(state, this.ifStatement)) {
+        val highlightPostfix = if (!isAssertExpression(this.ifStatement) && isCompactExpression(this.ifStatement)) {
             HIGHLIGHTED_GROUP_POSTFIX
         } else {
             ""
@@ -46,13 +50,13 @@ class IfExpression(
         val rParenth = this.ifStatement.rParenth
         if (lParenth != null && rParenth != null) {
             when {
-                isAssertExpression(state, this.ifStatement) ->
-                    foldAssertion(element, document, descriptors, group, state)
+                isAssertExpression(this.ifStatement) ->
+                    foldAssertion(element, document, descriptors, group)
 
-                isCompactExpression(state, this.ifStatement) ->
+                isCompactExpression(this.ifStatement) ->
                     foldCompactExpr(element, document, group, descriptors)
 
-                state.patternMatchingInstanceof && element is PsiIfStatement -> {
+                patternMatchingInstanceof && element is PsiIfStatement -> {
                     val instanceOfExpr = findInstanceOf(element)
                     if (instanceOfExpr != null) {
                         PatternMatchingExt.foldInstanceOf(element, instanceOfExpr, document, descriptors)
@@ -64,8 +68,7 @@ class IfExpression(
     }
 
     override fun isHighlighted(): Boolean {
-        val state = AdvancedExpressionFoldingSettings.getInstance().state
-        return !isAssertExpression(state, ifStatement) && isCompactExpression(state, ifStatement)
+        return !isAssertExpression(ifStatement) && isCompactExpression(ifStatement)
     }
 
     override fun getHighlightedTextRange(): TextRange {
@@ -96,8 +99,7 @@ class IfExpression(
         psiElement: PsiElement,
         document: Document,
         descriptors: MutableList<FoldingDescriptor>,
-        group: FoldingGroup,
-        state: AdvancedExpressionFoldingSettings.State
+        group: FoldingGroup
     ) {
         val throwStatement = when (val thenBranch = ifStatement.thenBranch) {
             is PsiBlockStatement -> {
@@ -192,7 +194,7 @@ class IfExpression(
                     " : "
                 )
             }
-            if (!state.semicolonsCollapse && throwStatement.text.endsWith(";")) {
+            if (!semicolonsCollapse && throwStatement.text.endsWith(";")) {
                 descriptors += FoldingDescriptor(
                     psiElement.node,
                     TextRange.create(messageExpression.textRange.endOffset, throwStatement.textRange.endOffset - 1),
@@ -212,11 +214,11 @@ class IfExpression(
                     psiElement.node,
                     TextRange.create(messageExpression.textRange.endOffset, element.textRange.endOffset),
                     group,
-                    if (state.semicolonsCollapse) "" else ";"
+                    if (semicolonsCollapse) "" else ";"
                 )
             }
         } else {
-            if (!state.semicolonsCollapse && throwStatement.text.endsWith(";")) {
+            if (!semicolonsCollapse && throwStatement.text.endsWith(";")) {
                 descriptors += FoldingDescriptor(
                     psiElement.node,
                     TextRange.create(condition.textRange.endOffset, throwStatement.textRange.endOffset - 1),
@@ -236,25 +238,25 @@ class IfExpression(
                     psiElement.node,
                     TextRange.create(condition.textRange.endOffset, element.textRange.endOffset),
                     group,
-                    if (state.semicolonsCollapse) "" else ";"
+                    if (semicolonsCollapse) "" else ";"
                 )
             }
         }
     }
 
-    companion object {
+    companion object : IControlFlowState by AdvancedExpressionFoldingSettings.State()() {
         private val supportedOperatorSigns = setOf("==", "!=", ">", "<", ">=", "<=")
 
-        fun isCompactExpression(state: AdvancedExpressionFoldingSettings.State, element: PsiIfStatement): Boolean {
-            return state.compactControlFlowSyntaxCollapse &&
+        fun isCompactExpression(element: PsiIfStatement): Boolean {
+            return compactControlFlowSyntaxCollapse &&
                 element.rParenth != null &&
                 element.lParenth != null &&
                 element.condition != null
         }
 
-        fun isAssertExpression(state: AdvancedExpressionFoldingSettings.State, element: PsiIfStatement): Boolean {
+        fun isAssertExpression(element: PsiIfStatement): Boolean {
             val condition = element.condition
-            if (!state.assertsCollapse || condition !is PsiBinaryExpression) {
+            if (!assertsCollapse || condition !is PsiBinaryExpression) {
                 return false
             }
             if (!supportedOperatorSigns.contains(condition.operationSign.text)) {

@@ -1,15 +1,27 @@
 package com.intellij.advancedExpressionFolding.processor.token
 
 import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.processor.*
-import com.intellij.advancedExpressionFolding.processor.core.BaseExtension
+import com.intellij.advancedExpressionFolding.processor.expr
+import com.intellij.advancedExpressionFolding.processor.exprHide
+import com.intellij.advancedExpressionFolding.processor.exprList
+import com.intellij.advancedExpressionFolding.processor.exprWrap
+import com.intellij.advancedExpressionFolding.processor.nextWhiteSpace
+import com.intellij.advancedExpressionFolding.processor.prevWhiteSpace
+import com.intellij.advancedExpressionFolding.processor.takeIfTrue
 import com.intellij.advancedExpressionFolding.processor.util.Consts.Emoji
-import com.intellij.psi.*
+import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings.State
+import com.intellij.advancedExpressionFolding.settings.IEmojiVisibilityState
+import com.intellij.psi.PsiElement
+import com.intellij.psi.PsiField
+import com.intellij.psi.PsiKeyword
+import com.intellij.psi.PsiLocalVariable
+import com.intellij.psi.PsiMethod
+import com.intellij.psi.PsiParameter
 
-object PsiKeywordExt : BaseExtension() {
+object PsiKeywordExt : IEmojiVisibilityState by State()() {
 
     fun createExpression(keyword: PsiKeyword): Expression? =
-        finalRemoval.on(keyword)?.finalRemoval() ?: finalEmoji.on(keyword)?.finalEmoji()
+        finalRemoval.takeIfTrue(keyword)?.finalRemoval() ?: finalEmoji.takeIfTrue(keyword)?.finalEmoji()
 
     private fun PsiKeyword.finalEmoji(): Expression? = foldFinalsExceptFields { expr(Emoji.FINAL_LOCK.toString()) }
 

@@ -14,6 +14,7 @@ import com.intellij.advancedExpressionFolding.processor.methodcall.MethodCallExp
 import com.intellij.advancedExpressionFolding.processor.util.Consts
 import com.intellij.advancedExpressionFolding.processor.util.Helper
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
+import com.intellij.advancedExpressionFolding.settings.IExpressionCollapseState
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiAnonymousClass
@@ -32,23 +33,22 @@ import java.util.ArrayList
 import java.math.BigDecimal
 import java.math.BigInteger
 
-object NewExpressionExt {
+object NewExpressionExt : IExpressionCollapseState by AdvancedExpressionFoldingSettings.State()() {
 
     fun getNewExpression(element: PsiNewExpression, document: Document): Expression? {
-        val settings = AdvancedExpressionFoldingSettings.getInstance()
         val type = element.type
         val erasedType = type?.canonicalText?.let { Helper.eraseGenerics(it) }
         if (type != null && Consts.SUPPORTED_CLASSES.contains(erasedType)) {
             val argumentList = element.argumentList
-            handleConstructorArguments(element, document, settings, erasedType, argumentList)?.let { return it }
+            handleConstructorArguments(element, document, erasedType, argumentList)?.let { return it }
         }
         val arrayInitializer = element.arrayInitializer
-        if (type != null && arrayInitializer != null && settings.state.getExpressionsCollapse) {
+        if (type != null && arrayInitializer != null && getExpressionsCollapse) {
             return createArrayLiteral(element, document, arrayInitializer)
         }
         val anonymousClass = element.anonymousClass
         if (type != null && anonymousClass != null && anonymousClass.lBrace != null && anonymousClass.rBrace != null) {
-            handleAnonymousClass(element, document, settings, erasedType, anonymousClass)?.let { return it }
+            handleAnonymousClass(element, document, erasedType, anonymousClass)?.let { return it }
         }
         return null
     }
@@ -56,14 +56,13 @@ object NewExpressionExt {
     private fun handleConstructorArguments(
         element: PsiNewExpression,
         document: Document,
-        settings: AdvancedExpressionFoldingSettings,
         erasedType: String?,
         argumentList: PsiExpressionList?
     ): Expression? {
         val expressions = argumentList?.expressions ?: return null
         return when (expressions.size) {
-            1 -> handleSingleArgument(element, document, settings, erasedType, expressions[0])
-            0 -> handleEmptyConstructor(element, settings, erasedType)
+            1 -> handleSingleArgument(element, document, erasedType, expressions[0])
+            0 -> handleEmptyConstructor(element, erasedType)
             else -> null
         }
     }
@@ -71,7 +70,6 @@ object NewExpressionExt {
     private fun handleSingleArgument(
         element: PsiNewExpression,
         document: Document,
-        settings: AdvancedExpressionFoldingSettings,
         erasedType: String?,
         arg: PsiExpression
     ): Expression? {
@@ -81,7 +79,7 @@ object NewExpressionExt {
             is PsiMethodCallExpression -> {
                 if (erasedType == "java.util.ArrayList") {
                     val methodCallExpression = MethodCallExpressionExt.getMethodCallExpression(arg, document)
-                    if (methodCallExpression is ListLiteral && settings.state.getExpressionsCollapse) {
+                    if (methodCallExpression is ListLiteral && getExpressionsCollapse) {
                         ListLiteral(element, element.textRange, methodCallExpression.items)
                     } else {
                         null
@@ -96,12 +94,11 @@ object NewExpressionExt {
 
     private fun handleEmptyConstructor(
         element: PsiNewExpression,
-        settings: AdvancedExpressionFoldingSettings,
         erasedType: String?
     ): Expression? {
         return when (erasedType) {
             "java.lang.String", "java.lang.StringBuilder" -> StringLiteral(element, element.textRange, "")
-            "java.util.ArrayList" -> if (settings.state.getExpressionsCollapse) {
+            "java.util.ArrayList" -> if (getExpressionsCollapse) {
                 ListLiteral(element, element.textRange, emptyList())
             } else {
                 null
@@ -122,7 +119,6 @@ object NewExpressionExt {
     private fun handleAnonymousClass(
         element: PsiNewExpression,
         document: Document,
-        settings: AdvancedExpressionFoldingSettings,
         erasedType: String?,
         anonymousClass: PsiAnonymousClass
     ): Expression? {
@@ -135,7 +131,7 @@ object NewExpressionExt {
             return null
         }
         val arguments = collectHashSetArguments(statements) ?: return null
-        if (!settings.state.getExpressionsCollapse) {
+        if (!getExpressionsCollapse) {
             return null
         }
         val items = arguments.map { BuildExpressionExt.getAnyExpression(it, document) }
