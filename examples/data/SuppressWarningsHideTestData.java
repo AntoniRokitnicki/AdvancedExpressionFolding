@@ -32,11 +32,11 @@ public class SuppressWarningsHideTestData {
         System.out.println("Method called");
     }
 
+    @SuppressWarnings("deprecation")
     public void methodWithAnnotatedLocalVar() {
         @SuppressWarnings("unused")
         int unusedLocalVar = 42;
 
-        @SuppressWarnings("deprecation")
         Date oldDate = new Date();
         oldDate.getMonth();
     }
