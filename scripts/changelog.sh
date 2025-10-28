@@ -1,2 +1,3 @@
 #!/usr/bin/env bash
-../gradlew patchChangelog --release-note="- Bugfix/log folding strings no params"
+cd ..
+./gradlew patchChangelog --release-note="- Bugfix/log folding strings no params"
