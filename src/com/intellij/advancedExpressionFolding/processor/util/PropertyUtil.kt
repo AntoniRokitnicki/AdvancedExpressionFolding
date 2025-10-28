@@ -11,9 +11,15 @@ object PropertyUtil {
         val builder = StringBuilder(text.substring(startPos))
         for (i in builder.indices) {
             val current = builder[i]
-            if (current.isUpperCase() && (i == builder.lastIndex || builder[i + 1].isUpperCase() || i == 0)) {
-                builder.setCharAt(i, current.lowercaseChar())
-            } else if (current.isLowerCase()) {
+            if (current.isUpperCase()) {
+                val next = if (i == builder.lastIndex) null else builder[i + 1]
+                val shouldLowercase = i == 0 || next == null || next.isUpperCase() || next.isDigit()
+                if (shouldLowercase) {
+                    builder.setCharAt(i, current.lowercaseChar())
+                    continue
+                }
+            }
+            if (current.isLowerCase()) {
                 break
             }
         }

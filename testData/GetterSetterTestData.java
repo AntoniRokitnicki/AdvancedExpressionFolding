@@ -7,6 +7,12 @@ public class GetterSetterTestData {
         d.<fold text='name = ' expand='false'>setName(</fold>"Hello"<fold text='' expand='false'>)</fold>;
         d.<fold text='parent' expand='false'>getParent()</fold>.<fold text='name = ' expand='false'>setName(</fold>"Pum!"<fold text='' expand='false'>)</fold>;
         System.out.println(d.<fold text='parent' expand='false'>getParent()</fold>.<fold text='name' expand='false'>getName()</fold>);
+        java.util.Locale locale = java.util.Locale.US;
+        locale.<fold text='iso3Country' expand='false'>getISO3Country()</fold>;
+        locale.<fold text='iso3Language' expand='false'>getISO3Language()</fold>;
+        AcronymGetter obj = new AcronymGetter();
+        obj.<fold text='urlValue' expand='false'>getURLValue()</fold>;
+        obj.<fold text='htmlTag' expand='false'>getHTMLTag()</fold>;
     }</fold>
 
     private GetterSetterTestData parent;
@@ -26,5 +32,18 @@ public class GetterSetterTestData {
 
     private void setName(String name)<fold text=' { ' expand='false'> {
         </fold>this.name = name;<fold text=' }' expand='false'>
+    }</fold>
+
+    private static class AcronymGetter <fold text='{...}' expand='true'>{
+        private String urlValue;
+        private String htmlTag;
+
+        private String getURLValue()<fold text=' { ' expand='false'> {
+            </fold>return urlValue;<fold text=' }' expand='false'>
+        }</fold>
+
+        private String getHTMLTag()<fold text=' { ' expand='false'> {
+            </fold>return htmlTag;<fold text=' }' expand='false'>
+        }</fold>
     }</fold>
 }
