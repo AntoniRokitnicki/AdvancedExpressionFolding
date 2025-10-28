@@ -8,6 +8,7 @@ import com.intellij.openapi.actionSystem.ActionPlaces
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.DataContext
 import com.intellij.openapi.actionSystem.Presentation
+import com.intellij.openapi.actionSystem.ex.ActionUtil
 import com.intellij.openapi.actionSystem.impl.SimpleDataContext
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.application.ModalityState
@@ -43,7 +44,7 @@ object IntegrationTestApi {
             Presentation(),
             dataContext
         )
-        action.actionPerformed(event)
+        ActionUtil.performActionDumbAwareWithCallbacks(action, event)
     }
 
     @JvmStatic
