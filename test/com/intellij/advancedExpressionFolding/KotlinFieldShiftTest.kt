@@ -49,4 +49,9 @@ class KotlinFieldShiftTest : BaseTest() {
     fun fieldShiftBuilderKotlinTestData() {
         doKotlinFoldingTest(state::fieldShift)
     }
+
+    @Test
+    fun fieldShiftBuilderNegativeKotlinTestData() {
+        doKotlinFoldingTest(state::fieldShift)
+    }
 }

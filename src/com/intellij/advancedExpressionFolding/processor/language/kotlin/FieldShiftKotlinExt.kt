@@ -11,6 +11,7 @@ import com.intellij.psi.PsiElement
 import org.jetbrains.kotlin.lexer.KtTokens
 import org.jetbrains.kotlin.psi.KtBinaryExpression
 import org.jetbrains.kotlin.psi.KtCallExpression
+import org.jetbrains.kotlin.psi.KtClass
 import org.jetbrains.kotlin.psi.KtExpression
 import org.jetbrains.kotlin.psi.KtNameReferenceExpression
 import org.jetbrains.kotlin.psi.KtParenthesizedExpression
@@ -18,6 +19,7 @@ import org.jetbrains.kotlin.psi.KtPsiUtil
 import org.jetbrains.kotlin.psi.KtQualifiedExpression
 import org.jetbrains.kotlin.psi.KtThisExpression
 import org.jetbrains.kotlin.psi.psiUtil.getQualifiedExpressionForSelector
+import org.jetbrains.kotlin.psi.psiUtil.getStrictParentOfType
 
 object FieldShiftKotlinExt : BaseExtension() {
 
@@ -54,6 +56,16 @@ object FieldShiftKotlinExt : BaseExtension() {
 
         val argumentTarget = argument.selectorTarget() ?: return null
         if (argumentTarget.name != propertyName) {
+            return null
+        }
+
+        val isSetterLike = calleeName.length > 3 && calleeName.startsWith("set") && calleeName[3].isUpperCase()
+        val receiverText = qualified.receiverExpression.text
+        val containsBuilderName = receiverText.contains("builder", ignoreCase = true)
+        val qualifierIsContext = receiverText == "this" || receiverText == "it"
+        val inBuilderClass = element.getStrictParentOfType<KtClass>()?.name?.contains("Builder") == true
+
+        if (!isSetterLike && !containsBuilderName && !(qualifierIsContext && inBuilderClass)) {
             return null
         }
 
