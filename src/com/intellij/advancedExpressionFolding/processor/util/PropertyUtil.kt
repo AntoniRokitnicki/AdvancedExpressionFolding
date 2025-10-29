@@ -13,7 +13,7 @@ object PropertyUtil {
             val current = builder[i]
             if (current.isUpperCase()) {
                 val next = if (i == builder.lastIndex) null else builder[i + 1]
-                val shouldLowercase = i == 0 || next == null || next.isUpperCase() || next.isDigit()
+                val shouldLowercase = i == 0 || next?.let { it.isUpperCase() || it.isDigit() } ?: true
                 if (shouldLowercase) {
                     builder.setCharAt(i, current.lowercaseChar())
                     continue
