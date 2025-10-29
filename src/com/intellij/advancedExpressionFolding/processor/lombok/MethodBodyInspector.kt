@@ -39,15 +39,9 @@ object MethodBodyInspector {
                 if (hasRequireNonNull) {
                     return
                 }
-                val resolved = expression.resolveMethod()
-                if (resolved?.name == "requireNonNull" &&
-                    resolved.containingClass?.qualifiedName == "java.util.Objects"
-                ) {
-                    val argument = expression.argumentList.expressions.firstOrNull()
-                    if (argument.asReference()?.resolve() == param) {
-                        hasRequireNonNull = true
-                        return
-                    }
+                if (expression.isRequireNonNullCall(param)) {
+                    hasRequireNonNull = true
+                    return
                 }
                 super.visitMethodCallExpression(expression)
             }
@@ -56,12 +50,51 @@ object MethodBodyInspector {
         return hasRequireNonNull
     }
 
+    fun PsiMethod.setterHasPlainAssignmentWithNullCheck(field: PsiField): Boolean {
+        val param = parameterList.parameters.singleOrNull() ?: return false
+        val statements = body?.statements ?: return false
+        if (statements.isEmpty()) {
+            return false
+        }
+
+        val (left, right) = statements.lastOrNull().asAssignment() ?: return false
+        if (!left.isReference(field)) {
+            return false
+        }
+
+        val isPlainRight = right.isReference(param) || right.isRequireNonNullCall(param)
+        if (!isPlainRight) {
+            return false
+        }
+
+        return statements.dropLast(1).all { statement ->
+            statement.isThrowingNullCheck(param) || statement.isRequireNonNullCall(param)
+        }
+    }
+
     private fun PsiStatement.isThrowingNullCheck(param: PsiParameter): Boolean {
         val ifStatement = this.asSimpleIf()?.takeIf {
             it.asSimpleCondition().asEqualsNull().isReference(param)
         } ?: return false
         val thenStatement = ifStatement.thenBranch.asSingleStatement()
         return thenStatement.asInstance<PsiThrowStatement>()?.exception != null
+    }
+
+    private fun PsiStatement.isRequireNonNullCall(param: PsiParameter): Boolean {
+        return this.asInstance<PsiExpressionStatement>()?.expression.isRequireNonNullCall(param) == true
+    }
+
+    private fun PsiExpression?.isRequireNonNullCall(param: PsiParameter): Boolean {
+        val methodCall = this.asInstance<PsiMethodCallExpression>() ?: return false
+        val resolved = methodCall.resolveMethod()
+        if (resolved?.name != "requireNonNull") {
+            return false
+        }
+        if (resolved.containingClass?.qualifiedName != "java.util.Objects") {
+            return false
+        }
+        val argument = methodCall.argumentList.expressions.firstOrNull()
+        return argument.asReference()?.resolve() == param
     }
 
     private fun PsiMethod.isDirtyAssignment(
