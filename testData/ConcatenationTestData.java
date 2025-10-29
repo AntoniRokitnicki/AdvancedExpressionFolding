@@ -21,6 +21,10 @@ public class ConcatenationTestData {
         Set<String> copyOfSet = new HashSet<>();
         set<fold text=' += ' expand='false'>.addAll(</fold>copyOfSet<fold text='' expand='false'>)</fold>;
         System.out.println(copyOfSet);
+        List<Character> chars = new ArrayList<>();
+        List<Character> sequence = Arrays.asList('a', 'b');
+        chars<fold text=' = ' expand='false'>.addAll(0, </fold>sequence<fold text=' + chars' expand='false'>)</fold>;
+        chars.addAll(3, sequence);
         List<String> streamToList = <fold text='' expand='false'>Arrays.stream(</fold>args<fold text='' expand='false'>)</fold><fold text='*.' expand='false'>.map(</fold><fold text='toUpperCase()' expand='false'>String::toUpperCase</fold><fold text='' expand='false'>)</fold><fold text='.' expand='false'>.collect(Collectors.</fold>toList()<fold text='' expand='false'>)</fold>;
         System.out.println(streamToList);
         streamToList = <fold text='' expand='false'>Arrays.stream(</fold>args<fold text='' expand='false'>)</fold><fold text='*.' expand='false'>.map(</fold><fold text='toUpperCase()' expand='false'>String::toUpperCase</fold><fold text='' expand='false'>)</fold><fold text='.' expand='false'>.collect(Collectors.</fold>toList()<fold text='' expand='false'>)</fold>;
