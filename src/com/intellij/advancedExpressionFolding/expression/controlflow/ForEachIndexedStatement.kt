@@ -2,7 +2,7 @@ package com.intellij.advancedExpressionFolding.expression.controlflow
 
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
-import com.intellij.advancedExpressionFolding.settings.IState
+import com.intellij.advancedExpressionFolding.settings.IControlFlowState
 import com.intellij.lang.folding.FoldingDescriptor
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.editor.FoldingGroup
@@ -19,8 +19,7 @@ class ForEachIndexedStatement(
     private val arrayTextRange: TextRange,
     private val varSyntax: Boolean,
     private val isFinal: Boolean,
-    private val state: AdvancedExpressionFoldingSettings.State = AdvancedExpressionFoldingSettings.getInstance().state
-) : Expression(statement, textRange), IState by state {
+) : Expression(statement, textRange), IControlFlowState by AdvancedExpressionFoldingSettings.State()() {
 
     override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean = true
 

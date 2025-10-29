@@ -24,7 +24,7 @@
 [![Marketplace Version](https://img.shields.io/jetbrains/plugin/v/com.github.advanced-java-folding2.svg)](https://plugins.jetbrains.com/plugin/23659-advanced-java-folding-2-fork-)
 [![Downloads](https://img.shields.io/jetbrains/plugin/d/com.github.advanced-java-folding2.svg)](https://plugins.jetbrains.com/plugin/23659-advanced-java-folding-2-fork-)
 ![GitHub Release Date](https://img.shields.io/github/release-date/AntoniRokitnicki/AdvancedExpressionFolding)
-[![GitHub commits since latest release](https://img.shields.io/github/commits-since/AntoniRokitnicki/AdvancedExpressionFolding/latest)](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v5.0.0...main)
+[![GitHub commits since latest release](https://img.shields.io/github/commits-since/AntoniRokitnicki/AdvancedExpressionFolding/latest)](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v6.0.0...main)
 <!-- https://plugins.jetbrains.com/api/plugins/23659/updates?channel=&size=8 -->
 
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/AntoniRokitnicki/AdvancedExpressionFolding)
@@ -45,10 +45,19 @@ For more information, read the [blog post](https://medium.com/@andrey_cheptsov/m
 
 ## Unreleased ##
 
+### Added
+
 - [[lombok] Add folding support for Lombok @With, including examples and folded previews](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/537).
-- [[lombok] Add @PostConstructor marker annotation for constructor method calls without hiding methods](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/546).
-- [[pseudo-annotations] Improve @Main completion defaults and fix insertion when class Javadoc contains braces](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/495) ([#547](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/547)).
-- [Use the project coroutine scope for folding clean-up to avoid leaking background jobs](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/365).
+- [Inverted Elvis folding support](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/556).
+- [Pattern matching `instanceof` folding](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/735).
+- [[lombok] Add @PostConstructor marker annotation for constructor method calls without hiding methods](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/565).
+- [Support nameless accessor placeholder folding](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/612).
+- [Null-safe `println` folding](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/737).
+
+### Changed
+
+- [[lombok] Rename @builder annotation to @HasBuilder](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/544).
+- [[fieldshift] Support `*with*` setters when shifting fields](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/549).
 
 ## 5.0.0 ##
 - [[pseudo-annotations] @Loggable - toggleable pseudo-annotation with control-flow analysis for automatic method entry/exit logging, parameters, return values, and exceptions](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/PseudoAnnotations)

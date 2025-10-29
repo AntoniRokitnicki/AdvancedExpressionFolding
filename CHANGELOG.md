@@ -4,6 +4,22 @@
 
 ## [Unreleased]
 
+## [6.0.0] - 2025-10-28
+
+### Added
+
+- [[lombok] Add folding support for Lombok @With, including examples and folded previews](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/537)
+- [Inverted Elvis folding support](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/556)
+- [Pattern matching `instanceof` folding](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/735)
+- [[lombok] Add @PostConstructor marker annotation for constructor method calls without hiding methods](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/565)
+- [Support nameless accessor placeholder folding](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/612)
+- [Null-safe `println` folding](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/737)
+
+### Changed
+
+- [[lombok] Rename @builder annotation to @HasBuilder](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/544)
+- [[fieldshift] Support `*with*` setters when shifting fields](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/549)
+
 ## [5.0.0] - 2025-10-17
 
 ### Added
@@ -350,7 +366,8 @@ Improved handling of multi-line log messages
 
 ## [0.0.1]
 
-[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v5.0.0...HEAD
+[Unreleased]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v6.0.0...HEAD
+[6.0.0]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v5.0.0...v6.0.0
 [5.0.0]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v4.2.0...v5.0.0
 [4.2.0]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v4.0.0...v4.2.0
 [4.1.0]: https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/compare/v4.0.0...v4.1.0

@@ -3,7 +3,7 @@ package data;
 import java.time.LocalDate;
 
 @SuppressWarnings("ALL")
-class LetReturnIt {
+public class LetReturnIt {
     static String buildExpression(String someString) {
         val var1 = getData(someString)?.let { return it }
         val var2 = getData(someString) ?: return null

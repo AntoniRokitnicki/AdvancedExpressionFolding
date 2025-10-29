@@ -1,11 +1,16 @@
 ---
 title: Pattern Matching for instanceof
 slug: /features/pattern-matching-instanceof
-sidebar_label: `instanceof` Pattern Matching
+sidebar_label: Pattern Matching instanceof
 description: Display Java 16 style pattern matching in earlier codebases without changing source.
 ---
 
 The folding rewrites verbose `instanceof` checks and casts into a single pattern matching expression, mirroring the syntax introduced in JEP 394.
+
+- [Source sample](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/examples/data/PatternMatchingRecordPatternTestData.java) (record patterns)
+- [Folded view](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/folded/PatternMatchingRecordPatternTestData-folded.java)
+
+Record pattern destructuring (JEP 440) is folded the same way, revealing modern tuple-style matches without modifying the original source.
 
 - [Source sample](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/examples/data/PatternMatchingInstanceofTestData.java)
 - [Folded view](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/folded/PatternMatchingInstanceofTestData-folded.java)

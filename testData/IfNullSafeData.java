@@ -3,6 +3,7 @@ package data;
 @SuppressWarnings("ALL")
 public class IfNullSafeData {
     public void enter(Data data) <fold text='{...}' expand='true'>{
+        User user = null;
         var threeChains = <fold text='data?.data1 != null' expand='false'>data != null
                 && data.<fold text='data1' expand='false'>getData1()</fold> != null</fold>
                 && <fold text='data?.data1 != null' expand='false'>data != null
@@ -23,6 +24,26 @@ public class IfNullSafeData {
         }</fold>
         if (<fold text='data?.data1 != null' expand='false'>data != null && data.<fold text='data1' expand='false'>getData1()</fold> != null</fold>) <fold text='{...}' expand='true'>{
             System.out.println("data?.data1 != null");
+        }</fold>
+        <fold text='System.out.println(user?.profile?.name);' expand='false'>if (user != null
+                && user.getProfile() != null
+                && user.getProfile().getName() != null) <fold text='{...}' expand='true'>{
+            System.out.println(user.getProfile().getName());
+        }</fold></fold>
+        if (<fold text='user?.profile?.name != null' expand='false'>user != null
+                && user.<fold text='profile' expand='false'>getProfile()</fold> != null
+                && user.<fold text='profile' expand='false'>getProfile()</fold>.<fold text='name' expand='false'>getName()</fold> != null</fold>) <fold text='{...}' expand='true'>{
+            System.out.println("Name: " + user.<fold text='profile' expand='false'>getProfile()</fold>.<fold text='name' expand='false'>getName()</fold>);
+        }</fold>
+        if (<fold text='user?.profile?.name != null' expand='false'>user != null
+                && user.<fold text='profile' expand='false'>getProfile()</fold> != null
+                && user.<fold text='profile' expand='false'>getProfile()</fold>.<fold text='name' expand='false'>getName()</fold> != null</fold>) <fold text='{...}' expand='true'>{
+            System.out.println(user.<fold text='profile' expand='false'>getProfile()</fold>.<fold text='name' expand='false'>getName()</fold>.trim());
+        }</fold>
+        if (user.<fold text='profile' expand='false'>getProfile()</fold> != null
+                && user != null
+                && user.<fold text='profile' expand='false'>getProfile()</fold>.<fold text='name' expand='false'>getName()</fold> != null) <fold text='{...}' expand='true'>{
+            System.out.println(user.<fold text='profile' expand='false'>getProfile()</fold>.<fold text='name' expand='false'>getName()</fold>);
         }</fold>
         if (<fold text='data?.active == true' expand='false'>data != null && data.<fold text='active' expand='false'>isActive()</fold></fold>) <fold text='{...}' expand='true'>{
             System.out.println("data?.active == true");
@@ -141,6 +162,18 @@ public class IfNullSafeData {
 
         public boolean isActive()<fold text=' { ' expand='false'> {
             </fold>return true;<fold text=' }' expand='false'>
+        }</fold>
+    }</fold>
+
+    static class User <fold text='{...}' expand='true'>{
+        public Profile getProfile()<fold text=' { ' expand='false'> {
+            </fold>return null;<fold text=' }' expand='false'>
+        }</fold>
+    }</fold>
+
+    static class Profile <fold text='{...}' expand='true'>{
+        public String getName()<fold text=' { ' expand='false'> {
+            </fold>return null;<fold text=' }' expand='false'>
         }</fold>
     }</fold>
 }

@@ -36,12 +36,24 @@ class FoldingService {
     fun clearAllKeys(project: Project) {
         val editors = project.openTextEditors
 
-        val coroutineScope = project.service<FoldingServiceCoroutineScope>()
+        val coroutineScope = FoldingServiceCoroutineScope.get()
+        //its cut, because verification throws for it seems to be no reason:
+        // Invocation of unresolved method ServicesKt.serviceNotFoundError(...) (1)
+        // Method FoldingService.clearAllKeys(Project) contains an invokestatic instruction referencing an unresolved method ServicesKt.serviceNotFoundError(...). This can lead to NoSuchMethodError exception at runtime.
+        clearAllKeysStart(coroutineScope, editors)
+    }
+
+    private fun FoldingService.clearAllKeysStart(
+        coroutineScope: FoldingServiceCoroutineScope,
+        editors: List<Editor>
+    ) {
         coroutineScope.launch {
-            editors.forEach { editor ->
-                clearAllKeys(editor)
-            }
+            clearAllKeysForEditors(editors)
         }
+    }
+
+    private fun FoldingService.clearAllKeysForEditors(editors: List<Editor>) {
+        editors.forEach(::clearAllKeys)
     }
 
     fun clearAllKeys(editor: Editor) {

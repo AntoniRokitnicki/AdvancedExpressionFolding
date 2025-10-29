@@ -29,3 +29,30 @@ Removes boilerplate while preserving behavior.
 Default: On
 Controlled by: `assertsCollapse`
 Related features: (none)
+
+---
+### Folding catalogue
+
+#### AssertTestData
+
+##### Scenario 1
+
+**Before**
+```java
+        if (args.length == 0) {
+            throw new IllegalArgumentException();
+        }
+        if (args.length == 1) {
+            throw new IllegalArgumentException("...");
+        }
+        if (args.length == 2)
+            throw new IllegalArgumentException("...");
+```
+
+**After**
+```java
+        assert args.length != 0;
+        assert args.length != 1 : "...";
+        assert args.length != 2 : "...";
+```
+

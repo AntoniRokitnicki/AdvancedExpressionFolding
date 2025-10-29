@@ -53,7 +53,8 @@ jobs:
 
       - name: Upload integration artifacts
         if: always()
-        uses: actions/upload-artifact@v4
+        id: upload_artifacts
+        uses: actions/upload-artifact@v5
         with:
           name: integration-test-artifacts-${{ matrix.os }}
           path: |
@@ -63,3 +64,14 @@ jobs:
             out/ide-tests/tests/**/screenshots/**
             out/ide-tests/tests/**/driver/**
           if-no-files-found: warn
+
+      - name: Publish artifact download link
+        if: always() && steps.upload_artifacts.outputs.artifact-url != ''
+        env:
+          ARTIFACT_URL: ${{ steps.upload_artifacts.outputs.artifact-url }}
+        run: |
+          {
+            echo "## Integration test artifacts"
+            echo
+            echo "[Download results zip](${ARTIFACT_URL})"
+          } >> "$GITHUB_STEP_SUMMARY"

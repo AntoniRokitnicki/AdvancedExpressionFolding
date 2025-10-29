@@ -13,9 +13,8 @@ public class ElvisTestData {
         System.out.println(e != null && e.get() != null ? e.get().sayHello() : ""); // Should be System.out.println(e?.get?.sayHello() ?: "")
         e?.get().sayHello();
         e.get()?.sayHello();
-        if (e != null && e.get() != null) {
-                e.get().sayHello();
-        }
+        e?.get()?.sayHello();
+        e?.get()?.get()?.sayHello(); // Should be e?.get()?.get()?.sayHello();
     }
 
     private String sayHello() {

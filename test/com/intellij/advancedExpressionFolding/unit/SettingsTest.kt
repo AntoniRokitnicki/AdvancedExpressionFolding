@@ -10,6 +10,7 @@ import kotlin.reflect.full.memberProperties
 
 class SettingsTest {
 
+    @Suppress("UNCHECKED_CAST")
     private fun booleanProperties(): List<KMutableProperty1<AdvancedExpressionFoldingSettings.State, Boolean>> =
         AdvancedExpressionFoldingSettings.State::class.memberProperties
             .filterIsInstance<KMutableProperty1<AdvancedExpressionFoldingSettings.State, *>>()

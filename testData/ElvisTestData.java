@@ -18,8 +18,11 @@ public class ElvisTestData {
                 e.get()<fold text='?.' expand='false'>.</fold>sayHello();<fold text='' expand='false'>
         }</fold></fold>
         if (e != null && e.get() != null) <fold text='{...}' expand='true'>{
-                e.get().sayHello();
-        }</fold>
+                e<fold text='?.' expand='false'>.</fold>get()<fold text='?.' expand='false'>.</fold>sayHello();<fold text='' expand='false'>
+        }</fold></fold>
+        if (e != null && e.get() != null && e.get().get() != null) <fold text='{...}' expand='true'>{
+                e<fold text='?.' expand='false'>.</fold>get()<fold text='?.' expand='false'>.</fold>get()<fold text='?.' expand='false'>.</fold>sayHello(); // Should be e?.get()?.get()?.sayHello();<fold text='' expand='false'>
+        }</fold></fold>
     }</fold>
 
     private String sayHello()<fold text=' { ' expand='false'> {

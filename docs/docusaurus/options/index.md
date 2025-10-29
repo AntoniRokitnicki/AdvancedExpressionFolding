@@ -263,6 +263,8 @@ Applies conversions to interface extension properties.
 Applies pattern matching to `instanceof` checks for more concise and readable code.
 - [Example](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/examples/data/PatternMatchingInstanceofTestData.java)
 - [Folded](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/folded/PatternMatchingInstanceofTestData-folded.java)
+- [Example](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/examples/data/PatternMatchingRecordPatternTestData.java) *(record patterns)*
+- [Folded](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/folded/PatternMatchingRecordPatternTestData-folded.java)
 - [Documentation](../features/pattern-matching-instanceof.md)
 
 ## summaryParentOverride
