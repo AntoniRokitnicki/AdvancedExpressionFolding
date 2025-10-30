@@ -16,6 +16,10 @@ object MethodDefaultParameterExt : BaseExtension(){
         return buildExpressions(defaultParamMethods, clazz)
     }
 
+    fun overloadedMethodsWithDefaultParams(clazz: PsiClass): Collection<PsiMethod> {
+        return findMethodsWithDefaultParams(clazz).map { it.overloadMethod }
+    }
+
     private fun findMethodsWithDefaultParams(clazz: PsiClass): List<DefaultValue> = clazz.methods.filter {
         it.body != null
     }.groupBy {
