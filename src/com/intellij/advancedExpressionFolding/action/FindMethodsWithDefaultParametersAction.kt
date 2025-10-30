@@ -12,6 +12,9 @@ import com.intellij.openapi.fileTypes.FileTypeManager
 import com.intellij.openapi.progress.ProgressIndicator
 import com.intellij.openapi.progress.ProgressManager
 import com.intellij.openapi.progress.Task
+import com.intellij.openapi.project.Project
+import com.intellij.openapi.project.ProjectManager
+import com.intellij.openapi.util.TextRange
 import com.intellij.psi.JavaRecursiveElementVisitor
 import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiJavaFile
@@ -22,50 +25,94 @@ import com.intellij.psi.search.GlobalSearchScope
 class FindMethodsWithDefaultParametersAction : AnAction() {
     override fun actionPerformed(e: AnActionEvent) {
         val project = e.project ?: return
-        val findUsageCustomView = FindUsageCustomView(project, "find methods with default parameters")
-        var processed = 0
-
-        ProgressManager.getInstance().run(object : Task.Backgroundable(project, "Finding methods with default parameters", true) {
-            override fun run(indicator: ProgressIndicator) {
-                runReadAction {
-                    FileTypeIndex.processFiles(FileTypeManager.getInstance().getFileTypeByExtension("java"), { file ->
-                        file.toJavaPsiFile(project)?.let { javaFile ->
-                            javaFile.accept(MethodDefaultParameterExtVisitor(findUsageCustomView, javaFile))
-                            processed++
-                            indicator.text = "Processing file $processed"
-                        }
-                        !indicator.isCanceled
-                    }, GlobalSearchScope.projectScope(project))
-                }
-                indicator.fraction = 1.0
-                indicator.text = "Finished processing $processed files"
-            }
-        })
-
-    }
-
-    class MethodDefaultParameterExtVisitor(
-        private val findUsageCustomView: FindUsageCustomView,
-        private val javaFile: PsiJavaFile
-    ) : JavaRecursiveElementVisitor() {
-        override fun visitClass(clazz: PsiClass) {
-            val wrappedExpression =
-                MethodDefaultParameterExt.enhanceMethodsWithDefaultParams(clazz) as? WrapperExpression
-            wrappedExpression?.run {
-                chain.filterIsInstance<SimpleExpression>()
-                    .groupBy {
-                        it.element.parent.parent as? PsiMethod
-                    }.filterKeys {
-                        it != null
-                    }.forEach { (_, expressions) ->
-                        val textRange = expressions.last().textRange
-                        findUsageCustomView.addToUsage(javaFile, textRange)
-                    }
-            }
-            super.visitClass(clazz)
-        }
+        FindMethodsWithDefaultParametersActionExecutor.runOnProject(project)
     }
 
     override fun isDumbAware() = false
+}
 
+object FindMethodsWithDefaultParametersActionExecutor {
+    fun runOnProject(project: Project) {
+        val findUsageCustomView = FindUsageCustomView(project, "find methods with default parameters")
+
+        ProgressManager.getInstance().run(
+            object : Task.Backgroundable(project, "Finding methods with default parameters", true) {
+                override fun run(indicator: ProgressIndicator) {
+                    val javaFiles = runReadAction {
+                        FileTypeIndex.getFiles(
+                            FileTypeManager.getInstance().getFileTypeByExtension("java"),
+                            GlobalSearchScope.projectScope(project)
+                        ).toList()
+                    }
+
+                    var processed = 0
+                    val total = javaFiles.size.takeIf { it > 0 } ?: 1
+
+                    for (virtualFile in javaFiles) {
+                        if (indicator.isCanceled) {
+                            break
+                        }
+
+                        runReadAction {
+                            virtualFile.toJavaPsiFile(project)?.let { javaFile ->
+                                collectDefaultParameterUsages(javaFile).forEach { range ->
+                                    findUsageCustomView.addUsage(javaFile, range)
+                                }
+                            }
+                        }
+
+                        processed++
+                        indicator.fraction = processed.toDouble() / total
+                        indicator.text = "Processing file $processed of ${javaFiles.size}"
+                        FindMethodsWithDefaultParametersActionTestHook.onFileProcessed(
+                            virtualFile.name,
+                            processed,
+                            indicator
+                        )
+
+                        if (indicator.isCanceled) {
+                            break
+                        }
+                    }
+
+                    indicator.fraction = 1.0
+                    indicator.text = if (indicator.isCanceled) {
+                        "Canceled after processing $processed files"
+                    } else {
+                        "Finished processing $processed files"
+                    }
+
+                    FindMethodsWithDefaultParametersActionTestHook.onFinished(processed, indicator)
+                    findUsageCustomView.finish()
+                }
+            }
+        )
+    }
+
+    fun runOnCurrentProject() {
+        val project = ProjectManager.getInstance().openProjects.firstOrNull() ?: return
+        runOnProject(project)
+    }
+}
+
+private fun collectDefaultParameterUsages(javaFile: PsiJavaFile): List<TextRange> {
+    val rangesByMethod = linkedMapOf<PsiMethod, TextRange>()
+    javaFile.accept(object : JavaRecursiveElementVisitor() {
+        override fun visitClass(aClass: PsiClass) {
+            val wrapper = MethodDefaultParameterExt.enhanceMethodsWithDefaultParams(aClass) as? WrapperExpression
+            wrapper?.chain
+                ?.filterIsInstance<SimpleExpression>()
+                ?.mapNotNull { expression ->
+                    val method = expression.element.parent.parent as? PsiMethod ?: return@mapNotNull null
+                    method to expression.textRange
+                }
+                ?.forEach { (method, range) ->
+                    rangesByMethod[method] = range
+                }
+
+            super.visitClass(aClass)
+        }
+    })
+
+    return rangesByMethod.values.toList()
 }
