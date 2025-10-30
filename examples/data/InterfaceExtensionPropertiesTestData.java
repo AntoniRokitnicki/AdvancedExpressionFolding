@@ -230,13 +230,14 @@ public class InterfaceExtensionPropertiesTestData {
         }
     }
 
-    //TODO: nullable support
     interface Finder {
         //@FindBy String tag(String name);
         String findTagByName(String name);
 
-        String findTagByAge(byte name);
+        @Nullable
+        String findTagByAge(Byte age);
 
+        @Nullable
         String findNameByName(String name);
     }
 
