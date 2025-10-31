@@ -1,3 +1,5 @@
+import org.gradle.api.tasks.Copy
+import org.gradle.api.tasks.testing.Test
 import org.jetbrains.changelog.Changelog
 import org.jetbrains.changelog.markdownToHTML
 import org.jetbrains.changelog.tasks.PatchChangelogTask
@@ -12,14 +14,12 @@ fun properties(key: String) = providers.gradleProperty(key)
 fun environment(key: String) = providers.environmentVariable(key)
 
 plugins {
-    id("java") // Java support
+    kotlin("multiplatform") version libs.versions.kotlin
     id("idea")
-    id("groovy")
-    alias(libs.plugins.kotlin) // Kotlin support
-    alias(libs.plugins.intelliJPlatform) // IntelliJ Platform Gradle Plugin
-    alias(libs.plugins.changelog) // Gradle Changelog Plugin
-    alias(libs.plugins.qodana) // Gradle Qodana Plugin
-    alias(libs.plugins.kover) // Gradle Kover Plugin
+    alias(libs.plugins.intelliJPlatform)
+    alias(libs.plugins.changelog)
+    alias(libs.plugins.qodana)
+    alias(libs.plugins.kover)
 }
 
 group = properties("pluginGroup").get()
@@ -27,8 +27,20 @@ version = properties("pluginVersion").get()
 
 // Set the JVM language level used to build the project. Use Java 11 for 2020.3+, and Java 17 for 2022.2+.
 kotlin {
+    jvm()
+
+    linuxX64 {
+        binaries {
+            executable {
+                entryPoint = "com.intellij.advancedExpressionFolding.cli.main"
+            }
+        }
+    }
+
+    applyDefaultHierarchyTemplate()
+
     jvmToolchain {
-        languageVersion = JavaLanguageVersion.of(17) // to support 2023.3.8 and 2024.1.7
+        languageVersion = JavaLanguageVersion.of(21)
         @Suppress("UnstableApiUsage")
         vendor = JvmVendorSpec.JETBRAINS
     }
@@ -57,29 +69,18 @@ idea {
     }
 }
 
-sourceSets {
-    named("main") {
-        java.srcDirs("src")
-        kotlin.srcDirs("src")
-        resources.srcDirs("resources")
-    }
-    named("test") {
-        java.srcDir("test")
-        kotlin.srcDirs("test")
-    }
-}
-
 evaluationDependsOn(":examples")
 val examplesTestOutput = project(":examples").extensions.getByType<SourceSetContainer>()["test"].output
 
-tasks.withType<JavaCompile> {
-    options.encoding = "UTF-8"
-}
-tasks.test {
+tasks.named<Test>("jvmTest") {
     systemProperty("file.encoding", "UTF-8")
     systemProperty("line.separator", "\n")
     useJUnitPlatform()
     dependsOn(":examples:testClasses")
+}
+
+tasks.named("test") {
+    dependsOn("jvmTest")
 }
 
 // Configure project's dependencies
@@ -94,17 +95,22 @@ repositories {
 
 // Dependencies are managed with Gradle version catalog - read more: https://docs.gradle.org/current/userguide/platforms.html#sub:version-catalog
 dependencies {
-    implementation(libs.annotations)
-    implementation(libs.jsr305)
-    implementation(libs.jackson.dataformat.toml)
-    implementation(examplesTestOutput)
+    add("commonMainImplementation", libs.kotlinx.coroutines.core)
 
-    testRuntimeOnly(libs.junit.jupiter.engine)
-    testImplementation(libs.junit.jupiter.api)
-    testImplementation(libs.junit.jupiter.params)
-    testImplementation(libs.junit.pioneer)
-    testImplementation(libs.junit.vintage.engine)
-    implementation(libs.kodein.di.conf)
+    add("jvmMainImplementation", libs.annotations)
+    add("jvmMainImplementation", libs.jsr305)
+    add("jvmMainImplementation", libs.jackson.dataformat.toml)
+    add("jvmMainImplementation", examplesTestOutput)
+    add("jvmMainImplementation", libs.kodein.di.conf)
+
+    add("commonTestImplementation", kotlin("test"))
+    add("jvmTestImplementation", kotlin("test-junit5"))
+    add("jvmTestImplementation", libs.junit.jupiter.api)
+    add("jvmTestImplementation", libs.junit.jupiter.params)
+    add("jvmTestImplementation", libs.junit.pioneer)
+    add("jvmTestImplementation", libs.junit.vintage.engine)
+    add("jvmTestRuntimeOnly", libs.junit.jupiter.engine)
+    add("linuxX64TestImplementation", kotlin("test"))
 
     // IntelliJ Platform Gradle Plugin Dependencies Extension - read more: https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-gradle-plugin-dependencies-extension.html
     intellijPlatform {
@@ -120,6 +126,18 @@ dependencies {
         testFramework(TestFrameworkType.Platform)
         testFramework(TestFrameworkType.Metrics)
         testFramework(TestFrameworkType.Starter)
+    }
+}
+
+configurations {
+    named("jvmMainImplementation") {
+        extendsFrom(configurations.getByName("implementation"))
+    }
+    named("jvmMainCompileOnly") {
+        extendsFrom(configurations.getByName("compileOnly"))
+    }
+    named("jvmMainRuntimeOnly") {
+        extendsFrom(configurations.getByName("runtimeOnly"))
     }
 }
 
@@ -206,9 +224,30 @@ tasks {
 
     publishPlugin {
         dependsOn(patchChangelog)
+        dependsOn("linkReleaseExecutableLinuxX64")
     }
 
-    processResources {
+    named("build") {
+        dependsOn("linkReleaseExecutableLinuxX64")
+    }
+
+    named("buildPlugin") {
+        dependsOn("linkReleaseExecutableLinuxX64")
+    }
+
+    register("nativeCli") {
+        dependsOn("linkReleaseExecutableLinuxX64")
+    }
+
+    named("verifyPlugin") {
+        dependsOn("linkReleaseExecutableLinuxX64")
+    }
+
+    named("checkKotlinGradlePluginConfigurationErrors") {
+        enabled = false
+    }
+
+    named<Copy>("jvmProcessResources") {
         dependsOn(":examples:testClasses")
         from("examples/data") {
             into("data")
@@ -259,6 +298,7 @@ fun readProperties(file: File): Properties {
 tasks.register("patchChangelogWithLastCommitMsg") {
     doLast {
         val output = ByteArrayOutputStream()
+        @Suppress("DEPRECATION")
         project.exec {
             commandLine("git", "log", "-1", "--pretty=%B")
             standardOutput = output
