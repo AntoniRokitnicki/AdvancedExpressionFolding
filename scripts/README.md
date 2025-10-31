@@ -30,4 +30,11 @@ To build a standalone native executable with GraalVM, run:
 
 The resulting binary is written to `tools/folding-suite-sweeper/build/native/nativeCompile/folding-suite-sweeper`.
 
+The module ships reachability metadata at `META-INF/native-image` so the GraalVM build can eagerly initialize the sweeper
+package, disable the fallback image, and tighten the image heap for a smaller, more memory-efficient binary. These hints are
+consumed automatically by the Gradle GraalVM plugin.
+
+For reproducible binaries without a local GraalVM installation, the `folding-suite-sweeper-native` GitHub Actions workflow
+produces native executables for Linux, macOS, and Windows on demand and uploads them as build artifacts.
+
 The tool enumerates 31 candidate subsets, so a complete sweep is lengthy. Use standard Gradle environment variables (e.g., `ORG_GRADLE_PROJECT_...`) if you need to tune JVM settings for stability.
