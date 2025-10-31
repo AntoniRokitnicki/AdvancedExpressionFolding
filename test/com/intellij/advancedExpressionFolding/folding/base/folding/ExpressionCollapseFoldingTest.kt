@@ -17,6 +17,10 @@ interface ExpressionCollapseFoldingTest : FoldingTestSection {
     fun interpolatedStringTestData() = testCase.runFoldingTest(foldingState()::concatenationExpressionsCollapse)
 
     @Test
+    fun stringConcatenationWhitespaceTestData() =
+        testCase.runFoldingTest(foldingState()::concatenationExpressionsCollapse)
+
+    @Test
     fun getSetPutTestData() = testCase.runFoldingTest(foldingState()::getExpressionsCollapse)
 
     @Test
