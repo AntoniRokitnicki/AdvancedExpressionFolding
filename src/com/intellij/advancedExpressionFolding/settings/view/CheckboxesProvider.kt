@@ -171,6 +171,13 @@ abstract class CheckboxesProvider {
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#controlflowmultistatementcodeblockcollapse")
         }
 
+        registerCheckbox(
+            state::stringEscapesVisualizeNewlines,
+            "String escapes: visualize newlines"
+        ) {
+            example(StringEscapesTestData::class)
+        }
+
         registerCheckbox(state::semicolonsCollapse, "Semicolons (read-only files)") {
             example(SemicolonTestData::class)
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#semicolonscollapse")
