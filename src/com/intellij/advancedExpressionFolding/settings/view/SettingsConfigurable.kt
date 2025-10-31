@@ -1,6 +1,8 @@
 package com.intellij.advancedExpressionFolding.settings.view
 
 import com.intellij.advancedExpressionFolding.action.UpdateFoldedTextColorsAction
+import com.intellij.advancedExpressionFolding.onboarding.OnboardingQuestProgressService
+import com.intellij.advancedExpressionFolding.onboarding.OnboardingQuestRegistry
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
 import com.intellij.application.options.CodeStyle
 import com.intellij.application.options.editor.EditorOptionsProvider
@@ -18,15 +20,20 @@ import com.intellij.openapi.ui.DialogPanel
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.openapi.vfs.encoding.EncodingProjectManager
 import com.intellij.ui.JBColor
+import com.intellij.ui.TitledSeparator
 import com.intellij.ui.components.ActionLink
 import com.intellij.ui.components.JBCheckBox
+import com.intellij.ui.components.JBLabel
 import com.intellij.ui.dsl.builder.Panel
 import com.intellij.ui.dsl.builder.panel
+import com.intellij.util.ui.JBUI
 import java.awt.Color.decode
 import java.awt.FlowLayout
 import java.net.URI
 import javax.swing.JButton
 import javax.swing.JPanel
+import javax.swing.Box
+import javax.swing.BoxLayout
 import kotlin.reflect.KMutableProperty0
 import kotlin.reflect.KMutableProperty1
 import kotlin.reflect.full.memberProperties
@@ -36,6 +43,9 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
     private lateinit var panel: DialogPanel
     private val allExampleFiles = mutableSetOf<ExampleFile>()
     private val pendingChanges = mutableMapOf<KMutableProperty0<Boolean>, Boolean>()
+    private val questProgress = OnboardingQuestProgressService.getInstance()
+    private val questCheckboxes = mutableMapOf<String, JBCheckBox>()
+    private val pendingQuestChanges = mutableMapOf<String, Boolean>()
     private val propertyToCheckbox = mutableMapOf<KMutableProperty0<Boolean>, JBCheckBox>()
     private val stateBooleanProperties: Map<String, KMutableProperty1<AdvancedExpressionFoldingSettings.State, Boolean>> =
         AdvancedExpressionFoldingSettings.State::class.memberProperties
@@ -116,6 +126,12 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
             cell(createDownloadExamplesLink())
         }
         row {
+            cell(TitledSeparator("Onboarding quests"))
+        }
+        row {
+            cell(createOnboardingPanel())
+        }
+        row {
             val enableAllButton = JButton("Enable all")
             enableAllButton.addActionListener {
                 applyBulkChange { enableAll() }
@@ -140,7 +156,7 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
     }
 
     override fun isModified(): Boolean {
-        return panel.isModified() || pendingChanges.isNotEmpty()
+        return panel.isModified() || pendingChanges.isNotEmpty() || pendingQuestChanges.isNotEmpty()
     }
 
     override fun apply() {
@@ -148,14 +164,25 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
             property.set(value)
         }
         pendingChanges.clear()
-        
+
+        applyPendingQuestChanges()
+
         panel.apply()
     }
 
     override fun reset() {
         pendingChanges.clear()
-        propertyToCheckbox.forEach { (property, checkbox) ->
-            checkbox.isSelected = property.get()
+        pendingQuestChanges.clear()
+        bulkUpdateInProgress = true
+        try {
+            propertyToCheckbox.forEach { (property, checkbox) ->
+                checkbox.isSelected = property.get()
+            }
+            questCheckboxes.forEach { (questId, checkbox) ->
+                checkbox.isSelected = questProgress.isCompleted(questId)
+            }
+        } finally {
+            bulkUpdateInProgress = false
         }
     }
 
@@ -208,6 +235,56 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
     private fun VirtualFile.open(project: Project) {
         val fileEditorManager = FileEditorManager.getInstance(project)
         fileEditorManager.openFile(this, true)
+    }
+
+    internal fun createOnboardingPanel(): JPanel {
+        questCheckboxes.clear()
+        val questsPanel = JPanel()
+        questsPanel.isOpaque = false
+        questsPanel.layout = BoxLayout(questsPanel, BoxLayout.Y_AXIS)
+
+        OnboardingQuestRegistry.quests.forEachIndexed { index, quest ->
+            val questCheckbox = JBCheckBox(quest.title)
+            questCheckbox.isSelected = questProgress.isCompleted(quest.id)
+            questCheckbox.addActionListener {
+                if (bulkUpdateInProgress) {
+                    return@addActionListener
+                }
+
+                val selected = questCheckbox.isSelected
+                val original = questProgress.isCompleted(quest.id)
+                if (selected == original) {
+                    pendingQuestChanges.remove(quest.id)
+                } else {
+                    pendingQuestChanges[quest.id] = selected
+                }
+            }
+            questCheckboxes[quest.id] = questCheckbox
+            questsPanel.add(questCheckbox)
+
+            if (quest.description.isNotBlank()) {
+                val descriptionLabel = JBLabel(quest.description)
+                descriptionLabel.foreground = JBColor.GRAY
+                descriptionLabel.border = JBUI.Borders.emptyLeft(24)
+                questsPanel.add(descriptionLabel)
+            }
+
+            if (index != OnboardingQuestRegistry.quests.lastIndex) {
+                questsPanel.add(Box.createVerticalStrut(8))
+            }
+        }
+
+        return questsPanel
+    }
+
+    private fun applyPendingQuestChanges() {
+        if (pendingQuestChanges.isEmpty()) {
+            return
+        }
+        pendingQuestChanges.forEach { (questId, completed) ->
+            questProgress.setCompleted(questId, completed)
+        }
+        pendingQuestChanges.clear()
     }
 
     companion object {
