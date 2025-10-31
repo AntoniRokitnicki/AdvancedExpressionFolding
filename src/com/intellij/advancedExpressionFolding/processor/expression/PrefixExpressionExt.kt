@@ -6,11 +6,14 @@ import com.intellij.advancedExpressionFolding.expression.math.basic.NotEqual
 import com.intellij.advancedExpressionFolding.expression.operation.basic.Append
 import com.intellij.advancedExpressionFolding.expression.operation.basic.Equal
 import com.intellij.advancedExpressionFolding.expression.operation.basic.GreaterEqual
+import com.intellij.advancedExpressionFolding.expression.operation.logical.LogicalNotExpression
 import com.intellij.advancedExpressionFolding.processor.argumentExpressions
 import com.intellij.advancedExpressionFolding.processor.util.Helper
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
 import com.intellij.advancedExpressionFolding.settings.IDateOperationsState
 import com.intellij.advancedExpressionFolding.settings.IExpressionCollapseState
+import com.intellij.advancedExpressionFolding.settings.IGlobalSettingsState
+import com.intellij.advancedExpressionFolding.settings.IUnclassifiedFeatureState
 import com.intellij.openapi.editor.Document
 import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiExpression
@@ -18,10 +21,14 @@ import com.intellij.psi.PsiIdentifier
 import com.intellij.psi.PsiMethod
 import com.intellij.psi.PsiMethodCallExpression
 import com.intellij.psi.PsiPrefixExpression
+import com.intellij.psi.JavaTokenType
+import com.intellij.psi.PsiType
 
 object PrefixExpressionExt :
     IDateOperationsState by AdvancedExpressionFoldingSettings.State()(),
-    IExpressionCollapseState by AdvancedExpressionFoldingSettings.State()() {
+    IExpressionCollapseState by AdvancedExpressionFoldingSettings.State()(),
+    IUnclassifiedFeatureState by AdvancedExpressionFoldingSettings.State()(),
+    IGlobalSettingsState by AdvancedExpressionFoldingSettings.State()() {
 
     fun getPrefixExpression(element: PsiPrefixExpression, document: Document): Expression? {
         val operand = element.operand ?: return null
@@ -65,7 +72,36 @@ object PrefixExpressionExt :
                 return NotEqual(element, element.textRange, foldedOperand.operands)
             }
         }
-        return null
+        return tryBuildLogicalNotExpression(element, operand, document)
+    }
+
+    private fun tryBuildLogicalNotExpression(
+        element: PsiPrefixExpression,
+        operand: PsiExpression,
+        document: Document
+    ): Expression? {
+        if (!experimental || !logicalOperatorsWords) {
+            return null
+        }
+        if (element.operationTokenType != JavaTokenType.EXCL) {
+            return null
+        }
+        val type = element.type ?: return null
+        if (!type.equals(PsiType.BOOLEAN)) {
+            return null
+        }
+        val operandExpression = com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt.getAnyExpression(
+            operand,
+            document
+        )
+        val logicalNot = LogicalNotExpression(
+            element,
+            element.textRange,
+            operandExpression,
+            logicalOperatorsUppercase,
+            logicalOperatorsParentheses
+        )
+        return logicalNot
     }
 
     private data class MethodCallInformation(

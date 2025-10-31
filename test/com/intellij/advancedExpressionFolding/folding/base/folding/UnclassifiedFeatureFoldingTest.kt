@@ -6,6 +6,14 @@ import org.junit.jupiter.api.Test
 interface UnclassifiedFeatureFoldingTest : FoldingTestSection {
     @Test
     fun semicolonTestData() = testCase.runReadOnlyFoldingTest(foldingState()::semicolonsCollapse)
+
+    @Test
+    fun logicalOperatorsWordsTestData() = testCase.runFoldingTest(
+        foldingState()::experimental,
+        foldingState()::logicalOperatorsWords,
+        foldingState()::logicalOperatorsUppercase,
+        foldingState()::logicalOperatorsParentheses,
+    )
 }
 
 @Disabled("Split from FoldingTest")

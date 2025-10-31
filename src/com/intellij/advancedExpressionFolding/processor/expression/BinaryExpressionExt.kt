@@ -10,6 +10,8 @@ import com.intellij.advancedExpressionFolding.expression.operation.basic.Append
 import com.intellij.advancedExpressionFolding.expression.operation.basic.Equal
 import com.intellij.advancedExpressionFolding.expression.operation.basic.Greater
 import com.intellij.advancedExpressionFolding.expression.operation.basic.GreaterEqual
+import com.intellij.advancedExpressionFolding.expression.operation.logical.LogicalBinaryExpression
+import com.intellij.advancedExpressionFolding.expression.operation.logical.LogicalOperator
 import com.intellij.advancedExpressionFolding.expression.operation.collection.Range
 import com.intellij.advancedExpressionFolding.processor.argumentExpressions
 import com.intellij.advancedExpressionFolding.processor.argumentCount
@@ -17,6 +19,8 @@ import com.intellij.advancedExpressionFolding.processor.util.Consts
 import com.intellij.advancedExpressionFolding.processor.util.Helper.eraseGenerics
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
 import com.intellij.advancedExpressionFolding.settings.IExpressionCollapseState
+import com.intellij.advancedExpressionFolding.settings.IGlobalSettingsState
+import com.intellij.advancedExpressionFolding.settings.IUnclassifiedFeatureState
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiBinaryExpression
@@ -26,23 +30,67 @@ import com.intellij.psi.PsiLiteralExpression
 import com.intellij.psi.PsiMethod
 import com.intellij.psi.PsiMethodCallExpression
 import com.intellij.psi.PsiPrefixExpression
+import com.intellij.psi.JavaTokenType
+import com.intellij.psi.PsiType
 
-object BinaryExpressionExt : IExpressionCollapseState by AdvancedExpressionFoldingSettings.State()() {
+object BinaryExpressionExt :
+    IExpressionCollapseState by AdvancedExpressionFoldingSettings.State()(),
+    IUnclassifiedFeatureState by AdvancedExpressionFoldingSettings.State()(),
+    IGlobalSettingsState by AdvancedExpressionFoldingSettings.State()() {
 
     fun getBinaryExpression(element: PsiBinaryExpression, document: Document): Expression? {
         tryBuildCompareToBasedExpression(element, document)?.let { return it }
         tryBuildBasicBinaryOperation(element, document)?.let { return it }
-        return if (isAndOfBinaryExpressions(element)) {
-            getAndTwoBinaryExpressions(element, element.lOperand as PsiBinaryExpression, element.rOperand as PsiBinaryExpression, document)
-        } else {
-            null
+        if (isAndOfBinaryExpressions(element)) {
+            getAndTwoBinaryExpressions(
+                element,
+                element.lOperand as PsiBinaryExpression,
+                element.rOperand as PsiBinaryExpression,
+                document
+            )?.let { return it }
         }
+        return tryBuildLogicalBinaryExpression(element, document)
     }
 
     private fun isAndOfBinaryExpressions(element: PsiBinaryExpression): Boolean {
         return element.operationSign.text == "&&" &&
             element.lOperand is PsiBinaryExpression &&
             element.rOperand is PsiBinaryExpression
+    }
+
+    private fun tryBuildLogicalBinaryExpression(element: PsiBinaryExpression, document: Document): Expression? {
+        if (!experimental || !logicalOperatorsWords) {
+            return null
+        }
+        val tokenType = element.operationTokenType
+        if (tokenType != JavaTokenType.ANDAND && tokenType != JavaTokenType.OROR) {
+            return null
+        }
+        if (element.rOperand == null) {
+            return null
+        }
+        val type = element.type ?: return null
+        if (!type.equals(PsiType.BOOLEAN)) {
+            return null
+        }
+        val leftExpression = com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt.getAnyExpression(
+            element.lOperand,
+            document
+        )
+        val rightExpression = com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt.getAnyExpression(
+            element.rOperand!!,
+            document
+        )
+        val operator = if (tokenType == JavaTokenType.ANDAND) LogicalOperator.AND else LogicalOperator.OR
+        val expression = LogicalBinaryExpression(
+            element,
+            element.textRange,
+            listOf(leftExpression, rightExpression),
+            operator,
+            logicalOperatorsUppercase,
+            logicalOperatorsParentheses
+        )
+        return expression
     }
 
     private fun tryBuildBasicBinaryOperation(element: PsiBinaryExpression, document: Document): Expression? {

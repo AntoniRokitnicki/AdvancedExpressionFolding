@@ -280,6 +280,11 @@ abstract class CheckboxesProvider {
             example(PseudoAnnotationsMainTestData::class)
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#pseudoAnnotations")
         }
+        registerCheckbox(state::logicalOperatorsWords, "Logical operators: words") {
+            example(LogicalOperatorsWordsTestData::class)
+        }
+        registerCheckbox(state::logicalOperatorsUppercase, "Use uppercase OR AND NOT")
+        registerCheckbox(state::logicalOperatorsParentheses, "Add visual parentheses around complex operands")
         // NEW OPTION
         registerCheckbox(state::memoryImprovement, "Memory improvements")
         registerCheckbox(state::experimental, "Experimental features") {
