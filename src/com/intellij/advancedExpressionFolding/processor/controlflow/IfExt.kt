@@ -30,11 +30,11 @@ import com.intellij.psi.PsiExpression
 import com.intellij.psi.PsiIfStatement
 import com.intellij.psi.PsiMethodCallExpression
 import com.intellij.psi.PsiPolyadicExpression
-import com.intellij.psi.PsiReference
 import com.intellij.psi.PsiReferenceExpression
 import com.intellij.psi.PsiStatement
 import com.intellij.psi.PsiSwitchStatement
 import com.intellij.psi.SyntaxTraverser
+import com.intellij.psi.util.PsiUtil
 
 object IfExt :
     IControlFlowState by AdvancedExpressionFoldingSettings.State()(),
@@ -241,52 +241,92 @@ object IfExt :
                 } else {
                     condition.lOperand
                 }
-                val qualifierElement = qualifier ?: return null
-                val isSupportedQualifier = when (qualifierElement) {
-                    is PsiReferenceExpression -> true
-                    is PsiMethodCallExpression ->
-                        Helper.startsWith(qualifierElement.methodExpression.referenceName, "get") &&
-                            qualifierElement.argumentExpressions.isEmpty()
-                    else -> false
+                val qualifierElement = qualifier as? PsiExpression ?: return null
+                val unwrappedQualifier = PsiUtil.skipParenthesizedExprDown(qualifierElement) as? PsiReferenceExpression
+                    ?: qualifierElement as? PsiReferenceExpression
+                    ?: return null
+                val nonNullBranch = if (isInvertedElvis) {
+                    element.elseExpression
+                } else {
+                    element.thenExpression
+                } ?: return null
+                val fallbackBranch = if (isInvertedElvis) {
+                    element.thenExpression
+                } else {
+                    element.elseExpression
+                } ?: return null
+
+                val unwrappedNonNull = PsiUtil.skipParenthesizedExprDown(nonNullBranch) ?: nonNullBranch
+                val unwrappedFallback = PsiUtil.skipParenthesizedExprDown(fallbackBranch) ?: fallbackBranch
+
+                if (unwrappedNonNull !is PsiReferenceExpression && unwrappedNonNull !is PsiMethodCallExpression) {
+                    return null
                 }
-                if (isSupportedQualifier) {
-                    val nonNullExpression = if (isInvertedElvis) {
-                        element.elseExpression
-                    } else {
-                        element.thenExpression
-                    } ?: return null
-                    val fallbackExpression = if (isInvertedElvis) {
-                        element.thenExpression
-                    } else {
-                        element.elseExpression
-                    } ?: return null
-                    val reference: PsiReference? = when (qualifierElement) {
-                        is PsiReferenceExpression -> qualifierElement
-                        is PsiMethodCallExpression -> qualifierElement.methodExpression
-                        else -> return null
+
+                val referenceExpressions = SyntaxTraverser.psiTraverser(unwrappedNonNull)
+                    .filter(PsiReferenceExpression::class.java)
+                    .filter { candidate -> Helper.isReferenceToReference(candidate, unwrappedQualifier) }
+                    .toList()
+
+                val isDirectReference =
+                    unwrappedNonNull is PsiReferenceExpression &&
+                        unwrappedNonNull.qualifierExpression == null &&
+                        Helper.isReferenceToReference(unwrappedNonNull, unwrappedQualifier)
+
+                val safeCallReferences = if (!isDirectReference) {
+                    referenceExpressions.filter { candidate ->
+                        val parentReference = candidate.parent as? PsiReferenceExpression
+                        parentReference?.qualifierExpression == candidate
                     }
-                    val references = SyntaxTraverser.psiTraverser(nonNullExpression)
-                        .filter { candidate ->
-                            when (candidate) {
-                                is PsiReferenceExpression -> candidate.parent !is PsiMethodCallExpression &&
-                                    Helper.isReferenceToReference(candidate, reference)
-                                is PsiMethodCallExpression ->
-                                    Helper.isReferenceToReference(candidate.methodExpression, reference)
-                                else -> false
-                            }
-                        }
-                        .toList()
-                    if (references.isNotEmpty()) {
-                        return ElvisExpression(
-                            element,
-                            element.textRange,
-                            getAnyExpression(nonNullExpression, document),
-                            getAnyExpression(fallbackExpression, document),
-                            references.map { it.textRange },
-                            isInvertedElvis
-                        )
+                } else {
+                    emptyList()
+                }
+
+                if (!isDirectReference) {
+                    if (safeCallReferences.isEmpty()) {
+                        return null
+                    }
+                    val hasNonQualifierUsage = referenceExpressions.any { candidate ->
+                        candidate !in safeCallReferences
+                    }
+                    if (hasNonQualifierUsage) {
+                        return null
                     }
                 }
+
+                val nonNullExpression = getAnyExpression(nonNullBranch, document) ?: return null
+
+                val fallbackIsNull = isNull(unwrappedFallback.type)
+                if (fallbackIsNull) {
+                    val ranges = if (isDirectReference) emptyList() else safeCallReferences.map { it.textRange }
+                    if (!isDirectReference && ranges.isEmpty()) {
+                        return null
+                    }
+                    return ShortElvisExpression(
+                        element,
+                        element.textRange,
+                        nonNullExpression,
+                        ranges
+                    )
+                }
+
+                val fallbackExpression = getAnyExpression(fallbackBranch, document) ?: return null
+                val ranges = if (isDirectReference) {
+                    referenceExpressions.map { it.textRange }
+                } else {
+                    safeCallReferences.map { it.textRange }
+                }
+                if (ranges.isEmpty()) {
+                    return null
+                }
+                return ElvisExpression(
+                    element,
+                    element.textRange,
+                    nonNullExpression,
+                    fallbackExpression,
+                    ranges,
+                    isInvertedElvis
+                )
             }
         }
         return null
