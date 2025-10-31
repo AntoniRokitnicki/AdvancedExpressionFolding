@@ -1,4 +1,4 @@
-#!/usr/bin/env -S kotlinc -script --
+package com.intellij.advancedExpressionFolding.tools.sweeper
 
 import java.nio.file.Files
 import java.nio.file.Path
@@ -73,12 +73,12 @@ private fun clearTestResultsDirectory() {
 }
 
 private fun extractFirstFoldingFailure(): FoldingFailure? {
-    if (!Files.exists(testResultsDir) || !Files.isDirectory(testResultsDir)) {
+    if (!testResultsDir.exists() || !testResultsDir.isDirectory()) {
         return null
     }
 
     val foldingResultFile = testResultsDir.resolve("TEST-$foldingTestClass.xml")
-    if (!Files.exists(foldingResultFile)) {
+    if (!foldingResultFile.exists()) {
         return null
     }
 
@@ -129,41 +129,42 @@ private fun nonEmptySubsets(): Sequence<List<String>> = sequence {
 }
 
 private fun buildExcludePattern(subset: List<String>): String =
-    subset.joinToString(separator = "|") { ".*${Regex.escape(it)}\$" }
+    subset.joinToString(separator = "|") { ".*${'$'}{Regex.escape(it)}\\${'$'}" }
 
 fun main() {
-    println("Project directory: ${projectDir.pathString}")
+    println("Project directory: ${'$'}{projectDir.pathString}")
     val subsets = nonEmptySubsets().toList()
-    println("Total subsets to sweep: ${subsets.size}")
+    println("Total subsets to sweep: ${'$'}{subsets.size}")
 
     subsets.forEachIndexed { index, subset ->
-        println("\n=== Sweep ${index + 1} / ${subsets.size}: ${subset.joinToString()}")
+        println("\n=== Sweep ${'$'}{index + 1} / ${'$'}{subsets.size}: ${'$'}{subset.joinToString()}")
         clearTestResultsDirectory()
 
         val excludePattern = buildExcludePattern(subset)
         val firstRun = runGradle(
             "test",
-            "-Djunit.jupiter.excludeClassNamePatterns=$excludePattern",
+            "-Djunit.jupiter.excludeClassNamePatterns=${'$'}excludePattern",
         )
-        println("Completed ${firstRun.command.joinToString(" ")} with exitCode=${firstRun.exitCode}")
+        val firstCommand = firstRun.command.joinToString(" ")
+        println("Completed ${'$'}firstCommand with exitCode=${'$'}{firstRun.exitCode}")
 
         val secondRun = runGradle(
             "test",
             "--tests",
             foldingTestClass,
         )
-        println("Completed ${secondRun.command.joinToString(" ")} with exitCode=${secondRun.exitCode}")
+        val secondCommand = secondRun.command.joinToString(" ")
+        println("Completed ${'$'}secondCommand with exitCode=${'$'}{secondRun.exitCode}")
 
         val failure = extractFirstFoldingFailure()
         val failureName = failure?.methodName ?: "none"
         val header = failure?.stacktraceHeader?.replace("\"", "\\\"") ?: ""
-        println(
-            "candidate=${formatCandidateKey(subset)} " +
-                "foldingTestFirstFailure=$failureName " +
-                "result=first=${firstRun.exitCode},second=${secondRun.exitCode} " +
-                "stacktraceHeader=\"$header\"",
-        )
+        val summary = buildString {
+            append("candidate=${'$'}{formatCandidateKey(subset)} ")
+            append("foldingTestFirstFailure=${'$'}failureName ")
+            append("result=first=${'$'}{firstRun.exitCode},second=${'$'}{secondRun.exitCode} ")
+            append("stacktraceHeader=\"${'$'}header\"")
+        }
+        println(summary)
     }
 }
-
-main()
