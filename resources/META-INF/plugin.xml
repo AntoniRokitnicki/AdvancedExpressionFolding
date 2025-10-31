@@ -50,6 +50,11 @@
         <completion.contributor
                 language="JAVA"
                 implementationClass="com.intellij.advancedExpressionFolding.pseudo.TracingLoggableAnnotationCompletionContributor"/>
+
+        <toolWindow id="AEF Live Tuning"
+                    anchor="right"
+                    factoryClass="com.intellij.advancedExpressionFolding.view.LiveRuleTuningDashboardFactory"
+                    canCloseContents="false"/>
     </extensions>
 
     <actions>
