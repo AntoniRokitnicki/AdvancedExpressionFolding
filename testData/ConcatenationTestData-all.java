@@ -21,6 +21,10 @@ public class ConcatenationTestData {
         <fold text='val' expand='false'>Set<String></fold> copyOfSet = new HashSet<>();
         set<fold text=' += ' expand='false'>.addAll(</fold>copyOfSet<fold text='' expand='false'>)</fold>;
         <fold text='' expand='false'>System.out.</fold>println(copyOfSet);
+        <fold text='val' expand='false'>List<Character></fold> chars = <fold text='[]' expand='false'>new ArrayList<>()</fold>;
+        <fold text='val' expand='false'>List<Character></fold> sequence = <fold text='[' expand='false'>Arrays.asList(</fold>'a', 'b'<fold text=']' expand='false'>)</fold>;
+        chars<fold text=' = ' expand='false'>.addAll(0, </fold>sequence<fold text=' + chars' expand='false'>)</fold>;
+        chars.addAll(3, sequence);
         <fold text='var' expand='false'>List<String></fold> streamToList = <fold text='' expand='false'>Arrays.stream(</fold>args<fold text='' expand='false'>)</fold><fold text='*.' expand='false'>.map(</fold><fold text='toUpperCase()' expand='false'>String::toUpperCase</fold><fold text='' expand='false'>)</fold><fold text='.' expand='false'>.collect(Collectors.</fold>toList()<fold text='' expand='false'>)</fold>;
         <fold text='' expand='false'>System.out.</fold>println(streamToList);
         streamToList = <fold text='' expand='false'>Arrays.stream(</fold>args<fold text='' expand='false'>)</fold><fold text='*.' expand='false'>.map(</fold><fold text='toUpperCase()' expand='false'>String::toUpperCase</fold><fold text='' expand='false'>)</fold><fold text='.' expand='false'>.collect(Collectors.</fold>toList()<fold text='' expand='false'>)</fold>;
