@@ -5,6 +5,7 @@ import com.intellij.advancedExpressionFolding.expression.semantic.WrapperExpress
 import com.intellij.advancedExpressionFolding.processor.language.kotlin.MethodDefaultParameterExt
 import com.intellij.advancedExpressionFolding.processor.toJavaPsiFile
 import com.intellij.advancedExpressionFolding.view.FindUsageCustomView
+import com.intellij.advancedExpressionFolding.view.dashboard.LiveUsageDashboardService
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.application.runReadAction
@@ -23,6 +24,7 @@ class FindMethodsWithDefaultParametersAction : AnAction() {
     override fun actionPerformed(e: AnActionEvent) {
         val project = e.project ?: return
         val findUsageCustomView = FindUsageCustomView(project, "find methods with default parameters")
+        val liveUsageDashboardService = LiveUsageDashboardService.getInstance(project)
         var processed = 0
 
         ProgressManager.getInstance().run(object : Task.Backgroundable(project, "Finding methods with default parameters", true) {
@@ -30,7 +32,13 @@ class FindMethodsWithDefaultParametersAction : AnAction() {
                 runReadAction {
                     FileTypeIndex.processFiles(FileTypeManager.getInstance().getFileTypeByExtension("java"), { file ->
                         file.toJavaPsiFile(project)?.let { javaFile ->
-                            javaFile.accept(MethodDefaultParameterExtVisitor(findUsageCustomView, javaFile))
+                            javaFile.accept(
+                                MethodDefaultParameterExtVisitor(
+                                    findUsageCustomView,
+                                    javaFile,
+                                    liveUsageDashboardService
+                                )
+                            )
                             processed++
                             indicator.text = "Processing file $processed"
                         }
@@ -46,7 +54,8 @@ class FindMethodsWithDefaultParametersAction : AnAction() {
 
     class MethodDefaultParameterExtVisitor(
         private val findUsageCustomView: FindUsageCustomView,
-        private val javaFile: PsiJavaFile
+        private val javaFile: PsiJavaFile,
+        private val liveUsageDashboardService: LiveUsageDashboardService
     ) : JavaRecursiveElementVisitor() {
         override fun visitClass(clazz: PsiClass) {
             val wrappedExpression =
@@ -60,6 +69,7 @@ class FindMethodsWithDefaultParametersAction : AnAction() {
                     }.forEach { (_, expressions) ->
                         val textRange = expressions.last().textRange
                         findUsageCustomView.addToUsage(javaFile, textRange)
+                        liveUsageDashboardService.recordUsage(javaFile, textRange)
                     }
             }
             super.visitClass(clazz)
