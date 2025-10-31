@@ -41,15 +41,17 @@ class InterpolatedString(
         )
         val descriptors = mutableListOf<FoldingDescriptor>()
         var suffix = ""
+        val firstRange = first.element.textRange
+        val lastRange = last.element.textRange
         if (firstIsQuoteCharacter) {
             descriptors += FoldingDescriptor(
                 element.node,
-                TextRange.create(first.textRange.startOffset, first.textRange.endOffset),
+                TextRange.create(firstRange.startOffset, firstRange.endOffset),
                 group,
                 "\""
             )
         } else if (first !is CharSequenceLiteral) {
-            val startOffset = first.textRange.startOffset
+            val startOffset = firstRange.startOffset
             if (startOffset > 0) {
                 val overflowLeftRange = TextRange.create(startOffset - 1, startOffset)
                 val overflowLeftText = document.getText(overflowLeftRange)
@@ -79,7 +81,7 @@ class InterpolatedString(
                     }
                     descriptors += FoldingDescriptor(
                         element.node,
-                        TextRange.create(startOffset, first.textRange.endOffset),
+                        TextRange.create(startOffset, firstRange.endOffset),
                         group,
                         placeholder
                     )
@@ -87,19 +89,21 @@ class InterpolatedString(
             }
         }
         for (i in 0 until operands.size - 1) {
-            val start = if (operands[i] is CharSequenceLiteral) {
-                operands[i].textRange.endOffset - 1
-            } else {
-                operands[i].textRange.endOffset
-            }
-            val end = if (operands[i + 1] is CharSequenceLiteral) {
-                operands[i + 1].textRange.startOffset + 1
-            } else {
-                operands[i + 1].textRange.startOffset
-            }
             val current = operands[i]
-            val currentIsQuoteCharacter = current.isQuoteCharacter()
             val next = operands[i + 1]
+            val currentRange = current.element.textRange
+            val nextRange = next.element.textRange
+            val start = if (current is CharSequenceLiteral) {
+                currentRange.endOffset - 1
+            } else {
+                currentRange.endOffset
+            }
+            val end = if (next is CharSequenceLiteral) {
+                nextRange.startOffset + 1
+            } else {
+                nextRange.startOffset
+            }
+            val currentIsQuoteCharacter = current.isQuoteCharacter()
             val nextIsQuoteCharacter = next.isQuoteCharacter()
             val placeholder = StringBuilder().append(suffix)
             if (currentIsQuoteCharacter) {
@@ -128,19 +132,20 @@ class InterpolatedString(
         if (lastIsQuoteCharacter) {
             descriptors += FoldingDescriptor(
                 element.node,
-                TextRange.create(last.textRange.startOffset, last.textRange.endOffset),
+                TextRange.create(lastRange.startOffset, lastRange.endOffset),
                 group,
                 "\\\""
             )
-        } else if (last !is CharSequenceLiteral && document.textLength > last.textRange.endOffset + 1) {
-            val overflowRightRange = TextRange.create(last.textRange.endOffset, last.textRange.endOffset + 1)
+        } else if (last !is CharSequenceLiteral && document.textLength > lastRange.endOffset + 1) {
+            val overflowRightRange = TextRange.create(lastRange.endOffset, lastRange.endOffset + 1)
             val beforeLast = operands[operands.size - 2]
+            val beforeLastRange = beforeLast.element.textRange
             val start = if (beforeLast is CharSequenceLiteral) {
-                beforeLast.textRange.endOffset - 1
+                beforeLastRange.endOffset - 1
             } else {
-                beforeLast.textRange.endOffset
+                beforeLastRange.endOffset
             }
-            val end = last.textRange.startOffset
+            val end = lastRange.startOffset
             val overflowRightText = document.getText(overflowRightRange)
             if (OVERFLOW_CHARACTERS.contains(overflowRightText)) {
                 val overflowText = overflowRightPlaceholder ?: overflowRightText
@@ -174,7 +179,7 @@ class InterpolatedString(
             } else {
                 descriptors += FoldingDescriptor(
                     element.node,
-                    TextRange.create(last.textRange.startOffset, last.textRange.endOffset),
+                    TextRange.create(lastRange.startOffset, lastRange.endOffset),
                     group,
                     last.element.text + suffix + "\""
                 )
