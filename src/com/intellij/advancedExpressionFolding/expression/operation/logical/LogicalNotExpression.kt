@@ -11,8 +11,11 @@ class LogicalNotExpression(
     textRange: TextRange,
     private val operand: Expression,
     private val uppercase: Boolean,
-    @Suppress("UNUSED_PARAMETER") private val visualParentheses: Boolean,
+    private val visualParentheses: Boolean,
 ) : Expression(element, textRange) {
+
+    internal val operandExpression: Expression
+        get() = operand
 
     override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean {
         return operand.textRange.startOffset > textRange.startOffset
@@ -26,7 +29,12 @@ class LogicalNotExpression(
         val group = FoldingGroup.newGroup(javaClass.name)
         val descriptors = mutableListOf<com.intellij.lang.folding.FoldingDescriptor>()
         val prefixRange = TextRange.create(textRange.startOffset, operand.textRange.startOffset)
-        descriptors += com.intellij.lang.folding.FoldingDescriptor(element.node, prefixRange, group, buildPlaceholder())
+        descriptors += com.intellij.lang.folding.FoldingDescriptor(
+            element.node,
+            prefixRange,
+            group,
+            buildPrefixPlaceholder()
+        )
 
         if (operand.supportsFoldRegions(document, this)) {
             descriptors += operand.buildFoldRegions(operand.element, document, this)
@@ -34,14 +42,42 @@ class LogicalNotExpression(
 
         val suffixRange = TextRange.create(operand.textRange.endOffset, textRange.endOffset)
         if (!suffixRange.isEmpty) {
-            descriptors += com.intellij.lang.folding.FoldingDescriptor(element.node, suffixRange, group, "")
+            descriptors += com.intellij.lang.folding.FoldingDescriptor(
+                element.node,
+                suffixRange,
+                group,
+                buildSuffixPlaceholder(document)
+            )
         }
 
         return descriptors.toTypedArray()
     }
 
-    private fun buildPlaceholder(): String {
+    private fun buildPrefixPlaceholder(): String {
         val keyword = if (uppercase) "NOT" else "not"
-        return "$keyword "
+        return if (shouldWrapOperand()) {
+            "$keyword ("
+        } else {
+            "$keyword "
+        }
     }
+
+    private fun buildSuffixPlaceholder(document: Document): String {
+        if (!shouldWrapOperand()) {
+            return ""
+        }
+        val suffixText = document.charsSequence.getOrNull(operand.textRange.endOffset)
+        return if (suffixText == ')') "" else ")"
+    }
+
+    private fun shouldWrapOperand(): Boolean {
+        if (!visualParentheses) {
+            return false
+        }
+        return operand is LogicalBinaryExpression
+    }
+}
+
+private fun CharSequence.getOrNull(index: Int): Char? {
+    return if (index in 0 until length) this[index] else null
 }

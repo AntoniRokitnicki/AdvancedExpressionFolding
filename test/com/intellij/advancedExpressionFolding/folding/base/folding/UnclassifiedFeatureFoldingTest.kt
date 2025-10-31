@@ -14,6 +14,13 @@ interface UnclassifiedFeatureFoldingTest : FoldingTestSection {
         foldingState()::logicalOperatorsUppercase,
         foldingState()::logicalOperatorsParentheses,
     )
+
+    @Test
+    fun logicalOperatorsWordsLowercaseTestData() = testCase.runFoldingTest(
+        foldingState()::experimental,
+        foldingState()::logicalOperatorsWords,
+        foldingState()::logicalOperatorsParentheses,
+    )
 }
 
 @Disabled("Split from FoldingTest")

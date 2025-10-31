@@ -1,11 +1,11 @@
 package data;
 
-@interface Flag <fold text='{...}' expand='true'>{
+@interface FlagLower <fold text='{...}' expand='true'>{
     boolean value();
 }</fold>
 
-public class LogicalOperatorsWordsTestData <fold text='{...}' expand='true'>{
-    @Flag(value = true<fold text=' AND ' expand='false'> && </fold>false)
+public class LogicalOperatorsWordsLowercaseTestData <fold text='{...}' expand='true'>{
+    @FlagLower(value = true<fold text=' AND ' expand='false'> && </fold>false)
     private static class Flagged {}
 
     public boolean demo(boolean a, boolean b, boolean c, boolean d) <fold text='{...}' expand='true'>{
