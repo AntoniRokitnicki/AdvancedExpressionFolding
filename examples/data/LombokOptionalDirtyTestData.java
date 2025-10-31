@@ -5,6 +5,7 @@ import java.util.Optional;
 public class LombokOptionalDirtyTestData {
 
     public static class DirtyOptional {
+        // When Lombok folding spots multiple dirty heuristics, optional wins before dirty/dirtyNoReference.
         private String optionalField;
         private String alias;
 
