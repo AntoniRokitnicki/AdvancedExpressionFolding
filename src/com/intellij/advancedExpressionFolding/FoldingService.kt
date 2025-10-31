@@ -1,8 +1,10 @@
 package com.intellij.advancedExpressionFolding
 
 import com.intellij.advancedExpressionFolding.processor.cache.Keys
+import com.intellij.openapi.Disposable
 import com.intellij.openapi.components.Service
 import com.intellij.openapi.components.service
+import com.intellij.openapi.diagnostic.logger
 import com.intellij.openapi.editor.Editor
 import com.intellij.openapi.editor.FoldRegion
 import com.intellij.openapi.project.Project
@@ -10,11 +12,32 @@ import com.intellij.openapi.project.ProjectManager
 import com.intellij.psi.PsiDocumentManager
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiRecursiveElementVisitor
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import kotlin.coroutines.CoroutineContext
 
 @Service
-class FoldingService {
+class FoldingService : CoroutineScope, Disposable {
 
+    private val log = logger<FoldingService>()
+
+    /**
+     * Uses a [SupervisorJob] so one failing cleanup does not cancel the service scope.
+     */
+    private val job = SupervisorJob()
+
+    /**
+     * Keeps cleanup work off the EDT by delegating to [Dispatchers.Default].
+     */
+    @Suppress("InjectDispatcher")
+    override val coroutineContext: CoroutineContext = job + Dispatchers.Default
+
+    /**
+     * Expands or collapses advanced folding regions according to the provided [state].
+     */
     fun fold(editor: Editor, state: Boolean) {
         if (editor.isDisposed) {
             return
@@ -29,33 +52,27 @@ class FoldingService {
             }
     }
 
+    /**
+     * Clears cached folding keys for every open project.
+     */
     fun clearAllKeys() {
         ProjectManager.getInstance().openProjects.forEach(this::clearAllKeys)
     }
 
+    /**
+     * Clears cached folding keys for each editor in the given [project].
+     */
     fun clearAllKeys(project: Project) {
-        val editors = project.openTextEditors
+        val editors = project.openTextEditors.toList()
 
-        val coroutineScope = FoldingServiceCoroutineScope.get()
-        //its cut, because verification throws for it seems to be no reason:
-        // Invocation of unresolved method ServicesKt.serviceNotFoundError(...) (1)
-        // Method FoldingService.clearAllKeys(Project) contains an invokestatic instruction referencing an unresolved method ServicesKt.serviceNotFoundError(...). This can lead to NoSuchMethodError exception at runtime.
-        clearAllKeysStart(coroutineScope, editors)
-    }
-
-    private fun FoldingService.clearAllKeysStart(
-        coroutineScope: FoldingServiceCoroutineScope,
-        editors: List<Editor>
-    ) {
-        coroutineScope.launch {
-            clearAllKeysForEditors(editors)
+        launch {
+            editors.forEach(::clearAllKeys)
         }
     }
 
-    private fun FoldingService.clearAllKeysForEditors(editors: List<Editor>) {
-        editors.forEach(::clearAllKeys)
-    }
-
+    /**
+     * Clears cached folding keys for the provided [editor] when possible.
+     */
     fun clearAllKeys(editor: Editor) {
         if (editor.isDisposed) {
             return
@@ -65,6 +82,9 @@ class FoldingService {
         psiFile.accept(KeyCleanerPsiElementVisitor())
     }
 
+    /**
+     * Removes folding keys from every visited PSI element.
+     */
     class KeyCleanerPsiElementVisitor : PsiRecursiveElementVisitor() {
         override fun visitElement(element: PsiElement) {
             Keys.clearAll(element)
@@ -73,6 +93,23 @@ class FoldingService {
     }
 
     companion object {
+        /**
+         * Returns the project-level instance of [FoldingService].
+         */
         fun get() = service<FoldingService>()
+    }
+
+    /**
+     * Cancels the coroutine scope and waits for all cleanup work to finish.
+     */
+    override fun dispose() {
+        try {
+            job.cancel()
+        } catch (t: Throwable) {
+            log.warn("Failed to cancel folding service coroutine scope", t)
+        }
+        runBlocking {
+            job.join()
+        }
     }
 }
