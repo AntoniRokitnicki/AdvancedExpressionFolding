@@ -86,6 +86,88 @@ folded/LombokDirtyOffTestData-folded.java:
 Highlights LombokDirtyOffTestData with lombok.
 Removes boilerplate while preserving behavior.
 
+#### Example: LombokOptionalDirtyTestData
+
+examples/data/LombokOptionalDirtyTestData.java:
+```java
+    public static class OptionalFalseCases {
+        // 1. optional = false, dirty = none
+        private String plain;
+
+        public String getPlain() {
+            return plain;
+        }
+
+        // 2. optional = false, dirty = dirty
+        private String alias;
+        private String fallback;
+
+        public String getAlias() {
+            return alias != null ? alias : fallback;
+        }
+
+        // 3. optional = false, dirty = dirtyNoReference
+        private String detached;
+
+        public String getDetached() {
+            return "fallback";
+        }
+    }
+```
+
+folded/LombokOptionalDirtyTestData-folded.java:
+```java
+    public static class OptionalFalseCases {
+        @Getter private String plain;
+
+        @Getter(dirty) private String alias;
+        private String fallback;
+
+        @Getter(dirtyNoReference) private String detached;
+    }
+```
+
+#### Example: LombokOptionalDirtyNoReferenceTestData
+
+examples/data/LombokOptionalDirtyNoReferenceTestData.java:
+```java
+    public static class OptionalTrueCases {
+        // 4. optional = true, dirty = none (dirty heuristic fires but optional wins)
+        private String optionalPlain;
+
+        public Optional<String> getOptionalPlain() {
+            return Optional.ofNullable(optionalPlain);
+        }
+
+        // 5. optional = true, dirty = dirty (optional still wins)
+        private String optionalAliased;
+
+        public Optional<String> getOptionalAliased() {
+            return Optional.ofNullable(optionalAliased);
+        }
+
+        // 6. optional = true, dirty = dirtyNoReference (optional flag disappears without a field reference)
+        private String optionalDetached;
+
+        public Optional<String> getOptionalDetached() {
+            return Optional.ofNullable("fallback");
+        }
+    }
+```
+
+folded/LombokOptionalDirtyNoReferenceTestData-folded.java:
+```java
+    public static class OptionalTrueCases {
+        @Getter(optional = true) private String optionalPlain;
+
+        @Getter(optional = true) private String optionalAliased;
+
+        @Getter(dirtyNoReference) private String optionalDetached;
+    }
+```
+
+These two examples enumerate the optional/dirty combinations so you can see which heuristics win for every case.
+
 #### Example: InterfaceExtensionPropertiesTestData
 
 examples/data/InterfaceExtensionPropertiesTestData.java:
@@ -1020,6 +1102,7 @@ public class LombokTestData {
         private List<String> lazyLoadedList;
         private List<String> oneLineLazyLoadedList;
         private List<String> defensiveCopyList;
+        private String optionalField;
 
         public List<String> getWrapper() {
             return Collections.unmodifiableList(wrapper);
@@ -1063,6 +1146,10 @@ public class LombokTestData {
             if (oneLineLazyLoadedList == null) oneLineLazyLoadedList = new ArrayList<>();
             return oneLineLazyLoadedList;
         }
+
+        public Optional<String> getOptionalField() {
+            return Optional.ofNullable(optionalField);
+        }
 ```
 
 **After**
@@ -1076,6 +1163,7 @@ public class LombokTestData {
         @Getter(lazy = ArrayList::new) private List<String> lazyLoadedList;
         @Getter(lazy = ArrayList::new) private List<String> oneLineLazyLoadedList;
         @Getter(wrapper = ArrayList::new) private List<String> defensiveCopyList;
+        @Getter(optional = true) private String optionalField;
 ```
 
 
