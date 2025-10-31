@@ -36,6 +36,12 @@
                 key="editor.folding.advanced.expression.displayName"
                 bundle="Bundle"/>
 
+        <toolWindow id="Advanced Expression Folding Onboarding"
+                    anchor="right"
+                    secondary="true"
+                    stripeTitle="Onboarding"
+                    factoryClass="com.intellij.advancedExpressionFolding.onboarding.OnboardingToolWindowFactory"/>
+
         <notificationGroup id="Advanced Expression Folding"
                            displayType="BALLOON"
                            isLogByDefault="true"/>
