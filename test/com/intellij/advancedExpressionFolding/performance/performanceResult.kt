@@ -46,6 +46,8 @@ object PerformanceResult : FoldingTest() {
         ::localDateTestData to 7
         ::logBrackets to 6
         ::lombokDirtyOffTestData to 6
+        ::lombokOptionalDirtyNoReferenceTestData to 6
+        ::lombokOptionalDirtyTestData to 6
         ::lombokPatternOffNegativeTestData to 23
         ::lombokPatternOffTestData to 19
         ::lombokTestData to 24
