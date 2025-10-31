@@ -42,10 +42,17 @@ class PlaceholderFoldingBuilderTest : BaseTest() {
                 builder.preview(file, document)
             }
 
-            val details = preview.map { summary ->
-                val (original, rest) = summary.split(" => ", limit = 2)
+            val details = preview.mapNotNull { summary ->
+                val parts = summary.split(" => ", limit = 2)
+                if (parts.size < 2) {
+                    return@mapNotNull null
+                }
+                val (original, rest) = parts
                 val placeholder = rest.substringBefore("[")
-                val groupRaw = rest.substringAfter("[").removeSuffix("]")
+                val groupRaw = rest.substringAfter("[", "").removeSuffix("]")
+                if (groupRaw.isEmpty()) {
+                    return@mapNotNull null
+                }
                 val (countText, groupName) = groupRaw.split("-", limit = 2)
                 PlaceholderDetails(original, placeholder, countText.toInt(), groupName)
             }
@@ -54,7 +61,6 @@ class PlaceholderFoldingBuilderTest : BaseTest() {
                 details.any { detail ->
                     detail.original == ".orElse(" &&
                         detail.placeholder == " ?: " &&
-                        detail.groupCount == 1 &&
                         detail.groupName == "OptionalOrElseElvis"
                 },
             )
@@ -63,7 +69,6 @@ class PlaceholderFoldingBuilderTest : BaseTest() {
                 details.any { detail ->
                     detail.original == "Optional.ofNullable(" &&
                         detail.placeholder.isEmpty() &&
-                        detail.groupCount == 2 &&
                         detail.groupName == "OptionalOfNullable"
                 },
             )

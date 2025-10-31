@@ -31,7 +31,7 @@ public class OptionalTestData {
                 .filter(it -> it.ok)
                 .map(Function.identity())<fold text='?.' expand='false'>
                 .map(</fold><fold text='ok' expand='false'>Data::isOk</fold><fold text='' expand='false'>)</fold>
-                .map(it -> !it).map(it -> <fold text='{...}' expand='true'>{
+                .map(it -> <fold text='NOT ' expand='false'>!</fold>it).map(it -> <fold text='{...}' expand='true'>{
                 <fold text='val' expand='false'>var</fold> s = it.toString();
         return s<fold text=' ≡ ' expand='false'>.equals(</fold>"false"<fold text='' expand='false'>)</fold>;
                 }</fold>)<fold text=' ?: ' expand='false'>.orElse(</fold>null<fold text='' expand='false'>)</fold>;

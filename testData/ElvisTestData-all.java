@@ -9,8 +9,8 @@ public class ElvisTestData {
         <fold text='' expand='false'>System.out.</fold>println(<fold text='' expand='false'>e != null ? </fold>e<fold text=' ?: ' expand='false'> : </fold>"");
         <fold text='' expand='false'>System.out.</fold>println(<fold text='' expand='false'>e != null ? </fold>e<fold text='?.' expand='false'>.</fold>sayHello()<fold text=' ?: ' expand='false'> : </fold>"");
         <fold text='' expand='false'>System.out.</fold>println(<fold text='e ?: ""' expand='false'>e == null ? "" : e</fold>); // Inverted Elvis should also fold to e ?: ""
-        <fold text='' expand='false'>System.out.</fold>println(<fold text='e?.!! != null' expand='false'>e != null && e.<fold text='!!' expand='false'>get()</fold> != null</fold> ? e.<fold text='!!' expand='false'>get()</fold> : ""); // Should be System.out.println(e?.get ?: "")
-        <fold text='' expand='false'>System.out.</fold>println(<fold text='e?.!! != null' expand='false'>e != null && e.<fold text='!!' expand='false'>get()</fold> != null</fold> ? e.<fold text='!!' expand='false'>get()</fold>.sayHello() : ""); // Should be System.out.println(e?.get?.sayHello() ?: "")
+        <fold text='' expand='false'>System.out.</fold>println(e != null<fold text=' AND ' expand='false'> && </fold>e.<fold text='!!' expand='false'>get()</fold> != null ? e.<fold text='!!' expand='false'>get()</fold> : ""); // Should be System.out.println(e?.get ?: "")
+        <fold text='' expand='false'>System.out.</fold>println(e != null<fold text=' AND ' expand='false'> && </fold>e.<fold text='!!' expand='false'>get()</fold> != null ? e.<fold text='!!' expand='false'>get()</fold>.sayHello() : ""); // Should be System.out.println(e?.get?.sayHello() ?: "")
         if (e != null) <fold text='{...}' expand='true'>{
                 e<fold text='?.' expand='false'>.</fold><fold text='!!' expand='false'>get()</fold>.sayHello();<fold text='' expand='false'>
         }</fold></fold>
