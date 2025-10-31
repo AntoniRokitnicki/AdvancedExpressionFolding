@@ -15,6 +15,7 @@ import com.intellij.advancedExpressionFolding.settings.IExpressionCollapseState
 import com.intellij.advancedExpressionFolding.settings.IGlobalSettingsState
 import com.intellij.advancedExpressionFolding.settings.IUnclassifiedFeatureState
 import com.intellij.openapi.editor.Document
+import com.intellij.psi.PsiAnnotation
 import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiExpression
 import com.intellij.psi.PsiIdentifier
@@ -23,6 +24,7 @@ import com.intellij.psi.PsiMethodCallExpression
 import com.intellij.psi.PsiPrefixExpression
 import com.intellij.psi.JavaTokenType
 import com.intellij.psi.PsiType
+import com.intellij.psi.util.parentOfType
 
 object PrefixExpressionExt :
     IDateOperationsState by AdvancedExpressionFoldingSettings.State()(),
@@ -88,6 +90,9 @@ object PrefixExpressionExt :
         }
         val type = element.type ?: return null
         if (!type.equals(PsiType.BOOLEAN)) {
+            return null
+        }
+        if (element.parentOfType<PsiAnnotation>(false) != null) {
             return null
         }
         val operandExpression = com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt.getAnyExpression(

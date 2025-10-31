@@ -5,7 +5,7 @@ package data;
 }
 
 public class LogicalOperatorsWordsLowercaseTestData {
-    @FlagLower(value = true and false)
+    @FlagLower(value = true && false)
     private static class Flagged {}
 
     public boolean demo(boolean a, boolean b, boolean c, boolean d) {

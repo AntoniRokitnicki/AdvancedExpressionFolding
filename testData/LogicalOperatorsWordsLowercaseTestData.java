@@ -5,7 +5,7 @@ package data;
 }</fold>
 
 public class LogicalOperatorsWordsLowercaseTestData <fold text='{...}' expand='true'>{
-    @FlagLower(value = true<fold text=' and ' expand='false'> && </fold>false)
+    @FlagLower(value = true && false)
     private static class Flagged {}
 
     public boolean demo(boolean a, boolean b, boolean c, boolean d) <fold text='{...}' expand='true'>{
@@ -13,7 +13,7 @@ public class LogicalOperatorsWordsLowercaseTestData <fold text='{...}' expand='t
         boolean either = a<fold text=' or ' expand='false'> || </fold>b;
         boolean negated = <fold text='not ' expand='false'>!</fold>a;
         boolean complex = <fold text='not ' expand='false'>!</fold>(a<fold text=' or ' expand='false'> || </fold>b);
-        boolean precedence = a<fold text=' or ' expand='false'> || </fold><fold text='(b and c)' expand='false'>b && c</fold>;
+        boolean precedence = a<fold text=' or ' expand='false'> || <fold text='(b and c)' expand='false'></fold>b && c</fold>;
         boolean precedenceLeft = <fold text='(a and b)' expand='false'>a && b</fold><fold text=' or ' expand='false'> || </fold>c;
         boolean mixed = a<fold text=' or ' expand='false'> || </fold><fold text='(b and not c)' expand='false'>b && !c</fold>;
         boolean nestedNot = <fold text='not ' expand='false'>!</fold>(a<fold text=' and ' expand='false'> && </fold><fold text='not ' expand='false'>!</fold>b);

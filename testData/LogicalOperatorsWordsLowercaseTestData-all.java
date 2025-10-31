@@ -5,7 +5,7 @@ package data;
 }</fold>
 
 public class LogicalOperatorsWordsLowercaseTestData <fold text='{...}' expand='true'>{
-    @FlagLower(value = true<fold text=' AND ' expand='false'> && </fold>false)
+    @FlagLower(value = true && false)
     private static class Flagged {}
 
     public boolean demo(boolean a, boolean b, boolean c, boolean d) <fold text='{...}' expand='true'>{

@@ -28,15 +28,24 @@ class LogicalBinaryExpression(
 
         val group = FoldingGroup.newGroup(javaClass.name)
         val descriptors = mutableListOf<FoldingDescriptor>()
-        val wrappedOperands = mutableSetOf<Expression>()
+        val wrapped = BooleanArray(operands.size)
 
+        var offset = textRange.startOffset
         val firstOperand = operands.first()
+        if (firstOperand.textRange.startOffset > offset) {
+            descriptors += FoldingDescriptor(
+                element.node,
+                TextRange.create(offset, firstOperand.textRange.startOffset),
+                group,
+                "",
+            )
+        }
         if (needsVisualParentheses(firstOperand)) {
-            descriptors += createOperandDescriptor(firstOperand, group)
-            wrappedOperands += firstOperand
+            descriptors += wrapOperandDescriptor(firstOperand, group)
+            wrapped[0] = true
         }
 
-        var offset = firstOperand.textRange.endOffset
+        offset = firstOperand.textRange.endOffset
         for (i in 1 until operands.size) {
             val current = operands[i]
             val range = TextRange.create(
@@ -48,8 +57,8 @@ class LogicalBinaryExpression(
                 descriptors += FoldingDescriptor(element.node, range, group, placeholder)
             }
             if (needsVisualParentheses(current)) {
-                descriptors += createOperandDescriptor(current, group)
-                wrappedOperands += current
+                descriptors += wrapOperandDescriptor(current, group)
+                wrapped[i] = true
             }
             offset = current.textRange.endOffset
         }
@@ -63,9 +72,9 @@ class LogicalBinaryExpression(
             )
         }
 
-        for (operand in operands) {
-            if (operand !in wrappedOperands && operand.supportsFoldRegions(document, this)) {
-                descriptors += operand.buildFoldRegions(operand.element, document, this)
+        operands.forEachIndexed { index, operand ->
+            if (!wrapped[index] && operand.supportsFoldRegions(document, this)) {
+                descriptors.addAll(operand.buildFoldRegions(operand.element, document, this))
             }
         }
 
@@ -76,7 +85,7 @@ class LogicalBinaryExpression(
         return visualParentheses && operand is LogicalBinaryExpression
     }
 
-    private fun createOperandDescriptor(operand: Expression, group: FoldingGroup): FoldingDescriptor {
+    private fun wrapOperandDescriptor(operand: Expression, group: FoldingGroup): FoldingDescriptor {
         val placeholder = operand.renderWithParentheses(uppercase, visualParentheses)
         return FoldingDescriptor(element.node, operand.textRange, group, placeholder)
     }

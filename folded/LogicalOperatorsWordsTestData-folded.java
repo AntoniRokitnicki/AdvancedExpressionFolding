@@ -5,7 +5,7 @@ package data;
 }
 
 public class LogicalOperatorsWordsTestData {
-    @Flag(value = true AND false)
+    @Flag(value = true && false)
     private static class Flagged {}
 
     public boolean demo(boolean a, boolean b, boolean c, boolean d) {
