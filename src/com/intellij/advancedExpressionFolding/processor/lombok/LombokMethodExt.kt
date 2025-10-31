@@ -4,6 +4,7 @@ import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.semantic.SimpleExpression
 import com.intellij.advancedExpressionFolding.processor.*
 import com.intellij.advancedExpressionFolding.processor.lombok.AnnotationExt.ClassLevelAnnotation
+import com.intellij.advancedExpressionFolding.processor.language.kotlin.NullableExt
 import com.intellij.advancedExpressionFolding.processor.lombok.LombokExt.findMethodType
 import com.intellij.advancedExpressionFolding.processor.lombok.LombokInterfaceFoldingAnnotation.*
 import com.intellij.advancedExpressionFolding.processor.lombok.LombokInterfaceFoldingAnnotation.Companion.fromMethodType
@@ -77,7 +78,6 @@ object LombokMethodExt : GenericCallback<PsiMethod, List<MethodLevelAnnotation>>
         list: MutableList<Expression?>,
         type: LombokInterfaceFoldingAnnotation
     ) {
-        //TODO: support @Nullable?
         val name = this.guessPropertyName()
         val getName = id.text
 
@@ -85,16 +85,44 @@ object LombokMethodExt : GenericCallback<PsiMethod, List<MethodLevelAnnotation>>
              val diffCount = countCharDifferencesForGetterAndField(getName, name)
             compressMethodNameByFirstChar(name, diffCount)
         }
-        list += addAnnotationByLastCharOfPrevWhitespace(type)
-
         if (type == LOMBOK_INTERFACE_GETTER) {
+            list += addAnnotationByLastCharOfPrevWhitespace(type)
+            addGetterType(list)
             list += this.parameterList.exprHide()
         } else if (type == LOMBOK_INTERFACE_SETTER) {
+            list += addAnnotationByLastCharOfPrevWhitespace(type)
             val param = this.parameterList.parameters.firstOrNull()?.type?.presentableText
             list += param?.let {
                 this.returnTypeElement?.expr(it)
             }
             list += this.parameterList.exprHide()
+        } else {
+            list += addAnnotationByLastCharOfPrevWhitespace(type)
+        }
+    }
+
+    private fun PsiMethod.addGetterType(list: MutableList<Expression?>) {
+        val typeElement = returnTypeElement ?: return
+        val nullableExpression =
+            NullableExt.fieldAnnotationExpression(annotations, typeElement)
+                ?: NullableExt.fieldAnnotationExpression(typeElement.annotations, typeElement)
+                ?: return
+
+        list += nullableExpression
+
+        (annotations.asSequence() + typeElement.annotations.asSequence()).firstOrNull { candidate ->
+            NullableExt.FieldFoldingAnnotation.findByName(candidate.qualifiedName) != null
+        }?.let { annotation ->
+            annotation.prevWhiteSpace()?.takeUnless { it.textContains('\n') }?.let {
+                list += it.exprHide()
+            }
+            annotation.nextWhiteSpace()?.let { space ->
+                if (space.textContains('\n')) {
+                    list += space.expr(" ")
+                } else {
+                    list += space.exprHide()
+                }
+            }
         }
     }
 
