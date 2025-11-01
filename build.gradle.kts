@@ -97,6 +97,14 @@ dependencies {
     implementation(libs.annotations)
     implementation(libs.jsr305)
     implementation(libs.jackson.dataformat.toml)
+    implementation("com.kotlinnlp:simplednn:0.14.0") {
+        isTransitive = false
+    }
+    implementation("org.jblas:jblas:1.2.4")
+    implementation("org.slf4j:slf4j-simple:1.7.21")
+    implementation("com.kotlinnlp:utils:2.1.4") {
+        isTransitive = false
+    }
     implementation(examplesTestOutput)
 
     testRuntimeOnly(libs.junit.jupiter.engine)
