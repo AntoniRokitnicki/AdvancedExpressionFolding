@@ -18,5 +18,6 @@ class PropertyUtilTest {
         assertEquals("enabledByDefault", guessPropertyName("isEnabledByDefault"))
         assertEquals("html", guessPropertyName("getHTML"))
         assertEquals("htmlText", guessPropertyName("isHTMLText"))
+        assertEquals("name", guessPropertyName("withName"))
     }
 }
