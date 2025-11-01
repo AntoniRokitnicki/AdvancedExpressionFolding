@@ -16,7 +16,11 @@ class SettingsTest {
             .filterIsInstance<KMutableProperty1<AdvancedExpressionFoldingSettings.State, *>>()
             .filter { it.returnType.classifier == Boolean::class }
             .map { it as KMutableProperty1<AdvancedExpressionFoldingSettings.State, Boolean> }
-            .filter { it.name != "globalOn" && it.name != "memoryImprovement" }
+            .filter {
+                it.name != "globalOn" &&
+                    it.name != "memoryImprovement" &&
+                    it.name != "discoverNewFoldRules"
+            }
 
     @Test
     fun disableAllTurnsOffEveryProperty() {
@@ -24,6 +28,7 @@ class SettingsTest {
         val state = settings.state
         val initialGlobalOn = state.globalOn
         val initialMemoryImprovement = state.memoryImprovement
+        val initialDiscovery = state.discoverNewFoldRules
 
         settings.enableAll()
         settings.disableAll()
@@ -34,6 +39,7 @@ class SettingsTest {
 
         assertEquals(initialGlobalOn, state.globalOn)
         assertEquals(initialMemoryImprovement, state.memoryImprovement)
+        assertEquals(initialDiscovery, state.discoverNewFoldRules)
     }
 
     @Test
@@ -42,6 +48,7 @@ class SettingsTest {
         val state = settings.state
         state.globalOn = false
         state.memoryImprovement = false
+        state.discoverNewFoldRules = false
         settings.disableAll()
 
         settings.enableAll()
@@ -52,6 +59,7 @@ class SettingsTest {
 
         assertFalse(state.globalOn)
         assertFalse(state.memoryImprovement)
+        assertFalse(state.discoverNewFoldRules)
     }
 
     @Test

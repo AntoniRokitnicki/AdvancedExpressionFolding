@@ -98,6 +98,10 @@ dependencies {
     implementation(libs.jsr305)
     implementation(libs.jackson.dataformat.toml)
     implementation(examplesTestOutput)
+    implementation(libs.multik.core)
+    implementation(libs.multik.default)
+    implementation(libs.multik.kotlin)
+    implementation(libs.commons.math3)
 
     testRuntimeOnly(libs.junit.jupiter.engine)
     testImplementation(libs.junit.jupiter.api)
