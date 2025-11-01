@@ -82,6 +82,13 @@
             <keyboard-shortcut first-keystroke="alt Y" keymap="Mac OS X 10.5+" replace-all="true"/>
         </action>
 
+        <action id="com.intellij.advancedExpressionFolding.action.ShowContractToolingComponentsAction"
+                class="com.intellij.advancedExpressionFolding.action.ShowContractToolingComponentsAction"
+                text="Advanced Folding: Show Contract Tooling Components"
+                description="Preview the contract tooling UI components">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+        </action>
+
         <!-- Hidden action invoked from settings to refresh folded text colors -->
         <action id="com.intellij.advancedExpressionFolding.action.UpdateFoldedTextColorsAction"
                 class="com.intellij.advancedExpressionFolding.action.UpdateFoldedTextColorsAction"/>
