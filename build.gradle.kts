@@ -71,6 +71,7 @@ sourceSets {
 
 evaluationDependsOn(":examples")
 val examplesTestOutput = project(":examples").extensions.getByType<SourceSetContainer>()["test"].output
+val mainSourceSet = extensions.getByType<SourceSetContainer>()["main"]
 
 tasks.withType<JavaCompile> {
     options.encoding = "UTF-8"
@@ -97,6 +98,7 @@ dependencies {
     implementation(libs.annotations)
     implementation(libs.jsr305)
     implementation(libs.jackson.dataformat.toml)
+    implementation("nz.ac.waikato.cms.weka:weka-stable:3.8.0")
     implementation(examplesTestOutput)
 
     testRuntimeOnly(libs.junit.jupiter.engine)
@@ -322,6 +324,18 @@ tasks.register("canaryRelease") {
 
         println("Updated pluginVersion to $newVersion")
     }
+}
+
+tasks.register<JavaExec>("trainIntentModel") {
+    group = "verification"
+    description = "Trains the folding intent model using an ARFF dataset."
+
+    classpath = mainSourceSet.runtimeClasspath
+    mainClass.set("com.intellij.advancedExpressionFolding.weka.IntentModelTrainer")
+
+    val input = project.findProperty("intentModelInput")?.toString() ?: "resources/data/log-intent-training.arff"
+    val output = project.findProperty("intentModelOutput")?.toString() ?: "resources/data/log-intent.model"
+    args(input, output)
 }
 
 

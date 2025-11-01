@@ -1,0 +1,23 @@
+@RELATION log_intent
+
+@ATTRIBUTE level {debug,info,warn,error,trace,other}
+@ATTRIBUTE argCount NUMERIC
+@ATTRIBUTE messageLength NUMERIC
+@ATTRIBUTE placeholderCount NUMERIC
+@ATTRIBUTE hasThrowable {False,True}
+@ATTRIBUTE Folded {No,Yes}
+
+@DATA
+debug,0,15,0,False,Yes
+debug,1,40,1,False,Yes
+debug,3,60,2,False,Yes
+info,0,20,0,False,Yes
+info,2,45,2,False,Yes
+warn,1,33,0,False,Yes
+warn,2,48,1,False,Yes
+error,1,35,1,True,Yes
+error,0,28,0,False,Yes
+trace,0,18,0,False,Yes
+other,4,80,3,True,No
+other,0,10,0,False,Yes
+info,5,90,4,True,No
