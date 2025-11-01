@@ -82,6 +82,22 @@
             <keyboard-shortcut first-keystroke="alt Y" keymap="Mac OS X 10.5+" replace-all="true"/>
         </action>
 
+        <group id="com.intellij.advancedExpressionFolding.action.UiShowcaseGroup"
+               text="Advanced Folding UI Gallery"
+               popup="true">
+            <add-to-group group-id="CodeMenu" anchor="last"/>
+            <action id="com.intellij.advancedExpressionFolding.action.FoldingInsightsAction"
+                    class="com.intellij.advancedExpressionFolding.action.FoldingInsightsAction"/>
+            <action id="com.intellij.advancedExpressionFolding.action.FoldingRuleExplorerAction"
+                    class="com.intellij.advancedExpressionFolding.action.FoldingRuleExplorerAction"/>
+            <action id="com.intellij.advancedExpressionFolding.action.FoldingPreviewGalleryAction"
+                    class="com.intellij.advancedExpressionFolding.action.FoldingPreviewGalleryAction"/>
+            <action id="com.intellij.advancedExpressionFolding.action.FoldingTroubleshootingAction"
+                    class="com.intellij.advancedExpressionFolding.action.FoldingTroubleshootingAction"/>
+            <action id="com.intellij.advancedExpressionFolding.action.FoldingQuickStartAction"
+                    class="com.intellij.advancedExpressionFolding.action.FoldingQuickStartAction"/>
+        </group>
+
         <!-- Hidden action invoked from settings to refresh folded text colors -->
         <action id="com.intellij.advancedExpressionFolding.action.UpdateFoldedTextColorsAction"
                 class="com.intellij.advancedExpressionFolding.action.UpdateFoldedTextColorsAction"/>
