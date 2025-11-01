@@ -2,44 +2,14 @@ package com.intellij.advancedExpressionFolding.processor.util
 
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.literal.NumberLiteral
-import com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt
 import com.intellij.advancedExpressionFolding.processor.argumentExpressions
+import com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt
+import com.intellij.codeInsight.PsiEquivalenceUtil
 import com.intellij.openapi.editor.Document
-import com.intellij.openapi.project.Project
 import com.intellij.openapi.util.TextRange
-import com.intellij.psi.PsiAnonymousClass
-import com.intellij.psi.PsiAssignmentExpression
-import com.intellij.psi.PsiBinaryExpression
-import com.intellij.psi.PsiDeclarationStatement
-import com.intellij.psi.PsiDocumentManager
-import com.intellij.psi.PsiElement
-import com.intellij.psi.PsiExpression
-import com.intellij.psi.PsiExpressionList
-import com.intellij.psi.PsiExpressionStatement
-import com.intellij.psi.PsiField
-import com.intellij.psi.PsiIdentifier
-import com.intellij.psi.PsiLoopStatement
-import com.intellij.psi.PsiMethod
-import com.intellij.psi.PsiMethodCallExpression
-import com.intellij.psi.PsiMethodReferenceExpression
-import com.intellij.psi.PsiModifier
-import com.intellij.psi.PsiModifierList
-import com.intellij.psi.PsiPostfixExpression
-import com.intellij.psi.PsiReference
-import com.intellij.psi.PsiReferenceExpression
-import com.intellij.psi.PsiStatement
-import com.intellij.psi.PsiTypes
-import com.intellij.psi.PsiVariable
-import com.intellij.psi.SyntaxTraverser
+import com.intellij.psi.*
 
 object Helper {
-
-    fun getDocument(element: PsiElement): Document? {
-        val project: Project = element.project
-        val psiFile = element.containingFile
-        val psiDocumentManager = PsiDocumentManager.getInstance(project)
-        return psiDocumentManager.getDocument(psiFile)
-    }
 
     fun isReferenceToReference(referenceExpression: PsiReferenceExpression?, reference: PsiReference?): Boolean {
         val element = reference?.resolve()
@@ -71,16 +41,13 @@ object Helper {
     fun startsWith(string: String?, prefix: String): Boolean = string?.startsWith(prefix) == true
 
     fun equal(e1: PsiElement?, e2: PsiElement?): Boolean {
-        return when {
-            e2 is PsiReferenceExpression && e1 is PsiReferenceExpression ->
-                e2.referenceName == e1.referenceName && isReferenceToReference(e2, e1)
-
-            e2 is PsiMethodCallExpression && e1 is PsiMethodCallExpression ->
-                equal(e2.methodExpression, e1.methodExpression) &&
-                    equal(e2.methodExpression.qualifierExpression, e1.methodExpression.qualifierExpression)
-
-            else -> false
+        if (e1 === e2) {
+            return true
         }
+        if (e1 == null || e2 == null) {
+            return false
+        }
+        return PsiEquivalenceUtil.areElementsEquivalent(e1, e2)
     }
 
     fun calculateIfFinal(element: PsiVariable): Boolean {
@@ -187,8 +154,6 @@ object Helper {
         return offset
     }
 
-    fun charAt(document: Document, position: Int): Char = charAt(document.charsSequence, position)
-
     private fun charAt(chars: CharSequence, position: Int): Char {
         if (position < 0 || position >= chars.length) {
             throw IndexOutOfBoundsException("Position $position is out of bounds for document length ${chars.length}")
@@ -238,15 +203,6 @@ object Helper {
         return text.startsWith("set") && text.length > 3 && text[3].isUpperCase()
     }
 
-    fun isPureMethodReference(element: PsiMethodCallExpression): Boolean {
-        return findChildByTypeHierarchy(
-            element,
-            PsiMethodReferenceExpression::class.java,
-            PsiExpressionList::class.java,
-            PsiMethodReferenceExpression::class.java
-        ) != null
-    }
-
     fun hasOptionalChainOperations(element: PsiMethodCallExpression): Boolean {
         return findAncestorsUntilClass(element, PsiExpressionStatement::class.java).firstOrNull() != null
     }
@@ -291,9 +247,9 @@ object Helper {
         return returnType != PsiTypes.voidType()
     }
 
-    fun guessNamelessPropertyName(method: PsiMethod?): String = "!!"
+    fun guessNamelessPropertyName(): String = "!!"
 
-    inline fun findAncestorsUntilClass(element: PsiElement, ancestorClass: Class<out PsiElement>): Sequence<PsiElement> {
+    fun findAncestorsUntilClass(element: PsiElement, ancestorClass: Class<out PsiElement>): Sequence<PsiElement> {
         return findAncestorsUntil(element) { parent -> !ancestorClass.isInstance(parent) }
     }
 
@@ -301,9 +257,8 @@ object Helper {
         element: PsiElement,
         crossinline untilPredicate: (PsiElement) -> Boolean
     ): Sequence<PsiElement> {
-        return generateSequence(element.parent) { it?.parent }
-            .takeWhile { it != null && untilPredicate(it) }
-            .filterNotNull()
+        return generateSequence(element.parent) { it.parent }
+            .takeWhile { untilPredicate(it) }
     }
 
     fun <T : PsiElement> findChildByTypeHierarchy(
