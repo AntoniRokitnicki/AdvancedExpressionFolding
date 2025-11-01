@@ -7,6 +7,9 @@ jsr305 = "3.0.2"
 pioneer = "2.3.0"
 lombok = "1.18.42"
 kodein = "7.28.0"
+arrow-core = "2.0.0"
+arrow-fx = "2.0.0"
+arrow-optics = "2.0.1"
 # plugins
 changelog = "2.4.0"
 intelliJPlatform = "2.6.0"
@@ -30,6 +33,9 @@ kodein-di-conf = { group = "org.kodein.di", name = "kodein-di-conf-jvm", version
 lombok = { module = "org.projectlombok:lombok", version.ref = "lombok" }
 commons-lang3 = { module = "org.apache.commons:commons-lang3", version.ref = "commons-lang3" }
 slf4j-api = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
+arrow-core = { module = "io.arrow-kt:arrow-core", version.ref = "arrow-core" }
+arrow-fx-coroutines = { module = "io.arrow-kt:arrow-fx-coroutines", version.ref = "arrow-fx" }
+arrow-optics = { module = "io.arrow-kt:arrow-optics", version.ref = "arrow-optics" }
 
 
 [plugins]
