@@ -31,6 +31,7 @@ import com.intellij.psi.PsiStatement
 import com.intellij.psi.PsiTypes
 import com.intellij.psi.PsiVariable
 import com.intellij.psi.SyntaxTraverser
+import com.intellij.psi.util.PsiUtil
 
 object Helper {
 
@@ -84,6 +85,17 @@ object Helper {
     }
 
     fun calculateIfFinal(element: PsiVariable): Boolean {
+        val psiUtilMethod = runCatching {
+            PsiUtil::class.java.getMethod("isEffectivelyFinal", PsiVariable::class.java)
+        }.getOrNull()
+        if (psiUtilMethod != null) {
+            return (runCatching { psiUtilMethod.invoke(null, element) }.getOrNull() as? Boolean) ?: false
+        }
+
+        return calculateIfFinalFallback(element)
+    }
+
+    private fun calculateIfFinalFallback(element: PsiVariable): Boolean {
         val modifiers: PsiModifierList = element.modifierList ?: return false
         var isFinal = modifiers.hasExplicitModifier(PsiModifier.FINAL)
         if (!isFinal) {
