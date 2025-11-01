@@ -46,9 +46,27 @@ jobs:
         run: ./gradlew --no-daemon :tools:folding-suite-sweeper:nativeCompile
         shell: bash
 
+      - name: Upload configuration cache report
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: configuration-cache-report-${{ matrix.os }}
+          path: |
+            tools/folding-suite-sweeper/build/reports/configuration-cache/**/configuration-cache-report.html
+          if-no-files-found: ignore
+
+      - name: Upload problems report
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: problems-report-${{ matrix.os }}
+          path: tools/folding-suite-sweeper/build/reports/problems/problems-report.html
+          if-no-files-found: ignore
+
       - name: Upload native executable
+        if: ${{ always() }}
         uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.artifact_name }}
           path: ${{ matrix.binary_path }}
-          if-no-files-found: error
+          if-no-files-found: ignore
