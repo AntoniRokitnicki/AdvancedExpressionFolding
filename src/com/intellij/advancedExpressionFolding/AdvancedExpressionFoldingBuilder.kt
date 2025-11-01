@@ -1,5 +1,14 @@
 package com.intellij.advancedExpressionFolding
 
+import arrow.core.Either
+import arrow.core.NonEmptyList
+import arrow.core.getOrElse
+import arrow.core.raise.either
+import arrow.core.raise.ensure
+import arrow.core.raise.ensureNotNull
+import arrow.core.raise.option
+import arrow.core.raise.zipOrAccumulate
+import arrow.optics.Lens
 import com.google.common.collect.Lists
 import com.google.common.collect.Sets
 import com.intellij.advancedExpressionFolding.expression.Expression
@@ -21,49 +30,46 @@ import com.intellij.psi.PsiJavaFile
 
 class AdvancedExpressionFoldingBuilder : FoldingBuilderEx(), IConfig by AdvancedExpressionFoldingSettings.State()() {
     override fun buildFoldRegions(element: PsiElement, document: Document, quick: Boolean): Array<FoldingDescriptor> {
-        if (!globalOn || isFoldingFile(element)) {
-            return store.store(Expression.EMPTY_ARRAY, document)
+        val stateSnapshot = stateForInvocation(quick)
+        val emptyResult = store.store(Expression.EMPTY_ARRAY, document)
+
+        val context = prepareFoldingContext(element, document, stateSnapshot).getOrElse {
+            return emptyResult
         }
+
         if (debugFolding) {
             preview(element, document)
         }
 
         val cachedDescriptors = when {
-            memoryImprovement -> readCache(element, quick, document)
+            stateSnapshot.memoryImprovement -> readCache(context, quick).fold({ null }, { it })
             else -> null
         }
-        val foldingDescriptors = cachedDescriptors ?: collect(element, document)
-        if (memoryImprovement && !quick && cachedDescriptors !== foldingDescriptors) {
-            writeCache(element, foldingDescriptors)
+        val foldingDescriptors = cachedDescriptors ?: collect(context)
+        if (stateSnapshot.memoryImprovement && !quick && cachedDescriptors == null) {
+            writeCache(context, foldingDescriptors)
         }
         return store.store(foldingDescriptors, document)
     }
 
-    private fun isFoldingFile(element: PsiElement) =
-        element.asInstance<PsiJavaFile>()?.name?.endsWith("-folded.java") == true
+    private fun isFoldingFile(file: PsiJavaFile) = file.name.endsWith("-folded.java")
 
     private fun readCache(
-        element: PsiElement,
-        quick: Boolean,
-        document: Document
-    ): Array<FoldingDescriptor>? {
-        if (!quick) {
-            (element as? PsiJavaFile)?.let { file ->
-                if (!file.invalidateExpired(document, false)) {
-                    return file.getUserData(Keys.FULL_CACHE)
-                }
-            }
-        }
-        return null
+        context: FoldingContext,
+        quick: Boolean
+    ): Either<NonEmptyList<CacheIssue>, Array<FoldingDescriptor>> = either {
+        zipOrAccumulate(
+            { ensure(!quick) { CacheIssue.QuickPreview } },
+            { ensure(!context.file.invalidateExpired(context.document, false)) { CacheIssue.Stale } },
+            { ensureNotNull(context.file.getUserData(Keys.FULL_CACHE)) { CacheIssue.Miss } }
+        ) { _, _, cached -> cached }
     }
 
     private fun writeCache(
-        element: PsiElement,
+        context: FoldingContext,
         foldingDescriptors: Array<FoldingDescriptor>
     ) {
-        (element as? PsiJavaFile)?.run {
-            putUserData(Keys.FULL_CACHE, foldingDescriptors)
-        }
+        context.file.putUserData(Keys.FULL_CACHE, foldingDescriptors)
     }
 
     fun preview(element: PsiElement, document: Document): List<String> {
@@ -85,6 +91,9 @@ class AdvancedExpressionFoldingBuilder : FoldingBuilderEx(), IConfig by Advanced
         }
     }
 
+    private fun collect(context: FoldingContext): Array<FoldingDescriptor> =
+        collect(context.file, context.document)
+
     private fun collect(
         element: PsiElement,
         document: Document
@@ -99,20 +108,73 @@ class AdvancedExpressionFoldingBuilder : FoldingBuilderEx(), IConfig by Advanced
 
     // TODO: Collapse everything by default but use these settings when actually building the folding descriptors
     override fun isCollapsedByDefault(astNode: ASTNode): Boolean {
-        try {
-            val element = astNode.psi
-            val document = PsiDocumentManager.getInstance(astNode.psi.project).getDocument(astNode.psi.containingFile)
-            document?.let {
-                val expression = BuildExpressionExt.getNonSyntheticExpression(element, it)
-                return expression?.isCollapsedByDefault() == true
-            }
+        return try {
+            option {
+                val element = astNode.psi
+                val document = ensureNotNull(
+                    PsiDocumentManager.getInstance(element.project).getDocument(element.containingFile)
+                )
+                val expression = ensureNotNull(
+                    BuildExpressionExt.getNonSyntheticExpression(element, document)
+                )
+                expression.isCollapsedByDefault()
+            }.getOrElse { false }
         } catch (_: IndexNotReadyException) {
-            return false
+            false
         }
-        return false
     }
 
     private val debugFolding = false
+    private fun stateForInvocation(quick: Boolean): AdvancedExpressionFoldingSettings.State {
+        val snapshot = AdvancedExpressionFoldingSettings.getInstance().state
+        return memoryImprovementLens.modify(snapshot) { enabled -> enabled && !quick }
+    }
+
+    private fun prepareFoldingContext(
+        element: PsiElement,
+        document: Document,
+        state: AdvancedExpressionFoldingSettings.State
+    ): Either<NonEmptyList<FoldingEligibilityIssue>, FoldingContext> = either {
+        val file = ensureNotNull(element.asInstance<PsiJavaFile>()) { FoldingEligibilityIssue.UnsupportedFile }
+        zipOrAccumulate(
+            { ensure(globalOnLens.get(state)) { FoldingEligibilityIssue.GloballyDisabled } },
+            { ensure(!isFoldingFile(file)) { FoldingEligibilityIssue.FoldingPreview } },
+            { ensure(file.isValid) { FoldingEligibilityIssue.InvalidFile } }
+        ) { _, _, _ ->
+            FoldingContext(file, document, state)
+        }
+    }
+
+    private companion object {
+        private val memoryImprovementLens = Lens(
+            get = AdvancedExpressionFoldingSettings.State::memoryImprovement,
+            set = { state, value -> state.copy(memoryImprovement = value) }
+        )
+
+        private val globalOnLens = Lens(
+            get = AdvancedExpressionFoldingSettings.State::globalOn,
+            set = { state, value -> state.copy(globalOn = value) }
+        )
+    }
+}
+
+private data class FoldingContext(
+    val file: PsiJavaFile,
+    val document: Document,
+    val state: AdvancedExpressionFoldingSettings.State
+)
+
+private sealed interface FoldingEligibilityIssue {
+    data object UnsupportedFile : FoldingEligibilityIssue
+    data object GloballyDisabled : FoldingEligibilityIssue
+    data object FoldingPreview : FoldingEligibilityIssue
+    data object InvalidFile : FoldingEligibilityIssue
+}
+
+private sealed interface CacheIssue {
+    data object QuickPreview : CacheIssue
+    data object Stale : CacheIssue
+    data object Miss : CacheIssue
 }
 
 var store: Storage = EmptyStorage
