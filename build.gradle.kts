@@ -98,6 +98,8 @@ dependencies {
     implementation(libs.jsr305)
     implementation(libs.jackson.dataformat.toml)
     implementation(examplesTestOutput)
+    implementation("com.kotlinnlp:simplednn:0.14.0")
+    implementation("org.jblas:jblas:1.2.5")
 
     testRuntimeOnly(libs.junit.jupiter.engine)
     testImplementation(libs.junit.jupiter.api)

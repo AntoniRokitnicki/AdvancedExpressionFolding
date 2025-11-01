@@ -50,6 +50,7 @@
         <completion.contributor
                 language="JAVA"
                 implementationClass="com.intellij.advancedExpressionFolding.pseudo.TracingLoggableAnnotationCompletionContributor"/>
+        <backgroundPostStartupActivity implementation="com.intellij.advancedExpressionFolding.learning.FoldingLearningStartupActivity"/>
     </extensions>
 
     <actions>
