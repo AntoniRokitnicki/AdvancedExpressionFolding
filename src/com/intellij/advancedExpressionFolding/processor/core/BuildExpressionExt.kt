@@ -1,6 +1,7 @@
 package com.intellij.advancedExpressionFolding.processor.core
 
 import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.advancedExpressionFolding.learning.FoldingLearningKeys
 import com.intellij.advancedExpressionFolding.expression.SyntheticExpressionImpl
 import com.intellij.advancedExpressionFolding.processor.cache.CacheExt.getExpression
 import com.intellij.advancedExpressionFolding.processor.util.Helper
@@ -54,6 +55,9 @@ object BuildExpressionExt {
         if (expression != null && unique && expression.supportsFoldRegions(document, null)) {
             val descriptors = expression.buildFoldRegions(expression.element, document, null)
             if (descriptors.isNotEmpty()) {
+                descriptors.forEach { descriptor ->
+                    descriptor.putUserData(FoldingLearningKeys.FOLD_TYPE, expression.javaClass.simpleName ?: "unknown")
+                }
                 allDescriptors.addAll(descriptors)
             }
         }

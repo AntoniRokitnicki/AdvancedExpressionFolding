@@ -43,6 +43,10 @@ Fork of abandoned [Advanced Java Folding](https://plugins.jetbrains.com/plugin/9
 
 For more information, read the [blog post](https://medium.com/@andrey_cheptsov/making-java-code-easier-to-read-without-changing-it-adeebd5c36de).
 
+## On-device folding preference learning
+
+The plugin can observe fold/expand actions to predict when specific region types should stay collapsed. Enable **Learn my folding preference** under *Settings | Editor | Code Folding | Advanced Expression Folding*. Events are appended to `${config}/advancedExpressionFolding/learning/folding_events.csv`, and a tiny model is saved in `${config}/advancedExpressionFolding/learning/models/`. Everything stays local—no network calls are made. Disable the checkbox to immediately stop recording and remove both the CSV and any stored models.
+
 ## Unreleased ##
 
 ## 6.0.0 ##

@@ -280,7 +280,7 @@ abstract class CheckboxesProvider {
             example(PseudoAnnotationsMainTestData::class)
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#pseudoAnnotations")
         }
-        // NEW OPTION
+        registerCheckbox(state::learnFoldingPreference, "Learn my folding preference")
         registerCheckbox(state::memoryImprovement, "Memory improvements")
         registerCheckbox(state::experimental, "Experimental features") {
             example(ExperimentalTestData::class)

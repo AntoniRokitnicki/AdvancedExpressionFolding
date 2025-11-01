@@ -3,6 +3,7 @@ package com.intellij.advancedExpressionFolding
 import com.google.common.collect.Lists
 import com.google.common.collect.Sets
 import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.advancedExpressionFolding.learning.FoldingRnnPredictor
 import com.intellij.advancedExpressionFolding.processor.asInstance
 import com.intellij.advancedExpressionFolding.processor.cache.CacheExt.invalidateExpired
 import com.intellij.advancedExpressionFolding.processor.cache.Keys
@@ -33,10 +34,15 @@ class AdvancedExpressionFoldingBuilder : FoldingBuilderEx(), IConfig by Advanced
             else -> null
         }
         val foldingDescriptors = cachedDescriptors ?: collect(element, document)
+        val predictorDescriptors = element.project?.let { project ->
+            element.containingFile?.let { psiFile ->
+                FoldingRnnPredictor.get(project).prepareDescriptors(psiFile, foldingDescriptors)
+            }
+        } ?: foldingDescriptors
         if (memoryImprovement && !quick && cachedDescriptors !== foldingDescriptors) {
             writeCache(element, foldingDescriptors)
         }
-        return store.store(foldingDescriptors, document)
+        return store.store(predictorDescriptors, document)
     }
 
     private fun isFoldingFile(element: PsiElement) =
