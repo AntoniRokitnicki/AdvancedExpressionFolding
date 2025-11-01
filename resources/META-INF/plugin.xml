@@ -40,6 +40,12 @@
                            displayType="BALLOON"
                            isLogByDefault="true"/>
 
+        <toolWindow id="Documentation Dashboard"
+                    anchor="right"
+                    factoryClass="com.intellij.advancedExpressionFolding.view.DocumentationDashboardToolWindowFactory"
+                    icon="AllIcons.General.BalloonInformation"
+                    secondary="true"/>
+
         <!-- Suggests pseudo-annotations supported by the plugin -->
         <completion.contributor
                 language="JAVA"
