@@ -2,6 +2,7 @@ package com.intellij.advancedExpressionFolding
 
 import com.google.common.collect.Lists
 import com.google.common.collect.Sets
+import com.intellij.advancedExpressionFolding.discovery.DynamicFoldingProvider
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.processor.asInstance
 import com.intellij.advancedExpressionFolding.processor.cache.CacheExt.invalidateExpired
@@ -92,6 +93,9 @@ class AdvancedExpressionFoldingBuilder : FoldingBuilderEx(), IConfig by Advanced
         //TODO: default list size based on file size
         val allDescriptors = Lists.newArrayListWithCapacity<FoldingDescriptor>(1_000)
         BuildExpressionExt.collectFoldRegionsRecursively(element, document, Sets.newIdentityHashSet(), allDescriptors)
+        val dynamicProvider = DynamicFoldingProvider.getInstance(element.project)
+        val dynamicDescriptors = dynamicProvider.contribute(element, document)
+        allDescriptors.addAll(dynamicDescriptors)
         return allDescriptors.toTypedArray()
     }
 
