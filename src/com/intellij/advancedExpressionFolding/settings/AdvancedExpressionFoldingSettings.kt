@@ -93,8 +93,7 @@ class AdvancedExpressionFoldingSettings :
         override var overrideHide: Boolean = true,
         override var suppressWarningsHide: Boolean = true,
         override var pseudoAnnotations: Boolean = true,
-        // NEW OPTION VAR
-
+        override var discoverNewFoldRules: Boolean = false,
         override var memoryImprovement: Boolean = true,
         override var experimental: Boolean = false,
 

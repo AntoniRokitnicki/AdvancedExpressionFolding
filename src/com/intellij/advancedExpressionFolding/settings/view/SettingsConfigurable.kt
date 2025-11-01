@@ -1,6 +1,7 @@
 package com.intellij.advancedExpressionFolding.settings.view
 
 import com.intellij.advancedExpressionFolding.action.UpdateFoldedTextColorsAction
+import com.intellij.advancedExpressionFolding.discovery.RuleDiscoveryToggleListener
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
 import com.intellij.application.options.CodeStyle
 import com.intellij.application.options.editor.EditorOptionsProvider
@@ -10,6 +11,7 @@ import com.intellij.ide.HelpTooltip
 import com.intellij.ide.impl.ProjectUtil
 import com.intellij.notification.NotificationGroupManager
 import com.intellij.notification.NotificationType
+import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.command.WriteCommandAction
 import com.intellij.openapi.fileEditor.FileEditorManager
 import com.intellij.openapi.project.Project
@@ -144,12 +146,20 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
     }
 
     override fun apply() {
+        val toggleBefore = state.discoverNewFoldRules
         pendingChanges.forEach { (property, value) ->
             property.set(value)
         }
         pendingChanges.clear()
-        
+
         panel.apply()
+
+        val toggleAfter = state.discoverNewFoldRules
+        if (toggleBefore != toggleAfter) {
+            ApplicationManager.getApplication().messageBus
+                .syncPublisher(RuleDiscoveryToggleListener.TOPIC)
+                .onRuleDiscoveryToggle(toggleAfter)
+        }
     }
 
     override fun reset() {
