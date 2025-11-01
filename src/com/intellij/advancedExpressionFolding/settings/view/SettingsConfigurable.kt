@@ -113,6 +113,13 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
             cell(button)
         }
         row {
+            val onboardingButton = JButton("Start beginner tour")
+            onboardingButton.addActionListener {
+                BeginnerOnboardingTour(ProjectUtil.getActiveProject()).show()
+            }
+            cell(onboardingButton)
+        }
+        row {
             cell(createDownloadExamplesLink())
         }
         row {
