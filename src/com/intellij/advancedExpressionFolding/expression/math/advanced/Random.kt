@@ -13,7 +13,4 @@ class Random(
     textRange: TextRange,
     operands: List<Expression>
 ) : Function(element, textRange, "random", operands), ArithmeticExpression {
-    override fun equals(other: Any?): Boolean = false
-
-    override fun hashCode(): Int = (Math.random() * Int.MAX_VALUE).toInt()
 }
