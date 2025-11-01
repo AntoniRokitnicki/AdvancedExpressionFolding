@@ -16,6 +16,8 @@
         <!-- Application-level service that persists plugin settings -->
         <applicationService
                 serviceImplementation="com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings"/>
+        <projectService
+                serviceImplementation="com.intellij.advancedExpressionFolding.discovery.RuleDiscoveryManager"/>
         <!-- Listens for editor lifecycle to fold code one second after the editor opens and clear on release -->
         <editorFactoryListener implementation="com.intellij.advancedExpressionFolding.FoldingEditorCreatedListener"/>
         <!-- Adds an Alt+Enter intention on method names to fold calls dynamically -->
@@ -39,6 +41,12 @@
         <notificationGroup id="Advanced Expression Folding"
                            displayType="BALLOON"
                            isLogByDefault="true"/>
+
+        <postStartupActivity implementation="com.intellij.advancedExpressionFolding.discovery.RuleDiscoveryStartupActivity"/>
+
+        <toolWindow id="Fold Rule Discovery"
+                    anchor="left"
+                    factoryClass="com.intellij.advancedExpressionFolding.discovery.RuleDiscoveryToolWindowFactory"/>
 
         <!-- Suggests pseudo-annotations supported by the plugin -->
         <completion.contributor
