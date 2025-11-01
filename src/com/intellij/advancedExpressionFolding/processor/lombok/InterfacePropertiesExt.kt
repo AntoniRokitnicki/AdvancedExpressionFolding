@@ -40,14 +40,7 @@ object InterfacePropertiesExt : BaseExtension() {
         group: FoldingGroup
     ): NullAnnotationExpression? {
         return when (annotation.methodAnnotation) {
-            LombokInterfaceFoldingAnnotation.LOMBOK_INTERFACE_GETTER ->
-                NullableExt.fieldAnnotationExpression(
-                    method.annotations,
-                    method.returnTypeElement,
-                    group = group,
-                    foldPrevWhiteSpace = true
-                )
-
+            LombokInterfaceFoldingAnnotation.LOMBOK_INTERFACE_GETTER -> null
             LombokInterfaceFoldingAnnotation.LOMBOK_INTERFACE_SETTER -> {
                 method.parameterList.parameters.firstOrNull()?.let {
                     NullableExt.fieldAnnotationExpression(
