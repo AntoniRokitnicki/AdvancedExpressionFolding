@@ -17,7 +17,6 @@ import com.intellij.openapi.application.runReadAction
 import com.intellij.openapi.fileEditor.FileEditorManager
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.project.ProjectManager
-import com.intellij.openapi.util.Computable
 import org.jetbrains.annotations.TestOnly
 
 @TestOnly
@@ -67,10 +66,11 @@ object IntegrationTestApi {
         return if (application.isDispatchThread) {
             compute()
         } else {
-            application.invokeAndWait(
-                Computable { compute() },
-                ModalityState.defaultModalityState()
-            )
+            var result = 0
+            application.invokeAndWait({
+                result = compute()
+            }, ModalityState.defaultModalityState())
+            result
         }
     }
 
