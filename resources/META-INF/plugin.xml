@@ -50,6 +50,11 @@
         <completion.contributor
                 language="JAVA"
                 implementationClass="com.intellij.advancedExpressionFolding.pseudo.TracingLoggableAnnotationCompletionContributor"/>
+
+        <toolWindow id="DSL Sandbox"
+                    anchor="right"
+                    factoryClass="com.intellij.advancedExpressionFolding.view.sandbox.DslSandboxToolWindowFactory"
+                    icon="AllIcons.Actions.PreviewDetails"/>
     </extensions>
 
     <actions>
