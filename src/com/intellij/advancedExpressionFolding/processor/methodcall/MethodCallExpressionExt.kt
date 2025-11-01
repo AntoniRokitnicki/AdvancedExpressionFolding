@@ -148,7 +148,7 @@ object MethodCallExpressionExt :
         ) {
             val expression = qualifier?.let { BuildExpressionExt.getAnyExpression(it, document) }
             val propertyName = guessPropertyName(identifier.text).ifBlank {
-                guessNamelessPropertyName(resolvedMethod)
+                guessNamelessPropertyName()
             }
             return Getter(
                 element,
@@ -163,7 +163,7 @@ object MethodCallExpressionExt :
             val qualifierExpression = qualifier?.let { BuildExpressionExt.getAnyExpression(it, document) }
             val paramExpression = BuildExpressionExt.getAnyExpression(element.argumentExpressions[0], document)
             val propertyName = guessPropertyName(text).ifBlank {
-                guessNamelessPropertyName(resolvedMethod)
+                guessNamelessPropertyName()
             }
             return Setter(
                 element,
