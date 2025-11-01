@@ -98,6 +98,7 @@ dependencies {
     implementation(libs.jsr305)
     implementation(libs.jackson.dataformat.toml)
     implementation(examplesTestOutput)
+    implementation(libs.weka.stable)
 
     testRuntimeOnly(libs.junit.jupiter.engine)
     testImplementation(libs.junit.jupiter.api)

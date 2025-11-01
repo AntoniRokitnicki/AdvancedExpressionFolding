@@ -7,6 +7,7 @@ import com.intellij.advancedExpressionFolding.processor.asInstance
 import com.intellij.advancedExpressionFolding.processor.cache.CacheExt.invalidateExpired
 import com.intellij.advancedExpressionFolding.processor.cache.Keys
 import com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt
+import com.intellij.advancedExpressionFolding.ranking.FoldingOptionRanker
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
 import com.intellij.advancedExpressionFolding.settings.IConfig
 import com.intellij.lang.ASTNode
@@ -32,11 +33,12 @@ class AdvancedExpressionFoldingBuilder : FoldingBuilderEx(), IConfig by Advanced
             memoryImprovement -> readCache(element, quick, document)
             else -> null
         }
-        val foldingDescriptors = cachedDescriptors ?: collect(element, document)
-        if (memoryImprovement && !quick && cachedDescriptors !== foldingDescriptors) {
-            writeCache(element, foldingDescriptors)
+        val rawDescriptors = cachedDescriptors ?: collect(element, document)
+        val rankedDescriptors = FoldingOptionRanker.rank(rawDescriptors, document)
+        if (memoryImprovement && !quick && cachedDescriptors == null) {
+            writeCache(element, rankedDescriptors)
         }
-        return store.store(foldingDescriptors, document)
+        return store.store(rankedDescriptors, document)
     }
 
     private fun isFoldingFile(element: PsiElement) =

@@ -7,6 +7,7 @@ jsr305 = "3.0.2"
 pioneer = "2.3.0"
 lombok = "1.18.42"
 kodein = "7.28.0"
+weka = "3.8.0"
 # plugins
 changelog = "2.4.0"
 intelliJPlatform = "2.6.0"
@@ -30,6 +31,7 @@ kodein-di-conf = { group = "org.kodein.di", name = "kodein-di-conf-jvm", version
 lombok = { module = "org.projectlombok:lombok", version.ref = "lombok" }
 commons-lang3 = { module = "org.apache.commons:commons-lang3", version.ref = "commons-lang3" }
 slf4j-api = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
+weka-stable = { module = "nz.ac.waikato.cms.weka:weka-stable", version.ref = "weka" }
 
 
 [plugins]
