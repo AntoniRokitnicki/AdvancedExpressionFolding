@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Lombok Dirty Off</title>
+    <meta name="description" content="Skips folding Lombok accessors marked as dirty." />
+  </head>
+  <body>
+    <h1>Lombok Dirty Off</h1>
+    <section aria-labelledby="feature-summary">
+      <h2 id="feature-summary">Summary</h2>
+      <dl>
+      <dt>State key</dt>
+      <dd><code>lombokDirtyOff</code></dd>
+      <dt>Default</dt>
+      <dd>Off</dd>
+      <dt>Controlled by</dt>
+      <dd><code>lombokDirtyOff</code></dd>
+      </dl>
+    </section>
+    <section aria-labelledby="feature-body">
+      <h2 id="feature-body">Details</h2>
+      <pre>:::info Toggle summary
+- **State key:** `lombokDirtyOff`
+- **Default:** Off
+- **Controlled by:** `lombokDirtyOff`
+:::
+
+## Lombok Dirty Off
+Skips folding Lombok accessors marked as dirty.
+
+### Example: LombokDirtyOffTestData
+
+examples/data/LombokDirtyOffTestData.java:
+```java
+        public class DirtyData {
+// ...
+            private boolean ok;
+```
+
+folded/LombokDirtyOffTestData-folded.java:
+```java
+        @EqualsAndHashCode public class DirtyData {
+// ...
+            @Getter private boolean ok;
+```
+
+Highlights LombokDirtyOffTestData with lombok dirty off.
+Removes boilerplate while preserving behavior.</pre>
+    </section>
+  </body>
+</html>

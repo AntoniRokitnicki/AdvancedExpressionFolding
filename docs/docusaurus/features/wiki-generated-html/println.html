@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Println</title>
+    <meta name="description" content="Folds System.out.println calls into println." />
+  </head>
+  <body>
+    <h1>Println</h1>
+    <section aria-labelledby="feature-summary">
+      <h2 id="feature-summary">Summary</h2>
+      <dl>
+      <dt>State key</dt>
+      <dd><code>println</code></dd>
+      <dt>Default</dt>
+      <dd>On</dd>
+      <dt>Controlled by</dt>
+      <dd><code>println</code></dd>
+      </dl>
+    </section>
+    <section aria-labelledby="feature-body">
+      <h2 id="feature-body">Details</h2>
+      <pre>:::info Toggle summary
+- **State key:** `println`
+- **Default:** On
+- **Controlled by:** `println`
+:::
+
+![System.out.println call folded to println](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/assets/3055326/75a5224f-7b52-4b71-9774-2814e8a867ba)
+
+
+## Println
+Folds System.out.println calls into println.
+
+### Example: PrintlnTestData
+
+examples/data/PrintlnTestData.java:
+```java
+        System.out.println(&quot;Hello&quot;);
+        System.out.println
+// ...
+        System.
+                out.println(&quot;Spacing&quot;);
+        System.out.
+// ...
+        System.out.println(&quot;Passed as parameter: &quot; +
+this.getClass());
+        System.out.println(&quot;&quot;&quot;
+```
+
+folded/PrintlnTestData-folded.java:
+```java
+        println(&quot;Hello&quot;);
+        println
+// ...
+        println(&quot;Spacing&quot;);
+        println(3.14);
+        println(string);
+// ...
+        println(&quot;Passed as parameter: &quot; + string);
+        println(&quot;Passed as parameter: &quot; + this.getClass());
+        println(&quot;&quot;&quot;
+```
+
+Highlights PrintlnTestData with println.
+Removes boilerplate while preserving behavior.</pre>
+    </section>
+  </body>
+</html>
