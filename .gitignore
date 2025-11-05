@@ -7,3 +7,4 @@ idea-sandbox
 .intellijPlatform
  .DS_Store
 /allure-results/
+.env

@@ -16,10 +16,6 @@ on:
         description: "Pull request number to relabel (defaults to the PR opened from the selected branch if omitted)."
         required: false
         default: ""
-      github_api_url:
-        description: "GitHub API URL to use when contacting the server."
-        required: false
-        default: "https://api.github.com"
       xs_configuration:
         description: "JSON object configuring the extra small label (fields: label, max_size)."
         required: false
@@ -59,43 +55,73 @@ permissions:
   pull-requests: write
 
 jobs:
-  labeler:
+  determine-pull-requests:
     runs-on: ubuntu-latest
+    outputs:
+      pr_numbers: ${{ steps.collect.outputs.pr_numbers }}
+    steps:
+      - name: Collect pull requests to label
+        id: collect
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          INPUT_PR_NUMBER: ${{ github.event.inputs.pull_request_number || '' }}
+          EVENT_PR_NUMBER: ${{ github.event.pull_request.number || '' }}
+          REPO: ${{ github.repository }}
+          API_URL: ${{ github.api_url }}
+          TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+
+          if [ "$EVENT_NAME" != "workflow_dispatch" ]; then
+            if [ -z "$EVENT_PR_NUMBER" ]; then
+              echo "::error title=Missing pull request::Unable to determine pull request number from event payload." >&2
+              exit 1
+            fi
+
+            echo "pr_numbers=$(jq -cn --arg pr "$EVENT_PR_NUMBER" '[($pr|tonumber)]')" >>"$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          if [ -n "$INPUT_PR_NUMBER" ]; then
+            echo "pr_numbers=$(jq -cn --arg pr "$INPUT_PR_NUMBER" '[($pr|tonumber)]')" >>"$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          response=$(curl -sSf -H "Authorization: Bearer $TOKEN" -H "Accept: application/vnd.github+json" "$API_URL/repos/$REPO/pulls?state=open&per_page=100")
+          pr_list=$(echo "$response" | jq -c '[.[].number]')
+
+          if [ "$pr_list" = "[]" ]; then
+            echo "::notice title=No pull requests::No open pull requests found for manual run." >&2
+          fi
+
+          echo "pr_numbers=$pr_list" >>"$GITHUB_OUTPUT"
+
+  labeler:
+    needs: determine-pull-requests
+    if: needs.determine-pull-requests.outputs.pr_numbers != '[]'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        pr_number: ${{ fromJson(needs.determine-pull-requests.outputs.pr_numbers) }}
     env:
       DEFAULT_MESSAGE_IF_XL: |-
         This PR exceeds the recommended size of 1000 lines.
         Please make sure you are NOT addressing multiple issues with one PR.
         Note this PR might be rejected due to its size.
     steps:
-      - name: Resolve pull request number for manual runs
+      - name: Prepare manual event payload
         if: github.event_name == 'workflow_dispatch'
         env:
-          INPUT_PR_NUMBER: ${{ github.event.inputs.pull_request_number }}
-          REPO: ${{ github.repository }}
-          API_URL: ${{ github.event.inputs.github_api_url || github.api_url }}
-          TOKEN: ${{ github.token }}
-          BRANCH: ${{ github.ref_name }}
+          PR_NUMBER: ${{ matrix.pr_number }}
         run: |
           set -euo pipefail
 
-          pr_number="$INPUT_PR_NUMBER"
-
-          if [ -z "$pr_number" ]; then
-            encoded_head=$(python -c 'import urllib.parse, os; print(urllib.parse.quote(f"{os.environ[\'REPO\']}:" + os.environ[\'BRANCH\'], safe=""))')
-            response=$(curl -sSf -H "Authorization: Bearer $TOKEN" -H "Accept: application/vnd.github+json" "$API_URL/repos/$REPO/pulls?head=$encoded_head&state=open")
-            pr_number=$(echo "$response" | jq '.[0].number // empty' -r)
-          fi
-
-          if [ -z "$pr_number" ]; then
-            echo "Unable to determine pull request number. Provide it explicitly when triggering the workflow." >&2
-            exit 1
-          fi
-
-          cat <<JSON > "$RUNNER_TEMP/pr-event.json"
-          {"pull_request":{"number":$pr_number}}
+          cat <<JSON >"$RUNNER_TEMP/pr-event.json"
+          {"pull_request":{"number":$PR_NUMBER}}
           JSON
 
-          echo "GITHUB_EVENT_PATH=$RUNNER_TEMP/pr-event.json" >> "$GITHUB_ENV"
+          echo "GITHUB_EVENT_PATH=$RUNNER_TEMP/pr-event.json" >>"$GITHUB_ENV"
 
       - name: Prepare labeler configuration
         id: prepare
@@ -109,8 +135,6 @@ jobs:
           XL_BEHAVIOR: ${{ github.event.inputs.xl_behavior }}
           IGNORE_CONFIGURATION: ${{ github.event.inputs.ignore_configuration }}
           FILES_TO_IGNORE: ${{ github.event.inputs.files_to_ignore }}
-          GITHUB_API_URL_INPUT: ${{ github.event.inputs.github_api_url }}
-          DEFAULT_GITHUB_API_URL: ${{ github.api_url }}
         run: |
           import json
           import os
@@ -186,10 +210,6 @@ jobs:
 
           files_to_ignore = os.environ.get("FILES_TO_IGNORE", "")
 
-          github_api_url = (os.environ.get("GITHUB_API_URL_INPUT") or "").strip() or os.environ[
-              "DEFAULT_GITHUB_API_URL"
-          ]
-
           outputs.extend(
               [
                   ("fail_if_xl", fail_if_xl),
@@ -197,7 +217,6 @@ jobs:
                   ("ignore_line_deletions", ignore_line),
                   ("ignore_file_deletions", ignore_file),
                   ("files_to_ignore", files_to_ignore),
-                  ("github_api_url", github_api_url),
               ]
           )
 
@@ -225,7 +244,6 @@ jobs:
           xl_label: ${{ steps.prepare.outputs.xl_label }}
           fail_if_xl: ${{ steps.prepare.outputs.fail_if_xl }}
           message_if_xl: ${{ steps.prepare.outputs.message_if_xl }}
-          github_api_url: ${{ steps.prepare.outputs.github_api_url }}
           files_to_ignore: ${{ steps.prepare.outputs.files_to_ignore }}
           ignore_line_deletions: ${{ steps.prepare.outputs.ignore_line_deletions }}
           ignore_file_deletions: ${{ steps.prepare.outputs.ignore_file_deletions }}

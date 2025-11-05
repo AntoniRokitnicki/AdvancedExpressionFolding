@@ -45,6 +45,8 @@ For more information, read the [blog post](https://medium.com/@andrey_cheptsov/m
 
 ## Unreleased ##
 
+## 6.0.0 ##
+
 ### Added
 
 - [[lombok] Add folding support for Lombok @With, including examples and folded previews](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/pull/537).
