@@ -236,6 +236,7 @@ Simplifies single-expression functions.
 ## dynamic
 ### Dynamic names for methods based on $user.home/dynamic-ajf2.toml
 Applies dynamic naming to methods based on a configuration file.
+- Each table is loaded as a typed object; provide both `method` and `newName` keys with non-blank values.
 - [Example](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/examples/data/DynamicTestData.java)
 - [Folded](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/folded/DynamicTestData-folded.java)
 - [Documentation](../features/dynamic-renaming.md)
