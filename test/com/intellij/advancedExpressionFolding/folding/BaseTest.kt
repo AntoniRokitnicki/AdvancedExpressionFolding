@@ -9,7 +9,7 @@ import com.intellij.advancedExpressionFolding.processor.methodcall.MethodCallFac
 import com.intellij.advancedExpressionFolding.processor.methodcall.dynamic.IDynamicDataProvider
 import com.intellij.advancedExpressionFolding.processor.takeIfFalse
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings.Companion.getInstance
-import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings.State
+import com.intellij.advancedExpressionFolding.settings.State
 import com.intellij.openapi.application.WriteAction
 import com.intellij.openapi.application.runInEdt
 import com.intellij.openapi.fileTypes.FileTypeManager

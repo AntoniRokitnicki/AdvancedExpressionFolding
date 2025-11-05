@@ -8,9 +8,9 @@ import com.intellij.advancedExpressionFolding.expression.operation.basic.Equal
 import com.intellij.advancedExpressionFolding.expression.operation.basic.GreaterEqual
 import com.intellij.advancedExpressionFolding.processor.argumentExpressions
 import com.intellij.advancedExpressionFolding.processor.util.Helper
-import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
-import com.intellij.advancedExpressionFolding.settings.IDateOperationsState
-import com.intellij.advancedExpressionFolding.settings.IExpressionCollapseState
+import com.intellij.advancedExpressionFolding.settings.State
+import com.intellij.advancedExpressionFolding.settings.state.IDateOperationsState
+import com.intellij.advancedExpressionFolding.settings.state.IExpressionCollapseState
 import com.intellij.openapi.editor.Document
 import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiExpression
@@ -20,8 +20,8 @@ import com.intellij.psi.PsiMethodCallExpression
 import com.intellij.psi.PsiPrefixExpression
 
 object PrefixExpressionExt :
-    IDateOperationsState by AdvancedExpressionFoldingSettings.State()(),
-    IExpressionCollapseState by AdvancedExpressionFoldingSettings.State()() {
+    IDateOperationsState by State()(),
+    IExpressionCollapseState by State()() {
 
     fun getPrefixExpression(element: PsiPrefixExpression, document: Document): Expression? {
         val operand = element.operand ?: return null

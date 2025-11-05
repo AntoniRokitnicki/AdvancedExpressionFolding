@@ -7,8 +7,8 @@ import com.intellij.advancedExpressionFolding.processor.asInstance
 import com.intellij.advancedExpressionFolding.processor.cache.CacheExt.invalidateExpired
 import com.intellij.advancedExpressionFolding.processor.cache.Keys
 import com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt
-import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
 import com.intellij.advancedExpressionFolding.settings.IConfig
+import com.intellij.advancedExpressionFolding.settings.State
 import com.intellij.lang.ASTNode
 import com.intellij.lang.folding.FoldingBuilderEx
 import com.intellij.lang.folding.FoldingDescriptor
@@ -19,7 +19,7 @@ import com.intellij.psi.PsiDocumentManager
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiJavaFile
 
-class AdvancedExpressionFoldingBuilder : FoldingBuilderEx(), IConfig by AdvancedExpressionFoldingSettings.State()() {
+class AdvancedExpressionFoldingBuilder : FoldingBuilderEx(), IConfig by State()() {
     override fun buildFoldRegions(element: PsiElement, document: Document, quick: Boolean): Array<FoldingDescriptor> {
         if (!globalOn || isFoldingFile(element)) {
             return store.store(Expression.EMPTY_ARRAY, document)

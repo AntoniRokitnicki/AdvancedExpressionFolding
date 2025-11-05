@@ -4,8 +4,8 @@ import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.semantic.kotlin.IfNullSafePrintlnExpression
 import com.intellij.advancedExpressionFolding.processor.util.Helper
 import com.intellij.advancedExpressionFolding.processor.util.PropertyUtil
-import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
-import com.intellij.advancedExpressionFolding.settings.IKotlinLanguageState
+import com.intellij.advancedExpressionFolding.settings.State
+import com.intellij.advancedExpressionFolding.settings.state.IKotlinLanguageState
 import com.intellij.psi.JavaTokenType
 import com.intellij.psi.PsiBinaryExpression
 import com.intellij.psi.PsiBlockStatement
@@ -18,7 +18,7 @@ import com.intellij.psi.PsiPolyadicExpression
 import com.intellij.psi.PsiReferenceExpression
 import com.intellij.psi.PsiStatement
 
-object IfNullSafePrintlnExt : IKotlinLanguageState by AdvancedExpressionFoldingSettings.State()() {
+object IfNullSafePrintlnExt : IKotlinLanguageState by State()() {
 
     fun createExpression(element: PsiIfStatement): Expression? {
         if (!ifNullSafe) {

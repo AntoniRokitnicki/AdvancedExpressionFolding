@@ -7,14 +7,14 @@ import com.intellij.advancedExpressionFolding.processor.lombok.LombokConstructor
 import com.intellij.advancedExpressionFolding.processor.lombok.LombokFoldingAnnotation.*
 import com.intellij.advancedExpressionFolding.processor.lombok.MethodType.*
 import com.intellij.advancedExpressionFolding.processor.util.GenericCallback
-import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
-import com.intellij.advancedExpressionFolding.settings.ILombokState
+import com.intellij.advancedExpressionFolding.settings.State
+import com.intellij.advancedExpressionFolding.settings.state.ILombokState
 import com.intellij.openapi.util.Key
 import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiField
 import com.intellij.psi.PsiMethod
 
-object LombokFieldExt : ILombokState by AdvancedExpressionFoldingSettings.State()(),
+object LombokFieldExt : ILombokState by State()(),
     GenericCallback<PsiField, List<FieldLevelAnnotation>> {
 
     override val callbackKey: Key<() -> List<FieldLevelAnnotation>> by lazy {

@@ -10,8 +10,8 @@ import com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt
 import com.intellij.advancedExpressionFolding.processor.end
 import com.intellij.advancedExpressionFolding.processor.start
 import com.intellij.advancedExpressionFolding.processor.toTextRange
-import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
-import com.intellij.advancedExpressionFolding.settings.ILogFoldingState
+import com.intellij.advancedExpressionFolding.settings.State
+import com.intellij.advancedExpressionFolding.settings.state.ILogFoldingState
 import com.intellij.openapi.editor.Document
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiExpression
@@ -22,7 +22,7 @@ import com.intellij.psi.PsiMethodCallExpression
 open class LoggerBracketsExtensionBase(
     protected val element: PsiMethodCallExpression,
     protected val document: Document
-) : ILogFoldingState by AdvancedExpressionFoldingSettings.State()() {
+) : ILogFoldingState by State()() {
 
     fun processExpression(): Expression? {
         val logLiteral = element.argumentExpressions.takeIf {

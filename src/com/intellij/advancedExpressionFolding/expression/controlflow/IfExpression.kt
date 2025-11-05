@@ -2,10 +2,10 @@ package com.intellij.advancedExpressionFolding.expression.controlflow
 
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.processor.language.java.PatternMatchingExt
-import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
-import com.intellij.advancedExpressionFolding.settings.IControlFlowState
-import com.intellij.advancedExpressionFolding.settings.IKotlinLanguageState
-import com.intellij.advancedExpressionFolding.settings.IUnclassifiedFeatureState
+import com.intellij.advancedExpressionFolding.settings.State
+import com.intellij.advancedExpressionFolding.settings.state.IControlFlowState
+import com.intellij.advancedExpressionFolding.settings.state.IKotlinLanguageState
+import com.intellij.advancedExpressionFolding.settings.state.IUnclassifiedFeatureState
 import com.intellij.lang.folding.FoldingDescriptor
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.editor.FoldingGroup
@@ -24,9 +24,9 @@ class IfExpression(
     private val ifStatement: PsiIfStatement,
     textRange: TextRange,
 ) : Expression(ifStatement, textRange),
-    IControlFlowState by AdvancedExpressionFoldingSettings.State()(),
-    IKotlinLanguageState by AdvancedExpressionFoldingSettings.State()(),
-    IUnclassifiedFeatureState by AdvancedExpressionFoldingSettings.State()() {
+    IControlFlowState by State()(),
+    IKotlinLanguageState by State()(),
+    IUnclassifiedFeatureState by State()() {
 
     override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean {
         return isAssertExpression(ifStatement) || isCompactExpression(ifStatement)
@@ -244,7 +244,7 @@ class IfExpression(
         }
     }
 
-    companion object : IControlFlowState by AdvancedExpressionFoldingSettings.State()() {
+    companion object : IControlFlowState by State()() {
         private val supportedOperatorSigns = setOf("==", "!=", ">", "<", ">=", "<=")
 
         fun isCompactExpression(element: PsiIfStatement): Boolean {

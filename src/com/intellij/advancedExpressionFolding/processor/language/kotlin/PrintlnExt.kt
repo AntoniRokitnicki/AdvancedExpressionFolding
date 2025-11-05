@@ -7,11 +7,11 @@ import com.intellij.advancedExpressionFolding.processor.equalsIgnoreSpaces
 import com.intellij.advancedExpressionFolding.processor.isWhitespace
 import com.intellij.advancedExpressionFolding.processor.start
 import com.intellij.advancedExpressionFolding.processor.toTextRange
-import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
-import com.intellij.advancedExpressionFolding.settings.IKotlinLanguageState
+import com.intellij.advancedExpressionFolding.settings.State
+import com.intellij.advancedExpressionFolding.settings.state.IKotlinLanguageState
 import com.intellij.psi.PsiMethodCallExpression
 
-object PrintlnExt : IKotlinLanguageState by AdvancedExpressionFoldingSettings.State()() {
+object PrintlnExt : IKotlinLanguageState by State()() {
 
     fun createExpression(
         element: PsiMethodCallExpression,

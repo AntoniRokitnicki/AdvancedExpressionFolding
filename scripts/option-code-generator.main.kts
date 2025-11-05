@@ -12,7 +12,7 @@ settingsFile.doInFile {
 }
 
 val unclassifiedStateFile =
-    "$basePath/src/com/intellij/advancedExpressionFolding/settings/UnclassifiedFeatureState.kt"
+    "$basePath/src/com/intellij/advancedExpressionFolding/settings/state/UnclassifiedFeatureState.kt"
 unclassifiedStateFile.doInFile { lines ->
     val result = mutableListOf<String>()
     var markerCount = 0

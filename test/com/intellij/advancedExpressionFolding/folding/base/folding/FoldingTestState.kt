@@ -3,7 +3,7 @@ package com.intellij.advancedExpressionFolding.folding.base.folding
 import com.intellij.advancedExpressionFolding.folding.BaseTest
 import com.intellij.advancedExpressionFolding.folding.util.TestDynamicDataProvider
 import com.intellij.advancedExpressionFolding.processor.methodcall.dynamic.IDynamicDataProvider
-import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings.State
+import com.intellij.advancedExpressionFolding.settings.State
 import kotlin.reflect.KMutableProperty0
 
 internal fun foldingState(): State = State()()

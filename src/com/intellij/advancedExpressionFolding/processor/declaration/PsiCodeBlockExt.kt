@@ -6,8 +6,8 @@ import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.controlflow.ControlFlowMultiStatementCodeBlockExpression
 import com.intellij.advancedExpressionFolding.expression.controlflow.ControlFlowSingleStatementCodeBlockExpression
 import com.intellij.advancedExpressionFolding.expression.controlflow.IfExpression
-import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
-import com.intellij.advancedExpressionFolding.settings.IControlFlowState
+import com.intellij.advancedExpressionFolding.settings.State
+import com.intellij.advancedExpressionFolding.settings.state.IControlFlowState
 import com.intellij.psi.PsiBlockStatement
 import com.intellij.psi.PsiCatchSection
 import com.intellij.psi.PsiCodeBlock
@@ -17,7 +17,7 @@ import com.intellij.psi.PsiLoopStatement
 import com.intellij.psi.PsiSwitchStatement
 import com.intellij.psi.PsiTryStatement
 
-object PsiCodeBlockExt : IControlFlowState by AdvancedExpressionFoldingSettings.State()() {
+object PsiCodeBlockExt : IControlFlowState by State()() {
 
     fun getCodeBlockExpression(element: PsiCodeBlock): Expression? {
         val parent = element.parent

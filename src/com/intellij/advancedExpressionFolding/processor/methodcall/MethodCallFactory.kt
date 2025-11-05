@@ -5,8 +5,8 @@ import com.intellij.advancedExpressionFolding.processor.methodcall.dynamic.Dynam
 import com.intellij.advancedExpressionFolding.processor.methodcall.dynamic.IDynamicDataProvider
 import com.intellij.advancedExpressionFolding.processor.takeIfTrue
 import com.intellij.advancedExpressionFolding.processor.util.Consts
-import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
-import com.intellij.advancedExpressionFolding.settings.IGlobalSettingsState
+import com.intellij.advancedExpressionFolding.settings.State
+import com.intellij.advancedExpressionFolding.settings.state.IGlobalSettingsState
 
 typealias MethodName = String
 typealias ClassName = String
@@ -35,7 +35,7 @@ typealias ClassName = String
  * - Reads: O(1) HashMap lookup, no synchronization overhead
  * - Writes: O(n) reconstruction of all mappings, synchronized but infrequent
  */
-object MethodCallFactory : IGlobalSettingsState by AdvancedExpressionFoldingSettings.State()() {
+object MethodCallFactory : IGlobalSettingsState by State()() {
 
     @Volatile
     private var dynamicProvider: IDynamicDataProvider? = ConfigurationParser

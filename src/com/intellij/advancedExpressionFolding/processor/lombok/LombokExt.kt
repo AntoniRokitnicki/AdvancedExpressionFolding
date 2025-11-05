@@ -14,14 +14,14 @@ import com.intellij.advancedExpressionFolding.processor.lombok.LombokFoldingAnno
 import com.intellij.advancedExpressionFolding.processor.lombok.LombokMethodExt.interfaceSupport
 import com.intellij.advancedExpressionFolding.processor.lombok.LombokMethodExt.isFinder
 import com.intellij.advancedExpressionFolding.processor.lombok.MethodType.*
-import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
-import com.intellij.advancedExpressionFolding.settings.ILombokState
+import com.intellij.advancedExpressionFolding.settings.State
+import com.intellij.advancedExpressionFolding.settings.state.ILombokState
 import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiField
 import com.intellij.psi.PsiMethod
 import com.intellij.psi.impl.source.PsiClassReferenceType
 
-object LombokExt : ILombokState by AdvancedExpressionFoldingSettings.State()() {
+object LombokExt : ILombokState by State()() {
 
     fun PsiClass.addLombokSupport(): List<ClassLevelAnnotation> {
         if (isInterface) {

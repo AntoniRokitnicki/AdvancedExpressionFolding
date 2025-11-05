@@ -13,8 +13,8 @@ import com.intellij.advancedExpressionFolding.processor.expression.LiteralExpres
 import com.intellij.advancedExpressionFolding.processor.methodcall.MethodCallExpressionExt
 import com.intellij.advancedExpressionFolding.processor.util.Consts
 import com.intellij.advancedExpressionFolding.processor.util.Helper
-import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
-import com.intellij.advancedExpressionFolding.settings.IExpressionCollapseState
+import com.intellij.advancedExpressionFolding.settings.State
+import com.intellij.advancedExpressionFolding.settings.state.IExpressionCollapseState
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiAnonymousClass
@@ -33,7 +33,7 @@ import java.util.ArrayList
 import java.math.BigDecimal
 import java.math.BigInteger
 
-object NewExpressionExt : IExpressionCollapseState by AdvancedExpressionFoldingSettings.State()() {
+object NewExpressionExt : IExpressionCollapseState by State()() {
 
     fun getNewExpression(element: PsiNewExpression, document: Document): Expression? {
         val type = element.type

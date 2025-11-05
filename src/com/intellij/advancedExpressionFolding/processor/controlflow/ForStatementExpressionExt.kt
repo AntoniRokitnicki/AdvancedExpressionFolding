@@ -11,9 +11,9 @@ import com.intellij.advancedExpressionFolding.processor.argumentExpressions
 import com.intellij.advancedExpressionFolding.processor.argumentCount
 import com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt
 import com.intellij.advancedExpressionFolding.processor.util.Helper
-import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
-import com.intellij.advancedExpressionFolding.settings.IControlFlowState
-import com.intellij.advancedExpressionFolding.settings.IExpressionCollapseState
+import com.intellij.advancedExpressionFolding.settings.State
+import com.intellij.advancedExpressionFolding.settings.state.IControlFlowState
+import com.intellij.advancedExpressionFolding.settings.state.IExpressionCollapseState
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiArrayAccessExpression
@@ -33,8 +33,8 @@ import com.intellij.psi.PsiVariable
 import com.intellij.psi.SyntaxTraverser
 
 object ForStatementExpressionExt :
-    IExpressionCollapseState by AdvancedExpressionFoldingSettings.State()(),
-    IControlFlowState by AdvancedExpressionFoldingSettings.State()() {
+    IExpressionCollapseState by State()(),
+    IControlFlowState by State()() {
 
     fun getForStatementExpression(element: PsiForStatement, document: Document): Expression? {
         val lParenth = element.lParenth

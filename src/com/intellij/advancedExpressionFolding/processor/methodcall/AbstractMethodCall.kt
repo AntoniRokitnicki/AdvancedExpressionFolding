@@ -2,21 +2,21 @@ package com.intellij.advancedExpressionFolding.processor.methodcall
 
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.processor.argumentExpressions
-import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
-import com.intellij.advancedExpressionFolding.settings.ICollectionsStreamsState
-import com.intellij.advancedExpressionFolding.settings.IDateOperationsState
-import com.intellij.advancedExpressionFolding.settings.IExpressionCollapseState
-import com.intellij.advancedExpressionFolding.settings.IGlobalSettingsState
-import com.intellij.advancedExpressionFolding.settings.IKotlinLanguageState
+import com.intellij.advancedExpressionFolding.settings.State
+import com.intellij.advancedExpressionFolding.settings.state.ICollectionsStreamsState
+import com.intellij.advancedExpressionFolding.settings.state.IDateOperationsState
+import com.intellij.advancedExpressionFolding.settings.state.IExpressionCollapseState
+import com.intellij.advancedExpressionFolding.settings.state.IGlobalSettingsState
+import com.intellij.advancedExpressionFolding.settings.state.IKotlinLanguageState
 import com.intellij.psi.PsiExpression
 import com.intellij.psi.PsiMethodCallExpression
 
 abstract class AbstractMethodCall :
-    ICollectionsStreamsState by AdvancedExpressionFoldingSettings.State()(),
-    IDateOperationsState by AdvancedExpressionFoldingSettings.State()(),
-    IKotlinLanguageState by AdvancedExpressionFoldingSettings.State()(),
-    IExpressionCollapseState by AdvancedExpressionFoldingSettings.State()(),
-    IGlobalSettingsState by AdvancedExpressionFoldingSettings.State()() {
+    ICollectionsStreamsState by State()(),
+    IDateOperationsState by State()(),
+    IKotlinLanguageState by State()(),
+    IExpressionCollapseState by State()(),
+    IGlobalSettingsState by State()() {
     open fun canExecute(): Boolean = true
 
     open fun execute(

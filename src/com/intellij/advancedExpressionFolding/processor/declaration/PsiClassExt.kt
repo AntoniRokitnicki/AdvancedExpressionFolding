@@ -8,16 +8,16 @@ import com.intellij.advancedExpressionFolding.processor.language.kotlin.MethodDe
 import com.intellij.advancedExpressionFolding.processor.lombok.AnnotationExt
 import com.intellij.advancedExpressionFolding.processor.lombok.LombokPostConstructorExt
 import com.intellij.advancedExpressionFolding.processor.lombok.SummaryParentOverrideExt.addParentSummary
-import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
-import com.intellij.advancedExpressionFolding.settings.IHidingSuppressionState
-import com.intellij.advancedExpressionFolding.settings.IKotlinLanguageState
-import com.intellij.advancedExpressionFolding.settings.ILombokState
+import com.intellij.advancedExpressionFolding.settings.State
+import com.intellij.advancedExpressionFolding.settings.state.IHidingSuppressionState
+import com.intellij.advancedExpressionFolding.settings.state.IKotlinLanguageState
+import com.intellij.advancedExpressionFolding.settings.state.ILombokState
 import com.intellij.psi.PsiClass
 
 object PsiClassExt :
-    IHidingSuppressionState by AdvancedExpressionFoldingSettings.State()(),
-    IKotlinLanguageState by AdvancedExpressionFoldingSettings.State()(),
-    ILombokState by AdvancedExpressionFoldingSettings.State()() {
+    IHidingSuppressionState by State()(),
+    IKotlinLanguageState by State()(),
+    ILombokState by State()() {
 
     enum class ClassType {
         BUILDER,

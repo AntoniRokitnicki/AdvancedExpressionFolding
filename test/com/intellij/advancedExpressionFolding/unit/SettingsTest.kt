@@ -1,6 +1,7 @@
 package com.intellij.advancedExpressionFolding.unit
 
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
+import com.intellij.advancedExpressionFolding.settings.State
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
@@ -11,11 +12,11 @@ import kotlin.reflect.full.memberProperties
 class SettingsTest {
 
     @Suppress("UNCHECKED_CAST")
-    private fun booleanProperties(): List<KMutableProperty1<AdvancedExpressionFoldingSettings.State, Boolean>> =
-        AdvancedExpressionFoldingSettings.State::class.memberProperties
-            .filterIsInstance<KMutableProperty1<AdvancedExpressionFoldingSettings.State, *>>()
+    private fun booleanProperties(): List<KMutableProperty1<State, Boolean>> =
+        State::class.memberProperties
+            .filterIsInstance<KMutableProperty1<State, *>>()
             .filter { it.returnType.classifier == Boolean::class }
-            .map { it as KMutableProperty1<AdvancedExpressionFoldingSettings.State, Boolean> }
+            .map { it as KMutableProperty1<State, Boolean> }
             .filter { it.name != "globalOn" && it.name != "memoryImprovement" }
 
     @Test

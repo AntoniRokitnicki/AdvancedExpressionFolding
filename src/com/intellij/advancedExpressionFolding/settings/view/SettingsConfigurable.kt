@@ -2,6 +2,7 @@ package com.intellij.advancedExpressionFolding.settings.view
 
 import com.intellij.advancedExpressionFolding.action.UpdateFoldedTextColorsAction
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
+import com.intellij.advancedExpressionFolding.settings.State
 import com.intellij.application.options.CodeStyle
 import com.intellij.application.options.editor.EditorOptionsProvider
 import com.intellij.icons.AllIcons
@@ -37,9 +38,9 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
     private val allExampleFiles = mutableSetOf<ExampleFile>()
     private val pendingChanges = mutableMapOf<KMutableProperty0<Boolean>, Boolean>()
     private val propertyToCheckbox = mutableMapOf<KMutableProperty0<Boolean>, JBCheckBox>()
-    private val stateBooleanProperties: Map<String, KMutableProperty1<AdvancedExpressionFoldingSettings.State, Boolean>> =
-        AdvancedExpressionFoldingSettings.State::class.memberProperties
-            .filterIsInstance<KMutableProperty1<AdvancedExpressionFoldingSettings.State, Boolean>>()
+    private val stateBooleanProperties: Map<String, KMutableProperty1<State, Boolean>> =
+        State::class.memberProperties
+            .filterIsInstance<KMutableProperty1<State, Boolean>>()
             .associateBy { it.name }
     private var bulkUpdateInProgress = false
 

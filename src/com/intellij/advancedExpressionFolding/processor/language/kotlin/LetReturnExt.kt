@@ -4,12 +4,12 @@ import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.semantic.kotlin.ElvisReturnNull
 import com.intellij.advancedExpressionFolding.expression.semantic.kotlin.LetReturnIt
 import com.intellij.advancedExpressionFolding.processor.*
-import com.intellij.advancedExpressionFolding.settings.IKotlinLanguageState
-import com.intellij.advancedExpressionFolding.settings.StateDelegate
+import com.intellij.advancedExpressionFolding.settings.State
+import com.intellij.advancedExpressionFolding.settings.state.IKotlinLanguageState
 import com.intellij.psi.*
 
 
-object LetReturnExt : IKotlinLanguageState by StateDelegate() {
+object LetReturnExt : IKotlinLanguageState by State()() {
 
     @JvmStatic
     fun getIfExpression(element: PsiIfStatement): Expression? {

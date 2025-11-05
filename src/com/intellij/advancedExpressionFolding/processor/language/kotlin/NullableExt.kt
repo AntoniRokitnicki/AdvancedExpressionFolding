@@ -5,8 +5,8 @@ import com.intellij.advancedExpressionFolding.expression.semantic.kotlin.CheckNo
 import com.intellij.advancedExpressionFolding.expression.semantic.lombok.NullAnnotationExpression
 import com.intellij.advancedExpressionFolding.processor.*
 import com.intellij.advancedExpressionFolding.processor.core.getAnyExpression
-import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
-import com.intellij.advancedExpressionFolding.settings.IKotlinLanguageState
+import com.intellij.advancedExpressionFolding.settings.State
+import com.intellij.advancedExpressionFolding.settings.state.IKotlinLanguageState
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.editor.FoldingGroup
 import com.intellij.psi.*
@@ -15,7 +15,7 @@ import com.intellij.psi.*
  * [data.NullableAnnotationTestData]
  * [data.NullableAnnotationCheckNotNullTestData]
  */
-object NullableExt : IKotlinLanguageState by AdvancedExpressionFoldingSettings.State()() {
+object NullableExt : IKotlinLanguageState by State()() {
 
     fun findPropertyAnnotation(field: PsiField, typeElement: PsiTypeElement?): Expression? {
         return field.metadata.getter

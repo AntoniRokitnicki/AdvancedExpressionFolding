@@ -1,11 +1,11 @@
-package com.intellij.advancedExpressionFolding.settings
+package com.intellij.advancedExpressionFolding.settings.state
 
 interface ILombokState {
     var lombok: Boolean
     var lombokDirtyOff: Boolean
     var lombokPatternOff: String?
     var interfaceExtensionProperties: Boolean
-    val pseudoAnnotations: Boolean
+    var pseudoAnnotations: Boolean
 }
 
 data class LombokState(
@@ -13,5 +13,5 @@ data class LombokState(
     override var lombokDirtyOff: Boolean = false,
     override var lombokPatternOff: String? = null,
     override var interfaceExtensionProperties: Boolean = true,
-    override val pseudoAnnotations: Boolean = true,
+    override var pseudoAnnotations: Boolean = true,
 ) : ILombokState

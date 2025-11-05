@@ -1,11 +1,11 @@
-package com.intellij.advancedExpressionFolding.settings
+package com.intellij.advancedExpressionFolding.settings.state
 
 interface IUnclassifiedFeatureState {
-    val semicolonsCollapse: Boolean
+    var semicolonsCollapse: Boolean
     // NEW OPTION VAR
 }
 
 data class UnclassifiedFeatureState(
-    override val semicolonsCollapse: Boolean = false,
+    override var semicolonsCollapse: Boolean = false,
     // NEW OPTION VAR
 ) : IUnclassifiedFeatureState

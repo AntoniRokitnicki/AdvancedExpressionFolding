@@ -9,8 +9,8 @@ import com.intellij.advancedExpressionFolding.processor.nextWhiteSpace
 import com.intellij.advancedExpressionFolding.processor.prevWhiteSpace
 import com.intellij.advancedExpressionFolding.processor.takeIfTrue
 import com.intellij.advancedExpressionFolding.processor.util.Consts.Emoji
-import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings.State
-import com.intellij.advancedExpressionFolding.settings.IEmojiVisibilityState
+import com.intellij.advancedExpressionFolding.settings.State
+import com.intellij.advancedExpressionFolding.settings.state.IEmojiVisibilityState
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiField
 import com.intellij.psi.PsiKeyword

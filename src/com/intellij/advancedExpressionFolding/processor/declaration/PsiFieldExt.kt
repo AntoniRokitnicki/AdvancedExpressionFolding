@@ -16,14 +16,14 @@ import com.intellij.advancedExpressionFolding.processor.language.kotlin.Nullable
 import com.intellij.advancedExpressionFolding.processor.lombok.FieldLevelAnnotation
 import com.intellij.advancedExpressionFolding.processor.lombok.LombokFieldExt.callback
 import com.intellij.advancedExpressionFolding.processor.lombok.LombokFieldExt.createFieldLevelAnnotation
-import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
-import com.intellij.advancedExpressionFolding.settings.IKotlinLanguageState
+import com.intellij.advancedExpressionFolding.settings.State
+import com.intellij.advancedExpressionFolding.settings.state.IKotlinLanguageState
 import com.intellij.openapi.editor.Document
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiField
 import com.intellij.psi.PsiRecordComponent
 
-object PsiFieldExt : IKotlinLanguageState by AdvancedExpressionFoldingSettings.State()() {
+object PsiFieldExt : IKotlinLanguageState by State()() {
 
     fun createExpression(field: PsiField, document: Document): Expression? {
         val typeElement = field.typeElement.takeIf {

@@ -2,8 +2,8 @@ package com.intellij.advancedExpressionFolding.expression.controlflow
 
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.operation.collection.Range
-import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
-import com.intellij.advancedExpressionFolding.settings.IControlFlowState
+import com.intellij.advancedExpressionFolding.settings.State
+import com.intellij.advancedExpressionFolding.settings.state.IControlFlowState
 import com.intellij.lang.folding.FoldingDescriptor
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.editor.FoldingGroup
@@ -20,7 +20,7 @@ class ForStatement(
     endRange: Expression,
     endInclusive: Boolean,
 ) : Range(statement, textRange, operand, startRange, startInclusive, endRange, endInclusive),
-    IControlFlowState by AdvancedExpressionFoldingSettings.State()() {
+    IControlFlowState by State()() {
 
     init {
         separator = FOR_SEPARATOR

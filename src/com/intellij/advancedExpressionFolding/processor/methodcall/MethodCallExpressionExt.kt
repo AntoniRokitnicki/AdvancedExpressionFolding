@@ -18,9 +18,9 @@ import com.intellij.advancedExpressionFolding.processor.util.Helper.isNamelessSe
 import com.intellij.advancedExpressionFolding.processor.util.Helper.isSetter
 import com.intellij.advancedExpressionFolding.processor.util.Helper.startsWith
 import com.intellij.advancedExpressionFolding.processor.util.PropertyUtil.guessPropertyName
-import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
-import com.intellij.advancedExpressionFolding.settings.IExpressionCollapseState
-import com.intellij.advancedExpressionFolding.settings.IGlobalSettingsState
+import com.intellij.advancedExpressionFolding.settings.State
+import com.intellij.advancedExpressionFolding.settings.state.IExpressionCollapseState
+import com.intellij.advancedExpressionFolding.settings.state.IGlobalSettingsState
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiElement
@@ -32,8 +32,8 @@ import com.intellij.psi.PsiReferenceExpression
 import com.intellij.psi.PsiStatement
 
 object MethodCallExpressionExt :
-    IExpressionCollapseState by AdvancedExpressionFoldingSettings.State()(),
-    IGlobalSettingsState by AdvancedExpressionFoldingSettings.State()() {
+    IExpressionCollapseState by State()(),
+    IGlobalSettingsState by State()() {
 
     fun getMethodCallExpression(element: PsiMethodCallExpression, document: Document): Expression? {
         val referenceExpression = element.methodExpression

@@ -1,7 +1,7 @@
 package com.intellij.advancedExpressionFolding.action
 
-import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
 import com.intellij.advancedExpressionFolding.settings.IConfig
+import com.intellij.advancedExpressionFolding.settings.State
 import com.intellij.openapi.actionSystem.ActionUpdateThread
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.ToggleAction
@@ -9,7 +9,7 @@ import com.intellij.openapi.project.DumbAware
 
 class GlobalToggleFoldingAction :
     ToggleAction(),
-    IConfig by AdvancedExpressionFoldingSettings.State()(),
+    IConfig by State()(),
     DumbAware {
 
     override fun isSelected(e: AnActionEvent): Boolean = globalOn

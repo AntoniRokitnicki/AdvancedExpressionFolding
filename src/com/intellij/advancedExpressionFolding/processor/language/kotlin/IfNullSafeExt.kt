@@ -10,14 +10,14 @@ import com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt
 import com.intellij.advancedExpressionFolding.processor.end
 import com.intellij.advancedExpressionFolding.processor.start
 import com.intellij.advancedExpressionFolding.processor.toTextRange
-import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
-import com.intellij.advancedExpressionFolding.settings.IKotlinLanguageState
+import com.intellij.advancedExpressionFolding.settings.State
+import com.intellij.advancedExpressionFolding.settings.state.IKotlinLanguageState
 import com.intellij.openapi.editor.Document
 import com.intellij.psi.*
 import com.intellij.psi.util.elementType
 
 
-object IfNullSafeExt : IKotlinLanguageState by AdvancedExpressionFoldingSettings.State()() {
+object IfNullSafeExt : IKotlinLanguageState by State()() {
 
     @JvmStatic
     fun createExpression(element: PsiPolyadicExpression, document: Document): Expression? {

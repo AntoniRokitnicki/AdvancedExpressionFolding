@@ -5,8 +5,8 @@ import com.intellij.advancedExpressionFolding.expression.literal.NumberLiteral
 import com.intellij.advancedExpressionFolding.expression.operation.collection.ArrayGet
 import com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt
 import com.intellij.advancedExpressionFolding.processor.util.Helper
-import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
-import com.intellij.advancedExpressionFolding.settings.IExpressionCollapseState
+import com.intellij.advancedExpressionFolding.settings.State
+import com.intellij.advancedExpressionFolding.settings.state.IExpressionCollapseState
 import com.intellij.openapi.editor.Document
 import com.intellij.psi.PsiArrayAccessExpression
 import com.intellij.psi.PsiAssignmentExpression
@@ -14,7 +14,7 @@ import com.intellij.psi.PsiBinaryExpression
 import com.intellij.psi.impl.source.tree.java.PsiAssignmentExpressionImpl
 
 object PsiArrayAccessExpressionExt :
-    IExpressionCollapseState by AdvancedExpressionFoldingSettings.State()() {
+    IExpressionCollapseState by State()() {
 
     fun getArrayAccessExpression(element: PsiArrayAccessExpression, document: Document): Expression? {
         val index = element.indexExpression

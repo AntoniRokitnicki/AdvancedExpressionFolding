@@ -16,10 +16,10 @@ import com.intellij.advancedExpressionFolding.processor.language.kotlin.IfNullSa
 import com.intellij.advancedExpressionFolding.processor.language.kotlin.IfNullSafePrintlnExt
 import com.intellij.advancedExpressionFolding.processor.language.kotlin.LetReturnExt
 import com.intellij.advancedExpressionFolding.processor.util.Helper
-import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
-import com.intellij.advancedExpressionFolding.settings.IControlFlowState
-import com.intellij.advancedExpressionFolding.settings.IExpressionCollapseState
-import com.intellij.advancedExpressionFolding.settings.IKotlinLanguageState
+import com.intellij.advancedExpressionFolding.settings.State
+import com.intellij.advancedExpressionFolding.settings.state.IControlFlowState
+import com.intellij.advancedExpressionFolding.settings.state.IExpressionCollapseState
+import com.intellij.advancedExpressionFolding.settings.state.IKotlinLanguageState
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiBinaryExpression
@@ -37,9 +37,9 @@ import com.intellij.psi.PsiSwitchStatement
 import com.intellij.psi.SyntaxTraverser
 
 object IfExt :
-    IControlFlowState by AdvancedExpressionFoldingSettings.State()(),
-    IExpressionCollapseState by AdvancedExpressionFoldingSettings.State()(),
-    IKotlinLanguageState by AdvancedExpressionFoldingSettings.State()() {
+    IControlFlowState by State()(),
+    IExpressionCollapseState by State()(),
+    IKotlinLanguageState by State()() {
 
     fun getSwitchStatement(element: PsiSwitchStatement): Expression? {
         val lParenth = element.lParenth ?: return null

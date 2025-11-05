@@ -1,8 +1,8 @@
 package com.intellij.advancedExpressionFolding.pseudo
 
 import com.intellij.advancedExpressionFolding.processor.isVoid
-import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings
-import com.intellij.advancedExpressionFolding.settings.ILombokState
+import com.intellij.advancedExpressionFolding.settings.State
+import com.intellij.advancedExpressionFolding.settings.state.ILombokState
 import com.intellij.codeInsight.completion.*
 import com.intellij.codeInsight.lookup.AutoCompletionPolicy
 import com.intellij.codeInsight.lookup.LookupElementBuilder
@@ -15,7 +15,7 @@ import com.intellij.psi.util.PsiTreeUtil
 import com.intellij.util.ProcessingContext
 
 class MainAnnotationCompletionContributor : CompletionContributor(),
-    ILombokState by AdvancedExpressionFoldingSettings.State()() {
+    ILombokState by State()() {
     init {
         extend(
             CompletionType.BASIC,
