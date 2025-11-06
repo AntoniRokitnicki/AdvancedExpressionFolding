@@ -104,6 +104,12 @@ dependencies {
     testImplementation(libs.junit.jupiter.params)
     testImplementation(libs.junit.pioneer)
     testImplementation(libs.junit.vintage.engine)
+    testImplementation("io.mockk:mockk:1.13.11") {
+        exclude(group = "org.jetbrains.kotlinx", module = "kotlinx-coroutines-core")
+        exclude(group = "org.jetbrains.kotlinx", module = "kotlinx-coroutines-core-jvm")
+        exclude(group = "org.jetbrains.kotlinx", module = "kotlinx-coroutines-jdk8")
+        exclude(group = "org.jetbrains.kotlinx", module = "kotlinx-coroutines-debug")
+    }
     implementation(libs.kodein.di.conf)
 
     // IntelliJ Platform Gradle Plugin Dependencies Extension - read more: https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-gradle-plugin-dependencies-extension.html
