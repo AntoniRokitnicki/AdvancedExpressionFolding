@@ -125,4 +125,30 @@ public class ExperimentalTestData {
         }
     }
 
+    static class FieldNameConstantsExample {
+
+        private final String iAmAField = "";
+        private final int andSoAmI = 0;
+        private final String userIdentifier = "";
+
+        public static final class Fields {
+            public static final String iAmAField = "iAmAField";
+            public static final String andSoAmI = "andSoAmI";
+            public static final String USER_IDENTIFIER = "userIdentifier";
+        }
+    }
+
+    static class FieldNameConstantsEnumExample {
+
+        private final String iAmAField = "";
+        private final int andSoAmI = 0;
+        private final String userIdentifier = "";
+
+        public enum Fields {
+            iAmAField,
+            andSoAmI,
+            USER_IDENTIFIER
+        }
+    }
+
 }
