@@ -10,6 +10,7 @@ import com.intellij.openapi.editor.Document
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiCatchSection
 import com.intellij.psi.PsiDoWhileStatement
+import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiForeachStatement
 import com.intellij.psi.PsiForStatement
 import com.intellij.psi.PsiIfStatement
@@ -17,54 +18,86 @@ import com.intellij.psi.PsiSwitchStatement
 import com.intellij.psi.PsiTryStatement
 import com.intellij.psi.PsiWhileStatement
 
-class ForStatementBuilder : BuildExpression<PsiForStatement>(PsiForStatement::class.java) {
-    override fun buildExpression(element: PsiForStatement, document: Document, synthetic: Boolean) =
+internal val controlFlowExpressionBuilderDefinitions:
+    Map<Class<out BuildExpression<*>>, FunctionalExpressionBuilderDefinition<out PsiElement>> = mapOf(
+    ForStatementBuilder::class.java to builderDefinition<PsiForStatement> { element, document, _ ->
         ForStatementExpressionExt.getForStatementExpression(element, document)
-}
-
-class ForEachStatementBuilder : BuildExpression<PsiForeachStatement>(PsiForeachStatement::class.java) {
-    override fun buildExpression(element: PsiForeachStatement, document: Document, synthetic: Boolean): Expression? =
+    },
+    ForEachStatementBuilder::class.java to builderDefinition<PsiForeachStatement> { element, _, _ ->
         LoopExt.getForEachStatementExpression(element)
-}
-
-class IfStatementBuilder : BuildExpression<PsiIfStatement>(PsiIfStatement::class.java) {
-    override fun buildExpression(element: PsiIfStatement, document: Document, synthetic: Boolean) =
+    },
+    IfStatementBuilder::class.java to builderDefinition<PsiIfStatement> { element, document, _ ->
         IfExt.getIfExpression(element, document)
-}
-
-class WhileStatementBuilder : BuildExpression<PsiWhileStatement>(PsiWhileStatement::class.java) {
-    override fun buildExpression(element: PsiWhileStatement, document: Document, synthetic: Boolean): Expression? =
+    },
+    WhileStatementBuilder::class.java to builderDefinition<PsiWhileStatement> { element, _, _ ->
         LoopExt.getWhileStatement(element)
-}
-
-class DoWhileStatementBuilder : BuildExpression<PsiDoWhileStatement>(PsiDoWhileStatement::class.java) {
-    override fun buildExpression(element: PsiDoWhileStatement, document: Document, synthetic: Boolean): Expression? =
+    },
+    DoWhileStatementBuilder::class.java to builderDefinition<PsiDoWhileStatement> { element, _, _ ->
         LoopExt.getDoWhileStatement(element)
-}
-
-class SwitchStatementBuilder : BuildExpression<PsiSwitchStatement>(PsiSwitchStatement::class.java) {
-    override fun buildExpression(element: PsiSwitchStatement, document: Document, synthetic: Boolean): Expression? =
+    },
+    SwitchStatementBuilder::class.java to builderDefinition<PsiSwitchStatement> { element, _, _ ->
         IfExt.getSwitchStatement(element)
-}
-
-class TryStatementBuilder : BuildExpression<PsiTryStatement>(PsiTryStatement::class.java) {
-    override fun buildExpression(element: PsiTryStatement, document: Document, synthetic: Boolean) =
+    },
+    TryStatementBuilder::class.java to builderDefinition<PsiTryStatement> { element, _, _ ->
         PsiTryStatementExt.createExpression(element)
-}
-
-class CatchSectionBuilder : BuildExpression<PsiCatchSection>(PsiCatchSection::class.java) {
-    override fun checkConditions(element: PsiCatchSection) =
+    },
+    CatchSectionBuilder::class.java to builderDefinition<PsiCatchSection>(checkConditions = { element ->
         compactControlFlowSyntaxCollapse &&
-                element.parameter != null &&
-                element.lParenth != null &&
-                element.rParenth != null
-
-    override fun buildExpression(element: PsiCatchSection, document: Document, synthetic: Boolean): Expression? {
-        val l = element.lParenth ?: return null
-        val r = element.rParenth ?: return null
-        return CompactControlFlowExpression(
+            element.parameter != null &&
+            element.lParenth != null &&
+            element.rParenth != null
+    }) { element, _, _ ->
+        val l = element.lParenth ?: return@builderDefinition null
+        val r = element.rParenth ?: return@builderDefinition null
+        CompactControlFlowExpression(
             element,
             TextRange.create(l.textRange.startOffset, r.textRange.endOffset)
         )
-    }
-}
+    },
+)
+
+class ForStatementBuilder :
+    FunctionalExpressionBuilder<PsiForStatement>(
+        ExpressionBuilderRegistry.definition(ForStatementBuilder::class.java)
+    )
+
+class ForEachStatementBuilder :
+    FunctionalExpressionBuilder<PsiForeachStatement>(
+        ExpressionBuilderRegistry.definition(ForEachStatementBuilder::class.java)
+    )
+
+class IfStatementBuilder :
+    FunctionalExpressionBuilder<PsiIfStatement>(
+        ExpressionBuilderRegistry.definition(IfStatementBuilder::class.java)
+    )
+
+class WhileStatementBuilder :
+    FunctionalExpressionBuilder<PsiWhileStatement>(
+        ExpressionBuilderRegistry.definition(WhileStatementBuilder::class.java)
+    )
+
+class DoWhileStatementBuilder :
+    FunctionalExpressionBuilder<PsiDoWhileStatement>(
+        ExpressionBuilderRegistry.definition(DoWhileStatementBuilder::class.java)
+    )
+
+class SwitchStatementBuilder :
+    FunctionalExpressionBuilder<PsiSwitchStatement>(
+        ExpressionBuilderRegistry.definition(SwitchStatementBuilder::class.java)
+    )
+
+class TryStatementBuilder :
+    FunctionalExpressionBuilder<PsiTryStatement>(
+        ExpressionBuilderRegistry.definition(TryStatementBuilder::class.java)
+    )
+
+class CatchSectionBuilder :
+    FunctionalExpressionBuilder<PsiCatchSection>(
+        ExpressionBuilderRegistry.definition(CatchSectionBuilder::class.java)
+    )
+
+private inline fun <reified T : PsiElement> builderDefinition(
+    noinline checkConditions: (FunctionalExpressionBuilder<T>.(T) -> Boolean)? = null,
+    noinline build: FunctionalExpressionBuilder<T>.(T, Document, Boolean) -> Expression?,
+): FunctionalExpressionBuilderDefinition<T> =
+    FunctionalExpressionBuilderDefinition(T::class.java, checkConditions, build)
