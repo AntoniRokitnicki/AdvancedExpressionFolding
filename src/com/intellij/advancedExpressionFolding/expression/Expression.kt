@@ -28,6 +28,10 @@ abstract class Expression protected constructor() {
         return false
     }
 
+    @Deprecated(
+        "Use buildFoldRegionsList instead",
+        ReplaceWith("buildFoldRegionsList(element, document, parent, foldings)")
+    )
     open fun buildFoldRegions(
         element: PsiElement,
         document: Document,
@@ -36,6 +40,12 @@ abstract class Expression protected constructor() {
         return EMPTY_ARRAY
     }
 
+    @Deprecated(
+        "Use buildFoldRegionsList instead",
+        ReplaceWith(
+            "buildFoldRegionsList(element, document, parent, overflowGroup, overflowLeftPlaceholder, overflowRightPlaceholder, foldings)"
+        )
+    )
     open fun buildFoldRegions(
         element: PsiElement,
         document: Document,
@@ -45,6 +55,26 @@ abstract class Expression protected constructor() {
         overflowRightPlaceholder: String?
     ): Array<FoldingDescriptor> {
         return buildFoldRegions(element, document, parent)
+    }
+
+    open fun buildFoldRegionsList(
+        element: PsiElement,
+        document: Document,
+        parent: Expression?,
+        foldings: MutableList<FoldingDescriptor>
+    ) {
+    }
+
+    open fun buildFoldRegionsList(
+        element: PsiElement,
+        document: Document,
+        parent: Expression?,
+        overflowGroup: FoldingGroup?,
+        overflowLeftPlaceholder: String?,
+        overflowRightPlaceholder: String?,
+        foldings: MutableList<FoldingDescriptor>
+    ) {
+        buildFoldRegionsList(element, document, parent, foldings)
     }
 
     open fun isCollapsedByDefault(): Boolean = true
