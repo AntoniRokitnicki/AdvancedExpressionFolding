@@ -11,7 +11,7 @@ import java.util.function.Function;
 @SuppressWarnings("ALL")
 public class ExperimentalTestData {
 
-    public class SneakyThrowsExample implements Runnable {
+    public class ImBreakingThisFileSneakyThrowsExample implements Runnable {
 
         public String utf8ToStringMultiline(byte[] bytes) {
             try {
