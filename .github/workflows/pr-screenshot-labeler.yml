@@ -127,4 +127,5 @@ jobs:
 
             core.setOutput('labels_added', String(appliedCount));
       - name: Display screenshot labels added
-        run: echo "Screenshot labels added: ${{ steps.apply.outputs.labels_added }}"
+        run: |
+          echo "Screenshot labels added: ${{ steps.apply.outputs.labels_added }}"
