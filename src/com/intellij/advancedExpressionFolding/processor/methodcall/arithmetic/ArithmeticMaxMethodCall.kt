@@ -1,24 +1,16 @@
 package com.intellij.advancedExpressionFolding.processor.methodcall.arithmetic
 
-import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.math.basic.Max
-import com.intellij.advancedExpressionFolding.processor.methodcall.Context
-import com.intellij.psi.PsiExpression
-import com.intellij.psi.PsiMethodCallExpression
+import com.intellij.advancedExpressionFolding.processor.methodcall.arithmetic.ConfiguredArithmeticMethodCall.ArgumentArity
 
-class ArithmeticMaxMethodCall : AbstractArithmeticMethodCall() {
-    override val methodNames by lazy { listOf("max") }
-    
-    override fun onSingleArgument(
-        element: PsiMethodCallExpression,
-        context: Context,
-        argument: PsiExpression,
-        argumentExpression: Expression
-    ): Expression? {
-        return Max(
+class ArithmeticMaxMethodCall : ConfiguredArithmeticMethodCall(
+    methodNames = listOf("max"),
+    argumentArity = ArgumentArity.SINGLE_ARGUMENT,
+    expressionBuilder = { element, context ->
+        Max(
             element,
             element.textRange,
             context.getOperands()
         )
     }
-}
+)

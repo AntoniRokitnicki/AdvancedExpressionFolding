@@ -1,15 +1,11 @@
 package com.intellij.advancedExpressionFolding.processor.methodcall.arithmetic
 
-import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.processor.methodcall.Context
-import com.intellij.psi.PsiMethodCallExpression
+import com.intellij.advancedExpressionFolding.processor.methodcall.arithmetic.ConfiguredArithmeticMethodCall.ArgumentArity
 
-class ArithmeticPlusMethodCall : AbstractArithmeticMethodCall() {
-    override val methodNames by lazy { listOf("plus") }
-    
-    override fun onNoArguments(
-        element: PsiMethodCallExpression,
-        context: Context
-    ): Expression? = context.qualifierExprNullable
-
-}
+class ArithmeticPlusMethodCall : ConfiguredArithmeticMethodCall(
+    methodNames = listOf("plus"),
+    argumentArity = ArgumentArity.NO_ARGUMENTS,
+    expressionBuilder = { _, context ->
+        context.qualifierExprNullable
+    }
+)
