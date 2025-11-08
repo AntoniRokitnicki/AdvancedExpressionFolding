@@ -69,7 +69,18 @@ jobs:
           repository: ${{ steps.context.outputs.repository }}
           ref: ${{ steps.context.outputs.ref }}
           token: ${{ secrets.GITHUB_TOKEN }}
-          fetch-depth: 0
+          fetch-depth: 5
+
+      - name: Detect regeneration loop
+        if: steps.context.outputs.should_run == 'true'
+        run: |
+          set -euo pipefail
+          regen_count=$(git log -5 --pretty=format:"%s" | grep -c "Regenerate tests in dev mode" || true)
+          if [ "$regen_count" -gt 3 ]; then
+            echo "::error::🔄 Regeneration loop detected ($regen_count regen commits in last 5). Aborting to prevent infinite loop."
+            exit 1
+          fi
+          echo "Regeneration count in last 5 commits: $regen_count"
 
       - name: Setup Java
         if: steps.context.outputs.should_run == 'true'
@@ -118,8 +129,19 @@ jobs:
           git commit -m "Regenerate tests in dev mode"
           echo "committed=true" >> "$GITHUB_OUTPUT"
 
-      - name: Push regeneration commit
+      - name: Verify tests without dev mode
         if: steps.commit.outputs.committed == 'true'
+        id: verify
+        run: |
+          set -euo pipefail
+          if ! ./gradlew test --no-daemon --console=plain; then
+            echo "::error::🚨 Regenerated tests are broken. Tests pass with dev-mode but fail without it."
+            exit 1
+          fi
+          echo "verified=true" >> "$GITHUB_OUTPUT"
+
+      - name: Push regeneration commit
+        if: steps.verify.outputs.verified == 'true'
         id: push
         run: |
           set -euo pipefail
@@ -235,6 +257,12 @@ jobs:
           echo "::error::💥 Dev mode build exploded. Check the gradle logs above."
           exit 1
 
+      - name: Report verification failure
+        if: failure() && steps.verify.outcome == 'failure'
+        run: |
+          echo "::error::🚨 Tests failed without dev-mode after regeneration. Manual fix required."
+          exit 1
+
       - name: Report push failure
         if: failure() && steps.push.outcome == 'failure'
         run: |
@@ -242,7 +270,7 @@ jobs:
           exit 1
 
       - name: Report generic failure
-        if: failure() && steps.build.outcome != 'failure' && steps.push.outcome != 'failure'
+        if: failure() && steps.build.outcome != 'failure' && steps.verify.outcome != 'failure' && steps.push.outcome != 'failure'
         run: |
           echo "::error::❌ Something went wrong during test regeneration. Check the logs."
           exit 1
