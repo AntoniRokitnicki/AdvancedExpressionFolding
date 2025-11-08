@@ -1,100 +1,248 @@
 name: Dev Mode Test Regeneration
 
 on:
-  workflow_dispatch:
+  workflow_run:
+    workflows:
+      - Build
+    types:
+      - completed
 
 jobs:
   dev-mode-tests:
     name: Regenerate tests in dev mode
+    timeout-minutes: 30
+    if: >
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.event == 'pull_request_target'
     runs-on: ubuntu-latest
-
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+    env:
+      PR_NUMBER: ${{ github.event.workflow_run.pull_requests[0].number || '' }}
+      HEAD_REF: ${{ github.event.workflow_run.pull_requests[0].head.ref || '' }}
+      HEAD_REPOSITORY: ${{ github.event.workflow_run.pull_requests[0].head.repo.full_name || '' }}
+      HEAD_COMMIT_MESSAGE: ${{ github.event.workflow_run.head_commit.message || '' }}
     steps:
+      - name: Determine execution context
+        id: context
+        run: |
+          set -euo pipefail
+          
+          pr="${PR_NUMBER:-}"
+          if [ -z "$pr" ]; then
+            echo "::error::No PR number found. Workflow cannot proceed."
+            exit 1
+          fi
+
+          ref="${HEAD_REF:-}"
+          if [ -z "$ref" ]; then
+            echo "::error::No head ref found. PR may have been closed or deleted."
+            exit 1
+          fi
+
+          message="${HEAD_COMMIT_MESSAGE:-}"
+          if [[ "$message" == *"Regenerate tests in dev mode"* ]]; then
+            echo "should_run=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          repository="${HEAD_REPOSITORY:-$GITHUB_REPOSITORY}"
+          echo "repository=$repository" >> "$GITHUB_OUTPUT"
+          echo "ref=$ref" >> "$GITHUB_OUTPUT"
+
+          if [ "$repository" = "$GITHUB_REPOSITORY" ]; then
+            echo "can_push=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "can_push=false" >> "$GITHUB_OUTPUT"
+          fi
+
+          echo "should_run=true" >> "$GITHUB_OUTPUT"
+        env:
+          GITHUB_REPOSITORY: ${{ github.repository }}
+
       - name: Fetch Sources
+        if: steps.context.outputs.should_run == 'true'
         uses: actions/checkout@v5
+        with:
+          repository: ${{ steps.context.outputs.repository }}
+          ref: ${{ steps.context.outputs.ref }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
 
       - name: Setup Java
+        if: steps.context.outputs.should_run == 'true'
         uses: actions/setup-java@v5
         with:
           distribution: zulu
           java-version: 17
 
       - name: Setup Gradle
+        if: steps.context.outputs.should_run == 'true'
         uses: gradle/actions/setup-gradle@v5
         with:
           gradle-home-cache-cleanup: true
 
       - name: Run tests with dev mode
+        if: steps.context.outputs.should_run == 'true'
+        id: build
         env:
           dev-mode: "1"
-          DEV_MODE: "1"
-        run: ./gradlew clean build --no-daemon --console=plain
+        run: |
+          set -euo pipefail
+          ./gradlew clean build --no-daemon --console=plain
+          echo "success=true" >> "$GITHUB_OUTPUT"
 
       - name: Calculate change statistics
+        if: steps.context.outputs.should_run == 'true' && steps.build.outputs.success == 'true'
         id: change_stats
         run: |
           set -euo pipefail
           mapfile -t status < <(git status --short)
           total=${#status[@]}
-          new_files=0
-          for entry in "${status[@]}"; do
-            if [[ "${entry}" == '??'* ]]; then
-              new_files=$((new_files + 1))
-            fi
-          done
           echo "modified=${total}" >> "$GITHUB_OUTPUT"
-          echo "new=${new_files}" >> "$GITHUB_OUTPUT"
 
-      - name: Changed files
-        run: echo "${{ steps.change_stats.outputs.modified }}"
-
-      - name: New files created
-        run: echo "${{ steps.change_stats.outputs.new }}"
-
-      - name: Summarize change statistics
+      - name: Commit regenerated tests
+        if: >
+          steps.context.outputs.should_run == 'true' &&
+          steps.build.outputs.success == 'true' &&
+          steps.context.outputs.can_push == 'true' &&
+          steps.change_stats.outputs.modified != '0'
+        id: commit
         run: |
-          {
-            echo "### Dev mode regeneration"
-            echo ""
-            echo "* Total files changed: ${{ steps.change_stats.outputs.modified }}"
-            echo "* New files created: ${{ steps.change_stats.outputs.new }}"
-          } >> "$GITHUB_STEP_SUMMARY"
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Regenerate tests in dev mode"
+          echo "committed=true" >> "$GITHUB_OUTPUT"
 
-      - name: No changes detected
-        if: steps.change_stats.outputs.modified == '0'
-        run: echo "No changes detected; skipping commit and PR." >> "$GITHUB_STEP_SUMMARY"
-
-      - name: Determine branch name
-        id: branch
-        run: echo "name=dev-mode-regeneration-$(date +%Y%m%d)" >> "$GITHUB_OUTPUT"
-
-      - name: Create pull request
-        if: steps.change_stats.outputs.modified != '0'
-        id: cpr
-        uses: peter-evans/create-pull-request@v6
-        with:
-          commit-message: "Regenerate tests in dev mode"
-          branch: ${{ steps.branch.outputs.name }}
-          delete-branch: true
-          title: "Regenerate tests in dev mode"
-          body: |
-            ## Summary
-            - rerun the Gradle build with dev mode enabled to refresh generated test data
-
-            ## Testing
-            - ./gradlew clean build --no-daemon --console=plain
-
-      - name: Report pull request result
-        if: steps.change_stats.outputs.modified != '0'
+      - name: Push regeneration commit
+        if: steps.commit.outputs.committed == 'true'
+        id: push
         run: |
-          {
-            echo "### Pull request"
-            echo ""
-            echo "* Branch: ${{ steps.branch.outputs.name }}"
-            echo "* Operation: ${{ steps.cpr.outputs.pull-request-operation }}"
-            echo "* Commits pushed: ${{ steps.cpr.outputs.commits }}"
-            if [ -n "${{ steps.cpr.outputs.pull-request-url }}" ]; then
-              echo "* URL: ${{ steps.cpr.outputs.pull-request-url }}"
+          set -euo pipefail
+          if ! git push origin HEAD:${{ steps.context.outputs.ref }}; then
+            echo "::error::Failed to push regeneration commit to ${{ steps.context.outputs.ref }}"
+            exit 1
+          fi
+          echo "pushed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Summarize regeneration result
+        if: steps.context.outputs.should_run == 'true' && steps.build.outputs.success == 'true'
+        id: result
+        run: |
+          set -euo pipefail
+          count="${CHANGED_FILES:-0}"
+          status="no-changes"
+          if [ "$count" != "0" ]; then
+            committed="${COMMITTED:-false}"
+            pushed="${PUSHED:-false}"
+            if [ "$committed" = "true" ] && [ "$pushed" = "true" ]; then
+              status="regenerated"
+            elif [ "${CAN_PUSH}" = "true" ]; then
+              status="regeneration-pending"
             else
-              echo "* URL: (not created)"
+              status="manual-regeneration-required"
             fi
-          } >> "$GITHUB_STEP_SUMMARY"
+          fi
+          echo "status=$status" >> "$GITHUB_OUTPUT"
+          echo "changed_files=$count" >> "$GITHUB_OUTPUT"
+        env:
+          CHANGED_FILES: ${{ steps.change_stats.outputs.modified || '0' }}
+          COMMITTED: ${{ steps.commit.outputs.committed || 'false' }}
+          PUSHED: ${{ steps.push.outputs.pushed || 'false' }}
+          CAN_PUSH: ${{ steps.context.outputs.can_push }}
+
+      - name: Update regeneration label
+        if: steps.context.outputs.should_run == 'true' && steps.build.outputs.success == 'true'
+        uses: actions/github-script@v7
+        env:
+          PR_NUMBER: ${{ env.PR_NUMBER }}
+          STATUS: ${{ steps.result.outputs.status }}
+          CHANGED_FILES: ${{ steps.result.outputs.changed_files }}
+        with:
+          script: |
+            const prNumber = Number(process.env.PR_NUMBER || '0');
+            if (!prNumber) {
+              core.info('No pull request associated with this workflow run.');
+              return;
+            }
+
+            const status = process.env.STATUS || 'no-changes';
+            const changedFiles = Number(process.env.CHANGED_FILES || '0');
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const prefix = 'tests: regen';
+
+            let labelName;
+            let description;
+            const fileWord = changedFiles === 1 ? 'file' : 'files';
+            if (status === 'regenerated') {
+              labelName = `tests: regen regenerated (${changedFiles} ${fileWord})`;
+              description = `Generated data updated automatically in ${changedFiles} ${fileWord}.`;
+            } else if (status === 'no-changes') {
+              labelName = 'tests: regen not needed';
+              description = 'Generated data already matched expected values.';
+            } else {
+              labelName = `tests: regen pending (${changedFiles} ${fileWord})`;
+              if (status === 'regeneration-pending') {
+                description = `Changes detected in ${changedFiles} ${fileWord} but the automation could not push them.`;
+              } else {
+                description = `Changes detected in ${changedFiles} ${fileWord}. Author must regenerate tests manually.`;
+              }
+            }
+
+            const { data: existingLabels } = await github.rest.issues.listLabelsOnIssue({
+              owner,
+              repo,
+              issue_number: prNumber,
+              per_page: 100,
+            });
+
+            for (const label of existingLabels) {
+              if (label.name.startsWith(prefix)) {
+                await github.rest.issues.removeLabel({ owner, repo, issue_number: prNumber, name: label.name }).catch(() => {});
+              }
+            }
+
+            async function ensureLabel(name, color, description) {
+              try {
+                await github.rest.issues.getLabel({ owner, repo, name });
+                await github.rest.issues.updateLabel({ owner, repo, name, color, description });
+              } catch (error) {
+                if (error.status === 404) {
+                  await github.rest.issues.createLabel({ owner, repo, name, color, description });
+                } else {
+                  throw error;
+                }
+              }
+            }
+
+            await ensureLabel(labelName, status === 'no-changes' ? '0e8a16' : status === 'regenerated' ? '1d76db' : 'd93f0b', description);
+
+            await github.rest.issues.addLabels({
+              owner,
+              repo,
+              issue_number: prNumber,
+              labels: [labelName],
+            });
+
+      - name: Report build failure
+        if: failure() && steps.build.outcome == 'failure'
+        run: |
+          echo "::error::💥 Dev mode build exploded. Check the gradle logs above."
+          exit 1
+
+      - name: Report push failure
+        if: failure() && steps.push.outcome == 'failure'
+        run: |
+          echo "::error::🚫 Couldn't push regenerated tests to PR branch. Check permissions or branch protection."
+          exit 1
+
+      - name: Report generic failure
+        if: failure() && steps.build.outcome != 'failure' && steps.push.outcome != 'failure'
+        run: |
+          echo "::error::❌ Something went wrong during test regeneration. Check the logs."
+          exit 1
