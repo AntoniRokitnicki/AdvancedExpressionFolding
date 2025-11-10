@@ -13,7 +13,7 @@ intelliJPlatform = "2.6.0"
 kotlin = "2.2.21"
 kover = "0.9.3"
 qodana = "2024.3.4"
-lombok-plugin = "9.0.0"
+lombok-plugin = "9.1.0"
 commons-lang3 = "3.19.0"
 slf4j = "2.0.17"
 
