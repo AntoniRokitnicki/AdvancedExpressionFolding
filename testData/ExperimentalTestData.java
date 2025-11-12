@@ -35,7 +35,7 @@ public class ExperimentalTestData {
             <fold text='@SneakyThrows(IllegalArgumentException)' expand='true'>try</fold> <fold text='{...}' expand='true'>{
                 Function<String, Long> longFunction = Long::parseLong;
                 longValue = longFunction.apply(value);
-            }</fold><fold text='' expand='true'> </fold><fold text='' expand='true'>catch (NumberFormatException e) <fold text='{...}' expand='true'>{
+            }<fold text='' expand='true'></fold> </fold><fold text='' expand='true'>catch (NumberFormatException e) <fold text='{...}' expand='true'>{
                 throw new IllegalArgumentException(e);
             }</fold></fold>
             System.out.println("longValue = " + longValue);
@@ -46,7 +46,7 @@ public class ExperimentalTestData {
             <fold text='@SneakyThrows' expand='true'>try</fold> <fold text='{...}' expand='true'>{
                 var throwable = new Throwable();
                 throw throwable;
-            }</fold><fold text='' expand='true'> <fold text='' expand='true'></fold>catch (Throwable t) <fold text='{...}' expand='true'>{
+            }</fold><fold text='' expand='true'> </fold><fold text='' expand='true'>catch (Throwable t) <fold text='{...}' expand='true'>{
                 throw new IllegalStateException(t);
             }</fold></fold>
         }</fold>
@@ -54,12 +54,12 @@ public class ExperimentalTestData {
         public String utf8ToString(byte[] bytes) <fold text='{...}' expand='true'>{
             <fold text='@SneakyThrows' expand='true'>try</fold><fold text='' expand='true'> </fold><fold text='' expand='true'><fold text='{...}' expand='true'>{</fold>
             <fold text='' expand='true'>    </fold>return new String(System<fold text='[' expand='false'>.getProperty(</fold>"sort-desc"<fold text=']' expand='false'>)</fold>.<fold text='bytes' expand='false'>getBytes()</fold>, "UTF-8");<fold text='' expand='true'>
-            </fold><fold text='' expand='true'>}</fold><fold text='' expand='true'></fold> </fold><fold text='' expand='true'>catch (UnsupportedEncodingException e) <fold text='{...}' expand='true'>{
+            </fold><fold text='' expand='true'>}</fold></fold><fold text='' expand='true'> </fold><fold text='' expand='true'>catch (UnsupportedEncodingException e) <fold text='{...}' expand='true'>{
                 throw new RuntimeException(e);
             }</fold></fold>
         }</fold>
         public void run() <fold text='{...}' expand='true'>{
-            <fold text='@SneakyThrows' expand='true'>try</fold><fold text='' expand='true'> </fold><fold text='' expand='true'><fold text='{...}' expand='true'>{</fold>
+            <fold text='@SneakyThrows' expand='true'>try</fold><fold text='' expand='true'> <fold text='' expand='true'><fold text='{...}' expand='true'></fold>{</fold>
             throw new Throwable();<fold text='' expand='true'>
             </fold><fold text='' expand='true'>}</fold></fold><fold text='' expand='true'> </fold><fold text='' expand='true'>catch (Throwable t) <fold text='{...}' expand='true'>{
                 throw new IllegalStateException(t);
@@ -123,6 +123,32 @@ public class ExperimentalTestData {
             example.<fold text='!! = ' expand='false'>set(</fold>example.<fold text='!!' expand='false'>get()</fold><fold text='' expand='false'>)</fold>;
             String duplicate = example.<fold text='!!' expand='false'>get()</fold> + example.<fold text='!!' expand='false'>get()</fold>;
         }</fold>
+    }</fold>
+
+    <fold text='@FieldNameConstants s' expand='false'>s</fold>tatic class FieldNameConstantsExample <fold text='{...}' expand='true'>{
+
+        private final String iAmAField;
+        private final int andSoAmI;
+        private final String userIdentifier;<fold text='' expand='false'>
+
+        <fold text='' expand='false'></fold>public static final class Fields <fold text='{...}' expand='true'>{
+            <fold text='const' expand='false'>public static final </fold><fold text='' expand='false'>String</fold> iAmAField = "iAmAField";
+            <fold text='const' expand='false'>public static final </fold><fold text='' expand='false'>String</fold> andSoAmI = "andSoAmI";
+            <fold text='const' expand='false'>public static final </fold><fold text='' expand='false'>String</fold> USER_IDENTIFIER = "userIdentifier";
+        }</fold></fold>
+    }</fold>
+
+    <fold text='@FieldNameConstants(asEnum = true) s' expand='false'>s</fold>tatic class FieldNameConstantsEnumExample <fold text='{...}' expand='true'>{
+
+        private final String iAmAField;
+        private final int andSoAmI;
+        private final String userIdentifier;<fold text='' expand='false'>
+
+        </fold><fold text='' expand='false'>public enum Fields <fold text='{...}' expand='true'>{
+            iAmAField,
+            andSoAmI,
+            USER_IDENTIFIER
+        }</fold></fold>
     }</fold>
 
 }
