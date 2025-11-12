@@ -1,32 +1,26 @@
 package com.intellij.advancedExpressionFolding.processor.methodcall.arithmetic
 
-import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.math.basic.Not
 import com.intellij.advancedExpressionFolding.expression.math.bitwise.And
 import com.intellij.advancedExpressionFolding.processor.methodcall.Context
-import com.intellij.psi.PsiExpression
-import com.intellij.psi.PsiMethodCallExpression
-import java.util.*
+import com.intellij.advancedExpressionFolding.processor.methodcall.MethodCallBuilder
 
 class ArithmeticAndNotMethodCall : AbstractArithmeticMethodCall() {
-    override val methodNames by lazy { listOf("andNot") }
-    
-    override fun onSingleArgument(
-        element: PsiMethodCallExpression,
-        context: Context,
-        argument: PsiExpression,
-        argumentExpression: Expression
-    ): Expression? {
-        val qualifier = context.qualifierExpr
-        val notExpr = Not(
-            element,
-            argumentExpression.textRange,
-            Collections.singletonList(argumentExpression)
-        )
-        return And(
-            element,
-            element.textRange,
-            listOf(qualifier, notExpr)
-        )
+    override fun configure(builder: MethodCallBuilder) {
+        super.configure(builder)
+        builder.methods("andNot")
+        builder.onSingleArgument { element, context, _, argumentExpression ->
+            val qualifier = context.qualifierExpr
+            val notExpr = Not(
+                element,
+                argumentExpression.textRange,
+                listOf(argumentExpression)
+            )
+            And(
+                element,
+                element.textRange,
+                listOf(qualifier, notExpr)
+            )
+        }
     }
 }
