@@ -1,6 +1,7 @@
 package com.intellij.advancedExpressionFolding.processor.core
 
 import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.advancedExpressionFolding.expression.SyntheticExpressionImpl
 import com.intellij.advancedExpressionFolding.expression.operation.basic.TypeCast
 import com.intellij.advancedExpressionFolding.processor.cache.CacheExt
 import com.intellij.advancedExpressionFolding.processor.expression.AssignmentExpressionExt
@@ -13,6 +14,7 @@ import com.intellij.advancedExpressionFolding.processor.expression.PsiTypeCastEx
 import com.intellij.advancedExpressionFolding.processor.controlflow.IfExt
 import com.intellij.advancedExpressionFolding.processor.methodcall.MethodCallExpressionExt
 import com.intellij.advancedExpressionFolding.processor.reference.NewExpressionExt
+import com.intellij.advancedExpressionFolding.processor.core.ParenthesesUtils.isParenthesesRedundant
 import com.intellij.openapi.editor.Document
 import com.intellij.psi.PsiArrayAccessExpression
 import com.intellij.psi.PsiAssignmentExpression
@@ -101,6 +103,11 @@ class ParenthesizedExpressionBuilder :
             }
         }
         if (expression != null) {
+            if (!isParenthesesRedundant(expression, element.parent)) {
+                val innerExpression = CacheExt.getExpression(expression, document, synthetic)
+                val children = innerExpression?.let { listOf(it) } ?: emptyList()
+                return SyntheticExpressionImpl(element, element.textRange, element.text, children)
+            }
             return CacheExt.getExpression(expression, document, synthetic)
         }
         return null
