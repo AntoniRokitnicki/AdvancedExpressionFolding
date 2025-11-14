@@ -3,6 +3,7 @@ package com.intellij.advancedExpressionFolding
 import com.google.common.collect.Lists
 import com.google.common.collect.Sets
 import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.advancedExpressionFolding.ml.FoldingModelService
 import com.intellij.advancedExpressionFolding.processor.asInstance
 import com.intellij.advancedExpressionFolding.processor.cache.CacheExt.invalidateExpired
 import com.intellij.advancedExpressionFolding.processor.cache.Keys
@@ -12,6 +13,7 @@ import com.intellij.advancedExpressionFolding.settings.State
 import com.intellij.lang.ASTNode
 import com.intellij.lang.folding.FoldingBuilderEx
 import com.intellij.lang.folding.FoldingDescriptor
+import com.intellij.openapi.components.service
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.editor.FoldingGroup
 import com.intellij.openapi.project.IndexNotReadyException
@@ -104,6 +106,11 @@ class AdvancedExpressionFoldingBuilder : FoldingBuilderEx(), IConfig by State()(
             val document = PsiDocumentManager.getInstance(astNode.psi.project).getDocument(astNode.psi.containingFile)
             document?.let {
                 val expression = BuildExpressionExt.getNonSyntheticExpression(element, it)
+                expression?.element?.text?.takeIf(String::isNotBlank)?.let { text ->
+                    foldingModelService.shouldCollapse(text)?.let { predicted ->
+                        return predicted
+                    }
+                }
                 return expression?.isCollapsedByDefault() == true
             }
         } catch (_: IndexNotReadyException) {
@@ -113,6 +120,9 @@ class AdvancedExpressionFoldingBuilder : FoldingBuilderEx(), IConfig by State()(
     }
 
     private val debugFolding = false
+
+    private val foldingModelService: FoldingModelService
+        get() = service()
 }
 
 var store: Storage = EmptyStorage
