@@ -35,7 +35,7 @@ public class ConstTestData {
 
     static public final String STATIC_PUBLIC_FINAL_VAR = "";
     static private final String STATIC_PRIVATE_FINAL_VAR = "";
-    static protected final String STATIC_PROTECTED_FINAL_VAR = "";
+    static protected final String AND_THIS_FILE_STATIC_PROTECTED_FINAL_VAR = "";
 
     static final public String STATIC_FINAL_PUBLIC_VAR = "";
     static final private String STATIC_FINAL_PRIVATE_VAR = "";
