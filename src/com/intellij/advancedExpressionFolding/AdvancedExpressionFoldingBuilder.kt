@@ -12,6 +12,7 @@ import com.intellij.advancedExpressionFolding.settings.State
 import com.intellij.lang.ASTNode
 import com.intellij.lang.folding.FoldingBuilderEx
 import com.intellij.lang.folding.FoldingDescriptor
+import com.intellij.openapi.application.WriteIntentReadAction
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.editor.FoldingGroup
 import com.intellij.openapi.project.IndexNotReadyException
@@ -95,7 +96,40 @@ class AdvancedExpressionFoldingBuilder : FoldingBuilderEx(), IConfig by State()(
         return allDescriptors.toTypedArray()
     }
 
-    override fun getPlaceholderText(astNode: ASTNode) = null
+    override fun getPlaceholderText(astNode: ASTNode): String? {
+        val psi = astNode.psi ?: return null
+        val file = psi.containingFile ?: return null
+        val project = psi.project
+        val docManager = PsiDocumentManager.getInstance(project)
+        val document = docManager.getDocument(file) ?: return null
+        if (!docManager.isCommitted(document)) {
+            WriteIntentReadAction.run<RuntimeException> {
+                docManager.commitDocument(document)
+            }
+        }
+
+        val expression = try {
+            var current: PsiElement? = psi
+            var expr = current?.let { BuildExpressionExt.getNonSyntheticExpression(it, document) }
+            while (expr == null && current != null) {
+                current = current.parent
+                expr = current?.let { BuildExpressionExt.getNonSyntheticExpression(it, document) }
+            }
+            expr
+        } catch (_: IndexNotReadyException) {
+            return null
+        } ?: return null
+
+        if (!expression.supportsFoldRegions(document, null)) {
+            return null
+        }
+
+        val descriptor = expression.buildFoldRegions(expression.element, document, null)
+            .firstOrNull { it.element == astNode }
+            ?: return null
+
+        return descriptor.getPlaceholderText()
+    }
 
     // TODO: Collapse everything by default but use these settings when actually building the folding descriptors
     override fun isCollapsedByDefault(astNode: ASTNode): Boolean {
