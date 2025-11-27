@@ -40,6 +40,9 @@
                            displayType="BALLOON"
                            isLogByDefault="true"/>
 
+        <postStartupActivity
+                implementation="com.intellij.advancedExpressionFolding.onboarding.BeginnerOnboardingTourActivity"/>
+
         <!-- Suggests pseudo-annotations supported by the plugin -->
         <completion.contributor
                 language="JAVA"
