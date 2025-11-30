@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Log Folding Text Blocks</title>
+    <meta name="description" content="Folds log Text Blocks into compact placeholders." />
+  </head>
+  <body>
+    <h1>Log Folding Text Blocks</h1>
+    <section aria-labelledby="feature-summary">
+      <h2 id="feature-summary">Summary</h2>
+      <dl>
+      <dt>State key</dt>
+      <dd><code>logFoldingTextBlocks</code></dd>
+      <dt>Default</dt>
+      <dd>Off</dd>
+      <dt>Controlled by</dt>
+      <dd><code>logFoldingTextBlocks</code></dd>
+      </dl>
+    </section>
+    <section aria-labelledby="feature-body">
+      <h2 id="feature-body">Details</h2>
+      <pre>:::info Toggle summary
+- **State key:** `logFoldingTextBlocks`
+- **Default:** Off
+- **Controlled by:** `logFoldingTextBlocks`
+:::
+
+## Log Folding Text Blocks
+Folds log Text Blocks into compact placeholders.
+
+### Example: LogFoldingTextBlocksTestData
+
+examples/data/LogFoldingTextBlocksTestData.java:
+```java
+        log.debug(&quot;Debug message with 1 parameter - Name: %s&quot;, name);
+// ...
+        log.info(MY_MARKER, &quot;Info message with 2 parameters - Name: %s, Age: %d&quot;, name, age);
+```
+
+folded/LogFoldingTextBlocksTestData-folded.java:
+```java
+        log.debug(&quot;Debug message with 1 parameter - Name: $name&quot;);
+// ...
+        log.info(MY_MARKER, &quot;Info message with 2 parameters - Name: $name, Age: $age&quot;);
+```
+
+Highlights LogFoldingTextBlocksTestData with log folding text blocks.
+Removes boilerplate while preserving behavior.</pre>
+    </section>
+  </body>
+</html>

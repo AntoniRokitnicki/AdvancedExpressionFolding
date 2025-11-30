@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Local Date Literal Postfix Collapse</title>
+    <meta name="description" content="Folds postfix LocalDate literals such as 2018Y-02M-12D." />
+  </head>
+  <body>
+    <h1>Local Date Literal Postfix Collapse</h1>
+    <section aria-labelledby="feature-summary">
+      <h2 id="feature-summary">Summary</h2>
+      <dl>
+      <dt>State key</dt>
+      <dd><code>localDateLiteralPostfixCollapse</code></dd>
+      <dt>Default</dt>
+      <dd>Off</dd>
+      <dt>Controlled by</dt>
+      <dd><code>localDateLiteralPostfixCollapse</code></dd>
+      </dl>
+    </section>
+    <section aria-labelledby="feature-body">
+      <h2 id="feature-body">Details</h2>
+      <pre>:::info Toggle summary
+- **State key:** `localDateLiteralPostfixCollapse`
+- **Default:** Off
+- **Controlled by:** `localDateLiteralPostfixCollapse`
+:::
+
+## Local Date Literal Postfix Collapse
+Folds postfix LocalDate literals such as 2018Y-02M-12D.
+
+### Example: LocalDateLiteralPostfixTestData
+
+examples/data/LocalDateLiteralPostfixTestData.java:
+```java
+        LocalDate d1 = LocalDate.of(2018, 01, 10);
+        LocalDate d4 = LocalDate.of(2018, 01, 10);
+        LocalDate d2 = LocalDate.of(2018, 12, 10);
+        LocalDate d3 = LocalDate.of(2018,  4 ,  4   );
+// ...
+        boolean d1SmallerOrEqualD2 = !d1.isAfter(LocalDate.of(2013, 1, 10));
+```
+
+folded/LocalDateLiteralPostfixTestData-folded.java:
+```java
+        LocalDate d1 = 2018Y-01M-10D;
+        LocalDate d4 = 2018Y-01M-10D;
+        LocalDate d2 = 2018Y-12M-10D;
+        LocalDate d3 = 2018Y-04M-04D;
+// ...
+        boolean d1SmallerOrEqualD2 = !d1.isAfter(2013Y-01M-10D);
+```
+
+Highlights LocalDateLiteralPostfixTestData with local date literal postfix collapse.
+Removes boilerplate while preserving behavior.</pre>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Compact Control Flow Syntax Collapse</title>
+    <meta name="description" content="Folds compact if/else syntax inspired by Go." />
+  </head>
+  <body>
+    <h1>Compact Control Flow Syntax Collapse</h1>
+    <section aria-labelledby="feature-summary">
+      <h2 id="feature-summary">Summary</h2>
+      <dl>
+      <dt>State key</dt>
+      <dd><code>compactControlFlowSyntaxCollapse</code></dd>
+      <dt>Default</dt>
+      <dd>Off</dd>
+      <dt>Controlled by</dt>
+      <dd><code>compactControlFlowSyntaxCollapse</code></dd>
+      </dl>
+    </section>
+    <section aria-labelledby="feature-body">
+      <h2 id="feature-body">Details</h2>
+      <pre>:::info Toggle summary
+- **State key:** `compactControlFlowSyntaxCollapse`
+- **Default:** Off
+- **Controlled by:** `compactControlFlowSyntaxCollapse`
+:::
+
+## Compact Control Flow Syntax Collapse
+Folds compact if/else syntax inspired by Go.
+
+### Example: CompactControlFlowTestData
+
+examples/data/CompactControlFlowTestData.java:
+```java
+        if (args.length &gt; 0) {
+// ...
+        for (String arg : args) {
+```
+
+folded/CompactControlFlowTestData-folded.java:
+```java
+        if args.length &gt; 0 {
+// ...
+        for String arg : args {
+```
+
+Highlights CompactControlFlowTestData with compact control flow syntax collapse.
+Removes boilerplate while preserving behavior.</pre>
+    </section>
+  </body>
+</html>
