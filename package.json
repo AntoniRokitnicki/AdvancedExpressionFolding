@@ -1,0 +1,9 @@
+{
+  "name": "advanced-expression-folding",
+  "version": "1.0.0",
+  "description": "Advanced Expression Folding - IntelliJ plugin showcase",
+  "scripts": {
+    "build": "echo 'Build complete'",
+    "start": "echo 'Static site ready'"
+  }
+}
