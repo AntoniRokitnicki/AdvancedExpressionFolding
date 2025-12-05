@@ -533,6 +533,7 @@ public class LombokTestData {
         private List<String> lazyLoadedList;
         private List<String> oneLineLazyLoadedList;
         private List<String> defensiveCopyList;
+        private String optionalField;
 
         public List<String> getWrapper() {
             return Collections.unmodifiableList(wrapper);
@@ -575,6 +576,10 @@ public class LombokTestData {
         public List<String> getOneLineLazyLoadedList() {
             if (oneLineLazyLoadedList == null) oneLineLazyLoadedList = new ArrayList<>();
             return oneLineLazyLoadedList;
+        }
+
+        public Optional<String> getOptionalField() {
+            return Optional.ofNullable(optionalField);
         }
 
         private List<String> localWrap(List<String> list) {
