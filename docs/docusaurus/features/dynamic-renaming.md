@@ -7,6 +7,16 @@ description: Pull friendly display names for methods from an external configurat
 
 Enable **dynamic** to map fully-qualified method names to human-friendly labels stored in `~/dynamic-ajf2.toml`. The plugin reads the file on the fly and displays the alias wherever the method appears, making domain-specific APIs easier to reason about.
 
+Each table in the TOML file is deserialized directly into a typed configuration, so both keys must be present:
+
+```toml title="~/dynamic-ajf2.toml"
+[renameStaticMethod]
+method = "com.acme.Service#staticMethod"
+newName = "Renamed service method"
+```
+
+Entries missing `method` or `newName` (or containing blank values) are ignored to keep the configuration safe.
+
 ![Dynamic renaming applied to method calls](https://github.com/user-attachments/assets/250e6884-6254-4707-85ac-7c861d3773f2)
 
 - [Source sample](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/examples/data/DynamicTestData.java)
