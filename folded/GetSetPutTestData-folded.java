@@ -4,6 +4,10 @@ import java.util.*;
 
 public class GetSetPutTestData {
     public static void main(String[] args) {
+        int[] emptyArray = [];
+        int[] numbers = [1, 2, 3];
+        List<String> emptyList = [];
+        Set<String> emptySet = new HashSet<>();
         List<String> list = ["one", "two"];
         list[1] = "three";
         System.out.println(list.getLast());
