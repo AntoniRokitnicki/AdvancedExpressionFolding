@@ -175,6 +175,7 @@ import java.util.logging.Logger;
         @Getter(lazy = ArrayList::new) private List<String> lazyLoadedList;
         @Getter(lazy = ArrayList::new) private List<String> oneLineLazyLoadedList;
         @Getter(wrapper = ArrayList::new) private List<String> defensiveCopyList;
+        @Getter(optional = true) private String optionalField;
 
         private List<String> localWrap(List<String> list) {
             return null;
