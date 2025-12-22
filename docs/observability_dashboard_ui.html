@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Observability Control Room</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root {
+      --bg: #0f172a;
+      --panel: #1e293b;
+      --accent: #38bdf8;
+      --accent-muted: rgba(56, 189, 248, 0.15);
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.15), transparent 55%),
+                  radial-gradient(circle at bottom right, rgba(94, 234, 212, 0.12), transparent 45%),
+                  var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: stretch;
+    }
+
+    .sidebar {
+      width: 260px;
+      background: rgba(15, 23, 42, 0.8);
+      border-right: 1px solid rgba(148, 163, 184, 0.2);
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .sidebar h1 {
+      margin: 0;
+      font-size: 20px;
+      letter-spacing: 0.02em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .sidebar h1::before {
+      content: "";
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.6);
+    }
+
+    .sidebar nav {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .sidebar button {
+      background: transparent;
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      border-radius: 10px;
+      color: var(--text);
+      padding: 10px 12px;
+      text-align: left;
+      font-size: 14px;
+      cursor: pointer;
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .sidebar button:hover,
+    .sidebar button.active {
+      border-color: var(--accent);
+      background: var(--accent-muted);
+    }
+
+    .main {
+      flex: 1;
+      padding: 32px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: rgba(30, 41, 59, 0.85);
+      border: 1px solid rgba(148, 163, 184, 0.16);
+      border-radius: 16px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      box-shadow: 0 12px 32px rgba(15, 23, 42, 0.45);
+    }
+
+    .card h2 {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .status-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .status-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(148, 163, 184, 0.4);
+      box-shadow: 0 0 0 3px rgba(148, 163, 184, 0.08);
+    }
+
+    .status-dot.healthy {
+      background: #4ade80;
+      box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.18);
+    }
+
+    .status-dot.warning {
+      background: #facc15;
+      box-shadow: 0 0 0 3px rgba(250, 204, 21, 0.22);
+    }
+
+    .status-dot.risk {
+      background: #fb7185;
+      box-shadow: 0 0 0 3px rgba(251, 113, 133, 0.22);
+    }
+
+    .confidence {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(148, 163, 184, 0.12);
+      font-size: 13px;
+      color: var(--text);
+      width: fit-content;
+    }
+
+    .confidence span {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+
+    .timeline-step {
+      border-left: 2px solid rgba(56, 189, 248, 0.35);
+      padding-left: 16px;
+      position: relative;
+    }
+
+    .timeline-step::before {
+      content: "";
+      position: absolute;
+      left: -11px;
+      top: 6px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.18);
+    }
+
+    .timeline-step h3 {
+      margin: 0;
+      font-size: 15px;
+    }
+
+    .timeline-step ul {
+      margin: 8px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .footer-note {
+      font-size: 13px;
+      color: var(--muted);
+      text-align: right;
+    }
+
+    @media (max-width: 900px) {
+      body {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: auto;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px 20px;
+      }
+
+      .sidebar nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+
+      .sidebar button {
+        flex: 1;
+        min-width: 140px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <aside class="sidebar">
+    <h1>Observability Control</h1>
+    <nav>
+      <button class="active">Intake</button>
+      <button>Processing</button>
+      <button>Visualization</button>
+      <button>Alerts</button>
+      <button>Governance</button>
+    </nav>
+    <section>
+      <p class="footer-note">Blueprint v1.0 · Confidence snapshot updated hourly.</p>
+    </section>
+  </aside>
+
+  <main class="main">
+    <section>
+      <h2>System Status Overview</h2>
+      <div class="summary-grid">
+        <article class="card">
+          <h2>Data Intake Layer</h2>
+          <p>SDKs and sidecars stream telemetry into schema-validated Kafka topics with autoscaled collectors.</p>
+          <div class="status-row">
+            <span class="status-dot healthy"></span>
+            <span>Throughput 92%, schema errors &lt; 0.2%</span>
+          </div>
+          <div class="confidence">
+            Confidence <span>0.80</span>
+          </div>
+        </article>
+        <article class="card">
+          <h2>Processing &amp; Storage</h2>
+          <p>Flink normalizes events before routing to ClickHouse for hot queries and S3 + OpenSearch for deep history.</p>
+          <div class="status-row">
+            <span class="status-dot warning"></span>
+            <span>Storage burn rate 67%, tiering review pending</span>
+          </div>
+          <div class="confidence">
+            Confidence <span>0.75</span>
+          </div>
+        </article>
+        <article class="card">
+          <h2>Visualization UI</h2>
+          <p>React dashboards backed by GraphQL federation provide templated views, drilldowns, and correlations.</p>
+          <div class="status-row">
+            <span class="status-dot warning"></span>
+            <span>Widget latency P95 420ms · improving</span>
+          </div>
+          <div class="confidence">
+            Confidence <span>0.70</span>
+          </div>
+        </article>
+        <article class="card">
+          <h2>Alerting &amp; Automation</h2>
+          <p>Rules-as-code compile into Alertmanager, syncing ChatOps rooms and ticketing workflows.</p>
+          <div class="status-row">
+            <span class="status-dot healthy"></span>
+            <span>Escalation SLO 99.5% · fatigue guardrails active</span>
+          </div>
+          <div class="confidence">
+            Confidence <span>0.80</span>
+          </div>
+        </article>
+        <article class="card">
+          <h2>Governance &amp; Reliability</h2>
+          <p>Terraform-managed infrastructure with feature flags, audit trails, and chaos drill runbooks.</p>
+          <div class="status-row">
+            <span class="status-dot risk"></span>
+            <span>Cross-region failover drill overdue</span>
+          </div>
+          <div class="confidence">
+            Confidence <span>0.65</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Operational Flow</h2>
+      <div class="timeline">
+        <div class="card timeline-step">
+          <h3>1. Instrument</h3>
+          <ul>
+            <li>Service SDK rollout checklist</li>
+            <li>Schema registry validation</li>
+            <li>Collector autoscale policy</li>
+          </ul>
+        </div>
+        <div class="card timeline-step">
+          <h3>2. Normalize</h3>
+          <ul>
+            <li>Streaming enrichment via Flink</li>
+            <li>Data quality scorecards</li>
+            <li>Retry &amp; quarantine lanes</li>
+          </ul>
+        </div>
+        <div class="card timeline-step">
+          <h3>3. Observe</h3>
+          <ul>
+            <li>Unified metrics/logs/traces search</li>
+            <li>Scenario templates for incidents</li>
+            <li>Drilldown to RCA wikis</li>
+          </ul>
+        </div>
+        <div class="card timeline-step">
+          <h3>4. Act</h3>
+          <ul>
+            <li>Alertmanager routing ladders</li>
+            <li>ChatOps + ticket sync</li>
+            <li>Runbook-driven automation</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

@@ -85,6 +85,12 @@
         <!-- Hidden action invoked from settings to refresh folded text colors -->
         <action id="com.intellij.advancedExpressionFolding.action.UpdateFoldedTextColorsAction"
                 class="com.intellij.advancedExpressionFolding.action.UpdateFoldedTextColorsAction"/>
+
+        <action id="com.intellij.advancedExpressionFolding.action.ShowObservabilityDashboardPreviewAction"
+                class="com.intellij.advancedExpressionFolding.action.ShowObservabilityDashboardPreviewAction"
+                text="Show Observability Dashboard Variants">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+        </action>
     </actions>
 
     <extensionPoints>
