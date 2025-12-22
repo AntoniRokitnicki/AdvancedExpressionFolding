@@ -1,8 +1,8 @@
 # Scripts
 
-## folding-suite-sweeper.main.kts
+## folding-suite-sweeper tool
 
-`scripts/folding-suite-sweeper.main.kts` exhaustively sweeps the folding test suite to isolate problematic `FoldingTest` cases. For every non-empty subset of the known flaky JUnit 5 classes, the script:
+`tools/folding-suite-sweeper` provides a JVM and GraalVM-native executable that exhaustively sweeps the folding test suite to isolate problematic `FoldingTest` cases. For every non-empty subset of the known flaky JUnit 5 classes, the tool:
 
 1. Re-runs `./gradlew test` while excluding the subset via `-Djunit.jupiter.excludeClassNamePatterns` so the rest of the suite executes in order.
 2. Immediately replays `FoldingTest` (`./gradlew test --tests com.intellij.advancedExpressionFolding.FoldingTest`).
@@ -16,10 +16,25 @@ candidate=<excluded classes joined with '+'> foldingTestFirstFailure=<method or 
 
 ### Usage
 
-Run from the project root so the script can find `./gradlew` and the `build/` directory:
+Run from the project root so the tool can find `./gradlew` and the `build/` directory. The JVM launcher is available via Gradle:
 
 ```bash
-kotlinc -script scripts/folding-suite-sweeper.main.kts
+./gradlew :tools:folding-suite-sweeper:run
 ```
 
-The script enumerates 31 candidate subsets, so a complete sweep is lengthy. Use standard Gradle environment variables (e.g., `ORG_GRADLE_PROJECT_...`) if you need to tune JVM settings for stability.
+To build a standalone native executable with GraalVM, run:
+
+```bash
+./gradlew :tools:folding-suite-sweeper:nativeCompile
+```
+
+The resulting binary is written to `tools/folding-suite-sweeper/build/native/nativeCompile/folding-suite-sweeper`.
+
+The module ships reachability metadata at `META-INF/native-image` so the GraalVM build can eagerly initialize the sweeper
+package, disable the fallback image, and tighten the image heap for a smaller, more memory-efficient binary. These hints are
+consumed automatically by the Gradle GraalVM plugin.
+
+For reproducible binaries without a local GraalVM installation, the `folding-suite-sweeper-native` GitHub Actions workflow
+produces native executables for Linux, macOS, and Windows on demand and uploads them as build artifacts.
+
+The tool enumerates 31 candidate subsets, so a complete sweep is lengthy. Use standard Gradle environment variables (e.g., `ORG_GRADLE_PROJECT_...`) if you need to tune JVM settings for stability.
