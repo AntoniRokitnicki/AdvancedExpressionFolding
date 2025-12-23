@@ -20,6 +20,7 @@ plugins {
     alias(libs.plugins.changelog) // Gradle Changelog Plugin
     alias(libs.plugins.qodana) // Gradle Qodana Plugin
     alias(libs.plugins.kover) // Gradle Kover Plugin
+    id("io.stryker-mutator.stryker4k")
 }
 
 group = properties("pluginGroup").get()
@@ -60,12 +61,14 @@ idea {
 sourceSets {
     named("main") {
         java.srcDirs("src")
-        kotlin.srcDirs("src")
+        java.exclude("test/**")
+        kotlin.srcDirs("src", "src/main/kotlin")
+        kotlin.exclude("test/**")
         resources.srcDirs("resources")
     }
     named("test") {
         java.srcDir("test")
-        kotlin.srcDirs("test")
+        kotlin.srcDirs("test", "src/test/kotlin")
     }
 }
 
@@ -104,6 +107,8 @@ dependencies {
     testImplementation(libs.junit.jupiter.params)
     testImplementation(libs.junit.pioneer)
     testImplementation(libs.junit.vintage.engine)
+    testImplementation(kotlin("test"))
+    testImplementation("org.junit.jupiter:junit-jupiter:5.11.3")
     implementation(libs.kodein.di.conf)
 
     // IntelliJ Platform Gradle Plugin Dependencies Extension - read more: https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-gradle-plugin-dependencies-extension.html
