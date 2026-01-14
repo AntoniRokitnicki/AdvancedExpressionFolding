@@ -1,19 +1,16 @@
 package com.intellij.advancedExpressionFolding.processor.methodcall.arithmetic
 
-import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.math.basic.Not
-import com.intellij.advancedExpressionFolding.processor.methodcall.Context
-import com.intellij.psi.PsiMethodCallExpression
+import com.intellij.advancedExpressionFolding.processor.methodcall.arithmetic.ConfiguredArithmeticMethodCall.ArgumentArity
 
-class ArithmeticNotMethodCall : AbstractArithmeticMethodCall() {
-    override val methodNames by lazy { listOf("not") }
-    
-    override fun onNoArguments(
-        element: PsiMethodCallExpression,
-        context: Context
-    ): Expression? = Not(
-        element,
-        element.textRange,
-        context.getOperands()
-    )
-}
+class ArithmeticNotMethodCall : ConfiguredArithmeticMethodCall(
+    methodNames = listOf("not"),
+    argumentArity = ArgumentArity.NO_ARGUMENTS,
+    expressionBuilder = { element, context ->
+        Not(
+            element,
+            element.textRange,
+            context.getOperands()
+        )
+    }
+)
