@@ -97,7 +97,9 @@ dependencies {
     implementation(libs.annotations)
     implementation(libs.jsr305)
     implementation(libs.jackson.dataformat.toml)
+    implementation(libs.jackson.module.kotlin)
     implementation(examplesTestOutput)
+    implementation("org.apache.commons:commons-math3:3.6.1")
 
     testRuntimeOnly(libs.junit.jupiter.engine)
     testImplementation(libs.junit.jupiter.api)
