@@ -40,6 +40,12 @@
                            displayType="BALLOON"
                            isLogByDefault="true"/>
 
+        <toolWindow id="Advanced Folding Dashboard"
+                     anchor="right"
+                     factoryClass="com.intellij.advancedExpressionFolding.view.dashboard.LiveUsageDashboardFactory"
+                     canCloseContent="false"
+                     stripeTitle="Live Usage"/>
+
         <!-- Suggests pseudo-annotations supported by the plugin -->
         <completion.contributor
                 language="JAVA"
