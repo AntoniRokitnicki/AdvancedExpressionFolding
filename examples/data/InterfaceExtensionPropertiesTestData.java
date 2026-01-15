@@ -242,24 +242,24 @@ public class InterfaceExtensionPropertiesTestData {
 
     public interface NullableUser {
         @Nullable
-        Integer getAge();
+        Integer getAge(); // folded to Integer?
         void setAge(@Nullable int age);
         @Nullable
-        String getName();
+        String getName(); // folded to String?
         void setName(@Nullable String name);
     }
 
     public interface NotNullUser {
-        @NotNull() String getName();
+        @NotNull() String getName(); // folded to String!!
         void setName(@NotNull String name);
         int getAge();
     }
 
     /**
      public interface User {
-        @Getter String name; <inlay jump to setter?>
+        String name; <inlay jump to setter?>
         @Setter String name; <inlay jump to getter?>
-        @Getter int age;
+        int age;
      }
     **/
 
