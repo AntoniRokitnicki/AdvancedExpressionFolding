@@ -16,6 +16,15 @@
         <!-- Application-level service that persists plugin settings -->
         <applicationService
                 serviceImplementation="com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings"/>
+        <applicationService
+                serviceImplementation="com.intellij.advancedExpressionFolding.onboarding.GamifiedOnboardingQuestService"/>
+        <toolWindow id="Onboarding Quests"
+                    anchor="right"
+                    factoryClass="com.intellij.advancedExpressionFolding.onboarding.GamifiedOnboardingToolWindowFactory"/>
+        <statusBarWidgetFactory
+                implementation="com.intellij.advancedExpressionFolding.onboarding.OnboardingQuestStatusBarWidgetFactory"/>
+        <editorNotificationProvider
+                implementation="com.intellij.advancedExpressionFolding.onboarding.OnboardingQuestEditorNotificationProvider"/>
         <!-- Listens for editor lifecycle to fold code one second after the editor opens and clear on release -->
         <editorFactoryListener implementation="com.intellij.advancedExpressionFolding.FoldingEditorCreatedListener"/>
         <!-- Adds an Alt+Enter intention on method names to fold calls dynamically -->
