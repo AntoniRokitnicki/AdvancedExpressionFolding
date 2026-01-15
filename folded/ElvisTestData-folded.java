@@ -8,9 +8,14 @@ public class ElvisTestData {
         ElvisTestData e = create();
         System.out.println(e ?: "");
         System.out.println(e?.sayHello() ?: "");
+        System.out.println(e?.sayHello());
+        System.out.println(e);
         System.out.println(e ?: ""); // Inverted Elvis should also fold to e ?: ""
+        System.out.println(e?.sayHello());
         System.out.println(e != null && e.get() != null ? e.get() : ""); // Should be System.out.println(e?.get ?: "")
         System.out.println(e != null && e.get() != null ? e.get().sayHello() : ""); // Should be System.out.println(e?.get?.sayHello() ?: "")
+        System.out.println(e != null ? convert(e) : null);
+        System.out.println(f() != null ? f() : other());
         e?.get().sayHello();
         e.get()?.sayHello();
         e?.get()?.sayHello();
@@ -31,5 +36,17 @@ public class ElvisTestData {
 
     private ElvisTestData get() {
         return e;
+    }
+
+    private static String convert(ElvisTestData data) {
+        return data?.sayHello();
+    }
+
+    private static ElvisTestData f() {
+        return Math.random() > 0.5 ? new ElvisTestData() : null;
+    }
+
+    private static String other() {
+        return "fallback";
     }
 }
