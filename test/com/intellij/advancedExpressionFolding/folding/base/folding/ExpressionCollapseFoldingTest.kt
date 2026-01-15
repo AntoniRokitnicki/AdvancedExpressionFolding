@@ -20,6 +20,10 @@ interface ExpressionCollapseFoldingTest : FoldingTestSection {
     fun getSetPutTestData() = testCase.runFoldingTest(foldingState()::getExpressionsCollapse)
 
     @Test
+    fun arraysAsListNegativeNumbersTestData() =
+        testCase.runFoldingTest(foldingState()::getExpressionsCollapse)
+
+    @Test
     fun sliceTestData() = testCase.runFoldingTest(foldingState()::slicingExpressionsCollapse)
 
     @Test
