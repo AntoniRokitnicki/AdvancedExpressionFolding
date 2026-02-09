@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Lombok Pattern Off</title>
+    <meta name="description" content="Uses a regex to disable Lombok folding for matching classes." />
+  </head>
+  <body>
+    <h1>Lombok Pattern Off</h1>
+    <section aria-labelledby="feature-summary">
+      <h2 id="feature-summary">Summary</h2>
+      <dl>
+      <dt>State key</dt>
+      <dd><code>lombokPatternOff</code></dd>
+      <dt>Default</dt>
+      <dd>Off</dd>
+      <dt>Controlled by</dt>
+      <dd><code>lombokPatternOff</code></dd>
+      </dl>
+    </section>
+    <section aria-labelledby="feature-body">
+      <h2 id="feature-body">Details</h2>
+      <pre>:::info Toggle summary
+- **State key:** `lombokPatternOff`
+- **Default:** Off
+- **Controlled by:** `lombokPatternOff`
+:::
+
+## Lombok Pattern Off
+Uses a regex to disable Lombok folding for matching classes.
+
+### Example: LombokPatternOffTestData
+
+examples/data/LombokPatternOffTestData.java:
+```java
+            return &quot;ToStringFull{&quot; +
+                    &quot;data=&quot; + data +
+                    &quot;, ok=&quot; + ok +
+                    &#x27;}&#x27;;
+// ...
+                return &quot;ToStringPartial{&quot; +
+                        &quot;data=&quot; + data +
+                        &#x27;}&#x27;;
+```
+
+folded/LombokPatternOffTestData-folded.java:
+```java
+            return &quot;ToStringFull{&quot; + &quot;data=&quot; + data + &quot;, ok=&quot; + ok + &#x27;}&#x27;;
+// ...
+                return &quot;ToStringPartial{&quot; + &quot;data=&quot; + data + &#x27;}&#x27;;
+```
+
+Highlights LombokPatternOffTestData with lombok pattern off.
+Removes boilerplate while preserving behavior.
+
+### Example: LombokPatternOffNegativeTestData
+
+examples/data/LombokPatternOffNegativeTestData.java:
+```java
+public class LombokPatternOffNegativeTestData {
+
+    private static final long serialVersionUID = 1234567L;
+// ...
+    public LombokPatternOffNegativeTestData getData() {
+        return data;
+    }
+// ...
+        this.string = string;
+    }
+```
+
+folded/LombokPatternOffNegativeTestData-folded.java:
+```java
+@Builder(ClassWithBuilder) @Getter @Setter @Serial public class LombokPatternOffNegativeTestData {
+// ...
+    @Getter public class LombokGetters {
+        LombokPatternOffNegativeTestData data;
+        boolean ok;
+```
+
+Highlights LombokPatternOffNegativeTestData with lombok pattern off.
+Removes boilerplate while preserving behavior.</pre>
+    </section>
+  </body>
+</html>

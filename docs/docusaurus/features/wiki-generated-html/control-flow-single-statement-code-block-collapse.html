@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Control Flow Single Statement Code Block Collapse</title>
+    <meta name="description" content="Folds single-statement control-flow braces in read-only files." />
+  </head>
+  <body>
+    <h1>Control Flow Single Statement Code Block Collapse</h1>
+    <section aria-labelledby="feature-summary">
+      <h2 id="feature-summary">Summary</h2>
+      <dl>
+      <dt>State key</dt>
+      <dd><code>controlFlowSingleStatementCodeBlockCollapse</code></dd>
+      <dt>Default</dt>
+      <dd>Off</dd>
+      <dt>Controlled by</dt>
+      <dd><code>controlFlowSingleStatementCodeBlockCollapse</code></dd>
+      </dl>
+    </section>
+    <section aria-labelledby="feature-body">
+      <h2 id="feature-body">Details</h2>
+      <pre>:::info Toggle summary
+- **State key:** `controlFlowSingleStatementCodeBlockCollapse`
+- **Default:** Off
+- **Controlled by:** `controlFlowSingleStatementCodeBlockCollapse`
+:::
+
+## Control Flow Single Statement Code Block Collapse
+Folds single-statement control-flow braces in read-only files.
+
+### Example: ControlFlowSingleStatementTestData
+
+examples/data/ControlFlowSingleStatementTestData.java:
+```java
+        if (args.length &gt; 0) {
+// ...
+        }
+        if (args.length == 0) {
+```
+
+folded/ControlFlowSingleStatementTestData-folded.java:
+```java
+        if (args.length &gt; 0) 
+// ...
+        if (args.length == 0) 
+```
+
+Highlights ControlFlowSingleStatementTestData with control flow single statement code block collapse.
+Removes boilerplate while preserving behavior.</pre>
+    </section>
+  </body>
+</html>
