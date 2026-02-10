@@ -8,6 +8,7 @@ import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiField
 import com.intellij.psi.PsiMethod
 import com.intellij.psi.util.MethodSignature
+import org.jetbrains.annotations.TestOnly
 
 object Keys {
     private const val PREFIX = "AEF-"
@@ -32,7 +33,6 @@ object Keys {
 
     val METHOD_TO_PARENT_CLASS_KEY = Key<MutableMap<MethodSignature, String>>("${PREFIX}methodToParentClass")
 
-    //TODO: convert Keys to enum
     private val values: Set<Key<*>> by lazy {
         setOf(
             BUILDER,
@@ -45,8 +45,12 @@ object Keys {
             VERSION_NOT_SYNTHETIC_KEY,
             FIELD_KEY,
             FULL_CACHE,
+            METHOD_TO_PARENT_CLASS_KEY,
         )
     }
+    @get:TestOnly
+    internal val allKeys: Set<Key<*>>
+        get() = values
     fun clearAllOnExpire(psiElement: PsiElement) {
         values.forEach {
             psiElement.putUserData(it, null)
