@@ -44,13 +44,13 @@ Related features: (none)
 
 #### Keyword and literal replacements
 
-The emojify processor scans every `PsiJavaToken` that survives other folds and swaps specific keyword tokens for fixed emoji glyphs. The mapping is hard-coded in `PsiJavaTokenExt` and covers null literals, modifiers, control-flow keywords, and primitive types, ensuring that the emoji replaces only the token text while leaving surrounding punctuation intact.【F:src/com/intellij/advancedExpressionFolding/processor/token/PsiJavaTokenExt.kt†L12-L58】
+The emojify processor scans every `PsiJavaToken` that survives other folds and swaps specific keyword tokens for fixed emoji glyphs. The mapping is hard-coded in `PsiJavaTokenExt` and covers null literals, modifiers, control-flow keywords, primitive types, and the common `String` reference, ensuring that the emoji replaces only the token text while leaving surrounding punctuation intact.【F:src/com/intellij/advancedExpressionFolding/processor/token/PsiJavaTokenExt.kt†L12-L59】
 
 | Category | Java tokens | Emoji replacement |
 | --- | --- | --- |
 | Literals | `null` | `🕳️` |
 | Modifiers | `final`, `static`, `abstract`, `native`, `transient`, `volatile`, `protected`, `private` | `🔒`, `⚡`, `🎨`, `🏕️`, `🚂`, `☢️`, `🛡️`, `🚫` |
-| Type keywords | `void`, `boolean`, `byte`, `char`, `int`, `long`, `float`, `double` | `💀`, `🔘`, `💾`, `🅲`, `🔢`, `📏`, `🏊`, `⚖️` |
+| Type keywords | `void`, `boolean`, `byte`, `char`, `int`, `long`, `float`, `double`, `String` | `💀`, `🔘`, `💾`, `🅲`, `🔢`, `📏`, `🏊`, `⚖️`, `🪡` |
 | Namespace keywords | `package`, `import`, `exports`, `requires`, `record`, `interface`, `enum`, `class` | `📦`, `🚢`, `🚢`, `🚧`, `📀`, `🖥️`, `📊`, `🏛️` |
 | Flow-control keywords | `try`, `catch`, `throw`, `throws`, `return`, `break`, `case`, `do`, `else`, `for`, `while`, `switch`, `yield` | `🤞`, `🎣`, `🪃`, `🪃`, `🔙`, `✋`, `📦`, `▶️`, `🔄`, `🔁`, `♾️`, `🔀`, `🚸` |
 | References | `this`, `super`, `instanceof` | `📍`, `💪`, `is` |
