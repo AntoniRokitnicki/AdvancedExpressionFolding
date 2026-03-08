@@ -35,7 +35,7 @@ jobs:
       - uses: "actions/checkout@v5"
       - name: "TODO to Issue"
         id: todo-to-issue
-        uses: "alstr/todo-to-issue-action@v5.1.13"
+        uses: "alstr/todo-to-issue-action@v5.1.14"
         with:
           AUTO_ASSIGN: "${{ inputs.AUTO_ASSIGN }}"
           CLOSE_ISSUES: "${{ inputs.CLOSE_ISSUES }}"
