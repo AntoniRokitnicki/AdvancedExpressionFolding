@@ -1020,6 +1020,7 @@ public class LombokTestData {
         private List<String> lazyLoadedList;
         private List<String> oneLineLazyLoadedList;
         private List<String> defensiveCopyList;
+        private String optionalField;
 
         public List<String> getWrapper() {
             return Collections.unmodifiableList(wrapper);
@@ -1063,6 +1064,10 @@ public class LombokTestData {
             if (oneLineLazyLoadedList == null) oneLineLazyLoadedList = new ArrayList<>();
             return oneLineLazyLoadedList;
         }
+
+        public Optional<String> getOptionalField() {
+            return Optional.ofNullable(optionalField);
+        }
 ```
 
 **After**
@@ -1076,6 +1081,7 @@ public class LombokTestData {
         @Getter(lazy = ArrayList::new) private List<String> lazyLoadedList;
         @Getter(lazy = ArrayList::new) private List<String> oneLineLazyLoadedList;
         @Getter(wrapper = ArrayList::new) private List<String> defensiveCopyList;
+        @Getter(optional = true) private String optionalField;
 ```
 
 
