@@ -179,7 +179,7 @@ jobs:
 
       - name: Update regeneration label
         if: steps.context.outputs.should_run == 'true' && steps.build.outputs.success == 'true'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         env:
           PR_NUMBER: ${{ env.PR_NUMBER }}
           STATUS: ${{ steps.result.outputs.status }}
