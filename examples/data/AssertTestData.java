@@ -10,5 +10,9 @@ public class AssertTestData {
         }
         if (args.length == 2)
             throw new IllegalArgumentException("...");
+        String[] strings = new String[0];
+        if (strings.length == 0) {
+            throw new RuntimeException("error");
+        }
     }
 }
