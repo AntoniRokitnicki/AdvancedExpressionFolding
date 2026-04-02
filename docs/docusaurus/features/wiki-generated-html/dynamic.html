@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Dynamic</title>
+    <meta name="description" content="Applies dynamic naming to methods based on a configuration file." />
+  </head>
+  <body>
+    <h1>Dynamic</h1>
+    <section aria-labelledby="feature-summary">
+      <h2 id="feature-summary">Summary</h2>
+      <dl>
+      <dt>State key</dt>
+      <dd><code>dynamic</code></dd>
+      <dt>Default</dt>
+      <dd>On</dd>
+      <dt>Controlled by</dt>
+      <dd><code>dynamic</code></dd>
+      </dl>
+    </section>
+    <section aria-labelledby="feature-body">
+      <h2 id="feature-body">Details</h2>
+      <pre>:::info Toggle summary
+- **State key:** `dynamic`
+- **Default:** On
+- **Controlled by:** `dynamic`
+:::
+
+## Dynamic names for methods based on $user.home/dynamic-ajf2.toml
+Applies dynamic naming to methods based on a configuration file.
+
+### Example: DynamicTestData
+
+examples/data/DynamicTestData.java:
+```java
+    public static void staticMethod(Data data) {
+// ...
+                .normalMethod(
+                        staticMethod(
+```
+
+folded/DynamicTestData-folded.java:
+```java
+    public static void changedStaticMethod(Data data) {
+// ...
+                .changedNormalMethod(
+                        changedStaticMethod(
+```
+
+Highlights DynamicTestData with dynamic names for methods based on $user.home/dynamic-ajf2.toml.
+Removes boilerplate while preserving behavior.</pre>
+    </section>
+  </body>
+</html>
