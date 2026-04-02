@@ -3,21 +3,22 @@ package com.intellij.advancedExpressionFolding.processor.core
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.operation.basic.TypeCast
 import com.intellij.advancedExpressionFolding.processor.cache.CacheExt
+import com.intellij.advancedExpressionFolding.processor.controlflow.IfExt
 import com.intellij.advancedExpressionFolding.processor.expression.AssignmentExpressionExt
 import com.intellij.advancedExpressionFolding.processor.expression.BinaryExpressionExt
 import com.intellij.advancedExpressionFolding.processor.expression.LiteralExpressionExt
 import com.intellij.advancedExpressionFolding.processor.expression.PrefixExpressionExt
 import com.intellij.advancedExpressionFolding.processor.expression.PsiArrayAccessExpressionExt
-import com.intellij.advancedExpressionFolding.processor.reference.ReferenceExpressionExt
 import com.intellij.advancedExpressionFolding.processor.expression.PsiTypeCastExpressionExt
-import com.intellij.advancedExpressionFolding.processor.controlflow.IfExt
 import com.intellij.advancedExpressionFolding.processor.methodcall.MethodCallExpressionExt
 import com.intellij.advancedExpressionFolding.processor.reference.NewExpressionExt
+import com.intellij.advancedExpressionFolding.processor.reference.ReferenceExpressionExt
 import com.intellij.openapi.editor.Document
 import com.intellij.psi.PsiArrayAccessExpression
 import com.intellij.psi.PsiAssignmentExpression
 import com.intellij.psi.PsiBinaryExpression
 import com.intellij.psi.PsiConditionalExpression
+import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiLiteralExpression
 import com.intellij.psi.PsiMethodCallExpression
 import com.intellij.psi.PsiNewExpression
@@ -27,89 +28,125 @@ import com.intellij.psi.PsiPrefixExpression
 import com.intellij.psi.PsiReferenceExpression
 import com.intellij.psi.PsiTypeCastExpression
 
-class ArrayAccessExpressionBuilder : BuildExpression<PsiArrayAccessExpression>(PsiArrayAccessExpression::class.java) {
-    override fun checkConditions(element: PsiArrayAccessExpression) = getExpressionsCollapse
-
-    override fun buildExpression(element: PsiArrayAccessExpression, document: Document, synthetic: Boolean) =
+internal val expressionBuilderDefinitions:
+    Map<Class<out BuildExpression<*>>, FunctionalExpressionBuilderDefinition<out PsiElement>> = mapOf(
+    ArrayAccessExpressionBuilder::class.java to builderDefinition<PsiArrayAccessExpression>(
+        checkConditions = { getExpressionsCollapse }
+    ) { element, document, _ ->
         PsiArrayAccessExpressionExt.getArrayAccessExpression(element, document)
-}
-
-class MethodCallExpressionBuilder : BuildExpression<PsiMethodCallExpression>(PsiMethodCallExpression::class.java) {
-    override fun buildExpression(element: PsiMethodCallExpression, document: Document, synthetic: Boolean) =
+    },
+    MethodCallExpressionBuilder::class.java to builderDefinition<PsiMethodCallExpression> { element, document, _ ->
         MethodCallExpressionExt.getMethodCallExpression(element, document)
-}
-
-class ReferenceExpressionBuilder : BuildExpression<PsiReferenceExpression>(PsiReferenceExpression::class.java) {
-    override fun buildExpression(element: PsiReferenceExpression, document: Document, synthetic: Boolean) =
+    },
+    ReferenceExpressionBuilder::class.java to builderDefinition<PsiReferenceExpression> { element, _, _ ->
         ReferenceExpressionExt.getReferenceExpression(element)
-}
-
-class NewExpressionBuilder : BuildExpression<PsiNewExpression>(PsiNewExpression::class.java) {
-    override fun buildExpression(element: PsiNewExpression, document: Document, synthetic: Boolean) =
+    },
+    NewExpressionBuilder::class.java to builderDefinition<PsiNewExpression> { element, document, _ ->
         NewExpressionExt.getNewExpression(element, document)
-}
-
-class LiteralExpressionBuilder : BuildExpression<PsiLiteralExpression>(PsiLiteralExpression::class.java) {
-    override fun buildExpression(element: PsiLiteralExpression, document: Document, synthetic: Boolean) =
+    },
+    LiteralExpressionBuilder::class.java to builderDefinition<PsiLiteralExpression> { element, _, _ ->
         LiteralExpressionExt.getLiteralExpression(element)
-}
-
-class AssignmentExpressionBuilder : BuildExpression<PsiAssignmentExpression>(PsiAssignmentExpression::class.java) {
-    override fun buildExpression(element: PsiAssignmentExpression, document: Document, synthetic: Boolean) =
+    },
+    AssignmentExpressionBuilder::class.java to builderDefinition<PsiAssignmentExpression> { element, document, _ ->
         AssignmentExpressionExt.getAssignmentExpression(element, document)
-}
-
-class PolyadicExpressionBuilder : BuildExpression<PsiPolyadicExpression>(PsiPolyadicExpression::class.java) {
-    override fun buildExpression(element: PsiPolyadicExpression, document: Document, synthetic: Boolean) =
+    },
+    PolyadicExpressionBuilder::class.java to builderDefinition<PsiPolyadicExpression> { element, document, _ ->
         IfExt.getPolyadicExpression(element, document)
-}
-
-class BinaryExpressionBuilder : BuildExpression<PsiBinaryExpression>(PsiBinaryExpression::class.java) {
-    override fun buildExpression(element: PsiBinaryExpression, document: Document, synthetic: Boolean) =
+    },
+    BinaryExpressionBuilder::class.java to builderDefinition<PsiBinaryExpression> { element, document, _ ->
         BinaryExpressionExt.getBinaryExpression(element, document)
-}
-
-class ConditionalExpressionBuilder : BuildExpression<PsiConditionalExpression>(PsiConditionalExpression::class.java) {
-    override fun buildExpression(element: PsiConditionalExpression, document: Document, synthetic: Boolean) =
+    },
+    ConditionalExpressionBuilder::class.java to builderDefinition<PsiConditionalExpression> { element, document, _ ->
         IfExt.getConditionalExpression(element, document)
-}
-
-class PrefixExpressionBuilder : BuildExpression<PsiPrefixExpression>(PsiPrefixExpression::class.java) {
-    override fun buildExpression(element: PsiPrefixExpression, document: Document, synthetic: Boolean) =
+    },
+    PrefixExpressionBuilder::class.java to builderDefinition<PsiPrefixExpression> { element, document, _ ->
         PrefixExpressionExt.getPrefixExpression(element, document)
-}
-
-class ParenthesizedExpressionBuilder :
-    BuildExpression<PsiParenthesizedExpression>(PsiParenthesizedExpression::class.java) {
-
-    override fun checkConditions(element: PsiParenthesizedExpression) = castExpressionsCollapse
-
-    override fun buildExpression(
-        element: PsiParenthesizedExpression,
-        document: Document,
-        synthetic: Boolean,
-    ): Expression? {
+    },
+    ParenthesizedExpressionBuilder::class.java to builderDefinition<PsiParenthesizedExpression>(
+        checkConditions = { castExpressionsCollapse }
+    ) { element, document, synthetic ->
         val expression = element.expression
         if (expression is PsiTypeCastExpression) {
             val typeCast = PsiTypeCastExpressionExt.getTypeCastExpression(expression, document)
             if (typeCast != null) {
-                return TypeCast(
+                return@builderDefinition TypeCast(
                     element,
                     element.textRange,
                     typeCast.getObject()
                 )
             }
         }
-        if (expression != null) {
-            return CacheExt.getExpression(expression, document, synthetic)
-        }
-        return null
-    }
-}
-
-class TypeCastExpressionBuilder : BuildExpression<PsiTypeCastExpression>(PsiTypeCastExpression::class.java) {
-    override fun checkConditions(element: PsiTypeCastExpression) = castExpressionsCollapse
-
-    override fun buildExpression(element: PsiTypeCastExpression, document: Document, synthetic: Boolean) =
+        expression?.let { CacheExt.getExpression(it, document, synthetic) }
+    },
+    TypeCastExpressionBuilder::class.java to builderDefinition<PsiTypeCastExpression>(
+        checkConditions = { castExpressionsCollapse }
+    ) { element, document, _ ->
         PsiTypeCastExpressionExt.getTypeCastExpression(element, document)
-}
+    },
+)
+
+class ArrayAccessExpressionBuilder :
+    FunctionalExpressionBuilder<PsiArrayAccessExpression>(
+        ExpressionBuilderRegistry.definition(ArrayAccessExpressionBuilder::class.java)
+    )
+
+class MethodCallExpressionBuilder :
+    FunctionalExpressionBuilder<PsiMethodCallExpression>(
+        ExpressionBuilderRegistry.definition(MethodCallExpressionBuilder::class.java)
+    )
+
+class ReferenceExpressionBuilder :
+    FunctionalExpressionBuilder<PsiReferenceExpression>(
+        ExpressionBuilderRegistry.definition(ReferenceExpressionBuilder::class.java)
+    )
+
+class NewExpressionBuilder :
+    FunctionalExpressionBuilder<PsiNewExpression>(
+        ExpressionBuilderRegistry.definition(NewExpressionBuilder::class.java)
+    )
+
+class LiteralExpressionBuilder :
+    FunctionalExpressionBuilder<PsiLiteralExpression>(
+        ExpressionBuilderRegistry.definition(LiteralExpressionBuilder::class.java)
+    )
+
+class AssignmentExpressionBuilder :
+    FunctionalExpressionBuilder<PsiAssignmentExpression>(
+        ExpressionBuilderRegistry.definition(AssignmentExpressionBuilder::class.java)
+    )
+
+class PolyadicExpressionBuilder :
+    FunctionalExpressionBuilder<PsiPolyadicExpression>(
+        ExpressionBuilderRegistry.definition(PolyadicExpressionBuilder::class.java)
+    )
+
+class BinaryExpressionBuilder :
+    FunctionalExpressionBuilder<PsiBinaryExpression>(
+        ExpressionBuilderRegistry.definition(BinaryExpressionBuilder::class.java)
+    )
+
+class ConditionalExpressionBuilder :
+    FunctionalExpressionBuilder<PsiConditionalExpression>(
+        ExpressionBuilderRegistry.definition(ConditionalExpressionBuilder::class.java)
+    )
+
+class PrefixExpressionBuilder :
+    FunctionalExpressionBuilder<PsiPrefixExpression>(
+        ExpressionBuilderRegistry.definition(PrefixExpressionBuilder::class.java)
+    )
+
+class ParenthesizedExpressionBuilder :
+    FunctionalExpressionBuilder<PsiParenthesizedExpression>(
+        ExpressionBuilderRegistry.definition(ParenthesizedExpressionBuilder::class.java)
+    )
+
+class TypeCastExpressionBuilder :
+    FunctionalExpressionBuilder<PsiTypeCastExpression>(
+        ExpressionBuilderRegistry.definition(TypeCastExpressionBuilder::class.java)
+    )
+
+private inline fun <reified T : PsiElement> builderDefinition(
+    noinline checkConditions: (FunctionalExpressionBuilder<T>.(T) -> Boolean)? = null,
+    noinline build: FunctionalExpressionBuilder<T>.(T, Document, Boolean) -> Expression?,
+): FunctionalExpressionBuilderDefinition<T> =
+    FunctionalExpressionBuilderDefinition(T::class.java, checkConditions, build)
