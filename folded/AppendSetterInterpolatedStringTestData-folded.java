@@ -15,9 +15,18 @@ public class AppendSetterInterpolatedStringTestData {
 
         new AppendSetterInterpolatedStringTestData().name = "Hello, ${args[0]}";
         new AppendSetterInterpolatedStringTestData().name = "${args[0]}, hello!";
+
+        Event event = new Event();
+        event.systemName = args[0];
+        java.util.List<String> data = new java.util.ArrayList<>();
+        data += "System name = ${event.systemName}";
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    private static class Event {
+        String systemName;
     }
 }
