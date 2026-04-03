@@ -25,6 +25,11 @@ public class ForRangeTestData {
 
                 System.out.println(a);
         }
+                for (String b : list)
+        {
+
+                System.out.println(b);
+        }
                 for ((int i, String a) : list) {
 
                 System.out.println(a);
