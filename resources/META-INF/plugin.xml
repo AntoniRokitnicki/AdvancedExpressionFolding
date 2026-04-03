@@ -18,6 +18,7 @@
                 serviceImplementation="com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings"/>
         <!-- Listens for editor lifecycle to fold code one second after the editor opens and clear on release -->
         <editorFactoryListener implementation="com.intellij.advancedExpressionFolding.FoldingEditorCreatedListener"/>
+        <postStartupActivity implementation="com.intellij.advancedExpressionFolding.integration.UserSpecificModelStartupActivity"/>
         <!-- Adds an Alt+Enter intention on method names to fold calls dynamically -->
         <intentionAction>
             <language>JAVA</language>
