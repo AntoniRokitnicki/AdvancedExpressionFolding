@@ -5,12 +5,21 @@ import com.intellij.openapi.ui.DialogWrapper
 import com.intellij.ui.components.JBTextField
 import com.intellij.ui.dsl.builder.AlignX
 import com.intellij.ui.dsl.builder.panel
+import org.jetbrains.annotations.TestOnly
 
 enum class Action {
     RENAME, REMOVE, CANCEL
 }
 
+@TestOnly
+var testRenameDialogResult: Pair<Action, MethodName>? = null
+
 fun MethodName.showRenameDialog(): Pair<Action, MethodName>? {
+    testRenameDialogResult?.let {
+        testRenameDialogResult = null
+        return it
+    }
+
     var selectedAction: Action? = null
     var newMethodName: MethodName? = null
 
