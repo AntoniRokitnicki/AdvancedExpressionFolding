@@ -14,14 +14,19 @@ import kotlin.time.Duration.Companion.seconds
 class FoldingEditorCreatedListener : EditorFactoryListener {
 
     override fun editorCreated(event: EditorFactoryEvent) {
+        val predictor = FoldingPredictor.get()
+        predictor.registerEditor(event.editor)
         CoroutineScope(Dispatchers.EDT).launch {
             delay(1.seconds)
             runWriteAction {
-                FoldingService.get().fold(event.editor, true)
+                predictor.applyPredictions(event.editor)
             }
         }
     }
 
-    override fun editorReleased(event: EditorFactoryEvent) = FoldingService.get().clearAllKeys(event.editor)
+    override fun editorReleased(event: EditorFactoryEvent) {
+        FoldingPredictor.get().unregisterEditor(event.editor)
+        FoldingService.get().clearAllKeys(event.editor)
+    }
 
 }
