@@ -1,6 +1,7 @@
 package com.intellij.advancedExpressionFolding.expression.literal
 
 import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.advancedExpressionFolding.expression.math.basic.Negate
 import com.intellij.lang.folding.FoldingDescriptor
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.editor.FoldingGroup
@@ -40,6 +41,9 @@ class ListLiteral(
             )
         }
         for (item in items) {
+            if (item is Negate) {
+                continue
+            }
             descriptors += item.buildFoldRegions(item.element, document, this).toList()
         }
         return descriptors.toTypedArray()
