@@ -1,0 +1,56 @@
+<idea-plugin>
+    <!-- @formatter:off -->
+    <!-- ========================================== -->
+    <!-- EXPRESSION BUILDER EXTENSIONS              -->
+    <!-- ========================================== -->
+    <extensions defaultExtensionNs="com.github.advanced-java-folding2">
+        <!-- Top-Level Declarations -->
+        <expressionBuilder implementation="com.intellij.advancedExpressionFolding.processor.core.ClassBuilder"/>
+
+        <!-- Method & Field Declarations -->
+        <expressionBuilder implementation="com.intellij.advancedExpressionFolding.processor.core.FieldBuilder"/>
+        <expressionBuilder implementation="com.intellij.advancedExpressionFolding.processor.core.MethodBuilder"/>
+        <expressionBuilder implementation="com.intellij.advancedExpressionFolding.processor.core.ParameterBuilder"/>
+        <expressionBuilder implementation="com.intellij.advancedExpressionFolding.processor.core.RecordComponentBuilder"/>
+
+        <!-- Code Structure -->
+        <expressionBuilder implementation="com.intellij.advancedExpressionFolding.processor.core.CodeBlockBuilder"/>
+
+        <!-- Control Flow Statements -->
+        <expressionBuilder implementation="com.intellij.advancedExpressionFolding.processor.core.IfStatementBuilder"/>
+        <expressionBuilder implementation="com.intellij.advancedExpressionFolding.processor.core.SwitchStatementBuilder"/>
+        <expressionBuilder implementation="com.intellij.advancedExpressionFolding.processor.core.TryStatementBuilder"/>
+        <expressionBuilder implementation="com.intellij.advancedExpressionFolding.processor.core.CatchSectionBuilder"/>
+        <expressionBuilder implementation="com.intellij.advancedExpressionFolding.processor.core.ForStatementBuilder"/>
+        <expressionBuilder implementation="com.intellij.advancedExpressionFolding.processor.core.ForEachStatementBuilder"/>
+        <expressionBuilder implementation="com.intellij.advancedExpressionFolding.processor.core.WhileStatementBuilder"/>
+        <expressionBuilder implementation="com.intellij.advancedExpressionFolding.processor.core.DoWhileStatementBuilder"/>
+
+        <!-- Variable Declarations -->
+        <expressionBuilder implementation="com.intellij.advancedExpressionFolding.processor.core.DeclarationStatementBuilder"/>
+        <expressionBuilder implementation="com.intellij.advancedExpressionFolding.processor.core.VariableBuilder"/>
+
+        <!-- Expressions -->
+        <expressionBuilder implementation="com.intellij.advancedExpressionFolding.processor.core.AssignmentExpressionBuilder"/>
+        <expressionBuilder implementation="com.intellij.advancedExpressionFolding.processor.core.ConditionalExpressionBuilder"/>
+        <expressionBuilder implementation="com.intellij.advancedExpressionFolding.processor.core.PolyadicExpressionBuilder"
+                           id="com.intellij.advancedExpressionFolding.polyadicExpressionBuilder"
+                           order="before com.intellij.advancedExpressionFolding.binaryExpressionBuilder"/>
+        <expressionBuilder implementation="com.intellij.advancedExpressionFolding.processor.core.BinaryExpressionBuilder"
+                           id="com.intellij.advancedExpressionFolding.binaryExpressionBuilder"/>
+        <expressionBuilder implementation="com.intellij.advancedExpressionFolding.processor.core.TypeCastExpressionBuilder"/>
+        <expressionBuilder implementation="com.intellij.advancedExpressionFolding.processor.core.PrefixExpressionBuilder"/>
+        <expressionBuilder implementation="com.intellij.advancedExpressionFolding.processor.core.ParenthesizedExpressionBuilder"/>
+        <expressionBuilder implementation="com.intellij.advancedExpressionFolding.processor.core.NewExpressionBuilder"/>
+        <expressionBuilder implementation="com.intellij.advancedExpressionFolding.processor.core.MethodCallExpressionBuilder"/>
+        <expressionBuilder implementation="com.intellij.advancedExpressionFolding.processor.core.ArrayAccessExpressionBuilder"/>
+        <expressionBuilder implementation="com.intellij.advancedExpressionFolding.processor.core.ReferenceExpressionBuilder"/>
+        <expressionBuilder implementation="com.intellij.advancedExpressionFolding.processor.core.LiteralExpressionBuilder"/>
+
+        <!-- Tokens & Keywords -->
+        <expressionBuilder implementation="com.intellij.advancedExpressionFolding.processor.core.KeywordBuilder"/>
+        <expressionBuilder implementation="com.intellij.advancedExpressionFolding.processor.core.SemicolonBuilder"/>
+        <expressionBuilder implementation="com.intellij.advancedExpressionFolding.processor.core.TokenBuilder"/>
+    </extensions>
+    <!-- @formatter:on -->
+</idea-plugin>
