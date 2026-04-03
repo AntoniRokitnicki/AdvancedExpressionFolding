@@ -1,9 +1,7 @@
 package com.intellij.advancedExpressionFolding.unit
 
 import com.intellij.advancedExpressionFolding.FoldingService
-import com.intellij.advancedExpressionFolding.FoldingServiceCoroutineScope
 import com.intellij.advancedExpressionFolding.folding.BaseTest
-import com.intellij.openapi.components.service
 import com.intellij.openapi.fileEditor.FileEditorManager
 import com.intellij.testFramework.LoggedErrorProcessor
 import com.intellij.util.ThrowableRunnable
@@ -23,8 +21,7 @@ class FoldingServiceTest : BaseTest() {
         val warnings = mutableListOf<String>()
         val project = fixture.project
         val foldingService = FoldingService.Companion.get()
-        val scope = project.service<FoldingServiceCoroutineScope>()
-        val scopeJob = scope.coroutineContext.job
+        val scopeJob = foldingService.coroutineContext.job
 
         val processor = object : LoggedErrorProcessor() {
             override fun processWarn(
