@@ -128,32 +128,10 @@
         <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.arithmetic.ArithmeticXorMethodCall"/>
 
         <!-- Math Method Calls -->
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.math.MathAbsMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.math.MathAcosMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.math.MathAsinMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.math.MathAtanMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.math.MathCbrtMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.math.MathCeilMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.math.MathCosMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.math.MathCoshMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.math.MathExpMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.math.MathFloorMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.math.MathLog10MethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.math.MathLogMethodCall"/>
         <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.math.MathMaxMethodCall"/>
         <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.math.MathMinMethodCall"/>
         <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.math.MathPowMethodCall"/>
         <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.math.MathRandomMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.math.MathRintMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.math.MathRoundMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.math.MathSinMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.math.MathSinhMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.math.MathSqrtMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.math.MathTanMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.math.MathTanhMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.math.MathToDegreesMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.math.MathToRadiansMethodCall"/>
-        <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.math.MathUlpMethodCall"/>
 
         <!-- Basic/Generic Method Calls -->
         <methodCallFolding implementation="com.intellij.advancedExpressionFolding.processor.methodcall.basic.AppendMethodCall"/>
