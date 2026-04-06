@@ -32,10 +32,10 @@ jobs:
         id: todo-to-issue-start
         run: echo "timestamp=$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> "${GITHUB_OUTPUT}"
 
-      - uses: "actions/checkout@v5"
+      - uses: "actions/checkout@v6"
       - name: "TODO to Issue"
         id: todo-to-issue
-        uses: "alstr/todo-to-issue-action@v5.1.13"
+        uses: "alstr/todo-to-issue-action@v5.1.14"
         with:
           AUTO_ASSIGN: "${{ inputs.AUTO_ASSIGN }}"
           CLOSE_ISSUES: "${{ inputs.CLOSE_ISSUES }}"
