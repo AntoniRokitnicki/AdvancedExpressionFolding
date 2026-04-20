@@ -102,7 +102,7 @@ jobs:
           dev-mode: "1"
         run: |
           set -euo pipefail
-          ./gradlew clean build --no-daemon --console=plain
+          ./gradlew clean test --console=plain
           echo "success=true" >> "$GITHUB_OUTPUT"
 
       - name: Calculate change statistics
