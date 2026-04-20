@@ -14,6 +14,7 @@ import com.intellij.psi.PsiFile
 import com.intellij.psi.PsiMethodCallExpression
 import com.intellij.psi.util.PsiTreeUtil
 import org.jetbrains.annotations.Nls
+import org.jetbrains.annotations.TestOnly
 
 class AddDynamicMethodFoldingIntention : IntentionAction {
 
@@ -69,6 +70,10 @@ class AddDynamicMethodFoldingIntention : IntentionAction {
     } == true
 
     private fun MethodName.getNewNameFromUser(): String? {
+        testNewMethodName?.let {
+            testNewMethodName = null
+            return it
+        }
         return Messages.showInputDialog(
             "Enter new method name:",
             "Add Dynamic Method Folding",
@@ -81,4 +86,7 @@ class AddDynamicMethodFoldingIntention : IntentionAction {
     private fun MethodName.remove() = ConfigurationParser.remove(this)
 
 }
+
+@TestOnly
+var testNewMethodName: String? = null
 
