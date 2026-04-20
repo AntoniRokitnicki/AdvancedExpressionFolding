@@ -125,6 +125,7 @@ class InterpolatedString(
                 placeholder.toString()
             )
         }
+        val finalSuffix = suffix
         if (lastIsQuoteCharacter) {
             descriptors += FoldingDescriptor(
                 element.node,
@@ -166,9 +167,9 @@ class InterpolatedString(
                     )
                     descriptors += FoldingDescriptor(
                         element.node,
-                        overflowRightRange,
+                        TextRange.create(last.textRange.startOffset, last.textRange.endOffset),
                         group,
-                        "}\"" + overflowText
+                        last.element.text + finalSuffix.ifEmpty { "" } + "\""
                     )
                 }
             } else {
@@ -176,7 +177,7 @@ class InterpolatedString(
                     element.node,
                     TextRange.create(last.textRange.startOffset, last.textRange.endOffset),
                     group,
-                    last.element.text + suffix + "\""
+                    last.element.text + finalSuffix + "\""
                 )
             }
         }
