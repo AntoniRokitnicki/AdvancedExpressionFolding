@@ -47,6 +47,12 @@ interface ExpressionCollapseFoldingTest : FoldingTestSection {
     )
 
     @Test
+    fun parenthesizedExpressionsTestData() = testCase.runFoldingTest(
+        foldingState()::castExpressionsCollapse,
+        foldingState()::comparingExpressionsCollapse,
+    )
+
+    @Test
     fun fieldShiftSetters() = testCase.runFoldingTest(
         foldingState()::fieldShift,
         foldingState()::getSetExpressionsCollapse,
