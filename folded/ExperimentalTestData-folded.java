@@ -110,4 +110,18 @@ public class ExperimentalTestData {
         }
     }
 
+    @FieldNameConstants static class FieldNameConstantsExample {
+
+        private final String iAmAField;
+        private final int andSoAmI;
+        private final String userIdentifier;
+    }
+
+    @FieldNameConstants(asEnum = true) static class FieldNameConstantsEnumExample {
+
+        private final String iAmAField;
+        private final int andSoAmI;
+        private final String userIdentifier;
+    }
+
 }
