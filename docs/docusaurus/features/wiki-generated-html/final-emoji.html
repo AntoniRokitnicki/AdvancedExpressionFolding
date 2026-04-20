@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Final Emoji</title>
+    <meta name="description" content="Replaces final modifiers with lock emoji markers." />
+  </head>
+  <body>
+    <h1>Final Emoji</h1>
+    <section aria-labelledby="feature-summary">
+      <h2 id="feature-summary">Summary</h2>
+      <dl>
+      <dt>State key</dt>
+      <dd><code>finalEmoji</code></dd>
+      <dt>Default</dt>
+      <dd>Off</dd>
+      <dt>Controlled by</dt>
+      <dd><code>finalEmoji</code></dd>
+      </dl>
+    </section>
+    <section aria-labelledby="feature-body">
+      <h2 id="feature-body">Details</h2>
+      <pre>:::info Toggle summary
+- **State key:** `finalEmoji`
+- **Default:** Off
+- **Controlled by:** `finalEmoji`
+:::
+
+## Final Emoji
+Replaces final modifiers with lock emoji markers.
+
+### Example: FinalEmojiTestData
+
+examples/data/FinalEmojiTestData.java:
+```java
+    public final String m() {
+        final String s = &quot;1&quot;;
+        final var s2 = &quot;2&quot;;
+// ...
+        void main(final String arg, final int i, final Object o, Data data);
+```
+
+folded/FinalEmojiTestData-folded.java:
+```java
+    public 🔒 String m() {
+        🔒 String s = &quot;1&quot;;
+        🔒 var s2 = &quot;2&quot;;
+// ...
+        void main(🔒 String arg, 🔒 int i, 🔒 Object o, Data data);
+```
+
+Highlights FinalEmojiTestData with final emoji.
+Removes boilerplate while preserving behavior.</pre>
+    </section>
+  </body>
+</html>

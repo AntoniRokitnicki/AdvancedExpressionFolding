@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Slicing Expressions Collapse</title>
+    <meta name="description" content="Folds List.subList and String.substring calls into concise slice notation." />
+  </head>
+  <body>
+    <h1>Slicing Expressions Collapse</h1>
+    <section aria-labelledby="feature-summary">
+      <h2 id="feature-summary">Summary</h2>
+      <dl>
+      <dt>State key</dt>
+      <dd><code>slicingExpressionsCollapse</code></dd>
+      <dt>Default</dt>
+      <dd>On</dd>
+      <dt>Controlled by</dt>
+      <dd><code>slicingExpressionsCollapse</code></dd>
+      </dl>
+    </section>
+    <section aria-labelledby="feature-body">
+      <h2 id="feature-body">Details</h2>
+      <pre>:::info Toggle summary
+- **State key:** `slicingExpressionsCollapse`
+- **Default:** On
+- **Controlled by:** `slicingExpressionsCollapse`
+:::
+
+## Slicing Expressions Collapse
+Folds List.subList and String.substring calls into concise slice notation.
+
+### Example: SliceTestData
+
+examples/data/SliceTestData.java:
+```java
+        System.out.println(list.subList(1, list.size()));
+        System.out.println(list.subList(1, 2));
+        System.out.println(list.subList(1, list.size()));
+        System.out.println(list.subList(0, 2));
+        System.out.println(list.subList(1, list.size() - 2));
+        System.out.println(list.subList(0, list.size() - 2));
+// ...
+        System.out.println(f.substring(1));
+        System.out.println(f.substring(1, 2));
+        System.out.println(f.substring(1, f.length()));
+        System.out.println(f.substring(0, 2));
+        System.out.println(f.substring(1, f.length() - 2));
+        System.out.println(f.substring(0, f.length() - 2));
+```
+
+folded/SliceTestData-folded.java:
+```java
+        System.out.println(list[1:]);
+        System.out.println(list[1:2]);
+        System.out.println(list[1:]);
+        System.out.println(list[:2]);
+        System.out.println(list[1:-2]);
+        System.out.println(list[:-2]);
+// ...
+        System.out.println(f[1:]);
+        System.out.println(f[1:2]);
+        System.out.println(f[1:]);
+        System.out.println(f[:2]);
+        System.out.println(f[1:-2]);
+        System.out.println(f[:-2]);
+```
+
+Highlights SliceTestData with slicing expressions collapse.
+Removes boilerplate while preserving behavior.</pre>
+    </section>
+  </body>
+</html>

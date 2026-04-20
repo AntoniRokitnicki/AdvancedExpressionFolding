@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Const</title>
+    <meta name="description" content="Folds static final fields into Kotlin-style const declarations." />
+  </head>
+  <body>
+    <h1>Const</h1>
+    <section aria-labelledby="feature-summary">
+      <h2 id="feature-summary">Summary</h2>
+      <dl>
+      <dt>State key</dt>
+      <dd><code>const</code></dd>
+      <dt>Default</dt>
+      <dd>On</dd>
+      <dt>Controlled by</dt>
+      <dd><code>const</code></dd>
+      </dl>
+    </section>
+    <section aria-labelledby="feature-body">
+      <h2 id="feature-body">Details</h2>
+      <pre>:::info Toggle summary
+- **State key:** `const`
+- **Default:** On
+- **Controlled by:** `const`
+:::
+
+## Const
+Folds static final fields into Kotlin-style const declarations.
+
+### Example: ConstTestData
+
+examples/data/ConstTestData.java:
+```java
+    static final Pattern PATTERN = Pattern.compile(&quot;.*&quot;);
+    static final Pattern PATTERN_STATIC_IMPORT = compile(&quot;.*&quot;);
+
+// ...
+    protected final static String PROTECTED_FINAL_STATIC_VAR = &quot;&quot;;
+
+    static public final String STATIC_PUBLIC_FINAL_VAR = &quot;&quot;;
+// ...
+    static final public String STATIC_FINAL_PUBLIC_VAR = &quot;&quot;;
+```
+
+folded/ConstTestData-folded.java:
+```java
+    default const PATTERN = Pattern.compile(&quot;.*&quot;);
+    default const Pattern PATTERN_STATIC_IMPORT = compile(&quot;.*&quot;);
+
+// ...
+    protected const PROTECTED_FINAL_STATIC_VAR = &quot;&quot;;
+
+    const STATIC_PUBLIC_FINAL_VAR = &quot;&quot;;
+// ...
+    const STATIC_FINAL_PUBLIC_VAR = &quot;&quot;;
+```
+
+Highlights ConstTestData with const.
+Removes boilerplate while preserving behavior.
+
+### Example: ConstructorReferenceNotationWithConstTestData
+
+examples/data/ConstructorReferenceNotationWithConstTestData.java:
+```java
+        public static final ConstClass SELF = new ConstClass();
+        public static final ConstClass SELF_ANN = new ConstClass() {
+        };
+        public static final ConstClass SELF_SUB = new SubConstClass();
+        public static final ConstClass SELF_SUB_ANN = new SubConstClass() {
+// ...
+        private static final HashMap&lt;String, String&gt; MAP = new HashMap&lt;&gt;();
+        private static final HashMap&lt;String, String&gt; MAP2 = new HashMap&lt;String, String&gt;();
+        private static final Map&lt;String, String&gt; MAP3 = new HashMap&lt;&gt;();
+        private static final Map&lt;String, String&gt; MAP_TREE = new TreeMap&lt;&gt;();
+        private static final Map&lt;String, String&gt; MAP4 = Map.of();
+```
+
+folded/ConstructorReferenceNotationWithConstTestData-folded.java:
+```java
+        const ConstClass SELF = ::new;
+        const ConstClass SELF_ANN = ::new{};
+        const ConstClass SELF_SUB = new SubConstClass();
+        const ConstClass SELF_SUB_ANN = new SubConstClass() {
+// ...
+        private const HashMap&lt;String, String&gt; MAP = ::new;
+        private const HashMap&lt;String, String&gt; MAP2 = ::new;
+        private const Map&lt;String, String&gt; MAP3 = new HashMap&lt;&gt;();
+        private const Map&lt;String, String&gt; MAP_TREE = new TreeMap&lt;&gt;();
+        private const Map&lt;String, String&gt; MAP4 = Map.of();
+```
+
+Highlights ConstructorReferenceNotationWithConstTestData with const.
+Removes boilerplate while preserving behavior.
+
+### Example: ExperimentalTestData
+
+examples/data/ExperimentalTestData.java:
+```java
+            try {
+                byte[] bytez = System.getProperty(&quot;sort-desc&quot;).getBytes();
+// ...
+            } catch (UnsupportedEncodingException e) {
+                throw new RuntimeException(e);
+```
+
+folded/ExperimentalTestData-folded.java:
+```java
+            @SneakyThrows {
+                byte[] bytez = System[&quot;sort-desc&quot;].getBytes();
+// ...
+            @SneakyThrows(IllegalArgumentException)
+            return Integer.parseInt(value);
+```
+
+Highlights ExperimentalTestData with const.
+Removes boilerplate while preserving behavior.</pre>
+    </section>
+  </body>
+</html>

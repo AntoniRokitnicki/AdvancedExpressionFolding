@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>comparingLocalDatesCollapse</title>
+    <meta name="description" content="Folds java.time isBefore/isAfter checks into readable date comparisons." />
+  </head>
+  <body>
+    <h1>comparingLocalDatesCollapse</h1>
+    <section aria-labelledby="feature-summary">
+      <h2 id="feature-summary">Summary</h2>
+      <dl>
+      <dt>State key</dt>
+      <dd><code>comparingLocalDatesCollapse</code></dd>
+      <dt>Default</dt>
+      <dd>On</dd>
+      <dt>Controlled by</dt>
+      <dd><code>comparingLocalDatesCollapse</code></dd>
+      </dl>
+    </section>
+    <section aria-labelledby="feature-body">
+      <h2 id="feature-body">Details</h2>
+      <pre>:::info Toggle summary
+- **State key:** `comparingLocalDatesCollapse`
+- **Default:** On
+- **Controlled by:** `comparingLocalDatesCollapse`
+:::
+
+## Comparing Local Dates Collapse
+Folds java.time isBefore/isAfter checks into readable date comparisons.
+
+### Example: LocalDateTestData
+
+examples/data/LocalDateTestData.java:
+```java
+        boolean isBefore = d1.isBefore(d2);
+        boolean isAfter = d1.isAfter(d2);
+        boolean d2SmallerOrEqualD1 = !d1.isBefore(d2);;
+        boolean d1SmallerOrEqualD2 = !d1.isAfter(d2);
+// ...
+        if (date1.isBefore(date2) | date1.isAfter(date2) | !date1.isBefore(date2) | !date1.isAfter(date2)) {
+```
+
+folded/LocalDateTestData-folded.java:
+```java
+        boolean isBefore = d1 &lt; d2;
+        boolean isAfter = d1 &gt; d2;
+        boolean d2SmallerOrEqualD1 = d1 ≥ d2;;
+        boolean d1SmallerOrEqualD2 = d1 ≤ d2;
+// ...
+        if (date1 &lt; date2 | date1 &gt; date2 | date1 ≥ date2 | date1 ≤ date2) {
+```
+
+Highlights LocalDateTestData with comparing local dates collapse.
+Removes boilerplate while preserving behavior.</pre>
+    </section>
+  </body>
+</html>

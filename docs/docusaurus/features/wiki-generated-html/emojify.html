@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Emojify</title>
+    <meta name="description" content="Replaces select syntax elements with emoji equivalents." />
+  </head>
+  <body>
+    <h1>Emojify</h1>
+    <section aria-labelledby="feature-summary">
+      <h2 id="feature-summary">Summary</h2>
+      <dl>
+      <dt>State key</dt>
+      <dd><code>emojify</code></dd>
+      <dt>Default</dt>
+      <dd>Off</dd>
+      <dt>Controlled by</dt>
+      <dd><code>emojify</code></dd>
+      </dl>
+    </section>
+    <section aria-labelledby="feature-body">
+      <h2 id="feature-body">Details</h2>
+      <pre>:::info Toggle summary
+- **State key:** `emojify`
+- **Default:** Off
+- **Controlled by:** `emojify`
+:::
+
+## Emojify
+Replaces select syntax elements with emoji equivalents.
+
+### Example: EmojifyTestData
+
+examples/data/EmojifyTestData.java:
+```java
+package data;
+
+import java.time.DayOfWeek;
+// ...
+public class EmojifyTestData {
+
+    public final class FinalData {
+// ...
+
+        public void anotherMethod() {
+            final int anotherFinalVariable;
+```
+
+folded/EmojifyTestData-folded.java:
+```java
+📦 data;
+
+🚢 java.time.DayOfWeek;
+// ...
+public 🏛️ EmojifyTestData {
+
+    public 🔒 🏛️ FinalData {
+// ...
+
+        public 💀 anotherMethod() {
+            🔒 🔢 anotherFinalVariable;
+```
+
+Highlights EmojifyTestData with emojify.
+Removes boilerplate while preserving behavior.</pre>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Kotlin Quick Return</title>
+    <meta name="description" content="Folds Kotlin let/return idioms into quick-return expressions." />
+  </head>
+  <body>
+    <h1>Kotlin Quick Return</h1>
+    <section aria-labelledby="feature-summary">
+      <h2 id="feature-summary">Summary</h2>
+      <dl>
+      <dt>State key</dt>
+      <dd><code>kotlinQuickReturn</code></dd>
+      <dt>Default</dt>
+      <dd>On</dd>
+      <dt>Controlled by</dt>
+      <dd><code>kotlinQuickReturn</code></dd>
+      </dl>
+    </section>
+    <section aria-labelledby="feature-body">
+      <h2 id="feature-body">Details</h2>
+      <pre>:::info Toggle summary
+- **State key:** `kotlinQuickReturn`
+- **Default:** On
+- **Controlled by:** `kotlinQuickReturn`
+:::
+
+## Kotlin Quick Return
+Folds Kotlin let/return idioms into quick-return expressions.
+
+### Example: LetReturnIt
+
+examples/data/LetReturnIt.java:
+```java
+        String var1 = getData(someString);
+        if (var1 != null) {
+            return var1;
+// ...
+        if (var5 == null) {
+            return null;
+        }
+// ...
+        String var6 = getData(someString);
+        if (var6 == null) {
+            return null;
+        }
+```
+
+folded/LetReturnIt-folded.java:
+```java
+        val var1 = getData(someString)?.let { return it }
+        val var2 = getData(someString) ?: return null
+        val var4 = getData(someString)?.let { return it }
+        var4;
+        val var5 = getData(someString) ?: return null
+// ...
+        val var6 = getData(someString) ?: return null
+```
+
+Highlights LetReturnIt with kotlin quick return.
+Removes boilerplate while preserving behavior.</pre>
+    </section>
+  </body>
+</html>

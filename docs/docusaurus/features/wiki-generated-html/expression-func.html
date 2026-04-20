@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Expression Func</title>
+    <meta name="description" content="Folds single-expression methods into expression-bodied functions." />
+  </head>
+  <body>
+    <h1>Expression Func</h1>
+    <section aria-labelledby="feature-summary">
+      <h2 id="feature-summary">Summary</h2>
+      <dl>
+      <dt>State key</dt>
+      <dd><code>expressionFunc</code></dd>
+      <dt>Default</dt>
+      <dd>On</dd>
+      <dt>Controlled by</dt>
+      <dd><code>expressionFunc</code></dd>
+      </dl>
+    </section>
+    <section aria-labelledby="feature-body">
+      <h2 id="feature-body">Details</h2>
+      <pre>:::info Toggle summary
+- **State key:** `expressionFunc`
+- **Default:** On
+- **Controlled by:** `expressionFunc`
+:::
+
+## Expression Func
+Folds single-expression methods into expression-bodied functions.
+
+### Example: ExpressionFuncTestData
+
+examples/data/ExpressionFuncTestData.java:
+```java
+    public long findNinjaId() {
+        return 1L;
+    }
+// ...
+    private void printStatus() {
+        new HashMap&lt;String, String&gt;().put(&quot;a&quot;, &quot;b&quot;);
+    }
+```
+
+folded/ExpressionFuncTestData-folded.java:
+```java
+    findNinjaId { 1L }
+// ...
+    private void printStatus() { new HashMap&lt;String, String&gt;().put(&quot;a&quot;, &quot;b&quot;) }
+```
+
+Highlights ExpressionFuncTestData with expression func.
+Removes boilerplate while preserving behavior.</pre>
+    </section>
+  </body>
+</html>

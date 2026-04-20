@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Semicolons Collapse</title>
+    <meta name="description" content="Folds redundant semicolons inside read-only files." />
+  </head>
+  <body>
+    <h1>Semicolons Collapse</h1>
+    <section aria-labelledby="feature-summary">
+      <h2 id="feature-summary">Summary</h2>
+      <dl>
+      <dt>State key</dt>
+      <dd><code>semicolonsCollapse</code></dd>
+      <dt>Default</dt>
+      <dd>Off</dd>
+      <dt>Controlled by</dt>
+      <dd><code>semicolonsCollapse</code></dd>
+      </dl>
+    </section>
+    <section aria-labelledby="feature-body">
+      <h2 id="feature-body">Details</h2>
+      <pre>:::info Toggle summary
+- **State key:** `semicolonsCollapse`
+- **Default:** Off
+- **Controlled by:** `semicolonsCollapse`
+:::
+
+## Semicolons Collapse
+Folds redundant semicolons inside read-only files.
+
+### Example: SemicolonTestData
+
+examples/data/SemicolonTestData.java:
+```java
+package data;
+// ...
+import java.util.Arrays;
+```
+
+folded/SemicolonTestData-folded.java:
+```java
+package data
+// ...
+import java.util.Arrays
+```
+
+Highlights SemicolonTestData with semicolons collapse.
+Removes boilerplate while preserving behavior.</pre>
+    </section>
+  </body>
+</html>
