@@ -16,6 +16,8 @@
         <!-- Application-level service that persists plugin settings -->
         <applicationService
                 serviceImplementation="com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings"/>
+        <applicationService
+                serviceImplementation="com.intellij.advancedExpressionFolding.ab.AbTestingService"/>
         <!-- Listens for editor lifecycle to fold code one second after the editor opens and clear on release -->
         <editorFactoryListener implementation="com.intellij.advancedExpressionFolding.FoldingEditorCreatedListener"/>
         <!-- Adds an Alt+Enter intention on method names to fold calls dynamically -->
@@ -85,6 +87,67 @@
         <!-- Hidden action invoked from settings to refresh folded text colors -->
         <action id="com.intellij.advancedExpressionFolding.action.UpdateFoldedTextColorsAction"
                 class="com.intellij.advancedExpressionFolding.action.UpdateFoldedTextColorsAction"/>
+
+        <action id="AdvancedExpressionFolding.AbTesting.Experiment.OnboardingFlow"
+                class="com.intellij.advancedExpressionFolding.action.AbExperimentStatusAction"
+                text="AB: Onboarding Flow"
+                description="Show assigned variant for Onboarding Flow experiment">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+        </action>
+        <action id="AdvancedExpressionFolding.AbTesting.Experiment.QuickHints"
+                class="com.intellij.advancedExpressionFolding.action.AbExperimentStatusAction"
+                text="AB: Quick Hints"
+                description="Show assigned variant for Quick Hints experiment">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+        </action>
+        <action id="AdvancedExpressionFolding.AbTesting.Experiment.AutoFoldIntro"
+                class="com.intellij.advancedExpressionFolding.action.AbExperimentStatusAction"
+                text="AB: Auto Fold Intro"
+                description="Show assigned variant for Auto Fold Intro experiment">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+        </action>
+        <action id="AdvancedExpressionFolding.AbTesting.Experiment.AutoFormatPrimer"
+                class="com.intellij.advancedExpressionFolding.action.AbExperimentStatusAction"
+                text="AB: Auto Format Primer"
+                description="Show assigned variant for Auto Format Primer experiment">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+        </action>
+        <action id="AdvancedExpressionFolding.AbTesting.Experiment.LiveTemplateCoach"
+                class="com.intellij.advancedExpressionFolding.action.AbExperimentStatusAction"
+                text="AB: Live Template Coach"
+                description="Show assigned variant for Live Template Coach experiment">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+        </action>
+        <action id="AdvancedExpressionFolding.AbTesting.Experiment.DocumentationNudge"
+                class="com.intellij.advancedExpressionFolding.action.AbExperimentStatusAction"
+                text="AB: Documentation Nudge"
+                description="Show assigned variant for Documentation Nudge experiment">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+        </action>
+        <action id="AdvancedExpressionFolding.AbTesting.Experiment.ShortcutTrainer"
+                class="com.intellij.advancedExpressionFolding.action.AbExperimentStatusAction"
+                text="AB: Shortcut Trainer"
+                description="Show assigned variant for Shortcut Trainer experiment">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+        </action>
+        <action id="AdvancedExpressionFolding.AbTesting.Experiment.SettingsTour"
+                class="com.intellij.advancedExpressionFolding.action.AbExperimentStatusAction"
+                text="AB: Settings Tour"
+                description="Show assigned variant for Settings Tour experiment">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+        </action>
+        <action id="AdvancedExpressionFolding.AbTesting.Experiment.EditorHighlights"
+                class="com.intellij.advancedExpressionFolding.action.AbExperimentStatusAction"
+                text="AB: Editor Highlights"
+                description="Show assigned variant for Editor Highlights experiment">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+        </action>
+        <action id="AdvancedExpressionFolding.AbTesting.Experiment.ProductivityWizard"
+                class="com.intellij.advancedExpressionFolding.action.AbExperimentStatusAction"
+                text="AB: Productivity Wizard"
+                description="Show assigned variant for Productivity Wizard experiment">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+        </action>
     </actions>
 
     <extensionPoints>
