@@ -7,6 +7,7 @@ import com.intellij.lang.folding.FoldingDescriptor
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.editor.FoldingGroup
 import com.intellij.openapi.util.TextRange
+import com.intellij.psi.PsiBlockStatement
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiForStatement
 
@@ -50,11 +51,7 @@ class ForEachStatement(
             group,
             " : "
         )
-        val placeholder = if (compactControlFlowSyntaxCollapse) {
-            " {\n"
-        } else {
-            ") {\n"
-        }
+        val placeholder = closingPlaceholder(document)
         descriptors += FoldingDescriptor(
             element.node,
             TextRange.create(arrayTextRange.endOffset, declarationTextRange.endOffset),
@@ -62,5 +59,22 @@ class ForEachStatement(
             placeholder
         )
         return descriptors.toTypedArray()
+    }
+
+    private fun closingPlaceholder(document: Document): String {
+        val body = forStatement.body as? PsiBlockStatement ?: return ") {\n"
+        val lBrace = body.codeBlock.lBrace ?: return ") {\n"
+        val rParenth = forStatement.rParenth ?: return ") {\n"
+        val start = rParenth.textRange.endOffset
+        val end = lBrace.textRange.startOffset
+        if (end <= start) {
+            return ") {\n"
+        }
+        val between = document.getText(TextRange.create(start, end))
+        return if (between.contains('\n')) {
+            ")${between}{\n"
+        } else {
+            ") {\n"
+        }
     }
 }

@@ -31,6 +31,14 @@ public class ForRangeTestData {
                                 .get(i);</fold>
                 System.out.println(a);
         }</fold>
+                for (int i = 0; i < list.size(); i++)
+        <fold text='{...}' expand='true'>{
+                        String b<fold text=' : ' expand='false'> = </fold>list<fold text=')
+        {
+' expand='false'>
+                                .get(i);</fold>
+                System.out.println(b);
+        }</fold>
                 for <fold text='((' expand='false'>(</fold>int i = 0; i < list.size(); i++) <fold text='{...}' expand='true'>{
                         String a<fold text=') : ' expand='false'> = </fold>list<fold text=') {
 ' expand='false'>
