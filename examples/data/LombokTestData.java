@@ -582,6 +582,23 @@ public class LombokTestData {
         }
     }
 
+    public class SupportedDirtyLombokSetters {
+        private List<String> setterWrapper;
+        private List<String> setterLocalWrapper;
+
+        public void setSetterWrapper(List<String> setterWrapper) {
+            this.setterWrapper = Collections.unmodifiableList(setterWrapper);
+        }
+
+        public void setSetterLocalWrapper(List<String> setterLocalWrapper) {
+            this.setterLocalWrapper = this.localWrap(setterLocalWrapper);
+        }
+
+        private List<String> localWrap(List<String> list) {
+            return list;
+        }
+    }
+
     public class DirtyLombokSetters {
         boolean dirty;
         private boolean dirty2;

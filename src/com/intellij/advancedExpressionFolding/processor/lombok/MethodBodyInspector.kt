@@ -183,6 +183,20 @@ object MethodBodyInspector {
         return "wrapper = $clazz::$method"
     }
 
+    fun PsiMethod.asWrapperSetter(field: PsiField): String? {
+        val parameter = parameterList.parameters.singleOrNull() ?: return null
+        val (left, right) = body?.statements?.singleOrNull().asAssignment() ?: return null
+        if (!left.isReference(field)) {
+            return null
+        }
+        val methodCall = right.asMethodCall()?.takeIf {
+            it.argumentCount == 1 && it.isArgumentReferencingElement(0, parameter)
+        } ?: return null
+        val clazz = methodCall.className?.text ?: "this"
+        val method = methodCall.methodName?.text ?: return null
+        return "wrapper = $clazz::$method"
+    }
+
     fun PsiMethod.asNewInstanceWrapperGetter(field: PsiField): String? {
         val clazz = body?.statements?.singleOrNull().asReturn()?.returnValue.asNewInstance()
             ?.takeIf {
