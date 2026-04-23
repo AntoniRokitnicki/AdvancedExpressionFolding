@@ -16,7 +16,6 @@ import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiExpression
 import com.intellij.psi.PsiIfStatement
 import com.intellij.psi.PsiInstanceOfExpression
-import com.intellij.psi.PsiNewExpression
 import com.intellij.psi.PsiThrowStatement
 import java.util.ArrayList
 
@@ -120,25 +119,37 @@ class IfExpression(
         val trailingSpace = document.getText(
             TextRange.create(lParenth.textRange.startOffset - 1, lParenth.textRange.startOffset)
         ) == " "
+        fun MutableList<FoldingDescriptor>.addIfNotEmpty(
+            startOffset: Int,
+            endOffset: Int,
+            placeholder: String,
+        ) {
+            if (startOffset < endOffset) {
+                this += FoldingDescriptor(
+                    psiElement.node,
+                    TextRange.create(startOffset, endOffset),
+                    group,
+                    placeholder,
+                )
+            }
+        }
+
         if (trailingSpace) {
-            descriptors += FoldingDescriptor(
-                psiElement.node,
-                TextRange.create(ifStatement.textRange.startOffset, lParenth.textRange.startOffset - 1),
-                group,
-                "assert"
+            descriptors.addIfNotEmpty(
+                ifStatement.textRange.startOffset,
+                lParenth.textRange.startOffset - 1,
+                "assert",
             )
-            descriptors += FoldingDescriptor(
-                psiElement.node,
-                TextRange.create(lParenth.textRange.startOffset, condition.textRange.startOffset),
-                group,
-                ""
+            descriptors.addIfNotEmpty(
+                lParenth.textRange.startOffset,
+                condition.textRange.startOffset,
+                "",
             )
         } else {
-            descriptors += FoldingDescriptor(
-                psiElement.node,
-                TextRange.create(ifStatement.textRange.startOffset, condition.textRange.startOffset),
-                group,
-                "assert "
+            descriptors.addIfNotEmpty(
+                ifStatement.textRange.startOffset,
+                condition.textRange.startOffset,
+                "assert ",
             )
         }
 
@@ -152,95 +163,39 @@ class IfExpression(
             "<=" -> ">"
             else -> throw IllegalStateException("Unsupported operator: ${binaryExpression.operationSign.text}")
         }
-        descriptors += FoldingDescriptor(
-            psiElement.node,
-            binaryExpression.operationSign.textRange,
-            group,
-            replacement
+        descriptors.addIfNotEmpty(
+            binaryExpression.operationSign.textRange.startOffset,
+            binaryExpression.operationSign.textRange.endOffset,
+            replacement,
         )
 
-        val newException = throwStatement.exception as? PsiNewExpression
-        val argumentList = newException?.argumentList
-        val messageExpression = argumentList?.expressions?.firstOrNull()
-        if (messageExpression != null && messageExpression.type?.canonicalText == "java.lang.String"
-        ) {
-            val spacesAroundColon = document.getText(
-                TextRange.create(throwStatement.textRange.startOffset - 3, throwStatement.textRange.startOffset)
-            ) == "   "
-            if (spacesAroundColon) {
-                descriptors += FoldingDescriptor(
-                    psiElement.node,
-                    TextRange.create(rParenth.textRange.endOffset - 1, throwStatement.textRange.startOffset - 3),
-                    group,
-                    ""
-                )
-                descriptors += FoldingDescriptor(
-                    psiElement.node,
-                    TextRange.create(throwStatement.textRange.startOffset - 2, throwStatement.textRange.startOffset - 1),
-                    group,
-                    ":"
-                )
-                descriptors += FoldingDescriptor(
-                    psiElement.node,
-                    TextRange.create(throwStatement.textRange.startOffset, messageExpression.textRange.startOffset),
-                    group,
-                    ""
-                )
-            } else {
-                descriptors += FoldingDescriptor(
-                    psiElement.node,
-                    TextRange.create(condition.textRange.endOffset, messageExpression.textRange.startOffset),
-                    group,
-                    " : "
-                )
-            }
-            if (!semicolonsCollapse && throwStatement.text.endsWith(";")) {
-                descriptors += FoldingDescriptor(
-                    psiElement.node,
-                    TextRange.create(messageExpression.textRange.endOffset, throwStatement.textRange.endOffset - 1),
-                    group,
-                    ""
-                )
-                if (element.textRange.endOffset > throwStatement.textRange.endOffset) {
-                    descriptors += FoldingDescriptor(
-                        psiElement.node,
-                        TextRange.create(throwStatement.textRange.endOffset, element.textRange.endOffset),
-                        group,
-                        ""
-                    )
-                }
-            } else {
-                descriptors += FoldingDescriptor(
-                    psiElement.node,
-                    TextRange.create(messageExpression.textRange.endOffset, element.textRange.endOffset),
-                    group,
-                    if (semicolonsCollapse) "" else ";"
+        val exceptionExpression = throwStatement.exception ?: return
+        val colonStart = condition.textRange.endOffset
+        val colonEnd = exceptionExpression.textRange.startOffset
+        descriptors.addIfNotEmpty(
+            colonStart,
+            colonEnd,
+            " : ",
+        )
+        if (!semicolonsCollapse && throwStatement.text.endsWith(";")) {
+            descriptors.addIfNotEmpty(
+                exceptionExpression.textRange.endOffset,
+                throwStatement.textRange.endOffset - 1,
+                "",
+            )
+            if (element.textRange.endOffset > throwStatement.textRange.endOffset) {
+                descriptors.addIfNotEmpty(
+                    throwStatement.textRange.endOffset,
+                    element.textRange.endOffset,
+                    "",
                 )
             }
         } else {
-            if (!semicolonsCollapse && throwStatement.text.endsWith(";")) {
-                descriptors += FoldingDescriptor(
-                    psiElement.node,
-                    TextRange.create(condition.textRange.endOffset, throwStatement.textRange.endOffset - 1),
-                    group,
-                    ""
-                )
-                if (element.textRange.endOffset > throwStatement.textRange.endOffset) {
-                    descriptors += FoldingDescriptor(
-                        psiElement.node,
-                        TextRange.create(throwStatement.textRange.endOffset, element.textRange.endOffset),
-                        group,
-                        ""
-                    )
-                }
-            } else {
-                descriptors += FoldingDescriptor(
-                    psiElement.node,
-                    TextRange.create(condition.textRange.endOffset, element.textRange.endOffset),
-                    group,
-                    if (semicolonsCollapse) "" else ";"
-                )
-            }
+            descriptors.addIfNotEmpty(
+                exceptionExpression.textRange.endOffset,
+                element.textRange.endOffset,
+                if (semicolonsCollapse) "" else ";",
+            )
         }
     }
 
