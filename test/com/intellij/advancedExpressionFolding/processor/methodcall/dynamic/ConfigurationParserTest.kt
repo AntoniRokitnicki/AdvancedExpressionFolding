@@ -2,6 +2,7 @@ package com.intellij.advancedExpressionFolding.processor.methodcall.dynamic
 
 import com.intellij.advancedExpressionFolding.processor.methodcall.MethodCallFactory
 import org.junit.jupiter.api.Assertions.assertDoesNotThrow
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import java.nio.file.Files
@@ -10,6 +11,28 @@ import kotlin.io.path.createDirectories
 import kotlin.io.path.writeText
 
 class ConfigurationParserTest {
+
+    @Test
+    fun parseReturnsDynamicMethodCallsForValidEntries() {
+        withTemporaryHome { temporaryHome ->
+            val configPath = temporaryHome.resolve("dynamic-ajf2.toml")
+            configPath.parent?.createDirectories()
+            configPath.writeText(
+                """
+                [valid]
+                method = "sourceMethod"
+                newName = "Renamed method"
+                """.trimIndent(),
+            )
+
+            val parsed = ConfigurationParser.parse()
+
+            assertEquals(1, parsed.size)
+            val data = parsed.single().data
+            assertEquals("sourceMethod", data.method)
+            assertEquals("Renamed method", data.newName)
+        }
+    }
 
     @Test
     fun parseSkipsEntriesMissingRequiredKeys() {

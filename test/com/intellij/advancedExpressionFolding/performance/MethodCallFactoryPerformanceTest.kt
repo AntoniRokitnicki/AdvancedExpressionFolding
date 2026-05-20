@@ -64,7 +64,7 @@ class MethodCallFactoryPerformanceTest : BaseTest() {
             invocation++
             return (1..size).map { index ->
                 val method = $$"m${invocation}_$index"
-                DynamicMethodCall(DynamicMethodCallData(mapOf("method" to method, "newName" to $$"n$index")))
+                DynamicMethodCall(DynamicMethodCallData(method = method, newName = $$"n$index"))
             }
         }
     }
