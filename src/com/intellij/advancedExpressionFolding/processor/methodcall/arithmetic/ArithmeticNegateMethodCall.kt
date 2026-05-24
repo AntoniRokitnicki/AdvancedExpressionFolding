@@ -1,19 +1,19 @@
 package com.intellij.advancedExpressionFolding.processor.methodcall.arithmetic
 
-import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.math.basic.Negate
 import com.intellij.advancedExpressionFolding.processor.methodcall.Context
-import com.intellij.psi.PsiMethodCallExpression
+import com.intellij.advancedExpressionFolding.processor.methodcall.MethodCallBuilder
 
 class ArithmeticNegateMethodCall : AbstractArithmeticMethodCall() {
-    override val methodNames by lazy { listOf("negate") }
-    
-    override fun onNoArguments(
-        element: PsiMethodCallExpression,
-        context: Context
-    ): Expression? = Negate(
-        element,
-        element.textRange,
-        context.getOperands()
-    )
+    override fun configure(builder: MethodCallBuilder) {
+        super.configure(builder)
+        builder.methods("negate")
+        builder.onNoArguments { element, context ->
+            Negate(
+                element,
+                element.textRange,
+                context.getOperands()
+            )
+        }
+    }
 }
