@@ -1,5 +1,12 @@
 package com.intellij.advancedExpressionFolding
 
+import arrow.core.getOrElse
+import arrow.core.raise.either
+import arrow.core.raise.ensure
+import arrow.core.raise.ensureNotNull
+import arrow.fx.coroutines.ExitCase
+import arrow.fx.coroutines.resourceScope
+import arrow.fx.coroutines.parZip
 import com.intellij.advancedExpressionFolding.processor.cache.Keys
 import com.intellij.openapi.components.Service
 import com.intellij.openapi.components.service
@@ -37,9 +44,6 @@ class FoldingService {
         val editors = project.openTextEditors
 
         val coroutineScope = FoldingServiceCoroutineScope.get()
-        //its cut, because verification throws for it seems to be no reason:
-        // Invocation of unresolved method ServicesKt.serviceNotFoundError(...) (1)
-        // Method FoldingService.clearAllKeys(Project) contains an invokestatic instruction referencing an unresolved method ServicesKt.serviceNotFoundError(...). This can lead to NoSuchMethodError exception at runtime.
         clearAllKeysStart(coroutineScope, editors)
     }
 
@@ -52,17 +56,40 @@ class FoldingService {
         }
     }
 
-    private fun FoldingService.clearAllKeysForEditors(editors: List<Editor>) {
-        editors.forEach(::clearAllKeys)
+    private suspend fun FoldingService.clearAllKeysForEditors(editors: List<Editor>) {
+        editors.chunked(2).forEach { chunk ->
+            when (chunk.size) {
+                0 -> Unit
+                1 -> clearEditorKeys(chunk[0]).getOrElse { }
+                else -> parZip(
+                    { clearEditorKeys(chunk[0]).getOrElse { } },
+                    { clearEditorKeys(chunk[1]).getOrElse { } }
+                ) { _, _ -> }
+            }
+        }
     }
 
     fun clearAllKeys(editor: Editor) {
-        if (editor.isDisposed) {
-            return
+        FoldingServiceCoroutineScope.get().launch {
+            clearEditorKeys(editor).getOrElse { }
         }
-        val project = editor.project ?: return
-        val psiFile = PsiDocumentManager.getInstance(project).getPsiFile(editor.document) ?: return
-        psiFile.accept(KeyCleanerPsiElementVisitor())
+    }
+
+    private suspend fun clearEditorKeys(editor: Editor) = either<EditorCleanupIssue, Unit> {
+        ensure(!editor.isDisposed) { EditorCleanupIssue.EditorDisposed }
+        val project = ensureNotNull(editor.project) { EditorCleanupIssue.MissingProject }
+        val manager = PsiDocumentManager.getInstance(project)
+        val psiFile = ensureNotNull(manager.getPsiFile(editor.document)) { EditorCleanupIssue.NoPsiFile }
+
+        resourceScope {
+            val file = install(
+                acquire = { psiFile },
+                release = { _, _: ExitCase ->
+                    manager.commitDocument(editor.document)
+                }
+            )
+            file.accept(KeyCleanerPsiElementVisitor())
+        }
     }
 
     class KeyCleanerPsiElementVisitor : PsiRecursiveElementVisitor() {
@@ -75,4 +102,10 @@ class FoldingService {
     companion object {
         fun get() = service<FoldingService>()
     }
+}
+
+private sealed interface EditorCleanupIssue {
+    data object EditorDisposed : EditorCleanupIssue
+    data object MissingProject : EditorCleanupIssue
+    data object NoPsiFile : EditorCleanupIssue
 }

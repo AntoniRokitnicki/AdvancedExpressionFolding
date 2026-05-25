@@ -98,6 +98,9 @@ dependencies {
     implementation(libs.jsr305)
     implementation(libs.jackson.dataformat.toml)
     implementation(examplesTestOutput)
+    implementation(libs.arrow.core)
+    implementation(libs.arrow.fx.coroutines)
+    implementation(libs.arrow.optics)
 
     testRuntimeOnly(libs.junit.jupiter.engine)
     testImplementation(libs.junit.jupiter.api)
