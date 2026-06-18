@@ -14,7 +14,7 @@ class FieldConstExpression(
     private val typeElement: PsiTypeElement?,
     private val modifiers: PsiElement,
     private val typeSuffix: String,
-    ) : Expression(modifiers, modifiers.textRange) {
+) : Expression(modifiers, modifiers.textRange) {
     override fun supportsFoldRegions(document: Document, parent: Expression?): Boolean {
         return true
     }
@@ -26,59 +26,81 @@ class FieldConstExpression(
     ): Array<FoldingDescriptor> {
         val group = FieldConstExpression::class.group()
 
-
-
         val keywords = modifiers.children.filterIsInstance<PsiKeyword>()
-        
-        val sortedKeywords = keywords.map {
-            if (it.isPrivate() || it.isProtected()) {
-                null
-            } else {
-                it
-            }
-        }
-        val default = !sortedKeywords.any {
-            it == null || it.isPublic()
+        if (keywords.isEmpty()) {
+            return EMPTY_ARRAY
         }
 
-        val baseTextRange = if (sortedKeywords.firstOrNull() == null && keywords.isNotEmpty()) {
-            TextRange(keywords.first().end() + 1, modifiers.end())
-        } else if (keywords.isNotEmpty()){
-            if (sortedKeywords.any { it == null }) {
-                //TODO: add folding for private, protected not being first
-                //TODO: fold when in the middle and when its last
-                null
-            }  else { // public
-                TextRange(keywords.first().start() , modifiers.end())
-            }
+        val firstFoldableIndex = keywords.indexOfFirst { !it.isPrivate() && !it.isProtected() }
+        if (firstFoldableIndex == -1) {
+            return EMPTY_ARRAY
+        }
+
+        val lastFoldableIndex = keywords.indexOfLast { !it.isPrivate() && !it.isProtected() }
+        val startElement = keywords[firstFoldableIndex]
+        val endElement = keywords[lastFoldableIndex]
+
+        val default = keywords.none {
+            it.isPublic() || it.isPrivate() || it.isProtected()
+        }
+
+        val baseTextRange = when {
+            lastFoldableIndex == keywords.lastIndex -> TextRange(startElement.start(), modifiers.end())
+            else -> TextRange(startElement.start(), endElement.end())
+        }
+
+        val textRange = if (typeElement == null) {
+            baseTextRange
         } else {
-            null
+            baseTextRange + (0..1)
         }
 
-        if (baseTextRange != null) {
-            val textRange = if (typeElement == null) {
-                baseTextRange
-            } else {
-                baseTextRange + (0..1)
-            }
+        val constText = typeSuffix.takeIf {
+            default
+        }?.let {
+            "default $it"
+        } ?: typeSuffix
 
-            val constText = typeSuffix.takeIf {
-                default
-            }?.let {
-                "default $it"
-            } ?: typeSuffix
+        val placeholderText = buildPlaceholder(
+            keywords,
+            firstFoldableIndex,
+            lastFoldableIndex,
+            constText,
+        )
 
-            val typeSuffix =
-                fold(modifiers, textRange, constText, group)
-            val elements = mutableListOf(typeSuffix)
-            if (typeElement != null) {
-                elements += fold(typeElement, typeElement.textRange, "", group)
-            }
-
-            return elements.toTypedArray()
+        val typeSuffixFold =
+            fold(modifiers, textRange, placeholderText, group)
+        val elements = mutableListOf(typeSuffixFold)
+        if (typeElement != null) {
+            elements += fold(typeElement, typeElement.textRange, "", group)
         }
 
-        return EMPTY_ARRAY
+        return elements.toTypedArray()
+    }
+
+    private fun buildPlaceholder(
+        keywords: List<PsiKeyword>,
+        startIndex: Int,
+        endIndex: Int,
+        constText: String,
+    ): String {
+        val parts = mutableListOf<String>()
+        var placeholderAdded = false
+        for (index in startIndex..endIndex) {
+            val keyword = keywords[index]
+            if (keyword.isPrivate() || keyword.isProtected()) {
+                parts += keyword.text
+            } else if (!placeholderAdded) {
+                parts += constText
+                placeholderAdded = true
+            }
+        }
+
+        if (!placeholderAdded) {
+            parts += constText
+        }
+
+        return parts.joinToString(" ")
     }
 
     private fun fold(

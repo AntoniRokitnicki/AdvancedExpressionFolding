@@ -3,7 +3,7 @@ package data;
 public class FinalRemovalTestData {
 
     <fold text='const' expand='false'>public static final </fold><fold text='' expand='false'>String</fold> PUBLIC_STATIC_FINAL_VAR = "";
-    final private static String FINAL_FIRST_MANY = "";
+    <fold text='const private' expand='false'>final private static </fold><fold text='' expand='false'>String</fold> FINAL_FIRST_MANY = "";
     final String ONLY_FINAL = "";
 
     public <fold text='' expand='false'>final</fold> String m() <fold text='{...}' expand='true'>{
