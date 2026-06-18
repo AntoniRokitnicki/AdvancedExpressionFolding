@@ -6,3 +6,4 @@ rootProject.name = "advanced-expression-folding"
 
 include(":examples")
 include(":folded")
+include(":tools:folding-suite-sweeper")
