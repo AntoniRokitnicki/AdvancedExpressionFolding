@@ -28,14 +28,18 @@ abstract class Expression protected constructor() {
         return false
     }
 
+    @Deprecated("Use buildFoldRegionsList")
     open fun buildFoldRegions(
         element: PsiElement,
         document: Document,
         parent: Expression?
     ): Array<FoldingDescriptor> {
-        return EMPTY_ARRAY
+        val foldings = mutableListOf<FoldingDescriptor>()
+        buildFoldRegionsList(element, document, parent, foldings)
+        return foldings.toTypedArray()
     }
 
+    @Deprecated("Use buildFoldRegionsList")
     open fun buildFoldRegions(
         element: PsiElement,
         document: Document,
@@ -44,7 +48,38 @@ abstract class Expression protected constructor() {
         overflowLeftPlaceholder: String?,
         overflowRightPlaceholder: String?
     ): Array<FoldingDescriptor> {
-        return buildFoldRegions(element, document, parent)
+        val foldings = mutableListOf<FoldingDescriptor>()
+        buildFoldRegionsList(
+            element,
+            document,
+            parent,
+            overflowGroup,
+            overflowLeftPlaceholder,
+            overflowRightPlaceholder,
+            foldings
+        )
+        return foldings.toTypedArray()
+    }
+
+    open fun buildFoldRegionsList(
+        element: PsiElement,
+        document: Document,
+        parent: Expression?,
+        foldings: MutableList<FoldingDescriptor>
+    ) {
+        // Default implementation does not contribute folding descriptors.
+    }
+
+    open fun buildFoldRegionsList(
+        element: PsiElement,
+        document: Document,
+        parent: Expression?,
+        overflowGroup: FoldingGroup?,
+        overflowLeftPlaceholder: String?,
+        overflowRightPlaceholder: String?,
+        foldings: MutableList<FoldingDescriptor>
+    ) {
+        buildFoldRegionsList(element, document, parent, foldings)
     }
 
     open fun isCollapsedByDefault(): Boolean = true
