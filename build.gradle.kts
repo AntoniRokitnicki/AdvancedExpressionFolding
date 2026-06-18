@@ -98,6 +98,9 @@ dependencies {
     implementation(libs.jsr305)
     implementation(libs.jackson.dataformat.toml)
     implementation(examplesTestOutput)
+    implementation(libs.dl4j.core)
+    implementation(libs.nd4j.native)
+    implementation(libs.fastutil)
 
     testRuntimeOnly(libs.junit.jupiter.engine)
     testImplementation(libs.junit.jupiter.api)

@@ -3,6 +3,7 @@ package com.intellij.advancedExpressionFolding
 import com.google.common.collect.Lists
 import com.google.common.collect.Sets
 import com.intellij.advancedExpressionFolding.expression.Expression
+import com.intellij.advancedExpressionFolding.ml.FoldingModelService
 import com.intellij.advancedExpressionFolding.processor.asInstance
 import com.intellij.advancedExpressionFolding.processor.cache.CacheExt.invalidateExpired
 import com.intellij.advancedExpressionFolding.processor.cache.Keys
@@ -101,6 +102,11 @@ class AdvancedExpressionFoldingBuilder : FoldingBuilderEx(), IConfig by State()(
     override fun isCollapsedByDefault(astNode: ASTNode): Boolean {
         try {
             val element = astNode.psi
+            FoldingModelService.getInstance().predictCollapseProbability(element)?.let { probability ->
+                if (probability >= 0.5) {
+                    return true
+                }
+            }
             val document = PsiDocumentManager.getInstance(astNode.psi.project).getDocument(astNode.psi.containingFile)
             document?.let {
                 val expression = BuildExpressionExt.getNonSyntheticExpression(element, it)
