@@ -104,6 +104,7 @@ dependencies {
     testImplementation(libs.junit.jupiter.params)
     testImplementation(libs.junit.pioneer)
     testImplementation(libs.junit.vintage.engine)
+    testImplementation(libs.mockk)
     implementation(libs.kodein.di.conf)
 
     // IntelliJ Platform Gradle Plugin Dependencies Extension - read more: https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-gradle-plugin-dependencies-extension.html
