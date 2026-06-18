@@ -7,6 +7,8 @@ jsr305 = "3.0.2"
 pioneer = "2.3.0"
 lombok = "1.18.42"
 kodein = "7.28.0"
+dl4j = "1.0.0-M2.1"
+fastutil = "8.5.14"
 # plugins
 changelog = "2.4.0"
 intelliJPlatform = "2.6.0"
@@ -30,6 +32,9 @@ kodein-di-conf = { group = "org.kodein.di", name = "kodein-di-conf-jvm", version
 lombok = { module = "org.projectlombok:lombok", version.ref = "lombok" }
 commons-lang3 = { module = "org.apache.commons:commons-lang3", version.ref = "commons-lang3" }
 slf4j-api = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
+dl4j-core = { module = "org.deeplearning4j:deeplearning4j-core", version.ref = "dl4j" }
+nd4j-native = { module = "org.nd4j:nd4j-native-platform", version.ref = "dl4j" }
+fastutil = { module = "it.unimi.dsi:fastutil", version.ref = "fastutil" }
 
 
 [plugins]
