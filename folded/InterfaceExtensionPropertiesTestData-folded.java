@@ -241,14 +241,16 @@ public class InterfaceExtensionPropertiesTestData {
     }
 
     public interface NullableUser {
-       @Getter Integer? age;
+       @Getter 
+        Integer? age;
        @Setter int? age;
-       @Getter String? name;
+       @Getter 
+        String? name;
        @Setter String? name;
     }
 
     public interface NotNullUser {
-       @Getter String!! name;
+       @Getter  String!! name;
        @Setter String!! name;
        @Getter int age;
     }
