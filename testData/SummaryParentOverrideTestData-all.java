@@ -8,7 +8,7 @@ public class SummaryParentOverrideTestData {
         </fold>}</fold>
 
         public void sharedMethod()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold><fold text='' expand='false'>System.out.</fold>println(<fold text='"Shared method from Grandparent"' expand='false'>"Shared method from Grandparent"</fold>)<fold text='' expand='true'>;<fold text=' ' expand='true'><fold text=' }' expand='false'></fold>
+            </fold></fold><fold text='' expand='false'>System.out.</fold>println(<fold text='"Shared method from Grandparent"' expand='false'>"Shared method from Grandparent"</fold>)<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold>
     }</fold>
 
@@ -20,7 +20,7 @@ public class SummaryParentOverrideTestData {
         }</fold>
 
         public void parentMethod()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold><fold text='' expand='false'></fold>System.out.</fold>println(<fold text='"Parent Method"' expand='false'>"Parent Method"</fold>)<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+            </fold></fold><fold text='' expand='false'>System.out.</fold>println(<fold text='"Parent Method"' expand='false'>"Parent Method"</fold>)<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold>
     }</fold>
 
@@ -57,7 +57,7 @@ public class SummaryParentOverrideTestData {
         <fold text='' expand='true'>@Override</fold><fold text='' expand='true'>
         </fold>public void grandparentMethod()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
             </fold></fold><fold text='' expand='false'>System.out.</fold>println(<fold text='"Overridden Grandparent Method in TestDataClass"' expand='false'>"Overridden Grandparent Method in TestDataClass"</fold>)<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
-        <fold text='} // overrides from ParentClass' expand='true'></fold>}</fold></fold>
+        </fold><fold text='} // overrides from ParentClass' expand='true'>}</fold></fold>
 
         public void additionalMethodOne()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
             </fold></fold><fold text='' expand='false'>System.out.</fold>println(<fold text='"Additional method one"' expand='false'>"Additional method one"</fold>)<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>

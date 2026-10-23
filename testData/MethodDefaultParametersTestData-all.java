@@ -33,19 +33,19 @@ public class MethodDefaultParametersTestData {
         </fold>}</fold>
 
         private String applySort4(String criterionName)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold><fold text='' expand='true'></fold>return</fold><fold text='' expand='true'> </fold>applySort2(criterionName, false)<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>applySort2(criterionName, false)<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold>
         protected String applySort4(String criterionName, boolean descending)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold><fold text='' expand='true'>return<fold text='' expand='true'></fold> </fold>criterionName<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>criterionName<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold>
     }</fold>
 
     class MultipleDefaultParams <fold text='{...}' expand='true'>{
         public String multipleDefaults(String name, int count<fold text=' = 10,' expand='true'>,</fold> boolean flag<fold text=' = false)' expand='true'>)</fold><fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold><fold text='' expand='true'></fold>return</fold><fold text='' expand='true'> </fold>name + count + flag<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>name + count + flag<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold>
         public String multipleDefaults(String name, int count)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold><fold text='' expand='true'>return<fold text='' expand='true'></fold> </fold>multipleDefaults(name, count, false)<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>multipleDefaults(name, count, false)<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold>
         <fold text='' expand='true'>public String multipleDefaults(String name)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
             </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>multipleDefaults(name, 10, false)<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
@@ -54,13 +54,13 @@ public class MethodDefaultParametersTestData {
 
     class ChainedDefaults <fold text='{...}' expand='true'>{
         public String chainedDefaults(String name, int count, boolean flag<fold text=' = true)' expand='true'>)</fold><fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold><fold text='' expand='true'>return<fold text='' expand='true'></fold> </fold>name + count + flag<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>name + count + flag<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold>
         <fold text='' expand='true'>public String chainedDefaults(String name, int count)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
             </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>chainedDefaults(name, count, true)<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold></fold>
         public String chainedDefaults(String name)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>chainedDefaults(name, 5)<fold text='' expand='true'>;<fold text=' ' expand='true'><fold text=' }' expand='false'></fold>
+            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>chainedDefaults(name, 5)<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold>
     }</fold>
 
@@ -87,7 +87,7 @@ public class MethodDefaultParametersTestData {
             </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold><fold text='' expand='false'>String.valueOf(</fold>value<fold text='' expand='false'>)</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold>
         public int differentReturns(int value, boolean asNumber)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>Integer.parseInt(differentReturns(value))<fold text='' expand='true'>;<fold text=' ' expand='true'><fold text=' }' expand='false'></fold>
+            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>Integer.parseInt(differentReturns(value))<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold>
     }</fold>
 
@@ -116,7 +116,7 @@ public class MethodDefaultParametersTestData {
     }</fold>
 
     class DifferentParameterNames <fold text='{...}' expand='true'>{
-        public String differentParamNames(String name, boolean enabled<fold text=' = true)' expand='true'>)<fold text=' { ' expand='false'></fold> {<fold text=' ' expand='true'>
+        public String differentParamNames(String name, boolean enabled<fold text=' = true)' expand='true'>)</fold><fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
             </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>name + enabled<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold>
         <fold text='' expand='true'>public String differentParamNames(String title)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>

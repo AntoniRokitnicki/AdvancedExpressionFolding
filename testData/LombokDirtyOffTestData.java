@@ -37,7 +37,7 @@ public class LombokDirtyOffTestData {
                 if (ok != dirtyData.ok) return false;
 
                 return true;
-            }</fold><fold text='' expand='false'></fold>
+            }</fold></fold><fold text='' expand='false'>
 
             </fold><fold text='' expand='false'>@Override
             public int hashCode() <fold text='{...}' expand='true'>{
@@ -82,7 +82,7 @@ public class LombokDirtyOffTestData {
 
             </fold><fold text='' expand='false'>public void setOk(boolean ok)<fold text=' { ' expand='false'> {
                 </fold>this.ok = ok;<fold text=' }' expand='false'>
-            }</fold><fold text='' expand='false'></fold>
+            }</fold></fold><fold text='' expand='false'>
 
             </fold><fold text='' expand='false'>public boolean isDirty()<fold text=' { ' expand='false'> {
                 </fold>return dirty;<fold text=' }' expand='false'>
@@ -90,7 +90,7 @@ public class LombokDirtyOffTestData {
 
             </fold><fold text='' expand='false'>public boolean isOk()<fold text=' { ' expand='false'> {
                 </fold>return ok;<fold text=' }' expand='false'>
-            }</fold><fold text='' expand='false'></fold>
+            }</fold></fold><fold text='' expand='false'>
 
             </fold><fold text='' expand='false'>@Override
             public boolean equals(Object o) <fold text='{...}' expand='true'>{

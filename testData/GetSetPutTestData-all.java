@@ -20,13 +20,13 @@ public class GetSetPutTestData {
         <fold text='val' expand='false'>List<String></fold> unmodifiable = <fold text='[' expand='false'>Collections.unmodifiableList(Arrays.asList(</fold><fold text='"one"' expand='false'>"one"</fold>, <fold text='"two"' expand='false'>"two"</fold><fold text=']' expand='false'>))</fold>;
         <fold text='' expand='false'>System.out.</fold>println(unmodifiable);
         <fold text='val' expand='false'>Set<String></fold> set = <fold text='[' expand='false'>new HashSet<String>() </fold><fold text='' expand='false'><fold text='{...}' expand='true'>{
-            <fold text='' expand='false'><fold text='{...}' expand='true'></fold>{
+            </fold><fold text='' expand='false'><fold text='{...}' expand='true'>{
                 add(</fold>"one"<fold text=', ' expand='false'>);
                 add(</fold>"two"<fold text='' expand='false'>);
             }</fold></fold><fold text='' expand='false'>
         </fold><fold text=']' expand='false'>}</fold></fold>;
         <fold text='' expand='false'>System.out.</fold>println(set);
-        <fold text='val' expand='false'>Set<String></fold> copyOfSet = <fold text='[' expand='false'>Collections.unmodifiableSet(new HashSet<String>() <fold text='' expand='false'><fold text='{...}' expand='true'></fold>{
+        <fold text='val' expand='false'>Set<String></fold> copyOfSet = <fold text='[' expand='false'>Collections.unmodifiableSet(new HashSet<String>() </fold><fold text='' expand='false'><fold text='{...}' expand='true'>{
             </fold><fold text='' expand='false'><fold text='{...}' expand='true'>{
                 add(</fold>"one"<fold text=', ' expand='false'>);
                 add(</fold>"two"<fold text='' expand='false'>);

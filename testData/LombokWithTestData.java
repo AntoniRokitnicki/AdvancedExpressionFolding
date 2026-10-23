@@ -15,7 +15,7 @@ package data;
 
     </fold><fold text='' expand='false'>public boolean isOk()<fold text=' { ' expand='false'> {
         </fold>return ok;<fold text=' }' expand='false'>
-    }</fold><fold text='' expand='false'></fold>
+    }</fold></fold><fold text='' expand='false'>
 
     </fold><fold text='' expand='false'>public LombokWithTestData withOk(boolean ok) <fold text='{...}' expand='true'>{
         this.ok = ok;

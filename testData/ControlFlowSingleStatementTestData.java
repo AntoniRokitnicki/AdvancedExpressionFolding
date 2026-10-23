@@ -15,7 +15,7 @@ public class ControlFlowSingleStatementTestData {
         if (args.length == 0) <fold text='{...}' expand='true'>{
                 System.out.println("...");
         System.out.println("...");
-        }</fold> else <fold text='{...}' expand='true'><fold text='' expand='false'>{</fold>
+        }</fold> else <fold text='' expand='false'><fold text='{...}' expand='true'>{</fold>
                 System.out.println("...");
         }</fold>
         if (args.length > 0) <fold text='' expand='false'><fold text='{...}' expand='true'>{</fold>

@@ -13,7 +13,7 @@ public class ConstructorReferenceNotationTestData {
         }</fold>;
 
         private static final HashMap<String, String> MAP =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> </fold><fold text='' expand='true'>HashMap<></fold><fold text='' expand='true'>()</fold>;
-        private static final HashMap<String, String> MAP2 =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> </fold><fold text='' expand='true'>HashMap<fold text='<~>' expand='false'><String, String></fold><fold text='' expand='true'></fold>()</fold>;
+        private static final HashMap<String, String> MAP2 =<fold text=' ::' expand='true'> </fold>new<fold text='' expand='true'> </fold><fold text='' expand='true'>HashMap<fold text='<~>' expand='false'><String, String></fold></fold><fold text='' expand='true'>()</fold>;
         private static final Map<String, String> MAP3 = new HashMap<>();
         private static final Map<String, String> MAP_TREE = new TreeMap<>();
         private static final Map<String, String> MAP4 = Map.of();

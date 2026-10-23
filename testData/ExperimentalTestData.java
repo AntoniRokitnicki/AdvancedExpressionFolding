@@ -46,7 +46,7 @@ public class ExperimentalTestData {
             <fold text='@SneakyThrows' expand='true'>try</fold> <fold text='{...}' expand='true'>{
                 var throwable = new Throwable();
                 throw throwable;
-            }</fold><fold text='' expand='true'> <fold text='' expand='true'></fold>catch (Throwable t) <fold text='{...}' expand='true'>{
+            }</fold><fold text='' expand='true'> </fold><fold text='' expand='true'>catch (Throwable t) <fold text='{...}' expand='true'>{
                 throw new IllegalStateException(t);
             }</fold></fold>
         }</fold>
@@ -54,7 +54,7 @@ public class ExperimentalTestData {
         public String utf8ToString(byte[] bytes) <fold text='{...}' expand='true'>{
             <fold text='@SneakyThrows' expand='true'>try</fold><fold text='' expand='true'> </fold><fold text='' expand='true'><fold text='{...}' expand='true'>{</fold>
             <fold text='' expand='true'>    </fold>return new String(System<fold text='[' expand='false'>.getProperty(</fold>"sort-desc"<fold text=']' expand='false'>)</fold>.<fold text='bytes' expand='false'>getBytes()</fold>, "UTF-8");<fold text='' expand='true'>
-            </fold><fold text='' expand='true'>}</fold><fold text='' expand='true'></fold> </fold><fold text='' expand='true'>catch (UnsupportedEncodingException e) <fold text='{...}' expand='true'>{
+            </fold><fold text='' expand='true'>}</fold></fold><fold text='' expand='true'> </fold><fold text='' expand='true'>catch (UnsupportedEncodingException e) <fold text='{...}' expand='true'>{
                 throw new RuntimeException(e);
             }</fold></fold>
         }</fold>

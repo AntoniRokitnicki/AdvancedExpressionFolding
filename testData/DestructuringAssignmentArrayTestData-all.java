@@ -7,16 +7,16 @@ public class DestructuringAssignmentArrayTestData {
     public void enter(Data data, Data[] array) <fold text='{...}' expand='true'>{
         <fold text='val' expand='false'>Data</fold> ignored1 = array[0];
 
-        <fold text='val' expand='false'><fold text='val (' expand='true'>Data</fold> </fold>first<fold text=', ' expand='true'> = array[0];</fold><fold text='' expand='true'>
+        <fold text='val (' expand='true'><fold text='val' expand='false'>Data</fold> </fold>first<fold text=', ' expand='true'> = array[0];</fold><fold text='' expand='true'>
 
         <fold text='val' expand='false'>Data</fold> </fold>second<fold text=', ' expand='true'> = array[1];</fold><fold text='' expand='true'>
-        <fold text='val' expand='false'>Data</fold> </fold>third<fold text=', ' expand='true'> = array[2];<fold text='' expand='true'></fold>
+        <fold text='val' expand='false'>Data</fold> </fold>third<fold text=', ' expand='true'> = array[2];</fold><fold text='' expand='true'>
         <fold text='val' expand='false'>Data</fold> </fold>fourth<fold text=') ' expand='true'> </fold>= array<fold text='' expand='true'>[3]</fold>;
 
         <fold text='val' expand='false'>Data</fold> ignored21 = data.<fold text='array' expand='false'>getArray()</fold>[4];
         <fold text='val' expand='false'>Data</fold> ignored22 = data.<fold text='array' expand='false'>getArray()</fold>[5];
 
-        <fold text='var' expand='false'><fold text='var (' expand='true'>Data</fold> </fold>getter1<fold text=', ' expand='true'> = data.<fold text='array' expand='false'>getArray()</fold>[0];<fold text='' expand='true'></fold>
+        <fold text='var (' expand='true'><fold text='var' expand='false'>Data</fold> </fold>getter1<fold text=', ' expand='true'> = data.<fold text='array' expand='false'>getArray()</fold>[0];</fold><fold text='' expand='true'>
         <fold text='val' expand='false'>Data</fold> </fold>getter2<fold text=', ' expand='true'> = data.<fold text='array' expand='false'>getArray()</fold>[1];</fold><fold text='' expand='true'>
         <fold text='val' expand='false'>Data</fold> </fold>getter3<fold text=') ' expand='true'> </fold>= data.<fold text='array' expand='false'>getArray()</fold><fold text='' expand='true'>[2]</fold>;
         getter1 = data;
@@ -33,7 +33,7 @@ public class DestructuringAssignmentArrayTestData {
 
     static class Data <fold text='{...}' expand='true'>{
         <fold text='' expand='true'>public</fold><fold text='' expand='true'> </fold><fold text='' expand='true'>Data</fold><fold text='' expand='true'> </fold>getData<fold text='' expand='true'>()</fold><fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold><fold text='' expand='true'></fold>return</fold><fold text='' expand='true'> </fold>null<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>null<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold>
 
         <fold text='' expand='true'>public</fold><fold text='' expand='true'> </fold><fold text='' expand='true'>Data[]</fold><fold text='' expand='true'> </fold>getArray<fold text='' expand='true'>()</fold><fold text=' { ' expand='false'> {<fold text=' ' expand='true'>

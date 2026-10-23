@@ -17,7 +17,7 @@ public class ExperimentalTestData {
             <fold text='@SneakyThrows' expand='true'>try</fold> <fold text='{...}' expand='true'>{
                 <fold text='val' expand='false'>byte[]</fold> bytez = System<fold text='[' expand='false'>.getProperty(</fold>"sort-desc"<fold text=']' expand='false'>)</fold>.<fold text='bytes' expand='false'>getBytes()</fold>;
                 return new String(bytez, "UTF-8");
-            }<fold text='' expand='true'></fold> </fold><fold text='' expand='true'>catch <fold text='' expand='false'>(</fold>UnsupportedEncodingException e<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
+            }</fold><fold text='' expand='true'> </fold><fold text='' expand='true'>catch <fold text='' expand='false'>(</fold>UnsupportedEncodingException e<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
                 throw new RuntimeException(e);
             }</fold></fold>
         }</fold>
@@ -35,7 +35,7 @@ public class ExperimentalTestData {
             <fold text='@SneakyThrows(IllegalArgumentException)' expand='true'>try</fold> <fold text='{...}' expand='true'>{
                 <fold text='val' expand='false'>Function<String, Long></fold> longFunction = Long::parseLong;
                 longValue = longFunction.apply(value);
-            }</fold><fold text='' expand='true'> <fold text='' expand='true'></fold>catch <fold text='' expand='false'>(</fold>NumberFormatException e<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
+            }</fold><fold text='' expand='true'> </fold><fold text='' expand='true'>catch <fold text='' expand='false'>(</fold>NumberFormatException e<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
                 throw new IllegalArgumentException(e);
             }</fold></fold>
             <fold text='' expand='false'>System.out.</fold>println("longValue = <fold text='$' expand='false'>" + </fold>longValue<fold text='")' expand='false'>)</fold>;
@@ -54,7 +54,7 @@ public class ExperimentalTestData {
         public String utf8ToString(byte[] bytes) <fold text='{...}' expand='true'>{
             <fold text='@SneakyThrows' expand='true'>try</fold><fold text='' expand='true'> </fold><fold text='' expand='true'><fold text='{...}' expand='true'>{</fold>
             <fold text='' expand='true'>    </fold>return new String(System<fold text='[' expand='false'>.getProperty(</fold>"sort-desc"<fold text=']' expand='false'>)</fold>.<fold text='bytes' expand='false'>getBytes()</fold>, "UTF-8");<fold text='' expand='true'>
-            </fold><fold text='' expand='true'>}</fold><fold text='' expand='true'></fold> </fold><fold text='' expand='true'>catch <fold text='' expand='false'>(</fold>UnsupportedEncodingException e<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
+            </fold><fold text='' expand='true'>}</fold></fold><fold text='' expand='true'> </fold><fold text='' expand='true'>catch <fold text='' expand='false'>(</fold>UnsupportedEncodingException e<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
                 throw new RuntimeException(e);
             }</fold></fold>
         }</fold>

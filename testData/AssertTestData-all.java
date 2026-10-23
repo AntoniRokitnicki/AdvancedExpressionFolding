@@ -1,4 +1,4 @@
-package data<fold text='' expand='false'>;</fold>
+package data<fold text='' expand='true'>;</fold>
 
 public class AssertTestData {
     public static void main(String[] args) <fold text='{...}' expand='true'>{

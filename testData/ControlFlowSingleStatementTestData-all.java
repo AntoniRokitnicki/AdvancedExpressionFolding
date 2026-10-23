@@ -1,4 +1,4 @@
-package data<fold text='' expand='false'>;</fold>
+package data<fold text='' expand='true'>;</fold>
 
 import java.util.Arrays<fold text='' expand='false'>;</fold>
 
