@@ -7,7 +7,7 @@ import com.intellij.advancedExpressionFolding.processor.toJavaPsiFile
 import com.intellij.advancedExpressionFolding.view.FindUsageCustomView
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
-import com.intellij.openapi.application.runReadAction
+import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.fileTypes.FileTypeManager
 import com.intellij.openapi.progress.ProgressIndicator
 import com.intellij.openapi.progress.ProgressManager
@@ -27,7 +27,7 @@ class FindMethodsWithDefaultParametersAction : AnAction() {
 
         ProgressManager.getInstance().run(object : Task.Backgroundable(project, "Finding methods with default parameters", true) {
             override fun run(indicator: ProgressIndicator) {
-                runReadAction {
+                ApplicationManager.getApplication().runReadAction {
                     FileTypeIndex.processFiles(FileTypeManager.getInstance().getFileTypeByExtension("java"), { file ->
                         file.toJavaPsiFile(project)?.let { javaFile ->
                             javaFile.accept(MethodDefaultParameterExtVisitor(findUsageCustomView, javaFile))
