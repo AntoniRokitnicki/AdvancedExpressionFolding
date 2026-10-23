@@ -11,6 +11,7 @@ import com.intellij.advancedExpressionFolding.processor.takeIfTrue
 import com.intellij.advancedExpressionFolding.processor.util.Consts.Emoji
 import com.intellij.advancedExpressionFolding.settings.State
 import com.intellij.advancedExpressionFolding.settings.state.IEmojiVisibilityState
+import com.intellij.psi.JavaTokenType
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiField
 import com.intellij.psi.PsiKeyword
@@ -28,7 +29,7 @@ object PsiKeywordExt : IEmojiVisibilityState by State()() {
     private fun PsiKeyword.finalRemoval(): Expression? = foldFinalsExceptFields { exprHide() }
 
     private inline fun PsiKeyword.foldFinalsExceptFields(foldSpaces: Boolean = false, folder: PsiElement.() -> Expression?): Expression? {
-        if (text == PsiKeyword.FINAL) {
+        if (tokenType == JavaTokenType.FINAL_KEYWORD) {
             val list = exprList()
             var ignore = false
 
