@@ -34,6 +34,7 @@ object IntegrationTestApi {
         }
     }
 
+    @Suppress("DEPRECATION")
     private fun fireAction(actionId: String, project: Project, dataContext: DataContext) {
         if (project.isDisposed) {
             return

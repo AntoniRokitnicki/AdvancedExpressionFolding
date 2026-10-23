@@ -337,6 +337,7 @@ private fun createEditor(property: KMutableProperty0<String?>): EditorEx {
             }
         }
     }
+    @Suppress("DEPRECATION")
     document.addDocumentListener(documentListener, (editor as EditorImpl).disposable)
     if (validator != null) {
         validator.revalidate()
