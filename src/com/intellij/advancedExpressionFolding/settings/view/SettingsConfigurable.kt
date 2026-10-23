@@ -216,7 +216,6 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
         private const val NOTIFICATION_GROUP_ID = "Advanced Expression Folding"
     }
     
-    @CheckboxDsl
     override fun Panel.registerCheckbox(
         property: KMutableProperty0<Boolean>,
         title: String,
