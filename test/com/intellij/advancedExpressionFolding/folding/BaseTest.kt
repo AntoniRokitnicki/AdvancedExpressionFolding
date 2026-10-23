@@ -1,6 +1,5 @@
 package com.intellij.advancedExpressionFolding.folding
 
-import ai.grazie.utils.capitalize
 import com.intellij.advancedExpressionFolding.folding.util.FoldingDataStorage
 import com.intellij.advancedExpressionFolding.folding.util.FoldingTemporaryTestEditor
 import com.intellij.advancedExpressionFolding.folding.util.TestDynamicDataProvider
@@ -130,7 +129,7 @@ abstract class BaseTest : LightJavaCodeInsightFixtureTestCase5(TEST_JDK) {
         Files.writeString(createOutputFile(foldingFile, "-folded.java").toPath(), FoldingTemporaryTestEditor.getFoldedText(actual, wrapper))
     }
 
-    protected open fun getTestFileName(testName: String) = "testData/${testName.capitalize()}.java"
+    protected open fun getTestFileName(testName: String) = "testData/${testName.replaceFirstChar { it.uppercase() }}.java"
 
     // TODO: Refactor this mess
     private fun testReadOnlyFoldingRegions(
@@ -160,7 +159,7 @@ abstract class BaseTest : LightJavaCodeInsightFixtureTestCase5(TEST_JDK) {
         WriteAction.run<IOException> {
             fixture.file.virtualFile.isWritable = false
         }
-        val actual = (fixture as CodeInsightTestFixtureImpl).getFoldingDescription(doCheckCollapseStatus)
+        val actual = (fixture as CodeInsightTestFixtureImpl).getFoldingDescription(doCheckCollapseStatus, false)
         if (expectedContent != actual) {
             throw FileComparisonFailedError(verificationFile.name, expectedContent, actual, verificationFile.path)
         }
