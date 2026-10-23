@@ -258,12 +258,10 @@ fun readProperties(file: File): Properties {
 
 tasks.register("patchChangelogWithLastCommitMsg") {
     doLast {
-        val output = ByteArrayOutputStream()
-        project.exec {
-            commandLine("git", "log", "-1", "--pretty=%B")
-            standardOutput = output
-        }
-        val commitMsg = output.toString().trim()
+        val commitMsg = ProcessBuilder("git", "log", "-1", "--pretty=%B")
+            .redirectErrorStream(true)
+            .start()
+            .inputStream.bufferedReader().readText().trim()
         println("commitMsg = $commitMsg")
 
         val patchTask = tasks.named("patchChangelog", PatchChangelogTask::class.java).get()
