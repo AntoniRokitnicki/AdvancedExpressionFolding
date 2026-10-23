@@ -38,8 +38,8 @@ class NumberLiteral(
             }
             if (convert) {
                 val placeholder = when (number) {
-                    is Float -> number.toFloat().toString() + "f"
-                    is Double -> number.toDouble().toString()
+                    is Float -> number.toString() + "f"
+                    is Double -> number.toString()
                     else -> number.toString()
                 }
                 descriptors += FoldingDescriptor(element.node, highlightedRange, group, placeholder)

@@ -83,7 +83,7 @@ object IntegrationTestApi {
         }
     }
 
-    private inline fun <T> computeOnEdt(noinline action: () -> T): T {
+    private fun <T> computeOnEdt(action: () -> T): T {
         val reference = AtomicReference<T?>()
         runOnEdt {
             reference.set(action())
