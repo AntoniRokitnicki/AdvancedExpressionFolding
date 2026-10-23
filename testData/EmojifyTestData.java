@@ -1,4 +1,4 @@
-<fold text='📦' expand='false'>package</fold> data;
+<fold text='📦' expand='true'>package</fold> data;
 
 <fold text='🚢' expand='false'>import</fold> java.time.DayOfWeek;
 
@@ -142,7 +142,7 @@ public <fold text='🏛️' expand='false'>class</fold> EmojifyTestData {
         }</fold>
 
         public <fold text='💀' expand='false'>void</fold> setTransientField(<fold text='🔢' expand='false'>int</fold> transientField)<fold text=' { ' expand='false'> {
-            <fold text='📍' expand='false'></fold>this</fold>.transientField = transientField;<fold text=' }' expand='false'>
+            </fold><fold text='📍' expand='false'>this</fold>.transientField = transientField;<fold text=' }' expand='false'>
         }</fold>
 
         public <fold text='🔘' expand='false'>boolean</fold> isVolatileField()<fold text=' { ' expand='false'> {

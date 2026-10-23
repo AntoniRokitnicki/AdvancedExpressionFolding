@@ -23,7 +23,7 @@ public class NullableAnnotationTestData {
     <fold text='@Getter @Setter S' expand='false'>S</fold>tring<fold text='? ' expand='false'> </fold>string;<fold text='' expand='false'>
     </fold><fold text='' expand='false'>public NullableAnnotationTestData getData()<fold text=' { ' expand='false'> {
         </fold>return data;<fold text=' }' expand='false'>
-    }</fold><fold text='' expand='false'></fold>
+    }</fold></fold><fold text='' expand='false'>
     </fold><fold text='' expand='false'>public void setData(NullableAnnotationTestData data)<fold text=' { ' expand='false'> {
         </fold>this.data = data;<fold text=' }' expand='false'>
     }</fold></fold><fold text='' expand='false'>
@@ -32,7 +32,7 @@ public class NullableAnnotationTestData {
     }</fold></fold><fold text='' expand='false'>
     </fold><fold text='' expand='false'>public void setOk(boolean ok)<fold text=' { ' expand='false'> {
         </fold>this.ok = ok;<fold text=' }' expand='false'>
-    }</fold><fold text='' expand='false'></fold>
+    }</fold></fold><fold text='' expand='false'>
     </fold><fold text='' expand='false'>public String getString()<fold text=' { ' expand='false'> {
         </fold>return string;<fold text=' }' expand='false'>
     }</fold></fold><fold text='' expand='false'>
@@ -151,7 +151,7 @@ public class NullableAnnotationTestData {
                 return field;
             }</fold></fold><fold text='' expand='false'>
 
-            </fold><fold text='' expand='false'>public void setField(<fold text='' expand='false'>@Nullable<fold text='' expand='false'></fold> </fold>String<fold text='? ' expand='false'> </fold>field)<fold text=' { ' expand='false'> {
+            </fold><fold text='' expand='false'>public void setField(<fold text='' expand='false'>@Nullable</fold><fold text='' expand='false'> </fold>String<fold text='? ' expand='false'> </fold>field)<fold text=' { ' expand='false'> {
                 </fold>this.field = field;<fold text=' }' expand='false'>
             }</fold></fold>
         }</fold>

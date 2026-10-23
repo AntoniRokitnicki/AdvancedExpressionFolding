@@ -1,6 +1,5 @@
 package com.intellij.advancedExpressionFolding.folding
 
-import ai.grazie.utils.capitalize
 import com.intellij.advancedExpressionFolding.folding.util.FoldingDataStorage
 import com.intellij.advancedExpressionFolding.folding.util.FoldingTemporaryTestEditor
 import com.intellij.advancedExpressionFolding.folding.util.TestDynamicDataProvider
@@ -11,7 +10,6 @@ import com.intellij.advancedExpressionFolding.processor.takeIfFalse
 import com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings.Companion.getInstance
 import com.intellij.advancedExpressionFolding.settings.State
 import com.intellij.openapi.application.WriteAction
-import com.intellij.openapi.application.runInEdt
 import com.intellij.openapi.fileTypes.FileTypeManager
 import com.intellij.openapi.projectRoots.JavaSdk
 import com.intellij.openapi.projectRoots.Sdk
@@ -22,6 +20,7 @@ import com.intellij.platform.testFramework.core.FileComparisonFailedError
 import com.intellij.testFramework.fixtures.DefaultLightProjectDescriptor
 import com.intellij.testFramework.fixtures.LightJavaCodeInsightFixtureTestCase5
 import com.intellij.testFramework.fixtures.impl.CodeInsightTestFixtureImpl
+import com.intellij.testFramework.runInEdtAndWait
 import org.junit.jupiter.api.Assertions.assertNotNull
 import org.opentest4j.TestAbortedException
 import java.io.File
@@ -68,7 +67,7 @@ abstract class BaseTest : LightJavaCodeInsightFixtureTestCase5(TEST_JDK) {
     ) {
         assignState(*turnOnProperties)
         MethodCallFactory.initialize(dynamic)
-        runInEdt {
+        runInEdtAndWait {
             doReadOnlyFoldingTest()
         }
     }
@@ -130,7 +129,7 @@ abstract class BaseTest : LightJavaCodeInsightFixtureTestCase5(TEST_JDK) {
         Files.writeString(createOutputFile(foldingFile, "-folded.java").toPath(), FoldingTemporaryTestEditor.getFoldedText(actual, wrapper))
     }
 
-    protected open fun getTestFileName(testName: String) = "testData/${testName.capitalize()}.java"
+    protected open fun getTestFileName(testName: String) = "testData/${testName.replaceFirstChar { it.uppercase() }}.java"
 
     // TODO: Refactor this mess
     private fun testReadOnlyFoldingRegions(
@@ -160,7 +159,7 @@ abstract class BaseTest : LightJavaCodeInsightFixtureTestCase5(TEST_JDK) {
         WriteAction.run<IOException> {
             fixture.file.virtualFile.isWritable = false
         }
-        val actual = (fixture as CodeInsightTestFixtureImpl).getFoldingDescription(doCheckCollapseStatus)
+        val actual = (fixture as CodeInsightTestFixtureImpl).getFoldingDescription(doCheckCollapseStatus, false)
         if (expectedContent != actual) {
             throw FileComparisonFailedError(verificationFile.name, expectedContent, actual, verificationFile.path)
         }

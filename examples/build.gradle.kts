@@ -22,3 +22,8 @@ repositories {
     mavenCentral()
 }
 
+
+// test source set holds example data only, no tests to run
+tasks.test {
+    enabled = false
+}

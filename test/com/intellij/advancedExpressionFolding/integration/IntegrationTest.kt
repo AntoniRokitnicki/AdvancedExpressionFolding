@@ -16,7 +16,7 @@ import com.intellij.ide.starter.di.di
 import com.intellij.ide.starter.driver.engine.runIdeWithDriver
 import com.intellij.ide.starter.driver.execute
 import com.intellij.ide.starter.ide.IDETestContext
-import com.intellij.ide.starter.ide.IdeProductProvider
+import com.intellij.ide.starter.models.IdeInfo
 import com.intellij.ide.starter.models.TestCase
 import com.intellij.ide.starter.plugins.PluginConfigurator
 import com.intellij.ide.starter.project.LocalProjectInfo
@@ -26,7 +26,9 @@ import com.intellij.ide.starter.runner.IDECommandLine
 import com.intellij.ide.starter.runner.IDERunContext
 import com.intellij.ide.starter.runner.Starter
 import com.intellij.ide.starter.screenRecorder.IDEScreenRecorder
+import com.intellij.platform.testFramework.teamCity.TeamCityReporter.SyntheticTestKind
 import com.intellij.tools.ide.performanceTesting.commands.*
+import com.intellij.tools.ide.starter.product.idea.community.IdeaCommunity
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable
 import org.junit.jupiter.api.fail
@@ -64,7 +66,7 @@ open class IntegrationTest {
             Starter.newContext(
                 contextName(testName, version),
                 TestCase(
-                    IdeProductProvider.IC,
+                    IdeInfo.IdeaCommunity,
                     LocalProjectInfo(Path("examples"))
                 ).withVersion(version)
             ).apply {
@@ -91,7 +93,9 @@ open class IntegrationTest {
                         testName: String,
                         message: String,
                         details: String,
-                        linkToLogs: String?
+                        linkToLogs: String?,
+                        kind: SyntheticTestKind,
+                        generifyTestName: Boolean
                     ) {
                         fail { "$testName fails: $message. \n$details" }
                     }
@@ -132,7 +136,7 @@ open class IntegrationTest {
         runForEachContext("openAllFiles") { context ->
             lateinit var recorder: IDEScreenRecorder
             context.runIdeWithDriver(commandLine = {
-                recorder = IDEScreenRecorder(it)
+                recorder = IDEScreenRecorder.create(it)
                 IDECommandLine.OpenTestCaseProject(context)
             }).useDriverAndCloseIde {
                 setupProjectWithGradle()

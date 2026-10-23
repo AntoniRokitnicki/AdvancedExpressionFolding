@@ -30,7 +30,7 @@ public class LogBrackets {
 
 
         log.debug("Debug message with 1 parameter - Name: " + name);
-        log.trace("Trace message - Name: <fold text='${' expand='false'>%s, log:%s    $", </fold>data.<fold text='name' expand='false'>getName()<fold text='}, log:${' expand='false'></fold>, </fold>logPrintfStyle(data)<fold text='}    $")' expand='false'>)</fold>;
+        log.trace("Trace message - Name: <fold text='${' expand='false'>%s, log:%s    $", </fold>data.<fold text='name' expand='false'>getName()</fold><fold text='}, log:${' expand='false'>, </fold>logPrintfStyle(data)<fold text='}    $")' expand='false'>)</fold>;
         log.warn("Warning message with three parameters - Name: <fold text='$' expand='false'>%s, Age: %s, City: %s", </fold>name<fold text=', Age: ${' expand='false'>, </fold>data.<fold text='data' expand='false'>getData()</fold>.<fold text='name' expand='false'>getName()</fold><fold text='}, City: $' expand='false'>, </fold>city<fold text='")' expand='false'>)</fold>;
 
         log.error("Missing 1 parameter - 1: <fold text='$' expand='false'>%s, 2: %d, 3: %s, empty: %s", </fold>name<fold text=', 2: $' expand='false'>, </fold>age<fold text=', 3: $' expand='false'>, </fold>city<fold text=', empty: %s")' expand='false'>)</fold>;

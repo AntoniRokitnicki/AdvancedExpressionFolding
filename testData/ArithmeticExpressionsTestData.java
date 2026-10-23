@@ -26,7 +26,7 @@ public class ArithmeticExpressionsTestData {
         }</fold>
 
         public void divideBigDecimal() <fold text='{...}' expand='true'>{
-            BigDecimal a = <fold text='' expand='false'>new BigDecimal(</fold><fold text='10' expand='false'>"10"<fold text='' expand='false'></fold>)</fold>;
+            BigDecimal a = <fold text='' expand='false'>new BigDecimal(</fold><fold text='10' expand='false'>"10"</fold><fold text='' expand='false'>)</fold>;
             BigDecimal b = <fold text='' expand='false'>new BigDecimal(</fold><fold text='5' expand='false'>"5"</fold><fold text='' expand='false'>)</fold>;
             blackhole = a<fold text=' / ' expand='false'>.divide(</fold>b<fold text='' expand='false'>)</fold>;
         }</fold>
@@ -61,7 +61,7 @@ public class ArithmeticExpressionsTestData {
         }</fold>
 
         public void negateBigDecimal() <fold text='{...}' expand='true'>{
-            BigDecimal a = <fold text='' expand='false'>new BigDecimal(</fold><fold text='10' expand='false'>"10"<fold text='' expand='false'></fold>)</fold>;
+            BigDecimal a = <fold text='' expand='false'>new BigDecimal(</fold><fold text='10' expand='false'>"10"</fold><fold text='' expand='false'>)</fold>;
             blackhole = a.negate();
         }</fold>
 
@@ -88,7 +88,7 @@ public class ArithmeticExpressionsTestData {
 
     class BigIntegerData <fold text='{...}' expand='true'>{
         public void addBigInteger() <fold text='{...}' expand='true'>{
-            BigInteger a = <fold text='' expand='false'>new BigInteger(<fold text='10' expand='false'></fold>"10"</fold><fold text='' expand='false'>)</fold>;
+            BigInteger a = <fold text='' expand='false'>new BigInteger(</fold><fold text='10' expand='false'>"10"</fold><fold text='' expand='false'>)</fold>;
             BigInteger b = <fold text='' expand='false'>new BigInteger(</fold><fold text='5' expand='false'>"5"</fold><fold text='' expand='false'>)</fold>;
             blackhole = a<fold text=' + ' expand='false'>.add(</fold>b<fold text='' expand='false'>)</fold>;
         }</fold>
@@ -118,7 +118,7 @@ public class ArithmeticExpressionsTestData {
         }</fold>
 
         public void powBigInteger() <fold text='{...}' expand='true'>{
-            BigInteger a = <fold text='' expand='false'>new BigInteger(</fold><fold text='10' expand='false'>"10"<fold text='' expand='false'></fold>)</fold>;
+            BigInteger a = <fold text='' expand='false'>new BigInteger(</fold><fold text='10' expand='false'>"10"</fold><fold text='' expand='false'>)</fold>;
             blackhole = a<fold text='²' expand='false'>.pow(2)</fold>;
         }</fold>
 
@@ -178,7 +178,7 @@ public class ArithmeticExpressionsTestData {
         }</fold>
 
         public void shiftRightBigInteger() <fold text='{...}' expand='true'>{
-            BigInteger a = <fold text='' expand='false'>new BigInteger(</fold><fold text='10' expand='false'>"10"<fold text='' expand='false'></fold>)</fold>;
+            BigInteger a = <fold text='' expand='false'>new BigInteger(</fold><fold text='10' expand='false'>"10"</fold><fold text='' expand='false'>)</fold>;
             blackhole = a<fold text=' >> ' expand='false'>.shiftRight(</fold>2<fold text='' expand='false'>)</fold>;
         }</fold>
 

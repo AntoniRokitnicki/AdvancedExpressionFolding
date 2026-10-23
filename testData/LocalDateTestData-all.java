@@ -1,4 +1,4 @@
-package data<fold text='' expand='false'>;</fold>
+package data<fold text='' expand='true'>;</fold>
 
 import <fold text='...' expand='false'>java.sql.Timestamp<fold text='' expand='false'>;</fold>
 import java.time.LocalDate<fold text='' expand='false'>;</fold>
@@ -137,7 +137,7 @@ public class LocalDateTestData {
         </fold>}</fold>
 
         public boolean isBefore(CustomClass2 other)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-            </fold><fold text='' expand='true'></fold>return</fold><fold text='' expand='true'> </fold>this.minguoDate<fold text=' < ' expand='false'>.isBefore(</fold>other.minguoDate<fold text='' expand='false'>)</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>this.minguoDate<fold text=' < ' expand='false'>.isBefore(</fold>other.minguoDate<fold text='' expand='false'>)</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold>
 
         public boolean isAfter(CustomClass2 other)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>

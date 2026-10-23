@@ -1,4 +1,4 @@
-package data<fold text='' expand='false'>;</fold>
+package data<fold text='' expand='true'>;</fold>
 
 public class ControlFlowMultiStatementTestData {
     public static void main(String[] args) <fold text='{...}' expand='true'>{
@@ -6,7 +6,7 @@ public class ControlFlowMultiStatementTestData {
                 <fold text='' expand='false'>System.out.</fold>println(<fold text='"..."' expand='false'>"..."</fold>)<fold text='' expand='false'>;</fold>
         <fold text='' expand='false'>System.out.</fold>println(<fold text='"..."' expand='false'>"..."</fold>)<fold text='' expand='false'>;</fold>
         }</fold>
-        if <fold text='' expand='false'>(</fold>args.length == 0<fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'><fold text='' expand='false'>{</fold>
+        if <fold text='' expand='false'>(</fold>args.length == 0<fold text='' expand='false'>)</fold> <fold text='' expand='false'><fold text='{...}' expand='true'>{</fold>
                 <fold text='' expand='false'>System.out.</fold>println(<fold text='"..."' expand='false'>"..."</fold>)<fold text='' expand='false'>;</fold>
         <fold text='' expand='false'>System.out.</fold>println(<fold text='"..."' expand='false'>"..."</fold>)<fold text='' expand='false'>;</fold>
         }</fold> else <fold text='' expand='false'><fold text='{...}' expand='true'>{</fold>

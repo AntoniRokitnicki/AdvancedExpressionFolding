@@ -77,14 +77,14 @@ public class ConstructorReferenceNotationWithConstTestData {
 
         </fold><fold text='' expand='false'>public ConstClass(boolean ok)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
             </fold></fold>this.ok = <fold text='<<' expand='false'>ok</fold><fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
-        </fold>}</fold><fold text='' expand='false'></fold>
+        </fold>}</fold></fold><fold text='' expand='false'>
 
         </fold><fold text='' expand='false'>public ConstClass(boolean ok, String string) <fold text='{...}' expand='true'>{
             this.ok = <fold text='<<' expand='false'>ok</fold>;
             this.string = <fold text='<<' expand='false'>string</fold>;
         }</fold></fold><fold text='' expand='false'>
 
-        </fold><fold text='' expand='true'><fold text='' expand='false'>@Override</fold><fold text='' expand='true'>
+        </fold><fold text='' expand='false'><fold text='' expand='true'>@Override</fold><fold text='' expand='true'>
         </fold>public String toString() <fold text='{...}' expand='true'>{
             return new StringJoiner(", ",<fold text=' "${' expand='false'> </fold>ConstClass.class.<fold text='simpleName' expand='false'>getSimpleName()</fold><fold text='}' expand='false'> + "</fold>[", "]")
                     .add("string='<fold text='$' expand='false'>" + </fold>string<fold text='' expand='false'> + "</fold>'")

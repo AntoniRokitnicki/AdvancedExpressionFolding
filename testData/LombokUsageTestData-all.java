@@ -1,4 +1,4 @@
-import <fold text='...' expand='false'>java.util.List;
+import <fold text='...' expand='true'>java.util.List;
 import lombok.Data;</fold>
 
 @Data

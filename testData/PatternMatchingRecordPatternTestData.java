@@ -9,7 +9,7 @@ public class PatternMatchingRecordPatternTestData {
         if (o instanceof <fold text='Customer(String name, int age)' expand='true'>Customer</fold><fold text='))' expand='true'>)</fold> <fold text='{...}' expand='true'>{
             <fold text='' expand='true'>Customer customer = (Customer) o;</fold><fold text='' expand='true'>
             </fold><fold text='' expand='true'>String name = customer.name();</fold><fold text='' expand='true'>
-            </fold><fold text='' expand='true'>int age = customer.age();<fold text='' expand='true'></fold>
+            </fold><fold text='' expand='true'>int age = customer.age();</fold><fold text='' expand='true'>
             </fold>System.out.println(name + age);
         }</fold>
 

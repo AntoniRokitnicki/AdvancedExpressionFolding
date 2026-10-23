@@ -75,6 +75,16 @@ val examplesTestOutput = project(":examples").extensions.getByType<SourceSetCont
 tasks.withType<JavaCompile> {
     options.encoding = "UTF-8"
 }
+
+// The 2026.2 test framework ships inline functions compiled for JVM 25, so tests must target 25.
+// Production code stays on 17 to keep pluginSinceBuild = 233 working.
+val testJavaVersion = JavaLanguageVersion.of(25)
+tasks.named<JavaCompile>("compileTestJava") {
+    javaCompiler = javaToolchains.compilerFor { languageVersion = testJavaVersion }
+}
+tasks.named<org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile>("compileTestKotlin") {
+    kotlinJavaToolchain.toolchain.use(javaToolchains.launcherFor { languageVersion = testJavaVersion })
+}
 tasks.test {
     systemProperty("file.encoding", "UTF-8")
     systemProperty("line.separator", "\n")
@@ -258,12 +268,10 @@ fun readProperties(file: File): Properties {
 
 tasks.register("patchChangelogWithLastCommitMsg") {
     doLast {
-        val output = ByteArrayOutputStream()
-        project.exec {
-            commandLine("git", "log", "-1", "--pretty=%B")
-            standardOutput = output
-        }
-        val commitMsg = output.toString().trim()
+        val commitMsg = ProcessBuilder("git", "log", "-1", "--pretty=%B")
+            .redirectErrorStream(true)
+            .start()
+            .inputStream.bufferedReader().readText().trim()
         println("commitMsg = $commitMsg")
 
         val patchTask = tasks.named("patchChangelog", PatchChangelogTask::class.java).get()
