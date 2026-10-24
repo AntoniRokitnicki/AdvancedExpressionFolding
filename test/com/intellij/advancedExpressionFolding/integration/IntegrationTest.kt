@@ -10,6 +10,7 @@ import com.intellij.driver.sdk.ui.components.common.ideFrame
 import com.intellij.driver.sdk.ui.components.elements.JCheckBoxUi
 import com.intellij.driver.sdk.ui.components.elements.checkBox
 import com.intellij.driver.sdk.ui.components.elements.waitSelected
+import com.intellij.driver.sdk.waitFor
 import com.intellij.driver.sdk.waitForIndicators
 import com.intellij.ide.starter.ci.CIServer
 import com.intellij.ide.starter.ci.NoCIServer
@@ -168,15 +169,11 @@ open class IntegrationTest {
 
                 toggleCheckbox(driver, expectInitiallyChecked = true, thenCheck = false)
                 clickOk()
-                check(!property.get()) {
-                    "expressionFunc should be disabled (false) after unchecking, but was ${property.get()}"
-                }
+                waitFor("expressionFunc is disabled after unchecking", SETTING_TIMEOUT) { !property.get() }
 
                 toggleCheckbox(driver, expectInitiallyChecked = false, thenCheck = true)
                 clickOk()
-                check(property.get()) {
-                    "expressionFunc should be enabled (true) after checking, but was ${property.get()}"
-                }
+                waitFor("expressionFunc is enabled after checking", SETTING_TIMEOUT) { property.get() }
             }
         }
     }
@@ -215,12 +212,10 @@ open class IntegrationTest {
             check(service<SettingsStub>().getState().globalOn) { "globalOn should start enabled" }
 
             invokeAction(GLOBAL_TOGGLE_ACTION)
-            wait()
-            check(!service<SettingsStub>().getState().globalOn) { "globalOn should be disabled after toggle" }
+            waitFor("globalOn is disabled after toggle", SETTING_TIMEOUT) { !service<SettingsStub>().getState().globalOn }
 
             invokeAction(GLOBAL_TOGGLE_ACTION)
-            wait()
-            check(service<SettingsStub>().getState().globalOn) { "globalOn should be re-enabled after second toggle" }
+            waitFor("globalOn is re-enabled after second toggle", SETTING_TIMEOUT) { service<SettingsStub>().getState().globalOn }
         }
     }
 
@@ -229,10 +224,13 @@ open class IntegrationTest {
     fun `find methods with default parameters action shows usage results`() {
         withIde {
             invokeAction(FIND_METHODS_WITH_DEFAULT_PARAMETERS_ACTION, now = false)
-            wait()
-            wait()
-            val usageCount = service<UsageViewManagerStub>(singleProject()).getSelectedUsageView()?.getUsagesCount() ?: 0
-            check(usageCount > 0) { "Expected to find usages but found $usageCount" }
+            waitFor<Int>(
+                message = "Usage view shows methods with default parameters",
+                timeout = 2.minutes,
+                errorMessage = { "Expected to find usages but found $it" },
+                getter = { service<UsageViewManagerStub>(singleProject()).getSelectedUsageView()?.getUsagesCount() ?: 0 },
+                checker = { it > 0 },
+            )
         }
     }
 
@@ -265,10 +263,13 @@ open class IntegrationTest {
             }
 
             openOptionalTestData()
-            val foldsWhenEnabled = utility<FoldingIntegrationStub>().countAdvancedFoldRegions()
-            check(foldsWhenEnabled > 0) {
-                "Expected advanced folds to return after re-enabling the global toggle, but found $foldsWhenEnabled"
-            }
+            waitFor<Int>(
+                message = "Advanced folds return after re-enabling the global toggle",
+                timeout = SETTING_TIMEOUT,
+                errorMessage = { "Expected advanced folds to return after re-enabling the global toggle, but found $it" },
+                getter = { utility<FoldingIntegrationStub>().countAdvancedFoldRegions() },
+                checker = { it > 0 },
+            )
         }
     }
 
@@ -402,6 +403,7 @@ open class IntegrationTest {
         private const val GLOBAL_TOGGLE_ACTION = "com.intellij.advancedExpressionFolding.action.GlobalToggleFoldingAction"
         private const val FIND_METHODS_WITH_DEFAULT_PARAMETERS_ACTION =
             "com.intellij.advancedExpressionFolding.action.FindMethodsWithDefaultParametersAction"
+        private val SETTING_TIMEOUT = 10.seconds
         private const val DEFAULT_IDE_VERSION = "2026.2.3"
         private const val INTEGRATION_ENV = "integration"
         private const val MODE_PROPERTY = "integration.mode"
