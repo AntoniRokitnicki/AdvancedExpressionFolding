@@ -13,6 +13,7 @@ import com.intellij.driver.sdk.waitForIndicators
 import com.intellij.ide.starter.ci.CIServer
 import com.intellij.ide.starter.ci.NoCIServer
 import com.intellij.ide.starter.di.di
+import com.intellij.ide.starter.driver.engine.BackgroundRun
 import com.intellij.ide.starter.driver.engine.runIdeWithDriver
 import com.intellij.ide.starter.driver.execute
 import com.intellij.ide.starter.ide.IDETestContext
@@ -30,7 +31,12 @@ import com.intellij.platform.testFramework.teamCity.TeamCityReporter.SyntheticTe
 import com.intellij.tools.ide.performanceTesting.commands.*
 import com.intellij.tools.ide.starter.product.idea.community.IdeaCommunity
 import com.intellij.tools.ide.starter.product.idea.ultimate.IdeaUltimate
+import org.junit.jupiter.api.AfterAll
+import org.junit.jupiter.api.MethodOrderer
+import org.junit.jupiter.api.Order
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.TestInstance
+import org.junit.jupiter.api.TestMethodOrder
 import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable
 import org.junit.jupiter.api.fail
 import org.kodein.di.DI
@@ -43,9 +49,13 @@ import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Duration.Companion.seconds
 
 /**
- * One test == one IDE run
+ * One IDE run per IDE version, shared by all tests of the class.
+ * Tests run in a fixed order, because later tests change IDE state (Zen Mode, all features enabled).
+ * A failing test closes the IDE, so the next test starts a fresh one.
  */
 @EnabledIfEnvironmentVariable(named = "integration", matches = "1|all-versions")
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@TestMethodOrder(MethodOrderer.OrderAnnotation::class)
 open class IntegrationTest {
     val record = false
     val showWholeFile = false
@@ -55,31 +65,69 @@ open class IntegrationTest {
         IntegrationMode.ALL -> SUPPORTED_IDE_VERSIONS
     }
 
-    protected open fun createContexts(testName: String): List<IDETestContext> {
-        val mode = integrationMode()
-        val versions = ideVersions()
-        val contextName: (String, String) -> String = { name, version ->
-            if (versions.size == 1) name else "$name-$version"
+    protected class IdeSession(
+        val version: String,
+        val context: IDETestContext,
+        val run: BackgroundRun,
+        val recorder: IDEScreenRecorder,
+    )
+
+    private var session: IdeSession? = null
+
+    protected open fun createContext(version: String): IDETestContext {
+        val name = if (ideVersions().size == 1) SESSION_NAME else "$SESSION_NAME-$version"
+        return Starter.newContext(
+            name,
+            TestCase(
+                ideInfoFor(version),
+                LocalProjectInfo(Path("examples"))
+            ).withVersion(version)
+        ).apply {
+            // Skips first-start auto-trial, which enables Ultimate and reloads all plugins mid-test
+            removeMigrateConfigAndCreateStubFile()
+            PluginConfigurator(this).installPluginFromPath(findLatestPluginZip().toPath())
         }
-        val pluginZip = findLatestPluginZip()
-        println("Running integration tests in ${mode.displayName} mode")
-        return versions.map { version ->
-            Starter.newContext(
-                contextName(testName, version),
-                TestCase(
-                    ideInfoFor(version),
-                    LocalProjectInfo(Path("examples"))
-                ).withVersion(version)
-            ).apply {
-                // Skips first-start auto-trial, which enables Ultimate and reloads all plugins mid-test
-                removeMigrateConfigAndCreateStubFile()
-                PluginConfigurator(this).installPluginFromPath(pluginZip.toPath())
+    }
+
+    protected fun withIde(action: Driver.(IdeSession) -> Unit) {
+        ideVersions().forEach { version ->
+            val current = sessionFor(version)
+            try {
+                current.run.driver.withContext { action(this, current) }
+            } catch (t: Throwable) {
+                closeIde()
+                throw t
             }
         }
     }
 
-    protected fun runForEachContext(testName: String, action: (IDETestContext) -> Unit) {
-        createContexts(testName).forEach(action)
+    private fun sessionFor(version: String): IdeSession {
+        session?.takeIf { it.version == version }?.let { return it }
+        closeIde()
+        println("Running integration tests in ${integrationMode().displayName} mode, IDE $version")
+        val context = createContext(version)
+        lateinit var recorder: IDEScreenRecorder
+        val run = context.runIdeWithDriver(commandLine = {
+            recorder = IDEScreenRecorder.create(it)
+            IDECommandLine.OpenTestCaseProject(context)
+        })
+        try {
+            run.driver.withContext {
+                wait()
+                setupProjectWithGradle()
+            }
+        } catch (t: Throwable) {
+            run.closeIdeAndWait()
+            throw t
+        }
+        return IdeSession(version, context, run, recorder).also { session = it }
+    }
+
+    @AfterAll
+    fun closeIde() {
+        val current = session ?: return
+        session = null
+        current.run.closeIdeAndWait()
     }
 
     private fun findLatestPluginZip(): File = File("build/distributions").listFiles()
@@ -108,140 +156,117 @@ open class IntegrationTest {
     }
 
     @Test
+    @Order(1)
     fun `make sure setting changes are persisted`() {
-        runForEachContext("settings") { context ->
-            context.runIdeWithDriver().useDriverAndCloseIde {
-                wait()
-                ideFrame {
-                    val property = service<SettingsStub>().getState()::expressionFunc
-                    check(property.get()) {
-                        "expressionFunc should be initially enabled (true), but was ${property.get()}"
-                    }
+        withIde {
+            ideFrame {
+                val property = service<SettingsStub>().getState()::expressionFunc
+                check(property.get()) {
+                    "expressionFunc should be initially enabled (true), but was ${property.get()}"
+                }
 
-                    toggleCheckbox(driver, expectInitiallyChecked = true, thenCheck = false)
-                    clickOk()
-                    check(!property.get()) {
-                        "expressionFunc should be disabled (false) after unchecking, but was ${property.get()}"
-                    }
+                toggleCheckbox(driver, expectInitiallyChecked = true, thenCheck = false)
+                clickOk()
+                check(!property.get()) {
+                    "expressionFunc should be disabled (false) after unchecking, but was ${property.get()}"
+                }
 
-                    toggleCheckbox(driver, expectInitiallyChecked = false, thenCheck = true)
-                    clickOk()
-                    check(property.get()) {
-                        "expressionFunc should be enabled (true) after checking, but was ${property.get()}"
-                    }
+                toggleCheckbox(driver, expectInitiallyChecked = false, thenCheck = true)
+                clickOk()
+                check(property.get()) {
+                    "expressionFunc should be enabled (true) after checking, but was ${property.get()}"
                 }
             }
         }
     }
 
     @Test
+    @Order(5)
     fun `open all files`() {
-        runForEachContext("openAllFiles") { context ->
-            lateinit var recorder: IDEScreenRecorder
-            context.runIdeWithDriver(commandLine = {
-                recorder = IDEScreenRecorder.create(it)
-                IDECommandLine.OpenTestCaseProject(context)
-            }).useDriverAndCloseIde {
-                setupProjectWithGradle()
+        withIde { session ->
+            println("changeFoldingColors=" + runCatching {
+                changeFoldingColors()
+            }.exceptionOrNull())
+            service<SettingsStub>().enableEverything()
+            startZenMode()
 
-                println("changeFoldingColors=" + runCatching {
-                    changeFoldingColors()
-                }.exceptionOrNull())
-                service<SettingsStub>().enableEverything()
-                startZenMode()
-
-                val next = { openFiles(context) }
-                val errorList = if (record) {
-                    recorder.record {
-                        next()
-                    }
-                } else {
+            val next = { openFiles(session.context) }
+            val errorList = if (record) {
+                session.recorder.record {
                     next()
                 }
-                errorList.forEach { (filename, errors) ->
-                    println("File: $filename")
-                    errors.forEach { error ->
-                        println(error.stackTraceContent)
-                    }
+            } else {
+                next()
+            }
+            errorList.forEach { (filename, errors) ->
+                println("File: $filename")
+                errors.forEach { error ->
+                    println(error.stackTraceContent)
                 }
             }
         }
     }
 
     @Test
+    @Order(2)
     fun `global toggle folding action switches setting`() {
-        runForEachContext("globalToggleFolding") { context ->
-            context.runIdeWithDriver().useDriverAndCloseIde {
-                setupProjectWithGradle()
+        withIde {
+            check(service<SettingsStub>().getState().globalOn) { "globalOn should start enabled" }
 
-                check(service<SettingsStub>().getState().globalOn) { "globalOn should start enabled" }
+            execute { it.searchEverywhere(textToInsert = "Advanced Folding: Global", selectFirst = true, startThoughAction = true) }
+            wait()
+            check(!service<SettingsStub>().getState().globalOn) { "globalOn should be disabled after toggle" }
 
-                execute { it.searchEverywhere(textToInsert = "Advanced Folding: Global", selectFirst = true, startThoughAction = true) }
-                wait()
-                check(!service<SettingsStub>().getState().globalOn) { "globalOn should be disabled after toggle" }
-
-                execute { it.searchEverywhere(textToInsert = "Advanced Folding: Global", selectFirst = true, startThoughAction = true) }
-                wait()
-                check(service<SettingsStub>().getState().globalOn) { "globalOn should be re-enabled after second toggle" }
-            }
+            execute { it.searchEverywhere(textToInsert = "Advanced Folding: Global", selectFirst = true, startThoughAction = true) }
+            wait()
+            check(service<SettingsStub>().getState().globalOn) { "globalOn should be re-enabled after second toggle" }
         }
     }
 
     @Test
+    @Order(4)
     fun `find methods with default parameters action shows usage results`() {
-        runForEachContext("findMethodsWithDefaultParameters") { context ->
-            context.runIdeWithDriver().useDriverAndCloseIde {
-                wait()
-                setupProjectWithGradle()
-
-                execute { it.searchEverywhere(textToInsert = "Find Methods with Default Parameters", selectFirst = true) }
-                wait()
-                wait()
-                val usageCount = service<UsageViewManagerStub>(singleProject()).getSelectedUsageView()?.getUsagesCount() ?: 0
-                check(usageCount > 0) { "Expected to find usages but found $usageCount" }
-            }
+        withIde {
+            execute { it.searchEverywhere(textToInsert = "Find Methods with Default Parameters", selectFirst = true) }
+            wait()
+            wait()
+            val usageCount = service<UsageViewManagerStub>(singleProject()).getSelectedUsageView()?.getUsagesCount() ?: 0
+            check(usageCount > 0) { "Expected to find usages but found $usageCount" }
         }
     }
 
     private fun Driver.changeFoldingColors() = utility<ColorActionStub>().changeFoldingColors()
 
     @Test
+    @Order(3)
     fun `global toggle disables and restores folding`() {
-        runForEachContext("globalToggle") { context ->
-            context.runIdeWithDriver().useDriverAndCloseIde {
-                execute {
-                    it.importGradleProject()
-                    it.awaitCompleteProjectConfiguration()
-                    it.waitForSmartMode()
-                }
+        withIde {
+            service<SettingsStub>().enableEverything()
+            check(service<SettingsStub>().getState().optional) {
+                "Optional folding should stay enabled when testing the global toggle"
+            }
 
-                service<SettingsStub>().enableEverything()
-                check(service<SettingsStub>().getState().optional) {
-                    "Optional folding should stay enabled when testing the global toggle"
-                }
+            utility<FoldingIntegrationStub>().toggleGlobalFolding(false)
+            check(!service<SettingsStub>().getState().globalOn) {
+                "Global folding should be disabled after toggling off"
+            }
 
-                utility<FoldingIntegrationStub>().toggleGlobalFolding(false)
-                check(!service<SettingsStub>().getState().globalOn) {
-                    "Global folding should be disabled after toggling off"
-                }
+            openOptionalTestData()
 
-                openOptionalTestData()
+            val foldsWhenDisabled = utility<FoldingIntegrationStub>().countAdvancedFoldRegions()
+            check(foldsWhenDisabled == 0) {
+                "Expected no advanced folds when global toggle is disabled, but found $foldsWhenDisabled"
+            }
 
-                val foldsWhenDisabled = utility<FoldingIntegrationStub>().countAdvancedFoldRegions()
-                check(foldsWhenDisabled == 0) {
-                    "Expected no advanced folds when global toggle is disabled, but found $foldsWhenDisabled"
-                }
+            utility<FoldingIntegrationStub>().toggleGlobalFolding(true)
+            check(service<SettingsStub>().getState().globalOn) {
+                "Global folding should be enabled after toggling on"
+            }
 
-                utility<FoldingIntegrationStub>().toggleGlobalFolding(true)
-                check(service<SettingsStub>().getState().globalOn) {
-                    "Global folding should be enabled after toggling on"
-                }
-
-                openOptionalTestData()
-                val foldsWhenEnabled = utility<FoldingIntegrationStub>().countAdvancedFoldRegions()
-                check(foldsWhenEnabled > 0) {
-                    "Expected advanced folds to return after re-enabling the global toggle, but found $foldsWhenEnabled"
-                }
+            openOptionalTestData()
+            val foldsWhenEnabled = utility<FoldingIntegrationStub>().countAdvancedFoldRegions()
+            check(foldsWhenEnabled > 0) {
+                "Expected advanced folds to return after re-enabling the global toggle, but found $foldsWhenEnabled"
             }
         }
     }
@@ -376,6 +401,7 @@ open class IntegrationTest {
     }
 
     private companion object {
+        private const val SESSION_NAME = "integration"
         private const val DEFAULT_IDE_VERSION = "2026.2.3"
         private const val INTEGRATION_ENV = "integration"
         private const val MODE_PROPERTY = "integration.mode"
