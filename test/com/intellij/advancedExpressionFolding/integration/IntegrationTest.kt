@@ -6,11 +6,13 @@ import com.intellij.driver.client.utility
 import com.intellij.driver.sdk.invokeAction
 import com.intellij.driver.sdk.openFile
 import com.intellij.driver.sdk.singleProject
+import com.intellij.driver.sdk.ui.components.UiComponent
 import com.intellij.driver.sdk.ui.components.common.IdeaFrameUI
 import com.intellij.driver.sdk.ui.components.common.ideFrame
 import com.intellij.driver.sdk.ui.components.elements.JCheckBoxUi
 import com.intellij.driver.sdk.ui.components.elements.checkBox
 import com.intellij.driver.sdk.ui.components.elements.waitSelected
+import com.intellij.driver.sdk.ui.components.settings.settingsDialog
 import com.intellij.driver.sdk.waitFor
 import com.intellij.driver.sdk.waitForIndicators
 import com.intellij.ide.starter.ci.CIServer
@@ -168,12 +170,10 @@ open class IntegrationTest {
                     "expressionFunc should be initially enabled (true), but was ${property.get()}"
                 }
 
-                toggleCheckbox(driver, expectInitiallyChecked = true, thenCheck = false)
-                clickOk()
+                toggleCheckbox(expectInitiallyChecked = true, thenCheck = false)
                 waitFor("expressionFunc is disabled after unchecking", SETTING_TIMEOUT) { !property.get() }
 
-                toggleCheckbox(driver, expectInitiallyChecked = false, thenCheck = true)
-                clickOk()
+                toggleCheckbox(expectInitiallyChecked = false, thenCheck = true)
                 waitFor("expressionFunc is enabled after checking", SETTING_TIMEOUT) { property.get() }
             }
         }
@@ -286,41 +286,31 @@ open class IntegrationTest {
     private fun Driver.wait() = waitForIndicators(5.minutes)
 
     fun IdeaFrameUI.toggleCheckbox(
-        driver: Driver,
         expectInitiallyChecked: Boolean,
         thenCheck: Boolean
     ) {
-        driver.gotoSettings()
+        openSettingsDialog()
+        settingsDialog {
+            openTreeSettingsSection(*SETTINGS_PAGE_PATH)
 
-        with(findCheckbox()) {
-            check(isSelected() == expectInitiallyChecked) { "Unexpected initial checkbox state" }
+            with(content().findCheckbox()) {
+                check(isSelected() == expectInitiallyChecked) { "Unexpected initial checkbox state" }
 
-            if (thenCheck) {
-                check()
-            } else {
-                uncheck()
+                if (thenCheck) {
+                    check()
+                } else {
+                    uncheck()
+                }
+                waitSelected(thenCheck)
+
+                check(isSelected() == thenCheck) { "Checkbox ${if (thenCheck) "check" else "uncheck"} did not work" }
             }
-            waitSelected(thenCheck)
-
-            check(isSelected() == thenCheck) { "Checkbox ${if (thenCheck) "check" else "uncheck"} did not work" }
+            okButton.click()
         }
     }
 
-    private fun Driver.gotoSettings() {
-        execute {
-            it.searchEverywhere(textToType = "Single-Expression", selectFirst = true)
-        }
-        wait()
-    }
-
-    private fun IdeaFrameUI.findCheckbox(): JCheckBoxUi =
-        checkBox("//div[@class='DialogPanel']//div[contains(@class,'JBCheckBox') and contains(., 'Single-Expression')]")
-
-    private fun IdeaFrameUI.clickOk() {
-        x {
-            byVisibleText("OK")
-        }.click()
-    }
+    private fun UiComponent.findCheckbox(): JCheckBoxUi =
+        checkBox("//div[contains(@class,'JBCheckBox') and contains(., 'Single-Expression')]")
 
     private fun Driver.openFiles(context: IDETestContext): List<Pair<ErrorFileName, List<Error>>> {
         val seenErrors = HashSet<Error>()
@@ -399,6 +389,8 @@ open class IntegrationTest {
         private const val GLOBAL_TOGGLE_ACTION = "com.intellij.advancedExpressionFolding.action.GlobalToggleFoldingAction"
         private const val FIND_METHODS_WITH_DEFAULT_PARAMETERS_ACTION =
             "com.intellij.advancedExpressionFolding.action.FindMethodsWithDefaultParametersAction"
+        // editorOptionsProvider pages are children of Settings | Editor
+        private val SETTINGS_PAGE_PATH = arrayOf("Editor", "Advanced Expression Folding 2")
         private val SETTING_TIMEOUT = 10.seconds
         private const val DEFAULT_IDE_VERSION = "2026.2.3"
         private const val INTEGRATION_ENV = "integration"
