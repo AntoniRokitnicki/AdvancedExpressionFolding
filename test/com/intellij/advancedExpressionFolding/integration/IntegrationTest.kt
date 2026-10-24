@@ -312,7 +312,7 @@ open class IntegrationTest {
     // Finds the page by name, so it does not depend on the exact tree path or row badges such as "New"
     private fun SettingsDialogUiComponent.openPluginSettingsPage() {
         waitFor("Settings tree is loaded", 5.seconds) { settingsTree.collectExpandedPaths().isNotEmpty() }
-        settingsTree.expandPath(SETTINGS_PARENT_PAGE, fullMatch = false)
+        settingsTree.expandPath(*SETTINGS_PARENT_PATH, fullMatch = false)
         // Rows under the parent page can appear after the tree itself, so wait for the plugin row
         val page = waitFor(
             "Settings page '$SETTINGS_PAGE_NAME' is visible",
@@ -428,8 +428,8 @@ open class IntegrationTest {
         private const val GLOBAL_TOGGLE_ACTION = "com.intellij.advancedExpressionFolding.action.GlobalToggleFoldingAction"
         private const val FIND_METHODS_WITH_DEFAULT_PARAMETERS_ACTION =
             "com.intellij.advancedExpressionFolding.action.FindMethodsWithDefaultParametersAction"
-        // editorOptionsProvider pages are children of Settings | Editor
-        private const val SETTINGS_PARENT_PAGE = "Editor"
+        // editorOptionsProvider pages are children of preferences.editor, shown as Settings | Editor | General
+        private val SETTINGS_PARENT_PATH = arrayOf("Editor", "General")
         private const val SETTINGS_PAGE_NAME = "Advanced Expression Folding 2"
         private val SETTING_TIMEOUT = 10.seconds
         private val SETTINGS_PAGE_TIMEOUT = 30.seconds

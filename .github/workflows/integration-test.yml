@@ -85,10 +85,25 @@ jobs:
           report_paths: build/test-results/test/TEST-*.xml
           # annotations only, no check run, so no checks: write permission needed
           annotate_only: true
-          job_summary: true
-          detailed_summary: true
-          include_passed: true
-          include_time_in_summary: true
+          job_summary: false
+
+      - name: Test checklist
+        if: always()
+        shell: python3 {0}
+        run: |
+          import glob, os, xml.etree.ElementTree as ET
+          lines = ["## Integration tests", ""]
+          for path in sorted(glob.glob("build/test-results/test/TEST-*.xml")):
+              for case in ET.parse(path).getroot().iter("testcase"):
+                  failed = case.find("failure") is not None or case.find("error") is not None
+                  skipped = case.find("skipped") is not None
+                  mark = " " if failed or skipped else "x"
+                  suffix = " (skipped)" if skipped else ""
+                  lines.append(f"- [{mark}] {case.get('name').removesuffix('()')}{suffix}")
+          if len(lines) == 2:
+              lines.append("No test results found")
+          with open(os.environ["GITHUB_STEP_SUMMARY"], "a") as f:
+              f.write("\n".join(lines) + "\n")
 
       - name: Publish artifact download link
         if: always() && steps.upload_artifacts.outputs.artifact-url != ''
