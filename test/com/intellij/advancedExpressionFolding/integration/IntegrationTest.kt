@@ -59,6 +59,8 @@ import kotlin.time.Duration.Companion.seconds
  * One IDE run per IDE version, shared by all tests of the class.
  * Tests run in a fixed order, because later tests change IDE state (Zen Mode, all features enabled).
  * A failing test closes the IDE, so the next test starts a fresh one.
+ *
+ * Takes about 2 min with `integration=1` when the IDE is already downloaded.
  */
 @EnabledIfEnvironmentVariable(named = "integration", matches = "1|all-versions")
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
