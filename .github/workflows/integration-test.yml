@@ -11,10 +11,13 @@ jobs:
     runs-on: ${{ matrix.os }}
     env:
       integration: '1'
+      # let Gradle toolchains reuse JDKs from setup-java instead of foojay downloads
+      GRADLE_TOOLCHAINS: -Porg.gradle.java.installations.fromEnv=JAVA_HOME_17_X64,JAVA_HOME_25_X64
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest]
+        # pinned: ubuntu-latest moves to 26.04 (Oct-Nov 2026), may break Xvfb/GTK
+        os: [ubuntu-24.04]
 
     steps:
       - uses: actions/checkout@v5
@@ -23,11 +26,17 @@ jobs:
         uses: actions/setup-java@v5
         with:
           distribution: zulu
-          java-version: 17
+          # 17 for production toolchain, 25 for test toolchain (last one becomes JAVA_HOME)
+          java-version: |
+            25
+            17
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v5
 
       - name: Build plugin
         shell: bash
-        run: ./gradlew buildPlugin
+        run: ./gradlew $GRADLE_TOOLCHAINS buildPlugin
 
       - name: Install UI test dependencies
         if: runner.os == 'Linux'
@@ -49,12 +58,12 @@ jobs:
           sleep 3
 
       - name: Run IDE integration tests
-        run: ./gradlew test
+        run: ./gradlew $GRADLE_TOOLCHAINS test --tests 'com.intellij.advancedExpressionFolding.integration.IntegrationTest'
 
       - name: Upload integration artifacts
         if: always()
         id: upload_artifacts
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v7
         with:
           name: integration-test-artifacts-${{ matrix.os }}
           path: |
