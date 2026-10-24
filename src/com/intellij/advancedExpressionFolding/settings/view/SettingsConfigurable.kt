@@ -67,6 +67,7 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
                 }
             }
             actionLink.setIcon(AllIcons.Actions.CheckOut, true)
+            @Suppress("DEPRECATION")
             HelpTooltip().setDescription("WARNING: Clicking this button will checkout $file into your current project")
                 .installOn(actionLink)
             panel.add(actionLink)
@@ -98,6 +99,7 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
             }
         }
         actionLink.setIcon(AllIcons.Actions.CheckOut, true)
+        @Suppress("DEPRECATION")
         HelpTooltip().setDescription("WARNING: Clicking this button will checkout examples into your current project")
             .installOn(actionLink)
         return actionLink
@@ -216,7 +218,6 @@ class SettingsConfigurable : EditorOptionsProvider, CheckboxesProvider() {
         private const val NOTIFICATION_GROUP_ID = "Advanced Expression Folding"
     }
     
-    @CheckboxDsl
     override fun Panel.registerCheckbox(
         property: KMutableProperty0<Boolean>,
         title: String,

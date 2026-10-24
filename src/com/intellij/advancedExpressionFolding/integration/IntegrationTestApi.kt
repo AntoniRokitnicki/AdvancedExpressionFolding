@@ -13,10 +13,10 @@ import com.intellij.openapi.actionSystem.impl.SimpleDataContext
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.application.ModalityState
 import com.intellij.openapi.application.runInEdt
-import com.intellij.openapi.application.runReadAction
 import com.intellij.openapi.fileEditor.FileEditorManager
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.project.ProjectManager
+import com.intellij.openapi.util.Computable
 import org.jetbrains.annotations.TestOnly
 import java.util.concurrent.atomic.AtomicReference
 
@@ -34,6 +34,7 @@ object IntegrationTestApi {
         }
     }
 
+    @Suppress("DEPRECATION")
     private fun fireAction(actionId: String, project: Project, dataContext: DataContext) {
         if (project.isDisposed) {
             return
@@ -50,7 +51,7 @@ object IntegrationTestApi {
     @JvmStatic
     fun countAdvancedFoldRegions(): Int {
         return computeOnEdt {
-            runReadAction {
+            ApplicationManager.getApplication().runReadAction(Computable {
                 ProjectManager.getInstance().openProjects
                     .asSequence()
                     .mapNotNull { project ->
@@ -61,7 +62,7 @@ object IntegrationTestApi {
                     ?.allFoldRegions
                     ?.count { fold -> fold.isAdvancedExpressionFoldingGroup }
                     ?: 0
-            }
+            })
         }
     }
 
@@ -83,7 +84,7 @@ object IntegrationTestApi {
         }
     }
 
-    private inline fun <T> computeOnEdt(noinline action: () -> T): T {
+    private fun <T> computeOnEdt(action: () -> T): T {
         val reference = AtomicReference<T?>()
         runOnEdt {
             reference.set(action())

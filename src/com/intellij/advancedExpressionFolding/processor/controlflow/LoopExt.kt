@@ -12,7 +12,7 @@ import com.intellij.psi.PsiWhileStatement
 object LoopExt : IControlFlowState by State()() {
 
     fun getForEachStatementExpression(element: PsiForeachStatement): Expression? {
-        val lParenth = element.lParenth ?: return null
+        val lParenth = element.lParenth
         val rParenth = element.rParenth ?: return null
         return if (element.iteratedValue != null && compactControlFlowSyntaxCollapse) {
             CompactControlFlowExpression(

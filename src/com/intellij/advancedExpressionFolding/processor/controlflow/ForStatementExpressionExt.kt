@@ -159,7 +159,7 @@ object ForStatementExpressionExt :
             val arrayExpression = initializer.arrayExpression
             val body = element.body ?: return null
             val references = SyntaxTraverser.psiTraverser(body)
-                .filter { it is PsiReferenceExpression && (it as PsiReferenceExpression).isReferenceTo(conditionVariable) }
+                .filter { it is PsiReferenceExpression && it.isReferenceTo(conditionVariable) }
                 .toList()
             return if (references.size == 1) {
                 ForEachStatement(
@@ -203,7 +203,7 @@ object ForStatementExpressionExt :
             if (arrayExpression != null) {
                 val body = element.body ?: return null
                 val references = SyntaxTraverser.psiTraverser(body)
-                    .filter { it is PsiReferenceExpression && (it as PsiReferenceExpression).isReferenceTo(conditionVariable) }
+                    .filter { it is PsiReferenceExpression && it.isReferenceTo(conditionVariable) }
                     .toList()
                 return if (references.size == 1) {
                     ForEachStatement(

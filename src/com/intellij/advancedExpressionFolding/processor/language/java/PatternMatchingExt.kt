@@ -31,7 +31,7 @@ object PatternMatchingExt : BaseExtension() {
             if (tryRecordPattern(instanceOfExpr, localVariable, codeBlock, element, declarationStatement, document, descriptors)) {
                 return
             }
-            val variableName = localVariable.name ?: return
+            val variableName = localVariable.name
             declarationStatement.appendDescriptors(instanceOfExpr, variableName, element, document, descriptors)
         }
     }
@@ -210,9 +210,9 @@ object PatternMatchingExt : BaseExtension() {
     }
 
     private fun PsiLocalVariable.buildPatternBindingText(): String? {
-        val name = name ?: return null
+        val name = name
         val modifier = modifierList?.text?.trim()?.takeIf { it.isNotEmpty() }?.let { "$it " } ?: ""
-        val typeText = typeElement?.text ?: type.presentableText
+        val typeText = typeElement.text
         return "$modifier$typeText $name"
     }
 
