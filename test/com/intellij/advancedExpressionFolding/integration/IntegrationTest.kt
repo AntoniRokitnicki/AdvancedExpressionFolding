@@ -3,6 +3,7 @@ package com.intellij.advancedExpressionFolding.integration
 import com.intellij.driver.client.Driver
 import com.intellij.driver.client.service
 import com.intellij.driver.client.utility
+import com.intellij.driver.sdk.invokeAction
 import com.intellij.driver.sdk.singleProject
 import com.intellij.driver.sdk.ui.components.common.IdeaFrameUI
 import com.intellij.driver.sdk.ui.components.common.ideFrame
@@ -213,11 +214,11 @@ open class IntegrationTest {
         withIde {
             check(service<SettingsStub>().getState().globalOn) { "globalOn should start enabled" }
 
-            execute { it.searchEverywhere(textToInsert = "Advanced Folding: Global", selectFirst = true, startThoughAction = true) }
+            invokeAction(GLOBAL_TOGGLE_ACTION)
             wait()
             check(!service<SettingsStub>().getState().globalOn) { "globalOn should be disabled after toggle" }
 
-            execute { it.searchEverywhere(textToInsert = "Advanced Folding: Global", selectFirst = true, startThoughAction = true) }
+            invokeAction(GLOBAL_TOGGLE_ACTION)
             wait()
             check(service<SettingsStub>().getState().globalOn) { "globalOn should be re-enabled after second toggle" }
         }
@@ -227,7 +228,7 @@ open class IntegrationTest {
     @Order(4)
     fun `find methods with default parameters action shows usage results`() {
         withIde {
-            execute { it.searchEverywhere(textToInsert = "Find Methods with Default Parameters", selectFirst = true) }
+            invokeAction(FIND_METHODS_WITH_DEFAULT_PARAMETERS_ACTION, now = false)
             wait()
             wait()
             val usageCount = service<UsageViewManagerStub>(singleProject()).getSelectedUsageView()?.getUsagesCount() ?: 0
@@ -281,11 +282,7 @@ open class IntegrationTest {
         wait()
     }
 
-    private fun Driver.startZenMode() {
-        execute {
-            it.searchEverywhere(textToType = "Zen Mode", selectFirst = true)
-        }
-    }
+    private fun Driver.startZenMode() = invokeAction("ToggleZenMode")
 
     private fun Driver.wait() = waitForIndicators(5.minutes)
 
@@ -402,6 +399,9 @@ open class IntegrationTest {
 
     private companion object {
         private const val SESSION_NAME = "integration"
+        private const val GLOBAL_TOGGLE_ACTION = "com.intellij.advancedExpressionFolding.action.GlobalToggleFoldingAction"
+        private const val FIND_METHODS_WITH_DEFAULT_PARAMETERS_ACTION =
+            "com.intellij.advancedExpressionFolding.action.FindMethodsWithDefaultParametersAction"
         private const val DEFAULT_IDE_VERSION = "2026.2.3"
         private const val INTEGRATION_ENV = "integration"
         private const val MODE_PROPERTY = "integration.mode"
