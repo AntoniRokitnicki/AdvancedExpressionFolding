@@ -203,6 +203,9 @@ open class IntegrationTest {
                     println(error.stackTraceContent)
                 }
             }
+            check(errorList.isEmpty()) {
+                "Plugin errors while opening ${errorList.size} files: ${errorList.joinToString { it.first }}"
+            }
         }
     }
 
