@@ -12,6 +12,7 @@ import com.intellij.driver.sdk.ui.components.common.ideFrame
 import com.intellij.driver.sdk.ui.components.elements.JCheckBoxUi
 import com.intellij.driver.sdk.ui.components.elements.checkBox
 import com.intellij.driver.sdk.ui.components.elements.waitSelected
+import com.intellij.driver.sdk.ui.components.settings.SettingsDialogUiComponent
 import com.intellij.driver.sdk.ui.components.settings.settingsDialog
 import com.intellij.driver.sdk.waitFor
 import com.intellij.driver.sdk.waitForIndicators
@@ -292,13 +293,22 @@ open class IntegrationTest {
 
     private fun Driver.wait() = waitForIndicators(5.minutes)
 
+    // Finds the page by name, so it does not depend on the exact tree path or row badges such as "New"
+    private fun SettingsDialogUiComponent.openPluginSettingsPage() {
+        waitFor("Settings tree is loaded", 5.seconds) { settingsTree.collectExpandedPaths().isNotEmpty() }
+        settingsTree.expandPath(SETTINGS_PARENT_PAGE, fullMatch = false)
+        val page = settingsTree.collectExpandedPaths().firstOrNull { it.path.last().contains(SETTINGS_PAGE_NAME, ignoreCase = true) }
+            ?: error("Settings page '$SETTINGS_PAGE_NAME' not found, visible rows: ${settingsTree.collectExpandedPathsAsStrings()}")
+        settingsTree.clickRow(page.row)
+    }
+
     fun IdeaFrameUI.toggleCheckbox(
         expectInitiallyChecked: Boolean,
         thenCheck: Boolean
     ) {
         openSettingsDialog()
         settingsDialog {
-            openTreeSettingsSection(*SETTINGS_PAGE_PATH)
+            openPluginSettingsPage()
 
             with(content().findCheckbox()) {
                 check(isSelected() == expectInitiallyChecked) { "Unexpected initial checkbox state" }
@@ -397,7 +407,8 @@ open class IntegrationTest {
         private const val FIND_METHODS_WITH_DEFAULT_PARAMETERS_ACTION =
             "com.intellij.advancedExpressionFolding.action.FindMethodsWithDefaultParametersAction"
         // editorOptionsProvider pages are children of Settings | Editor
-        private val SETTINGS_PAGE_PATH = arrayOf("Editor", "Advanced Expression Folding 2")
+        private const val SETTINGS_PARENT_PAGE = "Editor"
+        private const val SETTINGS_PAGE_NAME = "Advanced Expression Folding 2"
         private val SETTING_TIMEOUT = 10.seconds
         private const val DEFAULT_IDE_VERSION = "2026.2.3"
         private const val INTEGRATION_ENV = "integration"
