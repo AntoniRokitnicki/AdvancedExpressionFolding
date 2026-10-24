@@ -3,6 +3,7 @@ package com.intellij.advancedExpressionFolding.integration
 import com.intellij.driver.client.Driver
 import com.intellij.driver.client.service
 import com.intellij.driver.client.utility
+import com.intellij.driver.model.OnDispatcher
 import com.intellij.driver.sdk.invokeAction
 import com.intellij.driver.sdk.openFile
 import com.intellij.driver.sdk.singleProject
@@ -237,7 +238,12 @@ open class IntegrationTest {
                 message = "Usage view shows methods with default parameters",
                 timeout = 2.minutes,
                 errorMessage = { "Expected to find usages but found $it" },
-                getter = { service<UsageViewManagerStub>(singleProject()).getSelectedUsageView()?.getUsagesCount() ?: 0 },
+                // 2026.2 creates UsageViewContentManager only on EDT
+                getter = {
+                    withContext(OnDispatcher.EDT) {
+                        service<UsageViewManagerStub>(singleProject()).getSelectedUsageView()?.getUsagesCount() ?: 0
+                    }
+                },
                 checker = { it > 0 },
             )
         }
