@@ -88,8 +88,12 @@ open class IntegrationTest {
                 LocalProjectInfo(Path("examples"))
             ).withVersion(version)
         ).apply {
-            // Skips first-start auto-trial, which enables Ultimate and reloads all plugins mid-test
+            // Skips first-start auto-trial, which enables Ultimate and reloads all plugins mid-test.
+            // Do not add disableMigrationNotification(): it writes migrate.config back and the auto-trial returns.
             removeMigrateConfigAndCreateStubFile()
+            // Popups that can cover the editor or steal focus during the tests
+            disableGotItTooltips()
+            disableMinimap()
             PluginConfigurator(this).installPluginFromPath(findLatestPluginZip().toPath())
         }
     }
