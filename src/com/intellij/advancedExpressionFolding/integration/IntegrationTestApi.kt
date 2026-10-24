@@ -2,6 +2,7 @@ package com.intellij.advancedExpressionFolding.integration
 
 import com.intellij.advancedExpressionFolding.isAdvancedExpressionFoldingGroup
 import com.intellij.advancedExpressionFolding.openTextEditors
+import com.intellij.advancedExpressionFolding.settings.State
 import com.intellij.codeInsight.folding.CodeFoldingManager
 import com.intellij.openapi.actionSystem.ActionManager
 import com.intellij.openapi.actionSystem.ActionPlaces
@@ -22,14 +23,17 @@ import java.util.concurrent.atomic.AtomicReference
 
 @TestOnly
 object IntegrationTestApi {
+    private const val GLOBAL_TOGGLE_ACTION_ID = "com.intellij.advancedExpressionFolding.action.GlobalToggleFoldingAction"
+
     @JvmStatic
     fun toggleGlobalFolding(state: Boolean) {
         runInEdt {
             val project = ProjectManager.getInstance().openProjects.firstOrNull { !it.isDisposed }
                 ?: return@runInEdt
-            val ctx = SimpleDataContext.getProjectContext(project)
-            val actionId = if (state) "AdvancedFolding.EnableAll" else "AdvancedFolding.DisableAll"
-            fireAction(actionId, project, ctx)
+            if (State()().globalOn != state) {
+                val ctx = SimpleDataContext.getProjectContext(project)
+                fireAction(GLOBAL_TOGGLE_ACTION_ID, project, ctx)
+            }
             refreshOpenEditors()
         }
     }

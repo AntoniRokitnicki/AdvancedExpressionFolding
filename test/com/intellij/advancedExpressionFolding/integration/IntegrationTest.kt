@@ -255,8 +255,8 @@ open class IntegrationTest {
             }
 
             utility<FoldingIntegrationStub>().toggleGlobalFolding(false)
-            check(!service<SettingsStub>().getState().globalOn) {
-                "Global folding should be disabled after toggling off"
+            waitFor("Global folding is disabled after toggling off", SETTING_TIMEOUT) {
+                !service<SettingsStub>().getState().globalOn
             }
 
             openOptionalTestData()
@@ -267,8 +267,8 @@ open class IntegrationTest {
             }
 
             utility<FoldingIntegrationStub>().toggleGlobalFolding(true)
-            check(service<SettingsStub>().getState().globalOn) {
-                "Global folding should be enabled after toggling on"
+            waitFor("Global folding is enabled after toggling on", SETTING_TIMEOUT) {
+                service<SettingsStub>().getState().globalOn
             }
 
             openOptionalTestData()
