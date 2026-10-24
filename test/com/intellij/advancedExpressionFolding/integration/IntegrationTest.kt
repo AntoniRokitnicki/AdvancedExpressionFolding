@@ -29,6 +29,7 @@ import com.intellij.ide.starter.screenRecorder.IDEScreenRecorder
 import com.intellij.platform.testFramework.teamCity.TeamCityReporter.SyntheticTestKind
 import com.intellij.tools.ide.performanceTesting.commands.*
 import com.intellij.tools.ide.starter.product.idea.community.IdeaCommunity
+import com.intellij.tools.ide.starter.product.idea.ultimate.IdeaUltimate
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable
 import org.junit.jupiter.api.fail
@@ -66,10 +67,12 @@ open class IntegrationTest {
             Starter.newContext(
                 contextName(testName, version),
                 TestCase(
-                    IdeInfo.IdeaCommunity,
+                    ideInfoFor(version),
                     LocalProjectInfo(Path("examples"))
                 ).withVersion(version)
             ).apply {
+                // Skips first-start auto-trial, which enables Ultimate and reloads all plugins mid-test
+                removeMigrateConfigAndCreateStubFile()
                 PluginConfigurator(this).installPluginFromPath(pluginZip.toPath())
             }
         }
@@ -373,15 +376,26 @@ open class IntegrationTest {
     }
 
     private companion object {
-        private const val DEFAULT_IDE_VERSION = "2025.1.2"
+        private const val DEFAULT_IDE_VERSION = "2026.2.3"
         private const val INTEGRATION_ENV = "integration"
         private const val MODE_PROPERTY = "integration.mode"
         private val SUPPORTED_IDE_VERSIONS = listOf(
             "2024.2.6",      // last pre-243 build: shows breaking API boundary
             "2024.3.7",      // first stable after API changes: full test coverage
-            "2025.1.6",      // main stable release used by most users
-            "253.27864.23"   // current EAP: detects early regressions
+            "2025.1.6",      // last Community-only stable before the unified distribution
+            "2026.2.3",      // current stable: same platform the plugin builds against
+            "263.7307.44"    // current EAP: detects early regressions
         )
+
+        // IntelliJ IDEA Community is no longer published separately since 2025.3 (build 253)
+        private const val FIRST_UNIFIED_BRANCH = 253
+
+        private fun ideInfoFor(version: String): IdeInfo {
+            val parts = version.split('.')
+            val major = parts[0].toInt()
+            val branch = if (major >= 2000) (major % 100) * 10 + parts[1].toInt() else major
+            return if (branch >= FIRST_UNIFIED_BRANCH) IdeInfo.IdeaUltimate else IdeInfo.IdeaCommunity
+        }
     }
 
     private fun integrationMode(): IntegrationMode {
