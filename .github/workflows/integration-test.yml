@@ -9,6 +9,8 @@ on:
 jobs:
   integrationTest:
     runs-on: ${{ matrix.os }}
+    # a normal run takes about 11 min; a hung IDE would otherwise hold the runner for 6 h
+    timeout-minutes: 60
     env:
       integration: '1'
       # let Gradle toolchains reuse JDKs from setup-java instead of foojay downloads
@@ -72,7 +74,21 @@ jobs:
             out/ide-tests/tests/**/screenRecording/**
             out/ide-tests/tests/**/screenshots/**
             out/ide-tests/tests/**/driver/**
+            build/test-results/test/**
+            build/reports/tests/test/**
           if-no-files-found: warn
+
+      - name: Test report
+        if: always()
+        uses: mikepenz/action-junit-report@v6
+        with:
+          report_paths: build/test-results/test/TEST-*.xml
+          # annotations only, no check run, so no checks: write permission needed
+          annotate_only: true
+          job_summary: true
+          detailed_summary: true
+          include_passed: true
+          include_time_in_summary: true
 
       - name: Publish artifact download link
         if: always() && steps.upload_artifacts.outputs.artifact-url != ''

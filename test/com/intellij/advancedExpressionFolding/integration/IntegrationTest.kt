@@ -82,9 +82,12 @@ open class IntegrationTest {
     )
 
     private var session: IdeSession? = null
+    private var sessionCount = 0
 
     protected open fun createContext(version: String): IDETestContext {
-        val name = if (ideVersions().size == 1) SESSION_NAME else "$SESSION_NAME-$version"
+        val base = if (ideVersions().size == 1) SESSION_NAME else "$SESSION_NAME-$version"
+        // A failing test restarts the IDE; a new name keeps the logs of the failed session
+        val name = if (++sessionCount == 1) base else "$base-$sessionCount"
         return Starter.newContext(
             name,
             TestCase(
@@ -171,7 +174,7 @@ open class IntegrationTest {
     @Test
     @Order(1)
     fun `make sure setting changes are persisted`() {
-        withIde {
+        withIde { session ->
             ideFrame {
                 val property = service<SettingsStub>().getState()::expressionFunc
                 check(property.get()) {
@@ -183,6 +186,11 @@ open class IntegrationTest {
 
                 toggleCheckbox(expectInitiallyChecked = false, thenCheck = true)
                 waitFor("expressionFunc is enabled after checking", SETTING_TIMEOUT) { property.get() }
+            }
+            // The page can open and still log plugin exceptions
+            val errors = allErrors(session.context).toList()
+            check(errors.isEmpty()) {
+                "Plugin errors while using the settings page: ${errors.joinToString("\n") { it.messageText }}"
             }
         }
     }
@@ -305,9 +313,15 @@ open class IntegrationTest {
     private fun SettingsDialogUiComponent.openPluginSettingsPage() {
         waitFor("Settings tree is loaded", 5.seconds) { settingsTree.collectExpandedPaths().isNotEmpty() }
         settingsTree.expandPath(SETTINGS_PARENT_PAGE, fullMatch = false)
-        val page = settingsTree.collectExpandedPaths().firstOrNull { it.path.last().contains(SETTINGS_PAGE_NAME, ignoreCase = true) }
-            ?: error("Settings page '$SETTINGS_PAGE_NAME' not found, visible rows: ${settingsTree.collectExpandedPathsAsStrings()}")
-        settingsTree.clickRow(page.row)
+        // Rows under the parent page can appear after the tree itself, so wait for the plugin row
+        val page = waitFor(
+            "Settings page '$SETTINGS_PAGE_NAME' is visible",
+            SETTINGS_PAGE_TIMEOUT,
+            errorMessage = { _ -> "Settings page '$SETTINGS_PAGE_NAME' not found, visible rows: ${settingsTree.collectExpandedPathsAsStrings()}" },
+            getter = { settingsTree.collectExpandedPaths().firstOrNull { it.path.last().contains(SETTINGS_PAGE_NAME, ignoreCase = true) } },
+            checker = { it != null },
+        )
+        settingsTree.clickRow(checkNotNull(page).row)
     }
 
     fun IdeaFrameUI.toggleCheckbox(
@@ -418,6 +432,7 @@ open class IntegrationTest {
         private const val SETTINGS_PARENT_PAGE = "Editor"
         private const val SETTINGS_PAGE_NAME = "Advanced Expression Folding 2"
         private val SETTING_TIMEOUT = 10.seconds
+        private val SETTINGS_PAGE_TIMEOUT = 30.seconds
         private const val DEFAULT_IDE_VERSION = "2026.2.3"
         private const val INTEGRATION_ENV = "integration"
         private const val MODE_PROPERTY = "integration.mode"
