@@ -4,6 +4,7 @@ import com.intellij.driver.client.Driver
 import com.intellij.driver.client.service
 import com.intellij.driver.client.utility
 import com.intellij.driver.sdk.invokeAction
+import com.intellij.driver.sdk.openFile
 import com.intellij.driver.sdk.singleProject
 import com.intellij.driver.sdk.ui.components.common.IdeaFrameUI
 import com.intellij.driver.sdk.ui.components.common.ideFrame
@@ -277,10 +278,7 @@ open class IntegrationTest {
         execute {
             it.closeAllTabs()
         }
-        execute {
-            it.openFile("data/OptionalTestData.java")
-        }
-        wait()
+        openFile("data/OptionalTestData.java")
     }
 
     private fun Driver.startZenMode() = invokeAction("ToggleZenMode")
@@ -353,10 +351,8 @@ open class IntegrationTest {
             .sorted()
             //.take(3)
             .mapNotNull { file ->
-                val filename = "data/${file.name}"
-                execute {
-                    it.openFile(filename)
-                }
+                // Waits for code analysis, so folding errors of this file are logged before the check below
+                openFile("data/${file.name}")
                 if (showWholeFile) {
                     showWholeFile(file)
                 }
