@@ -10,7 +10,7 @@ interface SettingsStub {
     fun getState(): ISettingsState
 }
 
-@Remote("com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings\$State", plugin = "com.github.advanced-java-folding2")
+@Remote("com.intellij.advancedExpressionFolding.settings.State", plugin = "com.github.advanced-java-folding2")
 interface ISettingsState : IState, IConfig
 
 @Remote("com.intellij.advancedExpressionFolding.action.UpdateFoldedTextColorsAction", plugin = "com.github.advanced-java-folding2")
