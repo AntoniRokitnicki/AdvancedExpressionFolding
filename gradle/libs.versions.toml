@@ -24,6 +24,7 @@ junit-vintage-engine = { group = "org.junit.vintage", name = "junit-vintage-engi
 junit-jupiter-engine = { group = "org.junit.jupiter", name = "junit-jupiter-engine", version.ref = "junit" }
 junit-jupiter-params = { group = "org.junit.jupiter", name = "junit-jupiter-params", version.ref = "junit" }
 jackson-dataformat-toml = { group = "com.fasterxml.jackson.dataformat", name = "jackson-dataformat-toml", version.ref = "jackson" }
+jackson-module-kotlin = { group = "com.fasterxml.jackson.module", name = "jackson-module-kotlin", version.ref = "jackson" }
 jsr305 = { group = "com.google.code.findbugs", name = "jsr305", version.ref = "jsr305" }
 junit-pioneer = { group = "org.junit-pioneer", name = "junit-pioneer", version.ref = "pioneer" }
 kodein-di-conf = { group = "org.kodein.di", name = "kodein-di-conf-jvm", version.ref = "kodein" }
