@@ -1,19 +1,19 @@
 package com.intellij.advancedExpressionFolding.processor.methodcall.arithmetic
 
-import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.math.basic.Abs
 import com.intellij.advancedExpressionFolding.processor.methodcall.Context
-import com.intellij.psi.PsiMethodCallExpression
+import com.intellij.advancedExpressionFolding.processor.methodcall.MethodCallBuilder
 
 class ArithmeticAbsMethodCall : AbstractArithmeticMethodCall() {
-    override val methodNames by lazy { listOf("abs") }
-    
-    override fun onNoArguments(
-        element: PsiMethodCallExpression,
-        context: Context
-    ): Expression? = Abs(
-        element,
-        element.textRange,
-        context.getOperands()
-    )
+    override fun configure(builder: MethodCallBuilder) {
+        super.configure(builder)
+        builder.methods("abs")
+        builder.onNoArguments { element, context ->
+            Abs(
+                element,
+                element.textRange,
+                context.getOperands()
+            )
+        }
+    }
 }
