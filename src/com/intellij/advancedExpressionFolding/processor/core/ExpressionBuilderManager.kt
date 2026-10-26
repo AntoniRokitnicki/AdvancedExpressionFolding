@@ -8,7 +8,13 @@ class ExpressionBuilderManager {
       "com.github.advanced-java-folding2.expressionBuilder"
     )
 
+    private val BUILTIN_BUILDERS: List<BuildExpression<*>> =
+      commonExpressionBuilders +
+        controlFlowExpressionBuilders +
+        declarationExpressionBuilders +
+        lexicalExpressionBuilders
+
     val expressionBuilders: List<BuildExpression<*>>
-      get() = EP_NAME.extensionList
+      get() = BUILTIN_BUILDERS + EP_NAME.extensionList
   }
 }
