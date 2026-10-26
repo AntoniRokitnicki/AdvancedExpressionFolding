@@ -26,7 +26,7 @@ public class InterfaceExtensionPropertiesTestData {
     interface Ignored <fold text='{...}' expand='true'>{
         public interface DefaultUser <fold text='{...}' expand='true'>{
             <fold text='' expand='true'>default</fold><fold text='' expand='true'> </fold><fold text='' expand='true'>String</fold><fold text='' expand='true'> </fold>getName<fold text='' expand='true'>()</fold><fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
-                </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>"Unknown User"<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+                </fold></fold><fold text='' expand='true'>return<fold text='' expand='true'></fold> </fold>"Unknown User"<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
             </fold>}</fold>
             default void setName(String name) <fold text='{}' expand='true'>{
             }</fold>
@@ -230,28 +230,27 @@ public class InterfaceExtensionPropertiesTestData {
         }</fold>
     }</fold>
 
-    //TODO: nullable support
     interface Finder <fold text='{...}' expand='true'>{
        <fold text='@FindBy ' expand='true'> </fold>//@FindBy String tag(String name);
         String <fold text='t' expand='true'>findT</fold>ag<fold text='' expand='true'>ByName</fold>(String name);
 
-       <fold text='@FindBy ' expand='true'> </fold>String <fold text='t' expand='true'>findT</fold>ag<fold text='' expand='true'>ByAge</fold>(byte <fold text='age' expand='true'>name</fold>);
+       <fold text='@FindBy ' expand='true'> <fold text='' expand='true'></fold>@Nullable</fold><fold text='' expand='true'> </fold>String<fold text='? ' expand='true'> </fold><fold text='t' expand='true'>findT</fold>ag<fold text='' expand='true'>ByAge</fold>(Byte age);
 
-       <fold text='@FindBy ' expand='true'> </fold>String <fold text='n' expand='true'>findN</fold>ame<fold text='' expand='true'>ByName</fold>(String name);
+       <fold text='@FindBy ' expand='true'> </fold><fold text='' expand='true'>@Nullable</fold><fold text='' expand='true'> </fold>String<fold text='? ' expand='true'> </fold><fold text='n' expand='true'>findN</fold>ame<fold text='' expand='true'>ByName</fold>(String name);
     }</fold>
 
     public interface NullableUser <fold text='{...}' expand='true'>{
-       <fold text='@Getter ' expand='true'> </fold><fold text='' expand='true'>@Nullable</fold><fold text='' expand='true'>
-        </fold>Integer<fold text='? ' expand='true'> </fold><fold text='a' expand='true'>getA</fold>ge<fold text='' expand='true'>()</fold>;
-       <fold text='@Setter ' expand='true'> </fold><fold text='int' expand='true'>void</fold><fold text='? ' expand='true'> </fold><fold text='a' expand='true'>setA</fold>ge<fold text='' expand='true'>(<fold text='' expand='true'>@Nullable</fold> int age)</fold>;
-       <fold text='@Getter ' expand='true'> </fold><fold text='' expand='true'>@Nullable</fold><fold text='' expand='true'>
-        </fold>String<fold text='? ' expand='true'> </fold><fold text='n' expand='true'>getN</fold>ame<fold text='' expand='true'>()</fold>;
-       <fold text='@Setter ' expand='true'> </fold><fold text='String' expand='true'>void</fold><fold text='? ' expand='true'> </fold><fold text='n' expand='true'>setN</fold>ame<fold text='' expand='true'>(<fold text='' expand='true'>@Nullable</fold> String name)</fold>;
+       <fold text='@Getter ' expand='true'> </fold><fold text='' expand='false'>@Nullable</fold><fold text='' expand='false'>
+        </fold>Integer<fold text='? ' expand='false'> </fold><fold text='a' expand='true'>getA</fold>ge<fold text='' expand='true'>()</fold>;
+       <fold text='@Setter ' expand='true'> </fold><fold text='int' expand='true'>void</fold><fold text='? ' expand='false'> </fold><fold text='a' expand='true'>setA</fold>ge<fold text='' expand='true'>(<fold text='' expand='false'>@Nullable</fold> int age)</fold>;
+       <fold text='@Getter ' expand='true'> </fold><fold text='' expand='false'>@Nullable</fold><fold text='' expand='false'>
+        </fold>String<fold text='? ' expand='false'> </fold><fold text='n' expand='true'>getN</fold>ame<fold text='' expand='true'>()</fold>;
+       <fold text='@Setter ' expand='true'> </fold><fold text='String' expand='true'>void</fold><fold text='? ' expand='false'> </fold><fold text='n' expand='true'>setN</fold>ame<fold text='' expand='true'>(<fold text='' expand='false'>@Nullable</fold> String name)</fold>;
     }</fold>
 
     public interface NotNullUser <fold text='{...}' expand='true'>{
-       <fold text='@Getter ' expand='true'> </fold><fold text='' expand='true'>@NotNull()</fold><fold text='' expand='true'> </fold>String<fold text='!! ' expand='true'> </fold><fold text='n' expand='true'>getN</fold>ame<fold text='' expand='true'>()</fold>;
-       <fold text='@Setter ' expand='true'> </fold><fold text='String' expand='true'>void</fold><fold text='!! ' expand='true'> </fold><fold text='n' expand='true'>setN</fold>ame<fold text='' expand='true'>(<fold text='' expand='true'>@NotNull</fold> String name)</fold>;
+       <fold text='@Getter ' expand='true'> </fold><fold text='' expand='false'>@NotNull()</fold><fold text='' expand='false'> </fold>String<fold text='!! ' expand='false'> </fold><fold text='n' expand='true'>getN</fold>ame<fold text='' expand='true'>()</fold>;
+       <fold text='@Setter ' expand='true'> <fold text='String' expand='true'></fold>void</fold><fold text='!! ' expand='false'> </fold><fold text='n' expand='true'>setN</fold>ame<fold text='' expand='true'>(<fold text='' expand='false'>@NotNull</fold> String name)</fold>;
        <fold text='@Getter ' expand='true'> </fold>int <fold text='a' expand='true'>getA</fold>ge<fold text='' expand='true'>()</fold>;
     }</fold>
 
