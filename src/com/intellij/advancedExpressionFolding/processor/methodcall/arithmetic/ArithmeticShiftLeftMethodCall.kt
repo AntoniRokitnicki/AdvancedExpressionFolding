@@ -1,22 +1,16 @@
 package com.intellij.advancedExpressionFolding.processor.methodcall.arithmetic
 
-import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.math.bitwise.ShiftLeft
-import com.intellij.advancedExpressionFolding.processor.methodcall.Context
-import com.intellij.psi.PsiExpression
-import com.intellij.psi.PsiMethodCallExpression
+import com.intellij.advancedExpressionFolding.processor.methodcall.arithmetic.ConfiguredArithmeticMethodCall.ArgumentArity
 
-class ArithmeticShiftLeftMethodCall : AbstractArithmeticMethodCall() {
-    override val methodNames by lazy { listOf("shiftLeft") }
-    
-    override fun onSingleArgument(
-        element: PsiMethodCallExpression,
-        context: Context,
-        argument: PsiExpression,
-        argumentExpression: Expression
-    ): Expression? = ShiftLeft(
-        element,
-        element.textRange,
-        context.getOperands()
-    )
-}
+class ArithmeticShiftLeftMethodCall : ConfiguredArithmeticMethodCall(
+    methodNames = listOf("shiftLeft"),
+    argumentArity = ArgumentArity.SINGLE_ARGUMENT,
+    expressionBuilder = { element, context ->
+        ShiftLeft(
+            element,
+            element.textRange,
+            context.getOperands()
+        )
+    }
+)

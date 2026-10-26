@@ -1,22 +1,16 @@
 package com.intellij.advancedExpressionFolding.processor.methodcall.arithmetic
 
-import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.math.basic.Subtract
-import com.intellij.advancedExpressionFolding.processor.methodcall.Context
-import com.intellij.psi.PsiExpression
-import com.intellij.psi.PsiMethodCallExpression
+import com.intellij.advancedExpressionFolding.processor.methodcall.arithmetic.ConfiguredArithmeticMethodCall.ArgumentArity
 
-class ArithmeticSubtractMethodCall : AbstractArithmeticMethodCall() {
-    override val methodNames by lazy { listOf("subtract") }
-    
-    override fun onSingleArgument(
-        element: PsiMethodCallExpression,
-        context: Context,
-        argument: PsiExpression,
-        argumentExpression: Expression
-    ): Expression? = Subtract(
-        element,
-        element.textRange,
-        context.getOperands()
-    )
-}
+class ArithmeticSubtractMethodCall : ConfiguredArithmeticMethodCall(
+    methodNames = listOf("subtract"),
+    argumentArity = ArgumentArity.SINGLE_ARGUMENT,
+    expressionBuilder = { element, context ->
+        Subtract(
+            element,
+            element.textRange,
+            context.getOperands()
+        )
+    }
+)
