@@ -21,6 +21,10 @@ public class ConcatenationTestData {
         Set<String> copyOfSet = new HashSet<>();
         set += copyOfSet;
         System.out.println(copyOfSet);
+        List<Character> chars = new ArrayList<>();
+        List<Character> sequence = Arrays.asList('a', 'b');
+        chars = sequence + chars;
+        chars.addAll(3, sequence);
         List<String> streamToList = args*.toUpperCase().toList();
         System.out.println(streamToList);
         streamToList = args*.toUpperCase().toList();
