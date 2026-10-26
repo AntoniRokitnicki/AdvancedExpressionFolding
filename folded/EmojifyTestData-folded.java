@@ -213,22 +213,22 @@ public 🏛️ EmojifyTestData {
 
     public 🏛️ DiamondOperatorUsage {
         public 💀 useDiamondOperator() {
-            java.util.List<String> list = new java.util.ArrayList<>();
+            java.util.List<🪡> list = new java.util.ArrayList<>();
             list.add("Example");
         }
     }
 
     public 🏛️ TryWithResourcesUsage {
-        public 💀 readFile(String filePath) 🪃 java.io.IOException {
+        public 💀 readFile(🪡 filePath) 🪃 java.io.IOException {
             🤞 (java.io.BufferedReader reader = new java.io.BufferedReader(new java.io.FileReader(filePath))) {
-                String line = reader.readLine();
+                🪡 line = reader.readLine();
             }
         }
     }
 
     public 🏛️ EnhancedForLoopUsage {
-        public 💀 iterateList(java.util.List<String> list) {
-            🔁 (String item : list) {
+        public 💀 iterateList(java.util.List<🪡> list) {
+            🔁 (🪡 item : list) {
                 🔢 length = item.length();
             }
         }
@@ -247,7 +247,7 @@ public 🏛️ EmojifyTestData {
     }
 
     public 🏛️ EnumSwitchUsage {
-        public String getDayType(DayOfWeek day) {
+        public 🪡 getDayType(DayOfWeek day) {
             🔀 (day) {
                 📦 MONDAY:
                 📦 TUESDAY:
@@ -273,14 +273,14 @@ public 🏛️ EmojifyTestData {
     }
 
     public 🏛️ OptionalUsage {
-        public String getValueOrDefault(java.util.Optional<String> optional) {
+        public 🪡 getValueOrDefault(java.util.Optional<🪡> optional) {
             🔙 optional.orElse("Default Value");
         }
     }
 
     public 🏛️ MethodReferenceUsage {
-        public java.util.function.Function<String, Integer> getStringLengthFunction() {
-            🔙 String::length;
+        public java.util.function.Function<🪡, Integer> getStringLengthFunction() {
+            🔙 🪡::length;
         }
     }
 
@@ -320,7 +320,7 @@ public 🏛️ EmojifyTestData {
 
     public 🏛️ BuilderPatternUsage {
         🚫 🔒 🔢 field1;
-        🚫 🔒 String field2;
+        🚫 🔒 🪡 field2;
 
         🚫 BuilderPatternUsage(Builder builder) {
             📍.field1 = builder.field1;
@@ -329,14 +329,14 @@ public 🏛️ EmojifyTestData {
 
         public 🏛️ Builder {
             🚫 🔢 field1;
-            🚫 String field2;
+            🚫 🪡 field2;
 
             public Builder setField1(🔢 field1) {
                 📍.field1 = field1;
                 🔙 📍;
             }
 
-            public Builder setField2(String field2) {
+            public Builder setField2(🪡 field2) {
                 📍.field2 = field2;
                 🔙 📍;
             }
@@ -349,14 +349,14 @@ public 🏛️ EmojifyTestData {
 
     public 🏛️ CopyConstructorUsage {
         🚫 🔢 field1;
-        🚫 String field2;
+        🚫 🪡 field2;
 
         public CopyConstructorUsage(CopyConstructorUsage other) {
             📍.field1 = other.field1;
             📍.field2 = other.field2;
         }
 
-        public CopyConstructorUsage(🔢 field1, String field2) {
+        public CopyConstructorUsage(🔢 field1, 🪡 field2) {
             📍.field1 = field1;
             📍.field2 = field2;
         }
@@ -385,12 +385,12 @@ public 🏛️ EmojifyTestData {
 
     public 🏛️ TypeInferenceUsage {
         public 💀 useTypeInference() {
-            java.util.Map<String, Integer> map = new java.util.HashMap<>();
+            java.util.Map<🪡, Integer> map = new java.util.HashMap<>();
         }
     }
 
     public 🏛️ ResourceBundleUsage {
-        public String getMessage(String key) {
+        public 🪡 getMessage(🪡 key) {
             java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("messages");
             🔙 bundle.getString(key);
         }
@@ -398,7 +398,7 @@ public 🏛️ EmojifyTestData {
 
     public 🏛️ PatternMatchingInstanceof {
         public 💀 checkObject(Object obj) {
-            if (obj is String str) {
+            if (obj is 🪡 str) {
                 🔢 length = str.length();
             }
         }
@@ -442,68 +442,68 @@ public 🏛️ EmojifyTestData {
     🏛️ NullUsage {
         public 🏛️ Data {
 
-            public 💀 methodWithNullParam(String input) {
+            public 💀 methodWithNullParam(🪡 input) {
                 input = 🕳️;
             }
 
-            public String methodReturningNull() {
+            public 🪡 methodReturningNull() {
                 🔙 🕳️;
             }
 
             public 💀 methodWithNullField() {
-                String field = 🕳️;
+                🪡 field = 🕳️;
             }
 
-            public 💀 methodWithNullCheck(String input) {
+            public 💀 methodWithNullCheck(🪡 input) {
                 if (input == 🕳️) {
                     🔙;
                 }
             }
 
-            public String methodWithNullTernary(String input) {
+            public 🪡 methodWithNullTernary(🪡 input) {
                 🔙 input != 🕳️ ? input : 🕳️;
             }
 
             public 💀 methodWithNullInArray() {
-                String[] array = new String[10];
+                🪡[] array = new 🪡[10];
                 array[0] = 🕳️;
             }
 
             public 💀 methodWithNullInCollection() {
-                java.util.List<String> list = new java.util.ArrayList<>();
+                java.util.List<🪡> list = new java.util.ArrayList<>();
                 list.add(🕳️);
             }
 
             public 💀 methodWithNullInMap() {
-                java.util.Map<String, String> map = new java.util.HashMap<>();
+                java.util.Map<🪡, 🪡> map = new java.util.HashMap<>();
                 map.put("key", 🕳️);
             }
 
             public 💀 methodWithNullInStream() {
-                java.util.List<String> list = java.util.Arrays.asList(🕳️, "value");
+                java.util.List<🪡> list = java.util.Arrays.asList(🕳️, "value");
                 📏 count = list.stream().filter(java.util.Objects::isNull).count();
             }
 
             public 💀 methodWithNullInOptional() {
-                java.util.Optional<String> optional = java.util.Optional.ofNullable(🕳️);
+                java.util.Optional<🪡> optional = java.util.Optional.ofNullable(🕳️);
             }
 
             public 💀 methodWithNullInSupplier() {
-                java.util.function.Supplier<String> supplier = () -> 🕳️;
+                java.util.function.Supplier<🪡> supplier = () -> 🕳️;
             }
 
             public 💀 methodWithNullInLambda() {
-                java.util.function.Function<String, String> function = input -> 🕳️;
+                java.util.function.Function<🪡, 🪡> function = input -> 🕳️;
             }
 
             public 💀 methodWithNullInMethodReference() {
-                java.util.function.Function<Object, String> function = Object::toString;
-                String result = function.apply(🕳️);
+                java.util.function.Function<Object, 🪡> function = Object::toString;
+                🪡 result = function.apply(🕳️);
             }
 
             public 💀 methodWithNullException() {
                 🤞 {
-                    String value = 🕳️;
+                    🪡 value = 🕳️;
                     value.length();
                 } 🎣 (NullPointerException e) {
                     e.printStackTrace();
@@ -512,21 +512,21 @@ public 🏛️ EmojifyTestData {
 
             public 💀 methodWithNullInstanceof() {
                 Object obj = 🕳️;
-                🔘 isString = obj is String;
+                🔘 isString = obj is 🪡;
             }
 
             public 💀 methodWithNullDefaultValue() {
-                String value = 🕳️;
-                String result = value == 🕳️ ? "default" : value;
+                🪡 value = 🕳️;
+                🪡 result = value == 🕳️ ? "default" : value;
             }
 
             public 💀 methodWithNullAssert() {
-                String value = 🕳️;
+                🪡 value = 🕳️;
                 assert value != 🕳️ : "Value cannot be null";
             }
 
             public 💀 methodWithNullSynchronize() {
-                String value = 🕳️;
+                🪡 value = 🕳️;
                 synchronized (📍) {
                     if (value == 🕳️) {
                         🔙;
