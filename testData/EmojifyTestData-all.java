@@ -67,7 +67,7 @@ public class EmojifyTestData {
         void interfaceMethod();
     }</fold>
 
-    public class InterfaceImplementation implements InterfaceDat<fold text='a(1-interfaceMethod)' expand='true'>a</fold> <fold text='{...}' expand='true'>{
+    public class InterfaceImplementation implements InterfaceData <fold text='{...}' expand='true'>{
         <fold text='' expand='true'>@Override</fold><fold text='' expand='true'>
         </fold>public void interfaceMethod() <fold text='{ // overrides from InterfaceData' expand='true'><fold text='{}' expand='true'>{</fold>
         }</fold>
@@ -128,7 +128,7 @@ public class EmojifyTestData {
         </fold>}</fold>
     }</fold>
 
-    <fold text='@AllArgsConstructor @Getter @Setter p' expand='false'>p</fold>ublic class TransientVolatileData implements java.io.Serializabl<fold text='e(nothing overridden)' expand='true'>e</fold> <fold text='{...}' expand='true'>{
+    <fold text='@AllArgsConstructor @Getter @Setter p' expand='false'>p</fold>ublic class TransientVolatileData implements java.io.Serializable <fold text='{...}' expand='true'>{
         private transient int transientField;
         private volatile boolean volatileField;<fold text='' expand='false'>
 
@@ -158,7 +158,7 @@ public class EmojifyTestData {
         public native void nativeMethod();
     }</fold>
 
-    <fold text='@AllArgsConstructor p' expand='false'>p</fold>ublic class InterfaceUsage implements Comparabl<fold text='e(nothing overridden)' expand='true'>e</fold><InterfaceUsage> <fold text='{...}' expand='true'>{
+    <fold text='@AllArgsConstructor p' expand='false'>p</fold>ublic class InterfaceUsage implements Comparable<InterfaceUsage> <fold text='{...}' expand='true'>{
         private int value;<fold text='' expand='false'>
 
         </fold><fold text='' expand='false'>public InterfaceUsage(int value)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
@@ -290,7 +290,7 @@ public class EmojifyTestData {
         </fold>}</fold>
     }</fold>
 
-    public class DefaultMethodInInterface implements DefaultMethodInterfac<fold text='e(1-abstractMethod)' expand='true'>e</fold> <fold text='{...}' expand='true'>{
+    public class DefaultMethodInInterface implements DefaultMethodInterface <fold text='{...}' expand='true'>{
         <fold text='' expand='true'>@Override</fold><fold text='' expand='true'>
         </fold>public void abstractMethod() <fold text='{ // overrides from DefaultMethodInterface' expand='true'><fold text='{}' expand='true'>{</fold>
         }</fold>
@@ -408,7 +408,7 @@ public class EmojifyTestData {
         public abstract sealed class Shape permits Circle, Rectangle <fold text='{...}' expand='true'>{
         }</fold>
 
-        <fold text='@AllArgsConstructor @Getter p' expand='false'>p</fold>ublic <fold text='' expand='false'>final</fold> class Circle extends Shap<fold text='e(nothing overridden)' expand='true'>e</fold> <fold text='{...}' expand='true'>{
+        <fold text='@AllArgsConstructor @Getter p' expand='false'>p</fold>ublic <fold text='' expand='false'>final</fold> class Circle extends Shape <fold text='{...}' expand='true'>{
             private double radius;<fold text='' expand='false'>
 
             </fold><fold text='' expand='false'>public Circle(double radius)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
@@ -420,7 +420,7 @@ public class EmojifyTestData {
             </fold>}</fold></fold>
         }</fold>
 
-        <fold text='@AllArgsConstructor @Getter p' expand='false'>p</fold>ublic <fold text='' expand='false'>final</fold> class Rectangle extends Shap<fold text='e(nothing overridden)' expand='true'>e</fold> <fold text='{...}' expand='true'>{
+        <fold text='@AllArgsConstructor @Getter p' expand='false'>p</fold>ublic <fold text='' expand='false'>final</fold> class Rectangle extends Shape <fold text='{...}' expand='true'>{
             private double length;
             private double width;<fold text='' expand='false'>
 

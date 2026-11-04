@@ -13,6 +13,15 @@
         <!-- Entry point: Java folding builder delegating to expressionBuilder extensions -->
         <lang.foldingBuilder language="JAVA"
                              implementationClass="com.intellij.advancedExpressionFolding.AdvancedExpressionFoldingBuilder"/>
+        <!-- summaryParentOverride: overridden methods shown after each parent in extends / implements -->
+        <codeInsight.declarativeInlayProvider language="JAVA"
+                                              implementationClass="com.intellij.advancedExpressionFolding.processor.lombok.SummaryParentOverrideInlayProvider"
+                                              isEnabledByDefault="true"
+                                              group="OTHER_GROUP"
+                                              providerId="advancedExpressionFolding.summaryParentOverride"
+                                              bundle="Bundle"
+                                              nameKey="inlay.summary.parent.override.name"
+                                              descriptionKey="inlay.summary.parent.override.description"/>
         <!-- Application-level service that persists plugin settings -->
         <applicationService
                 serviceImplementation="com.intellij.advancedExpressionFolding.settings.AdvancedExpressionFoldingSettings"/>

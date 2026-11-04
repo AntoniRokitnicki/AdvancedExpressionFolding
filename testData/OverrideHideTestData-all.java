@@ -34,7 +34,7 @@ public class OverrideHideTestData {
         </fold>}</fold>
     }</fold>
 
-    class Dog extends Anima<fold text='l(2-makeSound, eat)' expand='true'>l</fold> <fold text='{...}' expand='true'>{
+    class Dog extends Animal <fold text='{...}' expand='true'>{
         <fold text='' expand='true'>@Override</fold><fold text='' expand='true'>
         </fold>public void makeSound()<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
             </fold></fold><fold text='' expand='false'>System.out.</fold>println(<fold text='"Dog barks"' expand='false'>"Dog barks"</fold>)<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
@@ -52,7 +52,7 @@ public class OverrideHideTestData {
         double calculatePerimeter();
     }</fold>
 
-    <fold text='@AllArgsConstructor @ToString @EqualsAndHashCode c' expand='false'>c</fold>lass Circle implements Shap<fold text='e(2-calculateArea, calculatePerimeter)' expand='true'>e</fold> <fold text='{...}' expand='true'>{
+    <fold text='@AllArgsConstructor @ToString @EqualsAndHashCode c' expand='false'>c</fold>lass Circle implements Shape <fold text='{...}' expand='true'>{
         private double radius;<fold text='' expand='false'>
 
         </fold><fold text='' expand='false'>public Circle(double radius)<fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
