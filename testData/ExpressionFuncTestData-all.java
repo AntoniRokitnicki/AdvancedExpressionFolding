@@ -61,19 +61,19 @@ public class ExpressionFuncTestData {
     }</fold>
 
 
-    class Child extends Paren<fold text='t(1-getId)' expand='true'>t</fold> <fold text='{...}' expand='true'>{
+    class Child extends Parent <fold text='{...}' expand='true'>{
         <fold text='' expand='true'>@Override</fold><fold text='' expand='true'>
         </fold><fold text='' expand='true'>public</fold><fold text='' expand='true'> </fold><fold text='' expand='true'>long</fold><fold text='' expand='true'> </fold>getId<fold text='' expand='true'>()</fold><fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
             </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>0L<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
         </fold><fold text='} // overrides from Parent' expand='true'>}</fold></fold>
     }</fold>
-    class Child2 extends Paren<fold text='t(1-getId)' expand='true'>t</fold> <fold text='{...}' expand='true'>{
+    class Child2 extends Parent <fold text='{...}' expand='true'>{
         @ExampleAnnotation
         <fold text='' expand='true'>public</fold><fold text='' expand='true'> </fold><fold text='' expand='true'>long</fold><fold text='' expand='true'> </fold>getId<fold text='' expand='true'>()</fold><fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
             </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>2L<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold>
     }</fold>
-    class Child3 extends Paren<fold text='t(1-getId)' expand='true'>t</fold> <fold text='{...}' expand='true'>{
+    class Child3 extends Parent <fold text='{...}' expand='true'>{
         <fold text='' expand='true'>@Override</fold><fold text='' expand='true'>
         </fold>@ExampleAnnotation
         <fold text='' expand='true'>public</fold><fold text='' expand='true'> </fold><fold text='' expand='true'>long</fold><fold text='' expand='true'> </fold>getId<fold text='' expand='true'>()</fold><fold text=' { ' expand='false'> {<fold text=' ' expand='true'>

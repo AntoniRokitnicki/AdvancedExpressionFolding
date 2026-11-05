@@ -12,7 +12,7 @@ public class SummaryParentOverrideTestData {
         }
     }
 
-    class ParentClass extends GrandparentClass(1-grandparentMethod) {
+    class ParentClass extends GrandparentClass {
         @Override
         public void grandparentMethod() { // overrides from GrandparentClass
             System.out.println("Overridden Grandparent Method in Parent");
@@ -37,7 +37,7 @@ public class SummaryParentOverrideTestData {
 
     }
 
-    public class TestDataClass extends ParentClass(1-grandparentMethod) implements FirstInterface(2-interfaceMethodOne, sharedMethod), SecondInterface(1-interfaceMethodTwo), WithoutMethodInterface(nothing overridden) {
+    public class TestDataClass extends ParentClass implements FirstInterface, SecondInterface, WithoutMethodInterface {
 
         @Override
         public void interfaceMethodOne() {
@@ -70,5 +70,16 @@ public class SummaryParentOverrideTestData {
         public void additionalMethodThree() {
             System.out.println("Additional method three");
         }
+    }
+
+    interface Repository<T> {
+        int size();
+    }
+
+    class NameRepository implements Repository<String> {
+        @Override
+        public int size() {
+            return 0;
+        } // overrides from Repository
     }
 }

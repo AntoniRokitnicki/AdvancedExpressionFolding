@@ -4,8 +4,6 @@ import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.semantic.SimpleExpression
 import com.intellij.advancedExpressionFolding.processor.asInstance
 import com.intellij.advancedExpressionFolding.processor.expr
-import com.intellij.advancedExpressionFolding.processor.exprOnLastChar
-import com.intellij.advancedExpressionFolding.processor.exprWrap
 import com.intellij.advancedExpressionFolding.processor.isOverride
 import com.intellij.advancedExpressionFolding.processor.one
 import com.intellij.advancedExpressionFolding.processor.signature
@@ -15,54 +13,49 @@ import com.intellij.openapi.util.removeUserData
 import com.intellij.psi.*
 import com.intellij.psi.util.MethodSignature
 
-private data class ReferenceWithMethods(
-    val element: PsiElement,
-    val methods: List<String>
+private data class ParentWithOverrides(
+    val nameElement: PsiIdentifier,
+    val overriddenMethods: List<PsiMethod>
 )
 
 object SummaryParentOverrideExt {
 
-    fun PsiClass.addParentSummary(): Expression? {
-        val parentToMethods = mutableMapOf<String, List<String>>()
-        val methodToParentClass: MutableMap<MethodSignature, String> = mutableMapOf() //TODO: String->Pointer?
-
-        sequenceOf(this.extendsList, this.implementsList).filterNotNull().map { parent ->
-            parent.referenceElements.zip(parent.referencedTypes).mapNotNull { (refElement, type) ->
-                refElement.referenceNameElement?.let { element ->
-                    val className = element.asInstance<PsiIdentifier>()?.text ?: return@let null
-                    val overriddenMethods = type.resolve()?.methods?.filter { method ->
-                        //TODO: support sharedMethod from GrandparentClass as well here
-                        findMethodBySignature(method, false) != null
-                    }?.map {
-                        val sig = it.signature
-                        methodToParentClass[sig] = className
-                        it.name
-                    } ?: emptyList()
-                    // element=FirstInterface
-                    // overriddenMethods=["interfaceMethodOne", "sharedMethod"]
-                    parentToMethods[className] = overriddenMethods
-                    ReferenceWithMethods(element, overriddenMethods)
-                }
-            }
-        }.flatten().toList().takeIf {
-            it.isNotEmpty()
-        }?.mapNotNull {
-            val overriddenMethodsLabel = when {
-                it.methods.isNotEmpty() -> "(${asCount(it)}-${asString(it)})"
-                else -> "(nothing overridden)"
-            }
-            it.element.exprOnLastChar(overriddenMethodsLabel)
-        }?.let {
-            this.putUserData(METHOD_TO_PARENT_CLASS_KEY, methodToParentClass)
-            return it.exprWrap(this)
+    fun PsiClass.rememberParentOfOverriddenMethods() {
+        val methodToParentClass: MutableMap<MethodSignature, String> = parentsWithOverrides().flatMap { parent ->
+            parent.overriddenMethods.map { method -> method.signature to parent.nameElement.text }
+        }.toMap(mutableMapOf())
+        if (methodToParentClass.isEmpty()) {
+            removeUserData(METHOD_TO_PARENT_CLASS_KEY)
+        } else {
+            putUserData(METHOD_TO_PARENT_CLASS_KEY, methodToParentClass)
         }
-        this.removeUserData(METHOD_TO_PARENT_CLASS_KEY)
-        return null
     }
 
-    private fun asCount(it: ReferenceWithMethods) = it.methods.size
+    /**
+     * Pairs each parent name in `extends` / `implements` with its override summary,
+     * e.g. `(2-equals, hashCode)` or `(nothing overridden)`.
+     */
+    fun PsiClass.parentOverrideLabels(): List<Pair<PsiIdentifier, String>> =
+        parentsWithOverrides().map { parent ->
+            val methodNames = parent.overriddenMethods.map { method -> method.name }
+            val label = when {
+                methodNames.isNotEmpty() -> "(${methodNames.size}-${methodNames.joinToString(", ")})"
+                else -> "(nothing overridden)"
+            }
+            parent.nameElement to label
+        }
 
-    private fun asString(it: ReferenceWithMethods) = it.methods.joinToString(", ")
+    private fun PsiClass.parentsWithOverrides(): List<ParentWithOverrides> =
+        sequenceOf(extendsList, implementsList).filterNotNull().flatMap { parents ->
+            parents.referenceElements.zip(parents.referencedTypes).mapNotNull { (reference, type) ->
+                val nameElement = reference.referenceNameElement.asInstance<PsiIdentifier>() ?: return@mapNotNull null
+                //TODO: support sharedMethod from GrandparentClass as well here
+                val overriddenMethods = type.resolve()?.methods?.filter { method ->
+                    findMethodBySignature(method, false) != null
+                } ?: emptyList()
+                ParentWithOverrides(nameElement, overriddenMethods)
+            }
+        }.toList()
 
     fun summaryParent(
         method: PsiMethod,
