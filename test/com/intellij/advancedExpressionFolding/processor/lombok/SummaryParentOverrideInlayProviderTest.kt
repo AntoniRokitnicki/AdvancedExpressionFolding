@@ -63,6 +63,27 @@ class SummaryParentOverrideInlayProviderTest : BaseTest() {
     }
 
     @Test
+    fun inlay_genericParent_summaryBeforeTypeArguments() {
+        // GIVEN - a class implementing a generic interface
+        @Language("JAVA")
+        val withExpectedInlays = """
+            interface Repository<T> {
+                int size();
+            }
+
+            class NameRepository implements Repository/*<# (1-size) #>*/<String> {
+                public int size() { return 0; }
+            }
+        """.trimIndent()
+
+        // WHEN - inlay hints are collected for the file
+        val rendered = renderInlays(withExpectedInlays)
+
+        // THEN - the summary sits right after the parent name, before its type arguments
+        assertEquals(withExpectedInlays, rendered)
+    }
+
+    @Test
     fun inlay_optionOff_noSummary() {
         // GIVEN - the summaryParentOverride option is off
         state.summaryParentOverride = false

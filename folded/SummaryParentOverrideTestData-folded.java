@@ -71,4 +71,15 @@ public class SummaryParentOverrideTestData {
             System.out.println("Additional method three");
         }
     }
+
+    interface Repository<T> {
+        int size();
+    }
+
+    class NameRepository implements Repository<String> {
+        @Override
+        public int size() {
+            return 0;
+        } // overrides from Repository
+    }
 }

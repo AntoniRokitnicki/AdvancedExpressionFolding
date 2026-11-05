@@ -71,4 +71,15 @@ public class SummaryParentOverrideTestData {
             </fold>System.out.println("Additional method three");<fold text=' }' expand='false'>
         }</fold>
     }</fold>
+
+    interface Repository<T> <fold text='{...}' expand='true'>{
+        int size();
+    }</fold>
+
+    class NameRepository implements Repository<String> <fold text='{...}' expand='true'>{
+        @Override
+        public int size()<fold text=' { ' expand='false'> {
+            </fold>return 0;<fold text=' }' expand='false'>
+        <fold text='} // overrides from Repository' expand='true'>}</fold></fold>
+    }</fold>
 }

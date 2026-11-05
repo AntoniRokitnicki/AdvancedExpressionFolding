@@ -71,4 +71,15 @@ public class SummaryParentOverrideTestData {
             </fold></fold><fold text='' expand='false'>System.out.</fold>println(<fold text='"Additional method three"' expand='false'>"Additional method three"</fold>)<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
         </fold>}</fold>
     }</fold>
+
+    interface Repository<T> <fold text='{...}' expand='true'>{
+        int size();
+    }</fold>
+
+    class NameRepository implements Repository<String> <fold text='{...}' expand='true'>{
+        <fold text='' expand='true'>@Override</fold><fold text='' expand='true'>
+        </fold><fold text='' expand='true'>public</fold><fold text='' expand='true'> </fold><fold text='' expand='true'>int</fold><fold text='' expand='true'> </fold>size<fold text='' expand='true'>()</fold><fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
+            </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>0<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
+        </fold><fold text='} // overrides from Repository' expand='true'>}</fold></fold>
+    }</fold>
 }
