@@ -16,6 +16,7 @@ qodana = "2024.3.4"
 lombok-plugin = "9.0.0"
 commons-lang3 = "3.19.0"
 slf4j = "2.0.17"
+graalvmNative = "0.10.5"
 
 [libraries]
 annotations = { group = "org.jetbrains", name = "annotations", version.ref = "annotations" }
@@ -39,3 +40,4 @@ kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
 qodana = { id = "org.jetbrains.qodana", version.ref = "qodana" }
 lombok = { id = "io.freefair.lombok", version.ref = "lombok-plugin" }
+graalvmNative = { id = "org.graalvm.buildtools.native", version.ref = "graalvmNative" }
