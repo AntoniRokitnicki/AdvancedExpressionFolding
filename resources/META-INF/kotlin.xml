@@ -1,0 +1,11 @@
+<idea-plugin>
+    <extensions defaultExtensionNs="org.jetbrains.kotlin">
+        <!-- tell the IDE your plugin works with the new K2 frontend -->
+        <supportsKotlinPluginMode supportsK2="true"/>
+    </extensions>
+    <extensions defaultExtensionNs="com.intellij">
+        <completion.contributor
+                language="kotlin"
+                implementationClass="com.intellij.advancedExpressionFolding.kotlin.pseudoAnnotations.KotlinMainAnnotationCompletionContributor"/>
+    </extensions>
+</idea-plugin>
