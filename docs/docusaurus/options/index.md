@@ -163,6 +163,12 @@ Implements destructuring assignments for arrays and lists.
 - [List Folded](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/folded/DestructuringAssignmentListTestData-folded.java)
 - [Documentation](../features/destructuring.md)
 
+## mapEntryDestructuring
+### Destructuring for-each over Map.entrySet() as (key, value)
+Shows `for (Map.Entry<K, V> e : map.entrySet())` as `for ((key, value) in map)` and each `e.getKey()` / `e.getValue()` as `key` / `value`, when the entry is used only through those two calls.
+- [Example](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/examples/data/MapEntryDestructuringTestData.java)
+- [Folded](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/folded/MapEntryDestructuringTestData-folded.java)
+
 ## println
 ### Simplify System.out.println to println
 Simplifies System.out.println calls to just println.

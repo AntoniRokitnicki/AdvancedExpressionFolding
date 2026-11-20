@@ -149,6 +149,11 @@ abstract class CheckboxesProvider {
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#destructuring")
         }
 
+        registerCheckbox(state::mapEntryDestructuring, "Destructuring for-each over Map.entrySet() as (key, value)") {
+            example(MapEntryDestructuringTestData::class)
+            link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#mapentrydestructuring")
+        }
+
         registerCheckbox(state::println, "Simplify System.out.println to println") {
             example(PrintlnTestData::class)
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#println")

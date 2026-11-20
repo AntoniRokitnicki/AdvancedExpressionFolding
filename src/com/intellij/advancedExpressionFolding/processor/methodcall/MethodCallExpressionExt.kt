@@ -7,6 +7,7 @@ import com.intellij.advancedExpressionFolding.expression.property.GetterRecord
 import com.intellij.advancedExpressionFolding.expression.property.Setter
 import com.intellij.advancedExpressionFolding.processor.argumentExpressions
 import com.intellij.advancedExpressionFolding.processor.argumentCount
+import com.intellij.advancedExpressionFolding.processor.controlflow.MapEntryDestructuringExt
 import com.intellij.advancedExpressionFolding.processor.core.BuildExpressionExt
 import com.intellij.advancedExpressionFolding.processor.language.FieldShiftExt
 import com.intellij.advancedExpressionFolding.processor.logger.LoggerBracketsExt
@@ -36,6 +37,7 @@ object MethodCallExpressionExt :
     IGlobalSettingsState by State()() {
 
     fun getMethodCallExpression(element: PsiMethodCallExpression, document: Document): Expression? {
+        MapEntryDestructuringExt.getComponentExpression(element)?.let { return it }
         val referenceExpression = element.methodExpression
         val identifier = referenceExpression.children.firstOrNull { it is PsiIdentifier } ?: return null
         val qualifier = referenceExpression.qualifierExpression
