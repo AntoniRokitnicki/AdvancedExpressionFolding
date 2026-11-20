@@ -12,6 +12,7 @@ import com.intellij.psi.PsiWhileStatement
 object LoopExt : IControlFlowState by State()() {
 
     fun getForEachStatementExpression(element: PsiForeachStatement): Expression? {
+        MapEntryDestructuringExt.getForEachExpression(element)?.let { return it }
         val lParenth = element.lParenth
         val rParenth = element.rParenth ?: return null
         return if (element.iteratedValue != null && compactControlFlowSyntaxCollapse) {

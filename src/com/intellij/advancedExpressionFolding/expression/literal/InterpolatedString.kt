@@ -2,6 +2,7 @@ package com.intellij.advancedExpressionFolding.expression.literal
 
 import com.intellij.advancedExpressionFolding.expression.Expression
 import com.intellij.advancedExpressionFolding.expression.operation.basic.Variable
+import com.intellij.advancedExpressionFolding.expression.semantic.kotlin.MapEntryComponent
 import com.intellij.lang.folding.FoldingDescriptor
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.editor.FoldingGroup
@@ -55,7 +56,7 @@ class InterpolatedString(
                 val overflowLeftText = document.getText(overflowLeftRange)
                 if (OVERFLOW_CHARACTERS.contains(overflowLeftText)) {
                     val overflowText = overflowLeftPlaceholder ?: overflowLeftText
-                    if (first is Variable) {
+                    if (first.isPlainName()) {
                         descriptors += FoldingDescriptor(
                             element.node,
                             overflowLeftRange,
@@ -72,8 +73,8 @@ class InterpolatedString(
                         suffix = "}"
                     }
                 } else {
-                    val placeholder = if (first is Variable) {
-                        "\"${'$'}" + first.element.text
+                    val placeholder = if (first.isPlainName()) {
+                        "\"${'$'}" + first.plainNameText()
                     } else {
                         "\"${'$'}{" + first.element.text + "}"
                     }
@@ -109,7 +110,7 @@ class InterpolatedString(
                 placeholder.append('$')
             }
             if (
-                next !is Variable &&
+                !next.isPlainName() &&
                 next !is CharSequenceLiteral &&
                 !nextIsQuoteCharacter
             ) {
@@ -144,7 +145,7 @@ class InterpolatedString(
             val overflowRightText = document.getText(overflowRightRange)
             if (OVERFLOW_CHARACTERS.contains(overflowRightText)) {
                 val overflowText = overflowRightPlaceholder ?: overflowRightText
-                if (last is Variable) {
+                if (last.isPlainName()) {
                     descriptors += FoldingDescriptor(
                         element.node,
                         TextRange.create(start, end),
@@ -196,6 +197,10 @@ class InterpolatedString(
         val literalCount = operands.count { it is CharSequenceLiteral }
         return literalCount == operands.size && operands.first() is StringLiteral && operands.last() is StringLiteral
     }
+
+    private fun Expression.isPlainName(): Boolean = this is Variable || this is MapEntryComponent
+
+    private fun Expression.plainNameText(): String = if (this is MapEntryComponent) name else element.text
 
     private fun Expression.isQuoteCharacter(): Boolean {
         return this is CharacterLiteral && this.character == '"'
