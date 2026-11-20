@@ -57,6 +57,9 @@ interface ExpressionCollapseFoldingTest : FoldingTestSection {
         foldingState()::getSetExpressionsCollapse,
         foldingState()::fieldShift,
     )
+
+    @Test
+    fun toBuilderCopyTestData() = testCase.runFoldingTest(foldingState()::toBuilderCopy)
 }
 
 @Disabled("Split from FoldingTest")

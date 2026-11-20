@@ -11,6 +11,7 @@ interface IExpressionCollapseState {
     var slicingExpressionsCollapse: Boolean
     var varExpressionsCollapse: Boolean
     var fieldShift: Boolean
+    var toBuilderCopy: Boolean
 }
 
 data class ExpressionCollapseState(
@@ -24,4 +25,5 @@ data class ExpressionCollapseState(
     override var slicingExpressionsCollapse: Boolean = true,
     override var varExpressionsCollapse: Boolean = true,
     override var fieldShift: Boolean = true,
+    override var toBuilderCopy: Boolean = true,
 ) : IExpressionCollapseState
