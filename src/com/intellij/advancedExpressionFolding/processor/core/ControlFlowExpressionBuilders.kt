@@ -6,6 +6,7 @@ import com.intellij.advancedExpressionFolding.processor.controlflow.ForStatement
 import com.intellij.advancedExpressionFolding.processor.controlflow.IfExt
 import com.intellij.advancedExpressionFolding.processor.controlflow.LoopExt
 import com.intellij.advancedExpressionFolding.processor.controlflow.PsiTryStatementExt
+import com.intellij.advancedExpressionFolding.processor.language.kotlin.PreconditionExt
 import com.intellij.openapi.editor.Document
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiCatchSection
@@ -14,6 +15,7 @@ import com.intellij.psi.PsiForeachStatement
 import com.intellij.psi.PsiForStatement
 import com.intellij.psi.PsiIfStatement
 import com.intellij.psi.PsiSwitchStatement
+import com.intellij.psi.PsiThrowStatement
 import com.intellij.psi.PsiTryStatement
 import com.intellij.psi.PsiWhileStatement
 
@@ -50,6 +52,11 @@ class SwitchStatementBuilder : BuildExpression<PsiSwitchStatement>(PsiSwitchStat
 class TryStatementBuilder : BuildExpression<PsiTryStatement>(PsiTryStatement::class.java) {
     override fun buildExpression(element: PsiTryStatement, document: Document, synthetic: Boolean) =
         PsiTryStatementExt.createExpression(element)
+}
+
+class ThrowStatementBuilder : BuildExpression<PsiThrowStatement>(PsiThrowStatement::class.java) {
+    override fun buildExpression(element: PsiThrowStatement, document: Document, synthetic: Boolean) =
+        PreconditionExt.getThrowExpression(element, document)
 }
 
 class CatchSectionBuilder : BuildExpression<PsiCatchSection>(PsiCatchSection::class.java) {

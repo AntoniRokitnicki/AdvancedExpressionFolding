@@ -15,6 +15,7 @@ import com.intellij.advancedExpressionFolding.processor.isNull
 import com.intellij.advancedExpressionFolding.processor.language.kotlin.IfNullSafeExt
 import com.intellij.advancedExpressionFolding.processor.language.kotlin.IfNullSafePrintlnExt
 import com.intellij.advancedExpressionFolding.processor.language.kotlin.LetReturnExt
+import com.intellij.advancedExpressionFolding.processor.language.kotlin.PreconditionExt
 import com.intellij.advancedExpressionFolding.processor.util.Helper
 import com.intellij.advancedExpressionFolding.settings.State
 import com.intellij.advancedExpressionFolding.settings.state.IControlFlowState
@@ -55,6 +56,8 @@ object IfExt :
     }
 
     fun getIfExpression(element: PsiIfStatement, document: Document): Expression? {
+        PreconditionExt.getIfExpression(element, document)?.let { return it }
+
         LetReturnExt.getIfExpression(element)?.let { return it }
 
         IfNullSafePrintlnExt.createExpression(element)?.let { return it }
