@@ -22,8 +22,13 @@ public class MapEntryDestructuringTestData {
             report<fold text=' -= ' expand='false'>.remove(</fold>line<fold text='' expand='false'>)</fold>;
         }</fold>
 
-        for <fold text='' expand='false'>(</fold><fold text='(key, value) in ' expand='false'><fold text='val' expand='false'>Map.Entry<String, Integer></fold> e : </fold>stock<fold text='' expand='false'>.entrySet()</fold><fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
+        for <fold text='' expand='false'>(</fold><fold text='(key, _) in ' expand='false'><fold text='val' expand='false'>Map.Entry<String, Integer></fold> e : </fold>stock<fold text='' expand='false'>.entrySet()</fold><fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
             report<fold text=' -= ' expand='false'>.remove(</fold><fold text='key' expand='false'>e.getKey()</fold><fold text='' expand='false'>)</fold>;
+        }</fold>
+
+        <fold text='var' expand='false'>int</fold> sum = 0;
+        for <fold text='' expand='false'>(</fold><fold text='(_, value) in ' expand='false'><fold text='val' expand='false'>Map.Entry<String, Integer></fold> e : </fold>stock<fold text='' expand='false'>.entrySet()</fold><fold text='' expand='false'>)</fold> <fold text='{...}' expand='true'>{
+            sum += <fold text='value' expand='false'>e.getValue()</fold>;
         }</fold>
     }</fold>
 

@@ -25,6 +25,11 @@ public class MapEntryDestructuringTestData {
         for (Map.Entry<String, Integer> e : stock.entrySet()) {
             report.remove(e.getKey());
         }
+
+        int sum = 0;
+        for (Map.Entry<String, Integer> e : stock.entrySet()) {
+            sum += e.getValue();
+        }
     }
 
     public void notDestructured(Map<String, Integer> stock, List<Map.Entry<String, Integer>> entries, String key) {

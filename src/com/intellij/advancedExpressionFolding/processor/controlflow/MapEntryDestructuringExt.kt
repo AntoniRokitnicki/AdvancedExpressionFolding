@@ -23,15 +23,17 @@ object MapEntryDestructuringExt : IKotlinLanguageState by State()() {
     private val COMPONENTS = mapOf("getKey" to "key", "getValue" to "value")
 
     fun getForEachExpression(element: PsiForeachStatement): Expression? {
-        if (!mapEntryDestructuring || element.rParenth == null || !isDestructurable(element)) {
+        if (!mapEntryDestructuring || element.rParenth == null) {
             return null
         }
+        val usedComponents = usedComponents(element) ?: return null
         val entrySetCall = element.iteratedValue as PsiMethodCallExpression
         return MapEntryForEachExpression(
             element,
             element.iterationParameter,
             entrySetCall.methodExpression.qualifierExpression!!,
             entrySetCall,
+            destructuringHeader(usedComponents),
         )
     }
 
@@ -43,34 +45,42 @@ object MapEntryDestructuringExt : IKotlinLanguageState by State()() {
         val entry = element.methodExpression.qualifierExpression as? PsiReferenceExpression ?: return null
         val parameter = entry.resolve() as? PsiParameter ?: return null
         val loop = parameter.declarationScope as? PsiForeachStatement ?: return null
-        if (loop.iterationParameter != parameter || !isDestructurable(loop)) {
+        if (loop.iterationParameter != parameter || usedComponents(loop) == null) {
             return null
         }
         return MapEntryComponent(element, name)
     }
 
-    private fun isDestructurable(loop: PsiForeachStatement): Boolean {
-        val entrySetCall = loop.iteratedValue as? PsiMethodCallExpression ?: return false
+    /// Names of the components the loop body reads (`key`, `value`), or `null` when the loop cannot be destructured.
+    private fun usedComponents(loop: PsiForeachStatement): Set<String>? {
+        val entrySetCall = loop.iteratedValue as? PsiMethodCallExpression ?: return null
         if (entrySetCall.methodExpression.referenceName != "entrySet" || entrySetCall.argumentCount != 0) {
-            return false
+            return null
         }
-        val map = entrySetCall.methodExpression.qualifierExpression ?: return false
+        val map = entrySetCall.methodExpression.qualifierExpression ?: return null
         if (!InheritanceUtil.isInheritor(map.type, CommonClassNames.JAVA_UTIL_MAP)) {
-            return false
+            return null
         }
-        val body = loop.body ?: return false
+        val body = loop.body ?: return null
         val entry = loop.iterationParameter
         val references = SyntaxTraverser.psiTraverser(body).filter(PsiReferenceExpression::class.java).toList()
         val entryUses = references.filter { it.referenceName == entry.name && it.resolve() == entry }
-        return entryUses.all(::isComponentCallQualifier) &&
-            references.none { it !in entryUses && it.readsBareComponentName() } &&
-            SyntaxTraverser.psiTraverser(body).filter(PsiVariable::class.java).none { it.name in COMPONENTS.values }
+        val components = entryUses.map { componentReadBy(it) ?: return null }.toSet()
+        val namesCollide = references.any { it !in entryUses && it.readsBareComponentName() } ||
+            SyntaxTraverser.psiTraverser(body).filter(PsiVariable::class.java).any { it.name in COMPONENTS.values }
+        return components.takeUnless { namesCollide }
     }
 
-    private fun isComponentCallQualifier(use: PsiReferenceExpression): Boolean {
-        val methodExpression = use.parent as? PsiReferenceExpression ?: return false
-        val call = methodExpression.parent as? PsiMethodCallExpression ?: return false
-        return methodExpression.qualifierExpression == use && componentName(call) != null
+    // A component the body never reads shows as `_`, the way Kotlin skips it; with none read both names stay.
+    private fun destructuringHeader(usedComponents: Set<String>): String {
+        val names = COMPONENTS.values.map { name -> if (usedComponents.isEmpty() || name in usedComponents) name else "_" }
+        return names.joinToString(", ", prefix = "(", postfix = ") in ")
+    }
+
+    private fun componentReadBy(use: PsiReferenceExpression): String? {
+        val methodExpression = use.parent as? PsiReferenceExpression ?: return null
+        val call = methodExpression.parent as? PsiMethodCallExpression ?: return null
+        return componentName(call).takeIf { methodExpression.qualifierExpression == use }
     }
 
     private fun PsiReferenceExpression.readsBareComponentName(): Boolean =

@@ -22,8 +22,13 @@ public class MapEntryDestructuringTestData {
             report -= line;
         }
 
-        for ((key, value) in stock) {
+        for ((key, _) in stock) {
             report -= key;
+        }
+
+        int sum = 0;
+        for ((_, value) in stock) {
+            sum += value;
         }
     }
 

@@ -20,6 +20,9 @@ folded/MapEntryDestructuringTestData-folded.java:
         }
 ```
 
+A component the body never reads shows as `_`, as in Kotlin: a loop that only sums `e.getValue()` folds to
+`for ((_, value) in stock)`.
+
 The loop stays as it is when the shown names would hide something:
 - the entry is used in any other way, e.g. `e.setValue(...)` or passed as an argument;
 - the body already declares or reads a plain `key` or `value`;

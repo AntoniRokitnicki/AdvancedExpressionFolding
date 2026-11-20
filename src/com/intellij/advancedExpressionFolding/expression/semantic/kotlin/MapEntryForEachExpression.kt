@@ -14,13 +14,15 @@ import com.intellij.psi.PsiForeachStatement
 import com.intellij.psi.PsiMethodCallExpression
 import com.intellij.psi.PsiParameter
 
-/// Header of a destructured map loop: `for (Map.Entry<K, V> e : map.entrySet())` → `for ((key, value) in map)`.
+/// Header of a destructured map loop: `for (Map.Entry<K, V> e : map.entrySet())` → `for ((key, value) in map)`,
+/// with `_` for a component the body never reads.
 /// Keeps the compact-control-flow parentheses folding, since both come from the same for-each statement.
 class MapEntryForEachExpression(
     private val loop: PsiForeachStatement,
     private val entry: PsiParameter,
     private val map: PsiExpression,
     private val entrySetCall: PsiMethodCallExpression,
+    private val header: String,
 ) : Expression(loop, TextRange.create(loop.lParenth.textRange.startOffset, loop.rParenth!!.textRange.endOffset)),
     IControlFlowState by State()() {
 
@@ -37,7 +39,7 @@ class MapEntryForEachExpression(
                 element.node,
                 TextRange.create(entry.textRange.startOffset, map.textRange.startOffset),
                 group,
-                "(key, value) in "
+                header
             ),
             FoldingDescriptor(
                 element.node,
