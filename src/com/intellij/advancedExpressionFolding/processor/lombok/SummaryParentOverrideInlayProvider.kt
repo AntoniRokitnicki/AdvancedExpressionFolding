@@ -31,7 +31,8 @@ class SummaryParentOverrideInlayProvider : InlayHintsProvider {
             val clazz = element as? PsiClass ?: return
             clazz.parentOverrideLabels().forEach { (nameElement, label) ->
                 val afterName = InlineInlayPosition(nameElement.textRange.endOffset, relatedToPrevious = true)
-                sink.addPresentation(afterName, hasBackground = true) {
+                // the platform cuts long inlay text with an ellipsis, so the tooltip carries the whole list
+                sink.addPresentation(afterName, tooltip = label, hasBackground = true) {
                     text(label)
                 }
             }
