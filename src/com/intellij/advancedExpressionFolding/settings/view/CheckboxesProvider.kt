@@ -110,6 +110,11 @@ abstract class CheckboxesProvider {
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#kotlinquickreturn")
         }
 
+        registerCheckbox(state::kotlinPreconditions, "Preconditions as Kotlin require, check, requireNotNull and error") {
+            example(KotlinPreconditionsTestData::class)
+            link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#kotlinpreconditions")
+        }
+
         registerCheckbox(state::assertsCollapse, "Asserts") {
             example(AssertTestData::class)
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#asserts")
