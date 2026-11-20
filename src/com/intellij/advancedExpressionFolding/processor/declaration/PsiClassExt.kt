@@ -7,7 +7,6 @@ import com.intellij.advancedExpressionFolding.processor.exprWrap
 import com.intellij.advancedExpressionFolding.processor.language.kotlin.MethodDefaultParameterExt
 import com.intellij.advancedExpressionFolding.processor.lombok.AnnotationExt
 import com.intellij.advancedExpressionFolding.processor.lombok.LombokPostConstructorExt
-import com.intellij.advancedExpressionFolding.processor.lombok.SummaryParentOverrideExt.rememberParentOfOverriddenMethods
 import com.intellij.advancedExpressionFolding.settings.State
 import com.intellij.advancedExpressionFolding.settings.state.IHidingSuppressionState
 import com.intellij.advancedExpressionFolding.settings.state.IKotlinLanguageState
@@ -24,9 +23,6 @@ object PsiClassExt :
     }
 
     fun createExpression(clazz: PsiClass): Expression? {
-        if (summaryParentOverride) {
-            clazz.rememberParentOfOverriddenMethods()
-        }
         val list = exprList()
         list.addIfEnabled(methodDefaultParameters) {
             MethodDefaultParameterExt.enhanceMethodsWithDefaultParams(clazz)

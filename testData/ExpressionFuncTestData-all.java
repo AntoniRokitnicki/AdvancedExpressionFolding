@@ -65,7 +65,7 @@ public class ExpressionFuncTestData {
         <fold text='' expand='true'>@Override</fold><fold text='' expand='true'>
         </fold><fold text='' expand='true'>public</fold><fold text='' expand='true'> </fold><fold text='' expand='true'>long</fold><fold text='' expand='true'> </fold>getId<fold text='' expand='true'>()</fold><fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
             </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>0L<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
-        </fold><fold text='} // overrides from Parent' expand='true'>}</fold></fold>
+        </fold>}</fold>
     }</fold>
     class Child2 extends Parent <fold text='{...}' expand='true'>{
         @ExampleAnnotation
@@ -78,7 +78,7 @@ public class ExpressionFuncTestData {
         </fold>@ExampleAnnotation
         <fold text='' expand='true'>public</fold><fold text='' expand='true'> </fold><fold text='' expand='true'>long</fold><fold text='' expand='true'> </fold>getId<fold text='' expand='true'>()</fold><fold text=' { ' expand='false'> {<fold text=' ' expand='true'>
             </fold></fold><fold text='' expand='true'>return</fold><fold text='' expand='true'> </fold>3L<fold text='' expand='true'>;</fold><fold text=' ' expand='true'><fold text=' }' expand='false'>
-        </fold><fold text='} // overrides from Parent' expand='true'>}</fold></fold>
+        </fold>}</fold>
     }</fold>
     class Parent <fold text='{...}' expand='true'>{
         <fold text='' expand='true'>@SuppressWarnings("ignored")</fold><fold text='' expand='true'>

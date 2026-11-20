@@ -10,7 +10,6 @@ import com.intellij.advancedExpressionFolding.processor.language.kotlin.Nullable
 import com.intellij.advancedExpressionFolding.processor.language.kotlin.SingleExpressionFunctionExt
 import com.intellij.advancedExpressionFolding.processor.lombok.InterfacePropertiesExt
 import com.intellij.advancedExpressionFolding.processor.lombok.LombokPostConstructorExt
-import com.intellij.advancedExpressionFolding.processor.lombok.SummaryParentOverrideExt
 import com.intellij.advancedExpressionFolding.processor.methodcall.dynamic.DynamicExt
 import com.intellij.openapi.editor.Document
 import com.intellij.psi.PsiMethod
@@ -23,10 +22,6 @@ object PsiMethodExt : BaseExtension() {
             return InterfacePropertiesExt.foldProperties(method)
         }
         val list = exprList(fieldAnnotationExpression(method.annotations, method.returnTypeElement))
-
-        if (summaryParentOverride) {
-            SummaryParentOverrideExt.summaryParent(method, list)
-        }
 
         list.addIfEnabled(expressionFunc) {
             SingleExpressionFunctionExt.createSingleExpressionFunctions(method, document)

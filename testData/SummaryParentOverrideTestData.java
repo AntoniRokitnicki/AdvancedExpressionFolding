@@ -14,7 +14,7 @@ public class SummaryParentOverrideTestData {
 
     class ParentClass extends GrandparentClass <fold text='{...}' expand='true'>{
         @Override
-        public void grandparentMethod() <fold text='{ // overrides from GrandparentClass' expand='true'><fold text='{...}' expand='true'>{</fold>
+        public void grandparentMethod() <fold text='{...}' expand='true'>{
             System.out.println("Overridden Grandparent Method in Parent");
             System.out.println("Overridden Grandparent Method in Parent");
         }</fold>
@@ -42,22 +42,22 @@ public class SummaryParentOverrideTestData {
         @Override
         public void interfaceMethodOne()<fold text=' { ' expand='false'> {
             </fold>System.out.println("Implementation of Interface Method One");<fold text=' }' expand='false'>
-        <fold text='} // overrides from FirstInterface' expand='true'>}</fold></fold>
+        }</fold>
 
         @Override
         public void interfaceMethodTwo()<fold text=' { ' expand='false'> {
             </fold>System.out.println("Implementation of Interface Method Two");<fold text=' }' expand='false'>
-        <fold text='} // overrides from SecondInterface' expand='true'>}</fold></fold>
+        }</fold>
 
         @Override
         public void sharedMethod()<fold text=' { ' expand='false'> {
             </fold>System.out.println("Overridden Shared Method");<fold text=' }' expand='false'>
-        <fold text='} // overrides from FirstInterface' expand='true'>}</fold></fold>
+        }</fold>
 
         @Override
         public void grandparentMethod()<fold text=' { ' expand='false'> {
             </fold>System.out.println("Overridden Grandparent Method in TestDataClass");<fold text=' }' expand='false'>
-        <fold text='} // overrides from ParentClass' expand='true'>}</fold></fold>
+        }</fold>
 
         public void additionalMethodOne()<fold text=' { ' expand='false'> {
             </fold>System.out.println("Additional method one");<fold text=' }' expand='false'>
@@ -80,6 +80,6 @@ public class SummaryParentOverrideTestData {
         @Override
         public int size()<fold text=' { ' expand='false'> {
             </fold>return 0;<fold text=' }' expand='false'>
-        <fold text='} // overrides from Repository' expand='true'>}</fold></fold>
+        }</fold>
     }</fold>
 }

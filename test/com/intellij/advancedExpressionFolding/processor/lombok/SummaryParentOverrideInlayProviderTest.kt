@@ -84,6 +84,35 @@ class SummaryParentOverrideInlayProviderTest : BaseTest() {
     }
 
     @Test
+    fun inlay_overridingMethod_noteFollowsBrace() {
+        // GIVEN - a one-line and a multi-line method overriding an interface method
+        @Language("JAVA")
+        val withExpectedInlays = """
+            interface Shape {
+                double area();
+                String label();
+            }
+
+            class Circle implements Shape/*<# (2-area, label) #>*/ {
+                @Override
+                public double area() { return 0; }/*<# // overrides from Shape #>*/
+
+                @Override
+                public String label() {/*<# // overrides from Shape #>*/
+                    String label = "circle";
+                    return label;
+                }
+            }
+        """.trimIndent()
+
+        // WHEN - inlay hints are collected for the file
+        val rendered = renderInlays(withExpectedInlays)
+
+        // THEN - the note follows the closing brace of a one-liner and the opening brace otherwise
+        assertEquals(withExpectedInlays, rendered)
+    }
+
+    @Test
     fun inlay_optionOff_noSummary() {
         // GIVEN - the summaryParentOverride option is off
         state.summaryParentOverride = false

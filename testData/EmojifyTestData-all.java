@@ -69,7 +69,7 @@ public class EmojifyTestData {
 
     public class InterfaceImplementation implements InterfaceData <fold text='{...}' expand='true'>{
         <fold text='' expand='true'>@Override</fold><fold text='' expand='true'>
-        </fold>public void interfaceMethod() <fold text='{ // overrides from InterfaceData' expand='true'><fold text='{}' expand='true'>{</fold>
+        </fold>public void interfaceMethod() <fold text='{}' expand='true'>{
         }</fold>
     }</fold>
 
@@ -292,7 +292,7 @@ public class EmojifyTestData {
 
     public class DefaultMethodInInterface implements DefaultMethodInterface <fold text='{...}' expand='true'>{
         <fold text='' expand='true'>@Override</fold><fold text='' expand='true'>
-        </fold>public void abstractMethod() <fold text='{ // overrides from DefaultMethodInterface' expand='true'><fold text='{}' expand='true'>{</fold>
+        </fold>public void abstractMethod() <fold text='{}' expand='true'>{
         }</fold>
     }</fold>
 

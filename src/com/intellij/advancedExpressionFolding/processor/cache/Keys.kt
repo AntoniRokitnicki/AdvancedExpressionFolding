@@ -7,7 +7,6 @@ import com.intellij.openapi.util.Key
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiField
 import com.intellij.psi.PsiMethod
-import com.intellij.psi.util.MethodSignature
 
 object Keys {
     private const val PREFIX = "AEF-"
@@ -29,8 +28,6 @@ object Keys {
     private val VERSION_NOT_SYNTHETIC_KEY: Key<Long> = Key.create("${PREFIX}ver-!syn")
 
     val FULL_CACHE: Key<Array<FoldingDescriptor>> = Key.create("${PREFIX}-full")
-
-    val METHOD_TO_PARENT_CLASS_KEY = Key<MutableMap<MethodSignature, String>>("${PREFIX}methodToParentClass")
 
     //TODO: convert Keys to enum
     private val values: Set<Key<*>> by lazy {

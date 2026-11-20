@@ -1,17 +1,9 @@
 package com.intellij.advancedExpressionFolding.processor.lombok
 
-import com.intellij.advancedExpressionFolding.expression.Expression
-import com.intellij.advancedExpressionFolding.expression.semantic.SimpleExpression
 import com.intellij.advancedExpressionFolding.processor.asInstance
-import com.intellij.advancedExpressionFolding.processor.expr
 import com.intellij.advancedExpressionFolding.processor.isOverride
 import com.intellij.advancedExpressionFolding.processor.one
-import com.intellij.advancedExpressionFolding.processor.signature
-import com.intellij.advancedExpressionFolding.processor.takeIfTrue
-import com.intellij.advancedExpressionFolding.processor.cache.Keys.METHOD_TO_PARENT_CLASS_KEY
-import com.intellij.openapi.util.removeUserData
 import com.intellij.psi.*
-import com.intellij.psi.util.MethodSignature
 
 private data class ParentWithOverrides(
     val nameElement: PsiIdentifier,
@@ -19,17 +11,6 @@ private data class ParentWithOverrides(
 )
 
 object SummaryParentOverrideExt {
-
-    fun PsiClass.rememberParentOfOverriddenMethods() {
-        val methodToParentClass: MutableMap<MethodSignature, String> = parentsWithOverrides().flatMap { parent ->
-            parent.overriddenMethods.map { method -> method.signature to parent.nameElement.text }
-        }.toMap(mutableMapOf())
-        if (methodToParentClass.isEmpty()) {
-            removeUserData(METHOD_TO_PARENT_CLASS_KEY)
-        } else {
-            putUserData(METHOD_TO_PARENT_CLASS_KEY, methodToParentClass)
-        }
-    }
 
     /**
      * Pairs each parent name in `extends` / `implements` with its override summary,
@@ -57,40 +38,21 @@ object SummaryParentOverrideExt {
             }
         }.toList()
 
-    fun summaryParent(
-        method: PsiMethod,
-        list: MutableList<Expression?>
-    ) {
-        val hasOverride = method.annotations.any {
-            it.isOverride()
-        }
-        list += hasOverride.takeIfTrue()?.let {
-            method.body
-        }?.let { body ->
-            createOverridesComment(method, body)
-        }
-    }
-
-    private fun createOverridesComment(
-        element: PsiMethod,
-        body: PsiCodeBlock
-    ): SimpleExpression? {
-        val oneLiner = body.statements.one
-        return if (oneLiner) {
-            body.rBrace
-        } else {
-            body.lBrace
-        }?.let { brace ->
-            val signature = element.signature
-            element.containingClass?.getUserData(METHOD_TO_PARENT_CLASS_KEY)
-                ?.get(signature)?.let {
-                    val prefix = if (oneLiner) {
-                        '}'
-                    } else {
-                        '{'
-                    }
-                    brace.expr("$prefix // overrides from $it")
-                }
+    /**
+     * Pairs the body brace of each `@Override` method with its note, e.g. `// overrides from Shape`: the closing
+     * brace of a one-statement body, the opening brace otherwise. When several parents declare the method, the
+     * last one in `extends` / `implements` order wins.
+     */
+    fun PsiClass.overriddenMethodNotes(): List<Pair<PsiJavaToken, String>> {
+        val parentNameByOwnMethod = parentsWithOverrides().flatMap { parent ->
+            parent.overriddenMethods.mapNotNull { parentMethod ->
+                findMethodBySignature(parentMethod, false)?.let { ownMethod -> ownMethod to parent.nameElement.text }
+            }
+        }.toMap()
+        return parentNameByOwnMethod.mapNotNull { (ownMethod, parentName) ->
+            val body = ownMethod.body?.takeIf { ownMethod.annotations.any { it.isOverride() } } ?: return@mapNotNull null
+            val brace = (if (body.statements.one) body.rBrace else body.lBrace) ?: return@mapNotNull null
+            brace to "// overrides from $parentName"
         }
     }
 }
