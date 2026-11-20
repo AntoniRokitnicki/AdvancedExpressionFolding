@@ -143,6 +143,11 @@ abstract class CheckboxesProvider {
             link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#fieldshift")
         }
 
+        registerCheckbox(state::toBuilderCopy, "Lombok toBuilder() chain as copy(name = ...)") {
+            example(ToBuilderCopyTestData::class)
+            link("https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki#tobuildercopy")
+        }
+
         registerCheckbox(state::destructuring, "Destructuring assignment for array & list") {
             example(DestructuringAssignmentArrayTestData::class, "array")
             example(DestructuringAssignmentListTestData::class, "list")
