@@ -111,3 +111,29 @@ Related features: (none)
         } // overrides from ParentClass
 ```
 
+
+##### Scenario 7
+
+**Before**
+```java
+    class NameRepository implements Repository<String> {
+```
+
+**After**
+```java
+    class NameRepository implements Repository(1-size)<String> {
+```
+
+
+##### Scenario 8
+
+**Before**
+```java
+        }
+```
+
+**After**
+```java
+        } // overrides from Repository
+```
+
