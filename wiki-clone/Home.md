@@ -258,7 +258,7 @@ Applies pattern matching to `instanceof` checks for more concise and readable co
 - [Documentation](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/wiki/docs/features/patternMatchingInstanceof)
 
 ## summaryParentOverride
-### Displays a folded summary of overridden methods from parent classes and interfaces
+### Shows a summary of overridden methods after each parent class and interface, and the parent at each overriding method (inlay hints)
 Provides a concise view of inherited method overrides, reducing redundant code duplication.
 - [Example](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/examples/data/SummaryParentOverrideTestData.java)
 - [Folded](https://github.com/AntoniRokitnicki/AdvancedExpressionFolding/blob/main/folded/SummaryParentOverrideTestData-folded.java)

@@ -12,9 +12,9 @@ public class SummaryParentOverrideTestData {
         }</fold>
     }</fold>
 
-    class ParentClass extends GrandparentClas<fold text='s(1-grandparentMethod)' expand='true'>s</fold> <fold text='{...}' expand='true'>{
+    class ParentClass extends GrandparentClass <fold text='{...}' expand='true'>{
         @Override
-        public void grandparentMethod() <fold text='{ // overrides from GrandparentClass' expand='true'><fold text='{...}' expand='true'>{</fold>
+        public void grandparentMethod() <fold text='{...}' expand='true'>{
             System.out.println("Overridden Grandparent Method in Parent");
             System.out.println("Overridden Grandparent Method in Parent");
         }</fold>
@@ -37,27 +37,27 @@ public class SummaryParentOverrideTestData {
 
     }</fold>
 
-    public class TestDataClass extends ParentClas<fold text='s(1-grandparentMethod)' expand='true'>s</fold> implements FirstInterfac<fold text='e(2-interfaceMethodOne, sharedMethod)' expand='true'>e</fold>, SecondInterfac<fold text='e(1-interfaceMethodTwo)' expand='true'>e</fold>, WithoutMethodInterfac<fold text='e(nothing overridden)' expand='true'>e</fold> <fold text='{...}' expand='true'>{
+    public class TestDataClass extends ParentClass implements FirstInterface, SecondInterface, WithoutMethodInterface <fold text='{...}' expand='true'>{
 
         @Override
         public void interfaceMethodOne()<fold text=' { ' expand='false'> {
             </fold>System.out.println("Implementation of Interface Method One");<fold text=' }' expand='false'>
-        <fold text='} // overrides from FirstInterface' expand='true'>}</fold></fold>
+        }</fold>
 
         @Override
         public void interfaceMethodTwo()<fold text=' { ' expand='false'> {
             </fold>System.out.println("Implementation of Interface Method Two");<fold text=' }' expand='false'>
-        <fold text='} // overrides from SecondInterface' expand='true'>}</fold></fold>
+        }</fold>
 
         @Override
         public void sharedMethod()<fold text=' { ' expand='false'> {
             </fold>System.out.println("Overridden Shared Method");<fold text=' }' expand='false'>
-        <fold text='} // overrides from FirstInterface' expand='true'>}</fold></fold>
+        }</fold>
 
         @Override
         public void grandparentMethod()<fold text=' { ' expand='false'> {
             </fold>System.out.println("Overridden Grandparent Method in TestDataClass");<fold text=' }' expand='false'>
-        <fold text='} // overrides from ParentClass' expand='true'>}</fold></fold>
+        }</fold>
 
         public void additionalMethodOne()<fold text=' { ' expand='false'> {
             </fold>System.out.println("Additional method one");<fold text=' }' expand='false'>
@@ -69,6 +69,17 @@ public class SummaryParentOverrideTestData {
 
         public void additionalMethodThree()<fold text=' { ' expand='false'> {
             </fold>System.out.println("Additional method three");<fold text=' }' expand='false'>
+        }</fold>
+    }</fold>
+
+    interface Repository<T> <fold text='{...}' expand='true'>{
+        int size();
+    }</fold>
+
+    class NameRepository implements Repository<String> <fold text='{...}' expand='true'>{
+        @Override
+        public int size()<fold text=' { ' expand='false'> {
+            </fold>return 0;<fold text=' }' expand='false'>
         }</fold>
     }</fold>
 }

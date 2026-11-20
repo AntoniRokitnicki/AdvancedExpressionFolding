@@ -11,7 +11,7 @@ import java.util.function.Function;</fold>
 @SuppressWarnings("ALL")
 public class ExperimentalTestData {
 
-    public class SneakyThrowsExample implements Runnabl<fold text='e(1-run)' expand='true'>e</fold> <fold text='{...}' expand='true'>{
+    public class SneakyThrowsExample implements Runnable <fold text='{...}' expand='true'>{
 
         public String utf8ToStringMultiline(byte[] bytes) <fold text='{...}' expand='true'>{
             <fold text='@SneakyThrows' expand='true'>try</fold> <fold text='{...}' expand='true'>{

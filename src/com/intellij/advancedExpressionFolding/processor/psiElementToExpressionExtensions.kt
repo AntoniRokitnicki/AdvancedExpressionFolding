@@ -27,13 +27,6 @@ fun List<PsiElement>.expr(
     return map.exprWrap(first().parent)
 }
 
-fun PsiElement.exprOnLastChar(
-    text: String,
-    group: FoldingGroup? = null,
-): SimpleExpression? = expr(
-    text = this.text.last() + text, group = group, textRange = textRangeChar(PsiElement::end, -1, 0)
-)
-
 fun PsiElement.expr(
     text: String,
     group: FoldingGroup? = null,

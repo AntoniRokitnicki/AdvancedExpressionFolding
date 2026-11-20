@@ -3,6 +3,11 @@
 ### Summary Parent Override
 Folds overridden methods into parent summary stubs.
 
+The summary after each parent name, e.g. `(1-grandparentMethod)`, and the `// overrides from X` note at the body brace of
+each `@Override` method are inlay hints (Settings | Editor | Inlay Hints | Other), so the parent name and the brace keep
+their own text and highlighting, other foldings of the method (e.g. `expressionFunc`) stay intact, and `folded/` files no
+longer contain them. The examples below show what the editor displays.
+
 #### Example: SummaryParentOverrideTestData
 
 examples/data/SummaryParentOverrideTestData.java:
@@ -106,5 +111,31 @@ Related features: (none)
 **After**
 ```java
         } // overrides from ParentClass
+```
+
+
+##### Scenario 7
+
+**Before**
+```java
+    class NameRepository implements Repository<String> {
+```
+
+**After**
+```java
+    class NameRepository implements Repository(1-size)<String> {
+```
+
+
+##### Scenario 8
+
+**Before**
+```java
+        }
+```
+
+**After**
+```java
+        } // overrides from Repository
 ```
 
